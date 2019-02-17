@@ -155,18 +155,6 @@ extension ViewBuildable {
     }
 }
 
-
-extension ViewBuildable {
-
-    public static func forEach<T>(in collection: [T], render: (Int, T) -> Mappable) -> Mappable {
-        return collection.enumerated().map { render($0.offset, $0.element) }
-    }
-
-    public static func forEach<T>(in collection: [T], render: (T) -> Mappable) -> Mappable {
-        return collection.map { render($0) }
-    }
-}
-
 extension ViewBuildable {
     public static func embed<T: StaticTemplate>(static view: T.Type) -> Mappable {
         return T.build()

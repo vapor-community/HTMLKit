@@ -21,8 +21,7 @@ extension HTML.EmbedTemplate: Mappable {
     }
 }
 
-extension KeyPath {
-
-    var rootType: Root.Type { return Root.self }
-    var valueType: Value.Type { return Value.self }
-}
+//extension KeyPath {
+//    var rootType: Root.Type { return Root.self }
+//    var valueType: Value.Type { return Value.self }
+//}

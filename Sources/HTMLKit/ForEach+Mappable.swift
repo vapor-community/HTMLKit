@@ -4,13 +4,13 @@ extension HTML.ForEach: Mappable {
         guard let rootContext = context as? Root.Context else {
             throw HTML.Errors.incorrectGenericType
         }
-        let render = view.build()
         return try rootContext[keyPath: collectionPath].reduce("") {
-            try $0 + render.map(for: view, with: $1)
+            try $0 + localFormula.render(with: $1)
         }
     }
 
     public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws where T: Template {
         formula.add(mappable: self)
+        try view.build().brew(localFormula)
     }
 }
