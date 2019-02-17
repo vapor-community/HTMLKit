@@ -1,17 +1,17 @@
 # HTMLKit
 
-Render HTML templates in a *typesafe* and **lightning fast** way!
+Render **lightning fast** HTML templates in a *typesafe* way!
 By using Swift's powerfull language features, HTMLKit is able to catch bugs that might otherwise occure, but also in an insanely fast way.
 
-## How fast is HTMLKit?
+## How fast is HTMLKit? ⚡
 
 As mentioned HTMLKit is extremely fast, but exactly who fast?
 By using the Leaf templating language as a benchmark, HTMLKit was **150 or 880x faster** depending if the caching feature was used.
 
 This is the result of the rendering time used on a somewhat complex page, using a base template, that renders a navigation-bar and has a placeholder for some view content to display. In the view content, there was a for loop that displays some cards and its content.
-The same view was rendered *128* times with the different frameworks, and Leaf used an average of *0.841 sec*, while HTMLKit used and an average of *0.00548 sec*. This is where the *150x* relation is from.
+The same view was rendered 128 times with the different frameworks, and Leaf used an average of *0.841 sec*, while HTMLKit used and an average of *0.00548 sec*. This is where the *150x* relation is from.
 
-So how do you use it?
+## So how do you use it? 🔧
 
 It is actually quite simple. But first, there are three different protocols to understand.
 
@@ -127,3 +127,5 @@ This could render something like:
     </body>
 </html>
 ```
+
+NB! Currently if statments is not supported, but will be added.
