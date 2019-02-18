@@ -85,7 +85,7 @@ extension Template {
     ///   - condition: The condition to use
     ///   - view: The view to render
     /// - Returns: An `HTML.IF` object
-    public static func renderIf<C>(_ condition: HTML.IF<Self>.Condition<C>, view: Mappable) -> HTML.IF<Self> {
+    public static func renderIf<C>(_ condition: HTML.IF<Self>.Condition<C>, _ view: Mappable) -> HTML.IF<Self> {
         condition.view = view
         return HTML.IF(conditions: condition)
     }
@@ -96,7 +96,7 @@ extension Template {
     ///   - condition: The condition to use
     ///   - view: The view to render
     /// - Returns: An `HTML.IF` object
-    public static func renderIf(_ path: KeyPath<Self.Context, Bool>, view: Mappable) -> HTML.IF<Self> {
+    public static func renderIf(_ path: KeyPath<Self.Context, Bool>, _ view: Mappable) -> HTML.IF<Self> {
         let condition = HTML.IF.Condition(condition: BoolCondition<Self>(path: path))
         condition.view = view
         return HTML.IF(conditions: condition)
@@ -108,7 +108,7 @@ extension Template {
     ///   - path: The path of the variable
     ///   - view: The view to render
     /// - Returns: An `HTML.IF` object
-    public static func renderIf<Value>(notNull path: KeyPath<Self.Context, Value?>, view: Mappable) -> HTML.IF<Self> {
+    public static func renderIf<Value>(notNull path: KeyPath<Self.Context, Value?>, _ view: Mappable) -> HTML.IF<Self> {
         let condition = HTML.IF.Condition(condition: NotNullCondition<Self, Value>(path: path))
         condition.view = view
         return HTML.IF(conditions: condition)

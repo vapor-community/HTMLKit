@@ -44,7 +44,7 @@ extension HTML.IF: Mappable {
     ///   - condition: The conditino to be evaluated
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    func elseIf<C>(_ condition: Condition<C>, render: Mappable) -> HTML.IF<Root> where C: Conditionable {
+    func elseIf<C>(_ condition: Condition<C>, _ render: Mappable) -> HTML.IF<Root> where C: Conditionable {
         condition.view = render
         conditions.append(condition)
         return self
@@ -56,7 +56,7 @@ extension HTML.IF: Mappable {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    func elseIf(_ path: KeyPath<Root.Context, Bool>, render: Mappable) -> HTML.IF<Root> {
+    func elseIf(_ path: KeyPath<Root.Context, Bool>, _ render: Mappable) -> HTML.IF<Root> {
         let condition = HTML.IF.Condition(condition: BoolCondition<Root>(path: path))
         condition.view = render
         conditions.append(condition)
@@ -69,7 +69,7 @@ extension HTML.IF: Mappable {
     ///   - condition: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    func elseIf<Value>(notNull path: KeyPath<Root.Context, Value?>, render: Mappable) -> HTML.IF<Root> {
+    func elseIf<Value>(notNull path: KeyPath<Root.Context, Value?>, _ render: Mappable) -> HTML.IF<Root> {
         let condition = HTML.IF.Condition(condition: NotNullCondition<Root, Value>(path: path))
         condition.view = render
         conditions.append(condition)

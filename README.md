@@ -37,7 +37,7 @@ struct SimpleView: Template {
             div(attr: [.class("simple-view")], 
                 p(variable(at: \.value)),
                 
-                renderIf(\.intValue > 0, view: 
+                renderIf(\.intValue > 0,
                     b("Extra text")
                 )
             )

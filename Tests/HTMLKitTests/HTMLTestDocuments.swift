@@ -81,7 +81,6 @@ struct ForEachView: Template {
         let array: [StringView.Context]
 
         static func content(from array: [String]) -> Context {
-            array.enumerated().map { $0.element }
             return .init(array: array.map { .init(string: $0) })
         }
     }
@@ -107,19 +106,19 @@ struct IFView: Template {
     static func build() -> Mappable {
         return
             div(
-                renderIf(\.name == "Mats", view:
+                renderIf(\.name == "Mats",
                     p("My name is: ", variable(at: \.name), "!")
                 ),
-                renderIf(\.age < 20, view:
+                renderIf(\.age < 20,
                     "I am a child"
-                ).elseIf(\.age > 20, render:
+                ).elseIf(\.age > 20,
                     "I am older"
                 ).else(render:
                     "I am growing"
                 ),
-                renderIf(notNull: \.nullable, view:
+                renderIf(notNull: \.nullable,
                     b("Only if nullable exists")
-                ).elseIf(\.bool, render:
+                ).elseIf(\.bool,
                     p("Simple bool")
                 )
             )
