@@ -30,14 +30,14 @@ struct SimpleView: Template {
         let intValue: Int
     }
 
-// <div class="simple-view"><p>#(value)</p> #if(intValue > 10) {<b>Extra text</b>}</div>
+// <div class="simple-view"><p>#(value)</p> #if(intValue > 0) {<b>Extra text</b>}</div>
 
     static func build() -> Mappable {
         return
             div(attr: [.class("simple-view")], 
                 p(variable(at: \.value)),
                 
-                renderIf(\.intValue > 10, view: 
+                renderIf(\.intValue > 0, view: 
                     b("Extra text")
                 )
             )
@@ -52,7 +52,7 @@ Bellow is an example of how to render a view with a context.
 var renderer = HTML.Renderer()
 try renderer.brewFormula(for: SimpleView.self)
 ...
-try renderer.render(SimpleView.self, with: .init(value: "Hello World", intValue: 2))
+try renderer.render(SimpleView.self, with: .init(value: "Hello World", intValue: 0))
 ```
 You register and optimize the rendering by calling the `brewFormula(for: View.Type)` function, and render the view with the correct Context with `render(View.Type, with: Context)`.
 
@@ -96,7 +96,7 @@ struct SomeView: Template {
             return .init(
                 name: name, 
                 baseContext: .init(title: title), 
-                values: values.map { .init(value: $0) }
+                values: values.enumerated().map { .init(value: $0.element, intValue: $0.offset) }
                 )
         }
     }
@@ -128,9 +128,11 @@ This could render something like:
         </div>
         <div class="simple-view">
             <p>Second</p>
+            <b>Extra text</b>
         </div>
         <div class="simple-view">
             <p>Third</p>
+            <b>Extra text</b>
         </div>
     </body>
 </html>

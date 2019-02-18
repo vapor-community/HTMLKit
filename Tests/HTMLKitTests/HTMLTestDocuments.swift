@@ -81,6 +81,7 @@ struct ForEachView: Template {
         let array: [StringView.Context]
 
         static func content(from array: [String]) -> Context {
+            array.enumerated().map { $0.element }
             return .init(array: array.map { .init(string: $0) })
         }
     }
