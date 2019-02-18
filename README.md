@@ -52,7 +52,7 @@ Bellow is an example of how to render a view with a context.
 var renderer = HTML.Renderer()
 try renderer.brewFormula(for: SimpleView.self)
 ...
-try renderer.render(SimpleView.self, with: .init(value: "Hello World"))
+try renderer.render(SimpleView.self, with: .init(value: "Hello World", intValue: 2))
 ```
 You register and optimize the rendering by calling the `brewFormula(for: View.Type)` function, and render the view with the correct Context with `render(View.Type, with: Context)`.
 
