@@ -27,14 +27,19 @@ struct SimpleView: Template {
 
     struct Context {
         let value: String
+        let intValue: Int
     }
 
-    // <div class="simple-view"><p>#(value)</p></div>
+// <div class="simple-view"><p>#(value)</p> #if(intValue > 10) {<b>Extra text</b>}</div>
 
     static func build() -> Mappable {
         return
             div(attr: [.class("simple-view")], 
-                p(variable(at: \.value))
+                p(variable(at: \.value)),
+                
+                renderIf(\.intValue > 10, view: 
+                    b("Extra text")
+                )
             )
     }
 }
@@ -130,5 +135,3 @@ This could render something like:
     </body>
 </html>
 ```
-
-NB! Currently if statments is not supported, but will be added.

@@ -1,40 +1,4 @@
 
-//public protocol Condition {
-//    associatedtype Root: ContextualTemplate
-//    associatedtype Value
-//    func evaluate(with context: Root.Context) -> Bool
-//}
-//
-//public struct Equal<Root, Value>: Condition where Root: ContextualTemplate, Value: Equatable {
-//    let path: KeyPath<Root.Context, Value>
-//    let value: Value
-//
-//    public func evaluate(with context: Root.Context) -> Bool {
-//        return context[keyPath: path] == value
-//    }
-//}
-//
-//public struct LessThen<Root, Value>: Condition where Root: ContextualTemplate, Value: Comparable {
-//    let path: KeyPath<Root.Context, Value>
-//    let value: Value
-//
-//    public func evaluate(with context: Root.Context) -> Bool {
-//        return context[keyPath: path] < value
-//    }
-//}
-//
-//public struct GreaterThen<Root, Value>: Condition where Root: ContextualTemplate, Value: Comparable {
-//    let path: KeyPath<Root.Context, Value>
-//    let value: Value
-//
-//    public func evaluate(with context: Root.Context) -> Bool {
-//        return context[keyPath: path] > value
-//    }
-//}
-//
-//public struct IFCondition<Root, Value, C> where C: Condition, Root == C.Root, Value == C.Value {
-//    let condition: C
-//}
 
 /// A struct containing the different structs to render a HTML document
 public struct HTML {
@@ -152,12 +116,44 @@ public struct HTML {
         }
     }
 
-//    public struct IF<Root: ContextualTemplate> {
-//
-//        let conditions: [IFCondition<Root, Any, Any>]
-//
-//        let view: Mappable
-//    }
+    /// A struct making it possible to have a if in the template
+    ///
+    ///     renderIf(\.name == "Name", view: ...)
+    public class IF<Root: Template> {
+
+        /// One condition in the if
+        public class Condition<C> where C: Conditionable, Root == C.Root {
+
+            /// The condition to evaluate
+            let condition: C
+
+            /// The local formula for optimazation
+            var localFormula: Renderer.Formula<Root>
+
+            /// The view to render.
+            /// Set to an empty string in order to create a condition on `\.name == ""`
+            /// This should probably be re designed a little
+            var view: Mappable = ""
+
+            /// Creates an if condition
+            ///
+            /// - Parameter condition: The condition to evaluate
+            init(condition: C) {
+                self.condition = condition
+                localFormula = Renderer.Formula(view: Root.self)
+            }
+        }
+
+        /// The different conditions that can happen
+        var conditions: [AnyMappableCondition]
+
+        /// Create an if, with the first condition
+        ///
+        /// - Parameter conditions: The first condition
+        init(conditions: AnyMappableCondition) {
+            self.conditions = [conditions]
+        }
+    }
 
     /// A struct containing the differnet formulas for the different views.
     ///

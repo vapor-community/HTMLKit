@@ -64,7 +64,6 @@ struct SomeView: Template {
     }
 
     static func build() -> Mappable {
-
         return
             embed(
                 BaseView.self,
@@ -91,5 +90,37 @@ struct ForEachView: Template {
             div(attr: [.id("array")],
                 forEach(in: \.array, render: StringView.self)
         )
+    }
+}
+
+
+struct IFView: Template {
+
+    struct Context {
+        let name: String
+        let age: Int
+        let nullable: String?
+        let bool: Bool
+    }
+
+    static func build() -> Mappable {
+        return
+            div(
+                renderIf(\.name == "Mats", view:
+                    p("My name is: ", variable(at: \.name), "!")
+                ),
+                renderIf(\.age < 20, view:
+                    "I am a child"
+                ).elseIf(\.age > 20, render:
+                    "I am older"
+                ).else(render:
+                    "I am growing"
+                ),
+                renderIf(notNull: \.nullable, view:
+                    b("Only if nullable exists")
+                ).elseIf(\.bool, render:
+                    p("Simple bool")
+                )
+            )
     }
 }

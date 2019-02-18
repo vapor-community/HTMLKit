@@ -66,9 +66,6 @@ extension ContextualTemplate {
         return HTML.EmbedTemplate<Self, T>(templateType: template,
                                            contextKeyPath: contextPath)
     }
-//
-//    public static func `if`<C: Condition, Value>(_ condition: IFCondition<Self, Value, C>) {
-//    }
 }
 
 extension Template {
@@ -81,16 +78,79 @@ extension Template {
     public static func forEach<View>(in collectionPath: KeyPath<Self.Context, [View.Context]>, render view: View.Type) -> Mappable where View: Template {
         return HTML.ForEach<Self, View>(view: View.self, collectionPath: collectionPath)
     }
+
+    /// Creates an if statment in a template
+    ///
+    /// - Parameters:
+    ///   - condition: The condition to use
+    ///   - view: The view to render
+    /// - Returns: An `HTML.IF` object
+    public static func renderIf<C>(_ condition: HTML.IF<Self>.Condition<C>, view: Mappable) -> HTML.IF<Self> {
+        condition.view = view
+        return HTML.IF(conditions: condition)
+    }
+
+    /// Creates an if statment in a template
+    ///
+    /// - Parameters:
+    ///   - condition: The condition to use
+    ///   - view: The view to render
+    /// - Returns: An `HTML.IF` object
+    public static func renderIf(_ path: KeyPath<Self.Context, Bool>, view: Mappable) -> HTML.IF<Self> {
+        let condition = HTML.IF.Condition(condition: BoolCondition<Self>(path: path))
+        condition.view = view
+        return HTML.IF(conditions: condition)
+    }
+
+    /// Creates an if statment in a template
+    ///
+    /// - Parameters:
+    ///   - path: The path of the variable
+    ///   - view: The view to render
+    /// - Returns: An `HTML.IF` object
+    public static func renderIf<Value>(notNull path: KeyPath<Self.Context, Value?>, view: Mappable) -> HTML.IF<Self> {
+        let condition = HTML.IF.Condition(condition: NotNullCondition<Self, Value>(path: path))
+        condition.view = view
+        return HTML.IF(conditions: condition)
+    }
 }
 
-//public func == <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> IFCondition<Root, Value, Equal<Root, Value>> where Root: ContextualTemplate, Value: Equatable {
-//    return IFCondition(condition: Equal(path: lhs, value: rhs))
-//}
-//
-//public func < <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> IFCondition<Root, Value, LessThen<Root, Value>> where Root: ContextualTemplate, Value: Comparable {
-//    return IFCondition(condition: LessThen(path: lhs, value: rhs))
-//}
-//
-//public func > <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> IFCondition<Root, Value, GreaterThen<Root, Value>> where Root: ContextualTemplate, Value: Comparable {
-//    return IFCondition(condition: GreaterThen(path: lhs, value: rhs))
-//}
+/// Creates a `Equal` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `HTML.IF.Condition` object
+public func == <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> HTML.IF<Root>.Condition<Equal<Root, Value>> where Root: ContextualTemplate, Value: Equatable {
+    return HTML.IF.Condition(condition: Equal(path: lhs, value: rhs))
+}
+
+/// Creates a `Equal` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `HTML.IF.Condition` object
+public func != <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> HTML.IF<Root>.Condition<NotEqual<Root, Value>> where Root: ContextualTemplate, Value: Equatable {
+    return HTML.IF.Condition(condition: NotEqual(path: lhs, value: rhs))
+}
+
+/// Creates a `LessThen` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `HTML.IF.Condition` object
+public func < <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> HTML.IF<Root>.Condition<LessThen<Root, Value>> where Root: ContextualTemplate, Value: Comparable {
+    return HTML.IF.Condition(condition: LessThen(path: lhs, value: rhs))
+}
+
+/// Creates a `GreaterThen` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `HTML.IF.Condition` object
+public func > <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> HTML.IF<Root>.Condition<GreaterThen<Root, Value>> where Root: ContextualTemplate, Value: Comparable {
+    return HTML.IF.Condition(condition: GreaterThen(path: lhs, value: rhs))
+}
