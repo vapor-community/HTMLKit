@@ -29,12 +29,12 @@ struct SimpleView: Template {
         let value: String
     }
 
-    // <div><p>#(value)</p></div>
+    // <div class="simple-view"><p>#(value)</p></div>
 
     static func build() -> Mappable {
         return
-            div(children:
-                p(children: variable(at: \.value))
+            div(attr: [.class("simple-view")], 
+                p(variable(at: \.value))
             )
     }
 }
@@ -66,11 +66,15 @@ struct BaseView: ViewTemplate {
 
     static func build(with context: BaseView.ViewContext) -> Mappable {
         return
-            html(children:
-                head(children: 
-                    title(children: variable(at: \.title))
+            html(
+                head(
+                    title(
+                        variable(at: \.title)
+                    )
                 ),
-                body(children: context.body)
+                body(
+                    context.body
+                )
             )
     }
 }
@@ -98,7 +102,7 @@ struct SomeView: Template {
                 BaseView.self,
                 with: .init(
                     body: 
-                        p(children: "Hello ", variable(at: \.name), "!"),
+                        p("Hello ", variable(at: \.name), "!"),
                         forEach(in: \.values, render: SimpleView.self)
                 ),
                 contextPath: \.baseContext
@@ -114,13 +118,13 @@ This could render something like:
     </head>
     <body>
         <p>Hello Mats!</p>
-        <div>
+        <div class="simple-view">
             <p>First</p>
         </div>
-        <div>
+        <div class="simple-view">
             <p>Second</p>
         </div>
-        <div>
+        <div class="simple-view">
             <p>Third</p>
         </div>
     </body>

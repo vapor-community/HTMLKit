@@ -12,8 +12,8 @@ struct SimpleView: StaticTemplate, HTMLTestable {
 
     static func build() -> Mappable {
         return
-            div(children:
-                p(children: "Text")
+            div(
+                p("Text")
             )
     }
 }
@@ -30,9 +30,11 @@ struct BaseView: ViewTemplate {
 
     static func build(with context: BaseView.ViewContext) -> Mappable {
         return
-            html(children:
-                head(children: title(children: variable(at: \.title))),
-                body(children: context.body)
+            html(
+                head(
+                    title(variable(at: \.title))
+                ),
+                body(context.body)
         )
     }
 }
@@ -45,7 +47,7 @@ struct StringView: Template {
 
     static func build() -> Mappable {
         return
-            p(children: variable(at: \.string))
+            p(variable(at: \.string))
     }
 
 }
@@ -67,7 +69,7 @@ struct SomeView: Template {
             embed(
                 BaseView.self,
                 with: .init(
-                    body: p(children: "Hello ", variable(at: \.name), "!")
+                    body: p("Hello ", variable(at: \.name), "!")
                 ),
                 contextPath: \.baseContext
             )
@@ -86,8 +88,8 @@ struct ForEachView: Template {
 
     static func build() -> Mappable {
         return
-            div(attributes: [.id("array")],
-                children: forEach(in: \.array, render: StringView.self)
+            div(attr: [.id("array")],
+                forEach(in: \.array, render: StringView.self)
         )
     }
 }
