@@ -21,7 +21,7 @@ final class HTMLKitTests: XCTestCase {
         XCTAssertEqual(forEachRender, "<div id='array'><p>1</p><p>2</p><p>3</p></div>")
         XCTAssertEqual(firstIfRender, "<div>I am a child</div>")
         XCTAssertEqual(secondIfRender, "<div><p>My name is: Mats!</p>I am growing<p>Simple bool</p></div>")
-        XCTAssertEqual(thirdIfRender, "<div>I am older<b>Only if nullable exists</b></div>")
+        XCTAssertEqual(thirdIfRender, "<div>I am older<b>Some</b></div>")
     }
 
     static var allTests = [

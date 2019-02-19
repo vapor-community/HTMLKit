@@ -18,7 +18,7 @@ extension ContextualTemplate {
         return HTML.Variable(keyPath: keyPath)
     }
 
-//    public static func variable<Value>(at keyPath: KeyPath<Self.Context, Value?>) -> HTML.Variable<Self, Value> {
-//        return HTML.Variable(keyPath: keyPath)
-//    }
+    public static func variable<Value>(at keyPath: KeyPath<Self.Context, Value?>) -> HTML.Variable<Self, Value?> {
+        return HTML.Variable(keyPath: keyPath)
+    }
 }

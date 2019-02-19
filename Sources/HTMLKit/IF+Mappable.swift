@@ -63,19 +63,6 @@ extension HTML.IF: Mappable {
         return self
     }
 
-    /// Add an else if condition
-    ///
-    /// - Parameters:
-    ///   - condition: The path to evaluate
-    ///   - render: The view to render if true
-    /// - Returns: returns a modified if statment
-    func elseIf<Value>(notNull path: KeyPath<Root.Context, Value?>, _ render: Mappable) -> HTML.IF<Root> {
-        let condition = HTML.IF.Condition(condition: NotNullCondition<Root, Value>(path: path))
-        condition.view = render
-        conditions.append(condition)
-        return self
-    }
-
     /// Add an else condition
     ///
     /// - Parameter render: The view to be rendered

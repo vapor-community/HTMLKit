@@ -35,7 +35,9 @@ struct SimpleView: Template {
     static func build() -> Mappable {
         return
             div(attr: [.class("simple-view")], 
-                p(variable(at: \.value)),
+                p(
+                    variable(at: \.value)
+                ),
                 
                 renderIf(\.intValue > 0,
                     b("Extra text")
@@ -52,7 +54,8 @@ Bellow is an example of how to render a view with a context.
 var renderer = HTML.Renderer()
 try renderer.brewFormula(for: SimpleView.self)
 ...
-try renderer.render(SimpleView.self, with: .init(value: "Hello World", intValue: 0))
+let context = SimpleView.Context(value: "Hello World", intValue: 0)
+try renderer.render(SimpleView.self, with: context)
 ```
 You register and optimize the rendering by calling the `brewFormula(for: View.Type)` function, and render the view with the correct Context with `render(View.Type, with: Context)`.
 
@@ -107,8 +110,11 @@ struct SomeView: Template {
                 BaseView.self,
                 with: .init(
                     body: 
-                        p("Hello ", variable(at: \.name), "!"),
-                        forEach(in: \.values, render: SimpleView.self)
+                        p(
+                            "Hello ", variable(at: \.name), "!"
+                        ),
+                        forEach(in: \.values, 
+                                render: SimpleView.self)
                 ),
                 contextPath: \.baseContext
             )

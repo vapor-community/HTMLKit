@@ -109,6 +109,7 @@ struct IFView: Template {
                 renderIf(\.name == "Mats",
                     p("My name is: ", variable(at: \.name), "!")
                 ),
+
                 renderIf(\.age < 20,
                     "I am a child"
                 ).elseIf(\.age > 20,
@@ -116,8 +117,9 @@ struct IFView: Template {
                 ).else(render:
                     "I am growing"
                 ),
-                renderIf(notNull: \.nullable,
-                    b("Only if nullable exists")
+
+                renderIf(\.nullable != nil,
+                    b( variable(at: \.nullable))
                 ).elseIf(\.bool,
                     p("Simple bool")
                 )
