@@ -1,15 +1,15 @@
 # HTMLKit
 
 Render **lightning fast** HTML templates in a *typesafe* way!
-By using Swift's powerfull language features, HTMLKit is able to catch bugs that might otherwise occure, but also in an insanely fast way.
+By using Swift's powerfull language features, HTMLKit is able to catch bugs that might otherwise occure, but also render in an insanely fast way.
 
 ## How fast is HTMLKit? ⚡
 
-As mentioned HTMLKit is extremely fast, but exactly who fast?
+As mentioned HTMLKit is extremely fast, but exactly how fast?
 By using the Leaf templating language as a benchmark, HTMLKit was **150 or 880x faster** depending if the caching feature was used.
 
 This is the result of the rendering time used on a somewhat complex page, using a base template, that renders a navigation-bar and has a placeholder for some view content to display. In the view content, there was a for loop that displays some cards and its content.
-The same view was rendered 128 times with the different frameworks, and Leaf used an average of *0.841 sec*, while HTMLKit used and an average of *0.00548 sec*. This is where the *150x* relation is from.
+The same view was rendered 128 times with the different frameworks, and Leaf used an average of *0.841 sec*, while HTMLKit used and an average of *0.00548 sec*. This is where the *150x* relation comes from.
 
 ## How do you use it? 🔧
 
@@ -30,7 +30,7 @@ struct SimpleView: Template {
         let intValue: Int
     }
 
-// <div class="simple-view"><p>#(value)</p> #if(intValue > 0) {<b>Extra text</b>}</div>
+    // <div class="simple-view"><p>#(value)</p> #if(intValue > 0) {<b>Extra text</b>}</div>
 
     static func build() -> Mappable {
         return
@@ -55,9 +55,9 @@ var renderer = HTML.Renderer()
 try renderer.brewFormula(for: SimpleView.self)
 ...
 let context = SimpleView.Context(value: "Hello World", intValue: 0)
-try renderer.render(SimpleView.self, with: context)
+try renderer.render(SimpleView.self, with: context)  // <div class="simple-view"><p>Hello World</p></div>
 ```
-You register and optimize the rendering by calling the `brewFormula(for: View.Type)` function, and render the view with the correct Context with `render(View.Type, with: Context)`.
+You register and optimize the rendering by calling the `brewFormula(for: View.Type)` function, and render the view with the correct Context with `render(View.Type, with: View.Context)`.
 
 Now since that was so simple. Let's step it up a bit by creating a base template and a view that renders some content, based on the input.
 

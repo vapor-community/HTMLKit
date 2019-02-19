@@ -18,6 +18,25 @@ struct SimpleView: StaticTemplate, HTMLTestable {
     }
 }
 
+struct StaticEmbedView: Template {
+
+    struct Context {
+        let string: String
+        let int: Int?
+    }
+
+    static func build() -> Mappable {
+        return
+            div(
+                embed(static: SimpleView.self),
+                p( variable(at: \.string)),
+                renderIf(\.int != nil,
+                         small( variable(at: \.int))
+                )
+        )
+    }
+}
+
 struct BaseView: ViewTemplate {
 
     struct Context {
