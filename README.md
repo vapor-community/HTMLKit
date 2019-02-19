@@ -34,10 +34,9 @@ struct SimpleView: Template {
 
     static func build() -> Mappable {
         return
-            div(attr: [.class("simple-view")], 
-                p(
-                    variable(at: \.value)
-                ),
+            div(attr: [.class("simple-view")],
+            
+                p( variable(at: \.value)),
                 
                 renderIf(\.intValue > 0,
                     b("Extra text")
@@ -109,10 +108,10 @@ struct SomeView: Template {
             embed(
                 BaseView.self,
                 with: .init(
-                    body: 
-                        p(
-                            "Hello ", variable(at: \.name), "!"
-                        ),
+                
+                    body:         
+                        p("Hello ", variable(at: \.name), "!"),
+                        
                         forEach(in: \.values, 
                                 render: SimpleView.self)
                 ),
