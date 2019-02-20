@@ -1,8 +1,9 @@
 
-/// A Static view
-public protocol ViewBuildable { }
+/// A helper protocol that makes it easieer to render html in a static function
+/// Example of this is when building a `Templating` or `ViewTemplating` object
+public protocol StaticViewBuildable { }
 
-extension ViewBuildable {
+extension StaticViewBuildable {
 
     public static func body(attr attributes: [HTML.AttributeNode] = [], _ children: Mappable...) -> Mappable {
         return HTML.ContentNode(nodeName: "body", attributes: attributes, content: children)
@@ -109,14 +110,14 @@ extension ViewBuildable {
     }
 }
 
-extension ViewBuildable {
+extension StaticViewBuildable {
     public static func comment(_ comment: String) -> Mappable {
         return "<!-- \(comment) -->"
     }
 }
 
 
-extension ViewBuildable {
+extension StaticViewBuildable {
 
     public static func stylesheet(href: String, attributes: HTML.AttributeNode...) -> Mappable {
         return HTML.DataNode(nodeName: "link", attributes: [.href(href), .rel("stylesheet")] + attributes)
@@ -152,12 +153,6 @@ extension ViewBuildable {
 
     public static func script(attr attributes: HTML.AttributeNode...) -> Mappable {
         return HTML.ContentNode(nodeName: "input", attributes: attributes, content: "")
-    }
-}
-
-extension ViewBuildable {
-    public static func embed<T: StaticTemplate>(static view: T.Type) -> Mappable {
-        return T.build()
     }
 }
 

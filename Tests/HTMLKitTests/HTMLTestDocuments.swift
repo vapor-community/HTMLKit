@@ -1,24 +1,22 @@
 
 @testable import HTMLKit
 
-protocol HTMLTestable: ViewBuildable {
+protocol HTMLTestable: StaticViewBuildable {
     static var expextedOutput: String { get }
 }
 
 
-struct SimpleView: StaticTemplate, HTMLTestable {
+struct SimpleView: Viewable, HTMLTestable {
 
     static var expextedOutput: String = "<div><p>Text</p></div>"
 
-    static func build() -> Mappable {
+    func build() -> Mappable {
         return
-            div(
-                p("Text")
-            )
+            div( p("Text"))
     }
 }
 
-struct StaticEmbedView: Template {
+struct StaticEmbedView: Templating {
 
     struct Context {
         let string: String
@@ -28,7 +26,7 @@ struct StaticEmbedView: Template {
     static func build() -> Mappable {
         return
             div(
-                embed(static: SimpleView.self),
+                SimpleView(),
                 p( variable(at: \.string)),
                 renderIf(\.int != nil,
                          small( variable(at: \.int))
@@ -37,7 +35,7 @@ struct StaticEmbedView: Template {
     }
 }
 
-struct BaseView: ViewTemplate {
+struct BaseView: ViewTemplating {
 
     struct Context {
         let title: String
@@ -58,7 +56,7 @@ struct BaseView: ViewTemplate {
     }
 }
 
-struct StringView: Template {
+struct StringView: Templating {
 
     struct Context {
         let string: String
@@ -71,7 +69,7 @@ struct StringView: Template {
 
 }
 
-struct SomeView: Template {
+struct SomeView: Templating {
 
     struct Context {
         let name: String
@@ -94,7 +92,7 @@ struct SomeView: Template {
     }
 }
 
-struct ForEachView: Template {
+struct ForEachView: Templating {
 
     struct Context {
         let array: [StringView.Context]
@@ -113,7 +111,7 @@ struct ForEachView: Template {
 }
 
 
-struct IFView: Template {
+struct IFView: Templating {
 
     struct Context {
         let name: String
@@ -143,5 +141,30 @@ struct IFView: Template {
                     p("Simple bool")
                 )
             )
+    }
+}
+
+class FormInput: Viewable {
+
+    let id: String
+    let type: String
+    let required: Bool
+    let placeholder: String
+    let label: String
+
+    init(label: String, type: String, required: Bool = true, placeholder: String = "", id: String? = nil) {
+        self.label = label
+        self.type = type
+        self.required = required
+        self.placeholder = placeholder
+        self.id = id ?? label.replacingOccurrences(of: " ", with: "-").lowercased()
+    }
+
+    func build() -> Mappable {
+        return
+            div(attr: [.class("form-group")],
+                label(attr: [.for(id)], label),
+                input(attr: .class("form-control"), .type(type), .required, .name(id), .id(id), .placeholder(placeholder))
+        )
     }
 }

@@ -18,12 +18,16 @@ final class HTMLKitTests: XCTestCase {
         let secondIfRender = try renderer.render(IFView.self, with: .init(name: "Mats", age: 20, nullable: nil, bool: true))
         let thirdIfRender = try renderer.render(IFView.self, with: .init(name: "", age: 21, nullable: "Some", bool: false))
 
+        let inputRender = try FormInput(label: "test", type: "email")
+            .map(for: StringView.self, with: .init(string: ""))
+
         XCTAssertEqual(staticEmbedRender, "<div><div><p>Text</p></div><p>Hello</p><small>2</small></div>")
         XCTAssertEqual(someViewRender, "<html><head><title>Welcome</title></head><body><p>Hello Mats!</p></body></html>")
         XCTAssertEqual(forEachRender, "<div id='array'><p>1</p><p>2</p><p>3</p></div>")
         XCTAssertEqual(firstIfRender, "<div>I am a child</div>")
         XCTAssertEqual(secondIfRender, "<div><p>My name is: Mats!</p>I am growing<p>Simple bool</p></div>")
         XCTAssertEqual(thirdIfRender, "<div>I am older<b>Some</b></div>")
+        XCTAssertEqual(inputRender, "<div class='form-group'><label for='test'>test</label><input class='form-control' type='email' required name='test' id='test' placeholder=''/></div>")
     }
 
     static var allTests = [

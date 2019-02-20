@@ -1,7 +1,7 @@
 
 extension HTML.AttributeNode: Mappable {
 
-    public func map<T>(for type: T.Type, with context: T.Context) throws -> String where T : Template {
+    public func map<T>(for type: T.Type, with context: T.Context) throws -> String where T : Templating {
         if let value = value {
             return try "\(attribute)='\(value.map(for: type, with: context))'"
         } else {
@@ -9,7 +9,7 @@ extension HTML.AttributeNode: Mappable {
         }
     }
 
-    public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws where T: Template {
+    public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws where T: Templating {
         formula.add(string: attribute)
         if let value = value {
             formula.add(string: "='")

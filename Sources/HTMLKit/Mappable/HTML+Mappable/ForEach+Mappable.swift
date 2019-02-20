@@ -1,6 +1,6 @@
 
 extension HTML.ForEach: Mappable {
-    public func map<T>(for type: T.Type, with context: T.Context) throws -> String where T : Template {
+    public func map<T>(for type: T.Type, with context: T.Context) throws -> String where T : Templating {
         guard let rootContext = context as? Root.Context else {
             throw HTML.Errors.incorrectGenericType
         }
@@ -9,7 +9,7 @@ extension HTML.ForEach: Mappable {
         }
     }
 
-    public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws where T: Template {
+    public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws where T: Templating {
         formula.add(mappable: self)
         try view.build().brew(localFormula)
     }

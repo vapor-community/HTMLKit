@@ -70,7 +70,7 @@ public struct HTML {
     /// Making it possible to embed othet templates in a View
     ///
     ///     embed(SomeView.self, viewConfig: .init(...), contextKey: \.context)
-    public struct EmbedViewTemplate<E, T> where E: ContextualTemplate, T: ViewTemplate {
+    public struct EmbedViewTemplate<E, T> where E: ContextualTemplate, T: ViewTemplating {
 
         /// The type of the template
         public let templateType: T.Type
@@ -86,7 +86,7 @@ public struct HTML {
     /// Making it possible to embed othet templates in a View
     ///
     ///     embed(SomeView.self, contextKey: \.context)
-    public struct EmbedTemplate<E, T> where E: ContextualTemplate, T: Template {
+    public struct EmbedTemplate<E, T> where E: ContextualTemplate, T: Templating {
 
         /// The type of the template
         public let templateType: T.Type
@@ -98,7 +98,7 @@ public struct HTML {
     /// A struct making it possible to have a for each loop in the template
     ///
     ///     forEach(\.collection, render: CollectionView.self)
-    public class ForEach<Root: ContextualTemplate, Value: Template> {
+    public class ForEach<Root: ContextualTemplate, Value: Templating> {
 
         /// The view type to render
         public let view: Value.Type
@@ -119,7 +119,7 @@ public struct HTML {
     /// A struct making it possible to have a if in the template
     ///
     ///     renderIf(\.name == "Name", view: ...)
-    public class IF<Root: Template> {
+    public class IF<Root: Templating> {
 
         /// One condition in the if
         public class Condition<C> where C: Conditionable, Root == C.Root {
@@ -165,6 +165,7 @@ public struct HTML {
             case unableToFindFormula
         }
 
+        /// A cache that contains all the brewed `Template`'s
         var formulaCache: [String : Any]
 
         public init() {
@@ -180,7 +181,7 @@ public struct HTML {
         ///   - context: The needed context to render the view with
         /// - Returns: Returns a rendered view
         /// - Throws: If the formula do not exists, or if the rendering process fails
-        public func render<T: Template>(_ type: T.Type, with context: T.Context) throws -> String {
+        public func render<T: Templating>(_ type: T.Type, with context: T.Context) throws -> String {
             guard let formula = formulaCache["\(T.self)"] as? Formula<T> else {
                 throw Errors.unableToFindFormula
             }
@@ -193,7 +194,7 @@ public struct HTML {
         ///
         /// - Parameter type: The view type to brew
         /// - Throws: If the brewing process fails for some reason
-        public mutating func brewFormula<T: Template>(for type: T.Type) throws {
+        public mutating func brewFormula<T: Templating>(for type: T.Type) throws {
             let formula = Formula(view: type)
             try type.build().brew(formula)
             formulaCache["\(T.self)"] = formula
@@ -201,7 +202,7 @@ public struct HTML {
 
         /// A formula for a view
         /// This contains the different parts to pice to gether, in order to increase the performance
-        public class Formula<T: Template> {
+        public class Formula<T: Templating> {
 
             /// The view the formula is for
             let viewType: T.Type

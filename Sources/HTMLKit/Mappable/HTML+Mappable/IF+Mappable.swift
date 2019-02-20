@@ -5,21 +5,21 @@ extension HTML.IF.Condition: AnyMappableCondition {
         return condition.anyEvaluate(with: context)
     }
 
-    public func map<T>(for type: T.Type, with context: T.Context) throws -> String where T : Template {
+    public func map<T>(for type: T.Type, with context: T.Context) throws -> String where T : Templating {
         guard let rootContext = context as? Root.Context else {
             throw HTML.Errors.incorrectGenericType
         }
         return try localFormula.render(with: rootContext)
     }
 
-    public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws where T : Template {
+    public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws where T : Templating {
         try view.brew(localFormula)
     }
 }
 
 extension HTML.IF: Mappable {
 
-    public func map<T>(for type: T.Type, with context: T.Context) throws -> String where T : Template {
+    public func map<T>(for type: T.Type, with context: T.Context) throws -> String where T : Templating {
         guard let rootContext = context as? Root.Context else {
             throw HTML.Errors.incorrectGenericType
         }
@@ -31,7 +31,7 @@ extension HTML.IF: Mappable {
         return ""
     }
 
-    public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws where T : Template {
+    public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws where T : Templating {
         formula.add(mappable: self)
         for condition in conditions {
             try condition.brew(formula)

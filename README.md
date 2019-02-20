@@ -15,15 +15,15 @@ The same view was rendered 128 times with the different frameworks, and Leaf use
 
 It is actually quite simple. But first, there are three different protocols to understand.
 
-- `StaticTemplate`: This is a view that is static or will not need any context to render.
-- `Template`: This is a view that needs some context information to render.
--  `ViewTemplate`: This is a view that will be embeded and has view placeholders (Leaf's get and set).
+- `Viewable`: This is a view that is static or will not need any context to render.
+- `Templating`: This is a view that needs some context information to render.
+-  `ViewTemplating`: This is a view that will be embeded and has view placeholders (Leaf's get and set).
 
 By conforming to one of these protocols, you get access to the different helping functions you will need to render HTML.
 
 So let's render a simple view.
 ```swift
-struct SimpleView: Template {
+struct SimpleView: Templating {
 
     struct Context {
         let value: String
@@ -61,7 +61,7 @@ You register and optimize the rendering by calling the `brewFormula(for: View.Ty
 Now since that was so simple. Let's step it up a bit by creating a base template and a view that renders some content, based on the input.
 
 ```swift
-struct BaseView: ViewTemplate {
+struct BaseView: ViewTemplating {
 
     struct Context {
         let title: String
@@ -86,7 +86,7 @@ struct BaseView: ViewTemplate {
     }
 }
 
-struct SomeView: Template {
+struct SomeView: Templating {
 
     struct Context {
         let name: String
