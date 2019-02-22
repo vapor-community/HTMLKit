@@ -16,7 +16,7 @@ public struct HTML {
         public let attribute: String
 
         /// The value of the attribute
-        public let value: Mappable?
+        public let value: CompiledTemplate?
     }
 
     /// A node that wrap around any content that is renderable
@@ -34,6 +34,11 @@ public struct HTML {
         ///
         ///     attributes = [.class("text-dark")] // <`nodeName` class="text-dark"/>
         public let attributes: [AttributeNode]
+
+        public init(nodeName: String, attributes: [AttributeNode] = []) {
+            self.nodeName = nodeName
+            self.attributes = attributes
+        }
     }
 
     /// A node that wrap around any content that is renderable
@@ -55,102 +60,92 @@ public struct HTML {
         /// The content to be wrapped
         ///
         ///     content = "Some text" // <...>Some text</...>
-        public let content: Mappable
+        public let content: CompiledTemplate
+
+        public init(nodeName: String, attributes: [AttributeNode] = [], content: CompiledTemplate = "") {
+            self.nodeName = nodeName
+            self.attributes = attributes
+            self.content = content
+        }
     }
 
     /// A variable making it possible to lazily insert variables
     ///
     ///     div(children: variable(\.name))     // May leed to "<div>Mats</div>", deepending in the context given
-    public struct Variable<Root, Value> where Root: ContextualTemplate, Value: Mappable {
+    public struct Variable<Root, Value> where Value: CompiledTemplate {
 
         /// The key-path to the variable to render
-        public let keyPath: KeyPath<Root.Context, Value>
-    }
-
-    /// Making it possible to embed othet templates in a View
-    ///
-    ///     embed(SomeView.self, viewConfig: .init(...), contextKey: \.context)
-    public struct EmbedViewTemplate<E, T> where E: ContextualTemplate, T: ViewTemplate {
-
-        /// The type of the template
-        public let templateType: T.Type
-
-        /// The view context needed to render the view.
-        /// This is a variable on in order to prerender the view
-        public let viewContext: T.ViewContext
-
-        /// The key-path the the needed content
-        public let contextKeyPath: KeyPath<E.Context, T.Context>
+        public let keyPath: KeyPath<Root, Value>
     }
 
     /// Making it possible to embed othet templates in a View
     ///
     ///     embed(SomeView.self, contextKey: \.context)
-    public struct EmbedTemplate<E, T> where E: ContextualTemplate, T: Template {
+    public struct EmbedTemplate<E, T> where T: ContextualTemplate {
 
         /// The type of the template
-        public let templateType: T.Type
+        public let templateType: T
 
         /// The key-path the the needed content
-        public let contextKeyPath: KeyPath<E.Context, T.Context>
+        public let contextKeyPath: KeyPath<E, T.Context>
     }
 
     /// A struct making it possible to have a for each loop in the template
     ///
     ///     forEach(\.collection, render: CollectionView.self)
-    public class ForEach<Root: ContextualTemplate, Value: Template> {
+    public class ForEach<Root: ContextualTemplate, Value: ContextualTemplate> {
 
         /// The view type to render
-        public let view: Value.Type
+        public let view: Value
 
         /// The path to the collection to loop
         public let collectionPath: KeyPath<Root.Context, [Value.Context]>
 
         /// A local formula, in order to increase the performance
-        var localFormula: Renderer.Formula<Value>
+        var localFormula: Renderer.Formula<Value.Context>
 
-        public init(view: Value.Type, collectionPath: KeyPath<Root.Context, [Value.Context]>) {
+        public init(view: Value, collectionPath: KeyPath<Root.Context, [Value.Context]>) {
             self.view = view
             self.collectionPath = collectionPath
-            self.localFormula = Renderer.Formula(view: Value.self)
+            self.localFormula = Renderer.Formula(view: Value.Context.self)
         }
     }
 
     /// A struct making it possible to have a if in the template
     ///
     ///     renderIf(\.name == "Name", view: ...)
-    public class IF<Root: Template> {
+    public class IF<Root> where Root: ContextualTemplate {
 
         /// One condition in the if
-        public class Condition<C> where C: Conditionable, Root == C.Root {
+        public class Condition {
 
             /// The condition to evaluate
-            let condition: C
+            let condition: Conditionable
 
             /// The local formula for optimazation
-            var localFormula: Renderer.Formula<Root>
+            var localFormula: Renderer.Formula<Root.Context>
 
             /// The view to render.
             /// Set to an empty string in order to create a condition on `\.name == ""`
             /// This should probably be re designed a little
-            var view: Mappable = ""
+            var view: CompiledTemplate = ""
 
             /// Creates an if condition
             ///
             /// - Parameter condition: The condition to evaluate
-            init(condition: C) {
+            init(condition: Conditionable) {
                 self.condition = condition
-                localFormula = Renderer.Formula(view: Root.self)
+                localFormula = Renderer.Formula(view: Root.Context.self)
             }
         }
 
         /// The different conditions that can happen
-        var conditions: [AnyMappableCondition]
+        var conditions: [Condition]
 
         /// Create an if, with the first condition
         ///
         /// - Parameter conditions: The first condition
-        init(conditions: AnyMappableCondition) {
+        init(conditions: Condition) {
             self.conditions = [conditions]
         }
     }
@@ -165,6 +160,7 @@ public struct HTML {
             case unableToFindFormula
         }
 
+        /// A cache that contains all the brewed `Template`'s
         var formulaCache: [String : Any]
 
         public init() {
@@ -180,8 +176,8 @@ public struct HTML {
         ///   - context: The needed context to render the view with
         /// - Returns: Returns a rendered view
         /// - Throws: If the formula do not exists, or if the rendering process fails
-        public func render<T: Template>(_ type: T.Type, with context: T.Context) throws -> String {
-            guard let formula = formulaCache["\(T.self)"] as? Formula<T> else {
+        public func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> String {
+            guard let formula = formulaCache["\(T.self)"] as? Formula<T.Context> else {
                 throw Errors.unableToFindFormula
             }
             return try formula.render(with: context)
@@ -193,24 +189,62 @@ public struct HTML {
         ///
         /// - Parameter type: The view type to brew
         /// - Throws: If the brewing process fails for some reason
-        public mutating func brewFormula<T: Template>(for type: T.Type) throws {
-            let formula = Formula(view: type)
-            try type.build().brew(formula)
+        public mutating func add<T: ContextualTemplate>(template view: T) throws {
+            let formula = Formula(view: T.Context.self)
+            try view.build().brew(formula)
             formulaCache["\(T.self)"] = formula
         }
 
+        public func render<T: TemplateBuilder>(_ type: T.Type) throws -> String {
+            guard let formula = formulaCache["\(T.self)"] as? Formula<Void> else {
+                throw Errors.unableToFindFormula
+            }
+            return try formula.render(with: ())
+        }
+
+        /// Brews a formula for later use
+        ///
+        ///     try renderer.brewFormula(for: WelcomeView.self)
+        ///
+        /// - Parameter type: The view type to brew
+        /// - Throws: If the brewing process fails for some reason
+        public mutating func add(view: TemplateBuilder) throws {
+            let formula = Formula(view: Void.self)
+            try view.build().brew(formula)
+            formulaCache["\(type(of: view))"] = formula
+        }
+
+        /// Manage the differnet contextes
+        /// This will remove the generic type in the render call
+        public struct ContextManager<Context> {
+
+            fileprivate let rootContext: Context
+
+            /// The different paths from the orignial context
+            fileprivate var contextPaths: [String : AnyKeyPath]
+
+            func value<Root, Value>(at path: KeyPath<Root, Value>) throws -> Value {
+                if let context = rootContext as? Root {
+                    return context[keyPath: path]
+                } else if let joinPath = contextPaths["\(Root.self)"] as? KeyPath<Context, Root> {
+                    let finalPath = joinPath.appending(path: path)
+                    return rootContext[keyPath: finalPath]
+                } else {
+                    throw Errors.unableToFindFormula
+                }
+            }
+        }
+
+
         /// A formula for a view
         /// This contains the different parts to pice to gether, in order to increase the performance
-        public class Formula<T: Template> {
-
-            /// The view the formula is for
-            let viewType: T.Type
+        public class Formula<T> {
 
             /// The different paths from the orignial context
             private var contextPaths: [String : AnyKeyPath]
 
             /// The different pices or ingredients needed to render the view
-            private var ingredient: [Mappable]
+            private var ingredient: [CompiledTemplate]
 
             /// Init's a view
             ///
@@ -218,7 +252,6 @@ public struct HTML {
             ///   - view: The view type
             ///   - contextPaths: The contextPaths. *Is empty by default*
             init(view: T.Type, contextPaths: [String : AnyKeyPath] = [:]) {
-                self.viewType = view
                 self.contextPaths = contextPaths
                 ingredient = []
             }
@@ -234,8 +267,8 @@ public struct HTML {
             ///   - from: The root type (Swift complains if this is not in the function body)
             ///   - to: The value type (Swift complains if this is not in the function body)
             ///   - keyPath: The key-path to add
-            public func register<Root, Value>(from: Root.Type, to: Value.Type, using keyPath: KeyPath<Root.Context, Value.Context>) where Root: ContextualTemplate, Value: ContextualTemplate {
-                if Root.self == viewType {
+            public func register<Root, Value>(keyPath: KeyPath<Root, Value>) {
+                if Root.self == T.self {
                     contextPaths["\(Value.self)"] = keyPath
                 } else if let joinPath = contextPaths["\(Root.self)"] {
                     contextPaths["\(Value.self)"] = joinPath.appending(path: keyPath)
@@ -248,9 +281,9 @@ public struct HTML {
             ///
             /// - Parameter variable: The variable to add
             public func add<Root, Value>(variable: Variable<Root, Value>) {
-                if Root.self == viewType {
+                if Root.self == T.self {
                     ingredient.append(variable)
-                } else if let joinPath = contextPaths["\(Root.self)"] as? KeyPath<T.Context, Root.Context> {
+                } else if let joinPath = contextPaths["\(Root.self)"] as? KeyPath<T, Root> {
                     let newVariable = Variable<T, Value>(keyPath: joinPath.appending(path: variable.keyPath))
                     ingredient.append(newVariable)
                 } else {
@@ -273,7 +306,7 @@ public struct HTML {
             /// Adds a generic `Mappable` object
             ///
             /// - Parameter mappable: The `Mappable` to add
-            public func add(mappable: Mappable) {
+            public func add(mappable: CompiledTemplate) {
                 ingredient.append(mappable)
             }
 
@@ -282,8 +315,13 @@ public struct HTML {
             /// - Parameter context: The context needed to render the formula
             /// - Returns: A rendered formula
             /// - Throws: If some of the formula fails, for some reason
-            func render(with context: T.Context) throws -> String {
-                return try ingredient.reduce("") { try $0 + $1.map(for: viewType, with: context) }
+            func render(with context: T) throws -> String {
+                let contextManager = ContextManager(rootContext: context, contextPaths: contextPaths)
+                return try ingredient.reduce("") { try $0 + $1.render(with: contextManager) }
+            }
+
+            func render(with manager: ContextManager<T>) throws -> String {
+                return try ingredient.reduce("") { try $0 + $1.render(with: manager) }
             }
         }
     }

@@ -1,96 +1,74 @@
 
-
-public protocol AnyCondition {
-    /// Evaluates an expression with a context that may or may not be in the correct format
-    ///
-    /// - Parameter context: The context to use when evaluateing
-    /// - Returns: true if the expression is correct else false
-    func anyEvaluate(with context: Any) -> Bool
-}
-
-typealias AnyMappableCondition = AnyCondition & Mappable
-
 /// A protocol that makes a struct to a condition that can be used in an if
-public protocol Conditionable: AnyCondition {
-
-    associatedtype Root: ContextualTemplate
+public protocol Conditionable {
 
     /// Evaluates an expression with a context
     ///
     /// - Parameter context: The context to use when evaluating
     /// - Returns: true if the expression is correct else false
-    func evaluate(with context: Root.Context) -> Bool
-}
-
-extension Conditionable {
-    public func anyEvaluate(with context: Any) -> Bool {
-        if let context = context as? Root.Context {
-            return evaluate(with: context)
-        } else {
-            return false
-        }
-    }
+    func evaluate<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> Bool
 }
 
 /// A condition that evaluates an equal expression between a variable and a constant value
-public struct Equal<Root, Value>: Conditionable where Root: ContextualTemplate, Value: Equatable {
+public struct Equal<Root, Value>: Conditionable where Value: Equatable {
 
     /// The path to the variable
-    let path: KeyPath<Root.Context, Value>
+    let path: KeyPath<Root, Value>
 
     /// The value to be compared with
     let value: Value
 
-    public func evaluate(with context: Root.Context) -> Bool {
-        return context[keyPath: path] == value
+    public func evaluate<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> Bool {
+        return try manager.value(at: path) == value
     }
 }
 
 /// A condition that evaluates an not equal expression between a variable and a constant value
-public struct NotEqual<Root, Value>: Conditionable where Root: ContextualTemplate, Value: Equatable {
+public struct NotEqual<Root, Value>: Conditionable where Value: Equatable {
 
     /// The path to the variable
-    let path: KeyPath<Root.Context, Value>
+    let path: KeyPath<Root, Value>
 
     /// The value to be compared with
     let value: Value
 
-    public func evaluate(with context: Root.Context) -> Bool {
-        return context[keyPath: path] != value
+    public func evaluate<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> Bool {
+        return try manager.value(at: path) != value
     }
 }
 
 /// A condition that evaluates a less then expression between a variable and a constant value
-public struct LessThen<Root, Value>: Conditionable where Root: ContextualTemplate, Value: Comparable {
+public struct LessThen<Root, Value>: Conditionable where Value: Comparable {
 
     /// The path to the variable
-    let path: KeyPath<Root.Context, Value>
+    let path: KeyPath<Root, Value>
 
     /// The value to be compared with
     let value: Value
 
-    public func evaluate(with context: Root.Context) -> Bool {
-        return context[keyPath: path] < value
+    public func evaluate<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> Bool {
+        return try manager.value(at: path) < value
     }
 }
 
 /// A condition that evaluates a greater then expression between a variable and a constant value
-public struct GreaterThen<Root, Value>: Conditionable where Root: ContextualTemplate, Value: Comparable {
+public struct GreaterThen<Root, Value>: Conditionable where Value: Comparable {
 
     /// The path to the variable
-    let path: KeyPath<Root.Context, Value>
+    let path: KeyPath<Root, Value>
 
     /// The value to be compared with
     let value: Value
 
-    public func evaluate(with context: Root.Context) -> Bool {
-        return context[keyPath: path] > value
+    public func evaluate<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> Bool {
+        return try manager.value(at: path) > value
     }
 }
 
 /// A condition that is allways true
+/// Used as the `else` condition
 struct AllwaysTrueCondition<Root>: Conditionable where Root: ContextualTemplate {
-    func evaluate(with context: Root.Context) -> Bool {
+    func evaluate<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> Bool {
         return true
     }
 }
@@ -100,49 +78,49 @@ struct BoolCondition<Root>: Conditionable where Root: ContextualTemplate {
     /// The path to the variable
     let path: KeyPath<Root.Context, Bool>
 
-    func evaluate(with context: Root.Context) -> Bool {
-        return context[keyPath: path]
+    func evaluate<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> Bool {
+        return try manager.value(at: path)
     }
 }
 
-public struct NullableEqual<Root, Value>: Conditionable where Root: ContextualTemplate, Value: Equatable {
+public struct NullableEqual<Root, Value>: Conditionable where Value: Equatable {
 
     /// The path to the variable
-    let path: KeyPath<Root.Context, Value?>
+    let path: KeyPath<Root, Value?>
 
     /// The value to be compared with
     let value: Value
 
-    public func evaluate(with context: Root.Context) -> Bool {
-        return context[keyPath: path] == value
+    public func evaluate<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> Bool {
+        return try manager.value(at: path) == value
     }
 }
 
 /// A condition that evaluates an not equal expression between a variable and a constant value
-public struct NullableNotEqual<Root, Value>: Conditionable where Root: ContextualTemplate, Value: Equatable {
+public struct NullableNotEqual<Root, Value>: Conditionable where Value: Equatable {
 
     /// The path to the variable
-    let path: KeyPath<Root.Context, Value?>
+    let path: KeyPath<Root, Value?>
 
     /// The value to be compared with
     let value: Value
 
-    public func evaluate(with context: Root.Context) -> Bool {
-        return context[keyPath: path] != value
+    public func evaluate<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> Bool {
+        return try manager.value(at: path) != value
     }
 }
 
 /// A condition that evaluates a less then expression between a variable and a constant value
-public struct NullableLessThen<Root, Value>: Conditionable where Root: ContextualTemplate, Value: Comparable {
+public struct NullableLessThen<Root, Value>: Conditionable where Value: Comparable {
 
     /// The path to the variable
-    let path: KeyPath<Root.Context, Value?>
+    let path: KeyPath<Root, Value?>
 
     /// The value to be compared with
     let value: Value
 
-    public func evaluate(with context: Root.Context) -> Bool {
-        if let pathValue = context[keyPath: path] {
+    public func evaluate<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> Bool {
+        if let pathValue = try manager.value(at: path) {
             return pathValue < value
         } else {
             return false
@@ -151,16 +129,16 @@ public struct NullableLessThen<Root, Value>: Conditionable where Root: Contextua
 }
 
 /// A condition that evaluates a greater then expression between a variable and a constant value
-public struct NullableGreaterThen<Root, Value>: Conditionable where Root: ContextualTemplate, Value: Comparable {
+public struct NullableGreaterThen<Root, Value>: Conditionable where Value: Comparable {
 
     /// The path to the variable
-    let path: KeyPath<Root.Context, Value?>
+    let path: KeyPath<Root, Value?>
 
     /// The value to be compared with
     let value: Value
 
-    public func evaluate(with context: Root.Context) -> Bool {
-        if let pathValue = context[keyPath: path] {
+    public func evaluate<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> Bool {
+        if let pathValue = try manager.value(at: path) {
             return pathValue > value
         } else {
             return false
@@ -174,7 +152,7 @@ public struct NullableGreaterThen<Root, Value>: Conditionable where Root: Contex
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `HTML.IF.Condition` object
-public func == <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> HTML.IF<Root>.Condition<Equal<Root, Value>> where Root: ContextualTemplate, Value: Equatable {
+public func == <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> HTML.IF<Root>.Condition where Root: ContextualTemplate, Value: Equatable {
     return HTML.IF.Condition(condition: Equal(path: lhs, value: rhs))
 }
 
@@ -184,7 +162,7 @@ public func == <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> H
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `HTML.IF.Condition` object
-public func != <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> HTML.IF<Root>.Condition<NotEqual<Root, Value>> where Root: ContextualTemplate, Value: Equatable {
+public func != <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> HTML.IF<Root>.Condition where Root: ContextualTemplate, Value: Equatable {
     return HTML.IF.Condition(condition: NotEqual(path: lhs, value: rhs))
 }
 
@@ -194,7 +172,7 @@ public func != <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> H
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `HTML.IF.Condition` object
-public func < <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> HTML.IF<Root>.Condition<LessThen<Root, Value>> where Root: ContextualTemplate, Value: Comparable {
+public func < <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> HTML.IF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
     return HTML.IF.Condition(condition: LessThen(path: lhs, value: rhs))
 }
 
@@ -204,7 +182,7 @@ public func < <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> HT
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `HTML.IF.Condition` object
-public func > <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> HTML.IF<Root>.Condition<GreaterThen<Root, Value>> where Root: ContextualTemplate, Value: Comparable {
+public func > <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> HTML.IF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
     return HTML.IF.Condition(condition: GreaterThen(path: lhs, value: rhs))
 }
 
@@ -215,7 +193,7 @@ public func > <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> HT
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `HTML.IF.Condition` object
-public func == <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> HTML.IF<Root>.Condition<NullableEqual<Root, Value>> where Root: ContextualTemplate, Value: Equatable {
+public func == <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> HTML.IF<Root>.Condition where Root: ContextualTemplate, Value: Equatable {
     return HTML.IF.Condition(condition: NullableEqual(path: lhs, value: rhs))
 }
 
@@ -225,7 +203,7 @@ public func == <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> 
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `HTML.IF.Condition` object
-public func != <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> HTML.IF<Root>.Condition<NullableNotEqual<Root, Value>> where Root: ContextualTemplate, Value: Equatable {
+public func != <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> HTML.IF<Root>.Condition where Root: ContextualTemplate, Value: Equatable {
     return HTML.IF.Condition(condition: NullableNotEqual(path: lhs, value: rhs))
 }
 
@@ -235,7 +213,7 @@ public func != <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> 
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `HTML.IF.Condition` object
-public func < <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> HTML.IF<Root>.Condition<NullableLessThen<Root, Value>> where Root: ContextualTemplate, Value: Comparable {
+public func < <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> HTML.IF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
     return HTML.IF.Condition(condition: NullableLessThen(path: lhs, value: rhs))
 }
 
@@ -245,6 +223,6 @@ public func < <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> H
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `HTML.IF.Condition` object
-public func > <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> HTML.IF<Root>.Condition<NullableGreaterThen<Root, Value>> where Root: ContextualTemplate, Value: Comparable {
+public func > <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> HTML.IF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
     return HTML.IF.Condition(condition: NullableGreaterThen(path: lhs, value: rhs))
 }
