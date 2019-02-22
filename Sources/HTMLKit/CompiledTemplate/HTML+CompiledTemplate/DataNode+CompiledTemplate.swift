@@ -16,7 +16,7 @@ extension HTML.DataNode: CompiledTemplate {
 }
 
 extension HTML.DataNode: AttributableNode {
-    func add(_ attribute: HTML.AttributeNode) -> HTML.DataNode {
+    public func add(_ attribute: HTML.AttributeNode) -> HTML.DataNode {
         return .init(nodeName: nodeName, attributes: attributes + [attribute])
     }
 }

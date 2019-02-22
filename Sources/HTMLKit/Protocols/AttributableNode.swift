@@ -1,5 +1,5 @@
 
-protocol AttributableNode {
+public protocol AttributableNode: CompiledTemplate {
 
     /// Adds an attribute to a node
     ///
@@ -10,147 +10,125 @@ protocol AttributableNode {
 
 extension AttributableNode {
     public func `class`(_ values: CompiledTemplate...) -> Self {
-        let attr = HTML.AttributeNode(attribute: "class", value: String(values.reduce("") { $0 + " \($1)" }.dropFirst()))
-        return self.add(attr)
+        return self.add( .class(values))
     }
 
     public func id(_ value: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "id", value: value)
-        return self.add(attr)
+        return self.add( .id(value))
     }
 
     public func lang(_ value: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "lang", value: value)
-        return self.add(attr)
+        return self.add( .lang(value))
     }
 
     public func alt(_ value: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "alt", value: value)
-        return self.add(attr)
+        return self.add( .alt(value))
     }
 
     public func name(_ value: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "name", value: value)
-        return self.add(attr)
+        return self.add( .name(value))
     }
 
     public func content(_ value: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "content", value: value)
-        return self.add(attr)
+        return self.add( .content(value))
     }
 
     public func rel(_ value: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "rel", value: value)
-        return self.add(attr)
+        return self.add( .rel(value))
     }
 
     public func href(_ value: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "href", value: value)
-        return self.add(attr)
+        return self.add( .href(value))
     }
 
     public func src(_ value: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "scr", value: value)
-        return self.add(attr)
+        return self.add( .src(value))
     }
 
     public func type(_ value: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "type", value: value)
-        return self.add(attr)
+        return self.add( .type(value))
     }
 
     public func charset(_ value: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "charset", value: value)
-        return self.add(attr)
+        return self.add( .charset(value))
     }
 
     public func dataToggle(_ toggle: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "data-toggle", value: toggle)
-        return self.add(attr)
+        return self.add( .dataTarget(toggle))
     }
 
     public func dataTarget(_ target: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "data-target", value: target)
-        return self.add(attr)
+        return self.add( .dataTarget(target))
     }
 
     public func onClick(_ functionName: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "onclick", value: functionName)
-        return self.add(attr)
+        return self.add( .onClick(functionName))
     }
 
     public func width(_ width: Int) -> Self {
-        let attr = HTML.AttributeNode(attribute: "widt", value: "\(width)")
-        return self.add(attr)
+        return self.add( .width(width))
     }
 
     public func height(_ height: Int) -> Self {
-        let attr = HTML.AttributeNode(attribute: "height", value: "\(height)")
-        return self.add(attr)
+        return self.add( .height(height))
     }
 
     public func `for`(_ value: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "for", value: value)
-        return self.add(attr)
+        return self.add( .for(value))
     }
 
     public var checked: Self {
-        let attr = HTML.AttributeNode(attribute: "checked", value: nil)
-        return self.add(attr)
+        return self.add( .checked)
     }
 
     public func placeholder(_ text: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "placeholder", value: text)
-        return self.add(attr)
+        return self.add( .placeholder(text))
     }
 
     public func action(_ text: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "action", value: text)
-        return self.add(attr)
+        return self.add( .action(text))
     }
 
     public func method(_ text: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "method", value: text)
-        return self.add(attr)
+        return self.add( .method(text))
     }
 
     public var `required`: Self {
-        let attr = HTML.AttributeNode(attribute: "required", value: nil)
-        return self.add(attr)
+        return self.add( .required)
     }
 
     public func style(_ text: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "style", value: text)
-        return self.add(attr)
+        return self.add( .style(text))
     }
 
     public func role(_ text: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "role", value: text)
-        return self.add(attr)
+        return self.add( .role(text))
     }
 
     public func ariaHaspopup(_ text: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "aria-haspopup", value: text)
-        return self.add(attr)
+        return self.add( .ariaHaspopup(text))
     }
 
     public func ariaExpanded(_ text: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "aria-expanded", value: text)
-        return self.add(attr)
+        return self.add( .ariaExpanded(text))
     }
 
     public func ariaValuenow(_ text: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "aria-valuenow", value: text)
-        return self.add(attr)
+        return self.add( .ariaValuenow(text))
     }
 
     public func ariaValuemin(_ text: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "aria-valuemin", value: text)
-        return self.add(attr)
+        return self.add( .ariaValuemin(text))
     }
 
     public func ariaValuemax(_ text: CompiledTemplate) -> Self {
-        let attr = HTML.AttributeNode(attribute: "aria-valuemax", value: text)
-        return self.add(attr)
+        return self.add( .ariaValuemax(text))
+    }
+}
+
+extension AttributableNode where Self : ContextualTemplate {
+    public func `if`(_ condition: HTML.IF<Self>.Condition, add attribute: HTML.AttributeNode) -> CompiledTemplate {
+        condition.view = self
+        return HTML.IF<Self>(conditions: condition).else(self.add(attribute))
     }
 }

@@ -6,11 +6,11 @@ protocol HTMLTestable: TemplateBuilder {
 }
 
 
-struct SimpleView: StaticBuild, HTMLTestable {
+struct SimpleView: TemplateBuilder, HTMLTestable {
 
     static var expextedOutput: String = "<div><p>Text</p></div>"
 
-    static func build() -> CompiledTemplate {
+    func build() -> CompiledTemplate {
         return
             div.child(
                 p.child("Text")
@@ -18,76 +18,80 @@ struct SimpleView: StaticBuild, HTMLTestable {
     }
 }
 
-struct StaticEmbedView: Templating {
+struct StaticEmbedView: ContextualTemplate {
 
     struct Context {
         let string: String
         let int: Int?
     }
 
-    static func build() -> CompiledTemplate {
+    func build() -> CompiledTemplate {
         return
             div.child(
-                embed(static: SimpleView.self),
-                p.child( variable(at: \.string)),
+                SimpleView(),
+                p.child(
+                    variable(\.string)
+                ),
 
                 renderIf(\.int != nil,
-                         small.child( variable(at: \.int))
+                         small.child(
+                            variable(\.int)
+                    )
                 )
         )
 //            div(
 //                SimpleView.build(),
-//                p( variable(at: \.string)),
+//                p( variable(\.string)),
 //                renderIf(\.int != nil,
-//                         small( variable(at: \.int))
+//                         small( variable(\.int))
 //                )
 //        )
     }
 }
 
-struct BaseView: ViewTemplating {
+struct BaseView: ContextualTemplate {
 
     struct Context {
         let title: String
     }
 
-    struct ViewContext {
-        let body: CompiledTemplate
-    }
+    let body: CompiledTemplate
 
-    static func build(with context: BaseView.ViewContext) -> CompiledTemplate {
+    func build() -> CompiledTemplate {
         return
             html.child(
                 head.child(
-                    title.child( variable(at: \.title)),
+                    title.child( variable(\.title)),
                     link.href("some url").rel("stylesheet"),
                     meta.name("viewport").content("width=device-width, initial-scale=1.0")
                 ),
-                body.child(context.body)
+                body.child(
+                    body
+                )
         )
 //            html(
 //                head(
-//                    title(variable(at: \.title))
+//                    title(variable(\.title))
 //                ),
 //                body(context.body)
 //        )
     }
 }
 
-struct StringView: Templating {
+struct StringView: ContextualTemplate {
 
     struct Context {
         let string: String
     }
 
-    static func build() -> CompiledTemplate {
-        return p.child( variable(at: \.string))
-//            p(variable(at: \.string))
+    func build() -> CompiledTemplate {
+        return p.child( variable(\.string))
+//            p(variable(\.string))
     }
 
 }
 
-struct SomeView: Templating {
+struct SomeView: ContextualTemplate {
 
     struct Context {
         let name: String
@@ -98,20 +102,16 @@ struct SomeView: Templating {
         }
     }
 
-    static func build() -> CompiledTemplate {
+    func build() -> CompiledTemplate {
         return
-            embed(
-                BaseView.self,
-                with: .init(
-                    body: p.child("Hello ", variable(at: \.name), "!")
-//                    p("Hello ", variable(at: \.name), "!")
-                ),
-                contextPath: \.baseContext
+            BaseView(
+                body: p.child("Hello ", variable(\.name), "!")
             )
+                .embed(withPath: \Context.baseContext)
     }
 }
 
-struct ForEachView: Templating {
+struct ForEachView: ContextualTemplate {
 
     struct Context {
         let array: [StringView.Context]
@@ -121,10 +121,10 @@ struct ForEachView: Templating {
         }
     }
 
-    static func build() -> CompiledTemplate {
+    func build() -> CompiledTemplate {
         return
             div.id("array").child(
-                forEach(in: \.array, render: StringView.self)
+                forEach(in: \.array, render: StringView())
         )
 //            div(attr: [.id("array")],
 //                forEach(in: \.array, render: StringView.self)
@@ -133,7 +133,7 @@ struct ForEachView: Templating {
 }
 
 
-struct IFView: Templating {
+struct IFView: ContextualTemplate {
 
     struct Context {
         let name: String
@@ -142,11 +142,11 @@ struct IFView: Templating {
         let bool: Bool
     }
 
-    static func build() -> CompiledTemplate {
+    func build() -> CompiledTemplate {
         return
             div.child(
                 renderIf(\.name == "Mats",
-                    p.child("My name is: ", variable(at: \.name), "!")
+                    p.child("My name is: ", variable(\.name), "!")
                 ),
 
                 renderIf(\.age < 20,
@@ -158,7 +158,7 @@ struct IFView: Templating {
                 ),
 
                 renderIf(\.nullable != nil,
-                    b.child( variable(at: \.nullable))
+                    b.child( variable(\.nullable))
                 ).elseIf(\.bool,
                     p.child("Simple bool")
                 )
@@ -166,7 +166,7 @@ struct IFView: Templating {
         )
 //            div(
 //                renderIf(\.name == "Mats",
-//                    p("My name is: ", variable(at: \.name), "!")
+//                    p("My name is: ", variable(\.name), "!")
 //                ),
 //
 //                renderIf(\.age < 20,
@@ -178,7 +178,7 @@ struct IFView: Templating {
 //                ),
 //
 //                renderIf(\.nullable != nil,
-//                    b( variable(at: \.nullable))
+//                    b( variable(\.nullable))
 //                ).elseIf(\.bool,
 //                    p("Simple bool")
 //                )
@@ -186,81 +186,41 @@ struct IFView: Templating {
     }
 }
 
-class FormInput: TemplateBuilder {
+class BuildTest: TemplateBuilder {
 
-    var id: String?
-    var type: String?
-    var required: Bool = false
-    var placeholder: String?
-    var label: String?
-
-
-    func id(_ value: String) -> FormInput {
-        self.id = value
-        return self
-    }
-
-    func label(_ value: String) -> FormInput {
-        label = value
-        if id == nil {
-            id = value.replacingOccurrences(of: " ", with: "-").lowercased()
-        }
-        return self
-    }
-
-    func `required`(_ value: Bool = true) -> FormInput {
-        required = value
-        return self
-    }
-
-    func placeholder(_ value: String) -> FormInput {
-        placeholder = value
-        return self
-    }
-
-    static func build() -> CompiledTemplate {
-        
-        return ""
-//            div(attr: [.class("form-group")],
-//            label(attr: [.for(id)], label),
-//            input(attr: .class("form-control"), .type(type), .required, .name(id), .id(id), .placeholder(placeholder))
-//        )
-    }
-}
-
-class BuildTest: StaticBuild {
-
-    static func build() -> CompiledTemplate {
+    func build() -> CompiledTemplate {
         return html.child(
             body
                 .child(
-                    div.class("hero")
-                        .child(
-                            h1.child("Point-Free")
+                    div.class("hero").child(
+                        h1.child(
+                            "Point-Free"
+                        )
                     ),
-                    p.class("p1")
-                        .child("This p tag gets styles from the tag element and classes."),
-
-                    p.id("some-id").class("bold leading")
-                        .child("This p tag gets styles from the id, classes, inline styles, and element tag!"),
-
-                    div.id("footer")
-                        .child("I'm a div footer with an id"),
-
-                    div.class("footer")
-                        .child("I'm a div footer with a class"),
-
-                    footer
-                        .child("I'm a footer element")
+                    p.class("p1").child(
+                        "This p tag gets styles from the tag element and classes."
+                    ),
+                    p.id("some-id").class("bold leading").child(
+                        "This p tag gets styles from the id, classes, inline styles, and element tag!"
+                    ),
+                    div.id("footer").child(
+                        "I'm a div footer with an id"
+                    ),
+                    div.class("footer").child(
+                        "I'm a div footer with a class"
+                    ),
+                    footer.child(
+                        "I'm a footer element"
+                    )
             )
         )
     }
 }
 
 
-struct Sidebar: StaticBuild {
+struct Sidebar: TemplateBuilder {
 
-    static func build() -> CompiledTemplate {
+    func build() -> CompiledTemplate {
         return
             div.class("left-side-menu").child(
                 div.class("slimscroll-menu").child(
@@ -312,14 +272,14 @@ struct Sidebar: StaticBuild {
     }
 }
 
-struct Topbar: Templating {
+struct Topbar: ContextualTemplate {
 
     struct Context {
         let name: String
         let email: String
     }
 
-    static func build() -> CompiledTemplate {
+    func build() -> CompiledTemplate {
         return
             div.class("navbar-custom").child(
                 ul.class("list-unstyled topbar-right-menu float-right mb-0").child(
@@ -446,7 +406,7 @@ struct Topbar: Templating {
 }
 
 
-struct PerformanceBase: ViewTemplating {
+struct PerformanceBase: ContextualTemplate {
 
     struct Context {
         let topBar: Topbar.Context
@@ -456,21 +416,19 @@ struct PerformanceBase: ViewTemplating {
         }
     }
 
-    struct ViewContext {
-        let body: CompiledTemplate
-        let headerLinks: CompiledTemplate?
-        let scripts: CompiledTemplate?
-        let modals: CompiledTemplate?
-    }
+    let body: CompiledTemplate
+    let headerLinks: CompiledTemplate?
+    let scripts: CompiledTemplate?
+    let modals: CompiledTemplate?
 
-    static func build(with context: PerformanceBase.ViewContext) -> CompiledTemplate {
+    func build() -> CompiledTemplate {
         return
             div.class("wrapper").child(
-                embed(static: Sidebar.self),
+                Sidebar(),
                 div.class("content-page").child(
-                    embed(Topbar.self, contextPath: \.topBar),
+                    Topbar().embed(withPath: \Context.topBar),
                     div.class("content").child(
-                        div.class("container").child(context.body)
+                        div.class("container").child(body)
                     ),
                     script.src("/assets/js/app.min.js").type("text/javascript")
                 )
@@ -478,7 +436,7 @@ struct PerformanceBase: ViewTemplating {
     }
 }
 
-struct Card: Templating {
+struct Card: ContextualTemplate {
 
     struct Context {
         let name: String
@@ -487,23 +445,23 @@ struct Card: Templating {
         let imageUrl: String
     }
 
-    static func build() -> CompiledTemplate {
+    func build() -> CompiledTemplate {
         return
             div.class("col-md-6 col-xl-4").child(
-                a.href(["subjects/", variable(at: \.id)]).class("text-dark").child(
+                a.href(["subjects/", variable(\.id)]).class("text-dark").child(
                     div.class("card d-block").child(
                         comment(" project-thumbnail "),
-                        img.class("card-img-top").src(variable(at: \.imageUrl)).alt("project image cap"),
+                        img.class("card-img-top").src(variable(\.imageUrl)).alt("project image cap"),
                         div.class("card-body position-relative").child(
                             comment(" project title"),
                             h4.class("mt-0").child(
-                                variable(at: \.name)
+                                variable(\.name)
                             ),
                             comment(" project detail"),
                             p.child(
                                 span.class("pr-2 text-nowrap").child(
                                     b.child(
-                                        variable(at: \.numberOfTopics)
+                                        variable(\.numberOfTopics)
                                     ),
                                     " Topics"
                                 )
@@ -517,23 +475,21 @@ struct Card: Templating {
 }
 
 
-struct PerformanceTest: Templating {
+struct PerformanceTest: ContextualTemplate {
 
     struct Context {
         let base: PerformanceBase.Context
         let cards: [Card.Context]
 
-        static func content(with name: String, email: String, cards: [Card.Context]) -> Context {
+        func content(with name: String, email: String, cards: [Card.Context]) -> Context {
             return .init(base: .content(name: name, email: email),
                          cards: cards)
         }
     }
 
-    static func build() -> CompiledTemplate {
+    func build() -> CompiledTemplate {
         return
-         embed(
-            PerformanceBase.self,
-            with: .init(
+            PerformanceBase(
                 body: [
                     div.class("row").child(
                         div.class("col-12").child(
@@ -566,14 +522,70 @@ struct PerformanceTest: Templating {
                     ),
                     comment(" end row"),
                     div.class("row").child(
-                        forEach(in: \.cards, render: Card.self),
+                        forEach(in: \.cards, render: Card()),
                         comment(" end col ")
                     )
                 ],
                 headerLinks: nil,
                 scripts: nil,
                 modals: nil
-            ),
-            contextPath: \.base)
+                )
+                .embed(withPath: \Context.base)
+    }
+}
+
+class FormInput: ContextualTemplate {
+
+    struct Context {
+        let test: String
+    }
+
+    enum FormType: String {
+        case email
+        case text
+        case number
+        case password
+    }
+
+    let id: String
+    let type: FormType
+    let isRequired: Bool
+    let placeholder: String?
+    let label: String
+
+    init(label: String, type: FormType, id: String? = nil, isRequired: Bool = false, placeholder: String? = nil) {
+        self.label = label
+        if let id = id {
+            self.id = id
+        } else {
+            self.id = label.replacingOccurrences(of: " ", with: "-").lowercased()
+        }
+        self.type = type
+        self.isRequired = isRequired
+        self.placeholder = placeholder
+    }
+
+    func build() -> CompiledTemplate {
+
+        var inputTag = input.id(id).class("form-controll").type(type.rawValue).name(id).placeholder(placeholder)
+        if isRequired {
+            inputTag = inputTag.required
+        }
+
+        return
+            div.class("form-group").child(
+                label.for(id).child(label),
+                inputTag
+        )
+    }
+}
+
+struct UsingComponent: TemplateBuilder {
+
+    func build() -> CompiledTemplate {
+        return
+            div.id("Test").child(
+                FormInput(label: "Email", type: .email)
+        )
     }
 }

@@ -16,7 +16,7 @@ extension ContextualTemplate {
     ///
     /// - Parameter keyPath: The path to the variable
     /// - Returns: A `Mappable` `HTML.Variable` object
-    public static func variable<Value>(at keyPath: KeyPath<Self.Context, Value>) -> HTML.Variable<Self.Context, Value> {
+    public func variable<Value>(_ keyPath: KeyPath<Self.Context, Value>) -> HTML.Variable<Self.Context, Value> {
         return HTML.Variable(keyPath: keyPath)
     }
 
@@ -24,7 +24,7 @@ extension ContextualTemplate {
     ///
     /// - Parameter keyPath: The path to the variable
     /// - Returns: A `Mappable` `HTML.Variable` object
-    public static func variable<Value>(at keyPath: KeyPath<Self.Context, Value?>) -> HTML.Variable<Self.Context, Value?> {
+    public func variable<Value>(at keyPath: KeyPath<Self.Context, Value?>) -> HTML.Variable<Self.Context, Value?> {
         return HTML.Variable(keyPath: keyPath)
     }
 }

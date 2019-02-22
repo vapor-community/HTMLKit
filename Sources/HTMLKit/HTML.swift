@@ -80,39 +80,23 @@ public struct HTML {
 
     /// Making it possible to embed othet templates in a View
     ///
-    ///     embed(SomeView.self, viewConfig: .init(...), contextKey: \.context)
-    public struct EmbedViewTemplate<E, T> where E: ContextualTemplate, T: ViewTemplating {
-
-        /// The type of the template
-        public let templateType: T.Type
-
-        /// The view context needed to render the view.
-        /// This is a variable on in order to prerender the view
-        public let viewContext: T.ViewContext
-
-        /// The key-path the the needed content
-        public let contextKeyPath: KeyPath<E.Context, T.Context>
-    }
-
-    /// Making it possible to embed othet templates in a View
-    ///
     ///     embed(SomeView.self, contextKey: \.context)
-    public struct EmbedTemplate<E, T> where E: ContextualTemplate, T: Templating {
+    public struct EmbedTemplate<E, T> where T: ContextualTemplate {
 
         /// The type of the template
-        public let templateType: T.Type
+        public let templateType: T
 
         /// The key-path the the needed content
-        public let contextKeyPath: KeyPath<E.Context, T.Context>
+        public let contextKeyPath: KeyPath<E, T.Context>
     }
 
     /// A struct making it possible to have a for each loop in the template
     ///
     ///     forEach(\.collection, render: CollectionView.self)
-    public class ForEach<Root: ContextualTemplate, Value: Templating> {
+    public class ForEach<Root: ContextualTemplate, Value: ContextualTemplate> {
 
         /// The view type to render
-        public let view: Value.Type
+        public let view: Value
 
         /// The path to the collection to loop
         public let collectionPath: KeyPath<Root.Context, [Value.Context]>
@@ -120,7 +104,7 @@ public struct HTML {
         /// A local formula, in order to increase the performance
         var localFormula: Renderer.Formula<Value.Context>
 
-        public init(view: Value.Type, collectionPath: KeyPath<Root.Context, [Value.Context]>) {
+        public init(view: Value, collectionPath: KeyPath<Root.Context, [Value.Context]>) {
             self.view = view
             self.collectionPath = collectionPath
             self.localFormula = Renderer.Formula(view: Value.Context.self)
@@ -130,7 +114,7 @@ public struct HTML {
     /// A struct making it possible to have a if in the template
     ///
     ///     renderIf(\.name == "Name", view: ...)
-    public class IF<Root: Templating> {
+    public class IF<Root> where Root: ContextualTemplate {
 
         /// One condition in the if
         public class Condition {
@@ -192,7 +176,7 @@ public struct HTML {
         ///   - context: The needed context to render the view with
         /// - Returns: Returns a rendered view
         /// - Throws: If the formula do not exists, or if the rendering process fails
-        public func render<T: Templating>(_ type: T.Type, with context: T.Context) throws -> String {
+        public func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> String {
             guard let formula = formulaCache["\(T.self)"] as? Formula<T.Context> else {
                 throw Errors.unableToFindFormula
             }
@@ -205,9 +189,9 @@ public struct HTML {
         ///
         /// - Parameter type: The view type to brew
         /// - Throws: If the brewing process fails for some reason
-        public mutating func brewFormula<T: Templating>(for type: T.Type) throws {
+        public mutating func add<T: ContextualTemplate>(template view: T) throws {
             let formula = Formula(view: T.Context.self)
-            try type.build().brew(formula)
+            try view.build().brew(formula)
             formulaCache["\(T.self)"] = formula
         }
 
@@ -224,10 +208,10 @@ public struct HTML {
         ///
         /// - Parameter type: The view type to brew
         /// - Throws: If the brewing process fails for some reason
-        public mutating func brewFormula<T: StaticBuild>(for type: T.Type) throws {
+        public mutating func add(view: TemplateBuilder) throws {
             let formula = Formula(view: Void.self)
-            try type.build().brew(formula)
-            formulaCache["\(T.self)"] = formula
+            try view.build().brew(formula)
+            formulaCache["\(type(of: view))"] = formula
         }
 
         /// Manage the differnet contextes

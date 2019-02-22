@@ -27,7 +27,7 @@ extension HTML.ContentNode {
 }
 
 extension HTML.ContentNode: AttributableNode {
-    func add(_ attribute: HTML.AttributeNode) -> HTML.ContentNode {
+    public func add(_ attribute: HTML.AttributeNode) -> HTML.ContentNode {
         return .init(nodeName: nodeName, attributes: attributes + [attribute], content: content)
     }
 }

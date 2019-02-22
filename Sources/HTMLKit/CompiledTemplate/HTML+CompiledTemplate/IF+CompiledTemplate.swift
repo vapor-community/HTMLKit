@@ -64,7 +64,7 @@ extension HTML.IF: CompiledTemplate {
     ///
     /// - Parameter render: The view to be rendered
     /// - Returns: A mappable object
-    func `else`(render: CompiledTemplate) -> CompiledTemplate {
+    func `else`(_ render: CompiledTemplate) -> CompiledTemplate {
         let trueCondition = Condition(condition: AllwaysTrueCondition<Root>())
         trueCondition.view = render
         conditions.append(trueCondition)
