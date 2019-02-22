@@ -153,7 +153,7 @@ struct IFView: ContextualTemplate {
                     "I am a child"
                 ).elseIf(\.age > 20,
                     "I am older"
-                ).else(render:
+                ).else(
                     "I am growing"
                 ),
 
@@ -534,11 +534,7 @@ struct PerformanceTest: ContextualTemplate {
     }
 }
 
-class FormInput: ContextualTemplate {
-
-    struct Context {
-        let test: String
-    }
+class FormInput: TemplateBuilder {
 
     enum FormType: String {
         case email

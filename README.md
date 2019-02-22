@@ -11,19 +11,20 @@ By using the Leaf templating language as a benchmark, HTMLKit was **150 or 880x 
 This is the result of the rendering time used on a somewhat complex page, using a base template, that renders a navigation-bar and has a placeholder for some view content to display. In the view content, there was a for loop that displays some cards and its content.
 The same view was rendered 128 times with the different frameworks, and Leaf used an average of *0.841 sec*, while HTMLKit used and an average of *0.00548 sec*. This is where the *150x* relation comes from.
 
+When it was compared with Pointfree, was it **16-25x** faster. This was a small small static html page that was rendered 1000 times.
+
 ## How do you use it? 🔧
 
 It is actually quite simple. But first, there are three different protocols to understand.
 
-- `Viewable`: This is a view that is static or will not need any context to render.
-- `Templating`: This is a view that needs some context information to render.
--  `ViewTemplating`: This is a view that will be embeded and has view placeholders (Leaf's get and set).
+- `TemplateBuilder`: This is a view that is static or will not need any context to render.
+- `ContextualTemplate`: This is a view that needs some context information to render.
 
 By conforming to one of these protocols, you get access to the different helping functions you will need to render HTML.
 
 So let's render a simple view.
 ```swift
-struct SimpleView: Templating {
+struct SimpleView: ContextualTemplate {
 
     struct Context {
         let value: String
@@ -32,14 +33,13 @@ struct SimpleView: Templating {
 
     // <div class="simple-view"><p>#(value)</p> #if(intValue > 0) {<b>Extra text</b>}</div>
 
-    static func build() -> Mappable {
+    func build() -> CompiledTemplate {
         return
-            div(attr: [.class("simple-view")],
-            
-                p( variable(at: \.value)),
+            div.class("simple-view").child(
+                p.child( variable(\.value)),
                 
-                renderIf(\.intValue > 0,
-                    b("Extra text")
+                renderIf(\.intValue > 0, 
+                    b.child("Extra text")
                 )
             )
     }
@@ -51,76 +51,70 @@ In order to render the views effectively and cleanly, we need to add all the dif
 Bellow is an example of how to render a view with a context.
 ```swift
 var renderer = HTML.Renderer()
-try renderer.brewFormula(for: SimpleView.self)
+try renderer.add(view: SimpleView())
 ...
 let context = SimpleView.Context(value: "Hello World", intValue: 0)
 try renderer.render(SimpleView.self, with: context)  // <div class="simple-view"><p>Hello World</p></div>
 ```
-You register and optimize the rendering by calling the `brewFormula(for: View.Type)` function, and render the view with the correct Context with `render(View.Type, with: View.Context)`.
+You register and optimize the rendering by calling the `add(view: TemplateBuilder)` or `add(template: ContextualTemplate)`, and render the view with the with `render(TemplateBuilder.Type)` or `render(ContextualTemplate.Type, with: ContextualTemplate.Context)`.
 
 Now since that was so simple. Let's step it up a bit by creating a base template and a view that renders some content, based on the input.
 
 ```swift
-struct BaseView: ViewTemplating {
+struct BaseView: TemplateBuilder {
 
-    struct Context {
-        let title: String
-    }
+    let title: String
+    let body: CompiledTemplate
 
-    struct ViewContext {
-        let body: Mappable
-    }
-
-    static func build(with context: BaseView.ViewContext) -> Mappable {
+    func build() -> CompiledTemplate {
         return
-            html(
-                head(
-                    title(
-                        variable(at: \.title)
+            html.child(
+                head.child(
+                    title.child(
+                        title
                     )
                 ),
-                body(
-                    context.body
+                body.child(
+                    body
                 )
             )
     }
 }
 
-struct SomeView: Templating {
+struct SomeView: ContextualTemplate {
 
     struct Context {
         let name: String
-        let baseContext: BaseView.Context
         let values: [SimpleView.Context]
 
         /// A helper function to make it more readable when creating the context
-        static func contentWith(name: String, title: String, values: [String]) -> Context {
+        static func contentWith(name: String, values: [String]) -> Context {
             return .init(
                 name: name, 
-                baseContext: .init(title: title), 
                 values: values.enumerated().map { .init(value: $0.element, intValue: $0.offset) }
                 )
         }
     }
 
-    static func build() -> Mappable {
+    func build() -> CompiledTemplate {
         return
-            embed(
-                BaseView.self,
-                with: .init(
+            BaseView(
+                title: "Welcome"
+                body:
+                    p("Hello ", variable(at: \.name), "!"),
                 
-                    body:         
-                        p("Hello ", variable(at: \.name), "!"),
-                        
-                        forEach(in: \.values, 
-                                render: SimpleView.self)
-                ),
-                contextPath: \.baseContext
-            )
+                    forEach(in: \.values, 
+                            render: SimpleView())
+            ).embed(withPath: \Context.baseContext)
     }
 }
+
+...
+
+renderer.add(template: SomeView())
+renderer.render(SomeView.self, with: .contentWith(name: "Mats", values: ["First", "Second", "Third"])
 ```
-This could render something like:
+This would render:
 ```html
 <html>
     <head>
