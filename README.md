@@ -91,7 +91,8 @@ struct SomeView: ContextualTemplate {
         static func contentWith(name: String, values: [String]) -> Context {
             return .init(
                 name: name, 
-                values: values.enumerated().map { .init(value: $0.element, intValue: $0.offset) }
+                values: values.enumerated().map { .init(value: $0.element,
+                                                        intValue: $0.offset) }
                 )
         }
     }
@@ -101,11 +102,11 @@ struct SomeView: ContextualTemplate {
             BaseView(
                 title: "Welcome"
                 body:
-                    p("Hello ", variable(at: \.name), "!"),
+                    p("Hello ", variable(\.name), "!"),
                 
                     forEach(in: \.values, 
                             render: SimpleView())
-            ).embed(withPath: \Context.baseContext)
+            )
     }
 }
 
