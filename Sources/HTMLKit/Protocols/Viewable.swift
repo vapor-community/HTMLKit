@@ -1,19 +1,18 @@
 /// A view that will allways be the same, no matter the context
-public protocol Viewable: ViewBuildable, Mappable {
+public protocol Viewable: CompiledTemplate {
 
     /// Builds the view
     ///
     /// - Returns: Returns a view that conforms to `Mappable`
-    func build() -> Mappable
+    func build() -> CompiledTemplate
 }
 
 extension Viewable {
-    public func map<T>(for type: T.Type, with context: T.Context) throws -> String where T : Templating {
-        return try build()
-            .map(for: type, with: context)
+    public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
+        return try build().render(with: manager)
     }
 
-    public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws where T : Templating {
+    public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {
         try build().brew(formula)
     }
 }

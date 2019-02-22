@@ -10,5 +10,5 @@ public protocol ViewTemplating: ContextualTemplate {
     ///
     /// - Parameter context: The view context to render with
     /// - Returns: a view that conforms to `Mappable`
-    static func build(with context: ViewContext) -> Mappable
+    static func build(with context: ViewContext) -> CompiledTemplate
 }

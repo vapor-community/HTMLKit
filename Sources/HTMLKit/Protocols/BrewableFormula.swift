@@ -8,5 +8,5 @@ public protocol BrewableFormula {
     ///
     /// - Parameter formula: The formula to brew in to
     /// - Throws: If there occured some error
-    func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws where T: Templating
+    func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws
 }
