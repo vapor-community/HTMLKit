@@ -11,7 +11,7 @@ extension HTML.DataNode: CompiledTemplate {
             formula.add(string: " ")
             try $0.brew(formula)
         }
-        formula.add(string: "/>")
+        formula.add(string: ">")
     }
 }
 

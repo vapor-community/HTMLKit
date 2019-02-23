@@ -102,7 +102,7 @@ struct SomeView: ContextualTemplate {
             BaseView(
                 title: "Welcome"
                 body:
-                    p("Hello ", variable(\.name), "!"),
+                    p.child("Hello ", variable(\.name), "!"),
                 
                     forEach(in: \.values, 
                             render: SimpleView())
