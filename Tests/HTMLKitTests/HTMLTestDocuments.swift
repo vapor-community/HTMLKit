@@ -86,9 +86,7 @@ struct StringView: ContextualTemplate {
 
     func build() -> CompiledTemplate {
         return p.child( variable(\.string))
-//            p(variable(\.string))
     }
-
 }
 
 struct SomeView: ContextualTemplate {
@@ -126,9 +124,6 @@ struct ForEachView: ContextualTemplate {
             div.id("array").child(
                 forEach(in: \.array, render: StringView())
         )
-//            div(attr: [.id("array")],
-//                forEach(in: \.array, render: StringView.self)
-//        )
     }
 }
 
@@ -284,7 +279,7 @@ struct Topbar: ContextualTemplate {
             div.class("navbar-custom").child(
                 ul.class("list-unstyled topbar-right-menu float-right mb-0").child(
                     li.class("dropdown notification-list").child(
-                        a.class("nav-link dropdown-toggle arrow-none").dataToggle("dropdown").href("#").role("button").ariaHaspopup(false).ariaExpanded(false),
+                        a.class("nav-link dropdown-toggle arrow-none").href("#").role("button").ariaHaspopup(false).ariaExpanded(false),
                         div.class("dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg").child(
                             comment(" item"),
                             div.class("dropdown-item noti-title").child(
@@ -353,7 +348,7 @@ struct Topbar: ContextualTemplate {
                         )
                     ),
                     li.class("dropdown notification-list").child(
-                        a.class("nav-link dropdown-toggle nav-user arrow-none mr-0").dataToggle("dropdown").href("#").role("button").ariaHaspopup(false).ariaExpanded(false).child(
+                        a.class("nav-link dropdown-toggle nav-user arrow-none mr-0").href("#").role("button").ariaHaspopup(false).ariaExpanded(false).child(
                             span.class("account-user-avatar").child(
                                 img.src("/assets/images/users/avatar-1.jpg").alt("user-image").class("rounded-circle")
                             ),
@@ -481,7 +476,7 @@ struct PerformanceTest: ContextualTemplate {
         let base: PerformanceBase.Context
         let cards: [Card.Context]
 
-        func content(with name: String, email: String, cards: [Card.Context]) -> Context {
+        static func content(with name: String, email: String, cards: [Card.Context]) -> Context {
             return .init(base: .content(name: name, email: email),
                          cards: cards)
         }
@@ -582,6 +577,38 @@ struct UsingComponent: TemplateBuilder {
         return
             div.id("Test").child(
                 FormInput(label: "Email", type: .email)
+        )
+    }
+}
+
+struct ChainedEqualAttributes: TemplateBuilder {
+
+    func build() -> CompiledTemplate {
+        return div.class("foo").class("bar").id("id")
+    }
+}
+
+struct ChainedEqualAttributesDataNode: TemplateBuilder {
+
+    func build() -> CompiledTemplate {
+        return img.class("foo").class("bar").id("id")
+    }
+}
+
+struct VariableView: ContextualTemplate {
+
+    struct Context {
+        let string: String
+    }
+
+    func build() -> CompiledTemplate {
+        return div.child(
+            p.child(
+                variable(\.string)
+            ),
+            p.child(
+                variable(\.string, escaping: .unsafeNone)
+            )
         )
     }
 }

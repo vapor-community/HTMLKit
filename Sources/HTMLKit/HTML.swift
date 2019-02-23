@@ -1,4 +1,12 @@
 
+/// The different escaping options for a variable
+///
+/// - unsafeNone: No escaping. This will render the variable as given
+/// - safeHTML: This will escape characters that may cause security problems
+public enum EscapingOption {
+    case unsafeNone
+    case safeHTML
+}
 
 /// A struct containing the different structs to render a HTML document
 public struct HTML {
@@ -76,6 +84,9 @@ public struct HTML {
 
         /// The key-path to the variable to render
         public let keyPath: KeyPath<Root, Value>
+
+        /// The escaping option
+        public let escaping: EscapingOption
     }
 
     /// Making it possible to embed othet templates in a View
@@ -284,7 +295,7 @@ public struct HTML {
                 if Root.self == T.self {
                     ingredient.append(variable)
                 } else if let joinPath = contextPaths["\(Root.self)"] as? KeyPath<T, Root> {
-                    let newVariable = Variable<T, Value>(keyPath: joinPath.appending(path: variable.keyPath))
+                    let newVariable = Variable<T, Value>(keyPath: joinPath.appending(path: variable.keyPath), escaping: variable.escaping)
                     ingredient.append(newVariable)
                 } else {
                     print("Unable to add variable from \(Root.self), to \(Value.self): ", variable)
