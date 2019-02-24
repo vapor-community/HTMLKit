@@ -38,7 +38,7 @@ extension HTML.IF: CompiledTemplate {
     ///   - condition: The conditino to be evaluated
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    func elseIf(_ condition: Condition, _ render: CompiledTemplate) -> HTML.IF<Root> {
+    public func elseIf(_ condition: Condition, _ render: CompiledTemplate...) -> HTML.IF<Root> {
         condition.view = render
         conditions.append(condition)
         return self
@@ -50,8 +50,8 @@ extension HTML.IF: CompiledTemplate {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    func elseIf(_ path: KeyPath<Root.Context, Bool>, _ render: CompiledTemplate) -> HTML.IF<Root> {
-        let condition = HTML.IF<Root>.Condition(condition: BoolCondition<Root>(path: path))
+    public func elseIf(_ path: KeyPath<Root.Context, Bool>, _ render: CompiledTemplate...) -> HTML.IF<Root> {
+        let condition = Condition(condition: BoolCondition<Root>(path: path))
         condition.view = render
         conditions.append(condition)
         return self
@@ -61,8 +61,8 @@ extension HTML.IF: CompiledTemplate {
     ///
     /// - Parameter render: The view to be rendered
     /// - Returns: A mappable object
-    func `else`(_ render: CompiledTemplate) -> CompiledTemplate {
-        let trueCondition = Condition(condition: AllwaysTrueCondition<Root>())
+    public func `else`(_ render: CompiledTemplate) -> CompiledTemplate {
+        let trueCondition = Condition(condition: AllwaysTrueCondition())
         trueCondition.view = render
         conditions.append(trueCondition)
         return self

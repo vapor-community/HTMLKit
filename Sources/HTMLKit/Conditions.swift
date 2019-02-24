@@ -67,7 +67,7 @@ public struct GreaterThen<Root, Value>: Conditionable where Value: Comparable {
 
 /// A condition that is allways true
 /// Used as the `else` condition
-struct AllwaysTrueCondition<Root>: Conditionable where Root: ContextualTemplate {
+struct AllwaysTrueCondition: Conditionable {
     func evaluate<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> Bool {
         return true
     }
