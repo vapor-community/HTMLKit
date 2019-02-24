@@ -12,6 +12,7 @@ final class HTMLKitTests: XCTestCase {
         try renderer.add(template: ForEachView())
         try renderer.add(template: IFView())
         try renderer.add(template: VariableView())
+        try renderer.add(template: MultipleContextualEmbed())
 
         try renderer.add(view: SimpleView())
         try renderer.add(view: BuildTest())
@@ -24,8 +25,9 @@ final class HTMLKitTests: XCTestCase {
         let forEachRender = try renderer.render(ForEachView.self, with: .content(from: ["1", "2", "3"]))
         let firstIfRender = try renderer.render(IFView.self, with: .init(name: "Per", age: 19, nullable: nil, bool: false))
         let secondIfRender = try renderer.render(IFView.self, with: .init(name: "Mats", age: 20, nullable: nil, bool: true))
-        let thirdIfRender = try renderer.render(IFView.self, with: .init(name: "", age: 21, nullable: "Some", bool: false))
+        let thirdIfRender = try renderer.render(IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
         let varialbeRender = try renderer.render(VariableView.self, with: .init(string: "<script>\"'&</script>"))
+        let multipleEmbedRender = try renderer.render(MultipleContextualEmbed.self, with: .init(title: "Welcome", string: "String"))
 
         let simpleRender = try renderer.render(SimpleView.self)
         let chainedRender = try renderer.render(ChainedEqualAttributes.self)
@@ -33,13 +35,14 @@ final class HTMLKitTests: XCTestCase {
 //        let inputRender = try renderer.render(FormInput.self)
 
 
+        XCTAssertEqual(multipleEmbedRender, "<html><head><title>Welcome</title><link href='some url' rel='stylesheet'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><span>Some text</span><div><p>String</p><p>String</p></div></body></html>")
         XCTAssertEqual(varialbeRender, "<div><p>&lt;script&gt;&quot;&#39;&amp;&lt;/script&gt;</p><p><script>\"'&</script></p></div>")
         XCTAssertEqual(staticEmbedRender, "<div><div><p>Text</p></div><p>Hello</p><small>2</small></div>")
         XCTAssertEqual(someViewRender, "<html><head><title>Welcome</title><link href='some url' rel='stylesheet'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><p>Hello Mats!</p></body></html>")
         XCTAssertEqual(forEachRender, "<div id='array'><p>1</p><p>2</p><p>3</p></div>")
         XCTAssertEqual(firstIfRender, "<div>I am a child</div>")
         XCTAssertEqual(secondIfRender, "<div><p>My name is: Mats!</p>I am growing<p>Simple bool</p></div>")
-        XCTAssertEqual(thirdIfRender, "<div>I am older<b>Some</b></div>")
+        XCTAssertEqual(thirdIfRender, "<div>I am older<b>Some</b><div>And</div></div>")
         XCTAssertEqual(simpleRender, "<div><p>Text</p></div>")
         XCTAssertEqual(chainedRender, "<div class='foo bar' id='id'></div>")
         XCTAssertEqual(chaindDataRender, "<img class='foo bar' id='id'>")

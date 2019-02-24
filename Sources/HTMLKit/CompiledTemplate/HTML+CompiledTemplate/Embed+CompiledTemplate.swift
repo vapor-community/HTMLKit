@@ -6,7 +6,7 @@ extension HTML.EmbedTemplate: CompiledTemplate {
     }
 
     public func brew<R>(_ formula: HTML.Renderer.Formula<R>) throws {
-        formula.register(keyPath: contextKeyPath)
+        try formula.register(keyPath: contextKeyPath)
         try templateType.build().brew(formula)
     }
 }

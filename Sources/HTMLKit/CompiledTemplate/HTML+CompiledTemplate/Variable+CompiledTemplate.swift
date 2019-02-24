@@ -19,7 +19,7 @@ extension HTML.Variable: CompiledTemplate {
     }
 
     public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {
-        formula.add(variable: self)
+        try formula.add(variable: self)
     }
 }
 

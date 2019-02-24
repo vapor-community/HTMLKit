@@ -1,4 +1,6 @@
 
+import Foundation
+
 public protocol CompiledTemplate: BrewableFormula {
 
     /// Renders a compiled template to a html document
@@ -73,5 +75,16 @@ extension Optional: CompiledTemplate where Wrapped: CompiledTemplate {
         case .none: return ""
         case .some(let wrapped): return try wrapped.render(with: manager)
         }
+    }
+}
+
+extension UUID: CompiledTemplate {
+
+    public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
+        return self.uuidString
+    }
+
+    public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {
+        formula.add(string: self.uuidString)
     }
 }

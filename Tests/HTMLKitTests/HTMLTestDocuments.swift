@@ -67,7 +67,10 @@ struct BaseView: ContextualTemplate {
                 ),
                 body.child(
                     body
-                )
+                ),
+
+                // Used to check for an error ocurring when embedding two different `ContextualTemplate`s and a `localFormula` is involved
+                renderIf(\.title == "May Cause an error when embedding multiple views", div)
         )
 //            html(
 //                head(
@@ -156,6 +159,10 @@ struct IFView: ContextualTemplate {
                     b.child( variable(\.nullable))
                 ).elseIf(\.bool,
                     p.child("Simple bool")
+                ),
+
+                renderIf(\.nullable == "Some" && \.name == "Per",
+                         div.child("And")
                 )
 
         )
@@ -610,5 +617,26 @@ struct VariableView: ContextualTemplate {
                 variable(\.string, escaping: .unsafeNone)
             )
         )
+    }
+}
+
+struct MultipleContextualEmbed: ContextualTemplate {
+
+    struct Context {
+        let base: BaseView.Context
+        let variable: VariableView.Context
+
+        init(title: String, string: String) {
+            base = .init(title: title)
+            variable = .init(string: string)
+        }
+    }
+
+    func build() -> CompiledTemplate {
+        return
+            BaseView(body: [
+                span.child("Some text"),
+                VariableView().embed(withPath: \Context.variable)
+                ]).embed(withPath: \Context.base)
     }
 }

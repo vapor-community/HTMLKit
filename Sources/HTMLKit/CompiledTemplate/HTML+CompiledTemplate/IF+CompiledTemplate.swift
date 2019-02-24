@@ -6,10 +6,7 @@ extension HTML.IF.Condition: Conditionable {
     }
 
     public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
-        guard let rootManager = manager as? HTML.Renderer.ContextManager<Root.Context> else {
-            throw HTML.Errors.incorrectGenericType
-        }
-        return try localFormula.render(with: rootManager)
+        return try localFormula.render(with: manager)
     }
 
     public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {

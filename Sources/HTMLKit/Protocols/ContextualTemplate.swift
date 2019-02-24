@@ -21,7 +21,7 @@ extension ContextualTemplate {
     ///   - condition: The condition to use
     ///   - view: The view to render
     /// - Returns: An `HTML.IF` object
-    public func renderIf(_ condition: HTML.IF<Self>.Condition, _ view: CompiledTemplate) -> HTML.IF<Self> {
+    public func renderIf(_ condition: HTML.IF<Self>.Condition, _ view: CompiledTemplate...) -> HTML.IF<Self> {
         condition.view = view
         return HTML.IF(conditions: condition)
     }
@@ -32,7 +32,7 @@ extension ContextualTemplate {
     ///   - condition: The condition to use
     ///   - view: The view to render
     /// - Returns: An `HTML.IF` object
-    public func renderIf(_ path: KeyPath<Self.Context, Bool>, _ view: CompiledTemplate) -> HTML.IF<Self> {
+    public func renderIf(_ path: KeyPath<Self.Context, Bool>, _ view: CompiledTemplate...) -> HTML.IF<Self> {
         let condition = HTML.IF<Self>.Condition(condition: BoolCondition<Self>(path: path))
         condition.view = view
         return HTML.IF(conditions: condition)

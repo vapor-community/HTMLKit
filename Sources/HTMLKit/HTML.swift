@@ -1,3 +1,4 @@
+import Foundation
 
 /// The different escaping options for a variable
 ///
@@ -11,10 +12,6 @@ public enum EscapingOption {
 /// A struct containing the different structs to render a HTML document
 public struct HTML {
 
-    public enum Errors: Error {
-        case incorrectGenericType
-    }
-
     /// An attribute on a node
     ///
     ///     AttributeNode.class("text-dark") // <... class="text-dark"/>
@@ -25,6 +22,11 @@ public struct HTML {
 
         /// The value of the attribute
         public let value: CompiledTemplate?
+
+        public init(attribute: String, value: CompiledTemplate?) {
+            self.attribute = attribute
+            self.value = value
+        }
     }
 
     /// A node that wrap around any content that is renderable
@@ -167,8 +169,29 @@ public struct HTML {
     ///     try renderer.render(WelcomeView.self)               // Renders the formula
     public struct Renderer {
 
-        enum Errors: Error {
+        /// The different Errors that can happen when rendering or pre-rendering a template
+        enum Errors: LocalizedError {
             case unableToFindFormula
+            case unableToRetriveValue
+            case unableToRegisterKeyPath
+            case unableToAddVariable
+
+            var errorDescription: String? {
+                switch self {
+                case .unableToFindFormula:      return "Unable to find a formula for the given view type"
+                case .unableToRetriveValue:     return "Unable to retrive the wanted value in the context"
+                case .unableToRegisterKeyPath:  return "Unable to register a KeyPath when creating the template formula"
+                case .unableToAddVariable:      return "Unable to add variable to formula"
+                }
+            }
+
+            var recoverySuggestion: String? {
+                switch self {
+                case .unableToRetriveValue, .unableToAddVariable, .unableToRegisterKeyPath:
+                    return "Remember to add .embed(withPath: \\Context.contextPath) when embeding a view"
+                default: return nil
+                }
+            }
         }
 
         /// A cache that contains all the brewed `Template`'s
@@ -188,7 +211,7 @@ public struct HTML {
         /// - Returns: Returns a rendered view
         /// - Throws: If the formula do not exists, or if the rendering process fails
         public func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> String {
-            guard let formula = formulaCache["\(T.self)"] as? Formula<T.Context> else {
+            guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Context> else {
                 throw Errors.unableToFindFormula
             }
             return try formula.render(with: context)
@@ -203,11 +226,11 @@ public struct HTML {
         public mutating func add<T: ContextualTemplate>(template view: T) throws {
             let formula = Formula(view: T.Context.self)
             try view.build().brew(formula)
-            formulaCache["\(T.self)"] = formula
+            formulaCache[String(reflecting: T.self)] = formula
         }
 
         public func render<T: TemplateBuilder>(_ type: T.Type) throws -> String {
-            guard let formula = formulaCache["\(T.self)"] as? Formula<Void> else {
+            guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<Void> else {
                 throw Errors.unableToFindFormula
             }
             return try formula.render(with: ())
@@ -222,7 +245,7 @@ public struct HTML {
         public mutating func add(view: TemplateBuilder) throws {
             let formula = Formula(view: Void.self)
             try view.build().brew(formula)
-            formulaCache["\(type(of: view))"] = formula
+            formulaCache[String(reflecting: type(of: view))] = formula
         }
 
         /// Manage the differnet contextes
@@ -237,11 +260,11 @@ public struct HTML {
             func value<Root, Value>(at path: KeyPath<Root, Value>) throws -> Value {
                 if let context = rootContext as? Root {
                     return context[keyPath: path]
-                } else if let joinPath = contextPaths["\(Root.self)"] as? KeyPath<Context, Root> {
+                } else if let joinPath = contextPaths[String(reflecting: Root.self)] as? KeyPath<Context, Root> {
                     let finalPath = joinPath.appending(path: path)
                     return rootContext[keyPath: finalPath]
                 } else {
-                    throw Errors.unableToFindFormula
+                    throw Errors.unableToRetriveValue
                 }
             }
         }
@@ -278,27 +301,29 @@ public struct HTML {
             ///   - from: The root type (Swift complains if this is not in the function body)
             ///   - to: The value type (Swift complains if this is not in the function body)
             ///   - keyPath: The key-path to add
-            public func register<Root, Value>(keyPath: KeyPath<Root, Value>) {
+            public func register<Root, Value>(keyPath: KeyPath<Root, Value>) throws {
                 if Root.self == T.self {
-                    contextPaths["\(Value.self)"] = keyPath
-                } else if let joinPath = contextPaths["\(Root.self)"] {
-                    contextPaths["\(Value.self)"] = joinPath.appending(path: keyPath)
+                    contextPaths[String(reflecting: Value.self)] = keyPath
+                } else if let joinPath = contextPaths[String(reflecting: Root.self)] {
+                    contextPaths[String(reflecting: Value.self)] = joinPath.appending(path: keyPath)
                 } else {
-                    print("Unable to register: ", keyPath)
+                    print("🚨 ERROR: when pre-rendering: Unable to register: ", keyPath)
+                    throw Errors.unableToRegisterKeyPath
                 }
             }
 
             /// Adds a variable to the formula
             ///
             /// - Parameter variable: The variable to add
-            public func add<Root, Value>(variable: Variable<Root, Value>) {
+            public func add<Root, Value>(variable: Variable<Root, Value>) throws {
                 if Root.self == T.self {
                     ingredient.append(variable)
-                } else if let joinPath = contextPaths["\(Root.self)"] as? KeyPath<T, Root> {
+                } else if let joinPath = contextPaths[String(reflecting: Root.self)] as? KeyPath<T, Root> {
                     let newVariable = Variable<T, Value>(keyPath: joinPath.appending(path: variable.keyPath), escaping: variable.escaping)
                     ingredient.append(newVariable)
                 } else {
-                    print("Unable to add variable from \(Root.self), to \(Value.self): ", variable)
+                    print("🚨 ERROR: when pre-rendering: \(String(reflecting: T.self))\n\n-- Unable to add variable from \(String(reflecting: Root.self)), to \(String(reflecting: Value.self))")
+                    throw Errors.unableToAddVariable
                 }
             }
 
@@ -331,7 +356,13 @@ public struct HTML {
                 return try ingredient.reduce("") { try $0 + $1.render(with: contextManager) }
             }
 
-            func render(with manager: ContextManager<T>) throws -> String {
+            /// Render a formula with a existing `ContextManager`
+            /// This may be needed when using a local formula
+            ///
+            /// - Parameter manager: The manager to use when rendering
+            /// - Returns: A rendered formula
+            /// - Throws: If some of the formula fails, for some reason
+            func render<U>(with manager: ContextManager<U>) throws -> String {
                 return try ingredient.reduce("") { try $0 + $1.render(with: manager) }
             }
         }
