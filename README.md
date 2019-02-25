@@ -129,7 +129,7 @@ struct SomeView: ContextualTemplate {
                         forEach(in:     \.values, 
                                 render: SimpleView())
                     ).else(
-                        p.chiled(
+                        p.child(
                             "There is no values!"
                         )
                     )
