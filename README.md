@@ -110,8 +110,7 @@ struct SomeView: ContextualTemplate {
         init(name: String, values: [String]) -> Context {
             return .init(
                 name: name, 
-                values: values.enumerated().map { .init(value:      $0.element,
-                                                        intValue:   $0.offset) }
+                values: values.enumerated().map { .init(value: $0.element) }
                 )
         }
     }
@@ -121,8 +120,9 @@ struct SomeView: ContextualTemplate {
             BaseView(
                 title: "Welcome"
                 body:
-                    p.child("Hello ", variable(\.name), "!"),
-                
+                    p.child(
+                        "Hello ", variable(\.name), "!"
+                    ),
                     renderIf(
                         \.values.count > 0,
                         
@@ -132,6 +132,10 @@ struct SomeView: ContextualTemplate {
                         p.child(
                             "There is no values!"
                         )
+                    ),
+                    dynamic(footer).class("allways")   // Using dynamic(_ tag) in order to get access to .if
+                        .if(\.name.isEmpty, add: .class("empty-nav")).child(
+                            "This is a footer"
                     )
             )
     }
@@ -146,21 +150,30 @@ This would render:
 ```html
 <html>
     <head>
-        <title>Welcome</title>
+        <title>
+            Welcome
+        </title>
     </head>
     <body>
         <p>Hello Mats!</p>
-        <div class="simple-view">
-            <p>First</p>
+        <div class='simple-view'>
+            <p>
+                First
+            </p>
         </div>
-        <div class="simple-view">
-            <p>Second</p>
-            <b>Extra text</b>
+        <div class='simple-view'>
+            <p>
+                Second
+            </p>
         </div>
-        <div class="simple-view">
-            <p>Third</p>
-            <b>Extra text</b>
+        <div class='simple-view'>
+            <p>
+                Third
+            </p>
         </div>
+        <footer class='allways'>
+            This is a footer
+        </footer>
     </body>
 </html>
 ```
