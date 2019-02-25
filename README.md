@@ -177,3 +177,6 @@ This would render:
     </body>
 </html>
 ```
+
+For more examples in a bigger repo, view this [Vapor TIL fork](https://github.com/MatsMoll/vapor-til)
+And for converting pure HTML code to the HTMLKit code clone and run [this repo](https://github.com/MatsMoll/HTMLKit-code-converter9)
