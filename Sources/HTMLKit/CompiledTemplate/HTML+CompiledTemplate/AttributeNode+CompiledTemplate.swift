@@ -1,6 +1,7 @@
 
 extension HTML.AttributeNode: CompiledTemplate {
 
+    // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
         if let value = value {
             return try "\(attribute)='\(value.render(with: manager))'"
@@ -9,6 +10,7 @@ extension HTML.AttributeNode: CompiledTemplate {
         }
     }
 
+    // View `BrewableFormula` documentation
     public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {
         formula.add(string: attribute)
         if let value = value {

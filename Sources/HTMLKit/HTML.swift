@@ -31,36 +31,80 @@ public struct HTML {
 
     /// A node that wrap around any content that is renderable
     ///
-    ///     DataNode(nodeName: "img", attributes: [.src("url")]) // <img src="url"/>
+    ///     DataNode(name: "img", attributes: [.src("url")]) // <img src="url"/>
     public struct DataNode {
+
+        /// A `DynamicAttributable` version of `HTML.DataNode`
+        public struct Dynamic<Root> {
+
+            /// The root node
+            let node: DataNode
+
+            /// A attribute that will be added based on some context
+            ///
+            ///     img.if(\.isChecked, add: .checked)
+            public let dynamicAttributes: CompiledTemplate
+
+            init(name: String, attributes: [AttributeNode], dynamicAttributes: CompiledTemplate = "") {
+                node = .init(name: name, attributes: attributes)
+                self.dynamicAttributes = dynamicAttributes
+            }
+
+            init(node: DataNode, dynamicAttributes: CompiledTemplate = "") {
+                self.node = node
+                self.dynamicAttributes = dynamicAttributes
+            }
+        }
 
         /// The name of the type of node
         ///
-        ///     nodeName = "img" // <img .../>
-        ///     nodeName = "link" // <link .../>
-        public let nodeName: String
+        ///     name = "img" // <img .../>
+        ///     name = "link" // <link .../>
+        public let name: String
 
         /// The attributes in an node
         ///
         ///     attributes = [.class("text-dark")] // <`nodeName` class="text-dark"/>
         public let attributes: [AttributeNode]
 
-        public init(nodeName: String, attributes: [AttributeNode] = []) {
-            self.nodeName = nodeName
+        public init(name: String, attributes: [AttributeNode] = []) {
+            self.name = name
             self.attributes = attributes
         }
     }
 
     /// A node that wrap around any content that is renderable
     ///
-    ///     ContentNode(nodeName: "div", content: "Some text") // <div>Some text</div>
+    ///     ContentNode(name: "div", content: "Some text") // <div>Some text</div>
     public struct ContentNode {
+
+        /// A `DynamicAttributable` version of `HTML.ContentNode`
+        public struct Dynamic<Root> {
+
+            /// The root node
+            let node: ContentNode
+
+            /// A attribute that will be added based on some context
+            ///
+            ///     img.if(\.isChecked, add: .checked)
+            public let dynamicAttributes: CompiledTemplate
+
+            init(name: String, attributes: [AttributeNode], content: CompiledTemplate, dynamicAttributes: CompiledTemplate = "") {
+                node = .init(name: name, attributes: attributes, content: content)
+                self.dynamicAttributes = dynamicAttributes
+            }
+
+            init(node: ContentNode, dynamicAttributes: CompiledTemplate = "") {
+                self.node = node
+                self.dynamicAttributes = dynamicAttributes
+            }
+        }
 
         /// The name of the type of node
         ///
-        ///     nodeName = "div" // <div>...</div>
-        ///     nodeName = "p" // <p>...</p>
-        public let nodeName: String
+        ///     name = "div" // <div>...</div>
+        ///     name = "p" // <p>...</p>
+        public let name: String
 
         /// The attributes in an node
         ///
@@ -72,8 +116,8 @@ public struct HTML {
         ///     content = "Some text" // <...>Some text</...>
         public let content: CompiledTemplate
 
-        public init(nodeName: String, attributes: [AttributeNode] = [], content: CompiledTemplate = "") {
-            self.nodeName = nodeName
+        public init(name: String, attributes: [AttributeNode] = [], content: CompiledTemplate = "") {
+            self.name = name
             self.attributes = attributes
             self.content = content
         }

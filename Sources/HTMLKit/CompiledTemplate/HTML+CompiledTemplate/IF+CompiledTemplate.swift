@@ -1,14 +1,17 @@
 
 extension HTML.IF.Condition: Conditionable {
 
+    // View `Conditionable` documentation
     public func evaluate<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> Bool {
         return try condition.evaluate(with: manager)
     }
 
+    // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
         return try localFormula.render(with: manager)
     }
 
+    // View `BrewableFormula` documentation
     public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {
         try view.brew(localFormula)
     }
@@ -16,6 +19,7 @@ extension HTML.IF.Condition: Conditionable {
 
 extension HTML.IF: CompiledTemplate {
 
+    // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
         for condition in conditions {
             if try condition.evaluate(with: manager) {
@@ -25,6 +29,7 @@ extension HTML.IF: CompiledTemplate {
         return ""
     }
 
+    // View `BrewableFormula` documentation
     public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {
         formula.add(mappable: self)
         for condition in conditions {

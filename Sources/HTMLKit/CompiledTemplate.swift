@@ -14,6 +14,7 @@ public protocol CompiledTemplate: BrewableFormula {
 
 extension Array: BrewableFormula where Element == CompiledTemplate {
 
+    // View `BrewableFormula` documentation
     public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {
         try forEach { try $0.brew(formula) }
     }
@@ -21,6 +22,7 @@ extension Array: BrewableFormula where Element == CompiledTemplate {
 
 extension Array: CompiledTemplate where Element == CompiledTemplate {
 
+    // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
         return try self.reduce("") { try $0 + $1.render(with: manager) }
     }
@@ -28,10 +30,12 @@ extension Array: CompiledTemplate where Element == CompiledTemplate {
 
 extension String: CompiledTemplate {
 
+    // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
         return self
     }
 
+    // View `BrewableFormula` documentation
     public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {
         formula.add(string: self)
     }
@@ -39,9 +43,12 @@ extension String: CompiledTemplate {
 
 extension Int: CompiledTemplate {
 
+    // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
         return String(self)
     }
+
+    // View `BrewableFormula` documentation
     public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {
         formula.add(string: String(self))
     }
@@ -49,10 +56,12 @@ extension Int: CompiledTemplate {
 
 extension Bool: CompiledTemplate {
 
+    // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
         return String(self)
     }
 
+    // View `BrewableFormula` documentation
     public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {
         formula.add(string: String(self))
     }
@@ -60,6 +69,8 @@ extension Bool: CompiledTemplate {
 
 
 extension Optional: BrewableFormula where Wrapped: BrewableFormula {
+
+    // View `BrewableFormula` documentation
     public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {
         switch self {
         case .some(let wrapped): try wrapped.brew(formula)
@@ -70,6 +81,7 @@ extension Optional: BrewableFormula where Wrapped: BrewableFormula {
 
 extension Optional: CompiledTemplate where Wrapped: CompiledTemplate {
 
+    // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
         switch self {
         case .none: return ""
@@ -80,10 +92,12 @@ extension Optional: CompiledTemplate where Wrapped: CompiledTemplate {
 
 extension UUID: CompiledTemplate {
 
+    // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
         return self.uuidString
     }
 
+    // View `BrewableFormula` documentation
     public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {
         formula.add(string: self.uuidString)
     }

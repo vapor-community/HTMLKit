@@ -2,6 +2,7 @@ import Foundation
 
 extension HTML.Variable: CompiledTemplate {
 
+    // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
 
         let render = try manager.value(at: keyPath).render(with: manager)
@@ -18,6 +19,7 @@ extension HTML.Variable: CompiledTemplate {
         }
     }
 
+    // View `BrewableFormula` documentation
     public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {
         try formula.add(variable: self)
     }
