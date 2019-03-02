@@ -1,13 +1,13 @@
 # HTMLKit
 
+Render **lightning fast** HTML templates in a *typesafe* way!
+By using Swift's powerful language features and a pre-rendering algorithm, will HTMLKit render insanely fast templates but also be able to catch bugs that otherwise might occur with other templating options.
+
 ## Swift PM
 
 ```swift
 .package(url: "https://github.com/vapor-community/HTMLKit.git", from: "1.0.0"),
 ```
-
-Render **lightning fast** HTML templates in a *typesafe* way!
-By using Swift's powerful language features and a pre-rendering algorithm, will HTMLKit render insanely fast templates but also be able to catch bugs that otherwise might occur with other templating options.
 
 ## How fast is HTMLKit? ⚡
 
@@ -192,8 +192,8 @@ This would render:
     * Where the sub view's `Context` is equal to the super view's `Context` = `embed(SubView())`
     * Where the sub view's `Context`is variable of the super view's `Context`= `embed(Subview(), withPath: \.subContext)`
 - ForEach:
-    * Where the sub view's `Context` is equal to the super view's `Context` = `forEachInContext(render: SubView())`
-    * Where the sub view's `Context`is variable of the super view's `Context`= `forEach(in \.subContext, render: Subview()`
+    * Where the super view's `Context` is an array of the sub view's `Context` = `forEachInContext(render: SubView())`
+    * Where the super view's `Context` variable is an array of the sub view's `Context`  = `forEach(in \.subContext, render: Subview()`
 - If:
     * If value is `nil` = `runtimeIf(isNil: \.optional, div.child(...))`
     * If value is not `nil` = `runtimeIf(isNotNil: \.optional, div.child(...))`
