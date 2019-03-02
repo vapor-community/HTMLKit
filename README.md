@@ -195,18 +195,18 @@ This would render:
     * Where the super view's `Context` is an array of the sub view's `Context` = `forEachInContext(render: SubView())`
     * Where the super view's `Context` variable is an array of the sub view's `Context`  = `forEach(in \.subContext, render: Subview()`
 - If:
+    * If value is a `Bool` = `runtimeIf(\.bool, div.child(...))`
     * If value is `nil` = `runtimeIf(isNil: \.optional, div.child(...))`
     * If value is not `nil` = `runtimeIf(isNotNil: \.optional, div.child(...))`
-    * If value is a `Bool` = `runtimeIf(\.bool, div.child(...))`
     * If value conforms to `Equatable` = `runtimeIf(\.int == 2, div.child(...))`
     * If value conforms to `Equatable` = `runtimeIf(\.int != 2, div.child(...))`
     * If value conforms to `Comparable` = `runtimeIf(\.int < 2, div.child(...))`
     * If value conforms to `Comparable` = `runtimeIf(\.int > 2, div.child(...))`
-    * `elseIf`has the same statments and is a methoded on the returned if. `runtimeIf(...).elseIf(...)`
-    * and lastly `else`. `runtimeIf(...).else(div.child(...))`
     * It is also possible to use `||` and `&&` for more complex statments. `runtimeIf(\.bool || \.otherBool, div.child(...))`
+    * `elseIf`has the same statments and is a method on the returned if. `runtimeIf(...).elseIf(...)`
+    * and lastly `else`. `runtimeIf(...).else(div.child(...))`
 - Dynamíc Attributes
-    * In order to add attributes based on the `Context` you will need to use `dynamic(div)`. This will create a dynamic node and after this you can use if's.  `dynamic(div).if(\.bool, .checked)`
+    * In order to add attributes based on the `Context` you will need to use `dynamic(div)`. This will create a dynamic node and after this you can use if's.  `dynamic(div).if(\.bool, add: .checked)`
     
 If there is missing any nodes or attributes. Just add an extension on `TemplateBuilder` or if there is a attribute not added `AttributableNode` (If there is no need for a dynamicly adding), and `HTML.AttributeNode`if dynamic is needed.
 
