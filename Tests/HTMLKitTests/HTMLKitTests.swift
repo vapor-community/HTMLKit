@@ -5,7 +5,7 @@ final class HTMLKitTests: XCTestCase {
 
     func testExample() throws {
 
-        var renderer = HTML.Renderer()
+        var renderer = HTMLRenderer()
         try renderer.add(template: StaticEmbedView())
         try renderer.add(template: StaticEmbedView())
         try renderer.add(template: SomeView())
@@ -14,6 +14,7 @@ final class HTMLKitTests: XCTestCase {
         try renderer.add(template: VariableView())
         try renderer.add(template: MultipleContextualEmbed())
         try renderer.add(template: DynamicAttribute())
+        try renderer.add(template: SelfLoopingView())
 
         try renderer.add(view: SimpleView())
         try renderer.add(view: UsingComponent())

@@ -1,14 +1,17 @@
 
-extension HTML.EmbedTemplate: CompiledTemplate {
+extension TemplateEmbed: CompiledTemplate {
 
     // View `CompiledTemplate` documentation
-    public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         return try templateType.build().render(with: manager)
     }
 
     // View `BrewableFormula` documentation
-    public func brew<R>(_ formula: HTML.Renderer.Formula<R>) throws {
-        try formula.register(keyPath: contextKeyPath)
+    public func brew<R>(_ formula: HTMLRenderer.Formula<R>) throws {
+        switch referance {
+        case .keyPath(let path): try formula.register(keyPath: path)
+        default: break
+        }
         try templateType.build().brew(formula)
     }
 }

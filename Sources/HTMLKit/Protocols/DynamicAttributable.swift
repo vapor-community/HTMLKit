@@ -10,7 +10,7 @@ public protocol DynamicAttributable: AttributableNode {
     ///   - attribute: The attribute to add
     ///   - condition: The condition decicing when to add the attribute
     /// - Returns: A node with the new attribute
-    func addDynamic(_ attribute: HTML.AttributeNode, with condition: HTML.IF<Root>.Condition) -> Self
+    func addDynamic(_ attribute: HTML.AttributeNode, with condition: TemplateIF<Root>.Condition) -> Self
 }
 
 
@@ -22,7 +22,7 @@ extension DynamicAttributable {
     ///   - condition: The condition used to evaluate when to add the attributes
     ///   - attributes: The attributes to add
     /// - Returns: A copy of the node with a dynamic attribute
-    public func `if`(_ condition: HTML.IF<Root>.Condition, add attributes: HTML.AttributeNode...) -> Self {
+    public func `if`(_ condition: TemplateIF<Root>.Condition, add attributes: HTML.AttributeNode...) -> Self {
         var copy = self
         for attribute in attributes {   // Need to create a new `IF.Condition` since it is a referance type and will cause a weird bug otherwise
             copy = copy.addDynamic(attribute, with: .init(condition: condition.condition))
@@ -42,7 +42,7 @@ extension DynamicAttributable {
         var copy = self
         let condition = BoolCondition<Root>(path: path)
         for attribute in attributes {   // Need to create a new `IF.Condition` since it is a referance type and will cause a weird bug otherwise
-            copy = copy.addDynamic(attribute, with: HTML.IF<Root>.Condition(condition: condition))
+            copy = copy.addDynamic(attribute, with: TemplateIF<Root>.Condition(condition: condition))
         }
         return copy
     }

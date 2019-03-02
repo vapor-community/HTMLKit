@@ -6,7 +6,13 @@ protocol HTMLTestable: TemplateBuilder {
 }
 
 
-struct SimpleView: TemplateBuilder, HTMLTestable {
+struct SimpleData {
+    let string: String
+    let int: Int?
+}
+
+
+struct SimpleView: StaticView, HTMLTestable {
 
     static var expextedOutput: String = "<div><p>Text</p></div>"
 
@@ -20,10 +26,7 @@ struct SimpleView: TemplateBuilder, HTMLTestable {
 
 struct StaticEmbedView: ContextualTemplate {
 
-    struct Context {
-        let string: String
-        let int: Int?
-    }
+    typealias Context = SimpleData
 
     func build() -> CompiledTemplate {
         return
@@ -33,7 +36,7 @@ struct StaticEmbedView: ContextualTemplate {
                     variable(\.string)
                 ),
 
-                renderIf(\.int != nil,
+                runtimeIf(\.int != nil,
                          small.child(
                             variable(\.int)
                     )
@@ -42,7 +45,7 @@ struct StaticEmbedView: ContextualTemplate {
 //            div(
 //                SimpleView.build(),
 //                p( variable(\.string)),
-//                renderIf(\.int != nil,
+//                runtimeIf(\.int != nil,
 //                         small( variable(\.int))
 //                )
 //        )
@@ -70,7 +73,7 @@ struct BaseView: ContextualTemplate {
                 ),
 
                 // Used to check for an error ocurring when embedding two different `ContextualTemplate`s and a `localFormula` is involved
-                renderIf(\.title == "May Cause an error when embedding multiple views", div)
+                runtimeIf(\.title == "May Cause an error when embedding multiple views", div)
         )
 //            html(
 //                head(
@@ -105,10 +108,11 @@ struct SomeView: ContextualTemplate {
 
     func build() -> CompiledTemplate {
         return
-            BaseView(
-                body: p.child("Hello ", variable(\.name), "!")
-            )
-                .embed(withPath: \Context.baseContext)
+            embed(
+                BaseView(
+                    body: p.child("Hello ", variable(\.name), "!")
+                ),
+                withPath: \.baseContext)
     }
 }
 
@@ -143,11 +147,11 @@ struct IFView: ContextualTemplate {
     func build() -> CompiledTemplate {
         return
             div.child(
-                renderIf(\.name == "Mats",
+                runtimeIf(\.name == "Mats",
                     p.child("My name is: ", variable(\.name), "!")
                 ),
 
-                renderIf(\.age < 20,
+                runtimeIf(\.age < 20,
                     "I am a child"
                 ).elseIf(\.age > 20,
                     "I am older"
@@ -155,23 +159,23 @@ struct IFView: ContextualTemplate {
                     "I am growing"
                 ),
 
-                renderIf(\.nullable != nil,
+                runtimeIf(\.nullable != nil,
                     b.child( variable(\.nullable))
                 ).elseIf(\.bool,
                     p.child("Simple bool")
                 ),
 
-                renderIf(\.nullable == "Some" && \.name == "Per",
+                runtimeIf(\.nullable == "Some" && \.name == "Per",
                          div.child("And")
                 )
 
         )
 //            div(
-//                renderIf(\.name == "Mats",
+//                runtimeIf(\.name == "Mats",
 //                    p("My name is: ", variable(\.name), "!")
 //                ),
 //
-//                renderIf(\.age < 20,
+//                runtimeIf(\.age < 20,
 //                    "I am a child"
 //                ).elseIf(\.age > 20,
 //                    "I am older"
@@ -179,7 +183,7 @@ struct IFView: ContextualTemplate {
 //                    "I am growing"
 //                ),
 //
-//                renderIf(\.nullable != nil,
+//                runtimeIf(\.nullable != nil,
 //                    b( variable(\.nullable))
 //                ).elseIf(\.bool,
 //                    p("Simple bool")
@@ -230,7 +234,7 @@ class FormInput: TemplateBuilder {
     }
 }
 
-struct UsingComponent: TemplateBuilder {
+struct UsingComponent: StaticView {
 
     func build() -> CompiledTemplate {
         return
@@ -240,14 +244,14 @@ struct UsingComponent: TemplateBuilder {
     }
 }
 
-struct ChainedEqualAttributes: TemplateBuilder {
+struct ChainedEqualAttributes: StaticView {
 
     func build() -> CompiledTemplate {
         return div.class("foo").class("bar").id("id")
     }
 }
 
-struct ChainedEqualAttributesDataNode: TemplateBuilder {
+struct ChainedEqualAttributesDataNode: StaticView {
 
     func build() -> CompiledTemplate {
         return img.class("foo").class("bar").id("id")
@@ -286,10 +290,14 @@ struct MultipleContextualEmbed: ContextualTemplate {
 
     func build() -> CompiledTemplate {
         return
-            BaseView(body: [
-                span.child("Some text"),
-                VariableView().embed(withPath: \Context.variable)
-                ]).embed(withPath: \Context.base)
+            embed(
+                BaseView(
+                    body: [
+                        span.child("Some text"),
+                        embed(VariableView(), withPath: \.variable)
+                    ]),
+                withPath: \.base)
+
     }
 }
 
@@ -304,5 +312,30 @@ struct DynamicAttribute: ContextualTemplate {
         return dynamic(div).class("foo")
             .if(\.isChecked, add: .class("checked"))
             .if(\.isActive, add: .init(attribute: "active", value: nil))
+    }
+}
+
+struct SelfContextPassing: ContextualTemplate {
+
+    typealias Context = VariableView.Context
+
+    func build() -> CompiledTemplate {
+        return div.child(
+            embed(
+                VariableView()
+            )
+        )
+    }
+}
+
+
+struct SelfLoopingView: ContextualTemplate {
+
+    typealias Context = [SimpleData]
+
+    func build() -> CompiledTemplate {
+        return div.class("list").child(
+            forEachInContext(render: StaticEmbedView())
+        )
     }
 }

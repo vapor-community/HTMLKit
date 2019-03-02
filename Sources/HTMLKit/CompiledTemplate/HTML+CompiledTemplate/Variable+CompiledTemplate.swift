@@ -1,11 +1,16 @@
 import Foundation
 
-extension HTML.Variable: CompiledTemplate {
+extension TemplateVariable: CompiledTemplate {
 
     // View `CompiledTemplate` documentation
-    public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
 
-        let render = try manager.value(at: keyPath).render(with: manager)
+        var render = ""
+        switch referance {
+        case .keyPath(let keyPath): render = try manager.value(at: keyPath).render(with: manager)
+        case .self(let type): render = try (manager.value(for: type) as! CompiledTemplate).render(with: manager)
+        }
+
         switch escaping {
         case .safeHTML:
             return render
@@ -20,7 +25,7 @@ extension HTML.Variable: CompiledTemplate {
     }
 
     // View `BrewableFormula` documentation
-    public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {
+    public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         try formula.add(variable: self)
     }
 }
@@ -33,8 +38,8 @@ extension ContextualTemplate {
     ///   - keyPath: The path to the variable
     ///   - escaping: The escaping option
     /// - Returns: A `CompiledTemplate` `HTML.Variable` object
-    public func variable<Value>(_ keyPath: KeyPath<Self.Context, Value>, escaping: EscapingOption = .safeHTML) -> HTML.Variable<Self.Context, Value> {
-        return HTML.Variable(keyPath: keyPath, escaping: escaping)
+    public func variable<Value>(_ keyPath: KeyPath<Self.Context, Value>, escaping: EscapingOption = .safeHTML) -> TemplateVariable<Self, Value> {
+        return TemplateVariable(referance: .keyPath(keyPath), escaping: escaping)
     }
 
     /// References an optional variable in the `Context` type
@@ -43,7 +48,7 @@ extension ContextualTemplate {
     ///   - keyPath: The path to the variable
     ///   - escaping: The escaping option
     /// - Returns: A `CompiledTemplate` `HTML.Variable` object
-    public func variable<Value>(_ keyPath: KeyPath<Self.Context, Value?>, escaping: EscapingOption = .safeHTML) -> HTML.Variable<Self.Context, Value?> {
-        return HTML.Variable(keyPath: keyPath, escaping: escaping)
+    public func variable<Value>(_ keyPath: KeyPath<Self.Context, Value?>, escaping: EscapingOption = .safeHTML) -> TemplateVariable<Self, Value?> {
+        return TemplateVariable(referance: .keyPath(keyPath), escaping: escaping)
     }
 }

@@ -11,12 +11,12 @@ public protocol TemplateBuilder: CompiledTemplate {
 extension TemplateBuilder {
 
     // View `BrewableFormula` documentation
-    public func brew<T>(_ formula: HTML.Renderer.Formula<T>) throws {
+    public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         try build().brew(formula)
     }
 
     // View `CompiledTemplate` documentation
-    public func render<T>(with manager: HTML.Renderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         return try build().render(with: manager)
     }
 }
