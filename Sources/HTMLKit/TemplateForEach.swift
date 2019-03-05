@@ -14,12 +14,12 @@ public class TemplateForEach<Root: ContextualTemplate, Value: ContextualTemplate
     public let view: Value
 
     /// The path to the collection to loop
-    public let referance: ContextReferance<Root, [Value.Context]>
+    let referance: ContextReferance<Root, [Value.Context]>
 
     /// A local formula, in order to increase the performance
     var localFormula: HTMLRenderer.Formula<Value>
 
-    public init(view: Value, referance: ContextReferance<Root, [Value.Context]>) {
+    init(view: Value, referance: ContextReferance<Root, [Value.Context]>) {
         self.view = view
         self.referance = referance
         self.localFormula = HTMLRenderer.Formula(view: Value.self)

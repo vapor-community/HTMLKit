@@ -485,11 +485,27 @@ extension HTML.AttributeNode {
         return HTML.AttributeNode(attribute: "method", value: value)
     }
 
+    /// Specifies the HTTP method to use when sending form-data
+    ///
+    /// - Parameter value: The value of the attribute
+    /// - Returns: An attribute node
+    public static func method(_ value: Method) -> HTML.AttributeNode {
+        return HTML.AttributeNode(attribute: "method", value: value.rawValue)
+    }
+
     /// Specifies a minimum value
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public static func min(_ value: CompiledTemplate) -> HTML.AttributeNode {
+    public static func min<Root>(_ value: TemplateVariable<Root, Int>) -> HTML.AttributeNode where Root : ContextualTemplate {
+        return HTML.AttributeNode(attribute: "min", value: value)
+    }
+
+    /// Specifies a minimum value
+    ///
+    /// - Parameter value: The value of the attribute
+    /// - Returns: An attribute node
+    public static func min(_ value: Int) -> HTML.AttributeNode {
         return HTML.AttributeNode(attribute: "min", value: value)
     }
 
@@ -784,7 +800,6 @@ extension HTML.AttributeNode {
     public static func optimum(_ value: CompiledTemplate) -> HTML.AttributeNode {
         return HTML.AttributeNode(attribute: "optimum", value: value)
     }
-
 
     /// Specifies a short hint that describes the expected value of the element
     ///

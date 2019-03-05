@@ -462,15 +462,23 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func method(_ value: CompiledTemplate...) -> Self {
-        return self.add( .method(value))
+    public func method(_ value: HTML.AttributeNode.Method) -> Self {
+        return add( .method(value))
     }
 
     /// Specifies a minimum value
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func min(_ value: CompiledTemplate...) -> Self {
+    public func min<Root>(_ value: TemplateVariable<Root, Int>) -> Self where Root : ContextualTemplate {
+         return self.add( .min(value))
+    }
+
+    /// Specifies a minimum value
+    ///
+    /// - Parameter value: The value of the attribute
+    /// - Returns: An attribute node
+    public func min(_ value: Int) -> Self {
         return self.add( .min(value))
     }
 

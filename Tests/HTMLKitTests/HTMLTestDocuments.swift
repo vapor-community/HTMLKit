@@ -192,7 +192,7 @@ struct IFView: ContextualTemplate {
     }
 }
 
-class FormInput: TemplateBuilder {
+class FormInput: StaticView {
 
     enum FormType: String {
         case email
@@ -309,7 +309,7 @@ struct DynamicAttribute: ContextualTemplate {
     }
 
     func build() -> CompiledTemplate {
-        return dynamic(div).class("foo")
+        return div.class("foo")
             .if(\.isChecked, add: .class("checked"))
             .if(\.isActive, add: .init(attribute: "active", value: nil))
     }
@@ -335,7 +335,7 @@ struct SelfLoopingView: ContextualTemplate {
 
     func build() -> CompiledTemplate {
         return div.class("list").child(
-            forEachInContext(render: StaticEmbedView())
+            forEach(render: StaticEmbedView())
         )
     }
 }

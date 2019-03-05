@@ -42,7 +42,7 @@ extension ContextualTemplate {
     ///   - collectionPath: The path to the context to loop
     ///   - view: The view to render
     /// - Returns: A ´CompiledTemplate` that will loop the context
-    public func forEachInContext<View>(render view: View) -> CompiledTemplate where View: ContextualTemplate, Context == [View.Context] {
+    public func forEach<View>(render view: View) -> CompiledTemplate where View: ContextualTemplate, Context == [View.Context] {
         return TemplateForEach<Self, View>(view: view, referance: .self(Self.self))
     }
 
@@ -91,21 +91,5 @@ extension ContextualTemplate {
         let condition = TemplateIF<Self>.Condition(condition: NotNullCondition<Self.Context, Value>(path: path))
         condition.view = render
         return TemplateIF<Self>.init(conditions: condition)
-    }
-
-    /// Creates a dynamic version of the node, that makes it possible to run if statments when adding attributes
-    ///
-    /// - Parameter tag: The tag to make dynamic
-    /// - Returns: A `Dynamic` version of the tag
-    public func `dynamic`(_ tag: HTML.ContentNode) -> HTML.ContentNode.Dynamic<Self> {
-        return .init(node: tag)
-    }
-
-    /// Creates a dynamic version of the node, that makes it possible to run if statments when adding attributes
-    ///
-    /// - Parameter tag: The tag to make dynamic
-    /// - Returns: A `Dynamic` version of the tag
-    public func `dynamic`(_ tag: HTML.DataNode) -> HTML.DataNode.Dynamic<Self> {
-        return .init(node: tag)
     }
 }

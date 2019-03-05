@@ -22,174 +22,174 @@ extension TemplateBuilder {
 }
 
 
-extension TemplateBuilder {
+extension ContextualTemplate {
 
-    public var div: HTML.ContentNode { return HTML.ContentNode(name: "div") }
+    public var div: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "div") }
 
-    public var body: HTML.ContentNode { return HTML.ContentNode(name: "body") }
+    public var body: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "body") }
 
-    public var form: HTML.ContentNode { return HTML.ContentNode(name: "form") }
+    public var form: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "form") }
 
-    public var small: HTML.ContentNode { return HTML.ContentNode(name: "small") }
+    public var small: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "small") }
 
-    public var footer: HTML.ContentNode { return HTML.ContentNode(name: "footer") }
+    public var footer: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "footer") }
 
-    public var head: HTML.ContentNode { return HTML.ContentNode(name: "head") }
+    public var head: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "head") }
 
-    public var p: HTML.ContentNode { return HTML.ContentNode(name: "p") }
+    public var p: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "p") }
 
-    public var html: HTML.ContentNode { return HTML.ContentNode(name: "html") }
+    public var html: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "html") }
 
-    public var button: HTML.ContentNode { return HTML.ContentNode(name: "button") }
+    public var button: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "button") }
 
-    public var h1: HTML.ContentNode { return HTML.ContentNode(name: "h1") }
+    public var h1: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "h1") }
 
-    public var h2: HTML.ContentNode { return HTML.ContentNode(name: "h2") }
+    public var h2: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "h2") }
 
-    public var h3: HTML.ContentNode { return HTML.ContentNode(name: "h3") }
+    public var h3: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "h3") }
 
-    public var h4: HTML.ContentNode { return HTML.ContentNode(name: "h4") }
+    public var h4: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "h4") }
 
-    public var h5: HTML.ContentNode { return HTML.ContentNode(name: "h5") }
+    public var h5: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "h5") }
 
-    public var h6: HTML.ContentNode { return HTML.ContentNode(name: "h6") }
+    public var h6: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "h6") }
 
-    public var span: HTML.ContentNode { return HTML.ContentNode(name: "span") }
+    public var span: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "span") }
 
-    public var i: HTML.ContentNode { return HTML.ContentNode(name: "i") }
+    public var i: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "i") }
 
-    public var b: HTML.ContentNode { return HTML.ContentNode(name: "b") }
+    public var b: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "b") }
 
-    public var strong: HTML.ContentNode { return HTML.ContentNode(name: "strong") }
+    public var strong: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "strong") }
 
-    public var u: HTML.ContentNode { return HTML.ContentNode(name: "u") }
+    public var u: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "u") }
 
-    public var em: HTML.ContentNode { return HTML.ContentNode(name: "em") }
+    public var em: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "em") }
 
-    public var a: HTML.ContentNode { return HTML.ContentNode(name: "a") }
+    public var a: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "a") }
 
-    public var ol: HTML.ContentNode { return HTML.ContentNode(name: "ol") }
+    public var ol: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "ol") }
     
-    public var ul: HTML.ContentNode { return HTML.ContentNode(name: "ul") }
+    public var ul: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "ul") }
 
-    public var li: HTML.ContentNode { return HTML.ContentNode(name: "li") }
+    public var li: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "li") }
 
-    public var dl: HTML.ContentNode { return HTML.ContentNode(name: "dl") }
+    public var dl: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "dl") }
 
-    public var dt: HTML.ContentNode { return HTML.ContentNode(name: "dt") }
+    public var dt: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "dt") }
 
-    public var dd: HTML.ContentNode { return HTML.ContentNode(name: "dd") }
+    public var dd: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "dd") }
 
-    public var label: HTML.ContentNode { return HTML.ContentNode(name: "label") }
+    public var label: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "label") }
 
-    public var title: HTML.ContentNode { return HTML.ContentNode(name: "title") }
+    public var title: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "title") }
 
-    public var script: HTML.ContentNode { return HTML.ContentNode(name: "script") }
+    public var script: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "script") }
 
-    public var blockquote: HTML.ContentNode { return HTML.ContentNode(name: "blockquote") }
+    public var blockquote: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "blockquote") }
 
-    public var code: HTML.ContentNode { return HTML.ContentNode(name: "code") }
+    public var code: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "code") }
 
-    public var samp: HTML.ContentNode { return HTML.ContentNode(name: "samp") }
+    public var samp: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "samp") }
 
-    public var abbr: HTML.ContentNode { return HTML.ContentNode(name: "abbr") }
+    public var abbr: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "abbr") }
 
-    public var table: HTML.ContentNode { return HTML.ContentNode(name: "table") }
+    public var table: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "table") }
 
-    public var th: HTML.ContentNode { return HTML.ContentNode(name: "th") }
+    public var th: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "th") }
 
-    public var tr: HTML.ContentNode { return HTML.ContentNode(name: "tr") }
+    public var tr: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "tr") }
 
-    public var td: HTML.ContentNode { return HTML.ContentNode(name: "td") }
+    public var td: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "td") }
 
-    public var thead: HTML.ContentNode { return HTML.ContentNode(name: "thead") }
+    public var thead: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "thead") }
 
-    public var tbody: HTML.ContentNode { return HTML.ContentNode(name: "tbody") }
+    public var tbody: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "tbody") }
 
-    public var tfoot: HTML.ContentNode { return HTML.ContentNode(name: "tfoot") }
+    public var tfoot: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "tfoot") }
 
-    public var textarea: HTML.ContentNode { return HTML.ContentNode(name: "textarea") }
+    public var textarea: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "textarea") }
 
-    public var legend: HTML.ContentNode { return HTML.ContentNode(name: "legend") }
+    public var legend: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "legend") }
 
-    public var fieldset: HTML.ContentNode { return HTML.ContentNode(name: "fieldset") }
+    public var fieldset: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "fieldset") }
 
-    public var output: HTML.ContentNode { return HTML.ContentNode(name: "output") }
+    public var output: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "output") }
 
-    public var datalist: HTML.ContentNode { return HTML.ContentNode(name: "datalist") }
+    public var datalist: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "datalist") }
 
-    public var option: HTML.ContentNode { return HTML.ContentNode(name: "option") }
+    public var option: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "option") }
 
-    public var optgroup: HTML.ContentNode { return HTML.ContentNode(name: "optgroup") }
+    public var optgroup: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "optgroup") }
 
-    public var select: HTML.ContentNode { return HTML.ContentNode(name: "select") }
+    public var select: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "select") }
 
-    public var iframe: HTML.ContentNode { return HTML.ContentNode(name: "iframe") }
+    public var iframe: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "iframe") }
 
-    public var map: HTML.ContentNode { return HTML.ContentNode(name: "map") }
+    public var map: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "map") }
 
-    public var canvas: HTML.ContentNode { return HTML.ContentNode(name: "canvas") }
+    public var canvas: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "canvas") }
 
-    public var figure: HTML.ContentNode { return HTML.ContentNode(name: "figure") }
+    public var figure: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "figure") }
 
-    public var figcaption: HTML.ContentNode { return HTML.ContentNode(name: "figcaption") }
+    public var figcaption: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "figcaption") }
 
-    public var picture: HTML.ContentNode { return HTML.ContentNode(name: "picture") }
+    public var picture: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "picture") }
 
-    public var svg: HTML.ContentNode { return HTML.ContentNode(name: "svg") }
+    public var svg: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "svg") }
 
-    public var caption: HTML.ContentNode { return HTML.ContentNode(name: "caption") }
+    public var caption: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "caption") }
 
-    public var colgroup: HTML.ContentNode { return HTML.ContentNode(name: "colgroup") }
+    public var colgroup: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "colgroup") }
 
-    public var main: HTML.ContentNode { return HTML.ContentNode(name: "main") }
+    public var main: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "main") }
 
-    public var section: HTML.ContentNode { return HTML.ContentNode(name: "sectino") }
+    public var section: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "sectino") }
 
-    public var article: HTML.ContentNode { return HTML.ContentNode(name: "article") }
+    public var article: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "article") }
 
-    public var aside: HTML.ContentNode { return HTML.ContentNode(name: "aside") }
+    public var aside: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "aside") }
 
-    public var details: HTML.ContentNode { return HTML.ContentNode(name: "details") }
+    public var details: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "details") }
 
-    public var summary: HTML.ContentNode { return HTML.ContentNode(name: "summary") }
+    public var summary: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "summary") }
 
-    public var dialog: HTML.ContentNode { return HTML.ContentNode(name: "dialog") }
+    public var dialog: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "dialog") }
 
-    public var data: HTML.ContentNode { return HTML.ContentNode(name: "data") }
+    public var data: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "data") }
 
-    public var nav: HTML.ContentNode { return HTML.ContentNode(name: "nav") }
+    public var nav: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "nav") }
 
-    public var audio: HTML.ContentNode { return HTML.ContentNode(name: "audio") }
+    public var audio: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "audio") }
 
-    public var video: HTML.ContentNode { return HTML.ContentNode(name: "video") }
+    public var video: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "video") }
 }
 
-extension TemplateBuilder {
+extension ContextualTemplate {
 
-    public var link: HTML.DataNode { return HTML.DataNode(name: "link") }
+    public var link: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "link") }
 
-    public var stylesheet: HTML.DataNode { return link.rel("stylesheet") }
+    public var stylesheet: HTML.DataNode<Self> { return link.rel("stylesheet") }
 
-    public var meta: HTML.DataNode { return HTML.DataNode(name: "meta") }
+    public var meta: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "meta") }
 
-    public var img: HTML.DataNode { return HTML.DataNode(name: "img") }
+    public var img: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "img") }
 
-    public var input: HTML.DataNode { return HTML.DataNode(name: "input") }
+    public var input: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "input") }
 
-    public var area: HTML.DataNode { return HTML.DataNode(name: "area") }
+    public var area: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "area") }
 
-    public var col: HTML.DataNode { return HTML.DataNode(name: "col") }
+    public var col: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "col") }
 
-    public var base: HTML.DataNode { return HTML.DataNode(name: "base") }
+    public var base: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "base") }
 
-    public var param: HTML.DataNode { return HTML.DataNode(name: "param") }
+    public var param: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "param") }
 
-    public var embed: HTML.DataNode { return HTML.DataNode(name: "embed") }
+    public var embed: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "embed") }
 
-    public var source: HTML.DataNode { return HTML.DataNode(name: "source") }
+    public var source: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "source") }
 
-    public var track: HTML.DataNode { return HTML.DataNode(name: "track") }
+    public var track: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "track") }
 }
 
 extension TemplateBuilder {

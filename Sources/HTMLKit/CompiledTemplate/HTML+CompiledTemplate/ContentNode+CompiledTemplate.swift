@@ -8,6 +8,7 @@ extension HTML.ContentNode: CompiledTemplate {
             formula.add(string: " ")
             try $0.brew(formula)
         }
+        try dynamicAttributes.brew(formula)
         formula.add(string: ">")
         try content.brew(formula)
         formula.add(string: "</\(name)>")
@@ -17,6 +18,7 @@ extension HTML.ContentNode: CompiledTemplate {
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         return try "<\(name)"
             + attributes.reduce("") { try $0 + " \($1.render(with: manager))" }
+            + dynamicAttributes.render(with: manager)
             + ">\(content.render(with: manager))</\(name)>"
     }
 }
@@ -29,15 +31,15 @@ extension HTML.ContentNode {
     ///
     /// - Parameter child: The child to set
     /// - Returns: A new node with the child added
-    public func child(_ child: CompiledTemplate...) -> HTML.ContentNode {
+    public func child(_ child: CompiledTemplate...) -> HTML.ContentNode<Root> {
         return HTML.ContentNode(name: name, attributes: attributes, content: child)
     }
 }
 
-extension HTML.ContentNode: AttributableNode {
+extension HTML.ContentNode: AttributableNode, DynamicAttributable {
 
     // View `AttributableNode` documentation
-    public func add(_ attribute: HTML.AttributeNode) -> HTML.ContentNode {
+    public func add(_ attribute: HTML.AttributeNode) -> HTML.ContentNode<Root> {
         var attributes = self.attributes
         for (index, attr) in attributes.enumerated() {
             if attr.attribute == attribute.attribute {
@@ -51,43 +53,10 @@ extension HTML.ContentNode: AttributableNode {
         }
         return .init(name: name, attributes: attributes + [attribute], content: content)
     }
-}
-
-extension HTML.ContentNode.Dynamic: CompiledTemplate {
-
-    // View `BrewableFormula` documentation
-    public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
-        formula.add(string: "<\(node.name)")
-        try node.attributes.forEach {
-            formula.add(string: " ")
-            try $0.brew(formula)
-        }
-        try dynamicAttributes.brew(formula)
-        formula.add(string: ">")
-        try node.content.brew(formula)
-        formula.add(string: "</\(node.name)>")
-    }
-
-    // View `CompiledTemplate` documentation
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-
-        return try "<\(node.name)"
-            + node.attributes.reduce("") { try $0 + " \($1.render(with: manager))" }
-            + dynamicAttributes.render(with: manager)
-            + ">\(node.content.render(with: manager))</\(node.name)>"
-    }
-}
-
-extension HTML.ContentNode.Dynamic: AttributableNode, DynamicAttributable where Root : ContextualTemplate {
-
-    // View `AttributableNode` documentation
-    public func add(_ attribute: HTML.AttributeNode) -> HTML.ContentNode.Dynamic<Root> {
-        return .init(node: node.add(attribute), dynamicAttributes: dynamicAttributes)
-    }
 
     // View `DynamicAttributable` documentation
-    public func addDynamic(_ attribute: HTML.AttributeNode, with condition: TemplateIF<Root>.Condition) -> HTML.ContentNode.Dynamic<Root> {
-        var attributes = self.node.attributes
+    public func addDynamic(_ attribute: HTML.AttributeNode, with condition: TemplateIF<Root>.Condition) -> HTML.ContentNode<Root> {
+        var attributes = self.attributes
         for (index, attr) in attributes.enumerated() {
             if attr.attribute == attribute.attribute {
                 guard let value = attr.value, let newValue = attribute.value else {
@@ -96,24 +65,11 @@ extension HTML.ContentNode.Dynamic: AttributableNode, DynamicAttributable where 
                 condition.view = [" ", newValue]
                 attributes.append(.init(attribute: attr.attribute, value: [value, TemplateIF(conditions: condition)]))
                 attributes.remove(at: index)
-                return .init(name: node.name, attributes: attributes, content: node.content, dynamicAttributes: dynamicAttributes)
+                return .init(name: name, attributes: attributes, content: content, dynamicAttributes: dynamicAttributes)
             }
         }
         condition.view = [" ", attribute]
         let ifCondition = TemplateIF(conditions: condition)
-        return .init(node: node, dynamicAttributes: [dynamicAttributes, ifCondition])
-    }
-}
-
-extension HTML.ContentNode.Dynamic {
-
-    /// Sets the child to the node
-    ///
-    ///     div.child("Hello") // <div>Hello</div>
-    ///
-    /// - Parameter child: The child to set
-    /// - Returns: A new node with the child added
-    public func child(_ child: CompiledTemplate...) -> HTML.ContentNode.Dynamic<Root> {
-        return HTML.ContentNode.Dynamic<Root>(name: node.name, attributes: node.attributes, content: child, dynamicAttributes: dynamicAttributes)
+        return .init(name: name, attributes: attributes, content: content, dynamicAttributes: [dynamicAttributes, ifCondition])
     }
 }
