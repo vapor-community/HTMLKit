@@ -205,21 +205,25 @@ This would render:
     * It is also possible to use `||` and `&&` for more complex statments. `runtimeIf(\.bool || \.otherBool, div.child(...))`
     * `elseIf`has the same statments and is a method on the returned if. `runtimeIf(...).elseIf(...)`
     * and lastly `else`. `runtimeIf(...).else(div.child(...))`
-- Dynamíc Attributes
+- Dynamic Attributes
     * In order to add attributes based on the `Context` you will need to use `dynamic(div)`. This will create a dynamic node and after this you can use if's.  `dynamic(div).if(\.bool, add: .checked)`
-    
-If there is missing any nodes or attributes. Just add an extension on `TemplateBuilder` or if there is a attribute not added `AttributableNode` (If there is no need for a dynamicly adding), and `HTML.AttributeNode`if dynamic is needed.
+
+Add custom node types by extending `TemplateBuilder`.
+
+```swift
+extension TemplateBuilder {
+    var div: HTML.ContentNode { 
+        return HTML.ContentNode(name: "div") 
+    }
+}
+```
+
+Add non-dynamic attributes with an extension on `AttributableNode`. Or extend `HTML.AttributeNode`if a dynamic is needed.
 
 ```swift
 extension AttributableNode {
     func ariaLabelledby(_ values: CompiledTemplate...) -> Self {
         return add(.init(attribute: "aria-labelledby", value: values))
-    }
-}
-
-extension TemplateBuilder {
-    var div: HTML.ContentNode { 
-        return HTML.ContentNode(name: "div") 
     }
 }
 
@@ -231,7 +235,7 @@ extension HTML.AttributeNode {
 ```
 
 
-## Usefull Resources to Get Started
+## Useful Resources to Get Started
 
-For more examples in a bigger repo, view this [Vapor TIL fork](https://github.com/MatsMoll/vapor-til)
-And for converting pure HTML code to the HTMLKit code clone and run [this repo](https://github.com/MatsMoll/HTMLKit-code-converter9)
+* [Vapor TIL fork](https://github.com/MatsMoll/vapor-til) - Compare Leaf to HTMLKit in this fork of the TIL app.
+* Convert pure HTML code to HTMLKit code using this [HTML-to-HTMLKit converter](https://github.com/MatsMoll/HTMLKit-code-converter).
