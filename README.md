@@ -207,13 +207,13 @@ This would render:
     * Where the super view's `Context` is an array of the sub view's `Context` = `forEach(render: SubView())`
     * Where the super view's `Context` variable is an array of the sub view's `Context`  = `forEach(in \.subContext, render: Subview()`
 - If:
-    * If the context is a `Bool` = `runtimeIf(\.bool, div.child(...))`
-    * If the context is `nil` = `runtimeIf(isNil: \.optional, div.child(...))`
-    * If the context is not `nil` = `runtimeIf(isNotNil: \.optional, div.child(...))`
-    * If the context conforms to `Equatable` = `runtimeIf(\.int == 2, div.child(...))`
-    * If the context conforms to `Equatable` = `runtimeIf(\.int != 2, div.child(...))`
-    * If the context conforms to `Comparable` = `runtimeIf(\.int < 2, div.child(...))`
-    * If the context conforms to `Comparable` = `runtimeIf(\.int > 2, div.child(...))`
+    * If the value is a `Bool` = `runtimeIf(\.bool, div.child(...))`
+    * If the value is `nil` = `runtimeIf(isNil: \.optional, div.child(...))`
+    * If the value is not `nil` = `runtimeIf(isNotNil: \.optional, div.child(...))`
+    * If the value conforms to `Equatable` = `runtimeIf(\.int == 2, div.child(...))`
+    * If the value conforms to `Equatable` = `runtimeIf(\.int != 2, div.child(...))`
+    * If the value conforms to `Comparable` = `runtimeIf(\.int < 2, div.child(...))`
+    * If the value conforms to `Comparable` = `runtimeIf(\.int > 2, div.child(...))`
     * It is also possible to use `||` and `&&` for more complex statments. `runtimeIf(\.bool || \.otherBool, div.child(...))`
     * `elseIf`has the same statments and is a method on the returned if. `runtimeIf(...).elseIf(...)`
     * and lastly `else`. `runtimeIf(...).else(div.child(...))`
