@@ -12,7 +12,7 @@ Add the following in your `Package.swift` file
 And register the provider and the different templates with in `configure.swift`
 ```swift
 var renderer = HTMLRenderer()
-try renderer.add(template: MyTemplates())
+try renderer.add(template: MyTemplate())
 
 try services.register(HTMLKitProvider())
 services.register(renderer)
@@ -149,7 +149,7 @@ struct SomeView: ContextualTemplate {
                             "There is no values!"
                         )
                     ),
-                    dynamic(footer).class("allways")   // Using dynamic(_ tag) in order to get access to .if
+                    footer.class("allways")
                         .if(\.name.isEmpty, add: .class("empty-nav")).child(
                             "This is a footer"
                     )
