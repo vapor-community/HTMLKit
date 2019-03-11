@@ -3,15 +3,24 @@
 Render **lightning fast** HTML templates in a *typesafe* way!
 By using Swift's powerful language features and a pre-rendering algorithm, will HTMLKit render insanely fast templates but also be able to catch bugs that otherwise might occur with other templating options.
 
-## Swift PM
+## Getting Started
 
+Add the following in your `Package.swift` file
 ```swift
 .package(url: "https://github.com/vapor-community/HTMLKit.git", from: "1.0.0"),
 ```
+And register the provider and the different templates with in `configure.swift`
+```swift
+var renderer = HTMLRenderer()
+try renderer.add(template: MyTemplates())
 
-## How fast is HTMLKit? ⚡
+try services.register(HTMLKitProvider())
+services.register(renderer)
+```
 
-As mentioned HTMLKit is extremely fast, but exactly how fast?
+## Some benchmarks? ⚡
+
+As mentioned HTMLKit is extremely fast since it pre-renders most of the template, and uses `KeyPath`'s instead of decoding the context with `Codable`. But how much will faster will this make the rendering?
 By using the *Leaf* templating language as a benchmark, HTMLKit was **150x** faster, and compared to *Pointfree* **16-25x** faster.
 
 The *Leaf* template used was a fairly complex template and HTMLKit rendered 128 documents in *0.00548 sec*.
@@ -22,9 +31,8 @@ The *Leaf* template used was a fairly complex template and HTMLKit rendered 128 
 
 Let's get started with the two main protocols to know.
 
-- `TemplateBuilder`: This is a protocol making it easy to render HTML views by giving you access to a lot of helper functions.
-- `ContextualTemplate`: This is a protocol conforms to `TemplateBuilder` but also needs a `Context` to render. This could be a struct, protocol etc.
-- `StaticView`: This is a protocol conforms to `TemplateBuilder` but needs no `Context` to render. 
+- `ContextualTemplate`: This is a protocol making it easy to render HTML views by giving you access to a lot of helper functions. But this needs a `Context` to render. This could be a struct, protocol etc.
+- `StaticView`: This is a protocol conforms to `ContextualTemplate` but needs no `Context` to render. 
 
 When creating a view, it is recommend to use either `StaticView` of `ContextualTemplate`, since the `HTMLRenderer` has functions that is tailored for these two protocols.
 
@@ -74,7 +82,7 @@ Bellow is an example of how to render a view with a context:
 var renderer = HTMLRenderer()
 try renderer.add(template: SimpleView())
 ...
-try renderer.render(SimpleView.self, with: .init(value: "hello world"))
+try req.renderer().render(SimpleView.self, with: .init(value: "hello world"))
 ```
 This would render: 
 ```html
@@ -188,25 +196,29 @@ This would render:
 
 ## More Feature Syntax
 
+- Variables:
+    * A variable that is HTML safe = `variable(\.title)`
+    * A variable that do not escape anything = `variable(\.title, escaping: .unsafeNone)` 
+    * A variable that is not in the current `Context` (example get a variable in superview) `unsafeVariable(in: BaseTemplate.self, for: \.title)` or  `unsafeVariable(... escaping: .unsafeNone)`
 - Embed:
     * Where the sub view's `Context` is equal to the super view's `Context` = `embed(SubView())`
     * Where the sub view's `Context`is variable of the super view's `Context`= `embed(Subview(), withPath: \.subContext)`
 - ForEach:
-    * Where the super view's `Context` is an array of the sub view's `Context` = `forEachInContext(render: SubView())`
+    * Where the super view's `Context` is an array of the sub view's `Context` = `forEach(render: SubView())`
     * Where the super view's `Context` variable is an array of the sub view's `Context`  = `forEach(in \.subContext, render: Subview()`
 - If:
-    * If value is a `Bool` = `runtimeIf(\.bool, div.child(...))`
-    * If value is `nil` = `runtimeIf(isNil: \.optional, div.child(...))`
-    * If value is not `nil` = `runtimeIf(isNotNil: \.optional, div.child(...))`
-    * If value conforms to `Equatable` = `runtimeIf(\.int == 2, div.child(...))`
-    * If value conforms to `Equatable` = `runtimeIf(\.int != 2, div.child(...))`
-    * If value conforms to `Comparable` = `runtimeIf(\.int < 2, div.child(...))`
-    * If value conforms to `Comparable` = `runtimeIf(\.int > 2, div.child(...))`
+    * If the context is a `Bool` = `runtimeIf(\.bool, div.child(...))`
+    * If the context is `nil` = `runtimeIf(isNil: \.optional, div.child(...))`
+    * If the context is not `nil` = `runtimeIf(isNotNil: \.optional, div.child(...))`
+    * If the context conforms to `Equatable` = `runtimeIf(\.int == 2, div.child(...))`
+    * If the context conforms to `Equatable` = `runtimeIf(\.int != 2, div.child(...))`
+    * If the context conforms to `Comparable` = `runtimeIf(\.int < 2, div.child(...))`
+    * If the context conforms to `Comparable` = `runtimeIf(\.int > 2, div.child(...))`
     * It is also possible to use `||` and `&&` for more complex statments. `runtimeIf(\.bool || \.otherBool, div.child(...))`
     * `elseIf`has the same statments and is a method on the returned if. `runtimeIf(...).elseIf(...)`
     * and lastly `else`. `runtimeIf(...).else(div.child(...))`
 - Dynamic Attributes
-    * In order to add attributes based on the `Context` you will need to use `dynamic(div)`. This will create a dynamic node and after this you can use if's.  `dynamic(div).if(\.bool, add: .checked)`
+    * In order to add attributes based on the `Context` you can use if's.  `div.if(\.bool, add: .checked)`
 
 Add custom node types by extending `TemplateBuilder`.
 

@@ -92,4 +92,8 @@ extension ContextualTemplate {
         condition.view = render
         return TemplateIF<Self>.init(conditions: condition)
     }
+
+    public func unsafeVariable<T, V>(in template: T.Type, for keyPath: KeyPath<T.Context, V>, escaping: EscapingOption = .safeHTML) -> CompiledTemplate where T : ContextualTemplate, V : CompiledTemplate {
+        return TemplateVariable<T, V>.init(referance: .keyPath(keyPath), escaping: escaping)
+    }
 }

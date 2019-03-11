@@ -287,6 +287,40 @@ public func && <Root>(lhs: TemplateIF<Root>.Condition, rhs: TemplateIF<Root>.Con
     return TemplateIF<Root>.Condition(condition: AndCondition(first: lhs, second: rhs))
 }
 
+/// Creates a `AndCondition` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `TemplateIF.Condition` object
+public func && <Root>(lhs: KeyPath<Root.Context, Bool>, rhs: TemplateIF<Root>.Condition) -> TemplateIF<Root>.Condition where Root: ContextualTemplate {
+    let lhsCondition = BoolCondition<Root>(path: lhs)
+    return TemplateIF<Root>.Condition(condition: AndCondition(first: lhsCondition, second: rhs))
+}
+
+/// Creates a `AndCondition` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `TemplateIF.Condition` object
+public func && <Root>(lhs: TemplateIF<Root>.Condition, rhs: KeyPath<Root.Context, Bool>) -> TemplateIF<Root>.Condition where Root: ContextualTemplate {
+    let rhsCondition = BoolCondition<Root>(path: rhs)
+    return TemplateIF<Root>.Condition(condition: AndCondition(first: lhs, second: rhsCondition))
+}
+
+/// Creates a `AndCondition` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `TemplateIF.Condition` object
+public func && <Root>(lhs: KeyPath<Root.Context, Bool>, rhs: KeyPath<Root.Context, Bool>) -> TemplateIF<Root>.Condition where Root: ContextualTemplate {
+    let lhsCondition = BoolCondition<Root>(path: lhs)
+    let rhsCondition = BoolCondition<Root>(path: rhs)
+    return TemplateIF<Root>.Condition(condition: AndCondition(first: lhsCondition, second: rhsCondition))
+}
+
 /// Creates a `OrCondition` condition
 ///
 /// - Parameters:
@@ -295,4 +329,38 @@ public func && <Root>(lhs: TemplateIF<Root>.Condition, rhs: TemplateIF<Root>.Con
 /// - Returns: A `TemplateIF.Condition` object
 public func || <Root>(lhs: TemplateIF<Root>.Condition, rhs: TemplateIF<Root>.Condition) -> TemplateIF<Root>.Condition where Root: ContextualTemplate {
     return TemplateIF<Root>.Condition(condition: OrCondition(first: lhs, second: rhs))
+}
+
+/// Creates a `AndCondition` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `TemplateIF.Condition` object
+public func || <Root>(lhs: KeyPath<Root.Context, Bool>, rhs: TemplateIF<Root>.Condition) -> TemplateIF<Root>.Condition where Root: ContextualTemplate {
+    let lhsCondition = BoolCondition<Root>(path: lhs)
+    return TemplateIF<Root>.Condition(condition: AndCondition(first: lhsCondition, second: rhs))
+}
+
+/// Creates a `AndCondition` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `TemplateIF.Condition` object
+public func || <Root>(lhs: TemplateIF<Root>.Condition, rhs: KeyPath<Root.Context, Bool>) -> TemplateIF<Root>.Condition where Root: ContextualTemplate {
+    let rhsCondition = BoolCondition<Root>(path: rhs)
+    return TemplateIF<Root>.Condition(condition: AndCondition(first: lhs, second: rhsCondition))
+}
+
+/// Creates a `AndCondition` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `TemplateIF.Condition` object
+public func || <Root>(lhs: KeyPath<Root.Context, Bool>, rhs: KeyPath<Root.Context, Bool>) -> TemplateIF<Root>.Condition where Root: ContextualTemplate {
+    let lhsCondition = BoolCondition<Root>(path: lhs)
+    let rhsCondition = BoolCondition<Root>(path: rhs)
+    return TemplateIF<Root>.Condition(condition: AndCondition(first: lhsCondition, second: rhsCondition))
 }

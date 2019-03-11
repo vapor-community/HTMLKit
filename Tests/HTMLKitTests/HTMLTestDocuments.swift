@@ -294,7 +294,8 @@ struct MultipleContextualEmbed: ContextualTemplate {
                 BaseView(
                     body: [
                         span.child("Some text"),
-                        embed(VariableView(), withPath: \.variable)
+                        embed(VariableView(),   withPath: \.variable),
+                        embed(UnsafeVariable(), withPath: \.variable)
                     ]),
                 withPath: \.base)
 
@@ -336,6 +337,22 @@ struct SelfLoopingView: ContextualTemplate {
     func build() -> CompiledTemplate {
         return div.class("list").child(
             forEach(render: StaticEmbedView())
+        )
+    }
+}
+
+struct UnsafeVariable: ContextualTemplate {
+
+    typealias Context = VariableView.Context
+
+    func build() -> CompiledTemplate {
+        return div.child(
+            p.child(
+                variable(\.string)
+            ),
+            p.child(
+               unsafeVariable(in: MultipleContextualEmbed.self, for: \.base.title)
+            )
         )
     }
 }

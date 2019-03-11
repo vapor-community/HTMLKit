@@ -1,5 +1,6 @@
 
 import Foundation
+import Vapor
 
 /// A struct containing the differnet formulas for the different views.
 ///
@@ -25,8 +26,8 @@ public struct HTMLRenderer {
 
         var recoverySuggestion: String? {
             switch self {
-            case .unableToRetriveValue, .unableToAddVariable, .unableToRegisterKeyPath:
-                return "Remember to add .embed(withPath: \\Context.contextPath) when embeding a view"
+            case .unableToFindFormula:
+                return "Remember to add the template to the renerer with .add(template: ) or .add(view: )"
             default: return nil
             }
         }
@@ -39,20 +40,33 @@ public struct HTMLRenderer {
         formulaCache = [:]
     }
 
-    /// Renders a brewed formula
+    /// Renders a `ContextualTemplate` formula
     ///
     ///     try renderer.render(WelcomeView.self)
     ///
     /// - Parameters:
     ///   - type: The view type to render
     ///   - context: The needed context to render the view with
-    /// - Returns: Returns a rendered view
+    /// - Returns: Returns a rendered view in a raw `String`
     /// - Throws: If the formula do not exists, or if the rendering process fails
-    public func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> String {
+    public func renderRaw<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> String {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T> else {
             throw Errors.unableToFindFormula
         }
         return try formula.render(with: context)
+    }
+
+    /// Renders a `ContextualTemplate` formula
+    ///
+    ///     try renderer.render(WelcomeView.self)
+    ///
+    /// - Parameters:
+    ///   - type: The view type to render
+    ///   - context: The needed context to render the view with
+    /// - Returns: Returns a rendered view in a `HTTPResponse`
+    /// - Throws: If the formula do not exists, or if the rendering process fails
+    public func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse {
+        return try HTTPResponse(body: renderRaw(type, with: context))
     }
 
     /// Brews a formula for later use
@@ -67,23 +81,29 @@ public struct HTMLRenderer {
         formulaCache[String(reflecting: T.self)] = formula
     }
 
-    public func render<T>(_ type: T.Type) throws -> String where T : StaticView {
+    /// Renders a `StaticView` formula
+    ///
+    ///     try renderer.render(WelcomeView.self)
+    ///
+    /// - Parameter type: The view type to render
+    /// - Returns: Returns a rendered view in a raw `String`
+    /// - Throws: If the formula do not exists, or if the rendering process fails
+    public func renderRaw<T>(_ type: T.Type) throws -> String where T : StaticView {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T> else {
             throw Errors.unableToFindFormula
         }
         return try formula.render(with: .init())
     }
 
-    /// Brews a formula for later use
+    /// Renders a `StaticView` formula
     ///
-    ///     try renderer.brewFormula(for: WelcomeView.self)
+    ///     try renderer.render(WelcomeView.self)
     ///
-    /// - Parameter type: The view type to brew
-    /// - Throws: If the brewing process fails for some reason
-    public mutating func add<T>(view: T) throws where T : StaticView {
-        let formula = Formula(view: T.self)
-        try view.build().brew(formula)
-        formulaCache[String(reflecting: type(of: view))] = formula
+    /// - Parameter type: The view type to render
+    /// - Returns: Returns a rendered view in a `HTTPResponse`
+    /// - Throws: If the formula do not exists, or if the rendering process fails
+    public func renderRaw<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView {
+        return try HTTPResponse(body: renderRaw(type))
     }
 
     /// Manage the differnet contextes
@@ -95,6 +115,9 @@ public struct HTMLRenderer {
         /// The different paths from the orignial context
         fileprivate var contextPaths: [String : AnyKeyPath]
 
+        /// Return the `Context` for a `ContextualTemplate`
+        ///
+        /// - Returns: The `Context`
         func value<T>(for type: T.Type) throws -> T.Context where T : ContextualTemplate {
             if let context = rootContext as? T.Context {
                 return context
@@ -105,6 +128,9 @@ public struct HTMLRenderer {
             }
         }
 
+        /// The value for a `KeyPath`
+        ///
+        /// - Returns: The value at the `KeyPath`
         func value<Root, Value>(at path: KeyPath<Root, Value>) throws -> Value {
             if let context = rootContext as? Root {
                 return context[keyPath: path]
@@ -219,5 +245,17 @@ public struct HTMLRenderer {
         func render<U>(with manager: ContextManager<U>) throws -> String {
             return try ingredient.reduce("") { try $0 + $1.render(with: manager) }
         }
+    }
+}
+
+
+extension Request {
+
+    /// Creates a `HTMLRenderer` that can render templates
+    ///
+    /// - Returns: A `HTMLRenderer` containing all the templates
+    /// - Throws: If the shared container could not make the `HTMLRenderer`
+    func renderer() throws -> HTMLRenderer {
+        return try sharedContainer.make(HTMLRenderer.self)
     }
 }
