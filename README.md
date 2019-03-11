@@ -18,7 +18,7 @@ try services.register(HTMLKitProvider())
 services.register(renderer)
 ```
 
-## Some benchmarks? ⚡
+## Some benchmarks ⚡
 
 As mentioned HTMLKit is extremely fast since it pre-renders most of the template, and uses `KeyPath`'s instead of decoding the context with `Codable`. But how much will faster will this make the rendering?
 By using the *Leaf* templating language as a benchmark, HTMLKit was **150x** faster, and compared to *Pointfree* **16-25x** faster.
@@ -149,7 +149,7 @@ struct SomeView: ContextualTemplate {
                             "There is no values!"
                         )
                     ),
-                    footer.class("allways")
+                    footer.class("always")
                         .if(\.name.isEmpty, add: .class("empty-nav")).child(
                             "This is a footer"
                     )
