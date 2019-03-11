@@ -255,7 +255,7 @@ extension Request {
     ///
     /// - Returns: A `HTMLRenderer` containing all the templates
     /// - Throws: If the shared container could not make the `HTMLRenderer`
-    func renderer() throws -> HTMLRenderer {
+    public func renderer() throws -> HTMLRenderer {
         return try sharedContainer.make(HTMLRenderer.self)
     }
 }
