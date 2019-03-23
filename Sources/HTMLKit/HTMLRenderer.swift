@@ -102,7 +102,7 @@ public struct HTMLRenderer {
     /// - Parameter type: The view type to render
     /// - Returns: Returns a rendered view in a `HTTPResponse`
     /// - Throws: If the formula do not exists, or if the rendering process fails
-    public func renderRaw<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView {
+    public func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView {
         return try HTTPResponse(body: renderRaw(type))
     }
 
