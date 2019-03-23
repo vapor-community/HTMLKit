@@ -12,13 +12,13 @@ Add the following in your `Package.swift` file
 And register the provider and the different templates with in `configure.swift`
 ```swift
 var renderer = HTMLRenderer()
-try renderer.add(template: MyTemplates())
+try renderer.add(template: MyTemplate())
 
 try services.register(HTMLKitProvider())
 services.register(renderer)
 ```
 
-## Some benchmarks? ⚡
+## Some benchmarks ⚡
 
 As mentioned HTMLKit is extremely fast since it pre-renders most of the template, and uses `KeyPath`'s instead of decoding the context with `Codable`. But how much will faster will this make the rendering?
 By using the *Leaf* templating language as a benchmark, HTMLKit was **150x** faster, and compared to *Pointfree* **16-25x** faster.
@@ -149,7 +149,7 @@ struct SomeView: ContextualTemplate {
                             "There is no values!"
                         )
                     ),
-                    dynamic(footer).class("allways")   // Using dynamic(_ tag) in order to get access to .if
+                    footer.class("always")
                         .if(\.name.isEmpty, add: .class("empty-nav")).child(
                             "This is a footer"
                     )
