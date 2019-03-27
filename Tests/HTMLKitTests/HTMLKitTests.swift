@@ -29,9 +29,9 @@ final class HTMLKitTests: XCTestCase {
         let thirdIfRender = try renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
         let varialbeRender = try renderer.renderRaw(VariableView.self, with: .init(string: "<script>\"'&</script>"))
         let multipleEmbedRender = try renderer.renderRaw(MultipleContextualEmbed.self, with: .init(title: "Welcome", string: "String"))
-        let nonDynamic = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: false))
-        let oneDynamic = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: true))
-        let twoDynamic = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: true, isActive: true))
+        let nonDynamic = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: false, isOptional: nil))
+        let oneDynamic = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: true, isOptional: true))
+        let twoDynamic = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: true, isActive: true, isOptional: false))
 
         let simpleRender = try renderer.renderRaw(SimpleView.self)
         let chainedRender = try renderer.renderRaw(ChainedEqualAttributes.self)
@@ -50,9 +50,9 @@ final class HTMLKitTests: XCTestCase {
         XCTAssertEqual(simpleRender, "<div><p>Text</p></div>")
         XCTAssertEqual(chainedRender, "<div class='foo bar' id='id'></div>")
         XCTAssertEqual(chaindDataRender, "<img class='foo bar' id='id'>")
-        XCTAssertEqual(nonDynamic, "<div class='foo'></div>")
-        XCTAssertEqual(oneDynamic, "<div class='foo' active></div>")
-        XCTAssertEqual(twoDynamic, "<div class='foo checked' active></div>")
+        XCTAssertEqual(nonDynamic, "<div class='foo' selected></div>")
+        XCTAssertEqual(oneDynamic, "<div class='foo not-nil' active></div>")
+        XCTAssertEqual(twoDynamic, "<div class='foo checked not-nil' active></div>")
 //        XCTAssertEqual(inputRender, "<div class='form-group'><label for='test'>test</label><input class='form-control' type='email' required name='test' id='test' placeholder=''/></div>")
     }
 

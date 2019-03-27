@@ -36,9 +36,11 @@ struct StaticEmbedView: ContextualTemplate {
                     variable(\.string)
                 ),
 
-                runtimeIf(\.int != nil,
-                         small.child(
-                            variable(\.int)
+                runtimeIf(
+                    \.int != nil,
+
+                    small.child(
+                        variable(\.int)
                     )
                 )
         )
@@ -147,8 +149,12 @@ struct IFView: ContextualTemplate {
     func build() -> CompiledTemplate {
         return
             div.child(
-                runtimeIf(\.name == "Mats",
-                    p.child("My name is: ", variable(\.name), "!")
+                runtimeIf(
+                    \.name == "Mats",
+
+                    p.child(
+                        "My name is: ", variable(\.name), "!"
+                    )
                 ),
 
                 runtimeIf(\.age < 20,
@@ -165,8 +171,10 @@ struct IFView: ContextualTemplate {
                     p.child("Simple bool")
                 ),
 
-                runtimeIf(\.nullable == "Some" && \.name == "Per",
-                         div.child("And")
+                runtimeIf(
+                    \.nullable == "Some" && \.name == "Per",
+
+                    div.child("And")
                 )
 
         )
@@ -307,12 +315,15 @@ struct DynamicAttribute: ContextualTemplate {
     struct Context {
         let isChecked: Bool
         let isActive: Bool
+        let isOptional: Bool?
     }
 
     func build() -> CompiledTemplate {
         return div.class("foo")
             .if(\.isChecked, add: .class("checked"))
             .if(\.isActive, add: .init(attribute: "active", value: nil))
+            .if(isNil: \.isOptional, add: .selected)
+            .if(isNotNil: \.isOptional, add: .class("not-nil"))
     }
 }
 
