@@ -1,6 +1,5 @@
 
 import Foundation
-import Vapor
 
 /// A struct containing the differnet formulas for the different views.
 ///
@@ -36,6 +35,10 @@ public struct HTMLRenderer {
     /// A cache that contains all the brewed `Template`'s
     var formulaCache: [String : Any]
 
+    #if canImport(Lingo)
+    var lingo: Lingo?
+    #endif
+
     public init() {
         formulaCache = [:]
     }
@@ -53,32 +56,12 @@ public struct HTMLRenderer {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T> else {
             throw Errors.unableToFindFormula
         }
+        #if canImport(Lingo)
+        if let lingo = lingo {
+            return try formula.render(with: context, lingo: lingo)
+        }
+        #endif
         return try formula.render(with: context)
-    }
-
-    /// Renders a `ContextualTemplate` formula
-    ///
-    ///     try renderer.render(WelcomeView.self)
-    ///
-    /// - Parameters:
-    ///   - type: The view type to render
-    ///   - context: The needed context to render the view with
-    /// - Returns: Returns a rendered view in a `HTTPResponse`
-    /// - Throws: If the formula do not exists, or if the rendering process fails
-    public func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse {
-        return try HTTPResponse(body: renderRaw(type, with: context))
-    }
-
-    /// Brews a formula for later use
-    ///
-    ///     try renderer.brewFormula(for: WelcomeView.self)
-    ///
-    /// - Parameter type: The view type to brew
-    /// - Throws: If the brewing process fails for some reason
-    public mutating func add<T: ContextualTemplate>(template view: T) throws {
-        let formula = Formula(view: T.self)
-        try view.build().brew(formula)
-        formulaCache[String(reflecting: T.self)] = formula
     }
 
     /// Renders a `StaticView` formula
@@ -92,7 +75,26 @@ public struct HTMLRenderer {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T> else {
             throw Errors.unableToFindFormula
         }
+        #if canImport(Lingo)
+        if let lingo = lingo {
+            return try formula.render(with: .init(), lingo: lingo)
+        }
+        #endif
         return try formula.render(with: .init())
+    }
+
+    #if canImport(Vapor)
+    /// Renders a `ContextualTemplate` formula
+    ///
+    ///     try renderer.render(WelcomeView.self)
+    ///
+    /// - Parameters:
+    ///   - type: The view type to render
+    ///   - context: The needed context to render the view with
+    /// - Returns: Returns a rendered view in a `HTTPResponse`
+    /// - Throws: If the formula do not exists, or if the rendering process fails
+    public func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse {
+        return try HTTPResponse(body: renderRaw(type, with: context))
     }
 
     /// Renders a `StaticView` formula
@@ -105,15 +107,32 @@ public struct HTMLRenderer {
     public func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView {
         return try HTTPResponse(body: renderRaw(type))
     }
+    #endif
+
+    /// Brews a formula for later use
+    ///
+    ///     try renderer.brewFormula(for: WelcomeView.self)
+    ///
+    /// - Parameter type: The view type to brew
+    /// - Throws: If the brewing process fails for some reason
+    public mutating func add<T: ContextualTemplate>(template view: T) throws {
+        let formula = Formula(view: T.self)
+        try view.build().brew(formula)
+        formulaCache[String(reflecting: T.self)] = formula
+    }
 
     /// Manage the differnet contextes
     /// This will remove the generic type in the render call
     public struct ContextManager<Context> {
 
-        fileprivate let rootContext: Context
+        let rootContext: Context
 
         /// The different paths from the orignial context
-        fileprivate var contextPaths: [String : AnyKeyPath]
+        var contextPaths: [String : AnyKeyPath]
+
+        #if canImport(Lingo)
+        let lingo: Lingo?
+        #endif
 
         /// Return the `Context` for a `ContextualTemplate`
         ///
@@ -236,6 +255,18 @@ public struct HTMLRenderer {
             return try ingredient.reduce("") { try $0 + $1.render(with: contextManager) }
         }
 
+        #if canImport(Lingo)
+        /// Renders a formula
+        ///
+        /// - Parameter context: The context needed to render the formula
+        /// - Returns: A rendered formula
+        /// - Throws: If some of the formula fails, for some reason
+        func render(with context: T.Context, lingo: Lingo) throws -> String {
+            let contextManager = ContextManager(rootContext: context, contextPaths: contextPaths, lingo: lingo)
+            return try ingredient.reduce("") { try $0 + $1.render(with: contextManager) }
+        }
+        #endif
+
         /// Render a formula with a existing `ContextManager`
         /// This may be needed when using a local formula
         ///
@@ -249,6 +280,7 @@ public struct HTMLRenderer {
 }
 
 
+#if canImport(Vapor)
 extension Request {
 
     /// Creates a `HTMLRenderer` that can render templates
@@ -259,3 +291,4 @@ extension Request {
         return try sharedContainer.make(HTMLRenderer.self)
     }
 }
+#endif

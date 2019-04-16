@@ -5,6 +5,7 @@
 //  Created by Mats Mollestad on 11/03/2019.
 //
 
+#if canImport(Service)
 import Service
 
 extension HTMLRenderer: Service {}
@@ -26,3 +27,4 @@ public final class HTMLKitProvider: Provider {
         return .done(on: container)
     }
 }
+#endif

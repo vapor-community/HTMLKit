@@ -4,7 +4,7 @@ public protocol ContextualTemplate: TemplateBuilder {
     associatedtype Context
 }
 
-public struct NoContext {}
+public struct NoContext: Codable {}
 public protocol StaticView: ContextualTemplate where Context == NoContext {}
 
 
