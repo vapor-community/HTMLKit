@@ -1,11 +1,23 @@
+// swiftlint:disable:this force_try
+
 import XCTest
 @testable import HTMLKit
+import Lingo
 
 final class HTMLKitTests: XCTestCase {
 
     func testExample() throws {
 
+        let path = NSTemporaryDirectory().appending("HTMLKitTests")
+        try! FileManager().createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+
+        try! HTMLKitTests.enLocalizations.write(toFile: path + "/en.json", atomically: true, encoding: .utf8)
+        try! HTMLKitTests.noLocalizations.write(toFile: path + "/no.json", atomically: true, encoding: .utf8)
+
         var renderer = HTMLRenderer()
+
+        renderer.lingo = try Lingo(rootPath: path, defaultLocale: "en")
+
         try renderer.add(template: StaticEmbedView())
         try renderer.add(template: StaticEmbedView())
         try renderer.add(template: SomeView())
@@ -15,6 +27,8 @@ final class HTMLKitTests: XCTestCase {
         try renderer.add(template: MultipleContextualEmbed())
         try renderer.add(template: DynamicAttribute())
         try renderer.add(template: SelfLoopingView())
+        try renderer.add(template: MarkdownView())
+        try renderer.add(template: LocalizedView())
 
         try renderer.add(template: SimpleView())
         try renderer.add(template: UsingComponent())
@@ -32,12 +46,14 @@ final class HTMLKitTests: XCTestCase {
         let nonDynamic = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: false, isOptional: nil))
         let oneDynamic = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: true, isOptional: true))
         let twoDynamic = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: true, isActive: true, isOptional: false))
+        let markdown = try renderer.renderRaw(MarkdownView.self, with: .init(title: "Hello", description: "World"))
+        let english = try renderer.renderRaw(LocalizedView.self, with: .init(local: "en", description: .init(numberTest: 1)))
+        let norwegian = try renderer.renderRaw(LocalizedView.self, with: .init(local: "no", description: .init(numberTest: 2)))
 
         let simpleRender = try renderer.renderRaw(SimpleView.self)
         let chainedRender = try renderer.renderRaw(ChainedEqualAttributes.self)
         let chaindDataRender = try renderer.renderRaw(ChainedEqualAttributesDataNode.self)
 //        let inputRender = try renderer.render(FormInput.self)
-
 
         XCTAssertEqual(multipleEmbedRender, "<html><head><title>Welcome</title><link href='some url' rel='stylesheet'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><span>Some text</span><div><p>String</p><p>String</p></div><div><p>String</p><p>Welcome</p></div></body></html>")
         XCTAssertEqual(varialbeRender, "<div><p>&lt;script&gt;&quot;&#39;&amp;&lt;/script&gt;</p><p><script>\"'&</script></p></div>")
@@ -53,7 +69,34 @@ final class HTMLKitTests: XCTestCase {
         XCTAssertEqual(nonDynamic, "<div class='foo' selected></div>")
         XCTAssertEqual(oneDynamic, "<div class='foo not-nil' active></div>")
         XCTAssertEqual(twoDynamic, "<div class='foo checked not-nil' active></div>")
+        XCTAssertEqual(markdown.replacingOccurrences(of: "\n", with: ""), "<div><h1>Title: Hello</h1><h2>Description here:</h2><p>World</p></div>")
+        XCTAssertEqual(english, "<div><h1>Hello World!</h1><p>You have an unread message</p></div>")
+        XCTAssertEqual(norwegian, "<div><h1>Hei Verden!</h1><p>Du har 2 uleste meldinger.</p></div>")
 //        XCTAssertEqual(inputRender, "<div class='form-group'><label for='test'>test</label><input class='form-control' type='email' required name='test' id='test' placeholder=''/></div>")
+    }
+
+    private static var enLocalizations: String {
+        return """
+{
+    "hello.world": "Hello World!",
+    "unread.messages": {
+        "one": "You have an unread message",
+        "other": "You have %{numberTest} unread messages."
+    }
+}
+"""
+    }
+
+    private static var noLocalizations: String {
+        return """
+{
+    "hello.world": "Hei Verden!",
+    "unread.messages": {
+        "one": "Du har en ulest melding",
+        "other": "Du har %{numberTest} uleste meldinger."
+    }
+}
+"""
     }
 
     static var allTests = [

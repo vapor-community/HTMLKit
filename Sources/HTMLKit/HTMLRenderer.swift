@@ -1,5 +1,7 @@
 
 import Foundation
+import Lingo
+import Vapor
 
 /// A struct containing the differnet formulas for the different views.
 ///
@@ -35,9 +37,7 @@ public struct HTMLRenderer {
     /// A cache that contains all the brewed `Template`'s
     var formulaCache: [String : Any]
 
-    #if canImport(Lingo)
     var lingo: Lingo?
-    #endif
 
     public init() {
         formulaCache = [:]
@@ -56,12 +56,11 @@ public struct HTMLRenderer {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T> else {
             throw Errors.unableToFindFormula
         }
-        #if canImport(Lingo)
         if let lingo = lingo {
             return try formula.render(with: context, lingo: lingo)
+        } else {
+            return try formula.render(with: context)
         }
-        #endif
-        return try formula.render(with: context)
     }
 
     /// Renders a `StaticView` formula
@@ -75,15 +74,13 @@ public struct HTMLRenderer {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T> else {
             throw Errors.unableToFindFormula
         }
-        #if canImport(Lingo)
         if let lingo = lingo {
             return try formula.render(with: .init(), lingo: lingo)
+        } else {
+            return try formula.render(with: .init())
         }
-        #endif
-        return try formula.render(with: .init())
     }
 
-    #if canImport(Vapor)
     /// Renders a `ContextualTemplate` formula
     ///
     ///     try renderer.render(WelcomeView.self)
@@ -107,7 +104,6 @@ public struct HTMLRenderer {
     public func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView {
         return try HTTPResponse(body: renderRaw(type))
     }
-    #endif
 
     /// Brews a formula for later use
     ///
@@ -130,9 +126,7 @@ public struct HTMLRenderer {
         /// The different paths from the orignial context
         var contextPaths: [String : AnyKeyPath]
 
-        #if canImport(Lingo)
         let lingo: Lingo?
-        #endif
 
         /// Return the `Context` for a `ContextualTemplate`
         ///
@@ -247,25 +241,15 @@ public struct HTMLRenderer {
 
         /// Renders a formula
         ///
-        /// - Parameter context: The context needed to render the formula
+        /// - Parameters:
+        /// - context: The context needed to render the formula
+        /// - lingo: The lingo to use when rendering
         /// - Returns: A rendered formula
         /// - Throws: If some of the formula fails, for some reason
-        func render(with context: T.Context) throws -> String {
-            let contextManager = ContextManager(rootContext: context, contextPaths: contextPaths)
-            return try ingredient.reduce("") { try $0 + $1.render(with: contextManager) }
-        }
-
-        #if canImport(Lingo)
-        /// Renders a formula
-        ///
-        /// - Parameter context: The context needed to render the formula
-        /// - Returns: A rendered formula
-        /// - Throws: If some of the formula fails, for some reason
-        func render(with context: T.Context, lingo: Lingo) throws -> String {
+        func render(with context: T.Context, lingo: Lingo? = nil) throws -> String {
             let contextManager = ContextManager(rootContext: context, contextPaths: contextPaths, lingo: lingo)
             return try ingredient.reduce("") { try $0 + $1.render(with: contextManager) }
         }
-        #endif
 
         /// Render a formula with a existing `ContextManager`
         /// This may be needed when using a local formula
@@ -279,8 +263,6 @@ public struct HTMLRenderer {
     }
 }
 
-
-#if canImport(Vapor)
 extension Request {
 
     /// Creates a `HTMLRenderer` that can render templates
@@ -291,4 +273,3 @@ extension Request {
         return try sharedContainer.make(HTMLRenderer.self)
     }
 }
-#endif

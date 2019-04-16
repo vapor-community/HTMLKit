@@ -1,7 +1,19 @@
+<p align="center">
+<img src="htmlkit.png" alt="HTMLKit logo"/>
+</p>
+
 # HTMLKit
 
 Render **lightning fast** HTML templates in a *typesafe* way!
 By using Swift's powerful language features and a pre-rendering algorithm, will HTMLKit render insanely fast templates but also be able to catch bugs that otherwise might occur with other templating options.
+
+## Features
+
+* **Prerendering** - Pre render all your html tamplates for better performance
+* **Typesafty** - Be confident that yout templates work as intended
+* **Dynamic** - Render dynamic templates that adopts to the context
+* **Localization** - Dynamicly render localized content in your templates
+* **Markdown** - You can easily combine markdown and html syntax in the same template
 
 ## Getting Started
 
@@ -194,18 +206,21 @@ This would render:
 </html>
 ```
 
-## More Feature Syntax
+## More Syntax
 
 - Variables:
     * A variable that is HTML safe = `variable(\.title)`
     * A variable that do not escape anything = `variable(\.title, escaping: .unsafeNone)` 
     * A variable that is not in the current `Context` (example get a variable in superview) `unsafeVariable(in: BaseTemplate.self, for: \.title)` or  `unsafeVariable(... escaping: .unsafeNone)`
+
 - Embed:
     * Where the sub view's `Context` is equal to the super view's `Context` = `embed(SubView())`
     * Where the sub view's `Context`is variable of the super view's `Context`= `embed(Subview(), withPath: \.subContext)`
+
 - ForEach:
     * Where the super view's `Context` is an array of the sub view's `Context` = `forEach(render: SubView())`
     * Where the super view's `Context` variable is an array of the sub view's `Context`  = `forEach(in \.subContext, render: Subview()`
+
 - If:
     * If the value is a `Bool` = `runtimeIf(\.bool, div.child(...))`
     * If the value is `nil` = `runtimeIf(isNil: \.optional, div.child(...))`
@@ -217,8 +232,19 @@ This would render:
     * It is also possible to use `||` and `&&` for more complex statments. `runtimeIf(\.bool || \.otherBool, div.child(...))`
     * `elseIf`has the same statments and is a method on the returned if. `runtimeIf(...).elseIf(...)`
     * and lastly `else`. `runtimeIf(...).else(div.child(...))`
-- Dynamic Attributes
+
+- Dynamic Attributes:
     * In order to add attributes based on the `Context` you can use if's.  `div.if(\.bool, add: .checked)`
+
+- Markdown ([SwiftMarkdown](https://github.com/vapor-community/markdown)):
+NB! The rendering will not be as performant as with HTML, since most of the markdown will be evaluated at runtime
+    * In order to render markdown in your template, use `markdown(...)`. You can add variables and logic inside here, as with every other html tag.
+    * If you want a specific rendering option user `markdown(..., options: ...)`. View SwiftMarkdown for more info.
+    
+- Localization ([Lingo](https://github.com/miroslavkovac/Lingo)):
+    * For a localized string use `localize("hello.world",  in: \.user.local)`.
+    * Or `localize("unread.messages",  in: \.user.local, with: \.unreadMessages)`.
+    
 
 Add custom node types by extending `TemplateBuilder`.
 

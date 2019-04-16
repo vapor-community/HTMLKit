@@ -367,3 +367,43 @@ struct UnsafeVariable: ContextualTemplate {
         )
     }
 }
+
+struct MarkdownView: ContextualTemplate {
+
+    struct Context {
+        let title: String
+        let description: String
+    }
+
+    func build() -> CompiledTemplate {
+        return div.child(
+            markdown(
+                "# Title: ", variable(\.title),
+                "\n## Description here:\n", variable(\.description)
+            )
+        )
+    }
+}
+
+struct LocalizedView: ContextualTemplate {
+
+    struct DescriptionContent: Codable {
+        let numberTest: Int
+    }
+
+    struct Context {
+        let local: String
+        let description: DescriptionContent
+    }
+
+    func build() -> CompiledTemplate {
+        return div.child(
+            h1.child(
+                localize("hello.world", in: \.local)
+            ),
+            p.child(
+                localize("unread.messages", in: \.local, with: \.description)
+            )
+        )
+    }
+}

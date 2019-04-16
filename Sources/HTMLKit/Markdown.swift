@@ -5,20 +5,32 @@
 //  Created by Mats Mollestad on 16/04/2019.
 //
 
-#if canImport(SwiftMarkdown)
+import SwiftMarkdown
+
+struct Markdown: CompiledTemplate {
+
+    let markdown: CompiledTemplate
+    let options: MarkdownOptions
+
+    func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws where T : ContextualTemplate {
+        formula.add(mappable: self)
+    }
+
+    func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        return try markdownToHTML(markdown.render(with: manager), options: options)
+    }
+}
+
 extension ContextualTemplate {
 
     /// Convert markdown to HTML
     ///
-    ///
-    public func markdown(_ content: CompiledTemplate..., options: MarkdownOptions = [.safe]) throws -> CompiledTemplate {
-        return try content.map {
-            if $0 is String {
-                return try markdownToHTML($0, options: options)
-            } else {
-                return $0
-            }
-        }
+    /// - Parameters:
+    ///   - content: The content to convert to markdown
+    ///   - options: The options when rendering the markdown. Default = [.safe]
+    /// - Returns: A compiled tamplate of the markdown
+    public func markdown(_ content: CompiledTemplate..., options: MarkdownOptions = [.safe, .normalize]) -> CompiledTemplate {
+        return Markdown(markdown: content, options: options)
     }
 }
-#endif
+

@@ -5,7 +5,7 @@
 //  Created by Mats Mollestad on 16/04/2019.
 //
 
-#if canImport(LingoVapor)
+import Lingo
 import Foundation
 
 struct Localize<T: ContextualTemplate, C: Encodable>: CompiledTemplate {
@@ -25,9 +25,9 @@ struct Localize<T: ContextualTemplate, C: Encodable>: CompiledTemplate {
                 return ""
             }
             let dict = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
-            return manager.lingo.localize(key, locale: locale, interpolations: dict)
+            return manager.lingo?.localize(key, locale: locale, interpolations: dict) ?? ""
         } else {
-            return manager.lingo.localize(key, locale: locale)
+            return manager.lingo?.localize(key, locale: locale) ?? ""
         }
     }
 
@@ -45,7 +45,7 @@ extension ContextualTemplate {
     ///   - locale: A key path to the local the text should be in
     /// - Returns: A text with the localized string
     /// - Throws: If some part of the localization went wrong
-    public func localize(_ key: String, in locale: KeyPath<Context, String>) throws -> CompiledTemplate {
+    public func localize(_ key: String, in locale: KeyPath<Context, String>) -> CompiledTemplate {
         return Localize<Self, NoContext>(key: key, localePath: locale, contentPath: nil)
     }
 
@@ -56,8 +56,7 @@ extension ContextualTemplate {
     ///   - locale: A key path to the local the text should be in
     /// - Returns: A text with the localized string
     /// - Throws: If some part of the localization went wrong
-    public func localize<C: Encodable>(_ key: String, in locale: KeyPath<Context, String>, contentPath: KeyPath<Context, C>) throws -> CompiledTemplate {
+    public func localize<C: Encodable>(_ key: String, in locale: KeyPath<Context, String>, with contentPath: KeyPath<Context, C>) -> CompiledTemplate {
         return Localize<Self, C>(key: key, localePath: locale, contentPath: contentPath)
     }
 }
-#endif
