@@ -128,3 +128,22 @@ extension UUID: CompiledTemplate {
         formula.add(string: self.uuidString)
     }
 }
+
+
+/// Concats two values
+public func + (lhs: CompiledTemplate, rhs: CompiledTemplate) -> CompiledTemplate {
+    var output: Array<CompiledTemplate> = []
+
+    if let list = lhs as? Array<CompiledTemplate> {
+        output.append(contentsOf: list)
+    } else {
+        output.append(lhs)
+    }
+
+    if let list = rhs as? Array<CompiledTemplate> {
+        output.append(list)
+    } else {
+        output.append(rhs)
+    }
+    return output
+}

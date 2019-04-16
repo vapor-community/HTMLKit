@@ -30,6 +30,13 @@ extension TemplateVariable: CompiledTemplate {
     }
 }
 
+extension TemplateVariable: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return "Variable: \(referance), escaping: \(escaping)"
+    }
+}
+
+
 extension ContextualTemplate {
 
     /// References an optional variable in the `Context` type

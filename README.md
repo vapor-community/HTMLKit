@@ -85,6 +85,18 @@ struct SimpleView: ContextualTemplate {
 }
 ```
 
+Note: You can also use `+` or in most cases `,` to concat multiple elements. Eg:
+```swift
+// Using `+`
+div.child(
+    "Some text " + variable(\.name) + p.child("View More")
+)
+
+// Using `,`
+div.child(
+    "Some text ", variable(\.name), p.child("View More")
+)
+```
 
 ### Now how do we render the views?
 
@@ -154,8 +166,10 @@ struct SomeView: ContextualTemplate {
                     runtimeIf(
                         \.values.count > 0,
                         
-                        forEach(in:     \.values, 
-                                render: SimpleView())
+                        forEach(
+                            in:     \.values, 
+                            render: SimpleView()
+                        )
                     ).else(
                         p.child(
                             "There is no values!"

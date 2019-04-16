@@ -21,6 +21,15 @@ extension HTML.AttributeNode: CompiledTemplate {
     }
 }
 
+extension HTML.AttributeNode: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        if let value = value {
+            return "Tag: \(attribute), Value: \(value)"
+        }
+        return "Tag: " + attribute
+    }
+}
+
 extension HTML.AttributeNode {
 
     // MARK: - Non HTML standard

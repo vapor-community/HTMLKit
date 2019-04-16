@@ -73,3 +73,9 @@ extension HTML.ContentNode: AttributableNode, DynamicAttributable {
         return .init(name: name, attributes: attributes, content: content, dynamicAttributes: [dynamicAttributes, ifCondition])
     }
 }
+
+extension HTML.ContentNode: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return "Tag: \(name), Attributes: \(attributes), Content: \(content)"
+    }
+}

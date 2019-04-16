@@ -8,12 +8,19 @@
 import Lingo
 import Foundation
 
+/// A compiled template that returnes a localized string
 struct Localize<T: ContextualTemplate, C: Encodable>: CompiledTemplate {
 
+    /// The key/text to localize
     let key: String
+
+    /// The path to the local
     let localePath: KeyPath<T.Context, String>
+
+    /// The path to the content needed to render the string, if needed
     let contentPath: KeyPath<T.Context, C>?
 
+    // View `CompiledTempalte`
     func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
 
         let locale = try manager.value(at: localePath)
@@ -31,6 +38,7 @@ struct Localize<T: ContextualTemplate, C: Encodable>: CompiledTemplate {
         }
     }
 
+    // View `Brewable`
     func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws where T : ContextualTemplate {
         formula.add(mappable: self)
     }

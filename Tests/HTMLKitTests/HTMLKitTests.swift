@@ -12,7 +12,7 @@ final class HTMLKitTests: XCTestCase {
         try! FileManager().createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
 
         try! HTMLKitTests.enLocalizations.write(toFile: path + "/en.json", atomically: true, encoding: .utf8)
-        try! HTMLKitTests.noLocalizations.write(toFile: path + "/no.json", atomically: true, encoding: .utf8)
+        try! HTMLKitTests.nbLocalizations.write(toFile: path + "/nb.json", atomically: true, encoding: .utf8)
 
         var renderer = HTMLRenderer()
 
@@ -48,7 +48,7 @@ final class HTMLKitTests: XCTestCase {
         let twoDynamic = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: true, isActive: true, isOptional: false))
         let markdown = try renderer.renderRaw(MarkdownView.self, with: .init(title: "Hello", description: "World"))
         let english = try renderer.renderRaw(LocalizedView.self, with: .init(local: "en", description: .init(numberTest: 1)))
-        let norwegian = try renderer.renderRaw(LocalizedView.self, with: .init(local: "no", description: .init(numberTest: 2)))
+        let norwegian = try renderer.renderRaw(LocalizedView.self, with: .init(local: "nb", description: .init(numberTest: 2)))
 
         let simpleRender = try renderer.renderRaw(SimpleView.self)
         let chainedRender = try renderer.renderRaw(ChainedEqualAttributes.self)
@@ -87,7 +87,7 @@ final class HTMLKitTests: XCTestCase {
 """
     }
 
-    private static var noLocalizations: String {
+    private static var nbLocalizations: String {
         return """
 {
     "hello.world": "Hei Verden!",

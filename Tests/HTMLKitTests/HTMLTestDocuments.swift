@@ -31,10 +31,10 @@ struct StaticEmbedView: ContextualTemplate {
     func build() -> CompiledTemplate {
         return
             div.child(
-                SimpleView(),
+                SimpleView() +
                 p.child(
                     variable(\.string)
-                ),
+                ) +
 
                 runtimeIf(
                     \.int != nil,
@@ -44,13 +44,6 @@ struct StaticEmbedView: ContextualTemplate {
                     )
                 )
         )
-//            div(
-//                SimpleView.build(),
-//                p( variable(\.string)),
-//                runtimeIf(\.int != nil,
-//                         small( variable(\.int))
-//                )
-//        )
     }
 }
 
@@ -77,12 +70,6 @@ struct BaseView: ContextualTemplate {
                 // Used to check for an error ocurring when embedding two different `ContextualTemplate`s and a `localFormula` is involved
                 runtimeIf(\.title == "May Cause an error when embedding multiple views", div)
         )
-//            html(
-//                head(
-//                    title(variable(\.title))
-//                ),
-//                body(context.body)
-//        )
     }
 }
 
@@ -153,7 +140,7 @@ struct IFView: ContextualTemplate {
                     \.name == "Mats",
 
                     p.child(
-                        "My name is: ", variable(\.name), "!"
+                        "My name is: " + variable(\.name) + "!"
                     )
                 ),
 
@@ -178,25 +165,6 @@ struct IFView: ContextualTemplate {
                 )
 
         )
-//            div(
-//                runtimeIf(\.name == "Mats",
-//                    p("My name is: ", variable(\.name), "!")
-//                ),
-//
-//                runtimeIf(\.age < 20,
-//                    "I am a child"
-//                ).elseIf(\.age > 20,
-//                    "I am older"
-//                ).else(render:
-//                    "I am growing"
-//                ),
-//
-//                runtimeIf(\.nullable != nil,
-//                    b( variable(\.nullable))
-//                ).elseIf(\.bool,
-//                    p("Simple bool")
-//                )
-//            )
     }
 }
 

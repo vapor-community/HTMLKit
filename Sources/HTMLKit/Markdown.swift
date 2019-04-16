@@ -7,15 +7,21 @@
 
 import SwiftMarkdown
 
+/// A compiled template that converts markdown to html
 struct Markdown: CompiledTemplate {
 
+    /// The markdown to convert
     let markdown: CompiledTemplate
+
+    /// The rendering options
     let options: MarkdownOptions
 
+    // View `Brewable`
     func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws where T : ContextualTemplate {
         formula.add(mappable: self)
     }
 
+    // View `CompiledTemplate`
     func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         return try markdownToHTML(markdown.render(with: manager), options: options)
     }
