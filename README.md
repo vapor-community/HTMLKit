@@ -19,7 +19,7 @@ By using Swift's powerful language features and a pre-rendering algorithm, will 
 
 Add the following in your `Package.swift` file
 ```swift
-.package(url: "https://github.com/vapor-community/HTMLKit.git", from: "1.1.0"),
+.package(url: "https://github.com/vapor-community/HTMLKit.git", from: "1.2.0"),
 ```
 And register the provider and the different templates with in `configure.swift`
 ```swift
