@@ -10,7 +10,7 @@ By using Swift's powerful language features and a pre-rendering algorithm, will 
 ## Features
 
 * **Prerendering** - Pre render all your html tamplates for better performance
-* **Typesafty** - Be confident that yout templates work as intended
+* **Typesafty** - Be confident that your templates work as intended
 * **Dynamic** - Render dynamic templates that adopts to the context
 * **Localization** - Dynamicly render localized content in your templates
 * **Markdown** - You can easily combine markdown and html syntax in the same template
