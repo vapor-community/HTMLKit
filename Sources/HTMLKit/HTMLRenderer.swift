@@ -91,7 +91,7 @@ public struct HTMLRenderer {
     /// - Returns: Returns a rendered view in a `HTTPResponse`
     /// - Throws: If the formula do not exists, or if the rendering process fails
     public func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse {
-        return try HTTPResponse(body: renderRaw(type, with: context))
+        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: renderRaw(type, with: context))
     }
 
     /// Renders a `StaticView` formula
@@ -102,7 +102,7 @@ public struct HTMLRenderer {
     /// - Returns: Returns a rendered view in a `HTTPResponse`
     /// - Throws: If the formula do not exists, or if the rendering process fails
     public func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView {
-        return try HTTPResponse(body: renderRaw(type))
+        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: renderRaw(type))
     }
 
     /// Brews a formula for later use
