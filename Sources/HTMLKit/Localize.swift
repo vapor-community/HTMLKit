@@ -15,7 +15,7 @@ struct Localize<T: ContextualTemplate, C: Encodable>: CompiledTemplate {
         case missingLocalePath
 
         var errorDescription: String? {
-            return "The LocalizedTemplate.localePath is not set, and can therefor not determine the locale."
+            return "LocalizedTemplate.localePath is not set, and can therefor not determine the locale."
         }
 
         var recoverySuggestion: String? {
@@ -28,6 +28,8 @@ struct Localize<T: ContextualTemplate, C: Encodable>: CompiledTemplate {
 
     /// The path to the content needed to render the string, if needed
     let contentReferance: ContextReferance<T, C>?
+
+    let templateContent: [String : CompiledTemplate]?
 
     // View `CompiledTempalte`
     func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -52,6 +54,9 @@ struct Localize<T: ContextualTemplate, C: Encodable>: CompiledTemplate {
                 return ""
             }
             let dict = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
+            return manager.lingo?.localize(key, locale: locale, interpolations: dict) ?? ""
+        } else if let content = templateContent {
+            let dict = try content.mapValues { try $0.render(with: manager) }
             return manager.lingo?.localize(key, locale: locale, interpolations: dict) ?? ""
         } else {
             return manager.lingo?.localize(key, locale: locale) ?? ""

@@ -84,8 +84,8 @@ final class HTMLKitTests: XCTestCase {
         XCTAssertEqual(oneDynamic, "<div class='foo not-nil' active></div>")
         XCTAssertEqual(twoDynamic, "<div class='foo checked not-nil' active></div>")
         XCTAssertEqual(markdown.replacingOccurrences(of: "\n", with: ""), "<div><h1>Title: Hello</h1><h2>Description here:</h2><p>World</p></div>")
-        XCTAssertEqual(english, "<div><h1>Hello World!</h1><p>You have an unread message</p><p>You have an unread message</p></div>")
-        XCTAssertEqual(norwegian, "<div><h1>Hei Verden!</h1><p>Du har 2 uleste meldinger.</p><p>Du har 2 uleste meldinger.</p></div>")
+        XCTAssertEqual(english, "<div><h1>Hello World!</h1><p>You have an unread message</p><p>You have 2 unread messages.</p><p>You have an unread message</p></div>")
+        XCTAssertEqual(norwegian, "<div><h1>Hei Verden!</h1><p>Du har 2 uleste meldinger.</p><p>Du har 2 uleste meldinger.</p><p>Du har 2 uleste meldinger.</p></div>")
         XCTAssertEqual(date, "<div><p>\(shortDateFormatter.string(from: testDate))</p><p>\(customDateFormatter.string(from: testDate))</p></div>")
 
         shortDateFormatter.locale = .init(identifier: "en")
@@ -105,7 +105,8 @@ final class HTMLKitTests: XCTestCase {
     "unread.messages": {
         "one": "You have an unread message",
         "other": "You have %{numberTest} unread messages."
-    }
+    },
+    "input" : "Some Value %{value}"
 }
 """
     }
@@ -117,7 +118,8 @@ final class HTMLKitTests: XCTestCase {
     "unread.messages": {
         "one": "Du har en ulest melding",
         "other": "Du har %{numberTest} uleste meldinger."
-    }
+    },
+    "input" : "En verdi %{value}"
 }
 """
     }

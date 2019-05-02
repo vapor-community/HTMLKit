@@ -383,6 +383,9 @@ struct LocalizedView: LocalizedTemplate {
                 localize(.unreadMessages, with: \.description)
             ),
             p.child(
+                localize(.unreadMessages, with: ["numberTest" : 2])
+            ),
+            p.child(
                 localizeWithContext(.unreadMessages)
             )
         )

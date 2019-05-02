@@ -39,6 +39,16 @@ extension LocalizedTemplate where StringKeys.RawValue == String {
         return localize(key: key.rawValue, with: contentPath)
     }
 
+    /// Localize a key to a locale
+    ///
+    /// - Parameters:
+    ///   - key: The key describing the text
+    ///   - contentPath: The path to the content needed to render the string
+    /// - Returns: A text with the localized string
+    /// - Throws: If some part of the localization went wrong
+    public func localize(_ key: StringKeys, with content: [String : CompiledTemplate]) -> CompiledTemplate {
+        return localize(key: key.rawValue, with: content)
+    }
 
     /// Localize a key to a locale
     ///
@@ -48,7 +58,7 @@ extension LocalizedTemplate where StringKeys.RawValue == String {
     /// - Returns: A text with the localized string
     /// - Throws: If some part of the localization went wrong
     public func localize(key: String) -> CompiledTemplate {
-        return Localize<Self, NoContext>(key: key, contentReferance: nil)
+        return Localize<Self, NoContext>(key: key, contentReferance: nil, templateContent: nil)
     }
 
     /// Localize a key to a locale
@@ -59,7 +69,18 @@ extension LocalizedTemplate where StringKeys.RawValue == String {
     /// - Returns: A text with the localized string
     /// - Throws: If some part of the localization went wrong
     public func localize<C: Encodable>(key: String, with contentPath: KeyPath<Context, C>) -> CompiledTemplate {
-        return Localize<Self, C>(key: key, contentReferance: .keyPath(contentPath))
+        return Localize<Self, C>(key: key, contentReferance: .keyPath(contentPath), templateContent: nil)
+    }
+
+    /// Localize a key to a locale
+    ///
+    /// - Parameters:
+    ///   - key: The key describing the text
+    ///   - contentPath: The path to the content needed to render the string
+    /// - Returns: A text with the localized string
+    /// - Throws: If some part of the localization went wrong
+    public func localize(key: String, with content: [String : CompiledTemplate]) -> CompiledTemplate {
+        return Localize<Self, NoContext>(key: key, contentReferance: nil, templateContent: content)
     }
 }
 
@@ -82,6 +103,6 @@ extension LocalizedTemplate where StringKeys.RawValue == String, Context: Encoda
     /// - Returns: A text with the localized string
     /// - Throws: If some part of the localization went wrong
     public func localizeWithContext(key: String) -> CompiledTemplate {
-        return Localize<Self, Context>(key: key, contentReferance: .root(Self.self))
+        return Localize<Self, Context>(key: key, contentReferance: .root(Self.self), templateContent: nil)
     }
 }
