@@ -161,7 +161,7 @@ public struct HTMLRenderer {
         let lingo: Lingo?
 
         /// The path to the selected locale to use in localization
-        var localePath: KeyPath<Context, String>?
+        var locale: String?
 
         /// Return the `Context` for a `ContextualTemplate`
         ///
@@ -285,7 +285,11 @@ public struct HTMLRenderer {
         /// - Returns: A rendered formula
         /// - Throws: If some of the formula fails, for some reason
         func render(with context: T.Context, lingo: Lingo? = nil) throws -> String {
-            let contextManager = ContextManager(rootContext: context, contextPaths: contextPaths, lingo: lingo, localePath: localePath)
+            var locale: String?
+            if let localePath = localePath {
+                locale = context[keyPath: localePath]
+            }
+            let contextManager = ContextManager(rootContext: context, contextPaths: contextPaths, lingo: lingo, locale: locale)
             return try ingredient.reduce("") { try $0 + $1.render(with: contextManager) }
         }
 

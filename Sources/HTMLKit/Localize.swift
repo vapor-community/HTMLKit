@@ -15,7 +15,7 @@ struct Localize<T: ContextualTemplate, C: Encodable>: CompiledTemplate {
         case missingLocalePath
 
         var errorDescription: String? {
-            return "LocalizedTemplate.localePath is not set, and can therefor not determine the locale."
+            return "LocalizedTemplate.localePath is not set, and can therefore not determine the locale."
         }
 
         var recoverySuggestion: String? {
@@ -34,11 +34,9 @@ struct Localize<T: ContextualTemplate, C: Encodable>: CompiledTemplate {
     // View `CompiledTempalte`
     func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
 
-        guard let localePath = manager.localePath else {
+        guard let locale = manager.locale else {
             throw Errors.missingLocalePath
         }
-
-        let locale = try manager.value(at: localePath)
 
         if let contentReferance = contentReferance {
 

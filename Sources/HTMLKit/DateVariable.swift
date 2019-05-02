@@ -30,14 +30,13 @@ struct DateVariable<T: ContextualTemplate>: CompiledTemplate {
 
         let date = try manager.value(at: datePath)
 
-        if let localePath = manager.localePath {
+        if let locale = manager.locale {
 
             // Copying in order to make the formatter personal for the rendering
             // If not, the locale may not be set correctly
             guard let formatterCopy = formatter.copy() as? DateFormatter else {
                 throw Errors.unableToCopyFormatter
             }
-            let locale = try manager.value(at: localePath)
             formatterCopy.locale = .init(identifier: locale)
             return formatterCopy.string(from: date)
         } else {
