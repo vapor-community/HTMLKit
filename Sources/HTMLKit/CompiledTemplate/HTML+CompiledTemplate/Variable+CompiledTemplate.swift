@@ -8,7 +8,7 @@ extension TemplateVariable: CompiledTemplate {
         var render = ""
         switch referance {
         case .keyPath(let keyPath): render = try manager.value(at: keyPath).render(with: manager)
-        case .self(let type): render = try (manager.value(for: type) as! CompiledTemplate).render(with: manager)
+        case .root(let type): render = try (manager.value(for: type) as! CompiledTemplate).render(with: manager)
         }
 
         switch escaping {

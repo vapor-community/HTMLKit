@@ -16,8 +16,8 @@ public enum EscapingOption: CustomDebugStringConvertible {
     }
 }
 
-enum ContextReferance<T, Value> where T : ContextualTemplate {
-    case `self`(T.Type)
+public enum ContextReferance<T, Value> where T : ContextualTemplate {
+    case root(T.Type)
     case keyPath(KeyPath<T.Context, Value>)
 }
 

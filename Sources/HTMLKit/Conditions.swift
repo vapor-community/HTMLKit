@@ -73,6 +73,17 @@ struct AllwaysTrueCondition: Conditionable {
     }
 }
 
+/// A condition that is allways true
+/// Used as the `else` condition
+struct InvertCondition: Conditionable {
+
+    let condition: Conditionable
+
+    func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+        return try !condition.evaluate(with: manager)
+    }
+}
+
 struct BoolCondition<Root>: Conditionable where Root: ContextualTemplate {
 
     /// The path to the variable
@@ -275,6 +286,46 @@ public func < <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> T
 /// - Returns: A `TemplateIF.Condition` object
 public func > <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
     return TemplateIF.Condition(condition: NullableGreaterThen(path: lhs, value: rhs))
+}
+
+/// Creates a `GreaterThen` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `TemplateIF.Condition` object
+public func >= <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
+    return TemplateIF.Condition(condition: InvertCondition(condition: LessThen(path: lhs, value: rhs)))
+}
+
+/// Creates a `GreaterThen` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `TemplateIF.Condition` object
+public func <= <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
+    return TemplateIF.Condition(condition: InvertCondition(condition: GreaterThen(path: lhs, value: rhs)))
+}
+
+/// Creates a `GreaterThen` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `TemplateIF.Condition` object
+public func >= <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
+    return TemplateIF.Condition(condition: InvertCondition(condition: NullableLessThen(path: lhs, value: rhs)))
+}
+
+/// Creates a `GreaterThen` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `TemplateIF.Condition` object
+public func <= <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
+    return TemplateIF.Condition(condition: InvertCondition(condition: NullableGreaterThen(path: lhs, value: rhs)))
 }
 
 /// Creates a `AndCondition` condition

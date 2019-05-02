@@ -23,7 +23,7 @@ extension ContextualTemplate {
     /// - Parameter path: The path to the `Context` needed to render the embeded view
     /// - Returns: A `TemplateEmbed` object that conteins the view
     public func embed<T>(_ template: T) -> TemplateEmbed<Self, T> where T : ContextualTemplate, T.Context == Context {
-        return TemplateEmbed.init(templateType: template, referance: .self(Self.self))
+        return TemplateEmbed.init(templateType: template, referance: .root(Self.self))
     }
 
     /// Creates a for each loop in a template
@@ -43,7 +43,7 @@ extension ContextualTemplate {
     ///   - view: The view to render
     /// - Returns: A ´CompiledTemplate` that will loop the context
     public func forEach<View>(render view: View) -> CompiledTemplate where View: ContextualTemplate, Context == [View.Context] {
-        return TemplateForEach<Self, View>(view: view, referance: .self(Self.self))
+        return TemplateForEach<Self, View>(view: view, referance: .root(Self.self))
     }
 
     /// Creates an if statment in a template
@@ -52,7 +52,7 @@ extension ContextualTemplate {
     ///   - condition: The condition to use
     ///   - view: The view to render
     /// - Returns: An `TemplateIF` object
-    public func runtimeIf(_ condition: TemplateIF<Self>.Condition, _ view: CompiledTemplate...) -> TemplateIF<Self> {
+    public func renderIf(_ condition: TemplateIF<Self>.Condition, _ view: CompiledTemplate...) -> TemplateIF<Self> {
         condition.view = view
         return TemplateIF(conditions: condition)
     }
@@ -63,7 +63,7 @@ extension ContextualTemplate {
     ///   - condition: The condition to use
     ///   - view: The view to render
     /// - Returns: An `TemplateIF` object
-    public func runtimeIf(_ path: KeyPath<Self.Context, Bool>, _ view: CompiledTemplate...) -> TemplateIF<Self> {
+    public func renderIf(_ path: KeyPath<Self.Context, Bool>, _ view: CompiledTemplate...) -> TemplateIF<Self> {
         let condition = TemplateIF<Self>.Condition(condition: BoolCondition<Self>(path: path))
         condition.view = view
         return TemplateIF(conditions: condition)
@@ -75,7 +75,7 @@ extension ContextualTemplate {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func runtimeIf<Value>(isNil path: KeyPath<Self.Context, Value?>, _ render: CompiledTemplate...) -> TemplateIF<Self> {
+    public func renderIf<Value>(isNil path: KeyPath<Self.Context, Value?>, _ render: CompiledTemplate...) -> TemplateIF<Self> {
         let condition = TemplateIF<Self>.Condition(condition: IsNullCondition<Self.Context, Value>(path: path))
         condition.view = render
         return TemplateIF<Self>.init(conditions: condition)
@@ -87,7 +87,7 @@ extension ContextualTemplate {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func runtimeIf<Value>(isNotNil path: KeyPath<Self.Context, Value?>, _ render: CompiledTemplate...) -> TemplateIF<Self> {
+    public func renderIf<Value>(isNotNil path: KeyPath<Self.Context, Value?>, _ render: CompiledTemplate...) -> TemplateIF<Self> {
         let condition = TemplateIF<Self>.Condition(condition: NotNullCondition<Self.Context, Value>(path: path))
         condition.view = render
         return TemplateIF<Self>.init(conditions: condition)

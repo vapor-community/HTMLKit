@@ -5,7 +5,7 @@ import Vapor
 
 /// A struct containing the differnet formulas for the different views.
 ///
-///     try renderer.brewFormula(for: WelcomeView.self)     // Builds the formula
+///     try renderer.add(template: WelcomeView())           // Builds the formula
 ///     try renderer.render(WelcomeView.self)               // Renders the formula
 public struct HTMLRenderer {
 
@@ -37,6 +37,7 @@ public struct HTMLRenderer {
     /// A cache that contains all the brewed `Template`'s
     var formulaCache: [String : Any]
 
+    /// The localization to use when rendering
     var lingo: Lingo?
 
     public init() {
@@ -107,7 +108,7 @@ public struct HTMLRenderer {
 
     /// Brews a formula for later use
     ///
-    ///     try renderer.brewFormula(for: WelcomeView.self)
+    ///     try renderer.add(template: WelcomeView.self)
     ///
     /// - Parameter type: The view type to brew
     /// - Throws: If the brewing process fails for some reason
@@ -115,6 +116,33 @@ public struct HTMLRenderer {
         let formula = Formula(view: T.self)
         try view.build().brew(formula)
         formulaCache[String(reflecting: T.self)] = formula
+    }
+
+    /// Brews a formula for later use
+    ///
+    ///     try renderer.add(template: WelcomeView.self)
+    ///
+    /// - Parameter type: The view type to brew
+    /// - Throws: If the brewing process fails for some reason
+    public mutating func add<T: LocalizedTemplate>(template view: T) throws {
+        let formula = Formula(view: T.self)
+        formula.localePath = T.localePath
+        try view.build().brew(formula)
+        formulaCache[String(reflecting: T.self)] = formula
+    }
+
+    /// Registers a localization directory to the renderer
+    ///
+    ///     try renderer.registerLocalization() // Using default values
+    ///     try renderer.registerLocalization(atPath: "Localization", defaultLocale: "nb")
+    ///
+    /// - Parameters:
+    ///   - path: A relative path to the localization folder. This is by *default* set to "Resource/Localization"
+    ///   - defaultLocale: The default locale to use. This is by *default* set to "en"
+    /// - Throws: If there is an error registrating the lingo
+    public mutating func registerLocalization(atPath path: String = "Resources/Localization", defaultLocale: String = "en") throws {
+        let path = DirectoryConfig.detect().workDir + path
+        lingo = try Lingo(rootPath: path, defaultLocale: defaultLocale)
     }
 
     /// Manage the differnet contextes
@@ -126,7 +154,11 @@ public struct HTMLRenderer {
         /// The different paths from the orignial context
         var contextPaths: [String : AnyKeyPath]
 
+        /// The lingo object that is needed to use localization
         let lingo: Lingo?
+
+        /// The path to the selected locale to use in localization
+        var localePath: KeyPath<Context, String>?
 
         /// Return the `Context` for a `ContextualTemplate`
         ///
@@ -166,6 +198,9 @@ public struct HTMLRenderer {
 
         /// The different pices or ingredients needed to render the view
         private var ingredient: [CompiledTemplate]
+
+        /// The path to the selected locale to use in localization
+        var localePath: KeyPath<T.Context, String>?
 
         /// Init's a view
         ///
@@ -247,7 +282,7 @@ public struct HTMLRenderer {
         /// - Returns: A rendered formula
         /// - Throws: If some of the formula fails, for some reason
         func render(with context: T.Context, lingo: Lingo? = nil) throws -> String {
-            let contextManager = ContextManager(rootContext: context, contextPaths: contextPaths, lingo: lingo)
+            let contextManager = ContextManager(rootContext: context, contextPaths: contextPaths, lingo: lingo, localePath: localePath)
             return try ingredient.reduce("") { try $0 + $1.render(with: contextManager) }
         }
 

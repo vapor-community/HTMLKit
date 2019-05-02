@@ -8,7 +8,7 @@ extension TemplateForEach: CompiledTemplate {
             return try manager.value(at: keyPath).reduce("") {
                 try $0 + localFormula.render(with: $1)
             }
-        case .self(let type):
+        case .root(let type):
             return try (manager.value(for: type) as! [Value.Context]).reduce("") {
                 try $0 + localFormula.render(with: $1)
             }

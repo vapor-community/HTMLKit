@@ -1,5 +1,6 @@
 
 @testable import HTMLKit
+import Foundation
 
 protocol HTMLTestable: TemplateBuilder {
     static var expextedOutput: String { get }
@@ -36,7 +37,7 @@ struct StaticEmbedView: ContextualTemplate {
                     variable(\.string)
                 ) +
 
-                runtimeIf(
+                renderIf(
                     \.int != nil,
 
                     small.child(
@@ -68,7 +69,7 @@ struct BaseView: ContextualTemplate {
                 ),
 
                 // Used to check for an error ocurring when embedding two different `ContextualTemplate`s and a `localFormula` is involved
-                runtimeIf(\.title == "May Cause an error when embedding multiple views", div)
+                renderIf(\.title == "May Cause an error when embedding multiple views", div)
         )
     }
 }
@@ -136,7 +137,7 @@ struct IFView: ContextualTemplate {
     func build() -> CompiledTemplate {
         return
             div.child(
-                runtimeIf(
+                renderIf(
                     \.name == "Mats",
 
                     p.child(
@@ -144,7 +145,7 @@ struct IFView: ContextualTemplate {
                     )
                 ),
 
-                runtimeIf(\.age < 20,
+                renderIf(\.age < 20,
                     "I am a child"
                 ).elseIf(\.age > 20,
                     "I am older"
@@ -152,13 +153,13 @@ struct IFView: ContextualTemplate {
                     "I am growing"
                 ),
 
-                runtimeIf(\.nullable != nil,
+                renderIf(\.nullable != nil,
                     b.child( variable(\.nullable))
                 ).elseIf(\.bool,
                     p.child("Simple bool")
                 ),
 
-                runtimeIf(
+                renderIf(
                     \.nullable == "Some" && \.name == "Per",
 
                     div.child("And")
@@ -353,24 +354,81 @@ struct MarkdownView: ContextualTemplate {
     }
 }
 
-struct LocalizedView: ContextualTemplate {
+struct LocalizedView: LocalizedTemplate {
 
+    static let localePath: KeyPath<LocalizedView.Context, String>? = \.locale
+
+    enum StringKeys: String {
+        case helloWorld = "hello.world"
+        case unreadMessages = "unread.messages"
+    }
+
+    /// The content needed to render StringKeys.unreadMessages
     struct DescriptionContent: Codable {
         let numberTest: Int
     }
 
-    struct Context {
-        let local: String
+    struct Context: Codable {
+        let locale: String
         let description: DescriptionContent
+        let numberTest: Int
     }
 
     func build() -> CompiledTemplate {
         return div.child(
             h1.child(
-                localize("hello.world", in: \.local)
+                localize(.helloWorld)
             ),
             p.child(
-                localize("unread.messages", in: \.local, with: \.description)
+                localize(.unreadMessages, with: \.description)
+            ),
+            p.child(
+                localizeWithContext(.unreadMessages)
+            )
+        )
+    }
+}
+
+
+struct DateView: ContextualTemplate {
+
+    struct Context {
+        let date: Date
+    }
+
+    func build() -> CompiledTemplate {
+        return div.child(
+            p.child(
+                date(\.date, dateStyle: .short, timeStyle: .short)
+            ),
+            p.child(
+                date(\.date, format: "MM/dd/yyyy")
+            )
+        )
+    }
+}
+
+
+struct LocalizedDateView: LocalizedTemplate {
+
+    enum StringKeys: String {
+        case none
+    }
+
+    static let localePath: KeyPath<LocalizedDateView.Context, String>? = \.locale
+
+    struct Context {
+        let date: Date
+        let locale: String
+    }
+
+    func build() -> CompiledTemplate {
+        return div.child(
+            p.child(
+                date(\.date, dateStyle: .short, timeStyle: .short)
+            ),
+            p.child(
+                date(\.date, format: "MM/dd/yyyy")
             )
         )
     }
