@@ -15,11 +15,11 @@ struct Localize<T: ContextualTemplate, C: Encodable>: CompiledTemplate {
         case missingLocalePath
 
         var errorDescription: String? {
-            return "Unable to find a formula for the given view type"
+            return "The LocalizedTemplate.localePath is not set, and can therefor not determine the locale."
         }
 
         var recoverySuggestion: String? {
-            return "Remember to add LocalizedTemplate.localePath variable to set some locale"
+            return "Remember to add LocalizedTemplate.localePath variable to set some locale."
         }
     }
 

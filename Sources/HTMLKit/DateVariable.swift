@@ -14,7 +14,7 @@ struct DateVariable<T: ContextualTemplate>: CompiledTemplate {
         case unableToCopyFormatter
 
         var errorDescription: String? {
-            return "Unable to find a formula for the given view type"
+            return "Unable to copy the DateFormatter when rendering a date with a locale"
         }
     }
 
