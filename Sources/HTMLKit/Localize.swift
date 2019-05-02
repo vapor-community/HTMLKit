@@ -60,10 +60,6 @@ struct Localize<T: ContextualTemplate, C: Encodable>: CompiledTemplate {
 
     // View `Brewable`
     func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws where T : ContextualTemplate {
-
-        guard formula.localePath != nil else {
-            throw Errors.missingLocalePath
-        }
         formula.add(mappable: self)
     }
 }

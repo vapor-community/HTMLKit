@@ -127,6 +127,9 @@ public struct HTMLRenderer {
     public mutating func add<T: LocalizedTemplate>(template view: T) throws {
         let formula = Formula(view: T.self)
         formula.localePath = T.localePath
+        guard formula.localePath != nil else {
+            throw Localize<T, NoContext>.Errors.missingLocalePath
+        }
         try view.build().brew(formula)
         formulaCache[String(reflecting: T.self)] = formula
     }
