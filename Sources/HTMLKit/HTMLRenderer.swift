@@ -57,11 +57,7 @@ public struct HTMLRenderer {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T> else {
             throw Errors.unableToFindFormula
         }
-        if let lingo = lingo {
-            return try formula.render(with: context, lingo: lingo)
-        } else {
-            return try formula.render(with: context)
-        }
+        return try formula.render(with: context, lingo: lingo, locale: nil)
     }
 
     /// Renders a `StaticView` formula
@@ -75,11 +71,7 @@ public struct HTMLRenderer {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T> else {
             throw Errors.unableToFindFormula
         }
-        if let lingo = lingo {
-            return try formula.render(with: .init(), lingo: lingo)
-        } else {
-            return try formula.render(with: .init())
-        }
+        return try formula.render(with: .init(), lingo: lingo, locale: nil)
     }
 
     /// Renders a `ContextualTemplate` formula
@@ -284,12 +276,12 @@ public struct HTMLRenderer {
         /// - lingo: The lingo to use when rendering
         /// - Returns: A rendered formula
         /// - Throws: If some of the formula fails, for some reason
-        func render(with context: T.Context, lingo: Lingo? = nil) throws -> String {
-            var locale: String?
+        func render(with context: T.Context, lingo: Lingo?, locale: String?) throws -> String {
+            var usedLocale = locale
             if let localePath = localePath {
-                locale = context[keyPath: localePath]
+                usedLocale = context[keyPath: localePath]
             }
-            let contextManager = ContextManager(rootContext: context, contextPaths: contextPaths, lingo: lingo, locale: locale)
+            let contextManager = ContextManager(rootContext: context, contextPaths: contextPaths, lingo: lingo, locale: usedLocale)
             return try ingredient.reduce("") { try $0 + $1.render(with: contextManager) }
         }
 
