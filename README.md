@@ -231,7 +231,7 @@ try renderer.registerLocalization(atPath: "Localization", defaultLocale: "nb")
 
 Using the template above as an example, the localization could look something like this.
 ```swift
-struct SomeView: ContextualTemplate {
+struct SomeView: LocalizedTemplate {
 
     /// Used to identify the locale
     static let localePath: KeyPath<Context, String>? = \.locale
@@ -251,7 +251,7 @@ struct SomeView: ContextualTemplate {
             return .init(
                 name: name, 
                 values: values.enumerated().map { .init(value: $0.element) }
-                )
+            )
         }
     }
 
@@ -261,7 +261,8 @@ struct SomeView: ContextualTemplate {
                 title: "Welcome"
                 body:
                     p.child(
-                        localizeWithContext(.hello)  // Uses the `Context` struct as the localization data  
+                        // Uses the `Context` struct as the localization data
+                        localizeWithContext(.hello)  
                     ),
                     renderIf(
                         \.values.count > 0,
