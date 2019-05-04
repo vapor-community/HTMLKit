@@ -41,10 +41,10 @@ public struct HTMLRenderer {
     var lingo: Lingo?
 
     /// The calendar to use when rendering dates
-    var calendar: Calendar = Calendar(identifier: .gregorian)
+    public var calendar: Calendar = Calendar(identifier: .gregorian)
 
     /// The time zone to use when rendering dates
-    var timeZone: TimeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
+    public var timeZone: TimeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
 
     public init() {
         formulaCache = [:]
