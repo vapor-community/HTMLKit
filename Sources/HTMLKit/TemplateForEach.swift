@@ -22,6 +22,6 @@ public class TemplateForEach<Root: ContextualTemplate, Value: ContextualTemplate
     init(view: Value, referance: ContextReferance<Root, [Value.Context]>) {
         self.view = view
         self.referance = referance
-        self.localFormula = HTMLRenderer.Formula(view: Value.self)
+        self.localFormula = HTMLRenderer.Formula(view: Value.self, calendar: .current, timeZone: .current)
     }
 }

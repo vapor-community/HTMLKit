@@ -40,6 +40,12 @@ public struct HTMLRenderer {
     /// The localization to use when rendering
     var lingo: Lingo?
 
+    /// The calendar to use when rendering dates
+    var calendar: Calendar = Calendar(identifier: .gregorian)
+
+    /// The time zone to use when rendering dates
+    var timeZone: TimeZone = TimeZone(secondsFromGMT: 0) ?? TimeZone.current
+
     public init() {
         formulaCache = [:]
     }
@@ -105,7 +111,7 @@ public struct HTMLRenderer {
     /// - Parameter type: The view type to brew
     /// - Throws: If the brewing process fails for some reason
     public mutating func add<T: ContextualTemplate>(template view: T) throws {
-        let formula = Formula(view: T.self)
+        let formula = Formula(view: T.self, calendar: calendar, timeZone: timeZone)
         try view.build().brew(formula)
         formulaCache[String(reflecting: T.self)] = formula
     }
@@ -117,7 +123,7 @@ public struct HTMLRenderer {
     /// - Parameter type: The view type to brew
     /// - Throws: If the brewing process fails for some reason
     public mutating func add<T: LocalizedTemplate>(template view: T) throws {
-        let formula = Formula(view: T.self)
+        let formula = Formula(view: T.self, calendar: calendar, timeZone: timeZone)
         formula.localePath = T.localePath
         guard formula.localePath != nil else {
             throw Localize<T, NoContext>.Errors.missingLocalePath
@@ -197,14 +203,22 @@ public struct HTMLRenderer {
         /// The path to the selected locale to use in localization
         var localePath: KeyPath<T.Context, String>?
 
+        /// The calendar to use when rendering dates
+        var calendar: Calendar
+
+        /// The time zone to use when rendering dates
+        var timeZone: TimeZone
+
         /// Init's a view
         ///
         /// - Parameters:
         ///   - view: The view type
         ///   - contextPaths: The contextPaths. *Is empty by default*
-        init(view: T.Type, contextPaths: [String : AnyKeyPath] = [:]) {
+        init(view: T.Type, calendar: Calendar, timeZone: TimeZone, contextPaths: [String : AnyKeyPath] = [:]) {
             self.contextPaths = contextPaths
             ingredient = []
+            self.calendar = calendar
+            self.timeZone = timeZone
         }
 
         /// Registers a key-path for later referancing

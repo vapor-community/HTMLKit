@@ -17,6 +17,8 @@ extension TemplateForEach: CompiledTemplate {
 
     // View `BrewableFormula` documentation
     public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        localFormula.calendar = formula.calendar
+        localFormula.timeZone = formula.timeZone
         formula.add(mappable: self)
         try view.build().brew(localFormula)
     }

@@ -21,9 +21,16 @@ final class HTMLKitTests: XCTestCase {
         let testDate = Date()
         let shortDateFormatter = DateFormatter()
         let customDateFormatter = DateFormatter()
+        shortDateFormatter.calendar = .current
+        shortDateFormatter.timeZone = .current
         shortDateFormatter.dateStyle = .short
         shortDateFormatter.timeStyle = .short
+        customDateFormatter.calendar = .current
+        customDateFormatter.timeZone = .current
         customDateFormatter.dateFormat = "MM/dd/yyyy"
+
+        renderer.calendar = .current
+        renderer.timeZone = .current
 
         try renderer.add(template: StaticEmbedView())
         try renderer.add(template: StaticEmbedView())

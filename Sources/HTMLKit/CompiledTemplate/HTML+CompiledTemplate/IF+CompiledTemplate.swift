@@ -33,6 +33,8 @@ extension TemplateIF: CompiledTemplate {
     public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(mappable: self)
         for condition in conditions {
+            condition.localFormula.calendar = formula.calendar
+            condition.localFormula.timeZone = formula.timeZone
             try condition.brew(formula)
         }
     }

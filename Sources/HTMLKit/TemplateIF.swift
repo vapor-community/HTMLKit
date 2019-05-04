@@ -23,7 +23,7 @@ public class TemplateIF<Root> where Root: ContextualTemplate {
         /// - Parameter condition: The condition to evaluate
         init(condition: Conditionable) {
             self.condition = condition
-            localFormula = HTMLRenderer.Formula(view: Root.self)
+            localFormula = HTMLRenderer.Formula(view: Root.self, calendar: .current, timeZone: .current)
         }
     }
 

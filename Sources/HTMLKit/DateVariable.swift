@@ -59,6 +59,8 @@ struct DateVariable<T: ContextualTemplate>: CompiledTemplate {
 
     // View `CompiledTemplate`
     func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws where T : ContextualTemplate {
+        formatter.calendar = formula.calendar
+        formatter.timeZone = formula.timeZone
         formula.add(mappable: self)
     }
 }
@@ -76,7 +78,6 @@ extension ContextualTemplate {
         let formatter = DateFormatter()
         formatter.dateStyle = dateStyle
         formatter.timeStyle = timeStyle
-        formatter.timeZone = TimeZone(identifier: "UTC")
         return DateVariable<Self>(formatter: formatter, dateReferance: .solid(datePath))
     }
 
@@ -99,7 +100,6 @@ extension ContextualTemplate {
     public func date(_ datePath: KeyPath<Context, Date>, format: String) -> CompiledTemplate {
         let formatter = DateFormatter()
         formatter.dateFormat = format
-        formatter.timeZone = TimeZone(identifier: "UTC")
         return DateVariable<Self>(formatter: formatter, dateReferance: .solid(datePath))
     }
 
@@ -114,7 +114,6 @@ extension ContextualTemplate {
         let formatter = DateFormatter()
         formatter.dateStyle = dateStyle
         formatter.timeStyle = timeStyle
-        formatter.timeZone = TimeZone(identifier: "UTC")
         return DateVariable<Self>(formatter: formatter, dateReferance: .optional(datePath))
     }
 
@@ -127,7 +126,6 @@ extension ContextualTemplate {
     public func date(_ datePath: KeyPath<Context, Date?>, format: String) -> CompiledTemplate {
         let formatter = DateFormatter()
         formatter.dateFormat = format
-        formatter.timeZone = TimeZone(identifier: "UTC")
         return DateVariable<Self>(formatter: formatter, dateReferance: .optional(datePath))
     }
 
