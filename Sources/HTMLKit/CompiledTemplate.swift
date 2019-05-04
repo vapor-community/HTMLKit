@@ -3,12 +3,19 @@ import Foundation
 
 public protocol CompiledTemplate: BrewableFormula {
 
+    /// A value indicating if the template should render when itis used as localization info
+    var renderWhenLocalizing: Bool { get }
+
     /// Renders a compiled template to a html document
     ///
     /// - Parameter manager: A manager that contains the context
     /// - Returns: A html document
     /// - Throws: If the html can not be rendered for some reason
     func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String
+}
+
+extension CompiledTemplate {
+    public var renderWhenLocalizing: Bool { return true }
 }
 
 
@@ -52,6 +59,8 @@ extension Int: CompiledTemplate {
     public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(string: String(self))
     }
+
+    public var renderWhenLocalizing: Bool { return false }
 }
 
 extension Double: CompiledTemplate {
@@ -65,6 +74,8 @@ extension Double: CompiledTemplate {
     public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(string: String(self))
     }
+
+    public var renderWhenLocalizing: Bool { return false }
 }
 
 extension Float: CompiledTemplate {
@@ -78,6 +89,8 @@ extension Float: CompiledTemplate {
     public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(string: String(self))
     }
+
+    public var renderWhenLocalizing: Bool { return false }
 }
 
 extension Bool: CompiledTemplate {
@@ -91,6 +104,8 @@ extension Bool: CompiledTemplate {
     public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(string: String(self))
     }
+
+    public var renderWhenLocalizing: Bool { return false }
 }
 
 

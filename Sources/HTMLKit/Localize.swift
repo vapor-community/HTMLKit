@@ -29,6 +29,7 @@ struct Localize<T: ContextualTemplate, C: Encodable>: CompiledTemplate {
     /// The path to the content needed to render the string, if needed
     let contentReferance: ContextReferance<T, C>?
 
+    /// A alteernative to `contentReferance` where a dict with keys is used instead of a Encodable Context
     let templateContent: [String : CompiledTemplate]?
 
     // View `CompiledTempalte`
@@ -54,7 +55,13 @@ struct Localize<T: ContextualTemplate, C: Encodable>: CompiledTemplate {
             let dict = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
             return manager.lingo?.localize(key, locale: locale, interpolations: dict) ?? ""
         } else if let content = templateContent {
-            let dict = try content.mapValues { try $0.render(with: manager) }
+            let dict: [String : Any] = try content.mapValues { value in
+                if value.renderWhenLocalizing {
+                    return try value.render(with: manager)
+                } else {
+                    return value
+                }
+            }
             return manager.lingo?.localize(key, locale: locale, interpolations: dict) ?? ""
         } else {
             return manager.lingo?.localize(key, locale: locale) ?? ""

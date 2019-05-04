@@ -72,10 +72,11 @@ extension ContextualTemplate {
     ///   - dateStyle: The style to use to render the date
     ///   - timeStyle: The style to use to render the time
     /// - Returns: A `CompiledTemplate`
-    public func date(_ datePath: KeyPath<Context, Date>, dateStyle: DateFormatter.Style, timeStyle: DateFormatter.Style) -> CompiledTemplate {
+    public func date(_ datePath: KeyPath<Context, Date>, dateStyle: DateFormatter.Style = .short, timeStyle: DateFormatter.Style = .short) -> CompiledTemplate {
         let formatter = DateFormatter()
         formatter.dateStyle = dateStyle
         formatter.timeStyle = timeStyle
+        formatter.timeZone = TimeZone(identifier: "UTC")
         return DateVariable<Self>(formatter: formatter, dateReferance: .solid(datePath))
     }
 
@@ -83,11 +84,22 @@ extension ContextualTemplate {
     ///
     /// - Parameters:
     ///   - datePath: The path to the date
-    ///   - dateFormat: The formate to render the date with
+    ///   - formatter: The DateFormatter to use when rendering the string
+    /// - Returns: A `CompiledTemplate`
+    public func date(_ datePath: KeyPath<Context, Date>, formatter: DateFormatter) -> CompiledTemplate {
+        return DateVariable<Self>(formatter: formatter, dateReferance: .solid(datePath))
+    }
+
+    /// Render a date in a formate
+    ///
+    /// - Parameters:
+    ///   - datePath: The path to the date
+    ///   - format: The formate to render the date with
     /// - Returns: A `CompiledTemplate`
     public func date(_ datePath: KeyPath<Context, Date>, format: String) -> CompiledTemplate {
         let formatter = DateFormatter()
         formatter.dateFormat = format
+        formatter.timeZone = TimeZone(identifier: "UTC")
         return DateVariable<Self>(formatter: formatter, dateReferance: .solid(datePath))
     }
 
@@ -98,10 +110,11 @@ extension ContextualTemplate {
     ///   - dateStyle: The style to use to render the date
     ///   - timeStyle: The style to use to render the time
     /// - Returns: A `CompiledTemplate`
-    public func date(_ datePath: KeyPath<Context, Date?>, dateStyle: DateFormatter.Style, timeStyle: DateFormatter.Style) -> CompiledTemplate {
+    public func date(_ datePath: KeyPath<Context, Date?>, dateStyle: DateFormatter.Style = .short, timeStyle: DateFormatter.Style = .short) -> CompiledTemplate {
         let formatter = DateFormatter()
         formatter.dateStyle = dateStyle
         formatter.timeStyle = timeStyle
+        formatter.timeZone = TimeZone(identifier: "UTC")
         return DateVariable<Self>(formatter: formatter, dateReferance: .optional(datePath))
     }
 
@@ -109,11 +122,22 @@ extension ContextualTemplate {
     ///
     /// - Parameters:
     ///   - datePath: The path to the date
-    ///   - dateFormat: The formate to render the date with
+    ///   - format: The formate to render the date with
     /// - Returns: A `CompiledTemplate`
     public func date(_ datePath: KeyPath<Context, Date?>, format: String) -> CompiledTemplate {
         let formatter = DateFormatter()
         formatter.dateFormat = format
+        formatter.timeZone = TimeZone(identifier: "UTC")
+        return DateVariable<Self>(formatter: formatter, dateReferance: .optional(datePath))
+    }
+
+    /// Render a date in a formate
+    ///
+    /// - Parameters:
+    ///   - datePath: The path to the date
+    ///   - formatter: The DateFormatter to use when rendering the string
+    /// - Returns: A `CompiledTemplate`
+    public func date(_ datePath: KeyPath<Context, Date?>, formatter: DateFormatter) -> CompiledTemplate {
         return DateVariable<Self>(formatter: formatter, dateReferance: .optional(datePath))
     }
 }
