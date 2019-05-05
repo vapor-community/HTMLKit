@@ -51,6 +51,9 @@ struct DateVariable<T: ContextualTemplate>: CompiledTemplate {
                 throw Errors.unableToCopyFormatter
             }
             formatterCopy.locale = .init(identifier: locale)
+            // Used to bypass a Linux bug
+            formatterCopy.dateStyle = formatter.dateStyle
+            formatterCopy.timeStyle = formatter.timeStyle
             return formatterCopy.string(from: date)
         } else {
             return formatter.string(from: date)
