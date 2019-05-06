@@ -29,6 +29,10 @@ struct DateVariable<T: ContextualTemplate>: CompiledTemplate {
     /// The key path to the date to render
     let dateReferance: Referance
 
+    /// A bool indicating if the date format is used
+    /// This is used to bypass a Linux bug
+    let usingDateFormate: Bool
+
 
     // View `CompiledTemplate`
     func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -51,9 +55,11 @@ struct DateVariable<T: ContextualTemplate>: CompiledTemplate {
                 throw Errors.unableToCopyFormatter
             }
             formatterCopy.locale = .init(identifier: locale)
-            // Used to bypass a Linux bug
-            formatterCopy.dateStyle = formatter.dateStyle
-            formatterCopy.timeStyle = formatter.timeStyle
+            if !usingDateFormate {
+                // Used to bypass a Linux bug
+                formatterCopy.dateStyle = formatter.dateStyle
+                formatterCopy.timeStyle = formatter.timeStyle
+            }
             return formatterCopy.string(from: date)
         } else {
             return formatter.string(from: date)
@@ -81,7 +87,7 @@ extension ContextualTemplate {
         let formatter = DateFormatter()
         formatter.dateStyle = dateStyle
         formatter.timeStyle = timeStyle
-        return DateVariable<Self>(formatter: formatter, dateReferance: .solid(datePath))
+        return DateVariable<Self>(formatter: formatter, dateReferance: .solid(datePath), usingDateFormate: false)
     }
 
     /// Render a date in a formate
@@ -91,7 +97,7 @@ extension ContextualTemplate {
     ///   - formatter: The DateFormatter to use when rendering the string
     /// - Returns: A `CompiledTemplate`
     public func date(_ datePath: KeyPath<Context, Date>, formatter: DateFormatter) -> CompiledTemplate {
-        return DateVariable<Self>(formatter: formatter, dateReferance: .solid(datePath))
+        return DateVariable<Self>(formatter: formatter, dateReferance: .solid(datePath), usingDateFormate: true)
     }
 
     /// Render a date in a formate
@@ -103,7 +109,7 @@ extension ContextualTemplate {
     public func date(_ datePath: KeyPath<Context, Date>, format: String) -> CompiledTemplate {
         let formatter = DateFormatter()
         formatter.dateFormat = format
-        return DateVariable<Self>(formatter: formatter, dateReferance: .solid(datePath))
+        return DateVariable<Self>(formatter: formatter, dateReferance: .solid(datePath), usingDateFormate: true)
     }
 
     /// Render a date in a formate
@@ -117,7 +123,7 @@ extension ContextualTemplate {
         let formatter = DateFormatter()
         formatter.dateStyle = dateStyle
         formatter.timeStyle = timeStyle
-        return DateVariable<Self>(formatter: formatter, dateReferance: .optional(datePath))
+        return DateVariable<Self>(formatter: formatter, dateReferance: .optional(datePath), usingDateFormate: false)
     }
 
     /// Render a date in a formate
@@ -129,7 +135,7 @@ extension ContextualTemplate {
     public func date(_ datePath: KeyPath<Context, Date?>, format: String) -> CompiledTemplate {
         let formatter = DateFormatter()
         formatter.dateFormat = format
-        return DateVariable<Self>(formatter: formatter, dateReferance: .optional(datePath))
+        return DateVariable<Self>(formatter: formatter, dateReferance: .optional(datePath), usingDateFormate: true)
     }
 
     /// Render a date in a formate
@@ -139,6 +145,6 @@ extension ContextualTemplate {
     ///   - formatter: The DateFormatter to use when rendering the string
     /// - Returns: A `CompiledTemplate`
     public func date(_ datePath: KeyPath<Context, Date?>, formatter: DateFormatter) -> CompiledTemplate {
-        return DateVariable<Self>(formatter: formatter, dateReferance: .optional(datePath))
+        return DateVariable<Self>(formatter: formatter, dateReferance: .optional(datePath), usingDateFormate: true)
     }
 }

@@ -358,7 +358,7 @@ struct LocalizedView: LocalizedTemplate {
 
     static let localePath: KeyPath<LocalizedView.Context, String>? = \.locale
 
-    enum StringKeys: String {
+    enum LocalizationKeys: String {
         case helloWorld = "hello.world"
         case unreadMessages = "unread.messages"
     }
@@ -414,7 +414,7 @@ struct DateView: ContextualTemplate {
 
 struct LocalizedDateView: LocalizedTemplate {
 
-    enum StringKeys: String {
+    enum LocalizationKeys: String {
         case none
     }
 

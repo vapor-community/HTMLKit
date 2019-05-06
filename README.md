@@ -236,7 +236,7 @@ struct SomeView: LocalizedTemplate {
     /// Used to identify the locale
     static let localePath: KeyPath<Context, String>? = \.locale
 
-    enum StringKeys: String {
+    enum LocalizationKeys: String {
         case hello
         case missingValues = "missing.values"
         case footer
