@@ -251,7 +251,7 @@ public struct HTMLRenderer {
                 switch variable.referance {
                 case .keyPath(let keyPath):
                     if let joinPath = contextPaths[String(reflecting: Root.self)] as? KeyPath<Context, Root> {
-                        let newVariable = TemplateVariable<Context, Value>(referance: .keyPath(joinPath.appending(path: keyPath)), escaping: variable.escaping)
+                        let newVariable = TemplateVariable<Context, Value>(referance: .keyPath(joinPath.appending(path: keyPath)), escaping: variable.escaping, transformation: variable.transformation)
                         ingredient.append(newVariable)
                     } else {
                         print("🚨 ERROR: when pre-rendering: \(String(reflecting: Context.self))\n\n-- Unable to add variable from \(String(reflecting: Root.self)), to \(String(reflecting: Value.self))")

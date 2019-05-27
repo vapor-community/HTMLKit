@@ -16,4 +16,7 @@ public struct TemplateVariable<Root, Value> where Value : CompiledTemplate {
 
     /// The escaping option
     public let escaping: EscapingOption
+
+    /// Some transformation closure of the variable value
+    let transformation: (Value) -> CompiledTemplate
 }

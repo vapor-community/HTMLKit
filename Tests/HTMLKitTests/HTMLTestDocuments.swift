@@ -207,14 +207,22 @@ class FormInput: StaticView {
 
     func build() -> CompiledTemplate {
 
-        var inputTag = input.id(id).class("form-controll").type(type.rawValue).name(id).placeholder(placeholder)
+        var inputTag = input
+            .id(id)
+            .class("form-controll")
+            .type(type.rawValue)
+            .name(id)
+            .placeholder(placeholder)
+
         if isRequired {
             inputTag = inputTag.required
         }
 
         return
             div.class("form-group").child(
-                label.for(id).child(label),
+                label
+                    .for(id)
+                    .child(label),
                 inputTag
         )
     }
@@ -257,6 +265,9 @@ struct VariableView: ContextualTemplate {
             ),
             p.child(
                 variable(\.string, escaping: .unsafeNone)
+            ),
+            p.child(
+                variable(\.string, transformation: { $0.isEmpty })
             )
         )
     }

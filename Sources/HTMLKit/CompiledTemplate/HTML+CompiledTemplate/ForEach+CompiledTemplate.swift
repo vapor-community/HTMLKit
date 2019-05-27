@@ -31,7 +31,11 @@ extension TemplateForEach: CompiledTemplate {
 
 extension ContextualTemplate {
 
-    public func index() -> CompiledTemplate {
-        return unsafeVariable(in: ForEachContext<Self.Context>.self, for: \.index)
+    /// The curren index in a for-loop
+    ///
+    /// - Parameter transformation: A transformation to do on the index value e.g. { $0 + 1 }
+    /// - Returns: A CompiledTemplate that returns the index
+    public func index(_ transformation: @escaping (Int) -> CompiledTemplate = { $0 }) -> CompiledTemplate {
+        return unsafeVariable(in: ForEachContext<Self.Context>.self, for: \.index, transformation: transformation)
     }
 }
