@@ -45,7 +45,7 @@ extension ContextualTemplate {
     ///   - keyPath: The path to the variable
     ///   - escaping: The escaping option
     /// - Returns: A `CompiledTemplate` `HTML.Variable` object
-    public func variable<Value>(_ keyPath: KeyPath<Self.Context, Value>, escaping: EscapingOption = .safeHTML) -> TemplateVariable<Self, Value> {
+    public func variable<Value>(_ keyPath: KeyPath<Self.Context, Value>, escaping: EscapingOption = .safeHTML) -> TemplateVariable<Self.Context, Value> {
         return TemplateVariable(referance: .keyPath(keyPath), escaping: escaping)
     }
 
@@ -55,7 +55,7 @@ extension ContextualTemplate {
     ///   - keyPath: The path to the variable
     ///   - escaping: The escaping option
     /// - Returns: A `CompiledTemplate` `HTML.Variable` object
-    public func variable<Value>(_ keyPath: KeyPath<Self.Context, Value?>, escaping: EscapingOption = .safeHTML) -> TemplateVariable<Self, Value?> {
+    public func variable<Value>(_ keyPath: KeyPath<Self.Context, Value?>, escaping: EscapingOption = .safeHTML) -> TemplateVariable<Self.Context, Value?> {
         return TemplateVariable(referance: .keyPath(keyPath), escaping: escaping)
     }
 }

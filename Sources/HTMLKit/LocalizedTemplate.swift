@@ -103,6 +103,6 @@ extension LocalizedTemplate where LocalizationKeys.RawValue == String, Context: 
     /// - Returns: A text with the localized string
     /// - Throws: If some part of the localization went wrong
     public func localizeWithContext(key: String) -> CompiledTemplate {
-        return Localize<Self, Context>(key: key, contentReferance: .root(Self.self), templateContent: nil)
+        return Localize<Self, Context>(key: key, contentReferance: .root(Self.Context.self), templateContent: nil)
     }
 }

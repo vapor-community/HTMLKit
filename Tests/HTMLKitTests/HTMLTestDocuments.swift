@@ -81,7 +81,13 @@ struct StringView: ContextualTemplate {
     }
 
     func build() -> CompiledTemplate {
-        return p.child( variable(\.string))
+        return p.child(
+            variable(\.string),
+
+            small.child(
+                index()
+            )
+        )
     }
 }
 
@@ -119,7 +125,10 @@ struct ForEachView: ContextualTemplate {
     func build() -> CompiledTemplate {
         return
             div.id("array").child(
-                forEach(in: \.array, render: StringView())
+                forEach(
+                    in: \.array,
+                    render: StringView()
+                )
         )
     }
 }
@@ -331,7 +340,7 @@ struct UnsafeVariable: ContextualTemplate {
                 variable(\.string)
             ),
             p.child(
-               unsafeVariable(in: MultipleContextualEmbed.self, for: \.base.title)
+               unsafeVariable(in: MultipleContextualEmbed.Context.self, for: \.base.title)
             )
         )
     }

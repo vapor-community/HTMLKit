@@ -16,9 +16,9 @@ public enum EscapingOption: CustomDebugStringConvertible {
     }
 }
 
-enum ContextReferance<T, Value> where T : ContextualTemplate {
-    case root(T.Type)
-    case keyPath(KeyPath<T.Context, Value>)
+enum ContextReferance<Context, Value> {
+    case root(Context.Type)
+    case keyPath(KeyPath<Context, Value>)
 }
 
 /// A struct containing the different structs to render a HTML document

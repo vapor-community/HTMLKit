@@ -67,7 +67,7 @@ struct DateVariable<T: ContextualTemplate>: CompiledTemplate {
     }
 
     // View `CompiledTemplate`
-    func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws where T : ContextualTemplate {
+    func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formatter.calendar = formula.calendar
         formatter.timeZone = formula.timeZone
         formula.add(mappable: self)

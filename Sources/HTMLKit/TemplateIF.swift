@@ -11,7 +11,7 @@ public class TemplateIF<Root> where Root: ContextualTemplate {
         let condition: Conditionable
 
         /// The local formula for optimazation
-        var localFormula: HTMLRenderer.Formula<Root>
+        var localFormula: HTMLRenderer.Formula<Root.Context>
 
         /// The view to render.
         /// Set to an empty string in order to create a condition on `\.name == ""`
@@ -23,7 +23,7 @@ public class TemplateIF<Root> where Root: ContextualTemplate {
         /// - Parameter condition: The condition to evaluate
         init(condition: Conditionable) {
             self.condition = condition
-            localFormula = HTMLRenderer.Formula(view: Root.self, calendar: .current, timeZone: .current)
+            localFormula = HTMLRenderer.Formula(view: Root.Context.self, calendar: .current, timeZone: .current)
         }
     }
 

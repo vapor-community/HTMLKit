@@ -27,7 +27,7 @@ struct Localize<T: ContextualTemplate, C: Encodable>: CompiledTemplate {
     let key: String
 
     /// The path to the content needed to render the string, if needed
-    let contentReferance: ContextReferance<T, C>?
+    let contentReferance: ContextReferance<T.Context, C>?
 
     /// A alteernative to `contentReferance` where a dict with keys is used instead of a Encodable Context
     let templateContent: [String : CompiledTemplate]?
@@ -69,7 +69,7 @@ struct Localize<T: ContextualTemplate, C: Encodable>: CompiledTemplate {
     }
 
     // View `Brewable`
-    func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws where T : ContextualTemplate {
+    func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(mappable: self)
     }
 }

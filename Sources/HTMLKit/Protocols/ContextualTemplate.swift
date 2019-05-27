@@ -23,7 +23,7 @@ extension ContextualTemplate {
     /// - Parameter path: The path to the `Context` needed to render the embeded view
     /// - Returns: A `TemplateEmbed` object that conteins the view
     public func embed<T>(_ template: T) -> TemplateEmbed<Self, T> where T : ContextualTemplate, T.Context == Context {
-        return TemplateEmbed.init(templateType: template, referance: .root(Self.self))
+        return TemplateEmbed.init(templateType: template, referance: .root(Self.Context.self))
     }
 
     /// Creates a for each loop in a template
@@ -43,7 +43,7 @@ extension ContextualTemplate {
     ///   - view: The view to render
     /// - Returns: A ´CompiledTemplate` that will loop the context
     public func forEach<View>(render view: View) -> CompiledTemplate where View: ContextualTemplate, Context == [View.Context] {
-        return TemplateForEach<Self, View>(view: view, referance: .root(Self.self))
+        return TemplateForEach<Self, View>(view: view, referance: .root(Self.Context.self))
     }
 
     /// Creates an if statment in a template
@@ -93,7 +93,11 @@ extension ContextualTemplate {
         return TemplateIF<Self>.init(conditions: condition)
     }
 
-    public func unsafeVariable<T, V>(in template: T.Type, for keyPath: KeyPath<T.Context, V>, escaping: EscapingOption = .safeHTML) -> CompiledTemplate where T : ContextualTemplate, V : CompiledTemplate {
-        return TemplateVariable<T, V>.init(referance: .keyPath(keyPath), escaping: escaping)
+    public func unsafeVariable<C, V>(in template: C.Type, for keyPath: KeyPath<C.Context, V>, escaping: EscapingOption = .safeHTML) -> CompiledTemplate where C : ContextualTemplate, V : CompiledTemplate {
+        return TemplateVariable<C.Context, V>.init(referance: .keyPath(keyPath), escaping: escaping)
+    }
+
+    public func unsafeVariable<C, V>(in template: C.Type, for keyPath: KeyPath<C, V>, escaping: EscapingOption = .safeHTML) -> CompiledTemplate where V : CompiledTemplate {
+        return TemplateVariable<C, V>.init(referance: .keyPath(keyPath), escaping: escaping)
     }
 }

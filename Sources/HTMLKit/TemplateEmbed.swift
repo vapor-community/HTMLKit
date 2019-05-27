@@ -8,5 +8,5 @@ public struct TemplateEmbed<E, T> where T : ContextualTemplate, E : ContextualTe
     public let templateType: T
 
     /// The key-path the the needed content
-    let referance: ContextReferance<E, T.Context>
+    let referance: ContextReferance<E.Context, T.Context>
 }

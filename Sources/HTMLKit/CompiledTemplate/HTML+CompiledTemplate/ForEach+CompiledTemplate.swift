@@ -3,15 +3,19 @@ extension TemplateForEach: CompiledTemplate {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        var values = [Value.Context]()
+
         switch referance {
         case .keyPath(let keyPath):
-            return try manager.value(at: keyPath).reduce("") {
-                try $0 + localFormula.render(with: $1, lingo: manager.lingo, locale: manager.locale)
-            }
+            values = try manager.value(at: keyPath)
         case .root(let type):
-            return try (manager.value(for: type) as! [Value.Context]).reduce("") {
-                try $0 + localFormula.render(with: $1, lingo: manager.lingo, locale: manager.locale)
-            }
+            values = try (manager.value(for: type) as! [Value.Context])
+        }
+        var index = 0
+        return try values.reduce("") {
+            let context = ForEachContext(index: index, context: $1)
+            index += 1
+            return try $0 + localFormula.render(with: context, lingo: manager.lingo, locale: manager.locale)
         }
     }
 
@@ -21,5 +25,13 @@ extension TemplateForEach: CompiledTemplate {
         localFormula.timeZone = formula.timeZone
         formula.add(mappable: self)
         try view.build().brew(localFormula)
+    }
+}
+
+
+extension ContextualTemplate {
+
+    public func index() -> CompiledTemplate {
+        return unsafeVariable(in: ForEachContext<Self.Context>.self, for: \.index)
     }
 }

@@ -17,7 +17,7 @@ struct Markdown: CompiledTemplate {
     let options: MarkdownOptions
 
     // View `Brewable`
-    func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws where T : ContextualTemplate {
+    func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(mappable: self)
     }
 

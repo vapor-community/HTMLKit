@@ -60,7 +60,7 @@ public struct HTMLRenderer {
     /// - Returns: Returns a rendered view in a raw `String`
     /// - Throws: If the formula do not exists, or if the rendering process fails
     public func renderRaw<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> String {
-        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T> else {
+        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Context> else {
             throw Errors.unableToFindFormula
         }
         return try formula.render(with: context, lingo: lingo, locale: nil)
@@ -74,7 +74,7 @@ public struct HTMLRenderer {
     /// - Returns: Returns a rendered view in a raw `String`
     /// - Throws: If the formula do not exists, or if the rendering process fails
     public func renderRaw<T>(_ type: T.Type) throws -> String where T : StaticView {
-        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T> else {
+        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Context> else {
             throw Errors.unableToFindFormula
         }
         return try formula.render(with: .init(), lingo: lingo, locale: nil)
@@ -111,7 +111,7 @@ public struct HTMLRenderer {
     /// - Parameter type: The view type to brew
     /// - Throws: If the brewing process fails for some reason
     public mutating func add<T: ContextualTemplate>(template view: T) throws {
-        let formula = Formula(view: T.self, calendar: calendar, timeZone: timeZone)
+        let formula = Formula(view: T.Context.self, calendar: calendar, timeZone: timeZone)
         try view.build().brew(formula)
         formulaCache[String(reflecting: T.self)] = formula
     }
@@ -123,7 +123,7 @@ public struct HTMLRenderer {
     /// - Parameter type: The view type to brew
     /// - Throws: If the brewing process fails for some reason
     public mutating func add<T: LocalizedTemplate>(template view: T) throws {
-        let formula = Formula(view: T.self, calendar: calendar, timeZone: timeZone)
+        let formula = Formula(view: T.Context.self, calendar: calendar, timeZone: timeZone)
         formula.localePath = T.localePath
         guard formula.localePath != nil else {
             throw Localize<T, NoContext>.Errors.missingLocalePath
@@ -164,10 +164,10 @@ public struct HTMLRenderer {
         /// Return the `Context` for a `ContextualTemplate`
         ///
         /// - Returns: The `Context`
-        func value<T>(for type: T.Type) throws -> T.Context where T : ContextualTemplate {
-            if let context = rootContext as? T.Context {
+        func value<T>(for type: T.Type) throws -> T {
+            if let context = rootContext as? T {
                 return context
-            } else if let path = contextPaths[String(reflecting: T.Context.self)] as? KeyPath<Context, T.Context> {
+            } else if let path = contextPaths[String(reflecting: T.self)] as? KeyPath<Context, T> {
                 return rootContext[keyPath: path]
             } else {
                 throw Errors.unableToRetriveValue
@@ -192,7 +192,7 @@ public struct HTMLRenderer {
 
     /// A formula for a view
     /// This contains the different parts to pice to gether, in order to increase the performance
-    public class Formula<T> where T : ContextualTemplate {
+    public class Formula<Context> {
 
         /// The different paths from the orignial context
         private var contextPaths: [String : AnyKeyPath]
@@ -201,7 +201,7 @@ public struct HTMLRenderer {
         private var ingredient: [CompiledTemplate]
 
         /// The path to the selected locale to use in localization
-        var localePath: KeyPath<T.Context, String>?
+        var localePath: KeyPath<Context, String>?
 
         /// The calendar to use when rendering dates
         var calendar: Calendar
@@ -214,7 +214,7 @@ public struct HTMLRenderer {
         /// - Parameters:
         ///   - view: The view type
         ///   - contextPaths: The contextPaths. *Is empty by default*
-        init(view: T.Type, calendar: Calendar, timeZone: TimeZone, contextPaths: [String : AnyKeyPath] = [:]) {
+        init(view: Context.Type, calendar: Calendar, timeZone: TimeZone, contextPaths: [String : AnyKeyPath] = [:]) {
             self.contextPaths = contextPaths
             ingredient = []
             self.calendar = calendar
@@ -229,11 +229,9 @@ public struct HTMLRenderer {
         ///     This may be optimiced some more later.
         ///
         /// - Parameters:
-        ///   - from: The root type (Swift complains if this is not in the function body)
-        ///   - to: The value type (Swift complains if this is not in the function body)
         ///   - keyPath: The key-path to add
         public func register<Root, Value>(keyPath: KeyPath<Root, Value>) throws {
-            if Root.self == T.Context.self {
+            if Root.self == Context.self {
                 contextPaths[String(reflecting: Value.self)] = keyPath
             } else if let joinPath = contextPaths[String(reflecting: Root.self)] {
                 contextPaths[String(reflecting: Value.self)] = joinPath.appending(path: keyPath)
@@ -247,16 +245,16 @@ public struct HTMLRenderer {
         ///
         /// - Parameter variable: The variable to add
         public func add<Root, Value>(variable: TemplateVariable<Root, Value>) throws {
-            if Root.Context.self == T.Context.self {
+            if Root.self == Context.self {
                 ingredient.append(variable)
             } else {
                 switch variable.referance {
                 case .keyPath(let keyPath):
-                    if let joinPath = contextPaths[String(reflecting: Root.Context.self)] as? KeyPath<T.Context, Root.Context> {
-                        let newVariable = TemplateVariable<T, Value>(referance: .keyPath(joinPath.appending(path: keyPath)), escaping: variable.escaping)
+                    if let joinPath = contextPaths[String(reflecting: Root.self)] as? KeyPath<Context, Root> {
+                        let newVariable = TemplateVariable<Context, Value>(referance: .keyPath(joinPath.appending(path: keyPath)), escaping: variable.escaping)
                         ingredient.append(newVariable)
                     } else {
-                        print("🚨 ERROR: when pre-rendering: \(String(reflecting: T.self))\n\n-- Unable to add variable from \(String(reflecting: Root.self)), to \(String(reflecting: Value.self))")
+                        print("🚨 ERROR: when pre-rendering: \(String(reflecting: Context.self))\n\n-- Unable to add variable from \(String(reflecting: Root.self)), to \(String(reflecting: Value.self))")
                         throw Errors.unableToAddVariable
                     }
                 default: print("Trying to register a self varaiable")
@@ -276,9 +274,9 @@ public struct HTMLRenderer {
             }
         }
 
-        /// Adds a generic `Mappable` object
+        /// Adds a generic `CompiledTemplate` object
         ///
-        /// - Parameter mappable: The `Mappable` to add
+        /// - Parameter mappable: The `CompiledTemplate` to add
         public func add(mappable: CompiledTemplate) {
             ingredient.append(mappable)
         }
@@ -286,16 +284,14 @@ public struct HTMLRenderer {
         /// Renders a formula
         ///
         /// - Parameters:
-        /// - context: The context needed to render the formula
-        /// - lingo: The lingo to use when rendering
+        ///     - context: The context needed to render the formula
+        ///     - lingo: The lingo to use when rendering
+        ///     - locale: The locale to render the formula in
+        ///
         /// - Returns: A rendered formula
         /// - Throws: If some of the formula fails, for some reason
-        func render(with context: T.Context, lingo: Lingo?, locale: String?) throws -> String {
-            var usedLocale = locale
-            if let localePath = localePath {
-                usedLocale = context[keyPath: localePath]
-            }
-            let contextManager = ContextManager(rootContext: context, contextPaths: contextPaths, lingo: lingo, locale: usedLocale)
+        func render(with context: Context, lingo: Lingo?, locale: String? = nil) throws -> String {
+            let contextManager = createContextManager(with: context, lingo: lingo, locale: locale)
             return try ingredient.reduce("") { try $0 + $1.render(with: contextManager) }
         }
 
@@ -307,6 +303,14 @@ public struct HTMLRenderer {
         /// - Throws: If some of the formula fails, for some reason
         func render<U>(with manager: ContextManager<U>) throws -> String {
             return try ingredient.reduce("") { try $0 + $1.render(with: manager) }
+        }
+
+        func createContextManager(with context: Context, lingo: Lingo?, locale: String?) -> ContextManager<Context> {
+            var usedLocale = locale
+            if let localePath = localePath {
+                usedLocale = context[keyPath: localePath]
+            }
+            return ContextManager(rootContext: context, contextPaths: contextPaths, lingo: lingo, locale: usedLocale)
         }
     }
 }
