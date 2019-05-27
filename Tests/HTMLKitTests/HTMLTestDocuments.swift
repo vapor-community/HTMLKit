@@ -264,10 +264,12 @@ struct VariableView: ContextualTemplate {
                 variable(\.string)
             ),
             p.child(
-                variable(\.string, escaping: .unsafeNone)
+                variable(\.string)
+                    .escaping(.unsafeNone)
             ),
             p.child(
-                variable(\.string, transformation: { $0.isEmpty })
+                variable(\.string)
+                    .map { $0.isEmpty }
             )
         )
     }

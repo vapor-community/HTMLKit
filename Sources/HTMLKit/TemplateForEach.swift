@@ -5,9 +5,9 @@
 //  Created by Mats Mollestad on 02/03/2019.
 //
 
-struct ForEachContext<C> {
-    let index: Int
-    let context: C
+public struct ForEachContext<C> {
+    public let index: Int
+    public let context: C
 }
 
 /// A struct making it possible to have a for each loop in the template

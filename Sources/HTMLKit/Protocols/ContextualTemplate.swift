@@ -98,11 +98,9 @@ extension ContextualTemplate {
     /// - Parameters:
     ///   - template: The context containing the variable
     ///   - keyPath: The path to the variable
-    ///   - escaping: The escaping option
-    ///   - transformation: A closure that maps a value to another
     /// - Returns: A `CompiledTemplate` `HTML.Variable` object
-    public func unsafeVariable<C, V>(in template: C.Type, for keyPath: KeyPath<C.Context, V>, escaping: EscapingOption = .safeHTML, transformation: @escaping (V) -> CompiledTemplate = { $0 }) -> CompiledTemplate where C : ContextualTemplate, V : CompiledTemplate {
-        return TemplateVariable(referance: .keyPath(keyPath), escaping: escaping, transformation: transformation)
+    public func unsafeVariable<C, V>(in template: C.Type, for keyPath: KeyPath<C.Context, V>) -> TemplateVariable<C.Context, V> where C : ContextualTemplate, V : CompiledTemplate {
+        return TemplateVariable(referance: .keyPath(keyPath), escaping: .safeHTML, transformation: { $0 })
     }
 
     /// References an optional variable in the `Context` type
@@ -110,11 +108,9 @@ extension ContextualTemplate {
     /// - Parameters:
     ///   - template: The context containing the variable
     ///   - keyPath: The path to the variable
-    ///   - escaping: The escaping option
-    ///   - transformation: A closure that maps a value to another
     /// - Returns: A `CompiledTemplate` `HTML.Variable` object
-    public func unsafeVariable<C, V>(in template: C.Type, for keyPath: KeyPath<C.Context, V?>, escaping: EscapingOption = .safeHTML, transformation: @escaping (V?) -> CompiledTemplate = { $0 }) -> CompiledTemplate where C : ContextualTemplate, V : CompiledTemplate {
-        return TemplateVariable(referance: .keyPath(keyPath), escaping: escaping, transformation: transformation)
+    public func unsafeVariable<C, V>(in template: C.Type, for keyPath: KeyPath<C.Context, V?>) -> TemplateVariable<C.Context, V?> where C : ContextualTemplate, V : CompiledTemplate {
+        return TemplateVariable(referance: .keyPath(keyPath), escaping: .safeHTML, transformation: { $0 })
     }
 
     /// References an optional variable in the `Context` type
@@ -122,10 +118,8 @@ extension ContextualTemplate {
     /// - Parameters:
     ///   - template: The context containing the variable
     ///   - keyPath: The path to the variable
-    ///   - escaping: The escaping option
-    ///   - transformation: A closure that maps a value to another
     /// - Returns: A `CompiledTemplate` `HTML.Variable` object
-    public func unsafeVariable<C, V>(in template: C.Type, for keyPath: KeyPath<C, V>, escaping: EscapingOption = .safeHTML, transformation: @escaping (V) -> CompiledTemplate = { $0 }) -> CompiledTemplate where V : CompiledTemplate {
-        return TemplateVariable(referance: .keyPath(keyPath), escaping: escaping, transformation: transformation)
+    public func unsafeVariable<C, V>(in template: C.Type, for keyPath: KeyPath<C, V>) -> TemplateVariable<C, V> where V : CompiledTemplate {
+        return TemplateVariable(referance: .keyPath(keyPath), escaping: .safeHTML, transformation: { $0 })
     }
 }

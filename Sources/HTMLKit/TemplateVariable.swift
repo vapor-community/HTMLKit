@@ -15,8 +15,16 @@ public struct TemplateVariable<Root, Value> where Value : CompiledTemplate {
     let referance: ContextReferance<Root, Value>
 
     /// The escaping option
-    public let escaping: EscapingOption
+    let escaping: EscapingOption
 
     /// Some transformation closure of the variable value
     let transformation: (Value) -> CompiledTemplate
+
+    public func escaping(_ value: EscapingOption) -> TemplateVariable<Root, Value> {
+        return TemplateVariable(referance: referance, escaping: value, transformation: transformation)
+    }
+
+    public func map(_ transformation: @escaping (Value) -> CompiledTemplate) -> TemplateVariable<Root, Value> {
+        return TemplateVariable(referance: referance, escaping: escaping, transformation: transformation)
+    }
 }
