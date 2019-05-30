@@ -3,11 +3,73 @@ import Foundation
 import Lingo
 import Vapor
 
+public protocol HTMLRenderable {
+
+    /// Renders a `ContextualTemplate` formula
+    ///
+    ///     try renderer.render(WelcomeView.self)
+    ///
+    /// - Parameters:
+    ///   - type: The view type to render
+    ///   - context: The needed context to render the view with
+    /// - Returns: Returns a rendered view in a raw `String`
+    /// - Throws: If the formula do not exists, or if the rendering process fails
+    func renderRaw<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> String
+
+    /// Renders a `StaticView` formula
+    ///
+    ///     try renderer.render(WelcomeView.self)
+    ///
+    /// - Parameter type: The view type to render
+    /// - Returns: Returns a rendered view in a raw `String`
+    /// - Throws: If the formula do not exists, or if the rendering process fails
+    func renderRaw<T>(_ type: T.Type) throws -> String where T : StaticView
+
+    /// Renders a `ContextualTemplate` formula
+    ///
+    ///     try renderer.render(WelcomeView.self)
+    ///
+    /// - Parameters:
+    ///   - type: The view type to render
+    ///   - context: The needed context to render the view with
+    /// - Returns: Returns a rendered view in a `HTTPResponse`
+    /// - Throws: If the formula do not exists, or if the rendering process fails
+    func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse
+
+    /// Renders a `StaticView` formula
+    ///
+    ///     try renderer.render(WelcomeView.self)
+    ///
+    /// - Parameter type: The view type to render
+    /// - Returns: Returns a rendered view in a `HTTPResponse`
+    /// - Throws: If the formula do not exists, or if the rendering process fails
+    func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView
+}
+
+
+/// An extension that implements most of the helper functions
+extension HTMLRenderable {
+
+    public func renderRaw<T>(_ type: T.Type) throws -> String where T : StaticView {
+        return try renderRaw(type, with: .init())
+    }
+
+    public func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse {
+        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: renderRaw(type, with: context))
+    }
+
+    public func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView {
+        return try render(type, with: .init())
+    }
+}
+
+
+
 /// A struct containing the differnet formulas for the different views.
 ///
 ///     try renderer.add(template: WelcomeView())           // Builds the formula
 ///     try renderer.render(WelcomeView.self)               // Renders the formula
-public struct HTMLRenderer {
+public struct HTMLRenderer: HTMLRenderable {
 
     /// The different Errors that can happen when rendering or pre-rendering a template
     enum Errors: LocalizedError {
@@ -64,44 +126,6 @@ public struct HTMLRenderer {
             throw Errors.unableToFindFormula
         }
         return try formula.render(with: context, lingo: lingo, locale: nil)
-    }
-
-    /// Renders a `StaticView` formula
-    ///
-    ///     try renderer.render(WelcomeView.self)
-    ///
-    /// - Parameter type: The view type to render
-    /// - Returns: Returns a rendered view in a raw `String`
-    /// - Throws: If the formula do not exists, or if the rendering process fails
-    public func renderRaw<T>(_ type: T.Type) throws -> String where T : StaticView {
-        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T> else {
-            throw Errors.unableToFindFormula
-        }
-        return try formula.render(with: .init(), lingo: lingo, locale: nil)
-    }
-
-    /// Renders a `ContextualTemplate` formula
-    ///
-    ///     try renderer.render(WelcomeView.self)
-    ///
-    /// - Parameters:
-    ///   - type: The view type to render
-    ///   - context: The needed context to render the view with
-    /// - Returns: Returns a rendered view in a `HTTPResponse`
-    /// - Throws: If the formula do not exists, or if the rendering process fails
-    public func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse {
-        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: renderRaw(type, with: context))
-    }
-
-    /// Renders a `StaticView` formula
-    ///
-    ///     try renderer.render(WelcomeView.self)
-    ///
-    /// - Parameter type: The view type to render
-    /// - Returns: Returns a rendered view in a `HTTPResponse`
-    /// - Throws: If the formula do not exists, or if the rendering process fails
-    public func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView {
-        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: renderRaw(type))
     }
 
     /// Brews a formula for later use
@@ -317,7 +341,7 @@ extension Request {
     ///
     /// - Returns: A `HTMLRenderer` containing all the templates
     /// - Throws: If the shared container could not make the `HTMLRenderer`
-    public func renderer() throws -> HTMLRenderer {
-        return try sharedContainer.make(HTMLRenderer.self)
+    public func renderer() throws -> HTMLRenderable {
+        return try sharedContainer.make(HTMLRenderable.self)
     }
 }

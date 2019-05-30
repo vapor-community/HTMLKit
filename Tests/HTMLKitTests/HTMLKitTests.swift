@@ -1,24 +1,43 @@
 // swiftlint:disable:this force_try
 
 import XCTest
+@testable import Vapor
 @testable import HTMLKit
 import Lingo
 
 final class HTMLKitTests: XCTestCase {
 
-    func testExample() throws {
+    var app: Application!
 
-        let path = NSTemporaryDirectory().appending("HTMLKitTests")
-        try! FileManager().createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+    var renderer: HTMLRenderer!
 
-        try! HTMLKitTests.enLocalizations.write(toFile: path + "/en.json", atomically: true, encoding: .utf8)
-        try! HTMLKitTests.nbLocalizations.write(toFile: path + "/nb.json", atomically: true, encoding: .utf8)
+    override func setUp() {
+        let config = Config.default()
+        var services = Services.default()
 
-        var renderer = HTMLRenderer()
+        try! setupRenderer()
 
-        renderer.lingo = try Lingo(rootPath: path, defaultLocale: "en")
+        services.register(renderer, as: HTMLRenderable.self)
+
+        func routes(_ router: Router) throws {
+
+            router.get("simpleView") { req in
+                return try req.renderer()
+                    .render(SimpleView.self)
+            }
+        }
+
+        let router = EngineRouter.default()
+        try! routes(router)
+        services.register(router, as: Router.self)
+
+        app = try! Application(config: config, services: services)
+    }
+
+    func testHtmlRenderingTests() throws {
 
         let testDate = Date()
+
         let shortDateFormatter = DateFormatter()
         let customDateFormatter = DateFormatter()
         shortDateFormatter.calendar = .current
@@ -29,51 +48,29 @@ final class HTMLKitTests: XCTestCase {
         customDateFormatter.timeZone = .current
         customDateFormatter.dateFormat = "MM/dd/yyyy"
 
-        renderer.calendar = .current
-        renderer.timeZone = .current
-
-        try renderer.add(template: StaticEmbedView())
-        try renderer.add(template: StaticEmbedView())
-        try renderer.add(template: SomeView())
-        try renderer.add(template: ForEachView())
-        try renderer.add(template: IFView())
-        try renderer.add(template: VariableView())
-        try renderer.add(template: MultipleContextualEmbed())
-        try renderer.add(template: DynamicAttribute())
-        try renderer.add(template: SelfLoopingView())
-        try renderer.add(template: MarkdownView())
-        try renderer.add(template: LocalizedView())
-        try renderer.add(template: DateView())
-        try renderer.add(template: LocalizedDateView())
-
-        try renderer.add(template: SimpleView())
-        try renderer.add(template: UsingComponent())
-        try renderer.add(template: ChainedEqualAttributes())
-        try renderer.add(template: ChainedEqualAttributesDataNode())
-
-        let staticEmbedRender = try renderer.renderRaw(StaticEmbedView.self, with: .init(string: "Hello", int: 2))
-        let someViewRender = try renderer.renderRaw(SomeView.self, with: .contentWith(name: "Mats", title: "Welcome"))
-        let forEachRender = try renderer.renderRaw(ForEachView.self, with: .content(from: ["1", "2", "3"]))
-        let firstIfRender = try renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 19, nullable: nil, bool: false))
-        let secondIfRender = try renderer.renderRaw(IFView.self, with: .init(name: "Mats", age: 20, nullable: nil, bool: true))
-        let thirdIfRender = try renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
-        let varialbeRender = try renderer.renderRaw(VariableView.self, with: .init(string: "<script>\"'&</script>"))
+        let staticEmbedRender   = try renderer.renderRaw(StaticEmbedView.self, with: .init(string: "Hello", int: 2))
+        let someViewRender      = try renderer.renderRaw(SomeView.self, with: .contentWith(name: "Mats", title: "Welcome"))
+        let forEachRender       = try renderer.renderRaw(ForEachView.self, with: .content(from: ["1", "2", "3"]))
+        let firstIfRender       = try renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 19, nullable: nil, bool: false))
+        let secondIfRender      = try renderer.renderRaw(IFView.self, with: .init(name: "Mats", age: 20, nullable: nil, bool: true))
+        let thirdIfRender       = try renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
+        let varialbeRender      = try renderer.renderRaw(VariableView.self, with: .init(string: "<script>\"'&</script>"))
         let multipleEmbedRender = try renderer.renderRaw(MultipleContextualEmbed.self, with: .init(title: "Welcome", string: "String"))
-        let nonDynamic = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: false, isOptional: nil))
-        let oneDynamic = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: true, isOptional: true))
-        let twoDynamic = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: true, isActive: true, isOptional: false))
-        let markdown = try renderer.renderRaw(MarkdownView.self, with: .init(title: "Hello", description: "World"))
-        let english = try renderer.renderRaw(LocalizedView.self, with: .init(locale: "en", description: .init(numberTest: 1), numberTest: 1))
-        let norwegian = try renderer.renderRaw(LocalizedView.self, with: .init(locale: "nb", description: .init(numberTest: 2), numberTest: 2))
+        let nonDynamic          = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: false, isOptional: nil))
+        let oneDynamic          = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: true, isOptional: true))
+        let twoDynamic          = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: true, isActive: true, isOptional: false))
+        let markdown            = try renderer.renderRaw(MarkdownView.self, with: .init(title: "Hello", description: "World"))
+        let english             = try renderer.renderRaw(LocalizedView.self, with: .init(locale: "en", description: .init(numberTest: 1), numberTest: 1))
+        let norwegian           = try renderer.renderRaw(LocalizedView.self, with: .init(locale: "nb", description: .init(numberTest: 2), numberTest: 2))
 
-        let date = try renderer.renderRaw(DateView.self, with: .init(date: testDate))
-        let englishDate = try renderer.renderRaw(LocalizedDateView.self, with: .init(date: testDate, locale: "en"))
-        let norwegianDate = try renderer.renderRaw(LocalizedDateView.self, with: .init(date: testDate, locale: "nb"))
+        let date                = try renderer.renderRaw(DateView.self, with: .init(date: testDate))
+        let englishDate         = try renderer.renderRaw(LocalizedDateView.self, with: .init(date: testDate, locale: "en"))
+        let norwegianDate       = try renderer.renderRaw(LocalizedDateView.self, with: .init(date: testDate, locale: "nb"))
 
 
-        let simpleRender = try renderer.renderRaw(SimpleView.self)
-        let chainedRender = try renderer.renderRaw(ChainedEqualAttributes.self)
-        let chaindDataRender = try renderer.renderRaw(ChainedEqualAttributesDataNode.self)
+        let simpleRender        = try renderer.renderRaw(SimpleView.self)
+        let chainedRender       = try renderer.renderRaw(ChainedEqualAttributes.self)
+        let chaindDataRender    = try renderer.renderRaw(ChainedEqualAttributesDataNode.self)
 //        let inputRender = try renderer.render(FormInput.self)
 
         XCTAssertEqual(multipleEmbedRender, "<html><head><title>Welcome</title><link href='some url' rel='stylesheet'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><span>Some text</span><div><p>String</p><p>String</p></div><div><p>String</p><p>Welcome</p></div></body></html>")
@@ -105,6 +102,54 @@ final class HTMLKitTests: XCTestCase {
 //        XCTAssertEqual(inputRender, "<div class='form-group'><label for='test'>test</label><input class='form-control' type='email' required name='test' id='test' placeholder=''/></div>")
     }
 
+    func testProvider() throws {
+
+        let expectedResult = try renderer.renderRaw(SimpleView.self)
+        let response = try app.getResponse(to: "/simpleView")
+
+        XCTAssertEqual(response.http.body.string, expectedResult)
+        XCTAssertEqual(response.http.status, .ok)
+        XCTAssertTrue(response.http.headers.contains(name: "content-type"))
+    }
+
+
+    private func setupRenderer() throws {
+        let path = NSTemporaryDirectory().appending("HTMLKitTests")
+        try! FileManager().createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+
+        try! HTMLKitTests.enLocalizations.write(toFile: path + "/en.json", atomically: true, encoding: .utf8)
+        try! HTMLKitTests.nbLocalizations.write(toFile: path + "/nb.json", atomically: true, encoding: .utf8)
+
+        var renderer = HTMLRenderer()
+
+        renderer.lingo = try Lingo(rootPath: path, defaultLocale: "en")
+
+        renderer.calendar = .current
+        renderer.timeZone = .current
+
+        try renderer.add(template: StaticEmbedView())
+        try renderer.add(template: StaticEmbedView())
+        try renderer.add(template: SomeView())
+        try renderer.add(template: ForEachView())
+        try renderer.add(template: IFView())
+        try renderer.add(template: VariableView())
+        try renderer.add(template: MultipleContextualEmbed())
+        try renderer.add(template: DynamicAttribute())
+        try renderer.add(template: SelfLoopingView())
+        try renderer.add(template: MarkdownView())
+        try renderer.add(template: LocalizedView())
+        try renderer.add(template: DateView())
+        try renderer.add(template: LocalizedDateView())
+
+        try renderer.add(template: SimpleView())
+        try renderer.add(template: UsingComponent())
+        try renderer.add(template: ChainedEqualAttributes())
+        try renderer.add(template: ChainedEqualAttributesDataNode())
+
+        self.renderer = renderer
+    }
+
+
     private static var enLocalizations: String {
         return """
 {
@@ -132,6 +177,23 @@ final class HTMLKitTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testExample", testExample),
+        ("testHtmlRenderingTests", testHtmlRenderingTests),
+        ("testProvider", testProvider)
     ]
+}
+
+
+extension HTTPBody {
+    var string: String {
+        return String(data: data!, encoding: .utf8)!
+    }
+}
+
+extension Application {
+    func getResponse(to path: String) throws -> Response {
+        let responder = try self.make(Responder.self)
+        let request = HTTPRequest(method: .GET, url: URL(string: path)!)
+        let wrappedRequest = Request(http: request, using: self)
+        return try responder.respond(to: wrappedRequest).wait()
+    }
 }
