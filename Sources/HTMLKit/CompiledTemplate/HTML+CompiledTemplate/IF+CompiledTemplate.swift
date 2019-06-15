@@ -90,14 +90,14 @@ extension IF: View {
 //        return self
 //    }
 //
-//    /// Add an else condition
-//    ///
-//    /// - Parameter render: The view to be rendered
-//    /// - Returns: A mappable object
-//    public func `else`(_ render: View...) -> View {
-//        let trueCondition = Condition(condition: AllwaysTrueCondition())
-//        trueCondition.view = render
-//        conditions.append(trueCondition)
-//        return self
-//    }
+    /// Add an else condition
+    ///
+    /// - Parameter render: The view to be rendered
+    /// - Returns: A mappable object
+    public func `else`(@HTMLBuilder render: () -> View) -> View {
+        let trueCondition = Condition(condition: AllwaysTrueCondition())
+        trueCondition.view = render()
+        conditions.append(trueCondition)
+        return self
+    }
 }

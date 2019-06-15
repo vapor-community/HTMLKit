@@ -21,9 +21,7 @@ struct SimpleView: StaticView, HTMLTestable {
 
     var body: View {
         Div {
-            P {
-                "Text"
-            }
+            P { "Text" }
         }
     }
 }
@@ -168,25 +166,24 @@ struct SomeView: TemplateView {
 //    }
 //}
 //
-//struct ForEachView: ContextualTemplate {
-//
-//    struct Context {
-//        let array: [StringView.Context]
-//
-//        static func content(from array: [String]) -> Context {
-//            return .init(array: array.map { .init(string: $0) })
-//        }
-//    }
-//
-//    func build() -> View {
-//        return
-//            div.id("array").child(
-//                forEach(in: \.array, render: StringView())
-//        )
-//    }
-//}
-//
-//
+
+struct ForEachView: TemplateView {
+
+    struct Context {
+        let array: [String]
+    }
+
+    let context: ContextVariable<Context, Context> = .root(Context.self)
+
+    var body: View {
+        Div {
+            ForEach(context: context.array) { text in
+                P { text }
+            }
+        }.id("array")
+    }
+}
+
 //struct IFView: ContextualTemplate {
 //
 //    struct Context {
@@ -297,24 +294,18 @@ struct SomeView: TemplateView {
 //    }
 //}
 //
-//struct VariableView: ContextualTemplate {
-//
-//    struct Context {
-//        let string: String
-//    }
-//
-//    func build() -> View {
-//        return div.child(
-//            p.child(
-//                variable(\.string)
-//            ),
-//            p.child(
-//                variable(\.string, escaping: .unsafeNone)
-//            )
-//        )
-//    }
-//}
-//
+struct VariableView: TemplateView {
+
+    let context: RootContext<String> = .root(String.self)
+
+    var body: View {
+        Div {
+            P { context }
+            P { context.escaping(.unsafeNone) }
+        }
+    }
+}
+
 //struct MultipleContextualEmbed: ContextualTemplate {
 //
 //    struct Context {
@@ -399,6 +390,26 @@ struct SomeView: TemplateView {
 //    }
 //}
 //
+
+struct MarkdownView: TemplateView {
+
+    struct Context {
+        let title: String
+        let description: String
+    }
+
+    let context: RootContext<Context> = .root(Context.self)
+
+    var body: View {
+        Div {
+            Markdown {
+                "# Title: " + context.title
+                "\n## Description here:\n"
+                context.description
+            }
+        }
+    }
+}
 //struct MarkdownView: ContextualTemplate {
 //
 //    struct Context {

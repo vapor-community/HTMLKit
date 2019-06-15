@@ -44,8 +44,20 @@ extension ContextVariable: Prerenderable where Value: View {
 
 extension ContextVariable: View where Value: View {
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        try manager.value(for: self)
+        let render = try manager.value(for: self)
             .render(with: manager)
+
+        switch escaping {
+        case .safeHTML:
+            return render
+                .replacingOccurrences(of: "&", with: "&amp;")
+                .replacingOccurrences(of: "<", with: "&lt;")
+                .replacingOccurrences(of: ">", with: "&gt;")
+                .replacingOccurrences(of: "\"", with: "&quot;")
+                .replacingOccurrences(of: "'", with: "&#39;")
+        case .unsafeNone:
+            return render
+        }
     }
 }
 

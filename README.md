@@ -19,12 +19,12 @@ By using Swift's powerful language features and a pre-rendering algorithm, HTMLK
 
 Add the following in your `Package.swift` file
 ```swift
-.package(url: "https://github.com/vapor-community/HTMLKit.git", from: "1.3.0"),
+.package(url: "https://github.com/vapor-community/HTMLKit.git", .branch("function-builder")),
 ```
 And register the provider and the different templates with in `configure.swift`
 ```swift
 var renderer = HTMLRenderer()
-try renderer.add(template: MyTemplate())
+try renderer.add(view: MyTemplate())
 
 try services.register(HTMLKitProvider())
 services.register(renderer)
@@ -69,19 +69,15 @@ This means you can add any extension to a swift type and use it in the template.
 
 So let's render a simple template that needs one `String` value and will place the string value in a `<div>` that has a class attribute and a `<p>` tag.
 ```swift
-struct SimpleView: ContextualTemplate {
+struct SimpleView: TemplateView {
 
-    struct Context {
-        let value: String
-    }
+    // Defining the context type with generics
+    let context: RootContext<String> = .root(String.self) 
 
-    func build() -> CompiledTemplate {
-        return
-            div.class("simple-view").child(
-                p.child(
-                    variable(\.value.capitalized)
-                )
-            )
+    var body: View {
+        Div {
+            P { context.capalized }
+        }.class("simple-view")
     }
 }
 ```
@@ -89,14 +85,9 @@ struct SimpleView: ContextualTemplate {
 Note: You can also use `+` or in most cases `,` to concatinate multiple elements. Eg:
 ```swift
 // Using `+`
-div.child(
-    "Some text " + variable(\.name) + p.child("View More")
-)
-
-// Using `,`
-div.child(
-    "Some text ", variable(\.name), p.child("View More")
-)
+Div {
+    "Some text " + context.name + P { "View More" }
+}
 ```
 
 ### Now to render the views
@@ -105,14 +96,16 @@ In order to render the views effectively and cleanly, we need to add all the dif
 Below is an example of how to render a view with a context:
 ```swift
 var renderer = HTMLRenderer()
-try renderer.add(template: SimpleView())
+try renderer.add(view: SimpleView())
 ...
-try req.renderer().render(SimpleView.self, with: .init(value: "hello world"))
+try req.renderer().render(SimpleView.self, with: "hello world")
 ```
 This would render: 
 ```html
 <div class="simple-view">
-    <p>Hello World</p>
+    <p>
+        Hello World
+    </p>
 </div>
 ```
 
@@ -125,9 +118,25 @@ Now since that was so simple. Let's step it up a bit by creating a base template
 struct BaseView: StaticView {
 
     let title: String
-    let body: CompiledTemplate
+    let content: View
+    
+    init(title: String, @HTMLBuilder content: () -> View) {
+        self.title = title
+        self.content = content()
+    }
 
-    func build() -> CompiledTemplate {
+    // New Code
+    var body: View {
+        HTMLNode {
+            Head {
+                Title { title }
+            }
+            Body { content }
+        }
+    }
+    
+    // Old code
+    func build() -> View {
         return
             html.child(
                 head.child(
@@ -142,20 +151,38 @@ struct BaseView: StaticView {
     }
 }
 
-struct SomeView: ContextualTemplate {
+struct SomeView: TemplateView {
 
     struct Context {
         let name: String
-        let values: [SimpleView.Context]
-
-        init(name: String, values: [String]) -> Context {
-            return .init(
-                name: name, 
-                values: values.enumerated().map { .init(value: $0.element) }
-                )
+        let values: [String]
+    }
+    
+    // Defining the context type with generics
+    let context: RootContext<Context> = .root(Context.self)
+    
+    // New Code
+    var body: View {
+        BaseView(title: "Welcome") {
+            P {
+                "Hello " + context.name + "!"
+            }
+            IF(context.values.count > 0) {
+                ForEach(context.values) { value in
+                    Div {
+                        P { value.capalized }
+                    }
+                }
+            }.else {
+                P { "There are no values!" }
+            }
+            Footer {
+                "This is a footer"
+            }.class("always")
         }
     }
 
+    // Old code
     func build() -> CompiledTemplate {
         return
             BaseView(
