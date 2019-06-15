@@ -13,13 +13,13 @@ public protocol Conditionable {
 public struct Equal<Root, Value>: Conditionable where Value: Equatable {
 
     /// The path to the variable
-    let path: KeyPath<Root, Value>
+    let path: ContextVariable<Root, Value>
 
     /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return try manager.value(at: path) == value
+        return try manager.value(for: path) == value
     }
 }
 
@@ -27,13 +27,13 @@ public struct Equal<Root, Value>: Conditionable where Value: Equatable {
 public struct NotEqual<Root, Value>: Conditionable where Value: Equatable {
 
     /// The path to the variable
-    let path: KeyPath<Root, Value>
+    let path: ContextVariable<Root, Value>
 
     /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return try manager.value(at: path) != value
+        return try manager.value(for: path) != value
     }
 }
 
@@ -84,26 +84,26 @@ struct InvertCondition: Conditionable {
     }
 }
 
-struct BoolCondition<Root>: Conditionable where Root: ContextualTemplate {
-
-    /// The path to the variable
-    let path: KeyPath<Root.Context, Bool>
-
-    func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return try manager.value(at: path)
-    }
-}
+//struct BoolCondition<Root>: Conditionable where Root: ContextualTemplate {
+//
+//    /// The path to the variable
+//    let path: KeyPath<Root.Context, Bool>
+//
+//    func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+//        return try manager.value(at: path)
+//    }
+//}
 
 public struct NullableEqual<Root, Value>: Conditionable where Value: Equatable {
 
     /// The path to the variable
-    let path: KeyPath<Root, Value?>
+    let path: ContextVariable<Root, Value?>
 
     /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return try manager.value(at: path) == value
+        return try manager.value(for: path) == value
     }
 }
 
@@ -111,13 +111,13 @@ public struct NullableEqual<Root, Value>: Conditionable where Value: Equatable {
 public struct NullableNotEqual<Root, Value>: Conditionable where Value: Equatable {
 
     /// The path to the variable
-    let path: KeyPath<Root, Value?>
+    let path: ContextVariable<Root, Value?>
 
     /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return try manager.value(at: path) != value
+        return try manager.value(for: path) != value
     }
 }
 
@@ -213,8 +213,8 @@ public struct IsNullCondition<Root, Value>: Conditionable {
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func == <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Equatable {
-    return TemplateIF.Condition(condition: Equal(path: lhs, value: rhs))
+public func == <Root, Value>(lhs: ContextVariable<Root, Value>, rhs: Value) -> IF.Condition where Value: Equatable {
+    return IF.Condition(condition: Equal(path: lhs, value: rhs))
 }
 
 /// Creates a `Equal` condition
@@ -223,30 +223,40 @@ public func == <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> T
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func != <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Equatable {
-    return TemplateIF.Condition(condition: NotEqual(path: lhs, value: rhs))
+public func != <Root, Value>(lhs: ContextVariable<Root, Value>, rhs: Value) -> IF.Condition where Value: Equatable {
+    return IF.Condition(condition: NotEqual(path: lhs, value: rhs))
 }
 
-/// Creates a `LessThen` condition
+///// Creates a `LessThen` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func < <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> IF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
+//    return IF.Condition(condition: LessThen(path: lhs, value: rhs))
+//}
+//
+///// Creates a `GreaterThen` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func > <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> IF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
+//    return IF.Condition(condition: GreaterThen(path: lhs, value: rhs))
+//}
+//
+//
+/// Creates a `Equal` condition
 ///
 /// - Parameters:
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func < <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
-    return TemplateIF.Condition(condition: LessThen(path: lhs, value: rhs))
+public func == <Root, Value>(lhs: ContextVariable<Root, Value?>, rhs: Value) -> IF.Condition where Value: Equatable {
+    return IF.Condition(condition: NullableEqual(path: lhs, value: rhs))
 }
-
-/// Creates a `GreaterThen` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func > <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
-    return TemplateIF.Condition(condition: GreaterThen(path: lhs, value: rhs))
-}
-
 
 /// Creates a `Equal` condition
 ///
@@ -254,164 +264,154 @@ public func > <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> Te
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func == <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Equatable {
-    return TemplateIF.Condition(condition: NullableEqual(path: lhs, value: rhs))
+public func != <Root, Value>(lhs: ContextVariable<Root, Value?>, rhs: Value) -> IF.Condition where Value: Equatable {
+    return IF.Condition(condition: NullableNotEqual(path: lhs, value: rhs))
 }
 
-/// Creates a `Equal` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func != <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Equatable {
-    return TemplateIF.Condition(condition: NullableNotEqual(path: lhs, value: rhs))
-}
-
-/// Creates a `LessThen` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func < <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
-    return TemplateIF.Condition(condition: NullableLessThen(path: lhs, value: rhs))
-}
-
-/// Creates a `GreaterThen` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func > <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
-    return TemplateIF.Condition(condition: NullableGreaterThen(path: lhs, value: rhs))
-}
-
-/// Creates a `GreaterThen` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func >= <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
-    return TemplateIF.Condition(condition: InvertCondition(condition: LessThen(path: lhs, value: rhs)))
-}
-
-/// Creates a `GreaterThen` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func <= <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
-    return TemplateIF.Condition(condition: InvertCondition(condition: GreaterThen(path: lhs, value: rhs)))
-}
-
-/// Creates a `GreaterThen` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func >= <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
-    return TemplateIF.Condition(condition: InvertCondition(condition: NullableLessThen(path: lhs, value: rhs)))
-}
-
-/// Creates a `GreaterThen` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func <= <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> TemplateIF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
-    return TemplateIF.Condition(condition: InvertCondition(condition: NullableGreaterThen(path: lhs, value: rhs)))
-}
-
-/// Creates a `AndCondition` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func && <Root>(lhs: TemplateIF<Root>.Condition, rhs: TemplateIF<Root>.Condition) -> TemplateIF<Root>.Condition where Root: ContextualTemplate {
-    return TemplateIF<Root>.Condition(condition: AndCondition(first: lhs, second: rhs))
-}
-
-/// Creates a `AndCondition` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func && <Root>(lhs: KeyPath<Root.Context, Bool>, rhs: TemplateIF<Root>.Condition) -> TemplateIF<Root>.Condition where Root: ContextualTemplate {
-    let lhsCondition = BoolCondition<Root>(path: lhs)
-    return TemplateIF<Root>.Condition(condition: AndCondition(first: lhsCondition, second: rhs))
-}
-
-/// Creates a `AndCondition` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func && <Root>(lhs: TemplateIF<Root>.Condition, rhs: KeyPath<Root.Context, Bool>) -> TemplateIF<Root>.Condition where Root: ContextualTemplate {
-    let rhsCondition = BoolCondition<Root>(path: rhs)
-    return TemplateIF<Root>.Condition(condition: AndCondition(first: lhs, second: rhsCondition))
-}
-
-/// Creates a `AndCondition` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func && <Root>(lhs: KeyPath<Root.Context, Bool>, rhs: KeyPath<Root.Context, Bool>) -> TemplateIF<Root>.Condition where Root: ContextualTemplate {
-    let lhsCondition = BoolCondition<Root>(path: lhs)
-    let rhsCondition = BoolCondition<Root>(path: rhs)
-    return TemplateIF<Root>.Condition(condition: AndCondition(first: lhsCondition, second: rhsCondition))
-}
-
-/// Creates a `OrCondition` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func || <Root>(lhs: TemplateIF<Root>.Condition, rhs: TemplateIF<Root>.Condition) -> TemplateIF<Root>.Condition where Root: ContextualTemplate {
-    return TemplateIF<Root>.Condition(condition: OrCondition(first: lhs, second: rhs))
-}
-
-/// Creates a `AndCondition` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func || <Root>(lhs: KeyPath<Root.Context, Bool>, rhs: TemplateIF<Root>.Condition) -> TemplateIF<Root>.Condition where Root: ContextualTemplate {
-    let lhsCondition = BoolCondition<Root>(path: lhs)
-    return TemplateIF<Root>.Condition(condition: AndCondition(first: lhsCondition, second: rhs))
-}
-
-/// Creates a `AndCondition` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func || <Root>(lhs: TemplateIF<Root>.Condition, rhs: KeyPath<Root.Context, Bool>) -> TemplateIF<Root>.Condition where Root: ContextualTemplate {
-    let rhsCondition = BoolCondition<Root>(path: rhs)
-    return TemplateIF<Root>.Condition(condition: AndCondition(first: lhs, second: rhsCondition))
-}
-
-/// Creates a `AndCondition` condition
-///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateIF.Condition` object
-public func || <Root>(lhs: KeyPath<Root.Context, Bool>, rhs: KeyPath<Root.Context, Bool>) -> TemplateIF<Root>.Condition where Root: ContextualTemplate {
-    let lhsCondition = BoolCondition<Root>(path: lhs)
-    let rhsCondition = BoolCondition<Root>(path: rhs)
-    return TemplateIF<Root>.Condition(condition: AndCondition(first: lhsCondition, second: rhsCondition))
-}
+///// Creates a `LessThen` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func < <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> IF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
+//    return IF.Condition(condition: NullableLessThen(path: lhs, value: rhs))
+//}
+//
+///// Creates a `GreaterThen` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func > <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> IF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
+//    return IF.Condition(condition: NullableGreaterThen(path: lhs, value: rhs))
+//}
+//
+///// Creates a `GreaterThen` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func >= <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> IF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
+//    return IF.Condition(condition: InvertCondition(condition: LessThen(path: lhs, value: rhs)))
+//}
+//
+///// Creates a `GreaterThen` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func <= <Root, Value>(lhs: KeyPath<Root.Context, Value>, rhs: Value) -> IF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
+//    return IF.Condition(condition: InvertCondition(condition: GreaterThen(path: lhs, value: rhs)))
+//}
+//
+///// Creates a `GreaterThen` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func >= <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> IF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
+//    return IF.Condition(condition: InvertCondition(condition: NullableLessThen(path: lhs, value: rhs)))
+//}
+//
+///// Creates a `GreaterThen` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func <= <Root, Value>(lhs: KeyPath<Root.Context, Value?>, rhs: Value) -> IF<Root>.Condition where Root: ContextualTemplate, Value: Comparable {
+//    return IF.Condition(condition: InvertCondition(condition: NullableGreaterThen(path: lhs, value: rhs)))
+//}
+//
+///// Creates a `AndCondition` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func && <Root>(lhs: IF<Root>.Condition, rhs: IF<Root>.Condition) -> IF<Root>.Condition where Root: ContextualTemplate {
+//    return IF<Root>.Condition(condition: AndCondition(first: lhs, second: rhs))
+//}
+//
+///// Creates a `AndCondition` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func && <Root>(lhs: KeyPath<Root.Context, Bool>, rhs: IF<Root>.Condition) -> IF<Root>.Condition where Root: ContextualTemplate {
+//    let lhsCondition = BoolCondition<Root>(path: lhs)
+//    return IF<Root>.Condition(condition: AndCondition(first: lhsCondition, second: rhs))
+//}
+//
+///// Creates a `AndCondition` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func && <Root>(lhs: IF<Root>.Condition, rhs: KeyPath<Root.Context, Bool>) -> IF<Root>.Condition where Root: ContextualTemplate {
+//    let rhsCondition = BoolCondition<Root>(path: rhs)
+//    return IF<Root>.Condition(condition: AndCondition(first: lhs, second: rhsCondition))
+//}
+//
+///// Creates a `AndCondition` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func && <Root>(lhs: KeyPath<Root.Context, Bool>, rhs: KeyPath<Root.Context, Bool>) -> IF<Root>.Condition where Root: ContextualTemplate {
+//    let lhsCondition = BoolCondition<Root>(path: lhs)
+//    let rhsCondition = BoolCondition<Root>(path: rhs)
+//    return IF<Root>.Condition(condition: AndCondition(first: lhsCondition, second: rhsCondition))
+//}
+//
+///// Creates a `OrCondition` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func || <Root>(lhs: IF<Root>.Condition, rhs: IF<Root>.Condition) -> IF<Root>.Condition where Root: ContextualTemplate {
+//    return IF<Root>.Condition(condition: OrCondition(first: lhs, second: rhs))
+//}
+//
+///// Creates a `AndCondition` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func || <Root>(lhs: KeyPath<Root.Context, Bool>, rhs: IF<Root>.Condition) -> IF<Root>.Condition where Root: ContextualTemplate {
+//    let lhsCondition = BoolCondition<Root>(path: lhs)
+//    return IF<Root>.Condition(condition: AndCondition(first: lhsCondition, second: rhs))
+//}
+//
+///// Creates a `AndCondition` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func || <Root>(lhs: IF<Root>.Condition, rhs: KeyPath<Root.Context, Bool>) -> IF<Root>.Condition where Root: ContextualTemplate {
+//    let rhsCondition = BoolCondition<Root>(path: rhs)
+//    return IF<Root>.Condition(condition: AndCondition(first: lhs, second: rhsCondition))
+//}
+//
+///// Creates a `AndCondition` condition
+/////
+///// - Parameters:
+/////   - lhs: The key path
+/////   - rhs: The constant value
+///// - Returns: A `TemplateIF.Condition` object
+//public func || <Root>(lhs: KeyPath<Root.Context, Bool>, rhs: KeyPath<Root.Context, Bool>) -> IF<Root>.Condition where Root: ContextualTemplate {
+//    let lhsCondition = BoolCondition<Root>(path: lhs)
+//    let rhsCondition = BoolCondition<Root>(path: rhs)
+//    return IF<Root>.Condition(condition: AndCondition(first: lhsCondition, second: rhsCondition))
+//}

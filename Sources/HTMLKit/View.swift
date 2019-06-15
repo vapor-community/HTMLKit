@@ -1,7 +1,7 @@
 
 import Foundation
 
-public protocol CompiledTemplate: BrewableFormula {
+public protocol View: Prerenderable {
 
     /// A value indicating if the template should render when itis used as localization info
     var renderWhenLocalizing: Bool { get }
@@ -14,20 +14,20 @@ public protocol CompiledTemplate: BrewableFormula {
     func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String
 }
 
-extension CompiledTemplate {
+extension View {
     public var renderWhenLocalizing: Bool { return true }
 }
 
 
-extension Array: BrewableFormula where Element == CompiledTemplate {
+extension Array: Prerenderable where Element == View {
 
     // View `BrewableFormula` documentation
-    public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
-        try forEach { try $0.brew(formula) }
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        try forEach { try $0.prerender(formula) }
     }
 }
 
-extension Array: CompiledTemplate where Element == CompiledTemplate {
+extension Array: View where Element == View {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -35,7 +35,7 @@ extension Array: CompiledTemplate where Element == CompiledTemplate {
     }
 }
 
-extension String: CompiledTemplate {
+extension String: View {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -43,12 +43,12 @@ extension String: CompiledTemplate {
     }
 
     // View `BrewableFormula` documentation
-    public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(string: self)
     }
 }
 
-extension Int: CompiledTemplate {
+extension Int: View {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -56,14 +56,14 @@ extension Int: CompiledTemplate {
     }
 
     // View `BrewableFormula` documentation
-    public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(string: String(self))
     }
 
     public var renderWhenLocalizing: Bool { return false }
 }
 
-extension Double: CompiledTemplate {
+extension Double: View {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -71,14 +71,14 @@ extension Double: CompiledTemplate {
     }
 
     // View `BrewableFormula` documentation
-    public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(string: String(self))
     }
 
     public var renderWhenLocalizing: Bool { return false }
 }
 
-extension Float: CompiledTemplate {
+extension Float: View {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -86,14 +86,14 @@ extension Float: CompiledTemplate {
     }
 
     // View `BrewableFormula` documentation
-    public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(string: String(self))
     }
 
     public var renderWhenLocalizing: Bool { return false }
 }
 
-extension Bool: CompiledTemplate {
+extension Bool: View {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -101,7 +101,7 @@ extension Bool: CompiledTemplate {
     }
 
     // View `BrewableFormula` documentation
-    public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(string: String(self))
     }
 
@@ -109,18 +109,18 @@ extension Bool: CompiledTemplate {
 }
 
 
-extension Optional: BrewableFormula where Wrapped: BrewableFormula {
+extension Optional: Prerenderable where Wrapped: Prerenderable {
 
     // View `BrewableFormula` documentation
-    public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         switch self {
-        case .some(let wrapped): try wrapped.brew(formula)
+        case .some(let wrapped): try wrapped.prerender(formula)
         default: break
         }
     }
 }
 
-extension Optional: CompiledTemplate where Wrapped: CompiledTemplate {
+extension Optional: View where Wrapped: View {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -131,7 +131,7 @@ extension Optional: CompiledTemplate where Wrapped: CompiledTemplate {
     }
 }
 
-extension UUID: CompiledTemplate {
+extension UUID: View {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -139,23 +139,23 @@ extension UUID: CompiledTemplate {
     }
 
     // View `BrewableFormula` documentation
-    public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(string: self.uuidString)
     }
 }
 
 
 /// Concats two values
-public func + (lhs: CompiledTemplate, rhs: CompiledTemplate) -> CompiledTemplate {
-    var output: Array<CompiledTemplate> = []
+public func + (lhs: View, rhs: View) -> View {
+    var output: Array<View> = []
 
-    if let list = lhs as? Array<CompiledTemplate> {
+    if let list = lhs as? Array<View> {
         output.append(contentsOf: list)
     } else {
         output.append(lhs)
     }
 
-    if let list = rhs as? Array<CompiledTemplate> {
+    if let list = rhs as? Array<View> {
         output.append(list)
     } else {
         output.append(rhs)

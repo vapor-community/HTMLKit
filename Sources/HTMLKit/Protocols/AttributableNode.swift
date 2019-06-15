@@ -1,6 +1,6 @@
 
 /// A node that can add a `HTML.AttributeNode`
-public protocol AttributableNode: CompiledTemplate {
+public protocol AttributableNode: View {
 
     /// Adds an attribute to a node
     ///
@@ -11,39 +11,39 @@ public protocol AttributableNode: CompiledTemplate {
 
 extension AttributableNode {
 
-    public func role(_ text: CompiledTemplate) -> Self {
+    public func role(_ text: View) -> Self {
         return self.add( .role(text))
     }
 
-    public func ariaHaspopup(_ text: CompiledTemplate) -> Self {
+    public func ariaHaspopup(_ text: View) -> Self {
         return self.add( .ariaHaspopup(text))
     }
 
-    public func ariaExpanded(_ text: CompiledTemplate) -> Self {
+    public func ariaExpanded(_ text: View) -> Self {
         return self.add( .ariaExpanded(text))
     }
 
-    public func ariaValuenow(_ text: CompiledTemplate) -> Self {
+    public func ariaValuenow(_ text: View) -> Self {
         return self.add( .ariaValuenow(text))
     }
 
-    public func ariaValuemin(_ text: CompiledTemplate) -> Self {
+    public func ariaValuemin(_ text: View) -> Self {
         return self.add( .ariaValuemin(text))
     }
 
-    public func ariaValuemax(_ text: CompiledTemplate) -> Self {
+    public func ariaValuemax(_ text: View) -> Self {
         return self.add( .ariaValuemax(text))
     }
 
-    public func dataDismiss(_ text: CompiledTemplate) -> Self {
+    public func dataDismiss(_ text: View) -> Self {
         return self.add( .dataDismiss(text))
     }
 
-    public func ariaLabel(_ text: CompiledTemplate) -> Self {
+    public func ariaLabel(_ text: View) -> Self {
         return self.add( .ariaLabel(text))
     }
 
-    public func ariaHidden(_ text: CompiledTemplate) -> Self {
+    public func ariaHidden(_ text: View) -> Self {
         return self.add( .ariaHidden(text))
     }
 }
@@ -56,7 +56,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func alt(_ value: CompiledTemplate...) -> Self {
+    public func alt(_ value: View...) -> Self {
         return self.add( .alt(value))
     }
 
@@ -64,7 +64,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func accept(_ text: CompiledTemplate) -> Self {
+    public func accept(_ text: View) -> Self {
         return self.add( .accept(text))
     }
 
@@ -72,7 +72,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func acceptCharset(_ value: CompiledTemplate...) -> Self {
+    public func acceptCharset(_ value: View...) -> Self {
         return self.add( .acceptCharset(value))
     }
 
@@ -80,7 +80,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func accesskey(_ value: CompiledTemplate...) -> Self {
+    public func accesskey(_ value: View...) -> Self {
         return self.add( .accesskey(value))
     }
 
@@ -88,7 +88,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func action(_ value: CompiledTemplate...) -> Self {
+    public func action(_ value: View...) -> Self {
         return self.add( .action(value))
     }
 
@@ -103,7 +103,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func autocomplete(_ value: CompiledTemplate...) -> Self {
+    public func autocomplete(_ value: View...) -> Self {
         return self.add( .autocomplete(value))
     }
 
@@ -125,7 +125,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func charset(_ value: CompiledTemplate...) -> Self {
+    public func charset(_ value: View...) -> Self {
         return self.add( .charset(value))
     }
 
@@ -141,7 +141,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func cite(_ value: CompiledTemplate...) -> Self {
+    public func cite(_ value: View...) -> Self {
         return self.add( .cite(value))
     }
 
@@ -149,7 +149,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func `class`(_ value: CompiledTemplate...) -> Self {
+    public func `class`(_ value: View...) -> Self {
         return self.add( .class(value))
     }
 
@@ -157,7 +157,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func cols(_ value: CompiledTemplate...) -> Self {
+    public func cols(_ value: View...) -> Self {
         return self.add( .cols(value))
     }
 
@@ -165,7 +165,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func colspan(_ value: CompiledTemplate...) -> Self {
+    public func colspan(_ value: View...) -> Self {
         return self.add( .colspan(value))
     }
 
@@ -173,7 +173,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func content(_ value: CompiledTemplate...) -> Self {
+    public func content(_ value: View...) -> Self {
         return self.add( .content(value))
     }
 
@@ -181,7 +181,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func contenteditable(_ value: CompiledTemplate...) -> Self {
+    public func contenteditable(_ value: View...) -> Self {
         return self.add( .contenteditable(value))
     }
 
@@ -196,7 +196,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func coords(_ value: CompiledTemplate...) -> Self {
+    public func coords(_ value: View...) -> Self {
         return self.add( .coords(value))
     }
 
@@ -204,7 +204,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func data(_ value: CompiledTemplate...) -> Self {
+    public func data(_ value: View...) -> Self {
         return self.add( .data(value))
     }
 
@@ -212,7 +212,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func datetime(_ value: CompiledTemplate...) -> Self {
+    public func datetime(_ value: View...) -> Self {
         return self.add( .datetime(value))
     }
 
@@ -234,7 +234,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func dir(_ value: CompiledTemplate...) -> Self {
+    public func dir(_ value: View...) -> Self {
         return self.add( .dir(value))
     }
 
@@ -242,7 +242,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func dirname(_ value: CompiledTemplate...) -> Self {
+    public func dirname(_ value: View...) -> Self {
         return self.add( .dirname(value))
     }
 
@@ -265,7 +265,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func draggable(_ value: CompiledTemplate...) -> Self {
+    public func draggable(_ value: View...) -> Self {
         return self.add( .draggable(value))
     }
 
@@ -273,7 +273,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func dropzone(_ value: CompiledTemplate...) -> Self {
+    public func dropzone(_ value: View...) -> Self {
         return self.add( .dropzone(value))
     }
 
@@ -281,7 +281,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func enctype(_ value: CompiledTemplate...) -> Self {
+    public func enctype(_ value: View...) -> Self {
         return self.add( .enctype(value))
     }
 
@@ -289,7 +289,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func `for`(_ value: CompiledTemplate...) -> Self {
+    public func `for`(_ value: View...) -> Self {
         return self.add( .for(value))
     }
 
@@ -297,7 +297,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func form(_ value: CompiledTemplate...) -> Self {
+    public func form(_ value: View...) -> Self {
         return self.add( .form(value))
     }
 
@@ -305,7 +305,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func formaction(_ value: CompiledTemplate...) -> Self {
+    public func formaction(_ value: View...) -> Self {
         return self.add( .formaction(value))
     }
 
@@ -313,7 +313,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func headers(_ value: CompiledTemplate...) -> Self {
+    public func headers(_ value: View...) -> Self {
         return self.add( .headers(value))
     }
 
@@ -321,7 +321,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func height(_ value: CompiledTemplate...) -> Self {
+    public func height(_ value: View...) -> Self {
         return self.add( .height(value))
     }
 
@@ -336,7 +336,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func width(_ value: CompiledTemplate...) -> Self {
+    public func width(_ value: View...) -> Self {
         return self.add( .width(value))
     }
 
@@ -344,7 +344,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func high(_ value: CompiledTemplate...) -> Self {
+    public func high(_ value: View...) -> Self {
         return self.add( .high(value))
     }
 
@@ -352,7 +352,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func href(_ value: CompiledTemplate...) -> Self {
+    public func href(_ value: View...) -> Self {
         return self.add( .href(value))
     }
 
@@ -360,7 +360,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func hreflang(_ value: CompiledTemplate...) -> Self {
+    public func hreflang(_ value: View...) -> Self {
         return self.add( .hreflang(value))
     }
 
@@ -368,7 +368,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func httpEquiv(_ value: CompiledTemplate...) -> Self {
+    public func httpEquiv(_ value: View...) -> Self {
         return self.add( .httpEquiv(value))
     }
 
@@ -376,7 +376,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func id(_ value: CompiledTemplate...) -> Self {
+    public func id(_ value: View...) -> Self {
         return self.add( .id(value))
     }
 
@@ -391,7 +391,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func kind(_ value: CompiledTemplate...) -> Self {
+    public func kind(_ value: View...) -> Self {
         return self.add( .kind(value))
     }
 
@@ -399,7 +399,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func label(_ value: CompiledTemplate...) -> Self {
+    public func label(_ value: View...) -> Self {
         return self.add( .label(value))
     }
 
@@ -407,7 +407,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func lang(_ value: CompiledTemplate...) -> Self {
+    public func lang(_ value: View...) -> Self {
         return self.add( .lang(value))
     }
 
@@ -415,7 +415,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func list(_ value: CompiledTemplate...) -> Self {
+    public func list(_ value: View...) -> Self {
         return self.add( .list(value))
     }
 
@@ -430,7 +430,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func low(_ value: CompiledTemplate...) -> Self {
+    public func low(_ value: View...) -> Self {
         return self.add( .low(value))
     }
 
@@ -438,7 +438,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func max(_ value: CompiledTemplate...) -> Self {
+    public func max(_ value: View...) -> Self {
         return self.add( .max(value))
     }
 
@@ -446,7 +446,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func maxlength(_ value: CompiledTemplate...) -> Self {
+    public func maxlength(_ value: View...) -> Self {
         return self.add( .maxlength(value))
     }
 
@@ -454,7 +454,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func media(_ value: CompiledTemplate...) -> Self {
+    public func media(_ value: View...) -> Self {
         return self.add( .media(value))
     }
 
@@ -500,7 +500,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func name(_ value: CompiledTemplate...) -> Self {
+    public func name(_ value: View...) -> Self {
         return self.add( .name(value))
     }
 
@@ -515,7 +515,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func onabort(_ value: CompiledTemplate...) -> Self {
+    public func onabort(_ value: View...) -> Self {
         return self.add( .onabort(value))
     }
 
@@ -523,7 +523,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func onafterprint(_ value: CompiledTemplate...) -> Self {
+    public func onafterprint(_ value: View...) -> Self {
         return self.add( .onafterprint(value))
     }
 
@@ -531,7 +531,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func onbeforeprint(_ value: CompiledTemplate...) -> Self {
+    public func onbeforeprint(_ value: View...) -> Self {
         return self.add( .onbeforeprint(value))
     }
 
@@ -539,7 +539,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func onbeforeunload(_ value: CompiledTemplate...) -> Self {
+    public func onbeforeunload(_ value: View...) -> Self {
         return self.add( .onbeforeunload(value))
     }
 
@@ -547,7 +547,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func onblur(_ value: CompiledTemplate...) -> Self {
+    public func onblur(_ value: View...) -> Self {
         return self.add( .onblur(value))
     }
 
@@ -555,7 +555,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func oncanplay(_ value: CompiledTemplate...) -> Self {
+    public func oncanplay(_ value: View...) -> Self {
         return self.add( .oncanplay(value))
     }
 
@@ -563,7 +563,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func oncanplaythrough(_ value: CompiledTemplate...) -> Self {
+    public func oncanplaythrough(_ value: View...) -> Self {
         return self.add( .oncanplaythrough(value))
     }
 
@@ -571,7 +571,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func onchange(_ value: CompiledTemplate...) -> Self {
+    public func onchange(_ value: View...) -> Self {
         return self.add( .onchange(value))
     }
 
@@ -579,7 +579,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func onclick(_ value: CompiledTemplate...) -> Self {
+    public func onclick(_ value: View...) -> Self {
         return self.add( .onclick(value))
     }
 
@@ -587,7 +587,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func oncontextmenu(_ value: CompiledTemplate...) -> Self {
+    public func oncontextmenu(_ value: View...) -> Self {
         return self.add( .oncontextmenu(value))
     }
 
@@ -595,7 +595,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func oncopy(_ value: CompiledTemplate...) -> Self {
+    public func oncopy(_ value: View...) -> Self {
         return self.add( .oncopy(value))
     }
 
@@ -603,7 +603,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func oncuechange(_ value: CompiledTemplate...) -> Self {
+    public func oncuechange(_ value: View...) -> Self {
         return self.add( .oncuechange(value))
     }
 
@@ -611,7 +611,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func oncut(_ value: CompiledTemplate...) -> Self {
+    public func oncut(_ value: View...) -> Self {
         return self.add( .oncut(value))
     }
 
@@ -619,7 +619,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func ondblclick(_ value: CompiledTemplate...) -> Self {
+    public func ondblclick(_ value: View...) -> Self {
         return self.add( .ondblclick(value))
     }
 
@@ -627,7 +627,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func ondrag(_ value: CompiledTemplate...) -> Self {
+    public func ondrag(_ value: View...) -> Self {
         return self.add( .ondrag(value))
     }
 
@@ -635,7 +635,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func ondragend(_ value: CompiledTemplate...) -> Self {
+    public func ondragend(_ value: View...) -> Self {
         return self.add( .ondragend(value))
     }
 
@@ -643,7 +643,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func ondragenter(_ value: CompiledTemplate...) -> Self {
+    public func ondragenter(_ value: View...) -> Self {
         return self.add( .ondragenter(value))
     }
 
@@ -651,7 +651,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func ondragleave(_ value: CompiledTemplate...) -> Self {
+    public func ondragleave(_ value: View...) -> Self {
         return self.add( .ondragleave(value))
     }
 
@@ -659,7 +659,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func ondragover(_ value: CompiledTemplate...) -> Self {
+    public func ondragover(_ value: View...) -> Self {
         return self.add( .ondragover(value))
     }
 
@@ -667,7 +667,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func ondragstart(_ value: CompiledTemplate...) -> Self {
+    public func ondragstart(_ value: View...) -> Self {
         return self.add( .ondragstart(value))
     }
 
@@ -675,7 +675,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func ondrop(_ value: CompiledTemplate...) -> Self {
+    public func ondrop(_ value: View...) -> Self {
         return self.add( .ondrop(value))
     }
 
@@ -683,7 +683,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func ondurationchange(_ value: CompiledTemplate...) -> Self {
+    public func ondurationchange(_ value: View...) -> Self {
         return self.add( .ondurationchange(value))
     }
 
@@ -691,7 +691,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func onemptied(_ value: CompiledTemplate...) -> Self {
+    public func onemptied(_ value: View...) -> Self {
         return self.add( .onemptied(value))
     }
 
@@ -699,7 +699,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func onended(_ value: CompiledTemplate...) -> Self {
+    public func onended(_ value: View...) -> Self {
         return self.add( .onended(value))
     }
 
@@ -707,7 +707,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func onerror(_ value: CompiledTemplate...) -> Self {
+    public func onerror(_ value: View...) -> Self {
         return self.add( .onerror(value))
     }
 
@@ -715,7 +715,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func onfocus(_ value: CompiledTemplate...) -> Self {
+    public func onfocus(_ value: View...) -> Self {
         return self.add( .onfocus(value))
     }
 
@@ -723,7 +723,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func onhashchange(_ value: CompiledTemplate...) -> Self {
+    public func onhashchange(_ value: View...) -> Self {
         return self.add( .onhashchange(value))
     }
 
@@ -731,7 +731,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func oninput(_ value: CompiledTemplate...) -> Self {
+    public func oninput(_ value: View...) -> Self {
         return self.add( .oninput(value))
     }
 
@@ -739,7 +739,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func oninvalid(_ value: CompiledTemplate...) -> Self {
+    public func oninvalid(_ value: View...) -> Self {
         return self.add( .oninvalid(value))
     }
 
@@ -747,7 +747,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func onload(_ value: CompiledTemplate...) -> Self {
+    public func onload(_ value: View...) -> Self {
         return self.add( .onload(value))
     }
 
@@ -762,7 +762,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func pattern(_ value: CompiledTemplate...) -> Self {
+    public func pattern(_ value: View...) -> Self {
         return self.add( .pattern(value))
     }
 
@@ -770,7 +770,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func optimum(_ value: CompiledTemplate...) -> Self {
+    public func optimum(_ value: View...) -> Self {
         return self.add( .optimum(value))
     }
 
@@ -778,7 +778,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func placeholder(_ value: CompiledTemplate...) -> Self {
+    public func placeholder(_ value: View...) -> Self {
         return self.add( .placeholder(value))
     }
 
@@ -786,7 +786,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func poster(_ value: CompiledTemplate...) -> Self {
+    public func poster(_ value: View...) -> Self {
         return self.add( .poster(value))
     }
 
@@ -794,7 +794,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func preload(_ value: CompiledTemplate...) -> Self {
+    public func preload(_ value: View...) -> Self {
         return self.add( .preload(value))
     }
 
@@ -807,7 +807,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func rel(_ value: CompiledTemplate...) -> Self {
+    public func rel(_ value: View...) -> Self {
         return self.add( .rel(value))
     }
 
@@ -825,7 +825,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func rows(_ value: CompiledTemplate...) -> Self {
+    public func rows(_ value: View...) -> Self {
         return self.add( .rows(value))
     }
 
@@ -833,7 +833,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func rowspan(_ value: CompiledTemplate...) -> Self {
+    public func rowspan(_ value: View...) -> Self {
         return self.add( .rowspan(value))
     }
 
@@ -846,7 +846,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func scope(_ value: CompiledTemplate...) -> Self {
+    public func scope(_ value: View...) -> Self {
         return self.add( .scope(value))
     }
 
@@ -859,7 +859,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func shape(_ value: CompiledTemplate...) -> Self {
+    public func shape(_ value: View...) -> Self {
         return self.add( .shape(value))
     }
 
@@ -867,7 +867,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func size(_ value: CompiledTemplate...) -> Self {
+    public func size(_ value: View...) -> Self {
         return self.add( .size(value))
     }
 
@@ -875,7 +875,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func sizes(_ value: CompiledTemplate...) -> Self {
+    public func sizes(_ value: View...) -> Self {
         return self.add( .sizes(value))
     }
 
@@ -883,7 +883,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func span(_ value: CompiledTemplate...) -> Self {
+    public func span(_ value: View...) -> Self {
         return self.add( .span(value))
     }
 
@@ -896,7 +896,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func src(_ value: CompiledTemplate...) -> Self {
+    public func src(_ value: View...) -> Self {
         return self.add( .src(value))
     }
 
@@ -904,7 +904,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func srcdoc(_ value: CompiledTemplate...) -> Self {
+    public func srcdoc(_ value: View...) -> Self {
         return self.add( .srcdoc(value))
     }
 
@@ -912,7 +912,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func srclang(_ value: CompiledTemplate...) -> Self {
+    public func srclang(_ value: View...) -> Self {
         return self.add( .srclang(value))
     }
 
@@ -920,7 +920,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func srcset(_ value: CompiledTemplate...) -> Self {
+    public func srcset(_ value: View...) -> Self {
         return self.add( .srcset(value))
     }
 
@@ -928,7 +928,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func start(_ value: CompiledTemplate...) -> Self {
+    public func start(_ value: View...) -> Self {
         return self.add( .start(value))
     }
 
@@ -936,7 +936,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func step(_ value: CompiledTemplate...) -> Self {
+    public func step(_ value: View...) -> Self {
         return self.add( .step(value))
     }
 
@@ -944,7 +944,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func style(_ value: CompiledTemplate...) -> Self {
+    public func style(_ value: View...) -> Self {
         return self.add( .style(value))
     }
 
@@ -952,7 +952,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func tabindex(_ value: CompiledTemplate...) -> Self {
+    public func tabindex(_ value: View...) -> Self {
         return self.add( .tabindex(value))
     }
 
@@ -960,7 +960,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func target(_ value: CompiledTemplate...) -> Self {
+    public func target(_ value: View...) -> Self {
         return self.add( .target(value))
     }
 
@@ -968,7 +968,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func title(_ value: CompiledTemplate...) -> Self {
+    public func title(_ value: View...) -> Self {
         return self.add( .title(value))
     }
 
@@ -976,7 +976,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func translate(_ value: CompiledTemplate...) -> Self {
+    public func translate(_ value: View...) -> Self {
         return self.add( .translate(value))
     }
 
@@ -984,7 +984,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func type(_ value: CompiledTemplate...) -> Self {
+    public func type(_ value: View...) -> Self {
         return self.add( .type(value))
     }
 
@@ -992,7 +992,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func usemap(_ value: CompiledTemplate...) -> Self {
+    public func usemap(_ value: View...) -> Self {
         return self.add( .usemap(value))
     }
 
@@ -1000,7 +1000,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func value(_ value: CompiledTemplate...) -> Self {
+    public func value(_ value: View...) -> Self {
         return self.add( .value(value))
     }
 
@@ -1008,7 +1008,7 @@ extension AttributableNode {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    public func wrap(_ value: CompiledTemplate...) -> Self {
+    public func wrap(_ value: View...) -> Self {
         return self.add( .wrap(value))
     }
 }

@@ -1,16 +1,16 @@
 
-extension HTML.ContentNode: CompiledTemplate {
+extension HTML.ContentNode: View {
 
     // View `BrewableFormula` documentation
-    public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(string: "<\(name)")
         try attributes.forEach {
             formula.add(string: " ")
-            try $0.brew(formula)
+            try $0.prerender(formula)
         }
-        try dynamicAttributes.brew(formula)
+        try dynamicAttributes.prerender(formula)
         formula.add(string: ">")
-        try content.brew(formula)
+        try content.prerender(formula)
         formula.add(string: "</\(name)>")
     }
 
@@ -31,7 +31,7 @@ extension HTML.ContentNode {
     ///
     /// - Parameter child: The child to set
     /// - Returns: A new node with the child added
-    public func child(_ child: CompiledTemplate...) -> HTML.ContentNode<Root> {
+    public func child(_ child: View...) -> HTML.ContentNode<Root> {
         return HTML.ContentNode(name: name, attributes: attributes, content: child)
     }
 }

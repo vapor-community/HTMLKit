@@ -1,5 +1,5 @@
 /// A struct that can be brewed
-public protocol BrewableFormula {
+public protocol Prerenderable {
     
     /// Brews a mappable object in to a formula
     ///
@@ -8,5 +8,5 @@ public protocol BrewableFormula {
     ///
     /// - Parameter formula: The formula to brew in to
     /// - Throws: If there occured some error
-    func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws
+    func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws
 }

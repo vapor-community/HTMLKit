@@ -1,5 +1,5 @@
 /// Makes the node renderable
-extension HTML.DataNode: CompiledTemplate {
+extension HTML.DataNode: View {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -7,13 +7,13 @@ extension HTML.DataNode: CompiledTemplate {
     }
 
     // View `BrewableFormula` documentation
-    public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(string: "<\(name)")
         try attributes.forEach {
             formula.add(string: " ")
-            try $0.brew(formula)
+            try $0.prerender(formula)
         }
-        try dynamicAttributes.brew(formula)
+        try dynamicAttributes.prerender(formula)
         formula.add(string: ">")
     }
 }
@@ -21,7 +21,7 @@ extension HTML.DataNode: CompiledTemplate {
 extension HTML.DataNode: AttributableNode, DynamicAttributable {
 
     // View `AttributableNode` documentation
-    public func add(_ attribute: HTML.AttributeNode) -> HTML.DataNode<Root> {
+    public func add(_ attribute: HTML.Attribute) -> HTML.DataNode<Root> {
         var attributes = self.attributes
         for (index, attr) in attributes.enumerated() {
             if attr.attribute == attribute.attribute {
@@ -37,7 +37,7 @@ extension HTML.DataNode: AttributableNode, DynamicAttributable {
     }
 
     // View `DynamicAttributable` documentation
-    public func addDynamic(_ attribute: HTML.AttributeNode, with condition: TemplateIF<Root>.Condition) -> HTML.DataNode<Root> {
+    public func addDynamic(_ attribute: HTML.Attribute, with condition: TemplateIF<Root>.Condition) -> HTML.DataNode<Root> {
         var attributes = self.attributes
         for (index, attr) in attributes.enumerated() {
             if attr.attribute == attribute.attribute {

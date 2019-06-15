@@ -5,61 +5,65 @@ import Vapor
 
 public protocol HTMLRenderable {
 
-    /// Renders a `ContextualTemplate` formula
-    ///
-    ///     try renderer.render(WelcomeView.self)
-    ///
-    /// - Parameters:
-    ///   - type: The view type to render
-    ///   - context: The needed context to render the view with
-    /// - Returns: Returns a rendered view in a raw `String`
-    /// - Throws: If the formula do not exists, or if the rendering process fails
-    func renderRaw<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> String
+//    /// Renders a `ContextualTemplate` formula
+//    ///
+//    ///     try renderer.render(WelcomeView.self)
+//    ///
+//    /// - Parameters:
+//    ///   - type: The view type to render
+//    ///   - context: The needed context to render the view with
+//    /// - Returns: Returns a rendered view in a raw `String`
+//    /// - Throws: If the formula do not exists, or if the rendering process fails
+//    func renderRaw<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> String
+//
+//    /// Renders a `StaticView` formula
+//    ///
+//    ///     try renderer.render(WelcomeView.self)
+//    ///
+//    /// - Parameter type: The view type to render
+//    /// - Returns: Returns a rendered view in a raw `String`
+//    /// - Throws: If the formula do not exists, or if the rendering process fails
+//    func renderRaw<T>(_ type: T.Type) throws -> String where T : StaticView
+//
+//    /// Renders a `ContextualTemplate` formula
+//    ///
+//    ///     try renderer.render(WelcomeView.self)
+//    ///
+//    /// - Parameters:
+//    ///   - type: The view type to render
+//    ///   - context: The needed context to render the view with
+//    /// - Returns: Returns a rendered view in a `HTTPResponse`
+//    /// - Throws: If the formula do not exists, or if the rendering process fails
+//    func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse
+//
+//    /// Renders a `StaticView` formula
+//    ///
+//    ///     try renderer.render(WelcomeView.self)
+//    ///
+//    /// - Parameter type: The view type to render
+//    /// - Returns: Returns a rendered view in a `HTTPResponse`
+//    /// - Throws: If the formula do not exists, or if the rendering process fails
+//    func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView
 
-    /// Renders a `StaticView` formula
-    ///
-    ///     try renderer.render(WelcomeView.self)
-    ///
-    /// - Parameter type: The view type to render
-    /// - Returns: Returns a rendered view in a raw `String`
-    /// - Throws: If the formula do not exists, or if the rendering process fails
-    func renderRaw<T>(_ type: T.Type) throws -> String where T : StaticView
+    func renderRaw<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> String
 
-    /// Renders a `ContextualTemplate` formula
-    ///
-    ///     try renderer.render(WelcomeView.self)
-    ///
-    /// - Parameters:
-    ///   - type: The view type to render
-    ///   - context: The needed context to render the view with
-    /// - Returns: Returns a rendered view in a `HTTPResponse`
-    /// - Throws: If the formula do not exists, or if the rendering process fails
-    func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse
+    func renderRaw<T: StaticView>(_ type: T.Type) throws -> String
 
-    /// Renders a `StaticView` formula
-    ///
-    ///     try renderer.render(WelcomeView.self)
-    ///
-    /// - Parameter type: The view type to render
-    /// - Returns: Returns a rendered view in a `HTTPResponse`
-    /// - Throws: If the formula do not exists, or if the rendering process fails
-    func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView
+    func render<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse
+
+    func render<T: StaticView>(_ type: T.Type) throws -> HTTPResponse
 }
 
 
 /// An extension that implements most of the helper functions
 extension HTMLRenderable {
 
-    public func renderRaw<T>(_ type: T.Type) throws -> String where T : StaticView {
-        return try renderRaw(type, with: .init())
-    }
-
-    public func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse {
+    public func render<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse {
         return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: renderRaw(type, with: context))
     }
 
     public func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView {
-        return try render(type, with: .init())
+        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: renderRaw(type))
     }
 }
 
@@ -121,23 +125,25 @@ public struct HTMLRenderer: HTMLRenderable {
     ///   - context: The needed context to render the view with
     /// - Returns: Returns a rendered view in a raw `String`
     /// - Throws: If the formula do not exists, or if the rendering process fails
-    public func renderRaw<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> String {
-        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T> else {
+//    public func renderRaw<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> String {
+//        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Context> else {
+//            throw Errors.unableToFindFormula
+//        }
+//        return try formula.render(with: context, lingo: lingo, locale: nil)
+//    }
+
+    public func renderRaw<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> String {
+        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Context> else {
             throw Errors.unableToFindFormula
         }
         return try formula.render(with: context, lingo: lingo, locale: nil)
     }
 
-    /// Brews a formula for later use
-    ///
-    ///     try renderer.add(template: WelcomeView.self)
-    ///
-    /// - Parameter type: The view type to brew
-    /// - Throws: If the brewing process fails for some reason
-    public mutating func add<T: ContextualTemplate>(template view: T) throws {
-        let formula = Formula(view: T.self, calendar: calendar, timeZone: timeZone)
-        try view.build().brew(formula)
-        formulaCache[String(reflecting: T.self)] = formula
+    public func renderRaw<T: StaticView>(_ type: T.Type) throws -> String {
+        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<Void> else {
+            throw Errors.unableToFindFormula
+        }
+        return try formula.render(with: (), lingo: lingo, locale: nil)
     }
 
     /// Brews a formula for later use
@@ -146,15 +152,39 @@ public struct HTMLRenderer: HTMLRenderable {
     ///
     /// - Parameter type: The view type to brew
     /// - Throws: If the brewing process fails for some reason
-    public mutating func add<T: LocalizedTemplate>(template view: T) throws {
-        let formula = Formula(view: T.self, calendar: calendar, timeZone: timeZone)
-        formula.localePath = T.localePath
-        guard formula.localePath != nil else {
-            throw Localize<T, NoContext>.Errors.missingLocalePath
-        }
-        try view.build().brew(formula)
+//    public mutating func add<T: ContextualTemplate>(template view: T) throws {
+//        let formula = Formula(context: T.Context.self, calendar: calendar, timeZone: timeZone)
+//        try view.build().prerender(formula)
+//        formulaCache[String(reflecting: T.self)] = formula
+//    }
+
+    public mutating func add<T: TemplateView>(view: T) throws {
+        let formula = Formula(context: T.Context.self)
+        try view.body.prerender(formula)
         formulaCache[String(reflecting: T.self)] = formula
     }
+
+    public mutating func add<T: StaticView>(view: T) throws {
+        let formula = Formula(context: Void.self)
+        try view.body.prerender(formula)
+        formulaCache[String(reflecting: T.self)] = formula
+    }
+
+//    /// Brews a formula for later use
+//    ///
+//    ///     try renderer.add(template: WelcomeView.self)
+//    ///
+//    /// - Parameter type: The view type to brew
+//    /// - Throws: If the brewing process fails for some reason
+//    public mutating func add<T: LocalizedTemplate>(template view: T) throws {
+//        let formula = Formula(context: T.self, calendar: calendar, timeZone: timeZone)
+//        formula.localePath = T
+////        guard formula.localePath != nil else {
+////            throw Localize<T, NoContext>.Errors.missingLocalePath
+////        }
+//        try view.build().prerender(formula)
+//        formulaCache[String(reflecting: T.self)] = formula
+//    }
 
     /// Registers a localization directory to the renderer
     ///
@@ -172,7 +202,7 @@ public struct HTMLRenderer: HTMLRenderable {
 
     /// Manage the differnet contextes
     /// This will remove the generic type in the render call
-    public struct ContextManager<Context> {
+    public class ContextManager<Context> {
 
         let rootContext: Context
 
@@ -185,18 +215,25 @@ public struct HTMLRenderer: HTMLRenderable {
         /// The path to the selected locale to use in localization
         var locale: String?
 
+        init(rootContext: Context, lingo: Lingo?, locale: String?) {
+            self.rootContext = rootContext
+            self.contextPaths = [:]
+            self.lingo = lingo
+            self.locale = locale
+        }
+
         /// Return the `Context` for a `ContextualTemplate`
         ///
         /// - Returns: The `Context`
-        func value<T>(for type: T.Type) throws -> T.Context where T : ContextualTemplate {
-            if let context = rootContext as? T.Context {
-                return context
-            } else if let path = contextPaths[String(reflecting: T.Context.self)] as? KeyPath<Context, T.Context> {
-                return rootContext[keyPath: path]
-            } else {
-                throw Errors.unableToRetriveValue
-            }
-        }
+//        func value<T>(for type: T.Type) throws -> T.Context where T : ContextualTemplate {
+//            if let context = rootContext as? T.Context {
+//                return context
+//            } else if let path = contextPaths[String(reflecting: T.Context.self)] as? KeyPath<Context, T.Context> {
+//                return rootContext[keyPath: path]
+//            } else {
+//                throw Errors.unableToRetriveValue
+//            }
+//        }
 
         /// The value for a `KeyPath`
         ///
@@ -211,21 +248,39 @@ public struct HTMLRenderer: HTMLRenderable {
                 throw Errors.unableToRetriveValue
             }
         }
+
+
+        func value<Root, Value>(for variable: ContextVariable<Root, Value>) throws -> Value {
+            if variable.rootId.isEmpty,
+                let contextVariable = variable as? ContextVariable<Context, Value> {
+                return rootContext[keyPath: contextVariable.root]
+            } else if let rootPath = contextPaths[variable.rootId] as? KeyPath<Context, Root> {
+                let finalPath = rootPath.appending(path: variable.root)
+                return rootContext[keyPath: finalPath]
+            } else {
+                throw Errors.unableToRetriveValue
+            }
+        }
+
+        func prepend<Root, Value>(_ variable: ContextVariable<Root, Value>, for rootId: String) {
+            if let rootPath = contextPaths[variable.rootId] as? KeyPath<Context, Root> {
+                contextPaths[rootId] = rootPath.appending(path: variable.root)
+            } else {
+                contextPaths[rootId] = variable.root
+            }
+        }
     }
 
 
     /// A formula for a view
     /// This contains the different parts to pice to gether, in order to increase the performance
-    public class Formula<T> where T : ContextualTemplate {
-
-        /// The different paths from the orignial context
-        private var contextPaths: [String : AnyKeyPath]
+    public class Formula<T> {
 
         /// The different pices or ingredients needed to render the view
-        private var ingredient: [CompiledTemplate]
+        private var ingredient: [View]
 
         /// The path to the selected locale to use in localization
-        var localePath: KeyPath<T.Context, String>?
+        var localePath: KeyPath<T, String>?
 
         /// The calendar to use when rendering dates
         var calendar: Calendar
@@ -238,55 +293,32 @@ public struct HTMLRenderer: HTMLRenderable {
         /// - Parameters:
         ///   - view: The view type
         ///   - contextPaths: The contextPaths. *Is empty by default*
-        init(view: T.Type, calendar: Calendar, timeZone: TimeZone, contextPaths: [String : AnyKeyPath] = [:]) {
-            self.contextPaths = contextPaths
+        init(context: T.Type, calendar: Calendar = .current, timeZone: TimeZone = .current) {
             ingredient = []
             self.calendar = calendar
             self.timeZone = timeZone
         }
 
-        /// Registers a key-path for later referancing
-        ///
-        /// - Note:
-        ///     This will be needed when referencing a variable in a eembedded `ViewTemplate`.
-        ///     In the `StaticTemplate` and `Template` this is not needed since the embedded views can not referance *higher* level variables.
-        ///     This may be optimiced some more later.
-        ///
-        /// - Parameters:
-        ///   - from: The root type (Swift complains if this is not in the function body)
-        ///   - to: The value type (Swift complains if this is not in the function body)
-        ///   - keyPath: The key-path to add
-        public func register<Root, Value>(keyPath: KeyPath<Root, Value>) throws {
-            if Root.self == T.Context.self {
-                contextPaths[String(reflecting: Value.self)] = keyPath
-            } else if let joinPath = contextPaths[String(reflecting: Root.self)] {
-                contextPaths[String(reflecting: Value.self)] = joinPath.appending(path: keyPath)
-            } else {
-                print("🚨 ERROR: when pre-rendering: Unable to register: ", keyPath)
-                throw Errors.unableToRegisterKeyPath
-            }
-        }
-
         /// Adds a variable to the formula
         ///
         /// - Parameter variable: The variable to add
-        public func add<Root, Value>(variable: TemplateVariable<Root, Value>) throws {
-            if Root.Context.self == T.Context.self {
-                ingredient.append(variable)
-            } else {
-                switch variable.referance {
-                case .keyPath(let keyPath):
-                    if let joinPath = contextPaths[String(reflecting: Root.Context.self)] as? KeyPath<T.Context, Root.Context> {
-                        let newVariable = TemplateVariable<T, Value>(referance: .keyPath(joinPath.appending(path: keyPath)), escaping: variable.escaping)
-                        ingredient.append(newVariable)
-                    } else {
-                        print("🚨 ERROR: when pre-rendering: \(String(reflecting: T.self))\n\n-- Unable to add variable from \(String(reflecting: Root.self)), to \(String(reflecting: Value.self))")
-                        throw Errors.unableToAddVariable
-                    }
-                default: print("Trying to register a self varaiable")
-                }
-            }
-        }
+//        public func add<Root, Value>(variable: TemplateVariable<Root, Value>) throws {
+//            if Root.Context.self == T.Context.self {
+//                ingredient.append(variable)
+//            } else {
+//                switch variable.referance {
+//                case .keyPath(let keyPath):
+//                    if let joinPath = contextPaths[String(reflecting: Root.Context.self)] as? KeyPath<T.Context, Root.Context> {
+//                        let newVariable = TemplateVariable<T, Value>(referance: .keyPath(joinPath.appending(path: keyPath)), escaping: variable.escaping)
+//                        ingredient.append(newVariable)
+//                    } else {
+//                        print("🚨 ERROR: when pre-rendering: \(String(reflecting: T.self))\n\n-- Unable to add variable from \(String(reflecting: Root.self)), to \(String(reflecting: Value.self))")
+//                        throw Errors.unableToAddVariable
+//                    }
+//                default: print("Trying to register a self varaiable")
+//                }
+//            }
+//        }
 
         /// Adds a static string to the formula
         ///
@@ -303,7 +335,7 @@ public struct HTMLRenderer: HTMLRenderable {
         /// Adds a generic `Mappable` object
         ///
         /// - Parameter mappable: The `Mappable` to add
-        public func add(mappable: CompiledTemplate) {
+        public func add(mappable: View) {
             ingredient.append(mappable)
         }
 
@@ -314,12 +346,12 @@ public struct HTMLRenderer: HTMLRenderable {
         /// - lingo: The lingo to use when rendering
         /// - Returns: A rendered formula
         /// - Throws: If some of the formula fails, for some reason
-        func render(with context: T.Context, lingo: Lingo?, locale: String?) throws -> String {
+        func render(with context: T, lingo: Lingo?, locale: String? = nil) throws -> String {
             var usedLocale = locale
             if let localePath = localePath {
                 usedLocale = context[keyPath: localePath]
             }
-            let contextManager = ContextManager(rootContext: context, contextPaths: contextPaths, lingo: lingo, locale: usedLocale)
+            let contextManager = ContextManager(rootContext: context, lingo: lingo, locale: usedLocale)
             return try ingredient.reduce("") { try $0 + $1.render(with: contextManager) }
         }
 
