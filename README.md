@@ -163,12 +163,15 @@ struct SomeView: TemplateView {
     
     // New Code
     var body: View {
+        
         BaseView(title: "Welcome") {
-            P {
-                "Hello " + context.name + "!"
-            }
+            
+            P { "Hello " + context.name + "!" }
+            
             IF(context.values.count > 0) {
+                
                 ForEach(context.values) { value in
+                    
                     Div {
                         P { value.capalized }
                     }
@@ -176,6 +179,7 @@ struct SomeView: TemplateView {
             }.else {
                 P { "There are no values!" }
             }
+            
             Footer {
                 "This is a footer"
             }.class("always")
@@ -183,14 +187,15 @@ struct SomeView: TemplateView {
     }
 
     // Old code
-    func build() -> CompiledTemplate {
+    func build() -> View {
+        
         return
             BaseView(
                 title: "Welcome"
                 body:
-                    p.child(
-                        "Hello ", variable(\.name), "!"
-                    ),
+                    
+                    p.child( "Hello ", variable(\.name), "!" ),
+                    
                     renderIf(
                         \.values.count > 0,
                         
@@ -199,12 +204,10 @@ struct SomeView: TemplateView {
                             render: SimpleView()
                         )
                     ).else(
-                        p.child(
-                            "There are no values!"
-                        )
+                        p.child( "There are no values!" )
                     ),
-                    footer.class("always")
-                        .if(\.name.isEmpty, add: .class("empty-nav")).child(
+                    
+                    footer.class("always").child(
                             "This is a footer"
                     )
             )
