@@ -67,30 +67,7 @@ extension ContextVariable: View where Value: View {
     }
 }
 
-public protocol StaticView : View {
-
-    var body: View { get }
-}
-
-extension StaticView {
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        try body.render(with: manager)
-    }
-
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
-        try body.prerender(formula)
-    }
-}
-
-public protocol TemplateView : StaticView {
-
-    associatedtype Context
-
-    var context: ContextVariable<Context> { get }
-
-    var body: View { get }
-}
-
+/// A struct making it possible to have a for each loop in the template
 public struct ForEach<Value> {
 
     public let context: ContextVariable<[Value]>
@@ -99,7 +76,7 @@ public struct ForEach<Value> {
 
     let localFormula: HTMLRenderer.Formula<Value>
 
-    public init(context: ContextVariable<[Value]>, @HTMLBuilder content: (ContextVariable<Value>) -> View) {
+    public init(in context: ContextVariable<[Value]>, @HTMLBuilder content: (ContextVariable<Value>) -> View) {
         self.context = context
         self.content = content(.root(Value.self, rootId: context.pathId + "-loop"))
         localFormula = .init(context: Value.self)
@@ -122,6 +99,31 @@ extension ForEach: View {
         }
         return rendering
     }
+}
+
+
+public protocol StaticView : View {
+
+    var body: View { get }
+}
+
+extension StaticView {
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try body.render(with: manager)
+    }
+
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        try body.prerender(formula)
+    }
+}
+
+public protocol TemplateView : StaticView {
+
+    associatedtype Context
+
+    var context: ContextVariable<Context> { get }
+
+    var body: View { get }
 }
 
 //

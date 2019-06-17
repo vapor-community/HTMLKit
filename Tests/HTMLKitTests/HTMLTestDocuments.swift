@@ -104,7 +104,7 @@ struct ForEachView: TemplateView {
 
     var body: View {
         Div {
-            ForEach(context: context.array) { text in
+            ForEach(in: context.array) { text in
                 P { text }
             }
         }.id("array")
@@ -375,7 +375,7 @@ struct SelfLoopingView: TemplateView {
 
     var body: View {
         Div {
-            ForEach(context: context) { data in
+            ForEach(in: context) { data in
                 StaticEmbedView(context: data)
             }
         }.class("list")
