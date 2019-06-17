@@ -6,9 +6,6 @@ protocol HTMLTestable {
     static var expextedOutput: String { get }
 }
 
-typealias RootContext<Root> = ContextVariable<Root, Root>
-typealias EmbedContext<Root, Value> = ContextVariable<Root, Value>
-
 
 struct SimpleData {
     let string: String
@@ -28,7 +25,7 @@ struct SimpleView: StaticView, HTMLTestable {
 
 struct StaticEmbedView: TemplateView {
 
-    var context: RootContext<SimpleData> = .root(SimpleData.self)
+    var context: ContextVariable<SimpleData> = .root()
 
     var body: View {
         Div {
@@ -45,16 +42,16 @@ struct StaticEmbedView: TemplateView {
     }
 }
 
-struct BaseView<Root>: TemplateView {
+struct BaseView: TemplateView {
 
     struct Context {
         let title: String
     }
 
-    let context: EmbedContext<Root, Context>
+    let context: ContextVariable<Context>
     let content: View
 
-    init(context: EmbedContext<Root, Context>, @HTMLBuilder content: () -> View) {
+    init(context: ContextVariable<Context>, @HTMLBuilder content: () -> View) {
         self.context = context
         self.content = content()
     }
@@ -81,91 +78,21 @@ struct SomeView: TemplateView {
 
     struct Context {
         let name: String
-        let baseContext: BaseView<Context>.Context
+        let baseContext: BaseView.Context
 
         static func contentWith(name: String, title: String) -> Context {
             return .init(name: name, baseContext: .init(title: title))
         }
     }
 
-    var context: RootContext<Context> = .root(Context.self)
+    var context: ContextVariable<Context> = .root()
 
     var body: View {
         BaseView(context: context.baseContext) {
             P { "Hello " + context.name + "!" }
         }
     }
-
-//    func build() -> View {
-//        return
-//            embed(
-//                BaseView(
-//                    body: p.child("Hello ", variable(\.name), "!")
-//                ),
-//                withPath: \.baseContext)
-//    }
 }
-
-
-//
-//struct BaseView: ContextualTemplate {
-//
-//    struct Context {
-//        let title: String
-//    }
-//
-//    let body: View
-//
-//    func build() -> View {
-//        return
-//            html.child(
-//                head.child(
-//                    title.child( variable(\.title)),
-//                    link.href("some url").rel("stylesheet"),
-//                    meta.name("viewport").content("width=device-width, initial-scale=1.0")
-//                ),
-//                body.child(
-//                    body
-//                ),
-//
-//                // Used to check for an error ocurring when embedding two different `ContextualTemplate`s and a `localFormula` is involved
-//                renderIf(\.title == "May Cause an error when embedding multiple views", div)
-//        )
-//    }
-//}
-//
-//struct StringView: ContextualTemplate {
-//
-//    struct Context {
-//        let string: String
-//    }
-//
-//    func build() -> View {
-//        return p.child( variable(\.string))
-//    }
-//}
-//
-//struct SomeView: ContextualTemplate {
-//
-//    struct Context {
-//        let name: String
-//        let baseContext: BaseView.Context
-//
-//        static func contentWith(name: String, title: String) -> Context {
-//            return .init(name: name, baseContext: .init(title: title))
-//        }
-//    }
-//
-//    func build() -> View {
-//        return
-//            embed(
-//                BaseView(
-//                    body: p.child("Hello ", variable(\.name), "!")
-//                ),
-//                withPath: \.baseContext)
-//    }
-//}
-//
 
 struct ForEachView: TemplateView {
 
@@ -173,7 +100,7 @@ struct ForEachView: TemplateView {
         let array: [String]
     }
 
-    let context: ContextVariable<Context, Context> = .root(Context.self)
+    let context: ContextVariable<Context> = .root()
 
     var body: View {
         Div {
@@ -184,49 +111,47 @@ struct ForEachView: TemplateView {
     }
 }
 
-//struct IFView: ContextualTemplate {
-//
-//    struct Context {
-//        let name: String
-//        let age: Int
-//        let nullable: String?
-//        let bool: Bool
-//    }
-//
-//    func build() -> View {
-//        return
-//            div.child(
-//                renderIf(
-//                    \.name == "Mats",
-//
-//                    p.child(
-//                        "My name is: " + variable(\.name) + "!"
-//                    )
-//                ),
-//
-//                renderIf(\.age < 20,
-//                    "I am a child"
-//                ).elseIf(\.age > 20,
-//                    "I am older"
-//                ).else(
-//                    "I am growing"
-//                ),
-//
-//                renderIf(\.nullable != nil,
-//                    b.child( variable(\.nullable))
-//                ).elseIf(\.bool,
-//                    p.child("Simple bool")
-//                ),
-//
-//                renderIf(
-//                    \.nullable == "Some" && \.name == "Per",
-//
-//                    div.child("And")
-//                )
-//
-//        )
-//    }
-//}
+struct IFView: TemplateView {
+
+    struct Context {
+        let name: String
+        let age: Int
+        let nullable: String?
+        let bool: Bool
+    }
+
+    var context: ContextVariable<Context> = .root()
+
+    var body: View {
+        Div {
+            IF(context.name == "Mats") {
+                P {
+                    "My name is: " + context.name + "!"
+                }
+            }
+
+            IF(context.age < 20) {
+                "I am a child"
+            }.elseIf(context.age > 20) {
+                "I am older"
+            }.else {
+                "I am growing"
+            }
+
+            IF(context.nullable != nil) {
+                B { context.nullable }
+            }.elseIf(context.bool) {
+                P { "Simple bool" }
+            }
+
+            IF(context.nullable == "Some" && context.name == "Per") {
+                Div {
+                    "And"
+                }
+            }
+        }
+    }
+}
 //
 //class FormInput: StaticView {
 //
@@ -294,9 +219,29 @@ struct ForEachView: TemplateView {
 //    }
 //}
 //
+struct ChainedEqualAttributes : StaticView {
+    var body: View {
+        Div()
+            .class("foo")
+            .class("bar")
+            .id("id")
+    }
+}
+
+struct ChainedEqualAttributesDataNode : StaticView {
+    var body: View {
+        Img()
+            .class("foo")
+            .class("bar")
+            .id("id")
+//            .margin(.bottom, amount: 3, for: .medium)
+    }
+}
+
+
 struct VariableView: TemplateView {
 
-    let context: RootContext<String> = .root(String.self)
+    var context: ContextVariable<String> = .root()
 
     var body: View {
         Div {
@@ -306,32 +251,96 @@ struct VariableView: TemplateView {
     }
 }
 
-//struct MultipleContextualEmbed: ContextualTemplate {
-//
-//    struct Context {
-//        let base: BaseView.Context
-//        let variable: VariableView.Context
-//
-//        init(title: String, string: String) {
-//            base = .init(title: title)
-//            variable = .init(string: string)
-//        }
-//    }
-//
-//    func build() -> View {
-//        return
-//            embed(
-//                BaseView(
-//                    body: [
-//                        span.child("Some text"),
-//                        embed(VariableView(),   withPath: \.variable),
-//                        embed(UnsafeVariable(), withPath: \.variable)
-//                    ]),
-//                withPath: \.base)
-//
-//    }
-//}
-//
+struct MultipleContextualEmbed : TemplateView {
+
+    struct Context {
+        let base: BaseView.Context
+        let variable: String
+
+        init(title: String, string: String) {
+            base = .init(title: title)
+            variable = string
+        }
+    }
+
+    var context: ContextVariable<Context> = .root()
+
+    var body: View {
+        BaseView(context: context.base) { () -> View in
+            Span { "Some text" }
+            VariableView(context: context.variable)
+            UnsafeVariable(context: context)
+        }
+    }
+}
+
+public enum Direction : String {
+    case top
+    case bottom
+    case left
+    case right
+
+    var boostrapValue: String {
+        switch self {
+        case .bottom:   return "b"
+        case .top:      return "t"
+        case .left:     return "l"
+        case .right:    return "r"
+        }
+    }
+}
+
+public enum BootstrapSizing : String {
+    case extraLarge     = "-xl"
+    case large          = "-lg"
+    case medium         = "-md"
+    case small          = "-sm"
+    case all            = ""
+}
+
+extension Comparable {
+    public func clamped(to limits: ClosedRange<Self>) -> Self {
+        return min(max(self, limits.lowerBound), limits.upperBound)
+    }
+}
+
+extension Strideable where Stride: SignedInteger {
+    public func clamped(to limits: CountableClosedRange<Self>) -> Self {
+        return min(max(self, limits.lowerBound), limits.upperBound)
+    }
+}
+
+extension AttributeNode {
+    public func margin(_ direction: Direction, amount: Int, for size: BootstrapSizing = .all) -> Self {
+        self.class("m\(direction.boostrapValue)\(size.rawValue)-\(amount.clamped(to: 0...5))")
+    }
+}
+
+struct BootstrapAlert : StaticView, AttributeNode {
+
+    var attributes: [HTML.Attribute]
+
+    let content: View
+
+    init(attributes: [HTML.Attribute] = [], @HTMLBuilder content: () -> View) {
+        self.attributes = attributes
+        self.content = content()
+    }
+
+    var body: View {
+        Div {
+            content
+        }
+            .class("alert alert-primary")
+            .role("alert")
+            .add(attributes: attributes)
+    }
+
+    func copy(with attributes: [HTML.Attribute]) -> BootstrapAlert {
+        .init(attributes: attributes, content: { content })
+    }
+}
+
 //struct DynamicAttribute: ContextualTemplate {
 //
 //    struct Context {
@@ -349,47 +358,45 @@ struct VariableView: TemplateView {
 //    }
 //}
 //
-//struct SelfContextPassing: ContextualTemplate {
-//
-//    typealias Context = VariableView.Context
-//
-//    func build() -> View {
-//        return div.child(
-//            embed(
-//                VariableView()
-//            )
-//        )
-//    }
-//}
-//
-//
-//struct SelfLoopingView: ContextualTemplate {
-//
-//    typealias Context = [SimpleData]
-//
-//    func build() -> View {
-//        return div.class("list").child(
-//            forEach(render: StaticEmbedView())
-//        )
-//    }
-//}
-//
-//struct UnsafeVariable: ContextualTemplate {
-//
-//    typealias Context = VariableView.Context
-//
-//    func build() -> View {
-//        return div.child(
-//            p.child(
-//                variable(\.string)
-//            ),
-//            p.child(
-//               unsafeVariable(in: MultipleContextualEmbed.self, for: \.base.title)
-//            )
-//        )
-//    }
-//}
-//
+struct SelfContextPassing : TemplateView {
+
+    var context: ContextVariable<VariableView.Context> = .root()
+
+    var body: View {
+        Div {
+            VariableView(context: context)
+        }
+    }
+}
+
+struct SelfLoopingView: TemplateView {
+
+    var context: ContextVariable<[SimpleData]> = .root()
+
+    var body: View {
+        Div {
+            ForEach(context: context) { data in
+                StaticEmbedView(context: data)
+            }
+        }.class("list")
+    }
+}
+
+struct UnsafeVariable : TemplateView {
+
+    var context: ContextVariable<MultipleContextualEmbed.Context>
+
+    var body: View {
+        Div {
+            P {
+                context.variable
+            }
+            P {
+                context.base.title
+            }
+        }
+    }
+}
 
 struct MarkdownView: TemplateView {
 
@@ -398,7 +405,7 @@ struct MarkdownView: TemplateView {
         let description: String
     }
 
-    let context: RootContext<Context> = .root(Context.self)
+    let context: ContextVariable<Context> = .root(Context.self)
 
     var body: View {
         Div {
@@ -410,23 +417,7 @@ struct MarkdownView: TemplateView {
         }
     }
 }
-//struct MarkdownView: ContextualTemplate {
-//
-//    struct Context {
-//        let title: String
-//        let description: String
-//    }
-//
-//    func build() -> View {
-//        return div.child(
-//            markdown(
-//                "# Title: ", variable(\.title),
-//                "\n## Description here:\n", variable(\.description)
-//            )
-//        )
-//    }
-//}
-//
+
 //struct LocalizedView: LocalizedTemplate {
 //
 //    static let localePath: KeyPath<LocalizedView.Context, String>? = \.locale
@@ -483,6 +474,30 @@ struct MarkdownView: TemplateView {
 //        )
 //    }
 //}
+
+struct DateView : TemplateView {
+
+    var context: ContextVariable<Date> = .root()
+
+    var body: View {
+        Div {
+            P { context.style() }
+            P { context.formating(string: "MM/dd/yyyy") }
+        }
+    }
+}
+
+struct OptionalDateView : TemplateView {
+
+    var context: ContextVariable<Date?> = .root()
+
+    var body: View {
+        Div {
+            P { context.style() }
+            P { context.formating(string: "MM/dd/yyyy") }
+        }
+    }
+}
 //
 //
 //struct LocalizedDateView: LocalizedTemplate {

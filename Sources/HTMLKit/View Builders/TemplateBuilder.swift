@@ -42,7 +42,7 @@ public struct Div: ContentNode {
         content = buildere()
     }
 
-    public init(attributes: [HTML.Attribute], content: View) {
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -60,7 +60,43 @@ public struct P: ContentNode {
         content = buildere()
     }
 
-    public init(attributes: [HTML.Attribute], content: View) {
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct B: ContentNode {
+
+    public var name: String { "b" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct I: ContentNode {
+
+    public var name: String { "i" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -78,7 +114,25 @@ public struct Small: ContentNode {
         content = buildere()
     }
 
-    public init(attributes: [HTML.Attribute], content: View) {
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct Span: ContentNode {
+
+    public var name: String { "span" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -96,7 +150,7 @@ public struct HTMLNode: ContentNode {
         content = buildere()
     }
 
-    public init(attributes: [HTML.Attribute], content: View) {
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -114,7 +168,7 @@ public struct Body: ContentNode {
         content = buildere()
     }
 
-    public init(attributes: [HTML.Attribute], content: View) {
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -132,7 +186,7 @@ public struct Head: ContentNode {
         content = buildere()
     }
 
-    public init(attributes: [HTML.Attribute], content: View) {
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -150,15 +204,29 @@ public struct Title: ContentNode {
         content = buildere()
     }
 
-    public init(attributes: [HTML.Attribute], content: View) {
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
         self.content = content
         self.attributes = attributes
     }
 }
 
+
+
+
 public struct Link: DataNode {
 
     public var name: String { "link" }
+
+    public var attributes: [HTML.Attribute]
+
+    public init(attributes: [HTML.Attribute] = []) {
+        self.attributes = attributes
+    }
+}
+
+public struct Img: DataNode {
+
+    public var name: String { "img" }
 
     public var attributes: [HTML.Attribute]
 

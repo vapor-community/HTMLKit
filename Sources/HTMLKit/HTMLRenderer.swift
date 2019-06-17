@@ -250,21 +250,22 @@ public struct HTMLRenderer: HTMLRenderable {
         }
 
 
-        func value<Root, Value>(for variable: ContextVariable<Root, Value>) throws -> Value {
+        func value<Value>(for variable: ContextVariable<Value>) throws -> Value {
             if variable.rootId.isEmpty,
-                let contextVariable = variable as? ContextVariable<Context, Value> {
-                return rootContext[keyPath: contextVariable.root]
-            } else if let rootPath = contextPaths[variable.rootId] as? KeyPath<Context, Root> {
-                let finalPath = rootPath.appending(path: variable.root)
+                let path = variable.root as? KeyPath<Context, Value> {
+                return rootContext[keyPath: path]
+            } else if let rootPath = contextPaths[variable.rootId],
+                let finalPath = rootPath.appending(path: variable.root) as? KeyPath<Context, Value> {
                 return rootContext[keyPath: finalPath]
             } else {
                 throw Errors.unableToRetriveValue
             }
         }
 
-        func prepend<Root, Value>(_ variable: ContextVariable<Root, Value>, for rootId: String) {
-            if let rootPath = contextPaths[variable.rootId] as? KeyPath<Context, Root> {
-                contextPaths[rootId] = rootPath.appending(path: variable.root)
+        func prepend<Value>(_ variable: ContextVariable<Value>, for rootId: String) {
+            if let rootPath = contextPaths[variable.rootId],
+                let path = rootPath.appending(path: variable.root) as? KeyPath<Context, Value> {
+                contextPaths[rootId] = path
             } else {
                 contextPaths[rootId] = variable.root
             }

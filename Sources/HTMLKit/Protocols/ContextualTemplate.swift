@@ -1,38 +1,44 @@
 
 @dynamicMemberLookup
-public class ContextVariable<Root, Value> {
+public class ContextVariable<Value> {
 
     let pathId: String
     let rootId: String
 
-    let root: KeyPath<Root, Value>
+    let root: AnyKeyPath
 
     private let escaping: EscapingOption
 
-    init(value: KeyPath<Root, Value>, id: String, rootId: String = "", escaping: EscapingOption = .safeHTML) {
+    init(value: AnyKeyPath, id: String, rootId: String = "", escaping: EscapingOption = .safeHTML) {
         self.root = value
         self.pathId = id
         self.rootId = rootId
         self.escaping = escaping
     }
 
-    public subscript<Subject>(dynamicMember keyPath: KeyPath<Value, Subject>) -> ContextVariable<Root, Subject> {
-        return ContextVariable<Root, Subject>(value: root.appending(path: keyPath), id: pathId + "-" + String(reflecting: Subject.self))
+    public subscript<Subject>(dynamicMember keyPath: KeyPath<Value, Subject>) -> ContextVariable<Subject> {
+
+        guard let newPath = root.appending(path: keyPath) else {
+            fatalError("Unable to create new path")
+        }
+        return ContextVariable<Subject>(value: newPath, id: pathId + "-" + String(reflecting: Subject.self), rootId: rootId)
     }
 
-    public func escaping(_ option: EscapingOption) -> ContextVariable<Root, Value> {
-        .init(value: root, id: pathId, escaping: option)
+    public func escaping(_ option: EscapingOption) -> ContextVariable<Value> {
+        .init(value: root, id: pathId, rootId: rootId, escaping: option)
     }
 
-    func append<V>(_ context: ContextVariable<Value, V>) -> ContextVariable<Root, V> {
-        let path = root.appending(path: context.root)
-        return .init(value: path, id: pathId + "-" + context.pathId, escaping: escaping)
+    func append<V>(_ context: ContextVariable<V>) throws -> ContextVariable<V> {
+        guard let path = root.appending(path: context.root) else {
+            fatalError("Error appending ContextVariable")
+        }
+        return .init(value: path, id: pathId + "-" + context.pathId, rootId: rootId, escaping: escaping)
     }
 }
 
 extension ContextVariable {
-    public static func root<T>(_ value: T.Type, rootId: String = "") -> ContextVariable<T, T> {
-        ContextVariable<T, T>(value: \T.self, id: String(reflecting: T.self), rootId: rootId)
+    public static func root<T>(_ value: T.Type = T.self, rootId: String = "") -> ContextVariable<T> {
+        ContextVariable<T>(value: \T.self, id: rootId + String(reflecting: T.self), rootId: rootId)
     }
 }
 
@@ -79,24 +85,23 @@ extension StaticView {
 public protocol TemplateView : StaticView {
 
     associatedtype Context
-    associatedtype Root
 
-    var context: ContextVariable<Root, Context> { get }
+    var context: ContextVariable<Context> { get }
 
     var body: View { get }
 }
 
-public struct ForEach<Root, Value> {
+public struct ForEach<Value> {
 
-    public let context: ContextVariable<Root, [Value]>
+    public let context: ContextVariable<[Value]>
 
     public let content: View
 
     let localFormula: HTMLRenderer.Formula<Value>
 
-    public init(context: ContextVariable<Root, [Value]>, @HTMLBuilder content: (ContextVariable<Value, Value>) -> View) {
+    public init(context: ContextVariable<[Value]>, @HTMLBuilder content: (ContextVariable<Value>) -> View) {
         self.context = context
-        self.content = content(.root(Value.self, rootId: context.pathId))
+        self.content = content(.root(Value.self, rootId: context.pathId + "-loop"))
         localFormula = .init(context: Value.self)
     }
 }
@@ -112,7 +117,7 @@ extension ForEach: View {
         let arrayCount = try manager.value(for: context).count
         var rendering = ""
         for index in 0..<arrayCount {
-            manager.prepend(context[index], for: context.pathId)
+            manager.prepend(context[index], for: context.pathId + "-loop")
             rendering += try localFormula.render(with: manager)
         }
         return rendering

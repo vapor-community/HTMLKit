@@ -72,7 +72,7 @@ So let's render a simple template that needs one `String` value and will place t
 struct SimpleView: TemplateView {
 
     // Defining the context type with generics
-    let context: RootContext<String> = .root(String.self) 
+    let context: ContextVariable<String> = .root() 
 
     var body: View {
         Div {
@@ -159,7 +159,7 @@ struct SomeView: TemplateView {
     }
     
     // Defining the context type with generics
-    let context: RootContext<Context> = .root(Context.self)
+    let context: ContextVariable<Context> = .root()
     
     // New Code
     var body: View {

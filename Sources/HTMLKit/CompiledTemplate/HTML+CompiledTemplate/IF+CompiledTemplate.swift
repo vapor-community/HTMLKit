@@ -39,57 +39,57 @@ extension IF: View {
         }
     }
 
-//    /// Add an else if condition
-//    ///
-//    /// - Parameters:
-//    ///   - condition: The conditino to be evaluated
-//    ///   - render: The view to render if true
-//    /// - Returns: returns a modified if statment
-//    public func elseIf(_ condition: Condition, _ render: View...) -> IF<Root> {
-//        condition.view = render
-//        conditions.append(condition)
-//        return self
-//    }
-//
-//    /// Add an else if condition
-//    ///
-//    /// - Parameters:
-//    ///   - path: The path to evaluate
-//    ///   - render: The view to render if true
-//    /// - Returns: returns a modified if statment
-//    public func elseIf(_ path: KeyPath<Root, Bool>, _ render: View...) -> IF<Root> {
-//        let condition = Condition(condition: BoolCondition<Root>(path: path))
-//        condition.view = render
-//        conditions.append(condition)
-//        return self
-//    }
-//
-//    /// Add an else if condition
-//    ///
-//    /// - Parameters:
-//    ///   - path: The path to evaluate
-//    ///   - render: The view to render if true
-//    /// - Returns: returns a modified if statment
-//    public func elseIf<Value>(isNil path: KeyPath<Root.Context, Value?>, _ render: View...) -> IF<Root> {
-//        let condition = Condition(condition: IsNullCondition<Root.Context, Value>(path: path))
-//        condition.view = render
-//        conditions.append(condition)
-//        return self
-//    }
-//
-//    /// Add an else if condition
-//    ///
-//    /// - Parameters:
-//    ///   - path: The path to evaluate
-//    ///   - render: The view to render if true
-//    /// - Returns: returns a modified if statment
-//    public func elseIf<Value>(isNotNil path: KeyPath<Root.Context, Value?>, _ render: View...) -> IF<Root> {
-//        let condition = Condition(condition: NotNullCondition<Root.Context, Value>(path: path))
-//        condition.view = render
-//        conditions.append(condition)
-//        return self
-//    }
-//
+    /// Add an else if condition
+    ///
+    /// - Parameters:
+    ///   - condition: The conditino to be evaluated
+    ///   - render: The view to render if true
+    /// - Returns: returns a modified if statment
+    public func elseIf(_ condition: Condition, @HTMLBuilder render: () -> View) -> IF {
+        condition.view = render()
+        conditions.append(condition)
+        return self
+    }
+
+    /// Add an else if condition
+    ///
+    /// - Parameters:
+    ///   - path: The path to evaluate
+    ///   - render: The view to render if true
+    /// - Returns: returns a modified if statment
+    public func elseIf(_ path: ContextVariable<Bool>, @HTMLBuilder render: () -> View) -> IF {
+        let condition = Condition(condition: BoolCondition(path: path))
+        condition.view = render()
+        conditions.append(condition)
+        return self
+    }
+
+    /// Add an else if condition
+    ///
+    /// - Parameters:
+    ///   - path: The path to evaluate
+    ///   - render: The view to render if true
+    /// - Returns: returns a modified if statment
+    public func elseIf<Value>(isNil path: ContextVariable<Value?>, @HTMLBuilder render: () -> View) -> IF {
+        let condition = Condition(condition: IsNullCondition<Value>(path: path))
+        condition.view = render()
+        conditions.append(condition)
+        return self
+    }
+
+    /// Add an else if condition
+    ///
+    /// - Parameters:
+    ///   - path: The path to evaluate
+    ///   - render: The view to render if true
+    /// - Returns: returns a modified if statment
+    public func elseIf<Value>(isNotNil path: ContextVariable<Value?>, @HTMLBuilder render: () -> View) -> IF {
+        let condition = Condition(condition: NotNullCondition<Value>(path: path))
+        condition.view = render()
+        conditions.append(condition)
+        return self
+    }
+
     /// Add an else condition
     ///
     /// - Parameter render: The view to be rendered

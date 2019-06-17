@@ -133,24 +133,58 @@ extension HTML.Attribute: View {
 
 public protocol AttributeNode: View {
 
-    var name: String { get }
-
     var attributes: [HTML.Attribute] { get set }
 
     func add(_ attribute: HTML.Attribute) -> Self
+
+    func add(attributes: [HTML.Attribute]) -> Self
+
+    func copy(with attributes: [HTML.Attribute]) -> Self
 }
 
+extension AttributeNode {
+
+    public func add(_ attribute: HTML.Attribute) -> Self {
+        var attributes = self.attributes
+        for (index, attr) in attributes.enumerated() {
+            if attr.attribute == attribute.attribute {
+                guard let value = attr.value, let newValue = attribute.value else {
+                    break
+                }
+                attributes.append(.init(attribute: attr.attribute, value: [value, " ", newValue]))
+                attributes.remove(at: index)
+                return copy(with: attributes)
+            }
+        }
+        return copy(with: attributes + [attribute])
+    }
+
+    public func add(attributes: [HTML.Attribute]) -> Self {
+        var newNode = self
+        for attribute in attributes {
+            newNode = newNode.add(attribute)
+        }
+        return newNode
+    }
+}
+
+
 public protocol DataNode: AttributeNode {
+
+    var name: String { get }
+
     init(attributes: [HTML.Attribute])
 }
 
 extension DataNode {
-    public func add(_ attribute: HTML.Attribute) -> Self {
-        .init(attributes: attributes + [attribute])
+    public func copy(with attributes: [HTML.Attribute]) -> Self {
+        .init(attributes: attributes)
     }
 }
 
 public protocol ContentNode: AttributeNode {
+
+    var name: String { get }
 
     var content: View { get }
 
@@ -158,12 +192,12 @@ public protocol ContentNode: AttributeNode {
 }
 
 extension ContentNode {
-    public func add(_ attribute: HTML.Attribute) -> Self {
-        .init(attributes: attributes + [attribute], content: content)
+    public func copy(with attributes: [HTML.Attribute]) -> Self {
+        .init(attributes: attributes, content: content)
     }
 }
 
-extension AttributeNode {
+extension DataNode {
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(string: "<\(name)")
         try attributes.forEach {
