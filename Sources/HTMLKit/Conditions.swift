@@ -13,13 +13,18 @@ public protocol Conditionable {
 public struct Equal<Value>: Conditionable where Value: Equatable {
 
     /// The path to the variable
-    let path: ContextVariable<Value>
+    let path: TemplateValue<Value>
 
     /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return try manager.value(for: path) == value
+        var compValue: Value!
+        switch path {
+        case .variable(let variable): compValue = try manager.value(for: variable)
+        case .value(let rawValue): compValue = rawValue
+        }
+        return compValue == value
     }
 }
 
@@ -27,13 +32,18 @@ public struct Equal<Value>: Conditionable where Value: Equatable {
 public struct NotEqual<Value>: Conditionable where Value: Equatable {
 
     /// The path to the variable
-    let path: ContextVariable<Value>
+    let path: TemplateValue<Value>
 
     /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return try manager.value(for: path) != value
+        var compValue: Value!
+        switch path {
+        case .variable(let variable): compValue = try manager.value(for: variable)
+        case .value(let rawValue): compValue = rawValue
+        }
+        return compValue != value
     }
 }
 
@@ -41,13 +51,18 @@ public struct NotEqual<Value>: Conditionable where Value: Equatable {
 public struct LessThen<Value>: Conditionable where Value: Comparable {
 
     /// The path to the variable
-    let path: ContextVariable<Value>
+    let path: TemplateValue<Value>
 
     /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return try manager.value(for: path) < value
+        var compValue: Value!
+        switch path {
+        case .variable(let variable): compValue = try manager.value(for: variable)
+        case .value(let rawValue): compValue = rawValue
+        }
+        return compValue < value
     }
 }
 
@@ -55,13 +70,18 @@ public struct LessThen<Value>: Conditionable where Value: Comparable {
 public struct GreaterThen<Value>: Conditionable where Value: Comparable {
 
     /// The path to the variable
-    let path: ContextVariable<Value>
+    let path: TemplateValue<Value>
 
     /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return try manager.value(for: path) > value
+        var compValue: Value!
+        switch path {
+        case .variable(let variable): compValue = try manager.value(for: variable)
+        case .value(let rawValue): compValue = rawValue
+        }
+        return compValue > value
     }
 }
 
@@ -87,23 +107,31 @@ struct InvertCondition: Conditionable {
 struct BoolCondition: Conditionable {
 
     /// The path to the variable
-    let path: ContextVariable<Bool>
+    let path: TemplateValue<Bool>
 
     func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return try manager.value(for: path)
+        switch path {
+        case .variable(let variable): return try manager.value(for: variable)
+        case .value(let rawValue): return rawValue
+        }
     }
 }
 
 public struct NullableEqual<Value>: Conditionable where Value: Equatable {
 
     /// The path to the variable
-    let path: ContextVariable<Value?>
+    let path: TemplateValue<Value?>
 
     /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return try manager.value(for: path) == value
+        var compValue: Value?
+        switch path {
+        case .variable(let variable): compValue = try manager.value(for: variable)
+        case .value(let rawValue): compValue = rawValue
+        }
+        return compValue == value
     }
 }
 
@@ -111,13 +139,18 @@ public struct NullableEqual<Value>: Conditionable where Value: Equatable {
 public struct NullableNotEqual<Value>: Conditionable where Value: Equatable {
 
     /// The path to the variable
-    let path: ContextVariable<Value?>
+    let path: TemplateValue<Value?>
 
     /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return try manager.value(for: path) != value
+        var compValue: Value?
+        switch path {
+        case .variable(let variable): compValue = try manager.value(for: variable)
+        case .value(let rawValue): compValue = rawValue
+        }
+        return compValue != value
     }
 }
 
@@ -125,13 +158,18 @@ public struct NullableNotEqual<Value>: Conditionable where Value: Equatable {
 public struct NullableLessThen<Value>: Conditionable where Value: Comparable {
 
     /// The path to the variable
-    let path: ContextVariable<Value?>
+    let path: TemplateValue<Value?>
 
     /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        if let pathValue = try manager.value(for: path) {
+        var compValue: Value?
+        switch path {
+        case .variable(let variable): compValue = try manager.value(for: variable)
+        case .value(let rawValue): compValue = rawValue
+        }
+        if let pathValue = compValue {
             return pathValue < value
         } else {
             return false
@@ -143,13 +181,18 @@ public struct NullableLessThen<Value>: Conditionable where Value: Comparable {
 public struct NullableGreaterThen<Value>: Conditionable where Value: Comparable {
 
     /// The path to the variable
-    let path: ContextVariable<Value?>
+    let path: TemplateValue<Value?>
 
     /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        if let pathValue = try manager.value(for: path) {
+        var compValue: Value?
+        switch path {
+        case .variable(let variable): compValue = try manager.value(for: variable)
+        case .value(let rawValue): compValue = rawValue
+        }
+        if let pathValue = compValue {
             return pathValue > value
         } else {
             return false
@@ -189,10 +232,15 @@ public struct OrCondition: Conditionable {
 public struct NotNullCondition<Value>: Conditionable {
 
     /// The path to the variable
-    let path: ContextVariable<Value?>
+    let path: TemplateValue<Value?>
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return try manager.value(for: path) != nil
+        var compValue: Value?
+        switch path {
+        case .variable(let variable): compValue = try manager.value(for: variable)
+        case .value(let rawValue): compValue = rawValue
+        }
+        return compValue != nil
     }
 }
 
@@ -200,10 +248,15 @@ public struct NotNullCondition<Value>: Conditionable {
 public struct IsNullCondition<Value>: Conditionable {
 
     /// The path to the variable
-    let path: ContextVariable<Value?>
+    let path: TemplateValue<Value?>
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return try manager.value(for: path) == nil
+        var compValue: Value?
+        switch path {
+        case .variable(let variable): compValue = try manager.value(for: variable)
+        case .value(let rawValue): compValue = rawValue
+        }
+        return compValue == nil
     }
 }
 
@@ -213,7 +266,7 @@ public struct IsNullCondition<Value>: Conditionable {
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func == <Value>(lhs: ContextVariable<Value>, rhs: Value) -> IF.Condition where Value: Equatable {
+public func == <Value>(lhs: TemplateValue<Value>, rhs: Value) -> IF.Condition where Value: Equatable {
     return IF.Condition(condition: Equal(path: lhs, value: rhs))
 }
 
@@ -223,7 +276,7 @@ public func == <Value>(lhs: ContextVariable<Value>, rhs: Value) -> IF.Condition 
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func != <Value>(lhs: ContextVariable<Value>, rhs: Value) -> IF.Condition where Value: Equatable {
+public func != <Value>(lhs: TemplateValue<Value>, rhs: Value) -> IF.Condition where Value: Equatable {
     return IF.Condition(condition: NotEqual(path: lhs, value: rhs))
 }
 
@@ -233,7 +286,7 @@ public func != <Value>(lhs: ContextVariable<Value>, rhs: Value) -> IF.Condition 
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func < <Value>(lhs: ContextVariable<Value>, rhs: Value) -> IF.Condition where Value: Comparable {
+public func < <Value>(lhs: TemplateValue<Value>, rhs: Value) -> IF.Condition where Value: Comparable {
     return IF.Condition(condition: LessThen(path: lhs, value: rhs))
 }
 
@@ -243,7 +296,7 @@ public func < <Value>(lhs: ContextVariable<Value>, rhs: Value) -> IF.Condition w
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func > <Value>(lhs: ContextVariable<Value>, rhs: Value) -> IF.Condition where Value: Comparable {
+public func > <Value>(lhs: TemplateValue<Value>, rhs: Value) -> IF.Condition where Value: Comparable {
     return IF.Condition(condition: GreaterThen(path: lhs, value: rhs))
 }
 
@@ -254,7 +307,7 @@ public func > <Value>(lhs: ContextVariable<Value>, rhs: Value) -> IF.Condition w
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func == <Value>(lhs: ContextVariable<Value?>, rhs: Value) -> IF.Condition where Value: Equatable {
+public func == <Value>(lhs: TemplateValue<Value?>, rhs: Value) -> IF.Condition where Value: Equatable {
     return IF.Condition(condition: NullableEqual(path: lhs, value: rhs))
 }
 
@@ -264,7 +317,7 @@ public func == <Value>(lhs: ContextVariable<Value?>, rhs: Value) -> IF.Condition
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func != <Value>(lhs: ContextVariable<Value?>, rhs: Value) -> IF.Condition where Value: Equatable {
+public func != <Value>(lhs: TemplateValue<Value?>, rhs: Value) -> IF.Condition where Value: Equatable {
     return IF.Condition(condition: NullableNotEqual(path: lhs, value: rhs))
 }
 
@@ -274,7 +327,7 @@ public func != <Value>(lhs: ContextVariable<Value?>, rhs: Value) -> IF.Condition
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func < <Value>(lhs: ContextVariable<Value?>, rhs: Value) -> IF.Condition where Value: Comparable {
+public func < <Value>(lhs: TemplateValue<Value?>, rhs: Value) -> IF.Condition where Value: Comparable {
     return IF.Condition(condition: NullableLessThen(path: lhs, value: rhs))
 }
 
@@ -284,7 +337,7 @@ public func < <Value>(lhs: ContextVariable<Value?>, rhs: Value) -> IF.Condition 
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func > <Value>(lhs: ContextVariable<Value?>, rhs: Value) -> IF.Condition where Value: Comparable {
+public func > <Value>(lhs: TemplateValue<Value?>, rhs: Value) -> IF.Condition where Value: Comparable {
     return IF.Condition(condition: NullableGreaterThen(path: lhs, value: rhs))
 }
 
@@ -294,7 +347,7 @@ public func > <Value>(lhs: ContextVariable<Value?>, rhs: Value) -> IF.Condition 
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func >= <Value>(lhs: ContextVariable<Value>, rhs: Value) -> IF.Condition where Value: Comparable {
+public func >= <Value>(lhs: TemplateValue<Value>, rhs: Value) -> IF.Condition where Value: Comparable {
     return IF.Condition(condition: InvertCondition(condition: LessThen(path: lhs, value: rhs)))
 }
 
@@ -304,7 +357,7 @@ public func >= <Value>(lhs: ContextVariable<Value>, rhs: Value) -> IF.Condition 
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func <= <Value>(lhs: ContextVariable<Value>, rhs: Value) -> IF.Condition where Value: Comparable {
+public func <= <Value>(lhs: TemplateValue<Value>, rhs: Value) -> IF.Condition where Value: Comparable {
     return IF.Condition(condition: InvertCondition(condition: GreaterThen(path: lhs, value: rhs)))
 }
 
@@ -314,7 +367,7 @@ public func <= <Value>(lhs: ContextVariable<Value>, rhs: Value) -> IF.Condition 
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func >= <Value>(lhs: ContextVariable<Value?>, rhs: Value) -> IF.Condition where Value: Comparable {
+public func >= <Value>(lhs: TemplateValue<Value?>, rhs: Value) -> IF.Condition where Value: Comparable {
     return IF.Condition(condition: InvertCondition(condition: NullableLessThen(path: lhs, value: rhs)))
 }
 
@@ -324,7 +377,7 @@ public func >= <Value>(lhs: ContextVariable<Value?>, rhs: Value) -> IF.Condition
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func <= <Value>(lhs: ContextVariable<Value?>, rhs: Value) -> IF.Condition where Value: Comparable {
+public func <= <Value>(lhs: TemplateValue<Value?>, rhs: Value) -> IF.Condition where Value: Comparable {
     return IF.Condition(condition: InvertCondition(condition: NullableGreaterThen(path: lhs, value: rhs)))
 }
 
@@ -344,7 +397,7 @@ public func && (lhs: IF.Condition, rhs: IF.Condition) -> IF.Condition {
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func && (lhs: ContextVariable<Bool>, rhs: IF.Condition) -> IF.Condition {
+public func && (lhs: TemplateValue<Bool>, rhs: IF.Condition) -> IF.Condition {
     let lhsCondition = BoolCondition(path: lhs)
     return IF.Condition(condition: AndCondition(first: lhsCondition, second: rhs))
 }
@@ -355,7 +408,7 @@ public func && (lhs: ContextVariable<Bool>, rhs: IF.Condition) -> IF.Condition {
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func && (lhs: IF.Condition, rhs: ContextVariable<Bool>) -> IF.Condition {
+public func && (lhs: IF.Condition, rhs: TemplateValue<Bool>) -> IF.Condition {
     let rhsCondition = BoolCondition(path: rhs)
     return IF.Condition(condition: AndCondition(first: lhs, second: rhsCondition))
 }
@@ -366,7 +419,7 @@ public func && (lhs: IF.Condition, rhs: ContextVariable<Bool>) -> IF.Condition {
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func && (lhs: ContextVariable<Bool>, rhs: ContextVariable<Bool>) -> IF.Condition {
+public func && (lhs: TemplateValue<Bool>, rhs: TemplateValue<Bool>) -> IF.Condition {
     let lhsCondition = BoolCondition(path: lhs)
     let rhsCondition = BoolCondition(path: rhs)
     return IF.Condition(condition: AndCondition(first: lhsCondition, second: rhsCondition))
@@ -388,7 +441,7 @@ public func || (lhs: IF.Condition, rhs: IF.Condition) -> IF.Condition {
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func || (lhs: ContextVariable<Bool>, rhs: IF.Condition) -> IF.Condition {
+public func || (lhs: TemplateValue<Bool>, rhs: IF.Condition) -> IF.Condition {
     let lhsCondition = BoolCondition(path: lhs)
     return IF.Condition(condition: AndCondition(first: lhsCondition, second: rhs))
 }
@@ -399,7 +452,7 @@ public func || (lhs: ContextVariable<Bool>, rhs: IF.Condition) -> IF.Condition {
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func || (lhs: IF.Condition, rhs: ContextVariable<Bool>) -> IF.Condition {
+public func || (lhs: IF.Condition, rhs: TemplateValue<Bool>) -> IF.Condition {
     let rhsCondition = BoolCondition(path: rhs)
     return IF.Condition(condition: AndCondition(first: lhs, second: rhsCondition))
 }
@@ -410,7 +463,7 @@ public func || (lhs: IF.Condition, rhs: ContextVariable<Bool>) -> IF.Condition {
 ///   - lhs: The key path
 ///   - rhs: The constant value
 /// - Returns: A `TemplateIF.Condition` object
-public func || (lhs: ContextVariable<Bool>, rhs: ContextVariable<Bool>) -> IF.Condition {
+public func || (lhs: TemplateValue<Bool>, rhs: TemplateValue<Bool>) -> IF.Condition {
     let lhsCondition = BoolCondition(path: lhs)
     let rhsCondition = BoolCondition(path: rhs)
     return IF.Condition(condition: AndCondition(first: lhsCondition, second: rhsCondition))

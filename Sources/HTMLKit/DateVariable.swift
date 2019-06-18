@@ -20,8 +20,8 @@ struct DateVariable: View {
 
 
     enum Referance {
-        case solid(ContextVariable<Date>)
-        case optional(ContextVariable<Date?>)
+        case solid(TemplateValue<Date>)
+        case optional(TemplateValue<Date?>)
     }
 
     /// The formatter to use when rendering a date
@@ -39,8 +39,16 @@ struct DateVariable: View {
 
         var optionalDate: Date?
         switch dateReferance {
-        case .solid(let path): optionalDate = try manager.value(for: path)
-        case .optional(let path): optionalDate = try manager.value(for: path)
+        case .solid(let path):
+            switch path {
+            case .value(let date): optionalDate = date
+            case .variable(let variable): optionalDate = try manager.value(for: variable)
+            }
+        case .optional(let path):
+            switch path {
+            case .value(let date): optionalDate = date
+            case .variable(let variable): optionalDate = try manager.value(for: variable)
+            }
         }
 
         guard let date = optionalDate else {
@@ -74,7 +82,7 @@ struct DateVariable: View {
     }
 }
 
-extension ContextVariable where Value == Date {
+extension TemplateValue where Value == Date {
 
     /// Render a date in a formate
     ///
@@ -113,7 +121,7 @@ extension ContextVariable where Value == Date {
     }
 }
 
-extension ContextVariable where Value == Date? {
+extension TemplateValue where Value == Date? {
 
     /// Render a date in a formate
     ///

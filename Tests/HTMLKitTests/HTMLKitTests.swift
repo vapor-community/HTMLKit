@@ -50,6 +50,7 @@ final class HTMLKitTests: XCTestCase {
 
         let staticEmbedRender   = try renderer.renderRaw(StaticEmbedView.self, with: .init(string: "Hello", int: 2))
         let someViewRender      = try renderer.renderRaw(SomeView.self, with: .contentWith(name: "Mats", title: "Welcome"))
+        let someViewRenderTitle = try renderer.renderRaw(SomeViewStaticTitle.self, with: "Mats")
         let forEachRender       = try renderer.renderRaw(ForEachView.self, with: .init(array: ["1", "2", "3"]))
         let firstIfRender       = try renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 19, nullable: nil, bool: false))
         let secondIfRender      = try renderer.renderRaw(IFView.self, with: .init(name: "Mats", age: 20, nullable: nil, bool: true))
@@ -81,6 +82,7 @@ final class HTMLKitTests: XCTestCase {
         XCTAssertEqual(varialbeRender, "<div><p>&lt;script&gt;&quot;&#39;&amp;&lt;/script&gt;</p><p><script>\"'&</script></p></div>")
         XCTAssertEqual(staticEmbedRender, "<div><div><p>Text</p></div><p>Hello</p><small>2</small></div>")
         XCTAssertEqual(someViewRender, "<html><head><title>Welcome</title><link href='some url' rel='stylesheet'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><p>Hello Mats!</p></body></html>")
+        XCTAssertEqual(someViewRenderTitle, "<html><head><title>Test</title><link href='some url' rel='stylesheet'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><p>Hello Mats!</p></body></html>")
         XCTAssertEqual(forEachRender, "<div id='array'><p>1</p><p>2</p><p>3</p></div>")
         XCTAssertEqual(firstIfRender, "<div>I am a child</div>")
         XCTAssertEqual(secondIfRender, "<div><p>My name is: Mats!</p>I am growing<p>Simple bool</p></div>")
@@ -137,6 +139,7 @@ final class HTMLKitTests: XCTestCase {
 
         try renderer.add(view: StaticEmbedView())
         try renderer.add(view: SomeView())
+        try renderer.add(view: SomeViewStaticTitle())
         try renderer.add(view: ForEachView())
         try renderer.add(view: IFView())
         try renderer.add(view: VariableView())

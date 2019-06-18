@@ -42,7 +42,7 @@ extension ContextVariable {
     }
 }
 
-extension ContextVariable: Prerenderable where Value: View {
+extension ContextVariable: Prerenderable where Value : View {
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(mappable: self)
     }
@@ -70,15 +70,22 @@ extension ContextVariable: View where Value: View {
 /// A struct making it possible to have a for each loop in the template
 public struct ForEach<Value> {
 
-    public let context: ContextVariable<[Value]>
+    public let context: TemplateValue<[Value]>
 
     public let content: View
 
     let localFormula: HTMLRenderer.Formula<Value>
 
-    public init(in context: ContextVariable<[Value]>, @HTMLBuilder content: (ContextVariable<Value>) -> View) {
+    public init(in context: TemplateValue<[Value]>, @HTMLBuilder content: (TemplateValue<Value>) -> View) {
+
         self.context = context
-        self.content = content(.root(Value.self, rootId: context.pathId + "-loop"))
+        switch context {
+        case .value(let values):
+            self.content = values.reduce("") { $0 + content(.value($1)) }
+
+        case .variable(let variable):
+            self.content = content(.variable(.root(Value.self, rootId: variable.pathId + "-loop")))
+        }
         localFormula = .init(context: Value.self)
     }
 }
@@ -91,13 +98,18 @@ extension ForEach: View {
     }
 
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        let arrayCount = try manager.value(for: context).count
-        var rendering = ""
-        for index in 0..<arrayCount {
-            manager.prepend(context[index], for: context.pathId + "-loop")
-            rendering += try localFormula.render(with: manager)
+        switch context {
+        case .value(_):
+            return try content.render(with: manager)
+        case .variable(let variable):
+            var rendering = ""
+            let arrayCount = try manager.value(for: variable).count
+            for index in 0..<arrayCount {
+                manager.prepend(variable[index], for: variable.pathId + "-loop")
+                rendering += try localFormula.render(with: manager)
+            }
+            return rendering
         }
-        return rendering
     }
 }
 
@@ -121,7 +133,7 @@ public protocol TemplateView : StaticView {
 
     associatedtype Context
 
-    var context: ContextVariable<Context> { get }
+    var context: TemplateValue<Context> { get }
 
     var body: View { get }
 }

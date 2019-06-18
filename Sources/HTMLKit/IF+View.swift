@@ -12,7 +12,7 @@ extension IF.Condition: Conditionable {
     }
 
     // View `BrewableFormula` documentation
-    public func brew<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         try view.prerender(localFormula)
     }
 }
@@ -35,7 +35,7 @@ extension IF: View {
         for condition in conditions {
             condition.localFormula.calendar = formula.calendar
             condition.localFormula.timeZone = formula.timeZone
-            try condition.brew(formula)
+            try condition.prerender(formula)
         }
     }
 
@@ -57,7 +57,7 @@ extension IF: View {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func elseIf(_ path: ContextVariable<Bool>, @HTMLBuilder render: () -> View) -> IF {
+    public func elseIf(_ path: TemplateValue<Bool>, @HTMLBuilder render: () -> View) -> IF {
         let condition = Condition(condition: BoolCondition(path: path))
         condition.view = render()
         conditions.append(condition)
@@ -70,7 +70,7 @@ extension IF: View {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func elseIf<Value>(isNil path: ContextVariable<Value?>, @HTMLBuilder render: () -> View) -> IF {
+    public func elseIf<Value>(isNil path: TemplateValue<Value?>, @HTMLBuilder render: () -> View) -> IF {
         let condition = Condition(condition: IsNullCondition<Value>(path: path))
         condition.view = render()
         conditions.append(condition)
@@ -83,7 +83,7 @@ extension IF: View {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func elseIf<Value>(isNotNil path: ContextVariable<Value?>, @HTMLBuilder render: () -> View) -> IF {
+    public func elseIf<Value>(isNotNil path: TemplateValue<Value?>, @HTMLBuilder render: () -> View) -> IF {
         let condition = Condition(condition: NotNullCondition<Value>(path: path))
         condition.view = render()
         conditions.append(condition)

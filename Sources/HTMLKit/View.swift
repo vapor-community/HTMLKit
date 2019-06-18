@@ -1,7 +1,68 @@
 
 import Foundation
 
-public protocol View: Prerenderable {
+@dynamicMemberLookup
+public enum TemplateValue<Value> {
+    case value(Value)
+    case variable(ContextVariable<Value>)
+
+    public subscript<Subject>(dynamicMember keyPath: KeyPath<Value, Subject>) -> TemplateValue<Subject> {
+
+        switch self {
+        case .value(let value): return .value(value[keyPath: keyPath])
+        case .variable(let variable): return .variable(variable[dynamicMember: keyPath])
+        }
+    }
+
+    public func escaping(_ option: EscapingOption) -> TemplateValue<Value> {
+        switch self {
+        case .variable(let variable): return .variable(variable.escaping(option))
+        default: return self
+        }
+    }
+}
+
+extension TemplateValue : View where Value : View {
+
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        switch self {
+        case .value(let value): try value.prerender(formula)
+        case .variable(let variable): try variable.prerender(formula)
+        }
+    }
+
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        switch self {
+        case .value(let value): return try value.render(with: manager)
+        case .variable(let variable): return try variable.render(with: manager)
+        }
+    }
+}
+
+extension TemplateValue: ExpressibleByUnicodeScalarLiteral where Value == String {
+    public typealias UnicodeScalarLiteralType = String
+}
+
+extension TemplateValue: ExpressibleByExtendedGraphemeClusterLiteral where Value == String {
+    public typealias ExtendedGraphemeClusterLiteralType = String
+}
+
+extension TemplateValue : ExpressibleByStringLiteral where Value == String {
+    public typealias StringLiteralType = String
+
+    public init(stringLiteral value: Self.StringLiteralType) {
+        self = .value(value)
+    }
+}
+
+extension TemplateValue {
+    public static func root() -> TemplateValue {
+        .variable(.root())
+    }
+}
+
+
+public protocol View {
 
     /// A value indicating if the template should render when itis used as localization info
     var renderWhenLocalizing: Bool { get }
@@ -12,6 +73,15 @@ public protocol View: Prerenderable {
     /// - Returns: A html document
     /// - Throws: If the html can not be rendered for some reason
     func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String
+
+    /// Brews a mappable object in to a formula
+    ///
+    ///     formula.add(string: "<\(name)/>")   // A constant string
+    ///     formula.add(self)                   // Not able to be predetermand
+    ///
+    /// - Parameter formula: The formula to brew in to
+    /// - Throws: If there occured some error
+    func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws
 }
 
 extension View {
@@ -109,7 +179,7 @@ extension Bool: View {
 }
 
 
-extension Optional: Prerenderable where Wrapped: Prerenderable {
+extension Optional: View where Wrapped: View {
 
     // View `BrewableFormula` documentation
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
@@ -118,9 +188,6 @@ extension Optional: Prerenderable where Wrapped: Prerenderable {
         default: break
         }
     }
-}
-
-extension Optional: View where Wrapped: View {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {

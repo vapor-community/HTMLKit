@@ -8,5 +8,5 @@ public protocol Prerenderable {
     ///
     /// - Parameter formula: The formula to brew in to
     /// - Throws: If there occured some error
-    func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws
+    
 }
