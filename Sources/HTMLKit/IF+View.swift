@@ -57,7 +57,7 @@ extension IF: View {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func elseIf(_ path: TemplateValue<Bool>, @HTMLBuilder render: () -> View) -> IF {
+    public func elseIf<T>(_ path: TemplateValue<T, Bool>, @HTMLBuilder render: () -> View) -> IF {
         let condition = Condition(condition: BoolCondition(path: path))
         condition.view = render()
         conditions.append(condition)
@@ -70,8 +70,8 @@ extension IF: View {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func elseIf<Value>(isNil path: TemplateValue<Value?>, @HTMLBuilder render: () -> View) -> IF {
-        let condition = Condition(condition: IsNullCondition<Value>(path: path))
+    public func elseIf<A, B>(isNil path: TemplateValue<A, B?>, @HTMLBuilder render: () -> View) -> IF {
+        let condition = Condition(condition: IsNullCondition<A, B>(path: path))
         condition.view = render()
         conditions.append(condition)
         return self
@@ -83,8 +83,8 @@ extension IF: View {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func elseIf<Value>(isNotNil path: TemplateValue<Value?>, @HTMLBuilder render: () -> View) -> IF {
-        let condition = Condition(condition: NotNullCondition<Value>(path: path))
+    public func elseIf<Root, Value>(isNotNil path: TemplateValue<Root, Value?>, @HTMLBuilder render: () -> View) -> IF {
+        let condition = Condition(condition: NotNullCondition<Root, Value>(path: path))
         condition.view = render()
         conditions.append(condition)
         return self

@@ -2,19 +2,18 @@
 import Foundation
 
 @dynamicMemberLookup
-public enum TemplateValue<Value> {
+public enum TemplateValue<Root, Value> {
     case value(Value)
-    case variable(ContextVariable<Value>)
+    case variable(ContextVariable<Root, Value>)
 
-    public subscript<Subject>(dynamicMember keyPath: KeyPath<Value, Subject>) -> TemplateValue<Subject> {
-
+    public subscript<Subject>(dynamicMember keyPath: KeyPath<Value, Subject>) -> TemplateValue<Root, Subject> {
         switch self {
         case .value(let value): return .value(value[keyPath: keyPath])
         case .variable(let variable): return .variable(variable[dynamicMember: keyPath])
         }
     }
 
-    public func escaping(_ option: EscapingOption) -> TemplateValue<Value> {
+    public func escaping(_ option: EscapingOption) -> TemplateValue<Root, Value> {
         switch self {
         case .variable(let variable): return .variable(variable.escaping(option))
         default: return self
@@ -56,8 +55,15 @@ extension TemplateValue : ExpressibleByStringLiteral where Value == String {
 }
 
 extension TemplateValue {
-    public static func root() -> TemplateValue {
+    public static func root<T>() -> TemplateValue<T, T> {
         .variable(.root())
+    }
+    
+    public func value<T>(from manager: HTMLRenderer.ContextManager<T>) throws -> Value {
+        switch self {
+        case .value(let value): return value
+        case .variable(let variable): return try variable.value(from: manager)
+        }
     }
 }
 

@@ -25,7 +25,7 @@ struct SimpleView: StaticView, HTMLTestable {
 
 struct StaticEmbedView: TemplateView {
 
-    var context: TemplateValue<SimpleData> = .root()
+    var context: RootValue<SimpleData> = .root()
 
     var body: View {
         Div {
@@ -42,12 +42,12 @@ struct StaticEmbedView: TemplateView {
     }
 }
 
-struct BaseView: TemplateView {
+struct BaseView<Root>: ViewComponent {
 
-    let context: TemplateValue<String>
+    let context: TemplateValue<Root, String>
     let content: View
 
-    init(context: TemplateValue<String>, @HTMLBuilder content: () -> View) {
+    init(context: TemplateValue<Root, String>, @HTMLBuilder content: () -> View) {
         self.context = context
         self.content = content()
     }
@@ -72,16 +72,16 @@ struct BaseView: TemplateView {
 
 struct SomeView: TemplateView {
 
-    struct Context {
+    struct Value {
         let name: String
-        let baseContext: BaseView.Context
+        let baseContext: BaseView<Value>.Value
 
-        static func contentWith(name: String, title: String) -> Context {
+        static func contentWith(name: String, title: String) -> Value {
             return .init(name: name, baseContext: title)
         }
     }
 
-    var context: TemplateValue<Context> = .root()
+    var context: RootValue<Value> = .root()
 
     var body: View {
         BaseView(context: context.baseContext) {
@@ -92,10 +92,10 @@ struct SomeView: TemplateView {
 
 struct SomeViewStaticTitle: TemplateView {
 
-    var context: TemplateValue<String> = .root()
+    var context: RootValue<String> = .root()
 
     var body: View {
-        BaseView(context: "Test") {
+        BaseView<Void>(context: "Test") {
             P { "Hello " + context + "!" }
         }
     }
@@ -103,11 +103,11 @@ struct SomeViewStaticTitle: TemplateView {
 
 struct ForEachView: TemplateView {
 
-    struct Context {
+    struct Value {
         let array: [String]
     }
 
-    let context: TemplateValue<Context> = .root()
+    let context: RootValue<Value> = .root()
 
     var body: View {
         Div {
@@ -120,14 +120,14 @@ struct ForEachView: TemplateView {
 
 struct IFView: TemplateView {
 
-    struct Context {
+    struct Value {
         let name: String
         let age: Int
         let nullable: String?
         let bool: Bool
     }
 
-    var context: TemplateValue<Context> = .root()
+    var context: RootValue<Value> = .root()
 
     var body: View {
         Div {
@@ -246,9 +246,9 @@ struct ChainedEqualAttributesDataNode : StaticView {
 }
 
 
-struct VariableView: TemplateView {
+struct VariableView<Root>: ViewComponent {
 
-    var context: TemplateValue<String> = .root()
+    var context: TemplateValue<Root, String>
 
     var body: View {
         Div {
@@ -260,8 +260,8 @@ struct VariableView: TemplateView {
 
 struct MultipleContextualEmbed : TemplateView {
 
-    struct Context {
-        let base: BaseView.Context
+    struct Value {
+        let base: BaseView<Value>.Value
         let variable: String
 
         init(title: String, string: String) {
@@ -270,7 +270,7 @@ struct MultipleContextualEmbed : TemplateView {
         }
     }
 
-    var context: TemplateValue<Context> = .root()
+    var context: RootValue<Value> = .root()
 
     var body: View {
         BaseView(context: context.base) { () -> View in
@@ -350,7 +350,7 @@ struct BootstrapAlert : StaticView, AttributeNode {
 
 //struct DynamicAttribute: ContextualTemplate {
 //
-//    struct Context {
+//    struct Value {
 //        let isChecked: Bool
 //        let isActive: Bool
 //        let isOptional: Bool?
@@ -367,7 +367,7 @@ struct BootstrapAlert : StaticView, AttributeNode {
 //
 struct SelfContextPassing : TemplateView {
 
-    var context: TemplateValue<VariableView.Context> = .root()
+    var context: RootValue<String> = .root()
 
     var body: View {
         Div {
@@ -378,7 +378,7 @@ struct SelfContextPassing : TemplateView {
 
 struct SelfLoopingView: TemplateView {
 
-    var context: TemplateValue<[SimpleData]> = .root()
+    var context: RootValue<[SimpleData]> = .root()
 
     var body: View {
         Div {
@@ -389,9 +389,9 @@ struct SelfLoopingView: TemplateView {
     }
 }
 
-struct UnsafeVariable : TemplateView {
+struct UnsafeVariable<Root> : ViewComponent {
 
-    var context: TemplateValue<MultipleContextualEmbed.Context>
+    var context: TemplateValue<Root, MultipleContextualEmbed.Value>
 
     var body: View {
         Div {
@@ -407,12 +407,12 @@ struct UnsafeVariable : TemplateView {
 
 struct MarkdownView: TemplateView {
 
-    struct Context {
+    struct Value {
         let title: String
         let description: String
     }
 
-    let context: TemplateValue<Context> = .root()
+    let context: RootValue<Value> = .root()
 
     var body: View {
         Div {
@@ -439,7 +439,7 @@ struct MarkdownView: TemplateView {
 //        let numberTest: Int
 //    }
 //
-//    struct Context: Codable {
+//    struct Value: Codable {
 //        let locale: String
 //        let description: DescriptionContent
 //        let numberTest: Int
@@ -466,7 +466,7 @@ struct MarkdownView: TemplateView {
 //
 //struct DateView: ContextualTemplate {
 //
-//    struct Context {
+//    struct Value {
 //        let date: Date
 //    }
 //
@@ -484,7 +484,7 @@ struct MarkdownView: TemplateView {
 
 struct DateView : TemplateView {
 
-    var context: TemplateValue<Date> = .root()
+    var context: RootValue<Date> = .root()
 
     var body: View {
         Div {
@@ -496,7 +496,7 @@ struct DateView : TemplateView {
 
 struct OptionalDateView : TemplateView {
 
-    var context: TemplateValue<Date?> = .root()
+    var context: RootValue<Date?> = .root()
 
     var body: View {
         Div {
@@ -515,7 +515,7 @@ struct OptionalDateView : TemplateView {
 //
 //    static let localePath: KeyPath<LocalizedDateView.Context, String>? = \.locale
 //
-//    struct Context {
+//    struct Value {
 //        let date: Date
 //        let locale: String
 //    }

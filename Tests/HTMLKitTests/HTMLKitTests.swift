@@ -1,37 +1,37 @@
 // swiftlint:disable:this force_try
 
 import XCTest
-@testable import Vapor
+//@testable import Vapor
 @testable import HTMLKit
 import Lingo
 
 final class HTMLKitTests: XCTestCase {
 
-    var app: Application!
+//    var app: Application!
 
     var renderer: HTMLRenderer!
 
     override func setUp() {
-        let config = Config.default()
-        var services = Services.default()
+//        let config = Config.default()
+//        var services = Services.default()
 
         try! setupRenderer()
 
-        services.register(renderer, as: HTMLRenderable.self)
-
-        func routes(_ router: Router) throws {
-
-            router.get("simpleView") { req in
-                return try req.renderer()
-                    .render(SimpleView.self)
-            }
-        }
-
-        let router = EngineRouter.default()
-        try! routes(router)
-        services.register(router, as: Router.self)
-
-        app = try! Application(config: config, services: services)
+//        services.register(renderer, as: HTMLRenderable.self)
+//
+//        func routes(_ router: Router) throws {
+//
+//            router.get("simpleView") { req in
+//                return try req.renderer()
+//                    .render(SimpleView.self)
+//            }
+//        }
+//
+//        let router = EngineRouter.default()
+//        try! routes(router)
+//        services.register(router, as: Router.self)
+//
+//        app = try! Application(config: config, services: services)
     }
 
     func testHtmlRenderingTests() throws {
@@ -55,7 +55,7 @@ final class HTMLKitTests: XCTestCase {
         let firstIfRender       = try renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 19, nullable: nil, bool: false))
         let secondIfRender      = try renderer.renderRaw(IFView.self, with: .init(name: "Mats", age: 20, nullable: nil, bool: true))
         let thirdIfRender       = try renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
-        let varialbeRender      = try renderer.renderRaw(VariableView.self, with: "<script>\"'&</script>")
+//        let varialbeRender      = try renderer.renderRaw(VariableView.self, with: "<script>\"'&</script>")
         let selfLoop            = try renderer.renderRaw(SelfLoopingView.self, with: [.init(string: "Hello", int: 2), .init(string: "Morn", int: nil)])
         let selfPassing         = try renderer.renderRaw(SelfContextPassing.self, with: "Self")
         let multipleEmbedRender = try renderer.renderRaw(MultipleContextualEmbed.self, with: .init(title: "Welcome", string: "String"))
@@ -79,7 +79,7 @@ final class HTMLKitTests: XCTestCase {
 ////        let inputRender = try renderer.render(FormInput.self)
 //
         XCTAssertEqual(multipleEmbedRender, "<html><head><title>Welcome</title><link href='some url' rel='stylesheet'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><span>Some text</span><div><p>String</p><p>String</p></div><div><p>String</p><p>Welcome</p></div></body></html>")
-        XCTAssertEqual(varialbeRender, "<div><p>&lt;script&gt;&quot;&#39;&amp;&lt;/script&gt;</p><p><script>\"'&</script></p></div>")
+//        XCTAssertEqual(varialbeRender, "<div><p>&lt;script&gt;&quot;&#39;&amp;&lt;/script&gt;</p><p><script>\"'&</script></p></div>")
         XCTAssertEqual(staticEmbedRender, "<div><div><p>Text</p></div><p>Hello</p><small>2</small></div>")
         XCTAssertEqual(someViewRender, "<html><head><title>Welcome</title><link href='some url' rel='stylesheet'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><p>Hello Mats!</p></body></html>")
         XCTAssertEqual(someViewRenderTitle, "<html><head><title>Test</title><link href='some url' rel='stylesheet'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><p>Hello Mats!</p></body></html>")
@@ -112,15 +112,15 @@ final class HTMLKitTests: XCTestCase {
 ////        XCTAssertEqual(inputRender, "<div class='form-group'><label for='test'>test</label><input class='form-control' type='email' required name='test' id='test' placeholder=''/></div>")
     }
 
-    func testProvider() throws {
-
-        let expectedResult = try renderer.renderRaw(SimpleView.self)
-        let response = try app.getResponse(to: "/simpleView")
-
-        XCTAssertEqual(response.http.body.string, expectedResult)
-        XCTAssertEqual(response.http.status, .ok)
-        XCTAssertTrue(response.http.headers.contains(name: "content-type"))
-    }
+//    func testProvider() throws {
+//
+//        let expectedResult = try renderer.renderRaw(SimpleView.self)
+//        let response = try app.getResponse(to: "/simpleView")
+//
+//        XCTAssertEqual(response.http.body.string, expectedResult)
+//        XCTAssertEqual(response.http.status, .ok)
+//        XCTAssertTrue(response.http.headers.contains(name: "content-type"))
+//    }
 
 
     private func setupRenderer() throws {
@@ -142,7 +142,7 @@ final class HTMLKitTests: XCTestCase {
         try renderer.add(view: SomeViewStaticTitle())
         try renderer.add(view: ForEachView())
         try renderer.add(view: IFView())
-        try renderer.add(view: VariableView())
+//        try renderer.add(view: VariableView())
         try renderer.add(view: MultipleContextualEmbed())
 //        try renderer.add(template: DynamicAttribute())
         try renderer.add(view: SelfLoopingView())
@@ -195,17 +195,17 @@ final class HTMLKitTests: XCTestCase {
 }
 
 
-extension HTTPBody {
-    var string: String {
-        return String(data: data!, encoding: .utf8)!
-    }
-}
-
-extension Application {
-    func getResponse(to path: String) throws -> Response {
-        let responder = try self.make(Responder.self)
-        let request = HTTPRequest(method: .GET, url: URL(string: path)!)
-        let wrappedRequest = Request(http: request, using: self)
-        return try responder.respond(to: wrappedRequest).wait()
-    }
-}
+//extension HTTPBody {
+//    var string: String {
+//        return String(data: data!, encoding: .utf8)!
+//    }
+//}
+//
+//extension Application {
+//    func getResponse(to path: String) throws -> Response {
+//        let responder = try self.make(Responder.self)
+//        let request = HTTPRequest(method: .GET, url: URL(string: path)!)
+//        let wrappedRequest = Request(http: request, using: self)
+//        return try responder.respond(to: wrappedRequest).wait()
+//    }
+//}

@@ -8,7 +8,7 @@
 import Foundation
 
 /// A struct that renders a data in a specified formate
-struct DateVariable: View {
+struct DateVariable<Root>: View {
 
     enum Errors: LocalizedError {
         case unableToCopyFormatter
@@ -20,8 +20,8 @@ struct DateVariable: View {
 
 
     enum Referance {
-        case solid(TemplateValue<Date>)
-        case optional(TemplateValue<Date?>)
+        case solid(TemplateValue<Root, Date>)
+        case optional(TemplateValue<Root, Date?>)
     }
 
     /// The formatter to use when rendering a date
@@ -40,15 +40,9 @@ struct DateVariable: View {
         var optionalDate: Date?
         switch dateReferance {
         case .solid(let path):
-            switch path {
-            case .value(let date): optionalDate = date
-            case .variable(let variable): optionalDate = try manager.value(for: variable)
-            }
+            optionalDate = try path.value(from: manager)
         case .optional(let path):
-            switch path {
-            case .value(let date): optionalDate = date
-            case .variable(let variable): optionalDate = try manager.value(for: variable)
-            }
+            optionalDate = try path.value(from: manager)
         }
 
         guard let date = optionalDate else {

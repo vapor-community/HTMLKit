@@ -1,7 +1,6 @@
 
 import Foundation
 import Lingo
-import Vapor
 
 public protocol HTMLRenderable {
 
@@ -45,27 +44,27 @@ public protocol HTMLRenderable {
 //    /// - Throws: If the formula do not exists, or if the rendering process fails
 //    func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView
 
-    func renderRaw<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> String
+    func renderRaw<T: TemplateView>(_ type: T.Type, with context: T.Value) throws -> String
 
     func renderRaw<T: StaticView>(_ type: T.Type) throws -> String
 
-    func render<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse
-
-    func render<T: StaticView>(_ type: T.Type) throws -> HTTPResponse
+//    func render<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse
+//
+//    func render<T: StaticView>(_ type: T.Type) throws -> HTTPResponse
 }
 
 
-/// An extension that implements most of the helper functions
-extension HTMLRenderable {
-
-    public func render<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse {
-        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: renderRaw(type, with: context))
-    }
-
-    public func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView {
-        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: renderRaw(type))
-    }
-}
+///// An extension that implements most of the helper functions
+//extension HTMLRenderable {
+//
+//    public func render<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse {
+//        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: renderRaw(type, with: context))
+//    }
+//
+//    public func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView {
+//        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: renderRaw(type))
+//    }
+//}
 
 
 
@@ -132,8 +131,8 @@ public struct HTMLRenderer: HTMLRenderable {
 //        return try formula.render(with: context, lingo: lingo, locale: nil)
 //    }
 
-    public func renderRaw<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> String {
-        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Context> else {
+    public func renderRaw<T: TemplateView>(_ type: T.Type, with context: T.Value) throws -> String {
+        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Value> else {
             throw Errors.unableToFindFormula
         }
         return try formula.render(with: context, lingo: lingo, locale: nil)
@@ -159,7 +158,7 @@ public struct HTMLRenderer: HTMLRenderable {
 //    }
 
     public mutating func add<T: TemplateView>(view: T) throws {
-        let formula = Formula(context: T.Context.self)
+        let formula = Formula(context: T.Value.self)
         try view.body.prerender(formula)
         formulaCache[String(reflecting: T.self)] = formula
     }
@@ -195,10 +194,10 @@ public struct HTMLRenderer: HTMLRenderable {
     ///   - path: A relative path to the localization folder. This is by *default* set to "Resource/Localization"
     ///   - defaultLocale: The default locale to use. This is by *default* set to "en"
     /// - Throws: If there is an error registrating the lingo
-    public mutating func registerLocalization(atPath path: String = "Resources/Localization", defaultLocale: String = "en") throws {
-        let path = DirectoryConfig.detect().workDir + path
-        lingo = try Lingo(rootPath: path, defaultLocale: defaultLocale)
-    }
+//    public mutating func registerLocalization(atPath path: String = "Resources/Localization", defaultLocale: String = "en") throws {
+//        let path = DirectoryConfig.detect().workDir + path
+//        lingo = try Lingo(rootPath: path, defaultLocale: defaultLocale)
+//    }
 
     /// Manage the differnet contextes
     /// This will remove the generic type in the render call
@@ -206,8 +205,8 @@ public struct HTMLRenderer: HTMLRenderable {
 
         let rootContext: Context
 
-        /// The different paths from the orignial context
-        var contextPaths: [String : AnyKeyPath]
+        /// The different context varaibles used when rendering
+        var contextes: [String : Any]
 
         /// The lingo object that is needed to use localization
         let lingo: Lingo?
@@ -217,7 +216,7 @@ public struct HTMLRenderer: HTMLRenderable {
 
         init(rootContext: Context, lingo: Lingo?, locale: String?) {
             self.rootContext = rootContext
-            self.contextPaths = [:]
+            self.contextes = [:]
             self.lingo = lingo
             self.locale = locale
         }
@@ -235,40 +234,43 @@ public struct HTMLRenderer: HTMLRenderable {
 //            }
 //        }
 
-        /// The value for a `KeyPath`
-        ///
-        /// - Returns: The value at the `KeyPath`
-        func value<Root, Value>(at path: KeyPath<Root, Value>) throws -> Value {
-            if let context = rootContext as? Root {
-                return context[keyPath: path]
-            } else if let joinPath = contextPaths[String(reflecting: Root.self)] as? KeyPath<Context, Root> {
-                let finalPath = joinPath.appending(path: path)
-                return rootContext[keyPath: finalPath]
-            } else {
-                throw Errors.unableToRetriveValue
-            }
-        }
+//        /// The value for a `KeyPath`
+//        ///
+//        /// - Returns: The value at the `KeyPath`
+//        func value<Root, Value>(at path: KeyPath<Root, Value>) throws -> Value {
+//            if let context = rootContext as? Root {
+//                return context[keyPath: path]
+//            } else if let joinPath = contextPaths[String(reflecting: Root.self)] as? KeyPath<Context, Root> {
+//                let finalPath = joinPath.appending(path: path)
+//                return rootContext[keyPath: finalPath]
+//            } else {
+//                throw Errors.unableToRetriveValue
+//            }
+//        }
 
 
-        func value<Value>(for variable: ContextVariable<Value>) throws -> Value {
+        func value<Root, Value>(for variable: ContextVariable<Root, Value>) throws -> Value {
             if variable.rootId.isEmpty,
                 let path = variable.root as? KeyPath<Context, Value> {
                 return rootContext[keyPath: path]
-            } else if let rootPath = contextPaths[variable.rootId],
-                let finalPath = rootPath.appending(path: variable.root) as? KeyPath<Context, Value> {
-                return rootContext[keyPath: finalPath]
+            } else if let variableContext = contextes[variable.rootId] as? Root {
+                return variableContext[keyPath: variable.root]
             } else {
                 throw Errors.unableToRetriveValue
             }
         }
 
-        func prepend<Value>(_ variable: ContextVariable<Value>, for rootId: String) {
-            if let rootPath = contextPaths[variable.rootId],
-                let path = rootPath.appending(path: variable.root) as? KeyPath<Context, Value> {
-                contextPaths[rootId] = path
-            } else {
-                contextPaths[rootId] = variable.root
-            }
+//        func prepend<Root, Value>(_ variable: ContextVariable<Root, Value>, for rootId: String) {
+//            if let rootPath = contextPaths[variable.rootId],
+//                let path = rootPath.appending(path: variable.root) as? KeyPath<Context, Value> {
+//                contextPaths[rootId] = path
+//            } else {
+//                contextPaths[rootId] = variable.root
+//            }
+//        }
+        
+        func set<Value>(_ context: Value, for variable: ContextVariable<Value, Value>) {
+            contextes[variable.rootId] = context
         }
     }
 
@@ -368,13 +370,13 @@ public struct HTMLRenderer: HTMLRenderable {
     }
 }
 
-extension Request {
-
-    /// Creates a `HTMLRenderer` that can render templates
-    ///
-    /// - Returns: A `HTMLRenderer` containing all the templates
-    /// - Throws: If the shared container could not make the `HTMLRenderer`
-    public func renderer() throws -> HTMLRenderable {
-        return try sharedContainer.make(HTMLRenderable.self)
-    }
-}
+//extension Request {
+//
+//    /// Creates a `HTMLRenderer` that can render templates
+//    ///
+//    /// - Returns: A `HTMLRenderer` containing all the templates
+//    /// - Throws: If the shared container could not make the `HTMLRenderer`
+//    public func renderer() throws -> HTMLRenderable {
+//        return try sharedContainer.make(HTMLRenderable.self)
+//    }
+//}
