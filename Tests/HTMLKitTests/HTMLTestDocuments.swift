@@ -42,7 +42,7 @@ struct StaticEmbedView: TemplateView {
     }
 }
 
-struct BaseView<Root>: ViewComponent {
+struct BaseView<Root>: StaticView {
 
     let context: TemplateValue<Root, String>
     let content: View
@@ -74,7 +74,7 @@ struct SomeView: TemplateView {
 
     struct Value {
         let name: String
-        let baseContext: BaseView<Value>.Value
+        let baseContext: String
 
         static func contentWith(name: String, title: String) -> Value {
             return .init(name: name, baseContext: title)
@@ -152,9 +152,7 @@ struct IFView: TemplateView {
             }
 
             IF(context.nullable == "Some" && context.name == "Per") {
-                Div {
-                    "And"
-                }
+                Div { "And" }
             }
         }
     }
@@ -246,7 +244,7 @@ struct ChainedEqualAttributesDataNode : StaticView {
 }
 
 
-struct VariableView<Root>: ViewComponent {
+struct VariableView<Root>: StaticView {
 
     var context: TemplateValue<Root, String>
 
@@ -261,7 +259,7 @@ struct VariableView<Root>: ViewComponent {
 struct MultipleContextualEmbed : TemplateView {
 
     struct Value {
-        let base: BaseView<Value>.Value
+        let base: String
         let variable: String
 
         init(title: String, string: String) {
@@ -389,7 +387,7 @@ struct SelfLoopingView: TemplateView {
     }
 }
 
-struct UnsafeVariable<Root> : ViewComponent {
+struct UnsafeVariable<Root> : StaticView {
 
     var context: TemplateValue<Root, MultipleContextualEmbed.Value>
 

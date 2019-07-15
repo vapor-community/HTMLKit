@@ -1,7 +1,7 @@
 
 /// A protocol that makes it possible to render HTML views
 public protocol TemplateBuilder: View {
-    
+
     /// Builds the view
     ///
     /// - Returns: a view that conforms to `Mappable`
@@ -51,6 +51,132 @@ public struct Div: ContentNode {
 public struct P: ContentNode {
 
     public var name: String { "p" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct H1: ContentNode {
+
+    public var name: String { "h1" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct H2: ContentNode {
+
+    public var name: String { "h2" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct H3: ContentNode {
+
+    public var name: String { "h3" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct H4: ContentNode {
+
+    public var name: String { "h4" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct H5: ContentNode {
+
+    public var name: String { "h5" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct H6: ContentNode {
+
+    public var name: String { "h6" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct Blockquote: ContentNode {
+
+    public var name: String { "blockquote" }
 
     public var attributes: [HTML.Attribute] = []
 
@@ -210,6 +336,122 @@ public struct Title: ContentNode {
     }
 }
 
+public enum ButtonType : String {
+    case button
+    case submit
+}
+
+public struct Button: ContentNode {
+
+    public var name: String { "button" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+
+    public func type(_ type: ButtonType) -> Button {
+        self.type(type.rawValue)
+    }
+}
+
+public struct ListItem: ContentNode {
+
+    public var name: String { "li" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct OrderdList: ContentNode {
+
+    public var name: String { "ol" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct UnorderdList: ContentNode {
+
+    public var name: String { "ul" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct Anchor: ContentNode {
+
+    public var name: String { "a" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct Nav: ContentNode {
+
+    public var name: String { "nav" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
 
 
 
@@ -238,6 +480,17 @@ public struct Img: DataNode {
 public struct Meta: DataNode {
 
     public var name: String { "meta" }
+
+    public var attributes: [HTML.Attribute]
+
+    public init(attributes: [HTML.Attribute] = []) {
+        self.attributes = attributes
+    }
+}
+
+public struct Input: DataNode {
+
+    public var name: String { "input" }
 
     public var attributes: [HTML.Attribute]
 

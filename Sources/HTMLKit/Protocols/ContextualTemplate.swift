@@ -130,14 +130,6 @@ extension StaticView {
     }
 }
 
-public protocol ViewComponent : StaticView {
-    associatedtype Root
-    associatedtype Value
-    var context: TemplateValue<Root, Value> { get }
-    
-    var body: View { get }
-}
-
 public protocol TemplateView : StaticView {
     associatedtype Value
     var context: TemplateValue<Value, Value> { get }
