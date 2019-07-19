@@ -453,6 +453,42 @@ public struct Nav: ContentNode {
     }
 }
 
+public struct Form: ContentNode {
+
+    public var name: String { "form" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct Label: ContentNode {
+
+    public var name: String { "label" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
 
 
 public struct Link: DataNode {
@@ -475,6 +511,10 @@ public struct Img: DataNode {
     public init(attributes: [HTML.Attribute] = []) {
         self.attributes = attributes
     }
+
+    public init(source: String) {
+        self.init(attributes: [.init(attribute: "src", value: source)])
+    }
 }
 
 public struct Meta: DataNode {
@@ -490,9 +530,24 @@ public struct Meta: DataNode {
 
 public struct Input: DataNode {
 
+    public enum Types : String {
+        case email
+        case number
+        case password
+        case checkbox
+        case text
+    }
+
     public var name: String { "input" }
 
     public var attributes: [HTML.Attribute]
+
+    public init(type: Types, id: View) {
+        self.attributes = [
+            .init(attribute: "type", value: type.rawValue),
+            .init(attribute: "id", value: id)
+        ]
+    }
 
     public init(attributes: [HTML.Attribute] = []) {
         self.attributes = attributes

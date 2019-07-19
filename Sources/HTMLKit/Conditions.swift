@@ -210,8 +210,8 @@ public struct IsNullCondition<Root, Value>: Conditionable {
 extension TemplateValue : Conditionable where Value == Bool {
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
         switch self {
-        case .value(let value): return value
-        case .variable(let variable): return try manager.value(for: variable)
+        case .constant(let value): return value
+        case .dynamic(let variable): return try manager.value(for: variable)
         }
     }
 }

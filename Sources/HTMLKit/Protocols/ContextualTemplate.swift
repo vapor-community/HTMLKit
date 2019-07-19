@@ -84,8 +84,8 @@ public struct ForEach<Root, Value> {
 
         self.context = context
         switch context {
-        case .value(let values): self.content = values.reduce("") { $0 + content(.value($1)) }
-        case .variable(let variable): self.content = content(.variable(.root(Value.self, rootId: variable.pathId + "-loop")))
+        case .constant(let values): self.content = values.reduce("") { $0 + content(.constant($1)) }
+        case .dynamic(let variable): self.content = content(.dynamic(.root(Value.self, rootId: variable.pathId + "-loop")))
         }
         localFormula = .init(context: Value.self)
     }
@@ -100,9 +100,9 @@ extension ForEach: View {
 
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         switch context {
-        case .value(_):
+        case .constant(_):
             return try content.render(with: manager)
-        case .variable(let variable):
+        case .dynamic(let variable):
             var rendering = ""
             let elements = try manager.value(for: variable)
             for element in elements {

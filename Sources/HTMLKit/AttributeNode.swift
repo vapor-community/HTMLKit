@@ -43,6 +43,10 @@ extension AttributeNode {
         add(HTML.Attribute(attribute: "aria-label", value: text))
     }
 
+    public func ariaLabelledBy(_ text: View) -> Self {
+        add(HTML.Attribute(attribute: "aria-labelledby", value: text))
+    }
+
     public func ariaHidden(_ text: View) -> Self {
         add(HTML.Attribute(attribute: "aria-hidden", value: text))
     }
@@ -471,14 +475,14 @@ extension AttributeNode {
         add(HTML.Attribute(attribute: "method", value: value.rawValue))
     }
 
-//    /// Specifies a minimum value
-//    ///
-//    /// - Parameter value: The value of the attribute
-//    /// - Returns: An attribute node
-//    public func min<Root>(_ value: TemplateVariable<Root, Int>) -> Self where Root : ContextualTemplate {
-//        add(HTML.Attribute(attribute: "min", value: value))
-//        return self
-//    }
+    //    /// Specifies a minimum value
+    //    ///
+    //    /// - Parameter value: The value of the attribute
+    //    /// - Returns: An attribute node
+    //    public func min<Root>(_ value: TemplateVariable<Root, Int>) -> Self where Root : ContextualTemplate {
+    //        add(HTML.Attribute(attribute: "min", value: value))
+    //        return self
+    //    }
 
     /// Specifies a minimum value
     ///

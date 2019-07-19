@@ -36,7 +36,7 @@ final class HTMLKitTests: XCTestCase {
 
     func testIfPerformance() {
         measure {
-            for _ in 0...10000 {
+            for _ in 0...1000 {
                 _ = try! renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
             }
         }
@@ -44,7 +44,7 @@ final class HTMLKitTests: XCTestCase {
 
     func testForPerformance() {
         measure {
-            for _ in 0...10000 {
+            for _ in 0...1000 {
                 _ = try! renderer.renderRaw(ForEachView.self, with: .init(array: ["1", "2", "3", "four", "five"]))
             }
         }
@@ -53,7 +53,7 @@ final class HTMLKitTests: XCTestCase {
     func testDatePerformance() {
         let testDate = Date()
         measure {
-            for _ in 0...10000 {
+            for _ in 0...1000 {
                 _ = try! renderer.renderRaw(OptionalDateView.self, with: testDate)
             }
         }

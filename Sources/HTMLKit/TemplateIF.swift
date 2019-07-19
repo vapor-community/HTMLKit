@@ -35,4 +35,10 @@ public class IF {
         ifCondition.view = content()
         self.conditions = [ifCondition]
     }
+
+    public init(_ condition: TemplateValue<Never, Bool>, @HTMLBuilder content: () -> View) {
+        let ifCondition = Condition(condition: condition)
+        ifCondition.view = content()
+        self.conditions = [ifCondition]
+    }
 }

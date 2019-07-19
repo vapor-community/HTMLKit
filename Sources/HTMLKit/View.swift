@@ -3,19 +3,19 @@ import Foundation
 
 @dynamicMemberLookup
 public enum TemplateValue<Root, Value> {
-    case value(Value)
-    case variable(ContextVariable<Root, Value>)
+    case constant(Value)
+    case dynamic(ContextVariable<Root, Value>)
 
     public subscript<Subject>(dynamicMember keyPath: KeyPath<Value, Subject>) -> TemplateValue<Root, Subject> {
         switch self {
-        case .value(let value): return .value(value[keyPath: keyPath])
-        case .variable(let variable): return .variable(variable[dynamicMember: keyPath])
+        case .constant(let value): return .constant(value[keyPath: keyPath])
+        case .dynamic(let variable): return .dynamic(variable[dynamicMember: keyPath])
         }
     }
 
     public func escaping(_ option: EscapingOption) -> TemplateValue<Root, Value> {
         switch self {
-        case .variable(let variable): return .variable(variable.escaping(option))
+        case .dynamic(let variable): return .dynamic(variable.escaping(option))
         default: return self
         }
     }
@@ -25,15 +25,15 @@ extension TemplateValue : View where Value : View {
 
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         switch self {
-        case .value(let value): try value.prerender(formula)
-        case .variable(let variable): try variable.prerender(formula)
+        case .constant(let value): try value.prerender(formula)
+        case .dynamic(let variable): try variable.prerender(formula)
         }
     }
 
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         switch self {
-        case .value(let value): return try value.render(with: manager)
-        case .variable(let variable): return try variable.render(with: manager)
+        case .constant(let value): return try value.render(with: manager)
+        case .dynamic(let variable): return try variable.render(with: manager)
         }
     }
 }
@@ -50,19 +50,19 @@ extension TemplateValue : ExpressibleByStringLiteral where Value == String {
     public typealias StringLiteralType = String
 
     public init(stringLiteral value: Self.StringLiteralType) {
-        self = .value(value)
+        self = .constant(value)
     }
 }
 
 extension TemplateValue {
     public static func root<T>() -> TemplateValue<T, T> {
-        .variable(.root())
+        .dynamic(.root())
     }
-    
+
     public func value<T>(from manager: HTMLRenderer.ContextManager<T>) throws -> Value {
         switch self {
-        case .value(let value): return value
-        case .variable(let variable): return try variable.value(from: manager)
+        case .constant(let value): return value
+        case .dynamic(let variable): return try variable.value(from: manager)
         }
     }
 }
