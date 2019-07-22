@@ -489,6 +489,139 @@ public struct Label: ContentNode {
     }
 }
 
+public struct Script: ContentNode {
+
+    public var name: String { "script" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct TextArea: ContentNode {
+
+    public var name: String { "textarea" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct Select<A, B>: AttributeNode {
+
+    public var name: String { "select" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    let isMultiple: Conditionable
+
+    public init(attributes: [HTML.Attribute], content: View, isMultiple: Conditionable) {
+        self.content = content
+        self.attributes = attributes
+        self.isMultiple = isMultiple
+    }
+
+    public init(for elements: TemplateValue<A, [B]>, @HTMLBuilder buildere: (RootValue<B>) -> View) {
+        content = ForEach(in: elements) { variable in
+            Option { buildere(variable) }
+        }
+        isMultiple = false
+    }
+
+    public struct Option: ContentNode {
+
+        public var name: String { "option" }
+
+        public var attributes: [HTML.Attribute] = []
+
+        public var content: View
+
+        public init(@HTMLBuilder buildere: () -> View) {
+            content = buildere()
+        }
+
+        public init(attributes: [HTML.Attribute] = [], content: View = "") {
+            self.content = content
+            self.attributes = attributes
+        }
+    }
+}
+
+extension Select where A == Never, B == Never {
+    public init(@HTMLBuilder buildere: () -> View) {
+        content = buildere()
+        isMultiple = false
+    }
+}
+
+extension Select where B : View {
+    public init(for elements: TemplateValue<A, [B]>) {
+        isMultiple = false
+        content = ForEach(in: elements) { variable in
+            Option { variable }
+        }
+    }
+}
+
+// Easier use of TemplateVariable.constant()
+extension Select where B : View, A == Never {
+    public init(in elements: [B]) {
+        isMultiple = false
+        content = ForEach<Never, B>(in: .constant(elements)) { variable in
+            Option { variable }
+        }
+    }
+}
+
+extension Select {
+    public func copy(with attributes: [HTML.Attribute]) -> Select<A, B> {
+        .init(attributes: attributes, content: content, isMultiple: isMultiple)
+    }
+
+    public func isMultiple(_ isMultiple: Conditionable) -> Select<A, B> {
+        .init(attributes: attributes, content: content, isMultiple: isMultiple)
+    }
+
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        formula.add(string: "<\(name)")
+        try attributes.forEach {
+            formula.add(string: " ")
+            try $0.prerender(formula)
+        }
+        let ifView = IF(isMultiple) { " multiple" }
+        try ifView.prerender(formula) // Need to prerender the different paths
+
+        formula.add(mappable: ifView)
+        formula.add(string: ">")
+        formula.add(mappable: content)
+        formula.add(string: "</\(name)>")
+    }
+
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        fatalError()
+    }
+}
+
 
 
 public struct Link: DataNode {
@@ -535,7 +668,10 @@ public struct Input: DataNode {
         case number
         case password
         case checkbox
+        case radio
         case text
+        case file
+        case range
     }
 
     public var name: String { "input" }

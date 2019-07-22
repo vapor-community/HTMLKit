@@ -48,8 +48,7 @@ extension IF: View {
     public func elseIf(_ condition: Conditionable, @HTMLBuilder render: () -> View) -> IF {
         let ifCondition = Condition(condition: condition)
         ifCondition.view = render()
-        conditions.append(ifCondition)
-        return self
+        return .init(conditions: conditions + [ifCondition])
     }
 
     /// Add an else if condition
@@ -61,8 +60,7 @@ extension IF: View {
     public func elseIf<A, B>(isNil path: TemplateValue<A, B?>, @HTMLBuilder render: () -> View) -> IF {
         let condition = Condition(condition: IsNullCondition<A, B>(path: path))
         condition.view = render()
-        conditions.append(condition)
-        return self
+        return .init(conditions: conditions + [condition])
     }
 
     /// Add an else if condition
@@ -74,8 +72,7 @@ extension IF: View {
     public func elseIf<Root, Value>(isNotNil path: TemplateValue<Root, Value?>, @HTMLBuilder render: () -> View) -> IF {
         let condition = Condition(condition: NotNullCondition<Root, Value>(path: path))
         condition.view = render()
-        conditions.append(condition)
-        return self
+        return .init(conditions: conditions + [condition])
     }
 
     /// Add an else condition
@@ -85,7 +82,6 @@ extension IF: View {
     public func `else`(@HTMLBuilder render: () -> View) -> View {
         let trueCondition = Condition(condition: AllwaysTrueCondition())
         trueCondition.view = render()
-        conditions.append(trueCondition)
-        return self
+        return IF(conditions: conditions + [trueCondition])
     }
 }

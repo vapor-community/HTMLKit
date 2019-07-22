@@ -1,6 +1,6 @@
 
 import Foundation
-import Lingo
+//import Lingo
 
 public protocol HTMLRenderable {
 
@@ -103,7 +103,7 @@ public struct HTMLRenderer: HTMLRenderable {
     var formulaCache: [String : Any]
 
     /// The localization to use when rendering
-    var lingo: Lingo?
+//    var lingo: Lingo?
 
     /// The calendar to use when rendering dates
     public var calendar: Calendar = Calendar(identifier: .gregorian)
@@ -135,14 +135,14 @@ public struct HTMLRenderer: HTMLRenderable {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Value> else {
             throw Errors.unableToFindFormula
         }
-        return try formula.render(with: context, lingo: lingo, locale: nil)
+        return try formula.render(with: context, locale: nil)
     }
 
     public func renderRaw<T: StaticView>(_ type: T.Type) throws -> String {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<Void> else {
             throw Errors.unableToFindFormula
         }
-        return try formula.render(with: (), lingo: lingo, locale: nil)
+        return try formula.render(with: (), locale: nil)
     }
 
     /// Brews a formula for later use
@@ -159,13 +159,13 @@ public struct HTMLRenderer: HTMLRenderable {
 
     public mutating func add<T: TemplateView>(view: T) throws {
         let formula = Formula(context: T.Value.self)
-        try view.body.prerender(formula)
+        try view.prerender(formula)
         formulaCache[String(reflecting: T.self)] = formula
     }
 
     public mutating func add<T: StaticView>(view: T) throws {
         let formula = Formula(context: Void.self)
-        try view.body.prerender(formula)
+        try view.prerender(formula)
         formulaCache[String(reflecting: T.self)] = formula
     }
 
@@ -209,15 +209,15 @@ public struct HTMLRenderer: HTMLRenderable {
         var contextes: [String : Any]
 
         /// The lingo object that is needed to use localization
-        let lingo: Lingo?
+//        let lingo: Lingo?
 
         /// The path to the selected locale to use in localization
         var locale: String?
 
-        init(rootContext: Context, lingo: Lingo?, locale: String?) {
+        init(rootContext: Context, locale: String?) {
             self.rootContext = rootContext
             self.contextes = [:]
-            self.lingo = lingo
+//            self.lingo = lingo
             self.locale = locale
         }
 
@@ -268,7 +268,7 @@ public struct HTMLRenderer: HTMLRenderable {
 //                contextPaths[rootId] = variable.root
 //            }
 //        }
-        
+
         func set<Value>(_ context: Value, for variable: ContextVariable<Value, Value>) {
             contextes[variable.rootId] = context
         }
@@ -349,12 +349,12 @@ public struct HTMLRenderer: HTMLRenderable {
         /// - lingo: The lingo to use when rendering
         /// - Returns: A rendered formula
         /// - Throws: If some of the formula fails, for some reason
-        func render(with context: T, lingo: Lingo?, locale: String? = nil) throws -> String {
+        func render(with context: T, locale: String? = nil) throws -> String {
             var usedLocale = locale
             if let localePath = localePath {
                 usedLocale = context[keyPath: localePath]
             }
-            let contextManager = ContextManager(rootContext: context, lingo: lingo, locale: usedLocale)
+            let contextManager = ContextManager(rootContext: context, locale: usedLocale)
             return try ingredient.reduce("") { try $0 + $1.render(with: contextManager) }
         }
 

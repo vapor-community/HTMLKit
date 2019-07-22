@@ -138,7 +138,7 @@ extension HTML.Attribute: View {
 
 public protocol AttributeNode: View {
 
-    var attributes: [HTML.Attribute] { get set }
+    var attributes: [HTML.Attribute] { get }
 
     func add(_ attribute: HTML.Attribute) -> Self
 

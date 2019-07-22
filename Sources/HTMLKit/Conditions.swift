@@ -9,6 +9,18 @@ public protocol Conditionable {
     func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool
 }
 
+extension Bool : Conditionable {
+    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+        return self
+    }
+}
+
+extension ContextVariable : Conditionable where Value == Bool {
+    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+        try manager.value(for: self)
+    }
+}
+
 /// A condition that evaluates an equal expression between a variable and a constant value
 public struct Equal<Root, Value>: Conditionable where Value: Equatable {
 

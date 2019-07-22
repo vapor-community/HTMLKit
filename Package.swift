@@ -15,8 +15,8 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
 
-        .package(url: "https://github.com/miroslavkovac/Lingo.git", from: "3.0.5"),
-        .package(url: "https://github.com/vapor-community/markdown.git", .upToNextMajor(from: "0.4.0")),
+//        .package(url: "https://github.com/miroslavkovac/Lingo.git", from: "3.0.5"),
+//        .package(url: "https://github.com/vapor-community/markdown.git", .upToNextMajor(from: "0.4.0")),
 //        .package(url: "https://github.com/vapor/vapor.git", from: "3.0.0"),
     ],
     targets: [

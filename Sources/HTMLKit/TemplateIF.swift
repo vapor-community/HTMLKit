@@ -2,7 +2,7 @@
 /// A struct making it possible to have a if in the template
 ///
 ///     runtimeIf(\.name == "Name", view: ...)
-public class IF {
+public struct IF {
 
     /// One condition in the if
     public class Condition {
@@ -28,7 +28,7 @@ public class IF {
     }
 
     /// The different conditions that can happen
-    var conditions: [Condition]
+    let conditions: [Condition]
 
     public init(_ condition: Conditionable, @HTMLBuilder content: () -> View) {
         let ifCondition = Condition(condition: condition)
@@ -36,9 +36,7 @@ public class IF {
         self.conditions = [ifCondition]
     }
 
-    public init(_ condition: TemplateValue<Never, Bool>, @HTMLBuilder content: () -> View) {
-        let ifCondition = Condition(condition: condition)
-        ifCondition.view = content()
-        self.conditions = [ifCondition]
+    init(conditions: [Condition]) {
+        self.conditions = conditions
     }
 }

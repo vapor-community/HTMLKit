@@ -403,25 +403,25 @@ struct UnsafeVariable<Root> : StaticView {
     }
 }
 
-struct MarkdownView: TemplateView {
-
-    struct Value {
-        let title: String
-        let description: String
-    }
-
-    let context: RootValue<Value> = .root()
-
-    var body: View {
-        Div {
-            Markdown {
-                "# Title: " + context.title
-                "\n## Description here:\n"
-                context.description
-            }
-        }
-    }
-}
+//struct MarkdownView: TemplateView {
+//
+//    struct Value {
+//        let title: String
+//        let description: String
+//    }
+//
+//    let context: RootValue<Value> = .root()
+//
+//    var body: View {
+//        Div {
+//            Markdown {
+//                "# Title: " + context.title
+//                "\n## Description here:\n"
+//                context.description
+//            }
+//        }
+//    }
+//}
 
 //struct LocalizedView: LocalizedTemplate {
 //
