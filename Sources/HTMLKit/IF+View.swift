@@ -38,8 +38,6 @@ extension IF: View {
 
     // View `BrewableFormula` documentation
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
-        formula.add(mappable: self)
-
         var isStaticlyEvaluated = false
         for condition in conditions {
             condition.localFormula.calendar = formula.calendar
@@ -59,6 +57,9 @@ extension IF: View {
                 isStaticlyEvaluated = false
                 try condition.prerender(formula)
             }
+        }
+        if isStaticlyEvaluated == false {
+            formula.add(mappable: self)
         }
     }
 
