@@ -541,7 +541,7 @@ public struct Select<A, B>: AttributeNode {
         self.isMultiple = isMultiple
     }
 
-    public init(for elements: TemplateValue<A, [B]>, @HTMLBuilder buildere: (RootValue<B>) -> View) {
+    public init(_ elements: TemplateValue<A, [B]>, @HTMLBuilder buildere: (RootValue<B>) -> View) {
         content = ForEach(in: elements) { variable in
             Option { buildere(variable) }
         }
@@ -575,7 +575,7 @@ extension Select where A == Never, B == Never {
 }
 
 extension Select where B : View {
-    public init(for elements: TemplateValue<A, [B]>) {
+    public init(_ elements: TemplateValue<A, [B]>) {
         isMultiple = false
         content = ForEach(in: elements) { variable in
             Option { variable }

@@ -1,6 +1,7 @@
 
 import HTMLKit
 import Foundation
+import XCTest
 
 protocol HTMLTestable {
     static var expextedOutput: String { get }
@@ -503,6 +504,57 @@ struct OptionalDateView : TemplateView {
         }
     }
 }
+
+class FailingCondition : Conditionable {
+
+    let evaluationResult: Bool
+    var hasBeenEvaluated = false
+
+    init(evaluationResult: Bool) {
+        self.evaluationResult = evaluationResult
+    }
+
+    func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+        guard hasBeenEvaluated == false else {
+            XCTFail("This should never run")
+            return false
+        }
+        self.hasBeenEvaluated = true
+        return evaluationResult
+    }
+}
+
+struct StaticIfPrerenderingTest : TemplateView {
+
+    var context: RootValue<Bool> = .root()
+
+    var body: View {
+        Div {
+            IF(FailingCondition(evaluationResult: true)) {
+                "This should be prerenderd"
+            }.else {
+                "This sould never be renderd"
+            }
+
+            P {
+                IF(context) {
+                    "This may run"
+                }.else {
+                    "This as well"
+                }
+            }
+
+            P {
+                IF(FailingCondition(evaluationResult: false)) {
+                    "This sould never be renderd"
+                }.else {
+                    "This should be prerenderd"
+                }
+            }
+        }
+    }
+}
+
 
 //
 //struct LocalizedDateView: LocalizedTemplate {

@@ -17,6 +17,13 @@ extension IF.Condition: Conditionable {
     }
 }
 
+/// This is a struct that should never exist in a template, and therefore will be used to evaluate if a `Condition`is dynamic or static
+struct ConditionPrerenderTest {}
+
+enum IFPrerenderErrors : Error {
+    case dynamiclyEvaluatedCondition
+}
+
 extension IF: View {
 
     // View `CompiledTemplate` documentation
@@ -32,10 +39,26 @@ extension IF: View {
     // View `BrewableFormula` documentation
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(mappable: self)
+
+        var isStaticlyEvaluated = false
         for condition in conditions {
             condition.localFormula.calendar = formula.calendar
             condition.localFormula.timeZone = formula.timeZone
-            try condition.prerender(formula)
+
+            do {
+                guard isStaticlyEvaluated else {
+                    throw IFPrerenderErrors.dynamiclyEvaluatedCondition
+                }
+                let testContext = HTMLRenderer.ContextManager(rootContext: ConditionPrerenderTest(), locale: nil)
+                if try condition.condition.evaluate(with: testContext) {
+                    try condition.view.prerender(formula)
+                    return // Returning as the first true condition should be the only one that is rendered
+                }
+            } catch {
+                // If an error was thrown, then there is some missing context and therefore the whole condition should be evaluated at runtime
+                isStaticlyEvaluated = false
+                try condition.prerender(formula)
+            }
         }
     }
 

@@ -80,6 +80,7 @@ final class HTMLKitTests: XCTestCase {
         let firstIfRender       = try renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 19, nullable: nil, bool: false))
         let secondIfRender      = try renderer.renderRaw(IFView.self, with: .init(name: "Mats", age: 20, nullable: nil, bool: true))
         let thirdIfRender       = try renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
+        let staticIfRender      = try renderer.renderRaw(StaticIfPrerenderingTest.self, with: false)
 //        let varialbeRender      = try renderer.renderRaw(VariableView.self, with: "<script>\"'&</script>")
         let selfLoop            = try renderer.renderRaw(SelfLoopingView.self, with: [.init(string: "Hello", int: 2), .init(string: "Morn", int: nil)])
         let selfPassing         = try renderer.renderRaw(SelfContextPassing.self, with: "Self")
@@ -112,6 +113,7 @@ final class HTMLKitTests: XCTestCase {
         XCTAssertEqual(firstIfRender, "<div>I am a child</div>")
         XCTAssertEqual(secondIfRender, "<div><p>My name is: Mats!</p>I am growing<p>Simple bool</p></div>")
         XCTAssertEqual(thirdIfRender, "<div>I am older<b>Some</b><div>And</div></div>")
+        XCTAssertEqual(staticIfRender, "<div>This should be prerenderd<p>This as well</p><p>This should be prerenderd</p></div>")
         XCTAssertEqual(simpleRender, "<div><p>Text</p></div>")
         XCTAssertEqual(selfLoop, "<div class='list'><div><div><p>Text</p></div><p>Hello</p><small>2</small></div><div><div><p>Text</p></div><p>Morn</p></div></div>")
         XCTAssertEqual(selfPassing, "<div><div><p>Self</p><p>Self</p></div></div>")
@@ -182,6 +184,7 @@ final class HTMLKitTests: XCTestCase {
 //        try renderer.add(template: UsingComponent())
         try renderer.add(view: ChainedEqualAttributes())
         try renderer.add(view: ChainedEqualAttributesDataNode())
+        try renderer.add(view: StaticIfPrerenderingTest())
 //
         self.renderer = renderer
     }

@@ -4,53 +4,53 @@ import Foundation
 
 public protocol HTMLRenderable {
 
-//    /// Renders a `ContextualTemplate` formula
-//    ///
-//    ///     try renderer.render(WelcomeView.self)
-//    ///
-//    /// - Parameters:
-//    ///   - type: The view type to render
-//    ///   - context: The needed context to render the view with
-//    /// - Returns: Returns a rendered view in a raw `String`
-//    /// - Throws: If the formula do not exists, or if the rendering process fails
-//    func renderRaw<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> String
-//
-//    /// Renders a `StaticView` formula
-//    ///
-//    ///     try renderer.render(WelcomeView.self)
-//    ///
-//    /// - Parameter type: The view type to render
-//    /// - Returns: Returns a rendered view in a raw `String`
-//    /// - Throws: If the formula do not exists, or if the rendering process fails
-//    func renderRaw<T>(_ type: T.Type) throws -> String where T : StaticView
-//
-//    /// Renders a `ContextualTemplate` formula
-//    ///
-//    ///     try renderer.render(WelcomeView.self)
-//    ///
-//    /// - Parameters:
-//    ///   - type: The view type to render
-//    ///   - context: The needed context to render the view with
-//    /// - Returns: Returns a rendered view in a `HTTPResponse`
-//    /// - Throws: If the formula do not exists, or if the rendering process fails
-//    func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse
-//
-//    /// Renders a `StaticView` formula
-//    ///
-//    ///     try renderer.render(WelcomeView.self)
-//    ///
-//    /// - Parameter type: The view type to render
-//    /// - Returns: Returns a rendered view in a `HTTPResponse`
-//    /// - Throws: If the formula do not exists, or if the rendering process fails
-//    func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView
+    //    /// Renders a `ContextualTemplate` formula
+    //    ///
+    //    ///     try renderer.render(WelcomeView.self)
+    //    ///
+    //    /// - Parameters:
+    //    ///   - type: The view type to render
+    //    ///   - context: The needed context to render the view with
+    //    /// - Returns: Returns a rendered view in a raw `String`
+    //    /// - Throws: If the formula do not exists, or if the rendering process fails
+    //    func renderRaw<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> String
+    //
+    //    /// Renders a `StaticView` formula
+    //    ///
+    //    ///     try renderer.render(WelcomeView.self)
+    //    ///
+    //    /// - Parameter type: The view type to render
+    //    /// - Returns: Returns a rendered view in a raw `String`
+    //    /// - Throws: If the formula do not exists, or if the rendering process fails
+    //    func renderRaw<T>(_ type: T.Type) throws -> String where T : StaticView
+    //
+    //    /// Renders a `ContextualTemplate` formula
+    //    ///
+    //    ///     try renderer.render(WelcomeView.self)
+    //    ///
+    //    /// - Parameters:
+    //    ///   - type: The view type to render
+    //    ///   - context: The needed context to render the view with
+    //    /// - Returns: Returns a rendered view in a `HTTPResponse`
+    //    /// - Throws: If the formula do not exists, or if the rendering process fails
+    //    func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse
+    //
+    //    /// Renders a `StaticView` formula
+    //    ///
+    //    ///     try renderer.render(WelcomeView.self)
+    //    ///
+    //    /// - Parameter type: The view type to render
+    //    /// - Returns: Returns a rendered view in a `HTTPResponse`
+    //    /// - Throws: If the formula do not exists, or if the rendering process fails
+    //    func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView
 
     func renderRaw<T: TemplateView>(_ type: T.Type, with context: T.Value) throws -> String
 
     func renderRaw<T: StaticView>(_ type: T.Type) throws -> String
 
-//    func render<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse
-//
-//    func render<T: StaticView>(_ type: T.Type) throws -> HTTPResponse
+    //    func render<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse
+    //
+    //    func render<T: StaticView>(_ type: T.Type) throws -> HTTPResponse
 }
 
 
@@ -103,7 +103,7 @@ public struct HTMLRenderer: HTMLRenderable {
     var formulaCache: [String : Any]
 
     /// The localization to use when rendering
-//    var lingo: Lingo?
+    //    var lingo: Lingo?
 
     /// The calendar to use when rendering dates
     public var calendar: Calendar = Calendar(identifier: .gregorian)
@@ -124,12 +124,12 @@ public struct HTMLRenderer: HTMLRenderable {
     ///   - context: The needed context to render the view with
     /// - Returns: Returns a rendered view in a raw `String`
     /// - Throws: If the formula do not exists, or if the rendering process fails
-//    public func renderRaw<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> String {
-//        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Context> else {
-//            throw Errors.unableToFindFormula
-//        }
-//        return try formula.render(with: context, lingo: lingo, locale: nil)
-//    }
+    //    public func renderRaw<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> String {
+    //        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Context> else {
+    //            throw Errors.unableToFindFormula
+    //        }
+    //        return try formula.render(with: context, lingo: lingo, locale: nil)
+    //    }
 
     public func renderRaw<T: TemplateView>(_ type: T.Type, with context: T.Value) throws -> String {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Value> else {
@@ -151,11 +151,11 @@ public struct HTMLRenderer: HTMLRenderable {
     ///
     /// - Parameter type: The view type to brew
     /// - Throws: If the brewing process fails for some reason
-//    public mutating func add<T: ContextualTemplate>(template view: T) throws {
-//        let formula = Formula(context: T.Context.self, calendar: calendar, timeZone: timeZone)
-//        try view.build().prerender(formula)
-//        formulaCache[String(reflecting: T.self)] = formula
-//    }
+    //    public mutating func add<T: ContextualTemplate>(template view: T) throws {
+    //        let formula = Formula(context: T.Context.self, calendar: calendar, timeZone: timeZone)
+    //        try view.build().prerender(formula)
+    //        formulaCache[String(reflecting: T.self)] = formula
+    //    }
 
     public mutating func add<T: TemplateView>(view: T) throws {
         let formula = Formula(context: T.Value.self)
@@ -169,21 +169,21 @@ public struct HTMLRenderer: HTMLRenderable {
         formulaCache[String(reflecting: T.self)] = formula
     }
 
-//    /// Brews a formula for later use
-//    ///
-//    ///     try renderer.add(template: WelcomeView.self)
-//    ///
-//    /// - Parameter type: The view type to brew
-//    /// - Throws: If the brewing process fails for some reason
-//    public mutating func add<T: LocalizedTemplate>(template view: T) throws {
-//        let formula = Formula(context: T.self, calendar: calendar, timeZone: timeZone)
-//        formula.localePath = T
-////        guard formula.localePath != nil else {
-////            throw Localize<T, NoContext>.Errors.missingLocalePath
-////        }
-//        try view.build().prerender(formula)
-//        formulaCache[String(reflecting: T.self)] = formula
-//    }
+    //    /// Brews a formula for later use
+    //    ///
+    //    ///     try renderer.add(template: WelcomeView.self)
+    //    ///
+    //    /// - Parameter type: The view type to brew
+    //    /// - Throws: If the brewing process fails for some reason
+    //    public mutating func add<T: LocalizedTemplate>(template view: T) throws {
+    //        let formula = Formula(context: T.self, calendar: calendar, timeZone: timeZone)
+    //        formula.localePath = T
+    ////        guard formula.localePath != nil else {
+    ////            throw Localize<T, NoContext>.Errors.missingLocalePath
+    ////        }
+    //        try view.build().prerender(formula)
+    //        formulaCache[String(reflecting: T.self)] = formula
+    //    }
 
     /// Registers a localization directory to the renderer
     ///
@@ -194,10 +194,10 @@ public struct HTMLRenderer: HTMLRenderable {
     ///   - path: A relative path to the localization folder. This is by *default* set to "Resource/Localization"
     ///   - defaultLocale: The default locale to use. This is by *default* set to "en"
     /// - Throws: If there is an error registrating the lingo
-//    public mutating func registerLocalization(atPath path: String = "Resources/Localization", defaultLocale: String = "en") throws {
-//        let path = DirectoryConfig.detect().workDir + path
-//        lingo = try Lingo(rootPath: path, defaultLocale: defaultLocale)
-//    }
+    //    public mutating func registerLocalization(atPath path: String = "Resources/Localization", defaultLocale: String = "en") throws {
+    //        let path = DirectoryConfig.detect().workDir + path
+    //        lingo = try Lingo(rootPath: path, defaultLocale: defaultLocale)
+    //    }
 
     /// Manage the differnet contextes
     /// This will remove the generic type in the render call
@@ -209,7 +209,7 @@ public struct HTMLRenderer: HTMLRenderable {
         var contextes: [String : Any]
 
         /// The lingo object that is needed to use localization
-//        let lingo: Lingo?
+        //        let lingo: Lingo?
 
         /// The path to the selected locale to use in localization
         var locale: String?
@@ -217,38 +217,13 @@ public struct HTMLRenderer: HTMLRenderable {
         init(rootContext: Context, locale: String?) {
             self.rootContext = rootContext
             self.contextes = [:]
-//            self.lingo = lingo
+            //            self.lingo = lingo
             self.locale = locale
         }
 
-        /// Return the `Context` for a `ContextualTemplate`
+        /// The value for a `ContextVariable`
         ///
-        /// - Returns: The `Context`
-//        func value<T>(for type: T.Type) throws -> T.Context where T : ContextualTemplate {
-//            if let context = rootContext as? T.Context {
-//                return context
-//            } else if let path = contextPaths[String(reflecting: T.Context.self)] as? KeyPath<Context, T.Context> {
-//                return rootContext[keyPath: path]
-//            } else {
-//                throw Errors.unableToRetriveValue
-//            }
-//        }
-
-//        /// The value for a `KeyPath`
-//        ///
-//        /// - Returns: The value at the `KeyPath`
-//        func value<Root, Value>(at path: KeyPath<Root, Value>) throws -> Value {
-//            if let context = rootContext as? Root {
-//                return context[keyPath: path]
-//            } else if let joinPath = contextPaths[String(reflecting: Root.self)] as? KeyPath<Context, Root> {
-//                let finalPath = joinPath.appending(path: path)
-//                return rootContext[keyPath: finalPath]
-//            } else {
-//                throw Errors.unableToRetriveValue
-//            }
-//        }
-
-
+        /// - Returns: The value at the `ContextVariable`
         func value<Root, Value>(for variable: ContextVariable<Root, Value>) throws -> Value {
             if variable.rootId.isEmpty,
                 let path = variable.root as? KeyPath<Context, Value> {
@@ -259,15 +234,6 @@ public struct HTMLRenderer: HTMLRenderable {
                 throw Errors.unableToRetriveValue
             }
         }
-
-//        func prepend<Root, Value>(_ variable: ContextVariable<Root, Value>, for rootId: String) {
-//            if let rootPath = contextPaths[variable.rootId],
-//                let path = rootPath.appending(path: variable.root) as? KeyPath<Context, Value> {
-//                contextPaths[rootId] = path
-//            } else {
-//                contextPaths[rootId] = variable.root
-//            }
-//        }
 
         func set<Value>(_ context: Value, for variable: ContextVariable<Value, Value>) {
             contextes[variable.rootId] = context
@@ -302,27 +268,6 @@ public struct HTMLRenderer: HTMLRenderable {
             self.timeZone = timeZone
         }
 
-        /// Adds a variable to the formula
-        ///
-        /// - Parameter variable: The variable to add
-//        public func add<Root, Value>(variable: TemplateVariable<Root, Value>) throws {
-//            if Root.Context.self == T.Context.self {
-//                ingredient.append(variable)
-//            } else {
-//                switch variable.referance {
-//                case .keyPath(let keyPath):
-//                    if let joinPath = contextPaths[String(reflecting: Root.Context.self)] as? KeyPath<T.Context, Root.Context> {
-//                        let newVariable = TemplateVariable<T, Value>(referance: .keyPath(joinPath.appending(path: keyPath)), escaping: variable.escaping)
-//                        ingredient.append(newVariable)
-//                    } else {
-//                        print("🚨 ERROR: when pre-rendering: \(String(reflecting: T.self))\n\n-- Unable to add variable from \(String(reflecting: Root.self)), to \(String(reflecting: Value.self))")
-//                        throw Errors.unableToAddVariable
-//                    }
-//                default: print("Trying to register a self varaiable")
-//                }
-//            }
-//        }
-
         /// Adds a static string to the formula
         ///
         /// - Parameter string: The string to add
@@ -339,7 +284,11 @@ public struct HTMLRenderer: HTMLRenderable {
         ///
         /// - Parameter mappable: The `Mappable` to add
         public func add(mappable: View) {
-            ingredient.append(mappable)
+            if let stringRepresentation = mappable as? String {
+                add(string: stringRepresentation)
+            } else {
+                ingredient.append(mappable)
+            }
         }
 
         /// Renders a formula
