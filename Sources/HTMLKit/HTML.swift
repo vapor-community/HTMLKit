@@ -45,9 +45,13 @@ public struct HTML {
         /// The value of the attribute
         public let value: View?
 
-        public init(attribute: String, value: View?) {
+        /// A condition that evaluates if an attributes should be rendered
+        public let isIncluded: Conditionable
+
+        public init(attribute: String, value: View?, isIncluded: Conditionable = true) {
             self.attribute = attribute
             self.value = value
+            self.isIncluded = isIncluded
         }
     }
 
@@ -126,12 +130,12 @@ extension HTML.Attribute: View {
     }
 
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
-        formula.add(string: attribute)
-        if let value = value {
-            formula.add(string: "='")
-            try value.prerender(formula)
-            formula.add(string: "'")
-        }
+        try IF(isIncluded) {
+            attribute
+            IF(value != nil) {
+                "='" + (value ?? "") + "'"
+            }
+        }.prerender(formula)
     }
 }
 
@@ -156,7 +160,7 @@ extension AttributeNode {
                 guard let value = attr.value, let newValue = attribute.value else {
                     break
                 }
-                attributes.append(.init(attribute: attr.attribute, value: [value, " ", newValue]))
+                attributes.append(.init(attribute: attr.attribute, value: [value, " ", newValue], isIncluded: attr.isIncluded))
                 attributes.remove(at: index)
                 return copy(with: attributes)
             }

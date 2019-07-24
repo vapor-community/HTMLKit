@@ -304,7 +304,7 @@ public struct HTMLRenderer: HTMLRenderable {
                 usedLocale = context[keyPath: localePath]
             }
             let contextManager = ContextManager(rootContext: context, locale: usedLocale)
-            return try ingredient.reduce("") { try $0 + $1.render(with: contextManager) }
+            return try render(with: contextManager)
         }
 
         /// Render a formula with a existing `ContextManager`
