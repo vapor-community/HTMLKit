@@ -127,6 +127,11 @@ struct BaseView: StaticView {
     let title: String
     let body: CompiledTemplate
 
+    init(title: String, body: CompiledTemplate...) {
+        self.title = title
+        self.body = body
+    }
+
     func build() -> CompiledTemplate {
         return
             html.child(
@@ -148,18 +153,16 @@ struct SomeView: ContextualTemplate {
         let name: String
         let values: [SimpleView.Context]
 
-        init(name: String, values: [String]) -> Context {
-            return .init(
-                name: name, 
-                values: values.enumerated().map { .init(value: $0.element) }
-                )
+        init(name: String, values: [String]) {
+            self.name = name
+            self.values = values.map { .init(value: $0) }
         }
     }
 
     func build() -> CompiledTemplate {
         return
             BaseView(
-                title: "Welcome"
+                title: "Welcome",
                 body:
                     p.child(
                         "Hello ", variable(\.name), "!"
