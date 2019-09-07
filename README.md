@@ -19,7 +19,7 @@ By using Swift's powerful language features and a pre-rendering algorithm, HTMLK
 
 Add the following in your `Package.swift` file
 ```swift
-.package(url: "https://github.com/vapor-community/HTMLKit.git", .branch("function-builder")),
+.package(url: "https://github.com/vapor-community/HTMLKit.git", .branch("feature/htmlkit-2.0")),
 ```
 And register the provider and the different templates with in `configure.swift`
 ```swift

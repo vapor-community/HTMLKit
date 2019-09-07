@@ -1,6 +1,7 @@
 
 import Foundation
 //import Lingo
+import Vapor
 
 public protocol HTMLRenderable {
 
@@ -31,42 +32,37 @@ public protocol HTMLRenderable {
     //    /// - Parameters:
     //    ///   - type: The view type to render
     //    ///   - context: The needed context to render the view with
-    //    /// - Returns: Returns a rendered view in a `HTTPResponse`
+    //    /// - Returns: Returns a rendered view in a `Response`
     //    /// - Throws: If the formula do not exists, or if the rendering process fails
-    //    func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse
-    //
-    //    /// Renders a `StaticView` formula
-    //    ///
-    //    ///     try renderer.render(WelcomeView.self)
-    //    ///
-    //    /// - Parameter type: The view type to render
-    //    /// - Returns: Returns a rendered view in a `HTTPResponse`
-    //    /// - Throws: If the formula do not exists, or if the rendering process fails
-    //    func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView
+    //    func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> Response
 
     func renderRaw<T: TemplateView>(_ type: T.Type, with context: T.Value) throws -> String
 
     func renderRaw<T: StaticView>(_ type: T.Type) throws -> String
 
-    //    func render<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse
-    //
-    //    func render<T: StaticView>(_ type: T.Type) throws -> HTTPResponse
+    /// Renders a `StaticView` formula
+    ///
+    ///     try renderer.render(WelcomeView.self)
+    ///
+    /// - Parameter type: The view type to render
+    /// - Returns: Returns a rendered view in a `Response`
+    /// - Throws: If the formula do not exists, or if the rendering process fails
+    func render<T>(_ type: T.Type) throws -> Response where T : StaticView
+
+    func render<T: TemplateView>(_ type: T.Type, with context: T.Value) throws -> Response
 }
 
-
 ///// An extension that implements most of the helper functions
-//extension HTMLRenderable {
-//
-//    public func render<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse {
-//        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: renderRaw(type, with: context))
-//    }
-//
-//    public func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView {
-//        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: renderRaw(type))
-//    }
-//}
+extension HTMLRenderable {
 
+    public func render<T: TemplateView>(_ type: T.Type, with value: T.Value) throws -> Response {
+        return try Response(headers: .init([("content-type", "text/html; charset=utf-8")]), body: .init(string: renderRaw(type, with: value)))
+    }
 
+    public func render<T: StaticView>(_ type: T.Type) throws -> Response {
+        return try Response(headers: .init([("content-type", "text/html; charset=utf-8")]), body: .init(string: renderRaw(type)))
+    }
+}
 
 /// A struct containing the differnet formulas for the different views.
 ///
@@ -318,14 +314,3 @@ public struct HTMLRenderer: HTMLRenderable {
         }
     }
 }
-
-//extension Request {
-//
-//    /// Creates a `HTMLRenderer` that can render templates
-//    ///
-//    /// - Returns: A `HTMLRenderer` containing all the templates
-//    /// - Throws: If the shared container could not make the `HTMLRenderer`
-//    public func renderer() throws -> HTMLRenderable {
-//        return try sharedContainer.make(HTMLRenderable.self)
-//    }
-//}
