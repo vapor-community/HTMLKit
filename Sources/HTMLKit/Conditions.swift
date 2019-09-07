@@ -268,7 +268,6 @@ public func > <Root, Value>(lhs: TemplateValue<Root, Value>, rhs: Value) -> Cond
     return GreaterThen(path: lhs, value: rhs)
 }
 
-
 /// Creates a `Equal` condition
 ///
 /// - Parameters:

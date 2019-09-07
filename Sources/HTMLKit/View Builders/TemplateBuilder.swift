@@ -29,7 +29,6 @@ public class HTMLBuilder {
     }
 }
 
-
 public struct Div: ContentNode {
 
     public var name: String { "div" }
@@ -38,8 +37,8 @@ public struct Div: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -56,8 +55,8 @@ public struct P: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -74,8 +73,8 @@ public struct H1: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -92,8 +91,8 @@ public struct H2: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -110,8 +109,8 @@ public struct H3: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -128,8 +127,8 @@ public struct H4: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -146,8 +145,8 @@ public struct H5: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -164,8 +163,8 @@ public struct H6: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -182,8 +181,8 @@ public struct Blockquote: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -200,8 +199,8 @@ public struct B: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -218,8 +217,8 @@ public struct I: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -236,8 +235,8 @@ public struct Small: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -254,8 +253,8 @@ public struct Span: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -272,8 +271,8 @@ public struct HTMLNode: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -290,8 +289,8 @@ public struct Body: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -308,8 +307,8 @@ public struct Head: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -326,8 +325,8 @@ public struct Title: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -349,8 +348,8 @@ public struct Button: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -371,8 +370,8 @@ public struct ListItem: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -389,8 +388,8 @@ public struct OrderdList: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -407,8 +406,8 @@ public struct UnorderdList: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -425,8 +424,8 @@ public struct Anchor: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -443,8 +442,8 @@ public struct Nav: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -461,8 +460,8 @@ public struct Form: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -479,8 +478,8 @@ public struct Label: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -497,8 +496,8 @@ public struct Script: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -515,8 +514,8 @@ public struct TextArea: ContentNode {
 
     public var content: View
 
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -541,9 +540,9 @@ public struct Select<A, B>: AttributeNode {
         self.isMultiple = isMultiple
     }
 
-    public init(_ elements: TemplateValue<A, [B]>, @HTMLBuilder buildere: (RootValue<B>) -> View) {
+    public init(_ elements: TemplateValue<A, [B]>, @HTMLBuilder builder: (RootValue<B>) -> View) {
         content = ForEach(in: elements) { variable in
-            Option { buildere(variable) }
+            Option { builder(variable) }
         }
         isMultiple = false
     }
@@ -556,8 +555,8 @@ public struct Select<A, B>: AttributeNode {
 
         public var content: View
 
-        public init(@HTMLBuilder buildere: () -> View) {
-            content = buildere()
+        public init(@HTMLBuilder builder: () -> View) {
+            content = builder()
         }
 
         public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -568,8 +567,8 @@ public struct Select<A, B>: AttributeNode {
 }
 
 extension Select where A == Never, B == Never {
-    public init(@HTMLBuilder buildere: () -> View) {
-        content = buildere()
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
         isMultiple = false
     }
 }
@@ -621,8 +620,6 @@ extension Select {
         fatalError()
     }
 }
-
-
 
 public struct Link: DataNode {
 
@@ -689,7 +686,6 @@ public struct Input: DataNode {
         self.attributes = attributes
     }
 }
-
 
 //extension ContextualTemplate {
 //

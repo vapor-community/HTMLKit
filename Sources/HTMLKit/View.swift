@@ -67,7 +67,6 @@ extension TemplateValue {
     }
 }
 
-
 public protocol View {
 
     /// A value indicating if the template should render when itis used as localization info
@@ -93,7 +92,6 @@ public protocol View {
 extension View {
     public var renderWhenLocalizing: Bool { return true }
 }
-
 
 extension Array: Prerenderable where Element == View {
 
@@ -184,7 +182,6 @@ extension Bool: View {
     public var renderWhenLocalizing: Bool { return false }
 }
 
-
 extension Optional: View where Wrapped: View {
 
     // View `BrewableFormula` documentation
@@ -216,7 +213,6 @@ extension UUID: View {
         formula.add(string: self.uuidString)
     }
 }
-
 
 /// Concats two values
 public func + (lhs: View, rhs: View) -> View {

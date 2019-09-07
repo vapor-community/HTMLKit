@@ -555,8 +555,6 @@ struct StaticIfPrerenderingTest : TemplateView {
     }
 }
 
-
-//
 //struct LocalizedDateView: LocalizedTemplate {
 //
 //    enum LocalizationKeys: String {

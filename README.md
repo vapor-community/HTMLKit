@@ -9,7 +9,7 @@ By using Swift's powerful language features and a pre-rendering algorithm, HTMLK
 
 ## Features
 
-* **Pre-rendering** - Pre-render all your HTML tamplates for better performance
+* **Pre-rendering** - Pre-render all your HTML templates for better performance
 * **Type safety** - Be confident that your templates work as intended
 * **Dynamic** - Render dynamic templates that adopt to the context
 * **Localization** - Dynamicaly render localized content in your templates

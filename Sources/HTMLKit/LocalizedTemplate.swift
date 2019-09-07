@@ -58,7 +58,7 @@
 //    /// - Returns: A text with the localized string
 //    /// - Throws: If some part of the localization went wrong
 //    public func localize(key: String) -> View {
-//        return Localize<Self, NoContext>(key: key, contentReferance: nil, templateContent: nil)
+//        return Localize<Self, NoContext>(key: key, contentReference: nil, templateContent: nil)
 //    }
 //
 //    /// Localize a key to a locale
@@ -69,7 +69,7 @@
 //    /// - Returns: A text with the localized string
 //    /// - Throws: If some part of the localization went wrong
 //    public func localize<C: Encodable>(key: String, with contentPath: KeyPath<Context, C>) -> View {
-//        return Localize<Self, C>(key: key, contentReferance: .keyPath(contentPath), templateContent: nil)
+//        return Localize<Self, C>(key: key, contentReference: .keyPath(contentPath), templateContent: nil)
 //    }
 //
 //    /// Localize a key to a locale
@@ -80,7 +80,7 @@
 //    /// - Returns: A text with the localized string
 //    /// - Throws: If some part of the localization went wrong
 //    public func localize(key: String, with content: [String : View]) -> View {
-//        return Localize<Self, NoContext>(key: key, contentReferance: nil, templateContent: content)
+//        return Localize<Self, NoContext>(key: key, contentReference: nil, templateContent: content)
 //    }
 //}
 
@@ -103,6 +103,6 @@
 //    /// - Returns: A text with the localized string
 //    /// - Throws: If some part of the localization went wrong
 //    public func localizeWithContext(key: String) -> View {
-//        return Localize<Self, Context>(key: key, contentReferance: .root(Self.self), templateContent: nil)
+//        return Localize<Self, Context>(key: key, contentReference: .root(Self.self), templateContent: nil)
 //    }
 //}

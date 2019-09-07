@@ -18,8 +18,7 @@ struct DateVariable<Root>: View {
         }
     }
 
-
-    enum Referance {
+    enum Reference {
         case solid(TemplateValue<Root, Date>)
         case optional(TemplateValue<Root, Date?>)
     }
@@ -28,7 +27,7 @@ struct DateVariable<Root>: View {
     let formatter: DateFormatter
 
     /// The key path to the date to render
-    let dateReferance: Referance
+    let dateReference: Reference
 
     /// A bool indicating if the date format is used
     /// This is used to bypass a Linux bug
@@ -38,7 +37,7 @@ struct DateVariable<Root>: View {
     func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
 
         var optionalDate: Date?
-        switch dateReferance {
+        switch dateReference {
         case .solid(let path):
             optionalDate = try path.value(from: manager)
         case .optional(let path):
@@ -89,7 +88,7 @@ extension TemplateValue where Value == Date {
         let formatter = DateFormatter()
         formatter.dateStyle = dateStyle
         formatter.timeStyle = timeStyle
-        return DateVariable(formatter: formatter, dateReferance: .solid(self), isUsingDateStyle: true)
+        return DateVariable(formatter: formatter, dateReference: .solid(self), isUsingDateStyle: true)
     }
 
     /// Render a date in a formate
@@ -99,7 +98,7 @@ extension TemplateValue where Value == Date {
     ///   - formatter: The DateFormatter to use when rendering the string
     /// - Returns: A `CompiledTemplate`
     public func formating(with formatter: DateFormatter) -> View {
-        return DateVariable(formatter: formatter, dateReferance: .solid(self))
+        return DateVariable(formatter: formatter, dateReference: .solid(self))
     }
 
     /// Render a date in a formate
@@ -111,7 +110,7 @@ extension TemplateValue where Value == Date {
     public func formating(string format: String) -> View {
         let formatter = DateFormatter()
         formatter.dateFormat = format
-        return DateVariable(formatter: formatter, dateReferance: .solid(self))
+        return DateVariable(formatter: formatter, dateReference: .solid(self))
     }
 }
 
@@ -128,7 +127,7 @@ extension TemplateValue where Value == Date? {
         let formatter = DateFormatter()
         formatter.dateStyle = dateStyle
         formatter.timeStyle = timeStyle
-        return DateVariable(formatter: formatter, dateReferance: .optional(self), isUsingDateStyle: true)
+        return DateVariable(formatter: formatter, dateReference: .optional(self), isUsingDateStyle: true)
     }
 
     /// Render a date in a formate
@@ -138,7 +137,7 @@ extension TemplateValue where Value == Date? {
     ///   - formatter: The DateFormatter to use when rendering the string
     /// - Returns: A `CompiledTemplate`
     public func formating(with formatter: DateFormatter) -> View {
-        return DateVariable(formatter: formatter, dateReferance: .optional(self))
+        return DateVariable(formatter: formatter, dateReference: .optional(self))
     }
 
     /// Render a date in a formate
@@ -150,6 +149,6 @@ extension TemplateValue where Value == Date? {
     public func formating(string format: String) -> View {
         let formatter = DateFormatter()
         formatter.dateFormat = format
-        return DateVariable(formatter: formatter, dateReferance: .optional(self))
+        return DateVariable(formatter: formatter, dateReference: .optional(self))
     }
 }

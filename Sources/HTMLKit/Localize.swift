@@ -27,9 +27,9 @@
 //    let key: String
 //
 //    /// The path to the content needed to render the string, if needed
-//    let contentReferance: ContextReferance<T, C>?
+//    let contentReference: ContextReference<T, C>?
 //
-//    /// A alteernative to `contentReferance` where a dict with keys is used instead of a Encodable Context
+//    /// A alteernative to `contentReference` where a dict with keys is used instead of a Encodable Context
 //    let templateContent: [String : View]?
 //
 //    // View `CompiledTempalte`
@@ -39,10 +39,10 @@
 //            throw Errors.missingLocalePath
 //        }
 //
-//        if let contentReferance = contentReferance {
+//        if let contentReference = contentReference {
 //
 //            var optionalContent: C?
-//            switch contentReferance {
+//            switch contentReference {
 //            case .keyPath(let keyPath): optionalContent = try manager.value(at: keyPath)
 //            case .root(let type): optionalContent = try manager.value(for: type) as? C
 //            }

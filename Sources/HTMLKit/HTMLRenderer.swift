@@ -236,7 +236,6 @@ public struct HTMLRenderer: HTMLRenderable {
         }
     }
 
-
     /// A formula for a view
     /// This contains the different parts to pice to gether, in order to increase the performance
     public class Formula<T> {

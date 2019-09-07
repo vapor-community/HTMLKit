@@ -45,7 +45,6 @@ extension ContextVariable {
     }
 }
 
-
 extension ContextVariable: Prerenderable where Value : View {
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(mappable: self)
@@ -114,7 +113,6 @@ extension ForEach: View {
     }
 }
 
-
 public protocol StaticView : View {
 
     var body: View { get }
@@ -153,7 +151,7 @@ public protocol TemplateView : StaticView {
 //    /// - Parameter path: The path to the `Context` needed to render the embeded view
 //    /// - Returns: A `TemplateEmbed` object that conteins the view
 //    public func embed<T>(_ template: T, withPath path: KeyPath<Context, T.Context>) -> TemplateEmbed<Self, T> where T : ContextualTemplate {
-//        return TemplateEmbed.init(templateType: template, referance: .keyPath(path))
+//        return TemplateEmbed.init(templateType: template, reference: .keyPath(path))
 //    }
 //
 //    /// Embeds a view in a template
@@ -161,7 +159,7 @@ public protocol TemplateView : StaticView {
 //    /// - Parameter path: The path to the `Context` needed to render the embeded view
 //    /// - Returns: A `TemplateEmbed` object that conteins the view
 //    public func embed<T>(_ template: T) -> TemplateEmbed<Self, T> where T : ContextualTemplate, T.Context == Context {
-//        return TemplateEmbed.init(templateType: template, referance: .root(Self.self))
+//        return TemplateEmbed.init(templateType: template, reference: .root(Self.self))
 //    }
 //
 //    /// Creates a for each loop in a template
@@ -171,7 +169,7 @@ public protocol TemplateView : StaticView {
 //    ///   - view: The view to render
 //    /// - Returns: A ´CompiledTemplate` that will loop the context
 //    public func forEach<View>(in collectionPath: KeyPath<Self.Context, [View.Context]>, render view: View) -> View where View: ContextualTemplate {
-//        return TemplateForEach<Self, View>(view: view, referance: .keyPath(collectionPath)) as! View
+//        return TemplateForEach<Self, View>(view: view, reference: .keyPath(collectionPath)) as! View
 //    }
 //
 //    /// Creates a for each loop in a template
@@ -181,7 +179,7 @@ public protocol TemplateView : StaticView {
 //    ///   - view: The view to render
 //    /// - Returns: A ´CompiledTemplate` that will loop the context
 //    public func forEach<View>(render view: View) -> View where View: ContextualTemplate, Context == [View.Context] {
-//        return TemplateForEach<Self, View>(view: view, referance: .root(Self.self)) as! View
+//        return TemplateForEach<Self, View>(view: view, reference: .root(Self.self)) as! View
 //    }
 //
 //    /// Creates an if statment in a template
@@ -232,6 +230,6 @@ public protocol TemplateView : StaticView {
 //    }
 
 //    public func unsafeVariable<T, V>(in template: T.Type, for keyPath: KeyPath<T.Context, V>, escaping: EscapingOption = .safeHTML) -> View where T : ContextualTemplate, V : View {
-//        return TemplateVariable<T, V>.init(referance: .keyPath(keyPath), escaping: escaping)
+//        return TemplateVariable<T, V>.init(reference: .keyPath(keyPath), escaping: escaping)
 //    }
 //}

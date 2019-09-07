@@ -12,7 +12,7 @@
 //public struct TemplateVariable<Root, Value> where Root : ContextualTemplate, Value : View {
 //
 //    /// The key-path to the variable to render
-//    let referance: ContextReferance<Root, Value>
+//    let reference: ContextReference<Root, Value>
 //
 //    /// The escaping option
 //    public let escaping: EscapingOption
