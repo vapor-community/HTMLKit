@@ -21,7 +21,7 @@ public enum TemplateValue<Root, Value> {
     }
 }
 
-extension TemplateValue : View where Value : View {
+extension TemplateValue: View where Value: View {
 
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         switch self {
@@ -46,7 +46,7 @@ extension TemplateValue: ExpressibleByExtendedGraphemeClusterLiteral where Value
     public typealias ExtendedGraphemeClusterLiteralType = String
 }
 
-extension TemplateValue : ExpressibleByStringLiteral where Value == String {
+extension TemplateValue: ExpressibleByStringLiteral where Value == String {
     public typealias StringLiteralType = String
 
     public init(stringLiteral value: Self.StringLiteralType) {

@@ -335,7 +335,7 @@ public struct Title: ContentNode {
     }
 }
 
-public enum ButtonType : String {
+public enum ButtonType: String {
     case button
     case submit
 }
@@ -573,7 +573,7 @@ extension Select where A == Never, B == Never {
     }
 }
 
-extension Select where B : View {
+extension Select where B: View {
     public init(_ elements: TemplateValue<A, [B]>) {
         isMultiple = false
         content = ForEach(in: elements) { variable in
@@ -583,7 +583,7 @@ extension Select where B : View {
 }
 
 // Easier use of TemplateVariable.constant()
-extension Select where B : View, A == Never {
+extension Select where B: View, A == Never {
     public init(in elements: [B]) {
         isMultiple = false
         content = ForEach<Never, B>(in: .constant(elements)) { variable in
@@ -660,7 +660,7 @@ public struct Meta: DataNode {
 
 public struct Input: DataNode {
 
-    public enum Types : String {
+    public enum Types: String {
         case email
         case number
         case password

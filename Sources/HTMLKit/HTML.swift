@@ -16,7 +16,7 @@ public enum EscapingOption: CustomDebugStringConvertible {
     }
 }
 
-//enum ContextReference<T, Value> where T : ContextualTemplate {
+//enum ContextReference<T, Value> where T: ContextualTemplate {
 //    case root(T.Type)
 //    case keyPath(KeyPath<T.Context, Value>)
 //}
@@ -86,7 +86,7 @@ public struct HTML {
     //    /// A node that wrap around any content that is renderable
     //    ///
     //    ///     ContentNode(name: "div", content: "Some text") // <div>Some text</div>
-    //    public struct ContentNode<Root : ContextualTemplate> {
+    //    public struct ContentNode<Root: ContextualTemplate> {
     //
     //        /// The name of the type of node
     //        ///

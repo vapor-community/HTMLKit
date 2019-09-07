@@ -225,7 +225,7 @@ struct IFView: TemplateView {
 //    }
 //}
 //
-struct ChainedEqualAttributes : StaticView {
+struct ChainedEqualAttributes: StaticView {
     var body: View {
         Div()
             .class("foo")
@@ -234,7 +234,7 @@ struct ChainedEqualAttributes : StaticView {
     }
 }
 
-struct ChainedEqualAttributesDataNode : StaticView {
+struct ChainedEqualAttributesDataNode: StaticView {
     var body: View {
         Img()
             .class("foo")
@@ -257,7 +257,7 @@ struct VariableView<Root>: StaticView {
     }
 }
 
-struct MultipleContextualEmbed : TemplateView {
+struct MultipleContextualEmbed: TemplateView {
 
     struct Value {
         let base: String
@@ -280,7 +280,7 @@ struct MultipleContextualEmbed : TemplateView {
     }
 }
 
-public enum Direction : String {
+public enum Direction: String {
     case top
     case bottom
     case left
@@ -296,7 +296,7 @@ public enum Direction : String {
     }
 }
 
-public enum BootstrapSizing : String {
+public enum BootstrapSizing: String {
     case extraLarge     = "-xl"
     case large          = "-lg"
     case medium         = "-md"
@@ -322,7 +322,7 @@ extension AttributeNode {
     }
 }
 
-struct BootstrapAlert : StaticView, AttributeNode {
+struct BootstrapAlert: StaticView, AttributeNode {
 
     var attributes: [HTML.Attribute]
 
@@ -364,7 +364,7 @@ struct BootstrapAlert : StaticView, AttributeNode {
 //    }
 //}
 //
-struct SelfContextPassing : TemplateView {
+struct SelfContextPassing: TemplateView {
 
     var context: RootValue<String> = .root()
 
@@ -388,7 +388,7 @@ struct SelfLoopingView: TemplateView {
     }
 }
 
-struct UnsafeVariable<Root> : StaticView {
+struct UnsafeVariable<Root>: StaticView {
 
     var context: TemplateValue<Root, MultipleContextualEmbed.Value>
 
@@ -453,7 +453,7 @@ struct UnsafeVariable<Root> : StaticView {
 //                localize(.unreadMessages, with: \.description)
 //            ),
 //            p.child(
-//                localize(.unreadMessages, with: ["numberTest" : 1])
+//                localize(.unreadMessages, with: ["numberTest": 1])
 //            ),
 //            p.child(
 //                localizeWithContext(.unreadMessages)
@@ -461,7 +461,6 @@ struct UnsafeVariable<Root> : StaticView {
 //        )
 //    }
 //}
-//
 //
 //struct DateView: ContextualTemplate {
 //
@@ -481,7 +480,7 @@ struct UnsafeVariable<Root> : StaticView {
 //    }
 //}
 
-struct DateView : TemplateView {
+struct DateView: TemplateView {
 
     var context: RootValue<Date> = .root()
 
@@ -493,7 +492,7 @@ struct DateView : TemplateView {
     }
 }
 
-struct OptionalDateView : TemplateView {
+struct OptionalDateView: TemplateView {
 
     var context: RootValue<Date?> = .root()
 
@@ -505,7 +504,7 @@ struct OptionalDateView : TemplateView {
     }
 }
 
-class FailingCondition : Conditionable {
+class FailingCondition: Conditionable {
 
     let evaluationResult: Bool
     var hasBeenEvaluated = false
@@ -524,7 +523,7 @@ class FailingCondition : Conditionable {
     }
 }
 
-struct StaticIfPrerenderingTest : TemplateView {
+struct StaticIfPrerenderingTest: TemplateView {
 
     var context: RootValue<Bool> = .root()
 

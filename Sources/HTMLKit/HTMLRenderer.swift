@@ -23,7 +23,7 @@ public protocol HTMLRenderable {
     //    /// - Parameter type: The view type to render
     //    /// - Returns: Returns a rendered view in a raw `String`
     //    /// - Throws: If the formula do not exists, or if the rendering process fails
-    //    func renderRaw<T>(_ type: T.Type) throws -> String where T : StaticView
+    //    func renderRaw<T>(_ type: T.Type) throws -> String where T: StaticView
     //
     //    /// Renders a `ContextualTemplate` formula
     //    ///
@@ -47,7 +47,7 @@ public protocol HTMLRenderable {
     /// - Parameter type: The view type to render
     /// - Returns: Returns a rendered view in a `Response`
     /// - Throws: If the formula do not exists, or if the rendering process fails
-    func render<T>(_ type: T.Type) throws -> Response where T : StaticView
+    func render<T>(_ type: T.Type) throws -> Response where T: StaticView
 
     func render<T: TemplateView>(_ type: T.Type, with context: T.Value) throws -> Response
 }
@@ -96,7 +96,7 @@ public struct HTMLRenderer: HTMLRenderable {
     }
 
     /// A cache that contains all the brewed `Template`'s
-    var formulaCache: [String : Any]
+    var formulaCache: [String: Any]
 
     /// The localization to use when rendering
     //    var lingo: Lingo?
@@ -202,7 +202,7 @@ public struct HTMLRenderer: HTMLRenderable {
         let rootContext: Context
 
         /// The different context varaibles used when rendering
-        var contextes: [String : Any]
+        var contextes: [String: Any]
 
         /// The lingo object that is needed to use localization
         //        let lingo: Lingo?

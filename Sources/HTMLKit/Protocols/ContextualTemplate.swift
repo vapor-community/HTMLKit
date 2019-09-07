@@ -45,7 +45,7 @@ extension ContextVariable {
     }
 }
 
-extension ContextVariable: Prerenderable where Value : View {
+extension ContextVariable: Prerenderable where Value: View {
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(mappable: self)
     }
@@ -113,7 +113,7 @@ extension ForEach: View {
     }
 }
 
-public protocol StaticView : View {
+public protocol StaticView: View {
 
     var body: View { get }
 }
@@ -128,7 +128,7 @@ extension StaticView {
     }
 }
 
-public protocol TemplateView : StaticView {
+public protocol TemplateView: StaticView {
     associatedtype Value
     var context: TemplateValue<Value, Value> { get }
 
@@ -150,7 +150,7 @@ public protocol TemplateView : StaticView {
 //    ///
 //    /// - Parameter path: The path to the `Context` needed to render the embeded view
 //    /// - Returns: A `TemplateEmbed` object that conteins the view
-//    public func embed<T>(_ template: T, withPath path: KeyPath<Context, T.Context>) -> TemplateEmbed<Self, T> where T : ContextualTemplate {
+//    public func embed<T>(_ template: T, withPath path: KeyPath<Context, T.Context>) -> TemplateEmbed<Self, T> where T: ContextualTemplate {
 //        return TemplateEmbed.init(templateType: template, reference: .keyPath(path))
 //    }
 //
@@ -158,7 +158,7 @@ public protocol TemplateView : StaticView {
 //    ///
 //    /// - Parameter path: The path to the `Context` needed to render the embeded view
 //    /// - Returns: A `TemplateEmbed` object that conteins the view
-//    public func embed<T>(_ template: T) -> TemplateEmbed<Self, T> where T : ContextualTemplate, T.Context == Context {
+//    public func embed<T>(_ template: T) -> TemplateEmbed<Self, T> where T: ContextualTemplate, T.Context == Context {
 //        return TemplateEmbed.init(templateType: template, reference: .root(Self.self))
 //    }
 //
@@ -229,7 +229,7 @@ public protocol TemplateView : StaticView {
 //        return IF<Self>.init(conditions: condition)
 //    }
 
-//    public func unsafeVariable<T, V>(in template: T.Type, for keyPath: KeyPath<T.Context, V>, escaping: EscapingOption = .safeHTML) -> View where T : ContextualTemplate, V : View {
+//    public func unsafeVariable<T, V>(in template: T.Type, for keyPath: KeyPath<T.Context, V>, escaping: EscapingOption = .safeHTML) -> View where T: ContextualTemplate, V: View {
 //        return TemplateVariable<T, V>.init(reference: .keyPath(keyPath), escaping: escaping)
 //    }
 //}

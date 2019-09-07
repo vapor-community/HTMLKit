@@ -30,7 +30,7 @@
 //    let contentReference: ContextReference<T, C>?
 //
 //    /// A alteernative to `contentReference` where a dict with keys is used instead of a Encodable Context
-//    let templateContent: [String : View]?
+//    let templateContent: [String: View]?
 //
 //    // View `CompiledTempalte`
 //    func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -55,7 +55,7 @@
 //            let dict = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
 //            return manager.lingo?.localize(key, locale: locale, interpolations: dict) ?? ""
 //        } else if let content = templateContent {
-//            let dict: [String : Any] = try content.mapValues { value in
+//            let dict: [String: Any] = try content.mapValues { value in
 //                if value.renderWhenLocalizing {
 //                    return try value.render(with: manager)
 //                } else {
@@ -69,7 +69,7 @@
 //    }
 //
 //    // View `Brewable`
-//    func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws where T : ContextualTemplate {
+//    func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws where T: ContextualTemplate {
 //        formula.add(mappable: self)
 //    }
 //}

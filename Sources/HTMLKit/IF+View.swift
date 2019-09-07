@@ -20,7 +20,7 @@ extension IF.Condition: Conditionable {
 /// This is a struct that should never exist in a template, and therefore will be used to evaluate if a `Condition`is dynamic or static
 struct ConditionPrerenderTest {}
 
-enum IFPrerenderErrors : Error {
+enum IFPrerenderErrors: Error {
     case dynamiclyEvaluatedCondition
 }
 

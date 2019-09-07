@@ -9,13 +9,13 @@ public protocol Conditionable {
     func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool
 }
 
-extension Bool : Conditionable {
+extension Bool: Conditionable {
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
         return self
     }
 }
 
-extension ContextVariable : Conditionable where Value == Bool {
+extension ContextVariable: Conditionable where Value == Bool {
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
         try manager.value(for: self)
     }
@@ -219,7 +219,7 @@ public struct IsNullCondition<Root, Value>: Conditionable {
     }
 }
 
-extension TemplateValue : Conditionable where Value == Bool {
+extension TemplateValue: Conditionable where Value == Bool {
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
         switch self {
         case .constant(let value): return value

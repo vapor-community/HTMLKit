@@ -46,7 +46,7 @@
 //    ///   - contentPath: The path to the content needed to render the string
 //    /// - Returns: A text with the localized string
 //    /// - Throws: If some part of the localization went wrong
-//    public func localize(_ key: LocalizationKeys, with content: [String : View]) -> View {
+//    public func localize(_ key: LocalizationKeys, with content: [String: View]) -> View {
 //        return localize(key: key.rawValue, with: content)
 //    }
 //
@@ -79,7 +79,7 @@
 //    ///   - contentPath: The path to the content needed to render the string
 //    /// - Returns: A text with the localized string
 //    /// - Throws: If some part of the localization went wrong
-//    public func localize(key: String, with content: [String : View]) -> View {
+//    public func localize(key: String, with content: [String: View]) -> View {
 //        return Localize<Self, NoContext>(key: key, contentReference: nil, templateContent: content)
 //    }
 //}
