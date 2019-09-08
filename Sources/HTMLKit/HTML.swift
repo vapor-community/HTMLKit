@@ -16,7 +16,7 @@ public enum EscapingOption: CustomDebugStringConvertible {
     }
 }
 
-//enum ContextReferance<T, Value> where T : ContextualTemplate {
+//enum ContextReference<T, Value> where T: ContextualTemplate {
 //    case root(T.Type)
 //    case keyPath(KeyPath<T.Context, Value>)
 //}
@@ -86,7 +86,7 @@ public struct HTML {
     //    /// A node that wrap around any content that is renderable
     //    ///
     //    ///     ContentNode(name: "div", content: "Some text") // <div>Some text</div>
-    //    public struct ContentNode<Root : ContextualTemplate> {
+    //    public struct ContentNode<Root: ContextualTemplate> {
     //
     //        /// The name of the type of node
     //        ///
@@ -119,7 +119,6 @@ public struct HTML {
     //    }
 }
 
-
 extension HTML.Attribute: View {
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         if let value = value {
@@ -138,7 +137,6 @@ extension HTML.Attribute: View {
         }.prerender(formula)
     }
 }
-
 
 public protocol AttributeNode: View {
 
@@ -176,7 +174,6 @@ extension AttributeNode {
         return newNode
     }
 }
-
 
 public protocol DataNode: AttributeNode {
 
@@ -221,7 +218,6 @@ extension DataNode {
     }
 }
 
-
 extension ContentNode {
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(string: "<\(name)")
@@ -241,7 +237,7 @@ extension ContentNode {
     }
 }
 
-extension HTML.Identifier : View {
+extension HTML.Identifier: View {
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         switch self {
         case .class(let name): return ".\(name)"

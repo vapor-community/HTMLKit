@@ -21,7 +21,7 @@ public enum TemplateValue<Root, Value> {
     }
 }
 
-extension TemplateValue : View where Value : View {
+extension TemplateValue: View where Value: View {
 
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         switch self {
@@ -46,7 +46,7 @@ extension TemplateValue: ExpressibleByExtendedGraphemeClusterLiteral where Value
     public typealias ExtendedGraphemeClusterLiteralType = String
 }
 
-extension TemplateValue : ExpressibleByStringLiteral where Value == String {
+extension TemplateValue: ExpressibleByStringLiteral where Value == String {
     public typealias StringLiteralType = String
 
     public init(stringLiteral value: Self.StringLiteralType) {
@@ -66,7 +66,6 @@ extension TemplateValue {
         }
     }
 }
-
 
 public protocol View {
 
@@ -93,7 +92,6 @@ public protocol View {
 extension View {
     public var renderWhenLocalizing: Bool { return true }
 }
-
 
 extension Array: Prerenderable where Element == View {
 
@@ -184,7 +182,6 @@ extension Bool: View {
     public var renderWhenLocalizing: Bool { return false }
 }
 
-
 extension Optional: View where Wrapped: View {
 
     // View `BrewableFormula` documentation
@@ -216,7 +213,6 @@ extension UUID: View {
         formula.add(string: self.uuidString)
     }
 }
-
 
 /// Concats two values
 public func + (lhs: View, rhs: View) -> View {

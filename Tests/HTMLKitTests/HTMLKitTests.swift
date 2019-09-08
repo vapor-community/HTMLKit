@@ -198,7 +198,7 @@ final class HTMLKitTests: XCTestCase {
         "one": "You have an unread message",
         "other": "You have %{numberTest} unread messages."
     },
-    "input" : "Some Value %{value}"
+    "input": "Some Value %{value}"
 }
 """
     }
@@ -211,7 +211,7 @@ final class HTMLKitTests: XCTestCase {
         "one": "Du har en ulest melding",
         "other": "Du har %{numberTest} uleste meldinger."
     },
-    "input" : "En verdi %{value}"
+    "input": "En verdi %{value}"
 }
 """
     }
