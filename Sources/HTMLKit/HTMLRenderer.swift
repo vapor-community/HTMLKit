@@ -1,7 +1,6 @@
 
 import Foundation
 //import Lingo
-import Vapor
 
 public protocol HTMLRenderable {
 
@@ -39,29 +38,6 @@ public protocol HTMLRenderable {
     func renderRaw<T: TemplateView>(_ type: T.Type, with context: T.Value) throws -> String
 
     func renderRaw<T: StaticView>(_ type: T.Type) throws -> String
-
-    /// Renders a `StaticView` formula
-    ///
-    ///     try renderer.render(WelcomeView.self)
-    ///
-    /// - Parameter type: The view type to render
-    /// - Returns: Returns a rendered view in a `Response`
-    /// - Throws: If the formula do not exists, or if the rendering process fails
-    func render<T>(_ type: T.Type) throws -> Response where T: StaticView
-
-    func render<T: TemplateView>(_ type: T.Type, with context: T.Value) throws -> Response
-}
-
-///// An extension that implements most of the helper functions
-extension HTMLRenderable {
-
-    public func render<T: TemplateView>(_ type: T.Type, with value: T.Value) throws -> Response {
-        return try Response(headers: .init([("content-type", "text/html; charset=utf-8")]), body: .init(string: renderRaw(type, with: value)))
-    }
-
-    public func render<T: StaticView>(_ type: T.Type) throws -> Response {
-        return try Response(headers: .init([("content-type", "text/html; charset=utf-8")]), body: .init(string: renderRaw(type)))
-    }
 }
 
 /// A struct containing the differnet formulas for the different views.

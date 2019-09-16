@@ -10,6 +10,9 @@ let package = Package(
         .library(
             name: "HTMLKit",
             targets: ["HTMLKit"]),
+        .library(
+            name: "HTMLKitVapor",
+            targets: ["HTMLKitVapor"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -24,7 +27,10 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "HTMLKit",
-            dependencies: ["Vapor"]),
+            dependencies: []),
+        .target(
+            name: "HTMLKitVapor",
+            dependencies: ["HTMLKit", "Vapor"]),
         .testTarget(
             name: "HTMLKitTests",
             dependencies: ["HTMLKit"]),
