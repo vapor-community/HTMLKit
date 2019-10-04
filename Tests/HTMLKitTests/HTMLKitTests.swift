@@ -111,7 +111,7 @@ final class HTMLKitTests: XCTestCase {
         XCTAssertEqual(someViewRenderTitle, "<html><head><title>Test</title><link href='some url' rel='stylesheet'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><p>Hello Mats!</p></body></html>")
         XCTAssertEqual(forEachRender, "<div id='array'><p>1</p><p>2</p><p>3</p></div>")
         XCTAssertEqual(firstIfRender, "<div>I am a child</div>")
-        XCTAssertEqual(secondIfRender, "<div><p>My name is: Mats!</p>I am growing<p>Simple bool</p></div>")
+        XCTAssertEqual(secondIfRender, "<div><p dir='ltr'>My name is: Mats!</p>I am growing<p>Simple bool</p></div>")
         XCTAssertEqual(thirdIfRender, "<div>I am older<b>Some</b><div>And</div></div>")
         XCTAssertEqual(staticIfRender, "<div>This should be prerenderd<p>This as well</p><p>This should be prerenderd</p></div>")
         XCTAssertEqual(simpleRender, "<div><p>Text</p></div>")

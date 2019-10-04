@@ -1,12 +1,23 @@
 
 /// A protocol that makes a struct to a condition that can be used in an if
-public protocol Conditionable {
+public protocol Conditionable: View {
 
     /// Evaluates an expression with a context
     ///
     /// - Parameter context: The context to use when evaluating
     /// - Returns: true if the expression is correct else false
     func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool
+}
+
+extension Conditionable {
+
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try evaluate(with: manager).render(with: manager)
+    }
+
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        formula.add(mappable: self)
+    }
 }
 
 extension Bool: Conditionable {

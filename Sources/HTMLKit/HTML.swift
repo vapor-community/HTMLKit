@@ -121,11 +121,12 @@ public struct HTML {
 
 extension HTML.Attribute: View {
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        if let value = value {
-            return try "\(attribute)='\(value.render(with: manager))'"
-        } else {
-            return "\(attribute)"
-        }
+        try IF(isIncluded) {
+            attribute
+            IF(value != nil) {
+                "='" + (value ?? "") + "'"
+            }
+        }.render(with: manager)
     }
 
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
@@ -138,7 +139,7 @@ extension HTML.Attribute: View {
     }
 }
 
-public protocol AttributeNode: View {
+public protocol AttributeNode: View, GlobalAttributes {
 
     var attributes: [HTML.Attribute] { get }
 
@@ -147,6 +148,8 @@ public protocol AttributeNode: View {
     func add(attributes: [HTML.Attribute]) -> Self
 
     func copy(with attributes: [HTML.Attribute]) -> Self
+
+    func value(of attribute: String) -> View?
 }
 
 extension AttributeNode {
@@ -172,6 +175,10 @@ extension AttributeNode {
             newNode = newNode.add(attribute)
         }
         return newNode
+    }
+
+    public func value(of attribute: String) -> View? {
+        attributes.first(where: { $0.attribute == "id" })?.value
     }
 }
 

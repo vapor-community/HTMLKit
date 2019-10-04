@@ -340,7 +340,7 @@ public enum ButtonType: String {
     case submit
 }
 
-public struct Button: ContentNode {
+public struct Button: ContentNode, TypableAttribute, NameableAttribute {
 
     public var name: String { "button" }
 
@@ -358,7 +358,7 @@ public struct Button: ContentNode {
     }
 
     public func type(_ type: ButtonType) -> Button {
-        self.type(type.rawValue)
+        self.type(TemplateValue<Void, String>.constant(type.rawValue))
     }
 }
 
@@ -416,7 +416,7 @@ public struct UnorderdList: ContentNode {
     }
 }
 
-public struct Anchor: ContentNode {
+public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute {
 
     public var name: String { "a" }
 
@@ -452,7 +452,7 @@ public struct Nav: ContentNode {
     }
 }
 
-public struct Form: ContentNode {
+public struct Form: ContentNode, NameableAttribute {
 
     public var name: String { "form" }
 
@@ -470,7 +470,7 @@ public struct Form: ContentNode {
     }
 }
 
-public struct Label: ContentNode {
+public struct Label: ContentNode, FormInputCompanianAttributes {
 
     public var name: String { "label" }
 
@@ -488,7 +488,7 @@ public struct Label: ContentNode {
     }
 }
 
-public struct Script: ContentNode {
+public struct Script: ContentNode, TypableAttribute, MediaSourceableAttribute {
 
     public var name: String { "script" }
 
@@ -506,7 +506,7 @@ public struct Script: ContentNode {
     }
 }
 
-public struct TextArea: ContentNode {
+public struct TextArea: ContentNode, NameableAttribute {
 
     public var name: String { "textarea" }
 
@@ -524,7 +524,7 @@ public struct TextArea: ContentNode {
     }
 }
 
-public struct Select<A, B>: AttributeNode {
+public struct Select<A, B>: AttributeNode, NameableAttribute {
 
     public var name: String { "select" }
 
@@ -621,7 +621,7 @@ extension Select {
     }
 }
 
-public struct Link: DataNode {
+public struct Link: DataNode, TypableAttribute, HyperlinkReferenceAttribute {
 
     public var name: String { "link" }
 
@@ -632,7 +632,7 @@ public struct Link: DataNode {
     }
 }
 
-public struct Img: DataNode {
+public struct Img: DataNode, MediaSourceableAttribute {
 
     public var name: String { "img" }
 
@@ -647,7 +647,7 @@ public struct Img: DataNode {
     }
 }
 
-public struct Meta: DataNode {
+public struct Meta: DataNode, NameableAttribute, ContentableAttribute {
 
     public var name: String { "meta" }
 
@@ -658,7 +658,7 @@ public struct Meta: DataNode {
     }
 }
 
-public struct Input: DataNode {
+public struct Input: DataNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute {
 
     public enum Types: String {
         case email

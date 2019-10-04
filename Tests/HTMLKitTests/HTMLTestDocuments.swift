@@ -59,7 +59,7 @@ struct BaseView<Root>: StaticView {
                 Title { context }
                 Link()
                     .href("some url")
-                    .rel("stylesheet")
+                    .relationship("stylesheet")
                 Meta()
                     .name("viewport")
                     .content("width=device-width, initial-scale=1.0")
@@ -135,7 +135,7 @@ struct IFView: TemplateView {
             IF(context.name == "Mats") {
                 P {
                     "My name is: " + context.name + "!"
-                }
+                }.direction(.leftToRight)
             }
 
             IF(context.age < 20) {
