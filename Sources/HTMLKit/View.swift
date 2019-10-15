@@ -19,6 +19,22 @@ public enum TemplateValue<Root, Value> {
         default: return self
         }
     }
+
+//    public func convert<T>(to: T.Type) -> TemplateValue<Root, T> {
+//        switch self {
+//        case .constant(let value):
+//            guard let castValue = value as? T else {
+//                fatalError("Can not cast value form \(Value.self) to \(T.self).")
+//            }
+//            return .constant(castValue)
+//        case .dynamic(let variable):
+//            return .dynamic(variable.cast(to: T.self))
+//        }
+//    }
+
+    public func value<T>(at keyPath: KeyPath<Value, T>) -> TemplateValue<Root, T> {
+        return self[dynamicMember: keyPath]
+    }
 }
 
 extension TemplateValue: View where Value: View {
@@ -49,6 +65,12 @@ extension TemplateValue: ExpressibleByExtendedGraphemeClusterLiteral where Value
 extension TemplateValue: ExpressibleByStringLiteral where Value == String {
     public typealias StringLiteralType = String
 
+    public init(stringLiteral value: Self.StringLiteralType) {
+        self = .constant(value)
+    }
+}
+
+extension TemplateValue where Value == String, Root == Void {
     public init(stringLiteral value: Self.StringLiteralType) {
         self = .constant(value)
     }

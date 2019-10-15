@@ -1,4 +1,13 @@
 
+extension Optional {
+    public var isDefined: Bool {
+        switch self {
+        case .none: return false
+        default: return true
+        }
+    }
+}
+
 extension HTML {
     /// The text direction in HTML
     public enum TextDirection: String, View {
@@ -155,11 +164,31 @@ public protocol TypableAttribute {
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
     func type<T>(_ value: TemplateValue<T, String>) -> Self
+    func type(_ value: String) -> Self
 }
 
 extension TypableAttribute where Self: AttributeNode {
     public func type<T>(_ value: TemplateValue<T, String>) -> Self {
         add(HTML.Attribute(attribute: "type", value: value))
+    }
+
+    public func type(_ value: String) -> Self {
+        self.type(RootValue<String>.constant(value))
+    }
+}
+
+public protocol SizableAttribute {
+    func height(_ height: Int) -> Self
+    func width(_ width: Int) -> Self
+}
+
+extension SizableAttribute where Self: AttributeNode {
+    public func height(_ height: Int) -> Self {
+        add(HTML.Attribute(attribute: "height", value: height))
+    }
+
+    public func width(_ width: Int) -> Self {
+        add(HTML.Attribute(attribute: "width", value: width))
     }
 }
 

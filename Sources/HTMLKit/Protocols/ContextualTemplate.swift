@@ -31,6 +31,16 @@ public class ContextVariable<Root, Value> {
         let path = root.appending(path: context.root)
         return .init(value: path, id: pathId + "-" + context.pathId, rootId: rootId, escaping: escaping)
     }
+
+//    func cast<T>(to: T.Type) -> ContextVariable<Root, T> {
+//        let anyPath: AnyKeyPath = root
+//        switch anyPath {
+//        case let castRoot as KeyPath<Root, T>:
+//            return .init(value: castRoot, id: pathId, rootId: rootId, escaping: escaping)
+//        default:
+//            fatalError("Can not cast value form \(Value.self) to \(T.self).")
+//        }
+//    }
 }
 
 extension ContextVariable {

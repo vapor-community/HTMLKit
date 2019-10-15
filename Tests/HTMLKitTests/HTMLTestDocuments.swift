@@ -146,8 +146,8 @@ struct IFView: TemplateView {
                 "I am growing"
             }
 
-            IF(context.nullable != nil) {
-                B { context.nullable }
+            IF(context.nullable.isDefined) {
+                Bold { context.nullable }
             }.elseIf(context.bool) {
                 P { "Simple bool" }
             }

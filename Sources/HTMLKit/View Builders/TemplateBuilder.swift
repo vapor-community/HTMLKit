@@ -191,7 +191,7 @@ public struct Blockquote: ContentNode {
     }
 }
 
-public struct B: ContentNode {
+public struct Bold: ContentNode {
 
     public var name: String { "b" }
 
@@ -209,7 +209,7 @@ public struct B: ContentNode {
     }
 }
 
-public struct I: ContentNode {
+public struct Italic: ContentNode {
 
     public var name: String { "i" }
 
@@ -302,6 +302,24 @@ public struct Body: ContentNode {
 public struct Head: ContentNode {
 
     public var name: String { "head" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct Header: ContentNode {
+
+    public var name: String { "header" }
 
     public var attributes: [HTML.Attribute] = []
 
@@ -432,6 +450,10 @@ public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute
         self.content = content
         self.attributes = attributes
     }
+
+    public func mail(to email: String) -> Anchor {
+        self.href("mailto:\(email)")
+    }
 }
 
 public struct Nav: ContentNode {
@@ -454,6 +476,11 @@ public struct Nav: ContentNode {
 
 public struct Form: ContentNode, NameableAttribute {
 
+    public enum Method: String {
+        case post
+        case get
+    }
+
     public var name: String { "form" }
 
     public var attributes: [HTML.Attribute] = []
@@ -467,6 +494,14 @@ public struct Form: ContentNode, NameableAttribute {
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
         self.content = content
         self.attributes = attributes
+    }
+
+    public func action(_ value: View) -> Form {
+        self.add(.init(attribute: "action", value: value))
+    }
+
+    public func method(_ method: Method) -> Form {
+        self.add(.init(attribute: "method", value: method.rawValue))
     }
 }
 
@@ -509,6 +544,42 @@ public struct Script: ContentNode, TypableAttribute, MediaSourceableAttribute {
 public struct TextArea: ContentNode, NameableAttribute {
 
     public var name: String { "textarea" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct Footer: ContentNode {
+
+    public var name: String { "footer" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct Section: ContentNode {
+
+    public var name: String { "section" }
 
     public var attributes: [HTML.Attribute] = []
 
@@ -632,7 +703,7 @@ public struct Link: DataNode, TypableAttribute, HyperlinkReferenceAttribute {
     }
 }
 
-public struct Img: DataNode, MediaSourceableAttribute {
+public struct Img: DataNode, MediaSourceableAttribute, SizableAttribute {
 
     public var name: String { "img" }
 
@@ -644,6 +715,10 @@ public struct Img: DataNode, MediaSourceableAttribute {
 
     public init(source: String) {
         self.init(attributes: [.init(attribute: "src", value: source)])
+    }
+
+    public func alt(_ text: View) -> Img {
+        self.add(.init(attribute: "alt", value: text))
     }
 }
 
@@ -658,9 +733,10 @@ public struct Meta: DataNode, NameableAttribute, ContentableAttribute {
     }
 }
 
-public struct Input: DataNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute {
+public struct Input: DataNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute, SizableAttribute {
 
     public enum Types: String {
+        case hidden
         case email
         case number
         case password
@@ -684,6 +760,18 @@ public struct Input: DataNode, TypableAttribute, MediaSourceableAttribute, Namea
 
     public init(attributes: [HTML.Attribute] = []) {
         self.attributes = attributes
+    }
+
+    public func type(_ type: Types) -> Input {
+        self.type(RootValue<String>.constant(type.rawValue))
+    }
+
+    public func placeholder(_ text: View) -> Input {
+        self.add(.init(attribute: "placeholder", value: text))
+    }
+
+    public func value(_ value: View) -> Input {
+        self.add(.init(attribute: "value", value: value))
     }
 }
 
