@@ -85,12 +85,23 @@ public struct ForEach<Root, Value> {
 
     public let context: TemplateValue<Root, [Value]>
 
-    public let content: View
+    let content: View
 
     let localFormula: HTMLRenderer.Formula<Value>
 
     public init(in context: TemplateValue<Root, [Value]>, @HTMLBuilder content: (RootValue<Value>) -> View) {
 
+        self.context = context
+        switch context {
+        case .constant(let values): self.content = values.reduce("") { $0 + content(.constant($1)) }
+        case .dynamic(let variable): self.content = content(.dynamic(.root(Value.self, rootId: variable.pathId + "-loop")))
+        }
+        localFormula = .init(context: Value.self)
+    }
+}
+
+extension ForEach where Root == [Value] {
+    public init(in context: RootValue<[Value]>, @HTMLBuilder content: (RootValue<Value>) -> View) {
         self.context = context
         switch context {
         case .constant(let values): self.content = values.reduce("") { $0 + content(.constant($1)) }
@@ -110,7 +121,7 @@ extension ForEach: View {
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         switch context {
         case .constant(_):
-            return try content.render(with: manager)
+            return try localFormula.render(with: manager)
         case .dynamic(let variable):
             var rendering = ""
             let elements = try manager.value(for: variable)

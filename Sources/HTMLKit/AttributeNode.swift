@@ -43,6 +43,8 @@ public protocol GlobalAttributes {
 
     func aria(for key: String, value: View) -> Self
 
+    func style(css: View) -> Self
+
     /// The contenteditable attribute specifies whether the content of an element is editable or not.
     /// Note: When the contenteditable attribute is not set on an element, the element will inherit it from its parent.
     func isEditable(_ value: Conditionable) -> Self
@@ -156,6 +158,20 @@ extension GlobalAttributes where Self: AttributeNode {
     public func role(_ text: View) -> Self {
         add(HTML.Attribute(attribute: "role", value: text))
     }
+
+    public func style(css: View) -> Self {
+        add(HTML.Attribute(attribute: "style", value: css))
+    }
+}
+
+public protocol ClickableAttribute {
+    func on(click: View) -> Self
+}
+
+extension ClickableAttribute where Self: AttributeNode {
+    public func on(click: View) -> Self {
+        self.add(HTML.Attribute(attribute: "onclick", value: click))
+    }
 }
 
 public protocol TypableAttribute {
@@ -189,6 +205,37 @@ extension SizableAttribute where Self: AttributeNode {
 
     public func width(_ width: Int) -> Self {
         add(HTML.Attribute(attribute: "width", value: width))
+    }
+}
+
+public protocol ValueableAttribute {
+    func max(value: View) -> Self
+    func min(value: View) -> Self
+    func value(_ value: View) -> Self
+}
+
+extension ValueableAttribute where Self: AttributeNode {
+
+    public func max(value: View) -> Self {
+        add(HTML.Attribute(attribute: "max", value: value))
+    }
+
+    public func min(value: View) -> Self {
+        add(HTML.Attribute(attribute: "min", value: value))
+    }
+
+    public func value(_ value: View) -> Self {
+        add(HTML.Attribute(attribute: "value", value: value))
+    }
+}
+
+public protocol LabelAttribute {
+    func label(_ value: View) -> Self
+}
+
+extension LabelAttribute where Self: AttributeNode {
+    public func label(_ value: View) -> Self {
+        add(HTML.Attribute(attribute: "label", value: value))
     }
 }
 
@@ -227,6 +274,26 @@ public protocol FormInputCompanianAttributes {
 extension FormInputCompanianAttributes where Self: AttributeNode {
     public func `for`(_ value: View) -> Self {
         add(HTML.Attribute(attribute: "for", value: value))
+    }
+}
+
+public protocol RequierdAttribute {
+    func required() -> Self
+}
+
+extension RequierdAttribute where Self: AttributeNode {
+    public func required() -> Self {
+        self.add(HTML.Attribute(attribute: "required", value: nil))
+    }
+}
+
+public protocol PlaceholderAttribute {
+    func placeholder(_ text: View) -> Self
+}
+
+extension PlaceholderAttribute where Self: AttributeNode {
+    public func placeholder(_ text: View) -> Self {
+        self.add(.init(attribute: "placeholder", value: text))
     }
 }
 

@@ -33,16 +33,16 @@ extension ContextVariable: Conditionable where Value == Bool {
 }
 
 /// A condition that evaluates an equal expression between a variable and a constant value
-public struct Equal<Root, Value>: Conditionable where Value: Equatable {
+public struct Equal<A, B, Value>: Conditionable where Value: Equatable {
 
     /// The path to the variable
-    let path: TemplateValue<Root, Value>
+    let path: TemplateValue<A, Value>
 
     /// The value to be compared with
-    let value: Value
+    let value: TemplateValue<B, Value>
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        try path.value(from: manager) == value
+        try path.value(from: manager) == value.value(from: manager)
     }
 }
 
@@ -85,6 +85,22 @@ public struct GreaterThen<Root, Value>: Conditionable where Value: Comparable {
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
         try path.value(from: manager) > value
+    }
+}
+
+/// A condition that evaluates a greater then expression between a variable and a constant value
+public struct Between<Root, Value>: Conditionable where Value: Comparable {
+
+    /// The path to the variable
+    let path: TemplateValue<Root, Value>
+
+    /// The value to be compared with
+    let upperBound: Value
+
+    let lowerBound: Value
+
+    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+        try lowerBound...upperBound ~= path.value(from: manager)
     }
 }
 
@@ -246,6 +262,16 @@ extension TemplateValue: Conditionable where Value == Bool {
 ///   - rhs: The constant value
 /// - Returns: A `TemplateConditionable` object
 public func == <Root, Value>(lhs: TemplateValue<Root, Value>, rhs: Value) -> Conditionable where Value: Equatable {
+    return Equal(path: lhs, value: RootValue<Value>.constant(rhs))
+}
+
+/// Creates a `Equal` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `TemplateConditionable` object
+public func == <A, B, Value>(lhs: TemplateValue<A, Value>, rhs: TemplateValue<B, Value>) -> Conditionable where Value: Equatable {
     return Equal(path: lhs, value: rhs)
 }
 
@@ -277,6 +303,22 @@ public func < <Root, Value>(lhs: TemplateValue<Root, Value>, rhs: Value) -> Cond
 /// - Returns: A `TemplateConditionable` object
 public func > <Root, Value>(lhs: TemplateValue<Root, Value>, rhs: Value) -> Conditionable where Value: Comparable {
     return GreaterThen(path: lhs, value: rhs)
+}
+
+public func ~= <Root, Value>(lhs: Range<Value>, rhs: TemplateValue<Root, Value>) -> Conditionable where Value: Comparable {
+    return Between(path: rhs, upperBound: lhs.upperBound, lowerBound: lhs.lowerBound)
+}
+
+public func ~= <Root, Value>(lhs: ClosedRange<Value>, rhs: TemplateValue<Root, Value>) -> Conditionable where Value: Comparable {
+    return Between(path: rhs, upperBound: lhs.upperBound, lowerBound: lhs.lowerBound)
+}
+
+public func ~= <Root, Value>(lhs: TemplateValue<Root, Value>, rhs: Range<Value>) -> Conditionable where Value: Comparable {
+    return Between(path: lhs, upperBound: rhs.upperBound, lowerBound: rhs.lowerBound)
+}
+
+public func ~= <Root, Value>(lhs: TemplateValue<Root, Value>, rhs: ClosedRange<Value>) -> Conditionable where Value: Comparable {
+    return Between(path: lhs, upperBound: rhs.upperBound, lowerBound: rhs.lowerBound)
 }
 
 /// Creates a `Equal` condition

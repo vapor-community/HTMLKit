@@ -139,7 +139,7 @@ extension HTML.Attribute: View {
     }
 }
 
-public protocol AttributeNode: View, GlobalAttributes {
+public protocol AddableAttributeNode: View, GlobalAttributes {
 
     var attributes: [HTML.Attribute] { get }
 
@@ -147,9 +147,16 @@ public protocol AttributeNode: View, GlobalAttributes {
 
     func add(attributes: [HTML.Attribute]) -> Self
 
+    func value(of attribute: String) -> View?
+}
+
+public protocol AttributeNode: AddableAttributeNode {
+
     func copy(with attributes: [HTML.Attribute]) -> Self
 
-    func value(of attribute: String) -> View?
+    func modify(if condition: Conditionable, modifyer: (Self) -> Self) -> Self
+
+    func wrapAttributes(with condition: Conditionable) -> [HTML.Attribute]
 }
 
 extension AttributeNode {
@@ -179,6 +186,29 @@ extension AttributeNode {
 
     public func value(of attribute: String) -> View? {
         attributes.first(where: { $0.attribute == "id" })?.value
+    }
+
+    public func modify(if condition: Conditionable, modifyer: (Self) -> Self) -> Self {
+        let emptyNode = self.copy(with: [])
+        let modified = modifyer(emptyNode)
+        return self.add(attributes: modified.wrapAttributes(with: condition))
+    }
+
+    public func wrapAttributes(with condition: Conditionable) -> [HTML.Attribute] {
+        attributes.map { attribute in
+            if let value = attribute.value {
+                return HTML.Attribute(
+                    attribute: attribute.attribute,
+                    value: IF(condition) { value }
+                )
+            } else {
+                return HTML.Attribute(
+                    attribute: attribute.attribute,
+                    value: nil,
+                    isIncluded: condition
+                )
+            }
+        }
     }
 }
 

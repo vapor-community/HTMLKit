@@ -217,7 +217,7 @@ public struct HTMLRenderer: HTMLRenderable {
     public class Formula<T> {
 
         /// The different pices or ingredients needed to render the view
-        private var ingredient: [View]
+        var ingredient: [View]
 
         /// The path to the selected locale to use in localization
         var localePath: KeyPath<T, String>?

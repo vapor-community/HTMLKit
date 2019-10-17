@@ -358,7 +358,7 @@ public enum ButtonType: String {
     case submit
 }
 
-public struct Button: ContentNode, TypableAttribute, NameableAttribute {
+public struct Button: ContentNode, TypableAttribute, NameableAttribute, ClickableAttribute {
 
     public var name: String { "button" }
 
@@ -434,7 +434,7 @@ public struct UnorderdList: ContentNode {
     }
 }
 
-public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute {
+public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute, ClickableAttribute {
 
     public var name: String { "a" }
 
@@ -541,7 +541,7 @@ public struct Script: ContentNode, TypableAttribute, MediaSourceableAttribute {
     }
 }
 
-public struct TextArea: ContentNode, NameableAttribute {
+public struct TextArea: ContentNode, NameableAttribute, PlaceholderAttribute, RequierdAttribute {
 
     public var name: String { "textarea" }
 
@@ -617,23 +617,172 @@ public struct Select<A, B>: AttributeNode, NameableAttribute {
         }
         isMultiple = false
     }
+}
 
-    public struct Option: ContentNode {
+public struct Option: ContentNode, ValueableAttribute {
 
-        public var name: String { "option" }
+    public var name: String { "option" }
 
-        public var attributes: [HTML.Attribute] = []
+    public var attributes: [HTML.Attribute] = []
 
-        public var content: View
+    public var content: View
 
-        public init(@HTMLBuilder builder: () -> View) {
-            content = builder()
-        }
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
 
-        public init(attributes: [HTML.Attribute] = [], content: View = "") {
-            self.content = content
-            self.attributes = attributes
-        }
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+
+    public func isSelected(_ condition: Conditionable) -> Option {
+        self.add(HTML.Attribute(attribute: "selected", value: nil, isIncluded: condition))
+    }
+}
+
+public struct OptionGroup: ContentNode, ValueableAttribute, LabelAttribute {
+
+    public var name: String { "optgroup" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+
+public struct Canvas: ContentNode, SizableAttribute {
+
+    public var name: String { "canvas" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct Table: ContentNode, SizableAttribute {
+
+    public var name: String { "table" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct TableHead: ContentNode, SizableAttribute {
+
+    public var name: String { "thead" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct TableBody: ContentNode, SizableAttribute {
+
+    public var name: String { "tbody" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct TableRow: ContentNode, SizableAttribute {
+
+    public var name: String { "tr" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct TableHeader: ContentNode, SizableAttribute {
+
+    public var name: String { "th" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct TableCell: ContentNode, SizableAttribute {
+
+    public var name: String { "td" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
     }
 }
 
@@ -683,7 +832,7 @@ extension Select {
 
         formula.add(mappable: ifView)
         formula.add(string: ">")
-        formula.add(mappable: content)
+        try content.prerender(formula)
         formula.add(string: "</\(name)>")
     }
 
@@ -733,7 +882,7 @@ public struct Meta: DataNode, NameableAttribute, ContentableAttribute {
     }
 }
 
-public struct Input: DataNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute, SizableAttribute {
+public struct Input: DataNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute, SizableAttribute, ValueableAttribute, PlaceholderAttribute, RequierdAttribute {
 
     public enum Types: String {
         case hidden
@@ -766,12 +915,19 @@ public struct Input: DataNode, TypableAttribute, MediaSourceableAttribute, Namea
         self.type(RootValue<String>.constant(type.rawValue))
     }
 
-    public func placeholder(_ text: View) -> Input {
-        self.add(.init(attribute: "placeholder", value: text))
+    public func isChecked(_ condition: Conditionable) -> Input {
+        self.add(HTML.Attribute(attribute: "checked", value: nil, isIncluded: condition))
     }
+}
 
-    public func value(_ value: View) -> Input {
-        self.add(.init(attribute: "value", value: value))
+public struct Break: DataNode {
+
+    public var attributes: [HTML.Attribute]
+
+    public var name: String { "br" }
+
+    public init(attributes: [HTML.Attribute] = []) {
+        self.attributes = attributes
     }
 }
 

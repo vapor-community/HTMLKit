@@ -38,7 +38,7 @@ extension IF: View {
 
     // View `BrewableFormula` documentation
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
-        var isStaticlyEvaluated = false
+        var isStaticlyEvaluated = true
         for condition in conditions {
             condition.localFormula.calendar = formula.calendar
             condition.localFormula.timeZone = formula.timeZone
