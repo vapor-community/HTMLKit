@@ -424,6 +424,28 @@ struct UnsafeVariable<Root>: StaticView {
 //    }
 //}
 
+struct LocalizedView: TemplateView {
+
+    struct DescriptionContent: Codable {
+        let numberTest: Int
+    }
+
+    struct Value: Codable {
+        let description: DescriptionContent
+        let numberTest: Int
+    }
+
+    let context: RootValue<Value> = .root()
+
+    var body: View {
+        Div {
+            H1("helloWorld")
+            P("unreadMessages", with: context.description)
+            P("unreadMessages", with: ["numberTest": 1])
+            P("unreadMessages", with: context)
+        }
+    }
+}
 //struct LocalizedView: LocalizedTemplate {
 //
 //    static let localePath: KeyPath<LocalizedView.Context, String>? = \.locale

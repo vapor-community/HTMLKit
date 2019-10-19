@@ -9,7 +9,7 @@ public class ContextVariable<Root, Value> {
 
     let root: KeyPath<Root, Value>
 
-    private let escaping: EscapingOption
+    let escaping: EscapingOption
 
     init(value: KeyPath<Root, Value>, id: String, rootId: String = "", escaping: EscapingOption = .safeHTML) {
         self.root = value
@@ -80,6 +80,59 @@ extension ContextVariable: View where Value: View {
     }
 }
 
+
+@dynamicMemberLookup
+public class SafeContext<A, B, C> {
+
+    let rootContext: ContextVariable<A, B?>
+    let nextContext: ContextVariable<B, C>
+
+    init(root: ContextVariable<A, B?>, next: ContextVariable<B, C>) {
+        self.rootContext = root
+        self.nextContext = next
+    }
+
+    public subscript<Subject>(dynamicMember keyPath: KeyPath<C, Subject>) -> SafeContext<A, B, Subject> {
+        let newContext = nextContext[dynamicMember: keyPath]
+        return SafeContext<A, B, Subject>(root: rootContext, next: newContext)
+    }
+}
+
+extension SafeContext {
+    public func value<T>(from manager: HTMLRenderer.ContextManager<T>) throws -> C? {
+        if let value = try manager.value(for: self.rootContext) {
+            return value[keyPath: self.nextContext.root]
+        } else {
+            return nil
+        }
+    }
+}
+
+extension SafeContext: View where C: View {
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        formula.add(mappable: self)
+    }
+
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+
+        guard let render = try self.value(from: manager)?.render(with: manager) else {
+                return ""
+        }
+
+        switch self.nextContext.escaping {
+        case .safeHTML:
+            return render
+                .replacingOccurrences(of: "&", with: "&amp;")
+                .replacingOccurrences(of: "<", with: "&lt;")
+                .replacingOccurrences(of: ">", with: "&gt;")
+                .replacingOccurrences(of: "\"", with: "&quot;")
+                .replacingOccurrences(of: "'", with: "&#39;")
+        case .unsafeNone:
+            return render
+        }
+    }
+}
+
 /// A struct making it possible to have a for each loop in the template
 public struct ForEach<Root, Value> {
 
@@ -89,13 +142,35 @@ public struct ForEach<Root, Value> {
 
     let localFormula: HTMLRenderer.Formula<Value>
 
+    let condition: Conditionable
+
     public init(in context: TemplateValue<Root, [Value]>, @HTMLBuilder content: (RootValue<Value>) -> View) {
 
+        self.condition = true
         self.context = context
         switch context {
         case .constant(let values): self.content = values.reduce("") { $0 + content(.constant($1)) }
         case .dynamic(let variable): self.content = content(.dynamic(.root(Value.self, rootId: variable.pathId + "-loop")))
         }
+        localFormula = .init(context: Value.self)
+    }
+
+    public init(in context: TemplateValue<Root, [Value]?>, @HTMLBuilder content: (RootValue<Value>) -> View) {
+
+        self.context = context.unsafelyUnwrapped
+        switch context {
+        case .constant(let values):
+            if let values = values {
+                self.content = values.reduce("") { $0 + content(.constant($1)) }
+            } else {
+                self.content = ""
+            }
+        case .dynamic(let variable):
+            self.content = IF(context.isDefined) {
+                content(.dynamic(.root(Value.self, rootId: variable.unsafelyUnwrapped.pathId + "-loop")))
+            }
+        }
+        self.condition = context.isDefined
         localFormula = .init(context: Value.self)
     }
 }
@@ -108,6 +183,7 @@ extension ForEach where Root == [Value] {
         case .dynamic(let variable): self.content = content(.dynamic(.root(Value.self, rootId: variable.pathId + "-loop")))
         }
         localFormula = .init(context: Value.self)
+        self.condition = true
     }
 }
 
@@ -123,6 +199,7 @@ extension ForEach: View {
         case .constant(_):
             return try localFormula.render(with: manager)
         case .dynamic(let variable):
+            guard try condition.evaluate(with: manager) else { return "" }
             var rendering = ""
             let elements = try manager.value(for: variable)
             for element in elements {

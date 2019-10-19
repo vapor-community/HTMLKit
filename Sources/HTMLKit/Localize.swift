@@ -8,6 +8,40 @@
 //import Lingo
 //import Foundation
 //
+
+public struct NoData: Encodable {}
+
+public struct Localized<A, B>: View where B: Encodable {
+
+    let key: String
+
+    let context: TemplateValue<A, B>?
+
+    public init(key: String, context: TemplateValue<A, B>) {
+        self.key = key
+        self.context = context
+    }
+
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        formula.add(mappable: self)
+    }
+
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        if let value = try context?.value(from: manager) {
+            return "localized: \(key), value: \(value)"
+        } else {
+            return "localized: \(key)"
+        }
+    }
+}
+
+extension Localized where A == NoData, B == NoData {
+    public init(key: String) {
+        self.key = key
+        self.context = nil
+    }
+}
+
 ///// A compiled template that returnes a localized string
 //struct Localize<T: ContextualTemplate, C: Encodable>: View {
 //

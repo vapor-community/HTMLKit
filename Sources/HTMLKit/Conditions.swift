@@ -1,3 +1,15 @@
+protocol IsDefinable {
+    var isDefinded: Bool { get }
+}
+
+extension Optional: IsDefinable {
+    var isDefinded: Bool {
+        switch self {
+        case .none: return false
+        default: return true
+        }
+    }
+}
 
 /// A protocol that makes a struct to a condition that can be used in an if
 public protocol Conditionable: View {
@@ -232,6 +244,36 @@ public struct NotNullCondition<Root, Value>: Conditionable {
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
         try path.value(from: manager) != nil
+    }
+}
+
+/// A condition that evaluates a greater then expression between a variable and a constant value
+public struct NotNullConditionGeneral<Root, Value>: Conditionable {
+
+    /// The path to the variable
+    let path: TemplateValue<Root, Value>
+
+    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+        if let value = try path.value(from: manager) as? IsDefinable {
+            return value.isDefinded
+        } else {
+            return true
+        }
+    }
+}
+
+/// A condition that evaluates a greater then expression between a variable and a constant value
+public struct IsNullConditionGeneral<Root, Value>: Conditionable {
+
+    /// The path to the variable
+    let path: TemplateValue<Root, Value>
+
+    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+        if let value = try path.value(from: manager) as? IsDefinable {
+            return value.isDefinded == false
+        } else {
+            return false
+        }
     }
 }
 

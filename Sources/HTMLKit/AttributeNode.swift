@@ -1,12 +1,4 @@
 
-extension Optional {
-    public var isDefined: Bool {
-        switch self {
-        case .none: return false
-        default: return true
-        }
-    }
-}
 
 extension HTML {
     /// The text direction in HTML
