@@ -191,7 +191,7 @@ struct SomeView: TemplateView {
         
         return
             BaseView(
-                title: "Welcome"
+                title: "Welcome",
                 body:
                     
                     p.child( "Hello ", variable(\.name), "!" ),
