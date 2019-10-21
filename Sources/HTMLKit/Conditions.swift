@@ -462,3 +462,13 @@ public func && (lhs: Conditionable, rhs: Conditionable) -> Conditionable {
 public func || (lhs: Conditionable, rhs: Conditionable) -> Conditionable {
     return OrCondition(first: lhs, second: rhs)
 }
+
+/// Creates a `InvertCondition` condition
+///
+/// - Parameters:
+///   - lhs: The key path
+///   - rhs: The constant value
+/// - Returns: A `TemplateConditionable` object
+public prefix func ! (condition: Conditionable) -> Conditionable {
+    return InvertCondition(condition: condition)
+}

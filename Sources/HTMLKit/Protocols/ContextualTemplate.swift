@@ -166,9 +166,7 @@ public struct ForEach<Root, Value> {
                 self.content = ""
             }
         case .dynamic(let variable):
-            self.content = IF(context.isDefined) {
-                content(.dynamic(.root(Value.self, rootId: variable.unsafelyUnwrapped.pathId + "-loop")))
-            }
+            self.content = content(.dynamic(.root(Value.self, rootId: variable.unsafelyUnwrapped.pathId + "-loop")))
         }
         self.condition = context.isDefined
         localFormula = .init(context: Value.self)

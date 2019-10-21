@@ -143,9 +143,9 @@ public protocol AddableAttributeNode: View, GlobalAttributes {
 
     var attributes: [HTML.Attribute] { get }
 
-    func add(_ attribute: HTML.Attribute) -> Self
+    func add(_ attribute: HTML.Attribute, withSpace: Bool) -> Self
 
-    func add(attributes: [HTML.Attribute]) -> Self
+    func add(attributes: [HTML.Attribute], withSpace: Bool) -> Self
 
     func value(of attribute: String) -> View?
 }
@@ -161,14 +161,18 @@ public protocol AttributeNode: AddableAttributeNode {
 
 extension AttributeNode {
 
-    public func add(_ attribute: HTML.Attribute) -> Self {
+    public func add(_ attribute: HTML.Attribute, withSpace: Bool = true) -> Self {
         var attributes = self.attributes
         for (index, attr) in attributes.enumerated() {
             if attr.attribute == attribute.attribute {
                 guard let value = attr.value, let newValue = attribute.value else {
                     break
                 }
-                attributes.append(.init(attribute: attr.attribute, value: [value, " ", newValue], isIncluded: attr.isIncluded))
+                var values = [value, " ", newValue]
+                if withSpace == false {
+                    values = [value, newValue]
+                }
+                attributes.append(.init(attribute: attr.attribute, value: values, isIncluded: attr.isIncluded))
                 attributes.remove(at: index)
                 return copy(with: attributes)
             }
@@ -176,10 +180,10 @@ extension AttributeNode {
         return copy(with: attributes + [attribute])
     }
 
-    public func add(attributes: [HTML.Attribute]) -> Self {
+    public func add(attributes: [HTML.Attribute], withSpace: Bool = true) -> Self {
         var newNode = self
         for attribute in attributes {
-            newNode = newNode.add(attribute)
+            newNode = newNode.add(attribute, withSpace: withSpace)
         }
         return newNode
     }
@@ -191,15 +195,16 @@ extension AttributeNode {
     public func modify(if condition: Conditionable, modifyer: (Self) -> Self) -> Self {
         let emptyNode = self.copy(with: [])
         let modified = modifyer(emptyNode)
-        return self.add(attributes: modified.wrapAttributes(with: condition))
+        return self.add(attributes: modified.wrapAttributes(with: condition), withSpace: false)
     }
 
     public func wrapAttributes(with condition: Conditionable) -> [HTML.Attribute] {
         attributes.map { attribute in
             if let value = attribute.value {
+                let space = attribute.attribute == "class" ? " " : ""
                 return HTML.Attribute(
                     attribute: attribute.attribute,
-                    value: IF(condition) { value }
+                    value: IF(condition) { space + value }
                 )
             } else {
                 return HTML.Attribute(

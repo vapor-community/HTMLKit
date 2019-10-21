@@ -3,7 +3,7 @@
 import XCTest
 //@testable import Vapor
 @testable import HTMLKit
-//import Lingo
+import Lingo
 
 final class HTMLKitTests: XCTestCase {
 
@@ -85,18 +85,18 @@ final class HTMLKitTests: XCTestCase {
         let selfLoop            = try renderer.renderRaw(SelfLoopingView.self, with: [.init(string: "Hello", int: 2), .init(string: "Morn", int: nil)])
         let selfPassing         = try renderer.renderRaw(SelfContextPassing.self, with: "Self")
         let multipleEmbedRender = try renderer.renderRaw(MultipleContextualEmbed.self, with: .init(title: "Welcome", string: "String"))
-//        let nonDynamic          = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: false, isOptional: nil))
-//        let oneDynamic          = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: true, isOptional: true))
-//        let twoDynamic          = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: true, isActive: true, isOptional: false))
+        let nonDynamic          = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: false, isOptional: nil))
+        let oneDynamic          = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: true, isOptional: true))
+        let twoDynamic          = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: true, isActive: true, isOptional: false))
 //        let markdown            = try renderer.renderRaw(MarkdownView.self, with: .init(title: "Hello", description: "World"))
-        let english             = try renderer.renderRaw(LocalizedView.self, with: .init(description: .init(numberTest: 1), numberTest: 1))
-//        let norwegian           = try renderer.renderRaw(LocalizedView.self, with: .init(locale: "nb", description: .init(numberTest: 2), numberTest: 2))
+        let english             = try renderer.renderRaw(LocalizedView.self, with: .init(locale: "en", description: .init(numberTest: 3), numberTest: 1))
+        let norwegian           = try renderer.renderRaw(LocalizedView.self, with: .init(locale: "nb", description: .init(numberTest: 3), numberTest: 1))
 //
         let date                = try renderer.renderRaw(DateView.self, with: testDate)
         let optionalDateNil     = try renderer.renderRaw(OptionalDateView.self, with: nil)
         let optionalDate        = try renderer.renderRaw(OptionalDateView.self, with: testDate)
-//        let englishDate         = try renderer.renderRaw(LocalizedDateView.self, with: .init(date: testDate, locale: "en"))
-//        let norwegianDate       = try renderer.renderRaw(LocalizedDateView.self, with: .init(date: testDate, locale: "nb"))
+        let englishDate         = try renderer.renderRaw(LocalizedDateView.self, with: .init(date: testDate, locale: "en"))
+        let norwegianDate       = try renderer.renderRaw(LocalizedDateView.self, with: .init(date: testDate, locale: "nb"))
 //
 //
         let simpleRender        = try renderer.renderRaw(SimpleView.self)
@@ -119,23 +119,23 @@ final class HTMLKitTests: XCTestCase {
         XCTAssertEqual(selfPassing, "<div><div><p>Self</p><p>Self</p></div></div>")
         XCTAssertEqual(chainedRender, "<div class='foo bar' id='id'></div>")
         XCTAssertEqual(chaindDataRender, "<img class='foo bar' id='id'>")
-//        XCTAssertEqual(nonDynamic, "<div class='foo' selected></div>")
-//        XCTAssertEqual(oneDynamic, "<div class='foo not-nil' active></div>")
-//        XCTAssertEqual(twoDynamic, "<div class='foo checked not-nil' active></div>")
+        XCTAssertEqual(nonDynamic, "<div  selected class='foo'></div>")
+        XCTAssertEqual(oneDynamic, "<div active  class='foo not-nil'></div>")
+        XCTAssertEqual(twoDynamic, "<div active  class='foo checked not-nil'></div>")
 //        XCTAssertEqual(markdown.replacingOccurrences(of: "\n", with: ""), "<div><h1>Title: Hello</h1><h2>Description here:</h2><p>World</p></div>")
-        XCTAssertEqual(english, "<div><h1>localized: helloWorld</h1><p>localized: unreadMessages, value: DescriptionContent(numberTest: 1)</p><p>localized: unreadMessages, value: [\"numberTest\": 1]</p><p>localized: unreadMessages, value: Value(description: HTMLKitTests.LocalizedView.DescriptionContent(numberTest: 1), numberTest: 1)</p></div>")
-//        XCTAssertEqual(norwegian, "<div><h1>Hei Verden!</h1><p>Du har 2 uleste meldinger.</p><p>Du har en ulest melding</p><p>Du har 2 uleste meldinger.</p></div>")
+        XCTAssertEqual(english, "<div><h1>Hello World!</h1><p>You have 3 unread messages.</p><p>You have 2 unread messages.</p><p>You have an unread message</p></div>")
+        XCTAssertEqual(norwegian, "<div><h1>Hei Verden!</h1><p>Du har 3 uleste meldinger.</p><p>Du har 2 uleste meldinger.</p><p>Du har en ulest melding</p></div>")
         XCTAssertEqual(date, "<div><p>\(shortDateFormatter.string(from: testDate))</p><p>\(customDateFormatter.string(from: testDate))</p></div>")
         XCTAssertEqual(optionalDateNil, "<div><p></p><p></p></div>")
         XCTAssertEqual(optionalDate, "<div><p>\(shortDateFormatter.string(from: testDate))</p><p>\(customDateFormatter.string(from: testDate))</p></div>")
 //
-//        shortDateFormatter.locale = .init(identifier: "en")
-//        customDateFormatter.locale = .init(identifier: "en")
-//        XCTAssertEqual(englishDate, "<div><p>\(shortDateFormatter.string(from: testDate))</p><p>\(customDateFormatter.string(from: testDate))</p></div>")
+        shortDateFormatter.locale = .init(identifier: "en")
+        customDateFormatter.locale = .init(identifier: "en")
+        XCTAssertEqual(englishDate, "<div><p>\(shortDateFormatter.string(from: testDate))</p><p>\(customDateFormatter.string(from: testDate))</p></div>")
 //
-//        shortDateFormatter.locale = .init(identifier: "nb")
-//        customDateFormatter.locale = .init(identifier: "nb")
-//        XCTAssertEqual(norwegianDate, "<div><p>\(shortDateFormatter.string(from: testDate))</p><p>\(customDateFormatter.string(from: testDate))</p></div>")
+        shortDateFormatter.locale = .init(identifier: "nb")
+        customDateFormatter.locale = .init(identifier: "nb")
+        XCTAssertEqual(norwegianDate, "<div><p>\(shortDateFormatter.string(from: testDate))</p><p>\(customDateFormatter.string(from: testDate))</p></div>")
 ////        XCTAssertEqual(inputRender, "<div class='form-group'><label for='test'>test</label><input class='form-control' type='email' required name='test' id='test' placeholder=''/></div>")
     }
 
@@ -159,7 +159,7 @@ final class HTMLKitTests: XCTestCase {
 
         var renderer = HTMLRenderer()
 
-//        renderer.lingo = try Lingo(rootPath: path, defaultLocale: "en")
+        renderer.lingo = try Lingo(rootPath: path, defaultLocale: "en")
 
         renderer.calendar = .current
         renderer.timeZone = .current
@@ -171,14 +171,14 @@ final class HTMLKitTests: XCTestCase {
         try renderer.add(view: IFView())
 //        try renderer.add(view: VariableView())
         try renderer.add(view: MultipleContextualEmbed())
-//        try renderer.add(template: DynamicAttribute())
+        try renderer.add(view: DynamicAttribute())
         try renderer.add(view: SelfLoopingView())
         try renderer.add(view: SelfContextPassing())
 //        try renderer.add(view: MarkdownView())
         try renderer.add(view: LocalizedView())
         try renderer.add(view: DateView())
         try renderer.add(view: OptionalDateView())
-//        try renderer.add(template: LocalizedDateView())
+        try renderer.add(view: LocalizedDateView())
 //
         try renderer.add(view: SimpleView())
 //        try renderer.add(template: UsingComponent())

@@ -47,7 +47,7 @@ extension IF: View {
                 guard isStaticlyEvaluated else {
                     throw IFPrerenderErrors.dynamiclyEvaluatedCondition
                 }
-                let testContext = HTMLRenderer.ContextManager(rootContext: ConditionPrerenderTest(), locale: nil)
+                let testContext = HTMLRenderer.ContextManager(rootContext: ConditionPrerenderTest())
                 if try condition.condition.evaluate(with: testContext) {
                     try condition.view.prerender(formula)
                     return // Returning as the first true condition should be the only one that is rendered

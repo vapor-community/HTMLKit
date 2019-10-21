@@ -364,6 +364,35 @@ struct BootstrapAlert: StaticView, AttributeNode {
 //    }
 //}
 //
+
+struct DynamicAttribute: TemplateView {
+
+    struct Value {
+        let isChecked: Bool
+        let isActive: Bool
+        let isOptional: Bool?
+    }
+
+    let context: RootValue<Value> = .root()
+
+    var body: View {
+        Div()
+            .class("foo")
+            .modify(if: context.isChecked) {
+                $0.class("checked")
+            }
+            .modify(if: context.isActive) {
+                $0.add(HTML.Attribute.init(attribute: "active", value: nil))
+            }
+            .modify(if: context.isOptional.isNotDefined) {
+                $0.add(HTML.Attribute.init(attribute: "selected", value: nil))
+            }
+            .modify(if: context.isOptional.isDefined) {
+                $0.class("not-nil")
+        }
+    }
+}
+
 struct SelfContextPassing: TemplateView {
 
     var context: RootValue<String> = .root()
@@ -431,6 +460,7 @@ struct LocalizedView: TemplateView {
     }
 
     struct Value: Codable {
+        let locale: String
         let description: DescriptionContent
         let numberTest: Int
     }
@@ -439,68 +469,14 @@ struct LocalizedView: TemplateView {
 
     var body: View {
         Div {
-            H1("helloWorld")
-            P("unreadMessages", with: context.description)
-            P("unreadMessages", with: ["numberTest": 1])
-            P("unreadMessages", with: context)
+            H1("hello.world")
+            P("unread.messages", with: context.description)
+            P("unread.messages", with: ["numberTest": 2])
+            P("unread.messages", with: context)
         }
+        .enviroment(local: context.locale)
     }
 }
-//struct LocalizedView: LocalizedTemplate {
-//
-//    static let localePath: KeyPath<LocalizedView.Context, String>? = \.locale
-//
-//    enum LocalizationKeys: String {
-//        case helloWorld = "hello.world"
-//        case unreadMessages = "unread.messages"
-//    }
-//
-//    /// The content needed to render StringKeys.unreadMessages
-//    struct DescriptionContent: Codable {
-//        let numberTest: Int
-//    }
-//
-//    struct Value: Codable {
-//        let locale: String
-//        let description: DescriptionContent
-//        let numberTest: Int
-//    }
-//
-//    func build() -> View {
-//        return div.child(
-//            h1.child(
-//                localize(.helloWorld)
-//            ),
-//            p.child(
-//                localize(.unreadMessages, with: \.description)
-//            ),
-//            p.child(
-//                localize(.unreadMessages, with: ["numberTest": 1])
-//            ),
-//            p.child(
-//                localizeWithContext(.unreadMessages)
-//            )
-//        )
-//    }
-//}
-//
-//struct DateView: ContextualTemplate {
-//
-//    struct Value {
-//        let date: Date
-//    }
-//
-//    func build() -> View {
-//        return div.child(
-//            p.child(
-//                date(\.date, dateStyle: .short, timeStyle: .short)
-//            ),
-//            p.child(
-//                date(\.date, format: "MM/dd/yyyy")
-//            )
-//        )
-//    }
-//}
 
 struct DateView: TemplateView {
 
@@ -600,3 +576,25 @@ struct StaticIfPrerenderingTest: TemplateView {
 //        )
 //    }
 //}
+
+struct LocalizedDateView: TemplateView {
+
+    struct Context {
+        let date: Date
+        let locale: String
+    }
+
+    let context: RootValue<Context> = .root()
+
+    var body: View {
+        Div {
+            P {
+                context.date.style(dateStyle: .short, timeStyle: .short)
+            }
+            P {
+                context.date.formating(string: "MM/dd/yyyy")
+            }
+        }
+        .enviroment(local: context.locale)
+    }
+}

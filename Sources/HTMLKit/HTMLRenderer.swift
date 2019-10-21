@@ -1,6 +1,6 @@
 
 import Foundation
-//import Lingo
+import Lingo
 
 public protocol HTMLRenderable {
 
@@ -75,7 +75,7 @@ public struct HTMLRenderer: HTMLRenderable {
     var formulaCache: [String: Any]
 
     /// The localization to use when rendering
-    //    var lingo: Lingo?
+    var lingo: Lingo?
 
     /// The calendar to use when rendering dates
     public var calendar: Calendar = Calendar(identifier: .gregorian)
@@ -107,14 +107,14 @@ public struct HTMLRenderer: HTMLRenderable {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Value> else {
             throw Errors.unableToFindFormula
         }
-        return try formula.render(with: context, locale: nil)
+        return try formula.render(with: context, lingo: lingo)
     }
 
     public func renderRaw<T: StaticView>(_ type: T.Type) throws -> String {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<Void> else {
             throw Errors.unableToFindFormula
         }
-        return try formula.render(with: (), locale: nil)
+        return try formula.render(with: (), lingo: lingo)
     }
 
     /// Brews a formula for later use
@@ -166,10 +166,9 @@ public struct HTMLRenderer: HTMLRenderable {
     ///   - path: A relative path to the localization folder. This is by *default* set to "Resource/Localization"
     ///   - defaultLocale: The default locale to use. This is by *default* set to "en"
     /// - Throws: If there is an error registrating the lingo
-    //    public mutating func registerLocalization(atPath path: String = "Resources/Localization", defaultLocale: String = "en") throws {
-    //        let path = DirectoryConfig.detect().workDir + path
-    //        lingo = try Lingo(rootPath: path, defaultLocale: defaultLocale)
-    //    }
+    public mutating func registerLocalization(atPath path: String = "Resources/Localization", defaultLocale: String = "en") throws {
+        lingo = try Lingo(rootPath: path, defaultLocale: defaultLocale)
+    }
 
     /// Manage the differnet contextes
     /// This will remove the generic type in the render call
@@ -181,16 +180,16 @@ public struct HTMLRenderer: HTMLRenderable {
         var contextes: [String: Any]
 
         /// The lingo object that is needed to use localization
-        //        let lingo: Lingo?
+        let lingo: Lingo?
 
         /// The path to the selected locale to use in localization
-        var locale: String?
+        public var locale: String?
 
-        init(rootContext: Context, locale: String?) {
+        init(rootContext: Context, lingo: Lingo? = nil) {
             self.rootContext = rootContext
             self.contextes = [:]
-            //            self.lingo = lingo
-            self.locale = locale
+            self.lingo = lingo
+            self.locale = nil
         }
 
         /// The value for a `ContextVariable`
@@ -218,9 +217,6 @@ public struct HTMLRenderer: HTMLRenderable {
 
         /// The different pices or ingredients needed to render the view
         var ingredient: [View]
-
-        /// The path to the selected locale to use in localization
-        var localePath: KeyPath<T, String>?
 
         /// The calendar to use when rendering dates
         var calendar: Calendar
@@ -269,12 +265,8 @@ public struct HTMLRenderer: HTMLRenderable {
         /// - lingo: The lingo to use when rendering
         /// - Returns: A rendered formula
         /// - Throws: If some of the formula fails, for some reason
-        func render(with context: T, locale: String? = nil) throws -> String {
-            var usedLocale = locale
-            if let localePath = localePath {
-                usedLocale = context[keyPath: localePath]
-            }
-            let contextManager = ContextManager(rootContext: context, locale: usedLocale)
+        func render(with context: T, lingo: Lingo?) throws -> String {
+            let contextManager = ContextManager(rootContext: context, lingo: lingo)
             return try render(with: contextManager)
         }
 

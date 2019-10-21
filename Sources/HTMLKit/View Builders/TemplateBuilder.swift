@@ -756,6 +756,13 @@ public struct Select<A, B>: AttributeNode, NameableAttribute {
         }
         isMultiple = false
     }
+
+    public init(custom elements: TemplateValue<A, [B]>, @HTMLBuilder builder: (RootValue<B>) -> View) {
+        content = ForEach(in: elements) { variable in
+            builder(variable)
+        }
+        isMultiple = false
+    }
 }
 
 public struct Option: ContentNode, ValueableAttribute {
