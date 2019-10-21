@@ -20,7 +20,7 @@ let package = Package(
 
         .package(url: "https://github.com/miroslavkovac/Lingo.git", from: "3.0.5"),
 //        .package(url: "https://github.com/vapor-community/markdown.git", .upToNextMajor(from: "0.4.0")),
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0-alpha.3"),
+        .package(url: "https://github.com/vapor/vapor.git", from: "3.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
