@@ -474,7 +474,7 @@ struct LocalizedView: TemplateView {
             P("unread.messages", with: ["numberTest": 2])
             P("unread.messages", with: context)
         }
-        .enviroment(local: context.locale)
+        .enviroment(locale: context.locale)
     }
 }
 
@@ -595,6 +595,6 @@ struct LocalizedDateView: TemplateView {
                 context.date.formating(string: "MM/dd/yyyy")
             }
         }
-        .enviroment(local: context.locale)
+        .enviroment(locale: context.locale)
     }
 }

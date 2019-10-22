@@ -26,6 +26,10 @@ public enum TemplateValue<Root, Value> {
     public func value<T>(at keyPath: KeyPath<Value, T>) -> TemplateValue<Root, T> {
         return self[dynamicMember: keyPath]
     }
+
+    public func map<T>(transform: @escaping (Value) throws -> T) -> TemplateValueMapping<Root, Value, T> {
+        TemplateValueMapping(variable: self, transform: transform)
+    }
 }
 
 extension TemplateValue: View where Value: View {

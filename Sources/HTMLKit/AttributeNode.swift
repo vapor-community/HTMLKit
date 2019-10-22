@@ -289,6 +289,12 @@ extension PlaceholderAttribute where Self: AttributeNode {
     }
 }
 
+extension PlaceholderAttribute {
+    public func placeholder(localized key: String) -> Self {
+        self.placeholder(Localized(key: key))
+    }
+}
+
 public protocol MediaSourceableAttribute {
     /// Specifies the URL of the media file
     ///
@@ -328,6 +334,45 @@ public protocol ContentableAttribute {
 extension ContentableAttribute where Self: AttributeNode {
     public func content(_ value: View) -> Self {
         add(HTML.Attribute(attribute: "content", value: value))
+    }
+}
+
+public protocol OpenableAttribute {
+    /// Specifies that the dialog element is active and that the user can interact with it
+    /// - Parameter condition: The condition if open is added
+    func isOpen(_ condition: Conditionable) -> Self
+}
+
+extension OpenableAttribute where Self: AttributeNode {
+    public func isOpen(_ condition: Conditionable) -> Self {
+        add(HTML.Attribute(attribute: "open", value: nil, isIncluded: condition))
+    }
+}
+
+public enum TargetTypes: String {
+    /// The response is displayed in a new window or tab
+    case blank
+
+    /// The response is displayed in the same frame (this is default)
+    case `self`
+
+    /// The response is displayed in the parent frame
+    case parent
+
+    /// The response is displayed in the full body of the window
+    case top
+}
+
+public protocol TargetableAttribute {
+    /// The target attribute specifies a name or a keyword that indicates where to display the response that is received after submitting the form.
+    /// The target attribute defines a name of, or keyword for, a browsing context (e.g. tab, window, or inline frame).
+    /// - Parameter type: The target to add
+    func target(_ type: TargetTypes) -> Self
+}
+
+extension TargetableAttribute where Self: AttributeNode {
+    public func target(_ type: TargetTypes) -> Self {
+        add(HTML.Attribute(attribute: "target", value: type.rawValue))
     }
 }
 

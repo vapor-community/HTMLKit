@@ -549,6 +549,152 @@ public struct UnorderdList: ContentNode {
     }
 }
 
+public struct Code: ContentNode {
+
+    public var name: String { "code" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct Abbreviation: ContentNode {
+
+    public var name: String { "abbr" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+typealias Acronym = Abbreviation
+
+/// The <address> tag defines the contact information for the author/owner of a document or an article.
+/// If the <address> element is inside the <body> element, it represents contact information for the document.
+/// If the <address> element is inside an <article> element, it represents contact information for that article.
+/// The text in the <address> element usually renders in italic. Most browsers will add a line break before and after the address element.
+public struct Address: ContentNode {
+
+    public var name: String { "address" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct Area: ContentNode {
+
+    public var name: String { "area" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <article> tag specifies independent, self-contained content.
+///
+/// An article should make sense on its own and it should be possible to distribute it independently from the rest of the site.
+///
+/// Potential sources for the <article> element:
+///
+/// - Forum post
+/// - Blog post
+/// - News story
+/// - Comment
+public struct Article: ContentNode {
+
+    public var name: String { "article" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <aside> tag defines some content aside from the content it is placed in.
+/// The aside content should be related to the surrounding content.
+public struct Aside: ContentNode {
+
+    public var name: String { "aside" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <audio> tag defines sound, such as music or other audio streams.
+/// Currently, there are 3 supported file formats for the <audio> element: MP3, WAV, and OGG:
+public struct Audio: ContentNode {
+
+    public var name: String { "aside" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
 public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute, ClickableAttribute, LocalizableNode {
 
     public var name: String { "a" }
@@ -597,7 +743,7 @@ public struct Nav: ContentNode {
     }
 }
 
-public struct Form: ContentNode, NameableAttribute {
+public struct Form: ContentNode, NameableAttribute, TargetableAttribute {
 
     public enum Method: String {
         case post
@@ -932,6 +1078,329 @@ public struct TableCell: ContentNode, SizableAttribute {
     }
 }
 
+public struct BiDirectionalIsolation: ContentNode {
+
+    public var name: String { "bdi" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <caption> tag defines a table caption.
+/// The <caption> tag must be inserted immediately after the <table> tag.
+/// Note: You can specify only one caption per table.
+/// Tip: By default, a table caption will be center-aligned above a table. However, the CSS properties text-align and caption-side can be used to align and place the caption.
+public struct Caption: ContentNode {
+
+    public var name: String { "caption" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <cite> tag defines the title of a work (e.g. a book, a song, a movie, a TV show, a painting, a sculpture, etc.).
+/// Note: A person's name is not the title of a work.
+public struct Cite: ContentNode {
+
+    public var name: String { "cite" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <col> tag specifies column properties for each column within a <colgroup> element.
+/// The <col> tag is useful for applying styles to entire columns, instead of repeating the styles for each cell, for each row.
+public struct Collumn: ContentNode {
+
+    public var name: String { "col" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <colgroup> tag specifies a group of one or more columns in a table for formatting.
+/// The <colgroup> tag is useful for applying styles to entire columns, instead of repeating the styles for each cell, for each row.
+/// Note: The <colgroup> tag must be a child of a <table> element, after any <caption> elements and before any <thead>, <tbody>, <tfoot>, and <tr> elements.
+/// Tip: To define different properties to a column within a <colgroup>, use the <col> tag within the <colgroup> tag.
+public struct CollumnGroup: ContentNode {
+
+    public var name: String { "colgroup" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <data> tag links the given content with a machine-readable translation.
+/// This element provides both a machine-readable value for data processors, and a human-readable value for rendering in a browser.
+/// Tip: If the content is time- or date-related, the <time> element must be used instead.
+public struct DataNode: ContentNode {
+
+    public var name: String { "data" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <datalist> tag specifies a list of pre-defined options for an <input> element.
+/// The <datalist> tag is used to provide an "autocomplete" feature on <input> elements. Users will see a drop-down list of pre-defined options as they input data.
+/// Use the <input> element's list attribute to bind it together with a <datalist> element.
+public struct DataList: ContentNode {
+
+    public var name: String { "datalist" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <dl> tag defines a description list.
+/// The <dl> tag is used in conjunction with <dt> (defines terms/names) and <dd> (describes each term/name).
+public struct DescriptionList: ContentNode {
+
+    public var name: String { "dl" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <dt> tag defines a term/name in a description list.
+/// The <dt> tag is used in conjunction with <dl> (defines a description list) and <dd> (describes each term/name).
+public struct DescriptionTerm: ContentNode {
+
+    public var name: String { "dt" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <dd> tag is used to describe a term/name in a description list.
+/// The <dd> tag is used in conjunction with <dl> (defines a description list) and <dt> (defines terms/names).
+/// Inside a <dd> tag you can put paragraphs, line breaks, images, links, lists, etc.
+public struct DescriptionDetails: ContentNode {
+
+    public var name: String { "dd" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <del> tag defines text that has been deleted from a document.
+public struct DeletedText: ContentNode {
+
+    public var name: String { "del" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <ins> tag defines a text that has been inserted into a document.
+/// Tip: Also look at the <del> tag to markup deleted text.
+/// Browsers will normally strike a line through deleted text and underline inserted text.
+public struct InsertedText: ContentNode {
+
+    public var name: String { "ins" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <details> tag specifies additional details that the user can view or hide on demand.
+/// The <details> tag can be used to create an interactive widget that the user can open and close. Any sort of content can be put inside the <details> tag.
+/// The content of a <details> element should not be visible unless the open attribute is set.
+public struct Details: ContentNode {
+
+    public var name: String { "details" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct Summary: ContentNode {
+
+    public var name: String { "summary" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The <dialog> tag defines a dialog box or window.
+/// The <dialog> element makes it easy to create popup dialogs and modals on a web page.
+public struct Dialog: ContentNode {
+
+    public var name: String { "dialog" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// Defines emphasized text
+public struct Emphasized: ContentNode {
+
+    public var name: String { "em" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
 extension Select where A == Never, B == Never {
     public init(@HTMLBuilder builder: () -> View) {
         content = builder()
@@ -987,7 +1456,7 @@ extension Select {
     }
 }
 
-public struct Link: DataNode, TypableAttribute, HyperlinkReferenceAttribute {
+public struct Link: DatableNode, TypableAttribute, HyperlinkReferenceAttribute {
 
     public var name: String { "link" }
 
@@ -998,7 +1467,42 @@ public struct Link: DataNode, TypableAttribute, HyperlinkReferenceAttribute {
     }
 }
 
-public struct Img: DataNode, MediaSourceableAttribute, SizableAttribute {
+/// Specifies the base URL/target for all relative URLs in a document
+public struct Base: DatableNode, HyperlinkReferenceAttribute {
+
+    public var name: String { "base" }
+
+    public var attributes: [HTML.Attribute]
+
+    public init(attributes: [HTML.Attribute] = []) {
+        self.attributes = attributes
+    }
+}
+
+/// Specifies the base URL/target for all relative URLs in a document
+public struct Embed: DatableNode, MediaSourceableAttribute, TypableAttribute, SizableAttribute {
+
+    public var name: String { "embed" }
+
+    public var attributes: [HTML.Attribute]
+
+    public init(attributes: [HTML.Attribute] = []) {
+        self.attributes = attributes
+    }
+}
+
+public struct BiDirectionalOverride: DatableNode {
+
+    public var name: String { "bdo" }
+
+    public var attributes: [HTML.Attribute]
+
+    public init(attributes: [HTML.Attribute] = []) {
+        self.attributes = attributes
+    }
+}
+
+public struct Img: DatableNode, MediaSourceableAttribute, SizableAttribute {
 
     public var name: String { "img" }
 
@@ -1017,7 +1521,7 @@ public struct Img: DataNode, MediaSourceableAttribute, SizableAttribute {
     }
 }
 
-public struct Meta: DataNode, NameableAttribute, ContentableAttribute {
+public struct Meta: DatableNode, NameableAttribute, ContentableAttribute {
 
     public var name: String { "meta" }
 
@@ -1028,7 +1532,7 @@ public struct Meta: DataNode, NameableAttribute, ContentableAttribute {
     }
 }
 
-public struct Input: DataNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute, SizableAttribute, ValueableAttribute, PlaceholderAttribute, RequierdAttribute {
+public struct Input: DatableNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute, SizableAttribute, ValueableAttribute, PlaceholderAttribute, RequierdAttribute {
 
     public enum Types: String {
         case hidden
@@ -1066,7 +1570,7 @@ public struct Input: DataNode, TypableAttribute, MediaSourceableAttribute, Namea
     }
 }
 
-public struct Break: DataNode {
+public struct Break: DatableNode {
 
     public var attributes: [HTML.Attribute]
 
