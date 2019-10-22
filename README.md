@@ -112,7 +112,7 @@ var body: View {
         P("hello.world")
             .class("text-white")
     }
-    .enviroment(local: locale)
+    .enviroment(locale: locale)
 }
 ...
 ```
@@ -138,7 +138,7 @@ struct LocalizedDateView: TemplateView {
                     .formating(string: "MM/dd/yyyy")
             }
         }
-        .enviroment(local: context.locale)
+        .enviroment(locale: context.locale)
     }
 }
 ```
