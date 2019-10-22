@@ -217,14 +217,14 @@ extension AttributeNode {
     }
 }
 
-public protocol DataNode: AttributeNode {
+public protocol DatableNode: AttributeNode {
 
     var name: String { get }
 
     init(attributes: [HTML.Attribute])
 }
 
-extension DataNode {
+extension DatableNode {
     public func copy(with attributes: [HTML.Attribute]) -> Self {
         .init(attributes: attributes)
     }
@@ -245,7 +245,7 @@ extension ContentNode {
     }
 }
 
-extension DataNode {
+extension DatableNode {
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(string: "<\(name)")
         try attributes.forEach {

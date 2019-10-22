@@ -1,9 +1,6 @@
 //
 //  HTMLRenderable+Vapor.swift
 //  HTMLKit
-//
-//  Created by Mats Mollestad on 16/09/2019.
-//
 
 import Vapor
 import HTMLKit

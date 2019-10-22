@@ -77,11 +77,11 @@ public struct EnviromentModifier: View {
 }
 
 extension View {
-    public func enviroment(local: String) -> EnviromentModifier {
-        return EnviromentModifier(view: self, locale: local)
+    public func enviroment(locale: String) -> EnviromentModifier {
+        return EnviromentModifier(view: self, locale: locale)
     }
 
-    public func enviroment<T>(local: TemplateValue<T, String>) -> EnviromentModifier {
-        return EnviromentModifier(view: self, locale: local)
+    public func enviroment<T>(locale: TemplateValue<T, String>) -> EnviromentModifier {
+        return EnviromentModifier(view: self, locale: locale)
     }
 }

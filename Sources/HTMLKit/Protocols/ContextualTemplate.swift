@@ -51,21 +51,15 @@ extension ContextVariable {
 
 extension ContextVariable {
     public func value<T>(from manager: HTMLRenderer.ContextManager<T>) throws -> Value {
-        try manager.value(for: self)
+        let value = try manager.value(for: self)
+        if let string = value as? String {
+            return applyEscaping(string) as! Value
+        } else {
+            return try manager.value(for: self)
+        }
     }
-}
 
-extension ContextVariable: Prerenderable where Value: View {
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
-        formula.add(mappable: self)
-    }
-}
-
-extension ContextVariable: View where Value: View {
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        let render = try manager.value(for: self)
-            .render(with: manager)
-
+    func applyEscaping(_ render: String) -> String {
         switch escaping {
         case .safeHTML:
             return render
@@ -80,56 +74,42 @@ extension ContextVariable: View where Value: View {
     }
 }
 
-
-@dynamicMemberLookup
-public class SafeContext<A, B, C> {
-
-    let rootContext: ContextVariable<A, B?>
-    let nextContext: ContextVariable<B, C>
-
-    init(root: ContextVariable<A, B?>, next: ContextVariable<B, C>) {
-        self.rootContext = root
-        self.nextContext = next
-    }
-
-    public subscript<Subject>(dynamicMember keyPath: KeyPath<C, Subject>) -> SafeContext<A, B, Subject> {
-        let newContext = nextContext[dynamicMember: keyPath]
-        return SafeContext<A, B, Subject>(root: rootContext, next: newContext)
-    }
-}
-
-extension SafeContext {
-    public func value<T>(from manager: HTMLRenderer.ContextManager<T>) throws -> C? {
-        if let value = try manager.value(for: self.rootContext) {
-            return value[keyPath: self.nextContext.root]
-        } else {
-            return nil
-        }
-    }
-}
-
-extension SafeContext: View where C: View {
+extension ContextVariable: Prerenderable where Value: View {
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(mappable: self)
     }
+}
+
+extension ContextVariable: View where Value: View {
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        let render = try manager.value(for: self)
+            .render(with: manager)
+        return applyEscaping(render)
+    }
+}
+
+public class TemplateValueMapping<A, B, C> {
+    let variable: TemplateValue<A, B>
+    let transform: (B) throws -> C
+
+    init(variable: TemplateValue<A, B>, transform: @escaping (B) throws -> C) {
+        self.variable = variable
+        self.transform = transform
+    }
+}
+
+extension TemplateValueMapping: View where C: View {
+
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        switch variable {
+        case .constant(let value): try transform(value).prerender(formula)
+        case .dynamic(_): formula.add(mappable: self)
+        }
+    }
 
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-
-        guard let render = try self.value(from: manager)?.render(with: manager) else {
-                return ""
-        }
-
-        switch self.nextContext.escaping {
-        case .safeHTML:
-            return render
-                .replacingOccurrences(of: "&", with: "&amp;")
-                .replacingOccurrences(of: "<", with: "&lt;")
-                .replacingOccurrences(of: ">", with: "&gt;")
-                .replacingOccurrences(of: "\"", with: "&quot;")
-                .replacingOccurrences(of: "'", with: "&#39;")
-        case .unsafeNone:
-            return render
-        }
+        let value = try variable.value(from: manager)
+        return try transform(value).render(with: manager)
     }
 }
 
@@ -143,6 +123,7 @@ public struct ForEach<Root, Value> {
     let localFormula: HTMLRenderer.Formula<Value>
 
     let condition: Conditionable
+    var isEnumerated: Bool = false
 
     public init(in context: TemplateValue<Root, [Value]>, @HTMLBuilder content: (RootValue<Value>) -> View) {
 
@@ -170,6 +151,28 @@ public struct ForEach<Root, Value> {
         }
         self.condition = context.isDefined
         localFormula = .init(context: Value.self)
+    }
+
+    public init(enumerated context: TemplateValue<Root, [Value]>, @HTMLBuilder content: ((element: RootValue<Value>, index: RootValue<Int>)) -> View) {
+
+        self.condition = true
+        self.context = context
+        switch context {
+        case .constant(let values): self.content = values.enumerated().reduce("") { $0 + content((.constant($1.element), .constant($1.offset))) }
+        case .dynamic(let variable): self.content = content(
+            (
+                .dynamic(.root(Value.self, rootId: "\(variable.pathId)-loop")),
+                .dynamic(.root(Int.self, rootId: "\(variable.pathId)-loop-index"))
+            ))
+        }
+        localFormula = .init(context: Value.self)
+        self.isEnumerated = true
+    }
+}
+
+extension ForEach where Root == [Value] {
+    public init(enumerated context: [Value], @HTMLBuilder content: ((element: RootValue<Value>, index: RootValue<Int>)) -> View) {
+        self.init(enumerated: .constant(context), content: content)
     }
 }
 
@@ -200,10 +203,19 @@ extension ForEach: View {
             guard try condition.evaluate(with: manager) else { return "" }
             var rendering = ""
             let elements = try manager.value(for: variable)
-            for element in elements {
-                manager.set(element, for: .root(Value.self, rootId: variable.pathId + "-loop"))
-                rendering += try localFormula.render(with: manager)
+            if isEnumerated {
+                for (index, element) in elements.enumerated() {
+                    manager.set(index, for: .root(Int.self, rootId: variable.pathId + "-loop-index"))
+                    manager.set(element, for: .root(Value.self, rootId: variable.pathId + "-loop"))
+                    rendering += try localFormula.render(with: manager)
+                }
+            } else {
+                for element in elements {
+                    manager.set(element, for: .root(Value.self, rootId: variable.pathId + "-loop"))
+                    rendering += try localFormula.render(with: manager)
+                }
             }
+
             return rendering
         }
     }
