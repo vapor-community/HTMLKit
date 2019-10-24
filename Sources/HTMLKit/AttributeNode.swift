@@ -232,26 +232,34 @@ extension LabelAttribute where Self: AttributeNode {
 }
 
 public protocol HyperlinkReferenceAttribute {
+
     /// Specifies the URL of the page the link goes to
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
     func href(_ value: View) -> Self
-
-    /// Specifies the relationship between the current document and the linked document
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
-    func relationship(_ value: View) -> Self
 }
 
 extension HyperlinkReferenceAttribute where Self: AttributeNode {
     public func href(_ value: View) -> Self {
         add(HTML.Attribute(attribute: "href", value: value))
     }
+}
 
-    public func relationship(_ value: View) -> Self {
-        add(HTML.Attribute(attribute: "rel", value: value))
+public protocol RelationshipAttribute {
+
+    /// Specifies the relationship between the current document and the linked document
+    ///
+    /// - Parameter value: The value of the attribute
+    /// - Returns: An attribute node
+    func relationship(_ value: RelationshipTypes) -> Self
+
+    associatedtype RelationshipTypes: RawRepresentable where RelationshipTypes.RawValue == String
+}
+
+extension RelationshipAttribute where Self: AttributeNode {
+    public func relationship(_ value: RelationshipTypes) -> Self {
+        add(HTML.Attribute(attribute: "rel", value: value.rawValue))
     }
 }
 
@@ -310,16 +318,29 @@ extension MediaSourceableAttribute where Self: AttributeNode {
 }
 
 public protocol NameableAttribute {
+
+    associatedtype NameType: RawRepresentable where NameType.RawValue == String
+
     /// Specifies the name of the element
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    func name(_ value: View) -> Self
+    func name(_ value: NameType) -> Self
 }
 
 extension NameableAttribute where Self: AttributeNode {
-    public func name(_ value: View) -> Self {
-        add(HTML.Attribute(attribute: "name", value: value))
+    public func name(_ value: NameType) -> Self {
+        add(HTML.Attribute(attribute: "name", value: value.rawValue))
+    }
+}
+
+extension String: RawRepresentable {
+    public typealias RawValue = String
+
+    public var rawValue: String { self }
+
+    public init?(rawValue: String) {
+        self = rawValue
     }
 }
 

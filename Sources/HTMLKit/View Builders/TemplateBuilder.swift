@@ -344,6 +344,34 @@ public struct Small: ContentNode, LocalizableNode {
     }
 }
 
+/// The <s> tag specifies text that is no longer correct, accurate or relevant.
+/// The <s> tag should not be used to define replaced or deleted text, use the <del> tag to define replaced or deleted text.
+public struct StrikeThrough: ContentNode, LocalizableNode {
+
+    public var name: String { "s" }
+
+    public var attributes: [HTML.Attribute] = []
+
+    public var content: View
+
+    public init(_ localizedKey: String) {
+        content = Localized(key: localizedKey)
+    }
+
+    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+        content = Localized(key: localizedKey, context: context)
+    }
+
+    public init(@HTMLBuilder builder: () -> View) {
+        content = builder()
+    }
+
+    public init(attributes: [HTML.Attribute] = [], content: View = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
 public struct Span: ContentNode {
 
     public var name: String { "span" }
@@ -466,6 +494,8 @@ public enum ButtonType: String {
 }
 
 public struct Button: ContentNode, TypableAttribute, NameableAttribute, ClickableAttribute, LocalizableNode {
+
+    public typealias NameType = String
 
     public var name: String { "button" }
 
@@ -695,7 +725,49 @@ public struct Audio: ContentNode {
     }
 }
 
-public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute, ClickableAttribute, LocalizableNode {
+/// The <a> tag defines a hyperlink, which is used to link from one page to another.
+public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute, ClickableAttribute, LocalizableNode, RelationshipAttribute {
+
+    public enum RelationshipTypes: String {
+        /// Provides a link to an alternate representation of the document (i.e. print page, translated or mirror)
+        case alternate
+
+        /// Provides a link to the author of the document
+        case author
+
+        /// Permanent URL used for bookmarking
+        case bookmark
+
+        /// Indicates that the referenced document is not part of the same site as the current document
+        case external
+
+        /// Provides a link to a help document
+        case help
+
+        /// Provides a link to licensing information for the document
+        case license
+
+        /// Provides a link to the next document in the series
+        case next
+
+        /// Links to an unendorsed document, like a paid link. ("nofollow" is used by Google, to specify that the Google search spider should not follow that link)
+        case noFollow = "nofollow"
+
+        /// Requires that the browser should not send an HTTP referer header if the user follows the hyperlink
+        case noReferrer = "noreferrer"
+
+        /// Requires that any browsing context created by following the hyperlink must not have an opener browsing context
+        case noOpener = "noopener"
+
+        /// The previous document in a selection
+        case prev
+
+        /// Links to a search tool for the document
+        case search
+
+        /// A tag (keyword) for the current document
+        case tag
+    }
 
     public var name: String { "a" }
 
@@ -725,6 +797,8 @@ public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute
     }
 }
 
+public typealias Hyperlink = Anchor
+
 public struct Nav: ContentNode {
 
     public var name: String { "nav" }
@@ -743,12 +817,51 @@ public struct Nav: ContentNode {
     }
 }
 
-public struct Form: ContentNode, NameableAttribute, TargetableAttribute {
+public enum FormEncodeTypes: String {
+    /// Default. All characters are encoded before sent (spaces are converted to "+" symbols, and special characters are converted to ASCII HEX values)
+    case urlEncoded = "application/x-www-form-urlencoded"
 
-    public enum Method: String {
-        case post
-        case get
+    /// No characters are encoded. This value is required when you are using forms that have a file upload control
+    case formData = "multipart/form-data"
+
+    /// Spaces are converted to "+" symbols, but no special characters are encoded
+    case plain = "text/plain"
+}
+
+public enum FormMethodTypes: String {
+    case post
+    case get
+}
+
+public protocol FormableAttributes {
+    func action(_ value: View) -> Self
+    func method(_ method: FormMethodTypes) -> Self
+    func encodeType(_ type: FormEncodeTypes) -> Self
+    func isAutocomplete(_ condition: Conditionable) -> Self
+}
+
+extension FormableAttributes where Self: AttributeNode {
+    public func action(_ value: View) -> Self {
+        add(.init(attribute: "action", value: value))
     }
+
+    public func method(_ method: FormMethodTypes) -> Self {
+        add(.init(attribute: "method", value: method.rawValue))
+    }
+
+    public func encodeType(_ type: FormEncodeTypes) -> Self {
+        add(.init(attribute: "enctype", value: type.rawValue))
+    }
+
+    public func isAutocomplete(_ condition: Conditionable) -> Self {
+        add(.init(attribute: "autocomplete", value: IF(condition) { "on" }.else { "off" }))
+    }
+}
+
+public struct Form: ContentNode, NameableAttribute, TargetableAttribute, FormableAttributes {
+
+    public typealias NameType = String
+
 
     public var name: String { "form" }
 
@@ -763,14 +876,6 @@ public struct Form: ContentNode, NameableAttribute, TargetableAttribute {
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
         self.content = content
         self.attributes = attributes
-    }
-
-    public func action(_ value: View) -> Form {
-        self.add(.init(attribute: "action", value: value))
-    }
-
-    public func method(_ method: Method) -> Form {
-        self.add(.init(attribute: "method", value: method.rawValue))
     }
 }
 
@@ -819,6 +924,8 @@ public struct Script: ContentNode, TypableAttribute, MediaSourceableAttribute {
 }
 
 public struct TextArea: ContentNode, NameableAttribute, PlaceholderAttribute, RequierdAttribute, LocalizableNode {
+
+    public typealias NameType = String
 
     public var name: String { "textarea" }
 
@@ -881,6 +988,8 @@ public struct Section: ContentNode {
 }
 
 public struct Select<A, B>: AttributeNode, NameableAttribute {
+
+    public typealias NameType = String
 
     public var name: String { "select" }
 
@@ -1456,7 +1565,60 @@ extension Select {
     }
 }
 
-public struct Link: DatableNode, TypableAttribute, HyperlinkReferenceAttribute {
+public struct Link: DatableNode, TypableAttribute, HyperlinkReferenceAttribute, RelationshipAttribute {
+
+    public enum RelationshipTypes: String {
+        /// Provides a link to an alternate version of the document (i.e. print page, translated or mirror).
+        /// Example: <link rel="alternate" type="application/atom+xml" title="W3Schools News" href="/blog/news/atom">
+        case alternate
+
+        /// Provides a link to the author of the document
+        case author
+
+        /// Specifies that the browser should preemptively perform DNS resolution for the target resource's origin
+        case dnsPrefetch = "dns-prefetch"
+
+        /// Provides a link to a help document. Example: <link rel="help" href="/help/">
+        case help
+
+        /// Imports an icon to represent the document.
+        /// Example: <link rel="icon" href="/favicon.ico" type="image/x-icon">
+        case icon
+
+        /// Provides a link to copyright information for the document
+        case license
+
+        /// Provides a link to the next document in the series
+        case next
+
+        /// Provides the address of the pingback server that handles pingbacks to the current document
+        case pingback
+
+        /// Specifies that the browser should preemptively connect to the target resource's origin.
+        case preconnect
+
+        /// Specifies that the browser should preemptively fetch and cache the target resource as it is likely to be required for a follow-up navigation
+        case prefetch
+
+        /// Specifies that the browser agent must preemptively fetch and cache the target resource for current navigation according to the destination given by the "as" attribute (and the priority associated with that destination).
+        case preload
+
+        /// Specifies that the browser should pre-render (load) the specified webpage in the background. So, if the user navigates to this page, it speeds up the page load (because the page is already loaded). Warning! This waste the user's bandwidth! Only use prerender if it is absolutely sure that the webpage is required at some point in the user journey
+        case prerender
+
+        /// The previous document in a selection
+        case prev
+
+        /// Links to a search tool for the document
+        case search
+
+        /// Imports a style sheet
+        case stylesheet
+
+        case shortcutIcon = "shortcut icon"
+
+        case appleTouchIcon = "apple-touch-icon"
+    }
 
     public var name: String { "link" }
 
@@ -1521,7 +1683,50 @@ public struct Img: DatableNode, MediaSourceableAttribute, SizableAttribute {
     }
 }
 
+public struct Source: DatableNode {
+
+    public var name: String { "source" }
+
+    public var attributes: [HTML.Attribute]
+
+    public init(attributes: [HTML.Attribute] = []) {
+        self.attributes = attributes
+    }
+}
+
 public struct Meta: DatableNode, NameableAttribute, ContentableAttribute {
+
+    public enum NameType: String {
+        /// Specifies the name of the Web application that the page represents
+        case applicationName = "application-name"
+
+        /// Specifies the name of the author of the document. Example:
+        /// <meta name="author" content="John Doe">
+        case author
+
+        /// Specifies a description of the page. Search engines can pick up this description to show with the results of searches. Example:
+        /// <meta name="description" content="Free web tutorials">
+        case description
+
+        /// Specifies one of the software packages used to generate the document (not used on hand-authored pages). Example:
+        /// <meta name="generator" content="FrontPage 4.0">
+        case generator
+
+        /// Specifies a comma-separated list of keywords - relevant to the page (Informs search engines what the page is about).
+        /// Tip: Always specify keywords (needed by search engines to catalogize the page). Example:
+        /// <meta name="keywords" content="HTML, meta tag, tag reference">
+        case keywords
+
+        /// Controls the viewport (the user's visible area of a web page).
+        /// The viewport varies with the device, and will be smaller on a mobile phone than on a computer screen.
+        /// You should include the following <meta> viewport element in all your web pages:
+        /// <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        /// A <meta> viewport element gives the browser instructions on how to control the page's dimensions and scaling.
+        /// The width=device-width part sets the width of the page to follow the screen-width of the device (which will vary depending on the device).
+        /// The initial-scale=1.0 part sets the initial zoom level when the page is first loaded by the browser.
+        /// Here is an example of a web page without the viewport meta tag, and the same web page with the viewport meta tag:
+        case viewport
+    }
 
     public var name: String { "meta" }
 
@@ -1534,16 +1739,86 @@ public struct Meta: DatableNode, NameableAttribute, ContentableAttribute {
 
 public struct Input: DatableNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute, SizableAttribute, ValueableAttribute, PlaceholderAttribute, RequierdAttribute {
 
+    public typealias NameType = String
+
     public enum Types: String {
-        case hidden
-        case email
-        case number
-        case password
+        /// Defines a clickable button (mostly used with a JavaScript to activate a script)
+        case button
+
+        /// Defines a checkbox
         case checkbox
-        case radio
-        case text
+
+        /// Defines a color picker
+        /// **NB**: (HTML 5)
+        case color
+
+        /// Defines a date control (year, month, day (no time))
+        /// **NB**: (HTML 5)
+        case date
+
+        /// Defines a date and time control (year, month, day, time (no timezone)
+        /// **NB**: (HTML 5)
+        case datetimeLocal = "datetime-local"
+
+        /// Defines a field for an e-mail address
+        /// **NB**: (HTML 5)
+        case email
+
+        /// Defines a file-select field and a "Browse" button (for file uploads)
         case file
+
+        /// Defines a hidden input field
+        case hidden
+
+        /// Defines an image as the submit button
+        case image
+
+        /// Defines a month and year control (no timezone)
+        /// **NB**: (HTML 5)
+        case month
+
+        /// Defines a field for entering a number
+        /// **NB**: (HTML 5)
+        case number
+
+        /// Defines a password field
+        case password
+
+        /// Defines a radio button
+        case radio
+
+        /// Defines a range control (like a slider control)
+        /// **NB**: (HTML 5)
         case range
+
+        /// Defines a reset button
+        case reset
+
+        /// Defines a text field for entering a search string
+        /// **NB**: (HTML 5)
+        case search
+
+        /// Defines a submit button
+        case submit
+
+        /// Defines a field for entering a telephone number
+        /// **NB**: (HTML 5)
+        case telephone = "tel"
+
+        /// Default. Defines a single-line text field
+        case text
+
+        /// Defines a control for entering a time (no timezone)
+        /// **NB**: (HTML 5)
+        case time
+
+        /// Defines a field for entering a URL
+        /// **NB**: (HTML 5)
+        case url
+
+        /// Defines a week and year control (no timezone)
+        /// **NB**: (HTML 5)
+        case week
     }
 
     public var name: String { "input" }
@@ -1581,194 +1856,40 @@ public struct Break: DatableNode {
     }
 }
 
-//extension ContextualTemplate {
-//
-//    public var div: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "div") }
-//
-//    public var body: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "body") }
-//
-//    public var form: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "form") }
-//
-//    public var small: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "small") }
-//
-//    public var footer: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "footer") }
-//
-//    public var head: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "head") }
-//
-//    public var p: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "p") }
-//
-//    public var html: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "html") }
-//
-//    public var button: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "button") }
-//
-//    public var h1: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "h1") }
-//
-//    public var h2: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "h2") }
-//
-//    public var h3: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "h3") }
-//
-//    public var h4: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "h4") }
-//
-//    public var h5: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "h5") }
-//
-//    public var h6: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "h6") }
-//
-//    public var span: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "span") }
-//
-//    public var i: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "i") }
-//
-//    public var b: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "b") }
-//
-//    public var strong: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "strong") }
-//
-//    public var u: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "u") }
-//
-//    public var em: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "em") }
-//
-//    public var a: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "a") }
-//
-//    public var ol: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "ol") }
-//
-//    public var ul: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "ul") }
-//
-//    public var li: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "li") }
-//
-//    public var dl: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "dl") }
-//
-//    public var dt: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "dt") }
-//
-//    public var dd: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "dd") }
-//
-//    public var label: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "label") }
-//
-//    public var title: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "title") }
-//
-//    public var script: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "script") }
-//
-//    public var blockquote: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "blockquote") }
-//
-//    public var code: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "code") }
-//
-//    public var samp: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "samp") }
-//
-//    public var abbr: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "abbr") }
-//
-//    public var table: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "table") }
-//
-//    public var th: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "th") }
-//
-//    public var tr: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "tr") }
-//
-//    public var td: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "td") }
-//
-//    public var thead: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "thead") }
-//
-//    public var tbody: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "tbody") }
-//
-//    public var tfoot: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "tfoot") }
-//
-//    public var textarea: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "textarea") }
-//
-//    public var legend: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "legend") }
-//
-//    public var fieldset: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "fieldset") }
-//
-//    public var output: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "output") }
-//
-//    public var datalist: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "datalist") }
-//
-//    public var option: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "option") }
-//
-//    public var optgroup: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "optgroup") }
-//
-//    public var select: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "select") }
-//
-//    public var iframe: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "iframe") }
-//
-//    public var map: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "map") }
-//
-//    public var canvas: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "canvas") }
-//
-//    public var figure: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "figure") }
-//
-//    public var figcaption: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "figcaption") }
-//
-//    public var picture: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "picture") }
-//
-//    public var svg: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "svg") }
-//
-//    public var caption: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "caption") }
-//
-//    public var colgroup: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "colgroup") }
-//
-//    public var main: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "main") }
-//
-//    public var section: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "sectino") }
-//
-//    public var article: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "article") }
-//
-//    public var aside: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "aside") }
-//
-//    public var details: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "details") }
-//
-//    public var summary: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "summary") }
-//
-//    public var dialog: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "dialog") }
-//
-//    public var data: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "data") }
-//
-//    public var nav: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "nav") }
-//
-//    public var audio: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "audio") }
-//
-//    public var video: HTML.ContentNode<Self> { return HTML.ContentNode<Self>(name: "video") }
-//}
-//
-//extension ContextualTemplate {
-//
-//    public var link: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "link") }
-//
-////    public var stylesheet: HTML.DataNode<Self> { return link.rel("stylesheet") }
-//
-//    public var meta: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "meta") }
-//
-//    public var img: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "img") }
-//
-//    public var input: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "input") }
-//
-//    public var area: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "area") }
-//
-//    public var col: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "col") }
-//
-//    public var base: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "base") }
-//
-//    public var param: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "param") }
-//
-//    public var embed: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "embed") }
-//
-//    public var source: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "source") }
-//
-//    public var track: HTML.DataNode<Self> { return HTML.DataNode<Self>(name: "track") }
-//}
+public struct DocumentType: StaticView {
 
-extension TemplateBuilder {
+    public enum Types: String {
+        case html5 = "html"
 
-    /// Creates a doctype tag
-    ///
-    /// - Parameter type: the type of document
-    /// - Returns: A ductype node
-    public func doctype(_ type: String = "html") -> View {
-        return "<!doctype \(type)>"
+        /// This DTD contains all HTML elements and attributes, but does NOT INCLUDE presentational or deprecated elements (like font). Framesets are not allowed.
+        case html4Strict = #"HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd""#
+
+        /// This DTD contains all HTML elements and attributes, INCLUDING presentational and deprecated elements (like font). Framesets are not allowed.
+        case html4Transitional = #"HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd""#
+
+        /// This DTD is equal to HTML 4.01 Transitional, but allows the use of frameset content.
+        case html4Frameset = #"HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd""#
+
+        /// This DTD contains all HTML elements and attributes, but does NOT INCLUDE presentational or deprecated elements (like font). Framesets are not allowed. The markup must also be written as well-formed XML.
+        case xhtmlStrict = #"html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd""#
+
+        /// This DTD contains all HTML elements and attributes, INCLUDING presentational and deprecated elements (like font). Framesets are not allowed. The markup must also be written as well-formed XML.
+        case xhtmlTransitional = #"html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd""#
+
+        /// This DTD is equal to XHTML 1.0 Transitional, but allows the use of frameset content.
+        case xhtmlFrameset = #"html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd""#
+
+        /// This DTD is equal to XHTML 1.0 Strict, but allows you to add modules (for example to provide Ruby support for East-Asian languages).
+        case xhtml = #"html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd""#
     }
 
-    /// Creates a comment
-    ///
-    /// - Parameter comment: The comment to create
-    /// - Returns: A comment node
-    public func comment(_ comment: String) -> View {
-        return "<!-- \(comment) -->"
+    let type: Types
+
+    public init(type: Types) {
+        self.type = type
     }
 
-    /// The </br> tag
-    public var br: View { return "<br>" }
+    public var body: View {
+        "<!DOCTYPE \(type.rawValue)>"
+    }
 }

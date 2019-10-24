@@ -59,9 +59,9 @@ struct BaseView<Root>: StaticView {
                 Title { context }
                 Link()
                     .href("some url")
-                    .relationship("stylesheet")
+                    .relationship(.stylesheet)
                 Meta()
-                    .name("viewport")
+                    .name(.viewport)
                     .content("width=device-width, initial-scale=1.0")
             }
             Body {
