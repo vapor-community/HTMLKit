@@ -104,18 +104,27 @@ struct SomeViewStaticTitle: TemplateView {
 
 struct ForEachView: TemplateView {
 
-    struct Value {
-        let array: [String]
-    }
-
-    let context: RootValue<Value> = .root()
+    let context: RootValue<[String]> = .root()
 
     var body: View {
         Div {
-            ForEach(in: context.array) { text in
+            ForEach(in: context) { text in
                 P { text }
             }
         }.id("array")
+    }
+}
+
+struct ForEachViewRuntime: StaticView {
+
+    let context: [String]
+
+    var body: View {
+        Test {
+            ForEachRuntime(values: context) { value in
+                P { value }
+            }
+        }
     }
 }
 
@@ -158,6 +167,54 @@ struct IFView: TemplateView {
         }
     }
 }
+
+struct IFViewRuntime: StaticView {
+
+    struct Value {
+        let name: String
+        let age: Int
+        let nullable: String?
+        let bool: Bool
+    }
+
+    let context: Value
+
+    var body: View {
+        Test {
+            if context.name == "Mats" {
+                P {
+                    "My name is: " + context.name + "!"
+                }
+                .direction(.leftToRight)
+            } else {
+                ""
+            }
+
+            if context.age < 20 {
+                "I am a child"
+            } else if context.age > 20 {
+                "I am older"
+            } else {
+                "I am growing"
+            }
+
+            if context.nullable != nil {
+                Bold { context.nullable }
+            } else if context.bool {
+                P { "Simple bool" }
+            } else {
+                ""
+            }
+
+            if context.nullable == "Some" && context.name == "Per" {
+                Div { "And" }
+            } else {
+                ""
+            }
+        }
+    }
+}
+
 //
 //class FormInput: StaticView {
 //
@@ -364,6 +421,204 @@ struct BootstrapAlert: StaticView, AttributeNode {
 //    }
 //}
 //
+
+struct LoginPageTest: TemplateView {
+
+    let context: RootValue<String?> = .root()
+
+    var body: View {
+        Div {
+            Div {
+                Div {
+                    Div {
+                        IF(context != nil) {
+                            Div {
+                                Button {
+                                    Span {
+                                        "×"
+                                    }.aria(for: "hidden", value: "true")
+                                }.type(.button).class("close").data(for: "dismiss", value: "alert").aria(for: "label", value: "Close")
+                                context
+                            }.class("alert alert-secondary alert-dismissible bg-danger text-white border-0 fade show").role("alert")
+                        }
+                        Div {
+                            Div {
+                                Anchor {
+                                    Span {
+                                        Img().source("assets/images/logo.png").alt("Logo").height(30)
+                                    }
+                                }.href("index.html")
+                            }.class("card-header pt-4 pb-4 text-center bg-primary")
+                            Div {
+                                Div {
+                                    H4 {
+                                        "Title"
+                                    }
+                                        .class("text-dark-50 text-center mt-0 font-weight-bold")
+                                    P {
+                                        "Subtitle"
+                                    }
+                                        .class("text-muted mb-4")
+                                }.class("text-center w-75 m-auto")
+                                Form {
+                                    Div {
+                                        Label {
+                                            "Mail title"
+                                        }
+                                            .for("emailaddress")
+                                        Input()
+                                            .class("form-control")
+                                            .type(.email)
+                                            .name("email")
+                                            .id("email")
+                                    }.class("form-group")
+                                    Div {
+                                        Anchor {
+                                            Small { "password" }
+                                        }
+                                        .href("/start-reset-password")
+
+                                        Label {
+                                            "Password"
+                                        }
+                                            .for("password")
+                                        Input()
+                                            .class("form-control")
+                                            .type(.password)
+                                            .name("password")
+                                            .id("password")
+                                    }.class("form-group")
+                                    Div {
+                                        Button {
+                                            "Login"
+                                        }
+                                            .id("submit-button")
+                                            .class("btn btn-primary")
+                                            .type(.submit)
+                                    }.class("form-group mb-0 text-center")
+                                }.action("/login").method(.post)
+                            }.class("card-body p-4")
+                        }.class("card")
+                        Div {
+                            Div {
+                                P {
+                                    "Not logged in"
+                                }
+                                Anchor {
+                                    Bold { "No user" }
+                                }
+                                .href("/signup")
+                                .class("ml-1")
+                            }
+                            .class("col-12 text-center")
+                        }.class("row mt-3")
+                    }.class("col-lg-5")
+                }.class("row justify-content-center")
+            }.class("container")
+        }.class("account-pages mt-5 mb-5")
+    }
+}
+
+struct LoginPageTestRuntime: StaticView {
+
+    let errorMessage: String?
+
+    var body: View {
+        Div {
+            Div {
+                Div {
+                    Div {
+                        Test {
+                            if errorMessage != nil {
+                                Div {
+                                    Button {
+                                        Span {
+                                            "×"
+                                        }.aria(for: "hidden", value: "true")
+                                    }.type(.button).class("close").data(for: "dismiss", value: "alert").aria(for: "label", value: "Close")
+                                    errorMessage
+                                }.class("alert alert-secondary alert-dismissible bg-danger text-white border-0 fade show").role("alert")
+                            } else {
+                                ""
+                            }
+                        }
+                        Div {
+                            Div {
+                                Anchor {
+                                    Span {
+                                        Img().source("assets/images/logo.png").alt("Logo").height(30)
+                                    }
+                                }.href("index.html")
+                            }.class("card-header pt-4 pb-4 text-center bg-primary")
+                            Div {
+                                Div {
+                                    H4 {
+                                        "Title"
+                                    }
+                                        .class("text-dark-50 text-center mt-0 font-weight-bold")
+                                    P {
+                                        "Subtitle"
+                                    }
+                                        .class("text-muted mb-4")
+                                }.class("text-center w-75 m-auto")
+                                Form {
+                                    Div {
+                                        Label {
+                                            "Mail title"
+                                        }
+                                            .for("emailaddress")
+                                        Input()
+                                            .class("form-control")
+                                            .type(.email)
+                                            .name("email")
+                                            .id("email")
+                                    }.class("form-group")
+                                    Div {
+                                        Anchor {
+                                            Small { "password" }
+                                        }
+                                        .href("/start-reset-password")
+
+                                        Label {
+                                            "Password"
+                                        }
+                                            .for("password")
+                                        Input()
+                                            .class("form-control")
+                                            .type(.password)
+                                            .name("password")
+                                            .id("password")
+                                    }.class("form-group")
+                                    Div {
+                                        Button {
+                                            "Login"
+                                        }
+                                            .id("submit-button")
+                                            .class("btn btn-primary")
+                                            .type(.submit)
+                                    }.class("form-group mb-0 text-center")
+                                }.action("/login").method(.post)
+                            }.class("card-body p-4")
+                        }.class("card")
+                        Div {
+                            Div {
+                                P {
+                                    "Not logged in"
+                                }
+                                Anchor {
+                                    Bold { "No user" }
+                                }
+                                .href("/signup")
+                                .class("ml-1")
+                            }
+                            .class("col-12 text-center")
+                        }.class("row mt-3")
+                    }.class("col-lg-5")
+                }.class("row justify-content-center")
+            }.class("container")
+        }.class("account-pages mt-5 mb-5")
+    }
+}
 
 struct DynamicAttribute: TemplateView {
 
@@ -596,5 +851,169 @@ struct LocalizedDateView: TemplateView {
             }
         }
         .enviroment(locale: context.locale)
+    }
+}
+
+struct PracticeSession {
+
+    /// The session id
+    var id: Int?
+
+    let timeUsed: Int?
+
+    /// The number of task to complete in the session
+    let numberOfTaskGoal: Int
+
+    let createdAt: Date
+}
+
+
+struct BigForTest: TemplateView {
+
+    static let testData: [PracticeSession] = [
+        .init(id: 1, timeUsed: 20, numberOfTaskGoal: 10, createdAt: Date()),
+        .init(id: 2, timeUsed: 20, numberOfTaskGoal: 15, createdAt: Date()),
+        .init(id: 3, timeUsed: 20, numberOfTaskGoal: 12, createdAt: Date()),
+        .init(id: 4, timeUsed: 20, numberOfTaskGoal: 13, createdAt: Date()),
+        .init(id: 5, timeUsed: 20, numberOfTaskGoal: 8, createdAt: Date())
+    ]
+
+    let context: RootValue<[PracticeSession]> = .root()
+
+    var body: View {
+        Div {
+            Table {
+                TableHead {
+                    TableRow {
+                        TableHeader {
+                            "historyDateColumn"
+                        }
+                        TableHeader {
+                            "historyGoalColumn"
+                        }
+                        TableHeader {
+                            "historyDurationColumn"
+                        }
+                    }
+                }
+                .class("thead-light")
+
+                TableBody {
+                    ForEach(in: context) { session in
+                        TableRow {
+                            TableCell {
+                                Anchor {
+                                    session.createdAt
+                                        .style(dateStyle: .medium, timeStyle: .short)
+                                }
+                                .href("/practice-sessions/" + session.id + "/result")
+                                .class("text-muted")
+                            }
+                            TableCell {
+                                Anchor {
+                                    session.numberOfTaskGoal
+                                    " oppgaver"
+                                }
+                                .href("/practice-sessions/" + session.id + "/result")
+                                .class("text-muted")
+                            }
+                            TableCell {
+                                Anchor {
+                                    IF(session.timeUsed.isDefined) {
+                                        session.timeUsed
+                                    }.else {
+                                        Div {
+                                            "Ikke helt fullført"
+                                        }
+                                    }
+                                }
+                                .href("/practice-sessions/" + session.id + "/result")
+                                .class("text-muted")
+                            }
+                        }
+                    }
+                }
+            }
+            .class("table table-centered w-100 dt-responsive nowrap")
+        }
+        .class("table-responsive")
+    }
+}
+
+struct BigForTestRuntime: StaticView {
+
+    let sessions: [PracticeSession]
+
+    var body: View {
+        Div {
+            Table {
+                TableHead {
+                    TableRow {
+                        TableHeader {
+                            "historyDateColumn"
+                        }
+                        TableHeader {
+                            "historyGoalColumn"
+                        }
+                        TableHeader {
+                            "historyDurationColumn"
+                        }
+                    }
+                }
+                .class("thead-light")
+
+                TableBody {
+                    ForEachRuntime(values: sessions) { (session: PracticeSession) in
+                        TableRow {
+                            TableCell {
+                                Anchor {
+                                    session.createdAt
+                                        .style(dateStyle: .medium, timeStyle: .short)
+                                }
+                                .href("/practice-sessions/" + session.id + "/result")
+                                .class("text-muted")
+                            }
+                            TableCell {
+                                Anchor {
+                                    session.numberOfTaskGoal
+                                    " oppgaver"
+                                }
+                                .href("/practice-sessions/" + session.id + "/result")
+                                .class("text-muted")
+                            }
+                            TableCell {
+                                Anchor {
+                                    Test {
+                                        if session.timeUsed != nil {
+                                            session.timeUsed
+                                        } else {
+                                            Div {
+                                                "Ikke helt fullført"
+                                            }
+                                        }
+                                    }
+                                }
+                                .href("/practice-sessions/" + session.id + "/result")
+                                .class("text-muted")
+                            }
+                        }
+                    }
+                }
+            }
+            .class("table table-centered w-100 dt-responsive nowrap")
+        }
+        .class("table-responsive")
+    }
+
+    
+}
+
+extension Date {
+
+    func style(dateStyle: DateFormatter.Style = .short, timeStyle: DateFormatter.Style = .short) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = dateStyle
+        formatter.timeStyle = timeStyle
+        return formatter.string(from: self)
     }
 }

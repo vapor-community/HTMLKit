@@ -107,6 +107,12 @@ public protocol View {
 }
 
 extension View {
+    public func render() throws -> String {
+        try self.render(with: HTMLRenderer.empty)
+    }
+}
+
+extension View {
     public var renderWhenLocalizing: Bool { return true }
 }
 

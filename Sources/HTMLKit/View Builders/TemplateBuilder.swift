@@ -40,6 +40,43 @@ public class HTMLBuilder {
     }
 }
 
+@_functionBuilder
+public class HTMLBuilderRuntime {
+
+    public static func buildBlock() -> String {
+        ""
+    }
+
+    public static func buildBlock(_ children: View...) -> String {
+        children.reduce("") { try! $0 + $1.render() }
+    }
+
+    public static func buildEither(first: View) -> String {
+        try! first.render()
+    }
+
+    public static func buildEither(second: View) -> String {
+        try! second.render()
+    }
+
+    public static func buildOptional(_ component: View?) -> String {
+        try! (component ?? "").render()
+    }
+}
+
+public struct Test: StaticView {
+
+    let content: View
+
+    public init(@HTMLBuilderRuntime content: () -> View) {
+        self.content = content()
+    }
+
+    public var body: View {
+        "<div>\(content)</div>"
+    }
+}
+
 public struct Div: ContentNode {
 
     public var name: String { "div" }
@@ -493,7 +530,7 @@ public enum ButtonType: String {
     case submit
 }
 
-public struct Button: ContentNode, TypableAttribute, NameableAttribute, ClickableAttribute, LocalizableNode {
+public struct Button: ContentNode, TypableAttribute, NameableAttribute, LocalizableNode {
 
     public typealias NameType = String
 
@@ -726,7 +763,7 @@ public struct Audio: ContentNode {
 }
 
 /// The <a> tag defines a hyperlink, which is used to link from one page to another.
-public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute, ClickableAttribute, LocalizableNode, RelationshipAttribute {
+public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute, LocalizableNode, RelationshipAttribute {
 
     public enum RelationshipTypes: String {
         /// Provides a link to an alternate representation of the document (i.e. print page, translated or mirror)
@@ -949,6 +986,14 @@ public struct TextArea: ContentNode, NameableAttribute, PlaceholderAttribute, Re
         self.content = content
         self.attributes = attributes
     }
+
+    public func row(_ rows: Int) -> TextArea {
+        add(HTML.Attribute(attribute: "row", value: rows))
+    }
+
+    public func readOnly() -> TextArea {
+        add(HTML.Attribute(attribute: "readonly", value: nil))
+    }
 }
 
 public struct Footer: ContentNode {
@@ -1151,7 +1196,7 @@ public struct TableRow: ContentNode, SizableAttribute {
     }
 }
 
-public struct TableHeader: ContentNode, SizableAttribute {
+public struct TableHeader: ContentNode, SizableAttribute, LocalizableNode {
 
     public var name: String { "th" }
 
@@ -1161,6 +1206,14 @@ public struct TableHeader: ContentNode, SizableAttribute {
 
     public init(@HTMLBuilder builder: () -> View) {
         content = builder()
+    }
+
+    public init(_ localizedKey: String) {
+        content = Localized(key: localizedKey)
+    }
+
+    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+        content = Localized(key: localizedKey, context: context)
     }
 
     public init(attributes: [HTML.Attribute] = [], content: View = "") {
@@ -1856,7 +1909,7 @@ public struct Break: DatableNode {
     }
 }
 
-public struct DocumentType: StaticView {
+public struct Document: StaticView {
 
     public enum Types: String {
         case html5 = "html"
@@ -1884,12 +1937,14 @@ public struct DocumentType: StaticView {
     }
 
     let type: Types
+    let content: View
 
-    public init(type: Types) {
+    public init(type: Types, @HTMLBuilder content: () -> View) {
         self.type = type
+        self.content = content()
     }
 
     public var body: View {
-        "<!DOCTYPE \(type.rawValue)>"
+        "<!DOCTYPE \(type.rawValue)>" + content
     }
 }

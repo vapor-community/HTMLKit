@@ -46,6 +46,8 @@ public protocol HTMLRenderable {
 ///     try renderer.render(WelcomeView.self)               // Renders the formula
 public struct HTMLRenderer: HTMLRenderable {
 
+    static let empty = ContextManager<Void>(rootContext: ())
+
     /// The different Errors that can happen when rendering or pre-rendering a template
     enum Errors: LocalizedError {
         case unableToFindFormula

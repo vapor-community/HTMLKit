@@ -91,6 +91,9 @@ public protocol GlobalAttributes {
     /// Addition of ARIA semantics only exposes extra information to a browser's accessibility API, and does not affect a page's DOM.
     /// - Parameter text: The role to use
     func role(_ text: View) -> Self
+
+    /// The onclick attribute fires on a mouse click on the element.
+    func on(click: View) -> Self
 }
 
 extension GlobalAttributes where Self: AttributeNode {
@@ -154,13 +157,7 @@ extension GlobalAttributes where Self: AttributeNode {
     public func style(css: View) -> Self {
         add(HTML.Attribute(attribute: "style", value: css))
     }
-}
 
-public protocol ClickableAttribute {
-    func on(click: View) -> Self
-}
-
-extension ClickableAttribute where Self: AttributeNode {
     public func on(click: View) -> Self {
         self.add(HTML.Attribute(attribute: "onclick", value: click))
     }
