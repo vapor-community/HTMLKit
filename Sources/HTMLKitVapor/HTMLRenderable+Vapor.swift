@@ -5,6 +5,54 @@
 import Vapor
 import HTMLKit
 
+public struct HTMLKitProvider: Provider {
+
+    public init() {}
+
+    /// Register all services you would like to provide the `Container` here.
+    ///
+    ///     services.register(RedisCache.self)
+    ///
+    public func register(_ services: inout Services) throws {
+        services.register { container in
+            try HTMLRendererFuture(container: container, renderer: container.make())
+        }
+    }
+
+    /// Called after the container has fully initialized and after `willBoot(_:)`.
+    public func didBoot(_ container: Container) throws -> Future<Void> {
+        return .done(on: container)
+    }
+}
+
+public struct HTMLRendererFuture: HTMLRenderable, Service {
+
+    let container: Container
+    let renderer: HTMLRenderer
+
+    public func renderRaw<T>(_ type: T.Type) throws -> String where T : StaticView {
+        try renderer.renderRaw(type)
+    }
+
+    public func renderRaw<T>(_ type: T.Type, with context: T.Value) throws -> String where T : TemplateView {
+        try renderer.renderRaw(type, with: context)
+    }
+
+    public func render<T>(_ type: T.Type) throws -> Future<Vapor.View> where T : StaticView {
+        guard let data = try renderRaw(type).data(using: .utf8) else {
+            throw Abort(.internalServerError)
+        }
+        return container.future(View(data: data))
+    }
+
+    public func render<T>(_ type: T.Type, with context: T.Value) throws -> Future<Vapor.View> where T : TemplateView {
+        guard let data = try renderRaw(type, with: context).data(using: .utf8) else {
+            throw Abort(.internalServerError)
+        }
+        return container.future(View(data: data))
+    }
+}
+
 ///// An extension that implements most of the helper functions
 extension HTMLRenderable {
 
@@ -39,7 +87,9 @@ extension Request {
     ///
     /// - Returns: A `HTMLRenderer` containing all the templates
     /// - Throws: If the shared container could not make the `HTMLRenderer`
-    public func renderer() throws -> HTMLRenderer {
-        return try sharedContainer.make(HTMLRenderer.self)
+    public func renderer() throws -> HTMLRendererFuture {
+        return try sharedContainer.make(HTMLRendererFuture.self)
     }
 }
+
+extension HTMLRenderer : Service {}

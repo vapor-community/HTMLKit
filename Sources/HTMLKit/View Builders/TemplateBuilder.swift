@@ -1856,7 +1856,7 @@ public struct Break: DatableNode {
     }
 }
 
-public struct DocumentType: StaticView {
+public struct Document: StaticView {
 
     public enum Types: String {
         case html5 = "html"
