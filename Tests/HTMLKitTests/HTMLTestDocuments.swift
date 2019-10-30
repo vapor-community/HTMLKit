@@ -115,18 +115,18 @@ struct ForEachView: TemplateView {
     }
 }
 
-struct ForEachViewRuntime: StaticView {
-
-    let context: [String]
-
-    var body: View {
-        Test {
-            ForEachRuntime(values: context) { value in
-                P { value }
-            }
-        }
-    }
-}
+//struct ForEachViewRuntime: StaticView {
+//
+//    let context: [String]
+//
+//    var body: View {
+//        Test {
+//            ForEachRuntime(values: context) { value in
+//                P { value }
+//            }
+//        }
+//    }
+//}
 
 struct IFView: TemplateView {
 
@@ -168,52 +168,52 @@ struct IFView: TemplateView {
     }
 }
 
-struct IFViewRuntime: StaticView {
-
-    struct Value {
-        let name: String
-        let age: Int
-        let nullable: String?
-        let bool: Bool
-    }
-
-    let context: Value
-
-    var body: View {
-        Test {
-            if context.name == "Mats" {
-                P {
-                    "My name is: " + context.name + "!"
-                }
-                .direction(.leftToRight)
-            } else {
-                ""
-            }
-
-            if context.age < 20 {
-                "I am a child"
-            } else if context.age > 20 {
-                "I am older"
-            } else {
-                "I am growing"
-            }
-
-            if context.nullable != nil {
-                Bold { context.nullable }
-            } else if context.bool {
-                P { "Simple bool" }
-            } else {
-                ""
-            }
-
-            if context.nullable == "Some" && context.name == "Per" {
-                Div { "And" }
-            } else {
-                ""
-            }
-        }
-    }
-}
+//struct IFViewRuntime: StaticView {
+//
+//    struct Value {
+//        let name: String
+//        let age: Int
+//        let nullable: String?
+//        let bool: Bool
+//    }
+//
+//    let context: Value
+//
+//    var body: View {
+//        Test {
+//            if context.name == "Mats" {
+//                P {
+//                    "My name is: " + context.name + "!"
+//                }
+//                .direction(.leftToRight)
+//            } else {
+//                ""
+//            }
+//
+//            if context.age < 20 {
+//                "I am a child"
+//            } else if context.age > 20 {
+//                "I am older"
+//            } else {
+//                "I am growing"
+//            }
+//
+//            if context.nullable != nil {
+//                Bold { context.nullable }
+//            } else if context.bool {
+//                P { "Simple bool" }
+//            } else {
+//                ""
+//            }
+//
+//            if context.nullable == "Some" && context.name == "Per" {
+//                Div { "And" }
+//            } else {
+//                ""
+//            }
+//        }
+//    }
+//}
 
 //
 //class FormInput: StaticView {
@@ -519,106 +519,106 @@ struct LoginPageTest: TemplateView {
     }
 }
 
-struct LoginPageTestRuntime: StaticView {
-
-    let errorMessage: String?
-
-    var body: View {
-        Div {
-            Div {
-                Div {
-                    Div {
-                        Test {
-                            if errorMessage != nil {
-                                Div {
-                                    Button {
-                                        Span {
-                                            "×"
-                                        }.aria(for: "hidden", value: "true")
-                                    }.type(.button).class("close").data(for: "dismiss", value: "alert").aria(for: "label", value: "Close")
-                                    errorMessage
-                                }.class("alert alert-secondary alert-dismissible bg-danger text-white border-0 fade show").role("alert")
-                            } else {
-                                ""
-                            }
-                        }
-                        Div {
-                            Div {
-                                Anchor {
-                                    Span {
-                                        Img().source("assets/images/logo.png").alt("Logo").height(30)
-                                    }
-                                }.href("index.html")
-                            }.class("card-header pt-4 pb-4 text-center bg-primary")
-                            Div {
-                                Div {
-                                    H4 {
-                                        "Title"
-                                    }
-                                        .class("text-dark-50 text-center mt-0 font-weight-bold")
-                                    P {
-                                        "Subtitle"
-                                    }
-                                        .class("text-muted mb-4")
-                                }.class("text-center w-75 m-auto")
-                                Form {
-                                    Div {
-                                        Label {
-                                            "Mail title"
-                                        }
-                                            .for("emailaddress")
-                                        Input()
-                                            .class("form-control")
-                                            .type(.email)
-                                            .name("email")
-                                            .id("email")
-                                    }.class("form-group")
-                                    Div {
-                                        Anchor {
-                                            Small { "password" }
-                                        }
-                                        .href("/start-reset-password")
-
-                                        Label {
-                                            "Password"
-                                        }
-                                            .for("password")
-                                        Input()
-                                            .class("form-control")
-                                            .type(.password)
-                                            .name("password")
-                                            .id("password")
-                                    }.class("form-group")
-                                    Div {
-                                        Button {
-                                            "Login"
-                                        }
-                                            .id("submit-button")
-                                            .class("btn btn-primary")
-                                            .type(.submit)
-                                    }.class("form-group mb-0 text-center")
-                                }.action("/login").method(.post)
-                            }.class("card-body p-4")
-                        }.class("card")
-                        Div {
-                            Div {
-                                P {
-                                    "Not logged in"
-                                }
-                                Anchor {
-                                    Bold { "No user" }
-                                }
-                                .href("/signup")
-                                .class("ml-1")
-                            }
-                            .class("col-12 text-center")
-                        }.class("row mt-3")
-                    }.class("col-lg-5")
-                }.class("row justify-content-center")
-            }.class("container")
-        }.class("account-pages mt-5 mb-5")
-    }
-}
+//struct LoginPageTestRuntime: StaticView {
+//
+//    let errorMessage: String?
+//
+//    var body: View {
+//        Div {
+//            Div {
+//                Div {
+//                    Div {
+//                        Test {
+//                            if errorMessage != nil {
+//                                Div {
+//                                    Button {
+//                                        Span {
+//                                            "×"
+//                                        }.aria(for: "hidden", value: "true")
+//                                    }.type(.button).class("close").data(for: "dismiss", value: "alert").aria(for: "label", value: "Close")
+//                                    errorMessage
+//                                }.class("alert alert-secondary alert-dismissible bg-danger text-white border-0 fade show").role("alert")
+//                            } else {
+//                                ""
+//                            }
+//                        }
+//                        Div {
+//                            Div {
+//                                Anchor {
+//                                    Span {
+//                                        Img().source("assets/images/logo.png").alt("Logo").height(30)
+//                                    }
+//                                }.href("index.html")
+//                            }.class("card-header pt-4 pb-4 text-center bg-primary")
+//                            Div {
+//                                Div {
+//                                    H4 {
+//                                        "Title"
+//                                    }
+//                                        .class("text-dark-50 text-center mt-0 font-weight-bold")
+//                                    P {
+//                                        "Subtitle"
+//                                    }
+//                                        .class("text-muted mb-4")
+//                                }.class("text-center w-75 m-auto")
+//                                Form {
+//                                    Div {
+//                                        Label {
+//                                            "Mail title"
+//                                        }
+//                                            .for("emailaddress")
+//                                        Input()
+//                                            .class("form-control")
+//                                            .type(.email)
+//                                            .name("email")
+//                                            .id("email")
+//                                    }.class("form-group")
+//                                    Div {
+//                                        Anchor {
+//                                            Small { "password" }
+//                                        }
+//                                        .href("/start-reset-password")
+//
+//                                        Label {
+//                                            "Password"
+//                                        }
+//                                            .for("password")
+//                                        Input()
+//                                            .class("form-control")
+//                                            .type(.password)
+//                                            .name("password")
+//                                            .id("password")
+//                                    }.class("form-group")
+//                                    Div {
+//                                        Button {
+//                                            "Login"
+//                                        }
+//                                            .id("submit-button")
+//                                            .class("btn btn-primary")
+//                                            .type(.submit)
+//                                    }.class("form-group mb-0 text-center")
+//                                }.action("/login").method(.post)
+//                            }.class("card-body p-4")
+//                        }.class("card")
+//                        Div {
+//                            Div {
+//                                P {
+//                                    "Not logged in"
+//                                }
+//                                Anchor {
+//                                    Bold { "No user" }
+//                                }
+//                                .href("/signup")
+//                                .class("ml-1")
+//                            }
+//                            .class("col-12 text-center")
+//                        }.class("row mt-3")
+//                    }.class("col-lg-5")
+//                }.class("row justify-content-center")
+//            }.class("container")
+//        }.class("account-pages mt-5 mb-5")
+//    }
+//}
 
 struct DynamicAttribute: TemplateView {
 
@@ -940,73 +940,73 @@ struct BigForTest: TemplateView {
     }
 }
 
-struct BigForTestRuntime: StaticView {
-
-    let sessions: [PracticeSession]
-
-    var body: View {
-        Div {
-            Table {
-                TableHead {
-                    TableRow {
-                        TableHeader {
-                            "historyDateColumn"
-                        }
-                        TableHeader {
-                            "historyGoalColumn"
-                        }
-                        TableHeader {
-                            "historyDurationColumn"
-                        }
-                    }
-                }
-                .class("thead-light")
-
-                TableBody {
-                    ForEachRuntime(values: sessions) { (session: PracticeSession) in
-                        TableRow {
-                            TableCell {
-                                Anchor {
-                                    session.createdAt
-                                        .style(dateStyle: .medium, timeStyle: .short)
-                                }
-                                .href("/practice-sessions/" + session.id + "/result")
-                                .class("text-muted")
-                            }
-                            TableCell {
-                                Anchor {
-                                    session.numberOfTaskGoal
-                                    " oppgaver"
-                                }
-                                .href("/practice-sessions/" + session.id + "/result")
-                                .class("text-muted")
-                            }
-                            TableCell {
-                                Anchor {
-                                    Test {
-                                        if session.timeUsed != nil {
-                                            session.timeUsed
-                                        } else {
-                                            Div {
-                                                "Ikke helt fullført"
-                                            }
-                                        }
-                                    }
-                                }
-                                .href("/practice-sessions/" + session.id + "/result")
-                                .class("text-muted")
-                            }
-                        }
-                    }
-                }
-            }
-            .class("table table-centered w-100 dt-responsive nowrap")
-        }
-        .class("table-responsive")
-    }
-
-    
-}
+//struct BigForTestRuntime: StaticView {
+//
+//    let sessions: [PracticeSession]
+//
+//    var body: View {
+//        Div {
+//            Table {
+//                TableHead {
+//                    TableRow {
+//                        TableHeader {
+//                            "historyDateColumn"
+//                        }
+//                        TableHeader {
+//                            "historyGoalColumn"
+//                        }
+//                        TableHeader {
+//                            "historyDurationColumn"
+//                        }
+//                    }
+//                }
+//                .class("thead-light")
+//
+//                TableBody {
+//                    ForEachRuntime(values: sessions) { (session: PracticeSession) in
+//                        TableRow {
+//                            TableCell {
+//                                Anchor {
+//                                    session.createdAt
+//                                        .style(dateStyle: .medium, timeStyle: .short)
+//                                }
+//                                .href("/practice-sessions/" + session.id + "/result")
+//                                .class("text-muted")
+//                            }
+//                            TableCell {
+//                                Anchor {
+//                                    session.numberOfTaskGoal
+//                                    " oppgaver"
+//                                }
+//                                .href("/practice-sessions/" + session.id + "/result")
+//                                .class("text-muted")
+//                            }
+//                            TableCell {
+//                                Anchor {
+//                                    Test {
+//                                        if session.timeUsed != nil {
+//                                            session.timeUsed
+//                                        } else {
+//                                            Div {
+//                                                "Ikke helt fullført"
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                                .href("/practice-sessions/" + session.id + "/result")
+//                                .class("text-muted")
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            .class("table table-centered w-100 dt-responsive nowrap")
+//        }
+//        .class("table-responsive")
+//    }
+//
+//
+//}
 
 extension Date {
 

@@ -40,42 +40,42 @@ public class HTMLBuilder {
     }
 }
 
-@_functionBuilder
-public class HTMLBuilderRuntime {
-
-    public static func buildBlock() -> String {
-        ""
-    }
-
-    public static func buildBlock(_ children: View...) -> String {
-        children.reduce("") { try! $0 + $1.render() }
-    }
-
-    public static func buildEither(first: View) -> String {
-        try! first.render()
-    }
-
-    public static func buildEither(second: View) -> String {
-        try! second.render()
-    }
-
-    public static func buildOptional(_ component: View?) -> String {
-        try! (component ?? "").render()
-    }
-}
-
-public struct Test: StaticView {
-
-    let content: View
-
-    public init(@HTMLBuilderRuntime content: () -> View) {
-        self.content = content()
-    }
-
-    public var body: View {
-        "<div>\(content)</div>"
-    }
-}
+//@_functionBuilder
+//public class HTMLBuilderRuntime {
+//
+//    public static func buildBlock() -> String {
+//        ""
+//    }
+//
+//    public static func buildBlock(_ children: View...) -> String {
+//        children.reduce("") { try! $0 + $1.render() }
+//    }
+//
+//    public static func buildEither(first: View) -> String {
+//        try! first.render()
+//    }
+//
+//    public static func buildEither(second: View) -> String {
+//        try! second.render()
+//    }
+//
+//    public static func buildOptional(_ component: View?) -> String {
+//        try! (component ?? "").render()
+//    }
+//}
+//
+//public struct Test: StaticView {
+//
+//    let content: View
+//
+//    public init(@HTMLBuilderRuntime content: () -> View) {
+//        self.content = content()
+//    }
+//
+//    public var body: View {
+//        "<div>\(content)</div>"
+//    }
+//}
 
 public struct Div: ContentNode {
 

@@ -42,13 +42,13 @@ final class HTMLKitTests: XCTestCase {
         }
     }
 
-    func testIfPerformanceRuntime() {
-        measure {
-            for _ in 0...1000 {
-                _ = try! IFViewRuntime(context: .init(name: "Per", age: 21, nullable: "Some", bool: false)).render()
-            }
-        }
-    }
+//    func testIfPerformanceRuntime() {
+//        measure {
+//            for _ in 0...1000 {
+//                _ = try! IFViewRuntime(context: .init(name: "Per", age: 21, nullable: "Some", bool: false)).render()
+//            }
+//        }
+//    }
 
     func testForPerformance() {
         measure {
@@ -58,13 +58,13 @@ final class HTMLKitTests: XCTestCase {
         }
     }
 
-    func testForPerformanceRuntime() {
-        measure {
-            for _ in 0...1000 {
-                _ = try! ForEachViewRuntime(context: ["1", "2", "3", "four", "five"]).render()
-            }
-        }
-    }
+//    func testForPerformanceRuntime() {
+//        measure {
+//            for _ in 0...1000 {
+//                _ = try! ForEachViewRuntime(context: ["1", "2", "3", "four", "five"]).render()
+//            }
+//        }
+//    }
 
     func testLoginPage() {
         measure {
@@ -74,13 +74,13 @@ final class HTMLKitTests: XCTestCase {
         }
     }
 
-    func testLoginPageRuntime() {
-        measure {
-            for _ in 0...1000 {
-                _ = try! LoginPageTestRuntime(errorMessage: "Some error message").render()
-            }
-        }
-    }
+//    func testLoginPageRuntime() {
+//        measure {
+//            for _ in 0...1000 {
+//                _ = try! LoginPageTestRuntime(errorMessage: "Some error message").render()
+//            }
+//        }
+//    }
 
     func testBigFor() {
         measure {
@@ -90,13 +90,13 @@ final class HTMLKitTests: XCTestCase {
         }
     }
 
-    func testBigForRuntime() {
-        measure {
-            for _ in 0...1000 {
-                _ = try! BigForTestRuntime(sessions: BigForTest.testData).render()
-            }
-        }
-    }
+//    func testBigForRuntime() {
+//        measure {
+//            for _ in 0...1000 {
+//                _ = try! BigForTestRuntime(sessions: BigForTest.testData).render()
+//            }
+//        }
+//    }
 
     func testDatePerformance() {
         let testDate = Date()

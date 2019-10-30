@@ -113,22 +113,22 @@ extension TemplateValueMapping: View where C: View {
     }
 }
 
-public struct ForEachRuntime<Value>: View {
-
-    let values: [Value]
-    let content: (Value) -> View
-
-    public init(values: [Value], @HTMLBuilderRuntime content: @escaping (Value) -> View) {
-        self.values = values
-        self.content = content
-    }
-
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        values.reduce("") { try! $0 + content($1).render() }
-    }
-
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {}
-}
+//public struct ForEachRuntime<Value>: View {
+//
+//    let values: [Value]
+//    let content: (Value) -> View
+//
+//    public init(values: [Value], @HTMLBuilderRuntime content: @escaping (Value) -> View) {
+//        self.values = values
+//        self.content = content
+//    }
+//
+//    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+//        values.reduce("") { try! $0 + content($1).render() }
+//    }
+//
+//    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {}
+//}
 
 /// A struct making it possible to have a for each loop in the template
 public struct ForEach<Root, Value> {
