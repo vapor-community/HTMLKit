@@ -30,23 +30,23 @@ public struct HTMLRendererFuture: HTMLRenderable, Service {
     let container: Container
     let renderer: HTMLRenderer
 
-    public func renderRaw<T>(_ type: T.Type) throws -> String where T : StaticView {
-        try renderer.renderRaw(type)
+    public func render<T>(raw type: T.Type) throws -> String where T : StaticView {
+        try renderer.render(raw: type)
     }
 
-    public func renderRaw<T>(_ type: T.Type, with context: T.Value) throws -> String where T : TemplateView {
-        try renderer.renderRaw(type, with: context)
+    public func render<T>(raw type: T.Type, with context: T.Value) throws -> String where T : TemplateView {
+        try renderer.render(raw: type, with: context)
     }
 
-    public func render<T>(_ type: T.Type) throws -> Future<Vapor.View> where T : StaticView {
-        guard let data = try renderRaw(type).data(using: .utf8) else {
+    public func render<T>(view type: T.Type) throws -> Future<Vapor.View> where T : StaticView {
+        guard let data = try render(raw: type).data(using: .utf8) else {
             throw Abort(.internalServerError)
         }
         return container.future(View(data: data))
     }
 
-    public func render<T>(_ type: T.Type, with context: T.Value) throws -> Future<Vapor.View> where T : TemplateView {
-        guard let data = try renderRaw(type, with: context).data(using: .utf8) else {
+    public func render<T>(view type: T.Type, with context: T.Value) throws -> Future<Vapor.View> where T : TemplateView {
+        guard let data = try render(raw: type, with: context).data(using: .utf8) else {
             throw Abort(.internalServerError)
         }
         return container.future(View(data: data))
@@ -66,7 +66,7 @@ extension HTMLRenderable {
     /// - Returns: Returns a rendered view in a `HTTPResponse`
     /// - Throws: If the formula do not exists, or if the rendering process fails
     public func render<T: TemplateView>(_ type: T.Type, with context: T.Value) throws -> HTTPResponse {
-        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: renderRaw(type, with: context))
+        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: render(raw: type, with: context))
     }
 
     /// Renders a `StaticView` formula
@@ -77,7 +77,7 @@ extension HTMLRenderable {
     /// - Returns: Returns a rendered view in a `HTTPResponse`
     /// - Throws: If the formula do not exists, or if the rendering process fails
     public func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView {
-        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: renderRaw(type))
+        return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: render(raw: type))
     }
 }
 

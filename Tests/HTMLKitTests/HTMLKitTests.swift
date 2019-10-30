@@ -37,7 +37,7 @@ final class HTMLKitTests: XCTestCase {
     func testIfPerformance() {
         measure {
             for _ in 0...1000 {
-                _ = try! renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
+                _ = try! renderer.render(raw: IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
             }
         }
     }
@@ -53,7 +53,7 @@ final class HTMLKitTests: XCTestCase {
     func testForPerformance() {
         measure {
             for _ in 0...1000 {
-                _ = try! renderer.renderRaw(ForEachView.self, with: ["1", "2", "3", "four", "five"])
+                _ = try! renderer.render(raw: ForEachView.self, with: ["1", "2", "3", "four", "five"])
             }
         }
     }
@@ -69,7 +69,7 @@ final class HTMLKitTests: XCTestCase {
     func testLoginPage() {
         measure {
             for _ in 0...1000 {
-                _ = try! renderer.renderRaw(LoginPageTest.self, with: "Some error message")
+                _ = try! renderer.render(raw: LoginPageTest.self, with: "Some error message")
             }
         }
     }
@@ -85,7 +85,7 @@ final class HTMLKitTests: XCTestCase {
     func testBigFor() {
         measure {
             for _ in 0...1000 {
-                _ = try! renderer.renderRaw(BigForTest.self, with: BigForTest.testData)
+                _ = try! renderer.render(raw: BigForTest.self, with: BigForTest.testData)
             }
         }
     }
@@ -102,7 +102,7 @@ final class HTMLKitTests: XCTestCase {
         let testDate = Date()
         measure {
             for _ in 0...100 {
-                _ = try! renderer.renderRaw(OptionalDateView.self, with: testDate)
+                _ = try! renderer.render(raw: OptionalDateView.self, with: testDate)
             }
         }
     }
@@ -121,35 +121,35 @@ final class HTMLKitTests: XCTestCase {
         customDateFormatter.timeZone = .current
         customDateFormatter.dateFormat = "MM/dd/yyyy"
 
-        let staticEmbedRender   = try renderer.renderRaw(StaticEmbedView.self, with: .init(string: "Hello", int: 2))
-        let someViewRender      = try renderer.renderRaw(SomeView.self, with: .contentWith(name: "Mats", title: "Welcome"))
-        let someViewRenderTitle = try renderer.renderRaw(SomeViewStaticTitle.self, with: "Mats")
-        let forEachRender       = try renderer.renderRaw(ForEachView.self, with: ["1", "2", "3"])
-        let firstIfRender       = try renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 19, nullable: nil, bool: false))
-        let secondIfRender      = try renderer.renderRaw(IFView.self, with: .init(name: "Mats", age: 20, nullable: nil, bool: true))
-        let thirdIfRender       = try renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
-        let staticIfRender      = try renderer.renderRaw(StaticIfPrerenderingTest.self, with: false)
-//        let varialbeRender      = try renderer.renderRaw(VariableView.self, with: "<script>\"'&</script>")
-        let selfLoop            = try renderer.renderRaw(SelfLoopingView.self, with: [.init(string: "Hello", int: 2), .init(string: "Morn", int: nil)])
-        let selfPassing         = try renderer.renderRaw(SelfContextPassing.self, with: "Self")
-        let multipleEmbedRender = try renderer.renderRaw(MultipleContextualEmbed.self, with: .init(title: "Welcome", string: "String"))
-        let nonDynamic          = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: false, isOptional: nil))
-        let oneDynamic          = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: false, isActive: true, isOptional: true))
-        let twoDynamic          = try renderer.renderRaw(DynamicAttribute.self, with: .init(isChecked: true, isActive: true, isOptional: false))
-//        let markdown            = try renderer.renderRaw(MarkdownView.self, with: .init(title: "Hello", description: "World"))
-        let english             = try renderer.renderRaw(LocalizedView.self, with: .init(locale: "en", description: .init(numberTest: 3), numberTest: 1))
-        let norwegian           = try renderer.renderRaw(LocalizedView.self, with: .init(locale: "nb", description: .init(numberTest: 3), numberTest: 1))
+        let staticEmbedRender   = try renderer.render(raw: StaticEmbedView.self, with: .init(string: "Hello", int: 2))
+        let someViewRender      = try renderer.render(raw: SomeView.self, with: .contentWith(name: "Mats", title: "Welcome"))
+        let someViewRenderTitle = try renderer.render(raw: SomeViewStaticTitle.self, with: "Mats")
+        let forEachRender       = try renderer.render(raw: ForEachView.self, with: ["1", "2", "3"])
+        let firstIfRender       = try renderer.render(raw: IFView.self, with: .init(name: "Per", age: 19, nullable: nil, bool: false))
+        let secondIfRender      = try renderer.render(raw: IFView.self, with: .init(name: "Mats", age: 20, nullable: nil, bool: true))
+        let thirdIfRender       = try renderer.render(raw: IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
+        let staticIfRender      = try renderer.render(raw: StaticIfPrerenderingTest.self, with: false)
+//        let varialbeRender      = try renderer.render(raw: VariableView.self, with: "<script>\"'&</script>")
+        let selfLoop            = try renderer.render(raw: SelfLoopingView.self, with: [.init(string: "Hello", int: 2), .init(string: "Morn", int: nil)])
+        let selfPassing         = try renderer.render(raw: SelfContextPassing.self, with: "Self")
+        let multipleEmbedRender = try renderer.render(raw: MultipleContextualEmbed.self, with: .init(title: "Welcome", string: "String"))
+        let nonDynamic          = try renderer.render(raw: DynamicAttribute.self, with: .init(isChecked: false, isActive: false, isOptional: nil))
+        let oneDynamic          = try renderer.render(raw: DynamicAttribute.self, with: .init(isChecked: false, isActive: true, isOptional: true))
+        let twoDynamic          = try renderer.render(raw: DynamicAttribute.self, with: .init(isChecked: true, isActive: true, isOptional: false))
+//        let markdown            = try renderer.render(raw: MarkdownView.self, with: .init(title: "Hello", description: "World"))
+        let english             = try renderer.render(raw: LocalizedView.self, with: .init(locale: "en", description: .init(numberTest: 3), numberTest: 1))
+        let norwegian           = try renderer.render(raw: LocalizedView.self, with: .init(locale: "nb", description: .init(numberTest: 3), numberTest: 1))
 //
-        let date                = try renderer.renderRaw(DateView.self, with: testDate)
-        let optionalDateNil     = try renderer.renderRaw(OptionalDateView.self, with: nil)
-        let optionalDate        = try renderer.renderRaw(OptionalDateView.self, with: testDate)
-        let englishDate         = try renderer.renderRaw(LocalizedDateView.self, with: .init(date: testDate, locale: "en"))
-        let norwegianDate       = try renderer.renderRaw(LocalizedDateView.self, with: .init(date: testDate, locale: "nb"))
+        let date                = try renderer.render(raw: DateView.self, with: testDate)
+        let optionalDateNil     = try renderer.render(raw: OptionalDateView.self, with: nil)
+        let optionalDate        = try renderer.render(raw: OptionalDateView.self, with: testDate)
+        let englishDate         = try renderer.render(raw: LocalizedDateView.self, with: .init(date: testDate, locale: "en"))
+        let norwegianDate       = try renderer.render(raw: LocalizedDateView.self, with: .init(date: testDate, locale: "nb"))
 //
 //
-        let simpleRender        = try renderer.renderRaw(SimpleView.self)
-        let chainedRender       = try renderer.renderRaw(ChainedEqualAttributes.self)
-        let chaindDataRender    = try renderer.renderRaw(ChainedEqualAttributesDataNode.self)
+        let simpleRender        = try renderer.render(raw: SimpleView.self)
+        let chainedRender       = try renderer.render(raw: ChainedEqualAttributes.self)
+        let chaindDataRender    = try renderer.render(raw: ChainedEqualAttributesDataNode.self)
 ////        let inputRender = try renderer.render(FormInput.self)
 //
         XCTAssertEqual(multipleEmbedRender, "<html><head><title>Welcome</title><link href='some url' rel='stylesheet'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><span>Some text</span><div><p>String</p><p>String</p></div><div><p>String</p><p>Welcome</p></div></body></html>")
@@ -189,7 +189,7 @@ final class HTMLKitTests: XCTestCase {
 
 //    func testProvider() throws {
 //
-//        let expectedResult = try renderer.renderRaw(SimpleView.self)
+//        let expectedResult = try renderer.render(raw: SimpleView.self)
 //        let response = try app.getResponse(to: "/simpleView")
 //
 //        XCTAssertEqual(response.http.body.string, expectedResult)

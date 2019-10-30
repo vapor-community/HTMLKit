@@ -35,9 +35,9 @@ public protocol HTMLRenderable {
     //    /// - Throws: If the formula do not exists, or if the rendering process fails
     //    func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> Response
 
-    func renderRaw<T: TemplateView>(_ type: T.Type, with context: T.Value) throws -> String
+    func render<T: TemplateView>(raw type: T.Type, with context: T.Value) throws -> String
 
-    func renderRaw<T: StaticView>(_ type: T.Type) throws -> String
+    func render<T: StaticView>(raw type: T.Type) throws -> String
 }
 
 /// A struct containing the differnet formulas for the different views.
@@ -105,14 +105,14 @@ public struct HTMLRenderer: HTMLRenderable {
     //        return try formula.render(with: context, lingo: lingo, locale: nil)
     //    }
 
-    public func renderRaw<T: TemplateView>(_ type: T.Type, with context: T.Value) throws -> String {
+    public func render<T: TemplateView>(raw type: T.Type, with context: T.Value) throws -> String {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Value> else {
             throw Errors.unableToFindFormula
         }
         return try formula.render(with: context, lingo: lingo)
     }
 
-    public func renderRaw<T: StaticView>(_ type: T.Type) throws -> String {
+    public func render<T: StaticView>(raw type: T.Type) throws -> String {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<Void> else {
             throw Errors.unableToFindFormula
         }
