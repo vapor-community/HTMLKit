@@ -36,19 +36,67 @@ final class HTMLKitTests: XCTestCase {
 
     func testIfPerformance() {
         measure {
-            for _ in 0...100 {
+            for _ in 0...1000 {
                 _ = try! renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
             }
         }
     }
 
+//    func testIfPerformanceRuntime() {
+//        measure {
+//            for _ in 0...1000 {
+//                _ = try! IFViewRuntime(context: .init(name: "Per", age: 21, nullable: "Some", bool: false)).render()
+//            }
+//        }
+//    }
+
     func testForPerformance() {
         measure {
-            for _ in 0...100 {
-                _ = try! renderer.renderRaw(ForEachView.self, with: .init(array: ["1", "2", "3", "four", "five"]))
+            for _ in 0...1000 {
+                _ = try! renderer.renderRaw(ForEachView.self, with: ["1", "2", "3", "four", "five"])
             }
         }
     }
+
+//    func testForPerformanceRuntime() {
+//        measure {
+//            for _ in 0...1000 {
+//                _ = try! ForEachViewRuntime(context: ["1", "2", "3", "four", "five"]).render()
+//            }
+//        }
+//    }
+
+    func testLoginPage() {
+        measure {
+            for _ in 0...1000 {
+                _ = try! renderer.renderRaw(LoginPageTest.self, with: "Some error message")
+            }
+        }
+    }
+
+//    func testLoginPageRuntime() {
+//        measure {
+//            for _ in 0...1000 {
+//                _ = try! LoginPageTestRuntime(errorMessage: "Some error message").render()
+//            }
+//        }
+//    }
+
+    func testBigFor() {
+        measure {
+            for _ in 0...1000 {
+                _ = try! renderer.renderRaw(BigForTest.self, with: BigForTest.testData)
+            }
+        }
+    }
+
+//    func testBigForRuntime() {
+//        measure {
+//            for _ in 0...1000 {
+//                _ = try! BigForTestRuntime(sessions: BigForTest.testData).render()
+//            }
+//        }
+//    }
 
     func testDatePerformance() {
         let testDate = Date()
@@ -76,7 +124,7 @@ final class HTMLKitTests: XCTestCase {
         let staticEmbedRender   = try renderer.renderRaw(StaticEmbedView.self, with: .init(string: "Hello", int: 2))
         let someViewRender      = try renderer.renderRaw(SomeView.self, with: .contentWith(name: "Mats", title: "Welcome"))
         let someViewRenderTitle = try renderer.renderRaw(SomeViewStaticTitle.self, with: "Mats")
-        let forEachRender       = try renderer.renderRaw(ForEachView.self, with: .init(array: ["1", "2", "3"]))
+        let forEachRender       = try renderer.renderRaw(ForEachView.self, with: ["1", "2", "3"])
         let firstIfRender       = try renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 19, nullable: nil, bool: false))
         let secondIfRender      = try renderer.renderRaw(IFView.self, with: .init(name: "Mats", age: 20, nullable: nil, bool: true))
         let thirdIfRender       = try renderer.renderRaw(IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
@@ -185,6 +233,9 @@ final class HTMLKitTests: XCTestCase {
         try renderer.add(view: ChainedEqualAttributes())
         try renderer.add(view: ChainedEqualAttributesDataNode())
         try renderer.add(view: StaticIfPrerenderingTest())
+
+        try renderer.add(view: LoginPageTest())
+        try renderer.add(view: BigForTest())
 //
         self.renderer = renderer
     }
