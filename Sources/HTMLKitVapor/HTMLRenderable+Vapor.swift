@@ -75,7 +75,7 @@ extension Request {
 extension HTMLRenderer : Service {}
 
 extension TemplateView {
-    public func render(with context: Context, for request: Request) throws -> Future<View> {
+    public func render(with context: Context, for request: Request) -> Future<View> {
         return request.future()
             .map { _ in
                 let renderer = try request.renderer()
@@ -90,7 +90,7 @@ extension TemplateView {
 }
 
 extension StaticView {
-    public func render(for request: Request) throws -> Future<View> {
+    public func render(for request: Request) -> Future<View> {
         return request.future()
             .map { _ in
                 let renderer = try request.renderer()

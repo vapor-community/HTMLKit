@@ -96,27 +96,22 @@ let context = DummyPage.Context(string: "Some string", int: nil)
 try DummyPage().render(with: context, for: req)
 ```
 
-## Mixing with Leaf
+## Mixing HTMLKit with Leaf
 
 You can easily mix Leaf and HTMLKit in the same project.
 
 ```swift
-
 struct RenderingConfig: Content {
     let message: String
     let useHTMLKit: Bool
 }
 
 func renderLogin(on req: Request) -> Future<View> {
-    req.content
-        .decode(RenderingConfig.self)
-        .flatMap { config in
-        
-            if config.useHTMLKit {
-                return try LoginPage.render(with: config, on: req)
-            } else {
-                return req.view().render("login-page", with: config)
-            }
+    let query = try req.query.decode(RenderingConfig.self)
+    if config.useHTMLKit {
+        return LoginPage.render(with: config, on: req)
+    } else {
+        return req.view().render("login-page", with: config)
     }
 }
 ```
