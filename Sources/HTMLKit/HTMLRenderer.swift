@@ -35,9 +35,9 @@ public protocol HTMLRenderable {
     //    /// - Throws: If the formula do not exists, or if the rendering process fails
     //    func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> Response
 
-    func render<T: TemplateView>(raw type: T.Type, with context: T.Context) throws -> String
+    func render<T: HTMLTemplate>(raw type: T.Type, with context: T.Context) throws -> String
 
-    func render<T: StaticView>(raw type: T.Type) throws -> String
+    func render<T: HTMLPage>(raw type: T.Type) throws -> String
 }
 
 /// A struct containing the differnet formulas for the different views.
@@ -105,14 +105,14 @@ public class HTMLRenderer: HTMLRenderable {
     //        return try formula.render(with: context, lingo: lingo, locale: nil)
     //    }
 
-    public func render<T: TemplateView>(raw type: T.Type, with context: T.Context) throws -> String {
+    public func render<T: HTMLTemplate>(raw type: T.Type, with context: T.Context) throws -> String {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Context> else {
             throw Errors.unableToFindFormula
         }
         return try formula.render(with: context, lingo: lingo)
     }
 
-    public func render<T: StaticView>(raw type: T.Type) throws -> String {
+    public func render<T: HTMLPage>(raw type: T.Type) throws -> String {
         guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<Void> else {
             throw Errors.unableToFindFormula
         }
@@ -131,13 +131,13 @@ public class HTMLRenderer: HTMLRenderable {
     //        formulaCache[String(reflecting: T.self)] = formula
     //    }
 
-    public func add<T: TemplateView>(view: T) throws {
+    public func add<T: HTMLTemplate>(view: T) throws {
         let formula = Formula(context: T.Context.self)
         try view.prerender(formula)
         formulaCache[String(reflecting: T.self)] = formula
     }
 
-    public func add<T: StaticView>(view: T) throws {
+    public func add<T: HTMLPage>(view: T) throws {
         let formula = Formula(context: Void.self)
         try view.prerender(formula)
         formulaCache[String(reflecting: T.self)] = formula

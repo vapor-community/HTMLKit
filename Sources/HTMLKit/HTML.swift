@@ -1,5 +1,169 @@
 import Foundation
 
+
+public protocol HTML {
+
+    /// A value indicating if the template should render when itis used as localization info
+    var renderWhenLocalizing: Bool { get }
+
+    /// Renders a compiled template to a html document
+    ///
+    /// - Parameter manager: A manager that contains the context
+    /// - Returns: A html document
+    /// - Throws: If the html can not be rendered for some reason
+    func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String
+
+    /// Brews a mappable object in to a formula
+    ///
+    ///     formula.add(string: "<\(name)/>")   // A constant string
+    ///     formula.add(self)                   // Not able to be predetermand
+    ///
+    /// - Parameter formula: The formula to brew in to
+    /// - Throws: If there occured some error
+    func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws
+}
+
+extension HTML {
+    public var renderWhenLocalizing: Bool { return true }
+}
+
+extension Array: HTML where Element == HTML {
+
+    // View `HTML` documentation
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    // View `HTML` documentation
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+}
+
+extension String: HTML {
+
+    // View `HTML` documentation
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        return self
+    }
+
+    // View `HTML` documentation
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        formula.add(string: self)
+    }
+}
+
+extension Int: HTML {
+
+    // View `HTML` documentation
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        return String(self)
+    }
+
+    // View `HTML` documentation
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        formula.add(string: String(self))
+    }
+
+    public var renderWhenLocalizing: Bool { return false }
+}
+
+extension Double: HTML {
+
+    // View `HTML` documentation
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        return String(self)
+    }
+
+    // View `HTML` documentation
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        formula.add(string: String(self))
+    }
+
+    public var renderWhenLocalizing: Bool { return false }
+}
+
+extension Float: HTML {
+
+    // View `HTML` documentation
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        return String(self)
+    }
+
+    // View `HTML` documentation
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        formula.add(string: String(self))
+    }
+
+    public var renderWhenLocalizing: Bool { return false }
+}
+
+extension Bool: HTML {
+
+    // View `HTML` documentation
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        return String(self)
+    }
+
+    // View `HTML` documentation
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        formula.add(string: String(self))
+    }
+
+    public var renderWhenLocalizing: Bool { return false }
+}
+
+extension Optional: HTML where Wrapped: HTML {
+
+    // View `HTML` documentation
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        switch self {
+        case .some(let wrapped): try wrapped.prerender(formula)
+        default: break
+        }
+    }
+
+    // View `HTML` documentation
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        switch self {
+        case .none: return ""
+        case .some(let wrapped): return try wrapped.render(with: manager)
+        }
+    }
+}
+
+extension UUID: HTML {
+
+    // View `HTML` documentation
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        return self.uuidString
+    }
+
+    // View `HTML` documentation
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        formula.add(string: self.uuidString)
+    }
+}
+
+/// Concats two values
+public func + (lhs: HTML, rhs: HTML) -> HTML {
+    var output: Array<HTML> = []
+
+    if let list = lhs as? Array<HTML> {
+        output.append(contentsOf: list)
+    } else {
+        output.append(lhs)
+    }
+
+    if let list = rhs as? Array<HTML> {
+        output.append(list)
+    } else {
+        output.append(rhs)
+    }
+    return output
+}
+
+
 /// The different escaping options for a variable
 ///
 /// - unsafeNone: No escaping. This will render the variable as given

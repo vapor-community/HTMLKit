@@ -9,6 +9,11 @@
 import Foundation
 //
 
+public protocol LocalizableNode {
+    init(_ localizedKey: String)
+    init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B: Encodable
+}
+
 public struct NoData: Encodable {}
 
 public struct Localized<A, B>: HTML where B: Encodable {

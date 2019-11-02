@@ -82,8 +82,8 @@ extension TemplateValue where Value == Date {
     ///   - dateStyle: The style to use to render the date
     ///   - timeStyle: The style to use to render the time
     /// - Returns: A `CompiledTemplate`
-    public func style(dateStyle: DateFormatter.Style = .short, timeStyle: DateFormatter.Style = .short) -> HTML {
-        return DateVariable(dateReference: .solid(self), format: .style(.init(dateStyle: dateStyle, timeStyle: timeStyle)))
+    public func style(date: DateFormatter.Style = .short, time: DateFormatter.Style = .short) -> HTML {
+        return DateVariable(dateReference: .solid(self), format: .style(.init(dateStyle: date, timeStyle: time)))
     }
 
 //    /// Render a date in a formate
@@ -102,7 +102,7 @@ extension TemplateValue where Value == Date {
     ///   - datePath: The path to the date
     ///   - format: The formate to render the date with
     /// - Returns: A `CompiledTemplate`
-    public func formating(string format: String) -> HTML {
+    public func formatted(string format: String) -> HTML {
         return DateVariable(dateReference: .solid(self), format: .literal(format))
     }
 }
@@ -116,8 +116,8 @@ extension TemplateValue where Value == Date? {
     ///   - dateStyle: The style to use to render the date
     ///   - timeStyle: The style to use to render the time
     /// - Returns: A `CompiledTemplate`
-    public func style(dateStyle: DateFormatter.Style = .short, timeStyle: DateFormatter.Style = .short) -> HTML {
-        return DateVariable(dateReference: .optional(self), format: .style(.init(dateStyle: dateStyle, timeStyle: timeStyle)))
+    public func style(date: DateFormatter.Style = .short, time: DateFormatter.Style = .short) -> HTML {
+        return DateVariable(dateReference: .optional(self), format: .style(.init(dateStyle: date, timeStyle: time)))
     }
 
 //    /// Render a date in a formate
@@ -136,7 +136,7 @@ extension TemplateValue where Value == Date? {
     ///   - datePath: The path to the date
     ///   - format: The formate to render the date with
     /// - Returns: A `CompiledTemplate`
-    public func formating(string format: String) -> HTML {
+    public func formatted(string format: String) -> HTML {
         return DateVariable(dateReference: .optional(self), format: .literal(format))
     }
 }

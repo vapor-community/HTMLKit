@@ -1,30 +1,4 @@
 
-/// A protocol that makes it possible to render HTML views
-public protocol TemplateBuilder: HTML {
-
-    /// Builds the view
-    ///
-    /// - Returns: a view that conforms to `Mappable`
-    func build() -> HTML
-}
-
-extension TemplateBuilder {
-
-    // View `BrewableFormula` documentation
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
-        try build().prerender(formula)
-    }
-
-    // View `CompiledTemplate` documentation
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        return try build().render(with: manager)
-    }
-}
-
-public protocol LocalizableNode {
-    init(_ localizedKey: String)
-    init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B: Encodable
-}
 
 extension LocalizableNode {
     public init<T>(_ localizedKey: String, with context: T) where T: Encodable {
@@ -39,43 +13,6 @@ public class HTMLBuilder {
         return children
     }
 }
-
-//@_functionBuilder
-//public class HTMLBuilderRuntime {
-//
-//    public static func buildBlock() -> String {
-//        ""
-//    }
-//
-//    public static func buildBlock(_ children: View...) -> String {
-//        children.reduce("") { try! $0 + $1.render() }
-//    }
-//
-//    public static func buildEither(first: View) -> String {
-//        try! first.render()
-//    }
-//
-//    public static func buildEither(second: View) -> String {
-//        try! second.render()
-//    }
-//
-//    public static func buildOptional(_ component: View?) -> String {
-//        try! (component ?? "").render()
-//    }
-//}
-//
-//public struct Test: StaticView {
-//
-//    let content: View
-//
-//    public init(@HTMLBuilderRuntime content: () -> View) {
-//        self.content = content()
-//    }
-//
-//    public var body: View {
-//        "<div>\(content)</div>"
-//    }
-//}
 
 public struct Div: ContentNode {
 
@@ -1906,45 +1843,5 @@ public struct Break: DatableNode {
 
     public init(attributes: [HTMLAttribute] = []) {
         self.attributes = attributes
-    }
-}
-
-public struct Document: StaticView {
-
-    public enum Types: String {
-        case html5 = "html"
-
-        /// This DTD contains all HTML elements and attributes, but does NOT INCLUDE presentational or deprecated elements (like font). Framesets are not allowed.
-        case html4Strict = #"HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd""#
-
-        /// This DTD contains all HTML elements and attributes, INCLUDING presentational and deprecated elements (like font). Framesets are not allowed.
-        case html4Transitional = #"HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd""#
-
-        /// This DTD is equal to HTML 4.01 Transitional, but allows the use of frameset content.
-        case html4Frameset = #"HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd""#
-
-        /// This DTD contains all HTML elements and attributes, but does NOT INCLUDE presentational or deprecated elements (like font). Framesets are not allowed. The markup must also be written as well-formed XML.
-        case xhtmlStrict = #"html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd""#
-
-        /// This DTD contains all HTML elements and attributes, INCLUDING presentational and deprecated elements (like font). Framesets are not allowed. The markup must also be written as well-formed XML.
-        case xhtmlTransitional = #"html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd""#
-
-        /// This DTD is equal to XHTML 1.0 Transitional, but allows the use of frameset content.
-        case xhtmlFrameset = #"html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd""#
-
-        /// This DTD is equal to XHTML 1.0 Strict, but allows you to add modules (for example to provide Ruby support for East-Asian languages).
-        case xhtml = #"html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd""#
-    }
-
-    let type: Types
-    let content: HTML
-
-    public init(type: Types, @HTMLBuilder content: () -> HTML) {
-        self.type = type
-        self.content = content()
-    }
-
-    public var body: HTML {
-        "<!DOCTYPE \(type.rawValue)>" + content
     }
 }

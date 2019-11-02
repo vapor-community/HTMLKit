@@ -122,7 +122,7 @@ final class HTMLKitTests: XCTestCase {
         customDateFormatter.dateFormat = "MM/dd/yyyy"
 
         let staticEmbedRender   = try renderer.render(raw: StaticEmbedView.self, with: .init(string: "Hello", int: 2))
-        let someViewRender      = try renderer.render(raw: SomeView.self, with: .contentWith(name: "Mats", title: "Welcome"))
+        let someViewRender      = try renderer.render(raw: SomeView.self, with: .init(name: "Mats", title: "Welcome"))
         let someViewRenderTitle = try renderer.render(raw: SomeViewStaticTitle.self, with: "Mats")
         let forEachRender       = try renderer.render(raw: ForEachView.self, with: ["1", "2", "3"])
         let firstIfRender       = try renderer.render(raw: IFView.self, with: .init(name: "Per", age: 19, nullable: nil, bool: false))
@@ -205,7 +205,7 @@ final class HTMLKitTests: XCTestCase {
         try! HTMLKitTests.enLocalizations.write(toFile: path + "/en.json", atomically: true, encoding: .utf8)
         try! HTMLKitTests.nbLocalizations.write(toFile: path + "/nb.json", atomically: true, encoding: .utf8)
 
-        var renderer = HTMLRenderer()
+        let renderer = HTMLRenderer()
 
         renderer.lingo = try Lingo(rootPath: path, defaultLocale: "en")
 

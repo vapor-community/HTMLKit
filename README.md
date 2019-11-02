@@ -38,7 +38,7 @@ public struct Alert: HTMLComponent {
         self.message = message()
     }
 
-    public var body: View {
+    public var body: HTML {
         Div {
             message
             IF(isDisimissable) {
@@ -82,7 +82,7 @@ struct DummyPage: TemplateView {
         let int: Int?
     }
 
-    var body: View {
+    var body: HTML {
         Div {
             P { context.string }
             IF(context.int.isDefined) {
@@ -109,7 +109,7 @@ struct RenderingConfig: Content {
 func renderLogin(on req: Request) -> Future<View> {
     let query = try req.query.decode(RenderingConfig.self)
     if config.useHTMLKit {
-        return LoginPage.render(with: config, on: req)
+        return LoginPage().render(with: config, on: req)
     } else {
         return req.view().render("login-page", with: config)
     }
@@ -122,7 +122,7 @@ Much like SwiftUI, you can localize text by passing the localization key as a pa
 
 ```swift
 ...
-var body: View {
+var body: HTML {
     P("hello.world")
         .class("text-white")
 }
@@ -134,19 +134,6 @@ var renderer = HTMLRenderer()
 try renderer.registerLocalization(atPath: "workDir", defaultLocale: "en")
 ```
 And if the locale changes based on some user input, then you can change the used locale in the template.
-```swift
-...
-let locale: RootValue<String>
-
-var body: View {
-    Div {
-        P("hello.world")
-            .class("text-white")
-    }
-    .enviroment(locale: locale)
-}
-...
-```
 This also effects how dates are presentet to the user.
 ```swift
 struct LocalizedDateView: TemplateView {
@@ -156,17 +143,15 @@ struct LocalizedDateView: TemplateView {
         let locale: String
     }
 
-    let context: RootValue<Context> = .root()
-
-    var body: View {
+    var body: HTML {
         Div {
             P {
                 context.date
-                    .style(dateStyle: .short, timeStyle: .short)
+                    .style(date: .short, time: .short)
             }
             P {
                 context.date
-                    .formating(string: "MM/dd/yyyy")
+                    .formatted(string: "MM/dd/yyyy")
             }
         }
         .enviroment(locale: context.locale)
@@ -177,6 +162,5 @@ struct LocalizedDateView: TemplateView {
 ## Useful Resources to Get Started
 
 * [BootstrapKit](https://github.com/MatsMoll/BootstrapKit) - A higher level library that makes it easier to work with Boostrap 4.
-
 * [Vapor TIL fork](https://github.com/MatsMoll/vapor-til) - Compare Leaf to HTMLKit in this fork of the TIL app.
 * Convert pure HTML code to HTMLKit code using this [HTML-to-HTMLKit converter](https://github.com/MatsMoll/HTMLKit-code-converter).

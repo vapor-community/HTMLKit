@@ -157,7 +157,7 @@ extension GlobalAttributes where Self: AttributeNode {
     }
 
     public func on(click: HTML) -> Self {
-        self.add(HTMLAttribute(attribute: "onclick", value: click))
+        add(HTMLAttribute(attribute: "onclick", value: click))
     }
 }
 

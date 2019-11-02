@@ -13,22 +13,22 @@ struct SimpleData {
     let int: Int?
 }
 
-struct SimpleView: StaticView, HTMLTestable {
+struct SimpleView: HTMLPage, HTMLTestable {
 
     static var expextedOutput: String = "<div><p>Text</p></div>"
 
-    var body: View {
+    var body: HTML {
         Div {
             P { "Text" }
         }
     }
 }
 
-struct StaticEmbedView: TemplateView {
+struct StaticEmbedView: HTMLTemplate {
 
     var context: RootValue<SimpleData> = .root()
 
-    var body: View {
+    var body: HTML {
         Div {
             SimpleView()
             P {
@@ -43,17 +43,17 @@ struct StaticEmbedView: TemplateView {
     }
 }
 
-struct BaseView<Root>: StaticView {
+struct BaseView<Root>: HTMLComponent {
 
     let context: TemplateValue<Root, String>
-    let content: View
+    let content: HTML
 
-    init(context: TemplateValue<Root, String>, @HTMLBuilder content: () -> View) {
+    init(context: TemplateValue<Root, String>, @HTMLBuilder content: () -> HTML) {
         self.context = context
         self.content = content()
     }
 
-    var body: View {
+    var body: HTML {
         HTMLNode {
             Head {
                 Title { context }
@@ -71,42 +71,43 @@ struct BaseView<Root>: StaticView {
     }
 }
 
-struct SomeView: TemplateView {
+extension BaseView where Root == Void {
+    init(context: String, @HTMLBuilder content: () -> HTML) {
+        self.context = .constant(context)
+        self.content = content()
+    }
+}
 
-    struct Value {
+struct SomeView: HTMLTemplate {
+
+    struct Context {
         let name: String
-        let baseContext: String
-
-        static func contentWith(name: String, title: String) -> Value {
-            return .init(name: name, baseContext: title)
-        }
+        let title: String
     }
 
-    var context: RootValue<Value> = .root()
-
-    var body: View {
-        BaseView(context: context.baseContext) {
+    var body: HTML {
+        BaseView(context: context.title) {
             P { "Hello " + context.name + "!" }
         }
     }
 }
 
-struct SomeViewStaticTitle: TemplateView {
+struct SomeViewStaticTitle: HTMLTemplate {
 
     var context: RootValue<String> = .root()
 
-    var body: View {
-        BaseView<Void>(context: "Test") {
+    var body: HTML {
+        BaseView(context: "Test") {
             P { "Hello " + context + "!" }
         }
     }
 }
 
-struct ForEachView: TemplateView {
+struct ForEachView: HTMLTemplate {
 
     let context: RootValue<[String]> = .root()
 
-    var body: View {
+    var body: HTML {
         Div {
             ForEach(in: context) { text in
                 P { text }
@@ -119,7 +120,7 @@ struct ForEachView: TemplateView {
 //
 //    let context: [String]
 //
-//    var body: View {
+//    var body: HTML {
 //        Test {
 //            ForEachRuntime(values: context) { value in
 //                P { value }
@@ -128,7 +129,7 @@ struct ForEachView: TemplateView {
 //    }
 //}
 
-struct IFView: TemplateView {
+struct IFView: HTMLTemplate {
 
     struct Value {
         let name: String
@@ -139,12 +140,13 @@ struct IFView: TemplateView {
 
     var context: RootValue<Value> = .root()
 
-    var body: View {
+    var body: HTML {
         Div {
             IF(context.name == "Mats") {
                 P {
                     "My name is: " + context.name + "!"
-                }.direction(.leftToRight)
+                }
+                .direction(.leftToRight)
             }
 
             IF(context.age < 20) {
@@ -179,7 +181,7 @@ struct IFView: TemplateView {
 //
 //    let context: Value
 //
-//    var body: View {
+//    var body: HTML {
 //        Test {
 //            if context.name == "Mats" {
 //                P {
@@ -243,7 +245,7 @@ struct IFView: TemplateView {
 //        self.placeholder = placeholder
 //    }
 //
-//    func build() -> View {
+//    func build() -> HTML {
 //
 //        var inputTag = input.id(id).class("form-controll").type(type.rawValue).name(id).placeholder(placeholder)
 //        if isRequired {
@@ -260,7 +262,7 @@ struct IFView: TemplateView {
 //
 //struct UsingComponent: StaticView {
 //
-//    func build() -> View {
+//    func build() -> HTML {
 //        return
 //            div.id("Test").child(
 //                FormInput(label: "Email", type: .email)
@@ -270,20 +272,20 @@ struct IFView: TemplateView {
 //
 //struct ChainedEqualAttributes: StaticView {
 //
-//    func build() -> View {
+//    func build() -> HTML {
 //        return div.class("foo").class("bar").id("id")
 //    }
 //}
 //
 //struct ChainedEqualAttributesDataNode: StaticView {
 //
-//    func build() -> View {
+//    func build() -> HTML {
 //        return img.class("foo").class("bar").id("id")
 //    }
 //}
 //
-struct ChainedEqualAttributes: StaticView {
-    var body: View {
+struct ChainedEqualAttributes: HTMLPage {
+    var body: HTML {
         Div()
             .class("foo")
             .class("bar")
@@ -291,8 +293,8 @@ struct ChainedEqualAttributes: StaticView {
     }
 }
 
-struct ChainedEqualAttributesDataNode: StaticView {
-    var body: View {
+struct ChainedEqualAttributesDataNode: HTMLPage {
+    var body: HTML {
         Img()
             .class("foo")
             .class("bar")
@@ -302,11 +304,11 @@ struct ChainedEqualAttributesDataNode: StaticView {
 }
 
 
-struct VariableView<Root>: StaticView {
+struct VariableView<Root>: HTMLComponent {
 
     var context: TemplateValue<Root, String>
 
-    var body: View {
+    var body: HTML {
         Div {
             P { context }
             P { context.escaping(.unsafeNone) }
@@ -314,24 +316,17 @@ struct VariableView<Root>: StaticView {
     }
 }
 
-struct MultipleContextualEmbed: TemplateView {
+struct MultipleContextualEmbed: HTMLTemplate {
 
-    struct Value {
-        let base: String
-        let variable: String
-
-        init(title: String, string: String) {
-            base = title
-            variable = string
-        }
+    struct Context {
+        let title: String
+        let string: String
     }
 
-    var context: RootValue<Value> = .root()
-
-    var body: View {
-        BaseView(context: context.base) { () -> View in
+    var body: HTML {
+        BaseView(context: context.title) { () -> HTML in
             Span { "Some text" }
-            VariableView(context: context.variable)
+            VariableView(context: context.string)
             UnsafeVariable(context: context)
         }
     }
@@ -379,18 +374,18 @@ extension AttributeNode {
     }
 }
 
-struct BootstrapAlert: StaticView, AttributeNode {
+struct BootstrapAlert: HTMLComponent, AttributeNode {
 
-    var attributes: [HTML.Attribute]
+    var attributes: [HTMLAttribute]
 
-    let content: View
+    let content: HTML
 
-    init(attributes: [HTML.Attribute] = [], @HTMLBuilder content: () -> View) {
+    init(attributes: [HTMLAttribute] = [], @HTMLBuilder content: () -> HTML) {
         self.attributes = attributes
         self.content = content()
     }
 
-    var body: View {
+    var body: HTML {
         Div {
             content
         }
@@ -399,7 +394,7 @@ struct BootstrapAlert: StaticView, AttributeNode {
             .add(attributes: attributes)
     }
 
-    func copy(with attributes: [HTML.Attribute]) -> BootstrapAlert {
+    func copy(with attributes: [HTMLAttribute]) -> BootstrapAlert {
         .init(attributes: attributes, content: { content })
     }
 }
@@ -412,7 +407,7 @@ struct BootstrapAlert: StaticView, AttributeNode {
 //        let isOptional: Bool?
 //    }
 //
-//    func build() -> View {
+//    func build() -> HTML {
 //        return div.class("foo")
 //            .if(\.isChecked, add: .class("checked"))
 //            .if(\.isActive, add: .init(attribute: "active", value: nil))
@@ -422,11 +417,11 @@ struct BootstrapAlert: StaticView, AttributeNode {
 //}
 //
 
-struct LoginPageTest: TemplateView {
+struct LoginPageTest: HTMLTemplate {
 
-    let context: RootValue<String?> = .root()
+    typealias Context = String?
 
-    var body: View {
+    var body: HTML {
         Div {
             Div {
                 Div {
@@ -523,7 +518,7 @@ struct LoginPageTest: TemplateView {
 //
 //    let errorMessage: String?
 //
-//    var body: View {
+//    var body: HTML {
 //        Div {
 //            Div {
 //                Div {
@@ -620,7 +615,7 @@ struct LoginPageTest: TemplateView {
 //    }
 //}
 
-struct DynamicAttribute: TemplateView {
+struct DynamicAttribute: HTMLTemplate {
 
     struct Value {
         let isChecked: Bool
@@ -630,17 +625,17 @@ struct DynamicAttribute: TemplateView {
 
     let context: RootValue<Value> = .root()
 
-    var body: View {
+    var body: HTML {
         Div()
             .class("foo")
             .modify(if: context.isChecked) {
                 $0.class("checked")
             }
             .modify(if: context.isActive) {
-                $0.add(HTML.Attribute.init(attribute: "active", value: nil))
+                $0.add(HTMLAttribute(attribute: "active", value: nil))
             }
             .modify(if: context.isOptional.isNotDefined) {
-                $0.add(HTML.Attribute.init(attribute: "selected", value: nil))
+                $0.add(HTMLAttribute(attribute: "selected", value: nil))
             }
             .modify(if: context.isOptional.isDefined) {
                 $0.class("not-nil")
@@ -648,22 +643,22 @@ struct DynamicAttribute: TemplateView {
     }
 }
 
-struct SelfContextPassing: TemplateView {
+struct SelfContextPassing: HTMLTemplate {
 
     var context: RootValue<String> = .root()
 
-    var body: View {
+    var body: HTML {
         Div {
             VariableView(context: context)
         }
     }
 }
 
-struct SelfLoopingView: TemplateView {
+struct SelfLoopingView: HTMLTemplate {
 
-    var context: RootValue<[SimpleData]> = .root()
+    typealias Context = [SimpleData]
 
-    var body: View {
+    var body: HTML {
         Div {
             ForEach(in: context) { data in
                 StaticEmbedView(context: data)
@@ -671,18 +666,18 @@ struct SelfLoopingView: TemplateView {
         }.class("list")
     }
 }
+//
+struct UnsafeVariable<Root>: HTMLPage {
 
-struct UnsafeVariable<Root>: StaticView {
+    var context: TemplateValue<Root, MultipleContextualEmbed.Context>
 
-    var context: TemplateValue<Root, MultipleContextualEmbed.Value>
-
-    var body: View {
+    var body: HTML {
         Div {
             P {
-                context.variable
+                context.string
             }
             P {
-                context.base
+                context.title
             }
         }
     }
@@ -697,7 +692,7 @@ struct UnsafeVariable<Root>: StaticView {
 //
 //    let context: RootValue<Value> = .root()
 //
-//    var body: View {
+//    var body: HTML {
 //        Div {
 //            Markdown {
 //                "# Title: " + context.title
@@ -708,21 +703,19 @@ struct UnsafeVariable<Root>: StaticView {
 //    }
 //}
 
-struct LocalizedView: TemplateView {
+struct LocalizedView: HTMLTemplate {
 
     struct DescriptionContent: Codable {
         let numberTest: Int
     }
 
-    struct Value: Codable {
+    struct Context: Codable {
         let locale: String
         let description: DescriptionContent
         let numberTest: Int
     }
 
-    let context: RootValue<Value> = .root()
-
-    var body: View {
+    var body: HTML {
         Div {
             H1("hello.world")
             P("unread.messages", with: context.description)
@@ -733,26 +726,26 @@ struct LocalizedView: TemplateView {
     }
 }
 
-struct DateView: TemplateView {
+struct DateView: HTMLTemplate {
 
-    var context: RootValue<Date> = .root()
+    typealias Context = Date
 
-    var body: View {
+    var body: HTML {
         Div {
             P { context.style() }
-            P { context.formating(string: "MM/dd/yyyy") }
+            P { context.formatted(string: "MM/dd/yyyy") }
         }
     }
 }
 
-struct OptionalDateView: TemplateView {
+struct OptionalDateView: HTMLTemplate {
 
-    var context: RootValue<Date?> = .root()
+    typealias Context = Date?
 
-    var body: View {
+    var body: HTML {
         Div {
             P { context.style() }
-            P { context.formating(string: "MM/dd/yyyy") }
+            P { context.formatted(string: "MM/dd/yyyy") }
         }
     }
 }
@@ -776,11 +769,11 @@ class FailingCondition: Conditionable {
     }
 }
 
-struct StaticIfPrerenderingTest: TemplateView {
+struct StaticIfPrerenderingTest: HTMLTemplate {
 
-    var context: RootValue<Bool> = .root()
+    typealias Context = Bool
 
-    var body: View {
+    var body: HTML {
         Div {
             IF(FailingCondition(evaluationResult: true)) {
                 "This should be prerenderd"
@@ -820,7 +813,7 @@ struct StaticIfPrerenderingTest: TemplateView {
 //        let locale: String
 //    }
 //
-//    func build() -> View {
+//    func build() -> HTML {
 //        return div.child(
 //            p.child(
 //                date(\.date, dateStyle: .short, timeStyle: .short)
@@ -832,22 +825,20 @@ struct StaticIfPrerenderingTest: TemplateView {
 //    }
 //}
 
-struct LocalizedDateView: TemplateView {
+struct LocalizedDateView: HTMLTemplate {
 
     struct Context {
         let date: Date
         let locale: String
     }
 
-    let context: RootValue<Context> = .root()
-
-    var body: View {
+    var body: HTML {
         Div {
             P {
-                context.date.style(dateStyle: .short, timeStyle: .short)
+                context.date.style(date: .short, time: .short)
             }
             P {
-                context.date.formating(string: "MM/dd/yyyy")
+                context.date.formatted(string: "MM/dd/yyyy")
             }
         }
         .enviroment(locale: context.locale)
@@ -868,7 +859,7 @@ struct PracticeSession {
 }
 
 
-struct BigForTest: TemplateView {
+struct BigForTest: HTMLTemplate {
 
     static let testData: [PracticeSession] = [
         .init(id: 1, timeUsed: 20, numberOfTaskGoal: 10, createdAt: Date()),
@@ -878,9 +869,9 @@ struct BigForTest: TemplateView {
         .init(id: 5, timeUsed: 20, numberOfTaskGoal: 8, createdAt: Date())
     ]
 
-    let context: RootValue<[PracticeSession]> = .root()
+    typealias Context = [PracticeSession]
 
-    var body: View {
+    var body: HTML {
         Div {
             Table {
                 TableHead {
@@ -904,7 +895,7 @@ struct BigForTest: TemplateView {
                             TableCell {
                                 Anchor {
                                     session.createdAt
-                                        .style(dateStyle: .medium, timeStyle: .short)
+                                        .style(date: .medium, time: .short)
                                 }
                                 .href("/practice-sessions/" + session.id + "/result")
                                 .class("text-muted")
@@ -944,7 +935,7 @@ struct BigForTest: TemplateView {
 //
 //    let sessions: [PracticeSession]
 //
-//    var body: View {
+//    var body: HTML {
 //        Div {
 //            Table {
 //                TableHead {
@@ -1007,13 +998,13 @@ struct BigForTest: TemplateView {
 //
 //
 //}
-
-extension Date {
-
-    func style(dateStyle: DateFormatter.Style = .short, timeStyle: DateFormatter.Style = .short) -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = dateStyle
-        formatter.timeStyle = timeStyle
-        return formatter.string(from: self)
-    }
-}
+//
+//extension Date {
+//
+//    func style(dateStyle: DateFormatter.Style = .short, timeStyle: DateFormatter.Style = .short) -> String {
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = dateStyle
+//        formatter.timeStyle = timeStyle
+//        return formatter.string(from: self)
+//    }
+//}

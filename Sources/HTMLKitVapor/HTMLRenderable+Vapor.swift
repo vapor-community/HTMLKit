@@ -31,7 +31,7 @@ extension HTMLRenderable {
     ///   - context: The needed context to render the view with
     /// - Returns: Returns a rendered view in a `HTTPResponse`
     /// - Throws: If the formula do not exists, or if the rendering process fails
-    public func render<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse {
+    public func render<T: HTMLTemplate>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse {
         return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: render(raw: type, with: context))
     }
 
@@ -42,18 +42,18 @@ extension HTMLRenderable {
     /// - Parameter type: The view type to render
     /// - Returns: Returns a rendered view in a `HTTPResponse`
     /// - Throws: If the formula do not exists, or if the rendering process fails
-    public func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView {
+    public func render<T>(_ type: T.Type) throws -> HTTPResponse where T : HTMLPage {
         return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: render(raw: type))
     }
 
-    public func render<T>(view type: T.Type) throws -> View where T : StaticView {
+    public func render<T>(view type: T.Type) throws -> View where T : HTMLPage {
         guard let data = try render(raw: type).data(using: .utf8) else {
             throw Abort(.internalServerError)
         }
         return View(data: data)
     }
 
-    public func render<T>(view type: T.Type, with context: T.Context) throws -> View where T : TemplateView {
+    public func render<T>(view type: T.Type, with context: T.Context) throws -> View where T : HTMLTemplate {
         guard let data = try render(raw: type, with: context).data(using: .utf8) else {
             throw Abort(.internalServerError)
         }
@@ -74,7 +74,7 @@ extension Request {
 
 extension HTMLRenderer : Service {}
 
-extension TemplateView {
+extension HTMLTemplate {
     public func render(with context: Context, for request: Request) -> Future<View> {
         return request.future()
             .map { _ in
@@ -89,7 +89,7 @@ extension TemplateView {
     }
 }
 
-extension StaticView {
+extension HTMLPage {
     public func render(for request: Request) -> Future<View> {
         return request.future()
             .map { _ in
