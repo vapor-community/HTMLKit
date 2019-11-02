@@ -113,9 +113,9 @@ func renderLogin(on req: Request) -> Future<View> {
         .flatMap { config in
         
             if config.useHTMLKit {
-                try LoginPage.render(with: config, on: req)
+                return try LoginPage.render(with: config, on: req)
             } else {
-                req.view().render("login-page", with: config)
+                return req.view().render("login-page", with: config)
             }
     }
 }
