@@ -74,13 +74,13 @@ extension ContextVariable {
     }
 }
 
-extension ContextVariable: Prerenderable where Value: View {
+extension ContextVariable: Prerenderable where Value: HTML {
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(mappable: self)
     }
 }
 
-extension ContextVariable: View where Value: View {
+extension ContextVariable: HTML where Value: HTML {
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         let render = try manager.value(for: self)
             .render(with: manager)
@@ -98,7 +98,7 @@ public class TemplateValueMapping<A, B, C> {
     }
 }
 
-extension TemplateValueMapping: View where C: View {
+extension TemplateValueMapping: HTML where C: HTML {
 
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         switch variable {
@@ -135,14 +135,14 @@ public struct ForEach<Root, Value> {
 
     public let context: TemplateValue<Root, [Value]>
 
-    let content: View
+    let content: HTML
 
     let localFormula: HTMLRenderer.Formula<Value>
 
     let condition: Conditionable
     var isEnumerated: Bool = false
 
-    public init(in context: TemplateValue<Root, [Value]>, @HTMLBuilder content: (RootValue<Value>) -> View) {
+    public init(in context: TemplateValue<Root, [Value]>, @HTMLBuilder content: (RootValue<Value>) -> HTML) {
 
         self.condition = true
         self.context = context
@@ -153,7 +153,7 @@ public struct ForEach<Root, Value> {
         localFormula = .init(context: Value.self)
     }
 
-    public init(in context: TemplateValue<Root, [Value]?>, @HTMLBuilder content: (RootValue<Value>) -> View) {
+    public init(in context: TemplateValue<Root, [Value]?>, @HTMLBuilder content: (RootValue<Value>) -> HTML) {
 
         self.context = context.unsafelyUnwrapped
         switch context {
@@ -170,7 +170,7 @@ public struct ForEach<Root, Value> {
         localFormula = .init(context: Value.self)
     }
 
-    public init(enumerated context: TemplateValue<Root, [Value]>, @HTMLBuilder content: ((element: RootValue<Value>, index: RootValue<Int>)) -> View) {
+    public init(enumerated context: TemplateValue<Root, [Value]>, @HTMLBuilder content: ((element: RootValue<Value>, index: RootValue<Int>)) -> HTML) {
 
         self.condition = true
         self.context = context
@@ -188,13 +188,13 @@ public struct ForEach<Root, Value> {
 }
 
 extension ForEach where Root == [Value] {
-    public init(enumerated context: [Value], @HTMLBuilder content: ((element: RootValue<Value>, index: RootValue<Int>)) -> View) {
+    public init(enumerated context: [Value], @HTMLBuilder content: ((element: RootValue<Value>, index: RootValue<Int>)) -> HTML) {
         self.init(enumerated: .constant(context), content: content)
     }
 }
 
 extension ForEach where Root == [Value] {
-    public init(in context: RootValue<[Value]>, @HTMLBuilder content: (RootValue<Value>) -> View) {
+    public init(in context: RootValue<[Value]>, @HTMLBuilder content: (RootValue<Value>) -> HTML) {
         self.context = context
         switch context {
         case .constant(let values): self.content = values.reduce("") { $0 + content(.constant($1)) }
@@ -205,7 +205,7 @@ extension ForEach where Root == [Value] {
     }
 }
 
-extension ForEach: View {
+extension ForEach: HTML {
 
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         formula.add(mappable: self)
@@ -238,10 +238,12 @@ extension ForEach: View {
     }
 }
 
-public protocol StaticView: View {
+public protocol StaticView: HTML {
 
-    var body: View { get }
+    var body: HTML { get }
 }
+
+public typealias HTMLComponent = StaticView
 
 extension StaticView {
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -253,11 +255,23 @@ extension StaticView {
     }
 }
 
-public protocol TemplateView: StaticView {
-    associatedtype Value
-    var context: TemplateValue<Value, Value> { get }
+public protocol TemplateView {
+    associatedtype Context
+    var context: TemplateValue<Context, Context> { get }
 
-    var body: View { get }
+    var body: HTML { get }
+}
+
+extension TemplateView {
+    public var context: TemplateValue<Context, Context> { .root() }
+
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try body.render(with: manager)
+    }
+
+    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+        try body.prerender(formula)
+    }
 }
 
 //

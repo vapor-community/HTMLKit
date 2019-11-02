@@ -35,7 +35,7 @@ public protocol HTMLRenderable {
     //    /// - Throws: If the formula do not exists, or if the rendering process fails
     //    func render<T: ContextualTemplate>(_ type: T.Type, with context: T.Context) throws -> Response
 
-    func render<T: TemplateView>(raw type: T.Type, with context: T.Value) throws -> String
+    func render<T: TemplateView>(raw type: T.Type, with context: T.Context) throws -> String
 
     func render<T: StaticView>(raw type: T.Type) throws -> String
 }
@@ -44,18 +44,18 @@ public protocol HTMLRenderable {
 ///
 ///     try renderer.add(template: WelcomeView())           // Builds the formula
 ///     try renderer.render(WelcomeView.self)               // Renders the formula
-public struct HTMLRenderer: HTMLRenderable {
+public class HTMLRenderer: HTMLRenderable {
 
     static let empty = ContextManager<Void>(rootContext: ())
 
     /// The different Errors that can happen when rendering or pre-rendering a template
-    enum Errors: LocalizedError {
+    public enum Errors: LocalizedError {
         case unableToFindFormula
         case unableToRetriveValue
         case unableToRegisterKeyPath
         case unableToAddVariable
 
-        var errorDescription: String? {
+        public var errorDescription: String? {
             switch self {
             case .unableToFindFormula:      return "Unable to find a formula for the given view type"
             case .unableToRetriveValue:     return "Unable to retrive the wanted value in the context"
@@ -64,7 +64,7 @@ public struct HTMLRenderer: HTMLRenderable {
             }
         }
 
-        var recoverySuggestion: String? {
+        public var recoverySuggestion: String? {
             switch self {
             case .unableToFindFormula:
                 return "Remember to add the template to the renerer with .add(template: ) or .add(view: )"
@@ -105,8 +105,8 @@ public struct HTMLRenderer: HTMLRenderable {
     //        return try formula.render(with: context, lingo: lingo, locale: nil)
     //    }
 
-    public func render<T: TemplateView>(raw type: T.Type, with context: T.Value) throws -> String {
-        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Value> else {
+    public func render<T: TemplateView>(raw type: T.Type, with context: T.Context) throws -> String {
+        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Context> else {
             throw Errors.unableToFindFormula
         }
         return try formula.render(with: context, lingo: lingo)
@@ -131,13 +131,13 @@ public struct HTMLRenderer: HTMLRenderable {
     //        formulaCache[String(reflecting: T.self)] = formula
     //    }
 
-    public mutating func add<T: TemplateView>(view: T) throws {
-        let formula = Formula(context: T.Value.self)
+    public func add<T: TemplateView>(view: T) throws {
+        let formula = Formula(context: T.Context.self)
         try view.prerender(formula)
         formulaCache[String(reflecting: T.self)] = formula
     }
 
-    public mutating func add<T: StaticView>(view: T) throws {
+    public func add<T: StaticView>(view: T) throws {
         let formula = Formula(context: Void.self)
         try view.prerender(formula)
         formulaCache[String(reflecting: T.self)] = formula
@@ -168,7 +168,7 @@ public struct HTMLRenderer: HTMLRenderable {
     ///   - path: A relative path to the localization folder. This is by *default* set to "Resource/Localization"
     ///   - defaultLocale: The default locale to use. This is by *default* set to "en"
     /// - Throws: If there is an error registrating the lingo
-    public mutating func registerLocalization(atPath path: String = "Resources/Localization", defaultLocale: String = "en") throws {
+    public func registerLocalization(atPath path: String = "Resources/Localization", defaultLocale: String = "en") throws {
         lingo = try Lingo(rootPath: path, defaultLocale: defaultLocale)
     }
 
@@ -218,7 +218,7 @@ public struct HTMLRenderer: HTMLRenderable {
     public class Formula<T> {
 
         /// The different pices or ingredients needed to render the view
-        var ingredient: [View]
+        var ingredient: [HTML]
 
         /// The calendar to use when rendering dates
         var calendar: Calendar
@@ -252,7 +252,7 @@ public struct HTMLRenderer: HTMLRenderable {
         /// Adds a generic `Mappable` object
         ///
         /// - Parameter mappable: The `Mappable` to add
-        public func add(mappable: View) {
+        public func add(mappable: HTML) {
             if let stringRepresentation = mappable as? String {
                 add(string: stringRepresentation)
             } else {

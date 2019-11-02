@@ -12,7 +12,7 @@ extension Optional: IsDefinable {
 }
 
 /// A protocol that makes a struct to a condition that can be used in an if
-public protocol Conditionable: View {
+public protocol Conditionable: HTML {
 
     /// Evaluates an expression with a context
     ///

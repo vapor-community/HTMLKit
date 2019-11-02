@@ -9,47 +9,13 @@ public struct HTMLKitProvider: Provider {
 
     public init() {}
 
-    /// Register all services you would like to provide the `Container` here.
-    ///
-    ///     services.register(RedisCache.self)
-    ///
     public func register(_ services: inout Services) throws {
-        services.register { container in
-            try HTMLRendererFuture(container: container, renderer: container.make())
-        }
+        services.register(HTMLRenderer())
     }
 
     /// Called after the container has fully initialized and after `willBoot(_:)`.
     public func didBoot(_ container: Container) throws -> Future<Void> {
         return .done(on: container)
-    }
-}
-
-public struct HTMLRendererFuture: HTMLRenderable, Service {
-
-    let container: Container
-    let renderer: HTMLRenderer
-
-    public func render<T>(raw type: T.Type) throws -> String where T : StaticView {
-        try renderer.render(raw: type)
-    }
-
-    public func render<T>(raw type: T.Type, with context: T.Value) throws -> String where T : TemplateView {
-        try renderer.render(raw: type, with: context)
-    }
-
-    public func render<T>(view type: T.Type) throws -> Future<Vapor.View> where T : StaticView {
-        guard let data = try render(raw: type).data(using: .utf8) else {
-            throw Abort(.internalServerError)
-        }
-        return container.future(View(data: data))
-    }
-
-    public func render<T>(view type: T.Type, with context: T.Value) throws -> Future<Vapor.View> where T : TemplateView {
-        guard let data = try render(raw: type, with: context).data(using: .utf8) else {
-            throw Abort(.internalServerError)
-        }
-        return container.future(View(data: data))
     }
 }
 
@@ -65,7 +31,7 @@ extension HTMLRenderable {
     ///   - context: The needed context to render the view with
     /// - Returns: Returns a rendered view in a `HTTPResponse`
     /// - Throws: If the formula do not exists, or if the rendering process fails
-    public func render<T: TemplateView>(_ type: T.Type, with context: T.Value) throws -> HTTPResponse {
+    public func render<T: TemplateView>(_ type: T.Type, with context: T.Context) throws -> HTTPResponse {
         return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: render(raw: type, with: context))
     }
 
@@ -79,6 +45,20 @@ extension HTMLRenderable {
     public func render<T>(_ type: T.Type) throws -> HTTPResponse where T : StaticView {
         return try HTTPResponse(headers: .init([("content-type", "text/html; charset=utf-8")]), body: render(raw: type))
     }
+
+    public func render<T>(view type: T.Type) throws -> View where T : StaticView {
+        guard let data = try render(raw: type).data(using: .utf8) else {
+            throw Abort(.internalServerError)
+        }
+        return View(data: data)
+    }
+
+    public func render<T>(view type: T.Type, with context: T.Context) throws -> View where T : TemplateView {
+        guard let data = try render(raw: type, with: context).data(using: .utf8) else {
+            throw Abort(.internalServerError)
+        }
+        return View(data: data)
+    }
 }
 
 extension Request {
@@ -87,9 +67,39 @@ extension Request {
     ///
     /// - Returns: A `HTMLRenderer` containing all the templates
     /// - Throws: If the shared container could not make the `HTMLRenderer`
-    public func renderer() throws -> HTMLRendererFuture {
-        return try sharedContainer.make(HTMLRendererFuture.self)
+    public func renderer() throws -> HTMLRenderer {
+        return try sharedContainer.make(HTMLRenderer.self)
     }
 }
 
 extension HTMLRenderer : Service {}
+
+extension TemplateView {
+    public func render(with context: Context, for request: Request) throws -> Future<View> {
+        return request.future()
+            .map { _ in
+                let renderer = try request.renderer()
+                do {
+                    return try renderer.render(view: Self.self, with: context)
+                } catch HTMLRenderer.Errors.unableToFindFormula {
+                    try renderer.add(view: self)
+                    return try renderer.render(view: Self.self, with: context)
+                }
+        }
+    }
+}
+
+extension StaticView {
+    public func render(for request: Request) throws -> Future<View> {
+        return request.future()
+            .map { _ in
+                let renderer = try request.renderer()
+                do {
+                    return try renderer.render(view: Self.self)
+                } catch HTMLRenderer.Errors.unableToFindFormula {
+                    try renderer.add(view: self)
+                    return try renderer.render(view: Self.self)
+                }
+        }
+    }
+}

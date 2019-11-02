@@ -8,7 +8,7 @@
 import Foundation
 
 /// A struct that renders a data in a specified formate
-struct DateVariable<Root>: View {
+struct DateVariable<Root>: HTML {
 
     enum Errors: LocalizedError {
         case unableToCopyFormatter
@@ -23,15 +23,20 @@ struct DateVariable<Root>: View {
         case optional(TemplateValue<Root, Date?>)
     }
 
-    /// The formatter to use when rendering a date
-    let formatter: DateFormatter
+    enum Format {
+        case style(Style)
+        case literal(String)
+
+        struct Style {
+            let dateStyle: DateFormatter.Style
+            let timeStyle: DateFormatter.Style
+        }
+    }
 
     /// The key path to the date to render
     let dateReference: Reference
 
-    /// A bool indicating if the date format is used
-    /// This is used to bypass a Linux bug
-    var isUsingDateStyle: Bool = false
+    var format: Format
 
     // View `CompiledTemplate`
     func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -44,33 +49,26 @@ struct DateVariable<Root>: View {
             optionalDate = try path.value(from: manager)
         }
 
-        guard let date = optionalDate else {
-            return ""
-        }
+        guard let date = optionalDate else { return "" }
+
+        let formatter = DateFormatter()
 
         if let locale = manager.locale {
-
-            // Copying in order to make the formatter personal for the rendering
-            // If not, the locale may not be set correctly
-            guard let formatterCopy = formatter.copy() as? DateFormatter else {
-                throw Errors.unableToCopyFormatter
-            }
-            formatterCopy.locale = .init(identifier: locale)
-            if isUsingDateStyle {
-                // Used to bypass a Linux bug
-                formatterCopy.dateStyle = formatter.dateStyle
-                formatterCopy.timeStyle = formatter.timeStyle
-            }
-            return formatterCopy.string(from: date)
-        } else {
-            return formatter.string(from: date)
+            // settign locale before the format in order to bypass Linux bug
+            formatter.locale = .init(identifier: locale)
         }
+        switch format {
+        case .literal(let format):
+            formatter.dateFormat = format
+        case .style(let style):
+            formatter.dateStyle = style.dateStyle
+            formatter.timeStyle = style.timeStyle
+        }
+        return formatter.string(from: date)
     }
 
     // View `CompiledTemplate`
     func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
-        formatter.calendar = formula.calendar
-        formatter.timeZone = formula.timeZone
         formula.add(mappable: self)
     }
 }
@@ -84,22 +82,19 @@ extension TemplateValue where Value == Date {
     ///   - dateStyle: The style to use to render the date
     ///   - timeStyle: The style to use to render the time
     /// - Returns: A `CompiledTemplate`
-    public func style(dateStyle: DateFormatter.Style = .short, timeStyle: DateFormatter.Style = .short) -> View {
-        let formatter = DateFormatter()
-        formatter.dateStyle = dateStyle
-        formatter.timeStyle = timeStyle
-        return DateVariable(formatter: formatter, dateReference: .solid(self), isUsingDateStyle: true)
+    public func style(dateStyle: DateFormatter.Style = .short, timeStyle: DateFormatter.Style = .short) -> HTML {
+        return DateVariable(dateReference: .solid(self), format: .style(.init(dateStyle: dateStyle, timeStyle: timeStyle)))
     }
 
-    /// Render a date in a formate
-    ///
-    /// - Parameters:
-    ///   - datePath: The path to the date
-    ///   - formatter: The DateFormatter to use when rendering the string
-    /// - Returns: A `CompiledTemplate`
-    public func formating(with formatter: DateFormatter) -> View {
-        return DateVariable(formatter: formatter, dateReference: .solid(self))
-    }
+//    /// Render a date in a formate
+//    ///
+//    /// - Parameters:
+//    ///   - datePath: The path to the date
+//    ///   - formatter: The DateFormatter to use when rendering the string
+//    /// - Returns: A `CompiledTemplate`
+//    public func formating(with formatter: DateFormatter) -> HTML {
+//        return DateVariable(formatter: formatter, dateReference: .solid(self))
+//    }
 
     /// Render a date in a formate
     ///
@@ -107,10 +102,8 @@ extension TemplateValue where Value == Date {
     ///   - datePath: The path to the date
     ///   - format: The formate to render the date with
     /// - Returns: A `CompiledTemplate`
-    public func formating(string format: String) -> View {
-        let formatter = DateFormatter()
-        formatter.dateFormat = format
-        return DateVariable(formatter: formatter, dateReference: .solid(self))
+    public func formating(string format: String) -> HTML {
+        return DateVariable(dateReference: .solid(self), format: .literal(format))
     }
 }
 
@@ -123,22 +116,19 @@ extension TemplateValue where Value == Date? {
     ///   - dateStyle: The style to use to render the date
     ///   - timeStyle: The style to use to render the time
     /// - Returns: A `CompiledTemplate`
-    public func style(dateStyle: DateFormatter.Style = .short, timeStyle: DateFormatter.Style = .short) -> View {
-        let formatter = DateFormatter()
-        formatter.dateStyle = dateStyle
-        formatter.timeStyle = timeStyle
-        return DateVariable(formatter: formatter, dateReference: .optional(self), isUsingDateStyle: true)
+    public func style(dateStyle: DateFormatter.Style = .short, timeStyle: DateFormatter.Style = .short) -> HTML {
+        return DateVariable(dateReference: .optional(self), format: .style(.init(dateStyle: dateStyle, timeStyle: timeStyle)))
     }
 
-    /// Render a date in a formate
-    ///
-    /// - Parameters:
-    ///   - datePath: The path to the date
-    ///   - formatter: The DateFormatter to use when rendering the string
-    /// - Returns: A `CompiledTemplate`
-    public func formating(with formatter: DateFormatter) -> View {
-        return DateVariable(formatter: formatter, dateReference: .optional(self))
-    }
+//    /// Render a date in a formate
+//    ///
+//    /// - Parameters:
+//    ///   - datePath: The path to the date
+//    ///   - formatter: The DateFormatter to use when rendering the string
+//    /// - Returns: A `CompiledTemplate`
+//    public func formating(with formatter: DateFormatter) -> HTML {
+//        return DateVariable(formatter: formatter, dateReference: .optional(self))
+//    }
 
     /// Render a date in a formate
     ///
@@ -146,9 +136,7 @@ extension TemplateValue where Value == Date? {
     ///   - datePath: The path to the date
     ///   - format: The formate to render the date with
     /// - Returns: A `CompiledTemplate`
-    public func formating(string format: String) -> View {
-        let formatter = DateFormatter()
-        formatter.dateFormat = format
-        return DateVariable(formatter: formatter, dateReference: .optional(self))
+    public func formating(string format: String) -> HTML {
+        return DateVariable(dateReference: .optional(self), format: .literal(format))
     }
 }

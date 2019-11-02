@@ -15,24 +15,25 @@ Add the following in your `Package.swift` file
 ```
 And register the provider and the different templates with in `configure.swift`
 ```swift
-var renderer = HTMLRenderer()
-try renderer.add(view: MyTemplate())
-
 try services.register(HTMLKitProvider())
+
+// Or you can do it manually with
+let renderer = HTMLRenderer()
+try renderer.add(view: MyTemplate())
 services.register(renderer)
 ```
 
 ## Usage
 
-To create a view component, conform to the `StaticView` protocol. Look at the example above for an Alert component.
+To create a HTML component, conform to the `HTMLComponent` protocol. Look at the example above for an Alert component.
 
 ```swift
-public struct Alert: StaticView {
+public struct Alert: HTMLComponent {
 
-    let message: View
+    let message: HTML
     let isDisimissable: Conditionable
 
-    public init(isDisimissable: Conditionable = true, @HTMLBuilder message: () -> View) {
+    public init(isDisimissable: Conditionable = true, @HTMLBuilder message: () -> HTML) {
         self.isDisimissable = isDisimissable
         self.message = message()
     }
@@ -55,21 +56,31 @@ public struct Alert: StaticView {
         .role("alert")
     }
 }
-...
-try renderer.render(Alert.self)
+```
+This can easily be used in another template or a static html page like:
+```swift
+struct SomePage: StaticView {
+
+    var body: HTML {
+        Div {
+            Alert(isDismissable: false) {
+                H3("Some Title")
+            }
+        }
+    }
+}
 ```
 
 If you need a page that changes based on runtime given values. Then a `TemplateView` could be more appropriate. Here you will need to pass the context when rendering.
 
 ```swift
-struct SimpleData {
-    let string: String
-    let int: Int?
-}
 
 struct DummyPage: TemplateView {
 
-    var context: RootValue<SimpleData> = .root()
+    struct Context {
+        let string: String
+        let int: Int?
+    }
 
     var body: View {
         Div {
@@ -81,8 +92,33 @@ struct DummyPage: TemplateView {
     }
 }
 ...
-let values = SimpleData(string: "Some string", int: nil)
-try renderer.render(DummyPage.self, with: values)
+let context = DummyPage.Context(string: "Some string", int: nil)
+try DummyPage().render(with: context, for: req)
+```
+
+## Mixing with Leaf
+
+You can easily mix Leaf and HTMLKit in the same project.
+
+```swift
+
+struct RenderingConfig: Content {
+    let message: String
+    let useHTMLKit: Bool
+}
+
+func renderLogin(on req: Request) -> Future<View> {
+    req.content
+        .decode(RenderingConfig.self)
+        .flatMap { config in
+        
+            if config.useHTMLKit {
+                try LoginPage.render(with: config, on: req)
+            } else {
+                req.view().render("login-page", with: config)
+            }
+    }
+}
 ```
 
 ## Localization

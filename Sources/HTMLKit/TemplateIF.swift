@@ -16,7 +16,7 @@ public struct IF {
         /// The view to render.
         /// Set to an empty string in order to create a condition on `\.name == ""`
         /// This should probably be re designed a little
-        var view: View = ""
+        var view: HTML = ""
 
         /// Creates an if condition
         ///
@@ -30,7 +30,7 @@ public struct IF {
     /// The different conditions that can happen
     let conditions: [Condition]
 
-    public init(_ condition: Conditionable, @HTMLBuilder content: () -> View) {
+    public init(_ condition: Conditionable, @HTMLBuilder content: () -> HTML) {
         let ifCondition = Condition(condition: condition)
         ifCondition.view = content()
         self.conditions = [ifCondition]

@@ -11,7 +11,7 @@ import Foundation
 
 public struct NoData: Encodable {}
 
-public struct Localized<A, B>: View where B: Encodable {
+public struct Localized<A, B>: HTML where B: Encodable {
 
     enum Errors: Error {
         case missingLingoConfig
@@ -55,10 +55,10 @@ extension Localized where A == NoData, B == NoData {
     }
 }
 
-public struct EnviromentModifier: View {
+public struct EnviromentModifier: HTML {
 
-    let view: View
-    let locale: View
+    let view: HTML
+    let locale: HTML
 
     let localFormula = HTMLRenderer.Formula<Void>(context: Void.self)
 
@@ -76,7 +76,7 @@ public struct EnviromentModifier: View {
     }
 }
 
-extension View {
+extension HTML {
     public func enviroment(locale: String) -> EnviromentModifier {
         return EnviromentModifier(view: self, locale: locale)
     }

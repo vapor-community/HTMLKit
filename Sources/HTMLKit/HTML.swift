@@ -16,110 +16,39 @@ public enum EscapingOption: CustomDebugStringConvertible {
     }
 }
 
-//enum ContextReference<T, Value> where T: ContextualTemplate {
-//    case root(T.Type)
-//    case keyPath(KeyPath<T.Context, Value>)
-//}
 
-/// A struct containing the different structs to render a HTML document
-public struct HTML {
-
-    public enum Identifier {
-        case id(String)
-        case `class`(String)
-    }
-
-    /// An attribute on a node
-    ///
-    ///     AttributeNode.class("text-dark") // <... class="text-dark"/>
-    public struct Attribute {
-
-        public enum Method: String {
-            case post
-            case get
-        }
-
-        /// The attribute to set
-        public let attribute: String
-
-        /// The value of the attribute
-        public let value: View?
-
-        /// A condition that evaluates if an attributes should be rendered
-        public let isIncluded: Conditionable
-
-        public init(attribute: String, value: View?, isIncluded: Conditionable = true) {
-            self.attribute = attribute
-            self.value = value
-            self.isIncluded = isIncluded
-        }
-    }
-
-    //    /// A node that wrap around any content that is renderable
-    //    ///
-    //    ///     DataNode(name: "img", attributes: [.src("url")]) // <img src="url"/>
-    //    public struct DataNode<Root: ContextualTemplate> {
-    //
-    //        /// The name of the type of node
-    //        ///
-    //        ///     name = "img" // <img .../>
-    //        ///     name = "link" // <link .../>
-    //        public let name: String
-    //
-    //        /// The attributes in an node
-    //        ///
-    //        ///     attributes = [.class("text-dark")] // <`nodeName` class="text-dark"/>
-    //        public let attributes: [Attribute]
-    //
-    //        /// A attribute that will be added based on some context
-    //        ///
-    //        ///     img.if(\.isChecked, add: .checked)
-    //        public let dynamicAttributes: View
-    //
-    //        public init(name: String, attributes: [Attribute] = [], dynamicAttributes: View = "") {
-    //            self.name = name
-    //            self.attributes = attributes
-    //            self.dynamicAttributes = dynamicAttributes
-    //        }
-    //    }
-    //
-    //    /// A node that wrap around any content that is renderable
-    //    ///
-    //    ///     ContentNode(name: "div", content: "Some text") // <div>Some text</div>
-    //    public struct ContentNode<Root: ContextualTemplate> {
-    //
-    //        /// The name of the type of node
-    //        ///
-    //        ///     name = "div" // <div>...</div>
-    //        ///     name = "p" // <p>...</p>
-    //        public let name: String
-    //
-    //        /// The attributes in an node
-    //        ///
-    //        ///     attributes = [.class("text-dark")] // <`nodeName` class="text-dark">...</`nodeName`>
-    //        public let attributes: [Attribute]
-    //
-    //        /// A attribute that will be added based on some context
-    //        ///
-    //        ///     img.if(\.isChecked, add: .checked)
-    //        public let dynamicAttributes: View
-    //
-    //        /// The content to be wrapped
-    //        ///
-    //        ///     content = "Some text" // <...>Some text</...>
-    //        public let content: View
-    //
-    //
-    //        public init(name: String, attributes: [Attribute] = [], content: View = "", dynamicAttributes: View = "") {
-    //            self.name = name
-    //            self.attributes = attributes
-    //            self.content = content
-    //            self.dynamicAttributes = dynamicAttributes
-    //        }
-    //    }
+public enum HTMLIdentifier {
+    case id(String)
+    case `class`(String)
 }
 
-extension HTML.Attribute: View {
+/// An attribute on a node
+///
+///     HTMLAttributeNode.class("text-dark") // <... class="text-dark"/>
+public struct HTMLAttribute {
+
+    public enum Method: String {
+        case post
+        case get
+    }
+
+    /// The attribute to set
+    public let attribute: String
+
+    /// The value of the attribute
+    public let value: HTML?
+
+    /// A condition that evaluates if an attributes should be rendered
+    public let isIncluded: Conditionable
+
+    public init(attribute: String, value: HTML?, isIncluded: Conditionable = true) {
+        self.attribute = attribute
+        self.value = value
+        self.isIncluded = isIncluded
+    }
+}
+
+extension HTMLAttribute: HTML {
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         try IF(isIncluded) {
             attribute
@@ -139,29 +68,29 @@ extension HTML.Attribute: View {
     }
 }
 
-public protocol AddableAttributeNode: View, GlobalAttributes {
+public protocol AddableAttributeNode: HTML, GlobalAttributes {
 
-    var attributes: [HTML.Attribute] { get }
+    var attributes: [HTMLAttribute] { get }
 
-    func add(_ attribute: HTML.Attribute, withSpace: Bool) -> Self
+    func add(_ attribute: HTMLAttribute, withSpace: Bool) -> Self
 
-    func add(attributes: [HTML.Attribute], withSpace: Bool) -> Self
+    func add(attributes: [HTMLAttribute], withSpace: Bool) -> Self
 
-    func value(of attribute: String) -> View?
+    func value(of attribute: String) -> HTML?
 }
 
 public protocol AttributeNode: AddableAttributeNode {
 
-    func copy(with attributes: [HTML.Attribute]) -> Self
+    func copy(with attributes: [HTMLAttribute]) -> Self
 
     func modify(if condition: Conditionable, modifyer: (Self) -> Self) -> Self
 
-    func wrapAttributes(with condition: Conditionable) -> [HTML.Attribute]
+    func wrapAttributes(with condition: Conditionable) -> [HTMLAttribute]
 }
 
 extension AttributeNode {
 
-    public func add(_ attribute: HTML.Attribute, withSpace: Bool = true) -> Self {
+    public func add(_ attribute: HTMLAttribute, withSpace: Bool = true) -> Self {
         var attributes = self.attributes
         for (index, attr) in attributes.enumerated() {
             if attr.attribute == attribute.attribute {
@@ -180,7 +109,7 @@ extension AttributeNode {
         return copy(with: attributes + [attribute])
     }
 
-    public func add(attributes: [HTML.Attribute], withSpace: Bool = true) -> Self {
+    public func add(attributes: [HTMLAttribute], withSpace: Bool = true) -> Self {
         var newNode = self
         for attribute in attributes {
             newNode = newNode.add(attribute, withSpace: withSpace)
@@ -188,7 +117,7 @@ extension AttributeNode {
         return newNode
     }
 
-    public func value(of attribute: String) -> View? {
+    public func value(of attribute: String) -> HTML? {
         attributes.first(where: { $0.attribute == "id" })?.value
     }
 
@@ -198,16 +127,16 @@ extension AttributeNode {
         return self.add(attributes: modified.wrapAttributes(with: condition), withSpace: false)
     }
 
-    public func wrapAttributes(with condition: Conditionable) -> [HTML.Attribute] {
+    public func wrapAttributes(with condition: Conditionable) -> [HTMLAttribute] {
         attributes.map { attribute in
             if let value = attribute.value {
                 let space = attribute.attribute == "class" ? " " : ""
-                return HTML.Attribute(
+                return HTMLAttribute(
                     attribute: attribute.attribute,
                     value: IF(condition) { space + value }
                 )
             } else {
-                return HTML.Attribute(
+                return HTMLAttribute(
                     attribute: attribute.attribute,
                     value: nil,
                     isIncluded: condition
@@ -221,11 +150,11 @@ public protocol DatableNode: AttributeNode {
 
     var name: String { get }
 
-    init(attributes: [HTML.Attribute])
+    init(attributes: [HTMLAttribute])
 }
 
 extension DatableNode {
-    public func copy(with attributes: [HTML.Attribute]) -> Self {
+    public func copy(with attributes: [HTMLAttribute]) -> Self {
         .init(attributes: attributes)
     }
 }
@@ -234,13 +163,13 @@ public protocol ContentNode: AttributeNode {
 
     var name: String { get }
 
-    var content: View { get }
+    var content: HTML { get }
 
-    init(attributes: [HTML.Attribute], content: View)
+    init(attributes: [HTMLAttribute], content: HTML)
 }
 
 extension ContentNode {
-    public func copy(with attributes: [HTML.Attribute]) -> Self {
+    public func copy(with attributes: [HTMLAttribute]) -> Self {
         .init(attributes: attributes, content: content)
     }
 }
@@ -279,7 +208,7 @@ extension ContentNode {
     }
 }
 
-extension HTML.Identifier: View {
+extension HTMLIdentifier: HTML {
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         switch self {
         case .class(let name): return ".\(name)"

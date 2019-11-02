@@ -1,15 +1,13 @@
 
 
-extension HTML {
-    /// The text direction in HTML
-    public enum TextDirection: String, View {
-        case leftToRight = "ltr"
-        case rightToLeft = "rtl"
-        case auto
-    }
+/// The text direction in HTML
+public enum HTMLTextDirection: String, HTML {
+    case leftToRight = "ltr"
+    case rightToLeft = "rtl"
+    case auto
 }
 
-extension HTML.TextDirection {
+extension HTMLTextDirection {
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         self.rawValue
     }
@@ -23,19 +21,19 @@ public protocol GlobalAttributes {
 
     /// The accesskey attribute specifies a shortcut key to activate/focus an element.
     /// **Note**: The way of accessing the shortcut key is varying in different browsers:
-    func accessKey(_ value: View) -> Self
+    func accessKey(_ value: HTML) -> Self
 
     /// Specifies one or more classnames for an element (refers to a class in a style sheet)
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    func `class`(_ value: View) -> Self
+    func `class`(_ value: HTML) -> Self
 
-    func data(for key: String, value: View) -> Self
+    func data(for key: String, value: HTML) -> Self
 
-    func aria(for key: String, value: View) -> Self
+    func aria(for key: String, value: HTML) -> Self
 
-    func style(css: View) -> Self
+    func style(css: HTML) -> Self
 
     /// The contenteditable attribute specifies whether the content of an element is editable or not.
     /// Note: When the contenteditable attribute is not set on an element, the element will inherit it from its parent.
@@ -45,13 +43,13 @@ public protocol GlobalAttributes {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    func direction(_ value: HTML.TextDirection) -> Self
+    func direction(_ value: HTMLTextDirection) -> Self
 
     /// Specifies the text direction for the content in an element
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    func direction<T>(_ value: TemplateValue<T, HTML.TextDirection>) -> Self
+    func direction<T>(_ value: TemplateValue<T, HTMLTextDirection>) -> Self
 
     /// Specifies that an element is not yet, or is no longer, relevant
     ///
@@ -62,7 +60,7 @@ public protocol GlobalAttributes {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    func id(_ value: View) -> Self
+    func id(_ value: HTML) -> Self
 
     /// Specifies the language of the element's content
     ///
@@ -83,83 +81,83 @@ public protocol GlobalAttributes {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    func title(_ value: View) -> Self
+    func title(_ value: HTML) -> Self
 
 
     /// ARIA defines semantics that can be applied to elements, with these divided into roles (defining a type of user interface element) and states and properties that are supported by a role.
     /// Authors must assign an ARIA role and the appropriate states and properties to an element during its life-cycle, unless the element already has appropriate ARIA semantics (via use of an appropriate HTML element).
     /// Addition of ARIA semantics only exposes extra information to a browser's accessibility API, and does not affect a page's DOM.
     /// - Parameter text: The role to use
-    func role(_ text: View) -> Self
+    func role(_ text: HTML) -> Self
 
     /// The onclick attribute fires on a mouse click on the element.
-    func on(click: View) -> Self
+    func on(click: HTML) -> Self
 }
 
 extension GlobalAttributes where Self: AttributeNode {
 
-    public func aria(for key: String, value: View) -> Self {
-        add(HTML.Attribute(attribute: "aria-" + key, value: value))
+    public func aria(for key: String, value: HTML) -> Self {
+        add(HTMLAttribute(attribute: "aria-" + key, value: value))
     }
 
-    public func accessKey(_ value: View) -> Self {
-        add(HTML.Attribute(attribute: "accessKey", value: value))
+    public func accessKey(_ value: HTML) -> Self {
+        add(HTMLAttribute(attribute: "accessKey", value: value))
     }
 
-    public func `class`(_ value: View) -> Self {
-        add(HTML.Attribute(attribute: "class", value: value))
+    public func `class`(_ value: HTML) -> Self {
+        add(HTMLAttribute(attribute: "class", value: value))
     }
 
-    public func data(for key: String, value: View) -> Self {
-        add(HTML.Attribute(attribute: "data-" + key, value: value))
+    public func data(for key: String, value: HTML) -> Self {
+        add(HTMLAttribute(attribute: "data-" + key, value: value))
     }
 
     public func isEditable(_ value: Conditionable) -> Self {
-        add(HTML.Attribute(attribute: "contenteditable", value: value))
+        add(HTMLAttribute(attribute: "contenteditable", value: value))
     }
 
-    public func direction<T>(_ value: TemplateValue<T, HTML.TextDirection>) -> Self {
-        add(HTML.Attribute(attribute: "dir", value: value))
+    public func direction<T>(_ value: TemplateValue<T, HTMLTextDirection>) -> Self {
+        add(HTMLAttribute(attribute: "dir", value: value))
     }
 
-    public func direction(_ value: HTML.TextDirection) -> Self {
-        direction(TemplateValue<Void, HTML.TextDirection>.constant(value))
+    public func direction(_ value: HTMLTextDirection) -> Self {
+        direction(TemplateValue<Void, HTMLTextDirection>.constant(value))
     }
 
     public func isHidden(_ value: Conditionable) -> Self {
-        add(HTML.Attribute(attribute: "hidden", value: nil, isIncluded: value))
+        add(HTMLAttribute(attribute: "hidden", value: nil, isIncluded: value))
     }
 
-    public func id(_ value: View) -> Self {
-        add(HTML.Attribute(attribute: "id", value: value))
+    public func id(_ value: HTML) -> Self {
+        add(HTMLAttribute(attribute: "id", value: value))
     }
 
     public func lang<T>(_ value: TemplateValue<T, String>) -> Self {
-        add(HTML.Attribute(attribute: "lang", value: value))
+        add(HTMLAttribute(attribute: "lang", value: value))
     }
 
     public func isSpellchecked(_ value: Conditionable) -> Self {
-        add(HTML.Attribute(attribute: "spellcheck", value: value))
+        add(HTMLAttribute(attribute: "spellcheck", value: value))
     }
 
     public func tabIndex<T>(_ value: TemplateValue<T, Int>) -> Self {
-        add(HTML.Attribute(attribute: "tabindex", value: value))
+        add(HTMLAttribute(attribute: "tabindex", value: value))
     }
 
-    public func title(_ value: View) -> Self {
-        add(HTML.Attribute(attribute: "title", value: value))
+    public func title(_ value: HTML) -> Self {
+        add(HTMLAttribute(attribute: "title", value: value))
     }
 
-    public func role(_ text: View) -> Self {
-        add(HTML.Attribute(attribute: "role", value: text))
+    public func role(_ text: HTML) -> Self {
+        add(HTMLAttribute(attribute: "role", value: text))
     }
 
-    public func style(css: View) -> Self {
-        add(HTML.Attribute(attribute: "style", value: css))
+    public func style(css: HTML) -> Self {
+        add(HTMLAttribute(attribute: "style", value: css))
     }
 
-    public func on(click: View) -> Self {
-        self.add(HTML.Attribute(attribute: "onclick", value: click))
+    public func on(click: HTML) -> Self {
+        self.add(HTMLAttribute(attribute: "onclick", value: click))
     }
 }
 
@@ -174,7 +172,7 @@ public protocol TypableAttribute {
 
 extension TypableAttribute where Self: AttributeNode {
     public func type<T>(_ value: TemplateValue<T, String>) -> Self {
-        add(HTML.Attribute(attribute: "type", value: value))
+        add(HTMLAttribute(attribute: "type", value: value))
     }
 
     public func type(_ value: String) -> Self {
@@ -189,42 +187,42 @@ public protocol SizableAttribute {
 
 extension SizableAttribute where Self: AttributeNode {
     public func height(_ height: Int) -> Self {
-        add(HTML.Attribute(attribute: "height", value: height))
+        add(HTMLAttribute(attribute: "height", value: height))
     }
 
     public func width(_ width: Int) -> Self {
-        add(HTML.Attribute(attribute: "width", value: width))
+        add(HTMLAttribute(attribute: "width", value: width))
     }
 }
 
 public protocol ValueableAttribute {
-    func max(value: View) -> Self
-    func min(value: View) -> Self
-    func value(_ value: View) -> Self
+    func max(value: HTML) -> Self
+    func min(value: HTML) -> Self
+    func value(_ value: HTML) -> Self
 }
 
 extension ValueableAttribute where Self: AttributeNode {
 
-    public func max(value: View) -> Self {
-        add(HTML.Attribute(attribute: "max", value: value))
+    public func max(value: HTML) -> Self {
+        add(HTMLAttribute(attribute: "max", value: value))
     }
 
-    public func min(value: View) -> Self {
-        add(HTML.Attribute(attribute: "min", value: value))
+    public func min(value: HTML) -> Self {
+        add(HTMLAttribute(attribute: "min", value: value))
     }
 
-    public func value(_ value: View) -> Self {
-        add(HTML.Attribute(attribute: "value", value: value))
+    public func value(_ value: HTML) -> Self {
+        add(HTMLAttribute(attribute: "value", value: value))
     }
 }
 
 public protocol LabelAttribute {
-    func label(_ value: View) -> Self
+    func label(_ value: HTML) -> Self
 }
 
 extension LabelAttribute where Self: AttributeNode {
-    public func label(_ value: View) -> Self {
-        add(HTML.Attribute(attribute: "label", value: value))
+    public func label(_ value: HTML) -> Self {
+        add(HTMLAttribute(attribute: "label", value: value))
     }
 }
 
@@ -234,12 +232,12 @@ public protocol HyperlinkReferenceAttribute {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    func href(_ value: View) -> Self
+    func href(_ value: HTML) -> Self
 }
 
 extension HyperlinkReferenceAttribute where Self: AttributeNode {
-    public func href(_ value: View) -> Self {
-        add(HTML.Attribute(attribute: "href", value: value))
+    public func href(_ value: HTML) -> Self {
+        add(HTMLAttribute(attribute: "href", value: value))
     }
 }
 
@@ -256,7 +254,7 @@ public protocol RelationshipAttribute {
 
 extension RelationshipAttribute where Self: AttributeNode {
     public func relationship(_ value: RelationshipTypes) -> Self {
-        add(HTML.Attribute(attribute: "rel", value: value.rawValue))
+        add(HTMLAttribute(attribute: "rel", value: value.rawValue))
     }
 }
 
@@ -265,12 +263,12 @@ public protocol FormInputCompanianAttributes {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    func `for`(_ value: View) -> Self
+    func `for`(_ value: HTML) -> Self
 }
 
 extension FormInputCompanianAttributes where Self: AttributeNode {
-    public func `for`(_ value: View) -> Self {
-        add(HTML.Attribute(attribute: "for", value: value))
+    public func `for`(_ value: HTML) -> Self {
+        add(HTMLAttribute(attribute: "for", value: value))
     }
 }
 
@@ -280,16 +278,16 @@ public protocol RequierdAttribute {
 
 extension RequierdAttribute where Self: AttributeNode {
     public func required() -> Self {
-        self.add(HTML.Attribute(attribute: "required", value: nil))
+        self.add(HTMLAttribute(attribute: "required", value: nil))
     }
 }
 
 public protocol PlaceholderAttribute {
-    func placeholder(_ text: View) -> Self
+    func placeholder(_ text: HTML) -> Self
 }
 
 extension PlaceholderAttribute where Self: AttributeNode {
-    public func placeholder(_ text: View) -> Self {
+    public func placeholder(_ text: HTML) -> Self {
         self.add(.init(attribute: "placeholder", value: text))
     }
 }
@@ -305,12 +303,12 @@ public protocol MediaSourceableAttribute {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    func source(_ link: View) -> Self
+    func source(_ link: HTML) -> Self
 }
 
 extension MediaSourceableAttribute where Self: AttributeNode {
-    public func source(_ link: View) -> Self {
-        add(HTML.Attribute(attribute: "src", value: link))
+    public func source(_ link: HTML) -> Self {
+        add(HTMLAttribute(attribute: "src", value: link))
     }
 }
 
@@ -327,7 +325,7 @@ public protocol NameableAttribute {
 
 extension NameableAttribute where Self: AttributeNode {
     public func name(_ value: NameType) -> Self {
-        add(HTML.Attribute(attribute: "name", value: value.rawValue))
+        add(HTMLAttribute(attribute: "name", value: value.rawValue))
     }
 }
 
@@ -346,12 +344,12 @@ public protocol ContentableAttribute {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    func content(_ value: View) -> Self
+    func content(_ value: HTML) -> Self
 }
 
 extension ContentableAttribute where Self: AttributeNode {
-    public func content(_ value: View) -> Self {
-        add(HTML.Attribute(attribute: "content", value: value))
+    public func content(_ value: HTML) -> Self {
+        add(HTMLAttribute(attribute: "content", value: value))
     }
 }
 
@@ -363,7 +361,7 @@ public protocol OpenableAttribute {
 
 extension OpenableAttribute where Self: AttributeNode {
     public func isOpen(_ condition: Conditionable) -> Self {
-        add(HTML.Attribute(attribute: "open", value: nil, isIncluded: condition))
+        add(HTMLAttribute(attribute: "open", value: nil, isIncluded: condition))
     }
 }
 
@@ -390,7 +388,7 @@ public protocol TargetableAttribute {
 
 extension TargetableAttribute where Self: AttributeNode {
     public func target(_ type: TargetTypes) -> Self {
-        add(HTML.Attribute(attribute: "target", value: type.rawValue))
+        add(HTMLAttribute(attribute: "target", value: type.rawValue))
     }
 }
 
@@ -399,51 +397,51 @@ extension TargetableAttribute where Self: AttributeNode {
 //    // MARK: - Non HTML standard
 //
 //    public func dataToggle(_ toggle: View) -> Self {
-//        add(HTML.Attribute(attribute: "data-toggle", value: toggle))
+//        add(HTMLAttribute(attribute: "data-toggle", value: toggle))
 //    }
 //
 //    public func dataTarget(_ target: View) -> Self {
-//        add(HTML.Attribute(attribute: "data-target", value: target))
+//        add(HTMLAttribute(attribute: "data-target", value: target))
 //    }
 //
 //    public func role(_ text: View) -> Self {
-//        add(HTML.Attribute(attribute: "role", value: text))
+//        add(HTMLAttribute(attribute: "role", value: text))
 //    }
 //
 //    public func ariaHaspopup(_ text: View) -> Self {
-//        add(HTML.Attribute(attribute: "aria-haspopup", value: text))
+//        add(HTMLAttribute(attribute: "aria-haspopup", value: text))
 //    }
 //
 //    public func ariaExpanded(_ text: View) -> Self {
-//        add(HTML.Attribute(attribute: "aria-expanded", value: text))
+//        add(HTMLAttribute(attribute: "aria-expanded", value: text))
 //    }
 //
 //    public func ariaValuenow(_ text: View) -> Self {
-//        add(HTML.Attribute(attribute: "aria-valuenow", value: text))
+//        add(HTMLAttribute(attribute: "aria-valuenow", value: text))
 //    }
 //
 //    public func ariaValuemin(_ text: View) -> Self {
-//        add(HTML.Attribute(attribute: "aria-valuemin", value: text))
+//        add(HTMLAttribute(attribute: "aria-valuemin", value: text))
 //    }
 //
 //    public func ariaValuemax(_ text: View) -> Self {
-//        add(HTML.Attribute(attribute: "aria-valuemax", value: text))
+//        add(HTMLAttribute(attribute: "aria-valuemax", value: text))
 //    }
 //
 //    public func dataDismiss(_ text: View) -> Self {
-//        add(HTML.Attribute(attribute: "data-dismiss", value: text))
+//        add(HTMLAttribute(attribute: "data-dismiss", value: text))
 //    }
 //
 //    public func ariaLabel(_ text: View) -> Self {
-//        add(HTML.Attribute(attribute: "aria-label", value: text))
+//        add(HTMLAttribute(attribute: "aria-label", value: text))
 //    }
 //
 //    public func ariaLabelledBy(_ text: View) -> Self {
-//        add(HTML.Attribute(attribute: "aria-labelledby", value: text))
+//        add(HTMLAttribute(attribute: "aria-labelledby", value: text))
 //    }
 //
 //    public func ariaHidden(_ text: View) -> Self {
-//        add(HTML.Attribute(attribute: "aria-hidden", value: text))
+//        add(HTMLAttribute(attribute: "aria-hidden", value: text))
 //    }
 //
 //    // MARK: - HTML Standard
@@ -453,7 +451,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func alt(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "alt", value: value))
+//        add(HTMLAttribute(attribute: "alt", value: value))
 //    }
 //
 //    /// Specifies the types of files that the server accepts (only for type="file")
@@ -461,7 +459,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func accept(_ text: View) -> Self {
-//        add(HTML.Attribute(attribute: "accept", value: text))
+//        add(HTMLAttribute(attribute: "accept", value: text))
 //    }
 //
 //    /// Specifies the character encodings that are to be used for the form submission
@@ -469,7 +467,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func acceptCharset(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "accept-charset", value: value))
+//        add(HTMLAttribute(attribute: "accept-charset", value: value))
 //    }
 //
 //    /// Specifies a shortcut key to activate/focus an element
@@ -477,7 +475,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func accesskey(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "accesskey", value: value))
+//        add(HTMLAttribute(attribute: "accesskey", value: value))
 //    }
 //
 //    /// Specifies where to send the form-data when a form is submitted
@@ -485,14 +483,14 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func action(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "action", value: value))
+//        add(HTMLAttribute(attribute: "action", value: value))
 //    }
 //
 //    /// Specifies that the script is executed asynchronously (only for external scripts)
 //    ///
 //    /// - Returns: An attribute node
 //    public func async() -> Self {
-//        add(HTML.Attribute(attribute: "async", value: nil))
+//        add(HTMLAttribute(attribute: "async", value: nil))
 //    }
 //
 //    /// Specifies whether the <form> or the <input> element should have autocomplete enabled
@@ -500,21 +498,21 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func autocomplete(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "autocomplete", value: value))
+//        add(HTMLAttribute(attribute: "autocomplete", value: value))
 //    }
 //
 //    /// Specifies that the element should automatically get focus when the page loads
 //    ///
 //    /// - Returns: An attribute node
 //    public func autofocus() -> Self {
-//        add(HTML.Attribute(attribute: "autofocus", value: nil))
+//        add(HTMLAttribute(attribute: "autofocus", value: nil))
 //    }
 //
 //    /// Specifies that the audio/video will start playing as soon as it is ready
 //    ///
 //    /// - Returns: An attribute node
 //    public func autoplay() -> Self {
-//        add(HTML.Attribute(attribute: "autoplay", value: nil))
+//        add(HTMLAttribute(attribute: "autoplay", value: nil))
 //    }
 //
 //    /// Specifies the character encoding
@@ -522,7 +520,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func charset(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "charset", value: value))
+//        add(HTMLAttribute(attribute: "charset", value: value))
 //    }
 //
 //    /// Specifies that an <input> element should be pre-selected when the page loads (for type="checkbox" or type="radio")
@@ -530,7 +528,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func checked() -> Self {
-//        add(HTML.Attribute(attribute: "checked", value: nil))
+//        add(HTMLAttribute(attribute: "checked", value: nil))
 //    }
 //
 //    /// Specifies a URL which explains the quote/deleted/inserted text
@@ -538,7 +536,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func cite(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "cite", value: value))
+//        add(HTMLAttribute(attribute: "cite", value: value))
 //    }
 //
 //    /// Specifies one or more classnames for an element (refers to a class in a style sheet)
@@ -546,7 +544,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func `class`(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "class", value: value))
+//        add(HTMLAttribute(attribute: "class", value: value))
 //    }
 //
 //    /// Specifies the visible width of a text area
@@ -554,7 +552,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func cols(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "cols", value: value))
+//        add(HTMLAttribute(attribute: "cols", value: value))
 //    }
 //
 //    /// Specifies the number of columns a table cell should span
@@ -562,7 +560,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func colspan(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "colspan", value: value))
+//        add(HTMLAttribute(attribute: "colspan", value: value))
 //    }
 //
 //    /// Gives the value associated with the http-equiv or name attribute
@@ -570,7 +568,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func content(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "content", value: value))
+//        add(HTMLAttribute(attribute: "content", value: value))
 //    }
 //
 //    /// Specifies whether the content of an element is editable or not
@@ -578,14 +576,14 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func contenteditable(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "contenteditable", value: value))
+//        add(HTMLAttribute(attribute: "contenteditable", value: value))
 //    }
 //
 //    /// Specifies that audio/video controls should be displayed (such as a play/pause button etc)
 //    ///
 //    /// - Returns: An attribute node
 //    public func controls() -> Self {
-//        add(HTML.Attribute(attribute: "controls", value: nil))
+//        add(HTMLAttribute(attribute: "controls", value: nil))
 //    }
 //
 //    /// Specifies the coordinates of the area
@@ -593,7 +591,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func coords(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "coords", value: value))
+//        add(HTMLAttribute(attribute: "coords", value: value))
 //    }
 //
 //    /// Specifies the URL of the resource to be used by the object
@@ -601,7 +599,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func data(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "data", value: value))
+//        add(HTMLAttribute(attribute: "data", value: value))
 //    }
 //
 //    /// Specifies the date and time
@@ -609,21 +607,21 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func datetime(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "datetime", value: value))
+//        add(HTMLAttribute(attribute: "datetime", value: value))
 //    }
 //
 //    /// Specifies that the track is to be enabled if the user's preferences do not indicate that another track would be more appropriate
 //    ///
 //    /// - Returns: An attribute node
 //    public func `default`() -> Self {
-//        add(HTML.Attribute(attribute: "default", value: nil))
+//        add(HTMLAttribute(attribute: "default", value: nil))
 //    }
 //
 //    /// Specifies that the script is executed when the page has finished parsing (only for external scripts)
 //    ///
 //    /// - Returns: An attribute node
 //    public func `defer`() -> Self {
-//        add(HTML.Attribute(attribute: "defer", value: nil))
+//        add(HTMLAttribute(attribute: "defer", value: nil))
 //    }
 //
 //    /// Specifies the text direction for the content in an element
@@ -631,7 +629,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func dir(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "dir", value: value))
+//        add(HTMLAttribute(attribute: "dir", value: value))
 //    }
 //
 //    /// Specifies that the text direction will be submitted
@@ -639,14 +637,14 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func dirname(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "dirname", value: value))
+//        add(HTMLAttribute(attribute: "dirname", value: value))
 //    }
 //
 //    /// Specifies that the specified element/group of elements should be disabled
 //    ///
 //    /// - Returns: An attribute node
 //    public func disable() -> Self {
-//        add(HTML.Attribute(attribute: "disable", value: nil))
+//        add(HTMLAttribute(attribute: "disable", value: nil))
 //    }
 //
 //    /// Specifies that the target will be downloaded when a user clicks on the hyperlink
@@ -654,7 +652,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func download() -> Self {
-//        add(HTML.Attribute(attribute: "download", value: nil))
+//        add(HTMLAttribute(attribute: "download", value: nil))
 //    }
 //
 //    /// Specifies whether an element is draggable or not
@@ -662,7 +660,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func draggable(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "draggable", value: value))
+//        add(HTMLAttribute(attribute: "draggable", value: value))
 //    }
 //
 //    /// Specifies whether the dragged data is copied, moved, or linked, when dropped
@@ -670,7 +668,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func dropzone(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "dropzone", value: value))
+//        add(HTMLAttribute(attribute: "dropzone", value: value))
 //    }
 //
 //    /// Specifies how the form-data should be encoded when submitting it to the server (only for method="post")
@@ -678,7 +676,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func enctype(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "enctype", value: value))
+//        add(HTMLAttribute(attribute: "enctype", value: value))
 //    }
 //
 //    /// Specifies which form element(s) a label/calculation is bound to
@@ -686,7 +684,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func `for`(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "for", value: value))
+//        add(HTMLAttribute(attribute: "for", value: value))
 //    }
 //
 //    /// Specifies the name of the form the element belongs to
@@ -694,7 +692,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func form(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "form", value: value))
+//        add(HTMLAttribute(attribute: "form", value: value))
 //    }
 //
 //    /// Specifies where to send the form-data when a form is submitted. Only for type="submit"
@@ -702,7 +700,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func formaction(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "formaction", value: value))
+//        add(HTMLAttribute(attribute: "formaction", value: value))
 //    }
 //
 //    /// Specifies one or more headers cells a cell is related to
@@ -710,7 +708,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func headers(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "headers", value: value))
+//        add(HTMLAttribute(attribute: "headers", value: value))
 //    }
 //
 //    /// Specifies the height of the element
@@ -718,14 +716,14 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func height(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "height", value: value))
+//        add(HTMLAttribute(attribute: "height", value: value))
 //    }
 //
 //    /// Specifies that an element is not yet, or is no longer, relevant
 //    ///
 //    /// - Returns: An attribute node
 //    public func hidden() -> Self {
-//        add(HTML.Attribute(attribute: "hidden", value: nil))
+//        add(HTMLAttribute(attribute: "hidden", value: nil))
 //    }
 //
 //    /// Specifies the width of the element
@@ -733,7 +731,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func width(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "width", value: value))
+//        add(HTMLAttribute(attribute: "width", value: value))
 //    }
 //
 //    /// Specifies the range that is considered to be a high value
@@ -741,7 +739,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func high(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "high", value: value))
+//        add(HTMLAttribute(attribute: "high", value: value))
 //    }
 //
 //    /// Specifies the URL of the page the link goes to
@@ -749,7 +747,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func href(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "href", value: value))
+//        add(HTMLAttribute(attribute: "href", value: value))
 //    }
 //
 //    /// Specifies the language of the linked document
@@ -757,7 +755,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func hreflang(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "hreflang", value: value))
+//        add(HTMLAttribute(attribute: "hreflang", value: value))
 //    }
 //
 //    /// Provides an HTTP header for the information/value of the content attribute
@@ -765,7 +763,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func httpEquiv(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "http-equiv", value: value))
+//        add(HTMLAttribute(attribute: "http-equiv", value: value))
 //    }
 //
 //    /// Specifies a unique id for an element
@@ -773,14 +771,14 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func id(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "id", value: value))
+//        add(HTMLAttribute(attribute: "id", value: value))
 //    }
 //
 //    /// Specifies an image as a server-side image-map
 //    ///
 //    /// - Returns: An attribute node
 //    public func ismap() -> Self {
-//        add(HTML.Attribute(attribute: "ismap", value: nil))
+//        add(HTMLAttribute(attribute: "ismap", value: nil))
 //    }
 //
 //    /// Specifies the kind of text track
@@ -788,7 +786,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func kind(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "kind", value: value))
+//        add(HTMLAttribute(attribute: "kind", value: value))
 //    }
 //
 //    /// Specifies the title of the text track
@@ -796,7 +794,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func label(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "label", value: value))
+//        add(HTMLAttribute(attribute: "label", value: value))
 //    }
 //
 //    /// Specifies the language of the element's content
@@ -804,7 +802,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func lang(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "lang", value: value))
+//        add(HTMLAttribute(attribute: "lang", value: value))
 //    }
 //
 //    /// Refers to a <datalist> element that contains pre-defined options for an <input> element
@@ -812,14 +810,14 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func list(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "list", value: value))
+//        add(HTMLAttribute(attribute: "list", value: value))
 //    }
 //
 //    /// Specifies that the audio/video will start over again, every time it is finished
 //    ///
 //    /// - Returns: An attribute node
 //    public func loop() -> Self {
-//        add(HTML.Attribute(attribute: "loop", value: nil))
+//        add(HTMLAttribute(attribute: "loop", value: nil))
 //    }
 //
 //    /// Specifies the range that is considered to be a low value
@@ -827,7 +825,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func low(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "low", value: value))
+//        add(HTMLAttribute(attribute: "low", value: value))
 //    }
 //
 //    /// Specifies the maximum value
@@ -835,7 +833,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func max(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "max", value: value))
+//        add(HTMLAttribute(attribute: "max", value: value))
 //    }
 //
 //    /// Specifies the maximum number of characters allowed in an element
@@ -843,7 +841,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func maxlength(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "maxlength", value: value))
+//        add(HTMLAttribute(attribute: "maxlength", value: value))
 //    }
 //
 //    /// Specifies what media/device the linked document is optimized for
@@ -851,7 +849,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func media(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "media", value: value))
+//        add(HTMLAttribute(attribute: "media", value: value))
 //    }
 //
 //    /// Specifies the HTTP method to use when sending form-data
@@ -859,15 +857,15 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func method(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "method", value: value))
+//        add(HTMLAttribute(attribute: "method", value: value))
 //    }
 //
 //    /// Specifies the HTTP method to use when sending form-data
 //    ///
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
-//    public func method(_ value: HTML.Attribute.Method) -> Self {
-//        add(HTML.Attribute(attribute: "method", value: value.rawValue))
+//    public func method(_ value: HTMLAttribute.Method) -> Self {
+//        add(HTMLAttribute(attribute: "method", value: value.rawValue))
 //    }
 //
 //    //    /// Specifies a minimum value
@@ -875,7 +873,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    //    /// - Parameter value: The value of the attribute
 //    //    /// - Returns: An attribute node
 //    //    public func min<Root>(_ value: TemplateVariable<Root, Int>) -> Self where Root: ContextualTemplate {
-//    //        add(HTML.Attribute(attribute: "min", value: value))
+//    //        add(HTMLAttribute(attribute: "min", value: value))
 //    //        return self
 //    //    }
 //
@@ -884,21 +882,21 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func min(_ value: Int) -> Self {
-//        add(HTML.Attribute(attribute: "min", value: value))
+//        add(HTMLAttribute(attribute: "min", value: value))
 //    }
 //
 //    /// Specifies that a user can enter more than one value
 //    ///
 //    /// - Returns: An attribute node
 //    public func multiple() -> Self {
-//        add(HTML.Attribute(attribute: "multiple", value: nil))
+//        add(HTMLAttribute(attribute: "multiple", value: nil))
 //    }
 //
 //    /// Specifies that the audio output of the video should be muted
 //    ///
 //    /// - Returns: An attribute node
 //    public func muted() -> Self {
-//        add(HTML.Attribute(attribute: "muted", value: nil))
+//        add(HTMLAttribute(attribute: "muted", value: nil))
 //    }
 //
 //    /// Specifies the name of the element
@@ -906,14 +904,14 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func name(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "name", value: value))
+//        add(HTMLAttribute(attribute: "name", value: value))
 //    }
 //
 //    /// Specifies that the form should not be validated when submitted
 //    ///
 //    /// - Returns: An attribute node
 //    public func novalidate() -> Self {
-//        add(HTML.Attribute(attribute: "novalidate", value: nil))
+//        add(HTMLAttribute(attribute: "novalidate", value: nil))
 //    }
 //
 //    /// Script to be run on abort
@@ -921,7 +919,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func onabort(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "onabort", value: value))
+//        add(HTMLAttribute(attribute: "onabort", value: value))
 //    }
 //
 //    /// Script to be run after the document is printed
@@ -929,7 +927,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func onafterprint(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "onafterprint", value: value))
+//        add(HTMLAttribute(attribute: "onafterprint", value: value))
 //    }
 //
 //    /// Script to be run before the document is printed
@@ -937,7 +935,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func onbeforeprint(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "onbeforeprint", value: value))
+//        add(HTMLAttribute(attribute: "onbeforeprint", value: value))
 //    }
 //
 //    /// Script to be run when the document is about to be unloaded
@@ -945,7 +943,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func onbeforeunload(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "onbeforeload", value: value))
+//        add(HTMLAttribute(attribute: "onbeforeload", value: value))
 //    }
 //
 //    /// Script to be run when the element loses focus
@@ -953,7 +951,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func onblur(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "onblur", value: value))
+//        add(HTMLAttribute(attribute: "onblur", value: value))
 //    }
 //
 //    /// Script to be run when a file is ready to start playing (when it has buffered enough to begin)
@@ -961,7 +959,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func oncanplay(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "oncanplay", value: value))
+//        add(HTMLAttribute(attribute: "oncanplay", value: value))
 //    }
 //
 //    /// Script to be run when a file can be played all the way to the end without pausing for buffering
@@ -969,7 +967,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func oncanplaythrough(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "oncanplaythrough", value: value))
+//        add(HTMLAttribute(attribute: "oncanplaythrough", value: value))
 //    }
 //
 //    /// Script to be run when the value of the element is changed
@@ -977,7 +975,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func onchange(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "onchange", value: value))
+//        add(HTMLAttribute(attribute: "onchange", value: value))
 //    }
 //
 //    /// Script to be run when the element is being clicked
@@ -985,7 +983,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func onclick(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "onclick", value: value))
+//        add(HTMLAttribute(attribute: "onclick", value: value))
 //    }
 //
 //    /// Script to be run when a context menu is triggered
@@ -993,7 +991,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func oncontextmenu(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "oncontextmenu", value: value))
+//        add(HTMLAttribute(attribute: "oncontextmenu", value: value))
 //    }
 //
 //    /// Script to be run when the content of the element is being copied
@@ -1001,7 +999,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func oncopy(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "oncopy", value: value))
+//        add(HTMLAttribute(attribute: "oncopy", value: value))
 //    }
 //
 //    /// Script to be run when the cue changes in a <track> element
@@ -1009,7 +1007,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func oncuechange(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "oncuechange", value: value))
+//        add(HTMLAttribute(attribute: "oncuechange", value: value))
 //    }
 //
 //    /// Script to be run when the content of the element is being cut
@@ -1017,7 +1015,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func oncut(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "oncut", value: value))
+//        add(HTMLAttribute(attribute: "oncut", value: value))
 //    }
 //
 //    /// Script to be run when the element is being double-clicked
@@ -1025,7 +1023,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func ondblclick(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "ondblclick", value: value))
+//        add(HTMLAttribute(attribute: "ondblclick", value: value))
 //    }
 //
 //    /// Script to be run when the element is being dragged
@@ -1033,7 +1031,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func ondrag(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "ondrag", value: value))
+//        add(HTMLAttribute(attribute: "ondrag", value: value))
 //    }
 //
 //    /// Script to be run at the end of a drag operation
@@ -1041,7 +1039,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func ondragend(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "ondragend", value: value))
+//        add(HTMLAttribute(attribute: "ondragend", value: value))
 //    }
 //
 //    /// Script to be run when an element has been dragged to a valid drop target
@@ -1049,7 +1047,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func ondragenter(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "ondragenter", value: value))
+//        add(HTMLAttribute(attribute: "ondragenter", value: value))
 //    }
 //
 //    /// Script to be run when an element leaves a valid drop target
@@ -1057,7 +1055,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func ondragleave(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "ondragleave", value: value))
+//        add(HTMLAttribute(attribute: "ondragleave", value: value))
 //    }
 //
 //    /// Script to be run when an element is being dragged over a valid drop target
@@ -1065,7 +1063,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func ondragover(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "ondragover", value: value))
+//        add(HTMLAttribute(attribute: "ondragover", value: value))
 //    }
 //
 //    /// Script to be run at the start of a drag operation
@@ -1073,7 +1071,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func ondragstart(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "ondragstart", value: value))
+//        add(HTMLAttribute(attribute: "ondragstart", value: value))
 //    }
 //
 //    /// Script to be run when dragged element is being dropped
@@ -1081,7 +1079,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func ondrop(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "ondrop", value: value))
+//        add(HTMLAttribute(attribute: "ondrop", value: value))
 //    }
 //
 //    /// Script to be run when the length of the media changes
@@ -1089,7 +1087,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func ondurationchange(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "ondurationchange", value: value))
+//        add(HTMLAttribute(attribute: "ondurationchange", value: value))
 //    }
 //
 //    /// Script to be run when something bad happens and the file is suddenly unavailable (like unexpectedly disconnects)
@@ -1097,7 +1095,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func onemptied(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "onemptied", value: value))
+//        add(HTMLAttribute(attribute: "onemptied", value: value))
 //    }
 //
 //    /// Script to be run when the media has reach the end (a useful event for messages like "thanks for listening")
@@ -1105,7 +1103,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func onended(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "onended", value: value))
+//        add(HTMLAttribute(attribute: "onended", value: value))
 //    }
 //
 //    /// Script to be run when an error occurs
@@ -1113,7 +1111,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func onerror(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "onerror", value: value))
+//        add(HTMLAttribute(attribute: "onerror", value: value))
 //    }
 //
 //    /// Script to be run when the element gets focus
@@ -1121,7 +1119,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func onfocus(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "onfocus", value: value))
+//        add(HTMLAttribute(attribute: "onfocus", value: value))
 //    }
 //
 //    /// Script to be run when there has been changes to the anchor part of the a URL
@@ -1129,7 +1127,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func onhashchange(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "onhashchange", value: value))
+//        add(HTMLAttribute(attribute: "onhashchange", value: value))
 //    }
 //
 //    /// Script to be run when the element gets user input
@@ -1137,7 +1135,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func oninput(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "oninput", value: value))
+//        add(HTMLAttribute(attribute: "oninput", value: value))
 //    }
 //
 //    /// Script to be run when the element is invalid
@@ -1145,7 +1143,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func oninvalid(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "oninvalid", value: value))
+//        add(HTMLAttribute(attribute: "oninvalid", value: value))
 //    }
 //
 //    /// Script to be run when the element is finished loading
@@ -1153,14 +1151,14 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func onload(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "onload", value: value))
+//        add(HTMLAttribute(attribute: "onload", value: value))
 //    }
 //
 //    /// Specifies that the details should be visible (open) to the user
 //    ///
 //    /// - Returns: An attribute node
 //    public func open() -> Self {
-//        add(HTML.Attribute(attribute: "open", value: nil))
+//        add(HTMLAttribute(attribute: "open", value: nil))
 //    }
 //
 //    /// Specifies a regular expression that an <input> element's value is checked against
@@ -1168,7 +1166,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func pattern(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "pattern", value: value))
+//        add(HTMLAttribute(attribute: "pattern", value: value))
 //    }
 //
 //    /// Specifies what value is the optimal value for the gauge
@@ -1176,7 +1174,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func optimum(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "optimum", value: value))
+//        add(HTMLAttribute(attribute: "optimum", value: value))
 //    }
 //
 //    /// Specifies a short hint that describes the expected value of the element
@@ -1184,7 +1182,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func placeholder(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "placeholder", value: value))
+//        add(HTMLAttribute(attribute: "placeholder", value: value))
 //    }
 //
 //    /// Specifies an image to be shown while the video is downloading, or until the user hits the play button
@@ -1192,7 +1190,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func poster(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "poster", value: value))
+//        add(HTMLAttribute(attribute: "poster", value: value))
 //    }
 //
 //    /// Specifies if and how the author thinks the audio/video should be loaded when the page loads
@@ -1200,12 +1198,12 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func preload(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "preload", value: value))
+//        add(HTMLAttribute(attribute: "preload", value: value))
 //    }
 //
 //    /// Specifies that the element is read-only
 //    public func readonly() -> Self {
-//        add(HTML.Attribute(attribute: "readonly", value: nil))
+//        add(HTMLAttribute(attribute: "readonly", value: nil))
 //    }
 //
 //    /// Specifies the relationship between the current document and the linked document
@@ -1213,17 +1211,17 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func rel(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "rel", value: value))
+//        add(HTMLAttribute(attribute: "rel", value: value))
 //    }
 //
 //    /// Specifies that the element must be filled out before submitting the form
 //    public func `required`() -> Self {
-//        add(HTML.Attribute(attribute: "required", value: nil))
+//        add(HTMLAttribute(attribute: "required", value: nil))
 //    }
 //
 //    /// Specifies that the list order should be descending (9,8,7...)
 //    public func reversed() -> Self {
-//        add(HTML.Attribute(attribute: "reversed", value: nil))
+//        add(HTMLAttribute(attribute: "reversed", value: nil))
 //    }
 //
 //    /// Specifies the visible number of lines in a text area
@@ -1231,7 +1229,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func rows(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "rows", value: value))
+//        add(HTMLAttribute(attribute: "rows", value: value))
 //    }
 //
 //    /// Specifies the number of rows a table cell should span
@@ -1239,12 +1237,12 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func rowspan(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "rowspan", value: value))
+//        add(HTMLAttribute(attribute: "rowspan", value: value))
 //    }
 //
 //    /// Enables an extra set of restrictions for the content in an <iframe>
 //    public func sandbox() -> Self {
-//        add(HTML.Attribute(attribute: "sandbox", value: nil))
+//        add(HTMLAttribute(attribute: "sandbox", value: nil))
 //    }
 //
 //    /// Specifies whether a header cell is a header for a column, row, or group of columns or rows
@@ -1252,12 +1250,12 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func scope(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "scope", value: value))
+//        add(HTMLAttribute(attribute: "scope", value: value))
 //    }
 //
 //    /// Specifies that an option should be pre-selected when the page loads
 //    public func selected() -> Self {
-//        add(HTML.Attribute(attribute: "selected", value: nil))
+//        add(HTMLAttribute(attribute: "selected", value: nil))
 //    }
 //
 //    /// Specifies the shape of the area
@@ -1265,7 +1263,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func shape(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "shape", value: value))
+//        add(HTMLAttribute(attribute: "shape", value: value))
 //    }
 //
 //    /// Specifies the width, in characters (for <input>) or specifies the number of visible options (for <select>)
@@ -1273,7 +1271,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func size(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "size", value: value))
+//        add(HTMLAttribute(attribute: "size", value: value))
 //    }
 //
 //    /// Specifies the size of the linked resource
@@ -1281,7 +1279,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func sizes(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "sizes", value: value))
+//        add(HTMLAttribute(attribute: "sizes", value: value))
 //    }
 //
 //    /// Specifies the number of columns to span
@@ -1289,12 +1287,12 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func span(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "span", value: value))
+//        add(HTMLAttribute(attribute: "span", value: value))
 //    }
 //
 //    /// Specifies whether the element is to have its spelling and grammar checked or not
 //    public func spellcheck() -> Self {
-//        add(HTML.Attribute(attribute: "spellcheck", value: nil))
+//        add(HTMLAttribute(attribute: "spellcheck", value: nil))
 //    }
 //
 //    /// Specifies the URL of the media file
@@ -1302,7 +1300,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func src(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "src", value: value))
+//        add(HTMLAttribute(attribute: "src", value: value))
 //    }
 //
 //    /// Specifies the HTML content of the page to show in the <iframe>
@@ -1310,7 +1308,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func srcdoc(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "srcdoc", value: value))
+//        add(HTMLAttribute(attribute: "srcdoc", value: value))
 //    }
 //
 //    /// Specifies the language of the track text data (required if kind="subtitles")
@@ -1318,7 +1316,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func srclang(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "srclang", value: value))
+//        add(HTMLAttribute(attribute: "srclang", value: value))
 //    }
 //
 //    /// Specifies the URL of the image to use in different situations
@@ -1326,7 +1324,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func srcset(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "srcset", value: value))
+//        add(HTMLAttribute(attribute: "srcset", value: value))
 //    }
 //
 //    /// Specifies the start value of an ordered list
@@ -1334,7 +1332,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func start(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "start", value: value))
+//        add(HTMLAttribute(attribute: "start", value: value))
 //    }
 //
 //    /// Specifies the legal number intervals for an input field
@@ -1342,7 +1340,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func step(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "step", value: value))
+//        add(HTMLAttribute(attribute: "step", value: value))
 //    }
 //
 //    /// Specifies an inline CSS style for an element
@@ -1350,7 +1348,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func style(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "style", value: value))
+//        add(HTMLAttribute(attribute: "style", value: value))
 //    }
 //
 //    /// Specifies the tabbing order of an element
@@ -1358,7 +1356,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func tabindex(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "tabindex", value: value))
+//        add(HTMLAttribute(attribute: "tabindex", value: value))
 //    }
 //
 //    /// Specifies the target for where to open the linked document or where to submit the form
@@ -1366,7 +1364,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func target(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "target", value: value))
+//        add(HTMLAttribute(attribute: "target", value: value))
 //    }
 //
 //    /// Specifies extra information about an element
@@ -1374,7 +1372,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func title(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "title", value: value))
+//        add(HTMLAttribute(attribute: "title", value: value))
 //    }
 //
 //    /// Specifies whether the content of an element should be translated or not
@@ -1382,7 +1380,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func translate(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "translate", value: value))
+//        add(HTMLAttribute(attribute: "translate", value: value))
 //    }
 //
 //    /// Specifies the type of element
@@ -1390,7 +1388,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func type(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "type", value: value))
+//        add(HTMLAttribute(attribute: "type", value: value))
 //    }
 //
 //    /// Specifies an image as a client-side image-map
@@ -1398,7 +1396,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func usemap(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "usemap", value: value))
+//        add(HTMLAttribute(attribute: "usemap", value: value))
 //    }
 //
 //    /// Specifies the value of the element
@@ -1406,7 +1404,7 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func value(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "value", value: value))
+//        add(HTMLAttribute(attribute: "value", value: value))
 //    }
 //
 //    /// Specifies how the text in a text area is to be wrapped when submitted in a form
@@ -1414,6 +1412,6 @@ extension TargetableAttribute where Self: AttributeNode {
 //    /// - Parameter value: The value of the attribute
 //    /// - Returns: An attribute node
 //    public func wrap(_ value: View) -> Self {
-//        add(HTML.Attribute(attribute: "wrap", value: value))
+//        add(HTMLAttribute(attribute: "wrap", value: value))
 //    }
 //}

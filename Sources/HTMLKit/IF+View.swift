@@ -24,7 +24,7 @@ enum IFPrerenderErrors: Error {
     case dynamiclyEvaluatedCondition
 }
 
-extension IF: View {
+extension IF: HTML {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -69,7 +69,7 @@ extension IF: View {
     ///   - condition: The conditino to be evaluated
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func elseIf(_ condition: Conditionable, @HTMLBuilder render: () -> View) -> IF {
+    public func elseIf(_ condition: Conditionable, @HTMLBuilder render: () -> HTML) -> IF {
         let ifCondition = Condition(condition: condition)
         ifCondition.view = render()
         return .init(conditions: conditions + [ifCondition])
@@ -81,7 +81,7 @@ extension IF: View {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func elseIf<A, B>(isNil path: TemplateValue<A, B?>, @HTMLBuilder render: () -> View) -> IF {
+    public func elseIf<A, B>(isNil path: TemplateValue<A, B?>, @HTMLBuilder render: () -> HTML) -> IF {
         let condition = Condition(condition: IsNullCondition<A, B>(path: path))
         condition.view = render()
         return .init(conditions: conditions + [condition])
@@ -93,7 +93,7 @@ extension IF: View {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func elseIf<Root, Value>(isNotNil path: TemplateValue<Root, Value?>, @HTMLBuilder render: () -> View) -> IF {
+    public func elseIf<Root, Value>(isNotNil path: TemplateValue<Root, Value?>, @HTMLBuilder render: () -> HTML) -> IF {
         let condition = Condition(condition: NotNullCondition<Root, Value>(path: path))
         condition.view = render()
         return .init(conditions: conditions + [condition])
@@ -103,7 +103,7 @@ extension IF: View {
     ///
     /// - Parameter render: The view to be rendered
     /// - Returns: A mappable object
-    public func `else`(@HTMLBuilder render: () -> View) -> View {
+    public func `else`(@HTMLBuilder render: () -> HTML) -> HTML {
         let trueCondition = Condition(condition: AllwaysTrueCondition())
         trueCondition.view = render()
         return IF(conditions: conditions + [trueCondition])

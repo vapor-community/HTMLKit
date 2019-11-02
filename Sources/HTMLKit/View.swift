@@ -32,7 +32,7 @@ public enum TemplateValue<Root, Value> {
     }
 }
 
-extension TemplateValue: View where Value: View {
+extension TemplateValue: HTML where Value: HTML {
 
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
         switch self {
@@ -84,7 +84,7 @@ extension TemplateValue {
     }
 }
 
-public protocol View {
+public protocol HTML {
 
     /// A value indicating if the template should render when itis used as localization info
     var renderWhenLocalizing: Bool { get }
@@ -106,17 +106,17 @@ public protocol View {
     func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws
 }
 
-extension View {
+extension HTML {
     public func render() throws -> String {
         try self.render(with: HTMLRenderer.empty)
     }
 }
 
-extension View {
+extension HTML {
     public var renderWhenLocalizing: Bool { return true }
 }
 
-extension Array: Prerenderable where Element == View {
+extension Array: Prerenderable where Element == HTML {
 
     // View `BrewableFormula` documentation
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
@@ -124,7 +124,7 @@ extension Array: Prerenderable where Element == View {
     }
 }
 
-extension Array: View where Element == View {
+extension Array: HTML where Element == HTML {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -132,7 +132,7 @@ extension Array: View where Element == View {
     }
 }
 
-extension String: View {
+extension String: HTML {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -145,7 +145,7 @@ extension String: View {
     }
 }
 
-extension Int: View {
+extension Int: HTML {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -160,7 +160,7 @@ extension Int: View {
     public var renderWhenLocalizing: Bool { return false }
 }
 
-extension Double: View {
+extension Double: HTML {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -175,7 +175,7 @@ extension Double: View {
     public var renderWhenLocalizing: Bool { return false }
 }
 
-extension Float: View {
+extension Float: HTML {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -190,7 +190,7 @@ extension Float: View {
     public var renderWhenLocalizing: Bool { return false }
 }
 
-extension Bool: View {
+extension Bool: HTML {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -205,7 +205,7 @@ extension Bool: View {
     public var renderWhenLocalizing: Bool { return false }
 }
 
-extension Optional: View where Wrapped: View {
+extension Optional: HTML where Wrapped: HTML {
 
     // View `BrewableFormula` documentation
     public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
@@ -224,7 +224,7 @@ extension Optional: View where Wrapped: View {
     }
 }
 
-extension UUID: View {
+extension UUID: HTML {
 
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -238,16 +238,16 @@ extension UUID: View {
 }
 
 /// Concats two values
-public func + (lhs: View, rhs: View) -> View {
-    var output: Array<View> = []
+public func + (lhs: HTML, rhs: HTML) -> HTML {
+    var output: Array<HTML> = []
 
-    if let list = lhs as? Array<View> {
+    if let list = lhs as? Array<HTML> {
         output.append(contentsOf: list)
     } else {
         output.append(lhs)
     }
 
-    if let list = rhs as? Array<View> {
+    if let list = rhs as? Array<HTML> {
         output.append(list)
     } else {
         output.append(rhs)
