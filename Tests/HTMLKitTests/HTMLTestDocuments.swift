@@ -1,1010 +1,189 @@
-
 import HTMLKit
-import Foundation
-import XCTest
 
-protocol HTMLTestable {
-    static var expextedOutput: String { get }
+struct MenuLink: HTMLProperty {
+    let name: String
+    let link: String
 }
 
-
-struct SimpleData {
-    let string: String
-    let int: Int?
+struct Properties: HTMLProperty {
+    var links: [MenuLink]
 }
 
-struct SimpleView: HTMLPage, HTMLTestable {
+let context = HTMLContext<Properties>()
 
-    static var expextedOutput: String = "<div><p>Text</p></div>"
-
-    var body: HTML {
-        Div {
-            P { "Text" }
-        }
-    }
-}
-
-struct StaticEmbedView: HTMLTemplate {
-
-    var context: RootValue<SimpleData> = .root()
-
-    var body: HTML {
-        Div {
-            SimpleView()
-            P {
-                context.string
+@available(OSX 10.15.0, *)
+struct Menu: HTML {
+    var html: some HTML {
+        Nav {
+            context.links.forEach { link in
+                A {
+                    link.name
+                }.href(link.link).class("selected")
             }
-            IF(context.int != nil) {
-                Small {
-                    context.int
-                }
-            }
+        }.id("menu")
+    }
+}
+
+let page = Root {
+    Head {
+        Title("Welkom bij Autimatisering")
+        Meta.charset(.utf8)
+        Meta.viewport(content: "width=device-width, initial-scale=1")
+        Link.stylesheet("https://autimatisering.nl/styles/template.css")
+        Link.stylesheet("https://autimatisering.nl/styles/content.css")
+    }
+    Body {
+        Header {
+            Img(src: "https://autimatisering.nl/img/AMLogo-Full-White.svg")
+                .id("logo")
         }
-    }
-}
-
-struct BaseView<Root>: HTMLComponent {
-
-    let context: TemplateValue<Root, String>
-    let content: HTML
-
-    init(context: TemplateValue<Root, String>, @HTMLBuilder content: () -> HTML) {
-        self.context = context
-        self.content = content()
-    }
-
-    var body: HTML {
-        HTMLNode {
-            Head {
-                Title { context }
-                Link()
-                    .href("some url")
-                    .relationship(.stylesheet)
-                Meta()
-                    .name(.viewport)
-                    .content("width=device-width, initial-scale=1.0")
-            }
-            Body {
-                content
-            }
-        }
-    }
-}
-
-extension BaseView where Root == Void {
-    init(context: String, @HTMLBuilder content: () -> HTML) {
-        self.context = .constant(context)
-        self.content = content()
-    }
-}
-
-struct SomeView: HTMLTemplate {
-
-    struct Context {
-        let name: String
-        let title: String
-    }
-
-    var body: HTML {
-        BaseView(context: context.title) {
-            P { "Hello " + context.name + "!" }
-        }
-    }
-}
-
-struct SomeViewStaticTitle: HTMLTemplate {
-
-    var context: RootValue<String> = .root()
-
-    var body: HTML {
-        BaseView(context: "Test") {
-            P { "Hello " + context + "!" }
-        }
-    }
-}
-
-struct ForEachView: HTMLTemplate {
-
-    let context: RootValue<[String]> = .root()
-
-    var body: HTML {
-        Div {
-            ForEach(in: context) { text in
-                P { text }
-            }
-        }.id("array")
-    }
-}
-
-//struct ForEachViewRuntime: StaticView {
-//
-//    let context: [String]
-//
-//    var body: HTML {
-//        Test {
-//            ForEachRuntime(values: context) { value in
-//                P { value }
-//            }
+        
+        
+//        Header {
+//            
 //        }
-//    }
-//}
-
-struct IFView: HTMLTemplate {
-
-    struct Value {
-        let name: String
-        let age: Int
-        let nullable: String?
-        let bool: Bool
-    }
-
-    var context: RootValue<Value> = .root()
-
-    var body: HTML {
-        Div {
-            IF(context.name == "Mats") {
-                P {
-                    "My name is: " + context.name + "!"
-                }
-                .direction(.leftToRight)
-            }
-
-            IF(context.age < 20) {
-                "I am a child"
-            }.elseIf(context.age > 20) {
-                "I am older"
-            }.else {
-                "I am growing"
-            }
-
-            IF(context.nullable.isDefined) {
-                Bold { context.nullable }
-            }.elseIf(context.bool) {
-                P { "Simple bool" }
-            }
-
-            IF(context.nullable == "Some" && context.name == "Per") {
-                Div { "And" }
-            }
-        }
     }
 }
 
-//struct IFViewRuntime: StaticView {
+//<!DOCTYPE html>
+//<html lang="nl">
 //
-//    struct Value {
-//        let name: String
-//        let age: Int
-//        let nullable: String?
-//        let bool: Bool
-//    }
+//    <head>
+//        <link rel="icon" sizes="16x16 32x32" type="image/png" href="img/favicon.png"/>
+//        <link rel="icon" sizes="180x180" href="img/favicon-mobile.png">
+//        <link rel="apple-touch-icon" href="img/favicon-mobile.png">
+//    </head>
 //
-//    let context: Value
+//    <body>
 //
-//    var body: HTML {
-//        Test {
-//            if context.name == "Mats" {
-//                P {
-//                    "My name is: " + context.name + "!"
-//                }
-//                .direction(.leftToRight)
-//            } else {
-//                ""
+//        <!-- Logo -->
+//        <header>
+//            <img id="logo" src="https://autimatisering.nl/img/AMLogo-Full-White.svg" alt="" />
+//        </header>
+//
+//        <!-- Menu -->
+//        <nav id="menu">
+//            <a href="index.html" class="selected">WELKOM</a>
+//            <a href="overons.html" class="">WIE WIJ ZIJN</a>
+//            <a href="watwijdoen.html" class="">WAT WIJ DOEN</a>
+//            <a href="contact.html" class="">CONTACT</a>
+//        </nav>
+//
+//        <!-- Header/intro -->
+//        <header>
+//            <section id="banner-image-container">
+//                <embed id="banner-image" src="./styles/svg/pagehead-img-home.svg" />
+//            </section>
+//
+//            <article id="banner-text">
+//                <h1 id="banner-text-title">WELKOM</h1>
+//                <p id="banner-text-body">
+//                    Wij zijn een jonge non-profit organisatie die zich richt op het helpen van personen
+//                    met een afstand tot de arbeidsmarkt, deze te verkleinen. Gedurende een 8-tal jaar is
+//                    er op dit gebied veel ervaring opgedaan wat resulteert is een directe en zo praktisch
+//                    mogelijke aanpak. Binnen de wereld van de computers is er veel te doen waar onze doelgroep
+//                    een reuze affiniteit heeft. Onze aanpak is gericht op een veilige en zo praktisch mogelijke
+//                    manier te leren binnen een dagbesteding en dat wat geleerd is toe te passen in de praktijk.
+//                    Natuurlijk is er binnen onze stichting veel inhoudelijke kennis aanwezig op gebied van
+//                    programmeren, networking & security.
+//                </p>
+//            </article>
+//
+//            <!-- Decorative triangle -->
+//            <section id="angle"></section>
+//        </header>
+//
+//
+//
+//        <!-- Main content -->
+//        <section id="wrapper">
+//
+//            <!-- Intro text -->
+//            <article class="center-content">
+//                <h1>Welkom bij Stichting Autimatisering</h1>
+//                <p>
+//                    Fijn dat je ons hebt gevonden. Wij zijn een non-profit stichting die zich inzet voor jongeren met een blik naar de toekomst maar met
+//                    helaas een afstand tot de arbeidsmarkt. Dit is vaak een vervelende moeilijk te doorbreken situatie voor jou en je omgeving.
+//                    Wij helpen hierbij door op een zo praktisch mogelijke manier invulling te gaan geven aan iemands bestaan.
+//                    Door middel van een programma wat 3 maanden duurt leer jij (en ook wij) wat je nu echt leuk vind aan ict.
+//                    We behandelen hardware, software, design, communicatie, organiseren, calculeren en security.
+//                    Als er ergens in dit programma blijkt dat er een match ontstaat gaan we met jou die richting op,
+//                    de diepte in. Zo raak je gemotiveerd en zet je concrete stappen richting een betere toekomst.
+//                </p>
+//            </article>
+//
+//
+//            <!-- Quote -->
+//            <section class="quote">
+//                <img src="img/seperator.png" alt=""><br />
+//                <span>“Leren en lesgeven, verzinnen en maken, bij Autimatisering doen we het allemaal”</span>
+//            </section>
+//
+//
+//            <!-- Three blocks of text -->
+//            <section class="grid grid-triple" id="home-grid-triple">
+//
+//                <!-- Block the first -->
+//                <article class="grid-block-left grid-block">
+//                    <h3>Wie wij zijn</h3>
+//                    <p>
+//                        Wij zijn geen zorg professionals. Wij zijn pragmatische ingestelde, ict-minnende mensen met ieder onze eigen specialisaties. Verder hebben we allemaal als persoonlijke eigenschap dat we gelukkig worden van het helpen van andere mensen. Zo kunnen we van elkaar leren en elkaar naar een hoger niveau tillen.
+//                    </p>
+//                    <a class="item-link" href="overons.html"> Klik hier om verder te lezen.</a>
+//                </article>
+//
+//                <!-- Block the middlest block -->
+//                <article class="grid-block-middle grid-block">
+//                    <h3>Wat wij doen</h3>
+//                    <p>
+//                        Dagopvang, lesgeven, ontwerpen, logo's, apps, websites. Zoek je nog een team die iets gaafs voor je kunnen maken?
+//                        Wil je bij onze dagopvang komen zitten en leren over allerlei slimme dingen?
+//                        Heb je een basisschool en zoek je nog programmeer lessen?
+//                    </p>
+//                    <a class="item-link" href="watwijdoen.html"> Lees dan hier meer over wat wij doen.</a>
+//                </article>
+//
+//                <!-- Block the final block block -->
+//                <article class="grid-block-right grid-block">
+//                    <h3>Nu al enthousiast?</h3>
+//                    <p>
+//                        Ben je nu al enthousiast over wat wij doen? Neem dan hier contact op met ons, we praten graag met je over alle gave
+//                        ideeën die je allemaal hebt verzonnen.
+//                        <br /><br />Wil je ons meehelpen allerlei gave dingen te bouwen en leren? Neem dan ook contact met ons op, wij zijn altijd opzoek naar
+//                        mensen die onze visie delen.
+//                    </p>
+//                    <a class="item-link" href="contact.html"> Neem contact met ons op.</a>
+//                </article>
+//            </section>
+//        </section>
+//
+//
+//
+//        <!-- Footer -->
+//        <footer class="footer">
+//            <nav class="footer-nav">
+//                <span>STICHTING AUTIMATISERING</span>
+//                <span>Schootsestraat 124a, 5616 RG Eindhoven</span>
+//                <span>Contact: <a href="mailto:hoi@autimatisering.nl">hoi@autimatisering.nl</a></span>
+//                <span>KvK: 67802346 </span>
+//                <a href="https://autimatisering.nl/static/algemene-voorwaarden-2017.pdf">Algemene Voorwaarden ></a>
+//                <a href="https://selfservice.autimatisering.nl/">WiCCS Selfservice ></a>
+//            </nav>
+//            <div class="backtotop" onclick="back_to_top();">BACK TO TOP</div>
+//            <div class="copyright">COPYRIGHT AUTIMATISERING</div>
+//        </footer>
+//
+//        <!-- JS  -->
+//        <script>
+//            function back_to_top() {
+//                var scrollStep = -window.scrollY / 16,
+//                scrollInterval = setInterval(function(){
+//                    if ( window.scrollY != 0 )
+//                        window.scrollBy( 0, scrollStep );
+//                    else
+//                        clearInterval(scrollInterval);
+//                },15);
 //            }
-//
-//            if context.age < 20 {
-//                "I am a child"
-//            } else if context.age > 20 {
-//                "I am older"
-//            } else {
-//                "I am growing"
-//            }
-//
-//            if context.nullable != nil {
-//                Bold { context.nullable }
-//            } else if context.bool {
-//                P { "Simple bool" }
-//            } else {
-//                ""
-//            }
-//
-//            if context.nullable == "Some" && context.name == "Per" {
-//                Div { "And" }
-//            } else {
-//                ""
-//            }
-//        }
-//    }
-//}
-
-//
-//class FormInput: StaticView {
-//
-//    enum FormType: String {
-//        case email
-//        case text
-//        case number
-//        case password
-//    }
-//
-//    let id: String
-//    let type: FormType
-//    let isRequired: Bool
-//    let placeholder: String?
-//    let label: String
-//
-//    init(label: String, type: FormType, id: String? = nil, isRequired: Bool = false, placeholder: String? = nil) {
-//        self.label = label
-//        if let id = id {
-//            self.id = id
-//        } else {
-//            self.id = label.replacingOccurrences(of: " ", with: "-").lowercased()
-//        }
-//        self.type = type
-//        self.isRequired = isRequired
-//        self.placeholder = placeholder
-//    }
-//
-//    func build() -> HTML {
-//
-//        var inputTag = input.id(id).class("form-controll").type(type.rawValue).name(id).placeholder(placeholder)
-//        if isRequired {
-//            inputTag = inputTag.required
-//        }
-//
-//        return
-//            div.class("form-group").child(
-//                label.for(id).child(label),
-//                inputTag
-//        )
-//    }
-//}
-//
-//struct UsingComponent: StaticView {
-//
-//    func build() -> HTML {
-//        return
-//            div.id("Test").child(
-//                FormInput(label: "Email", type: .email)
-//        )
-//    }
-//}
-//
-//struct ChainedEqualAttributes: StaticView {
-//
-//    func build() -> HTML {
-//        return div.class("foo").class("bar").id("id")
-//    }
-//}
-//
-//struct ChainedEqualAttributesDataNode: StaticView {
-//
-//    func build() -> HTML {
-//        return img.class("foo").class("bar").id("id")
-//    }
-//}
-//
-struct ChainedEqualAttributes: HTMLPage {
-    var body: HTML {
-        Div()
-            .class("foo")
-            .class("bar")
-            .id("id")
-    }
-}
-
-struct ChainedEqualAttributesDataNode: HTMLPage {
-    var body: HTML {
-        Img()
-            .class("foo")
-            .class("bar")
-            .id("id")
-//            .margin(.bottom, amount: 3, for: .medium)
-    }
-}
-
-
-struct VariableView<Root>: HTMLComponent {
-
-    var context: TemplateValue<Root, String>
-
-    var body: HTML {
-        Div {
-            P { context }
-            P { context.escaping(.unsafeNone) }
-        }
-    }
-}
-
-struct MultipleContextualEmbed: HTMLTemplate {
-
-    struct Context {
-        let title: String
-        let string: String
-    }
-
-    var body: HTML {
-        BaseView(context: context.title) { () -> HTML in
-            Span { "Some text" }
-            VariableView(context: context.string)
-            UnsafeVariable(context: context)
-        }
-    }
-}
-
-public enum Direction: String {
-    case top
-    case bottom
-    case left
-    case right
-
-    var boostrapValue: String {
-        switch self {
-        case .bottom:   return "b"
-        case .top:      return "t"
-        case .left:     return "l"
-        case .right:    return "r"
-        }
-    }
-}
-
-public enum BootstrapSizing: String {
-    case extraLarge     = "-xl"
-    case large          = "-lg"
-    case medium         = "-md"
-    case small          = "-sm"
-    case all            = ""
-}
-
-extension Comparable {
-    public func clamped(to limits: ClosedRange<Self>) -> Self {
-        return min(max(self, limits.lowerBound), limits.upperBound)
-    }
-}
-
-extension Strideable where Stride: SignedInteger {
-    public func clamped(to limits: CountableClosedRange<Self>) -> Self {
-        return min(max(self, limits.lowerBound), limits.upperBound)
-    }
-}
-
-extension AttributeNode {
-    public func margin(_ direction: Direction, amount: Int, for size: BootstrapSizing = .all) -> Self {
-        self.class("m\(direction.boostrapValue)\(size.rawValue)-\(amount.clamped(to: 0...5))")
-    }
-}
-
-struct BootstrapAlert: HTMLComponent, AttributeNode {
-
-    var attributes: [HTMLAttribute]
-
-    let content: HTML
-
-    init(attributes: [HTMLAttribute] = [], @HTMLBuilder content: () -> HTML) {
-        self.attributes = attributes
-        self.content = content()
-    }
-
-    var body: HTML {
-        Div {
-            content
-        }
-            .class("alert alert-primary")
-            .role("alert")
-            .add(attributes: attributes)
-    }
-
-    func copy(with attributes: [HTMLAttribute]) -> BootstrapAlert {
-        .init(attributes: attributes, content: { content })
-    }
-}
-
-//struct DynamicAttribute: ContextualTemplate {
-//
-//    struct Value {
-//        let isChecked: Bool
-//        let isActive: Bool
-//        let isOptional: Bool?
-//    }
-//
-//    func build() -> HTML {
-//        return div.class("foo")
-//            .if(\.isChecked, add: .class("checked"))
-//            .if(\.isActive, add: .init(attribute: "active", value: nil))
-//            .if(isNil: \.isOptional, add: .selected)
-//            .if(isNotNil: \.isOptional, add: .class("not-nil"))
-//    }
-//}
-//
-
-struct LoginPageTest: HTMLTemplate {
-
-    typealias Context = String?
-
-    var body: HTML {
-        Div {
-            Div {
-                Div {
-                    Div {
-                        IF(context != nil) {
-                            Div {
-                                Button {
-                                    Span {
-                                        "×"
-                                    }.aria(for: "hidden", value: "true")
-                                }.type(.button).class("close").data(for: "dismiss", value: "alert").aria(for: "label", value: "Close")
-                                context
-                            }.class("alert alert-secondary alert-dismissible bg-danger text-white border-0 fade show").role("alert")
-                        }
-                        Div {
-                            Div {
-                                Anchor {
-                                    Span {
-                                        Img().source("assets/images/logo.png").alt("Logo").height(30)
-                                    }
-                                }.href("index.html")
-                            }.class("card-header pt-4 pb-4 text-center bg-primary")
-                            Div {
-                                Div {
-                                    H4 {
-                                        "Title"
-                                    }
-                                        .class("text-dark-50 text-center mt-0 font-weight-bold")
-                                    P {
-                                        "Subtitle"
-                                    }
-                                        .class("text-muted mb-4")
-                                }.class("text-center w-75 m-auto")
-                                Form {
-                                    Div {
-                                        Label {
-                                            "Mail title"
-                                        }
-                                            .for("emailaddress")
-                                        Input()
-                                            .class("form-control")
-                                            .type(.email)
-                                            .name("email")
-                                            .id("email")
-                                    }.class("form-group")
-                                    Div {
-                                        Anchor {
-                                            Small { "password" }
-                                        }
-                                        .href("/start-reset-password")
-
-                                        Label {
-                                            "Password"
-                                        }
-                                            .for("password")
-                                        Input()
-                                            .class("form-control")
-                                            .type(.password)
-                                            .name("password")
-                                            .id("password")
-                                    }.class("form-group")
-                                    Div {
-                                        Button {
-                                            "Login"
-                                        }
-                                            .id("submit-button")
-                                            .class("btn btn-primary")
-                                            .type(.submit)
-                                    }.class("form-group mb-0 text-center")
-                                }.action("/login").method(.post)
-                            }.class("card-body p-4")
-                        }.class("card")
-                        Div {
-                            Div {
-                                P {
-                                    "Not logged in"
-                                }
-                                Anchor {
-                                    Bold { "No user" }
-                                }
-                                .href("/signup")
-                                .class("ml-1")
-                            }
-                            .class("col-12 text-center")
-                        }.class("row mt-3")
-                    }.class("col-lg-5")
-                }.class("row justify-content-center")
-            }.class("container")
-        }.class("account-pages mt-5 mb-5")
-    }
-}
-
-//struct LoginPageTestRuntime: StaticView {
-//
-//    let errorMessage: String?
-//
-//    var body: HTML {
-//        Div {
-//            Div {
-//                Div {
-//                    Div {
-//                        Test {
-//                            if errorMessage != nil {
-//                                Div {
-//                                    Button {
-//                                        Span {
-//                                            "×"
-//                                        }.aria(for: "hidden", value: "true")
-//                                    }.type(.button).class("close").data(for: "dismiss", value: "alert").aria(for: "label", value: "Close")
-//                                    errorMessage
-//                                }.class("alert alert-secondary alert-dismissible bg-danger text-white border-0 fade show").role("alert")
-//                            } else {
-//                                ""
-//                            }
-//                        }
-//                        Div {
-//                            Div {
-//                                Anchor {
-//                                    Span {
-//                                        Img().source("assets/images/logo.png").alt("Logo").height(30)
-//                                    }
-//                                }.href("index.html")
-//                            }.class("card-header pt-4 pb-4 text-center bg-primary")
-//                            Div {
-//                                Div {
-//                                    H4 {
-//                                        "Title"
-//                                    }
-//                                        .class("text-dark-50 text-center mt-0 font-weight-bold")
-//                                    P {
-//                                        "Subtitle"
-//                                    }
-//                                        .class("text-muted mb-4")
-//                                }.class("text-center w-75 m-auto")
-//                                Form {
-//                                    Div {
-//                                        Label {
-//                                            "Mail title"
-//                                        }
-//                                            .for("emailaddress")
-//                                        Input()
-//                                            .class("form-control")
-//                                            .type(.email)
-//                                            .name("email")
-//                                            .id("email")
-//                                    }.class("form-group")
-//                                    Div {
-//                                        Anchor {
-//                                            Small { "password" }
-//                                        }
-//                                        .href("/start-reset-password")
-//
-//                                        Label {
-//                                            "Password"
-//                                        }
-//                                            .for("password")
-//                                        Input()
-//                                            .class("form-control")
-//                                            .type(.password)
-//                                            .name("password")
-//                                            .id("password")
-//                                    }.class("form-group")
-//                                    Div {
-//                                        Button {
-//                                            "Login"
-//                                        }
-//                                            .id("submit-button")
-//                                            .class("btn btn-primary")
-//                                            .type(.submit)
-//                                    }.class("form-group mb-0 text-center")
-//                                }.action("/login").method(.post)
-//                            }.class("card-body p-4")
-//                        }.class("card")
-//                        Div {
-//                            Div {
-//                                P {
-//                                    "Not logged in"
-//                                }
-//                                Anchor {
-//                                    Bold { "No user" }
-//                                }
-//                                .href("/signup")
-//                                .class("ml-1")
-//                            }
-//                            .class("col-12 text-center")
-//                        }.class("row mt-3")
-//                    }.class("col-lg-5")
-//                }.class("row justify-content-center")
-//            }.class("container")
-//        }.class("account-pages mt-5 mb-5")
-//    }
-//}
-
-struct DynamicAttribute: HTMLTemplate {
-
-    struct Value {
-        let isChecked: Bool
-        let isActive: Bool
-        let isOptional: Bool?
-    }
-
-    let context: RootValue<Value> = .root()
-
-    var body: HTML {
-        Div()
-            .class("foo")
-            .modify(if: context.isChecked) {
-                $0.class("checked")
-            }
-            .modify(if: context.isActive) {
-                $0.add(HTMLAttribute(attribute: "active", value: nil))
-            }
-            .modify(if: context.isOptional.isNotDefined) {
-                $0.add(HTMLAttribute(attribute: "selected", value: nil))
-            }
-            .modify(if: context.isOptional.isDefined) {
-                $0.class("not-nil")
-        }
-    }
-}
-
-struct SelfContextPassing: HTMLTemplate {
-
-    var context: RootValue<String> = .root()
-
-    var body: HTML {
-        Div {
-            VariableView(context: context)
-        }
-    }
-}
-
-struct SelfLoopingView: HTMLTemplate {
-
-    typealias Context = [SimpleData]
-
-    var body: HTML {
-        Div {
-            ForEach(in: context) { data in
-                StaticEmbedView(context: data)
-            }
-        }.class("list")
-    }
-}
-//
-struct UnsafeVariable<Root>: HTMLPage {
-
-    var context: TemplateValue<Root, MultipleContextualEmbed.Context>
-
-    var body: HTML {
-        Div {
-            P {
-                context.string
-            }
-            P {
-                context.title
-            }
-        }
-    }
-}
-
-//struct MarkdownView: TemplateView {
-//
-//    struct Value {
-//        let title: String
-//        let description: String
-//    }
-//
-//    let context: RootValue<Value> = .root()
-//
-//    var body: HTML {
-//        Div {
-//            Markdown {
-//                "# Title: " + context.title
-//                "\n## Description here:\n"
-//                context.description
-//            }
-//        }
-//    }
-//}
-
-struct LocalizedView: HTMLTemplate {
-
-    struct DescriptionContent: Codable {
-        let numberTest: Int
-    }
-
-    struct Context: Codable {
-        let locale: String
-        let description: DescriptionContent
-        let numberTest: Int
-    }
-
-    var body: HTML {
-        Div {
-            H1("hello.world")
-            P("unread.messages", with: context.description)
-            P("unread.messages", with: ["numberTest": 2])
-            P("unread.messages", with: context)
-        }
-        .enviroment(locale: context.locale)
-    }
-}
-
-struct DateView: HTMLTemplate {
-
-    typealias Context = Date
-
-    var body: HTML {
-        Div {
-            P { context.style() }
-            P { context.formatted(string: "MM/dd/yyyy") }
-        }
-    }
-}
-
-struct OptionalDateView: HTMLTemplate {
-
-    typealias Context = Date?
-
-    var body: HTML {
-        Div {
-            P { context.style() }
-            P { context.formatted(string: "MM/dd/yyyy") }
-        }
-    }
-}
-
-class FailingCondition: Conditionable {
-
-    let evaluationResult: Bool
-    var hasBeenEvaluated = false
-
-    init(evaluationResult: Bool) {
-        self.evaluationResult = evaluationResult
-    }
-
-    func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        guard hasBeenEvaluated == false else {
-            XCTFail("This should never run")
-            return false
-        }
-        self.hasBeenEvaluated = true
-        return evaluationResult
-    }
-}
-
-struct StaticIfPrerenderingTest: HTMLTemplate {
-
-    typealias Context = Bool
-
-    var body: HTML {
-        Div {
-            IF(FailingCondition(evaluationResult: true)) {
-                "This should be prerenderd"
-            }.else {
-                "This sould never be renderd"
-            }
-
-            P {
-                IF(context) {
-                    "This may run"
-                }.else {
-                    "This as well"
-                }
-            }
-
-            P {
-                IF(FailingCondition(evaluationResult: false)) {
-                    "This sould never be renderd"
-                }.else {
-                    "This should be prerenderd"
-                }
-            }
-        }
-    }
-}
-
-//struct LocalizedDateView: LocalizedTemplate {
-//
-//    enum LocalizationKeys: String {
-//        case none
-//    }
-//
-//    static let localePath: KeyPath<LocalizedDateView.Context, String>? = \.locale
-//
-//    struct Value {
-//        let date: Date
-//        let locale: String
-//    }
-//
-//    func build() -> HTML {
-//        return div.child(
-//            p.child(
-//                date(\.date, dateStyle: .short, timeStyle: .short)
-//            ),
-//            p.child(
-//                date(\.date, format: "MM/dd/yyyy")
-//            )
-//        )
-//    }
-//}
-
-struct LocalizedDateView: HTMLTemplate {
-
-    struct Context {
-        let date: Date
-        let locale: String
-    }
-
-    var body: HTML {
-        Div {
-            P {
-                context.date.style(date: .short, time: .short)
-            }
-            P {
-                context.date.formatted(string: "MM/dd/yyyy")
-            }
-        }
-        .enviroment(locale: context.locale)
-    }
-}
-
-struct PracticeSession {
-
-    /// The session id
-    var id: Int?
-
-    let timeUsed: Int?
-
-    /// The number of task to complete in the session
-    let numberOfTaskGoal: Int
-
-    let createdAt: Date
-}
-
-
-struct BigForTest: HTMLTemplate {
-
-    static let testData: [PracticeSession] = [
-        .init(id: 1, timeUsed: 20, numberOfTaskGoal: 10, createdAt: Date()),
-        .init(id: 2, timeUsed: 20, numberOfTaskGoal: 15, createdAt: Date()),
-        .init(id: 3, timeUsed: 20, numberOfTaskGoal: 12, createdAt: Date()),
-        .init(id: 4, timeUsed: 20, numberOfTaskGoal: 13, createdAt: Date()),
-        .init(id: 5, timeUsed: 20, numberOfTaskGoal: 8, createdAt: Date())
-    ]
-
-    typealias Context = [PracticeSession]
-
-    var body: HTML {
-        Div {
-            Table {
-                TableHead {
-                    TableRow {
-                        TableHeader {
-                            "historyDateColumn"
-                        }
-                        TableHeader {
-                            "historyGoalColumn"
-                        }
-                        TableHeader {
-                            "historyDurationColumn"
-                        }
-                    }
-                }
-                .class("thead-light")
-
-                TableBody {
-                    ForEach(in: context) { session in
-                        TableRow {
-                            TableCell {
-                                Anchor {
-                                    session.createdAt
-                                        .style(date: .medium, time: .short)
-                                }
-                                .href("/practice-sessions/" + session.id + "/result")
-                                .class("text-muted")
-                            }
-                            TableCell {
-                                Anchor {
-                                    session.numberOfTaskGoal
-                                    " oppgaver"
-                                }
-                                .href("/practice-sessions/" + session.id + "/result")
-                                .class("text-muted")
-                            }
-                            TableCell {
-                                Anchor {
-                                    IF(session.timeUsed.isDefined) {
-                                        session.timeUsed
-                                    }.else {
-                                        Div {
-                                            "Ikke helt fullført"
-                                        }
-                                    }
-                                }
-                                .href("/practice-sessions/" + session.id + "/result")
-                                .class("text-muted")
-                            }
-                        }
-                    }
-                }
-            }
-            .class("table table-centered w-100 dt-responsive nowrap")
-        }
-        .class("table-responsive")
-    }
-}
-
-//struct BigForTestRuntime: StaticView {
-//
-//    let sessions: [PracticeSession]
-//
-//    var body: HTML {
-//        Div {
-//            Table {
-//                TableHead {
-//                    TableRow {
-//                        TableHeader {
-//                            "historyDateColumn"
-//                        }
-//                        TableHeader {
-//                            "historyGoalColumn"
-//                        }
-//                        TableHeader {
-//                            "historyDurationColumn"
-//                        }
-//                    }
-//                }
-//                .class("thead-light")
-//
-//                TableBody {
-//                    ForEachRuntime(values: sessions) { (session: PracticeSession) in
-//                        TableRow {
-//                            TableCell {
-//                                Anchor {
-//                                    session.createdAt
-//                                        .style(dateStyle: .medium, timeStyle: .short)
-//                                }
-//                                .href("/practice-sessions/" + session.id + "/result")
-//                                .class("text-muted")
-//                            }
-//                            TableCell {
-//                                Anchor {
-//                                    session.numberOfTaskGoal
-//                                    " oppgaver"
-//                                }
-//                                .href("/practice-sessions/" + session.id + "/result")
-//                                .class("text-muted")
-//                            }
-//                            TableCell {
-//                                Anchor {
-//                                    Test {
-//                                        if session.timeUsed != nil {
-//                                            session.timeUsed
-//                                        } else {
-//                                            Div {
-//                                                "Ikke helt fullført"
-//                                            }
-//                                        }
-//                                    }
-//                                }
-//                                .href("/practice-sessions/" + session.id + "/result")
-//                                .class("text-muted")
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//            .class("table table-centered w-100 dt-responsive nowrap")
-//        }
-//        .class("table-responsive")
-//    }
-//
-//
-//}
-//
-//extension Date {
-//
-//    func style(dateStyle: DateFormatter.Style = .short, timeStyle: DateFormatter.Style = .short) -> String {
-//        let formatter = DateFormatter()
-//        formatter.dateStyle = dateStyle
-//        formatter.timeStyle = timeStyle
-//        return formatter.string(from: self)
-//    }
-//}
+//        </script>
+//    </body>
+//</html>
