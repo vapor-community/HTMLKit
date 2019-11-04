@@ -2,39 +2,39 @@ protocol ContentRepresentable {
     var node: TemplateNode { get }
 }
 
-public protocol HTMLScope {}
+public protocol HTMLScope: AnyObject {}
 
 public enum Scopes {
-    public class Anywhere: HTMLScope {}
-    public class Root: Anywhere {}
-    public class Body: Anywhere {}
-    public class Head: Anywhere {}
+    public final class Never: HTMLScope {}
+    public class Root: HTMLScope {}
+    public class Body: HTMLScope {}
+    public class Head: HTMLScope {}
 }
 
 public protocol _HTML {
     associatedtype Content: _HTML
-    associatedtype HTMLScope
+    associatedtype HTMLScope: HTMLKit.HTMLScope
     
     var html: Content { get }
 }
 
-public protocol HTML: _HTML where HTMLScope: Scopes.Body, Content.HTMLScope: Scopes.Body {}
-public protocol Template: _HTML where HTMLScope == Never {
+public protocol HTML: _HTML where Content.HTMLScope == Scopes.Body, HTMLScope == Scopes.Body {}
+public protocol Template: _HTML where HTMLScope == Scopes.Never {
     init()
 }
 
 internal protocol HeadElement: _HTML where HTMLScope == Scopes.Head {}
-internal protocol BodyTag: _NativeHTMLElement, NodeRepresentedElement where HTMLScope == Scopes.Body {
+internal protocol BodyTag: _NativeHTMLElement, NodeRepresentedElement {
     init(node: TemplateNode)
 }
 
 public protocol AttributedHTML: HTML {
     associatedtype BaseTag: AttributedHTML
     
-    func attribute(key: String, value: String) -> Modified<BaseTag>
+    func attribute(key: String, value: TemplateValue) -> Modified<BaseTag>
 }
 
-internal protocol NodeRepresentedElement: AttributedHTML where Content == AnyBodyTag<HTMLScope>, BaseTag == Self {
+internal protocol NodeRepresentedElement: AttributedHTML where Content == AnyBodyTag, BaseTag == Self {
     var node: TemplateNode { get }
     static var tag: StaticString { get }
 }
@@ -46,17 +46,17 @@ public protocol _NativeHTMLElement: AttributedHTML {
 }
 
 extension NodeRepresentedElement {
-    public func attribute(key: String, value: String) -> Modified<Self> {
+    public func attribute(key: String, value: TemplateValue) -> Modified<Self> {
         return Modified<BaseTag>(
             tag: Self.tag,
             modifiers: [
-                .attribute(name: key, value: value)
+                .attribute(name: key, value: value.value)
             ],
             baseNode: node
         )
     }
     
-    public var html: AnyBodyTag<HTMLScope> { AnyBodyTag<HTMLScope>(Self.tag, content: node, modifiers: []) }
+    public var html: AnyBodyTag { AnyBodyTag(Self.tag, content: node, modifiers: []) }
 }
 
 extension BodyTag {
@@ -73,15 +73,15 @@ extension BodyTag {
     }
     
     @inlinable
-    public init<Element: HTML>(
+    public init<Element: _HTML>(
         @TemplateBuilder<Scopes.Body> build: () -> Element
     ) {
         self.init(node: TemplateNode(from: build()))
     }
 }
 
-extension Never: _HTML {
-    public typealias HTMLScope = Scopes.Anywhere
+extension Never: HTML {
+    public typealias HTMLScope = Scopes.Body
     
     public var html: Never { fatalError() }
 }

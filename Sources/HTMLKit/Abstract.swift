@@ -1,5 +1,5 @@
 internal indirect enum TemplateNode: ContentRepresentable, _HTML {
-    typealias HTMLScope = Never
+    typealias HTMLScope = Scopes.Never
     
     case none
     case list([TemplateNode])
@@ -25,8 +25,39 @@ internal indirect enum TemplateNode: ContentRepresentable, _HTML {
     }
 }
 
+internal enum AnyTemplateValue: ExpressibleByStringLiteral {
+    case literal(String)
+    case runtime([String])
+    
+    init(stringLiteral value: String) {
+        self = .literal(value)
+    }
+}
+
+public struct TemplateValue: ExpressibleByStringLiteral {
+    let value: AnyTemplateValue
+    
+    public init(literal value: String) {
+        self.value = .literal(value)
+    }
+    
+    public init(stringLiteral value: String) {
+        self.value = .literal(value)
+    }
+}
+
+public protocol TemplateValueRepresentable {
+    func makeTemplateValue() -> TemplateValue
+}
+
+extension String: TemplateValueRepresentable {
+    public func makeTemplateValue() -> TemplateValue {
+        TemplateValue(literal: self)
+    }
+}
+
 internal enum Modifier {
-    case attribute(name: String, value: String)
+    case attribute(name: String, value: AnyTemplateValue)
 }
 
 enum CompiledNode: UInt8 {
@@ -36,6 +67,12 @@ enum CompiledNode: UInt8 {
     case list = 0x03
     case contextValue = 0x04
     case computedList = 0x05
+}
+
+enum CompiledTemplateValue: UInt8 {
+//    case none = 0x00
+    case literal = 0x01
+    case runtime = 0x02
 }
 
 enum Constants {
@@ -48,10 +85,5 @@ enum Constants {
 
 public enum TemplateError: Error {
     case internalCompilerError
-}
-
-public enum TemplateValue {
-    case staticString(StaticString)
-    case string(String)
-    case null
+    case missingValue(String, needed: Any.Type)
 }

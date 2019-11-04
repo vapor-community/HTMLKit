@@ -1,5 +1,5 @@
 public struct Head: _HTML {
-    public typealias HTMLScope = Root
+    public typealias HTMLScope = Scopes.Root
     
     let node: TemplateNode
     

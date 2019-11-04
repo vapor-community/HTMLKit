@@ -1,4 +1,5 @@
-public struct AnyHTML<HTMLScope>: ContentRepresentable, _HTML {
+public struct AnyHTML<Scope: HTMLScope>: ContentRepresentable, _HTML {
+    public typealias HTMLScope = Scope
     let node: TemplateNode
     
     init(node: TemplateNode) {
@@ -21,3 +22,5 @@ public struct AnyHTML<HTMLScope>: ContentRepresentable, _HTML {
     
     public var html: Never { fatalError() }
 }
+
+extension AnyHTML: HTML where Scope == Scopes.Body {}

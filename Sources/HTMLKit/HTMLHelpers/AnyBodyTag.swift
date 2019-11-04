@@ -1,6 +1,5 @@
-public struct AnyBodyTag<Scope: Scopes.Body>: HTML {
-    public typealias HTMLScope = Scope
-    
+public struct AnyBodyTag: HTML {
+    public typealias HTMLScope = Scopes.Body
     let name: StaticString
     let content: TemplateNode
     let modifiers: [Modifier]
@@ -13,7 +12,7 @@ public struct AnyBodyTag<Scope: Scopes.Body>: HTML {
     
     public init(
         _ name: StaticString,
-        @TemplateBuilder<Scope> build: () -> ListContent<Scope>
+        @TemplateBuilder<HTMLScope> build: () -> ListContent<HTMLScope>
     ) {
         self.name = name
         self.content = TemplateNode(from: build())

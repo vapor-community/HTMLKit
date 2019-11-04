@@ -1,3 +1,4 @@
+import BSON
 import NIO
 
 public struct CompiledTemplate {
@@ -23,7 +24,11 @@ public struct CompiledTemplate {
         return data
     }
     
-    private static func compileNextNode(template: inout UnsafeByteBuffer, into output: inout ByteBuffer) throws {
+    private static func compileNextNode(
+        template: inout UnsafeByteBuffer,
+        into output: inout ByteBuffer,
+        context: Primitive?
+    ) throws {
         while let byte = template.readInteger(as: UInt8.self) {
             guard let node = CompiledNode(rawValue: byte) else {
                 throw TemplateError.internalCompilerError
@@ -46,18 +51,50 @@ public struct CompiledTemplate {
                 
                 for _ in 0..<modifierCount {
                     let key = try template.parseSlice()
-                    let value = try template.parseSlice()
                     
                     output.writeBytes(key)
                     output.writeInteger(Constants.equal)
                     output.writeInteger(Constants.quote)
-                    output.writeBytes(value)
+                    
+                    guard
+                        let byte = output.readInteger(as: UInt8.self),
+                        let type = CompiledTemplateValue(rawValue: byte)
+                    else {
+                        throw TemplateError.internalCompilerError
+                    }
+                    
+                    switch type {
+                    case .literal:
+                        let value = try template.parseSlice()
+                        output.writeBytes(value)
+                    case .runtime:
+                        // TODO: THIS PART HAS SHIT PERFORMANCE
+                        let property = try template.parseString()
+                        let path = property.split(separator: ".")
+                        
+                        var value: Primitive? = context
+                        
+                        for component in path where !component.isEmpty {
+                            value = value[String(component)]
+                        }
+                        
+                        if let value = value?.string {
+                            output.writeString(value)
+                        } else {
+                            throw TemplateError.missingValue(property, needed: String.self)
+                        }
+                    }
+                    
                     output.writeInteger(Constants.quote)
                 }
                     
                 output.writeInteger(Constants.greater)
                 
-                try compileNextNode(template: &template, into: &output)
+                try compileNextNode(
+                    template: &template,
+                    into: &output,
+                    context: context
+                )
                 
                 output.writeInteger(Constants.less)
                 output.writeInteger(Constants.forwardSlash)
@@ -69,13 +106,49 @@ public struct CompiledTemplate {
                 }
             
                 for _ in 0..<nodeCount {
-                    try compileNextNode(template: &template, into: &output)
+                    try compileNextNode(
+                        template: &template,
+                        into: &output,
+                        context: context
+                    )
                 }
             case .contextValue:
-                let path = try template.parseSlice()
+                // TODO: THIS PART HAS SHIT PERFORMANCE
+                let property = try template.parseString()
+                let path = property.split(separator: ".")
                 
+                var value: Primitive? = context
+                
+                for component in path where !component.isEmpty {
+                    value = value[String(component)]
+                }
+                
+                if let value = value?.string {
+                    output.writeString(value)
+                } else {
+                    throw TemplateError.missingValue(property, needed: String.self)
+                }
             case .computedList:
-                let path = try template.parseSlice()
+                // TODO: THIS PART HAS SHIT PERFORMANCE
+                let property = try template.parseString()
+                let path = property.split(separator: ".")
+                
+                var value: Primitive? = context
+                
+                for component in path where !component.isEmpty {
+                    value = value[String(component)]
+                }
+                
+                guard let array = value as? Document, array.isArray else {
+                    throw TemplateError.missingValue(property, needed: Array<Void>.self)
+                }
+                
+                let readerIndex = template.readerIndex
+                
+                for element in array.values {
+                    template.moveReaderIndex(to: readerIndex)
+                    try compileNextNode(template: &template, into: &output, context: element)
+                }
             }
         }
     }
@@ -99,9 +172,12 @@ public struct CompiledTemplate {
         properties: Properties
     ) throws {
         var template = template
+        let document = try BSONEncoder().encodePrimitive(properties)
+        
         try compileNextNode(
             template: &template._template,
-            into: &output
+            into: &output,
+            context: document
         )
     }
 }

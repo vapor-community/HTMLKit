@@ -5,12 +5,12 @@ public struct Img: NodeRepresentedElement {
     static var tag: StaticString = "img"
     let node: TemplateNode
     
-    public init<URI: URIStringRepresentable>(src: URI) {
+    public init<URI: TemplateValueRepresentable>(src: URI) {
         self.node = .tag(
             name: Self.tag,
             content: .none,
             modifiers: [
-                .attribute(name: "src", value: src.makeURIString())
+                .attribute(name: "src", value: src.makeTemplateValue().value)
         ])
     }
 }

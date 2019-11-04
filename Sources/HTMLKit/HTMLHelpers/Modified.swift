@@ -1,6 +1,7 @@
-public struct Modified<BaseTag: AttributedHTML>: AttributedHTML where BaseTag.HTMLScope: Scopes.Body {
+public struct Modified<BaseTag: AttributedHTML>: AttributedHTML {
+    public typealias HTMLScope = Scopes.Body
+    
     public typealias Content = AnyBodyTag
-    public typealias HTMLScope = BaseTag.HTMLScope
 
     let tag: StaticString
     let modifiers: [Modifier]
@@ -10,12 +11,12 @@ public struct Modified<BaseTag: AttributedHTML>: AttributedHTML where BaseTag.HT
         .tag(name: tag, content: baseNode, modifiers: modifiers)
     }
     
-    public var html: AnyBodyTag<HTMLScope> { AnyBodyTag<HTMLScope>(tag, content: node, modifiers: modifiers) }
+    public var html: AnyBodyTag { AnyBodyTag(tag, content: node, modifiers: modifiers) }
     
-    public func attribute(key: String, value: String) -> Modified<BaseTag> {
+    public func attribute(key: String, value: TemplateValue) -> Modified<BaseTag> {
         var modifiers = self.modifiers
         modifiers.append(
-            .attribute(name: key, value: value)
+            .attribute(name: key, value: value.value)
         )
         
         return Modified(

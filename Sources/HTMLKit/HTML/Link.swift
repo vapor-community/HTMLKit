@@ -5,18 +5,18 @@ public struct Link: HeadElement {
         node = .tag(name: "link", content: .none, modifiers: modifiers)
     }
     
-    public static func stylesheet<URI: URIStringRepresentable>(
+    public static func stylesheet<URI: TemplateValueRepresentable>(
         _ uri: URI
     ) -> Link {
         self.init([
             .attribute(
                 name: "stylesheet",
-                value: uri.makeURIString()
+                value: uri.makeTemplateValue().value
             ),
         ])
     }
     
-    public var html: AnyHTML<HTMLScope> {
+    public var html: AnyHTML<Scopes.Head> {
         AnyHTML(node: node)
     }
 }

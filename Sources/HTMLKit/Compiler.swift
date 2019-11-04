@@ -16,11 +16,23 @@ public struct TemplateCompiler {
         buffer = ByteBufferAllocator().buffer(capacity: 4_096)
     }
     
+    private mutating func compileTemplateValue(_ value: AnyTemplateValue) {
+        switch value {
+        case .literal(let literal):
+            buffer.writeInteger(CompiledTemplateValue.literal.rawValue)
+            compileString(literal)
+        case .runtime(let path):
+            let path = path.joined(separator: ".")
+            buffer.writeInteger(CompiledTemplateValue.runtime.rawValue)
+            compileString(path)
+        }
+    }
+    
     private mutating func compile(_ modifier: Modifier) {
         switch modifier {
         case .attribute(let name, let value):
             compileString(name)
-            compileString(value)
+            compileTemplateValue(value)
         }
     }
     

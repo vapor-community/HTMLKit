@@ -22,7 +22,7 @@ final class HTMLKitTests: XCTestCase {
             try! CompiledTemplate.render(
                 template: template,
                 output: &output,
-                context: properties
+                properties: properties
             )
         }
     }

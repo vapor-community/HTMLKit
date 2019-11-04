@@ -9,7 +9,7 @@ public struct Title: HeadElement {
         title = .literal(string)
     }
     
-    public var html: AnyHTML<HTMLScope> {
+    public var html: AnyHTML<Scopes.Head> {
         AnyHTML(node: .tag(name: "title", content: title, modifiers: []))
     }
 }

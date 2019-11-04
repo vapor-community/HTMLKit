@@ -1,9 +1,15 @@
 extension AttributedHTML where BaseTag.HTMLScope: Scopes.Body {
     public func id(_ ids: String...) -> Modified<BaseTag> {
-        self.attribute(key: "id", value: ids.joined(separator: " "))
+        self.attribute(
+            key: "id",
+            value: TemplateValue(literal: ids.joined(separator: " "))
+        )
     }
     
     public func `class`(_ classes: String...) -> Modified<BaseTag> {
-        self.attribute(key: "class", value: classes.joined(separator: " "))
+        self.attribute(
+            key: "class",
+            value: TemplateValue(literal: classes.joined(separator: " "))
+        )
     }
 }

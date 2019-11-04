@@ -29,11 +29,18 @@ extension HTMLContext {
 }
 
 extension Array: HTMLProperty where Element: HTMLProperty {}
-extension HTMLContext: _HTML {
+extension HTMLContext: HTML {
     public typealias Content = AnyHTML
-    public typealias HTMLScope = Scopes.Anywhere
     
-    public var html: AnyHTML<Scopes.Anywhere> {
+    public var html: AnyHTML<Scopes.Body> {
         return .init(node: .contextValue(path))
     }
 }
+
+extension HTMLContext: TemplateValueRepresentable {
+    public func makeTemplateValue() -> TemplateValue {
+        fatalError()
+    }
+}
+
+extension String: HTMLProperty {}

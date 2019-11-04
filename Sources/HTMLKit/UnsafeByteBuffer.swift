@@ -186,6 +186,18 @@ extension UnsafeByteBuffer {
         
         return slice
     }
+    
+    @inlinable
+    mutating func parseString() throws -> String {
+        guard
+            let length = readInteger(as: UInt32.self),
+            let string = readString(length: Int(length))
+        else {
+            throw TemplateError.internalCompilerError
+        }
+        
+        return string
+    }
 }
 
 extension ByteBuffer {

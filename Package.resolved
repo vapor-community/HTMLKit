@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "BSON",
+        "repositoryURL": "https://github.com/OpenKitten/BSON.git",
+        "state": {
+          "branch": null,
+          "revision": "fb2052dfe6af168ad2fb19c2f77fc197e051291a",
+          "version": "7.0.12"
+        }
+      },
+      {
         "package": "swift-nio",
         "repositoryURL": "https://github.com/apple/swift-nio.git",
         "state": {

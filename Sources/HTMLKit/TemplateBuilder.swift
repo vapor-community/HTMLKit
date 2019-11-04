@@ -1,12 +1,12 @@
 @_functionBuilder
 public enum TemplateBuilder<Scope: HTMLScope> {
-    public static func buildBlock() -> AnyHTML<HTMLScope> {
+    public static func buildBlock() -> AnyHTML<Scope> {
         return AnyHTML(node: .none)
     }
     
     public static func buildBlock<Content: _HTML>(
         _ content: Content
-    ) -> Content where Content.HTMLScope == Scope {
+    ) -> Content where Content.HTMLScope== Scope {
         return content
     }
     
