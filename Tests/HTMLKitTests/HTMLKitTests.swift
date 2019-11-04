@@ -18,12 +18,18 @@ final class HTMLKitTests: XCTestCase {
             ]
         )
         
+        var first = true
         measure {
             try! CompiledTemplate.render(
                 template: template,
                 output: &output,
                 properties: properties
             )
+            
+            if first {
+                print(output.getString(at: 0, length: output.readableBytes))
+                first = false
+            }
         }
     }
 }

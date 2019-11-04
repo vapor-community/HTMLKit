@@ -141,6 +141,10 @@ public struct UnsafeByteBuffer {
     /// - returns: An integer value deserialized from this `ByteBuffer` or `nil` if there aren't enough bytes readable.
     @inlinable
     public mutating func readInteger<T: FixedWidthInteger>(endianness: Endianness = .little, as: T.Type = T.self) -> T? {
+        if readerIndex + MemoryLayout<T>.size >= capacity {
+            return nil
+        }
+        
         return self.getInteger(at: self.readerIndex, endianness: endianness, as: T.self).map {
             self._moveReaderIndex(forwardBy: MemoryLayout<T>.size)
             return $0
