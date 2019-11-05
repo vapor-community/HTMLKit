@@ -7,7 +7,7 @@ internal indirect enum TemplateNode: ContentRepresentable, _HTML {
     case lazy(() -> TemplateNode)
     case literal(String)
 //    case anyLocalizable()
-    case contextValue([String])
+    case contextValue([String], broken: Bool)
     case computedList([String], TemplateNode)
     
     var node: TemplateNode { self }
@@ -41,6 +41,10 @@ public struct TemplateValue: ExpressibleByStringLiteral {
         self.value = .literal(value)
     }
     
+    internal init(value: AnyTemplateValue) {
+        self.value = value
+    }
+    
     public init(stringLiteral value: String) {
         self.value = .literal(value)
     }
@@ -61,7 +65,7 @@ internal enum Modifier {
 }
 
 enum CompiledNode: UInt8 {
-//    case none = 0x00
+    case none = 0x00
     case tag = 0x01
     case literal = 0x02
     case list = 0x03
@@ -76,6 +80,7 @@ enum CompiledTemplateValue: UInt8 {
 }
 
 enum Constants {
+    static let space: UInt8 = 0x20
     static let quote: UInt8 = 0x22
     static let less: UInt8 = 0x3c
     static let equal: UInt8 = 0x3d
@@ -85,5 +90,6 @@ enum Constants {
 
 public enum TemplateError: Error {
     case internalCompilerError
+    case errorCompilingPropertyAccessor([String])
     case missingValue(String, needed: Any.Type)
 }

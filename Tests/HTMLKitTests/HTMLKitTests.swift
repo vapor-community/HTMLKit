@@ -5,9 +5,10 @@ import XCTest
 import HTMLKit
 import NIO
 
+@available(OSX 10.15.0, *)
 final class HTMLKitTests: XCTestCase {
     func testPerf() throws {
-        let template = TemplateCompiler.compile(page)
+        let template = try TemplateCompiler.compile(page)
         var output = ByteBufferAllocator().buffer(capacity: 10_000)
         let properties = Properties(
             links: [

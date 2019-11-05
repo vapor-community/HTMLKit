@@ -2,7 +2,7 @@ public struct Root {
     let node: TemplateNode
     
     init(node: TemplateNode) {
-        self.node = node
+        self.node = .tag(name: "html", content: node, modifiers: [])
     }
     
     public var html: AnyHTML<Scopes.Never> {
@@ -12,6 +12,6 @@ public struct Root {
     public init<Content: _HTML>(
         @TemplateBuilder<Scopes.Root> content: @escaping () -> Content
     ) where Content.HTMLScope == Scopes.Root {
-        node = .lazy({ TemplateNode(from: content()) })
+        self.init(node: TemplateNode(from: content()))
     }
 }

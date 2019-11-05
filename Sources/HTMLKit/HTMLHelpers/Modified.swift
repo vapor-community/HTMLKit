@@ -7,11 +7,7 @@ public struct Modified<BaseTag: AttributedHTML>: AttributedHTML {
     let modifiers: [Modifier]
     let baseNode: TemplateNode
     
-    var node: TemplateNode {
-        .tag(name: tag, content: baseNode, modifiers: modifiers)
-    }
-    
-    public var html: AnyBodyTag { AnyBodyTag(tag, content: node, modifiers: modifiers) }
+    public var html: AnyBodyTag { AnyBodyTag(tag, content: baseNode, modifiers: modifiers) }
     
     public func attribute(key: String, value: TemplateValue) -> Modified<BaseTag> {
         var modifiers = self.modifiers
@@ -28,12 +24,16 @@ public struct Modified<BaseTag: AttributedHTML>: AttributedHTML {
 }
 
 extension Array where Element == Modifier {
-    var string: String {
+    func makeString() -> String? {
         var string = ""
         
         for element in self {
             if case .attribute(let name, let value) = element {
-                string += " \(name)=\"\(value)\""
+                guard case .literal(let literal) = value else {
+                    return nil
+                }
+                
+                string += " \(name)=\"\(literal)\""
             }
         }
         

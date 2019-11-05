@@ -22,9 +22,8 @@ public struct TemplateCompiler {
             buffer.writeInteger(CompiledTemplateValue.literal.rawValue)
             compileString(literal)
         case .runtime(let path):
-            let path = path.joined(separator: ".")
             buffer.writeInteger(CompiledTemplateValue.runtime.rawValue)
-            compileString(path)
+            compileString(path.joined(separator: "."))
         }
     }
     
@@ -46,10 +45,10 @@ public struct TemplateCompiler {
         buffer.writeStaticString(string)
     }
     
-    private mutating func compile(_ node: TemplateNode) {
+    private mutating func compile(_ node: TemplateNode) throws {
         switch node {
         case .none:
-            return
+            buffer.writeInteger(CompiledNode.none.rawValue)
         case .tag(let name, let content, let modifiers):
             let data = Data(bytes: name.utf8Start, count: name.utf8CodeUnitCount)
             let name = String(data: data, encoding: .utf8)!
@@ -62,7 +61,7 @@ public struct TemplateCompiler {
                 compile(modifier)
             }
             
-            compile(content)
+            try compile(content)
         case .literal(let literal):
             buffer.writeInteger(CompiledNode.literal.rawValue)
             compileString(literal)
@@ -71,11 +70,15 @@ public struct TemplateCompiler {
             buffer.writeInteger(UInt8(nodes.count))
             
             for node in nodes {
-                compile(node)
+                try compile(node)
             }
         case .lazy(let render):
-            compile(render())
-        case .contextValue(let path):
+            try compile(render())
+        case .contextValue(let path, let broken):
+            if broken {
+                throw TemplateError.errorCompilingPropertyAccessor(path)
+            }
+            
             let path = path.joined(separator: ".")
             buffer.writeInteger(CompiledNode.contextValue.rawValue)
             compileString(path)
@@ -84,23 +87,23 @@ public struct TemplateCompiler {
             
             buffer.writeInteger(CompiledNode.computedList.rawValue)
             compileString(path)
-            compile(node)
+            try compile(node)
         }
     }
     
-    public static func compile<T: Template>(_ type: T.Type) -> CompiledTemplate {
+    public static func compile<T: Template>(_ type: T.Type) throws -> CompiledTemplate {
         var compiler = TemplateCompiler()
         var node = TemplateNode(from: T())
         _ = optimize(&node)
-        compiler.compile(node)
+        try compiler.compile(node)
         return compiler.export()
     }
     
-    public static func compile(_ root: Root) -> CompiledTemplate {
+    public static func compile(_ root: Root) throws -> CompiledTemplate {
         var compiler = TemplateCompiler()
         var node = root.node
         _ = optimize(&node)
-        compiler.compile(node)
+        try compiler.compile(node)
         return compiler.export()
     }
     
@@ -129,13 +132,15 @@ public struct TemplateCompiler {
                 case .none:
                     continue nextSubnode
                 case .list(let nestedList):
-                    if !didOptimize {
-                        flushOptimization()
-                    }
+                    flushOptimization()
                     nodes.append(contentsOf: nestedList)
                     shouldReoptimize = true
                 case .tag(let name, var content, let modifiers):
-                    result += "<\(name)\(modifiers.string)>"
+                    guard let literalModifierString = modifiers.makeString() else {
+                        fatalError()
+                    }
+                    
+                    result += "<\(name)\(literalModifierString)>"
                     
                     let isOptimized = optimize(&content)
                     if isOptimized, case .literal(let value) = content {
@@ -176,21 +181,35 @@ public struct TemplateCompiler {
             }
             return true
         case .tag(let name, var content, let modifiers):
-            let start = "<\(name)\(modifiers.string)>"
+            guard let literalModifierString = modifiers.makeString() else {
+                fatalError()
+            }
+            let start = "<\(name)\(literalModifierString)>"
             let end = "</\(name)>"
             let isOptimized = optimize(&content)
             
-            if isOptimized, case .literal(let value) = content {
+            switch (isOptimized, content) {
+            case (true, .literal(let value)):
                 node = .literal(start + value + end)
-                return true
-            } else {
+            case (true, .none):
+                node = .literal(start + end)
+            case (true, .list):
                 node = .list([
                     .literal(start),
                     content,
                     .literal(end)
                 ])
-                return false
+            case (true, _):
+                fatalError("Invalid optimizer scenario, non-literal, non-empty and non-list optimized content")
+            case (false, _):
+                node = .list([
+                    .literal(start),
+                    content,
+                    .literal(end)
+                ])
             }
+            
+            return isOptimized
         case .lazy(let build):
             var resolved = build()
             let success = optimize(&resolved)

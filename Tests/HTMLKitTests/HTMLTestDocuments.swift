@@ -24,6 +24,7 @@ struct Menu: HTML {
     }
 }
 
+@available(OSX 10.15.0, *)
 let page = Root {
     Head {
         Title("Welkom bij Autimatisering")
@@ -38,7 +39,7 @@ let page = Root {
                 .id("logo")
         }
         
-        
+        Menu()
 //        Header {
 //            
 //        }
