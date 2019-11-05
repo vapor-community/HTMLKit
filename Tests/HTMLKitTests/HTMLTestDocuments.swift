@@ -12,7 +12,7 @@ struct Properties: HTMLProperty {
 let context = HTMLContext<Properties>()
 
 @available(OSX 10.15.0, *)
-struct Menu: HTML {
+struct AMMenu: HTML {
     var html: some HTML {
         Nav {
             context.links.forEach { link in
@@ -39,7 +39,7 @@ let page = Root {
                 .id("logo")
         }
         
-        Menu()
+        AMMenu()
 //        Header {
 //            
 //        }

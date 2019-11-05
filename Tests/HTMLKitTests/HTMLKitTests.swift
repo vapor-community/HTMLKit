@@ -1,6 +1,7 @@
 // swiftlint:disable:this force_try
 
 import XCTest
+import BSON
 //@testable import Vapor
 import HTMLKit
 import NIO
@@ -18,18 +19,15 @@ final class HTMLKitTests: XCTestCase {
                 MenuLink(name: "CONTACT", link: "contact.html")
             ]
         )
+        let document = try BSONEncoder().encodePrimitive(properties)
         
-        var first = true
         measure {
-            try! CompiledTemplate.render(
-                template: template,
-                output: &output,
-                properties: properties
-            )
-            
-            if first {
-                print(output.getString(at: 0, length: output.readableBytes))
-                first = false
+            for _ in 0..<10_000 {
+                try! CompiledTemplate.render(
+                    template: template,
+                    output: &output,
+                    properties: document
+                )
             }
         }
     }

@@ -173,14 +173,26 @@ public struct CompiledTemplate {
         output: inout ByteBuffer,
         properties: Properties
     ) throws {
-        var template = template
         let document = try BSONEncoder().encodePrimitive(properties)
+        try render(
+            template: template,
+            output: &output,
+            properties: document
+        )
+    }
+    
+    public static func render(
+        template: CompiledTemplate,
+        output: inout ByteBuffer,
+        properties: Primitive?
+    ) throws {
+        var template = template
         
         while template._template.readableBytes > 0 {
             try compileNextNode(
                 template: &template._template,
                 into: &output,
-                context: document
+                context: properties
             )
         }
     }
