@@ -1,7 +1,7 @@
 public struct Link: HeadElement {
     let node: TemplateNode
     
-    init(_ modifiers: [Modifier]) {
+    init(_ modifiers: [_Modifier]) {
         node = .tag(name: "link", content: .none, modifiers: modifiers)
     }
     

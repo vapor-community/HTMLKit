@@ -8,7 +8,7 @@ import NIO
 
 @available(OSX 10.15.0, *)
 struct ForView: Template {
-    let context = HTMLContext<[String]>()
+    @HTMLContext([String].self) var context
 
     var html: some HTML {
         Nav {

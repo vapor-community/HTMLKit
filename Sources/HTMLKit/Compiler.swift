@@ -11,6 +11,7 @@ fileprivate func equal(lhs: StaticString, rhs: StaticString) -> Bool {
 
 public struct TemplateCompiler {
     var buffer: ByteBuffer
+    let stylesheet = StyleRegistery()
     
     init() {
         buffer = ByteBufferAllocator().buffer(capacity: 4_096)
@@ -27,11 +28,18 @@ public struct TemplateCompiler {
         }
     }
     
-    private mutating func compile(_ modifier: Modifier) {
+    private mutating func compile(_ modifier: _Modifier) {
         switch modifier {
         case .attribute(let name, let value):
             compileString(name)
             compileTemplateValue(value)
+        case .style(let type, let styles):
+            compileString(type.rawValue)
+            compileString(styles.map { $0.styleName }.joined(separator: " "))
+            
+            for style in styles {
+                style.register?(self.stylesheet)
+            }
         }
     }
     

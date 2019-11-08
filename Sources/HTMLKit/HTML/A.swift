@@ -7,6 +7,6 @@ public struct A: BodyTag {
 
 extension AttributedHTML where BaseTag == A {
     public func href<URI: TemplateValueRepresentable>(_ href: URI) -> Modified<BaseTag> {
-        attribute(key: "href", value: href.makeTemplateValue())
+        self.attribute(key: "href", value: href.makeTemplateValue())
     }
 }

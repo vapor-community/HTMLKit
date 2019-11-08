@@ -1,7 +1,7 @@
 public struct Meta: HeadElement {
     let node: TemplateNode
     
-    init(_ modifiers: [Modifier]) {
+    init(_ modifiers: [_Modifier]) {
         node = .tag(name: "meta", content: .none, modifiers: modifiers)
     }
     

@@ -4,16 +4,14 @@ public struct Modified<BaseTag: AttributedHTML>: AttributedHTML {
     public typealias Content = AnyBodyTag
 
     let tag: StaticString
-    let modifiers: [Modifier]
+    let modifiers: [_Modifier]
     let baseNode: TemplateNode
     
     public var html: AnyBodyTag { AnyBodyTag(tag, content: baseNode, modifiers: modifiers) }
     
-    public func attribute(key: String, value: TemplateValue) -> Modified<BaseTag> {
+    public func modify(with modifier: Modifier) -> Modified<BaseTag> {
         var modifiers = self.modifiers
-        modifiers.append(
-            .attribute(name: key, value: value.value)
-        )
+        modifiers.append(modifier.modifier)
         
         return Modified(
             tag: tag,
@@ -21,9 +19,13 @@ public struct Modified<BaseTag: AttributedHTML>: AttributedHTML {
             baseNode: baseNode
         )
     }
+    
+    public func attribute(key: String, value: TemplateValue) -> Modified<BaseTag> {
+        self.modify(with: Modifier(modifier: .attribute(name: key, value: value.value)))
+    }
 }
 
-extension Array where Element == Modifier {
+extension Array where Element == _Modifier {
 
     func makeTemplateNode() -> TemplateNode {
         var node: TemplateNode = .none

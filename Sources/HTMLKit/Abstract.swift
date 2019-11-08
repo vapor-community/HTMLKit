@@ -3,7 +3,7 @@ internal indirect enum TemplateNode: ContentRepresentable, _HTML {
     
     case none
     case list([TemplateNode])
-    case tag(name: StaticString, content: TemplateNode, modifiers: [Modifier])
+    case tag(name: StaticString, content: TemplateNode, modifiers: [_Modifier])
     case lazy(() -> TemplateNode)
     case literal(String)
 //    case anyLocalizable()
@@ -60,8 +60,17 @@ extension String: TemplateValueRepresentable {
     }
 }
 
-internal enum Modifier {
+internal enum _Modifier {
     case attribute(name: String, value: AnyTemplateValue)
+    case style(type: StyleType, value: [AnyStyle])
+}
+
+public struct Modifier {
+    let modifier: _Modifier
+}
+
+enum StyleType: String {
+    case `class`, id
 }
 
 enum CompiledNode: UInt8 {

@@ -16,6 +16,12 @@ public protocol _HTML {
     associatedtype HTMLScope: HTMLKit.HTMLScope
     
     var html: Content { get }
+    func applyStyle(to css: inout CSS)
+}
+
+extension _HTML {
+    @inlinable
+    public func applyStyle(to css: inout CSS) {}
 }
 
 public protocol HTML: _HTML where Content.HTMLScope == Scopes.Body, HTMLScope == Scopes.Body {}
@@ -32,6 +38,7 @@ public protocol AttributedHTML: HTML {
     associatedtype BaseTag: AttributedHTML
     
     func attribute(key: String, value: TemplateValue) -> Modified<BaseTag>
+    func modify(with modifier: Modifier) -> Modified<BaseTag>
 }
 
 internal protocol NodeRepresentedElement: AttributedHTML where Content == AnyBodyTag, BaseTag == Self {
@@ -46,14 +53,16 @@ public protocol _NativeHTMLElement: AttributedHTML {
 }
 
 extension NodeRepresentedElement {
-    public func attribute(key: String, value: TemplateValue) -> Modified<Self> {
+    public func modify(with modifier: Modifier) -> Modified<BaseTag> {
         return Modified<BaseTag>(
             tag: Self.tag,
-            modifiers: [
-                .attribute(name: key, value: value.value)
-            ],
+            modifiers: [modifier.modifier],
             baseNode: node
         )
+    }
+    
+    public func attribute(key: String, value: TemplateValue) -> Modified<Self> {
+        return modify(with: Modifier(modifier: .attribute(name: key, value: value.value)))
     }
     
     public var html: AnyBodyTag { AnyBodyTag(Self.tag, content: node, modifiers: []) }

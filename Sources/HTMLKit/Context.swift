@@ -1,13 +1,19 @@
 public protocol HTMLProperty: Codable {}
 
 @dynamicMemberLookup
+@propertyWrapper
 public struct HTMLContext<T: HTMLProperty> {
     internal let path: [String]
     internal let broken: Bool
+    public var wrappedValue: HTMLContext<T> { self }
     
     public init() {
         path = []
         broken = false
+    }
+    
+    public init(_ type: T.Type) {
+        self.init()
     }
     
     init(path: [String], broken: Bool) {
