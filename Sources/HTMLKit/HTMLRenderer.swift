@@ -176,8 +176,6 @@ public class HTMLRenderer: HTMLRenderable {
     /// This will remove the generic type in the render call
     public class ContextManager<Context> {
 
-        let rootContext: Context
-
         /// The different context varaibles used when rendering
         var contextes: [String: Any]
 
@@ -188,8 +186,7 @@ public class HTMLRenderer: HTMLRenderable {
         public var locale: String?
 
         init(rootContext: Context, lingo: Lingo? = nil) {
-            self.rootContext = rootContext
-            self.contextes = [:]
+            self.contextes = ["" : rootContext]
             self.lingo = lingo
             self.locale = nil
         }
@@ -198,10 +195,7 @@ public class HTMLRenderer: HTMLRenderable {
         ///
         /// - Returns: The value at the `ContextVariable`
         func value<Root, Value>(for variable: ContextVariable<Root, Value>) throws -> Value {
-            if variable.rootId.isEmpty,
-                let path = variable.root as? KeyPath<Context, Value> {
-                return rootContext[keyPath: path]
-            } else if let variableContext = contextes[variable.rootId] as? Root {
+            if let variableContext = contextes[variable.rootId] as? Root {
                 return variableContext[keyPath: variable.root]
             } else {
                 throw Errors.unableToRetriveValue
@@ -279,7 +273,11 @@ public class HTMLRenderer: HTMLRenderable {
         /// - Returns: A rendered formula
         /// - Throws: If some of the formula fails, for some reason
         func render<U>(with manager: ContextManager<U>) throws -> String {
-            return try ingredient.reduce("") { try $0 + $1.render(with: manager) }
+            var html = ""
+            for item in ingredient {
+                html += try item.render(with: manager)
+            }
+            return html
         }
     }
 }

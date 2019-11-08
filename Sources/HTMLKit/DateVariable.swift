@@ -43,10 +43,8 @@ struct DateVariable<Root>: HTML {
 
         var optionalDate: Date?
         switch dateReference {
-        case .solid(let path):
-            optionalDate = try path.value(from: manager)
-        case .optional(let path):
-            optionalDate = try path.value(from: manager)
+        case .solid(let path): optionalDate = try path.value(from: manager)
+        case .optional(let path): optionalDate = try path.value(from: manager)
         }
 
         guard let date = optionalDate else { return "" }

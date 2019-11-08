@@ -112,6 +112,13 @@ extension TemplateValueMapping: HTML where C: HTML {
     }
 }
 
+@dynamicMemberLookup
+struct StringValue {
+    public subscript<Type: ExpressibleByStringLiteral>(dynamicMember string: Type) -> StringValue {
+        return .init()
+    }
+}
+
 public protocol HTMLPage: HTML {
     var body: HTML { get }
 }
