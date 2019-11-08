@@ -31,13 +31,17 @@ final class HTMLKitTests: XCTestCase {
                 MenuLink(name: "WIE WIJ ZIJN", link: "overons.html"),
                 MenuLink(name: "WAT WIJ DOEN", link: "watwijdoen.html"),
                 MenuLink(name: "CONTACT", link: "contact.html")
-            ]
+            ],
+            text: """
+            asf;jadgkhjefaldskfdghfiehjsgdfkgh
+            fhsfhjksflhjfslkghjfslkgjsfklgjfslkgjsfgkljdfsgklsdj
+            """
         )
 
         let document = try BSONEncoder().encodePrimitive(properties)
 
         measure {
-            for _ in 0..<10_000 {
+            for _ in 0..<1 {
                 try! CompiledTemplate.render(
                     template: template,
                     output: &output,

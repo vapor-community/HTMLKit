@@ -1,8 +1,5 @@
-extension String: _HTML {
-    public typealias HTMLScope = Scopes.Body
-    public typealias Content = AnyHTML
-    
-    public var html: AnyHTML<HTMLScope> {
+extension String: HTML {
+    public var html: AnyHTML<Scopes.Body> {
         AnyHTML(node: .literal(self))
     }
 }
