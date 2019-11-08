@@ -126,7 +126,7 @@ public struct TemplateCompiler {
             var iterator = subnodes.makeIterator()
             
             nextSubnode: while var subnode = iterator.next() {
-                let didOptimize = optimize(&subnode)
+                _ = optimize(&subnode)
                 
                 switch subnode {
                 case .none:
@@ -136,11 +136,17 @@ public struct TemplateCompiler {
                     nodes.append(contentsOf: nestedList)
                     shouldReoptimize = true
                 case .tag(let name, var content, let modifiers):
-                    guard let literalModifierString = modifiers.makeString() else {
-                        fatalError()
+
+                    var modifierTemplate = modifiers.makeTemplateNode()
+
+                    result += "<\(name)"
+                    if case .literal(let literalModifierString) = modifierTemplate {
+                        result += "\(literalModifierString)>"
+                    } else {
+                        flushOptimization()
+                        _ = optimize(&modifierTemplate)
+                        nodes.append(modifierTemplate)
                     }
-                    
-                    result += "<\(name)\(literalModifierString)>"
                     
                     let isOptimized = optimize(&content)
                     if isOptimized, case .literal(let value) = content {
@@ -160,7 +166,7 @@ public struct TemplateCompiler {
                 case .literal(let value):
                     result += value
                 case .contextValue, .computedList:
-                    assert(!didOptimize, "Optimized node cannot be a contextValue, these are not optimizable")
+//                    assert(!didOptimize, "Optimized node cannot be a contextValue, these are not optimizable")
                     flushOptimization()
                     nodes.append(subnode)
                 }
@@ -181,10 +187,19 @@ public struct TemplateCompiler {
             }
             return true
         case .tag(let name, var content, let modifiers):
-            guard let literalModifierString = modifiers.makeString() else {
-                fatalError()
+
+            var modifierTemplate = modifiers.makeTemplateNode()
+
+            var start = "<\(name)"
+            if case .literal(let literalModifierString) = modifierTemplate {
+                start += "\(literalModifierString)>"
+            } else {
+                _ = optimize(&modifierTemplate)
+                content = .list([
+                    modifierTemplate,
+                    content
+                ])
             }
-            let start = "<\(name)\(literalModifierString)>"
             let end = "</\(name)>"
             let isOptimized = optimize(&content)
             
@@ -194,6 +209,18 @@ public struct TemplateCompiler {
             case (true, .none):
                 node = .literal(start + end)
             case (true, .list):
+                node = .list([
+                    .literal(start),
+                    content,
+                    .literal(end)
+                ])
+            case (true, .computedList(let path, let content)):
+                node = .list([
+                    .literal(start),
+                    .computedList(path, content),
+                    .literal(end)
+                ])
+            case (true, .contextValue(_, _)):
                 node = .list([
                     .literal(start),
                     content,
@@ -217,7 +244,10 @@ public struct TemplateCompiler {
             return success
         case .literal:
             return true
-        case .contextValue, .computedList:
+        case .computedList(_, var node):
+            _ = optimize(&node)
+            return true
+        case .contextValue:
             return false
         }
     }

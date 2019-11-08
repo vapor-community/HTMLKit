@@ -7,6 +7,20 @@ import HTMLKit
 import NIO
 
 @available(OSX 10.15.0, *)
+struct ForView: Template {
+    let context = HTMLContext<[String]>()
+
+    var html: some HTML {
+        Nav {
+            context.forEach { item in
+                P { item }
+            }
+        }
+        .id("array")
+    }
+}
+
+@available(OSX 10.15.0, *)
 final class HTMLKitTests: XCTestCase {
     func testPerf() throws {
         let template = try TemplateCompiler.compile(page)
@@ -19,8 +33,9 @@ final class HTMLKitTests: XCTestCase {
                 MenuLink(name: "CONTACT", link: "contact.html")
             ]
         )
+
         let document = try BSONEncoder().encodePrimitive(properties)
-        
+
         measure {
             for _ in 0..<10_000 {
                 try! CompiledTemplate.render(
@@ -30,5 +45,16 @@ final class HTMLKitTests: XCTestCase {
                 )
             }
         }
+
+//        output.clear()
+//        measure {
+//            for _ in 0..<10_000 {
+//                try! CompiledTemplate.render(
+//                    template: template,
+//                    output: &output,
+//                    properties: document
+//                )
+//            }
+//        }
     }
 }

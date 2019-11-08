@@ -24,19 +24,53 @@ public struct Modified<BaseTag: AttributedHTML>: AttributedHTML {
 }
 
 extension Array where Element == Modifier {
-    func makeString() -> String? {
-        var string = ""
-        
+
+    func makeTemplateNode() -> TemplateNode {
+        var node: TemplateNode = .none
         for element in self {
             if case .attribute(let name, let value) = element {
-                guard case .literal(let literal) = value else {
-                    return nil
+                switch node {
+                case .none:
+                    switch value {
+                    case .literal(let literal): node = .literal(" \(name)=\"\(literal)\"")
+                    case .runtime(let path):    node = .contextValue(path, broken: false)
+                    }
+                case .literal(let currentNode):
+                    switch value {
+                    case .literal(let literal): node = .literal(currentNode + " \(name)=\"\(literal)\"")
+                    case .runtime(let path):    node = .list([
+                        .literal(currentNode),
+                        .contextValue(path, broken: false)
+                    ])
+                    }
+                case .contextValue(_):
+                    switch value {
+                    case .literal(let literal): node = .list([
+                        node,
+                        .literal(literal)
+                    ])
+                    case .runtime(let path):    node = .list([
+                        node,
+                        .contextValue(path, broken: false)
+                    ])
+                    }
+                case .list(let nodes):
+                    switch value {
+                    case .literal(let literal):
+                        node = .list(
+                            nodes + [
+                            .literal(" \(name)=\"\(literal)\"")
+                        ])
+                    case .runtime(let path):
+                        node = .list(
+                            nodes + [
+                            .contextValue(path, broken: false)
+                        ])
+                    }
+                default: fatalError()
                 }
-                
-                string += " \(name)=\"\(literal)\""
             }
         }
-        
-        return string
+        return node
     }
 }

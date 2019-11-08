@@ -18,7 +18,9 @@ struct AMMenu: HTML {
             context.links.forEach { link in
                 A {
                     link.name
-                }.href(link.link).class("selected")
+                }
+                .href(link.link)
+                .class("selected")
             }
         }.id("menu")
     }
