@@ -23,7 +23,7 @@ struct ForView: Template {
 @available(OSX 10.15.0, *)
 final class HTMLKitTests: XCTestCase {
     func testPerf() throws {
-        let template = try TemplateCompiler.compile(page)
+        let template = try TemplateCompiler<Properties>.compile(page)
         var output = ByteBufferAllocator().buffer(capacity: 10_000)
         let properties = Properties(
             links: [
@@ -38,16 +38,8 @@ final class HTMLKitTests: XCTestCase {
             """
         )
 
-        let document = try BSONEncoder().encodePrimitive(properties)
-
         measure {
-            for _ in 0..<1 {
-                try! CompiledTemplate.render(
-                    template: template,
-                    output: &output,
-                    properties: document
-                )
-            }
+            try! template.render(output: &output, properties: properties)
         }
 
 //        output.clear()

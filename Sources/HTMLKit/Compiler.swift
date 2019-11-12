@@ -9,22 +9,28 @@ fileprivate func equal(lhs: StaticString, rhs: StaticString) -> Bool {
     return memcmp(lhs.utf8Start, rhs.utf8Start, lhs.utf8CodeUnitCount) == 0
 }
 
-public struct TemplateCompiler {
+public struct TemplateCompiler<Properties> {
     var buffer: ByteBuffer
+    var keyPaths = [AnyKeyPath]()
     let stylesheet = StyleRegistery()
     
     init() {
         buffer = ByteBufferAllocator().buffer(capacity: 4_096)
     }
     
-    private mutating func compileTemplateValue(_ value: AnyTemplateValue) {
-        switch value {
-        case .literal(let literal):
+    private mutating func compileTemplateValue(_ value: TemplateValue) {
+        switch value.storage {
+        case .compileTime(let literal):
             buffer.writeInteger(CompiledTemplateValue.literal.rawValue)
-            compileString(literal)
+            
+            switch literal.storage {
+            case .string(let string):
+                compileString(string)
+            }
         case .runtime(let path):
             buffer.writeInteger(CompiledTemplateValue.runtime.rawValue)
-            compileString(path.joined(separator: "."))
+            buffer.writeInteger(keyPaths.count)
+            keyPaths.append(path)
         }
     }
     
@@ -82,24 +88,19 @@ public struct TemplateCompiler {
             }
         case .lazy(let render):
             try compile(render())
-        case .contextValue(let path, let broken):
-            if broken {
-                throw TemplateError.errorCompilingPropertyAccessor(path)
-            }
-            
-            let path = path.joined(separator: ".")
+        case .contextValue(let path):
             buffer.writeInteger(CompiledNode.contextValue.rawValue)
-            compileString(path)
+            buffer.writeInteger(keyPaths.count)
+            keyPaths.append(path)
         case .computedList(let path, let node):
-            let path = path.joined(separator: ".")
-            
             buffer.writeInteger(CompiledNode.computedList.rawValue)
-            compileString(path)
+            buffer.writeInteger(keyPaths.count)
+            keyPaths.append(path)
             try compile(node)
         }
     }
     
-    public static func compile<T: Template>(_ type: T.Type) throws -> CompiledTemplate {
+    public static func compile<T: Template>(_ type: T.Type) throws -> CompiledTemplate<Properties> {
         var compiler = TemplateCompiler()
         var node = TemplateNode(from: T())
         _ = optimize(&node)
@@ -107,7 +108,7 @@ public struct TemplateCompiler {
         return compiler.export()
     }
     
-    public static func compile(_ root: Root) throws -> CompiledTemplate {
+    public static func compile(_ root: Root) throws -> CompiledTemplate<Properties> {
         var compiler = TemplateCompiler()
         var node = root.node
         _ = optimize(&node)
@@ -228,7 +229,7 @@ public struct TemplateCompiler {
                     .computedList(path, content),
                     .literal(end)
                 ])
-            case (true, .contextValue(_, _)):
+            case (true, .contextValue(_)):
                 node = .list([
                     .literal(start),
                     content,
@@ -260,7 +261,7 @@ public struct TemplateCompiler {
         }
     }
     
-    func export() -> CompiledTemplate {
+    func export() -> CompiledTemplate<Properties> {
         let size = buffer.readableBytes
         let pointer = UnsafeMutableRawPointer.allocate(byteCount: size, alignment: 1)
         
@@ -269,6 +270,6 @@ public struct TemplateCompiler {
         }
         
         let buffer = UnsafeByteBuffer(pointer: pointer, size: size)
-        return CompiledTemplate(template: buffer)
+        return CompiledTemplate(template: buffer, keyPaths: keyPaths)
     }
 }

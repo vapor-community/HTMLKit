@@ -7,8 +7,8 @@ internal indirect enum TemplateNode: ContentRepresentable, _HTML {
     case lazy(() -> TemplateNode)
     case literal(String)
 //    case anyLocalizable()
-    case contextValue([String], broken: Bool)
-    case computedList([String], TemplateNode)
+    case contextValue(AnyKeyPath)
+    case computedList(AnyKeyPath, TemplateNode)
     
     var node: TemplateNode { self }
     var html: TemplateNode { self }
@@ -25,28 +25,54 @@ internal indirect enum TemplateNode: ContentRepresentable, _HTML {
     }
 }
 
-internal enum AnyTemplateValue: ExpressibleByStringLiteral {
-    case literal(String)
-    case runtime([String])
+public struct TemplateLiteral: ExpressibleByStringLiteral {
+    internal enum Storage {
+        case string(String)
+    }
     
-    init(stringLiteral value: String) {
-        self = .literal(value)
+    let storage: Storage
+    
+    public init(stringLiteral value: String) {
+        self.storage = .string(value)
+    }
+    
+    public init(string: String) {
+        self.storage = .string(string)
     }
 }
 
 public struct TemplateValue: ExpressibleByStringLiteral {
-    let value: AnyTemplateValue
-    
-    public init(literal value: String) {
-        self.value = .literal(value)
+    enum Storage {
+        case compileTime(TemplateLiteral)
+        case runtime(AnyKeyPath)
     }
     
-    internal init(value: AnyTemplateValue) {
-        self.value = value
+    let storage: Storage
+    
+    public init(literal value: String) {
+        self.storage = .compileTime(.init(string: value))
+    }
+    
+    internal init(value: TemplateLiteral) {
+        self.storage = .compileTime(value)
+    }
+    
+    internal init(keyPath: AnyKeyPath) {
+        self.storage = .runtime(keyPath)
     }
     
     public init(stringLiteral value: String) {
-        self.value = .literal(value)
+        self.storage = .compileTime(.init(string: value))
+    }
+}
+
+public protocol TemplateLiteralRepresentable: TemplateValueRepresentable {
+    func makeTemplateLiteral() -> TemplateLiteral
+}
+
+extension TemplateLiteralRepresentable {
+    public func makeTemplateValue() -> TemplateValue {
+        TemplateValue(value: makeTemplateLiteral())
     }
 }
 
@@ -54,14 +80,14 @@ public protocol TemplateValueRepresentable {
     func makeTemplateValue() -> TemplateValue
 }
 
-extension String: TemplateValueRepresentable {
-    public func makeTemplateValue() -> TemplateValue {
-        TemplateValue(literal: self)
+extension String: TemplateLiteralRepresentable {
+    public func makeTemplateLiteral() -> TemplateLiteral {
+        TemplateLiteral(string: self)
     }
 }
 
 internal enum _Modifier {
-    case attribute(name: String, value: AnyTemplateValue)
+    case attribute(name: String, value: TemplateValue)
     case style(type: StyleType, value: [AnyStyle])
 }
 
@@ -100,5 +126,5 @@ enum Constants {
 public enum TemplateError: Error {
     case internalCompilerError
     case errorCompilingPropertyAccessor([String])
-    case missingValue(String, needed: Any.Type)
+    case missingValue(AnyKeyPath, needed: Any.Type)
 }

@@ -9,10 +9,7 @@ public struct Link: HeadElement {
         _ uri: URI
     ) -> Link {
         self.init([
-            .attribute(
-                name: "stylesheet",
-                value: uri.makeTemplateValue().value
-            ),
+            .attribute(name: "stylesheet", value: uri.makeTemplateValue()),
         ])
     }
     

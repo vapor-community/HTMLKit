@@ -1,11 +1,13 @@
 import BSON
 import NIO
 
-public struct CompiledTemplate {
+public struct CompiledTemplate<Context> {
     private var _template: UnsafeByteBuffer
+    private var keyPaths: [AnyKeyPath]
     
-    init(template: UnsafeByteBuffer) {
+    init(template: UnsafeByteBuffer, keyPaths: [AnyKeyPath]) {
         self._template = template
+        self.keyPaths = keyPaths
     }
     
     private struct ByteBufferSlicePosition {
@@ -24,10 +26,24 @@ public struct CompiledTemplate {
         return data
     }
     
-    private static func compileNextNode(
+    private static func getKeyPath(
+        from template: inout UnsafeByteBuffer,
+        keyPaths: [AnyKeyPath]
+    ) throws -> AnyKeyPath {
+        guard let index = template.readInteger(as: Int.self) else {
+            throw TemplateError.internalCompilerError
+        }
+        
+        assert(index >= 0 && index < keyPaths.count, "KeyPath references did not exist")
+        
+        return keyPaths[index]
+    }
+    
+    private static func compileNextNode<Properties>(
         template: inout UnsafeByteBuffer,
         into output: inout ByteBuffer,
-        context: Primitive?
+        keyPaths: [AnyKeyPath],
+        properties: Properties
     ) throws {
         guard
             let byte = template.readInteger(as: UInt8.self),
@@ -71,20 +87,12 @@ public struct CompiledTemplate {
                     let value = try template.parseSlice()
                     output.writeBytes(value)
                 case .runtime:
-                    // TODO: THIS PART HAS SHIT PERFORMANCE
-                    let property = try template.parseString()
-                    let path = property.split(separator: ".")
+                    let keyPath = try getKeyPath(from: &template, keyPaths: keyPaths)
+                    let value = properties[keyPath: keyPath] as! TemplateLiteralRepresentable
                     
-                    var value: Primitive? = context
-                    
-                    for component in path where !component.isEmpty {
-                        value = value[String(component)]
-                    }
-                    
-                    if let value = value?.string {
-                        output.writeString(value)
-                    } else {
-                        throw TemplateError.missingValue(property, needed: String.self)
+                    switch value.makeTemplateLiteral().storage {
+                    case .string(let string):
+                        output.writeString(string)
                     }
                 }
                 
@@ -96,7 +104,8 @@ public struct CompiledTemplate {
             try compileNextNode(
                 template: &template,
                 into: &output,
-                context: context
+                keyPaths: keyPaths,
+                properties: properties
             )
             
             output.writeInteger(Constants.less)
@@ -112,87 +121,48 @@ public struct CompiledTemplate {
                 try compileNextNode(
                     template: &template,
                     into: &output,
-                    context: context
+                    keyPaths: keyPaths,
+                    properties: properties
                 )
             }
         case .contextValue:
-            // TODO: THIS PART HAS SHIT PERFORMANCE
-            let property = try template.parseString()
-            let path = property.split(separator: ".")
+        let keyPath = try getKeyPath(from: &template, keyPaths: keyPaths)
+            let value = properties[keyPath: keyPath] as! TemplateLiteralRepresentable
             
-            var value: Primitive? = context
-            
-            for component in path where !component.isEmpty {
-                value = value[String(component)]
-            }
-            
-            if let value = value?.string {
-                output.writeString(value)
-            } else {
-                throw TemplateError.missingValue(property, needed: String.self)
+            switch value.makeTemplateLiteral().storage {
+            case .string(let string):
+                output.writeString(string)
             }
         case .computedList:
-            // TODO: THIS PART HAS SHIT PERFORMANCE
-            let property = try template.parseString()
-            let path = property.split(separator: ".")
+            let keyPath = try getKeyPath(from: &template, keyPaths: keyPaths)
+            let value = properties[keyPath: keyPath] as! TemplateLiteralRepresentable
             
-            var value: Primitive? = context
-            
-            for component in path where !component.isEmpty {
-                value = value[String(component)]
-            }
-            
-            guard let array = value as? Document, array.isArray else {
-                throw TemplateError.missingValue(property, needed: Array<Void>.self)
-            }
-            
-            let readerIndex = template.readerIndex
-            
-            for element in array.values {
-                template.moveReaderIndex(to: readerIndex)
-                try compileNextNode(template: &template, into: &output, context: element)
+            switch value.makeTemplateLiteral().storage {
+            case .string:
+                throw TemplateError.missingValue(keyPath, needed: [TemplateValue].self)
+//            case .array(let array):
+//                let readerIndex = template.readerIndex
+//
+//                for element in array {
+//                    template.moveReaderIndex(to: readerIndex)
+//                    try compileNextNode(template: &template, into: &output, keyPaths: keyPaths, properties: element)
+//                }
             }
         }
     }
     
-    public static func render(
-        template: CompiledTemplate,
-        output: inout ByteBuffer
-    ) throws {
-        struct None: HTMLProperty {}
-        
-        try render(
-            template: template,
-            output: &output,
-            properties: None()
-        )
-    }
-    
-    public static func render<Properties: HTMLProperty>(
-        template: CompiledTemplate,
+    public func render(
         output: inout ByteBuffer,
-        properties: Properties
+        properties: Context
     ) throws {
-        let document = try BSONEncoder().encodePrimitive(properties)
-        try render(
-            template: template,
-            output: &output,
-            properties: document
-        )
-    }
-    
-    public static func render(
-        template: CompiledTemplate,
-        output: inout ByteBuffer,
-        properties: Primitive?
-    ) throws {
-        var template = template
+        var template = self
         
         while template._template.readableBytes > 0 {
-            try compileNextNode(
+            try CompiledTemplate<Context>.compileNextNode(
                 template: &template._template,
                 into: &output,
-                context: properties
+                keyPaths: keyPaths,
+                properties: properties
             )
         }
     }

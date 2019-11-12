@@ -10,7 +10,7 @@ public struct Img: NodeRepresentedElement {
             name: Self.tag,
             content: .none,
             modifiers: [
-                .attribute(name: "src", value: src.makeTemplateValue().value)
+                .attribute(name: "src", value: src.makeTemplateValue())
         ])
     }
 }

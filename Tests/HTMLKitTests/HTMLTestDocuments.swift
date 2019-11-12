@@ -1,16 +1,16 @@
 import HTMLKit
 
-struct MenuLink: HTMLProperty {
+struct MenuLink {
     let name: String
     let link: String
 }
 
-struct Properties: HTMLProperty {
+struct Properties {
     var links: [MenuLink]
     var text: String
 }
 
-let context = HTMLContext<Properties>()
+let context = HTMLContext(Properties.self)
 
 @available(OSX 10.15.0, *)
 struct AMMenu: HTML {
@@ -47,7 +47,7 @@ let page = Root {
                 .id("logo")
         }
         
-        AMMenu()
+//        AMMenu()
         Header {
             Section {
                 Embed().src("https://autimatisering.nl/styles/svg/pagehead-img-home.svg")

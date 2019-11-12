@@ -1,43 +1,31 @@
-public protocol HTMLProperty: Codable {}
-
 @dynamicMemberLookup
 @propertyWrapper
-public struct HTMLContext<T: HTMLProperty> {
-    internal let path: [String]
-    internal let broken: Bool
-    public var wrappedValue: HTMLContext<T> { self }
+public struct HTMLContext<Base, Value> {
+    internal let path: KeyPath<Base, Value>
+    public var wrappedValue: HTMLContext<Base, Value> { self }
     
-    public init() {
-        path = []
-        broken = false
-    }
-    
-    public init(_ type: T.Type) {
-        self.init()
-    }
-    
-    init(path: [String], broken: Bool) {
+    init(path: KeyPath<Base, Value>) {
         self.path = path
-        self.broken = broken
     }
     
-    public subscript<V: HTMLProperty>(dynamicMember keyPath: KeyPath<T, V>) -> HTMLContext<V> {
-        let extractor = CodingKeyExtractor(type: T.self)
-        guard let key = extractor.keyName(forKeyPath: keyPath) else {
-            return HTMLContext<V>(path: path, broken: true)
-        }
-        
-        return HTMLContext<V>(path: path + [key], broken: self.broken)
+    public subscript<SubValue>(dynamicMember keyPath: KeyPath<Value, SubValue>) -> HTMLContext<Base, SubValue> {
+        HTMLContext<Base, SubValue>(path: path.appending(path: keyPath))
+    }
+}
+
+extension HTMLContext where Base == Value {
+    public init(_ base: Base.Type) {
+        self.init(path: \Base.self)
     }
 }
 
 extension HTMLContext {
-    public func forEach<Property: HTMLProperty, V: _HTML>(
-        @TemplateBuilder<Scopes.Body> content: (HTMLContext<Property>) -> V
+    public func forEach<Property, V: _HTML>(
+        @TemplateBuilder<Scopes.Body> content: (HTMLContext<Property, Property>) -> V
     ) -> AnyHTML<V.HTMLScope>
-        where T: Sequence, T.Element == Property, V.HTMLScope: Scopes.Body
+        where Value: Sequence, Value.Element == Property, V.HTMLScope: Scopes.Body
     {
-        let html = content(.init())
+        let html = content(.init(Property.self))
         let node = TemplateNode(from: html)
         
         return AnyHTML(
@@ -46,19 +34,16 @@ extension HTMLContext {
     }
 }
 
-extension Array: HTMLProperty where Element: HTMLProperty {}
 extension HTMLContext: HTML {
     public typealias Content = AnyHTML
     
     public var html: AnyHTML<Scopes.Body> {
-        return .init(node: .contextValue(path, broken: broken))
+        return .init(node: .contextValue(path))
     }
 }
 
 extension HTMLContext: TemplateValueRepresentable {
     public func makeTemplateValue() -> TemplateValue {
-        TemplateValue(value: .runtime(path))
+        TemplateValue(keyPath: path)
     }
 }
-
-extension String: HTMLProperty {}

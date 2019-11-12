@@ -2,7 +2,7 @@ public struct Modified<BaseTag: AttributedHTML>: AttributedHTML {
     public typealias HTMLScope = Scopes.Body
     
     public typealias Content = AnyBodyTag
-
+    
     let tag: StaticString
     let modifiers: [_Modifier]
     let baseNode: TemplateNode
@@ -20,54 +20,72 @@ public struct Modified<BaseTag: AttributedHTML>: AttributedHTML {
         )
     }
     
-    public func attribute(key: String, value: TemplateValue) -> Modified<BaseTag> {
-        self.modify(with: Modifier(modifier: .attribute(name: key, value: value.value)))
+    public func attribute<Value: TemplateValueRepresentable>(key: String, value: Value) -> Modified<BaseTag> {
+        self.modify(with: Modifier(modifier: .attribute(name: key, value: value.makeTemplateValue())))
     }
 }
 
 extension Array where Element == _Modifier {
-
+    
     func makeTemplateNode() -> TemplateNode {
         var node: TemplateNode = .none
         for element in self {
             if case .attribute(let name, let value) = element {
                 switch node {
                 case .none:
-                    switch value {
-                    case .literal(let literal): node = .literal(" \(name)=\"\(literal)\"")
-                    case .runtime(let path):    node = .contextValue(path, broken: false)
+                    switch value.storage {
+                    case .compileTime(let literal):
+                        switch literal.storage {
+                        case .string(let string):
+                            node = .literal(" \(name)=\"\(string)\"")
+                        }
+                    case .runtime(let path):
+                        node = .contextValue(path)
                     }
                 case .literal(let currentNode):
-                    switch value {
-                    case .literal(let literal): node = .literal(currentNode + " \(name)=\"\(literal)\"")
-                    case .runtime(let path):    node = .list([
-                        .literal(currentNode),
-                        .contextValue(path, broken: false)
-                    ])
+                    switch value.storage {
+                    case .compileTime(let literal):
+                        switch literal.storage {
+                        case .string(let string):
+                            node = .literal(currentNode + " \(name)=\"\(string)\"")
+                        }
+                    case .runtime(let path):
+                        node = .list([
+                            .literal(currentNode),
+                            .contextValue(path)
+                        ])
                     }
                 case .contextValue(_):
-                    switch value {
-                    case .literal(let literal): node = .list([
-                        node,
-                        .literal(literal)
-                    ])
-                    case .runtime(let path):    node = .list([
-                        node,
-                        .contextValue(path, broken: false)
-                    ])
+                    switch value.storage {
+                    case .compileTime(let literal):
+                        switch literal.storage {
+                        case .string(let string):
+                            node = .list([
+                                node,
+                                .literal(string)
+                            ])
+                        }
+                    case .runtime(let path):
+                        node = .list([
+                            node,
+                            .contextValue(path)
+                        ])
                     }
                 case .list(let nodes):
-                    switch value {
-                    case .literal(let literal):
-                        node = .list(
-                            nodes + [
-                            .literal(" \(name)=\"\(literal)\"")
-                        ])
+                    switch value.storage {
+                    case .compileTime(let literal):
+                        switch literal.storage {
+                        case .string(let string):
+                            node = .list(
+                                nodes + [
+                                    .literal(" \(name)=\"\(string)\"")
+                                ])
+                        }
                     case .runtime(let path):
                         node = .list(
                             nodes + [
-                            .contextValue(path, broken: false)
-                        ])
+                                .contextValue(path)
+                            ])
                     }
                 default: fatalError()
                 }

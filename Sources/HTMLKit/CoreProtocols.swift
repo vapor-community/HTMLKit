@@ -37,7 +37,7 @@ internal protocol BodyTag: _NativeHTMLElement, NodeRepresentedElement {
 public protocol AttributedHTML: HTML {
     associatedtype BaseTag: AttributedHTML
     
-    func attribute(key: String, value: TemplateValue) -> Modified<BaseTag>
+    func attribute<Value: TemplateValueRepresentable>(key: String, value: Value) -> Modified<BaseTag>
     func modify(with modifier: Modifier) -> Modified<BaseTag>
 }
 
@@ -61,8 +61,8 @@ extension NodeRepresentedElement {
         )
     }
     
-    public func attribute(key: String, value: TemplateValue) -> Modified<Self> {
-        return modify(with: Modifier(modifier: .attribute(name: key, value: value.value)))
+    public func attribute<Value: TemplateValueRepresentable>(key: String, value: Value) -> Modified<Self> {
+        return modify(with: Modifier(modifier: .attribute(name: key, value: value.makeTemplateValue())))
     }
     
     public var html: AnyBodyTag { AnyBodyTag(Self.tag, content: node, modifiers: []) }
