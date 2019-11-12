@@ -12,7 +12,7 @@ extension IF.Condition: Conditionable {
     }
 
     // View `BrewableFormula` documentation
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         try view.prerender(localFormula)
     }
 }
@@ -37,7 +37,7 @@ extension IF: HTML {
     }
 
     // View `BrewableFormula` documentation
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         var isStaticlyEvaluated = true
         for condition in conditions {
             condition.localFormula.calendar = formula.calendar

@@ -5,6 +5,12 @@ import XCTest
 @testable import HTMLKit
 import Lingo
 
+struct VariableTest: HTMLTemplate {
+    typealias Context = String
+
+    var body: HTML { context.escaping(.unsafeNone) }
+}
+
 final class HTMLKitTests: XCTestCase {
 
 //    var app: Application!
@@ -34,9 +40,38 @@ final class HTMLKitTests: XCTestCase {
 //        app = try! Application(config: config, services: services)
     }
 
+    func testVariable() {
+        let formula = HTMLRenderer.Formula()
+        try! VariableTest().prerender(formula)
+        let context = HTMLRenderer.ContextManager(rootContext: "Test")
+        measure {
+            for _ in 0...10_000 {
+                _ = try! formula.render(with: context)
+            }
+        }
+    }
+
+//    func testVariableWithoutReflection() {
+//        try! renderer.add(view: VariableTest(), with: "Test")
+//        measure {
+//            for _ in 0...10_000 {
+//                _ = try! renderer.render(raw: "Test", with: "Test")
+//            }
+//        }
+//    }
+
+    func testVariableRenderer() {
+        try! renderer.add(view: VariableTest())
+        measure {
+            for _ in 0...10_000 {
+                _ = try! renderer.render(raw: VariableTest.self, with: "Test")
+            }
+        }
+    }
+
     func testIfPerformance() {
         measure {
-            for _ in 0...1000 {
+            for _ in 0...10_000 {
                 _ = try! renderer.render(raw: IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
             }
         }
@@ -83,9 +118,12 @@ final class HTMLKitTests: XCTestCase {
 //    }
 
     func testBigFor() {
+        let formula = HTMLRenderer.Formula()
+        try! BigForTest().prerender(formula)
+        let context = HTMLRenderer.ContextManager(rootContext: BigForTest.testData)
         measure {
             for _ in 0...10_000 {
-                _ = try! renderer.render(raw: BigForTest.self, with: BigForTest.testData)
+                _ = try! formula.render(with: context)
             }
         }
     }

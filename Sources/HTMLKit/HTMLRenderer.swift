@@ -74,7 +74,7 @@ public class HTMLRenderer: HTMLRenderable {
     }
 
     /// A cache that contains all the brewed `Template`'s
-    var formulaCache: [String: Any]
+    var formulaCache: [ObjectIdentifier: Formula]
 
     /// The localization to use when rendering
     var lingo: Lingo?
@@ -106,14 +106,14 @@ public class HTMLRenderer: HTMLRenderable {
     //    }
 
     public func render<T: HTMLTemplate>(raw type: T.Type, with context: T.Context) throws -> String {
-        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<T.Context> else {
+        guard let formula = formulaCache[ObjectIdentifier(type)] else {
             throw Errors.unableToFindFormula
         }
         return try formula.render(with: context, lingo: lingo)
     }
 
     public func render<T: HTMLPage>(raw type: T.Type) throws -> String {
-        guard let formula = formulaCache[String(reflecting: T.self)] as? Formula<Void> else {
+        guard let formula = formulaCache[ObjectIdentifier(type)] else {
             throw Errors.unableToFindFormula
         }
         return try formula.render(with: (), lingo: lingo)
@@ -132,15 +132,15 @@ public class HTMLRenderer: HTMLRenderable {
     //    }
 
     public func add<T: HTMLTemplate>(view: T) throws {
-        let formula = Formula(context: T.Context.self)
+        let formula = Formula()
         try view.prerender(formula)
-        formulaCache[String(reflecting: T.self)] = formula
+        formulaCache[ObjectIdentifier(T.self)] = formula
     }
 
     public func add<T: HTMLPage>(view: T) throws {
-        let formula = Formula(context: Void.self)
+        let formula = Formula()
         try view.prerender(formula)
-        formulaCache[String(reflecting: T.self)] = formula
+        formulaCache[ObjectIdentifier(T.self)] = formula
     }
 
     //    /// Brews a formula for later use
@@ -209,7 +209,7 @@ public class HTMLRenderer: HTMLRenderable {
 
     /// A formula for a view
     /// This contains the different parts to pice to gether, in order to increase the performance
-    public class Formula<T> {
+    public class Formula {
 
         /// The different pices or ingredients needed to render the view
         var ingredient: [HTML]
@@ -225,7 +225,7 @@ public class HTMLRenderer: HTMLRenderable {
         /// - Parameters:
         ///   - view: The view type
         ///   - contextPaths: The contextPaths. *Is empty by default*
-        init(context: T.Type, calendar: Calendar = .current, timeZone: TimeZone = .current) {
+        init(calendar: Calendar = .current, timeZone: TimeZone = .current) {
             ingredient = []
             self.calendar = calendar
             self.timeZone = timeZone
@@ -261,7 +261,7 @@ public class HTMLRenderer: HTMLRenderable {
         /// - lingo: The lingo to use when rendering
         /// - Returns: A rendered formula
         /// - Throws: If some of the formula fails, for some reason
-        func render(with context: T, lingo: Lingo?) throws -> String {
+        func render<T>(with context: T, lingo: Lingo?) throws -> String {
             let contextManager = ContextManager(rootContext: context, lingo: lingo)
             return try render(with: contextManager)
         }

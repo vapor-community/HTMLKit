@@ -12,7 +12,7 @@ extension HTMLTextDirection {
         self.rawValue
     }
 
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: self.rawValue)
     }
 }

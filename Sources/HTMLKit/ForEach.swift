@@ -12,7 +12,7 @@ public struct ForEach<Root, Value> {
 
     let content: HTML
 
-    let localFormula: HTMLRenderer.Formula<Value>
+    let localFormula: HTMLRenderer.Formula
 
     let condition: Conditionable
     var isEnumerated: Bool = false
@@ -25,7 +25,7 @@ public struct ForEach<Root, Value> {
         case .constant(let values): self.content = values.reduce("") { $0 + content(.constant($1)) }
         case .dynamic(let variable): self.content = content(.dynamic(.root(Value.self, rootId: variable.pathId + "-loop")))
         }
-        localFormula = .init(context: Value.self)
+        localFormula = .init()
     }
 
     public init(in context: TemplateValue<Root, [Value]?>, @HTMLBuilder content: (RootValue<Value>) -> HTML) {
@@ -42,7 +42,7 @@ public struct ForEach<Root, Value> {
             self.content = content(.dynamic(.root(Value.self, rootId: variable.unsafelyUnwrapped.pathId + "-loop")))
         }
         self.condition = context.isDefined
-        localFormula = .init(context: Value.self)
+        localFormula = .init()
     }
 
     public init(enumerated context: TemplateValue<Root, [Value]>, @HTMLBuilder content: ((element: RootValue<Value>, index: RootValue<Int>)) -> HTML) {
@@ -57,7 +57,7 @@ public struct ForEach<Root, Value> {
                 .dynamic(.root(Int.self, rootId: "\(variable.pathId)-loop-index"))
             ))
         }
-        localFormula = .init(context: Value.self)
+        localFormula = .init()
         self.isEnumerated = true
     }
 }
@@ -75,14 +75,14 @@ extension ForEach where Root == [Value] {
         case .constant(let values): self.content = values.reduce("") { $0 + content(.constant($1)) }
         case .dynamic(let variable): self.content = content(.dynamic(.root(Value.self, rootId: variable.pathId + "-loop")))
         }
-        localFormula = .init(context: Value.self)
+        localFormula = .init()
         self.condition = true
     }
 }
 
 extension ForEach: HTML {
 
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(mappable: self)
         try content.prerender(localFormula)
     }

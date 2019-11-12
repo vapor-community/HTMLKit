@@ -27,7 +27,7 @@ extension Conditionable {
         try evaluate(with: manager).render(with: manager)
     }
 
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(mappable: self)
     }
 }

@@ -31,7 +31,7 @@ public struct Localized<A, B>: HTML where B: Encodable {
         self.context = context
     }
 
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(mappable: self)
     }
 
@@ -65,9 +65,9 @@ public struct EnviromentModifier: HTML {
     let view: HTML
     let locale: HTML
 
-    let localFormula = HTMLRenderer.Formula<Void>(context: Void.self)
+    let localFormula = HTMLRenderer.Formula()
 
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         try view.prerender(localFormula)
         formula.add(mappable: self)
     }

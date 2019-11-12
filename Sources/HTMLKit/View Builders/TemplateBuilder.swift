@@ -1535,7 +1535,7 @@ extension Select {
         .init(attributes: attributes, content: content, isMultiple: isMultiple)
     }
 
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: "<\(name)")
         try attributes.forEach {
             formula.add(string: " ")

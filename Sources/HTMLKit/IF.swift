@@ -11,7 +11,7 @@ public struct IF {
         let condition: Conditionable
 
         /// The local formula for optimazation
-        var localFormula: HTMLRenderer.Formula<Any>
+        var localFormula: HTMLRenderer.Formula
 
         /// The view to render.
         /// Set to an empty string in order to create a condition on `\.name == ""`
@@ -23,7 +23,7 @@ public struct IF {
         /// - Parameter condition: The condition to evaluate
         init(condition: Conditionable) {
             self.condition = condition
-            localFormula = HTMLRenderer.Formula(context: Any.self)
+            localFormula = HTMLRenderer.Formula()
         }
     }
 

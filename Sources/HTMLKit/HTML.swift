@@ -20,7 +20,7 @@ public protocol HTML {
     ///
     /// - Parameter formula: The formula to brew in to
     /// - Throws: If there occured some error
-    func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws
+    func prerender(_ formula: HTMLRenderer.Formula) throws
 }
 
 extension HTML {
@@ -30,7 +30,7 @@ extension HTML {
 extension Array: HTML where Element == HTML {
 
     // View `HTML` documentation
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         try forEach { try $0.prerender(formula) }
     }
 
@@ -48,7 +48,7 @@ extension String: HTML {
     }
 
     // View `HTML` documentation
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: self)
     }
 }
@@ -61,7 +61,7 @@ extension Int: HTML {
     }
 
     // View `HTML` documentation
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: String(self))
     }
 
@@ -76,7 +76,7 @@ extension Double: HTML {
     }
 
     // View `HTML` documentation
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: String(self))
     }
 
@@ -91,7 +91,7 @@ extension Float: HTML {
     }
 
     // View `HTML` documentation
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: String(self))
     }
 
@@ -106,7 +106,7 @@ extension Bool: HTML {
     }
 
     // View `HTML` documentation
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: String(self))
     }
 
@@ -116,7 +116,7 @@ extension Bool: HTML {
 extension Optional: HTML where Wrapped: HTML {
 
     // View `HTML` documentation
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         switch self {
         case .some(let wrapped): try wrapped.prerender(formula)
         default: break
@@ -140,7 +140,7 @@ extension UUID: HTML {
     }
 
     // View `HTML` documentation
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: self.uuidString)
     }
 }
@@ -222,7 +222,7 @@ extension HTMLAttribute: HTML {
         }.render(with: manager)
     }
 
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         try IF(isIncluded) {
             attribute
             IF(value != nil) {
@@ -339,7 +339,7 @@ extension ContentNode {
 }
 
 extension DatableNode {
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: "<\(name)")
         try attributes.forEach {
             formula.add(string: " ")
@@ -354,7 +354,7 @@ extension DatableNode {
 }
 
 extension ContentNode {
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: "<\(name)")
         try attributes.forEach {
             formula.add(string: " ")
@@ -380,7 +380,7 @@ extension HTMLIdentifier: HTML {
         }
     }
 
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         switch self {
         case .class(let name): formula.add(string: ".\(name)")
         case .id(let name): formula.add(string: "#\(name)")

@@ -66,7 +66,7 @@ struct DateVariable<Root>: HTML {
     }
 
     // View `CompiledTemplate`
-    func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(mappable: self)
     }
 }

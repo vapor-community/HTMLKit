@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/vapor/multipart.git",
         "state": {
           "branch": null,
-          "revision": "b1992ef53fc9b38a0d9710be040cf19d9f63ad05",
-          "version": "3.1.0"
+          "revision": "f063180d0b84832accd33194e06ed3c41f8609ac",
+          "version": "3.1.1"
         }
       },
       {

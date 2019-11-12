@@ -34,7 +34,7 @@ public enum TemplateValue<Root, Value> {
 
 extension TemplateValue: HTML where Value: HTML {
 
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         switch self {
         case .constant(let value): try value.prerender(formula)
         case .dynamic(let variable): try variable.prerender(formula)

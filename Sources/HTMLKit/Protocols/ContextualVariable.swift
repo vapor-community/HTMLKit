@@ -76,7 +76,7 @@ extension ContextVariable {
 
 extension ContextVariable: HTML where Value: HTML {
 
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(mappable: self)
     }
     
@@ -99,7 +99,7 @@ public class TemplateValueMapping<A, B, C> {
 
 extension TemplateValueMapping: HTML where C: HTML {
 
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         switch variable {
         case .constant(let value): try transform(value).prerender(formula)
         case .dynamic(_): formula.add(mappable: self)
@@ -130,7 +130,7 @@ extension HTMLPage {
         try body.render(with: manager)
     }
 
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         try body.prerender(formula)
     }
 }
@@ -149,7 +149,7 @@ extension HTMLTemplate {
         try body.render(with: manager)
     }
 
-    public func prerender<T>(_ formula: HTMLRenderer.Formula<T>) throws {
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
         try body.prerender(formula)
     }
 }
