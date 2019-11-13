@@ -60,6 +60,9 @@ let page = Root {
                 
                 P {
                     context.text
+                    context.text
+                    context.text
+                    context.text
                 }.id("banner-text-body")
             }.id("banner-text")
             

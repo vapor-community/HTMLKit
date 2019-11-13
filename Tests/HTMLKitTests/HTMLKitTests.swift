@@ -1,7 +1,6 @@
 // swiftlint:disable:this force_try
 
 import XCTest
-import BSON
 //@testable import Vapor
 import HTMLKit
 import NIO

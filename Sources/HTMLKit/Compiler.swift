@@ -29,7 +29,7 @@ public struct TemplateCompiler<Properties> {
             }
         case .runtime(let path):
             buffer.writeInteger(CompiledTemplateValue.runtime.rawValue)
-            buffer.writeInteger(keyPaths.count)
+            buffer.writeInteger(keyPaths.count, endianness: .little)
             keyPaths.append(path)
         }
     }
@@ -90,11 +90,11 @@ public struct TemplateCompiler<Properties> {
             try compile(render())
         case .contextValue(let path):
             buffer.writeInteger(CompiledNode.contextValue.rawValue)
-            buffer.writeInteger(keyPaths.count)
+            buffer.writeInteger(keyPaths.count, endianness: .little)
             keyPaths.append(path)
         case .computedList(let path, let node):
             buffer.writeInteger(CompiledNode.computedList.rawValue)
-            buffer.writeInteger(keyPaths.count)
+            buffer.writeInteger(keyPaths.count, endianness: .little)
             keyPaths.append(path)
             try compile(node)
         }

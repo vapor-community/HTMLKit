@@ -1,4 +1,3 @@
-import BSON
 import NIO
 
 public struct CompiledTemplate<Context> {
@@ -126,7 +125,7 @@ public struct CompiledTemplate<Context> {
                 )
             }
         case .contextValue:
-        let keyPath = try getKeyPath(from: &template, keyPaths: keyPaths)
+            let keyPath = try getKeyPath(from: &template, keyPaths: keyPaths)
             let value = properties[keyPath: keyPath] as! TemplateLiteralRepresentable
             
             switch value.makeTemplateLiteral().storage {
