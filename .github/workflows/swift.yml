@@ -1,4 +1,4 @@
-name: Swift
+name: HTMLKit Tests
 
 on: 
   pull_request:

@@ -39,17 +39,17 @@ final class HTMLKitTests: XCTestCase {
 //
 //        app = try! Application(config: config, services: services)
     }
-
-    func testVariable() {
-        let formula = HTMLRenderer.Formula()
-        try! VariableTest().prerender(formula)
-        let context = HTMLRenderer.ContextManager(rootContext: "Test")
-        measure {
-            for _ in 0...10_000 {
-                _ = try! formula.render(with: context)
-            }
-        }
-    }
+//
+//    func testVariable() {
+//        let formula = HTMLRenderer.Formula()
+//        try! VariableTest().prerender(formula)
+//        let context = HTMLRenderer.ContextManager(rootContext: "Test")
+//        measure {
+//            for _ in 0...10_000 {
+//                _ = try! formula.render(with: context)
+//            }
+//        }
+//    }
 
 //    func testVariableWithoutReflection() {
 //        try! renderer.add(view: VariableTest(), with: "Test")
@@ -59,23 +59,23 @@ final class HTMLKitTests: XCTestCase {
 //            }
 //        }
 //    }
-
-    func testVariableRenderer() {
-        try! renderer.add(view: VariableTest())
-        measure {
-            for _ in 0...10_000 {
-                _ = try! renderer.render(raw: VariableTest.self, with: "Test")
-            }
-        }
-    }
-
-    func testIfPerformance() {
-        measure {
-            for _ in 0...10_000 {
-                _ = try! renderer.render(raw: IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
-            }
-        }
-    }
+//
+//    func testVariableRenderer() {
+//        try! renderer.add(view: VariableTest())
+//        measure {
+//            for _ in 0...10_000 {
+//                _ = try! renderer.render(raw: VariableTest.self, with: "Test")
+//            }
+//        }
+//    }
+//
+//    func testIfPerformance() {
+//        measure {
+//            for _ in 0...10_000 {
+//                _ = try! renderer.render(raw: IFView.self, with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
+//            }
+//        }
+//    }
 
 //    func testIfPerformanceRuntime() {
 //        measure {
@@ -84,14 +84,14 @@ final class HTMLKitTests: XCTestCase {
 //            }
 //        }
 //    }
-
-    func testForPerformance() {
-        measure {
-            for _ in 0...1000 {
-                _ = try! renderer.render(raw: ForEachView.self, with: ["1", "2", "3", "four", "five"])
-            }
-        }
-    }
+//
+//    func testForPerformance() {
+//        measure {
+//            for _ in 0...1000 {
+//                _ = try! renderer.render(raw: ForEachView.self, with: ["1", "2", "3", "four", "five"])
+//            }
+//        }
+//    }
 
 //    func testForPerformanceRuntime() {
 //        measure {
@@ -100,14 +100,14 @@ final class HTMLKitTests: XCTestCase {
 //            }
 //        }
 //    }
-
-    func testLoginPage() {
-        measure {
-            for _ in 0...10_000 {
-                _ = try! renderer.render(raw: LoginPageTest.self, with: "Some error message")
-            }
-        }
-    }
+//
+//    func testLoginPage() {
+//        measure {
+//            for _ in 0...10_000 {
+//                _ = try! renderer.render(raw: LoginPageTest.self, with: "Some error message")
+//            }
+//        }
+//    }
 
 //    func testLoginPageRuntime() {
 //        measure {
@@ -116,17 +116,17 @@ final class HTMLKitTests: XCTestCase {
 //            }
 //        }
 //    }
-
-    func testBigFor() {
-        let formula = HTMLRenderer.Formula()
-        try! BigForTest().prerender(formula)
-        let context = HTMLRenderer.ContextManager(rootContext: BigForTest.testData)
-        measure {
-            for _ in 0...10_000 {
-                _ = try! formula.render(with: context)
-            }
-        }
-    }
+//
+//    func testBigFor() {
+//        let formula = HTMLRenderer.Formula()
+//        try! BigForTest().prerender(formula)
+//        let context = HTMLRenderer.ContextManager(rootContext: BigForTest.testData)
+//        measure {
+//            for _ in 0...10_000 {
+//                _ = try! formula.render(with: context)
+//            }
+//        }
+//    }
 
 //    func testBigForRuntime() {
 //        measure {
@@ -136,14 +136,14 @@ final class HTMLKitTests: XCTestCase {
 //        }
 //    }
 
-    func testDatePerformance() {
-        let testDate = Date()
-        measure {
-            for _ in 0...100 {
-                _ = try! renderer.render(raw: OptionalDateView.self, with: testDate)
-            }
-        }
-    }
+//    func testDatePerformance() {
+//        let testDate = Date()
+//        measure {
+//            for _ in 0...100 {
+//                _ = try! renderer.render(raw: OptionalDateView.self, with: testDate)
+//            }
+//        }
+//    }
 
     func testHtmlRenderingTests() throws {
 
@@ -274,8 +274,8 @@ final class HTMLKitTests: XCTestCase {
         try renderer.add(view: ChainedEqualAttributesDataNode())
         try renderer.add(view: StaticIfPrerenderingTest())
 
-        try renderer.add(view: LoginPageTest())
-        try renderer.add(view: BigForTest())
+//        try renderer.add(view: LoginPageTest())
+//        try renderer.add(view: BigForTest())
 //
         self.renderer = renderer
     }
