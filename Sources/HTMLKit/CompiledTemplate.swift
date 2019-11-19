@@ -175,18 +175,6 @@ public struct CompiledTemplate<Context> {
                 }
                 try compileNextNode(template: &template, into: &output, values: newValues, keyPaths: keyPaths, properties: element)
             }
-//            switch value.makeTemplateLiteral().storage {
-//            case .string:
-//                fatalError()
-//                throw TemplateError.missingValue(keyPath, needed: [TemplateValue].self)
-//            case .array(let array):
-//                let readerIndex = template.readerIndex
-//
-//                for element in array {
-//                    template.moveReaderIndex(to: readerIndex)
-//                    try compileNextNode(template: &template, into: &output, keyPaths: keyPaths, properties: element)
-//                }
-//            }
         }
     }
     

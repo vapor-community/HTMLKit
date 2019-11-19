@@ -28,8 +28,20 @@ public struct TemplateCompiler<Properties> {
     init() {
         buffer = ByteBufferAllocator().buffer(capacity: 4_096)
     }
+
+    private func index(for path: AnyKeyPath, rootId: String) throws -> Int {
+        let rootIndex = rootIdIndexes[rootId] ?? 0
+        var pathIndex = 0
+        for i in 0..<rootIndex {
+            pathIndex += keyPaths[i].count
+        }
+        guard let subIndex = keyPaths[rootIndex].firstIndex(where: { $0 == path }) else {
+            throw TemplateError.internalCompilerError
+        }
+        return pathIndex + subIndex
+    }
     
-    private mutating func compileTemplateValue(_ value: TemplateValue) {
+    private mutating func compileTemplateValue(_ value: TemplateValue) throws {
         switch value.storage {
         case .compileTime(let literal):
             buffer.writeInteger(CompiledTemplateValue.literal.rawValue)
@@ -40,23 +52,15 @@ public struct TemplateCompiler<Properties> {
             }
         case .runtime(let path, let rootId):
             buffer.writeInteger(CompiledTemplateValue.runtime.rawValue)
-            let rootIndex = rootIdIndexes[rootId] ?? 0
-            var pathIndex = 0
-            for i in 0..<rootIndex {
-                pathIndex += keyPaths[i].count
-            }
-            guard let subIndex = keyPaths[rootIndex].firstIndex(where: { $0 == path }) else {
-                fatalError()
-            }
-            buffer.writeInteger(pathIndex + subIndex, endianness: .little)
+            buffer.writeInteger(try index(for: path, rootId: rootId), endianness: .little)
         }
     }
     
-    private mutating func compile(_ modifier: _Modifier) {
+    private mutating func compile(_ modifier: _Modifier) throws {
         switch modifier {
         case .attribute(let name, let value):
             compileString(name)
-            compileTemplateValue(value)
+            try compileTemplateValue(value)
         case .style(let type, let styles):
             compileString(type.rawValue)
             compileString(styles.map { $0.styleName }.joined(separator: " "))
@@ -71,7 +75,7 @@ public struct TemplateCompiler<Properties> {
         keyPaths = [Array(contexts[0].subPaths)]
         let loopContextes = contexts.dropFirst()
         for context in loopContextes {
-            if context.rootId.contains("-") == false {
+            if context.rootId.isEmpty {
                 keyPaths[0].append(context.path)
             } else if let rootIndex = rootIdIndexes[context.rootId] {
                 keyPaths[rootIndex].append(context.path)
@@ -104,7 +108,7 @@ public struct TemplateCompiler<Properties> {
             buffer.writeInteger(UInt8(modifiers.count))
             
             for modifier in modifiers {
-                compile(modifier)
+                try compile(modifier)
             }
             
             try compile(content)
@@ -122,30 +126,14 @@ public struct TemplateCompiler<Properties> {
             try compile(render())
         case .contextValue(let path, let rootId):
             buffer.writeInteger(CompiledNode.contextValue.rawValue)
-            let rootIndex = rootIdIndexes[rootId] ?? 0
-            var pathIndex = 0
-            for i in 0..<rootIndex {
-                pathIndex += keyPaths[i].count
-            }
-            guard let subIndex = keyPaths[rootIndex].firstIndex(where: { $0 == path }) else {
-                fatalError()
-            }
-            buffer.writeInteger(pathIndex + subIndex, endianness: .little)
+            buffer.writeInteger(try index(for: path, rootId: rootId), endianness: .little)
 
         case .computedList(let path, let rootId, let contextId, let node):
             buffer.writeInteger(CompiledNode.computedList.rawValue)
             guard let contextIndex = rootIdIndexes[contextId + "-loop-"] else {
-                fatalError()
+                throw TemplateError.internalCompilerError
             }
-            let rootIndex = rootIdIndexes[rootId] ?? 0
-            var pathIndex = 0
-            for i in 0..<rootIndex {
-                pathIndex += keyPaths[i].count
-            }
-            guard let subIndex = keyPaths[rootIndex].firstIndex(where: { $0 == path }) else {
-                fatalError()
-            }
-            buffer.writeInteger(pathIndex + subIndex, endianness: .little)
+            buffer.writeInteger(try index(for: path, rootId: rootId), endianness: .little)
             buffer.writeInteger(contextIndex, endianness: .little)
             try compile(node)
         }
@@ -312,19 +300,17 @@ public struct TemplateCompiler<Properties> {
             if rootIdIndexes[contextId + "-loop-"] == nil {
                 rootIdIndexes[contextId + "-loop-"] = contexts.count
                 contexts.append(ContextValueStore(rootId: rootId, path: path, subPaths: []))
-                print("Setting: \(contextId + "-loop-")")
             }
             _ = optimize(&subNode)
             node = .computedList(path, rootId, contextId, subNode)
             return true
         case .contextValue(let path, let rootId):
-            if rootId.contains("-") == false {
+            if rootId.isEmpty {
                 contexts[0].subPaths.insert(path)
             } else if let index = rootIdIndexes[rootId] {
                 contexts[index].subPaths.insert(path)
             } else {
                 fatalError()
-                // contexts.append(ContextValueStore(rootId: rootId, order: contexts.count, path: path, subPaths: []))
             }
             return true
         }

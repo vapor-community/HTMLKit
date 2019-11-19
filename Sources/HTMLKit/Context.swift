@@ -9,7 +9,7 @@ public struct HTMLContext<Base, Value> {
     
     init(path: KeyPath<Base, Value>, rootId: String? = nil, contextId: String? = nil) {
         self.path = path
-        let root = rootId ?? String(reflecting: Base.self)
+        let root = rootId ?? ""
         self.rootId = root
         self.contextId = contextId ?? ("\(root)-\(String(reflecting: Value.self))")
     }
