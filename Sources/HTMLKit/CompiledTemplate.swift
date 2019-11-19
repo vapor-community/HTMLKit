@@ -2,9 +2,9 @@ import NIO
 
 public struct CompiledTemplate<Context> {
     private var _template: UnsafeByteBuffer
-    private var keyPaths: [AnyKeyPath]
+    private var keyPaths: [[AnyKeyPath]]
     
-    init(template: UnsafeByteBuffer, keyPaths: [AnyKeyPath]) {
+    init(template: UnsafeByteBuffer, keyPaths: [[AnyKeyPath]]) {
         self._template = template
         self.keyPaths = keyPaths
     }
@@ -24,7 +24,18 @@ public struct CompiledTemplate<Context> {
         
         return data
     }
-    
+
+    private static func getValue(
+        from template: inout UnsafeByteBuffer,
+        values: [Any]
+    ) throws -> Any {
+        guard let index = template.readInteger(as: Int.self) else {
+            throw TemplateError.internalCompilerError
+        }
+        assert(index >= 0 && index < values.count, "Value references did not exist")
+        return values[index]
+    }
+
     private static func getKeyPath(
         from template: inout UnsafeByteBuffer,
         keyPaths: [AnyKeyPath]
@@ -41,11 +52,17 @@ public struct CompiledTemplate<Context> {
     private static func compileNextNode<Properties>(
         template: inout UnsafeByteBuffer,
         into output: inout ByteBuffer,
-        keyPaths: [AnyKeyPath],
+        values: [Any],
+        keyPaths: [[AnyKeyPath]],
         properties: Properties
     ) throws {
         guard
-            let byte = template.readInteger(as: UInt8.self),
+            let byte = template.readInteger(as: UInt8.self)
+        else {
+            throw TemplateError.internalCompilerError
+        }
+
+        guard
             let node = CompiledNode(rawValue: byte)
         else {
             throw TemplateError.internalCompilerError
@@ -75,19 +92,23 @@ public struct CompiledTemplate<Context> {
                 output.writeInteger(Constants.quote)
                 
                 guard
-                    let byte = template.readInteger(as: UInt8.self),
+                    let byte = template.readInteger(as: UInt8.self)
+                else {
+                    throw TemplateError.internalCompilerError
+                }
+
+                guard
                     let type = CompiledTemplateValue(rawValue: byte)
                 else {
                     throw TemplateError.internalCompilerError
                 }
-                
+
                 switch type {
                 case .literal:
                     let value = try template.parseSlice()
                     output.writeBytes(value)
                 case .runtime:
-                    let keyPath = try getKeyPath(from: &template, keyPaths: keyPaths)
-                    let value = properties[keyPath: keyPath] as! TemplateLiteralRepresentable
+                    let value = try getValue(from: &template, values: values) as! TemplateLiteralRepresentable
                     
                     switch value.makeTemplateLiteral().storage {
                     case .string(let string):
@@ -103,6 +124,7 @@ public struct CompiledTemplate<Context> {
             try compileNextNode(
                 template: &template,
                 into: &output,
+                values: values,
                 keyPaths: keyPaths,
                 properties: properties
             )
@@ -120,25 +142,43 @@ public struct CompiledTemplate<Context> {
                 try compileNextNode(
                     template: &template,
                     into: &output,
+                    values: values,
                     keyPaths: keyPaths,
                     properties: properties
                 )
             }
         case .contextValue:
-            let keyPath = try getKeyPath(from: &template, keyPaths: keyPaths)
-            let value = properties[keyPath: keyPath] as! TemplateLiteralRepresentable
+            let value = try getValue(from: &template, values: values) as! TemplateLiteralRepresentable
             
             switch value.makeTemplateLiteral().storage {
             case .string(let string):
                 output.writeString(string)
             }
         case .computedList:
-            let keyPath = try getKeyPath(from: &template, keyPaths: keyPaths)
-            let value = properties[keyPath: keyPath] as! TemplateLiteralRepresentable
-            
-            switch value.makeTemplateLiteral().storage {
-            case .string:
-                throw TemplateError.missingValue(keyPath, needed: [TemplateValue].self)
+            let value = try getValue(from: &template, values: values) as! [Any]
+            guard let index = template.readInteger(as: Int.self) else {
+                throw TemplateError.internalCompilerError
+            }
+            assert(index >= 0 && index < keyPaths.count, "KeyPath references did not exist")
+
+            var valueStart = 0
+            for i in 0..<index {
+                valueStart += keyPaths[i].count
+            }
+
+            var newValues = values
+            let readerIndex = template.readerIndex
+            for element in value {
+                template.moveReaderIndex(to: readerIndex)
+                for (index, keyPath) in keyPaths[index].enumerated() {
+                    newValues[valueStart + index] = element[keyPath: keyPath] ?? ""
+                }
+                try compileNextNode(template: &template, into: &output, values: newValues, keyPaths: keyPaths, properties: element)
+            }
+//            switch value.makeTemplateLiteral().storage {
+//            case .string:
+//                fatalError()
+//                throw TemplateError.missingValue(keyPath, needed: [TemplateValue].self)
 //            case .array(let array):
 //                let readerIndex = template.readerIndex
 //
@@ -146,7 +186,7 @@ public struct CompiledTemplate<Context> {
 //                    template.moveReaderIndex(to: readerIndex)
 //                    try compileNextNode(template: &template, into: &output, keyPaths: keyPaths, properties: element)
 //                }
-            }
+//            }
         }
     }
     
@@ -155,11 +195,25 @@ public struct CompiledTemplate<Context> {
         properties: Context
     ) throws {
         var template = self
-        
+
+        var values: [Any] = []
+
+        for keyPath in keyPaths[0] {
+            values.append(properties[keyPath: keyPath] ?? "")
+        }
+        if keyPaths.count > 1 {
+            for i in 1..<keyPaths.count {
+                for _ in keyPaths[i - 1] {
+                    values.append("")
+                }
+            }
+        }
+
         while template._template.readableBytes > 0 {
             try CompiledTemplate<Context>.compileNextNode(
                 template: &template._template,
                 into: &output,
+                values: values,
                 keyPaths: keyPaths,
                 properties: properties
             )

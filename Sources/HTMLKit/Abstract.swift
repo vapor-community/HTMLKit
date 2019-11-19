@@ -1,3 +1,9 @@
+internal indirect enum ContextValue {
+    case none
+    case root(AnyKeyPath)
+    case listElement(AnyKeyPath, ContextValue)
+}
+
 internal indirect enum TemplateNode: ContentRepresentable, _HTML {
     typealias HTMLScope = Scopes.Never
     
@@ -7,8 +13,8 @@ internal indirect enum TemplateNode: ContentRepresentable, _HTML {
     case lazy(() -> TemplateNode)
     case literal(String)
 //    case anyLocalizable()
-    case contextValue(AnyKeyPath)
-    case computedList(AnyKeyPath, TemplateNode)
+    case contextValue(AnyKeyPath, String)
+    case computedList(AnyKeyPath, String, String, TemplateNode)
     
     var node: TemplateNode { self }
     var html: TemplateNode { self }

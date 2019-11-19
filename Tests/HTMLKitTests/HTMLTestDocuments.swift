@@ -25,7 +25,6 @@ struct AMMenu: HTML {
                 A {
                     link.name
                 }
-                .href(link.link)
                 .class("selected")
             }
         }.id("menu")
@@ -47,7 +46,7 @@ let page = Root {
                 .id("logo")
         }
         
-//        AMMenu()
+        AMMenu()
         Header {
             Section {
                 Embed().src("https://autimatisering.nl/styles/svg/pagehead-img-home.svg")

@@ -38,7 +38,9 @@ final class HTMLKitTests: XCTestCase {
         )
 
         measure {
-            try! template.render(output: &output, properties: properties)
+            for _ in 0..<10_000 {
+                try! template.render(output: &output, properties: properties)
+            }
         }
 
 //        output.clear()

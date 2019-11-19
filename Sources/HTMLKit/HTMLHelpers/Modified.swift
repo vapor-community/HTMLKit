@@ -40,7 +40,7 @@ extension Array where Element == _Modifier {
                             node = .literal(" \(name)=\"\(string)\"")
                         }
                     case .runtime(let path):
-                        node = .contextValue(path)
+                        node = .contextValue(path, "")
                     }
                 case .literal(let currentNode):
                     switch value.storage {
@@ -52,7 +52,7 @@ extension Array where Element == _Modifier {
                     case .runtime(let path):
                         node = .list([
                             .literal(currentNode),
-                            .contextValue(path)
+                            .contextValue(path, "")
                         ])
                     }
                 case .contextValue(_):
@@ -68,7 +68,7 @@ extension Array where Element == _Modifier {
                     case .runtime(let path):
                         node = .list([
                             node,
-                            .contextValue(path)
+                            .contextValue(path, "")
                         ])
                     }
                 case .list(let nodes):
@@ -84,7 +84,7 @@ extension Array where Element == _Modifier {
                     case .runtime(let path):
                         node = .list(
                             nodes + [
-                                .contextValue(path)
+                                .contextValue(path, "")
                             ])
                     }
                 default: fatalError()
