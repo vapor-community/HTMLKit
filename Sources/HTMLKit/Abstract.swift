@@ -50,7 +50,7 @@ public struct TemplateLiteral: ExpressibleByStringLiteral {
 public struct TemplateValue: ExpressibleByStringLiteral {
     enum Storage {
         case compileTime(TemplateLiteral)
-        case runtime(AnyKeyPath)
+        case runtime(AnyKeyPath, String)
     }
     
     let storage: Storage
@@ -63,8 +63,8 @@ public struct TemplateValue: ExpressibleByStringLiteral {
         self.storage = .compileTime(value)
     }
     
-    internal init(keyPath: AnyKeyPath) {
-        self.storage = .runtime(keyPath)
+    internal init(keyPath: AnyKeyPath, rootId: String) {
+        self.storage = .runtime(keyPath, rootId)
     }
     
     public init(stringLiteral value: String) {

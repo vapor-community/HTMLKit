@@ -54,6 +54,6 @@ extension HTMLContext: HTML {
 
 extension HTMLContext: TemplateValueRepresentable {
     public func makeTemplateValue() -> TemplateValue {
-        TemplateValue(keyPath: path)
+        TemplateValue(keyPath: path, rootId: rootId)
     }
 }

@@ -36,10 +36,15 @@ final class HTMLKitTests: XCTestCase {
             fhsfhjksflhjfslkghjfslkgjsfklgjfslkgjsfgkljdfsgklsdj
             """
         )
+        var isFirst = true
 
         measure {
             for _ in 0..<10_000 {
                 try! template.render(output: &output, properties: properties)
+                if isFirst {
+                    print(output.getString(at: 0, length: output.readableBytes) ?? "")
+                    isFirst = false
+                }
             }
         }
 

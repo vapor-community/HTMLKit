@@ -26,6 +26,7 @@ struct AMMenu: HTML {
                     link.name
                 }
                 .class("selected")
+                .href(link.link)
             }
         }.id("menu")
     }
