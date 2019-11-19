@@ -1,0 +1,27 @@
+name: HTMLKit Tests
+
+on: 
+  pull_request:
+    branches: 
+      - master
+  push:
+    branches: 
+      - 2.*
+      - master
+      - new-templating-engine*
+
+jobs:
+  xenial:
+    container: 
+      image: vapor/swift:5.1-xenial
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - run: swift test
+  bionic:
+    container: 
+      image: vapor/swift:5.1-bionic
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - run: swift test
