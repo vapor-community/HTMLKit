@@ -39,7 +39,7 @@ extension HTMLContext {
         let node = TemplateNode(from: html)
         
         return AnyHTML(
-            node: .computedList(path, rootId, contextId, node)
+            node: .computedList(ContextValue(keyPath: path, rootId: rootId), contextId, node)
         )
     }
 }
@@ -48,12 +48,34 @@ extension HTMLContext: HTML {
     public typealias Content = AnyHTML
     
     public var html: AnyHTML<Scopes.Body> {
-        return .init(node: .contextValue(path, rootId))
+        return .init(node: .contextValue(contextValue))
     }
+
+    var contextValue: ContextValue { ContextValue(keyPath: path, rootId: rootId) }
 }
 
 extension HTMLContext: TemplateValueRepresentable {
     public func makeTemplateValue() -> TemplateValue {
         TemplateValue(keyPath: path, rootId: rootId)
+    }
+}
+
+public struct IF: HTML {
+    public typealias Content = AnyHTML<Scopes.Body>
+
+    let condition: Conditions
+    let content: AnyHTML<Scopes.Body>
+
+    public init<A, B, V, C> (
+        lkp: HTMLContext<A, V>,
+        rkp: HTMLContext<B, V>,
+        @TemplateBuilder<Scopes.Body> content: () -> C
+    ) where V : AnyEquatable, C : _HTML {
+        self.condition = .equal(lkp.contextValue, rkp.contextValue)
+        self.content = AnyHTML(content: content())
+    }
+
+    public var html: AnyHTML<Scopes.Body> {
+        .init(node: .contextIf(condition, content.node, .none))
     }
 }

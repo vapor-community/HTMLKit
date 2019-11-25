@@ -10,6 +10,8 @@ struct Properties {
     var text: String
 }
 
+extension String: AnyEquatable {}
+
 let context = HTMLContext(Properties.self)
 
 @available(OSX 10.15.0, *)
@@ -27,6 +29,9 @@ struct AMMenu: HTML {
                 }
                 .class("selected")
                 .href(link.link)
+                IF(lkp: link.name, rkp: link.link) {
+                    "EQUAL!"
+                }
             }
         }.id("menu")
     }

@@ -1,5 +1,20 @@
 import NIO
 
+public protocol AnyEquatable {
+    func isEqual(to value: Any) -> Bool
+}
+
+extension Equatable where Self: AnyEquatable {
+    public func isEqual(to value: Any) -> Bool {
+        guard
+            let castedValue = value as? Self
+        else {
+            return false
+        }
+        return self == castedValue
+    }
+}
+
 public struct CompiledTemplate<Context> {
     private var _template: UnsafeByteBuffer
     private var keyPaths: [[AnyKeyPath]]
@@ -57,12 +72,7 @@ public struct CompiledTemplate<Context> {
         properties: Properties
     ) throws {
         guard
-            let byte = template.readInteger(as: UInt8.self)
-        else {
-            throw TemplateError.internalCompilerError
-        }
-
-        guard
+            let byte = template.readInteger(as: UInt8.self),
             let node = CompiledNode(rawValue: byte)
         else {
             throw TemplateError.internalCompilerError
@@ -175,6 +185,29 @@ public struct CompiledTemplate<Context> {
                 }
                 try compileNextNode(template: &template, into: &output, values: newValues, keyPaths: keyPaths, properties: element)
             }
+        case .contextIfStart:
+
+            guard
+                let conditionValue = template.readInteger(as: UInt8.self),
+                let condition = CompiledCondition(rawValue: conditionValue)
+            else {
+                throw TemplateError.internalCompilerError
+            }
+
+            switch condition {
+            case .equal:
+                let firstValue = try getValue(from: &template, values: values) as! AnyEquatable
+                let secondValue = try getValue(from: &template, values: values)
+
+                if firstValue.isEqual(to: secondValue) {
+                    try compileNextNode(template: &template, into: &output, values: values, keyPaths: keyPaths, properties: properties)
+                } else {
+                    var unusedRendering = ByteBufferAllocator().buffer(capacity: 10_000)
+                    try compileNextNode(template: &template, into: &unusedRendering, values: values, keyPaths: keyPaths, properties: properties)
+                }
+            }
+        case .contextIfEnd:
+            break
         }
     }
     

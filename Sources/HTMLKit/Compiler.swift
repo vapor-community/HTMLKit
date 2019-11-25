@@ -29,13 +29,13 @@ public struct TemplateCompiler<Properties> {
         buffer = ByteBufferAllocator().buffer(capacity: 4_096)
     }
 
-    private func index(for path: AnyKeyPath, rootId: String) throws -> Int {
-        let rootIndex = rootIdIndexes[rootId] ?? 0
+    private func index(for value: ContextValue) throws -> Int {
+        let rootIndex = rootIdIndexes[value.rootId] ?? 0
         var pathIndex = 0
         for i in 0..<rootIndex {
             pathIndex += keyPaths[i].count
         }
-        guard let subIndex = keyPaths[rootIndex].firstIndex(where: { $0 == path }) else {
+        guard let subIndex = keyPaths[rootIndex].firstIndex(where: { $0 == value.keyPath }) else {
             throw TemplateError.internalCompilerError
         }
         return pathIndex + subIndex
@@ -50,9 +50,9 @@ public struct TemplateCompiler<Properties> {
             case .string(let string):
                 compileString(string)
             }
-        case .runtime(let path, let rootId):
+        case .runtime(let path):
             buffer.writeInteger(CompiledTemplateValue.runtime.rawValue)
-            buffer.writeInteger(try index(for: path, rootId: rootId), endianness: .little)
+            buffer.writeInteger(try index(for: path), endianness: .little)
         }
     }
     
@@ -124,18 +124,27 @@ public struct TemplateCompiler<Properties> {
             }
         case .lazy(let render):
             try compile(render())
-        case .contextValue(let path, let rootId):
+        case .contextValue(let path):
             buffer.writeInteger(CompiledNode.contextValue.rawValue)
-            buffer.writeInteger(try index(for: path, rootId: rootId), endianness: .little)
+            buffer.writeInteger(try index(for: path), endianness: .little)
 
-        case .computedList(let path, let rootId, let contextId, let node):
+        case .computedList(let path, let contextId, let node):
             buffer.writeInteger(CompiledNode.computedList.rawValue)
             guard let contextIndex = rootIdIndexes[contextId + "-loop-"] else {
                 throw TemplateError.internalCompilerError
             }
-            buffer.writeInteger(try index(for: path, rootId: rootId), endianness: .little)
+            buffer.writeInteger(try index(for: path), endianness: .little)
             buffer.writeInteger(contextIndex, endianness: .little)
             try compile(node)
+        case .contextIf(let condition, let content, _):
+            buffer.writeInteger(CompiledNode.contextIfStart.rawValue)
+            switch condition {
+            case .equal(let lkp, let rkp):
+                buffer.writeInteger(CompiledCondition.equal.rawValue)
+                buffer.writeInteger(try index(for: lkp), endianness: .little)
+                buffer.writeInteger(try index(for: rkp), endianness: .little)
+            }
+            try compile(content)
         }
     }
     
@@ -216,7 +225,7 @@ public struct TemplateCompiler<Properties> {
                     nodes.append(resolved)
                 case .literal(let value):
                     result += value
-                case .contextValue, .computedList:
+                case .contextValue, .computedList, .contextIf:
 //                    assert(!didOptimize, "Optimized node cannot be a contextValue, these are not optimizable")
                     flushOptimization()
                     nodes.append(subnode)
@@ -266,10 +275,10 @@ public struct TemplateCompiler<Properties> {
                     content,
                     .literal(end)
                 ])
-            case (true, .computedList(let path, let rootId, let contextId, let content)):
+            case (true, .computedList(let path, let contextId, let content)):
                 node = .list([
                     .literal(start),
-                    .computedList(path, rootId, contextId, content),
+                    .computedList(path, contextId, content),
                     .literal(end)
                 ])
             case (true, .contextValue(_)):
@@ -296,23 +305,25 @@ public struct TemplateCompiler<Properties> {
             return success
         case .literal:
             return true
-        case .computedList(let path, let rootId, let contextId, var subNode):
+        case .computedList(let path, let contextId, var subNode):
             if rootIdIndexes[contextId + "-loop-"] == nil {
                 rootIdIndexes[contextId + "-loop-"] = contexts.count
-                contexts.append(ContextValueStore(rootId: rootId, path: path, subPaths: []))
+                contexts.append(ContextValueStore(rootId: path.rootId, path: path.keyPath, subPaths: []))
             }
             _ = optimize(&subNode)
-            node = .computedList(path, rootId, contextId, subNode)
+            node = .computedList(path, contextId, subNode)
             return true
-        case .contextValue(let path, let rootId):
-            if rootId.isEmpty {
-                contexts[0].subPaths.insert(path)
-            } else if let index = rootIdIndexes[rootId] {
-                contexts[index].subPaths.insert(path)
+        case .contextValue(let path):
+            if path.rootId.isEmpty {
+                contexts[0].subPaths.insert(path.keyPath)
+            } else if let index = rootIdIndexes[path.rootId] {
+                contexts[index].subPaths.insert(path.keyPath)
             } else {
                 fatalError()
             }
             return true
+        case .contextIf(let lkp, let condition, let rkp):
+            return false
         }
     }
     

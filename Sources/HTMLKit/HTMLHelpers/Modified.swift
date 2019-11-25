@@ -39,10 +39,10 @@ extension Array where Element == _Modifier {
                         case .string(let string):
                             node = .literal(" \(name)=\"\(string)\"")
                         }
-                    case .runtime(let path, let rootId):
+                    case .runtime(let path):
                         node = .list([
                             .literal(" \(name)=\""),
-                            .contextValue(path, rootId),
+                            .contextValue(path),
                             .literal("\"")
                         ])
                     }
@@ -53,10 +53,10 @@ extension Array where Element == _Modifier {
                         case .string(let string):
                             node = .literal(currentNode + " \(name)=\"\(string)\"")
                         }
-                    case .runtime(let path, let rootId):
+                    case .runtime(let path):
                         node = .list([
                             .literal("\(currentNode) \(name)=\""),
-                            .contextValue(path, rootId),
+                            .contextValue(path),
                             .literal("\"")
                         ])
                     }
@@ -70,11 +70,11 @@ extension Array where Element == _Modifier {
                                     .literal(" \(name)=\"\(string)\"")
                                 ])
                         }
-                    case .runtime(let path, let rootId):
+                    case .runtime(let path):
                         node = .list(
                             nodes + [
                                 .literal(" \(name)=\""),
-                                .contextValue(path, rootId),
+                                .contextValue(path),
                                 .literal("\"")
                             ])
                     }

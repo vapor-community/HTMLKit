@@ -1,7 +1,6 @@
-internal indirect enum ContextValue {
-    case none
-    case root(AnyKeyPath)
-    case listElement(AnyKeyPath, ContextValue)
+struct ContextValue {
+    let keyPath: AnyKeyPath
+    let rootId: String
 }
 
 internal indirect enum TemplateNode: ContentRepresentable, _HTML {
@@ -13,8 +12,9 @@ internal indirect enum TemplateNode: ContentRepresentable, _HTML {
     case lazy(() -> TemplateNode)
     case literal(String)
 //    case anyLocalizable()
-    case contextValue(AnyKeyPath, String)
-    case computedList(AnyKeyPath, String, String, TemplateNode)
+    case contextValue(ContextValue)
+    case computedList(ContextValue, String, TemplateNode)
+    case contextIf(Conditions, TemplateNode, TemplateNode)
     
     var node: TemplateNode { self }
     var html: TemplateNode { self }
@@ -29,6 +29,10 @@ internal indirect enum TemplateNode: ContentRepresentable, _HTML {
             self.init(from: content.html)
         }
     }
+}
+
+enum Conditions {
+    case equal(ContextValue, ContextValue)
 }
 
 public struct TemplateLiteral: ExpressibleByStringLiteral {
@@ -50,7 +54,7 @@ public struct TemplateLiteral: ExpressibleByStringLiteral {
 public struct TemplateValue: ExpressibleByStringLiteral {
     enum Storage {
         case compileTime(TemplateLiteral)
-        case runtime(AnyKeyPath, String)
+        case runtime(ContextValue)
     }
     
     let storage: Storage
@@ -64,7 +68,7 @@ public struct TemplateValue: ExpressibleByStringLiteral {
     }
     
     internal init(keyPath: AnyKeyPath, rootId: String) {
-        self.storage = .runtime(keyPath, rootId)
+        self.storage = .runtime(.init(keyPath: keyPath, rootId: rootId))
     }
     
     public init(stringLiteral value: String) {
@@ -112,12 +116,18 @@ enum CompiledNode: UInt8 {
     case list = 0x03
     case contextValue = 0x04
     case computedList = 0x05
+    case contextIfStart = 0x06
+    case contextIfEnd = 0x07
 }
 
 enum CompiledTemplateValue: UInt8 {
 //    case none = 0x00
     case literal = 0x01
     case runtime = 0x02
+}
+
+enum CompiledCondition: UInt8 {
+    case equal = 0x00
 }
 
 enum Constants {

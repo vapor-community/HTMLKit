@@ -29,7 +29,8 @@ final class HTMLKitTests: XCTestCase {
                 MenuLink(name: "WELKOM", link: "index.html"),
                 MenuLink(name: "WIE WIJ ZIJN", link: "overons.html"),
                 MenuLink(name: "WAT WIJ DOEN", link: "watwijdoen.html"),
-                MenuLink(name: "CONTACT", link: "contact.html")
+                MenuLink(name: "CONTACT", link: "contact.html"),
+                MenuLink(name: "EQUAL", link: "EQUAL")
             ],
             text: """
             asf;jadgkhjefaldskfdghfiehjsgdfkgh
