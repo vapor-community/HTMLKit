@@ -78,6 +78,10 @@ extension ForEach where Root == Values {
         localFormula = .init()
         self.condition = true
     }
+
+    public init(in values: Values, @HTMLBuilder content: (RootValue<Values.Element>) -> HTML) {
+        self.init(in: .constant(values), content: content)
+    }
 }
 
 extension ForEach: HTML {

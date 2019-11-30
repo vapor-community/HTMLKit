@@ -1008,3 +1008,25 @@ struct PracticeSession {
 //        return formatter.string(from: self)
 //    }
 //}
+
+struct Flash {
+    let message: String
+    let kind: String
+}
+
+struct FlashView: HTMLPage {
+
+    let flashes: [Flash]
+
+    var body: HTML {
+        Div {
+            ForEach(in: flashes) { flash in
+                Div {
+                    P { flash.message }
+                }
+                .class("message \(flash.kind)")
+            }
+        }
+        .id("flash")
+    }
+}
