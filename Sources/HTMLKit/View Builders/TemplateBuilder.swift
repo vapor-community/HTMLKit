@@ -1517,8 +1517,8 @@ extension Select where B: HTML {
 }
 
 // Easier use of TemplateVariable.constant()
-extension Select where B: HTML, A == Never {
-    public init(in elements: [B]) {
+extension Select where B: Sequence, A == Never, B.Element : HTML {
+    public init(in elements: B) {
         isMultiple = false
         content = ForEach<Never, B>(in: .constant(elements)) { variable in
             Option { variable }
