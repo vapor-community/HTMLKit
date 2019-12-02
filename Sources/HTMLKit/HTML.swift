@@ -282,7 +282,7 @@ extension AttributeNode {
     }
 
     public func value(of attribute: String) -> HTML? {
-        attributes.first(where: { $0.attribute == "id" })?.value
+        attributes.first(where: { $0.attribute == attribute })?.value
     }
 
     public func modify(if condition: Conditionable, modifyer: (Self) -> Self) -> Self {
