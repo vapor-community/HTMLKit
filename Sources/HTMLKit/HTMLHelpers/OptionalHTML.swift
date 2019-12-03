@@ -8,7 +8,7 @@ public struct OptionalHTML<Content: _HTML>: ContentRepresentable, _HTML {
             return TemplateNode(from: content)
         }
         
-        return .none
+        return .noContent
     }
     
     public var html: Never { fatalError() }

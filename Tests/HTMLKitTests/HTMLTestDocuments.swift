@@ -6,6 +6,7 @@ struct MenuLink {
 }
 
 struct Properties {
+    var header: Bool
     var links: [MenuLink]
     var text: String
 }
@@ -42,10 +43,12 @@ let page = Root {
         Link.stylesheet("https://autimatisering.nl/styles/content.css")
     }
     Body {
-        Header {
-            Img(src: "https://autimatisering.nl/img/AMLogo-Full-White.svg")
-                .id("logo")
-        }
+//        renderConditional(if: context.header) {
+            Header {
+                Img(src: "https://autimatisering.nl/img/AMLogo-Full-White.svg")
+                    .id("logo")
+            }
+//        }
         
         AMMenu()
         Header {

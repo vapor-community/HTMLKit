@@ -10,14 +10,21 @@ fileprivate func equal(lhs: StaticString, rhs: StaticString) -> Bool {
 }
 
 struct ContextValueStore {
-    let rootId: String
-    let path: AnyKeyPath
+    let runtimeValue: TemplateRuntimeValue
     var subPaths: Set<AnyKeyPath>
 }
 
 public struct TemplateCompiler<Properties> {
 
-    private var contexts = [ContextValueStore(rootId: "", path: \ContextValueStore.self, subPaths: [])]
+    private var contexts = [
+        ContextValueStore(
+            runtimeValue: TemplateRuntimeValue(
+                path: \ContextValueStore.self,
+                rootId: ""
+            ),
+            subPaths: []
+        )
+    ]
 
     private var rootIdIndexes = [String: Int]()
 
@@ -29,13 +36,13 @@ public struct TemplateCompiler<Properties> {
         buffer = ByteBufferAllocator().buffer(capacity: 4_096)
     }
 
-    private func index(for path: AnyKeyPath, rootId: String) throws -> Int {
-        let rootIndex = rootIdIndexes[rootId] ?? 0
+    private func index(for value: TemplateRuntimeValue) throws -> Int {
+        let rootIndex = rootIdIndexes[value.rootId] ?? 0
         var pathIndex = 0
         for i in 0..<rootIndex {
             pathIndex += keyPaths[i].count
         }
-        guard let subIndex = keyPaths[rootIndex].firstIndex(where: { $0 == path }) else {
+        guard let subIndex = keyPaths[rootIndex].firstIndex(where: { $0 == value.path }) else {
             throw TemplateError.internalCompilerError
         }
         return pathIndex + subIndex
@@ -47,12 +54,14 @@ public struct TemplateCompiler<Properties> {
             buffer.writeInteger(CompiledTemplateValue.literal.rawValue)
             
             switch literal.storage {
+            case .boolean:
+                throw TemplateError.cannotRender(Bool.self)
             case .string(let string):
                 compileString(string)
             }
-        case .runtime(let path, let rootId):
+        case .runtime(let runtimeValue):
             buffer.writeInteger(CompiledTemplateValue.runtime.rawValue)
-            buffer.writeInteger(try index(for: path, rootId: rootId), endianness: .little)
+            buffer.writeInteger(try index(for: runtimeValue), endianness: .little)
         }
     }
     
@@ -63,6 +72,8 @@ public struct TemplateCompiler<Properties> {
             try compileTemplateValue(value)
         case .style(let type, let styles):
             compileString(type.rawValue)
+            
+            buffer.writeInteger(CompiledTemplateValue.literal.rawValue)
             compileString(styles.map { $0.styleName }.joined(separator: " "))
             
             for style in styles {
@@ -75,10 +86,10 @@ public struct TemplateCompiler<Properties> {
         keyPaths = [Array(contexts[0].subPaths)]
         let loopContextes = contexts.dropFirst()
         for context in loopContextes {
-            if context.rootId.isEmpty {
-                keyPaths[0].append(context.path)
-            } else if let rootIndex = rootIdIndexes[context.rootId] {
-                keyPaths[rootIndex].append(context.path)
+            if context.runtimeValue.rootId.isEmpty {
+                keyPaths[0].append(context.runtimeValue.path)
+            } else if let rootIndex = rootIdIndexes[context.runtimeValue.rootId] {
+                keyPaths[rootIndex].append(context.runtimeValue.path)
             }
             keyPaths.append(Array(context.subPaths))
         }
@@ -95,15 +106,18 @@ public struct TemplateCompiler<Properties> {
     }
     
     private mutating func compile(_ node: TemplateNode) throws {
-
         switch node {
-        case .none:
-            buffer.writeInteger(CompiledNode.none.rawValue)
+        case .noContent:
+            buffer.writeInteger(CompiledNode.noContent.rawValue)
+        case .literal(let literal):
+            buffer.writeInteger(CompiledNode.literal.rawValue)
+            compileString(literal)
         case .tag(let name, let content, let modifiers):
             let data = Data(bytes: name.utf8Start, count: name.utf8CodeUnitCount)
             let name = String(data: data, encoding: .utf8)!
             
-            buffer.writeInteger(CompiledNode.tag.rawValue)
+            let compiledNode: CompiledNode = content == nil ? .shortTag : .longTag
+            buffer.writeInteger(compiledNode.rawValue)
             compileString(name)
             buffer.writeInteger(UInt8(modifiers.count))
             
@@ -111,10 +125,7 @@ public struct TemplateCompiler<Properties> {
                 try compile(modifier)
             }
             
-            try compile(content)
-        case .literal(let literal):
-            buffer.writeInteger(CompiledNode.literal.rawValue)
-            compileString(literal)
+            try compile(content ?? .noContent)
         case .list(let nodes):
             buffer.writeInteger(CompiledNode.list.rawValue)
             buffer.writeInteger(UInt8(nodes.count))
@@ -124,17 +135,29 @@ public struct TemplateCompiler<Properties> {
             }
         case .lazy(let render):
             try compile(render())
-        case .contextValue(let path, let rootId):
+        case .contextValue(let runtimeValue):
             buffer.writeInteger(CompiledNode.contextValue.rawValue)
-            buffer.writeInteger(try index(for: path, rootId: rootId), endianness: .little)
-
-        case .computedList(let path, let rootId, let contextId, let node):
-            buffer.writeInteger(CompiledNode.computedList.rawValue)
+            buffer.writeInteger(try index(for: runtimeValue), endianness: .little)
+        case .conditional(let runtimeValue, let contextId, let trueNode, let falseNode):
+            guard let contextIndex = rootIdIndexes[contextId + "-condition-"] else {
+                throw TemplateError.internalCompilerError
+            }
+            
+            buffer.writeInteger(CompiledNode.conditional.rawValue)
+            buffer.writeInteger(try index(for: runtimeValue), endianness: .little)
+            buffer.writeInteger(contextIndex, endianness: .little)
+            
+            try compile(trueNode)
+            try compile(falseNode)
+        case .computedList(let runtimeValue, let contextId, let node):
             guard let contextIndex = rootIdIndexes[contextId + "-loop-"] else {
                 throw TemplateError.internalCompilerError
             }
-            buffer.writeInteger(try index(for: path, rootId: rootId), endianness: .little)
+            
+            buffer.writeInteger(CompiledNode.computedList.rawValue)
+            buffer.writeInteger(try index(for: runtimeValue), endianness: .little)
             buffer.writeInteger(contextIndex, endianness: .little)
+            
             try compile(node)
         }
     }
@@ -159,7 +182,7 @@ public struct TemplateCompiler<Properties> {
     
     private mutating func optimize(_ node: inout TemplateNode) -> Bool {
         switch node {
-        case .none:
+        case .noContent:
             return true
         case .list(let subnodes):
             var nodes = [TemplateNode]()
@@ -179,14 +202,13 @@ public struct TemplateCompiler<Properties> {
                 _ = optimize(&subnode)
                 
                 switch subnode {
-                case .none:
+                case .noContent:
                     continue nextSubnode
                 case .list(let nestedList):
                     flushOptimization()
                     nodes.append(contentsOf: nestedList)
                     shouldReoptimize = true
-                case .tag(let name, var content, let modifiers):
-
+                case .tag(let name, let content, let modifiers):
                     var modifierTemplate = modifiers.makeTemplateNode()
 
                     result += "<\(name)"
@@ -199,12 +221,14 @@ public struct TemplateCompiler<Properties> {
                         result += ">"
                     }
                     
-                    let isOptimized = optimize(&content)
-                    if isOptimized, case .literal(let value) = content {
-                        result += value
-                    } else {
-                        flushOptimization()
-                        nodes.append(content)
+                    if var content = content {
+                        let isOptimized = optimize(&content)
+                        if isOptimized, case .literal(let value) = content {
+                            result += value
+                        } else {
+                            flushOptimization()
+                            nodes.append(content)
+                        }
                     }
                     
                     result += "</\(name)>"
@@ -216,7 +240,7 @@ public struct TemplateCompiler<Properties> {
                     nodes.append(resolved)
                 case .literal(let value):
                     result += value
-                case .contextValue, .computedList:
+                case .contextValue, .computedList, .conditional:
 //                    assert(!didOptimize, "Optimized node cannot be a contextValue, these are not optimizable")
                     flushOptimization()
                     nodes.append(subnode)
@@ -234,12 +258,26 @@ public struct TemplateCompiler<Properties> {
                     node = .list(nodes)
                 }
             } else {
-                node = nodes.first ?? .none
+                node = nodes.first ?? .noContent
             }
             return true
-        case .tag(let name, var content, let modifiers):
-
+        case .tag(let name, let content, let modifiers):
             var modifierTemplate = modifiers.makeTemplateNode()
+        
+            guard var content = content else {
+                if case .literal(let literalModifierString) = modifierTemplate {
+                    node = .literal("<\(name)\(literalModifierString) />")
+                } else {
+                    _ = optimize(&modifierTemplate)
+                    node = .list([
+                        .literal("<\(name)"),
+                        modifierTemplate,
+                        .literal("/>")
+                    ])
+                }
+                
+                return true
+            }
 
             var start = "<\(name)"
             if case .literal(let literalModifierString) = modifierTemplate {
@@ -258,7 +296,7 @@ public struct TemplateCompiler<Properties> {
             switch (isOptimized, content) {
             case (true, .literal(let value)):
                 node = .literal(start + value + end)
-            case (true, .none):
+            case (true, .noContent):
                 node = .literal(start + end)
             case (true, .list):
                 node = .list([
@@ -266,10 +304,10 @@ public struct TemplateCompiler<Properties> {
                     content,
                     .literal(end)
                 ])
-            case (true, .computedList(let path, let rootId, let contextId, let content)):
+            case (true, .computedList(let runtimeValue, let contextId, let content)):
                 node = .list([
                     .literal(start),
-                    .computedList(path, rootId, contextId, content),
+                    .computedList(runtimeValue, contextId, content),
                     .literal(end)
                 ])
             case (true, .contextValue(_)):
@@ -296,22 +334,38 @@ public struct TemplateCompiler<Properties> {
             return success
         case .literal:
             return true
-        case .computedList(let path, let rootId, let contextId, var subNode):
+        case .computedList(let runtimeValue, let contextId, var subNode):
             if rootIdIndexes[contextId + "-loop-"] == nil {
                 rootIdIndexes[contextId + "-loop-"] = contexts.count
-                contexts.append(ContextValueStore(rootId: rootId, path: path, subPaths: []))
+                contexts.append(ContextValueStore(runtimeValue: runtimeValue, subPaths: []))
             }
             _ = optimize(&subNode)
-            node = .computedList(path, rootId, contextId, subNode)
+            node = .computedList(runtimeValue, contextId, subNode)
             return true
-        case .contextValue(let path, let rootId):
-            if rootId.isEmpty {
-                contexts[0].subPaths.insert(path)
-            } else if let index = rootIdIndexes[rootId] {
-                contexts[index].subPaths.insert(path)
+        case .contextValue(let runtimeValue):
+            if runtimeValue.rootId.isEmpty {
+                contexts[0].subPaths.insert(runtimeValue.path)
+            } else if let index = rootIdIndexes[runtimeValue.rootId] {
+                contexts[index].subPaths.insert(runtimeValue.path)
             } else {
                 fatalError()
             }
+            return true
+        case .conditional(let runtimeValue, let contextId, var trueNode, var falseNode):
+            if rootIdIndexes[contextId + "-condition-"] == nil {
+                rootIdIndexes[contextId + "-condition-"] = contexts.count
+                contexts.append(ContextValueStore(runtimeValue: runtimeValue, subPaths: []))
+            }
+            
+            _ = optimize(&trueNode)
+            _ = optimize(&falseNode)
+            
+            node = .conditional(
+                runtimeValue,
+                contextId,
+                trueNode,
+                falseNode
+            )
             return true
         }
     }

@@ -2,15 +2,14 @@ public struct Img: NodeRepresentedElement {
     public typealias BaseTag = Img
     public typealias HTMLScope = Scopes.Body
     
-    static var tag: StaticString = "img"
-    let node: TemplateNode
+    static let hasContent = false
+    static let tag: StaticString = "img"
+    var node: TemplateNode { .noContent }
+    let modifiers: [_Modifier]
     
     public init<URI: TemplateValueRepresentable>(src: URI) {
-        self.node = .tag(
-            name: Self.tag,
-            content: .none,
-            modifiers: [
-                .attribute(name: "src", value: src.makeTemplateValue())
-        ])
+        self.modifiers = [
+            .attribute(name: "src", value: src.makeTemplateValue())
+        ]
     }
 }

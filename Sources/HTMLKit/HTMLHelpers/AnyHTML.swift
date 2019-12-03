@@ -7,7 +7,7 @@ public struct AnyHTML<Scope: HTMLScope>: ContentRepresentable, _HTML {
     }
     
     init() {
-        self.node = .none
+        self.node = .noContent
     }
     
     public init<Content: _HTML>(content: Content) {

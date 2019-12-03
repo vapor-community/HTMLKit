@@ -2,7 +2,7 @@ public struct Link: HeadElement {
     let node: TemplateNode
     
     init(_ modifiers: [_Modifier]) {
-        node = .tag(name: "link", content: .none, modifiers: modifiers)
+        node = .tag(name: "link", content: .noContent, modifiers: modifiers)
     }
     
     public static func stylesheet<URI: TemplateValueRepresentable>(

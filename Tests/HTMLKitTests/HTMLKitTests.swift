@@ -25,6 +25,7 @@ final class HTMLKitTests: XCTestCase {
         let template = try TemplateCompiler<Properties>.compile(page)
         var output = ByteBufferAllocator().buffer(capacity: 10_000)
         let properties = Properties(
+            header: true,
             links: [
                 MenuLink(name: "WELKOM", link: "index.html"),
                 MenuLink(name: "WIE WIJ ZIJN", link: "overons.html"),

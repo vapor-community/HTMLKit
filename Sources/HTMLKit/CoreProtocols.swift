@@ -42,7 +42,9 @@ public protocol AttributedHTML: HTML {
 }
 
 internal protocol NodeRepresentedElement: AttributedHTML where Content == AnyBodyTag, BaseTag == Self {
+    var modifiers: [_Modifier] { get }
     var node: TemplateNode { get }
+    static var hasContent: Bool { get }
     static var tag: StaticString { get }
 }
 
@@ -53,11 +55,14 @@ public protocol _NativeHTMLElement: AttributedHTML {
 }
 
 extension NodeRepresentedElement {
+    static var hasContent: Bool { true }
+    var modifiers: [_Modifier] { [] }
+    
     public func modify(with modifier: Modifier) -> Modified<BaseTag> {
         return Modified<BaseTag>(
             tag: Self.tag,
-            modifiers: [modifier.modifier],
-            baseNode: node
+            modifiers: modifiers + [modifier.modifier],
+            baseNode: Self.hasContent ? node : nil
         )
     }
     
@@ -65,13 +70,13 @@ extension NodeRepresentedElement {
         return modify(with: Modifier(modifier: .attribute(name: key, value: value.makeTemplateValue())))
     }
     
-    public var html: AnyBodyTag { AnyBodyTag(Self.tag, content: node, modifiers: []) }
+    public var html: AnyBodyTag { AnyBodyTag(Self.tag, content: node, modifiers: modifiers) }
 }
 
 extension BodyTag {
     @inlinable
     public init() {
-        self.init(node: .none)
+        self.init(node: .noContent)
     }
     
     @inlinable

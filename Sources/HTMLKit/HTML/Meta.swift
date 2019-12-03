@@ -2,7 +2,7 @@ public struct Meta: HeadElement {
     let node: TemplateNode
     
     init(_ modifiers: [_Modifier]) {
-        node = .tag(name: "meta", content: .none, modifiers: modifiers)
+        node = .tag(name: "meta", content: nil, modifiers: modifiers)
     }
     
     public static func viewport(content: String) -> Meta {

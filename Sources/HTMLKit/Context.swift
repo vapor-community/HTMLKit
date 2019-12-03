@@ -1,11 +1,14 @@
 @dynamicMemberLookup
 @propertyWrapper
 public struct HTMLContext<Base, Value> {
-
     internal let contextId: String
     internal let rootId: String
     internal let path: KeyPath<Base, Value>
     public var wrappedValue: HTMLContext<Base, Value> { self }
+    
+    internal var runtimeValue: TemplateRuntimeValue {
+        TemplateRuntimeValue(path: path, rootId: rootId)
+    }
     
     init(path: KeyPath<Base, Value>, rootId: String? = nil, contextId: String? = nil) {
         self.path = path
@@ -39,7 +42,7 @@ extension HTMLContext {
         let node = TemplateNode(from: html)
         
         return AnyHTML(
-            node: .computedList(path, rootId, contextId, node)
+            node: .computedList(runtimeValue, contextId, node)
         )
     }
 }
@@ -48,12 +51,12 @@ extension HTMLContext: HTML {
     public typealias Content = AnyHTML
     
     public var html: AnyHTML<Scopes.Body> {
-        return .init(node: .contextValue(path, rootId))
+        return .init(node: .contextValue(runtimeValue))
     }
 }
 
 extension HTMLContext: TemplateValueRepresentable {
     public func makeTemplateValue() -> TemplateValue {
-        TemplateValue(keyPath: path, rootId: rootId)
+        TemplateValue(value: runtimeValue)
     }
 }

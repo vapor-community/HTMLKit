@@ -7,14 +7,15 @@ internal indirect enum ContextValue {
 internal indirect enum TemplateNode: ContentRepresentable, _HTML {
     typealias HTMLScope = Scopes.Never
     
-    case none
+    case noContent
     case list([TemplateNode])
-    case tag(name: StaticString, content: TemplateNode, modifiers: [_Modifier])
+    case tag(name: StaticString, content: TemplateNode?, modifiers: [_Modifier])
     case lazy(() -> TemplateNode)
     case literal(String)
 //    case anyLocalizable()
-    case contextValue(AnyKeyPath, String)
-    case computedList(AnyKeyPath, String, String, TemplateNode)
+    case contextValue(TemplateRuntimeValue)
+    case conditional(TemplateRuntimeValue, String, TemplateNode, TemplateNode)
+    case computedList(TemplateRuntimeValue, String, TemplateNode)
     
     var node: TemplateNode { self }
     var html: TemplateNode { self }
@@ -31,9 +32,10 @@ internal indirect enum TemplateNode: ContentRepresentable, _HTML {
     }
 }
 
-public struct TemplateLiteral: ExpressibleByStringLiteral {
+public struct TemplateLiteral: ExpressibleByStringLiteral, ExpressibleByBooleanLiteral {
     internal enum Storage {
         case string(String)
+        case boolean(Bool)
     }
     
     let storage: Storage
@@ -42,15 +44,28 @@ public struct TemplateLiteral: ExpressibleByStringLiteral {
         self.storage = .string(value)
     }
     
+    public init(booleanLiteral value: Bool) {
+        self.storage = .boolean(value)
+    }
+    
     public init(string: String) {
         self.storage = .string(string)
     }
+    
+    public init(boolean: Bool) {
+        self.storage = .boolean(boolean)
+    }
+}
+
+public struct TemplateRuntimeValue {
+    let path: AnyKeyPath
+    let rootId: String
 }
 
 public struct TemplateValue: ExpressibleByStringLiteral {
     enum Storage {
         case compileTime(TemplateLiteral)
-        case runtime(AnyKeyPath, String)
+        case runtime(TemplateRuntimeValue)
     }
     
     let storage: Storage
@@ -63,8 +78,8 @@ public struct TemplateValue: ExpressibleByStringLiteral {
         self.storage = .compileTime(value)
     }
     
-    internal init(keyPath: AnyKeyPath, rootId: String) {
-        self.storage = .runtime(keyPath, rootId)
+    internal init(value: TemplateRuntimeValue) {
+        self.storage = .runtime(value)
     }
     
     public init(stringLiteral value: String) {
@@ -87,8 +102,16 @@ public protocol TemplateValueRepresentable {
 }
 
 extension String: TemplateLiteralRepresentable {
+    @inlinable
     public func makeTemplateLiteral() -> TemplateLiteral {
         TemplateLiteral(string: self)
+    }
+}
+
+extension Bool: TemplateLiteralRepresentable {
+    @inlinable
+    public func makeTemplateLiteral() -> TemplateLiteral {
+        TemplateLiteral(boolean: self)
     }
 }
 
@@ -106,12 +129,14 @@ enum StyleType: String {
 }
 
 enum CompiledNode: UInt8 {
-    case none = 0x00
-    case tag = 0x01
-    case literal = 0x02
-    case list = 0x03
-    case contextValue = 0x04
-    case computedList = 0x05
+    case noContent = 0x00
+    case shortTag = 0x01
+    case longTag = 0x02
+    case literal = 0x03
+    case list = 0x04
+    case contextValue = 0x05
+    case computedList = 0x06
+    case conditional = 0x07
 }
 
 enum CompiledTemplateValue: UInt8 {
@@ -131,6 +156,20 @@ enum Constants {
 
 public enum TemplateError: Error {
     case internalCompilerError
+    case cannotRender(Any.Type)
+    case cannotEvaluateCondition(Any.Type)
     case errorCompilingPropertyAccessor([String])
     case missingValue(AnyKeyPath, needed: Any.Type)
+}
+
+public struct TemplateCondition {
+    internal enum _Condition {
+        case runtime(TemplateRuntimeValue)
+    }
+    
+    let condition: _Condition
+    
+    internal init<Base>(contextValue: HTMLContext<Base, Bool>) {
+        self.condition = .runtime(contextValue.runtimeValue)
+    }
 }

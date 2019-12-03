@@ -1,10 +1,10 @@
 public struct AnyBodyTag: HTML {
     public typealias HTMLScope = Scopes.Body
     let name: StaticString
-    let content: TemplateNode
+    let content: TemplateNode?
     let modifiers: [_Modifier]
     
-    init(_ name: StaticString, content: TemplateNode, modifiers: [_Modifier]) {
+    init(_ name: StaticString, content: TemplateNode?, modifiers: [_Modifier]) {
         self.name = name
         self.content = content
         self.modifiers = modifiers

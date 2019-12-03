@@ -5,7 +5,7 @@ public struct Modified<BaseTag: AttributedHTML>: AttributedHTML {
     
     let tag: StaticString
     let modifiers: [_Modifier]
-    let baseNode: TemplateNode
+    let baseNode: TemplateNode?
     
     public var html: AnyBodyTag { AnyBodyTag(tag, content: baseNode, modifiers: modifiers) }
     
@@ -26,23 +26,24 @@ public struct Modified<BaseTag: AttributedHTML>: AttributedHTML {
 }
 
 extension Array where Element == _Modifier {
-    
     func makeTemplateNode() -> TemplateNode {
-        var node: TemplateNode = .none
+        var node: TemplateNode = .noContent
         for element in self {
             if case .attribute(let name, let value) = element {
                 switch node {
-                case .none:
+                case .noContent:
                     switch value.storage {
                     case .compileTime(let literal):
                         switch literal.storage {
+                        case .boolean(let boolean):
+                            node = .literal(" \(name)=\"\(boolean)\"")
                         case .string(let string):
                             node = .literal(" \(name)=\"\(string)\"")
                         }
-                    case .runtime(let path, let rootId):
+                    case .runtime(let runtimeValue):
                         node = .list([
                             .literal(" \(name)=\""),
-                            .contextValue(path, rootId),
+                            .contextValue(runtimeValue),
                             .literal("\"")
                         ])
                     }
@@ -50,13 +51,15 @@ extension Array where Element == _Modifier {
                     switch value.storage {
                     case .compileTime(let literal):
                         switch literal.storage {
+                        case .boolean(let boolean):
+                            node = .literal(currentNode + " \(name)=\"\(boolean)\"")
                         case .string(let string):
                             node = .literal(currentNode + " \(name)=\"\(string)\"")
                         }
-                    case .runtime(let path, let rootId):
+                    case .runtime(let runtimeValue):
                         node = .list([
                             .literal("\(currentNode) \(name)=\""),
-                            .contextValue(path, rootId),
+                            .contextValue(runtimeValue),
                             .literal("\"")
                         ])
                     }
@@ -64,17 +67,24 @@ extension Array where Element == _Modifier {
                     switch value.storage {
                     case .compileTime(let literal):
                         switch literal.storage {
+                        case .boolean(let boolean):
+                            node = .list(
+                                nodes + [
+                                    .literal(" \(name)=\"\(boolean)\"")
+                                ]
+                            )
                         case .string(let string):
                             node = .list(
                                 nodes + [
                                     .literal(" \(name)=\"\(string)\"")
-                                ])
+                                ]
+                            )
                         }
-                    case .runtime(let path, let rootId):
+                    case .runtime(let runtimeValue):
                         node = .list(
                             nodes + [
                                 .literal(" \(name)=\""),
-                                .contextValue(path, rootId),
+                                .contextValue(runtimeValue),
                                 .literal("\"")
                             ])
                     }

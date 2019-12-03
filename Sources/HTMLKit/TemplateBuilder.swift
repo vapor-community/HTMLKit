@@ -1,7 +1,7 @@
 @_functionBuilder
 public enum TemplateBuilder<Scope: HTMLScope> {
     public static func buildBlock() -> AnyHTML<Scope> {
-        return AnyHTML(node: .none)
+        return AnyHTML(node: .noContent)
     }
     
     public static func buildBlock<Content: _HTML>(
@@ -90,20 +90,6 @@ public enum TemplateBuilder<Scope: HTMLScope> {
     }
     
     public static func buildIf<Content: _HTML>(_ content: Content?) -> Content? where Content.HTMLScope == Scope { content }
-    
-    public static func buildEither<
-        True: _HTML,
-        False: _HTML
-    >(first: True) -> ConditionalHTML<True, False> where ConditionalHTML<True, False>.HTMLScope == Scope {
-        return ConditionalHTML<True, False>(condition: .trueCase(first))
-    }
-    
-    public static func buildEither<
-        True: _HTML,
-        False: _HTML
-    >(second: False) -> ConditionalHTML<True, False> where ConditionalHTML<True, False>.HTMLScope == Scope {
-        return ConditionalHTML<True, False>(condition: .falseCase(second))
-    }
 }
 
 

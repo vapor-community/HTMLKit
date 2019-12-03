@@ -192,6 +192,17 @@ extension UnsafeByteBuffer {
     }
     
     @inlinable
+    mutating func skipSlice() throws {
+        guard
+            let length = readInteger(as: UInt32.self)
+        else {
+            throw TemplateError.internalCompilerError
+        }
+        
+        moveReaderIndex(forwardBy: Int(length))
+    }
+    
+    @inlinable
     mutating func parseString() throws -> String {
         guard
             let length = readInteger(as: UInt32.self),

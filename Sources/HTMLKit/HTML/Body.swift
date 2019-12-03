@@ -4,7 +4,7 @@ public struct Body: _HTML {
     let node: TemplateNode
     
     public init() {
-        self.node = .none
+        self.node = .noContent
     }
     
     public init(@TemplateBuilder<Scopes.Body> build: () -> ListContent<Scopes.Body>) {
