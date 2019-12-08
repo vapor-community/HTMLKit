@@ -14,6 +14,11 @@ struct ContextValueStore {
     var subPaths: Set<AnyKeyPath>
 }
 
+private struct Identities {
+    static let condition: String = "-condition-"
+    static let loop: String = "-loop-"
+}
+
 public struct TemplateCompiler<Properties> {
 
     private var contexts = [
@@ -30,6 +35,7 @@ public struct TemplateCompiler<Properties> {
 
     var buffer: ByteBuffer
     var keyPaths = [[AnyKeyPath]]()
+    var runtimeEvaluated = [RuntimeEvaluatable]()
     let stylesheet = StyleRegistery()
     
     init() {
@@ -48,7 +54,7 @@ public struct TemplateCompiler<Properties> {
         return pathIndex + subIndex
     }
     
-    private mutating func compileTemplateValue(_ value: TemplateValue) throws {
+    private mutating func compileTemplateValue(_ value: TemplateValue, buffer: inout ByteBuffer) throws {
         switch value.storage {
         case .compileTime(let literal):
             buffer.writeInteger(CompiledTemplateValue.literal.rawValue)
@@ -57,7 +63,7 @@ public struct TemplateCompiler<Properties> {
             case .boolean:
                 throw TemplateError.cannotRender(Bool.self)
             case .string(let string):
-                compileString(string)
+                compileString(string, buffer: &buffer)
             }
         case .runtime(let runtimeValue):
             buffer.writeInteger(CompiledTemplateValue.runtime.rawValue)
@@ -65,16 +71,16 @@ public struct TemplateCompiler<Properties> {
         }
     }
     
-    private mutating func compile(_ modifier: _Modifier) throws {
+    private mutating func compile(_ modifier: _Modifier, buffer: inout ByteBuffer) throws {
         switch modifier {
         case .attribute(let name, let value):
-            compileString(name)
-            try compileTemplateValue(value)
+            compileString(name, buffer: &buffer)
+            try compileTemplateValue(value, buffer: &buffer)
         case .style(let type, let styles):
-            compileString(type.rawValue)
+            compileString(type.rawValue, buffer: &buffer)
             
             buffer.writeInteger(CompiledTemplateValue.literal.rawValue)
-            compileString(styles.map { $0.styleName }.joined(separator: " "))
+            compileString(styles.map { $0.styleName }.joined(separator: " "), buffer: &buffer)
             
             for style in styles {
                 style.register?(self.stylesheet)
@@ -95,71 +101,98 @@ public struct TemplateCompiler<Properties> {
         }
     }
     
-    private mutating func compileString(_ string: String) {
+    private mutating func compileString(_ string: String, buffer: inout ByteBuffer) {
         buffer.writeInteger(UInt32(string.utf8.count), endianness: .little)
         buffer.writeString(string)
     }
     
-    private mutating func compileString(_ string: StaticString) {
+    private mutating func compileString(_ string: StaticString, buffer: inout ByteBuffer) {
         buffer.writeInteger(UInt32(string.utf8CodeUnitCount), endianness: .little)
         buffer.writeStaticString(string)
     }
-    
+
     private mutating func compile(_ node: TemplateNode) throws {
+        var tempBuffer = buffer
+        try compile(node, buffer: &tempBuffer)
+        buffer = tempBuffer
+    }
+    
+    private mutating func compile(_ node: TemplateNode, buffer: inout ByteBuffer) throws {
         switch node {
         case .noContent:
             buffer.writeInteger(CompiledNode.noContent.rawValue)
         case .literal(let literal):
             buffer.writeInteger(CompiledNode.literal.rawValue)
-            compileString(literal)
+            compileString(literal, buffer: &buffer)
         case .tag(let name, let content, let modifiers):
             let data = Data(bytes: name.utf8Start, count: name.utf8CodeUnitCount)
             let name = String(data: data, encoding: .utf8)!
             
             let compiledNode: CompiledNode = content == nil ? .shortTag : .longTag
             buffer.writeInteger(compiledNode.rawValue)
-            compileString(name)
+            compileString(name, buffer: &buffer)
             buffer.writeInteger(UInt8(modifiers.count))
             
             for modifier in modifiers {
-                try compile(modifier)
+                try compile(modifier, buffer: &buffer)
             }
             
-            try compile(content ?? .noContent)
+            try compile(content ?? .noContent, buffer: &buffer)
         case .list(let nodes):
             buffer.writeInteger(CompiledNode.list.rawValue)
             buffer.writeInteger(UInt8(nodes.count))
             
             for node in nodes {
-                try compile(node)
+                try compile(node, buffer: &buffer)
             }
         case .lazy(let render):
-            try compile(render())
+            try compile(render(), buffer: &buffer)
         case .contextValue(let runtimeValue):
             buffer.writeInteger(CompiledNode.contextValue.rawValue)
             buffer.writeInteger(try index(for: runtimeValue), endianness: .little)
-        case .conditional(let runtimeValue, let contextId, let trueNode, let falseNode):
-            guard let contextIndex = rootIdIndexes[contextId + "-condition-"] else {
-                throw TemplateError.internalCompilerError
-            }
-            
-            buffer.writeInteger(CompiledNode.conditional.rawValue)
-            buffer.writeInteger(try index(for: runtimeValue), endianness: .little)
-            buffer.writeInteger(contextIndex, endianness: .little)
-            
-            try compile(trueNode)
-            try compile(falseNode)
+        case .conditional(let runtimeValue, _, let trueNode, _):
+
+            buffer.writeInteger(CompiledNode.runtimeEvaluated.rawValue)
+            buffer.writeInteger(runtimeEvaluated.count, endianness: .little)
+
+            runtimeEvaluated.append(
+                CompiledIF(
+                    paths: [
+                        CompiledIF.Path(
+                            template: try unsafeBuffer(for: trueNode),
+                            condition: BoolCondition(valueIndex: try index(for: runtimeValue))
+                        )
+                    ]
+                )
+            )
         case .computedList(let runtimeValue, let contextId, let node):
-            guard let contextIndex = rootIdIndexes[contextId + "-loop-"] else {
+            guard let contextIndex = rootIdIndexes[contextId + Identities.loop] else {
                 throw TemplateError.internalCompilerError
             }
-            
-            buffer.writeInteger(CompiledNode.computedList.rawValue)
-            buffer.writeInteger(try index(for: runtimeValue), endianness: .little)
-            buffer.writeInteger(contextIndex, endianness: .little)
-            
-            try compile(node)
+
+            buffer.writeInteger(CompiledNode.runtimeEvaluated.rawValue)
+            buffer.writeInteger(runtimeEvaluated.count, endianness: .little)
+
+            runtimeEvaluated.append(
+                CompiledForEach(
+                    template: try unsafeBuffer(for: node),
+                    arrayValueIndex: try index(for: runtimeValue),
+                    keyPathIndex: contextIndex
+                )
+            )
         }
+    }
+
+    private mutating func unsafeBuffer(for node: TemplateNode) throws -> UnsafeByteBuffer {
+        var subTemplate = ByteBufferAllocator().buffer(capacity: 4_096)
+        try compile(node, buffer: &subTemplate)
+
+        let size = subTemplate.readableBytes
+        let pointer = UnsafeMutableRawPointer.allocate(byteCount: size, alignment: 1)
+        subTemplate.withUnsafeReadableBytes { subTemplate in
+            _ = memcpy(pointer, subTemplate.baseAddress, size)
+        }
+        return UnsafeByteBuffer(pointer: pointer, size: size)
     }
     
     public static func compile<T: Template>(_ type: T.Type) throws -> CompiledTemplate<Properties> {
@@ -335,8 +368,8 @@ public struct TemplateCompiler<Properties> {
         case .literal:
             return true
         case .computedList(let runtimeValue, let contextId, var subNode):
-            if rootIdIndexes[contextId + "-loop-"] == nil {
-                rootIdIndexes[contextId + "-loop-"] = contexts.count
+            if rootIdIndexes[contextId + Identities.loop] == nil {
+                rootIdIndexes[contextId + Identities.loop] = contexts.count
                 contexts.append(ContextValueStore(runtimeValue: runtimeValue, subPaths: []))
             }
             _ = optimize(&subNode)
@@ -352,8 +385,8 @@ public struct TemplateCompiler<Properties> {
             }
             return true
         case .conditional(let runtimeValue, let contextId, var trueNode, var falseNode):
-            if rootIdIndexes[contextId + "-condition-"] == nil {
-                rootIdIndexes[contextId + "-condition-"] = contexts.count
+            if rootIdIndexes[contextId + Identities.condition] == nil {
+                rootIdIndexes[contextId + Identities.condition] = contexts.count
                 contexts.append(ContextValueStore(runtimeValue: runtimeValue, subPaths: []))
             }
             
@@ -379,6 +412,6 @@ public struct TemplateCompiler<Properties> {
         }
         
         let buffer = UnsafeByteBuffer(pointer: pointer, size: size)
-        return CompiledTemplate(template: buffer, keyPaths: keyPaths)
+        return CompiledTemplate(template: buffer, keyPaths: keyPaths, runtimeEvaluated: runtimeEvaluated)
     }
 }

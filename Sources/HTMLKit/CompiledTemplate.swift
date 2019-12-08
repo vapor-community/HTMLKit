@@ -1,12 +1,26 @@
 import NIO
 
+protocol RuntimeEvaluatable {
+
+    func compileNextNode<Properties>(
+        template: inout UnsafeByteBuffer,
+        into output: inout ByteBuffer,
+        values: [Any],
+        keyPaths: [[AnyKeyPath]],
+        runtimeEvaluated: [RuntimeEvaluatable],
+        properties: Properties
+    ) throws
+}
+
 public struct CompiledTemplate<Context> {
     private var _template: UnsafeByteBuffer
-    private var keyPaths: [[AnyKeyPath]]
+    private let keyPaths: [[AnyKeyPath]]
+    private let runtimeEvaluated: [RuntimeEvaluatable]
     
-    init(template: UnsafeByteBuffer, keyPaths: [[AnyKeyPath]]) {
+    init(template: UnsafeByteBuffer, keyPaths: [[AnyKeyPath]], runtimeEvaluated: [RuntimeEvaluatable]) {
         self._template = template
         self.keyPaths = keyPaths
+        self.runtimeEvaluated = runtimeEvaluated
     }
     
     private struct ByteBufferSlicePosition {
@@ -94,31 +108,17 @@ public struct CompiledTemplate<Context> {
         case .contextValue:
             // Skip runtime value
             template.moveReaderIndex(forwardBy: MemoryLayout<Int>.size)
-        case .conditional:
-            // Skip runtime value
+        case .runtimeEvaluated:
             template.moveReaderIndex(forwardBy: MemoryLayout<Int>.size)
-            template.moveReaderIndex(forwardBy: MemoryLayout<Int>.size)
-            
-            // True node
-            try skipNextNode(template: &template)
-            
-            // False node
-            try skipNextNode(template: &template)
-        case .computedList:
-            // Skip runtime value
-            template.moveReaderIndex(forwardBy: MemoryLayout<Int>.size)
-            template.moveReaderIndex(forwardBy: MemoryLayout<Int>.size)
-            
-            // Iterated node
-            try skipNextNode(template: &template)
         }
     }
     
-    private static func compileNextNode<Properties>(
+    static func compileNextNode<Properties>(
         template: inout UnsafeByteBuffer,
         into output: inout ByteBuffer,
         values: [Any],
         keyPaths: [[AnyKeyPath]],
+        runtimeEvaluated: [RuntimeEvaluatable],
         properties: Properties
     ) throws {
         guard
@@ -193,6 +193,7 @@ public struct CompiledTemplate<Context> {
                     into: &output,
                     values: values,
                     keyPaths: keyPaths,
+                    runtimeEvaluated: runtimeEvaluated,
                     properties: properties
                 )
                 
@@ -212,6 +213,7 @@ public struct CompiledTemplate<Context> {
                     into: &output,
                     values: values,
                     keyPaths: keyPaths,
+                    runtimeEvaluated: runtimeEvaluated,
                     properties: properties
                 )
             }
@@ -224,56 +226,18 @@ public struct CompiledTemplate<Context> {
             case .string(let string):
                 output.writeString(string)
             }
-        case .computedList:
-            let value = try getValue(from: &template, values: values) as! [Any]
+        case .runtimeEvaluated:
             guard let index = template.readInteger(as: Int.self) else {
                 throw TemplateError.internalCompilerError
             }
-            assert(index >= 0 && index < keyPaths.count, "KeyPath references did not exist")
-            
-            var valueStart = 0
-            for i in 0..<index {
-                valueStart += keyPaths[i].count
-            }
-            
-            var newValues = values
-            let readerIndex = template.readerIndex
-            for element in value {
-                template.moveReaderIndex(to: readerIndex)
-                for (index, keyPath) in keyPaths[index].enumerated() {
-                    newValues[valueStart + index] = element[keyPath: keyPath] ?? ""
-                }
-                try compileNextNode(template: &template, into: &output, values: newValues, keyPaths: keyPaths, properties: element)
-            }
-        case .conditional:
-            let value = try getValue(from: &template, values: values) as! TemplateLiteralRepresentable
-            
-            switch value.makeTemplateLiteral().storage {
-            case .boolean(let bool):
-                if bool {
-                    try compileNextNode(
-                        template: &template,
-                        into: &output,
-                        values: values,
-                        keyPaths: keyPaths,
-                        properties: properties
-                    )
-                    
-                    try skipNextNode(template: &template)
-                } else {
-                    try skipNextNode(template: &template)
-                    
-                    try compileNextNode(
-                        template: &template,
-                        into: &output,
-                        values: values,
-                        keyPaths: keyPaths,
-                        properties: properties
-                    )
-                }
-            case .string:
-                throw TemplateError.cannotEvaluateCondition(String.self)
-            }
+            try runtimeEvaluated[index].compileNextNode(
+                template: &template,
+                into: &output,
+                values: values,
+                keyPaths: keyPaths,
+                runtimeEvaluated: runtimeEvaluated,
+                properties: properties
+            )
         }
     }
     
@@ -302,6 +266,7 @@ public struct CompiledTemplate<Context> {
                 into: &output,
                 values: values,
                 keyPaths: keyPaths,
+                runtimeEvaluated: runtimeEvaluated,
                 properties: properties
             )
         }

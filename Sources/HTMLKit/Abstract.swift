@@ -1,8 +1,3 @@
-internal indirect enum ContextValue {
-    case none
-    case root(AnyKeyPath)
-    case listElement(AnyKeyPath, ContextValue)
-}
 
 internal indirect enum TemplateNode: ContentRepresentable, _HTML {
     typealias HTMLScope = Scopes.Never
@@ -135,8 +130,7 @@ enum CompiledNode: UInt8 {
     case literal = 0x03
     case list = 0x04
     case contextValue = 0x05
-    case computedList = 0x06
-    case conditional = 0x07
+    case runtimeEvaluated = 0x06
 }
 
 enum CompiledTemplateValue: UInt8 {
