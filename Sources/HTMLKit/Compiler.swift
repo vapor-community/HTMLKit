@@ -19,7 +19,7 @@ private struct Identities {
     static let loop: String = "-loop-"
 }
 
-public struct TemplateCompiler<Properties> {
+public struct TemplateCompiler {
 
     private var contexts = [
         ContextValueStore(
@@ -42,7 +42,7 @@ public struct TemplateCompiler<Properties> {
         buffer = ByteBufferAllocator().buffer(capacity: 4_096)
     }
 
-    private func index(for value: TemplateRuntimeValue) throws -> Int {
+    func index(for value: TemplateRuntimeValue) throws -> Int {
         let rootIndex = rootIdIndexes[value.rootId] ?? 0
         var pathIndex = 0
         for i in 0..<rootIndex {
@@ -150,20 +150,20 @@ public struct TemplateCompiler<Properties> {
         case .contextValue(let runtimeValue):
             buffer.writeInteger(CompiledNode.contextValue.rawValue)
             buffer.writeInteger(try index(for: runtimeValue), endianness: .little)
-        case .conditional(let runtimeValue, _, let trueNode, _):
+        case .conditional(let conditions):
 
             buffer.writeInteger(CompiledNode.runtimeEvaluated.rawValue)
             buffer.writeInteger(runtimeEvaluated.count, endianness: .little)
 
-            runtimeEvaluated.append(
-                CompiledIF(
-                    paths: [
-                        CompiledIF.Path(
-                            template: try unsafeBuffer(for: trueNode),
-                            condition: BoolCondition(valueIndex: try index(for: runtimeValue))
-                        )
-                    ]
+            let paths = try conditions.map {
+                CompiledIF.Path(
+                    template: try unsafeBuffer(for: $0.node),
+                    condition: try $0.condition.compile(with: self)
                 )
+            }
+
+            runtimeEvaluated.append(
+                CompiledIF(paths: paths)
             )
         case .computedList(let runtimeValue, let contextId, let node):
             guard let contextIndex = rootIdIndexes[contextId + Identities.loop] else {
@@ -195,7 +195,7 @@ public struct TemplateCompiler<Properties> {
         return UnsafeByteBuffer(pointer: pointer, size: size)
     }
     
-    public static func compile<T: Template>(_ type: T.Type) throws -> CompiledTemplate<Properties> {
+    public static func compile<T: Template, Properties>(_ type: T.Type) throws -> CompiledTemplate<Properties> {
         var compiler = TemplateCompiler()
         var node = TemplateNode(from: T())
         _ = compiler.optimize(&node)
@@ -204,7 +204,7 @@ public struct TemplateCompiler<Properties> {
         return compiler.export()
     }
     
-    public static func compile(_ root: Root) throws -> CompiledTemplate<Properties> {
+    public static func compile<Properties>(_ root: Root) throws -> CompiledTemplate<Properties> {
         var compiler = TemplateCompiler()
         var node = root.node
         _ = compiler.optimize(&node)
@@ -376,34 +376,36 @@ public struct TemplateCompiler<Properties> {
             node = .computedList(runtimeValue, contextId, subNode)
             return true
         case .contextValue(let runtimeValue):
-            if runtimeValue.rootId.isEmpty {
-                contexts[0].subPaths.insert(runtimeValue.path)
-            } else if let index = rootIdIndexes[runtimeValue.rootId] {
-                contexts[index].subPaths.insert(runtimeValue.path)
-            } else {
-                fatalError()
-            }
+            register(runtimeValue: runtimeValue)
             return true
-        case .conditional(let runtimeValue, let contextId, var trueNode, var falseNode):
-            if rootIdIndexes[contextId + Identities.condition] == nil {
-                rootIdIndexes[contextId + Identities.condition] = contexts.count
-                contexts.append(ContextValueStore(runtimeValue: runtimeValue, subPaths: []))
+        case .conditional(let conditions):
+
+            var optimized = [_Conditional]()
+            var iterator = conditions.makeIterator()
+
+            while var condition = iterator.next() {
+                condition.runtimeValues.forEach {
+                    register(runtimeValue: $0)
+                }
+                _ = optimize(&condition.node)
+                optimized.append(condition)
             }
-            
-            _ = optimize(&trueNode)
-            _ = optimize(&falseNode)
-            
-            node = .conditional(
-                runtimeValue,
-                contextId,
-                trueNode,
-                falseNode
-            )
+            node = .conditional(optimized)
             return true
         }
     }
+
+    mutating func register(runtimeValue: TemplateRuntimeValue) {
+        if runtimeValue.rootId.isEmpty {
+            contexts[0].subPaths.insert(runtimeValue.path)
+        } else if let index = rootIdIndexes[runtimeValue.rootId] {
+            contexts[index].subPaths.insert(runtimeValue.path)
+        } else {
+            fatalError()
+        }
+    }
     
-    func export() -> CompiledTemplate<Properties> {
+    func export<Properties>() -> CompiledTemplate<Properties> {
         let size = buffer.readableBytes
         let pointer = UnsafeMutableRawPointer.allocate(byteCount: size, alignment: 1)
         

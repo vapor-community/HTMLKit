@@ -9,7 +9,7 @@ internal indirect enum TemplateNode: ContentRepresentable, _HTML {
     case literal(String)
 //    case anyLocalizable()
     case contextValue(TemplateRuntimeValue)
-    case conditional(TemplateRuntimeValue, String, TemplateNode, TemplateNode)
+    case conditional([_Conditional])
     case computedList(TemplateRuntimeValue, String, TemplateNode)
     
     var node: TemplateNode { self }

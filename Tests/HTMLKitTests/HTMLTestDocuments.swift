@@ -49,6 +49,12 @@ let page = Root {
                     .id("logo")
             }
         }
+        .else(if: context.text == "Test") {
+            A {
+                "Tap here"
+            }
+            .href("Some value")
+        }
         
         AMMenu()
         Header {
