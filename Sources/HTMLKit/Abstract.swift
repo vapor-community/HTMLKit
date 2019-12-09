@@ -154,6 +154,7 @@ public enum TemplateError: Error {
     case cannotEvaluateCondition(Any.Type)
     case errorCompilingPropertyAccessor([String])
     case missingValue(AnyKeyPath, needed: Any.Type)
+    case missingValue(at: Int, needed: Any.Type)
 }
 
 public struct TemplateCondition {

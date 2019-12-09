@@ -20,7 +20,7 @@ struct LessThenCondition<Base, Value>: ConditionTemplate where Value : Comparabl
 
         func evaluate(with values: [Any]) throws -> Bool {
             guard let contextValue = values[valueIndex] as? Value else {
-                return false
+                throw TemplateError.missingValue(at: valueIndex, needed: Value.self)
             }
             return contextValue < value
         }

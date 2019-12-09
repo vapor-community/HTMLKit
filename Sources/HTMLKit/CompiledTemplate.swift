@@ -2,13 +2,12 @@ import NIO
 
 protocol RuntimeEvaluatable {
 
-    func compileNextNode<Properties>(
+    func compileNextNode(
         template: inout UnsafeByteBuffer,
         into output: inout ByteBuffer,
         values: [Any],
         keyPaths: [[AnyKeyPath]],
-        runtimeEvaluated: [RuntimeEvaluatable],
-        properties: Properties
+        runtimeEvaluated: [RuntimeEvaluatable]
     ) throws
 }
 
@@ -113,13 +112,12 @@ public struct CompiledTemplate<Context> {
         }
     }
     
-    static func compileNextNode<Properties>(
+    static func compileNextNode(
         template: inout UnsafeByteBuffer,
         into output: inout ByteBuffer,
         values: [Any],
         keyPaths: [[AnyKeyPath]],
-        runtimeEvaluated: [RuntimeEvaluatable],
-        properties: Properties
+        runtimeEvaluated: [RuntimeEvaluatable]
     ) throws {
         guard
             let byte = template.readInteger(as: UInt8.self),
@@ -193,8 +191,7 @@ public struct CompiledTemplate<Context> {
                     into: &output,
                     values: values,
                     keyPaths: keyPaths,
-                    runtimeEvaluated: runtimeEvaluated,
-                    properties: properties
+                    runtimeEvaluated: runtimeEvaluated
                 )
                 
                 output.writeInteger(Constants.less)
@@ -213,8 +210,7 @@ public struct CompiledTemplate<Context> {
                     into: &output,
                     values: values,
                     keyPaths: keyPaths,
-                    runtimeEvaluated: runtimeEvaluated,
-                    properties: properties
+                    runtimeEvaluated: runtimeEvaluated
                 )
             }
         case .contextValue:
@@ -235,8 +231,7 @@ public struct CompiledTemplate<Context> {
                 into: &output,
                 values: values,
                 keyPaths: keyPaths,
-                runtimeEvaluated: runtimeEvaluated,
-                properties: properties
+                runtimeEvaluated: runtimeEvaluated
             )
         }
     }
@@ -266,8 +261,7 @@ public struct CompiledTemplate<Context> {
                 into: &output,
                 values: values,
                 keyPaths: keyPaths,
-                runtimeEvaluated: runtimeEvaluated,
-                properties: properties
+                runtimeEvaluated: runtimeEvaluated
             )
         }
     }

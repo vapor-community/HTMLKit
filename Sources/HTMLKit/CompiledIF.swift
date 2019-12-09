@@ -24,13 +24,12 @@ class CompiledIF: RuntimeEvaluatable {
             try condition.evaluate(with: values)
         }
 
-        func compileNextNode<Properties>(
+        func compileNextNode(
             template: inout UnsafeByteBuffer,
             into output: inout ByteBuffer,
             values: [Any],
             keyPaths: [[AnyKeyPath]],
-            runtimeEvaluated: [RuntimeEvaluatable],
-            properties: Properties
+            runtimeEvaluated: [RuntimeEvaluatable]
         ) throws {
             var template = _template
             try CompiledTemplate<Any>.compileNextNode(
@@ -38,8 +37,7 @@ class CompiledIF: RuntimeEvaluatable {
                 into: &output,
                 values: values,
                 keyPaths: keyPaths,
-                runtimeEvaluated: runtimeEvaluated,
-                properties: properties
+                runtimeEvaluated: runtimeEvaluated
             )
         }
     }
@@ -50,7 +48,13 @@ class CompiledIF: RuntimeEvaluatable {
         self.paths = paths
     }
 
-    func compileNextNode<Properties>(template: inout UnsafeByteBuffer, into output: inout ByteBuffer, values: [Any], keyPaths: [[AnyKeyPath]], runtimeEvaluated: [RuntimeEvaluatable], properties: Properties) throws {
+    func compileNextNode(
+        template: inout UnsafeByteBuffer,
+        into output: inout ByteBuffer,
+        values: [Any],
+        keyPaths: [[AnyKeyPath]],
+        runtimeEvaluated: [RuntimeEvaluatable]
+    ) throws {
 
         for path in paths {
             if try path.evaluate(with: values) {
@@ -59,8 +63,7 @@ class CompiledIF: RuntimeEvaluatable {
                     into: &output,
                     values: values,
                     keyPaths: keyPaths,
-                    runtimeEvaluated: runtimeEvaluated,
-                    properties: properties
+                    runtimeEvaluated: runtimeEvaluated
                 )
                 return
             }

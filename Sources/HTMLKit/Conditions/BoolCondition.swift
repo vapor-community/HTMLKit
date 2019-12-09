@@ -11,7 +11,10 @@ struct TemplateBoolCondition: Conditionable {
     let valueIndex: Int
 
     func evaluate(with values: [Any]) throws -> Bool {
-        values[valueIndex] as! Bool
+        guard let value = values[valueIndex] as? Bool else {
+            throw TemplateError.missingValue(at: valueIndex, needed: Bool.self)
+        }
+        return value
     }
 }
 

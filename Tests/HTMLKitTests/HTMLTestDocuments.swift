@@ -49,7 +49,7 @@ let page = Root {
                     .id("logo")
             }
         }
-        .else(if: context.text != "Test" || context.text == "Test 2") {
+        .else(if: context.text != "Test") {
             A {
                 "Tap here"
             }

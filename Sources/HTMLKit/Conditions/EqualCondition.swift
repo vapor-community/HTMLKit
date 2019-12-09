@@ -20,7 +20,7 @@ public struct EqualCondition<Base, Value: Equatable>: ConditionTemplate {
 
         func evaluate(with values: [Any]) throws -> Bool {
             guard let runtimeValue = values[valueIndex] as? Value else {
-                return false
+                throw TemplateError.missingValue(at: valueIndex, needed: Value.self)
             }
             return runtimeValue == value
         }
