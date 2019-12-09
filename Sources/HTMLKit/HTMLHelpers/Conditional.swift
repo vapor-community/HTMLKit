@@ -25,6 +25,19 @@ public struct IF<S: HTMLScope>: ContentRepresentable, _HTML {
 
     public var html: Never { fatalError() }
 
+    init(conditions: [Conditional]) {
+        self.conditions = conditions
+    }
+
+    public init<T: HTML>(_ condition: ConditionTemplate, @TemplateBuilder<T.HTMLScope> build: () -> T) where T.HTMLScope == S {
+        self.conditions = [
+            .init(
+                condition: condition,
+                content: AnyHTML<Content.HTMLScope>(content: build())
+            )
+        ]
+    }
+
     public func `else`<Content: HTML>(if condition: ConditionTemplate, @TemplateBuilder<Content.HTMLScope> build: () -> Content) -> IF {
         IF(conditions:
             conditions +
@@ -34,11 +47,18 @@ public struct IF<S: HTMLScope>: ContentRepresentable, _HTML {
             )]
         )
     }
+
+    public func `else`<Content: HTML>(@TemplateBuilder<Content.HTMLScope> build: () -> Content) -> IF {
+        IF(conditions:
+            conditions +
+            [.init(
+                condition: true,
+                content: AnyHTML<Content.HTMLScope>(content: build())
+            )]
+        )
+    }
 }
 
 public func renderConditional<Content: HTML>(if condition: ConditionTemplate, @TemplateBuilder<Content.HTMLScope> build: () -> Content) -> IF<Content.HTMLScope> {
-    IF(conditions: [.init(
-        condition: condition,
-        content: AnyHTML<Content.HTMLScope>(content: build())
-    )])
+    IF(condition, build: build)
 }

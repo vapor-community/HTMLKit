@@ -25,14 +25,17 @@ final class HTMLKitTests: XCTestCase {
         let template: CompiledTemplate<Properties> = try TemplateCompiler.compile(page)
         var output = ByteBufferAllocator().buffer(capacity: 10_000)
         let properties = Properties(
-            header: false,
+            header: true,
             links: [
                 MenuLink(name: "WELKOM", link: "index.html"),
                 MenuLink(name: "WIE WIJ ZIJN", link: "overons.html"),
                 MenuLink(name: "WAT WIJ DOEN", link: "watwijdoen.html"),
                 MenuLink(name: "CONTACT", link: "contact.html")
             ],
-            text: "Test"
+            text: """
+            asf;jadgkhjefaldskfdghfiehjsgdfkgh
+            fhsfhjksflhjfslkghjfslkgjsfklgjfslkgjsfgkljdfsgklsdj
+            """
         )
         var isFirst = true
 

@@ -43,17 +43,20 @@ let page = Root {
         Link.stylesheet("https://autimatisering.nl/styles/content.css")
     }
     Body {
-        renderConditional(if: context.header) {
+        IF(context.header) {
             Header {
                 Img(src: "https://autimatisering.nl/img/AMLogo-Full-White.svg")
                     .id("logo")
             }
         }
-        .else(if: context.text == "Test") {
+        .else(if: context.text != "Test" || context.text == "Test 2") {
             A {
                 "Tap here"
             }
             .href("Some value")
+        }
+        .else {
+            "None of them"
         }
         
         AMMenu()
