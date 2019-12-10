@@ -969,7 +969,7 @@ public struct Section: ContentNode {
     }
 }
 
-public struct Select<A, B>: AttributeNode, NameableAttribute {
+public struct Select: AttributeNode, NameableAttribute {
 
     public typealias NameType = String
 
@@ -987,14 +987,14 @@ public struct Select<A, B>: AttributeNode, NameableAttribute {
         self.isMultiple = isMultiple
     }
 
-    public init(_ elements: TemplateValue<A, [B]>, @HTMLBuilder builder: (RootValue<B>) -> HTML) {
+    public init<A, B>(_ elements: TemplateValue<A, [B]>, @HTMLBuilder builder: (RootValue<B>) -> HTML) {
         content = ForEach(in: elements) { variable in
             Option { builder(variable) }
         }
         isMultiple = false
     }
 
-    public init(custom elements: TemplateValue<A, [B]>, @HTMLBuilder builder: (RootValue<B>) -> HTML) {
+    public init<A, B>(custom elements: TemplateValue<A, [B]>, @HTMLBuilder builder: (RootValue<B>) -> HTML) {
         content = ForEach(in: elements) { variable in
             builder(variable)
         }
@@ -1500,15 +1500,15 @@ public struct Emphasized: ContentNode {
     }
 }
 
-extension Select where A == Never, B == Never {
+extension Select {
     public init(@HTMLBuilder builder: () -> HTML) {
         content = builder()
         isMultiple = false
     }
 }
 
-extension Select where B: HTML {
-    public init(_ elements: TemplateValue<A, [B]>) {
+extension Select {
+    public init<A, B>(_ elements: TemplateValue<A, [B]>) where B: HTML {
         isMultiple = false
         content = ForEach(in: elements) { variable in
             Option { variable }
@@ -1517,21 +1517,21 @@ extension Select where B: HTML {
 }
 
 // Easier use of TemplateVariable.constant()
-extension Select where B: Sequence, A == Never, B.Element : HTML {
-    public init(in elements: B) {
+extension Select {
+    public init<A>(in elements: A) where A : Sequence, A.Element : HTML {
         isMultiple = false
-        content = ForEach<Never, B>(in: .constant(elements)) { variable in
+        content = ForEach<Never, A>(in: .constant(elements)) { variable in
             Option { variable }
         }
     }
 }
 
 extension Select {
-    public func copy(with attributes: [HTMLAttribute]) -> Select<A, B> {
+    public func copy(with attributes: [HTMLAttribute]) -> Select {
         .init(attributes: attributes, content: content, isMultiple: isMultiple)
     }
 
-    public func isMultiple(_ isMultiple: Conditionable) -> Select<A, B> {
+    public func isMultiple(_ isMultiple: Conditionable) -> Select {
         .init(attributes: attributes, content: content, isMultiple: isMultiple)
     }
 
