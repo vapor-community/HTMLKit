@@ -33,7 +33,12 @@ class CompiledForEach: RuntimeEvaluatable {
             try CompiledTemplate<Any>.compileNextNode(
                 template: &template,
                 into: &output,
-                env: env
+                env: CompiledTemplateEnviroment(
+                    keyPaths: env.keyPaths,
+                    values: newValues,
+                    runtimeEvaluated: env.runtimeEvaluated,
+                    dateFormatters: env.dateFormatters
+                )
             )
         }
     }

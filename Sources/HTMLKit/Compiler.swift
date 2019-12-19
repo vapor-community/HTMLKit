@@ -222,7 +222,7 @@ public struct TemplateCompiler {
         let size = subTemplate.readableBytes
         let pointer = UnsafeMutableRawPointer.allocate(byteCount: size, alignment: 1)
         subTemplate.withUnsafeReadableBytes { subTemplate in
-            _ = memcpy(pointer, subTemplate.baseAddress, size)
+            _ = memcpy(pointer, subTemplate.baseAddress!, size)
         }
         return UnsafeByteBuffer(pointer: pointer, size: size)
     }
@@ -471,7 +471,7 @@ public struct TemplateCompiler {
         let pointer = UnsafeMutableRawPointer.allocate(byteCount: size, alignment: 1)
         
         buffer.withUnsafeReadableBytes { buffer in
-            _ = memcpy(pointer, buffer.baseAddress, size)
+            _ = memcpy(pointer, buffer.baseAddress!, size)
         }
         
         let buffer = UnsafeByteBuffer(pointer: pointer, size: size)

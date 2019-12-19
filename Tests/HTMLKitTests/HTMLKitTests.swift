@@ -61,4 +61,8 @@ final class HTMLKitTests: XCTestCase {
 //            }
 //        }
     }
+
+    static let allTests = [
+        ("testPerf", testPerf)
+    ]
 }
