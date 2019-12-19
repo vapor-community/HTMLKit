@@ -1,4 +1,5 @@
 import HTMLKit
+import Foundation
 
 struct MenuLink {
     let name: String
@@ -9,6 +10,7 @@ struct Properties {
     var header: Bool
     var links: [MenuLink]
     var text: String
+    let runningAt: Date
 }
 
 let context = HTMLContext(Properties.self)
@@ -69,6 +71,11 @@ let page = Root {
                 H1 {
                     "WELKOM"
                 }.id("banner-text-title")
+
+                P {
+                    context.runningAt
+                        .formatted(date: .short, time: .short)
+                }
                 
                 P {
                     context.text

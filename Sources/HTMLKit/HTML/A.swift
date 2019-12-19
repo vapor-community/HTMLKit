@@ -1,5 +1,4 @@
 public struct A: BodyTag {
-    public typealias HTMLScope = Scopes.Body
     
     static var tag: StaticString = "a"
     let node: TemplateNode

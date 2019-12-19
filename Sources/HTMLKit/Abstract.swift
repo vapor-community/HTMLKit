@@ -11,6 +11,7 @@ internal indirect enum TemplateNode: ContentRepresentable, _HTML {
     case contextValue(TemplateRuntimeValue)
     case conditional([_Conditional])
     case computedList(TemplateRuntimeValue, String, TemplateNode)
+    case date(TemplateRuntimeValue, DateFormatStyle)
     
     var node: TemplateNode { self }
     var html: TemplateNode { self }
@@ -131,6 +132,7 @@ enum CompiledNode: UInt8 {
     case list = 0x04
     case contextValue = 0x05
     case runtimeEvaluated = 0x06
+    case formattedDate = 0x07
 }
 
 enum CompiledTemplateValue: UInt8 {

@@ -35,7 +35,8 @@ final class HTMLKitTests: XCTestCase {
             text: """
             asf;jadgkhjefaldskfdghfiehjsgdfkgh
             fhsfhjksflhjfslkghjfslkgjsfklgjfslkgjsfgkljdfsgklsdj
-            """
+            """,
+            runningAt: Date()
         )
         var isFirst = true
 

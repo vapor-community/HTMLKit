@@ -15,29 +15,25 @@ class CompiledForEach: RuntimeEvaluatable {
     func compileNextNode(
         template: inout UnsafeByteBuffer,
         into output: inout ByteBuffer,
-        values: [Any],
-        keyPaths: [[AnyKeyPath]],
-        runtimeEvaluated: [RuntimeEvaluatable]
+        env: CompiledTemplateEnviroment
     ) throws {
-        let value = values[arrayValueIndex] as! [Any]
+        let value = env.values[arrayValueIndex] as! [Any]
         var valueStart = 0
         for i in 0..<keyPathIndex {
-            valueStart += keyPaths[i].count
+            valueStart += env.keyPaths[i].count
         }
 
-        var newValues = values
+        var newValues = env.values
         var template = _template
         for element in value {
             template.moveReaderIndex(to: 0)
-            for (index, keyPath) in keyPaths[keyPathIndex].enumerated() {
+            for (index, keyPath) in env.keyPaths[keyPathIndex].enumerated() {
                 newValues[valueStart + index] = element[keyPath: keyPath] ?? ""
             }
             try CompiledTemplate<Any>.compileNextNode(
                 template: &template,
                 into: &output,
-                values: newValues,
-                keyPaths: keyPaths,
-                runtimeEvaluated: runtimeEvaluated
+                env: env
             )
         }
     }

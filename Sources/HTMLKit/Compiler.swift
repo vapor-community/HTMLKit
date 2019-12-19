@@ -32,9 +32,11 @@ public struct TemplateCompiler {
     ]
 
     private var rootIdIndexes = [String: Int]()
+    private var dateFormattersIndex = [String: Int]()
 
     var buffer: ByteBuffer
     var keyPaths = [[AnyKeyPath]]()
+    var dateFormatters = [DateFormattable]()
     var runtimeEvaluated = [RuntimeEvaluatable]()
     let stylesheet = StyleRegistery()
     
@@ -52,6 +54,21 @@ public struct TemplateCompiler {
             throw TemplateError.internalCompilerError
         }
         return pathIndex + subIndex
+    }
+
+    func index(for style: DateFormatStyle) throws -> Int {
+        switch style {
+        case .styled(date: let date, time: let time):
+            guard let index = dateFormattersIndex[date.rawValue + time.rawValue] else {
+                throw TemplateError.internalCompilerError
+            }
+            return index
+        case .format(let style):
+            guard let index = dateFormattersIndex[style] else {
+                throw TemplateError.internalCompilerError
+            }
+            return index
+        }
     }
     
     private mutating func compileTemplateValue(_ value: TemplateValue, buffer: inout ByteBuffer) throws {
@@ -180,6 +197,10 @@ public struct TemplateCompiler {
                     keyPathIndex: contextIndex
                 )
             )
+        case .date(let runtimeValue, let styling):
+            buffer.writeInteger(CompiledNode.formattedDate.rawValue)
+            buffer.writeInteger(try index(for: runtimeValue), endianness: .little)
+            buffer.writeInteger(try index(for: styling), endianness: .little)
         }
     }
 
@@ -273,7 +294,7 @@ public struct TemplateCompiler {
                     nodes.append(resolved)
                 case .literal(let value):
                     result += value
-                case .contextValue, .computedList, .conditional:
+                case .contextValue, .computedList, .conditional, .date:
 //                    assert(!didOptimize, "Optimized node cannot be a contextValue, these are not optimizable")
                     flushOptimization()
                     nodes.append(subnode)
@@ -392,6 +413,10 @@ public struct TemplateCompiler {
             }
             node = .conditional(optimized)
             return true
+        case .date(let runtimeValue, let styling):
+            register(runtimeValue: runtimeValue)
+            register(dateStyling: styling)
+            return true
         }
     }
 
@@ -404,6 +429,27 @@ public struct TemplateCompiler {
             fatalError()
         }
     }
+
+    mutating func register(dateStyling: DateFormatStyle) {
+        switch dateStyling {
+        case .styled(date: let date, time: let time):
+            let key = date.rawValue + time.rawValue
+            if dateFormattersIndex[key] == nil {
+                let formatter = DateFormatter()
+                formatter.dateStyle = date.dateFormatterStyle
+                formatter.timeStyle = time.dateFormatterStyle
+                dateFormattersIndex[key] = dateFormatters.count
+                dateFormatters.append(formatter)
+            }
+        case .format(let style):
+            if dateFormattersIndex[style] == nil {
+                let formatter = DateFormatter()
+                formatter.dateFormat = style
+                dateFormattersIndex[style] = dateFormatters.count
+                dateFormatters.append(formatter)
+            }
+        }
+    }
     
     func export<Properties>() -> CompiledTemplate<Properties> {
         let size = buffer.readableBytes
@@ -414,6 +460,11 @@ public struct TemplateCompiler {
         }
         
         let buffer = UnsafeByteBuffer(pointer: pointer, size: size)
-        return CompiledTemplate(template: buffer, keyPaths: keyPaths, runtimeEvaluated: runtimeEvaluated)
+        return CompiledTemplate(
+            template: buffer,
+            keyPaths: keyPaths,
+            runtimeEvaluated: runtimeEvaluated,
+            dateFormatters: dateFormatters
+        )
     }
 }

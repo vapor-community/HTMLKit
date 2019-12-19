@@ -1,25 +1,51 @@
 import NIO
+import Foundation
 
 protocol RuntimeEvaluatable {
 
     func compileNextNode(
         template: inout UnsafeByteBuffer,
         into output: inout ByteBuffer,
-        values: [Any],
-        keyPaths: [[AnyKeyPath]],
-        runtimeEvaluated: [RuntimeEvaluatable]
+        env: CompiledTemplateEnviroment
     ) throws
 }
 
+class CompiledTemplateEnviroment {
+    let keyPaths: [[AnyKeyPath]]
+    let values: [Any]
+    let runtimeEvaluated: [RuntimeEvaluatable]
+    let dateFormatters: [DateFormattable]
+
+    init(
+        keyPaths: [[AnyKeyPath]],
+        values: [Any],
+        runtimeEvaluated: [RuntimeEvaluatable],
+        dateFormatters: [DateFormattable]
+    ) {
+        self.keyPaths = keyPaths
+        self.values = values
+        self.runtimeEvaluated = runtimeEvaluated
+        self.dateFormatters = dateFormatters
+    }
+}
+
 public struct CompiledTemplate<Context> {
+
     private var _template: UnsafeByteBuffer
     private let keyPaths: [[AnyKeyPath]]
     private let runtimeEvaluated: [RuntimeEvaluatable]
+    private let dateFormatters: [DateFormattable]
     
-    init(template: UnsafeByteBuffer, keyPaths: [[AnyKeyPath]], runtimeEvaluated: [RuntimeEvaluatable]) {
+    init(
+        template: UnsafeByteBuffer,
+        keyPaths: [[AnyKeyPath]],
+        runtimeEvaluated: [RuntimeEvaluatable],
+        dateFormatters: [DateFormattable]
+    ) {
         self._template = template
         self.keyPaths = keyPaths
         self.runtimeEvaluated = runtimeEvaluated
+        self.dateFormatters = dateFormatters
     }
     
     private struct ByteBufferSlicePosition {
@@ -62,62 +88,10 @@ public struct CompiledTemplate<Context> {
         return keyPaths[index]
     }
     
-    private static func skipNextNode(
-        template: inout UnsafeByteBuffer
-    ) throws {
-        guard
-            let byte = template.readInteger(as: UInt8.self),
-            let node = CompiledNode(rawValue: byte)
-        else {
-            throw TemplateError.internalCompilerError
-        }
-        
-        switch node {
-        case .noContent:
-            return
-        case .literal:
-            // Literal
-            try template.skipSlice()
-        case .shortTag, .longTag:
-            // Name
-            try template.skipSlice()
-            
-            guard let modifierCount = template.readInteger(as: UInt8.self) else {
-                throw TemplateError.internalCompilerError
-            }
-            
-            for _ in 0..<modifierCount {
-                // Skip key string
-                try template.skipSlice()
-                
-                // Skip value
-                try template.skipSlice()
-            }
-            
-            try skipNextNode(template: &template)
-        case .list:
-            guard let nodeCount = template.readInteger(as: UInt8.self) else {
-                throw TemplateError.internalCompilerError
-            }
-            
-            for _ in 0..<nodeCount {
-                // Each node in the list
-                try skipNextNode(template: &template)
-            }
-        case .contextValue:
-            // Skip runtime value
-            template.moveReaderIndex(forwardBy: MemoryLayout<Int>.size)
-        case .runtimeEvaluated:
-            template.moveReaderIndex(forwardBy: MemoryLayout<Int>.size)
-        }
-    }
-    
     static func compileNextNode(
         template: inout UnsafeByteBuffer,
         into output: inout ByteBuffer,
-        values: [Any],
-        keyPaths: [[AnyKeyPath]],
-        runtimeEvaluated: [RuntimeEvaluatable]
+        env: CompiledTemplateEnviroment
     ) throws {
         guard
             let byte = template.readInteger(as: UInt8.self),
@@ -166,7 +140,7 @@ public struct CompiledTemplate<Context> {
                     let value = try template.parseSlice()
                     output.writeBytes(value)
                 case .runtime:
-                    let value = try getValue(from: &template, values: values) as! TemplateLiteralRepresentable
+                    let value = try getValue(from: &template, values: env.values) as! TemplateLiteralRepresentable
                     
                     switch value.makeTemplateLiteral().storage {
                     case .string(let string):
@@ -189,9 +163,7 @@ public struct CompiledTemplate<Context> {
                 try compileNextNode(
                     template: &template,
                     into: &output,
-                    values: values,
-                    keyPaths: keyPaths,
-                    runtimeEvaluated: runtimeEvaluated
+                    env: env
                 )
                 
                 output.writeInteger(Constants.less)
@@ -208,13 +180,11 @@ public struct CompiledTemplate<Context> {
                 try compileNextNode(
                     template: &template,
                     into: &output,
-                    values: values,
-                    keyPaths: keyPaths,
-                    runtimeEvaluated: runtimeEvaluated
+                    env: env
                 )
             }
         case .contextValue:
-            let value = try getValue(from: &template, values: values) as! TemplateLiteralRepresentable
+            let value = try getValue(from: &template, values: env.values) as! TemplateLiteralRepresentable
             
             switch value.makeTemplateLiteral().storage {
             case .boolean:
@@ -226,12 +196,21 @@ public struct CompiledTemplate<Context> {
             guard let index = template.readInteger(as: Int.self) else {
                 throw TemplateError.internalCompilerError
             }
-            try runtimeEvaluated[index].compileNextNode(
+            try env.runtimeEvaluated[index].compileNextNode(
                 template: &template,
                 into: &output,
-                values: values,
-                keyPaths: keyPaths,
-                runtimeEvaluated: runtimeEvaluated
+                env: env
+            )
+        case .formattedDate:
+            guard
+                let date = try getValue(from: &template, values: env.values) as? Date,
+                let formatterIndex = template.readInteger(as: Int.self)
+            else {
+                throw TemplateError.internalCompilerError
+            }
+            output.writeString(
+                env.dateFormatters[formatterIndex]
+                    .format(date: date)
             )
         }
     }
@@ -259,9 +238,12 @@ public struct CompiledTemplate<Context> {
             try CompiledTemplate<Context>.compileNextNode(
                 template: &template._template,
                 into: &output,
-                values: values,
-                keyPaths: keyPaths,
-                runtimeEvaluated: runtimeEvaluated
+                env: .init(
+                    keyPaths: keyPaths,
+                    values: values,
+                    runtimeEvaluated: runtimeEvaluated,
+                    dateFormatters: dateFormatters
+                )
             )
         }
     }
