@@ -1,4 +1,5 @@
 public struct AnyHTML<Scope: HTMLScope>: ContentRepresentable, _HTML {
+    public typealias BaseHTML = AnyHTML
     public typealias HTMLScope = Scope
     let node: TemplateNode
     

@@ -1,4 +1,6 @@
 public struct Meta: HeadElement {
+    public typealias BaseHTML = Meta
+
     let node: TemplateNode
     
     init(_ modifiers: [_Modifier]) {

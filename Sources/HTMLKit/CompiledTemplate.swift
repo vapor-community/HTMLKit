@@ -10,11 +10,12 @@ protocol RuntimeEvaluatable {
     ) throws
 }
 
-class CompiledTemplateEnviroment {
+public class CompiledTemplateEnviroment {
     let keyPaths: [[AnyKeyPath]]
     let values: [Any]
     let runtimeEvaluated: [RuntimeEvaluatable]
     let dateFormatters: [DateFormattable]
+    var locale: String
 
     init(
         keyPaths: [[AnyKeyPath]],
@@ -26,6 +27,7 @@ class CompiledTemplateEnviroment {
         self.values = values
         self.runtimeEvaluated = runtimeEvaluated
         self.dateFormatters = dateFormatters
+        self.locale = ""
     }
 }
 
@@ -210,7 +212,7 @@ public struct CompiledTemplate<Context> {
             }
             output.writeString(
                 env.dateFormatters[formatterIndex]
-                    .format(date: date)
+                    .format(date: date, with: env)
             )
         }
     }

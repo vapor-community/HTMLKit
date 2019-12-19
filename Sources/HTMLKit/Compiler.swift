@@ -201,6 +201,17 @@ public struct TemplateCompiler {
             buffer.writeInteger(CompiledNode.formattedDate.rawValue)
             buffer.writeInteger(try index(for: runtimeValue), endianness: .little)
             buffer.writeInteger(try index(for: styling), endianness: .little)
+            
+        case .enviromentModifier(let node, let modifiers):
+            buffer.writeInteger(CompiledNode.runtimeEvaluated.rawValue)
+            buffer.writeInteger(runtimeEvaluated.count, endianness: .little)
+
+            runtimeEvaluated.append(
+                CompiledModifiedEnviroment(
+                    modifiers: modifiers,
+                    _template: try unsafeBuffer(for: node)
+                )
+            )
         }
     }
 
@@ -294,7 +305,7 @@ public struct TemplateCompiler {
                     nodes.append(resolved)
                 case .literal(let value):
                     result += value
-                case .contextValue, .computedList, .conditional, .date:
+                case .contextValue, .computedList, .conditional, .date, .enviromentModifier:
 //                    assert(!didOptimize, "Optimized node cannot be a contextValue, these are not optimizable")
                     flushOptimization()
                     nodes.append(subnode)
@@ -416,6 +427,10 @@ public struct TemplateCompiler {
         case .date(let runtimeValue, let styling):
             register(runtimeValue: runtimeValue)
             register(dateStyling: styling)
+            return true
+        case .enviromentModifier(var subNode, let modifiers):
+            _ = optimize(&subNode)
+            node = .enviromentModifier(subNode, modifiers)
             return true
         }
     }

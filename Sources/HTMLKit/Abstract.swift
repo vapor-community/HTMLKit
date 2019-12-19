@@ -12,6 +12,7 @@ internal indirect enum TemplateNode: ContentRepresentable, _HTML {
     case conditional([_Conditional])
     case computedList(TemplateRuntimeValue, String, TemplateNode)
     case date(TemplateRuntimeValue, DateFormatStyle)
+    case enviromentModifier(TemplateNode, [EnviromentModifer])
     
     var node: TemplateNode { self }
     var html: TemplateNode { self }

@@ -12,6 +12,7 @@ public struct Conditional {
 
 public struct IF<S: HTMLScope>: ContentRepresentable, _HTML {
 
+    public typealias BaseTag = Self
     public typealias Content = Never
     public typealias HTMLScope = S
 
@@ -57,8 +58,4 @@ public struct IF<S: HTMLScope>: ContentRepresentable, _HTML {
             )]
         )
     }
-}
-
-public func renderConditional<Content: HTML>(if condition: ConditionTemplate, @TemplateBuilder<Content.HTMLScope> build: () -> Content) -> IF<Content.HTMLScope> {
-    IF(condition, build: build)
 }

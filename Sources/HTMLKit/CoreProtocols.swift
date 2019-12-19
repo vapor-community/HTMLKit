@@ -17,11 +17,21 @@ public protocol _HTML {
     
     var html: Content { get }
     func applyStyle(to css: inout CSS)
+    func modify(with modifier: EnviromentModifer) -> ModifiedEnviroment<HTMLScope>
 }
 
 extension _HTML {
     @inlinable
     public func applyStyle(to css: inout CSS) {}
+}
+
+extension _HTML {
+    public func modify(with modifier: EnviromentModifer) -> ModifiedEnviroment<HTMLScope> {
+        ModifiedEnviroment(
+            baseNode: TemplateNode(from: self),
+            modifiers: [modifier]
+        )
+    }
 }
 
 public protocol HTML: _HTML where Content.HTMLScope == Scopes.Body, HTMLScope == Scopes.Body {}
@@ -36,7 +46,7 @@ internal protocol BodyTag: _NativeHTMLElement, NodeRepresentedElement {
 
 public protocol AttributedHTML: HTML {
     associatedtype BaseTag: AttributedHTML
-    
+
     func attribute<Value: TemplateValueRepresentable>(key: String, value: Value) -> Modified<BaseTag>
     func modify(with modifier: Modifier) -> Modified<BaseTag>
 }
@@ -95,6 +105,7 @@ extension BodyTag {
 }
 
 extension Never: HTML {
+    public typealias BaseHTML = Never
     public typealias HTMLScope = Scopes.Body
     
     public var html: Never { fatalError() }

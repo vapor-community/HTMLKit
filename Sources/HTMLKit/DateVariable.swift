@@ -29,11 +29,14 @@ public enum DateFormatStyle: ExpressibleByStringLiteral {
 }
 
 public protocol DateFormattable {
-    func format(date: Date) -> String
+    func format(date: Date, with env: CompiledTemplateEnviroment) -> String
 }
 
 extension DateFormatter: DateFormattable {
-    public func format(date: Date) -> String { self.string(from: date) }
+    public func format(date: Date, with env: CompiledTemplateEnviroment) -> String {
+        self.locale = Locale(identifier: env.locale)
+        return self.string(from: date)
+    }
 }
 
 

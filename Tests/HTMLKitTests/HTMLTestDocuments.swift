@@ -76,6 +76,13 @@ let page = Root {
                     context.runningAt
                         .formatted(date: .short, time: .short)
                 }
+                .enviroment(locale: "nb")
+
+                P {
+                    context.runningAt
+                        .formatted(date: .short, time: .short)
+                }
+                .enviroment(locale: "en")
                 
                 P {
                     context.text

@@ -1,4 +1,6 @@
 public struct AnyBodyTag: HTML {
+    public typealias BaseHTML = Self
+
     public typealias HTMLScope = Scopes.Body
     let name: StaticString
     let content: TemplateNode?

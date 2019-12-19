@@ -1,4 +1,5 @@
 public struct ListContent<Scope: HTMLScope>: ContentRepresentable, _HTML {
+    public typealias BaseHTML = Self
     public typealias HTMLScope = Scope
     let node: TemplateNode
     
