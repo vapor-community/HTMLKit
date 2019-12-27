@@ -4,14 +4,14 @@
 
 # HTMLKit
 
-Render **lightning fast** HTML templates in a *typesafe* way!
+Render dynamic HTML templates in a *typesafe* and **performant** way!
 By using Swift's powerful language features and a pre-rendering algorithm, HTMLKit will render insanely fast templates but also catch bugs that otherwise might occur with other templating options.
 
 ## Getting Started
 
 Add the following in your `Package.swift` file
 ```swift
-.package(url: "https://github.com/vapor-community/HTMLKit.git", from: "2.0.0-alpha.1"),
+.package(url: "https://github.com/vapor-community/HTMLKit.git", from: "2.0.0-alpha.9"),
 ```
 And register the provider and the different templates with in `configure.swift`
 ```swift
@@ -25,22 +25,44 @@ services.register(renderer)
 
 ## Usage
 
-To create a HTML component, conform to the `HTMLComponent` protocol. Look at the example above for an Alert component.
+To create a HTML template, conform to the `HTMLTemplate` protocol.
+
+```swift
+struct SimpleTemplate: HTMLTemplate {
+
+    @TemplateValue(String?.self)
+    var context
+
+    var body: HTML {
+        Document(type: .html5) {
+            Head {
+                Title { context }
+            }
+            Body {
+                Unwrap(context) { string in
+                    P { string }
+                }
+            }
+        }
+    }
+}
+
+...
+try SimpleTemplate().render(with: "Some string", for: req)
+```
+
+And to create a HTML component, just comform to the `HTMLComponent` protocol. 
 
 ```swift
 public struct Alert: HTMLComponent {
 
+    let isDisimissable: Conditionable // This is a protocol that makes it possible to optimize if's
     let message: HTML
-    let isDisimissable: Conditionable
-
-    public init(isDisimissable: Conditionable = true, @HTMLBuilder message: () -> HTML) {
-        self.isDisimissable = isDisimissable
-        self.message = message()
-    }
 
     public var body: HTML {
         Div {
             message
+            
             IF(isDisimissable) {
                 Button {
                     Span { "&times;" }
@@ -48,18 +70,21 @@ public struct Alert: HTMLComponent {
                 }
                 .type(.button)
                 .class("close")
-                .data(for: "dismiss", value: "alert")
-                .aria(for: "label", value: "Close")
+                .data("dismiss", value: "alert")
+                .aria("label", value: "Close")
             }
         }
-        .class("alert alert-danger bg-danger" + IF(isDisimissable) { " fade show" })
+        .class("alert alert-danger bg-danger")
+        .modify(if: isDisimissable) {
+            $0.class("fade show")
+        }
         .role("alert")
     }
 }
 ```
-This can easily be used in another template or a static html page like:
+This can then be used in another template or a static html page like:
 ```swift
-struct SomePage: StaticView {
+struct SomePage: HTMLPage {
 
     var body: HTML {
         Div {
@@ -69,31 +94,6 @@ struct SomePage: StaticView {
         }
     }
 }
-```
-
-If you need a page that changes based on runtime given values. Then a `TemplateView` could be more appropriate. Here you will need to pass the context when rendering.
-
-```swift
-
-struct DummyPage: TemplateView {
-
-    struct Context {
-        let string: String
-        let int: Int?
-    }
-
-    var body: HTML {
-        Div {
-            P { context.string }
-            IF(context.int.isDefined) {
-                Small { context.int }
-            }
-        }
-    }
-}
-...
-let context = DummyPage.Context(string: "Some string", int: nil)
-try DummyPage().render(with: context, for: req)
 ```
 
 ## Mixing HTMLKit with Leaf
@@ -136,7 +136,7 @@ try renderer.registerLocalization(atPath: "workDir", defaultLocale: "en")
 And if the locale changes based on some user input, then you can change the used locale in the template.
 This also effects how dates are presentet to the user.
 ```swift
-struct LocalizedDateView: TemplateView {
+struct LocalizedDateView: HTMLTemplate {
 
     struct Context {
         let date: Date

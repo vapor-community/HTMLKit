@@ -125,7 +125,7 @@ extension TemplateValue where Value: Sequence {
 }
 
 extension Sequence {
-    public func forEachHTML(@HTMLBuilder content: (RootValue<Element>) -> HTML) -> HTML {
+    public func htmlForEach(@HTMLBuilder content: (RootValue<Element>) -> HTML) -> HTML {
         ForEach(in: .constant(self), content: content)
     }
 }

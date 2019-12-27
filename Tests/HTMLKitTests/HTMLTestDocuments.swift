@@ -44,6 +44,23 @@ struct StaticEmbedView: HTMLTemplate {
     }
 }
 
+struct SimplePage: HTMLTemplate {
+
+    @TemplateValue(String.self)
+    var context
+
+    var body: HTML {
+        Document(type: .html5) {
+            Head {
+                Title { context }
+            }
+            Body {
+                P { context }
+            }
+        }
+    }
+}
+
 struct BaseView<Root>: HTMLComponent {
 
     let context: TemplateValue<Root, String>
@@ -55,18 +72,20 @@ struct BaseView<Root>: HTMLComponent {
     }
 
     var body: HTML {
-        HTMLNode {
-            Head {
-                Title { context }
-                Link()
-                    .href("some url")
-                    .relationship(.stylesheet)
-                Meta()
-                    .name(.viewport)
-                    .content("width=device-width, initial-scale=1.0")
-            }
-            Body {
-                content
+        Document(type: .html5) {
+            HTMLNode {
+                Head {
+                    Title { context }
+                    Link()
+                        .href("some url")
+                        .relationship(.stylesheet)
+                    Meta()
+                        .name(.viewport)
+                        .content("width=device-width, initial-scale=1.0")
+                }
+                Body {
+                    content
+                }
             }
         }
     }

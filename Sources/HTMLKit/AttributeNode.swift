@@ -33,6 +33,10 @@ public protocol GlobalAttributes {
 
     func aria(for key: String, value: HTML) -> Self
 
+    func data(_ key: String, value: HTML) -> Self
+
+    func aria(_ key: String, value: HTML) -> Self
+
     func style(css: HTML) -> Self
 
     /// The contenteditable attribute specifies whether the content of an element is editable or not.
@@ -100,6 +104,10 @@ extension GlobalAttributes where Self: AttributeNode {
         add(HTMLAttribute(attribute: "aria-" + key, value: value))
     }
 
+    public func aria(_ key: String, value: HTML) -> Self {
+        self.aria(for: key, value: value)
+    }
+
     public func accessKey(_ value: HTML) -> Self {
         add(HTMLAttribute(attribute: "accessKey", value: value))
     }
@@ -110,6 +118,10 @@ extension GlobalAttributes where Self: AttributeNode {
 
     public func data(for key: String, value: HTML) -> Self {
         add(HTMLAttribute(attribute: "data-" + key, value: value))
+    }
+
+    public func data(_ key: String, value: HTML) -> Self {
+        self.data(for: key, value: value)
     }
 
     public func isEditable(_ value: Conditionable) -> Self {
