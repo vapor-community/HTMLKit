@@ -145,6 +145,35 @@ final class HTMLKitTests: XCTestCase {
 //        }
 //    }
 
+//    func testView() {
+//        let formula = HTMLRenderer.Formula()
+//        try! Test().prerender(formula)
+//        let context = Test.Context(
+//            header: true,
+//            links: [
+//                MenuLink(name: "WELKOM", link: "index.html"),
+//                MenuLink(name: "WIE WIJ ZIJN", link: "overons.html"),
+//                MenuLink(name: "WAT WIJ DOEN", link: "watwijdoen.html"),
+//                MenuLink(name: "CONTACT", link: "contact.html")
+//            ],
+//            text: """
+//            asf;jadgkhjefaldskfdghfiehjsgdfkgh
+//            fhsfhjksflhjfslkghjfslkgjsfklgjfslkgjsfgkljdfsgklsdj
+//            """
+//        )
+//        var isFirst = true
+//
+//        measure {
+//            for _ in 0...10_000 {
+//                let output = try! formula.render(with: context, lingo: nil)
+//                if isFirst {
+//                    print(output)
+//                    isFirst = false
+//                }
+//            }
+//        }
+//    }
+
     func testHtmlRenderingTests() throws {
 
         let testDate = Date()

@@ -1,10 +1,13 @@
 
 import Foundation
 
+@propertyWrapper
 @dynamicMemberLookup
 public enum TemplateValue<Root, Value> {
     case constant(Value)
     case dynamic(ContextVariable<Root, Value>)
+
+    public var wrappedValue: TemplateValue { self }
 
     public subscript<Subject>(dynamicMember keyPath: KeyPath<Value, Subject>) -> TemplateValue<Root, Subject> {
         switch self {
@@ -68,6 +71,12 @@ extension TemplateValue: ExpressibleByStringLiteral where Value == String {
 extension TemplateValue where Value == String, Root == Void {
     public init(stringLiteral value: Self.StringLiteralType) {
         self = .constant(value)
+    }
+}
+
+extension TemplateValue where Root == Value {
+    public init(_ root: Root.Type) {
+        self = .root()
     }
 }
 

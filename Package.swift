@@ -9,10 +9,7 @@ let package = Package(
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
             name: "HTMLKit",
-            targets: ["HTMLKit"]),
-        .library(
-            name: "HTMLKitVapor",
-            targets: ["HTMLKitVapor"]),
+            targets: ["HTMLKit"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -20,7 +17,6 @@ let package = Package(
 
         .package(url: "https://github.com/miroslavkovac/Lingo.git", from: "3.0.5"),
 //        .package(url: "https://github.com/vapor-community/markdown.git", .upToNextMajor(from: "0.4.0")),
-        .package(url: "https://github.com/vapor/vapor.git", from: "3.0.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -28,9 +24,6 @@ let package = Package(
         .target(
             name: "HTMLKit",
             dependencies: ["Lingo"]),
-        .target(
-            name: "HTMLKitVapor",
-            dependencies: ["HTMLKit", "Vapor"]),
         .testTarget(
             name: "HTMLKitTests",
             dependencies: ["HTMLKit"]),

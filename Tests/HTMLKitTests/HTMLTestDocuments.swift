@@ -26,7 +26,8 @@ struct SimpleView: HTMLPage, HTMLTestable {
 
 struct StaticEmbedView: HTMLTemplate {
 
-    var context: RootValue<SimpleData> = .root()
+    @TemplateValue(SimpleData.self)
+    var context
 
     var body: HTML {
         Div {
@@ -34,9 +35,9 @@ struct StaticEmbedView: HTMLTemplate {
             P {
                 context.string
             }
-            IF(context.int != nil) {
+            Unwrap(context.int) { int in
                 Small {
-                    context.int
+                    int
                 }
             }
         }
@@ -1028,5 +1029,88 @@ struct FlashView: HTMLPage {
             }
         }
         .id("flash")
+    }
+}
+
+struct MenuLink {
+    let name: String
+    let link: String
+}
+
+struct Test: HTMLTemplate {
+
+    struct Context {
+        var header: Bool
+        var links: [MenuLink]
+        var text: String
+    }
+
+    var body: HTML {
+        Document(type: .html5) {
+            Head {
+                Title { "Welkom bij Autimatisering" }
+                Meta().add(.init(attribute: "charset", value: "utf8"))
+                Meta().add(.init(attribute: "viewport", value: "width=device-width, initial-scale=1"))
+                Link().add(.init(attribute: "stylesheet", value: "https://autimatisering.nl/styles/template.css"))
+                Link().add(.init(attribute: "stylesheet", value: "https://autimatisering.nl/styles/content.css"))
+            }
+            Body {
+                IF(context.header) {
+                    Header {
+                        Img(source: "https://autimatisering.nl/img/AMLogo-Full-White.svg")
+                            .id("logo")
+                    }
+                }
+                .elseIf(context.text != "Test") {
+                    Anchor {
+                        "Tap here"
+                    }
+                    .href("Some value")
+                }
+                .else {
+                    "None of them"
+                }
+
+                AMMenu(links: context.links)
+                Header {
+                    Section {
+                        Embed().source("https://autimatisering.nl/styles/svg/pagehead-img-home.svg")
+                    }.id("banner-image-container")
+
+                    Article {
+                        H1 {
+                            "WELKOM"
+                        }.id("banner-text-title")
+
+                        P {
+                            context.text
+                            context.text
+                            context.text
+                            context.text
+                        }.id("banner-text-body")
+                    }.id("banner-text")
+
+                    Section().id("angle")
+                }
+            }
+        }
+    }
+
+    struct AMMenu<T>: HTMLComponent {
+
+        let links: TemplateValue<T, [MenuLink]>
+
+        var body: HTML {
+            Nav {
+                ForEach(in: links) { link in
+                    Anchor {
+                        link.name
+                    }
+                    .class("selected")
+                    .href(link.link)
+                }
+
+            }.id("menu")
+        }
     }
 }
