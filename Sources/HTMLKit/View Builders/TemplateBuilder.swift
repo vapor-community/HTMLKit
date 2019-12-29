@@ -1666,6 +1666,10 @@ public struct Stylesheet: HTMLComponent {
         self.url = url
     }
 
+    public init(url: String) {
+        self.url = .constant(url)
+    }
+
     public var body: HTML {
         Link()
             .relationship(.stylesheet)
