@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// A struct that renders a data in a specified formate
+/// A struct that renders a data in a specified format
 struct DateVariable: HTML {
 
     enum Errors: LocalizedError {
@@ -118,7 +118,7 @@ extension TemplateValue where Value == Date? {
         return DateVariable(dateReference: .optional(self), format: .style(.init(dateStyle: date, timeStyle: time)))
     }
 
-//    /// Render a date in a formate
+//    /// Render a date in a format
 //    ///
 //    /// - Parameters:
 //    ///   - datePath: The path to the date

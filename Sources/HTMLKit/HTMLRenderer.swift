@@ -62,14 +62,14 @@ public class HTMLRenderer: HTMLRenderable {
             case .unableToRetriveValue:     return "Unable to retrive the wanted value in the context"
             case .unableToRegisterKeyPath:  return "Unable to register a KeyPath when creating the template formula"
             case .unableToAddVariable:      return "Unable to add variable to formula"
-            case .unableToCastVariable:     return "Unable to cast value when retriving varaible"
+            case .unableToCastVariable:     return "Unable to cast value when retriving variable"
             }
         }
 
         public var recoverySuggestion: String? {
             switch self {
             case .unableToFindFormula:
-                return "Remember to add the template to the renerer with .add(template: ) or .add(view: )"
+                return "Remember to add the template to the renderer with .add(template: ) or .add(view: )"
             default: return nil
             }
         }
@@ -174,12 +174,12 @@ public class HTMLRenderer: HTMLRenderable {
         lingo = try Lingo(rootPath: path, defaultLocale: defaultLocale)
     }
 
-    /// Manage the differnet contextes
+    /// Manage the differnet contexts
     /// This will remove the generic type in the render call
     public class ContextManager<Context> {
 
         /// The different context varaibles used when rendering
-        var contextes: [String: Any]
+        var contexts: [String: Any]
 
         /// The lingo object that is needed to use localization
         let lingo: Lingo?
@@ -188,13 +188,13 @@ public class HTMLRenderer: HTMLRenderable {
         public var locale: String?
 
         init(rootContext: Context, lingo: Lingo? = nil) {
-            self.contextes = ["" : rootContext]
+            self.contexts = ["" : rootContext]
             self.lingo = lingo
             self.locale = nil
         }
 
-        init(contextes: [String: Any], lingo: Lingo? = nil) {
-            self.contextes = contextes
+        init(contexts: [String: Any], lingo: Lingo? = nil) {
+            self.contexts = contexts
             self.lingo = lingo
             self.locale = nil
         }
@@ -203,7 +203,7 @@ public class HTMLRenderer: HTMLRenderable {
         ///
         /// - Returns: The value at the `ContextVariable`
         func value<Value>(for variable: HTMLContext<Value>) throws -> Value {
-            if let variableContext = contextes[variable.rootId] {
+            if let variableContext = contexts[variable.rootId] {
                 if let value = variableContext[keyPath: variable.keyPath] as? Value {
                     return value
                 } else {
@@ -215,7 +215,7 @@ public class HTMLRenderer: HTMLRenderable {
         }
 
         func set<Value>(_ context: Value, for variable: ContextVariable<Value, Value>) {
-            contextes[variable.rootId] = context
+            contexts[variable.rootId] = context
         }
     }
 
