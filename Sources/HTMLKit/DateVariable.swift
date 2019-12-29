@@ -8,7 +8,7 @@
 import Foundation
 
 /// A struct that renders a data in a specified formate
-struct DateVariable<Root>: HTML {
+struct DateVariable: HTML {
 
     enum Errors: LocalizedError {
         case unableToCopyFormatter
@@ -19,8 +19,8 @@ struct DateVariable<Root>: HTML {
     }
 
     enum Reference {
-        case solid(TemplateValue<Root, Date>)
-        case optional(TemplateValue<Root, Date?>)
+        case solid(TemplateValue<Date>)
+        case optional(TemplateValue<Date?>)
     }
 
     enum Format {

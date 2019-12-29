@@ -53,7 +53,7 @@ public protocol GlobalAttributes {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    func direction<T>(_ value: TemplateValue<T, HTMLTextDirection>) -> Self
+    func direction(_ value: TemplateValue<HTMLTextDirection>) -> Self
 
     /// Specifies that an element is not yet, or is no longer, relevant
     ///
@@ -70,7 +70,7 @@ public protocol GlobalAttributes {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    func lang<T>(_ value: TemplateValue<T, String>) -> Self
+    func lang(_ value: TemplateValue<String>) -> Self
 
     /// Specifies whether the element is to have its spelling and grammar checked or not
     func isSpellchecked(_ value: Conditionable) -> Self
@@ -79,7 +79,7 @@ public protocol GlobalAttributes {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    func tabIndex<T>(_ value: TemplateValue<T, Int>) -> Self
+    func tabIndex(_ value: TemplateValue<Int>) -> Self
 
     /// Specifies extra information about an element
     ///
@@ -128,12 +128,12 @@ extension GlobalAttributes where Self: AttributeNode {
         add(HTMLAttribute(attribute: "contenteditable", value: value))
     }
 
-    public func direction<T>(_ value: TemplateValue<T, HTMLTextDirection>) -> Self {
+    public func direction(_ value: TemplateValue<HTMLTextDirection>) -> Self {
         add(HTMLAttribute(attribute: "dir", value: value))
     }
 
     public func direction(_ value: HTMLTextDirection) -> Self {
-        direction(TemplateValue<Void, HTMLTextDirection>.constant(value))
+        direction(.constant(value))
     }
 
     public func isHidden(_ value: Conditionable) -> Self {
@@ -144,7 +144,7 @@ extension GlobalAttributes where Self: AttributeNode {
         add(HTMLAttribute(attribute: "id", value: value))
     }
 
-    public func lang<T>(_ value: TemplateValue<T, String>) -> Self {
+    public func lang(_ value: TemplateValue<String>) -> Self {
         add(HTMLAttribute(attribute: "lang", value: value))
     }
 
@@ -152,7 +152,7 @@ extension GlobalAttributes where Self: AttributeNode {
         add(HTMLAttribute(attribute: "spellcheck", value: value))
     }
 
-    public func tabIndex<T>(_ value: TemplateValue<T, Int>) -> Self {
+    public func tabIndex(_ value: TemplateValue<Int>) -> Self {
         add(HTMLAttribute(attribute: "tabindex", value: value))
     }
 
@@ -178,17 +178,12 @@ public protocol TypableAttribute {
     ///
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
-    func type<T>(_ value: TemplateValue<T, String>) -> Self
-    func type(_ value: String) -> Self
+    func type(_ value: TemplateValue<String>) -> Self
 }
 
 extension TypableAttribute where Self: AttributeNode {
-    public func type<T>(_ value: TemplateValue<T, String>) -> Self {
-        add(HTMLAttribute(attribute: "type", value: value))
-    }
-
-    public func type(_ value: String) -> Self {
-        self.type(RootValue<String>.constant(value))
+    public func type(_ value: TemplateValue<String>) -> Self {
+        return add(HTMLAttribute(attribute: "type", value: value))
     }
 }
 
@@ -333,11 +328,21 @@ public protocol NameableAttribute {
     /// - Parameter value: The value of the attribute
     /// - Returns: An attribute node
     func name(_ value: NameType) -> Self
+
+    /// Specifies the name of the element
+    ///
+    /// - Parameter value: The value of the attribute
+    /// - Returns: An attribute node
+    func name(_ value: TemplateValue<String>) -> Self
 }
 
 extension NameableAttribute where Self: AttributeNode {
     public func name(_ value: NameType) -> Self {
         add(HTMLAttribute(attribute: "name", value: value.rawValue))
+    }
+
+    public func name(_ value: TemplateValue<String>) -> Self {
+        add(HTMLAttribute(attribute: "name", value: value))
     }
 }
 

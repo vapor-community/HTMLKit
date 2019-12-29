@@ -2,7 +2,7 @@
 
 extension LocalizableNode {
     public init<T>(_ localizedKey: String, with context: T) where T: Encodable {
-        self.init(localizedKey, with: RootValue<T>.constant(context))
+        self.init(localizedKey, with: TemplateValue<T>.constant(context))
     }
 }
 
@@ -44,7 +44,7 @@ public struct P: ContentNode, LocalizableNode {
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -70,7 +70,7 @@ public struct H1: ContentNode, LocalizableNode {
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -96,7 +96,7 @@ public struct H2: ContentNode, LocalizableNode {
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -122,7 +122,7 @@ public struct H3: ContentNode, LocalizableNode {
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -148,7 +148,7 @@ public struct H4: ContentNode, LocalizableNode {
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -174,7 +174,7 @@ public struct H5: ContentNode, LocalizableNode {
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -200,7 +200,7 @@ public struct H6: ContentNode, LocalizableNode {
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -226,7 +226,7 @@ public struct Blockquote: ContentNode, LocalizableNode {
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -252,7 +252,7 @@ public struct Bold: ContentNode, LocalizableNode {
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -278,7 +278,7 @@ public struct Italic: ContentNode, LocalizableNode {
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -304,7 +304,7 @@ public struct Small: ContentNode, LocalizableNode {
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -332,7 +332,7 @@ public struct StrikeThrough: ContentNode, LocalizableNode {
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -436,29 +436,67 @@ public struct Header: ContentNode {
     }
 }
 
-public struct Title: ContentNode, LocalizableNode {
+public struct Title: HTMLComponent, AttributeNode, LocalizableNode {
 
-    public var name: String { "title" }
+    struct Node: ContentNode {
+        public var name: String { "title" }
 
-    public var attributes: [HTMLAttribute] = []
+        public var attributes: [HTMLAttribute] = []
 
-    public var content: HTML
+        public var content: HTML
+    }
+
+    let content: HTML
+    public var attributes: [HTMLAttribute]
+    let useOpenGraphMetadata: Conditionable
+    let useTwitterMetadata: Conditionable
+
+    public var body: HTML {
+        [
+            Node(attributes: attributes, content: content),
+            IF(useOpenGraphMetadata) { Meta().property("og:title").content(content) },
+            IF(useTwitterMetadata) { Meta().name("twitter:title").content(content) }
+        ]
+    }
 
     public init(_ localizedKey: String) {
         content = Localized(key: localizedKey)
+        attributes = []
+        useOpenGraphMetadata = true
+        useTwitterMetadata = true
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
+        attributes = []
+        useOpenGraphMetadata = true
+        useTwitterMetadata = true
     }
 
     public init(@HTMLBuilder builder: () -> HTML) {
         content = builder()
+        attributes = []
+        useOpenGraphMetadata = true
+        useTwitterMetadata = true
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTML = "") {
+    init(attributes: [HTMLAttribute] = [], content: HTML = "", useOpenGraphMetadata: Conditionable = true, useTwitterMetadata: Conditionable = true) {
         self.content = content
         self.attributes = attributes
+        self.useOpenGraphMetadata = useOpenGraphMetadata
+        self.useTwitterMetadata = useTwitterMetadata
+    }
+
+    public func useOpenGraph(metadata: Conditionable) -> Title {
+        .init(attributes: attributes, content: content, useOpenGraphMetadata: metadata, useTwitterMetadata: useTwitterMetadata)
+    }
+
+    public func useTwitter(metadata: Conditionable) -> Title {
+        .init(attributes: attributes, content: content, useOpenGraphMetadata: useOpenGraphMetadata, useTwitterMetadata: metadata)
+    }
+
+    public func copy(with attributes: [HTMLAttribute]) -> Title {
+        .init(attributes: attributes, content: content, useOpenGraphMetadata: useOpenGraphMetadata, useTwitterMetadata: useTwitterMetadata)
     }
 }
 
@@ -481,7 +519,7 @@ public struct Button: ContentNode, TypableAttribute, NameableAttribute, Localiza
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -495,7 +533,7 @@ public struct Button: ContentNode, TypableAttribute, NameableAttribute, Localiza
     }
 
     public func type(_ type: ButtonType) -> Button {
-        self.type(TemplateValue<Void, String>.constant(type.rawValue))
+        self.type(TemplateValue<String>.constant(type.rawValue))
     }
 }
 
@@ -753,7 +791,7 @@ public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -865,7 +903,7 @@ public struct Label: ContentNode, FormInputCompanianAttributes, LocalizableNode 
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -911,7 +949,7 @@ public struct TextArea: ContentNode, NameableAttribute, PlaceholderAttribute, Re
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -987,14 +1025,14 @@ public struct Select: AttributeNode, NameableAttribute {
         self.isMultiple = isMultiple
     }
 
-    public init<A, B>(_ elements: TemplateValue<A, [B]>, @HTMLBuilder builder: (RootValue<B>) -> HTML) {
+    public init<B>(_ elements: TemplateValue<[B]>, @HTMLBuilder builder: (TemplateValue<B>) -> HTML) {
         content = ForEach(in: elements) { variable in
             Option { builder(variable) }
         }
         isMultiple = false
     }
 
-    public init<A, B>(custom elements: TemplateValue<A, [B]>, @HTMLBuilder builder: (RootValue<B>) -> HTML) {
+    public init<B>(custom elements: TemplateValue<[B]>, @HTMLBuilder builder: (TemplateValue<B>) -> HTML) {
         content = ForEach(in: elements) { variable in
             builder(variable)
         }
@@ -1149,7 +1187,7 @@ public struct TableHeader: ContentNode, SizableAttribute, LocalizableNode {
         content = Localized(key: localizedKey)
     }
 
-    public init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
 
@@ -1508,7 +1546,7 @@ extension Select {
 }
 
 extension Select {
-    public init<A, B>(_ elements: TemplateValue<A, [B]>) where B: HTML {
+    public init<B>(_ elements: TemplateValue<[B]>) where B: HTML {
         isMultiple = false
         content = ForEach(in: elements) { variable in
             Option { variable }
@@ -1520,7 +1558,7 @@ extension Select {
 extension Select {
     public init<A>(in elements: A) where A : Sequence, A.Element : HTML {
         isMultiple = false
-        content = ForEach<Never, A>(in: .constant(elements)) { variable in
+        content = ForEach<A>(in: .constant(elements)) { variable in
             Option { variable }
         }
     }
@@ -1616,6 +1654,23 @@ public struct Link: DatableNode, TypableAttribute, HyperlinkReferenceAttribute, 
 
     public init(attributes: [HTMLAttribute] = []) {
         self.attributes = attributes
+    }
+}
+
+public struct Stylesheet: HTMLComponent {
+
+    @TemplateValue(String.self)
+    var url
+
+    public init(_ url: TemplateValue<String>) {
+        self.url = url
+    }
+
+    public var body: HTML {
+        Link()
+            .relationship(.stylesheet)
+            .href(url)
+            .type("text/css")
     }
 }
 
@@ -1725,6 +1780,100 @@ public struct Meta: DatableNode, NameableAttribute, ContentableAttribute {
     public init(attributes: [HTMLAttribute] = []) {
         self.attributes = attributes
     }
+
+    public func property(_ property: String) -> Meta {
+        add(.init(attribute: "property", value: property))
+    }
+}
+
+public struct Description: HTMLComponent, LocalizableNode {
+
+    var description: HTML
+
+    let useOpenGraphMetadata: Conditionable
+    let useTwitterMetadata: Conditionable
+
+    public var body: HTML {
+        [
+            Meta().name(.description).content(description),
+            IF(useOpenGraphMetadata) { Meta().property("og:description").content(description) },
+            IF(useTwitterMetadata) { Meta().name("twitter:description").content(description) }
+        ]
+    }
+
+    public init(description: () -> HTML) {
+        self.description = description()
+        self.useTwitterMetadata = true
+        self.useOpenGraphMetadata = true
+    }
+
+    public init(_ localizedKey: String) {
+        description = Localized(key: localizedKey)
+        self.useTwitterMetadata = true
+        self.useOpenGraphMetadata = true
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        description = Localized(key: localizedKey, context: context)
+        self.useTwitterMetadata = true
+        self.useOpenGraphMetadata = true
+    }
+
+    init(description: HTML, useOpenGraphMetadata: Conditionable, useTwitterMetadata: Conditionable) {
+        self.description = description
+        self.useOpenGraphMetadata = useOpenGraphMetadata
+        self.useTwitterMetadata = useTwitterMetadata
+    }
+
+    public func useOpenGraph(metadata: Conditionable) -> Description {
+        .init(description: description, useOpenGraphMetadata: metadata, useTwitterMetadata: useTwitterMetadata)
+    }
+
+    public func useTwitter(metadata: Conditionable) -> Description {
+        .init(description: description, useOpenGraphMetadata: useOpenGraphMetadata, useTwitterMetadata: metadata)
+    }
+}
+
+public struct Author: HTMLComponent, LocalizableNode {
+
+    var author: HTML
+
+    @TemplateValue(String?.self)
+    var twitterHandle
+
+    public var body: HTML {
+        [
+            Meta().name(.author).content(author),
+            Unwrap(twitterHandle) { handel in
+                Meta().name("twitter:creator").content(handel)
+            }
+        ]
+    }
+
+    public init(author: () -> HTML) {
+        self.author = author()
+    }
+
+    public init(_ localizedKey: String) {
+        author = Localized(key: localizedKey)
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        author = Localized(key: localizedKey, context: context)
+    }
+
+    init(author: HTML, handle: TemplateValue<String?>) {
+        self.author = author
+        self.twitterHandle = handle
+    }
+
+    public func twitter(handle: TemplateValue<String>) -> Author {
+        .init(author: author, handle: handle.makeOptional())
+    }
+
+    public func twitter(handle: TemplateValue<String?>) -> Author {
+        .init(author: author, handle: handle)
+    }
 }
 
 public struct Input: DatableNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute, SizableAttribute, ValueableAttribute, PlaceholderAttribute, RequierdAttribute {
@@ -1827,7 +1976,7 @@ public struct Input: DatableNode, TypableAttribute, MediaSourceableAttribute, Na
     }
 
     public func type(_ type: Types) -> Input {
-        self.type(RootValue<String>.constant(type.rawValue))
+        self.type(TemplateValue<String>.constant(type.rawValue))
     }
 
     public func isChecked(_ condition: Conditionable) -> Input {

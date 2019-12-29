@@ -47,7 +47,7 @@ extension IF: HTML {
                 guard isStaticlyEvaluated else {
                     throw IFPrerenderErrors.dynamiclyEvaluatedCondition
                 }
-                let testContext = HTMLRenderer.ContextManager(rootContext: ConditionPrerenderTest())
+                let testContext = HTMLRenderer.ContextManager<Void>(contextes: [:])
                 if try condition.condition.evaluate(with: testContext) {
                     try condition.view.prerender(formula)
                     return // Returning as the first true condition should be the only one that is rendered
@@ -81,8 +81,8 @@ extension IF: HTML {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func elseIf<A, B>(isNil path: TemplateValue<A, B?>, @HTMLBuilder render: () -> HTML) -> IF {
-        let condition = Condition(condition: IsNullCondition<A, B>(path: path))
+    public func elseIf<B>(isNil path: TemplateValue<B?>, @HTMLBuilder render: () -> HTML) -> IF {
+        let condition = Condition(condition: IsNullCondition<B>(path: path))
         condition.view = render()
         return .init(conditions: conditions + [condition])
     }
@@ -93,8 +93,8 @@ extension IF: HTML {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func elseIf<Root, Value>(isNotNil path: TemplateValue<Root, Value?>, @HTMLBuilder render: () -> HTML) -> IF {
-        let condition = Condition(condition: NotNullCondition<Root, Value>(path: path))
+    public func elseIf<Value>(isNotNil path: TemplateValue<Value?>, @HTMLBuilder render: () -> HTML) -> IF {
+        let condition = Condition(condition: NotNullCondition<Value>(path: path))
         condition.view = render()
         return .init(conditions: conditions + [condition])
     }

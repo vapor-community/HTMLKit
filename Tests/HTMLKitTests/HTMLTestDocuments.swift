@@ -61,14 +61,16 @@ struct SimplePage: HTMLTemplate {
     }
 }
 
-struct BaseView<Root>: HTMLComponent {
+struct BaseView: HTMLComponent {
 
-    let context: TemplateValue<Root, String>
+    @TemplateValue(String.self)
+    var context
+
     let content: HTML
 
-    init(context: TemplateValue<Root, String>, @HTMLBuilder content: () -> HTML) {
-        self.context = context
+    init(context: TemplateValue<String>, @HTMLBuilder content: () -> HTML) {
         self.content = content()
+        self.context = context
     }
 
     var body: HTML {
@@ -76,9 +78,9 @@ struct BaseView<Root>: HTMLComponent {
             HTMLNode {
                 Head {
                     Title { context }
-                    Link()
-                        .href("some url")
-                        .relationship(.stylesheet)
+                        .useTwitter(metadata: false)
+                        .useOpenGraph(metadata: false)
+                    Stylesheet("some url")
                     Meta()
                         .name(.viewport)
                         .content("width=device-width, initial-scale=1.0")
@@ -88,13 +90,6 @@ struct BaseView<Root>: HTMLComponent {
                 }
             }
         }
-    }
-}
-
-extension BaseView where Root == Void {
-    init(context: String, @HTMLBuilder content: () -> HTML) {
-        self.context = .constant(context)
-        self.content = content()
     }
 }
 
@@ -114,7 +109,7 @@ struct SomeView: HTMLTemplate {
 
 struct SomeViewStaticTitle: HTMLTemplate {
 
-    var context: RootValue<String> = .root()
+    var context: TemplateValue<String> = .root()
 
     var body: HTML {
         BaseView(context: "Test") {
@@ -125,7 +120,7 @@ struct SomeViewStaticTitle: HTMLTemplate {
 
 struct ForEachView: HTMLTemplate {
 
-    let context: RootValue<[String]> = .root()
+    let context: TemplateValue<[String]> = .root()
 
     var body: HTML {
         Div {
@@ -158,7 +153,7 @@ struct IFView: HTMLTemplate {
         let bool: Bool
     }
 
-    var context: RootValue<Value> = .root()
+    var context: TemplateValue<Value> = .root()
 
     var body: HTML {
         Div {
@@ -324,9 +319,10 @@ struct ChainedEqualAttributesDataNode: HTMLPage {
 }
 
 
-struct VariableView<Root>: HTMLComponent {
+struct VariableView: HTMLTemplate {
 
-    var context: TemplateValue<Root, String>
+    @TemplateValue(String.self)
+    var context
 
     var body: HTML {
         Div {
@@ -344,7 +340,7 @@ struct MultipleContextualEmbed: HTMLTemplate {
     }
 
     var body: HTML {
-        BaseView(context: context.title) { () -> HTML in
+        BaseView(context: context.title) {
             Span { "Some text" }
             VariableView(context: context.string)
             UnsafeVariable(context: context)
@@ -643,7 +639,7 @@ struct DynamicAttribute: HTMLTemplate {
         let isOptional: Bool?
     }
 
-    let context: RootValue<Value> = .root()
+    let context: TemplateValue<Value> = .root()
 
     var body: HTML {
         Div()
@@ -665,7 +661,7 @@ struct DynamicAttribute: HTMLTemplate {
 
 struct SelfContextPassing: HTMLTemplate {
 
-    var context: RootValue<String> = .root()
+    var context: TemplateValue<String> = .root()
 
     var body: HTML {
         Div {
@@ -687,9 +683,10 @@ struct SelfLoopingView: HTMLTemplate {
     }
 }
 //
-struct UnsafeVariable<Root>: HTMLPage {
+struct UnsafeVariable: HTMLPage {
 
-    var context: TemplateValue<Root, MultipleContextualEmbed.Context>
+    @TemplateValue(MultipleContextualEmbed.Context.self)
+    var context
 
     var body: HTML {
         Div {
@@ -710,7 +707,7 @@ struct UnsafeVariable<Root>: HTMLPage {
 //        let description: String
 //    }
 //
-//    let context: RootValue<Value> = .root()
+//    let context: TemplateValue<Value> = .root()
 //
 //    var body: HTML {
 //        Div {
@@ -1115,9 +1112,10 @@ struct Test: HTMLTemplate {
         }
     }
 
-    struct AMMenu<T>: HTMLComponent {
+    struct AMMenu: HTMLComponent {
 
-        let links: TemplateValue<T, [MenuLink]>
+        @TemplateValue([MenuLink].self)
+        var links
 
         var body: HTML {
             Nav {
@@ -1130,6 +1128,40 @@ struct Test: HTMLTemplate {
                 }
 
             }.id("menu")
+        }
+    }
+}
+
+struct MetadataTest: HTMLPage {
+
+    var body: HTML {
+        Document(type: .html5) {
+            Head {
+                Author { "Mats" }
+                    .twitter(handle: .constant("@MatsMoll"))
+                Title { "Some title" }
+                Description { "Some description" }
+            }
+        }
+    }
+}
+
+
+struct MetadataTestDynamic: HTMLTemplate {
+
+    struct Context {
+        let name: String
+        let handle: String
+    }
+
+    var body: HTML {
+        Document(type: .html5) {
+            Head {
+                Author { context.name }
+                    .twitter(handle: context.handle)
+                Title { "Some title" }
+                Description { "Some description" }
+            }
         }
     }
 }

@@ -6,9 +6,9 @@
 //
 
 /// A struct making it possible to have a for each loop in the template
-public struct ForEach<Root, Values> where Values: Sequence {
+public struct ForEach<Values> where Values: Sequence {
 
-    public let context: TemplateValue<Root, Values>
+    public let context: TemplateValue<Values>
 
     let content: HTML
 
@@ -17,18 +17,18 @@ public struct ForEach<Root, Values> where Values: Sequence {
     let condition: Conditionable
     var isEnumerated: Bool = false
 
-    public init(in context: TemplateValue<Root, Values>, @HTMLBuilder content: (RootValue<Values.Element>) -> HTML) {
+    public init(in context: TemplateValue<Values>, @HTMLBuilder content: (TemplateValue<Values.Element>) -> HTML) {
 
         self.condition = true
         self.context = context
         switch context {
         case .constant(let values): self.content = values.reduce("") { $0 + content(.constant($1)) }
-        case .dynamic(let variable): self.content = content(.dynamic(.root(Values.Element.self, rootId: variable.pathId + "-loop")))
+        case .dynamic(let variable): self.content = content(.dynamic(.root(Values.Element.self, rootId: "\(variable.pathId)-loop")))
         }
         localFormula = .init()
     }
 
-    public init(in context: TemplateValue<Root, Values?>, @HTMLBuilder content: (RootValue<Values.Element>) -> HTML) {
+    public init(in context: TemplateValue<Values?>, @HTMLBuilder content: (TemplateValue<Values.Element>) -> HTML) {
 
         self.context = context.unsafelyUnwrapped
         switch context {
@@ -45,7 +45,7 @@ public struct ForEach<Root, Values> where Values: Sequence {
         localFormula = .init()
     }
 
-    public init(enumerated context: TemplateValue<Root, Values>, @HTMLBuilder content: ((element: RootValue<Values.Element>, index: RootValue<Int>)) -> HTML) {
+    public init(enumerated context: TemplateValue<Values>, @HTMLBuilder content: ((element: TemplateValue<Values.Element>, index: TemplateValue<Int>)) -> HTML) {
 
         self.condition = true
         self.context = context
@@ -62,24 +62,14 @@ public struct ForEach<Root, Values> where Values: Sequence {
     }
 }
 
-extension ForEach where Root == Values {
-    public init(enumerated context: Values, @HTMLBuilder content: ((element: RootValue<Values.Element>, index: RootValue<Int>)) -> HTML) {
+extension ForEach {
+    public init(enumerated context: Values, @HTMLBuilder content: ((element: TemplateValue<Values.Element>, index: TemplateValue<Int>)) -> HTML) {
         self.init(enumerated: .constant(context), content: content)
     }
 }
 
-extension ForEach where Root == Values {
-    public init(in context: RootValue<Values>, @HTMLBuilder content: (RootValue<Values.Element>) -> HTML) {
-        self.context = context
-        switch context {
-        case .constant(let values): self.content = values.reduce("") { $0 + content(.constant($1)) }
-        case .dynamic(let variable): self.content = content(.dynamic(.root(Values.Element.self, rootId: variable.pathId + "-loop")))
-        }
-        localFormula = .init()
-        self.condition = true
-    }
-
-    public init(in values: Values, @HTMLBuilder content: (RootValue<Values.Element>) -> HTML) {
+extension ForEach {
+    public init(in values: Values, @HTMLBuilder content: (TemplateValue<Values.Element>) -> HTML) {
         self.init(in: .constant(values), content: content)
     }
 }
@@ -119,13 +109,13 @@ extension ForEach: HTML {
 
 extension TemplateValue where Value: Sequence {
 
-    func forEach(@HTMLBuilder content: (RootValue<Value.Element>) -> HTML) -> HTML {
+    func forEach(@HTMLBuilder content: (TemplateValue<Value.Element>) -> HTML) -> HTML {
         ForEach(in: self, content: content)
     }
 }
 
 extension Sequence {
-    public func htmlForEach(@HTMLBuilder content: (RootValue<Element>) -> HTML) -> HTML {
+    public func htmlForEach(@HTMLBuilder content: (TemplateValue<Element>) -> HTML) -> HTML {
         ForEach(in: .constant(self), content: content)
     }
 }

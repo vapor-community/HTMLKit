@@ -144,7 +144,6 @@ final class HTMLKitTests: XCTestCase {
 //            }
 //        }
 //    }
-
 //    func testView() {
 //        let formula = HTMLRenderer.Formula()
 //        try! Test().prerender(formula)
@@ -174,6 +173,11 @@ final class HTMLKitTests: XCTestCase {
 //        }
 //    }
 
+    func testMakeOptional() throws {
+        let metadataPageDynamic = try renderer.render(raw: MetadataTestDynamic.self,        with: .init(name: "Mats", handle: "@MatsMoll"))
+        XCTAssertEqual(metadataPageDynamic, "<!DOCTYPE html><head><meta name='author' content='Mats'><meta name='twitter:creator' content='@MatsMoll'><title>Some title</title><meta property='og:title' content='Some title'><meta name='twitter:title' content='Some title'><meta name='description' content='Some description'><meta property='og:description' content='Some description'><meta name='twitter:description' content='Some description'></head>")
+    }
+
     func testHtmlRenderingTests() throws {
 
         let testDate = Date()
@@ -198,7 +202,7 @@ final class HTMLKitTests: XCTestCase {
         let secondIfRender      = try renderer.render(raw: IFView.self,                     with: .init(name: "Mats", age: 20, nullable: nil, bool: true))
         let thirdIfRender       = try renderer.render(raw: IFView.self,                     with: .init(name: "Per", age: 21, nullable: "Some", bool: false))
         let staticIfRender      = try renderer.render(raw: StaticIfPrerenderingTest.self,   with: false)
-//        let varialbeRender      = try renderer.render(raw: VariableView.self, with: "<script>\"'&</script>")
+        let varialbeRender      = try renderer.render(raw: VariableView.self,               with: "<script>\"'&</script>")
         let selfLoop            = try renderer.render(raw: SelfLoopingView.self,            with: [.init(string: "Hello", int: 2), .init(string: "Morn", int: nil)])
         let selfPassing         = try renderer.render(raw: SelfContextPassing.self,         with: "Self")
         let multipleEmbedRender = try renderer.render(raw: MultipleContextualEmbed.self,    with: .init(title: "Welcome", string: "String"))
@@ -208,6 +212,7 @@ final class HTMLKitTests: XCTestCase {
 //        let markdown            = try renderer.render(raw: MarkdownView.self, with: .init(title: "Hello", description: "World"))
         let english             = try renderer.render(raw: LocalizedView.self,              with: .init(locale: "en", description: .init(numberTest: 3), numberTest: 1))
         let norwegian           = try renderer.render(raw: LocalizedView.self,              with: .init(locale: "nb", description: .init(numberTest: 3), numberTest: 1))
+        let metadataPageDynamic = try renderer.render(raw: MetadataTestDynamic.self,        with: .init(name: "Mats", handle: "@MatsMoll"))
 
         let date                = try renderer.render(raw: DateView.self,                   with: testDate)
         let optionalDateNil     = try renderer.render(raw: OptionalDateView.self,           with: nil)
@@ -219,13 +224,14 @@ final class HTMLKitTests: XCTestCase {
         let simpleRender        = try renderer.render(raw: SimpleView.self)
         let chainedRender       = try renderer.render(raw: ChainedEqualAttributes.self)
         let chaindDataRender    = try renderer.render(raw: ChainedEqualAttributesDataNode.self)
+        let metadataPage        = try renderer.render(raw: MetadataTest.self)
 ////        let inputRender = try renderer.render(FormInput.self)
 
-        XCTAssertEqual(multipleEmbedRender, "<!DOCTYPE html><html><head><title>Welcome</title><link href='some url' rel='stylesheet'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><span>Some text</span><div><p>String</p><p>String</p></div><div><p>String</p><p>Welcome</p></div></body></html>")
-//        XCTAssertEqual(varialbeRender, "<div><p>&lt;script&gt;&quot;&#39;&amp;&lt;/script&gt;</p><p><script>\"'&</script></p></div>")
+        XCTAssertEqual(multipleEmbedRender, "<!DOCTYPE html><html><head><title>Welcome</title><link rel='stylesheet' href='some url' type='text/css'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><span>Some text</span><div><p>String</p><p>String</p></div><div><p>String</p><p>Welcome</p></div></body></html>")
+        XCTAssertEqual(varialbeRender, "<div><p>&lt;script&gt;&quot;&#39;&amp;&lt;/script&gt;</p><p><script>\"'&</script></p></div>")
         XCTAssertEqual(staticEmbedRender, "<div><div><p>Text</p></div><p>Hello</p><small>2</small></div>")
-        XCTAssertEqual(someViewRender, "<!DOCTYPE html><html><head><title>Welcome</title><link href='some url' rel='stylesheet'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><p>Hello Mats!</p></body></html>")
-        XCTAssertEqual(someViewRenderTitle, "<!DOCTYPE html><html><head><title>Test</title><link href='some url' rel='stylesheet'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><p>Hello Mats!</p></body></html>")
+        XCTAssertEqual(someViewRender, "<!DOCTYPE html><html><head><title>Welcome</title><link rel='stylesheet' href='some url' type='text/css'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><p>Hello Mats!</p></body></html>")
+        XCTAssertEqual(someViewRenderTitle, "<!DOCTYPE html><html><head><title>Test</title><link rel='stylesheet' href='some url' type='text/css'><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><p>Hello Mats!</p></body></html>")
         XCTAssertEqual(forEachRender, "<div id='array'><p>1</p><p>2</p><p>3</p></div>")
         XCTAssertEqual(firstIfRender, "<div>I am a child</div>")
         XCTAssertEqual(secondIfRender, "<div><p dir='ltr'>My name is: Mats!</p>I am growing<p>Simple bool</p></div>")
@@ -242,6 +248,8 @@ final class HTMLKitTests: XCTestCase {
 //        XCTAssertEqual(markdown.replacingOccurrences(of: "\n", with: ""), "<div><h1>Title: Hello</h1><h2>Description here:</h2><p>World</p></div>")
         XCTAssertEqual(english, "<div><h1>Hello World!</h1><p>You have 3 unread messages.</p><p>You have 2 unread messages.</p><p>You have an unread message</p></div>")
         XCTAssertEqual(norwegian, "<div><h1>Hei Verden!</h1><p>Du har 3 uleste meldinger.</p><p>Du har 2 uleste meldinger.</p><p>Du har en ulest melding</p></div>")
+        XCTAssertEqual(metadataPage, "<!DOCTYPE html><head><meta name='author' content='Mats'><meta name='twitter:creator' content='@MatsMoll'><title>Some title</title><meta property='og:title' content='Some title'><meta name='twitter:title' content='Some title'><meta name='description' content='Some description'><meta property='og:description' content='Some description'><meta name='twitter:description' content='Some description'></head>")
+        XCTAssertEqual(metadataPageDynamic, "<!DOCTYPE html><head><meta name='author' content='Mats'><meta name='twitter:creator' content='@MatsMoll'><title>Some title</title><meta property='og:title' content='Some title'><meta name='twitter:title' content='Some title'><meta name='description' content='Some description'><meta property='og:description' content='Some description'><meta name='twitter:description' content='Some description'></head>")
         XCTAssertEqual(date, "<div><p>\(shortDateFormatter.string(from: testDate))</p><p>\(customDateFormatter.string(from: testDate))</p></div>")
         XCTAssertEqual(optionalDateNil, "<div><p></p><p></p></div>")
         XCTAssertEqual(optionalDate, "<div><p>\(shortDateFormatter.string(from: testDate))</p><p>\(customDateFormatter.string(from: testDate))</p></div>")
@@ -286,7 +294,7 @@ final class HTMLKitTests: XCTestCase {
         try renderer.add(view: SomeViewStaticTitle())
         try renderer.add(view: ForEachView())
         try renderer.add(view: IFView())
-//        try renderer.add(view: VariableView())
+        try renderer.add(view: VariableView())
         try renderer.add(view: MultipleContextualEmbed())
         try renderer.add(view: DynamicAttribute())
         try renderer.add(view: SelfLoopingView())
@@ -302,6 +310,8 @@ final class HTMLKitTests: XCTestCase {
         try renderer.add(view: ChainedEqualAttributes())
         try renderer.add(view: ChainedEqualAttributesDataNode())
         try renderer.add(view: StaticIfPrerenderingTest())
+        try renderer.add(view: MetadataTest())
+        try renderer.add(view: MetadataTestDynamic())
 
 //        try renderer.add(view: LoginPageTest())
 //        try renderer.add(view: BigForTest())

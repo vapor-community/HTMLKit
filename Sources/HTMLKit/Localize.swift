@@ -11,12 +11,12 @@ import Foundation
 
 public protocol LocalizableNode {
     init(_ localizedKey: String)
-    init<A, B>(_ localizedKey: String, with context: TemplateValue<A, B>) where B: Encodable
+    init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B: Encodable
 }
 
 public struct NoData: Encodable {}
 
-public struct Localized<A, B>: HTML where B: Encodable {
+public struct Localized<B>: HTML where B: Encodable {
 
     enum Errors: Error {
         case missingLingoConfig
@@ -24,9 +24,9 @@ public struct Localized<A, B>: HTML where B: Encodable {
 
     let key: String
 
-    let context: TemplateValue<A, B>?
+    let context: TemplateValue<B>?
 
-    public init(key: String, context: TemplateValue<A, B>) {
+    public init(key: String, context: TemplateValue<B>) {
         self.key = key
         self.context = context
     }
@@ -53,7 +53,7 @@ public struct Localized<A, B>: HTML where B: Encodable {
     }
 }
 
-extension Localized where A == NoData, B == NoData {
+extension Localized where B == NoData {
     public init(key: String) {
         self.key = key
         self.context = nil
@@ -86,7 +86,7 @@ extension HTML {
         return EnviromentModifier(view: self, locale: locale)
     }
 
-    public func enviroment<T>(locale: TemplateValue<T, String>) -> EnviromentModifier {
+    public func enviroment(locale: TemplateValue<String>) -> EnviromentModifier {
         return EnviromentModifier(view: self, locale: locale)
     }
 }

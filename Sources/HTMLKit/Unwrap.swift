@@ -1,12 +1,17 @@
 
-public struct Unwrap<A, B>: HTMLComponent {
+public struct Unwrap<B>: HTMLComponent {
 
     let isDefined: Conditionable
     let content: HTML
 
-    public init(_ value: TemplateValue<A, B?>, @HTMLBuilder content: (TemplateValue<A, B>) -> HTML) {
+    public init(_ value: TemplateValue<B?>, @HTMLBuilder content: (TemplateValue<B>) -> HTML) {
         self.isDefined = value.isDefined
-        self.content = content(value.unsafelyUnwrapped)
+        if value.isMascadingOptional {
+            self.content = content(value.unsafeCast(to: B.self))
+        } else {
+            self.content = content(value.unsafelyUnwrapped)
+        }
+
     }
 
     public var body: HTML {

@@ -54,6 +54,7 @@ public class HTMLRenderer: HTMLRenderable {
         case unableToRetriveValue
         case unableToRegisterKeyPath
         case unableToAddVariable
+        case unableToCastVariable
 
         public var errorDescription: String? {
             switch self {
@@ -61,6 +62,7 @@ public class HTMLRenderer: HTMLRenderable {
             case .unableToRetriveValue:     return "Unable to retrive the wanted value in the context"
             case .unableToRegisterKeyPath:  return "Unable to register a KeyPath when creating the template formula"
             case .unableToAddVariable:      return "Unable to add variable to formula"
+            case .unableToCastVariable:     return "Unable to cast value when retriving varaible"
             }
         }
 
@@ -191,12 +193,22 @@ public class HTMLRenderer: HTMLRenderable {
             self.locale = nil
         }
 
+        init(contextes: [String: Any], lingo: Lingo? = nil) {
+            self.contextes = contextes
+            self.lingo = lingo
+            self.locale = nil
+        }
+
         /// The value for a `ContextVariable`
         ///
         /// - Returns: The value at the `ContextVariable`
-        func value<Root, Value>(for variable: ContextVariable<Root, Value>) throws -> Value {
-            if let variableContext = contextes[variable.rootId] as? Root {
-                return variableContext[keyPath: variable.root]
+        func value<Value>(for variable: HTMLContext<Value>) throws -> Value {
+            if let variableContext = contextes[variable.rootId] {
+                if let value = variableContext[keyPath: variable.keyPath] as? Value {
+                    return value
+                } else {
+                    throw Errors.unableToCastVariable
+                }
             } else {
                 throw Errors.unableToRetriveValue
             }
