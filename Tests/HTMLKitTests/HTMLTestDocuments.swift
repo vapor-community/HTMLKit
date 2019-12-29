@@ -80,7 +80,7 @@ struct BaseView: HTMLComponent {
                     Title { context }
                         .useTwitter(metadata: false)
                         .useOpenGraph(metadata: false)
-                    Stylesheet("some url")
+                    Stylesheet(url: "some url")
                     Meta()
                         .name(.viewport)
                         .content("width=device-width, initial-scale=1.0")
@@ -1138,7 +1138,7 @@ struct MetadataTest: HTMLPage {
         Document(type: .html5) {
             Head {
                 Author { "Mats" }
-                    .twitter(handle: .constant("@MatsMoll"))
+                    .twitter(handle: "@MatsMoll")
                 Title { "Some title" }
                 Description { "Some description" }
             }

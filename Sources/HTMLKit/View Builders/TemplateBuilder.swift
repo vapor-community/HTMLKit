@@ -1662,7 +1662,7 @@ public struct Stylesheet: HTMLComponent {
     @TemplateValue(String.self)
     var url
 
-    public init(_ url: TemplateValue<String>) {
+    public init(url: TemplateValue<String>) {
         self.url = url
     }
 
