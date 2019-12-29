@@ -35,6 +35,9 @@ public struct Document: HTMLPage {
     }
 
     public var body: HTML {
-        "<!DOCTYPE \(type.rawValue)>" + content
+        [
+            "<!DOCTYPE \(type.rawValue)>",
+            HTMLNode { content }
+        ]
     }
 }

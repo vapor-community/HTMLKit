@@ -11,36 +11,37 @@ By using Swift's powerful language features and a pre-rendering algorithm, HTMLK
 
 Add the following in your `Package.swift` file
 ```swift
-.package(url: "https://github.com/vapor-community/HTMLKit.git", from: "2.0.0-alpha.9"),
+.package(url: "https://github.com/vapor-community/HTMLKit.git", from: "2.0.0-beta.2"),
 ```
-And register the provider and the different templates with in `configure.swift`
-```swift
-try services.register(HTMLKitProvider())
 
-// Or you can do it manually with
-let renderer = HTMLRenderer()
-try renderer.add(view: MyTemplate())
-services.register(renderer)
-```
+You can use the following providers in order to use HTMLKit with [Vapor 3](https://github.com/MatsMoll/htmlkit-vapor-3-provider) and for [Vapor 4](https://github.com/MatsMoll/htmlkit-vapor-provider)
 
 ## Usage
 
 To create a HTML template, conform to the `HTMLTemplate` protocol.
 
 ```swift
+struct TemplateData {
+    let name: String
+    let handle: String
+    let title: String?
+}
+
 struct SimpleTemplate: HTMLTemplate {
 
-    @TemplateValue(String?.self)
+    @TemplateValue(TemplateData.self)
     var context
 
     var body: HTML {
         Document(type: .html5) {
             Head {
-                Title { context }
+                Title { context.title }
+                Author { context.name }
+                    .twitter(handle: context.handle)
             }
             Body {
-                Unwrap(context) { string in
-                    P { string }
+                Unwrap(context.title) { title in
+                    P { title }
                 }
             }
         }
@@ -49,6 +50,23 @@ struct SimpleTemplate: HTMLTemplate {
 
 ...
 try SimpleTemplate().render(with: "Some string", for: req)
+```
+
+This will render somehing like this
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Some Title</title>
+        <meta property='og:title' content='Some Title'>
+        <meta name='twitter:title' content='Some Title'>
+        <meta name='author' content='Mats'>
+        <meta name='twitter:creator' content='@SomeTwitterHandle'>
+    </head>
+    <body>
+        <p>Some Title</p>
+    </body>
+</html>
 ```
 
 And to create a HTML component, just comform to the `HTMLComponent` protocol. 
@@ -89,7 +107,7 @@ struct SomePage: HTMLPage {
     var body: HTML {
         Div {
             Alert(isDismissable: false) {
-                H3("Some Title")
+                H3 { "Some Title" }
             }
         }
     }
@@ -164,3 +182,7 @@ struct LocalizedDateView: HTMLTemplate {
 * [BootstrapKit](https://github.com/MatsMoll/BootstrapKit) - A higher level library that makes it easier to work with Boostrap 4.
 * [Vapor TIL fork](https://github.com/MatsMoll/vapor-til) - Compare Leaf to HTMLKit in this fork of the TIL app.
 * Convert pure HTML code to HTMLKit code using this [HTML-to-HTMLKit converter](https://github.com/MatsMoll/HTMLKit-code-converter).
+
+## Known Issues
+
+* Linux compiler can sometimes struggle with compiling the code when a combination of complex use of generics, default values or deeply nested function builders are used.

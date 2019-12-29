@@ -75,19 +75,17 @@ struct BaseView: HTMLComponent {
 
     var body: HTML {
         Document(type: .html5) {
-            HTMLNode {
-                Head {
-                    Title { context }
-                        .useTwitter(metadata: false)
-                        .useOpenGraph(metadata: false)
-                    Stylesheet(url: "some url")
-                    Meta()
-                        .name(.viewport)
-                        .content("width=device-width, initial-scale=1.0")
-                }
-                Body {
-                    content
-                }
+            Head {
+                Title { context }
+                    .useTwitter(metadata: false)
+                    .useOpenGraph(metadata: false)
+                Stylesheet(url: "some url")
+                Meta()
+                    .name(.viewport)
+                    .content("width=device-width, initial-scale=1.0")
+            }
+            Body {
+                content
             }
         }
     }

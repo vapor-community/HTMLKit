@@ -173,11 +173,6 @@ final class HTMLKitTests: XCTestCase {
 //        }
 //    }
 
-    func testMakeOptional() throws {
-        let metadataPageDynamic = try renderer.render(raw: MetadataTestDynamic.self,        with: .init(name: "Mats", handle: "@MatsMoll"))
-        XCTAssertEqual(metadataPageDynamic, "<!DOCTYPE html><head><meta name='author' content='Mats'><meta name='twitter:creator' content='@MatsMoll'><title>Some title</title><meta property='og:title' content='Some title'><meta name='twitter:title' content='Some title'><meta name='description' content='Some description'><meta property='og:description' content='Some description'><meta name='twitter:description' content='Some description'></head>")
-    }
-
     func testHtmlRenderingTests() throws {
 
         let testDate = Date()
@@ -248,8 +243,8 @@ final class HTMLKitTests: XCTestCase {
 //        XCTAssertEqual(markdown.replacingOccurrences(of: "\n", with: ""), "<div><h1>Title: Hello</h1><h2>Description here:</h2><p>World</p></div>")
         XCTAssertEqual(english, "<div><h1>Hello World!</h1><p>You have 3 unread messages.</p><p>You have 2 unread messages.</p><p>You have an unread message</p></div>")
         XCTAssertEqual(norwegian, "<div><h1>Hei Verden!</h1><p>Du har 3 uleste meldinger.</p><p>Du har 2 uleste meldinger.</p><p>Du har en ulest melding</p></div>")
-        XCTAssertEqual(metadataPage, "<!DOCTYPE html><head><meta name='author' content='Mats'><meta name='twitter:creator' content='@MatsMoll'><title>Some title</title><meta property='og:title' content='Some title'><meta name='twitter:title' content='Some title'><meta name='description' content='Some description'><meta property='og:description' content='Some description'><meta name='twitter:description' content='Some description'></head>")
-        XCTAssertEqual(metadataPageDynamic, "<!DOCTYPE html><head><meta name='author' content='Mats'><meta name='twitter:creator' content='@MatsMoll'><title>Some title</title><meta property='og:title' content='Some title'><meta name='twitter:title' content='Some title'><meta name='description' content='Some description'><meta property='og:description' content='Some description'><meta name='twitter:description' content='Some description'></head>")
+        XCTAssertEqual(metadataPage, "<!DOCTYPE html><html><head><meta name='author' content='Mats'><meta name='twitter:creator' content='@MatsMoll'><title>Some title</title><meta property='og:title' content='Some title'><meta name='twitter:title' content='Some title'><meta name='description' content='Some description'><meta property='og:description' content='Some description'><meta name='twitter:description' content='Some description'></head></html>")
+        XCTAssertEqual(metadataPageDynamic, "<!DOCTYPE html><html><head><meta name='author' content='Mats'><meta name='twitter:creator' content='@MatsMoll'><title>Some title</title><meta property='og:title' content='Some title'><meta name='twitter:title' content='Some title'><meta name='description' content='Some description'><meta property='og:description' content='Some description'><meta name='twitter:description' content='Some description'></head></html>")
         XCTAssertEqual(date, "<div><p>\(shortDateFormatter.string(from: testDate))</p><p>\(customDateFormatter.string(from: testDate))</p></div>")
         XCTAssertEqual(optionalDateNil, "<div><p></p><p></p></div>")
         XCTAssertEqual(optionalDate, "<div><p>\(shortDateFormatter.string(from: testDate))</p><p>\(customDateFormatter.string(from: testDate))</p></div>")
