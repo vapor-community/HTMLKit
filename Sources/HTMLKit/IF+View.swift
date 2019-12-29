@@ -38,27 +38,27 @@ extension IF: HTML {
 
     // View `BrewableFormula` documentation
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
-        var isStaticlyEvaluated = true
+        var isStaticallyEvaluated = true
         for condition in conditions {
             condition.localFormula.calendar = formula.calendar
             condition.localFormula.timeZone = formula.timeZone
 
             do {
-                guard isStaticlyEvaluated else {
+                guard isStaticallyEvaluated else {
                     throw IFPrerenderErrors.dynamiclyEvaluatedCondition
                 }
-                let testContext = HTMLRenderer.ContextManager<Void>(contextes: [:])
+                let testContext = HTMLRenderer.ContextManager<Void>(contexts: [:])
                 if try condition.condition.evaluate(with: testContext) {
                     try condition.view.prerender(formula)
                     return // Returning as the first true condition should be the only one that is rendered
                 }
             } catch {
                 // If an error was thrown, then there is some missing context and therefore the whole condition should be evaluated at runtime
-                isStaticlyEvaluated = false
+                isStaticallyEvaluated = false
                 try condition.prerender(formula)
             }
         }
-        if isStaticlyEvaluated == false {
+        if isStaticallyEvaluated == false {
             formula.add(mappable: self)
         }
     }
@@ -66,7 +66,7 @@ extension IF: HTML {
     /// Add an else if condition
     ///
     /// - Parameters:
-    ///   - condition: The conditino to be evaluated
+    ///   - condition: The condition to be evaluated
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
     public func elseIf(_ condition: Conditionable, @HTMLBuilder render: () -> HTML) -> IF {
@@ -104,7 +104,7 @@ extension IF: HTML {
     /// - Parameter render: The view to be rendered
     /// - Returns: A mappable object
     public func `else`(@HTMLBuilder render: () -> HTML) -> HTML {
-        let trueCondition = Condition(condition: AllwaysTrueCondition())
+        let trueCondition = Condition(condition: AlwaysTrueCondition())
         trueCondition.view = render()
         return IF(conditions: conditions + [trueCondition])
     }

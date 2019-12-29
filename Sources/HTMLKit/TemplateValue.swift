@@ -47,7 +47,7 @@ public enum TemplateValue<Value> {
         }
     }
 
-    /// This is used to determend if the value pretends it is a optional
+    /// This is used to determine if the value pretends it is a optional
     var isMascadingOptional: Bool {
         switch self {
         case .constant: return false

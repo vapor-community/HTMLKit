@@ -118,7 +118,7 @@ public struct Between<Value>: Conditionable where Value: Comparable {
 
 /// A condition that is allways true
 /// Used as the `else` condition
-struct AllwaysTrueCondition: Conditionable {
+struct AlwaysTrueCondition: Conditionable {
     func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
         return true
     }
