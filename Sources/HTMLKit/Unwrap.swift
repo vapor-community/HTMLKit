@@ -1,22 +1,29 @@
 
-public struct Unwrap<B>: HTMLComponent {
+public struct Unwrap: HTMLComponent {
 
-    let isDefined: Conditionable
-    let content: HTML
+    let content: IF
 
-    public init(_ value: TemplateValue<B?>, @HTMLBuilder content: (TemplateValue<B>) -> HTML) {
-        self.isDefined = value.isDefined
+    public init<A>(_ value: TemplateValue<A?>, @HTMLBuilder content: (TemplateValue<A>) -> HTML) {
+        var ifContent: HTML = ""
         if value.isMascadingOptional {
-            self.content = content(value.unsafeCast(to: B.self))
+            ifContent = content(value.unsafeCast(to: A.self))
         } else {
-            self.content = content(value.unsafelyUnwrapped)
+            ifContent = content(value.unsafelyUnwrapped)
         }
+        self.content = IF(value.isDefined) {
+            ifContent
+        }
+    }
 
+    init(content: IF) {
+        self.content = content
     }
 
     public var body: HTML {
-        IF(isDefined) {
-            content
-        }
+        content
+    }
+
+    public func `else`(@HTMLBuilder content: () -> HTML) -> HTML {
+        self.content.else(render: content)
     }
 }
