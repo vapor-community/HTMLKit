@@ -5,7 +5,7 @@ public struct Unwrap: HTMLComponent {
 
     public init<A>(_ value: TemplateValue<A?>, @HTMLBuilder content: (TemplateValue<A>) -> HTML) {
         var ifContent: HTML = ""
-        if value.isMascadingOptional {
+        if value.isMasqueradingOptional {
             ifContent = content(value.unsafeCast(to: A.self))
         } else {
             ifContent = content(value.unsafelyUnwrapped)

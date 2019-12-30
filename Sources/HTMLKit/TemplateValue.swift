@@ -48,7 +48,7 @@ public enum TemplateValue<Value> {
     }
 
     /// This is used to determine if the value pretends it is a optional
-    var isMascadingOptional: Bool {
+    var isMasqueradingOptional: Bool {
         switch self {
         case .constant: return false
         case .dynamic(let variable): return variable.isMascadingOptional
