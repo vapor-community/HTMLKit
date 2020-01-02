@@ -555,7 +555,7 @@ public struct ListItem: ContentNode {
     }
 }
 
-public struct OrderdList: ContentNode {
+public struct OrderedList: ContentNode {
 
     public var name: String { "ol" }
 
@@ -573,7 +573,7 @@ public struct OrderdList: ContentNode {
     }
 }
 
-public struct UnorderdList: ContentNode {
+public struct UnorderedList: ContentNode {
 
     public var name: String { "ul" }
 
@@ -765,7 +765,7 @@ public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute
         /// Links to an unendorsed document, like a paid link. ("nofollow" is used by Google, to specify that the Google search spider should not follow that link)
         case noFollow = "nofollow"
 
-        /// Requires that the browser should not send an HTTP referer header if the user follows the hyperlink
+        /// Requires that the browser should not send an HTTP referrer header if the user follows the hyperlink
         case noReferrer = "noreferrer"
 
         /// Requires that any browsing context created by following the hyperlink must not have an opener browsing context
@@ -891,7 +891,7 @@ public struct Form: ContentNode, NameableAttribute, TargetableAttribute, Formabl
     }
 }
 
-public struct Label: ContentNode, FormInputCompanianAttributes, LocalizableNode {
+public struct Label: ContentNode, FormInputCompanionAttributes, LocalizableNode {
 
     public var name: String { "label" }
 
@@ -935,7 +935,7 @@ public struct Script: ContentNode, TypableAttribute, MediaSourceableAttribute {
     }
 }
 
-public struct TextArea: ContentNode, NameableAttribute, PlaceholderAttribute, RequierdAttribute, LocalizableNode {
+public struct TextArea: ContentNode, NameableAttribute, PlaceholderAttribute, RequiredAttribute, LocalizableNode {
 
     public typealias NameType = String
 
@@ -1277,7 +1277,7 @@ public struct Cite: ContentNode {
 
 /// The <col> tag specifies column properties for each column within a <colgroup> element.
 /// The <col> tag is useful for applying styles to entire columns, instead of repeating the styles for each cell, for each row.
-public struct Collumn: ContentNode {
+public struct Column: ContentNode {
 
     public var name: String { "col" }
 
@@ -1299,7 +1299,7 @@ public struct Collumn: ContentNode {
 /// The <colgroup> tag is useful for applying styles to entire columns, instead of repeating the styles for each cell, for each row.
 /// Note: The <colgroup> tag must be a child of a <table> element, after any <caption> elements and before any <thead>, <tbody>, <tfoot>, and <tr> elements.
 /// Tip: To define different properties to a column within a <colgroup>, use the <col> tag within the <colgroup> tag.
-public struct CollumnGroup: ContentNode {
+public struct ColumnGroup: ContentNode {
 
     public var name: String { "colgroup" }
 
@@ -1848,8 +1848,8 @@ public struct Author: HTMLComponent, LocalizableNode {
     public var body: HTML {
         [
             Meta().name(.author).content(author),
-            Unwrap(twitterHandle) { handel in
-                Meta().name("twitter:creator").content(handel)
+            Unwrap(twitterHandle) { handle in
+                Meta().name("twitter:creator").content(handle)
             }
         ]
     }
@@ -1880,7 +1880,7 @@ public struct Author: HTMLComponent, LocalizableNode {
     }
 }
 
-public struct Input: DatableNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute, SizableAttribute, ValueableAttribute, PlaceholderAttribute, RequierdAttribute {
+public struct Input: DatableNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute, SizableAttribute, ValueableAttribute, PlaceholderAttribute, RequiredAttribute {
 
     public typealias NameType = String
 

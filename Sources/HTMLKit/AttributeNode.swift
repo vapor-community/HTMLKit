@@ -265,7 +265,7 @@ extension RelationshipAttribute where Self: AttributeNode {
     }
 }
 
-public protocol FormInputCompanianAttributes {
+public protocol FormInputCompanionAttributes {
     /// Specifies which form element(s) a label/calculation is bound to
     ///
     /// - Parameter value: The value of the attribute
@@ -273,17 +273,17 @@ public protocol FormInputCompanianAttributes {
     func `for`(_ value: HTML) -> Self
 }
 
-extension FormInputCompanianAttributes where Self: AttributeNode {
+extension FormInputCompanionAttributes where Self: AttributeNode {
     public func `for`(_ value: HTML) -> Self {
         add(HTMLAttribute(attribute: "for", value: value))
     }
 }
 
-public protocol RequierdAttribute {
+public protocol RequiredAttribute {
     func required() -> Self
 }
 
-extension RequierdAttribute where Self: AttributeNode {
+extension RequiredAttribute where Self: AttributeNode {
     public func required() -> Self {
         self.add(HTMLAttribute(attribute: "required", value: nil))
     }
