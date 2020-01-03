@@ -11,7 +11,7 @@ By using Swift's powerful language features and a pre-rendering algorithm, HTMLK
 
 Add the following in your `Package.swift` file
 ```swift
-.package(url: "https://github.com/vapor-community/HTMLKit.git", from: "2.0.0-beta.2"),
+.package(url: "https://github.com/vapor-community/HTMLKit.git", from: "2.0.0-beta.3"),
 ```
 
 You can use the following providers in order to use HTMLKit with [Vapor 3](https://github.com/MatsMoll/htmlkit-vapor-3-provider) and for [Vapor 4](https://github.com/MatsMoll/htmlkit-vapor-provider)
@@ -49,7 +49,7 @@ struct SimpleTemplate: HTMLTemplate {
 }
 
 ...
-try SimpleTemplate().render(with: "Some string", for: req)
+try SimpleTemplate().render(with: .init(...), for: req)
 ```
 
 This will render somehing like this
