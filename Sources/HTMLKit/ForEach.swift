@@ -22,7 +22,7 @@ public struct ForEach<Values> where Values: Sequence {
         self.condition = true
         self.context = context
         switch context {
-        case .constant(let values): self.content = values.reduce("") { $0 + content(.constant($1)) }
+        case .constant(let values): self.content = values.reduce(into: "") { $0 += content(.constant($1)) }
         case .dynamic(let variable): self.content = content(.dynamic(.root(Values.Element.self, rootId: "\(variable.pathId)-loop")))
         }
         localFormula = .init()
@@ -34,7 +34,7 @@ public struct ForEach<Values> where Values: Sequence {
         switch context {
         case .constant(let values):
             if let values = values {
-                self.content = values.reduce("") { $0 + content(.constant($1)) }
+                self.content = values.reduce(into: "") { $0 += content(.constant($1)) }
             } else {
                 self.content = ""
             }
@@ -50,7 +50,7 @@ public struct ForEach<Values> where Values: Sequence {
         self.condition = true
         self.context = context
         switch context {
-        case .constant(let values): self.content = values.enumerated().reduce("") { $0 + content((.constant($1.element), .constant($1.offset))) }
+        case .constant(let values): self.content = values.enumerated().reduce(into: "") { $0 += content((.constant($1.element), .constant($1.offset))) }
         case .dynamic(let variable): self.content = content(
             (
                 .dynamic(.root(Values.Element.self, rootId: "\(variable.pathId)-loop")),

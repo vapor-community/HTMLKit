@@ -285,11 +285,7 @@ public class HTMLRenderer: HTMLRenderable {
         /// - Returns: A rendered formula
         /// - Throws: If some of the formula fails, for some reason
         func render<U>(with manager: ContextManager<U>) throws -> String {
-            var html = ""
-            for item in ingredient {
-                html += try item.render(with: manager)
-            }
-            return html
+            return try ingredient.reduce(into: "") { $0 += try $1.render(with: manager) }
         }
     }
 }

@@ -36,7 +36,7 @@ extension Array: HTML where Element == HTML {
 
     // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        return try self.reduce("") { try $0 + $1.render(with: manager) }
+        return try self.reduce(into: "") { $0 += try $1.render(with: manager) }
     }
 }
 
@@ -161,6 +161,11 @@ public func + (lhs: HTML, rhs: HTML) -> HTML {
         output.append(rhs)
     }
     return output
+}
+
+/// Concats second value to the first one
+public func +=(lhs: inout HTML, rhs: HTML) {
+    lhs = lhs + rhs
 }
 
 
@@ -349,7 +354,7 @@ extension DatableNode {
     }
 
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        try "<\(name)" + attributes.reduce("") { try $0 + " \($1.render(with: manager))" } + ">"
+        try "<\(name)" + attributes.reduce(into: "") { $0 += try " \($1.render(with: manager))" } + ">"
     }
 }
 
@@ -367,7 +372,7 @@ extension ContentNode {
 
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         try "<\(name)"
-            + attributes.reduce("") { try $0 + " \($1.render(with: manager))" }
+            + attributes.reduce(into: "") { $0 += try " \($1.render(with: manager))" }
             + ">\(content.render(with: manager))</\(name)>"
     }
 }
