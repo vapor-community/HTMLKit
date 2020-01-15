@@ -653,6 +653,9 @@ struct DynamicAttribute: HTMLTemplate {
             }
             .modify(if: context.isOptional.isDefined) {
                 $0.class("not-nil")
+            }
+            .modify(unwrap: context.isOptional) { value, node in
+                node.class(value)
         }
     }
 }

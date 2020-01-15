@@ -300,6 +300,29 @@ extension AttributeNode {
         return self.add(attributes: modified.wrapAttributes(with: condition))
     }
 
+    public func modify<Value>(unwrap value: TemplateValue<Value?>, modifyer: (TemplateValue<Value>, Self) -> Self) -> Self {
+        switch value {
+        case .constant(let optional):
+            guard let value = optional else {
+                return self
+            }
+            let emptyNode = self.copy(with: [])
+            let modified = modifyer(.constant(value), emptyNode)
+
+            return self.add(attributes: modified.attributes)
+        case .dynamic(let context):
+            let emptyNode = self.copy(with: [])
+            var modified: Self!
+            if context.isMascadingOptional {
+                modified = modifyer(.dynamic(context.unsafeCast(to: Value.self)), emptyNode)
+            } else {
+                modified = modifyer(.dynamic(context.unsafelyUnwrapped), emptyNode)
+            }
+            
+            return self.add(attributes: modified.wrapAttributes(with: context.isDefinded))
+        }
+    }
+
     public func wrapAttributes(with condition: Conditionable) -> [HTMLAttribute] {
         attributes.map { attribute in
             if let value = attribute.value {
