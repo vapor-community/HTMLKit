@@ -277,6 +277,42 @@ public struct IsNullConditionGeneral<Value>: Conditionable {
     }
 }
 
+public struct InCollectionCondition<Value>: Conditionable where Value: Equatable {
+
+    let valuePath: TemplateValue<Value>
+    let arrayPath: TemplateValue<[Value]>
+
+    public init(value: TemplateValue<Value>, array: TemplateValue<[Value]>) {
+        self.valuePath = value
+        self.arrayPath = array
+    }
+
+    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+        let value = try valuePath.value(from: manager)
+        let array = try arrayPath.value(from: manager)
+        return array.contains(where: { $0 == value })
+    }
+}
+
+public struct InCollectionConditionOptional<Value>: Conditionable where Value: Equatable {
+
+    let valuePath: TemplateValue<Value?>
+    let arrayPath: TemplateValue<[Value]>
+
+    public init(value: TemplateValue<Value?>, array: TemplateValue<[Value]>) {
+        self.valuePath = value
+        self.arrayPath = array
+    }
+
+    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+        guard let value = try valuePath.value(from: manager) else {
+            return false
+        }
+        let array = try arrayPath.value(from: manager)
+        return array.contains(where: { $0 == value })
+    }
+}
+
 /// A condition that evaluates a greater then expression between a variable and a constant value
 public struct IsNullCondition<Value>: Conditionable {
 

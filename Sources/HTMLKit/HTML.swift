@@ -36,7 +36,7 @@ extension Array: HTML where Element == HTML {
 
     // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        return try self.reduce(into: "") { $0 += try $1.render(with: manager) }
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
     }
 }
 
@@ -263,14 +263,18 @@ extension AttributeNode {
         var attributes = self.attributes
         for (index, attr) in attributes.enumerated() {
             if attr.attribute == attribute.attribute {
-                guard let value = attr.value, let newValue = attribute.value else {
+                guard
+                    let value = attr.value,
+                    let newValue = attribute.value
+                else {
                     break
                 }
-                var values = [value, " ", newValue]
-                if withSpace == false {
-                    values = [value, newValue]
+                var values: [HTML] = [IF(attr.isIncluded) {value}]
+                if withSpace {
+                    values.append(IF(attr.isIncluded && attribute.isIncluded) { " " })
                 }
-                attributes.append(.init(attribute: attr.attribute, value: values, isIncluded: attr.isIncluded))
+                values.append(IF(attribute.isIncluded) { newValue })
+                attributes.append(.init(attribute: attr.attribute, value: values, isIncluded: attr.isIncluded || attribute.isIncluded))
                 attributes.remove(at: index)
                 return copy(with: attributes)
             }
@@ -293,16 +297,16 @@ extension AttributeNode {
     public func modify(if condition: Conditionable, modifyer: (Self) -> Self) -> Self {
         let emptyNode = self.copy(with: [])
         let modified = modifyer(emptyNode)
-        return self.add(attributes: modified.wrapAttributes(with: condition), withSpace: false)
+        return self.add(attributes: modified.wrapAttributes(with: condition))
     }
 
     public func wrapAttributes(with condition: Conditionable) -> [HTMLAttribute] {
         attributes.map { attribute in
             if let value = attribute.value {
-                let space = attribute.attribute == "class" ? " " : ""
                 return HTMLAttribute(
                     attribute: attribute.attribute,
-                    value: IF(condition) { space + value }
+                    value: value,
+                    isIncluded: condition
                 )
             } else {
                 return HTMLAttribute(
@@ -354,7 +358,7 @@ extension DatableNode {
     }
 
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        try "<\(name)" + attributes.reduce(into: "") { $0 += try " \($1.render(with: manager))" } + ">"
+        try "<\(name)" + attributes.reduce("") { try $0 + " \($1.render(with: manager))" } + ">"
     }
 }
 
@@ -372,7 +376,7 @@ extension ContentNode {
 
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         try "<\(name)"
-            + attributes.reduce(into: "") { $0 += try " \($1.render(with: manager))" }
+            + attributes.reduce("") { try $0 + " \($1.render(with: manager))" }
             + ">\(content.render(with: manager))</\(name)>"
     }
 }
