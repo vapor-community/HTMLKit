@@ -81,11 +81,16 @@ extension HTMLContext: HTML where Value: HTML {
         switch escaping {
         case .safeHTML:
             return render
-                .replacingOccurrences(of: "&", with: "&amp;")
-                .replacingOccurrences(of: "<", with: "&lt;")
-                .replacingOccurrences(of: ">", with: "&gt;")
-                .replacingOccurrences(of: "\"", with: "&quot;")
-                .replacingOccurrences(of: "'", with: "&#39;")
+                .reduce(into: "") { string, char in
+                    switch char {
+                    case "&":   string += "&amp;"
+                    case "<":   string += "&lt;"
+                    case ">":   string += "&gt;"
+                    case "\"":  string += "&quot;"
+                    case "'":   string += "&#39;"
+                    default:    string += String(char)
+                    }
+                }
         case .unsafeNone:
             return render
         }

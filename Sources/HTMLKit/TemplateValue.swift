@@ -26,8 +26,20 @@ public enum TemplateValue<Value> {
         }
     }
 
-    public var isDefined: Conditionable { NotNullConditionGeneral(path: self) }
-    public var isNotDefined: Conditionable { IsNullConditionGeneral(path: self) }
+    public var isDefined: Conditionable {
+        if isMasqueradingOptional {
+            return true
+        } else {
+            return NotNullConditionGeneral(path: self)
+        }
+    }
+    public var isNotDefined: Conditionable {
+        if isMasqueradingOptional {
+            return false
+        } else {
+            return IsNullConditionGeneral(path: self)
+        }
+    }
 
     public func value<T>(at keyPath: KeyPath<Value, T>) -> TemplateValue<T> {
         return self[dynamicMember: keyPath]
