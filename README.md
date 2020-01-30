@@ -38,6 +38,7 @@ struct SimpleTemplate: HTMLTemplate {
                 Title { context.title }
                 Author { context.name }
                     .twitter(handle: context.handle)
+                Viewport(.acordingToDevice)
             }
             Body {
                 Unwrap(context.title) { title in
@@ -62,6 +63,7 @@ This will render somehing like this
         <meta name='twitter:title' content='Some Title'>
         <meta name='author' content='Mats'>
         <meta name='twitter:creator' content='@SomeTwitterHandle'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     </head>
     <body>
         <p>Some Title</p>

@@ -1880,7 +1880,32 @@ public struct Author: HTMLComponent, LocalizableNode {
     }
 }
 
-public struct Input: DatableNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute, SizableAttribute, ValueableAttribute, PlaceholderAttribute, RequiredAttribute {
+public protocol LengthAttribute {
+    func minLength(_ length: Int) -> Self
+    func maxLength(_ length: Int) -> Self
+}
+
+extension AttributeNode where Self: LengthAttribute {
+    public func minLength(_ length: Int) -> Self {
+        self.add(HTMLAttribute(attribute: "minlength", value: length))
+    }
+
+    public func maxLength(_ length: Int) -> Self {
+        self.add(HTMLAttribute(attribute: "maxlength", value: length))
+    }
+}
+
+public protocol PatternAttribute {
+    func pattern(regex: String) -> Self
+}
+
+extension AttributeNode where Self: PatternAttribute {
+    public func pattern(regex: String) -> Self {
+        self.add(HTMLAttribute(attribute: "pattern", value: regex))
+    }
+}
+
+public struct Input: DatableNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute, SizableAttribute, ValueableAttribute, PlaceholderAttribute, RequiredAttribute, LengthAttribute, PatternAttribute {
 
     public typealias NameType = String
 
@@ -1996,5 +2021,49 @@ public struct Break: DatableNode {
 
     public init(attributes: [HTMLAttribute] = []) {
         self.attributes = attributes
+    }
+}
+
+public struct FavIcon: HTMLComponent {
+
+    let url: TemplateValue<String>
+
+    public init(url: String) {
+        self.url = .constant(url)
+    }
+
+    public init(url: TemplateValue<String>) {
+        self.url = url
+    }
+
+    public var body: HTML {
+        Link().relationship(.shortcutIcon).href(url)
+    }
+}
+
+public struct Viewport: HTMLComponent {
+
+    public enum WidthMode {
+        case acordingToDevice
+        case constant(Int)
+
+        public var width: String {
+            switch self {
+            case .acordingToDevice: return "device-width"
+            case .constant(let width): return "\(width)"
+            }
+        }
+    }
+
+    var mode: WidthMode
+    var internalScale: Double = 1
+
+    public init(_ mode: WidthMode, internalScale: Double = 1) {
+        self.mode = mode
+        self.internalScale = internalScale
+    }
+
+    public var body: HTML {
+        Meta().name(.viewport).content("width=\(mode.width), initial-scale=\(internalScale)")
     }
 }

@@ -8,7 +8,14 @@ public struct Unwrap: HTMLComponent {
         if value.isMasqueradingOptional {
             ifContent = content(value.unsafeCast(to: A.self))
         } else {
-            ifContent = content(value.unsafelyUnwrapped)
+            switch value {
+            case .constant(let value):
+                if value != nil {
+                    ifContent = content(.constant(value!))
+                }
+            case .dynamic(let variable):
+                ifContent = content(.dynamic(variable.unsafelyUnwrapped))
+            }
         }
         self.content = IF(value.isDefined) {
             ifContent

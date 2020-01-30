@@ -257,10 +257,9 @@ public protocol AttributeNode: AddableAttributeNode {
     func wrapAttributes(with condition: Conditionable) -> [HTMLAttribute]
 }
 
-extension AttributeNode {
-
-    public func add(_ attribute: HTMLAttribute, withSpace: Bool = true) -> Self {
-        var attributes = self.attributes
+extension Array where Element == HTMLAttribute {
+    public func add(attribute: HTMLAttribute) -> [HTMLAttribute] {
+        var attributes = self
         for (index, attr) in attributes.enumerated() {
             if attr.attribute == attribute.attribute {
                 guard
@@ -270,24 +269,51 @@ extension AttributeNode {
                     break
                 }
                 var values: [HTML] = [IF(attr.isIncluded) {value}]
-                if withSpace {
-                    values.append(IF(attr.isIncluded && attribute.isIncluded) { " " })
-                }
+                values.append(IF(attr.isIncluded && attribute.isIncluded) { " " })
                 values.append(IF(attribute.isIncluded) { newValue })
                 attributes.append(.init(attribute: attr.attribute, value: values, isIncluded: attr.isIncluded || attribute.isIncluded))
                 attributes.remove(at: index)
-                return copy(with: attributes)
+                return attributes
             }
         }
-        return copy(with: attributes + [attribute])
+        return attributes + [attribute]
+    }
+
+    public func add(attributes: [HTMLAttribute]) -> [HTMLAttribute] {
+        var newNode = self
+        for attribute in attributes {
+            newNode = newNode.add(attribute: attribute)
+        }
+        return newNode
+    }
+
+    public func wrapAttributes(with condition: Conditionable) -> [HTMLAttribute] {
+        self.map { attribute in
+            if let value = attribute.value {
+                return HTMLAttribute(
+                    attribute: attribute.attribute,
+                    value: value,
+                    isIncluded: condition
+                )
+            } else {
+                return HTMLAttribute(
+                    attribute: attribute.attribute,
+                    value: nil,
+                    isIncluded: condition
+                )
+            }
+        }
+    }
+}
+
+extension AttributeNode {
+
+    public func add(_ attribute: HTMLAttribute, withSpace: Bool = true) -> Self {
+        return copy(with: attributes.add(attribute: attribute))
     }
 
     public func add(attributes: [HTMLAttribute], withSpace: Bool = true) -> Self {
-        var newNode = self
-        for attribute in attributes {
-            newNode = newNode.add(attribute, withSpace: withSpace)
-        }
-        return newNode
+        return self.copy(with: self.attributes.add(attributes: attributes))
     }
 
     public func value(of attribute: String) -> HTML? {
@@ -318,7 +344,7 @@ extension AttributeNode {
             } else {
                 modified = modifyer(.dynamic(context.unsafelyUnwrapped), emptyNode)
             }
-            
+
             return self.add(attributes: modified.wrapAttributes(with: context.isDefinded))
         }
     }
