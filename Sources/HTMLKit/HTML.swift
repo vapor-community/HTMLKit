@@ -21,10 +21,14 @@ public protocol HTML {
     /// - Parameter formula: The formula to brew in to
     /// - Throws: If there occured some error
     func prerender(_ formula: HTMLRenderer.Formula) throws
+
+    /// The script needed to render the underlying HTML
+    var scripts: HTML { get }
 }
 
 extension HTML {
     public var renderWhenLocalizing: Bool { return true }
+    public var scripts: HTML { "" }
 }
 
 extension Array: HTML where Element == HTML {
@@ -37,6 +41,10 @@ extension Array: HTML where Element == HTML {
     // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: HTML {
+        return self.reduce("") { $0 + $1.scripts }
     }
 }
 
@@ -128,6 +136,13 @@ extension Optional: HTML where Wrapped: HTML {
         switch self {
         case .none: return ""
         case .some(let wrapped): return try wrapped.render(with: manager)
+        }
+    }
+
+    public var scripts: HTML {
+        switch self {
+        case .none: return ""
+        case .some(let wrapped): return wrapped.scripts
         }
     }
 }
@@ -394,6 +409,8 @@ extension ContentNode {
     public func copy(with attributes: [HTMLAttribute]) -> Self {
         .init(attributes: attributes, content: content)
     }
+
+    public var scripts: HTML { content.scripts }
 }
 
 extension DatableNode {

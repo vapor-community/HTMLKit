@@ -208,6 +208,8 @@ extension HTMLPage {
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         try body.prerender(formula)
     }
+
+    public var scripts: HTML { body.scripts }
 }
 
 public protocol HTMLTemplate: HTML {
@@ -227,4 +229,6 @@ extension HTMLTemplate {
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         try body.prerender(formula)
     }
+
+    public var scripts: HTML { body.scripts }
 }
