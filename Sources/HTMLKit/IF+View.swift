@@ -26,6 +26,14 @@ enum IFPrerenderErrors: Error {
 
 extension IF: HTML {
 
+    public var scripts: HTML {
+        IF(conditions: conditions.map { htmlCondition in
+            let scriptCondition = IF.Condition(condition: htmlCondition.condition)
+            scriptCondition.view = htmlCondition.view.scripts
+            return scriptCondition
+        })
+    }
+
     // View `CompiledTemplate` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         for condition in conditions {
