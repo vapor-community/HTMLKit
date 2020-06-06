@@ -1727,6 +1727,10 @@ public struct Img: DatableNode, MediaSourceableAttribute, SizableAttribute {
         self.init(attributes: [.init(attribute: "src", value: source)])
     }
 
+    public init(source: TemplateValue<String>) {
+        self.init(attributes: [.init(attribute: "src", value: source)])
+    }
+
     public func alt(_ text: HTML) -> Img {
         self.add(.init(attribute: "alt", value: text))
     }
