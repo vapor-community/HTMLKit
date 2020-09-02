@@ -16,6 +16,15 @@ Add the following in your `Package.swift` file
 
 You can use the following providers in order to use HTMLKit with [Vapor 3](https://github.com/MatsMoll/htmlkit-vapor-3-provider) and for [Vapor 4](https://github.com/MatsMoll/htmlkit-vapor-provider)
 
+for instance for Vapor 4, you have to add the **HTMLKit** vapor provider like this
+
+```swift
+.package(name: "HTMLKitVaporProvider", url: "https://github.com/MatsMoll/htmlkit-vapor-provider.git", from: "1.0.0-beta.4"),
+...
+.product(name: "HTMLKit", package: "HTMLKit"),
+.product(name: "HTMLKitVaporProvider", package: "HTMLKitVaporProvider"),
+```
+
 ## Usage
 
 To create a HTML template, conform to the `HTMLTemplate` protocol.
@@ -49,11 +58,31 @@ struct SimpleTemplate: HTMLTemplate {
     }
 }
 
+// For Vapor 4, you certainly want to preload the template in configure to optimize rendering.
+// in configure.swift
+import HTMLKitVaporProvider
 ...
-try SimpleTemplate().render(with: .init(...), for: req)
+public func configure(_ app: Application) throws {
+    ...
+    try app.htmlkit.add(view: SimpleTemplate())
+    ...
+}
+
+// In one of your controllers
+import HTMLKit
+...
+func get(req: Request) throws -> EventLoopFuture<View> {
+    return Simple.query(on: req.db)
+        .filter(...)
+        .first()
+        .unwrap(or: Abort(.notFound))
+        .flatMap {
+            SimpleTemplate().render(with: TemplateData(name: $0.name, ...), for: req)
+        }
+}
 ```
 
-This will render somehing like this
+This will render something like this
 ```html
 <!DOCTYPE html>
 <html>
@@ -71,19 +100,19 @@ This will render somehing like this
 </html>
 ```
 
-And to create a HTML component, just comform to the `HTMLComponent` protocol. 
+And to create a HTML component, just conform to the `HTMLComponent` protocol.
 
 ```swift
 public struct Alert: HTMLComponent {
 
-    let isDisimissable: Conditionable // This is a protocol that makes it possible to optimize if's
+    let isDismissable: Conditionable // This is a protocol that makes it possible to optimize if's
     let message: HTML
 
     public var body: HTML {
         Div {
             message
-            
-            IF(isDisimissable) {
+
+            IF(isDismissable) {
                 Button {
                     Span { "&times;" }
                         .aria(for: "hidden", value: true)
@@ -95,7 +124,7 @@ public struct Alert: HTMLComponent {
             }
         }
         .class("alert alert-danger bg-danger")
-        .modify(if: isDisimissable) {
+        .modify(if: isDismissable) {
             $0.class("fade show")
         }
         .role("alert")
@@ -154,7 +183,7 @@ var renderer = HTMLRenderer()
 try renderer.registerLocalization(atPath: "workDir", defaultLocale: "en")
 ```
 And if the locale changes based on some user input, then you can change the used locale in the template.
-This also effects how dates are presentet to the user.
+This also effects how dates are presented to the user.
 ```swift
 struct LocalizedDateView: HTMLTemplate {
 
