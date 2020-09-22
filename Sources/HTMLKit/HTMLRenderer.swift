@@ -40,7 +40,7 @@ public protocol HTMLRenderable {
     func render<T: HTMLPage>(raw type: T.Type) throws -> String
 }
 
-/// A struct containing the differnet formulas for the different views.
+/// A struct containing the different formulas for the different views.
 ///
 ///     try renderer.add(template: WelcomeView())           // Builds the formula
 ///     try renderer.render(WelcomeView.self)               // Renders the formula
@@ -174,11 +174,11 @@ public class HTMLRenderer: HTMLRenderable {
         lingo = try Lingo(rootPath: path, defaultLocale: defaultLocale)
     }
 
-    /// Manage the differnet contexts
+    /// Manage the different contexts
     /// This will remove the generic type in the render call
     public class ContextManager<Context> {
 
-        /// The different context varaibles used when rendering
+        /// The different context variables used when rendering
         var contexts: [String: Any]
 
         /// The lingo object that is needed to use localization
