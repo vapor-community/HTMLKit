@@ -1,5 +1,5 @@
 
-public struct Document: HTMLPage {
+public struct Document: HTMLPage, AttributeNode {
 
     public enum Types: String {
         case html5 = "html"
@@ -29,15 +29,28 @@ public struct Document: HTMLPage {
     let type: Types
     let content: HTML
 
+    public var attributes: [HTMLAttribute]
+
     public init(type: Types, @HTMLBuilder content: () -> HTML) {
         self.type = type
         self.content = content()
+        self.attributes = []
+    }
+
+    init(type: Types, content: HTML, attributes: [HTMLAttribute]) {
+        self.type = type
+        self.content = content
+        self.attributes = attributes
     }
 
     public var body: HTML {
         [
             "<!DOCTYPE \(type.rawValue)>",
-            HTMLNode { content }
+            HTMLNode { content }.add(attributes: attributes)
         ]
+    }
+
+    public func copy(with attributes: [HTMLAttribute]) -> Document {
+        Document(type: type, content: content, attributes: attributes)
     }
 }
