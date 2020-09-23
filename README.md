@@ -11,7 +11,7 @@ By using Swift's powerful language features and a pre-rendering algorithm, HTMLK
 
 Add the following in your `Package.swift` file
 ```swift
-.package(url: "https://github.com/vapor-community/HTMLKit.git", from: "2.0.0-beta.3"),
+.package(url: "https://github.com/vapor-community/HTMLKit.git", from: "2.0.0"),
 ```
 
 You can use the following providers in order to use HTMLKit with [Vapor 3](https://github.com/MatsMoll/htmlkit-vapor-3-provider) and for [Vapor 4](https://github.com/MatsMoll/htmlkit-vapor-provider)
@@ -19,7 +19,7 @@ You can use the following providers in order to use HTMLKit with [Vapor 3](https
 for instance for Vapor 4, you have to add the **HTMLKit** vapor provider like this
 
 ```swift
-.package(name: "HTMLKitVaporProvider", url: "https://github.com/MatsMoll/htmlkit-vapor-provider.git", from: "1.0.0-beta.4"),
+.package(name: "HTMLKitVaporProvider", url: "https://github.com/MatsMoll/htmlkit-vapor-provider.git", from: "1.0.0"),
 ...
 .product(name: "HTMLKit", package: "HTMLKit"),
 .product(name: "HTMLKitVaporProvider", package: "HTMLKitVaporProvider"),
