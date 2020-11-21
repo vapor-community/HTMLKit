@@ -27,6 +27,8 @@ for instance for Vapor 4, you have to add the **HTMLKit** vapor provider like th
 
 ## Usage
 
+View the different tags and types defined in HTMLKit on the [Wiki page](https://github.com/vapor-community/HTMLKit/wiki).
+
 To create a HTML template, conform to the `HTMLTemplate` protocol.
 
 ```swift
