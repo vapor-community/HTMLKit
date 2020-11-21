@@ -10,7 +10,7 @@ on:
 
 jobs:
   check-doc-coverage:
-    runs-on: swift:5.1.3-bionic
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1.2.0
       - name: Calculate Documentation Coverage
@@ -41,7 +41,7 @@ jobs:
     
   release-docs:
     needs: [xenial, bionic]
-    runs-on: swift:5.1.3-bionic
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1.2.0
       - name: Generate Documentation
