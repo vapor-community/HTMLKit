@@ -740,7 +740,7 @@ struct LocalizedView: HTMLTemplate {
             P("unread.messages", with: ["numberTest": 2])
             P("unread.messages", with: context)
         }
-        .enviroment(locale: context.locale)
+        .environment(locale: context.locale)
     }
 }
 
@@ -859,7 +859,7 @@ struct LocalizedDateView: HTMLTemplate {
                 context.date.formatted(string: "MM/dd/yyyy")
             }
         }
-        .enviroment(locale: context.locale)
+        .environment(locale: context.locale)
     }
 }
 

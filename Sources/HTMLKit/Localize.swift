@@ -60,7 +60,7 @@ extension Localized where B == NoData {
     }
 }
 
-public struct EnviromentModifier: HTML {
+public struct EnvironmentModifier: HTML {
 
     let view: HTML
     let locale: HTML
@@ -82,11 +82,11 @@ public struct EnviromentModifier: HTML {
 }
 
 extension HTML {
-    public func enviroment(locale: String) -> EnviromentModifier {
-        return EnviromentModifier(view: self, locale: locale)
+    public func environment(locale: String) -> EnvironmentModifier {
+        return EnvironmentModifier(view: self, locale: locale)
     }
 
-    public func enviroment(locale: TemplateValue<String>) -> EnviromentModifier {
-        return EnviromentModifier(view: self, locale: locale)
+    public func environment(locale: TemplateValue<String>) -> EnvironmentModifier {
+        return EnvironmentModifier(view: self, locale: locale)
     }
 }
