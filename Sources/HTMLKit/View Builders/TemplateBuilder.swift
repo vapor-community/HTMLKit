@@ -2071,3 +2071,22 @@ public struct Viewport: HTMLComponent {
         Meta().name(.viewport).content("width=\(mode.width), initial-scale=\(internalScale)")
     }
 }
+
+/// The <main> tag defines the dominant content of a document.
+public struct Main: ContentNode {
+
+    public var name: String { "main" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTML
+
+    public init(@HTMLBuilder builder: () -> HTML) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTML = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
