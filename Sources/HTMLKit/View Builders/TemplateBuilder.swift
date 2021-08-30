@@ -2048,12 +2048,12 @@ public struct FavIcon: HTMLComponent {
 public struct Viewport: HTMLComponent {
 
     public enum WidthMode {
-        case acordingToDevice
+        case accordingToDevice
         case constant(Int)
 
         public var width: String {
             switch self {
-            case .acordingToDevice: return "device-width"
+            case .accordingToDevice: return "device-width"
             case .constant(let width): return "\(width)"
             }
         }
