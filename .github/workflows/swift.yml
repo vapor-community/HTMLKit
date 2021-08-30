@@ -42,13 +42,14 @@ jobs:
   release-docs:
     needs: [xenial, bionic]
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v1.2.0
       - name: Generate Documentation
         uses: SwiftDocOrg/swift-doc@master
         with:
           inputs: "Sources"
-          module-name: KognitaModels
+          module-name: HTMLKit
           output: "Documentation"
       - name: Upload Documentation to Wiki
         uses: SwiftDocOrg/github-wiki-publish-action@v1
