@@ -503,6 +503,7 @@ public struct Title: HTMLComponent, AttributeNode, LocalizableNode {
 public enum ButtonType: String {
     case button
     case submit
+    case reset
 }
 
 public struct Button: ContentNode, TypableAttribute, NameableAttribute, LocalizableNode {
