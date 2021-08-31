@@ -722,7 +722,7 @@ public struct Aside: ContentNode {
 /// Currently, there are 3 supported file formats for the <audio> element: MP3, WAV, and OGG:
 public struct Audio: ContentNode {
 
-    public var name: String { "aside" }
+    public var name: String { "audio" }
 
     public var attributes: [HTMLAttribute] = []
 
