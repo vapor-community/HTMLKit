@@ -49,7 +49,7 @@ struct SimpleTemplate: HTMLTemplate {
                 Title { context.title }
                 Author { context.name }
                     .twitter(handle: context.handle)
-                Viewport(.acordingToDevice)
+                Viewport(.accordingToDevice)
             }
             Body {
                 Unwrap(context.title) { title in
@@ -205,7 +205,7 @@ struct LocalizedDateView: HTMLTemplate {
                     .formatted(string: "MM/dd/yyyy")
             }
         }
-        .enviroment(locale: context.locale)
+        .environment(locale: context.locale)
     }
 }
 ```

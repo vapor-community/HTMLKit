@@ -503,6 +503,7 @@ public struct Title: HTMLComponent, AttributeNode, LocalizableNode {
 public enum ButtonType: String {
     case button
     case submit
+    case reset
 }
 
 public struct Button: ContentNode, TypableAttribute, NameableAttribute, LocalizableNode {
@@ -721,7 +722,7 @@ public struct Aside: ContentNode {
 /// Currently, there are 3 supported file formats for the <audio> element: MP3, WAV, and OGG:
 public struct Audio: ContentNode {
 
-    public var name: String { "aside" }
+    public var name: String { "audio" }
 
     public var attributes: [HTMLAttribute] = []
 
@@ -2048,12 +2049,12 @@ public struct FavIcon: HTMLComponent {
 public struct Viewport: HTMLComponent {
 
     public enum WidthMode {
-        case acordingToDevice
+        case accordingToDevice
         case constant(Int)
 
         public var width: String {
             switch self {
-            case .acordingToDevice: return "device-width"
+            case .accordingToDevice: return "device-width"
             case .constant(let width): return "\(width)"
             }
         }
