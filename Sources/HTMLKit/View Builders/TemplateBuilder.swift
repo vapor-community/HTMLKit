@@ -1,5 +1,3 @@
-
-
 extension LocalizableNode {
     public init<T>(_ localizedKey: String, with context: T) where T: Encodable {
         self.init(localizedKey, with: TemplateValue<T>.constant(context))
@@ -844,31 +842,6 @@ public enum FormEncodeTypes: String {
 public enum FormMethodTypes: String {
     case post
     case get
-}
-
-public protocol FormableAttributes {
-    func action(_ value: HTML) -> Self
-    func method(_ method: FormMethodTypes) -> Self
-    func encodeType(_ type: FormEncodeTypes) -> Self
-    func isAutocomplete(_ condition: Conditionable) -> Self
-}
-
-extension FormableAttributes where Self: AttributeNode {
-    public func action(_ value: HTML) -> Self {
-        add(.init(attribute: "action", value: value))
-    }
-
-    public func method(_ method: FormMethodTypes) -> Self {
-        add(.init(attribute: "method", value: method.rawValue))
-    }
-
-    public func encodeType(_ type: FormEncodeTypes) -> Self {
-        add(.init(attribute: "enctype", value: type.rawValue))
-    }
-
-    public func isAutocomplete(_ condition: Conditionable) -> Self {
-        add(.init(attribute: "autocomplete", value: IF(condition) { "on" }.else { "off" }))
-    }
 }
 
 public struct Form: ContentNode, NameableAttribute, TargetableAttribute, FormableAttributes {
@@ -1882,31 +1855,6 @@ public struct Author: HTMLComponent, LocalizableNode {
 
     public func twitter(handle: TemplateValue<String?>) -> Author {
         .init(author: author, handle: handle)
-    }
-}
-
-public protocol LengthAttribute {
-    func minLength(_ length: Int) -> Self
-    func maxLength(_ length: Int) -> Self
-}
-
-extension AttributeNode where Self: LengthAttribute {
-    public func minLength(_ length: Int) -> Self {
-        self.add(HTMLAttribute(attribute: "minlength", value: length))
-    }
-
-    public func maxLength(_ length: Int) -> Self {
-        self.add(HTMLAttribute(attribute: "maxlength", value: length))
-    }
-}
-
-public protocol PatternAttribute {
-    func pattern(regex: String) -> Self
-}
-
-extension AttributeNode where Self: PatternAttribute {
-    public func pattern(regex: String) -> Self {
-        self.add(HTMLAttribute(attribute: "pattern", value: regex))
     }
 }
 
