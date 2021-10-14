@@ -1,20 +1,3 @@
-/// The text direction in HTML
-public enum HTMLTextDirection: String, HTML {
-    case leftToRight = "ltr"
-    case rightToLeft = "rtl"
-    case auto
-}
-
-extension HTMLTextDirection {
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        self.rawValue
-    }
-
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
-        formula.add(string: self.rawValue)
-    }
-}
-
 extension String: RawRepresentable {
     public typealias RawValue = String
 
@@ -23,20 +6,6 @@ extension String: RawRepresentable {
     public init?(rawValue: String) {
         self = rawValue
     }
-}
-
-public enum TargetTypes: String {
-    /// The response is displayed in a new window or tab
-    case blank
-
-    /// The response is displayed in the same frame (this is default)
-    case `self`
-
-    /// The response is displayed in the parent frame
-    case parent
-
-    /// The response is displayed in the full body of the window
-    case top
 }
 
 //extension AttributeNode {
