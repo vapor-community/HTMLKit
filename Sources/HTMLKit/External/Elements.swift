@@ -1,5 +1,37 @@
 // MARK: aliases
-
+public typealias Nav = Navigation
+public typealias H1 = Heading1
+public typealias H2 = Heading2
+public typealias H3 = Heading3
+public typealias H4 = Heading4
+public typealias H5 = Heading5
+public typealias H6 = Heading6
+public typealias P = Paragraph
+public typealias Ol = OrderedList
+public typealias Ul = UnorderedList
+public typealias Li = ListItem
+public typealias Dl = DescriptionList
+public typealias Dt = TermName
+public typealias Dd = TermDefinition
+public typealias Div = Division
+public typealias A = Anchor
+public typealias Em = Emphasize
+public typealias S = StrikeThrough
+public typealias Abbr = Abbreviation
+public typealias I = Italic
+public typealias B = Bold
+public typealias Br = LineBreak
+public typealias Ins = InsertedText
+public typealias Del = DeletedText
+public typealias Img = Image
+public typealias Colgroup = ColumnGroup
+public typealias Col = Column
+public typealias Tbody = TableBody
+public typealias Thead = TableHead
+public typealias Tr = TableRow
+public typealias Td = DataCell
+public typealias Th = HeaderCell
+public typealias Optgroup = OptionGroup
 
 // MARK: structs
 
@@ -207,7 +239,7 @@ public struct Section: ContentNode {
     }
 }
 
-public struct Nav: ContentNode {
+public struct Navigation: ContentNode {
 
     public var name: String { "nav" }
 
@@ -245,7 +277,7 @@ public struct Aside: ContentNode {
     }
 }
 
-public struct H1: ContentNode, LocalizableNode {
+public struct Heading1: ContentNode, LocalizableNode {
 
     public var name: String { "h1" }
 
@@ -271,7 +303,7 @@ public struct H1: ContentNode, LocalizableNode {
     }
 }
 
-public struct H2: ContentNode, LocalizableNode {
+public struct Heading2: ContentNode, LocalizableNode {
 
     public var name: String { "h2" }
 
@@ -297,7 +329,7 @@ public struct H2: ContentNode, LocalizableNode {
     }
 }
 
-public struct H3: ContentNode, LocalizableNode {
+public struct Heading3: ContentNode, LocalizableNode {
 
     public var name: String { "h3" }
 
@@ -323,7 +355,7 @@ public struct H3: ContentNode, LocalizableNode {
     }
 }
 
-public struct H4: ContentNode, LocalizableNode {
+public struct Heading4: ContentNode, LocalizableNode {
 
     public var name: String { "h4" }
 
@@ -349,7 +381,7 @@ public struct H4: ContentNode, LocalizableNode {
     }
 }
 
-public struct H5: ContentNode, LocalizableNode {
+public struct Heading5: ContentNode, LocalizableNode {
 
     public var name: String { "h5" }
 
@@ -375,7 +407,7 @@ public struct H5: ContentNode, LocalizableNode {
     }
 }
 
-public struct H6: ContentNode, LocalizableNode {
+public struct Heading6: ContentNode, LocalizableNode {
 
     public var name: String { "h6" }
 
@@ -459,7 +491,7 @@ public struct Address: ContentNode {
     }
 }
 
-public struct P: ContentNode, LocalizableNode {
+public struct Paragraph: ContentNode, LocalizableNode {
 
     public var name: String { "p" }
 
@@ -587,7 +619,7 @@ public struct DescriptionList: ContentNode {
 
 /// The <dt> tag defines a term/name in a description list.
 /// The <dt> tag is used in conjunction with <dl> (defines a description list) and <dd> (describes each term/name).
-public struct DescriptionTerm: ContentNode {
+public struct TermName: ContentNode {
 
     public var name: String { "dt" }
 
@@ -608,7 +640,7 @@ public struct DescriptionTerm: ContentNode {
 /// The <dd> tag is used to describe a term/name in a description list.
 /// The <dd> tag is used in conjunction with <dl> (defines a description list) and <dt> (defines terms/names).
 /// Inside a <dd> tag you can put paragraphs, line breaks, images, links, lists, etc.
-public struct DescriptionDetails: ContentNode {
+public struct TermDefinition: ContentNode {
 
     public var name: String { "dd" }
 
@@ -645,7 +677,7 @@ public struct Main: ContentNode {
     }
 }
 
-public struct Div: ContentNode {
+public struct Division: ContentNode {
 
     public var name: String { "div" }
 
@@ -736,7 +768,7 @@ public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute
 }
 
 /// Defines emphasized text
-public struct Emphasized: ContentNode {
+public struct Emphasize: ContentNode {
 
     public var name: String { "em" }
 
@@ -849,7 +881,7 @@ public struct Abbreviation: ContentNode {
 /// The <data> tag links the given content with a machine-readable translation.
 /// This element provides both a machine-readable value for data processors, and a human-readable value for rendering in a browser.
 /// Tip: If the content is time- or date-related, the <time> element must be used instead.
-public struct DataNode: ContentNode {
+public struct Data: ContentNode {
 
     public var name: String { "data" }
 
@@ -937,7 +969,7 @@ public struct Bold: ContentNode, LocalizableNode {
     }
 }
 
-public struct BiDirectionalIsolation: ContentNode {
+public struct Bdi: ContentNode {
 
     public var name: String { "bdi" }
 
@@ -955,7 +987,7 @@ public struct BiDirectionalIsolation: ContentNode {
     }
 }
 
-public struct BiDirectionalOverride: EmptyNode {
+public struct Bdo: EmptyNode {
 
     public var name: String { "bdo" }
 
@@ -984,7 +1016,7 @@ public struct Span: ContentNode {
     }
 }
 
-public struct Break: EmptyNode {
+public struct LineBreak: EmptyNode {
 
     public var attributes: [HTMLAttribute]
 
@@ -1046,7 +1078,7 @@ public struct Source: EmptyNode {
     }
 }
 
-public struct Img: EmptyNode, MediaSourceableAttribute, SizableAttribute {
+public struct Image: EmptyNode, MediaSourceableAttribute, SizableAttribute {
 
     public var name: String { "img" }
 
@@ -1064,7 +1096,7 @@ public struct Img: EmptyNode, MediaSourceableAttribute, SizableAttribute {
         self.init(attributes: [.init(attribute: "src", value: source)])
     }
 
-    public func alt(_ text: HTMLContent) -> Img {
+    public func alt(_ text: HTMLContent) -> Image {
         self.add(.init(attribute: "alt", value: text))
     }
 }
@@ -1255,7 +1287,7 @@ public struct TableRow: ContentNode, SizableAttribute {
     }
 }
 
-public struct TableCell: ContentNode, SizableAttribute {
+public struct DataCell: ContentNode, SizableAttribute {
 
     public var name: String { "td" }
 
@@ -1273,7 +1305,7 @@ public struct TableCell: ContentNode, SizableAttribute {
     }
 }
 
-public struct TableHeader: ContentNode, SizableAttribute, LocalizableNode {
+public struct HeaderCell: ContentNode, SizableAttribute, LocalizableNode {
 
     public var name: String { "th" }
 
