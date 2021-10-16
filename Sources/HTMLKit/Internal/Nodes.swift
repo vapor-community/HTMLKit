@@ -34,20 +34,20 @@ extension ContentNode {
     }
 }
 
-public protocol DatableNode: AttributeNode {
+public protocol EmptyNode: AttributeNode {
 
     var name: String { get }
 
     init(attributes: [HTMLAttribute])
 }
 
-extension DatableNode {
+extension EmptyNode {
     public func copy(with attributes: [HTMLAttribute]) -> Self {
         .init(attributes: attributes)
     }
 }
 
-extension DatableNode {
+extension EmptyNode {
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: "<\(name)")
         try attributes.forEach {

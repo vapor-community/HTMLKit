@@ -1452,7 +1452,7 @@ public struct Emphasized: ContentNode {
 }
 
 /// Specifies the base URL/target for all relative URLs in a document
-public struct Embed: DatableNode, MediaSourceableAttribute, TypableAttribute, SizableAttribute {
+public struct Embed: EmptyNode, MediaSourceableAttribute, TypableAttribute, SizableAttribute {
 
     public var name: String { "embed" }
 
@@ -1463,7 +1463,7 @@ public struct Embed: DatableNode, MediaSourceableAttribute, TypableAttribute, Si
     }
 }
 
-public struct BiDirectionalOverride: DatableNode {
+public struct BiDirectionalOverride: EmptyNode {
 
     public var name: String { "bdo" }
 
@@ -1474,7 +1474,7 @@ public struct BiDirectionalOverride: DatableNode {
     }
 }
 
-public struct Img: DatableNode, MediaSourceableAttribute, SizableAttribute {
+public struct Img: EmptyNode, MediaSourceableAttribute, SizableAttribute {
 
     public var name: String { "img" }
 
@@ -1497,7 +1497,7 @@ public struct Img: DatableNode, MediaSourceableAttribute, SizableAttribute {
     }
 }
 
-public struct Source: DatableNode {
+public struct Source: EmptyNode {
 
     public var name: String { "source" }
 
@@ -1509,7 +1509,7 @@ public struct Source: DatableNode {
 }
 
 /// Specifies the base URL/target for all relative URLs in a document
-public struct Base: DatableNode, HyperlinkReferenceAttribute {
+public struct Base: EmptyNode, HyperlinkReferenceAttribute {
 
     public var name: String { "base" }
 
@@ -1520,7 +1520,7 @@ public struct Base: DatableNode, HyperlinkReferenceAttribute {
     }
 }
 
-public struct Meta: DatableNode, NameableAttribute, ContentableAttribute {
+public struct Meta: EmptyNode, NameableAttribute, ContentableAttribute {
 
     public enum NameType: String {
         /// Specifies the name of the Web application that the page represents
@@ -1567,7 +1567,7 @@ public struct Meta: DatableNode, NameableAttribute, ContentableAttribute {
     }
 }
 
-public struct Input: DatableNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute, SizableAttribute, ValueableAttribute, PlaceholderAttribute, RequiredAttribute, LengthAttribute, PatternAttribute {
+public struct Input: EmptyNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute, SizableAttribute, ValueableAttribute, PlaceholderAttribute, RequiredAttribute, LengthAttribute, PatternAttribute {
 
     public typealias NameType = String
 
@@ -1675,7 +1675,7 @@ public struct Input: DatableNode, TypableAttribute, MediaSourceableAttribute, Na
     }
 }
 
-public struct Break: DatableNode {
+public struct Break: EmptyNode {
 
     public var attributes: [HTMLAttribute]
 
@@ -1705,7 +1705,7 @@ public struct Main: ContentNode {
     }
 }
 
-public struct Link: DatableNode, TypableAttribute, HyperlinkReferenceAttribute, RelationshipAttribute {
+public struct Link: EmptyNode, TypableAttribute, HyperlinkReferenceAttribute, RelationshipAttribute {
 
     public enum RelationshipTypes: String {
         /// Provides a link to an alternate version of the document (i.e. print page, translated or mirror).
