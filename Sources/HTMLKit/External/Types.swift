@@ -44,3 +44,10 @@ public enum FormMethodTypes: String {
     case post
     case get
 }
+
+public enum ButtonType: String {
+
+    case submit
+    case button
+    case reset
+}
