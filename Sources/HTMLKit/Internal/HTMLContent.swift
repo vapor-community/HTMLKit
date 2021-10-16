@@ -71,12 +71,6 @@ public enum EscapingOption: CustomDebugStringConvertible {
     }
 }
 
-
-public enum HTMLIdentifier {
-    case id(String)
-    case `class`(String)
-}
-
 /// An attribute on a node
 ///
 ///     HTMLAttributeNode.class("text-dark") // <... class="text-dark"/>
@@ -168,22 +162,6 @@ extension Array where Element == HTMLAttribute {
                     isIncluded: condition
                 )
             }
-        }
-    }
-}
-
-extension HTMLIdentifier: HTMLContent {
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        switch self {
-        case .class(let name): return ".\(name)"
-        case .id(let name): return "#\(name)"
-        }
-    }
-
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
-        switch self {
-        case .class(let name): formula.add(string: ".\(name)")
-        case .id(let name): formula.add(string: "#\(name)")
         }
     }
 }
