@@ -13,7 +13,7 @@ public enum TargetTypes: String {
 }
 
 /// The text direction in HTML
-public enum HTMLTextDirection: String, HTML {
+public enum HTMLTextDirection: String, HTMLContent {
     case leftToRight = "ltr"
     case rightToLeft = "rtl"
     case auto

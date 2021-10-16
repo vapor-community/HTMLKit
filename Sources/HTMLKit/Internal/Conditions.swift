@@ -3,7 +3,7 @@ protocol IsDefinable {
 }
 
 /// A protocol that makes a struct to a condition that can be used in an if
-public protocol Conditionable: HTML {
+public protocol Conditionable: HTMLContent {
 
     /// Evaluates an expression with a context
     ///

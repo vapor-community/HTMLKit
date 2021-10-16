@@ -27,23 +27,23 @@ public struct Document: HTMLPage, AttributeNode {
     }
 
     let type: Types
-    let content: HTML
+    let content: HTMLContent
 
     public var attributes: [HTMLAttribute]
 
-    public init(type: Types, @HTMLBuilder content: () -> HTML) {
+    public init(type: Types, @HTMLBuilder content: () -> HTMLContent) {
         self.type = type
         self.content = content()
         self.attributes = []
     }
 
-    init(type: Types, content: HTML, attributes: [HTMLAttribute]) {
+    init(type: Types, content: HTMLContent, attributes: [HTMLAttribute]) {
         self.type = type
         self.content = content
         self.attributes = attributes
     }
 
-    public var body: HTML {
+    public var body: HTMLContent {
         [
             "<!DOCTYPE \(type.rawValue)>",
             HTMLNode { content }.add(attributes: attributes)

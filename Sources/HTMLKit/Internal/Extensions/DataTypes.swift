@@ -1,6 +1,6 @@
 import Foundation
 
-extension Array: HTML where Element == HTML {
+extension Array: HTMLContent where Element == HTMLContent {
 
     // View `HTML` documentation
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
@@ -12,12 +12,12 @@ extension Array: HTML where Element == HTML {
         return try self.reduce("") { try $0 + $1.render(with: manager) }
     }
 
-    public var scripts: HTML {
+    public var scripts: HTMLContent {
         return self.reduce("") { $0 + $1.scripts }
     }
 }
 
-extension String: HTML {
+extension String: HTMLContent {
 
     // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -40,7 +40,7 @@ extension String: RawRepresentable {
     }
 }
 
-extension Int: HTML {
+extension Int: HTMLContent {
 
     // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -55,7 +55,7 @@ extension Int: HTML {
     public var renderWhenLocalizing: Bool { return false }
 }
 
-extension Double: HTML {
+extension Double: HTMLContent {
 
     // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -70,7 +70,7 @@ extension Double: HTML {
     public var renderWhenLocalizing: Bool { return false }
 }
 
-extension Float: HTML {
+extension Float: HTMLContent {
 
     // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -85,7 +85,7 @@ extension Float: HTML {
     public var renderWhenLocalizing: Bool { return false }
 }
 
-extension Bool: HTML {
+extension Bool: HTMLContent {
 
     // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
@@ -100,7 +100,7 @@ extension Bool: HTML {
     public var renderWhenLocalizing: Bool { return false }
 }
 
-extension Optional: HTML where Wrapped: HTML {
+extension Optional: HTMLContent where Wrapped: HTMLContent {
 
     // View `HTML` documentation
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
@@ -118,7 +118,7 @@ extension Optional: HTML where Wrapped: HTML {
         }
     }
 
-    public var scripts: HTML {
+    public var scripts: HTMLContent {
         switch self {
         case .none: return ""
         case .some(let wrapped): return wrapped.scripts
@@ -135,7 +135,7 @@ extension Optional: IsDefinable {
     }
 }
 
-extension UUID: HTML {
+extension UUID: HTMLContent {
 
     // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {

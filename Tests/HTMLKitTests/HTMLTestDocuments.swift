@@ -17,7 +17,7 @@ struct SimpleView: HTMLPage, HTMLTestable {
 
     static var expextedOutput: String = "<div><p>Text</p></div>"
 
-    var body: HTML {
+    var body: HTMLContent {
         Div {
             P { "Text" }
         }
@@ -29,7 +29,7 @@ struct StaticEmbedView: HTMLTemplate {
     @TemplateValue(SimpleData.self)
     var context
 
-    var body: HTML {
+    var body: HTMLContent {
         Div {
             SimpleView()
             P {
@@ -49,7 +49,7 @@ struct SimplePage: HTMLTemplate {
     @TemplateValue(String.self)
     var context
 
-    var body: HTML {
+    var body: HTMLContent {
         Document(type: .html5) {
             Head {
                 Title { context }
@@ -66,14 +66,14 @@ struct BaseView: HTMLComponent {
     @TemplateValue(String.self)
     var context
 
-    let content: HTML
+    let content: HTMLContent
 
-    init(context: TemplateValue<String>, @HTMLBuilder content: () -> HTML) {
+    init(context: TemplateValue<String>, @HTMLBuilder content: () -> HTMLContent) {
         self.content = content()
         self.context = context
     }
 
-    var body: HTML {
+    var body: HTMLContent {
         Document(type: .html5) {
             Head {
                 Title { context }
@@ -98,7 +98,7 @@ struct SomeView: HTMLTemplate {
         let title: String
     }
 
-    var body: HTML {
+    var body: HTMLContent {
         BaseView(context: context.title) {
             P { "Hello " + context.name + "!" }
         }
@@ -109,7 +109,7 @@ struct SomeViewStaticTitle: HTMLTemplate {
 
     var context: TemplateValue<String> = .root()
 
-    var body: HTML {
+    var body: HTMLContent {
         BaseView(context: "Test") {
             P { "Hello " + context + "!" }
         }
@@ -120,7 +120,7 @@ struct ForEachView: HTMLTemplate {
 
     let context: TemplateValue<[String]> = .root()
 
-    var body: HTML {
+    var body: HTMLContent {
         Div {
             ForEach(in: context) { text in
                 P { text }
@@ -153,7 +153,7 @@ struct IFView: HTMLTemplate {
 
     var context: TemplateValue<Value> = .root()
 
-    var body: HTML {
+    var body: HTMLContent {
         Div {
             IF(context.name == "Mats") {
                 P {
@@ -298,7 +298,7 @@ struct IFView: HTMLTemplate {
 //}
 //
 struct ChainedEqualAttributes: HTMLPage {
-    var body: HTML {
+    var body: HTMLContent {
         Div()
             .class("foo")
             .class("bar")
@@ -307,7 +307,7 @@ struct ChainedEqualAttributes: HTMLPage {
 }
 
 struct ChainedEqualAttributesDataNode: HTMLPage {
-    var body: HTML {
+    var body: HTMLContent {
         Img()
             .class("foo")
             .class("bar")
@@ -322,7 +322,7 @@ struct VariableView: HTMLTemplate {
     @TemplateValue(String.self)
     var context
 
-    var body: HTML {
+    var body: HTMLContent {
         Div {
             P { context }
             P { context.escaping(.unsafeNone) }
@@ -337,7 +337,7 @@ struct MultipleContextualEmbed: HTMLTemplate {
         let string: String
     }
 
-    var body: HTML {
+    var body: HTMLContent {
         BaseView(context: context.title) {
             Span { "Some text" }
             VariableView(context: context.string)
@@ -392,14 +392,14 @@ struct BootstrapAlert: HTMLComponent, AttributeNode {
 
     var attributes: [HTMLAttribute]
 
-    let content: HTML
+    let content: HTMLContent
 
-    init(attributes: [HTMLAttribute] = [], @HTMLBuilder content: () -> HTML) {
+    init(attributes: [HTMLAttribute] = [], @HTMLBuilder content: () -> HTMLContent) {
         self.attributes = attributes
         self.content = content()
     }
 
-    var body: HTML {
+    var body: HTMLContent {
         Div {
             content
         }
@@ -639,7 +639,7 @@ struct DynamicAttribute: HTMLTemplate {
 
     let context: TemplateValue<Value> = .root()
 
-    var body: HTML {
+    var body: HTMLContent {
         Div()
             .class("foo")
             .modify(if: context.isChecked) {
@@ -664,7 +664,7 @@ struct SelfContextPassing: HTMLTemplate {
 
     var context: TemplateValue<String> = .root()
 
-    var body: HTML {
+    var body: HTMLContent {
         Div {
             VariableView(context: context)
         }
@@ -675,7 +675,7 @@ struct SelfLoopingView: HTMLTemplate {
 
     typealias Context = [SimpleData]
 
-    var body: HTML {
+    var body: HTMLContent {
         Div {
             ForEach(in: context) { data in
                 StaticEmbedView(context: data)
@@ -689,7 +689,7 @@ struct UnsafeVariable: HTMLPage {
     @TemplateValue(MultipleContextualEmbed.Context.self)
     var context
 
-    var body: HTML {
+    var body: HTMLContent {
         Div {
             P {
                 context.string
@@ -733,7 +733,7 @@ struct LocalizedView: HTMLTemplate {
         let numberTest: Int
     }
 
-    var body: HTML {
+    var body: HTMLContent {
         Div {
             H1("hello.world")
             P("unread.messages", with: context.description)
@@ -748,7 +748,7 @@ struct DateView: HTMLTemplate {
 
     typealias Context = Date
 
-    var body: HTML {
+    var body: HTMLContent {
         Div {
             P { context.style() }
             P { context.formatted(string: "MM/dd/yyyy") }
@@ -760,7 +760,7 @@ struct OptionalDateView: HTMLTemplate {
 
     typealias Context = Date?
 
-    var body: HTML {
+    var body: HTMLContent {
         Div {
             P { context.style() }
             P { context.formatted(string: "MM/dd/yyyy") }
@@ -791,7 +791,7 @@ struct StaticIfPrerenderingTest: HTMLTemplate {
 
     typealias Context = Bool
 
-    var body: HTML {
+    var body: HTMLContent {
         Div {
             IF(FailingCondition(evaluationResult: true)) {
                 "This should be prerenderd"
@@ -850,7 +850,7 @@ struct LocalizedDateView: HTMLTemplate {
         let locale: String
     }
 
-    var body: HTML {
+    var body: HTMLContent {
         Div {
             P {
                 context.date.style(date: .short, time: .short)
@@ -1036,7 +1036,7 @@ struct FlashView: HTMLPage {
 
     let flashes: [Flash]
 
-    var body: HTML {
+    var body: HTMLContent {
         Div {
             ForEach(in: flashes) { flash in
                 Div {
@@ -1062,7 +1062,7 @@ struct Test: HTMLTemplate {
         var text: String
     }
 
-    var body: HTML {
+    var body: HTMLContent {
         Document(type: .html5) {
             Head {
                 Title { "Welkom bij Autimatisering" }
@@ -1118,7 +1118,7 @@ struct Test: HTMLTemplate {
         @TemplateValue([MenuLink].self)
         var links
 
-        var body: HTML {
+        var body: HTMLContent {
             Nav {
                 ForEach(in: links) { link in
                     Anchor {
@@ -1135,7 +1135,7 @@ struct Test: HTMLTemplate {
 
 struct MetadataTest: HTMLPage {
 
-    var body: HTML {
+    var body: HTMLContent {
         Document(type: .html5) {
             Head {
                 Author { "Mats" }
@@ -1155,7 +1155,7 @@ struct MetadataTestDynamic: HTMLTemplate {
         let handle: String
     }
 
-    var body: HTML {
+    var body: HTMLContent {
         Document(type: .html5) {
             Head {
                 Author { context.name }

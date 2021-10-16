@@ -22,7 +22,7 @@ extension LocalizableNode {
 
 public struct NoData: Encodable {}
 
-public struct Localized<B>: HTML where B: Encodable {
+public struct Localized<B>: HTMLContent where B: Encodable {
 
     enum Errors: Error {
         case missingLingoConfig
@@ -66,10 +66,10 @@ extension Localized where B == NoData {
     }
 }
 
-public struct EnvironmentModifier: HTML {
+public struct EnvironmentModifier: HTMLContent {
 
-    let view: HTML
-    let locale: HTML
+    let view: HTMLContent
+    let locale: HTMLContent
 
     let localFormula = HTMLRenderer.Formula()
 
@@ -87,7 +87,7 @@ public struct EnvironmentModifier: HTML {
     }
 }
 
-extension HTML {
+extension HTMLContent {
     public func environment(locale: String) -> EnvironmentModifier {
         return EnvironmentModifier(view: self, locale: locale)
     }

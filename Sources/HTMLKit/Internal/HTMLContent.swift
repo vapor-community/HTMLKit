@@ -1,7 +1,7 @@
 import Foundation
 
 
-public protocol HTML {
+public protocol HTMLContent {
 
     /// A value indicating if the template should render when it is used as localization info
     var renderWhenLocalizing: Bool { get }
@@ -23,25 +23,25 @@ public protocol HTML {
     func prerender(_ formula: HTMLRenderer.Formula) throws
 
     /// The script needed to render the underlying HTML
-    var scripts: HTML { get }
+    var scripts: HTMLContent { get }
 }
 
-extension HTML {
+extension HTMLContent {
     public var renderWhenLocalizing: Bool { return true }
-    public var scripts: HTML { "" }
+    public var scripts: HTMLContent { "" }
 }
 
 /// Concats two values
-public func + (lhs: HTML, rhs: HTML) -> HTML {
-    var output: Array<HTML> = []
+public func + (lhs: HTMLContent, rhs: HTMLContent) -> HTMLContent {
+    var output: Array<HTMLContent> = []
 
-    if let list = lhs as? Array<HTML> {
+    if let list = lhs as? Array<HTMLContent> {
         output.append(contentsOf: list)
     } else {
         output.append(lhs)
     }
 
-    if let list = rhs as? Array<HTML> {
+    if let list = rhs as? Array<HTMLContent> {
         output.append(list)
     } else {
         output.append(rhs)
@@ -50,7 +50,7 @@ public func + (lhs: HTML, rhs: HTML) -> HTML {
 }
 
 /// Concats second value to the first one
-public func +=(lhs: inout HTML, rhs: HTML) {
+public func +=(lhs: inout HTMLContent, rhs: HTMLContent) {
     lhs = lhs + rhs
 }
 
@@ -91,19 +91,19 @@ public struct HTMLAttribute {
     public let attribute: String
 
     /// The value of the attribute
-    public let value: HTML?
+    public let value: HTMLContent?
 
     /// A condition that evaluates if an attributes should be rendered
     public let isIncluded: Conditionable
 
-    public init(attribute: String, value: HTML?, isIncluded: Conditionable = true) {
+    public init(attribute: String, value: HTMLContent?, isIncluded: Conditionable = true) {
         self.attribute = attribute
         self.value = value
         self.isIncluded = isIncluded
     }
 }
 
-extension HTMLAttribute: HTML {
+extension HTMLAttribute: HTMLContent {
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         try IF(isIncluded) {
             attribute
@@ -123,7 +123,7 @@ extension HTMLAttribute: HTML {
     }
 }
 
-public protocol AddableAttributeNode: HTML, GlobalAttributes {
+public protocol AddableAttributeNode: HTMLContent, GlobalAttributes {
 
     var attributes: [HTMLAttribute] { get }
 
@@ -131,7 +131,7 @@ public protocol AddableAttributeNode: HTML, GlobalAttributes {
 
     func add(attributes: [HTMLAttribute], withSpace: Bool) -> Self
 
-    func value(of attribute: String) -> HTML?
+    func value(of attribute: String) -> HTMLContent?
 }
 
 public protocol AttributeNode: AddableAttributeNode {
@@ -154,7 +154,7 @@ extension Array where Element == HTMLAttribute {
                 else {
                     break
                 }
-                var values: [HTML] = [IF(attr.isIncluded) {value}]
+                var values: [HTMLContent] = [IF(attr.isIncluded) {value}]
                 values.append(IF(attr.isIncluded && attribute.isIncluded) { " " })
                 values.append(IF(attribute.isIncluded) { newValue })
                 attributes.append(.init(attribute: attr.attribute, value: values, isIncluded: attr.isIncluded || attribute.isIncluded))
@@ -202,7 +202,7 @@ extension AttributeNode {
         return self.copy(with: self.attributes.add(attributes: attributes))
     }
 
-    public func value(of attribute: String) -> HTML? {
+    public func value(of attribute: String) -> HTMLContent? {
         attributes.first(where: { $0.attribute == attribute })?.value
     }
 
@@ -271,9 +271,9 @@ public protocol ContentNode: AttributeNode {
 
     var name: String { get }
 
-    var content: HTML { get }
+    var content: HTMLContent { get }
 
-    init(attributes: [HTMLAttribute], content: HTML)
+    init(attributes: [HTMLAttribute], content: HTMLContent)
 }
 
 extension ContentNode {
@@ -281,7 +281,7 @@ extension ContentNode {
         .init(attributes: attributes, content: content)
     }
 
-    public var scripts: HTML { content.scripts }
+    public var scripts: HTMLContent { content.scripts }
 }
 
 extension DatableNode {
@@ -318,7 +318,7 @@ extension ContentNode {
     }
 }
 
-extension HTMLIdentifier: HTML {
+extension HTMLIdentifier: HTMLContent {
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         switch self {
         case .class(let name): return ".\(name)"
