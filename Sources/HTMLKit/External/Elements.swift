@@ -241,7 +241,7 @@ public struct Aside: ContentNode {
 /// The `<h1>`element
 ///
 ///
-public struct Heading1: ContentNode, LocalizableNode {
+public struct Heading1: ContentNode {
 
     public var name: String { "h1" }
 
@@ -249,14 +249,6 @@ public struct Heading1: ContentNode, LocalizableNode {
 
     public var content: HTMLContent
 
-    public init(_ localizedKey: String) {
-        content = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        content = Localized(key: localizedKey, context: context)
-    }
-
     public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
     }
@@ -267,10 +259,21 @@ public struct Heading1: ContentNode, LocalizableNode {
     }
 }
 
+extension Heading1: LocalizableNode {
+    
+    public init(_ localizedKey: String) {
+        content = Localized(key: localizedKey)
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        content = Localized(key: localizedKey, context: context)
+    }
+}
+
 /// The `<h2>`element
 ///
 ///
-public struct Heading2: ContentNode, LocalizableNode {
+public struct Heading2: ContentNode {
 
     public var name: String { "h2" }
 
@@ -278,14 +281,6 @@ public struct Heading2: ContentNode, LocalizableNode {
 
     public var content: HTMLContent
 
-    public init(_ localizedKey: String) {
-        content = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        content = Localized(key: localizedKey, context: context)
-    }
-
     public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
     }
@@ -296,10 +291,21 @@ public struct Heading2: ContentNode, LocalizableNode {
     }
 }
 
+extension Heading2: LocalizableNode {
+    
+    public init(_ localizedKey: String) {
+        content = Localized(key: localizedKey)
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        content = Localized(key: localizedKey, context: context)
+    }
+}
+
 /// The `<h3>`element
 ///
 ///
-public struct Heading3: ContentNode, LocalizableNode {
+public struct Heading3: ContentNode {
 
     public var name: String { "h3" }
 
@@ -307,14 +313,6 @@ public struct Heading3: ContentNode, LocalizableNode {
 
     public var content: HTMLContent
 
-    public init(_ localizedKey: String) {
-        content = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        content = Localized(key: localizedKey, context: context)
-    }
-
     public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
     }
@@ -325,10 +323,21 @@ public struct Heading3: ContentNode, LocalizableNode {
     }
 }
 
+extension Heading3: LocalizableNode {
+    
+    public init(_ localizedKey: String) {
+        content = Localized(key: localizedKey)
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        content = Localized(key: localizedKey, context: context)
+    }
+}
+
 /// The `<h4>`element
 ///
 ///
-public struct Heading4: ContentNode, LocalizableNode {
+public struct Heading4: ContentNode {
 
     public var name: String { "h4" }
 
@@ -336,14 +345,6 @@ public struct Heading4: ContentNode, LocalizableNode {
 
     public var content: HTMLContent
 
-    public init(_ localizedKey: String) {
-        content = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        content = Localized(key: localizedKey, context: context)
-    }
-
     public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
     }
@@ -354,10 +355,21 @@ public struct Heading4: ContentNode, LocalizableNode {
     }
 }
 
+extension Heading4: LocalizableNode {
+    
+    public init(_ localizedKey: String) {
+        content = Localized(key: localizedKey)
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        content = Localized(key: localizedKey, context: context)
+    }
+}
+
 /// The `<h5>`element
 ///
 ///
-public struct Heading5: ContentNode, LocalizableNode {
+public struct Heading5: ContentNode {
 
     public var name: String { "h5" }
 
@@ -365,6 +377,18 @@ public struct Heading5: ContentNode, LocalizableNode {
 
     public var content: HTMLContent
 
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+extension Heading5: LocalizableNode {
+    
     public init(_ localizedKey: String) {
         content = Localized(key: localizedKey)
     }
@@ -372,6 +396,18 @@ public struct Heading5: ContentNode, LocalizableNode {
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
+}
+
+/// The `<h6>`element
+///
+///
+public struct Heading6: ContentNode {
+
+    public var name: String { "h6" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
 
     public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
@@ -383,32 +419,14 @@ public struct Heading5: ContentNode, LocalizableNode {
     }
 }
 
-/// The `<h6>`element
-///
-///
-public struct Heading6: ContentNode, LocalizableNode {
-
-    public var name: String { "h6" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: HTMLContent
-
+extension Heading6: LocalizableNode {
+    
     public init(_ localizedKey: String) {
         content = Localized(key: localizedKey)
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
-    }
-
-    public init(@HTMLBuilder builder: () -> HTMLContent) {
-        content = builder()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
-        self.content = content
-        self.attributes = attributes
     }
 }
 
@@ -478,21 +496,13 @@ public struct Address: ContentNode {
 /// The `<p>`element
 ///
 ///
-public struct Paragraph: ContentNode, LocalizableNode {
+public struct Paragraph: ContentNode {
 
     public var name: String { "p" }
 
     public var attributes: [HTMLAttribute] = []
 
     public var content: HTMLContent
-
-    public init(_ localizedKey: String) {
-        content = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        content = Localized(key: localizedKey, context: context)
-    }
 
     public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
@@ -504,17 +514,8 @@ public struct Paragraph: ContentNode, LocalizableNode {
     }
 }
 
-/// The `<blockquote>`element
-///
-///
-public struct Blockquote: ContentNode, LocalizableNode {
-
-    public var name: String { "blockquote" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: HTMLContent
-
+extension Paragraph: LocalizableNode {
+    
     public init(_ localizedKey: String) {
         content = Localized(key: localizedKey)
     }
@@ -522,6 +523,18 @@ public struct Blockquote: ContentNode, LocalizableNode {
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
+}
+
+/// The `<blockquote>`element
+///
+///
+public struct Blockquote: ContentNode {
+
+    public var name: String { "blockquote" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
 
     public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
@@ -530,6 +543,17 @@ public struct Blockquote: ContentNode, LocalizableNode {
     public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
         self.content = content
         self.attributes = attributes
+    }
+}
+
+extension Blockquote: LocalizableNode {
+    
+    public init(_ localizedKey: String) {
+        content = Localized(key: localizedKey)
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        content = Localized(key: localizedKey, context: context)
     }
 }
 
@@ -704,7 +728,7 @@ public struct Division: ContentNode {
 /// The `<a>`element
 ///
 ///
-public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute, LocalizableNode, RelationshipAttribute {
+public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute, RelationshipAttribute {
 
     public enum RelationshipTypes: String {
 
@@ -729,14 +753,6 @@ public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute
 
     public var content: HTMLContent
 
-    public init(_ localizedKey: String) {
-        content = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        content = Localized(key: localizedKey, context: context)
-    }
-
     public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
     }
@@ -748,6 +764,17 @@ public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute
 
     public func mail(to email: String) -> Anchor {
         self.href("mailto:\(email)")
+    }
+}
+
+extension Anchor: LocalizableNode {
+    
+    public init(_ localizedKey: String) {
+        content = Localized(key: localizedKey)
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        content = Localized(key: localizedKey, context: context)
     }
 }
 
@@ -775,21 +802,13 @@ public struct Emphasize: ContentNode {
 /// The `<small>`element
 ///
 ///
-public struct Small: ContentNode, LocalizableNode {
+public struct Small: ContentNode {
 
     public var name: String { "small" }
 
     public var attributes: [HTMLAttribute] = []
 
     public var content: HTMLContent
-
-    public init(_ localizedKey: String) {
-        content = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        content = Localized(key: localizedKey, context: context)
-    }
 
     public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
@@ -801,17 +820,8 @@ public struct Small: ContentNode, LocalizableNode {
     }
 }
 
-/// The `<s>`element
-///
-///
-public struct StrikeThrough: ContentNode, LocalizableNode {
-
-    public var name: String { "s" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: HTMLContent
-
+extension Small: LocalizableNode {
+    
     public init(_ localizedKey: String) {
         content = Localized(key: localizedKey)
     }
@@ -819,6 +829,18 @@ public struct StrikeThrough: ContentNode, LocalizableNode {
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
+}
+
+/// The `<s>`element
+///
+///
+public struct StrikeThrough: ContentNode {
+
+    public var name: String { "s" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
 
     public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
@@ -827,6 +849,17 @@ public struct StrikeThrough: ContentNode, LocalizableNode {
     public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
         self.content = content
         self.attributes = attributes
+    }
+}
+
+extension StrikeThrough: LocalizableNode {
+    
+    public init(_ localizedKey: String) {
+        content = Localized(key: localizedKey)
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        content = Localized(key: localizedKey, context: context)
     }
 }
 
@@ -917,21 +950,13 @@ public struct Code: ContentNode {
 /// The `<i>`element
 ///
 ///
-public struct Italic: ContentNode, LocalizableNode {
+public struct Italic: ContentNode {
 
     public var name: String { "i" }
 
     public var attributes: [HTMLAttribute] = []
 
     public var content: HTMLContent
-
-    public init(_ localizedKey: String) {
-        content = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        content = Localized(key: localizedKey, context: context)
-    }
 
     public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
@@ -943,17 +968,8 @@ public struct Italic: ContentNode, LocalizableNode {
     }
 }
 
-/// The `<b>`element
-///
-///
-public struct Bold: ContentNode, LocalizableNode {
-
-    public var name: String { "b" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: HTMLContent
-
+extension Italic: LocalizableNode {
+    
     public init(_ localizedKey: String) {
         content = Localized(key: localizedKey)
     }
@@ -961,6 +977,18 @@ public struct Bold: ContentNode, LocalizableNode {
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
     }
+}
+
+/// The `<b>`element
+///
+///
+public struct Bold: ContentNode {
+
+    public var name: String { "b" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
 
     public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
@@ -969,6 +997,17 @@ public struct Bold: ContentNode, LocalizableNode {
     public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
         self.content = content
         self.attributes = attributes
+    }
+}
+
+extension Bold: LocalizableNode {
+    
+    public init(_ localizedKey: String) {
+        content = Localized(key: localizedKey)
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        content = Localized(key: localizedKey, context: context)
     }
 }
 
@@ -1351,7 +1390,7 @@ public struct DataCell: ContentNode, SizableAttribute {
 /// The `<th>`element
 ///
 ///
-public struct HeaderCell: ContentNode, SizableAttribute, LocalizableNode {
+public struct HeaderCell: ContentNode, SizableAttribute {
 
     public var name: String { "th" }
 
@@ -1363,17 +1402,20 @@ public struct HeaderCell: ContentNode, SizableAttribute, LocalizableNode {
         content = builder()
     }
 
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+extension HeaderCell: LocalizableNode {
+    
     public init(_ localizedKey: String) {
         content = Localized(key: localizedKey)
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
-        self.content = content
-        self.attributes = attributes
     }
 }
 
@@ -1403,21 +1445,13 @@ public struct Form: ContentNode, NameableAttribute, TargetableAttribute, Formabl
 /// The `<label>`element
 ///
 ///
-public struct Label: ContentNode, FormInputCompanionAttributes, LocalizableNode {
+public struct Label: ContentNode, FormInputCompanionAttributes {
 
     public var name: String { "label" }
 
     public var attributes: [HTMLAttribute] = []
 
     public var content: HTMLContent
-
-    public init(_ localizedKey: String) {
-        content = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        content = Localized(key: localizedKey, context: context)
-    }
 
     public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
@@ -1426,6 +1460,17 @@ public struct Label: ContentNode, FormInputCompanionAttributes, LocalizableNode 
     public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
         self.content = content
         self.attributes = attributes
+    }
+}
+
+extension Label: LocalizableNode {
+    
+    public init(_ localizedKey: String) {
+        content = Localized(key: localizedKey)
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        content = Localized(key: localizedKey, context: context)
     }
 }
 
@@ -1482,14 +1527,14 @@ public struct Input: EmptyNode, TypableAttribute, MediaSourceableAttribute, Name
     }
 
     public func isChecked(_ condition: Conditionable) -> Input {
-        self.add(HTMLAttribute(attribute: "checked", value: nil, isIncluded: condition))
+        self.add(.init(attribute: "checked", value: nil, isIncluded: condition))
     }
 }
 
 /// The `<button>`element
 ///
 ///
-public struct Button: ContentNode, TypableAttribute, NameableAttribute, LocalizableNode {
+public struct Button: ContentNode, TypableAttribute, NameableAttribute {
 
     public typealias NameType = String
 
@@ -1498,14 +1543,6 @@ public struct Button: ContentNode, TypableAttribute, NameableAttribute, Localiza
     public var attributes: [HTMLAttribute] = []
 
     public var content: HTMLContent
-
-    public init(_ localizedKey: String) {
-        content = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        content = Localized(key: localizedKey, context: context)
-    }
 
     public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
@@ -1518,6 +1555,17 @@ public struct Button: ContentNode, TypableAttribute, NameableAttribute, Localiza
 
     public func type(_ type: ButtonType) -> Button {
         self.type(TemplateValue<String>.constant(type.rawValue))
+    }
+}
+
+extension Button: LocalizableNode {
+    
+    public init(_ localizedKey: String) {
+        content = Localized(key: localizedKey)
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        content = Localized(key: localizedKey, context: context)
     }
 }
 
@@ -1675,14 +1723,14 @@ public struct Option: ContentNode, ValueableAttribute {
     }
 
     public func isSelected(_ condition: Conditionable) -> Option {
-        self.add(HTMLAttribute(attribute: "selected", value: nil, isIncluded: condition))
+        self.add(.init(attribute: "selected", value: nil, isIncluded: condition))
     }
 }
 
 /// The `<textarea>`element
 ///
 ///
-public struct TextArea: ContentNode, NameableAttribute, PlaceholderAttribute, RequiredAttribute, LocalizableNode {
+public struct TextArea: ContentNode, NameableAttribute, PlaceholderAttribute, RequiredAttribute {
 
     public typealias NameType = String
 
@@ -1691,14 +1739,6 @@ public struct TextArea: ContentNode, NameableAttribute, PlaceholderAttribute, Re
     public var attributes: [HTMLAttribute] = []
 
     public var content: HTMLContent
-
-    public init(_ localizedKey: String) {
-        content = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        content = Localized(key: localizedKey, context: context)
-    }
 
     public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
@@ -1710,11 +1750,22 @@ public struct TextArea: ContentNode, NameableAttribute, PlaceholderAttribute, Re
     }
 
     public func row(_ rows: Int) -> TextArea {
-        add(HTMLAttribute(attribute: "row", value: rows))
+        add(.init(attribute: "row", value: rows))
     }
 
     public func readOnly() -> TextArea {
-        add(HTMLAttribute(attribute: "readonly", value: nil))
+        add(.init(attribute: "readonly", value: nil))
+    }
+}
+
+extension TextArea: LocalizableNode {
+    
+    public init(_ localizedKey: String) {
+        content = Localized(key: localizedKey)
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        content = Localized(key: localizedKey, context: context)
     }
 }
 
