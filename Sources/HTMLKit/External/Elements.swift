@@ -35,6 +35,9 @@ public typealias Optgroup = OptionGroup
 
 // MARK: structs
 
+/// The `<head>`element
+///
+///
 public struct Head: ContentNode {
 
     public var name: String { "head" }
@@ -52,7 +55,10 @@ public struct Head: ContentNode {
         self.attributes = attributes
     }
 }
-/// Specifies the base URL/target for all relative URLs in a document
+
+/// The `<base />`element
+///
+///
 public struct Base: EmptyNode, HyperlinkReferenceAttribute {
 
     public var name: String { "base" }
@@ -64,58 +70,29 @@ public struct Base: EmptyNode, HyperlinkReferenceAttribute {
     }
 }
 
+/// The `<link />`element
+///
+///
 public struct Link: EmptyNode, TypableAttribute, HyperlinkReferenceAttribute, RelationshipAttribute {
 
     public enum RelationshipTypes: String {
-        /// Provides a link to an alternate version of the document (i.e. print page, translated or mirror).
-        /// Example: <link rel="alternate" type="application/atom+xml" title="W3Schools News" href="/blog/news/atom">
+
         case alternate
-
-        /// Provides a link to the author of the document
         case author
-
-        /// Specifies that the browser should preemptively perform DNS resolution for the target resource's origin
         case dnsPrefetch = "dns-prefetch"
-
-        /// Provides a link to a help document. Example: <link rel="help" href="/help/">
         case help
-
-        /// Imports an icon to represent the document.
-        /// Example: <link rel="icon" href="/favicon.ico" type="image/x-icon">
         case icon
-
-        /// Provides a link to copyright information for the document
         case license
-
-        /// Provides a link to the next document in the series
         case next
-
-        /// Provides the address of the pingback server that handles pingbacks to the current document
         case pingback
-
-        /// Specifies that the browser should preemptively connect to the target resource's origin.
         case preconnect
-
-        /// Specifies that the browser should preemptively fetch and cache the target resource as it is likely to be required for a follow-up navigation
         case prefetch
-
-        /// Specifies that the browser agent must preemptively fetch and cache the target resource for current navigation according to the destination given by the "as" attribute (and the priority associated with that destination).
         case preload
-
-        /// Specifies that the browser should pre-render (load) the specified webpage in the background. So, if the user navigates to this page, it speeds up the page load (because the page is already loaded). Warning! This waste the user's bandwidth! Only use prerender if it is absolutely sure that the webpage is required at some point in the user journey
         case prerender
-
-        /// The previous document in a selection
         case prev
-
-        /// Links to a search tool for the document
         case search
-
-        /// Imports a style sheet
         case stylesheet
-
         case shortcutIcon = "shortcut icon"
-
         case appleTouchIcon = "apple-touch-icon"
     }
 
@@ -128,37 +105,18 @@ public struct Link: EmptyNode, TypableAttribute, HyperlinkReferenceAttribute, Re
     }
 }
 
+/// The `<meta />`element
+///
+///
 public struct Meta: EmptyNode, NameableAttribute, ContentableAttribute {
 
     public enum NameType: String {
-        /// Specifies the name of the Web application that the page represents
+        
         case applicationName = "application-name"
-
-        /// Specifies the name of the author of the document. Example:
-        /// <meta name="author" content="John Doe">
         case author
-
-        /// Specifies a description of the page. Search engines can pick up this description to show with the results of searches. Example:
-        /// <meta name="description" content="Free web tutorials">
         case description
-
-        /// Specifies one of the software packages used to generate the document (not used on hand-authored pages). Example:
-        /// <meta name="generator" content="FrontPage 4.0">
         case generator
-
-        /// Specifies a comma-separated list of keywords - relevant to the page (Informs search engines what the page is about).
-        /// Tip: Always specify keywords (needed by search engines to catalogize the page). Example:
-        /// <meta name="keywords" content="HTML, meta tag, tag reference">
         case keywords
-
-        /// Controls the viewport (the user's visible area of a web page).
-        /// The viewport varies with the device, and will be smaller on a mobile phone than on a computer screen.
-        /// You should include the following <meta> viewport element in all your web pages:
-        /// <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        /// A <meta> viewport element gives the browser instructions on how to control the page's dimensions and scaling.
-        /// The width=device-width part sets the width of the page to follow the screen-width of the device (which will vary depending on the device).
-        /// The initial-scale=1.0 part sets the initial zoom level when the page is first loaded by the browser.
-        /// Here is an example of a web page without the viewport meta tag, and the same web page with the viewport meta tag:
         case viewport
     }
 
@@ -175,6 +133,9 @@ public struct Meta: EmptyNode, NameableAttribute, ContentableAttribute {
     }
 }
 
+/// The `<body>`element
+///
+///
 public struct Body: ContentNode {
 
     public var name: String { "body" }
@@ -193,16 +154,9 @@ public struct Body: ContentNode {
     }
 }
 
-/// The <article> tag specifies independent, self-contained content.
+/// The `<article>`element
 ///
-/// An article should make sense on its own and it should be possible to distribute it independently from the rest of the site.
 ///
-/// Potential sources for the <article> element:
-///
-/// - Forum post
-/// - Blog post
-/// - News story
-/// - Comment
 public struct Article: ContentNode {
 
     public var name: String { "article" }
@@ -221,6 +175,9 @@ public struct Article: ContentNode {
     }
 }
 
+/// The `<section>`element
+///
+///
 public struct Section: ContentNode {
 
     public var name: String { "section" }
@@ -239,6 +196,9 @@ public struct Section: ContentNode {
     }
 }
 
+/// The `<nav>`element
+///
+///
 public struct Navigation: ContentNode {
 
     public var name: String { "nav" }
@@ -257,8 +217,9 @@ public struct Navigation: ContentNode {
     }
 }
 
-/// The <aside> tag defines some content aside from the content it is placed in.
-/// The aside content should be related to the surrounding content.
+/// The `<aside>`element
+///
+///
 public struct Aside: ContentNode {
 
     public var name: String { "aside" }
@@ -277,6 +238,9 @@ public struct Aside: ContentNode {
     }
 }
 
+/// The `<h1>`element
+///
+///
 public struct Heading1: ContentNode, LocalizableNode {
 
     public var name: String { "h1" }
@@ -303,6 +267,9 @@ public struct Heading1: ContentNode, LocalizableNode {
     }
 }
 
+/// The `<h2>`element
+///
+///
 public struct Heading2: ContentNode, LocalizableNode {
 
     public var name: String { "h2" }
@@ -329,6 +296,9 @@ public struct Heading2: ContentNode, LocalizableNode {
     }
 }
 
+/// The `<h3>`element
+///
+///
 public struct Heading3: ContentNode, LocalizableNode {
 
     public var name: String { "h3" }
@@ -355,6 +325,9 @@ public struct Heading3: ContentNode, LocalizableNode {
     }
 }
 
+/// The `<h4>`element
+///
+///
 public struct Heading4: ContentNode, LocalizableNode {
 
     public var name: String { "h4" }
@@ -381,6 +354,9 @@ public struct Heading4: ContentNode, LocalizableNode {
     }
 }
 
+/// The `<h5>`element
+///
+///
 public struct Heading5: ContentNode, LocalizableNode {
 
     public var name: String { "h5" }
@@ -407,6 +383,9 @@ public struct Heading5: ContentNode, LocalizableNode {
     }
 }
 
+/// The `<h6>`element
+///
+///
 public struct Heading6: ContentNode, LocalizableNode {
 
     public var name: String { "h6" }
@@ -433,6 +412,9 @@ public struct Heading6: ContentNode, LocalizableNode {
     }
 }
 
+/// The `<header>`element
+///
+///
 public struct Header: ContentNode {
 
     public var name: String { "header" }
@@ -451,6 +433,9 @@ public struct Header: ContentNode {
     }
 }
 
+/// The `<footer>`element
+///
+///
 public struct Footer: ContentNode {
 
     public var name: String { "footer" }
@@ -469,10 +454,9 @@ public struct Footer: ContentNode {
     }
 }
 
-/// The <address> tag defines the contact information for the author/owner of a document or an article.
-/// If the <address> element is inside the <body> element, it represents contact information for the document.
-/// If the <address> element is inside an <article> element, it represents contact information for that article.
-/// The text in the <address> element usually renders in italic. Most browsers will add a line break before and after the address element.
+/// The `<adress>`element
+///
+///
 public struct Address: ContentNode {
 
     public var name: String { "address" }
@@ -491,6 +475,9 @@ public struct Address: ContentNode {
     }
 }
 
+/// The `<p>`element
+///
+///
 public struct Paragraph: ContentNode, LocalizableNode {
 
     public var name: String { "p" }
@@ -517,6 +504,9 @@ public struct Paragraph: ContentNode, LocalizableNode {
     }
 }
 
+/// The `<blockquote>`element
+///
+///
 public struct Blockquote: ContentNode, LocalizableNode {
 
     public var name: String { "blockquote" }
@@ -543,6 +533,9 @@ public struct Blockquote: ContentNode, LocalizableNode {
     }
 }
 
+/// The `<ol>`element
+///
+///
 public struct OrderedList: ContentNode {
 
     public var name: String { "ol" }
@@ -561,6 +554,9 @@ public struct OrderedList: ContentNode {
     }
 }
 
+/// The `<ul>`element
+///
+///
 public struct UnorderedList: ContentNode {
 
     public var name: String { "ul" }
@@ -579,6 +575,9 @@ public struct UnorderedList: ContentNode {
     }
 }
 
+/// The `<li>`element
+///
+///
 public struct ListItem: ContentNode {
 
     public var name: String { "li" }
@@ -597,8 +596,9 @@ public struct ListItem: ContentNode {
     }
 }
 
-/// The <dl> tag defines a description list.
-/// The <dl> tag is used in conjunction with <dt> (defines terms/names) and <dd> (describes each term/name).
+/// The `<dl>`element
+///
+///
 public struct DescriptionList: ContentNode {
 
     public var name: String { "dl" }
@@ -617,8 +617,9 @@ public struct DescriptionList: ContentNode {
     }
 }
 
-/// The <dt> tag defines a term/name in a description list.
-/// The <dt> tag is used in conjunction with <dl> (defines a description list) and <dd> (describes each term/name).
+/// The `<dt>`element
+///
+///
 public struct TermName: ContentNode {
 
     public var name: String { "dt" }
@@ -637,9 +638,9 @@ public struct TermName: ContentNode {
     }
 }
 
-/// The <dd> tag is used to describe a term/name in a description list.
-/// The <dd> tag is used in conjunction with <dl> (defines a description list) and <dt> (defines terms/names).
-/// Inside a <dd> tag you can put paragraphs, line breaks, images, links, lists, etc.
+/// The `<dd>`element
+///
+///
 public struct TermDefinition: ContentNode {
 
     public var name: String { "dd" }
@@ -658,7 +659,9 @@ public struct TermDefinition: ContentNode {
     }
 }
 
-/// The <main> tag defines the dominant content of a document.
+/// The `<main>`element
+///
+///
 public struct Main: ContentNode {
 
     public var name: String { "main" }
@@ -677,6 +680,9 @@ public struct Main: ContentNode {
     }
 }
 
+/// The `<div>`element
+///
+///
 public struct Division: ContentNode {
 
     public var name: String { "div" }
@@ -695,47 +701,25 @@ public struct Division: ContentNode {
     }
 }
 
-/// The <a> tag defines a hyperlink, which is used to link from one page to another.
+/// The `<a>`element
+///
+///
 public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute, LocalizableNode, RelationshipAttribute {
 
     public enum RelationshipTypes: String {
-        /// Provides a link to an alternate representation of the document (i.e. print page, translated or mirror)
+
         case alternate
-
-        /// Provides a link to the author of the document
         case author
-
-        /// Permanent URL used for bookmarking
         case bookmark
-
-        /// Indicates that the referenced document is not part of the same site as the current document
         case external
-
-        /// Provides a link to a help document
         case help
-
-        /// Provides a link to licensing information for the document
         case license
-
-        /// Provides a link to the next document in the series
         case next
-
-        /// Links to an unendorsed document, like a paid link. ("nofollow" is used by Google, to specify that the Google search spider should not follow that link)
         case noFollow = "nofollow"
-
-        /// Requires that the browser should not send an HTTP referrer header if the user follows the hyperlink
         case noReferrer = "noreferrer"
-
-        /// Requires that any browsing context created by following the hyperlink must not have an opener browsing context
         case noOpener = "noopener"
-
-        /// The previous document in a selection
         case prev
-
-        /// Links to a search tool for the document
         case search
-
-        /// A tag (keyword) for the current document
         case tag
     }
 
@@ -767,7 +751,9 @@ public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute
     }
 }
 
-/// Defines emphasized text
+/// The `<em>`element
+///
+///
 public struct Emphasize: ContentNode {
 
     public var name: String { "em" }
@@ -786,6 +772,9 @@ public struct Emphasize: ContentNode {
     }
 }
 
+/// The `<small>`element
+///
+///
 public struct Small: ContentNode, LocalizableNode {
 
     public var name: String { "small" }
@@ -812,8 +801,9 @@ public struct Small: ContentNode, LocalizableNode {
     }
 }
 
-/// The <s> tag specifies text that is no longer correct, accurate or relevant.
-/// The <s> tag should not be used to define replaced or deleted text, use the <del> tag to define replaced or deleted text.
+/// The `<s>`element
+///
+///
 public struct StrikeThrough: ContentNode, LocalizableNode {
 
     public var name: String { "s" }
@@ -840,8 +830,9 @@ public struct StrikeThrough: ContentNode, LocalizableNode {
     }
 }
 
-/// The <cite> tag defines the title of a work (e.g. a book, a song, a movie, a TV show, a painting, a sculpture, etc.).
-/// Note: A person's name is not the title of a work.
+/// The `<cite>`element
+///
+///
 public struct Cite: ContentNode {
 
     public var name: String { "cite" }
@@ -860,6 +851,9 @@ public struct Cite: ContentNode {
     }
 }
 
+/// The `<abbr>`element
+///
+///
 public struct Abbreviation: ContentNode {
 
     public var name: String { "abbr" }
@@ -878,9 +872,9 @@ public struct Abbreviation: ContentNode {
     }
 }
 
-/// The <data> tag links the given content with a machine-readable translation.
-/// This element provides both a machine-readable value for data processors, and a human-readable value for rendering in a browser.
-/// Tip: If the content is time- or date-related, the <time> element must be used instead.
+/// The `<data>`element
+///
+///
 public struct Data: ContentNode {
 
     public var name: String { "data" }
@@ -899,6 +893,9 @@ public struct Data: ContentNode {
     }
 }
 
+/// The `<code>`element
+///
+///
 public struct Code: ContentNode {
 
     public var name: String { "code" }
@@ -917,6 +914,9 @@ public struct Code: ContentNode {
     }
 }
 
+/// The `<i>`element
+///
+///
 public struct Italic: ContentNode, LocalizableNode {
 
     public var name: String { "i" }
@@ -943,6 +943,9 @@ public struct Italic: ContentNode, LocalizableNode {
     }
 }
 
+/// The `<b>`element
+///
+///
 public struct Bold: ContentNode, LocalizableNode {
 
     public var name: String { "b" }
@@ -969,6 +972,9 @@ public struct Bold: ContentNode, LocalizableNode {
     }
 }
 
+/// The `<bdi>`element
+///
+///
 public struct Bdi: ContentNode {
 
     public var name: String { "bdi" }
@@ -987,6 +993,9 @@ public struct Bdi: ContentNode {
     }
 }
 
+/// The `<bdo />`element
+///
+///
 public struct Bdo: EmptyNode {
 
     public var name: String { "bdo" }
@@ -998,6 +1007,9 @@ public struct Bdo: EmptyNode {
     }
 }
 
+/// The `<span>`element
+///
+///
 public struct Span: ContentNode {
 
     public var name: String { "span" }
@@ -1016,6 +1028,9 @@ public struct Span: ContentNode {
     }
 }
 
+/// The `<br />`element
+///
+///
 public struct LineBreak: EmptyNode {
 
     public var attributes: [HTMLAttribute]
@@ -1027,9 +1042,9 @@ public struct LineBreak: EmptyNode {
     }
 }
 
-/// The <ins> tag defines a text that has been inserted into a document.
-/// Tip: Also look at the <del> tag to markup deleted text.
-/// Browsers will normally strike a line through deleted text and underline inserted text.
+/// The `<ins>`element
+///
+///
 public struct InsertedText: ContentNode {
 
     public var name: String { "ins" }
@@ -1048,7 +1063,9 @@ public struct InsertedText: ContentNode {
     }
 }
 
-/// The <del> tag defines text that has been deleted from a document.
+/// The `<del>`element
+///
+///
 public struct DeletedText: ContentNode {
 
     public var name: String { "del" }
@@ -1067,6 +1084,9 @@ public struct DeletedText: ContentNode {
     }
 }
 
+/// The `<source />`element
+///
+///
 public struct Source: EmptyNode {
 
     public var name: String { "source" }
@@ -1078,6 +1098,9 @@ public struct Source: EmptyNode {
     }
 }
 
+/// The `<img />`element
+///
+///
 public struct Image: EmptyNode, MediaSourceableAttribute, SizableAttribute {
 
     public var name: String { "img" }
@@ -1101,7 +1124,9 @@ public struct Image: EmptyNode, MediaSourceableAttribute, SizableAttribute {
     }
 }
 
-/// Specifies the base URL/target for all relative URLs in a document
+/// The `<embed />`element
+///
+///
 public struct Embed: EmptyNode, MediaSourceableAttribute, TypableAttribute, SizableAttribute {
 
     public var name: String { "embed" }
@@ -1113,8 +1138,9 @@ public struct Embed: EmptyNode, MediaSourceableAttribute, TypableAttribute, Siza
     }
 }
 
-/// The <audio> tag defines sound, such as music or other audio streams.
-/// Currently, there are 3 supported file formats for the <audio> element: MP3, WAV, and OGG:
+/// The `<ins>`element
+///
+///
 public struct Audio: ContentNode {
 
     public var name: String { "audio" }
@@ -1133,6 +1159,9 @@ public struct Audio: ContentNode {
     }
 }
 
+/// The `<area>`element
+///
+///
 public struct Area: ContentNode {
 
     public var name: String { "area" }
@@ -1151,6 +1180,9 @@ public struct Area: ContentNode {
     }
 }
 
+/// The `<table>`element
+///
+///
 public struct Table: ContentNode, SizableAttribute {
 
     public var name: String { "table" }
@@ -1169,10 +1201,9 @@ public struct Table: ContentNode, SizableAttribute {
     }
 }
 
-/// The <caption> tag defines a table caption.
-/// The <caption> tag must be inserted immediately after the <table> tag.
-/// Note: You can specify only one caption per table.
-/// Tip: By default, a table caption will be center-aligned above a table. However, the CSS properties text-align and caption-side can be used to align and place the caption.
+/// The `<caption>`element
+///
+///
 public struct Caption: ContentNode {
 
     public var name: String { "caption" }
@@ -1191,10 +1222,9 @@ public struct Caption: ContentNode {
     }
 }
 
-/// The <colgroup> tag specifies a group of one or more columns in a table for formatting.
-/// The <colgroup> tag is useful for applying styles to entire columns, instead of repeating the styles for each cell, for each row.
-/// Note: The <colgroup> tag must be a child of a <table> element, after any <caption> elements and before any <thead>, <tbody>, <tfoot>, and <tr> elements.
-/// Tip: To define different properties to a column within a <colgroup>, use the <col> tag within the <colgroup> tag.
+/// The `<colgroup>`element
+///
+///
 public struct ColumnGroup: ContentNode {
 
     public var name: String { "colgroup" }
@@ -1213,8 +1243,9 @@ public struct ColumnGroup: ContentNode {
     }
 }
 
-/// The <col> tag specifies column properties for each column within a <colgroup> element.
-/// The <col> tag is useful for applying styles to entire columns, instead of repeating the styles for each cell, for each row.
+/// The `<col>`element
+///
+///
 public struct Column: ContentNode {
 
     public var name: String { "col" }
@@ -1233,6 +1264,9 @@ public struct Column: ContentNode {
     }
 }
 
+/// The `<tbody>`element
+///
+///
 public struct TableBody: ContentNode, SizableAttribute {
 
     public var name: String { "tbody" }
@@ -1251,6 +1285,9 @@ public struct TableBody: ContentNode, SizableAttribute {
     }
 }
 
+/// The `<thead>`element
+///
+///
 public struct TableHead: ContentNode, SizableAttribute {
 
     public var name: String { "thead" }
@@ -1269,6 +1306,9 @@ public struct TableHead: ContentNode, SizableAttribute {
     }
 }
 
+/// The `<tr>`element
+///
+///
 public struct TableRow: ContentNode, SizableAttribute {
 
     public var name: String { "tr" }
@@ -1287,6 +1327,9 @@ public struct TableRow: ContentNode, SizableAttribute {
     }
 }
 
+/// The `<td>`element
+///
+///
 public struct DataCell: ContentNode, SizableAttribute {
 
     public var name: String { "td" }
@@ -1305,6 +1348,9 @@ public struct DataCell: ContentNode, SizableAttribute {
     }
 }
 
+/// The `<th>`element
+///
+///
 public struct HeaderCell: ContentNode, SizableAttribute, LocalizableNode {
 
     public var name: String { "th" }
@@ -1331,10 +1377,12 @@ public struct HeaderCell: ContentNode, SizableAttribute, LocalizableNode {
     }
 }
 
+/// The `<form>`element
+///
+///
 public struct Form: ContentNode, NameableAttribute, TargetableAttribute, FormableAttributes {
 
     public typealias NameType = String
-
 
     public var name: String { "form" }
 
@@ -1352,6 +1400,9 @@ public struct Form: ContentNode, NameableAttribute, TargetableAttribute, Formabl
     }
 }
 
+/// The `<label>`element
+///
+///
 public struct Label: ContentNode, FormInputCompanionAttributes, LocalizableNode {
 
     public var name: String { "label" }
@@ -1378,87 +1429,36 @@ public struct Label: ContentNode, FormInputCompanionAttributes, LocalizableNode 
     }
 }
 
+/// The `<input />`element
+///
+///
 public struct Input: EmptyNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute, SizableAttribute, ValueableAttribute, PlaceholderAttribute, RequiredAttribute, LengthAttribute, PatternAttribute {
 
     public typealias NameType = String
 
     public enum Types: String {
-        /// Defines a clickable button (mostly used with a JavaScript to activate a script)
+        
         case button
-
-        /// Defines a checkbox
         case checkbox
-
-        /// Defines a color picker
-        /// **NB**: (HTML 5)
         case color
-
-        /// Defines a date control (year, month, day (no time))
-        /// **NB**: (HTML 5)
         case date
-
-        /// Defines a date and time control (year, month, day, time (no timezone)
-        /// **NB**: (HTML 5)
         case datetimeLocal = "datetime-local"
-
-        /// Defines a field for an e-mail address
-        /// **NB**: (HTML 5)
         case email
-
-        /// Defines a file-select field and a "Browse" button (for file uploads)
         case file
-
-        /// Defines a hidden input field
         case hidden
-
-        /// Defines an image as the submit button
         case image
-
-        /// Defines a month and year control (no timezone)
-        /// **NB**: (HTML 5)
         case month
-
-        /// Defines a field for entering a number
-        /// **NB**: (HTML 5)
         case number
-
-        /// Defines a password field
         case password
-
-        /// Defines a radio button
         case radio
-
-        /// Defines a range control (like a slider control)
-        /// **NB**: (HTML 5)
         case range
-
-        /// Defines a reset button
         case reset
-
-        /// Defines a text field for entering a search string
-        /// **NB**: (HTML 5)
         case search
-
-        /// Defines a submit button
         case submit
-
-        /// Defines a field for entering a telephone number
-        /// **NB**: (HTML 5)
         case telephone = "tel"
-
-        /// Default. Defines a single-line text field
         case text
-
-        /// Defines a control for entering a time (no timezone)
-        /// **NB**: (HTML 5)
         case time
-
-        /// Defines a field for entering a URL
-        /// **NB**: (HTML 5)
         case url
-
-        /// Defines a week and year control (no timezone)
-        /// **NB**: (HTML 5)
         case week
     }
 
@@ -1486,6 +1486,9 @@ public struct Input: EmptyNode, TypableAttribute, MediaSourceableAttribute, Name
     }
 }
 
+/// The `<button>`element
+///
+///
 public struct Button: ContentNode, TypableAttribute, NameableAttribute, LocalizableNode {
 
     public typealias NameType = String
@@ -1518,6 +1521,9 @@ public struct Button: ContentNode, TypableAttribute, NameableAttribute, Localiza
     }
 }
 
+/// The `<select>`element
+///
+///
 public struct Select: AttributeNode, NameableAttribute {
 
     public typealias NameType = String
@@ -1606,9 +1612,9 @@ extension Select {
     }
 }
 
-/// The <datalist> tag specifies a list of pre-defined options for an <input> element.
-/// The <datalist> tag is used to provide an "autocomplete" feature on <input> elements. Users will see a drop-down list of pre-defined options as they input data.
-/// Use the <input> element's list attribute to bind it together with a <datalist> element.
+/// The `<datalist>`element
+///
+///
 public struct DataList: ContentNode {
 
     public var name: String { "datalist" }
@@ -1627,6 +1633,9 @@ public struct DataList: ContentNode {
     }
 }
 
+/// The `<optgroup>`element
+///
+///
 public struct OptionGroup: ContentNode, ValueableAttribute, LabelAttribute {
 
     public var name: String { "optgroup" }
@@ -1645,6 +1654,9 @@ public struct OptionGroup: ContentNode, ValueableAttribute, LabelAttribute {
     }
 }
 
+/// The `<option>`element
+///
+///
 public struct Option: ContentNode, ValueableAttribute {
 
     public var name: String { "option" }
@@ -1667,6 +1679,9 @@ public struct Option: ContentNode, ValueableAttribute {
     }
 }
 
+/// The `<textarea>`element
+///
+///
 public struct TextArea: ContentNode, NameableAttribute, PlaceholderAttribute, RequiredAttribute, LocalizableNode {
 
     public typealias NameType = String
@@ -1703,9 +1718,9 @@ public struct TextArea: ContentNode, NameableAttribute, PlaceholderAttribute, Re
     }
 }
 
-/// The <details> tag specifies additional details that the user can view or hide on demand.
-/// The <details> tag can be used to create an interactive widget that the user can open and close. Any sort of content can be put inside the <details> tag.
-/// The content of a <details> element should not be visible unless the open attribute is set.
+/// The `<details>`element
+///
+///
 public struct Details: ContentNode {
 
     public var name: String { "details" }
@@ -1724,6 +1739,9 @@ public struct Details: ContentNode {
     }
 }
 
+/// The `<summary>`element
+///
+///
 public struct Summary: ContentNode {
 
     public var name: String { "summary" }
@@ -1742,8 +1760,9 @@ public struct Summary: ContentNode {
     }
 }
 
-/// The <dialog> tag defines a dialog box or window.
-/// The <dialog> element makes it easy to create popup dialogs and modals on a web page.
+/// The `<dialog>`element
+///
+///
 public struct Dialog: ContentNode {
 
     public var name: String { "dialog" }
@@ -1762,6 +1781,9 @@ public struct Dialog: ContentNode {
     }
 }
 
+/// The `<script>`element
+///
+///
 public struct Script: ContentNode, TypableAttribute, MediaSourceableAttribute {
 
     public var name: String { "script" }
@@ -1780,6 +1802,9 @@ public struct Script: ContentNode, TypableAttribute, MediaSourceableAttribute {
     }
 }
 
+/// The `<canvas>`element
+///
+///
 public struct Canvas: ContentNode, SizableAttribute {
 
     public var name: String { "canvas" }

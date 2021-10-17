@@ -1,3 +1,6 @@
+/// The component ist for
+///
+///
 public struct Title: HTMLComponent, AttributeNode, LocalizableNode {
 
     struct Node: ContentNode {
@@ -62,6 +65,9 @@ public struct Title: HTMLComponent, AttributeNode, LocalizableNode {
     }
 }
 
+/// The component ist for
+///
+///
 public struct Stylesheet: HTMLComponent {
 
     @TemplateValue(String.self)
@@ -83,6 +89,9 @@ public struct Stylesheet: HTMLComponent {
     }
 }
 
+/// The component ist for
+///
+///
 public struct Description: HTMLComponent, LocalizableNode {
 
     var description: HTMLContent
@@ -131,6 +140,9 @@ public struct Description: HTMLComponent, LocalizableNode {
     }
 }
 
+/// The component ist for
+///
+///
 public struct FavIcon: HTMLComponent {
 
     let url: TemplateValue<String>
@@ -148,6 +160,9 @@ public struct FavIcon: HTMLComponent {
     }
 }
 
+/// The component ist for
+///
+///
 public struct Viewport: HTMLComponent {
 
     public enum WidthMode {
@@ -175,6 +190,9 @@ public struct Viewport: HTMLComponent {
     }
 }
 
+/// The component ist for
+///
+///
 public struct Author: HTMLComponent, LocalizableNode {
 
     var author: HTMLContent

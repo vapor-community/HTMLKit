@@ -1,3 +1,6 @@
+/// The node is for
+///
+///
 public protocol ContentNode: AttributeNode {
 
     var name: String { get }
@@ -34,6 +37,9 @@ extension ContentNode {
     }
 }
 
+/// The node is for
+///
+///
 public protocol EmptyNode: AttributeNode {
 
     var name: String { get }
@@ -62,6 +68,9 @@ extension EmptyNode {
     }
 }
 
+/// The node is for
+///
+///
 public protocol AttributeNode: AddableAttributeNode {
 
     func copy(with attributes: [HTMLAttribute]) -> Self
@@ -133,6 +142,9 @@ extension AttributeNode {
     }
 }
 
+/// The node is for
+///
+///
 public protocol AddableAttributeNode: HTMLContent, GlobalAttributes {
 
     var attributes: [HTMLAttribute] { get }

@@ -2,16 +2,13 @@
 
 // MARK: attributes
 
+/// The protocol provides
+///
+///
 public protocol GlobalAttributes {
 
-    /// The accesskey attribute specifies a shortcut key to activate/focus an element.
-    /// **Note**: The way of accessing the shortcut key is varying in different browsers:
     func accessKey(_ value: HTMLContent) -> Self
-
-    /// Specifies one or more classnames for an element (refers to a class in a style sheet)
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
+    
     func `class`(_ value: HTMLContent) -> Self
 
     func data(for key: String, value: HTMLContent) -> Self
@@ -24,62 +21,26 @@ public protocol GlobalAttributes {
 
     func style(css: HTMLContent) -> Self
 
-    /// The contenteditable attribute specifies whether the content of an element is editable or not.
-    /// Note: When the contenteditable attribute is not set on an element, the element will inherit it from its parent.
     func isEditable(_ value: Conditionable) -> Self
 
-    /// Specifies the text direction for the content in an element
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
     func direction(_ value: HTMLTextDirection) -> Self
 
-    /// Specifies the text direction for the content in an element
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
     func direction(_ value: TemplateValue<HTMLTextDirection>) -> Self
 
-    /// Specifies that an element is not yet, or is no longer, relevant
-    ///
-    /// - Returns: An attribute node
     func isHidden(_ value: Conditionable) -> Self
 
-    /// Specifies a unique id for an element
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
     func id(_ value: HTMLContent) -> Self
 
-    /// Specifies the language of the element's content
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
     func lang(_ value: TemplateValue<String>) -> Self
 
-    /// Specifies whether the element is to have its spelling and grammar checked or not
     func isSpellchecked(_ value: Conditionable) -> Self
 
-    /// Specifies the tabbing order of an element
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
     func tabIndex(_ value: TemplateValue<Int>) -> Self
 
-    /// Specifies extra information about an element
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
     func title(_ value: HTMLContent) -> Self
 
-
-    /// ARIA defines semantics that can be applied to elements, with these divided into roles (defining a type of user interface element) and states and properties that are supported by a role.
-    /// Authors must assign an ARIA role and the appropriate states and properties to an element during its life-cycle, unless the element already has appropriate ARIA semantics (via use of an appropriate HTML element).
-    /// Addition of ARIA semantics only exposes extra information to a browser's accessibility API, and does not affect a page's DOM.
-    /// - Parameter text: The role to use
     func role(_ text: HTMLContent) -> Self
 
-    /// The onclick attribute fires on a mouse click on the element.
     func on(click: HTMLContent) -> Self
 }
 
@@ -158,11 +119,11 @@ extension GlobalAttributes where Self: AttributeNode {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol TypableAttribute {
-    /// Specifies the type of element
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
+
     func type(_ value: TemplateValue<String>) -> Self
 }
 
@@ -172,6 +133,9 @@ extension TypableAttribute where Self: AttributeNode {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol SizableAttribute {
     func height(_ height: Int) -> Self
     func width(_ width: Int) -> Self
@@ -187,6 +151,9 @@ extension SizableAttribute where Self: AttributeNode {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol ValueableAttribute {
     func max(value: HTMLContent) -> Self
     func min(value: HTMLContent) -> Self
@@ -208,6 +175,9 @@ extension ValueableAttribute where Self: AttributeNode {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol LabelAttribute {
     func label(_ value: HTMLContent) -> Self
 }
@@ -218,12 +188,10 @@ extension LabelAttribute where Self: AttributeNode {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol HyperlinkReferenceAttribute {
-
-    /// Specifies the URL of the page the link goes to
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
     func href(_ value: HTMLContent) -> Self
 }
 
@@ -233,12 +201,10 @@ extension HyperlinkReferenceAttribute where Self: AttributeNode {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol RelationshipAttribute {
-
-    /// Specifies the relationship between the current document and the linked document
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
     func relationship(_ value: RelationshipTypes) -> Self
 
     associatedtype RelationshipTypes: RawRepresentable where RelationshipTypes.RawValue == String
@@ -250,11 +216,10 @@ extension RelationshipAttribute where Self: AttributeNode {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol FormInputCompanionAttributes {
-    /// Specifies which form element(s) a label/calculation is bound to
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
     func `for`(_ value: HTMLContent) -> Self
 }
 
@@ -264,6 +229,9 @@ extension FormInputCompanionAttributes where Self: AttributeNode {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol RequiredAttribute {
     func required() -> Self
 }
@@ -274,6 +242,9 @@ extension RequiredAttribute where Self: AttributeNode {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol PlaceholderAttribute {
     func placeholder(_ text: HTMLContent) -> Self
 }
@@ -290,11 +261,10 @@ extension PlaceholderAttribute {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol MediaSourceableAttribute {
-    /// Specifies the URL of the media file
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
     func source(_ link: HTMLContent) -> Self
 }
 
@@ -304,20 +274,15 @@ extension MediaSourceableAttribute where Self: AttributeNode {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol NameableAttribute {
 
     associatedtype NameType: RawRepresentable where NameType.RawValue == String
 
-    /// Specifies the name of the element
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
     func name(_ value: NameType) -> Self
 
-    /// Specifies the name of the element
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
     func name(_ value: TemplateValue<String>) -> Self
 }
 
@@ -331,11 +296,10 @@ extension NameableAttribute where Self: AttributeNode {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol ContentableAttribute {
-    /// Gives the value associated with the http-equiv or name attribute
-    ///
-    /// - Parameter value: The value of the attribute
-    /// - Returns: An attribute node
     func content(_ value: HTMLContent) -> Self
 }
 
@@ -345,9 +309,10 @@ extension ContentableAttribute where Self: AttributeNode {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol OpenableAttribute {
-    /// Specifies that the dialog element is active and that the user can interact with it
-    /// - Parameter condition: The condition if open is added
     func isOpen(_ condition: Conditionable) -> Self
 }
 
@@ -357,10 +322,10 @@ extension OpenableAttribute where Self: AttributeNode {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol TargetableAttribute {
-    /// The target attribute specifies a name or a keyword that indicates where to display the response that is received after submitting the form.
-    /// The target attribute defines a name of, or keyword for, a browsing context (e.g. tab, window, or inline frame).
-    /// - Parameter type: The target to add
     func target(_ type: TargetTypes) -> Self
 }
 
@@ -370,6 +335,9 @@ extension TargetableAttribute where Self: AttributeNode {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol PatternAttribute {
     func pattern(regex: String) -> Self
 }
@@ -380,6 +348,9 @@ extension AttributeNode where Self: PatternAttribute {
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol LengthAttribute {
     func minLength(_ length: Int) -> Self
     func maxLength(_ length: Int) -> Self
@@ -395,6 +366,9 @@ extension AttributeNode where Self: LengthAttribute {
     }
 }
 
+/// The protocol provides
+///
+/// 
 public protocol FormableAttributes {
     func action(_ value: HTMLContent) -> Self
     func method(_ method: FormMethodTypes) -> Self
