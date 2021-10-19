@@ -8,7 +8,7 @@ import Lingo
 struct VariableTest: HTMLTemplate {
     typealias Context = String
 
-    var body: HTML { context.escaping(.unsafeNone) }
+    var body: HTMLContent { context.escaping(.unsafeNone) }
 }
 
 final class HTMLKitTests: XCTestCase {

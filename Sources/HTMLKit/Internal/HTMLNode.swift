@@ -4,13 +4,13 @@ public struct HTMLNode: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTML
+    public var content: HTMLContent
 
-    public init(@HTMLBuilder builder: () -> HTML) {
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTML = "") {
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
         self.content = content
         self.attributes = attributes
     }

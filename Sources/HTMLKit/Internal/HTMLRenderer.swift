@@ -221,7 +221,7 @@ public class HTMLRenderer: HTMLRenderable {
     public class Formula {
 
         /// The different pices or ingredients needed to render the view
-        var ingredient: [HTML]
+        var ingredient: [HTMLContent]
 
         /// The calendar to use when rendering dates
         var calendar: Calendar
@@ -255,7 +255,7 @@ public class HTMLRenderer: HTMLRenderable {
         /// Adds a generic `Mappable` object
         ///
         /// - Parameter mappable: The `Mappable` to add
-        public func add(mappable: HTML) {
+        public func add(mappable: HTMLContent) {
             if let stringRepresentation = mappable as? String {
                 add(string: stringRepresentation)
             } else {

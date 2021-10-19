@@ -72,7 +72,7 @@ public enum TemplateValue<Value> {
 //    }
 }
 
-extension TemplateValue: HTML where Value: HTML {
+extension TemplateValue: HTMLContent where Value: HTMLContent {
 
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         switch self {

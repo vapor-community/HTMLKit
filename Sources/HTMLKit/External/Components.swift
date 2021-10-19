@@ -1,3 +1,6 @@
+/// The component ist for
+///
+///
 public struct Title: HTMLComponent, AttributeNode, LocalizableNode {
 
     struct Node: ContentNode {
@@ -5,15 +8,15 @@ public struct Title: HTMLComponent, AttributeNode, LocalizableNode {
 
         public var attributes: [HTMLAttribute] = []
 
-        public var content: HTML
+        public var content: HTMLContent
     }
 
-    let content: HTML
+    let content: HTMLContent
     public var attributes: [HTMLAttribute]
     let useOpenGraphMetadata: Conditionable
     let useTwitterMetadata: Conditionable
 
-    public var body: HTML {
+    public var body: HTMLContent {
         [
             Node(attributes: attributes, content: content),
             IF(useOpenGraphMetadata) { Meta().property("og:title").content(content) },
@@ -35,14 +38,14 @@ public struct Title: HTMLComponent, AttributeNode, LocalizableNode {
         useTwitterMetadata = true
     }
 
-    public init(@HTMLBuilder builder: () -> HTML) {
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
         content = builder()
         attributes = []
         useOpenGraphMetadata = true
         useTwitterMetadata = true
     }
 
-    init(attributes: [HTMLAttribute] = [], content: HTML = "", useOpenGraphMetadata: Conditionable = true, useTwitterMetadata: Conditionable = true) {
+    init(attributes: [HTMLAttribute] = [], content: HTMLContent = "", useOpenGraphMetadata: Conditionable = true, useTwitterMetadata: Conditionable = true) {
         self.content = content
         self.attributes = attributes
         self.useOpenGraphMetadata = useOpenGraphMetadata
@@ -62,6 +65,9 @@ public struct Title: HTMLComponent, AttributeNode, LocalizableNode {
     }
 }
 
+/// The component ist for
+///
+///
 public struct Stylesheet: HTMLComponent {
 
     @TemplateValue(String.self)
@@ -75,7 +81,7 @@ public struct Stylesheet: HTMLComponent {
         self.url = .constant(url)
     }
 
-    public var body: HTML {
+    public var body: HTMLContent {
         Link()
             .relationship(.stylesheet)
             .href(url)
@@ -83,14 +89,17 @@ public struct Stylesheet: HTMLComponent {
     }
 }
 
+/// The component ist for
+///
+///
 public struct Description: HTMLComponent, LocalizableNode {
 
-    var description: HTML
+    var description: HTMLContent
 
     let useOpenGraphMetadata: Conditionable
     let useTwitterMetadata: Conditionable
 
-    public var body: HTML {
+    public var body: HTMLContent {
         [
             Meta().name(.description).content(description),
             IF(useOpenGraphMetadata) { Meta().property("og:description").content(description) },
@@ -98,7 +107,7 @@ public struct Description: HTMLComponent, LocalizableNode {
         ]
     }
 
-    public init(description: () -> HTML) {
+    public init(description: () -> HTMLContent) {
         self.description = description()
         self.useTwitterMetadata = true
         self.useOpenGraphMetadata = true
@@ -116,7 +125,7 @@ public struct Description: HTMLComponent, LocalizableNode {
         self.useOpenGraphMetadata = true
     }
 
-    init(description: HTML, useOpenGraphMetadata: Conditionable, useTwitterMetadata: Conditionable) {
+    init(description: HTMLContent, useOpenGraphMetadata: Conditionable, useTwitterMetadata: Conditionable) {
         self.description = description
         self.useOpenGraphMetadata = useOpenGraphMetadata
         self.useTwitterMetadata = useTwitterMetadata
@@ -131,6 +140,9 @@ public struct Description: HTMLComponent, LocalizableNode {
     }
 }
 
+/// The component ist for
+///
+///
 public struct FavIcon: HTMLComponent {
 
     let url: TemplateValue<String>
@@ -143,11 +155,14 @@ public struct FavIcon: HTMLComponent {
         self.url = url
     }
 
-    public var body: HTML {
+    public var body: HTMLContent {
         Link().relationship(.shortcutIcon).href(url)
     }
 }
 
+/// The component ist for
+///
+///
 public struct Viewport: HTMLComponent {
 
     public enum WidthMode {
@@ -170,19 +185,22 @@ public struct Viewport: HTMLComponent {
         self.internalScale = internalScale
     }
 
-    public var body: HTML {
+    public var body: HTMLContent {
         Meta().name(.viewport).content("width=\(mode.width), initial-scale=\(internalScale)")
     }
 }
 
+/// The component ist for
+///
+///
 public struct Author: HTMLComponent, LocalizableNode {
 
-    var author: HTML
+    var author: HTMLContent
 
     @TemplateValue(String?.self)
     var twitterHandle
 
-    public var body: HTML {
+    public var body: HTMLContent {
         [
             Meta().name(.author).content(author),
             Unwrap(twitterHandle) { handle in
@@ -191,7 +209,7 @@ public struct Author: HTMLComponent, LocalizableNode {
         ]
     }
 
-    public init(author: () -> HTML) {
+    public init(author: () -> HTMLContent) {
         self.author = author()
     }
 
@@ -203,7 +221,7 @@ public struct Author: HTMLComponent, LocalizableNode {
         author = Localized(key: localizedKey, context: context)
     }
 
-    init(author: HTML, handle: TemplateValue<String?>) {
+    init(author: HTMLContent, handle: TemplateValue<String?>) {
         self.author = author
         self.twitterHandle = handle
     }

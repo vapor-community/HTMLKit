@@ -65,7 +65,7 @@ public class HTMLContext<Value> {
     }
 } 
 
-extension HTMLContext: HTML where Value: HTML {
+extension HTMLContext: HTMLContent where Value: HTMLContent {
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         applyEscaping(
             try manager.value(for: self)
@@ -172,7 +172,7 @@ public class TemplateValueMapping<B, C> {
     }
 }
 
-extension TemplateValueMapping: HTML where C: HTML {
+extension TemplateValueMapping: HTMLContent where C: HTMLContent {
 
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         switch variable {
@@ -194,8 +194,8 @@ struct StringValue {
     }
 }
 
-public protocol HTMLPage: HTML {
-    var body: HTML { get }
+public protocol HTMLPage: HTMLContent {
+    var body: HTMLContent { get }
 }
 
 public typealias HTMLComponent = HTMLPage
@@ -209,14 +209,14 @@ extension HTMLPage {
         try body.prerender(formula)
     }
 
-    public var scripts: HTML { body.scripts }
+    public var scripts: HTMLContent { body.scripts }
 }
 
-public protocol HTMLTemplate: HTML {
+public protocol HTMLTemplate: HTMLContent {
     associatedtype Context
     var context: TemplateValue<Context> { get }
 
-    var body: HTML { get }
+    var body: HTMLContent { get }
 }
 
 extension HTMLTemplate {
@@ -230,5 +230,5 @@ extension HTMLTemplate {
         try body.prerender(formula)
     }
 
-    public var scripts: HTML { body.scripts }
+    public var scripts: HTMLContent { body.scripts }
 }
