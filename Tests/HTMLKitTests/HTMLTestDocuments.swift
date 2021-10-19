@@ -52,7 +52,7 @@ struct SimplePage: HTMLTemplate {
     var body: HTMLContent {
         Document(type: .html5) {
             Head {
-                Title { context }
+                MetaTitle { context }
             }
             Body {
                 P { context }
@@ -76,7 +76,7 @@ struct BaseView: HTMLComponent {
     var body: HTMLContent {
         Document(type: .html5) {
             Head {
-                Title { context }
+                MetaTitle { context }
                     .useTwitter(metadata: false)
                     .useOpenGraph(metadata: false)
                 Stylesheet(url: "some url")
@@ -1065,7 +1065,7 @@ struct Test: HTMLTemplate {
     var body: HTMLContent {
         Document(type: .html5) {
             Head {
-                Title { "Welkom bij Autimatisering" }
+                MetaTitle { "Welkom bij Autimatisering" }
                 Meta().add(.init(attribute: "charset", value: "utf8"))
                 Meta().add(.init(attribute: "viewport", value: "width=device-width, initial-scale=1"))
                 Link().add(.init(attribute: "stylesheet", value: "https://autimatisering.nl/styles/template.css"))
@@ -1140,8 +1140,8 @@ struct MetadataTest: HTMLPage {
             Head {
                 Author { "Mats" }
                     .twitter(handle: "@MatsMoll")
-                Title { "Some title" }
-                Description { "Some description" }
+                MetaTitle { "Some title" }
+                MetaDescription { "Some description" }
             }
         }
     }
@@ -1160,8 +1160,8 @@ struct MetadataTestDynamic: HTMLTemplate {
             Head {
                 Author { context.name }
                     .twitter(handle: context.handle)
-                Title { "Some title" }
-                Description { "Some description" }
+                MetaTitle { "Some title" }
+                MetaDescription { "Some description" }
             }
         }
     }
