@@ -1,19 +1,3 @@
-
-
-extension LocalizableNode {
-    public init<T>(_ localizedKey: String, with context: T) where T: Encodable {
-        self.init(localizedKey, with: TemplateValue<T>.constant(context))
-    }
-}
-
-@_functionBuilder
-public class HTMLBuilder {
-
-    public static func buildBlock(_ children: HTML...) -> HTML {
-        return children
-    }
-}
-
 public struct Div: ContentNode {
 
     public var name: String { "div" }
@@ -364,24 +348,6 @@ public struct Span: ContentNode {
     }
 }
 
-public struct HTMLNode: ContentNode {
-
-    public var name: String { "html" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: HTML
-
-    public init(@HTMLBuilder builder: () -> HTML) {
-        content = builder()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: HTML = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
 public struct Body: ContentNode {
 
     public var name: String { "body" }
@@ -433,70 +399,6 @@ public struct Header: ContentNode {
     public init(attributes: [HTMLAttribute] = [], content: HTML = "") {
         self.content = content
         self.attributes = attributes
-    }
-}
-
-public struct Title: HTMLComponent, AttributeNode, LocalizableNode {
-
-    struct Node: ContentNode {
-        public var name: String { "title" }
-
-        public var attributes: [HTMLAttribute] = []
-
-        public var content: HTML
-    }
-
-    let content: HTML
-    public var attributes: [HTMLAttribute]
-    let useOpenGraphMetadata: Conditionable
-    let useTwitterMetadata: Conditionable
-
-    public var body: HTML {
-        [
-            Node(attributes: attributes, content: content),
-            IF(useOpenGraphMetadata) { Meta().property("og:title").content(content) },
-            IF(useTwitterMetadata) { Meta().name("twitter:title").content(content) }
-        ]
-    }
-
-    public init(_ localizedKey: String) {
-        content = Localized(key: localizedKey)
-        attributes = []
-        useOpenGraphMetadata = true
-        useTwitterMetadata = true
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        content = Localized(key: localizedKey, context: context)
-        attributes = []
-        useOpenGraphMetadata = true
-        useTwitterMetadata = true
-    }
-
-    public init(@HTMLBuilder builder: () -> HTML) {
-        content = builder()
-        attributes = []
-        useOpenGraphMetadata = true
-        useTwitterMetadata = true
-    }
-
-    init(attributes: [HTMLAttribute] = [], content: HTML = "", useOpenGraphMetadata: Conditionable = true, useTwitterMetadata: Conditionable = true) {
-        self.content = content
-        self.attributes = attributes
-        self.useOpenGraphMetadata = useOpenGraphMetadata
-        self.useTwitterMetadata = useTwitterMetadata
-    }
-
-    public func useOpenGraph(metadata: Conditionable) -> Title {
-        .init(attributes: attributes, content: content, useOpenGraphMetadata: metadata, useTwitterMetadata: useTwitterMetadata)
-    }
-
-    public func useTwitter(metadata: Conditionable) -> Title {
-        .init(attributes: attributes, content: content, useOpenGraphMetadata: useOpenGraphMetadata, useTwitterMetadata: metadata)
-    }
-
-    public func copy(with attributes: [HTMLAttribute]) -> Title {
-        .init(attributes: attributes, content: content, useOpenGraphMetadata: useOpenGraphMetadata, useTwitterMetadata: useTwitterMetadata)
     }
 }
 
@@ -627,8 +529,6 @@ public struct Abbreviation: ContentNode {
         self.attributes = attributes
     }
 }
-
-typealias Acronym = Abbreviation
 
 /// The <address> tag defines the contact information for the author/owner of a document or an article.
 /// If the <address> element is inside the <body> element, it represents contact information for the document.
@@ -810,8 +710,6 @@ public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute
     }
 }
 
-public typealias Hyperlink = Anchor
-
 public struct Nav: ContentNode {
 
     public var name: String { "nav" }
@@ -827,47 +725,6 @@ public struct Nav: ContentNode {
     public init(attributes: [HTMLAttribute] = [], content: HTML = "") {
         self.content = content
         self.attributes = attributes
-    }
-}
-
-public enum FormEncodeTypes: String {
-    /// Default. All characters are encoded before sent (spaces are converted to "+" symbols, and special characters are converted to ASCII HEX values)
-    case urlEncoded = "application/x-www-form-urlencoded"
-
-    /// No characters are encoded. This value is required when you are using forms that have a file upload control
-    case formData = "multipart/form-data"
-
-    /// Spaces are converted to "+" symbols, but no special characters are encoded
-    case plain = "text/plain"
-}
-
-public enum FormMethodTypes: String {
-    case post
-    case get
-}
-
-public protocol FormableAttributes {
-    func action(_ value: HTML) -> Self
-    func method(_ method: FormMethodTypes) -> Self
-    func encodeType(_ type: FormEncodeTypes) -> Self
-    func isAutocomplete(_ condition: Conditionable) -> Self
-}
-
-extension FormableAttributes where Self: AttributeNode {
-    public func action(_ value: HTML) -> Self {
-        add(.init(attribute: "action", value: value))
-    }
-
-    public func method(_ method: FormMethodTypes) -> Self {
-        add(.init(attribute: "method", value: method.rawValue))
-    }
-
-    public func encodeType(_ type: FormEncodeTypes) -> Self {
-        add(.init(attribute: "enctype", value: type.rawValue))
-    }
-
-    public func isAutocomplete(_ condition: Conditionable) -> Self {
-        add(.init(attribute: "autocomplete", value: IF(condition) { "on" }.else { "off" }))
     }
 }
 
@@ -1041,6 +898,61 @@ public struct Select: AttributeNode, NameableAttribute {
     }
 }
 
+extension Select {
+    public init(@HTMLBuilder builder: () -> HTML) {
+        content = builder()
+        isMultiple = false
+    }
+}
+
+extension Select {
+    public init<B>(_ elements: TemplateValue<[B]>) where B: HTML {
+        isMultiple = false
+        content = ForEach(in: elements) { variable in
+            Option { variable }
+        }
+    }
+}
+
+// Easier use of TemplateVariable.constant()
+extension Select {
+    public init<A>(in elements: A) where A : Sequence, A.Element : HTML {
+        isMultiple = false
+        content = ForEach<A>(in: .constant(elements)) { variable in
+            Option { variable }
+        }
+    }
+}
+
+extension Select {
+    public func copy(with attributes: [HTMLAttribute]) -> Select {
+        .init(attributes: attributes, content: content, isMultiple: isMultiple)
+    }
+
+    public func isMultiple(_ isMultiple: Conditionable) -> Select {
+        .init(attributes: attributes, content: content, isMultiple: isMultiple)
+    }
+
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        formula.add(string: "<\(name)")
+        try attributes.forEach {
+            formula.add(string: " ")
+            try $0.prerender(formula)
+        }
+        let ifView = IF(isMultiple) { " multiple" }
+        try ifView.prerender(formula) // Need to prerender the different paths
+
+        formula.add(mappable: ifView)
+        formula.add(string: ">")
+        try content.prerender(formula)
+        formula.add(string: "</\(name)>")
+    }
+
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        fatalError()
+    }
+}
+
 public struct Option: ContentNode, ValueableAttribute {
 
     public var name: String { "option" }
@@ -1080,7 +992,6 @@ public struct OptionGroup: ContentNode, ValueableAttribute, LabelAttribute {
         self.attributes = attributes
     }
 }
-
 
 public struct Canvas: ContentNode, SizableAttribute {
 
@@ -1500,6 +1411,7 @@ public struct Summary: ContentNode {
     }
 }
 
+
 /// The <dialog> tag defines a dialog box or window.
 /// The <dialog> element makes it easy to create popup dialogs and modals on a web page.
 public struct Dialog: ContentNode {
@@ -1535,158 +1447,6 @@ public struct Emphasized: ContentNode {
 
     public init(attributes: [HTMLAttribute] = [], content: HTML = "") {
         self.content = content
-        self.attributes = attributes
-    }
-}
-
-extension Select {
-    public init(@HTMLBuilder builder: () -> HTML) {
-        content = builder()
-        isMultiple = false
-    }
-}
-
-extension Select {
-    public init<B>(_ elements: TemplateValue<[B]>) where B: HTML {
-        isMultiple = false
-        content = ForEach(in: elements) { variable in
-            Option { variable }
-        }
-    }
-}
-
-// Easier use of TemplateVariable.constant()
-extension Select {
-    public init<A>(in elements: A) where A : Sequence, A.Element : HTML {
-        isMultiple = false
-        content = ForEach<A>(in: .constant(elements)) { variable in
-            Option { variable }
-        }
-    }
-}
-
-extension Select {
-    public func copy(with attributes: [HTMLAttribute]) -> Select {
-        .init(attributes: attributes, content: content, isMultiple: isMultiple)
-    }
-
-    public func isMultiple(_ isMultiple: Conditionable) -> Select {
-        .init(attributes: attributes, content: content, isMultiple: isMultiple)
-    }
-
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
-        formula.add(string: "<\(name)")
-        try attributes.forEach {
-            formula.add(string: " ")
-            try $0.prerender(formula)
-        }
-        let ifView = IF(isMultiple) { " multiple" }
-        try ifView.prerender(formula) // Need to prerender the different paths
-
-        formula.add(mappable: ifView)
-        formula.add(string: ">")
-        try content.prerender(formula)
-        formula.add(string: "</\(name)>")
-    }
-
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        fatalError()
-    }
-}
-
-public struct Link: DatableNode, TypableAttribute, HyperlinkReferenceAttribute, RelationshipAttribute {
-
-    public enum RelationshipTypes: String {
-        /// Provides a link to an alternate version of the document (i.e. print page, translated or mirror).
-        /// Example: <link rel="alternate" type="application/atom+xml" title="W3Schools News" href="/blog/news/atom">
-        case alternate
-
-        /// Provides a link to the author of the document
-        case author
-
-        /// Specifies that the browser should preemptively perform DNS resolution for the target resource's origin
-        case dnsPrefetch = "dns-prefetch"
-
-        /// Provides a link to a help document. Example: <link rel="help" href="/help/">
-        case help
-
-        /// Imports an icon to represent the document.
-        /// Example: <link rel="icon" href="/favicon.ico" type="image/x-icon">
-        case icon
-
-        /// Provides a link to copyright information for the document
-        case license
-
-        /// Provides a link to the next document in the series
-        case next
-
-        /// Provides the address of the pingback server that handles pingbacks to the current document
-        case pingback
-
-        /// Specifies that the browser should preemptively connect to the target resource's origin.
-        case preconnect
-
-        /// Specifies that the browser should preemptively fetch and cache the target resource as it is likely to be required for a follow-up navigation
-        case prefetch
-
-        /// Specifies that the browser agent must preemptively fetch and cache the target resource for current navigation according to the destination given by the "as" attribute (and the priority associated with that destination).
-        case preload
-
-        /// Specifies that the browser should pre-render (load) the specified webpage in the background. So, if the user navigates to this page, it speeds up the page load (because the page is already loaded). Warning! This waste the user's bandwidth! Only use prerender if it is absolutely sure that the webpage is required at some point in the user journey
-        case prerender
-
-        /// The previous document in a selection
-        case prev
-
-        /// Links to a search tool for the document
-        case search
-
-        /// Imports a style sheet
-        case stylesheet
-
-        case shortcutIcon = "shortcut icon"
-
-        case appleTouchIcon = "apple-touch-icon"
-    }
-
-    public var name: String { "link" }
-
-    public var attributes: [HTMLAttribute]
-
-    public init(attributes: [HTMLAttribute] = []) {
-        self.attributes = attributes
-    }
-}
-
-public struct Stylesheet: HTMLComponent {
-
-    @TemplateValue(String.self)
-    var url
-
-    public init(url: TemplateValue<String>) {
-        self.url = url
-    }
-
-    public init(url: String) {
-        self.url = .constant(url)
-    }
-
-    public var body: HTML {
-        Link()
-            .relationship(.stylesheet)
-            .href(url)
-            .type("text/css")
-    }
-}
-
-/// Specifies the base URL/target for all relative URLs in a document
-public struct Base: DatableNode, HyperlinkReferenceAttribute {
-
-    public var name: String { "base" }
-
-    public var attributes: [HTMLAttribute]
-
-    public init(attributes: [HTMLAttribute] = []) {
         self.attributes = attributes
     }
 }
@@ -1748,6 +1508,18 @@ public struct Source: DatableNode {
     }
 }
 
+/// Specifies the base URL/target for all relative URLs in a document
+public struct Base: DatableNode, HyperlinkReferenceAttribute {
+
+    public var name: String { "base" }
+
+    public var attributes: [HTMLAttribute]
+
+    public init(attributes: [HTMLAttribute] = []) {
+        self.attributes = attributes
+    }
+}
+
 public struct Meta: DatableNode, NameableAttribute, ContentableAttribute {
 
     public enum NameType: String {
@@ -1792,121 +1564,6 @@ public struct Meta: DatableNode, NameableAttribute, ContentableAttribute {
 
     public func property(_ property: String) -> Meta {
         add(.init(attribute: "property", value: property))
-    }
-}
-
-public struct Description: HTMLComponent, LocalizableNode {
-
-    var description: HTML
-
-    let useOpenGraphMetadata: Conditionable
-    let useTwitterMetadata: Conditionable
-
-    public var body: HTML {
-        [
-            Meta().name(.description).content(description),
-            IF(useOpenGraphMetadata) { Meta().property("og:description").content(description) },
-            IF(useTwitterMetadata) { Meta().name("twitter:description").content(description) }
-        ]
-    }
-
-    public init(description: () -> HTML) {
-        self.description = description()
-        self.useTwitterMetadata = true
-        self.useOpenGraphMetadata = true
-    }
-
-    public init(_ localizedKey: String) {
-        description = Localized(key: localizedKey)
-        self.useTwitterMetadata = true
-        self.useOpenGraphMetadata = true
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        description = Localized(key: localizedKey, context: context)
-        self.useTwitterMetadata = true
-        self.useOpenGraphMetadata = true
-    }
-
-    init(description: HTML, useOpenGraphMetadata: Conditionable, useTwitterMetadata: Conditionable) {
-        self.description = description
-        self.useOpenGraphMetadata = useOpenGraphMetadata
-        self.useTwitterMetadata = useTwitterMetadata
-    }
-
-    public func useOpenGraph(metadata: Conditionable) -> Description {
-        .init(description: description, useOpenGraphMetadata: metadata, useTwitterMetadata: useTwitterMetadata)
-    }
-
-    public func useTwitter(metadata: Conditionable) -> Description {
-        .init(description: description, useOpenGraphMetadata: useOpenGraphMetadata, useTwitterMetadata: metadata)
-    }
-}
-
-public struct Author: HTMLComponent, LocalizableNode {
-
-    var author: HTML
-
-    @TemplateValue(String?.self)
-    var twitterHandle
-
-    public var body: HTML {
-        [
-            Meta().name(.author).content(author),
-            Unwrap(twitterHandle) { handle in
-                Meta().name("twitter:creator").content(handle)
-            }
-        ]
-    }
-
-    public init(author: () -> HTML) {
-        self.author = author()
-    }
-
-    public init(_ localizedKey: String) {
-        author = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        author = Localized(key: localizedKey, context: context)
-    }
-
-    init(author: HTML, handle: TemplateValue<String?>) {
-        self.author = author
-        self.twitterHandle = handle
-    }
-
-    public func twitter(handle: TemplateValue<String>) -> Author {
-        .init(author: author, handle: handle.makeOptional())
-    }
-
-    public func twitter(handle: TemplateValue<String?>) -> Author {
-        .init(author: author, handle: handle)
-    }
-}
-
-public protocol LengthAttribute {
-    func minLength(_ length: Int) -> Self
-    func maxLength(_ length: Int) -> Self
-}
-
-extension AttributeNode where Self: LengthAttribute {
-    public func minLength(_ length: Int) -> Self {
-        self.add(HTMLAttribute(attribute: "minlength", value: length))
-    }
-
-    public func maxLength(_ length: Int) -> Self {
-        self.add(HTMLAttribute(attribute: "maxlength", value: length))
-    }
-}
-
-public protocol PatternAttribute {
-    func pattern(regex: String) -> Self
-}
-
-extension AttributeNode where Self: PatternAttribute {
-    public func pattern(regex: String) -> Self {
-        self.add(HTMLAttribute(attribute: "pattern", value: regex))
     }
 }
 
@@ -2029,50 +1686,6 @@ public struct Break: DatableNode {
     }
 }
 
-public struct FavIcon: HTMLComponent {
-
-    let url: TemplateValue<String>
-
-    public init(url: String) {
-        self.url = .constant(url)
-    }
-
-    public init(url: TemplateValue<String>) {
-        self.url = url
-    }
-
-    public var body: HTML {
-        Link().relationship(.shortcutIcon).href(url)
-    }
-}
-
-public struct Viewport: HTMLComponent {
-
-    public enum WidthMode {
-        case accordingToDevice
-        case constant(Int)
-
-        public var width: String {
-            switch self {
-            case .accordingToDevice: return "device-width"
-            case .constant(let width): return "\(width)"
-            }
-        }
-    }
-
-    var mode: WidthMode
-    var internalScale: Double = 1
-
-    public init(_ mode: WidthMode, internalScale: Double = 1) {
-        self.mode = mode
-        self.internalScale = internalScale
-    }
-
-    public var body: HTML {
-        Meta().name(.viewport).content("width=\(mode.width), initial-scale=\(internalScale)")
-    }
-}
-
 /// The <main> tag defines the dominant content of a document.
 public struct Main: ContentNode {
 
@@ -2088,6 +1701,70 @@ public struct Main: ContentNode {
 
     public init(attributes: [HTMLAttribute] = [], content: HTML = "") {
         self.content = content
+        self.attributes = attributes
+    }
+}
+
+public struct Link: DatableNode, TypableAttribute, HyperlinkReferenceAttribute, RelationshipAttribute {
+
+    public enum RelationshipTypes: String {
+        /// Provides a link to an alternate version of the document (i.e. print page, translated or mirror).
+        /// Example: <link rel="alternate" type="application/atom+xml" title="W3Schools News" href="/blog/news/atom">
+        case alternate
+
+        /// Provides a link to the author of the document
+        case author
+
+        /// Specifies that the browser should preemptively perform DNS resolution for the target resource's origin
+        case dnsPrefetch = "dns-prefetch"
+
+        /// Provides a link to a help document. Example: <link rel="help" href="/help/">
+        case help
+
+        /// Imports an icon to represent the document.
+        /// Example: <link rel="icon" href="/favicon.ico" type="image/x-icon">
+        case icon
+
+        /// Provides a link to copyright information for the document
+        case license
+
+        /// Provides a link to the next document in the series
+        case next
+
+        /// Provides the address of the pingback server that handles pingbacks to the current document
+        case pingback
+
+        /// Specifies that the browser should preemptively connect to the target resource's origin.
+        case preconnect
+
+        /// Specifies that the browser should preemptively fetch and cache the target resource as it is likely to be required for a follow-up navigation
+        case prefetch
+
+        /// Specifies that the browser agent must preemptively fetch and cache the target resource for current navigation according to the destination given by the "as" attribute (and the priority associated with that destination).
+        case preload
+
+        /// Specifies that the browser should pre-render (load) the specified webpage in the background. So, if the user navigates to this page, it speeds up the page load (because the page is already loaded). Warning! This waste the user's bandwidth! Only use prerender if it is absolutely sure that the webpage is required at some point in the user journey
+        case prerender
+
+        /// The previous document in a selection
+        case prev
+
+        /// Links to a search tool for the document
+        case search
+
+        /// Imports a style sheet
+        case stylesheet
+
+        case shortcutIcon = "shortcut icon"
+
+        case appleTouchIcon = "apple-touch-icon"
+    }
+
+    public var name: String { "link" }
+
+    public var attributes: [HTMLAttribute]
+
+    public init(attributes: [HTMLAttribute] = []) {
         self.attributes = attributes
     }
 }

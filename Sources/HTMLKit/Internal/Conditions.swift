@@ -2,15 +2,6 @@ protocol IsDefinable {
     var isDefinded: Bool { get }
 }
 
-extension Optional: IsDefinable {
-    var isDefinded: Bool {
-        switch self {
-        case .none: return false
-        default: return true
-        }
-    }
-}
-
 /// A protocol that makes a struct to a condition that can be used in an if
 public protocol Conditionable: HTML {
 

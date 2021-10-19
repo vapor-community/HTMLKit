@@ -14,6 +14,12 @@ public protocol LocalizableNode {
     init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B: Encodable
 }
 
+extension LocalizableNode {
+    public init<T>(_ localizedKey: String, with context: T) where T: Encodable {
+        self.init(localizedKey, with: TemplateValue<T>.constant(context))
+    }
+}
+
 public struct NoData: Encodable {}
 
 public struct Localized<B>: HTML where B: Encodable {
