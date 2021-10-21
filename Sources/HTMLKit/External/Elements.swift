@@ -59,7 +59,7 @@ public struct Head: ContentNode {
 /// The `<base />`element
 ///
 ///
-public struct Base: EmptyNode, ReferenceAttribute {
+public struct Base: EmptyNode, ReferenceAttribute, TargetAttribute {
 
     public var name: String { "base" }
 
@@ -73,7 +73,7 @@ public struct Base: EmptyNode, ReferenceAttribute {
 /// The `<link />`element
 ///
 ///
-public struct Link: EmptyNode, TypeAttribute, ReferenceAttribute, RelationshipAttribute {
+public struct Link: EmptyNode, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute {
 
     public enum RelationshipTypes: String {
 
@@ -108,7 +108,7 @@ public struct Link: EmptyNode, TypeAttribute, ReferenceAttribute, RelationshipAt
 /// The `<meta />`element
 ///
 ///
-public struct Meta: EmptyNode, NameAttribute, ContentAttribute {
+public struct Meta: EmptyNode, ContentAttribute, NameAttribute {
 
     public enum NameType: String {
         
@@ -528,7 +528,7 @@ extension Paragraph: LocalizableNode {
 /// The `<blockquote>`element
 ///
 ///
-public struct Blockquote: ContentNode {
+public struct Blockquote: ContentNode, CiteAttribute {
 
     public var name: String { "blockquote" }
 
@@ -560,7 +560,7 @@ extension Blockquote: LocalizableNode {
 /// The `<ol>`element
 ///
 ///
-public struct OrderedList: ContentNode {
+public struct OrderedList: ContentNode, ReversedAttribute, StartAttribute, TypeAttribute {
 
     public var name: String { "ol" }
 
@@ -602,7 +602,7 @@ public struct UnorderedList: ContentNode {
 /// The `<li>`element
 ///
 ///
-public struct ListItem: ContentNode {
+public struct ListItem: ContentNode, ValueAttribute {
 
     public var name: String { "li" }
 
@@ -728,7 +728,7 @@ public struct Division: ContentNode {
 /// The `<a>`element
 ///
 ///
-public struct Anchor: ContentNode, TypeAttribute, ReferenceAttribute, RelationshipAttribute {
+public struct Anchor: ContentNode, DownloadAttribute, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, PingAttribute, ReferrerPolicyAttribute, RelationshipAttribute, TargetAttribute, TypeAttribute {
 
     public enum RelationshipTypes: String {
 
@@ -763,7 +763,7 @@ public struct Anchor: ContentNode, TypeAttribute, ReferenceAttribute, Relationsh
     }
 
     public func mail(to email: String) -> Anchor {
-        self.href("mailto:\(email)")
+        self.reference("mailto:\(email)")
     }
 }
 
@@ -908,7 +908,7 @@ public struct Abbreviation: ContentNode {
 /// The `<data>`element
 ///
 ///
-public struct Data: ContentNode {
+public struct Data: ContentNode, ValueAttribute {
 
     public var name: String { "data" }
 
@@ -1084,7 +1084,7 @@ public struct LineBreak: EmptyNode {
 /// The `<ins>`element
 ///
 ///
-public struct InsertedText: ContentNode {
+public struct InsertedText: ContentNode, CiteAttribute, DateTimeAttribute {
 
     public var name: String { "ins" }
 
@@ -1105,7 +1105,7 @@ public struct InsertedText: ContentNode {
 /// The `<del>`element
 ///
 ///
-public struct DeletedText: ContentNode {
+public struct DeletedText: ContentNode, CiteAttribute, DateTimeAttribute {
 
     public var name: String { "del" }
 
@@ -1126,7 +1126,7 @@ public struct DeletedText: ContentNode {
 /// The `<source />`element
 ///
 ///
-public struct Source: EmptyNode {
+public struct Source: EmptyNode, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute {
 
     public var name: String { "source" }
 
@@ -1140,7 +1140,7 @@ public struct Source: EmptyNode {
 /// The `<img />`element
 ///
 ///
-public struct Image: EmptyNode, SourceAttribute, WidthAttribute, HeightAttribute {
+public struct Image: EmptyNode, AlternativeAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {
 
     public var name: String { "img" }
 
@@ -1177,10 +1177,10 @@ public struct Embed: EmptyNode, SourceAttribute, TypeAttribute, WidthAttribute, 
     }
 }
 
-/// The `<ins>`element
+/// The `<audio>`element
 ///
 ///
-public struct Audio: ContentNode {
+public struct Audio: ContentNode, SourceAttribute, AutoPlayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute {
 
     public var name: String { "audio" }
 
@@ -1201,7 +1201,10 @@ public struct Audio: ContentNode {
 /// The `<area>`element
 ///
 ///
-public struct Area: ContentNode {
+public struct Area: ContentNode, AlternativeAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
+    
+    public typealias RelationshipTypes = RelationshipType
+    
 
     public var name: String { "area" }
 
@@ -1264,7 +1267,7 @@ public struct Caption: ContentNode {
 /// The `<colgroup>`element
 ///
 ///
-public struct ColumnGroup: ContentNode {
+public struct ColumnGroup: ContentNode, SpanAttribute {
 
     public var name: String { "colgroup" }
 
@@ -1285,7 +1288,7 @@ public struct ColumnGroup: ContentNode {
 /// The `<col>`element
 ///
 ///
-public struct Column: ContentNode {
+public struct Column: ContentNode, SpanAttribute {
 
     public var name: String { "col" }
 
@@ -1369,7 +1372,7 @@ public struct TableRow: ContentNode, WidthAttribute, HeightAttribute {
 /// The `<td>`element
 ///
 ///
-public struct DataCell: ContentNode, WidthAttribute, HeightAttribute {
+public struct DataCell: ContentNode, ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute {
 
     public var name: String { "td" }
 
@@ -1390,7 +1393,7 @@ public struct DataCell: ContentNode, WidthAttribute, HeightAttribute {
 /// The `<th>`element
 ///
 ///
-public struct HeaderCell: ContentNode, WidthAttribute, HeightAttribute {
+public struct HeaderCell: ContentNode, ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute, ScopeAttribute {
 
     public var name: String { "th" }
 
@@ -1422,8 +1425,10 @@ extension HeaderCell: LocalizableNode {
 /// The `<form>`element
 ///
 ///
-public struct Form: ContentNode, NameAttribute, TargetAttribute, ActionAttribute, MethodAttribute, AutoCompleteAttribute, EncodingAttribute {
-
+public struct Form: ContentNode, ActionAttribute, AutoCompleteAttribute, EncodingAttribute, MethodAttribute, NameAttribute, TargetAttribute, RelationshipAttribute {
+    
+    public typealias RelationshipTypes = RelationshipType
+    
     public typealias NameType = String
 
     public var name: String { "form" }
@@ -1477,7 +1482,7 @@ extension Label: LocalizableNode {
 /// The `<input />`element
 ///
 ///
-public struct Input: EmptyNode, TypeAttribute, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, MaximumValueAttribute, MinimumValueAttribute, PlaceholderAttribute, RequiredAttribute, MaximumLengthAttribute, MinimumLengthAttribute, PatternAttribute {
+public struct Input: EmptyNode, AcceptAttribute, AlternativeAttribute, AutoCompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute {
 
     public typealias NameType = String
 
@@ -1534,7 +1539,7 @@ public struct Input: EmptyNode, TypeAttribute, SourceAttribute, NameAttribute, W
 /// The `<button>`element
 ///
 ///
-public struct Button: ContentNode, TypeAttribute, NameAttribute {
+public struct Button: ContentNode, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute {
 
     public typealias NameType = String
 
@@ -1572,7 +1577,7 @@ extension Button: LocalizableNode {
 /// The `<select>`element
 ///
 ///
-public struct Select: AttributeNode, NameAttribute {
+public struct Select: AttributeNode, AutoCompleteAttribute, DisabledAttribute, FormAttribute, MultipleAttribute, NameAttribute, RequiredAttribute, SizeAttribute {
 
     public typealias NameType = String
 
@@ -1684,7 +1689,7 @@ public struct DataList: ContentNode {
 /// The `<optgroup>`element
 ///
 ///
-public struct OptionGroup: ContentNode, MaximumValueAttribute, MinimumValueAttribute, LabelAttribute {
+public struct OptionGroup: ContentNode, DisabledAttribute, LabelAttribute {
 
     public var name: String { "optgroup" }
 
@@ -1705,7 +1710,7 @@ public struct OptionGroup: ContentNode, MaximumValueAttribute, MinimumValueAttri
 /// The `<option>`element
 ///
 ///
-public struct Option: ContentNode, MaximumValueAttribute, MinimumValueAttribute {
+public struct Option: ContentNode, DisabledAttribute, LabelAttribute, ValueAttribute {
 
     public var name: String { "option" }
 
@@ -1730,7 +1735,7 @@ public struct Option: ContentNode, MaximumValueAttribute, MinimumValueAttribute 
 /// The `<textarea>`element
 ///
 ///
-public struct TextArea: ContentNode, NameAttribute, PlaceholderAttribute, RequiredAttribute {
+public struct TextArea: ContentNode, AutoCompleteAttribute, ColumnsAttribute, DisabledAttribute, FormAttribute, MaximumLengthAttribute, MinimumLengthAttribute, NameAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, RowsAttribute, WrapAttribute {
 
     public typealias NameType = String
 
@@ -1772,7 +1777,7 @@ extension TextArea: LocalizableNode {
 /// The `<details>`element
 ///
 ///
-public struct Details: ContentNode {
+public struct Details: ContentNode, OpenAttribute {
 
     public var name: String { "details" }
 
@@ -1814,7 +1819,7 @@ public struct Summary: ContentNode {
 /// The `<dialog>`element
 ///
 ///
-public struct Dialog: ContentNode {
+public struct Dialog: ContentNode, OpenAttribute {
 
     public var name: String { "dialog" }
 
@@ -1835,7 +1840,7 @@ public struct Dialog: ContentNode {
 /// The `<script>`element
 ///
 ///
-public struct Script: ContentNode, TypeAttribute, SourceAttribute {
+public struct Script: ContentNode, AsyncAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute {
 
     public var name: String { "script" }
 

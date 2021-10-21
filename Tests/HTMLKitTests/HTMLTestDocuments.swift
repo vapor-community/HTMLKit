@@ -1082,7 +1082,7 @@ struct Test: HTMLTemplate {
                     Anchor {
                         "Tap here"
                     }
-                    .href("Some value")
+                    .reference("Some value")
                 }
                 .else {
                     "None of them"
@@ -1125,7 +1125,7 @@ struct Test: HTMLTemplate {
                         link.name
                     }
                     .class("selected")
-                    .href(link.link)
+                    .reference(link.link)
                 }
 
             }.id("menu")

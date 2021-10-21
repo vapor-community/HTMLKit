@@ -279,7 +279,7 @@ public protocol ColumnSpanAttribute {
 
 extension ColumnSpanAttribute where Self: AttributeNode {
     
-    public func columSpan(_ size: Int) -> Self {
+    public func columnSpan(_ size: Int) -> Self {
         add(.init(attribute: "colspan", value: size))
     }
 }
@@ -847,7 +847,7 @@ public protocol ReadyOnlyAttribute {
     func readonly() -> Self
 }
 
-extension MutedAttribute where Self: AttributeNode {
+extension ReadyOnlyAttribute where Self: AttributeNode {
     
     public func readonly() -> Self {
         add(.init(attribute: "readonly", value: nil))

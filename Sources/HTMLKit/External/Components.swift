@@ -84,7 +84,7 @@ public struct Stylesheet: HTMLComponent {
     public var body: HTMLContent {
         Link()
             .relationship(.stylesheet)
-            .href(url)
+            .reference(url)
             .type("text/css")
     }
 }
@@ -156,7 +156,9 @@ public struct FavIcon: HTMLComponent {
     }
 
     public var body: HTMLContent {
-        Link().relationship(.shortcutIcon).href(url)
+        Link()
+            .relationship(.shortcutIcon)
+            .reference(url)
     }
 }
 
