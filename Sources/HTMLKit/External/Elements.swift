@@ -59,7 +59,7 @@ public struct Head: ContentNode {
 /// The `<base />`element
 ///
 ///
-public struct Base: EmptyNode, HyperlinkReferenceAttribute {
+public struct Base: EmptyNode, ReferenceAttribute {
 
     public var name: String { "base" }
 
@@ -73,7 +73,7 @@ public struct Base: EmptyNode, HyperlinkReferenceAttribute {
 /// The `<link />`element
 ///
 ///
-public struct Link: EmptyNode, TypableAttribute, HyperlinkReferenceAttribute, RelationshipAttribute {
+public struct Link: EmptyNode, TypeAttribute, ReferenceAttribute, RelationshipAttribute {
 
     public enum RelationshipTypes: String {
 
@@ -108,7 +108,7 @@ public struct Link: EmptyNode, TypableAttribute, HyperlinkReferenceAttribute, Re
 /// The `<meta />`element
 ///
 ///
-public struct Meta: EmptyNode, NameableAttribute, ContentableAttribute {
+public struct Meta: EmptyNode, NameAttribute, ContentAttribute {
 
     public enum NameType: String {
         
@@ -728,7 +728,7 @@ public struct Division: ContentNode {
 /// The `<a>`element
 ///
 ///
-public struct Anchor: ContentNode, TypableAttribute, HyperlinkReferenceAttribute, RelationshipAttribute {
+public struct Anchor: ContentNode, TypeAttribute, ReferenceAttribute, RelationshipAttribute {
 
     public enum RelationshipTypes: String {
 
@@ -1140,7 +1140,7 @@ public struct Source: EmptyNode {
 /// The `<img />`element
 ///
 ///
-public struct Image: EmptyNode, MediaSourceableAttribute, SizableAttribute {
+public struct Image: EmptyNode, SourceAttribute, WidthAttribute, HeightAttribute {
 
     public var name: String { "img" }
 
@@ -1166,7 +1166,7 @@ public struct Image: EmptyNode, MediaSourceableAttribute, SizableAttribute {
 /// The `<embed />`element
 ///
 ///
-public struct Embed: EmptyNode, MediaSourceableAttribute, TypableAttribute, SizableAttribute {
+public struct Embed: EmptyNode, SourceAttribute, TypeAttribute, WidthAttribute, HeightAttribute {
 
     public var name: String { "embed" }
 
@@ -1222,7 +1222,7 @@ public struct Area: ContentNode {
 /// The `<table>`element
 ///
 ///
-public struct Table: ContentNode, SizableAttribute {
+public struct Table: ContentNode, WidthAttribute, HeightAttribute {
 
     public var name: String { "table" }
 
@@ -1306,7 +1306,7 @@ public struct Column: ContentNode {
 /// The `<tbody>`element
 ///
 ///
-public struct TableBody: ContentNode, SizableAttribute {
+public struct TableBody: ContentNode, WidthAttribute, HeightAttribute {
 
     public var name: String { "tbody" }
 
@@ -1327,7 +1327,7 @@ public struct TableBody: ContentNode, SizableAttribute {
 /// The `<thead>`element
 ///
 ///
-public struct TableHead: ContentNode, SizableAttribute {
+public struct TableHead: ContentNode, WidthAttribute, HeightAttribute {
 
     public var name: String { "thead" }
 
@@ -1348,7 +1348,7 @@ public struct TableHead: ContentNode, SizableAttribute {
 /// The `<tr>`element
 ///
 ///
-public struct TableRow: ContentNode, SizableAttribute {
+public struct TableRow: ContentNode, WidthAttribute, HeightAttribute {
 
     public var name: String { "tr" }
 
@@ -1369,7 +1369,7 @@ public struct TableRow: ContentNode, SizableAttribute {
 /// The `<td>`element
 ///
 ///
-public struct DataCell: ContentNode, SizableAttribute {
+public struct DataCell: ContentNode, WidthAttribute, HeightAttribute {
 
     public var name: String { "td" }
 
@@ -1390,7 +1390,7 @@ public struct DataCell: ContentNode, SizableAttribute {
 /// The `<th>`element
 ///
 ///
-public struct HeaderCell: ContentNode, SizableAttribute {
+public struct HeaderCell: ContentNode, WidthAttribute, HeightAttribute {
 
     public var name: String { "th" }
 
@@ -1422,7 +1422,7 @@ extension HeaderCell: LocalizableNode {
 /// The `<form>`element
 ///
 ///
-public struct Form: ContentNode, NameableAttribute, TargetableAttribute, FormableAttributes {
+public struct Form: ContentNode, NameAttribute, TargetAttribute, ActionAttribute, MethodAttribute, AutoCompleteAttribute, EncodingAttribute {
 
     public typealias NameType = String
 
@@ -1445,7 +1445,7 @@ public struct Form: ContentNode, NameableAttribute, TargetableAttribute, Formabl
 /// The `<label>`element
 ///
 ///
-public struct Label: ContentNode, FormInputCompanionAttributes {
+public struct Label: ContentNode, ForAttribute {
 
     public var name: String { "label" }
 
@@ -1477,7 +1477,7 @@ extension Label: LocalizableNode {
 /// The `<input />`element
 ///
 ///
-public struct Input: EmptyNode, TypableAttribute, MediaSourceableAttribute, NameableAttribute, SizableAttribute, ValueableAttribute, PlaceholderAttribute, RequiredAttribute, LengthAttribute, PatternAttribute {
+public struct Input: EmptyNode, TypeAttribute, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, MaximumValueAttribute, MinimumValueAttribute, PlaceholderAttribute, RequiredAttribute, MaximumLengthAttribute, MinimumLengthAttribute, PatternAttribute {
 
     public typealias NameType = String
 
@@ -1534,7 +1534,7 @@ public struct Input: EmptyNode, TypableAttribute, MediaSourceableAttribute, Name
 /// The `<button>`element
 ///
 ///
-public struct Button: ContentNode, TypableAttribute, NameableAttribute {
+public struct Button: ContentNode, TypeAttribute, NameAttribute {
 
     public typealias NameType = String
 
@@ -1572,7 +1572,7 @@ extension Button: LocalizableNode {
 /// The `<select>`element
 ///
 ///
-public struct Select: AttributeNode, NameableAttribute {
+public struct Select: AttributeNode, NameAttribute {
 
     public typealias NameType = String
 
@@ -1684,7 +1684,7 @@ public struct DataList: ContentNode {
 /// The `<optgroup>`element
 ///
 ///
-public struct OptionGroup: ContentNode, ValueableAttribute, LabelAttribute {
+public struct OptionGroup: ContentNode, MaximumValueAttribute, MinimumValueAttribute, LabelAttribute {
 
     public var name: String { "optgroup" }
 
@@ -1705,7 +1705,7 @@ public struct OptionGroup: ContentNode, ValueableAttribute, LabelAttribute {
 /// The `<option>`element
 ///
 ///
-public struct Option: ContentNode, ValueableAttribute {
+public struct Option: ContentNode, MaximumValueAttribute, MinimumValueAttribute {
 
     public var name: String { "option" }
 
@@ -1730,7 +1730,7 @@ public struct Option: ContentNode, ValueableAttribute {
 /// The `<textarea>`element
 ///
 ///
-public struct TextArea: ContentNode, NameableAttribute, PlaceholderAttribute, RequiredAttribute {
+public struct TextArea: ContentNode, NameAttribute, PlaceholderAttribute, RequiredAttribute {
 
     public typealias NameType = String
 
@@ -1835,7 +1835,7 @@ public struct Dialog: ContentNode {
 /// The `<script>`element
 ///
 ///
-public struct Script: ContentNode, TypableAttribute, MediaSourceableAttribute {
+public struct Script: ContentNode, TypeAttribute, SourceAttribute {
 
     public var name: String { "script" }
 
@@ -1856,7 +1856,7 @@ public struct Script: ContentNode, TypableAttribute, MediaSourceableAttribute {
 /// The `<canvas>`element
 ///
 ///
-public struct Canvas: ContentNode, SizableAttribute {
+public struct Canvas: ContentNode, WidthAttribute, HeightAttribute {
 
     public var name: String { "canvas" }
 
