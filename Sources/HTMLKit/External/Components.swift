@@ -1,7 +1,7 @@
 /// The component ist for
 ///
 ///
-public struct Title: HTMLComponent, AttributeNode, LocalizableNode {
+public struct MetaTitle: HTMLComponent, AttributeNode, LocalizableNode {
 
     struct Node: ContentNode {
         public var name: String { "title" }
@@ -52,15 +52,15 @@ public struct Title: HTMLComponent, AttributeNode, LocalizableNode {
         self.useTwitterMetadata = useTwitterMetadata
     }
 
-    public func useOpenGraph(metadata: Conditionable) -> Title {
+    public func useOpenGraph(metadata: Conditionable) -> MetaTitle {
         .init(attributes: attributes, content: content, useOpenGraphMetadata: metadata, useTwitterMetadata: useTwitterMetadata)
     }
 
-    public func useTwitter(metadata: Conditionable) -> Title {
+    public func useTwitter(metadata: Conditionable) -> MetaTitle {
         .init(attributes: attributes, content: content, useOpenGraphMetadata: useOpenGraphMetadata, useTwitterMetadata: metadata)
     }
 
-    public func copy(with attributes: [HTMLAttribute]) -> Title {
+    public func copy(with attributes: [HTMLAttribute]) -> MetaTitle {
         .init(attributes: attributes, content: content, useOpenGraphMetadata: useOpenGraphMetadata, useTwitterMetadata: useTwitterMetadata)
     }
 }
@@ -84,7 +84,7 @@ public struct Stylesheet: HTMLComponent {
     public var body: HTMLContent {
         Link()
             .relationship(.stylesheet)
-            .href(url)
+            .reference(url)
             .type("text/css")
     }
 }
@@ -92,7 +92,7 @@ public struct Stylesheet: HTMLComponent {
 /// The component ist for
 ///
 ///
-public struct Description: HTMLComponent, LocalizableNode {
+public struct MetaDescription: HTMLComponent, LocalizableNode {
 
     var description: HTMLContent
 
@@ -131,11 +131,11 @@ public struct Description: HTMLComponent, LocalizableNode {
         self.useTwitterMetadata = useTwitterMetadata
     }
 
-    public func useOpenGraph(metadata: Conditionable) -> Description {
+    public func useOpenGraph(metadata: Conditionable) -> MetaDescription {
         .init(description: description, useOpenGraphMetadata: metadata, useTwitterMetadata: useTwitterMetadata)
     }
 
-    public func useTwitter(metadata: Conditionable) -> Description {
+    public func useTwitter(metadata: Conditionable) -> MetaDescription {
         .init(description: description, useOpenGraphMetadata: useOpenGraphMetadata, useTwitterMetadata: metadata)
     }
 }
@@ -156,7 +156,9 @@ public struct FavIcon: HTMLComponent {
     }
 
     public var body: HTMLContent {
-        Link().relationship(.shortcutIcon).href(url)
+        Link()
+            .relationship(.shortcutIcon)
+            .reference(url)
     }
 }
 
