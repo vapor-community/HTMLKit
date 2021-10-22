@@ -46,7 +46,7 @@ public struct Document: HTMLPage, AttributeNode {
     public var body: HTMLContent {
         [
             "<!DOCTYPE \(type.rawValue)>",
-            HTMLNode { content }.add(attributes: attributes)
+            Html { content }.add(attributes: attributes)
         ]
     }
 

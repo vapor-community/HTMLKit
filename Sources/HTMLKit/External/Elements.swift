@@ -6,28 +6,46 @@ public typealias H3 = Heading3
 public typealias H4 = Heading4
 public typealias H5 = Heading5
 public typealias H6 = Heading6
+public typealias Hgroup = HeadingGroup
 public typealias P = Paragraph
+public typealias Hr = HorizontalRule
+public typealias Pre = PreformattedText
 public typealias Ol = OrderedList
 public typealias Ul = UnorderedList
 public typealias Li = ListItem
 public typealias Dl = DescriptionList
 public typealias Dt = TermName
 public typealias Dd = TermDefinition
+public typealias Figcaption = FigureCaption
 public typealias Div = Division
 public typealias A = Anchor
 public typealias Em = Emphasize
 public typealias S = StrikeThrough
+public typealias Q = ShortQuote
+public typealias Dfn = Definition
 public typealias Abbr = Abbreviation
+public typealias Rt = RubyText
+public typealias Rp = RubyPronunciation
+public typealias V = Variable
+public typealias Samp = SampleOutput
+public typealias Kbd = KeyboardInput
+public typealias Sub = Subscript
+public typealias Sup = Superscript
 public typealias I = Italic
 public typealias B = Bold
+public typealias U = Underline
 public typealias Br = LineBreak
+public typealias Wbr = WordBreak
 public typealias Ins = InsertedText
 public typealias Del = DeletedText
 public typealias Img = Image
+public typealias Iframe = InlineFrame
+public typealias Param = Parameter
 public typealias Colgroup = ColumnGroup
 public typealias Col = Column
 public typealias Tbody = TableBody
 public typealias Thead = TableHead
+public typealias Tfoot = TableFoot
 public typealias Tr = TableRow
 public typealias Td = DataCell
 public typealias Th = HeaderCell
@@ -41,6 +59,27 @@ public typealias Optgroup = OptionGroup
 public struct Head: ContentNode {
 
     public var name: String { "head" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<title>`element
+///
+///
+public struct Title: ContentNode {
+
+    public var name: String { "title" }
 
     public var attributes: [HTMLAttribute] = []
 
@@ -130,6 +169,48 @@ public struct Meta: EmptyNode, ContentAttribute, NameAttribute {
 
     public func property(_ property: String) -> Meta {
         add(.init(attribute: "property", value: property))
+    }
+}
+
+/// The `<style>`element
+///
+///
+public struct Style: ContentNode, TypeAttribute, MediaAttribute {
+
+    public var name: String { "style" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<html>`element
+///
+///
+public struct Html: ContentNode {
+
+    public var name: String { "html" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
     }
 }
 
@@ -430,6 +511,27 @@ extension Heading6: LocalizableNode {
     }
 }
 
+/// The `<hgroup>`element
+///
+///
+public struct HeadingGroup: ContentNode {
+
+    public var name: String { "hgroup" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
 /// The `<header>`element
 ///
 ///
@@ -522,6 +624,41 @@ extension Paragraph: LocalizableNode {
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
+    }
+}
+
+/// The `<hr />`element
+///
+///
+public struct HorizontalRule: EmptyNode {
+
+    public var attributes: [HTMLAttribute]
+
+    public var name: String { "hr" }
+
+    public init(attributes: [HTMLAttribute] = []) {
+        self.attributes = attributes
+    }
+}
+
+/// The `<pre>`element
+///
+///
+public struct PreformattedText: ContentNode {
+
+    public var name: String { "pre" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
     }
 }
 
@@ -683,6 +820,48 @@ public struct TermDefinition: ContentNode {
     }
 }
 
+/// The `<figure>`element
+///
+///
+public struct Figure: ContentNode {
+
+    public var name: String { "figure" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<figcaption>`element
+///
+///
+public struct FigureCaption: ContentNode {
+
+    public var name: String { "figcaption" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
 /// The `<main>`element
 ///
 ///
@@ -799,6 +978,27 @@ public struct Emphasize: ContentNode {
     }
 }
 
+/// The `<strong>`element
+///
+///
+public struct Strong: ContentNode {
+
+    public var name: String { "strong" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
 /// The `<small>`element
 ///
 ///
@@ -884,12 +1084,117 @@ public struct Cite: ContentNode {
     }
 }
 
+/// The `<q>`element
+///
+///
+public struct ShortQuote: ContentNode, CiteAttribute {
+
+    public var name: String { "q" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<dfn>`element
+///
+///
+public struct Definition: ContentNode {
+
+    public var name: String { "dfn" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
 /// The `<abbr>`element
 ///
 ///
 public struct Abbreviation: ContentNode {
 
     public var name: String { "abbr" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<ruby>`element
+///
+///
+public struct Ruby: ContentNode {
+
+    public var name: String { "ruby" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<rt>`element
+///
+///
+public struct RubyText: ContentNode {
+
+    public var name: String { "rt" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<rp>`element
+///
+///
+public struct RubyPronunciation: ContentNode {
+
+    public var name: String { "rp" }
 
     public var attributes: [HTMLAttribute] = []
 
@@ -926,12 +1231,138 @@ public struct Data: ContentNode, ValueAttribute {
     }
 }
 
+/// The `<time>`element
+///
+///
+public struct Time: ContentNode, DateTimeAttribute {
+
+    public var name: String { "time" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
 /// The `<code>`element
 ///
 ///
 public struct Code: ContentNode {
 
     public var name: String { "code" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<var>`element
+///
+///
+public struct Variable: ContentNode {
+
+    public var name: String { "v" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<samp>`element
+///
+///
+public struct SampleOutput: ContentNode {
+
+    public var name: String { "samp" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<kbd>`element
+///
+///
+public struct KeyboardInput: ContentNode {
+
+    public var name: String { "kbd" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<sub>`element
+///
+///
+public struct Subscript: ContentNode {
+
+    public var name: String { "sub" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<sup>`element
+///
+///
+public struct Superscript: ContentNode {
+
+    public var name: String { "sup" }
 
     public var attributes: [HTMLAttribute] = []
 
@@ -1011,6 +1442,59 @@ extension Bold: LocalizableNode {
     }
 }
 
+/// The `<u>`element
+///
+///
+public struct Underline: ContentNode {
+
+    public var name: String { "u" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+extension Underline: LocalizableNode {
+    
+    public init(_ localizedKey: String) {
+        content = Localized(key: localizedKey)
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        content = Localized(key: localizedKey, context: context)
+    }
+}
+
+/// The `<mark>`element
+///
+///
+public struct Mark: ContentNode {
+
+    public var name: String { "mark" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
 /// The `<bdi>`element
 ///
 ///
@@ -1081,6 +1565,20 @@ public struct LineBreak: EmptyNode {
     }
 }
 
+/// The `<wbr>`element
+///
+///
+public struct WordBreak: EmptyNode {
+
+    public var attributes: [HTMLAttribute]
+
+    public var name: String { "wbr" }
+
+    public init(attributes: [HTMLAttribute] = []) {
+        self.attributes = attributes
+    }
+}
+
 /// The `<ins>`element
 ///
 ///
@@ -1108,6 +1606,27 @@ public struct InsertedText: ContentNode, CiteAttribute, DateTimeAttribute {
 public struct DeletedText: ContentNode, CiteAttribute, DateTimeAttribute {
 
     public var name: String { "del" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<picture>`element
+///
+///
+public struct Picture: ContentNode {
+
+    public var name: String { "picture" }
 
     public var attributes: [HTMLAttribute] = []
 
@@ -1163,6 +1682,29 @@ public struct Image: EmptyNode, AlternativeAttribute, SourceAttribute, SizesAttr
     }
 }
 
+/// The `<iframe>`element
+///
+///
+public struct InlineFrame: ContentNode, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {
+    
+    public typealias NameType = String
+    
+    public var name: String { "iframe" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
 /// The `<embed />`element
 ///
 ///
@@ -1177,12 +1719,109 @@ public struct Embed: EmptyNode, SourceAttribute, TypeAttribute, WidthAttribute, 
     }
 }
 
+/// The `<object>`element
+///
+///
+public struct Object: ContentNode, DataAttribute, TypeAttribute, NameAttribute, FormAttribute, WidthAttribute, HeightAttribute {
+
+    public typealias NameType = String
+    
+    public var name: String { "object" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<param />`element
+///
+///
+public struct Parameter: EmptyNode, NameAttribute, ValueAttribute {
+    
+    public typealias NameType = String
+    
+    public var name: String { "param" }
+
+    public var attributes: [HTMLAttribute]
+
+    public init(attributes: [HTMLAttribute] = []) {
+        self.attributes = attributes
+    }
+}
+
+/// The `<video>`element
+///
+///
+public struct Video: ContentNode, SourceAttribute, AutoPlayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute {
+
+    public var name: String { "video" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
 /// The `<audio>`element
 ///
 ///
 public struct Audio: ContentNode, SourceAttribute, AutoPlayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute {
 
     public var name: String { "audio" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<track />`element
+///
+///
+public struct Track: EmptyNode, KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute {
+
+    public var name: String { "track" }
+
+    public var attributes: [HTMLAttribute]
+
+    public init(attributes: [HTMLAttribute] = []) {
+        self.attributes = attributes
+    }
+}
+
+/// The `<map>`element
+///
+///
+public struct Map: ContentNode, NameAttribute {
+
+    public typealias NameType = String
+    
+    public var name: String { "map" }
 
     public var attributes: [HTMLAttribute] = []
 
@@ -1333,6 +1972,27 @@ public struct TableBody: ContentNode, WidthAttribute, HeightAttribute {
 public struct TableHead: ContentNode, WidthAttribute, HeightAttribute {
 
     public var name: String { "thead" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<tfoot>`element
+///
+///
+public struct TableFoot: ContentNode {
+
+    public var name: String { "tfoot" }
 
     public var attributes: [HTMLAttribute] = []
 
@@ -1774,6 +2434,115 @@ extension TextArea: LocalizableNode {
     }
 }
 
+/// The `<output>`element
+///
+///
+public struct Output: ContentNode, ForAttribute, FormAttribute, NameAttribute {
+
+    public typealias NameType = String
+    
+    public var name: String { "output" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<progress>`element
+///
+///
+public struct Progress: ContentNode, ValueAttribute, MaximumValueAttribute {
+
+    public var name: String { "progress" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<meter>`element
+///
+///
+public struct Meter: ContentNode, ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, HighAttribute, OptimumAttribute {
+
+    public var name: String { "meter" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<fieldset>`element
+///
+///
+public struct Fieldset: ContentNode, DisabledAttribute, FormAttribute, NameAttribute {
+
+    public typealias NameType = String
+    
+    public var name: String { "fieldset" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<legend>`element
+///
+///
+public struct Legend: ContentNode {
+
+    public var name: String { "legend" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
 /// The `<details>`element
 ///
 ///
@@ -1843,6 +2612,48 @@ public struct Dialog: ContentNode, OpenAttribute {
 public struct Script: ContentNode, AsyncAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute {
 
     public var name: String { "script" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<noscript>`element
+///
+///
+public struct NoScript: ContentNode {
+
+    public var name: String { "noscript" }
+
+    public var attributes: [HTMLAttribute] = []
+
+    public var content: HTMLContent
+
+    public init(@HTMLBuilder builder: () -> HTMLContent) {
+        content = builder()
+    }
+
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+        self.content = content
+        self.attributes = attributes
+    }
+}
+
+/// The `<template>`element
+///
+///
+public struct Template: ContentNode {
+
+    public var name: String { "template" }
 
     public var attributes: [HTMLAttribute] = []
 
