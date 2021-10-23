@@ -29,7 +29,7 @@ extension HTMLAttribute: HTMLContent {
         try IF(isIncluded) {
             attribute
             IF(value != nil) {
-                "='" + (value ?? "") + "'"
+                "=\"" + (value ?? "") + "\""
             }
         }.render(with: manager)
     }
@@ -38,7 +38,7 @@ extension HTMLAttribute: HTMLContent {
         try IF(isIncluded) {
             attribute
             IF(value != nil) {
-                "='" + (value ?? "") + "'"
+                "=\"" + (value ?? "") + "\""
             }
         }.prerender(formula)
     }
