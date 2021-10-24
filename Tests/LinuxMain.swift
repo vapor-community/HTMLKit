@@ -1,7 +1,9 @@
 import XCTest
+@testable import HTMLKitTests
 
-import HTMLKitTests
-
-var tests = [XCTestCaseEntry]()
-tests += HTMLKitTests.allTests()
-XCTMain(tests)
+XCTMain([
+    testCase(ElementTests.allTests),
+    testCase(LocalizationTests.allTests),
+    testCase(PerformanceTests.allTests),
+    testCase(RenderingTests.allTests)
+])

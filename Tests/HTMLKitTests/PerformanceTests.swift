@@ -75,3 +75,11 @@ final class PerformanceTests: XCTestCase {
     }
 }
 
+extension PerformanceTests {
+    
+    static var allTests = [
+        ("testPerformanceRenderingWhenUsingDefault", testPerformanceRenderingWhenUsingDefault),
+        ("testPerformanceRenderingWhenUsingTypealiases", testPerformanceRenderingWhenUsingTypealiases)
+    ]
+}
+

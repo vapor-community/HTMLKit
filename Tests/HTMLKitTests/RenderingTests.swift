@@ -114,3 +114,14 @@ final class RenderingTests: XCTestCase {
         )
     }
 }
+
+extension RenderingTests {
+    
+    static var allTests = [
+        ("testRenderingContentTag", testRenderingContentTag),
+        ("testRenderingEmptyTag", testRenderingEmptyTag),
+        ("testRenderingAttributes", testRenderingAttributes),
+        ("testNesting", testNesting),
+        ("testEscaping", testEscaping)
+    ]
+}

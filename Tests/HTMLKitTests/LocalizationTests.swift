@@ -52,3 +52,9 @@ extension LocalizationTests {
     }
 }
 
+extension LocalizationTests {
+    
+    static var allTests = [
+        ("testLocalization", testLocalization)
+    ]
+}
