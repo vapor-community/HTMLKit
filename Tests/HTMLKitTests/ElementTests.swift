@@ -1413,22 +1413,6 @@ final class ElementTests: XCTestCase {
         )
     }
     
-    func testSelectElement() throws {
-        
-        let view = TestPage {
-            Select {
-            }
-        }
-        
-        try renderer.add(view: view)
-        
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
-                       """
-                       <select></select>
-                       """
-        )
-    }
-    
     func testDataListElement() throws {
         
         let view = TestPage {
