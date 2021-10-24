@@ -11,7 +11,7 @@ final class PerformanceTests: XCTestCase {
             content
         }
         
-        init(@HTMLBuilder builder : () -> HTMLContent) {
+        init(@HTMLBuilder builder: () -> HTMLContent) {
             content = builder()
         }
     }
@@ -22,9 +22,6 @@ final class PerformanceTests: XCTestCase {
         
         let view = TestPage {
             Html {
-                Head {
-                    
-                }
                 Body {
                     Header {
                         Heading1 {
@@ -37,9 +34,6 @@ final class PerformanceTests: XCTestCase {
                                 "Test"
                             }
                         }
-                    }
-                    Footer {
-                        
                     }
                 }
             }
@@ -56,9 +50,6 @@ final class PerformanceTests: XCTestCase {
         
         let view = TestPage {
             Html {
-                Head {
-                    
-                }
                 Body {
                     Header {
                         H1 {
@@ -71,9 +62,6 @@ final class PerformanceTests: XCTestCase {
                                 "Test"
                             }
                         }
-                    }
-                    Footer {
-                        
                     }
                 }
             }

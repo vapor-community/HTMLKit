@@ -1,7 +1,6 @@
 import HTMLKit
 import XCTest
 
-
 final class RenderingTests: XCTestCase {
     
     struct TestPage: HTMLPage {
@@ -12,7 +11,7 @@ final class RenderingTests: XCTestCase {
             content
         }
         
-        init(@HTMLBuilder builder : () -> HTMLContent) {
+        init(@HTMLBuilder builder: () -> HTMLContent) {
             content = builder()
         }
     }
@@ -24,6 +23,9 @@ final class RenderingTests: XCTestCase {
         
         let view = TestPage {
             Division {
+                Paragraph {
+                    "text"
+                }
             }
         }
         
@@ -31,7 +33,9 @@ final class RenderingTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <div></div>
+                       <div>\
+                       <p>text</p>\
+                       </div>
                        """
         )
     }

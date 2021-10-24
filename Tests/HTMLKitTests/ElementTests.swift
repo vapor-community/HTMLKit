@@ -1,7 +1,6 @@
 import HTMLKit
 import XCTest
 
-
 final class ElementTests: XCTestCase {
     
     struct TestPage: HTMLPage {
@@ -22,8 +21,7 @@ final class ElementTests: XCTestCase {
     func testHeadElement() throws {
         
         let view = TestPage {
-            Head {
-            }
+            Head()
         }
         
         try renderer.add(view: view)
@@ -38,16 +36,14 @@ final class ElementTests: XCTestCase {
     func testTitleElement() throws {
         
         let view = TestPage {
-            Title {
-                "text"
-            }
+            Title()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <title>text</title>
+                       <title></title>
                        """
         )
     }
@@ -100,8 +96,7 @@ final class ElementTests: XCTestCase {
     func testStyleElement() throws {
         
         let view = TestPage {
-            Style {
-            }
+            Style()
         }
         
         try renderer.add(view: view)
@@ -116,8 +111,7 @@ final class ElementTests: XCTestCase {
     func testHtmlElement() throws {
         
         let view = TestPage {
-            Html {
-            }
+            Html()
         }
         
         try renderer.add(view: view)
@@ -132,8 +126,7 @@ final class ElementTests: XCTestCase {
     func testBodyElement() throws {
         
         let view = TestPage {
-            Body {
-            }
+            Body()
         }
         
         try renderer.add(view: view)
@@ -148,8 +141,7 @@ final class ElementTests: XCTestCase {
     func testArticleElement() throws {
         
         let view = TestPage {
-            Article {
-            }
+            Article()
         }
         
         try renderer.add(view: view)
@@ -164,8 +156,7 @@ final class ElementTests: XCTestCase {
     func testSectionElement() throws {
         
         let view = TestPage {
-            Section {
-            }
+            Section()
         }
         
         try renderer.add(view: view)
@@ -180,8 +171,7 @@ final class ElementTests: XCTestCase {
     func testNavigationElement() throws {
         
         let view = TestPage {
-            Navigation {
-            }
+            Navigation()
         }
         
         try renderer.add(view: view)
@@ -196,8 +186,7 @@ final class ElementTests: XCTestCase {
     func testAsideElement() throws {
         
         let view = TestPage {
-            Aside {
-            }
+            Aside()
         }
         
         try renderer.add(view: view)
@@ -212,16 +201,14 @@ final class ElementTests: XCTestCase {
     func testHeading1Element() throws {
         
         let view = TestPage {
-            Heading1 {
-                "text"
-            }
+            Heading1()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <h1>text</h1>
+                       <h1></h1>
                        """
         )
     }
@@ -229,16 +216,14 @@ final class ElementTests: XCTestCase {
     func testHeading2Element() throws {
         
         let view = TestPage {
-            Heading2 {
-                "text"
-            }
+            Heading2()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <h2>text</h2>
+                       <h2></h2>
                        """
         )
     }
@@ -246,16 +231,14 @@ final class ElementTests: XCTestCase {
     func testHeading3Element() throws {
         
         let view = TestPage {
-            Heading3 {
-                "text"
-            }
+            Heading3()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <h3>text</h3>
+                       <h3></h3>
                        """
         )
     }
@@ -263,16 +246,14 @@ final class ElementTests: XCTestCase {
     func testHeading4Element() throws {
         
         let view = TestPage {
-            Heading4 {
-                "text"
-            }
+            Heading4()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <h4>text</h4>
+                       <h4></h4>
                        """
         )
     }
@@ -280,16 +261,14 @@ final class ElementTests: XCTestCase {
     func testHeading5Element() throws {
         
         let view = TestPage {
-            Heading5 {
-                "text"
-            }
+            Heading5()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <h5>text</h5>
+                       <h5></h5>
                        """
         )
     }
@@ -297,16 +276,14 @@ final class ElementTests: XCTestCase {
     func testHeading6Element() throws {
         
         let view = TestPage {
-            Heading6 {
-                "text"
-            }
+            Heading6()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <h6>text</h6>
+                       <h6></h6>
                        """
         )
     }
@@ -314,8 +291,7 @@ final class ElementTests: XCTestCase {
     func testHeadingGroupElement() throws {
         
         let view = TestPage {
-            HeadingGroup {
-            }
+            HeadingGroup()
         }
         
         try renderer.add(view: view)
@@ -330,8 +306,7 @@ final class ElementTests: XCTestCase {
     func testHeaderElement() throws {
         
         let view = TestPage {
-            Header {
-            }
+            Header()
         }
         
         try renderer.add(view: view)
@@ -346,8 +321,7 @@ final class ElementTests: XCTestCase {
     func testFooterElement() throws {
         
         let view = TestPage {
-            Footer {
-            }
+            Footer()
         }
         
         try renderer.add(view: view)
@@ -362,8 +336,7 @@ final class ElementTests: XCTestCase {
     func testAdressElement() throws {
         
         let view = TestPage {
-            Address {
-            }
+            Address()
         }
         
         try renderer.add(view: view)
@@ -378,16 +351,14 @@ final class ElementTests: XCTestCase {
     func testParagraphElement() throws {
         
         let view = TestPage {
-            Paragraph {
-                "text"
-            }
+            Paragraph()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <p>text</p>
+                       <p></p>
                        """
         )
     }
@@ -410,16 +381,14 @@ final class ElementTests: XCTestCase {
     func testPreformattedTextElement() throws {
         
         let view = TestPage {
-            PreformattedText {
-                "text"
-            }
+            PreformattedText()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <pre>text</pre>
+                       <pre></pre>
                        """
         )
     }
@@ -427,16 +396,14 @@ final class ElementTests: XCTestCase {
     func testBlockquoteElement() throws {
         
         let view = TestPage {
-            Blockquote {
-                "text"
-            }
+            Blockquote()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <blockquote>text</blockquote>
+                       <blockquote></blockquote>
                        """
         )
     }
@@ -444,8 +411,7 @@ final class ElementTests: XCTestCase {
     func testOrderedListElement() throws {
         
         let view = TestPage {
-            OrderedList {
-            }
+            OrderedList()
         }
         
         try renderer.add(view: view)
@@ -460,8 +426,7 @@ final class ElementTests: XCTestCase {
     func testUnorderedListElement() throws {
         
         let view = TestPage {
-            UnorderedList {
-            }
+            UnorderedList()
         }
         
         try renderer.add(view: view)
@@ -476,8 +441,7 @@ final class ElementTests: XCTestCase {
     func testListItemElement() throws {
         
         let view = TestPage {
-            ListItem {
-            }
+            ListItem()
         }
         
         try renderer.add(view: view)
@@ -492,8 +456,7 @@ final class ElementTests: XCTestCase {
     func testDescriptionListElement() throws {
         
         let view = TestPage {
-            DescriptionList {
-            }
+            DescriptionList()
         }
         
         try renderer.add(view: view)
@@ -508,8 +471,7 @@ final class ElementTests: XCTestCase {
     func testTermNameElement() throws {
         
         let view = TestPage {
-            TermName {
-            }
+            TermName()
         }
         
         try renderer.add(view: view)
@@ -524,8 +486,7 @@ final class ElementTests: XCTestCase {
     func testTermDefinitionElement() throws {
         
         let view = TestPage {
-            TermDefinition {
-            }
+            TermDefinition()
         }
         
         try renderer.add(view: view)
@@ -540,8 +501,7 @@ final class ElementTests: XCTestCase {
     func testFigureElement() throws {
         
         let view = TestPage {
-            Figure {
-            }
+            Figure()
         }
         
         try renderer.add(view: view)
@@ -556,8 +516,7 @@ final class ElementTests: XCTestCase {
     func testFigureCaptionElement() throws {
         
         let view = TestPage {
-            FigureCaption {
-            }
+            FigureCaption()
         }
         
         try renderer.add(view: view)
@@ -572,8 +531,7 @@ final class ElementTests: XCTestCase {
     func testMainElement() throws {
         
         let view = TestPage {
-            Main {
-            }
+            Main()
         }
         
         try renderer.add(view: view)
@@ -588,8 +546,7 @@ final class ElementTests: XCTestCase {
     func testDivisionElement() throws {
         
         let view = TestPage {
-            Division {
-            }
+            Division()
         }
         
         try renderer.add(view: view)
@@ -604,8 +561,7 @@ final class ElementTests: XCTestCase {
     func testAnchorElement() throws {
         
         let view = TestPage {
-            Anchor {
-            }
+            Anchor()
         }
         
         try renderer.add(view: view)
@@ -620,16 +576,14 @@ final class ElementTests: XCTestCase {
     func testEmphasizeElement() throws {
         
         let view = TestPage {
-            Emphasize {
-                "text"
-            }
+            Emphasize()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <em>text</em>
+                       <em></em>
                        """
         )
     }
@@ -637,16 +591,14 @@ final class ElementTests: XCTestCase {
     func testStrongElement() throws {
         
         let view = TestPage {
-            Strong {
-                "text"
-            }
+            Strong()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <strong>text</strong>
+                       <strong></strong>
                        """
         )
     }
@@ -654,16 +606,14 @@ final class ElementTests: XCTestCase {
     func testSmallElement() throws {
         
         let view = TestPage {
-            Small {
-                "text"
-            }
+            Small()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <small>text</small>
+                       <small></small>
                        """
         )
     }
@@ -671,16 +621,14 @@ final class ElementTests: XCTestCase {
     func testStrikeThroughElement() throws {
         
         let view = TestPage {
-            StrikeThrough {
-                "text"
-            }
+            StrikeThrough()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <s>text</s>
+                       <s></s>
                        """
         )
     }
@@ -688,16 +636,14 @@ final class ElementTests: XCTestCase {
     func testCiteElement() throws {
         
         let view = TestPage {
-            Cite {
-                "text"
-            }
+            Cite()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <cite>text</cite>
+                       <cite></cite>
                        """
         )
     }
@@ -705,16 +651,14 @@ final class ElementTests: XCTestCase {
     func testShortQuoteElement() throws {
         
         let view = TestPage {
-            ShortQuote {
-                "text"
-            }
+            ShortQuote()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <q>text</q>
+                       <q></q>
                        """
         )
     }
@@ -722,8 +666,7 @@ final class ElementTests: XCTestCase {
     func testDefinitionElement() throws {
         
         let view = TestPage {
-            Definition {
-            }
+            Definition()
         }
         
         try renderer.add(view: view)
@@ -738,8 +681,7 @@ final class ElementTests: XCTestCase {
     func testAbbreviationElement() throws {
         
         let view = TestPage {
-            Abbreviation {
-            }
+            Abbreviation()
         }
         
         try renderer.add(view: view)
@@ -754,8 +696,7 @@ final class ElementTests: XCTestCase {
     func testRubyElement() throws {
         
         let view = TestPage {
-            Ruby {
-            }
+            Ruby()
         }
         
         try renderer.add(view: view)
@@ -770,8 +711,7 @@ final class ElementTests: XCTestCase {
     func testRubyTextElement() throws {
         
         let view = TestPage {
-            RubyText {
-            }
+            RubyText()
         }
         
         try renderer.add(view: view)
@@ -786,8 +726,7 @@ final class ElementTests: XCTestCase {
     func testRubyPronunciationElement() throws {
         
         let view = TestPage {
-            RubyPronunciation {
-            }
+            RubyPronunciation()
         }
         
         try renderer.add(view: view)
@@ -802,8 +741,7 @@ final class ElementTests: XCTestCase {
     func testDataElement() throws {
         
         let view = TestPage {
-            Data {
-            }
+            HTMLKit.Data()
         }
         
         try renderer.add(view: view)
@@ -818,8 +756,7 @@ final class ElementTests: XCTestCase {
     func testTimeElement() throws {
         
         let view = TestPage {
-            Time {
-            }
+            Time()
         }
         
         try renderer.add(view: view)
@@ -834,8 +771,7 @@ final class ElementTests: XCTestCase {
     func testCodeElement() throws {
         
         let view = TestPage {
-            Code {
-            }
+            Code()
         }
         
         try renderer.add(view: view)
@@ -850,8 +786,7 @@ final class ElementTests: XCTestCase {
     func testVariableElement() throws {
         
         let view = TestPage {
-            Variable {
-            }
+            Variable()
         }
         
         try renderer.add(view: view)
@@ -866,8 +801,7 @@ final class ElementTests: XCTestCase {
     func testSampleOutputElement() throws {
         
         let view = TestPage {
-            SampleOutput {
-            }
+            SampleOutput()
         }
         
         try renderer.add(view: view)
@@ -882,8 +816,7 @@ final class ElementTests: XCTestCase {
     func testKeyboardInputElement() throws {
         
         let view = TestPage {
-            KeyboardInput {
-            }
+            KeyboardInput()
         }
         
         try renderer.add(view: view)
@@ -898,8 +831,7 @@ final class ElementTests: XCTestCase {
     func testSubscriptElement() throws {
         
         let view = TestPage {
-            Subscript {
-            }
+            Subscript()
         }
         
         try renderer.add(view: view)
@@ -914,8 +846,7 @@ final class ElementTests: XCTestCase {
     func testSuperscriptElement() throws {
         
         let view = TestPage {
-            Superscript {
-            }
+            Superscript()
         }
         
         try renderer.add(view: view)
@@ -930,8 +861,7 @@ final class ElementTests: XCTestCase {
     func testItalicElement() throws {
         
         let view = TestPage {
-            Italic {
-            }
+            Italic()
         }
         
         try renderer.add(view: view)
@@ -946,16 +876,14 @@ final class ElementTests: XCTestCase {
     func testBoldElement() throws {
         
         let view = TestPage {
-            Bold {
-                "text"
-            }
+            Bold()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <b>text</b>
+                       <b></b>
                        """
         )
     }
@@ -963,16 +891,14 @@ final class ElementTests: XCTestCase {
     func testUnderlineElement() throws {
         
         let view = TestPage {
-            Underline {
-                "text"
-            }
+            Underline()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <u>text</u>
+                       <u></u>
                        """
         )
     }
@@ -980,16 +906,14 @@ final class ElementTests: XCTestCase {
     func testMarkElement() throws {
         
         let view = TestPage {
-            Mark {
-                "text"
-            }
+            Mark()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <mark>text</mark>
+                       <mark></mark>
                        """
         )
     }
@@ -997,8 +921,7 @@ final class ElementTests: XCTestCase {
     func testBdiElement() throws {
         
         let view = TestPage {
-            Bdi {
-            }
+            Bdi()
         }
         
         try renderer.add(view: view)
@@ -1028,8 +951,7 @@ final class ElementTests: XCTestCase {
     func testSpanElement() throws {
         
         let view = TestPage {
-            Span {
-            }
+            Span()
         }
         
         try renderer.add(view: view)
@@ -1074,16 +996,14 @@ final class ElementTests: XCTestCase {
     func testInsertedTextElement() throws {
         
         let view = TestPage {
-            InsertedText {
-                "text"
-            }
+            InsertedText()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <ins>text</ins>
+                       <ins></ins>
                        """
         )
     }
@@ -1091,16 +1011,14 @@ final class ElementTests: XCTestCase {
     func testDeletedTextElement() throws {
         
         let view = TestPage {
-            DeletedText {
-                "text"
-            }
+            DeletedText()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <del>text</del>
+                       <del></del>
                        """
         )
     }
@@ -1108,8 +1026,7 @@ final class ElementTests: XCTestCase {
     func testPictureElement() throws {
         
         let view = TestPage {
-            Picture {
-            }
+            HTMLKit.Picture()
         }
         
         try renderer.add(view: view)
@@ -1154,8 +1071,7 @@ final class ElementTests: XCTestCase {
     func testInlineFrameElement() throws {
         
         let view = TestPage {
-            InlineFrame {
-            }
+            InlineFrame()
         }
         
         try renderer.add(view: view)
@@ -1185,8 +1101,7 @@ final class ElementTests: XCTestCase {
     func testObjectElement() throws {
         
         let view = TestPage {
-            Object {
-            }
+            Object()
         }
         
         try renderer.add(view: view)
@@ -1216,8 +1131,7 @@ final class ElementTests: XCTestCase {
     func testVideoElement() throws {
         
         let view = TestPage {
-            Video {
-            }
+            Video()
         }
         
         try renderer.add(view: view)
@@ -1232,8 +1146,7 @@ final class ElementTests: XCTestCase {
     func testAudioElement() throws {
         
         let view = TestPage {
-            Audio {
-            }
+            Audio()
         }
         
         try renderer.add(view: view)
@@ -1263,8 +1176,7 @@ final class ElementTests: XCTestCase {
     func testMapElement() throws {
         
         let view = TestPage {
-            Map {
-            }
+            Map()
         }
         
         try renderer.add(view: view)
@@ -1279,8 +1191,7 @@ final class ElementTests: XCTestCase {
     func testAreaElement() throws {
         
         let view = TestPage {
-            Area {
-            }
+            Area()
         }
         
         try renderer.add(view: view)
@@ -1295,8 +1206,7 @@ final class ElementTests: XCTestCase {
     func testTableElement() throws {
         
         let view = TestPage {
-            Table {
-            }
+            Table()
         }
         
         try renderer.add(view: view)
@@ -1311,8 +1221,7 @@ final class ElementTests: XCTestCase {
     func testCaptionElement() throws {
         
         let view = TestPage {
-            Caption {
-            }
+            Caption()
         }
         
         try renderer.add(view: view)
@@ -1327,8 +1236,7 @@ final class ElementTests: XCTestCase {
     func testColumnGroupElement() throws {
         
         let view = TestPage {
-            ColumnGroup {
-            }
+            ColumnGroup()
         }
         
         try renderer.add(view: view)
@@ -1343,8 +1251,7 @@ final class ElementTests: XCTestCase {
     func testColumnElement() throws {
         
         let view = TestPage {
-            Column {
-            }
+            Column()
         }
         
         try renderer.add(view: view)
@@ -1359,8 +1266,7 @@ final class ElementTests: XCTestCase {
     func testTableBodyElement() throws {
         
         let view = TestPage {
-            TableBody {
-            }
+            TableBody()
         }
         
         try renderer.add(view: view)
@@ -1375,8 +1281,7 @@ final class ElementTests: XCTestCase {
     func testTableHeadElement() throws {
         
         let view = TestPage {
-            TableHead {
-            }
+            TableHead()
         }
         
         try renderer.add(view: view)
@@ -1421,8 +1326,7 @@ final class ElementTests: XCTestCase {
     func testDataCellElement() throws {
         
         let view = TestPage {
-            DataCell {
-            }
+            DataCell()
         }
         
         try renderer.add(view: view)
@@ -1437,8 +1341,7 @@ final class ElementTests: XCTestCase {
     func testHeaderCellElement() throws {
         
         let view = TestPage {
-            HeaderCell {
-            }
+            HeaderCell()
         }
         
         try renderer.add(view: view)
@@ -1453,8 +1356,7 @@ final class ElementTests: XCTestCase {
     func testFormElement() throws {
         
         let view = TestPage {
-            Form {
-            }
+            Form()
         }
         
         try renderer.add(view: view)
@@ -1469,8 +1371,7 @@ final class ElementTests: XCTestCase {
     func testLabelElement() throws {
         
         let view = TestPage {
-            Label {
-            }
+            Label()
         }
         
         try renderer.add(view: view)
@@ -1500,8 +1401,7 @@ final class ElementTests: XCTestCase {
     func testButtonElement() throws {
         
         let view = TestPage {
-            Button {
-            }
+            Button()
         }
         
         try renderer.add(view: view)
@@ -1532,8 +1432,7 @@ final class ElementTests: XCTestCase {
     func testDataListElement() throws {
         
         let view = TestPage {
-            DataList {
-            }
+            DataList()
         }
         
         try renderer.add(view: view)
@@ -1548,8 +1447,7 @@ final class ElementTests: XCTestCase {
     func testOptionGroupElement() throws {
         
         let view = TestPage {
-            OptionGroup {
-            }
+            OptionGroup()
         }
         
         try renderer.add(view: view)
@@ -1564,8 +1462,7 @@ final class ElementTests: XCTestCase {
     func testOptionElement() throws {
         
         let view = TestPage {
-            Option {
-            }
+            Option()
         }
         
         try renderer.add(view: view)
@@ -1580,16 +1477,14 @@ final class ElementTests: XCTestCase {
     func testTextAreaElement() throws {
         
         let view = TestPage {
-            TextArea {
-                "text"
-            }
+            TextArea()
         }
         
         try renderer.add(view: view)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <textarea>text</textarea>
+                       <textarea></textarea>
                        """
         )
     }
@@ -1597,8 +1492,7 @@ final class ElementTests: XCTestCase {
     func testOutputElement() throws {
         
         let view = TestPage {
-            Output {
-            }
+            Output()
         }
         
         try renderer.add(view: view)
@@ -1613,8 +1507,7 @@ final class ElementTests: XCTestCase {
     func testProgressElement() throws {
         
         let view = TestPage {
-            Progress {
-            }
+            HTMLKit.Progress()
         }
         
         try renderer.add(view: view)
@@ -1629,8 +1522,7 @@ final class ElementTests: XCTestCase {
     func testMeterElement() throws {
         
         let view = TestPage {
-            Meter {
-            }
+            Meter()
         }
         
         try renderer.add(view: view)
@@ -1645,8 +1537,7 @@ final class ElementTests: XCTestCase {
     func testFieldsetElement() throws {
         
         let view = TestPage {
-            Fieldset {
-            }
+            Fieldset()
         }
         
         try renderer.add(view: view)
@@ -1661,8 +1552,7 @@ final class ElementTests: XCTestCase {
     func testLegendElement() throws {
         
         let view = TestPage {
-            Legend {
-            }
+            Legend()
         }
         
         try renderer.add(view: view)
@@ -1677,8 +1567,7 @@ final class ElementTests: XCTestCase {
     func testDetailsElement() throws {
         
         let view = TestPage {
-            Details {
-            }
+            Details()
         }
         
         try renderer.add(view: view)
@@ -1693,8 +1582,7 @@ final class ElementTests: XCTestCase {
     func testSummaryElement() throws {
         
         let view = TestPage {
-            Summary {
-            }
+            Summary()
         }
         
         try renderer.add(view: view)
@@ -1709,8 +1597,7 @@ final class ElementTests: XCTestCase {
     func testDialogElement() throws {
         
         let view = TestPage {
-            Dialog {
-            }
+            Dialog()
         }
         
         try renderer.add(view: view)
@@ -1725,8 +1612,7 @@ final class ElementTests: XCTestCase {
     func testScriptElement() throws {
         
         let view = TestPage {
-            Script {
-            }
+            Script()
         }
         
         try renderer.add(view: view)
@@ -1741,8 +1627,7 @@ final class ElementTests: XCTestCase {
     func testNoScriptElement() throws {
         
         let view = TestPage {
-            NoScript {
-            }
+            NoScript()
         }
         
         try renderer.add(view: view)
@@ -1757,8 +1642,7 @@ final class ElementTests: XCTestCase {
     func testTemplateElement() throws {
         
         let view = TestPage {
-            Template {
-            }
+            Template()
         }
         
         try renderer.add(view: view)
@@ -1773,8 +1657,7 @@ final class ElementTests: XCTestCase {
     func testCanvasElement() throws {
         
         let view = TestPage {
-            Canvas {
-            }
+            Canvas()
         }
         
         try renderer.add(view: view)

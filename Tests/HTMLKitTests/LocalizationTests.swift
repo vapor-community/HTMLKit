@@ -11,7 +11,7 @@ final class LocalizationTests: XCTestCase {
             content
         }
         
-        init(@HTMLBuilder builder : () -> HTMLContent) {
+        init(@HTMLBuilder builder: () -> HTMLContent) {
             content = builder()
         }
     }
