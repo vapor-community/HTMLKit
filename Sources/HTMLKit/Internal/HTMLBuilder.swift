@@ -1,4 +1,4 @@
-@_functionBuilder
+@resultBuilder
 public class HTMLBuilder {
 
     public static func buildBlock(_ children: HTMLContent...) -> HTMLContent {

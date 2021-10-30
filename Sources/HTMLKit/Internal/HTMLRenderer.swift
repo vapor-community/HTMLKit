@@ -3,7 +3,7 @@ import Foundation
 import Lingo
 
 /// A protocol that handles and renders HTMLKit templates
-public protocol HTMLRenderable: class {
+public protocol HTMLRenderable: AnyObject {
     
     /// Renders a `HTMLTemplate` formula
     ///
