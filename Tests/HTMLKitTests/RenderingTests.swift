@@ -99,6 +99,45 @@ final class RenderingTests: XCTestCase {
         )
     }
     
+    
+    func testRenderingAttributesWithUnterscore() throws {
+        
+        let view = TestPage {
+            Paragraph {
+                "text"
+            }
+            .role("ro_le")
+            .class("cl_ass")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <p role="ro_le" class="cl_ass">text</p>
+                       """
+        )
+    }
+    
+    func testRenderingAttributesWithHyphens() throws {
+        
+        let view = TestPage {
+            Paragraph {
+                "text"
+            }
+            .role("ro-le")
+            .class("cl-ass")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <p role="ro-le" class="cl-ass">text</p>
+                       """
+        )
+    }
+    
     func testNesting() throws {
         
         let view = TestPage {
