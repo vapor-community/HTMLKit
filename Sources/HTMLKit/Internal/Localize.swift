@@ -1,13 +1,4 @@
-////
-////  Localize.swift
-////  HTMLKit
-////
-////  Created by Mats Mollestad on 16/04/2019.
-////
-//
-//import Lingo
 import Foundation
-//
 
 public protocol LocalizableNode {
     init(_ localizedKey: String)

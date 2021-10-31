@@ -1,10 +1,3 @@
-//
-//  DateVariable.swift
-//  HTMLKit
-//
-//  Created by Mats Mollestad on 02/05/2019.
-//
-
 import Foundation
 
 /// A struct that renders a data in a specified format

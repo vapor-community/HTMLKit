@@ -1,5 +1,3 @@
-
-
 @propertyWrapper
 @dynamicMemberLookup
 public class HTMLContext<Value> {

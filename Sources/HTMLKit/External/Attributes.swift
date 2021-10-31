@@ -724,21 +724,13 @@ extension MutedAttribute where Self: AttributeNode {
 ///
 public protocol NameAttribute {
 
-    associatedtype NameType: RawRepresentable where NameType.RawValue == String
-
     func name(_ value: NameType) -> Self
-
-    func name(_ value: TemplateValue<String>) -> Self
 }
 
 extension NameAttribute where Self: AttributeNode {
     
     public func name(_ value: NameType) -> Self {
         add(.init(attribute: "name", value: value.rawValue))
-    }
-
-    public func name(_ value: TemplateValue<String>) -> Self {
-        add(.init(attribute: "name", value: value))
     }
 }
 
@@ -874,14 +866,12 @@ extension ReferrerPolicyAttribute where Self: AttributeNode {
 ///
 public protocol RelationshipAttribute {
     
-    associatedtype RelationshipTypes: RawRepresentable where RelationshipTypes.RawValue == String
-    
-    func relationship(_ value: RelationshipTypes) -> Self
+    func relationship(_ value: RelationshipType) -> Self
 }
 
 extension RelationshipAttribute where Self: AttributeNode {
     
-    public func relationship(_ value: RelationshipTypes) -> Self {
+    public func relationship(_ value: RelationshipType) -> Self {
         add(.init(attribute: "rel", value: value.rawValue))
     }
 }
@@ -1153,5 +1143,17 @@ extension WrapAttribute where Self: AttributeNode {
 
     public func wrap(_ type: WrapType) -> Self {
         add(.init(attribute: "wrap", value: type.rawValue))
+    }
+}
+
+public protocol PropertyAttribute {
+    
+    func property(_ type: OpenGraphType) -> Self
+}
+
+extension PropertyAttribute where Self: AttributeNode {
+    
+    public func property(_ type: OpenGraphType) -> Self {
+        add(.init(attribute: "property", value: type.rawValue))
     }
 }

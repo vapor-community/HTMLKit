@@ -1,12 +1,6 @@
 /// An attribute on a node
 ///
-///     HTMLAttributeNode.class("text-dark") // <... class="text-dark"/>
 public struct HTMLAttribute {
-
-    public enum Method: String {
-        case post
-        case get
-    }
 
     /// The attribute to set
     public let attribute: String

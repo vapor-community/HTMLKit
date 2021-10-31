@@ -11,16 +11,27 @@ public struct MetaTitle: HTMLComponent, AttributeNode, LocalizableNode {
         public var content: HTMLContent
     }
 
-    let content: HTMLContent
+    public let content: HTMLContent
+    
     public var attributes: [HTMLAttribute]
-    let useOpenGraphMetadata: Conditionable
-    let useTwitterMetadata: Conditionable
+    
+    public let useOpenGraphMetadata: Conditionable
+    
+    public let useTwitterMetadata: Conditionable
 
     public var body: HTMLContent {
         [
             Node(attributes: attributes, content: content),
-            IF(useOpenGraphMetadata) { Meta().property("og:title").content(content) },
-            IF(useTwitterMetadata) { Meta().name("twitter:title").content(content) }
+            IF(useOpenGraphMetadata) {
+                Meta()
+                    .property(.title)
+                    .content(content)
+            },
+            IF(useTwitterMetadata) {
+                Meta()
+                    .property(.title)
+                    .content(content)
+            }
         ]
     }
 
@@ -45,7 +56,7 @@ public struct MetaTitle: HTMLComponent, AttributeNode, LocalizableNode {
         useTwitterMetadata = true
     }
 
-    init(attributes: [HTMLAttribute] = [], content: HTMLContent = "", useOpenGraphMetadata: Conditionable = true, useTwitterMetadata: Conditionable = true) {
+    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "", useOpenGraphMetadata: Conditionable = true, useTwitterMetadata: Conditionable = true) {
         self.content = content
         self.attributes = attributes
         self.useOpenGraphMetadata = useOpenGraphMetadata
@@ -71,7 +82,7 @@ public struct MetaTitle: HTMLComponent, AttributeNode, LocalizableNode {
 public struct Stylesheet: HTMLComponent {
 
     @TemplateValue(String.self)
-    var url
+    public var url
 
     public init(url: TemplateValue<String>) {
         self.url = url
@@ -94,16 +105,27 @@ public struct Stylesheet: HTMLComponent {
 ///
 public struct MetaDescription: HTMLComponent, LocalizableNode {
 
-    var description: HTMLContent
+    public var description: HTMLContent
 
-    let useOpenGraphMetadata: Conditionable
-    let useTwitterMetadata: Conditionable
+    public let useOpenGraphMetadata: Conditionable
+    
+    public let useTwitterMetadata: Conditionable
 
     public var body: HTMLContent {
         [
-            Meta().name(.description).content(description),
-            IF(useOpenGraphMetadata) { Meta().property("og:description").content(description) },
-            IF(useTwitterMetadata) { Meta().name("twitter:description").content(description) }
+            Meta()
+                .property(.description)
+                .content(description),
+            IF(useOpenGraphMetadata) {
+                Meta()
+                    .property(.description)
+                    .content(description)
+            },
+            IF(useTwitterMetadata) {
+                Meta()
+                    .property(.description)
+                    .content(description)
+            }
         ]
     }
 
@@ -125,7 +147,7 @@ public struct MetaDescription: HTMLComponent, LocalizableNode {
         self.useOpenGraphMetadata = true
     }
 
-    init(description: HTMLContent, useOpenGraphMetadata: Conditionable, useTwitterMetadata: Conditionable) {
+    public init(description: HTMLContent, useOpenGraphMetadata: Conditionable, useTwitterMetadata: Conditionable) {
         self.description = description
         self.useOpenGraphMetadata = useOpenGraphMetadata
         self.useTwitterMetadata = useTwitterMetadata
@@ -145,7 +167,7 @@ public struct MetaDescription: HTMLComponent, LocalizableNode {
 ///
 public struct FavIcon: HTMLComponent {
 
-    let url: TemplateValue<String>
+    public let url: TemplateValue<String>
 
     public init(url: String) {
         self.url = .constant(url)
@@ -179,8 +201,8 @@ public struct Viewport: HTMLComponent {
         }
     }
 
-    var mode: WidthMode
-    var internalScale: Double = 1
+    public var mode: WidthMode
+    public var internalScale: Double = 1
 
     public init(_ mode: WidthMode, internalScale: Double = 1) {
         self.mode = mode
@@ -188,7 +210,9 @@ public struct Viewport: HTMLComponent {
     }
 
     public var body: HTMLContent {
-        Meta().name(.viewport).content("width=\(mode.width), initial-scale=\(internalScale)")
+        Meta()
+            .name(.viewport)
+            .content("width=\(mode.width), initial-scale=\(internalScale)")
     }
 }
 
@@ -197,16 +221,18 @@ public struct Viewport: HTMLComponent {
 ///
 public struct Author: HTMLComponent, LocalizableNode {
 
-    var author: HTMLContent
+    public var author: HTMLContent
 
     @TemplateValue(String?.self)
-    var twitterHandle
+    public var twitterHandle
 
     public var body: HTMLContent {
         [
             Meta().name(.author).content(author),
             Unwrap(twitterHandle) { handle in
-                Meta().name("twitter:creator").content(handle)
+                Meta()
+                    .name(.init(rawValue: "twitter:creator")!)
+                    .content(handle)
             }
         ]
     }
@@ -223,7 +249,7 @@ public struct Author: HTMLComponent, LocalizableNode {
         author = Localized(key: localizedKey, context: context)
     }
 
-    init(author: HTMLContent, handle: TemplateValue<String?>) {
+    public init(author: HTMLContent, handle: TemplateValue<String?>) {
         self.author = author
         self.twitterHandle = handle
     }
