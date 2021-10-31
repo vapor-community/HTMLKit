@@ -18,6 +18,31 @@ final class RenderingTests: XCTestCase {
     
     var renderer = HTMLRenderer()
     
+    func testRenderingDocument() throws {
+        
+        let view = TestPage {
+            Document(type: .html5) {
+                Body {
+                    Paragraph {
+                        "text"
+                    }
+                }
+            }
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <!DOCTYPE html>\
+                       <html>\
+                       <body>\
+                       <p>text</p>\
+                       </body>\
+                       </html>
+                       """
+        )
+    }
     
     func testRenderingContentTag() throws {
         
@@ -118,6 +143,7 @@ final class RenderingTests: XCTestCase {
 extension RenderingTests {
     
     static var allTests = [
+        ("testRenderingDocument", testRenderingDocument),
         ("testRenderingContentTag", testRenderingContentTag),
         ("testRenderingEmptyTag", testRenderingEmptyTag),
         ("testRenderingAttributes", testRenderingAttributes),
