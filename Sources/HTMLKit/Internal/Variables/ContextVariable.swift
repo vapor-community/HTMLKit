@@ -28,16 +28,6 @@ public class ContextVariable<Root, Value> {
         let path = root.appending(path: context.root)
         return .init(value: path, id: pathId + "-" + context.pathId, rootId: rootId, escaping: escaping)
     }
-
-//    func cast<T>(to: T.Type) -> ContextVariable<Root, T> {
-//        let anyPath: AnyKeyPath = root
-//        switch anyPath {
-//        case let castRoot as KeyPath<Root, T>:
-//            return .init(value: castRoot, id: pathId, rootId: rootId, escaping: escaping)
-//        default:
-//            fatalError("Can not cast value form \(Value.self) to \(T.self).")
-//        }
-//    }
 }
 
 extension ContextVariable {
@@ -60,31 +50,6 @@ extension ContextVariable {
         case .unsafeNone:
             return render
         }
-    }
-}
-
-public class TemplateValueMapping<B, C> {
-    let variable: TemplateValue<B>
-    let transform: (B) throws -> C
-
-    init(variable: TemplateValue<B>, transform: @escaping (B) throws -> C) {
-        self.variable = variable
-        self.transform = transform
-    }
-}
-
-extension TemplateValueMapping: HTMLContent where C: HTMLContent {
-
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
-        switch variable {
-        case .constant(let value): try transform(value).prerender(formula)
-        case .dynamic(_): formula.add(mappable: self)
-        }
-    }
-
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        let value = try variable.value(from: manager)
-        return try transform(value).render(with: manager)
     }
 }
 
