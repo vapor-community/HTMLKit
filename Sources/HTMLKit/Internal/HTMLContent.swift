@@ -30,6 +30,16 @@ extension HTMLContent {
     public var scripts: HTMLContent { "" }
 }
 
+extension HTMLContent {
+    public func environment(locale: String) -> EnvironmentModifier {
+        return EnvironmentModifier(view: self, locale: locale)
+    }
+
+    public func environment(locale: TemplateValue<String>) -> EnvironmentModifier {
+        return EnvironmentModifier(view: self, locale: locale)
+    }
+}
+
 /// Concats two values
 public func + (lhs: HTMLContent, rhs: HTMLContent) -> HTMLContent {
     var output: Array<HTMLContent> = []
