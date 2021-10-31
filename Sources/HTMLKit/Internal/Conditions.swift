@@ -1,40 +1,3 @@
-protocol IsDefinable {
-    var isDefinded: Bool { get }
-}
-
-/// A protocol that makes a struct to a condition that can be used in an if
-public protocol Conditionable: HTMLContent {
-
-    /// Evaluates an expression with a context
-    ///
-    /// - Parameter context: The context to use when evaluating
-    /// - Returns: true if the expression is correct else false
-    func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool
-}
-
-extension Conditionable {
-
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        try evaluate(with: manager).render(with: manager)
-    }
-
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
-        formula.add(mappable: self)
-    }
-}
-
-extension Bool: Conditionable {
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return self
-    }
-}
-
-extension HTMLContext: Conditionable where Value == Bool {
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        try manager.value(for: self)
-    }
-}
-
 /// A condition that evaluates an equal expression between a variable and a constant value
 public struct Equal<Value>: Conditionable where Value: Equatable {
 
@@ -245,7 +208,7 @@ public struct NotNullConditionGeneral<Value>: Conditionable {
     let path: TemplateValue<Value>
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        if let value = try path.value(from: manager) as? IsDefinable {
+        if let value = try path.value(from: manager) as? Defineable {
             return value.isDefinded
         } else {
             return true
@@ -260,7 +223,7 @@ public struct IsNullConditionGeneral<Value>: Conditionable {
     let path: TemplateValue<Value>
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        if let value = try path.value(from: manager) as? IsDefinable {
+        if let value = try path.value(from: manager) as? Defineable {
             return value.isDefinded == false
         } else {
             return false

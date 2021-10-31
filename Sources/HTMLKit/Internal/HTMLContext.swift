@@ -95,3 +95,9 @@ extension HTMLContext: HTMLContent where Value: HTMLContent {
         }
     }
 }
+
+extension HTMLContext: Conditionable where Value == Bool {
+    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+        try manager.value(for: self)
+    }
+}

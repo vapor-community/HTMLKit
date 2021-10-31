@@ -149,6 +149,12 @@ extension Bool: HTMLContent {
     public var renderWhenLocalizing: Bool { return false }
 }
 
+extension Bool: Conditionable {
+    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+        return self
+    }
+}
+
 extension Optional: HTMLContent where Wrapped: HTMLContent {
 
     // View `HTML` documentation
@@ -175,7 +181,7 @@ extension Optional: HTMLContent where Wrapped: HTMLContent {
     }
 }
 
-extension Optional: IsDefinable {
+extension Optional: Defineable {
     var isDefinded: Bool {
         switch self {
         case .none: return false

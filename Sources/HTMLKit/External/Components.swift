@@ -1,7 +1,7 @@
 /// The component ist for
 ///
 ///
-public struct MetaTitle: HTMLComponent, AttributeNode, LocalizableNode {
+public struct MetaTitle: HTMLComponent, AttributeNode, Localizable {
 
     struct Node: ContentNode {
         public var name: String { "title" }
@@ -103,7 +103,7 @@ public struct Stylesheet: HTMLComponent {
 /// The component ist for
 ///
 ///
-public struct MetaDescription: HTMLComponent, LocalizableNode {
+public struct MetaDescription: HTMLComponent, Localizable {
 
     public var description: HTMLContent
 
@@ -219,7 +219,7 @@ public struct Viewport: HTMLComponent {
 /// The component ist for
 ///
 ///
-public struct Author: HTMLComponent, LocalizableNode {
+public struct Author: HTMLComponent, Localizable {
 
     public var author: HTMLContent
 

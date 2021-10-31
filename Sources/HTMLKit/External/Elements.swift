@@ -305,7 +305,7 @@ public struct Heading1: ContentNode {
     }
 }
 
-extension Heading1: LocalizableNode {
+extension Heading1: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -337,7 +337,7 @@ public struct Heading2: ContentNode {
     }
 }
 
-extension Heading2: LocalizableNode {
+extension Heading2: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -369,7 +369,7 @@ public struct Heading3: ContentNode {
     }
 }
 
-extension Heading3: LocalizableNode {
+extension Heading3: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -401,7 +401,7 @@ public struct Heading4: ContentNode {
     }
 }
 
-extension Heading4: LocalizableNode {
+extension Heading4: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -433,7 +433,7 @@ public struct Heading5: ContentNode {
     }
 }
 
-extension Heading5: LocalizableNode {
+extension Heading5: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -465,7 +465,7 @@ public struct Heading6: ContentNode {
     }
 }
 
-extension Heading6: LocalizableNode {
+extension Heading6: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -581,7 +581,7 @@ public struct Paragraph: ContentNode {
     }
 }
 
-extension Paragraph: LocalizableNode {
+extension Paragraph: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -648,7 +648,7 @@ public struct Blockquote: ContentNode, CiteAttribute {
     }
 }
 
-extension Blockquote: LocalizableNode {
+extension Blockquote: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -890,7 +890,7 @@ public struct Anchor: ContentNode, DownloadAttribute, ReferenceAttribute, Refere
     }
 }
 
-extension Anchor: LocalizableNode {
+extension Anchor: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -964,7 +964,7 @@ public struct Small: ContentNode {
     }
 }
 
-extension Small: LocalizableNode {
+extension Small: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -996,7 +996,7 @@ public struct StrikeThrough: ContentNode {
     }
 }
 
-extension StrikeThrough: LocalizableNode {
+extension StrikeThrough: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -1343,7 +1343,7 @@ public struct Italic: ContentNode {
     }
 }
 
-extension Italic: LocalizableNode {
+extension Italic: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -1375,7 +1375,7 @@ public struct Bold: ContentNode {
     }
 }
 
-extension Bold: LocalizableNode {
+extension Bold: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -1407,7 +1407,7 @@ public struct Underline: ContentNode {
     }
 }
 
-extension Underline: LocalizableNode {
+extension Underline: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -1992,7 +1992,7 @@ public struct HeaderCell: ContentNode, ColumnSpanAttribute, RowSpanAttribute, He
     }
 }
 
-extension HeaderCell: LocalizableNode {
+extension HeaderCell: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -2045,7 +2045,7 @@ public struct Label: ContentNode, ForAttribute {
     }
 }
 
-extension Label: LocalizableNode {
+extension Label: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -2091,7 +2091,7 @@ public struct Button: ContentNode, DisabledAttribute, FormAttribute, FormActionA
     }
 }
 
-extension Button: LocalizableNode {
+extension Button: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
@@ -2208,7 +2208,7 @@ public struct TextArea: ContentNode, AutoCompleteAttribute, ColumnsAttribute, Di
     }
 }
 
-extension TextArea: LocalizableNode {
+extension TextArea: Localizable {
     
     public init(_ localizedKey: String) {
         self.content = Localized(key: localizedKey)
