@@ -3,12 +3,14 @@
 ///
 public protocol ContentNode: HTMLNode {
 
-    var content: HTMLContent { get }
+    associatedtype Content
+    
+    var content: Content { get }
 
-    init(attributes: [HTMLAttribute], content: HTMLContent)
+    init(attributes: [HTMLAttribute], content: Content)
 }
 
-extension ContentNode {
+extension ContentNode where Content == HTMLContent {
     
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: "<\(name)")
@@ -31,6 +33,38 @@ extension ContentNode {
         .init(attributes: attributes, content: content)
     }
 
+    public var scripts: HTMLContent { content.scripts }
+}
+
+extension ContentNode where Content == String {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        
+        formula.add(string: "<\(name)")
+        
+        try attributes.forEach {
+            formula.add(string: " ")
+            try $0.prerender(formula)
+        }
+        
+        formula.add(string: ">")
+        
+        try content.prerender(formula)
+        
+        formula.add(string: "</\(name)>")
+    }
+
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        
+        try "<\(name)"
+            + attributes.reduce("") { try $0 + " \($1.render(with: manager))" }
+            + ">\(content.render(with: manager))</\(name)>"
+    }
+    
+    public func copy(with attributes: [HTMLAttribute]) -> Self {
+        .init(attributes: attributes, content: content)
+    }
+    
     public var scripts: HTMLContent { content.scripts }
 }
 

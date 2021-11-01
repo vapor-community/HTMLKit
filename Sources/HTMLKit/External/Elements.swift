@@ -83,13 +83,13 @@ public struct Title: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: String
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(content: () -> String) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: String = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -146,13 +146,13 @@ public struct Style: ContentNode, TypeAttribute, MediaAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: String
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(content: () -> String) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: String = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2175,13 +2175,13 @@ public struct Option: ContentNode, DisabledAttribute, LabelAttribute, ValueAttri
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: String
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(content: () -> String) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: String = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2191,31 +2191,20 @@ public struct Option: ContentNode, DisabledAttribute, LabelAttribute, ValueAttri
 ///
 ///
 public struct TextArea: ContentNode, AutoCompleteAttribute, ColumnsAttribute, DisabledAttribute, FormAttribute, MaximumLengthAttribute, MinimumLengthAttribute, NameAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, RowsAttribute, WrapAttribute {
-
+        
     public var name: String { "textarea" }
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: String
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(content: () -> String) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: String = "") {
         self.content = content
         self.attributes = attributes
-    }
-}
-
-extension TextArea: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
     }
 }
 
