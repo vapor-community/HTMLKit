@@ -95,3 +95,26 @@ extension EmptyNode {
         .init(attributes: attributes)
     }
 }
+
+/// The node is for
+///
+///
+public protocol CommentNode: HTMLContent {
+    
+    associatedtype Content: HTMLContent
+    
+    var content: Content { get }
+}
+
+extension CommentNode {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        
+        formula.add(string: "<!--\(content)-->")
+    }
+
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+
+        return "<!--\(content)-->"
+    }
+}

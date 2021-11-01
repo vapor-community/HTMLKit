@@ -80,6 +80,22 @@ final class RenderingTests: XCTestCase {
         )
     }
     
+    func testRenderingCommentTag() throws {
+        
+        let view = TestPage {
+            Comment("text")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <!--text-->
+                       """
+        )
+        
+    }
+    
     func testRenderingAttributes() throws {
         
         let view = TestPage {
@@ -185,6 +201,7 @@ extension RenderingTests {
         ("testRenderingDocument", testRenderingDocument),
         ("testRenderingContentTag", testRenderingContentTag),
         ("testRenderingEmptyTag", testRenderingEmptyTag),
+        ("testRenderingCommentTag", testRenderingCommentTag),
         ("testRenderingAttributes", testRenderingAttributes),
         ("testRenderingAttributesWithUnterscore", testRenderingAttributesWithUnterscore),
         ("testRenderingAttributesWithHyphens", testRenderingAttributesWithHyphens),

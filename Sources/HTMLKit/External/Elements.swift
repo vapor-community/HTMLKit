@@ -53,6 +53,18 @@ public typealias Optgroup = OptionGroup
 
 // MARK: structs
 
+/// The `<!--` element represents a comment.
+///
+///
+public struct Comment: CommentNode {
+    
+    public var content: String
+    
+    public init(_ content: String) {
+        self.content = content
+    }
+}
+
 /// The `<head>`element
 ///
 ///
