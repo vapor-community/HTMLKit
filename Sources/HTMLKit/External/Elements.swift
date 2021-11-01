@@ -65,6 +65,18 @@ public struct Comment: CommentNode {
     }
 }
 
+/// The `<!DOCTYPE>` element represents a comment.
+///
+///
+public struct Document: DocumentNode {
+    
+    public var content: String
+    
+    public init(type: DocumentType) {
+        self.content = type.rawValue
+    }
+}
+
 /// The `<head>`element
 ///
 ///

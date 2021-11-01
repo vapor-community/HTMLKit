@@ -21,7 +21,8 @@ final class RenderingTests: XCTestCase {
     func testRenderingDocument() throws {
         
         let view = TestPage {
-            Document(type: .html5) {
+            Document(type: .html5)
+            Html {
                 Body {
                     Paragraph {
                         "text"

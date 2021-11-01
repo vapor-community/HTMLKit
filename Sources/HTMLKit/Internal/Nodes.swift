@@ -118,3 +118,26 @@ extension CommentNode {
         return "<!--\(content)-->"
     }
 }
+
+/// The node is for
+///
+///
+public protocol DocumentNode: HTMLContent {
+    
+    associatedtype Content: HTMLContent
+    
+    var content: Content { get }
+}
+
+extension DocumentNode {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        
+        formula.add(string: "<!DOCTYPE \(content)>")
+    }
+
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+
+        return "<!DOCTYPE \(content)>"
+    }
+}
