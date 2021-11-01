@@ -1,5 +1,7 @@
-@dynamicMemberLookup
-public class ContextVariable<Root, Value> {
+/// The class is for
+///
+///
+@dynamicMemberLookup public class ContextVariable<Root, Value> {
 
     let pathId: String
     let rootId: String
@@ -50,12 +52,5 @@ extension ContextVariable {
         case .unsafeNone:
             return render
         }
-    }
-}
-
-@dynamicMemberLookup
-struct StringValue {
-    public subscript<Type: ExpressibleByStringLiteral>(dynamicMember string: Type) -> StringValue {
-        return .init()
     }
 }

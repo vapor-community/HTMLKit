@@ -1,4 +1,4 @@
-/// The template is for
+/// The protocol defines
 ///
 ///
 public protocol HTMLTemplate: HTMLContent {
@@ -25,7 +25,7 @@ extension HTMLTemplate {
     public var scripts: HTMLContent { body.scripts }
 }
 
-/// The page is for
+/// The protocol defines
 ///
 ///
 public protocol HTMLPage: HTMLContent {
@@ -46,7 +46,7 @@ extension HTMLPage {
     public var scripts: HTMLContent { body.scripts }
 }
 
-/// The component ist for
+/// The protocol defines
 ///
 ///
 public protocol HTMLComponent: HTMLContent {

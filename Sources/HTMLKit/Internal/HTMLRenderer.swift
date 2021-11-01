@@ -90,22 +90,6 @@ public class HTMLRenderer: Renderable {
         formulaCache[ObjectIdentifier(T.self)] = formula
     }
 
-    //    /// Brews a formula for later use
-    //    ///
-    //    ///     try renderer.add(template: WelcomeView.self)
-    //    ///
-    //    /// - Parameter type: The view type to brew
-    //    /// - Throws: If the brewing process fails for some reason
-    //    public mutating func add<T: LocalizedTemplate>(template view: T) throws {
-    //        let formula = Formula(context: T.self, calendar: calendar, timeZone: timeZone)
-    //        formula.localePath = T
-    ////        guard formula.localePath != nil else {
-    ////            throw Localize<T, NoContext>.Errors.missingLocalePath
-    ////        }
-    //        try view.build().prerender(formula)
-    //        formulaCache[String(reflecting: T.self)] = formula
-    //    }
-
     /// Registers a localization directory to the renderer
     ///
     ///     try renderer.registerLocalization() // Using default values

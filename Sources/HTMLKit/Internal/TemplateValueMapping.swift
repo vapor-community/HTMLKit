@@ -1,3 +1,6 @@
+/// The class is for
+///
+///
 public class TemplateValueMapping<B, C> {
     let variable: TemplateValue<B>
     let transform: (B) throws -> C

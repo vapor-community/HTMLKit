@@ -1,6 +1,7 @@
-@propertyWrapper
-@dynamicMemberLookup
-public class HTMLContext<Value> {
+/// The class is for
+///
+///
+@propertyWrapper @dynamicMemberLookup public class HTMLContext<Value> {
 
     enum Errors: Error {
         case unknownKeyPath
@@ -97,6 +98,7 @@ extension HTMLContext: HTMLContent where Value: HTMLContent {
 }
 
 extension HTMLContext: Conditionable where Value == Bool {
+    
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
         try manager.value(for: self)
     }

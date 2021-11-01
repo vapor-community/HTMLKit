@@ -1,4 +1,5 @@
 // MARK: aliases
+
 public typealias Nav = Navigation
 public typealias H1 = Heading1
 public typealias H2 = Heading2
@@ -51,7 +52,7 @@ public typealias Td = DataCell
 public typealias Th = HeaderCell
 public typealias Optgroup = OptionGroup
 
-// MARK: structs
+// MARK: elements
 
 /// The `<!--` element represents a comment.
 ///

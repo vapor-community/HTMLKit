@@ -1,3 +1,6 @@
+/// The protocol defines
+///
+///
 public protocol HTMLNode: HTMLContent, GlobalAttributes {
     
     var name: String { get }

@@ -1,3 +1,5 @@
+// MARK: functions
+
 /// A struct making it possible to have a if in the template
 ///
 ///     runtimeIf(\.name == "Name", view: ...)

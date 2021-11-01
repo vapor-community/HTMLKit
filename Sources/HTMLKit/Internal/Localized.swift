@@ -1,7 +1,13 @@
 import Foundation
 
+/// The struct ist for
+///
+///
 public struct NoData: Encodable {}
 
+/// The struct ist for
+///
+///
 public struct Localized<B>: HTMLContent where B: Encodable {
 
     enum Errors: Error {

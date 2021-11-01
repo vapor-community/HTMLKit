@@ -1,4 +1,6 @@
-/// A protocol that handles and renders HTMLKit templates
+/// The protocols defines
+///
+///
 public protocol Renderable: AnyObject {
     
     /// Renders a `HTMLTemplate` formula
