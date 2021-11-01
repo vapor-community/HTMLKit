@@ -1,7 +1,7 @@
 /// The component ist for
 ///
 ///
-public struct MetaTitle: HTMLComponent, AttributeNode, Localizable {
+public struct MetaTitle: HTMLComponent, Localizable {
 
     struct Node: ContentNode {
         public var name: String { "title" }
