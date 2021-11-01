@@ -88,7 +88,7 @@ final class RenderingTests: XCTestCase {
             }
             .role("role")
             .class("class")
-        }
+        } 
         
         try renderer.add(view: view)
         
@@ -186,6 +186,8 @@ extension RenderingTests {
         ("testRenderingContentTag", testRenderingContentTag),
         ("testRenderingEmptyTag", testRenderingEmptyTag),
         ("testRenderingAttributes", testRenderingAttributes),
+        ("testRenderingAttributesWithUnterscore", testRenderingAttributesWithUnterscore),
+        ("testRenderingAttributesWithHyphens", testRenderingAttributesWithHyphens),
         ("testNesting", testNesting),
         ("testEscaping", testEscaping)
     ]
