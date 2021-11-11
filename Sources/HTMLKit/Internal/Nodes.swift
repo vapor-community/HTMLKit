@@ -1,120 +1,136 @@
 /// The node is for
 ///
 ///
-public protocol ContentNode: HTMLNode {
+internal protocol ContentNode {
 
-    associatedtype Content
+    associatedtype T
     
-    var content: Content { get }
-
-    init(attributes: [HTMLAttribute], content: Content)
+    var name: String { get }
+    
+    var attributes: [String: Any]? { get }
+    
+    var content: T { get }
+    
+    init(attributes: [String: Any]?, content: T)
 }
 
-extension ContentNode where Content == Content {
+extension ContentNode where T == Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    internal func build(_ formula: HTMLRenderer.Formula) throws {
+
         formula.add(string: "<\(name)")
-        try attributes.forEach {
-            formula.add(string: " ")
-            try $0.prerender(formula)
+
+        if let attributes = attributes {
+
+            attributes.forEach { attribute in
+                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+            }
         }
+
         formula.add(string: ">")
+
         try content.prerender(formula)
+
         formula.add(string: "</\(name)>")
     }
 
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        try "<\(name)"
-            + attributes.reduce("") { try $0 + " \($1.render(with: manager))" }
-            + ">\(content.render(with: manager))</\(name)>"
-    }
-    
-    public func copy(with attributes: [HTMLAttribute]) -> Self {
-        .init(attributes: attributes, content: content)
-    }
+    internal func build<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
 
-    public var scripts: Content { content.scripts }
+        guard let attributes = attributes else {
+            return try "<\(name)>\(content.render(with: manager))</\(name)>"
+        }
+        
+        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+    }
 }
 
-extension ContentNode where Content == String {
+extension ContentNode where T == String {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    internal func build(_ formula: HTMLRenderer.Formula) throws {
         
         formula.add(string: "<\(name)")
         
-        try attributes.forEach {
-            formula.add(string: " ")
-            try $0.prerender(formula)
+        if let attributes = attributes {
+
+            attributes.forEach { attribute in
+                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+            }
         }
         
         formula.add(string: ">")
         
-        try content.prerender(formula)
+        formula.add(string: content)
         
         formula.add(string: "</\(name)>")
     }
 
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    internal func build<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         
-        try "<\(name)"
-            + attributes.reduce("") { try $0 + " \($1.render(with: manager))" }
-            + ">\(content.render(with: manager))</\(name)>"
+        guard let attributes = attributes else {
+            return try "<\(name)>\(content.render(with: manager))</\(name)>"
+        }
+        
+        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
     }
-    
-    public func copy(with attributes: [HTMLAttribute]) -> Self {
-        .init(attributes: attributes, content: content)
-    }
-    
-    public var scripts: Content { content.scripts }
 }
 
 /// The node is for
 ///
 ///
-public protocol EmptyNode: HTMLNode {
+internal protocol EmptyNode {
 
-    init(attributes: [HTMLAttribute])
+    var name: String { get }
+    
+    var attributes: [String: Any]? { get }
+    
+    init(attributes: [String: Any]?)
 }
 
 extension EmptyNode {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    internal func build(_ formula: HTMLRenderer.Formula) throws {
+        
         formula.add(string: "<\(name)")
-        try attributes.forEach {
-            formula.add(string: " ")
-            try $0.prerender(formula)
+
+        if let attributes = attributes {
+
+            attributes.forEach { attribute in
+                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+            }
         }
+
         formula.add(string: ">")
     }
 
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        try "<\(name)" + attributes.reduce("") { try $0 + " \($1.render(with: manager))" } + ">"
-    }
-    
-    public func copy(with attributes: [HTMLAttribute]) -> Self {
-        .init(attributes: attributes)
+    internal func build<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        
+        guard let attributes = attributes else {
+            return "<\(name)>"
+        }
+        
+        return "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">" as! String
     }
 }
 
 /// The node is for
 ///
 ///
-public protocol CommentNode: Content {
+internal protocol CommentNode {
     
-    associatedtype Content: Content
+    associatedtype T
     
-    var content: Content { get }
+    var content: T { get }
 }
 
 extension CommentNode {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    internal func build(_ formula: HTMLRenderer.Formula) throws {
         
         formula.add(string: "<!--\(content)-->")
     }
 
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-
+    internal func build<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        
         return "<!--\(content)-->"
     }
 }
@@ -122,21 +138,21 @@ extension CommentNode {
 /// The node is for
 ///
 ///
-public protocol DocumentNode: Content {
+internal protocol DocumentNode {
     
-    associatedtype Content: Content
+    associatedtype T
     
-    var content: Content { get }
+    var content: T { get }
 }
 
 extension DocumentNode {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    internal func build(_ formula: HTMLRenderer.Formula) throws {
         
         formula.add(string: "<!DOCTYPE \(content)>")
     }
 
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    internal func build<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
 
         return "<!DOCTYPE \(content)>"
     }
