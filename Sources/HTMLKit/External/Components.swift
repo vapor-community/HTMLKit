@@ -51,7 +51,7 @@ public struct MetaTitle: HTMLComponent, Localizable {
         useTwitterMetadata = true
     }
 
-    public init(@HTMLBuilder builder: () -> HTMLContent) {
+    public init(@ContentBuilder builder: () -> HTMLContent) {
         content = builder()
         attributes = []
         useOpenGraphMetadata = true

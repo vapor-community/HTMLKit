@@ -11,7 +11,7 @@ final class PerformanceTests: XCTestCase {
             content
         }
         
-        init(@HTMLBuilder builder: () -> HTMLContent) {
+        init(@ContentBuilder builder: () -> HTMLContent) {
             content = builder()
         }
     }

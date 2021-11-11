@@ -11,7 +11,7 @@ final class ElementTests: XCTestCase {
             content
         }
         
-        init(@HTMLBuilder content: () -> HTMLContent) {
+        init(@ContentBuilder content: () -> HTMLContent) {
             self.content = content()
         }
     }

@@ -89,7 +89,7 @@ public struct Head: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -194,7 +194,7 @@ public struct Html: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -215,7 +215,7 @@ public struct Body: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -236,7 +236,7 @@ public struct Article: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -257,7 +257,7 @@ public struct Section: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -278,7 +278,7 @@ public struct Navigation: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -299,7 +299,7 @@ public struct Aside: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -320,7 +320,7 @@ public struct Heading1: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -352,7 +352,7 @@ public struct Heading2: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -384,7 +384,7 @@ public struct Heading3: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -416,7 +416,7 @@ public struct Heading4: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -448,7 +448,7 @@ public struct Heading5: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -480,7 +480,7 @@ public struct Heading6: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -512,7 +512,7 @@ public struct HeadingGroup: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -533,7 +533,7 @@ public struct Header: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -554,7 +554,7 @@ public struct Footer: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -575,7 +575,7 @@ public struct Address: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -596,7 +596,7 @@ public struct Paragraph: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -642,7 +642,7 @@ public struct PreformattedText: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -663,7 +663,7 @@ public struct Blockquote: ContentNode, CiteAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -695,7 +695,7 @@ public struct OrderedList: ContentNode, ReversedAttribute, StartAttribute, TypeA
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -716,7 +716,7 @@ public struct UnorderedList: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -737,7 +737,7 @@ public struct ListItem: ContentNode, ValueAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -758,7 +758,7 @@ public struct DescriptionList: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -779,7 +779,7 @@ public struct TermName: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -800,7 +800,7 @@ public struct TermDefinition: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -821,7 +821,7 @@ public struct Figure: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -842,7 +842,7 @@ public struct FigureCaption: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -863,7 +863,7 @@ public struct Main: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -884,7 +884,7 @@ public struct Division: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -905,7 +905,7 @@ public struct Anchor: ContentNode, DownloadAttribute, ReferenceAttribute, Refere
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -937,7 +937,7 @@ public struct Emphasize: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -958,7 +958,7 @@ public struct Strong: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -979,7 +979,7 @@ public struct Small: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1011,7 +1011,7 @@ public struct StrikeThrough: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1043,7 +1043,7 @@ public struct Cite: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1064,7 +1064,7 @@ public struct ShortQuote: ContentNode, CiteAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1085,7 +1085,7 @@ public struct Definition: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1106,7 +1106,7 @@ public struct Abbreviation: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1127,7 +1127,7 @@ public struct Ruby: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1148,7 +1148,7 @@ public struct RubyText: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1169,7 +1169,7 @@ public struct RubyPronunciation: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1190,7 +1190,7 @@ public struct Data: ContentNode, ValueAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1211,7 +1211,7 @@ public struct Time: ContentNode, DateTimeAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1232,7 +1232,7 @@ public struct Code: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1253,7 +1253,7 @@ public struct Variable: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1274,7 +1274,7 @@ public struct SampleOutput: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1295,7 +1295,7 @@ public struct KeyboardInput: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1316,7 +1316,7 @@ public struct Subscript: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1337,7 +1337,7 @@ public struct Superscript: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1358,7 +1358,7 @@ public struct Italic: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1390,7 +1390,7 @@ public struct Bold: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1422,7 +1422,7 @@ public struct Underline: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1454,7 +1454,7 @@ public struct Mark: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1475,7 +1475,7 @@ public struct Bdi: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1510,7 +1510,7 @@ public struct Span: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1559,7 +1559,7 @@ public struct InsertedText: ContentNode, CiteAttribute, DateTimeAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1580,7 +1580,7 @@ public struct DeletedText: ContentNode, CiteAttribute, DateTimeAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1601,7 +1601,7 @@ public struct Picture: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1650,7 +1650,7 @@ public struct InlineFrame: ContentNode, SourceAttribute, NameAttribute, WidthAtt
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1685,7 +1685,7 @@ public struct Object: ContentNode, DataAttribute, TypeAttribute, NameAttribute, 
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1720,7 +1720,7 @@ public struct Video: ContentNode, SourceAttribute, AutoPlayAttribute, LoopAttrib
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1741,7 +1741,7 @@ public struct Audio: ContentNode, SourceAttribute, AutoPlayAttribute, LoopAttrib
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1776,7 +1776,7 @@ public struct Map: ContentNode, NameAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1797,7 +1797,7 @@ public struct Area: ContentNode, AlternativeAttribute, CoordinatesAttribute, Sha
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1818,7 +1818,7 @@ public struct Table: ContentNode, WidthAttribute, HeightAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1839,7 +1839,7 @@ public struct Caption: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1860,7 +1860,7 @@ public struct ColumnGroup: ContentNode, SpanAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1881,7 +1881,7 @@ public struct Column: ContentNode, SpanAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1902,7 +1902,7 @@ public struct TableBody: ContentNode, WidthAttribute, HeightAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1923,7 +1923,7 @@ public struct TableHead: ContentNode, WidthAttribute, HeightAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1944,7 +1944,7 @@ public struct TableFoot: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1965,7 +1965,7 @@ public struct TableRow: ContentNode, WidthAttribute, HeightAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -1986,7 +1986,7 @@ public struct DataCell: ContentNode, ColumnSpanAttribute, RowSpanAttribute, Head
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2007,7 +2007,7 @@ public struct HeaderCell: ContentNode, ColumnSpanAttribute, RowSpanAttribute, He
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2039,7 +2039,7 @@ public struct Form: ContentNode, ActionAttribute, AutoCompleteAttribute, Encodin
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2060,7 +2060,7 @@ public struct Label: ContentNode, ForAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2106,7 +2106,7 @@ public struct Button: ContentNode, DisabledAttribute, FormAttribute, FormActionA
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2138,7 +2138,7 @@ public struct Select: ContentNode, AutoCompleteAttribute, DisabledAttribute, For
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
     
@@ -2160,7 +2160,7 @@ public struct DataList: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2181,7 +2181,7 @@ public struct OptionGroup: ContentNode, DisabledAttribute, LabelAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2244,7 +2244,7 @@ public struct Output: ContentNode, ForAttribute, FormAttribute, NameAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2265,7 +2265,7 @@ public struct Progress: ContentNode, ValueAttribute, MaximumValueAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2286,7 +2286,7 @@ public struct Meter: ContentNode, ValueAttribute, MinimumValueAttribute, Maximum
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2307,7 +2307,7 @@ public struct Fieldset: ContentNode, DisabledAttribute, FormAttribute, NameAttri
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2328,7 +2328,7 @@ public struct Legend: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2349,7 +2349,7 @@ public struct Details: ContentNode, OpenAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2370,7 +2370,7 @@ public struct Summary: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2391,7 +2391,7 @@ public struct Dialog: ContentNode, OpenAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2412,7 +2412,7 @@ public struct Script: ContentNode, AsyncAttribute, ReferrerPolicyAttribute, Sour
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2433,7 +2433,7 @@ public struct NoScript: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2454,7 +2454,7 @@ public struct Template: ContentNode {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
@@ -2475,7 +2475,7 @@ public struct Canvas: ContentNode, WidthAttribute, HeightAttribute {
 
     public var content: HTMLContent
 
-    public init(@HTMLBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> HTMLContent) {
         self.content = content()
     }
 
