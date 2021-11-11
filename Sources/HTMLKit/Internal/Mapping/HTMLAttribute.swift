@@ -5,18 +5,18 @@ public struct HTMLAttribute {
 
     public let attribute: String
 
-    public let value: HTMLContent?
+    public let value: Content?
 
     public let isIncluded: Conditionable
 
-    public init(attribute: String, value: HTMLContent?, isIncluded: Conditionable = true) {
+    public init(attribute: String, value: Content?, isIncluded: Conditionable = true) {
         self.attribute = attribute
         self.value = value
         self.isIncluded = isIncluded
     }
 }
 
-extension HTMLAttribute: HTMLContent {
+extension HTMLAttribute: Content {
     
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         try IF(isIncluded) {

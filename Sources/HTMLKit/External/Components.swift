@@ -10,10 +10,10 @@ public struct MetaTitle: HTMLComponent, Localizable {
 
         public var attributes: [HTMLAttribute] = []
 
-        public var content: HTMLContent
+        public var content: Content
     }
 
-    public let content: HTMLContent
+    public let content: Content
     
     public var attributes: [HTMLAttribute]
     
@@ -21,7 +21,7 @@ public struct MetaTitle: HTMLComponent, Localizable {
     
     public let useTwitterMetadata: Conditionable
 
-    public var body: HTMLContent {
+    public var body: Content {
         [
             Node(attributes: attributes, content: content),
             IF(useOpenGraphMetadata) {
@@ -51,14 +51,14 @@ public struct MetaTitle: HTMLComponent, Localizable {
         useTwitterMetadata = true
     }
 
-    public init(@ContentBuilder builder: () -> HTMLContent) {
+    public init(@ContentBuilder builder: () -> Content) {
         content = builder()
         attributes = []
         useOpenGraphMetadata = true
         useTwitterMetadata = true
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "", useOpenGraphMetadata: Conditionable = true, useTwitterMetadata: Conditionable = true) {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "", useOpenGraphMetadata: Conditionable = true, useTwitterMetadata: Conditionable = true) {
         self.content = content
         self.attributes = attributes
         self.useOpenGraphMetadata = useOpenGraphMetadata
@@ -94,7 +94,7 @@ public struct Stylesheet: HTMLComponent {
         self.url = .constant(url)
     }
 
-    public var body: HTMLContent {
+    public var body: Content {
         Link()
             .relationship(.stylesheet)
             .reference(url)
@@ -107,13 +107,13 @@ public struct Stylesheet: HTMLComponent {
 ///
 public struct MetaDescription: HTMLComponent, Localizable {
 
-    public var description: HTMLContent
+    public var description: Content
 
     public let useOpenGraphMetadata: Conditionable
     
     public let useTwitterMetadata: Conditionable
 
-    public var body: HTMLContent {
+    public var body: Content {
         [
             Meta()
                 .property(.description)
@@ -131,7 +131,7 @@ public struct MetaDescription: HTMLComponent, Localizable {
         ]
     }
 
-    public init(description: () -> HTMLContent) {
+    public init(description: () -> Content) {
         self.description = description()
         self.useTwitterMetadata = true
         self.useOpenGraphMetadata = true
@@ -149,7 +149,7 @@ public struct MetaDescription: HTMLComponent, Localizable {
         self.useOpenGraphMetadata = true
     }
 
-    public init(description: HTMLContent, useOpenGraphMetadata: Conditionable, useTwitterMetadata: Conditionable) {
+    public init(description: Content, useOpenGraphMetadata: Conditionable, useTwitterMetadata: Conditionable) {
         self.description = description
         self.useOpenGraphMetadata = useOpenGraphMetadata
         self.useTwitterMetadata = useTwitterMetadata
@@ -179,7 +179,7 @@ public struct FavIcon: HTMLComponent {
         self.url = url
     }
 
-    public var body: HTMLContent {
+    public var body: Content {
         Link()
             .relationship(.shortcutIcon)
             .reference(url)
@@ -211,7 +211,7 @@ public struct Viewport: HTMLComponent {
         self.internalScale = internalScale
     }
 
-    public var body: HTMLContent {
+    public var body: Content {
         Meta()
             .name(.viewport)
             .content("width=\(mode.width), initial-scale=\(internalScale)")
@@ -223,12 +223,12 @@ public struct Viewport: HTMLComponent {
 ///
 public struct Author: HTMLComponent, Localizable {
 
-    public var author: HTMLContent
+    public var author: Content
 
     @TemplateValue(String?.self)
     public var twitterHandle
 
-    public var body: HTMLContent {
+    public var body: Content {
         [
             Meta().name(.author).content(author),
             Unwrap(twitterHandle) { handle in
@@ -239,7 +239,7 @@ public struct Author: HTMLComponent, Localizable {
         ]
     }
 
-    public init(author: () -> HTMLContent) {
+    public init(author: () -> Content) {
         self.author = author()
     }
 
@@ -251,7 +251,7 @@ public struct Author: HTMLComponent, Localizable {
         author = Localized(key: localizedKey, context: context)
     }
 
-    public init(author: HTMLContent, handle: TemplateValue<String?>) {
+    public init(author: Content, handle: TemplateValue<String?>) {
         self.author = author
         self.twitterHandle = handle
     }

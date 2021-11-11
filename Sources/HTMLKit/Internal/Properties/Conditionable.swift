@@ -1,7 +1,7 @@
 /// The protocol defines
 ///
 ///
-public protocol Conditionable: HTMLContent {
+public protocol Conditionable: Content {
     
     func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool
 }

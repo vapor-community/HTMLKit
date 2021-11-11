@@ -7,19 +7,19 @@
 ///
 public protocol GlobalAttributes {
 
-    func accessKey(_ value: HTMLContent) -> Self
+    func accessKey(_ value: Content) -> Self
     
-    func `class`(_ value: HTMLContent) -> Self
+    func `class`(_ value: Content) -> Self
 
-    func data(for key: String, value: HTMLContent) -> Self
+    func data(for key: String, value: Content) -> Self
 
-    func aria(for key: String, value: HTMLContent) -> Self
+    func aria(for key: String, value: Content) -> Self
 
-    func data(_ key: String, value: HTMLContent) -> Self
+    func data(_ key: String, value: Content) -> Self
 
-    func aria(_ key: String, value: HTMLContent) -> Self
+    func aria(_ key: String, value: Content) -> Self
 
-    func style(css: HTMLContent) -> Self
+    func style(css: Content) -> Self
 
     func isEditable(_ value: Conditionable) -> Self
 
@@ -29,7 +29,7 @@ public protocol GlobalAttributes {
 
     func isHidden(_ value: Conditionable) -> Self
 
-    func id(_ value: HTMLContent) -> Self
+    func id(_ value: Content) -> Self
 
     func lang(_ value: TemplateValue<String>) -> Self
 
@@ -37,36 +37,36 @@ public protocol GlobalAttributes {
 
     func tabIndex(_ value: TemplateValue<Int>) -> Self
 
-    func title(_ value: HTMLContent) -> Self
+    func title(_ value: Content) -> Self
 
-    func role(_ text: HTMLContent) -> Self
+    func role(_ text: Content) -> Self
 
-    func on(click: HTMLContent) -> Self
+    func on(click: Content) -> Self
 }
 
 extension GlobalAttributes where Self: HTMLNode {
 
-    public func aria(for key: String, value: HTMLContent) -> Self {
+    public func aria(for key: String, value: Content) -> Self {
         add(.init(attribute: "aria-" + key, value: value))
     }
 
-    public func aria(_ key: String, value: HTMLContent) -> Self {
+    public func aria(_ key: String, value: Content) -> Self {
         self.aria(for: key, value: value)
     }
 
-    public func accessKey(_ value: HTMLContent) -> Self {
+    public func accessKey(_ value: Content) -> Self {
         add(.init(attribute: "accessKey", value: value))
     }
 
-    public func `class`(_ value: HTMLContent) -> Self {
+    public func `class`(_ value: Content) -> Self {
         add(.init(attribute: "class", value: value))
     }
 
-    public func data(for key: String, value: HTMLContent) -> Self {
+    public func data(for key: String, value: Content) -> Self {
         add(.init(attribute: "data-" + key, value: value))
     }
 
-    public func data(_ key: String, value: HTMLContent) -> Self {
+    public func data(_ key: String, value: Content) -> Self {
         self.data(for: key, value: value)
     }
 
@@ -86,7 +86,7 @@ extension GlobalAttributes where Self: HTMLNode {
         add(.init(attribute: "hidden", value: nil, isIncluded: value))
     }
 
-    public func id(_ value: HTMLContent) -> Self {
+    public func id(_ value: Content) -> Self {
         add(.init(attribute: "id", value: value))
     }
 
@@ -102,19 +102,19 @@ extension GlobalAttributes where Self: HTMLNode {
         add(.init(attribute: "tabindex", value: value))
     }
 
-    public func title(_ value: HTMLContent) -> Self {
+    public func title(_ value: Content) -> Self {
         add(.init(attribute: "title", value: value))
     }
 
-    public func role(_ text: HTMLContent) -> Self {
+    public func role(_ text: Content) -> Self {
         add(.init(attribute: "role", value: text))
     }
 
-    public func style(css: HTMLContent) -> Self {
+    public func style(css: Content) -> Self {
         add(.init(attribute: "style", value: css))
     }
 
-    public func on(click: HTMLContent) -> Self {
+    public func on(click: Content) -> Self {
         add(.init(attribute: "onclick", value: click))
     }
 }
@@ -124,12 +124,12 @@ extension GlobalAttributes where Self: HTMLNode {
 ///
 public protocol AcceptAttribute {
     
-    func accept(_ value: HTMLContent) -> Self
+    func accept(_ value: Content) -> Self
 }
 
 extension AcceptAttribute where Self: HTMLNode {
     
-    public func accept(_ value: HTMLContent) -> Self {
+    public func accept(_ value: Content) -> Self {
         add(.init(attribute: "accept", value: value))
     }
 }
@@ -139,12 +139,12 @@ extension AcceptAttribute where Self: HTMLNode {
 ///
 public protocol ActionAttribute {
     
-    func action(_ value: HTMLContent) -> Self
+    func action(_ value: Content) -> Self
 }
 
 extension ActionAttribute where Self: HTMLNode {
     
-    public func action(_ value: HTMLContent) -> Self {
+    public func action(_ value: Content) -> Self {
         add(.init(attribute: "action", value: value))
     }
 }
@@ -154,12 +154,12 @@ extension ActionAttribute where Self: HTMLNode {
 ///
 public protocol AlternativeAttribute {
     
-    func alternative(_ value: HTMLContent) -> Self
+    func alternative(_ value: Content) -> Self
 }
 
 extension AlternativeAttribute where Self: HTMLNode {
     
-    public func alternative(_ value: HTMLContent) -> Self {
+    public func alternative(_ value: Content) -> Self {
         add(.init(attribute: "alt", value: value))
     }
 }
@@ -244,12 +244,12 @@ extension CheckedAttribute where Self: HTMLNode {
 ///
 public protocol CiteAttribute {
     
-    func cite(_ text: HTMLContent) -> Self
+    func cite(_ text: Content) -> Self
 }
 
 extension CiteAttribute where Self: HTMLNode {
     
-    public func cite(_ text: HTMLContent) -> Self {
+    public func cite(_ text: Content) -> Self {
         add(.init(attribute: "cite", value: text))
     }
 }
@@ -289,12 +289,12 @@ extension ColumnSpanAttribute where Self: HTMLNode {
 ///
 public protocol ContentAttribute {
     
-    func content(_ value: HTMLContent) -> Self
+    func content(_ value: Content) -> Self
 }
 
 extension ContentAttribute where Self: HTMLNode {
     
-    public func content(_ value: HTMLContent) -> Self {
+    public func content(_ value: Content) -> Self {
         add(.init(attribute: "content", value: value))
     }
 }
@@ -319,12 +319,12 @@ extension ControlsAttribute where Self: HTMLNode {
 ///
 public protocol CoordinatesAttribute {
     
-    func coordinates(_ value: HTMLContent) -> Self
+    func coordinates(_ value: Content) -> Self
 }
 
 extension CoordinatesAttribute where Self: HTMLNode {
     
-    public func coordinates(_ value: HTMLContent) -> Self {
+    public func coordinates(_ value: Content) -> Self {
         add(.init(attribute: "coords", value: value))
     }
 }
@@ -334,12 +334,12 @@ extension CoordinatesAttribute where Self: HTMLNode {
 ///
 public protocol DataAttribute {
     
-    func data(_ value: HTMLContent) -> Self
+    func data(_ value: Content) -> Self
 }
 
 extension DataAttribute where Self: HTMLNode {
     
-    public func data(_ value: HTMLContent) -> Self {
+    public func data(_ value: Content) -> Self {
         add(.init(attribute: "data", value: value))
     }
 }
@@ -349,12 +349,12 @@ extension DataAttribute where Self: HTMLNode {
 ///
 public protocol DateTimeAttribute {
     
-    func dateTime(_ value: HTMLContent) -> Self
+    func dateTime(_ value: Content) -> Self
 }
 
 extension DateTimeAttribute where Self: HTMLNode {
     
-    public func dateTime(_ value: HTMLContent) -> Self {
+    public func dateTime(_ value: Content) -> Self {
         add(.init(attribute: "datetime", value: value))
     }
 }
@@ -424,12 +424,12 @@ extension EncodingAttribute where Self: HTMLNode {
 ///
 public protocol ForAttribute {
     
-    func `for`(_ value: HTMLContent) -> Self
+    func `for`(_ value: Content) -> Self
 }
 
 extension ForAttribute where Self: HTMLNode {
     
-    public func `for`(_ value: HTMLContent) -> Self {
+    public func `for`(_ value: Content) -> Self {
         add(.init(attribute: "for", value: value))
     }
 }
@@ -439,12 +439,12 @@ extension ForAttribute where Self: HTMLNode {
 ///
 public protocol FormAttribute {
     
-    func form(_ value: HTMLContent) -> Self
+    func form(_ value: Content) -> Self
 }
 
 extension FormAttribute where Self: HTMLNode {
     
-    public func form(_ value: HTMLContent) -> Self {
+    public func form(_ value: Content) -> Self {
         add(.init(attribute: "form", value: value))
     }
 }
@@ -454,12 +454,12 @@ extension FormAttribute where Self: HTMLNode {
 ///
 public protocol FormActionAttribute {
     
-    func formAction(_ value: HTMLContent) -> Self
+    func formAction(_ value: Content) -> Self
 }
 
 extension FormActionAttribute where Self: HTMLNode {
     
-    public func formAction(_ value: HTMLContent) -> Self {
+    public func formAction(_ value: Content) -> Self {
         add(.init(attribute: "formaction", value: value))
     }
 }
@@ -469,12 +469,12 @@ extension FormActionAttribute where Self: HTMLNode {
 ///
 public protocol HeaderAttribute {
     
-    func header(_ value: HTMLContent) -> Self
+    func header(_ value: Content) -> Self
 }
 
 extension HeaderAttribute where Self: HTMLNode {
     
-    public func header(_ value: HTMLContent) -> Self {
+    public func header(_ value: Content) -> Self {
         add(.init(attribute: "header", value: value))
     }
 }
@@ -514,12 +514,12 @@ extension HighAttribute where Self: HTMLNode {
 ///
 public protocol ReferenceAttribute {
     
-    func reference(_ value: HTMLContent) -> Self
+    func reference(_ value: Content) -> Self
 }
 
 extension ReferenceAttribute where Self: HTMLNode {
     
-    public func reference(_ value: HTMLContent) -> Self {
+    public func reference(_ value: Content) -> Self {
         add(.init(attribute: "href", value: value))
     }
 }
@@ -544,12 +544,12 @@ extension ReferenceLanguageAttribute where Self: HTMLNode {
 ///
 public protocol KindAttribute {
     
-    func kind(_ text: HTMLContent) -> Self
+    func kind(_ text: Content) -> Self
 }
 
 extension KindAttribute where Self: HTMLNode {
     
-    public func kind(_ text: HTMLContent) -> Self {
+    public func kind(_ text: Content) -> Self {
         add(.init(attribute: "kind", value: text))
     }
 }
@@ -559,12 +559,12 @@ extension KindAttribute where Self: HTMLNode {
 ///
 public protocol LabelAttribute {
     
-    func label(_ value: HTMLContent) -> Self
+    func label(_ value: Content) -> Self
 }
 
 extension LabelAttribute where Self: HTMLNode {
     
-    public func label(_ value: HTMLContent) -> Self {
+    public func label(_ value: Content) -> Self {
         add(.init(attribute: "label", value: value))
     }
 }
@@ -574,12 +574,12 @@ extension LabelAttribute where Self: HTMLNode {
 ///
 public protocol ListAttribute {
     
-    func list(_ value: HTMLContent) -> Self
+    func list(_ value: Content) -> Self
 }
 
 extension ListAttribute where Self: HTMLNode {
     
-    public func list(_ value: HTMLContent) -> Self {
+    public func list(_ value: Content) -> Self {
         add(.init(attribute: "list", value: value))
     }
 }
@@ -604,12 +604,12 @@ extension LoopAttribute where Self: HTMLNode {
 ///
 public protocol MaximumValueAttribute {
     
-    func maximumValue(value: HTMLContent) -> Self
+    func maximumValue(value: Content) -> Self
 }
 
 extension MaximumValueAttribute where Self: HTMLNode {
 
-    public func maximumValue(value: HTMLContent) -> Self {
+    public func maximumValue(value: Content) -> Self {
         add(.init(attribute: "max", value: value))
     }
 }
@@ -619,12 +619,12 @@ extension MaximumValueAttribute where Self: HTMLNode {
 ///
 public protocol MaximumLengthAttribute {
     
-    func maximumLength(value: HTMLContent) -> Self
+    func maximumLength(value: Content) -> Self
 }
 
 extension MaximumLengthAttribute where Self: HTMLNode {
 
-    public func maximumLength(value: HTMLContent) -> Self {
+    public func maximumLength(value: Content) -> Self {
         add(.init(attribute: "maxlength", value: value))
     }
 }
@@ -634,12 +634,12 @@ extension MaximumLengthAttribute where Self: HTMLNode {
 ///
 public protocol MediaAttribute {
     
-    func media(value: HTMLContent) -> Self
+    func media(value: Content) -> Self
 }
 
 extension MediaAttribute where Self: HTMLNode {
 
-    public func media(value: HTMLContent) -> Self {
+    public func media(value: Content) -> Self {
         add(.init(attribute: "media", value: value))
     }
 }
@@ -664,12 +664,12 @@ extension MethodAttribute where Self: HTMLNode {
 ///
 public protocol MinimumValueAttribute {
     
-    func minimumValue(value: HTMLContent) -> Self
+    func minimumValue(value: Content) -> Self
 }
 
 extension MinimumValueAttribute where Self: HTMLNode {
 
-    public func minimumValue(value: HTMLContent) -> Self {
+    public func minimumValue(value: Content) -> Self {
         add(.init(attribute: "min", value: value))
     }
 }
@@ -679,12 +679,12 @@ extension MinimumValueAttribute where Self: HTMLNode {
 ///
 public protocol MinimumLengthAttribute {
     
-    func minimumLength(value: HTMLContent) -> Self
+    func minimumLength(value: Content) -> Self
 }
 
 extension MinimumLengthAttribute where Self: HTMLNode {
 
-    public func minimumLength(value: HTMLContent) -> Self {
+    public func minimumLength(value: Content) -> Self {
         add(.init(attribute: "minlength", value: value))
     }
 }
@@ -754,12 +754,12 @@ extension OpenAttribute where Self: HTMLNode {
 ///
 public protocol OptimumAttribute {
     
-    func optimum(_ value: HTMLContent) -> Self
+    func optimum(_ value: Content) -> Self
 }
 
 extension OptimumAttribute where Self: HTMLNode {
     
-    public func optimum(_ value: HTMLContent) -> Self {
+    public func optimum(_ value: Content) -> Self {
         add(.init(attribute: "optimum", value: value))
     }
 }
@@ -784,12 +784,12 @@ extension PatternAttribute where Self: HTMLNode {
 ///
 public protocol PingAttribute {
     
-    func ping(_ value: HTMLContent) -> Self
+    func ping(_ value: Content) -> Self
 }
 
 extension PingAttribute where Self: HTMLNode {
 
-    public func ping(_ value: HTMLContent) -> Self {
+    public func ping(_ value: Content) -> Self {
         add(.init(attribute: "ping", value: value))
     }
 }
@@ -799,12 +799,12 @@ extension PingAttribute where Self: HTMLNode {
 ///
 public protocol PlaceholderAttribute {
     
-    func placeholder(_ text: HTMLContent) -> Self
+    func placeholder(_ text: Content) -> Self
 }
 
 extension PlaceholderAttribute where Self: HTMLNode {
     
-    public func placeholder(_ text: HTMLContent) -> Self {
+    public func placeholder(_ text: Content) -> Self {
         add(.init(attribute: "placeholder", value: text))
     }
 }
@@ -821,12 +821,12 @@ extension PlaceholderAttribute {
 ///
 public protocol PosterAttribute {
     
-    func poster(value: HTMLContent) -> Self
+    func poster(value: Content) -> Self
 }
 
 extension PosterAttribute where Self: HTMLNode {
 
-    public func poster(value: HTMLContent) -> Self {
+    public func poster(value: Content) -> Self {
         add(.init(attribute: "poster", value: value))
     }
 }
@@ -956,12 +956,12 @@ extension SandboxAttribute where Self: HTMLNode {
 ///
 public protocol ScopeAttribute {
     
-    func scope(_ text: HTMLContent) -> Self
+    func scope(_ text: Content) -> Self
 }
 
 extension ScopeAttribute where Self: HTMLNode {
 
-    public func scope(_ text: HTMLContent) -> Self {
+    public func scope(_ text: Content) -> Self {
         add(.init(attribute: "scope", value: text))
     }
 }
@@ -1031,12 +1031,12 @@ extension SpanAttribute where Self: HTMLNode {
 ///
 public protocol SourceAttribute {
     
-    func source(_ link: HTMLContent) -> Self
+    func source(_ link: Content) -> Self
 }
 
 extension SourceAttribute where Self: HTMLNode {
     
-    public func source(_ link: HTMLContent) -> Self {
+    public func source(_ link: Content) -> Self {
         add(.init(attribute: "src", value: link))
     }
 }
@@ -1106,12 +1106,12 @@ extension TypeAttribute where Self: HTMLNode {
 ///
 public protocol ValueAttribute {
     
-    func value(_ text: HTMLContent) -> Self
+    func value(_ text: Content) -> Self
 }
 
 extension ValueAttribute where Self: HTMLNode {
 
-    public func value(_ text: HTMLContent) -> Self {
+    public func value(_ text: Content) -> Self {
         add(.init(attribute: "value", value: text))
     }
 }

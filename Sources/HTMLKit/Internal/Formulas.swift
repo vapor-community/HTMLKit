@@ -1,13 +1,13 @@
 /// The protocol defines
 ///
 ///
-public protocol HTMLTemplate: HTMLContent {
+public protocol HTMLTemplate: Content {
     
     associatedtype Context
     
     var context: TemplateValue<Context> { get }
 
-    var body: HTMLContent { get }
+    var body: Content { get }
 }
 
 extension HTMLTemplate {
@@ -22,15 +22,15 @@ extension HTMLTemplate {
         try body.prerender(formula)
     }
 
-    public var scripts: HTMLContent { body.scripts }
+    public var scripts: Content { body.scripts }
 }
 
 /// The protocol defines
 ///
 ///
-public protocol HTMLPage: HTMLContent {
+public protocol HTMLPage: Content {
     
-    var body: HTMLContent { get }
+    var body: Content { get }
 }
 
 extension HTMLPage {
@@ -43,15 +43,15 @@ extension HTMLPage {
         try body.prerender(formula)
     }
 
-    public var scripts: HTMLContent { body.scripts }
+    public var scripts: Content { body.scripts }
 }
 
 /// The protocol defines
 ///
 ///
-public protocol HTMLComponent: HTMLContent {
+public protocol HTMLComponent: Content {
     
-    var body: HTMLContent { get }
+    var body: Content { get }
 }
 
 extension HTMLComponent {
@@ -64,5 +64,5 @@ extension HTMLComponent {
         try body.prerender(formula)
     }
 
-    public var scripts: HTMLContent { body.scripts }
+    public var scripts: Content { body.scripts }
 }

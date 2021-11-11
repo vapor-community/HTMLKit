@@ -1,10 +1,10 @@
 /// The modifier is for
 ///
 ///
-public struct EnvironmentModifier: HTMLContent {
+public struct EnvironmentModifier: Content {
 
-    let view: HTMLContent
-    let locale: HTMLContent
+    let view: Content
+    let locale: Content
 
     let localFormula = HTMLRenderer.Formula()
 

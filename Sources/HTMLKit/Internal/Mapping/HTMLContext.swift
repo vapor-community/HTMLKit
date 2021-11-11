@@ -64,7 +64,7 @@
     }
 }
 
-extension HTMLContext: HTMLContent where Value: HTMLContent {
+extension HTMLContext: Content where Value: Content {
     
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         applyEscaping(

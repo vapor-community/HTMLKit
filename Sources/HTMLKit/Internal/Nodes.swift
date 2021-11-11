@@ -10,7 +10,7 @@ public protocol ContentNode: HTMLNode {
     init(attributes: [HTMLAttribute], content: Content)
 }
 
-extension ContentNode where Content == HTMLContent {
+extension ContentNode where Content == Content {
     
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: "<\(name)")
@@ -33,7 +33,7 @@ extension ContentNode where Content == HTMLContent {
         .init(attributes: attributes, content: content)
     }
 
-    public var scripts: HTMLContent { content.scripts }
+    public var scripts: Content { content.scripts }
 }
 
 extension ContentNode where Content == String {
@@ -65,7 +65,7 @@ extension ContentNode where Content == String {
         .init(attributes: attributes, content: content)
     }
     
-    public var scripts: HTMLContent { content.scripts }
+    public var scripts: Content { content.scripts }
 }
 
 /// The node is for
@@ -99,9 +99,9 @@ extension EmptyNode {
 /// The node is for
 ///
 ///
-public protocol CommentNode: HTMLContent {
+public protocol CommentNode: Content {
     
-    associatedtype Content: HTMLContent
+    associatedtype Content: Content
     
     var content: Content { get }
 }
@@ -122,9 +122,9 @@ extension CommentNode {
 /// The node is for
 ///
 ///
-public protocol DocumentNode: HTMLContent {
+public protocol DocumentNode: Content {
     
-    associatedtype Content: HTMLContent
+    associatedtype Content: Content
     
     var content: Content { get }
 }

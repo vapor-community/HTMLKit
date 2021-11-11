@@ -87,13 +87,13 @@ public struct Head: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -192,13 +192,13 @@ public struct Html: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -213,13 +213,13 @@ public struct Body: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -234,13 +234,13 @@ public struct Article: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -255,13 +255,13 @@ public struct Section: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -276,13 +276,13 @@ public struct Navigation: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -297,13 +297,13 @@ public struct Aside: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -318,13 +318,13 @@ public struct Heading1: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -350,13 +350,13 @@ public struct Heading2: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -382,13 +382,13 @@ public struct Heading3: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -414,13 +414,13 @@ public struct Heading4: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -446,13 +446,13 @@ public struct Heading5: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -478,13 +478,13 @@ public struct Heading6: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -510,13 +510,13 @@ public struct HeadingGroup: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -531,13 +531,13 @@ public struct Header: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -552,13 +552,13 @@ public struct Footer: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -573,13 +573,13 @@ public struct Address: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -594,13 +594,13 @@ public struct Paragraph: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -640,13 +640,13 @@ public struct PreformattedText: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -661,13 +661,13 @@ public struct Blockquote: ContentNode, CiteAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -693,13 +693,13 @@ public struct OrderedList: ContentNode, ReversedAttribute, StartAttribute, TypeA
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -714,13 +714,13 @@ public struct UnorderedList: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -735,13 +735,13 @@ public struct ListItem: ContentNode, ValueAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -756,13 +756,13 @@ public struct DescriptionList: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -777,13 +777,13 @@ public struct TermName: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -798,13 +798,13 @@ public struct TermDefinition: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -819,13 +819,13 @@ public struct Figure: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -840,13 +840,13 @@ public struct FigureCaption: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -861,13 +861,13 @@ public struct Main: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -882,13 +882,13 @@ public struct Division: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -903,13 +903,13 @@ public struct Anchor: ContentNode, DownloadAttribute, ReferenceAttribute, Refere
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -935,13 +935,13 @@ public struct Emphasize: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -956,13 +956,13 @@ public struct Strong: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -977,13 +977,13 @@ public struct Small: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1009,13 +1009,13 @@ public struct StrikeThrough: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1041,13 +1041,13 @@ public struct Cite: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1062,13 +1062,13 @@ public struct ShortQuote: ContentNode, CiteAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1083,13 +1083,13 @@ public struct Definition: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1104,13 +1104,13 @@ public struct Abbreviation: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1125,13 +1125,13 @@ public struct Ruby: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1146,13 +1146,13 @@ public struct RubyText: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1167,13 +1167,13 @@ public struct RubyPronunciation: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1188,13 +1188,13 @@ public struct Data: ContentNode, ValueAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1209,13 +1209,13 @@ public struct Time: ContentNode, DateTimeAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1230,13 +1230,13 @@ public struct Code: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1251,13 +1251,13 @@ public struct Variable: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1272,13 +1272,13 @@ public struct SampleOutput: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1293,13 +1293,13 @@ public struct KeyboardInput: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1314,13 +1314,13 @@ public struct Subscript: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1335,13 +1335,13 @@ public struct Superscript: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1356,13 +1356,13 @@ public struct Italic: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1388,13 +1388,13 @@ public struct Bold: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1420,13 +1420,13 @@ public struct Underline: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1452,13 +1452,13 @@ public struct Mark: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1473,13 +1473,13 @@ public struct Bdi: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1508,13 +1508,13 @@ public struct Span: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1557,13 +1557,13 @@ public struct InsertedText: ContentNode, CiteAttribute, DateTimeAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1578,13 +1578,13 @@ public struct DeletedText: ContentNode, CiteAttribute, DateTimeAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1599,13 +1599,13 @@ public struct Picture: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1648,13 +1648,13 @@ public struct InlineFrame: ContentNode, SourceAttribute, NameAttribute, WidthAtt
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1683,13 +1683,13 @@ public struct Object: ContentNode, DataAttribute, TypeAttribute, NameAttribute, 
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1718,13 +1718,13 @@ public struct Video: ContentNode, SourceAttribute, AutoPlayAttribute, LoopAttrib
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1739,13 +1739,13 @@ public struct Audio: ContentNode, SourceAttribute, AutoPlayAttribute, LoopAttrib
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1774,13 +1774,13 @@ public struct Map: ContentNode, NameAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1795,13 +1795,13 @@ public struct Area: ContentNode, AlternativeAttribute, CoordinatesAttribute, Sha
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1816,13 +1816,13 @@ public struct Table: ContentNode, WidthAttribute, HeightAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1837,13 +1837,13 @@ public struct Caption: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1858,13 +1858,13 @@ public struct ColumnGroup: ContentNode, SpanAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1879,13 +1879,13 @@ public struct Column: ContentNode, SpanAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1900,13 +1900,13 @@ public struct TableBody: ContentNode, WidthAttribute, HeightAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1921,13 +1921,13 @@ public struct TableHead: ContentNode, WidthAttribute, HeightAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1942,13 +1942,13 @@ public struct TableFoot: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1963,13 +1963,13 @@ public struct TableRow: ContentNode, WidthAttribute, HeightAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -1984,13 +1984,13 @@ public struct DataCell: ContentNode, ColumnSpanAttribute, RowSpanAttribute, Head
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2005,13 +2005,13 @@ public struct HeaderCell: ContentNode, ColumnSpanAttribute, RowSpanAttribute, He
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2037,13 +2037,13 @@ public struct Form: ContentNode, ActionAttribute, AutoCompleteAttribute, Encodin
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2058,13 +2058,13 @@ public struct Label: ContentNode, ForAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2104,13 +2104,13 @@ public struct Button: ContentNode, DisabledAttribute, FormAttribute, FormActionA
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2136,13 +2136,13 @@ public struct Select: ContentNode, AutoCompleteAttribute, DisabledAttribute, For
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
     
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2158,13 +2158,13 @@ public struct DataList: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2179,13 +2179,13 @@ public struct OptionGroup: ContentNode, DisabledAttribute, LabelAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2242,13 +2242,13 @@ public struct Output: ContentNode, ForAttribute, FormAttribute, NameAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2263,13 +2263,13 @@ public struct Progress: ContentNode, ValueAttribute, MaximumValueAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2284,13 +2284,13 @@ public struct Meter: ContentNode, ValueAttribute, MinimumValueAttribute, Maximum
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2305,13 +2305,13 @@ public struct Fieldset: ContentNode, DisabledAttribute, FormAttribute, NameAttri
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2326,13 +2326,13 @@ public struct Legend: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2347,13 +2347,13 @@ public struct Details: ContentNode, OpenAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2368,13 +2368,13 @@ public struct Summary: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2389,13 +2389,13 @@ public struct Dialog: ContentNode, OpenAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2410,13 +2410,13 @@ public struct Script: ContentNode, AsyncAttribute, ReferrerPolicyAttribute, Sour
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2431,13 +2431,13 @@ public struct NoScript: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2452,13 +2452,13 @@ public struct Template: ContentNode {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }
@@ -2473,13 +2473,13 @@ public struct Canvas: ContentNode, WidthAttribute, HeightAttribute {
 
     public var attributes: [HTMLAttribute] = []
 
-    public var content: HTMLContent
+    public var content: Content
 
-    public init(@ContentBuilder content: () -> HTMLContent) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
 
-    public init(attributes: [HTMLAttribute] = [], content: HTMLContent = "") {
+    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
         self.content = content
         self.attributes = attributes
     }

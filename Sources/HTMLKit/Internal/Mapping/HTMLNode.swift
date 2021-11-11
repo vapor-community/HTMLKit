@@ -1,7 +1,7 @@
 /// The protocol defines
 ///
 ///
-public protocol HTMLNode: HTMLContent, GlobalAttributes {
+public protocol HTMLNode: Content, GlobalAttributes {
     
     var name: String { get }
     
@@ -11,7 +11,7 @@ public protocol HTMLNode: HTMLContent, GlobalAttributes {
 
     func add(attributes: [HTMLAttribute], withSpace: Bool) -> Self
 
-    func value(of attribute: String) -> HTMLContent?
+    func value(of attribute: String) -> Content?
     
     func copy(with attributes: [HTMLAttribute]) -> Self
 
@@ -32,7 +32,7 @@ extension HTMLNode {
         return self.copy(with: self.attributes.add(attributes: attributes))
     }
 
-    public func value(of attribute: String) -> HTMLContent? {
+    public func value(of attribute: String) -> Content? {
         
         attributes.first(where: { $0.attribute == attribute })?.value
     }

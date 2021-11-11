@@ -5,13 +5,13 @@ final class ElementTests: XCTestCase {
     
     struct TestPage: HTMLPage {
         
-        var content: HTMLContent
+        var content: Content
         
-        var body: HTMLContent {
+        var body: Content {
             content
         }
         
-        init(@ContentBuilder content: () -> HTMLContent) {
+        init(@ContentBuilder content: () -> Content) {
             self.content = content()
         }
     }

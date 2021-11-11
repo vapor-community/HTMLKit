@@ -339,7 +339,7 @@ public enum WrapType: String {
 /// The enum is for
 ///
 ///
-public enum DirectionType: String, HTMLContent {
+public enum DirectionType: String, Content {
     
     case leftToRight = "ltr"
     case rightToLeft = "rtl"

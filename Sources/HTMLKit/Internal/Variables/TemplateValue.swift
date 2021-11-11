@@ -67,7 +67,7 @@ import Foundation
     }
 }
 
-extension TemplateValue: HTMLContent where Value: HTMLContent {
+extension TemplateValue: Content where Value: Content {
 
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         switch self {

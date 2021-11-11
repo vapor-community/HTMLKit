@@ -5,13 +5,13 @@ final class RenderingTests: XCTestCase {
     
     struct TestPage: HTMLPage {
         
-        var content: HTMLContent
+        var content: Content
         
-        var body: HTMLContent {
+        var body: Content {
             content
         }
         
-        init(@ContentBuilder builder: () -> HTMLContent) {
+        init(@ContentBuilder builder: () -> Content) {
             content = builder()
         }
     }
