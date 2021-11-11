@@ -1790,7 +1790,7 @@ public struct Video: ContentNode {
     }
 }
 
-extension Video: SourceAttribute, AutoPlayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute {}
+extension Video: SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute {}
 
 /// The element
 ///
@@ -1813,7 +1813,7 @@ public struct Audio: ContentNode {
     }
 }
 
-extension Audio: SourceAttribute, AutoPlayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute {}
+extension Audio: SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute {}
 
 /// The element
 ///
@@ -2137,7 +2137,7 @@ public struct Form: ContentNode {
     }
 }
 
-extension Form: ActionAttribute, AutoCompleteAttribute, EncodingAttribute, MethodAttribute, NameAttribute, TargetAttribute, RelationshipAttribute {}
+extension Form: ActionAttribute, AutocompleteAttribute, EncodingAttribute, MethodAttribute, NameAttribute, TargetAttribute, RelationshipAttribute {}
 
 /// The element
 ///
@@ -2189,7 +2189,7 @@ public struct Input: EmptyNode {
     }
 }
 
-extension Input: AcceptAttribute, AlternativeAttribute, AutoCompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute {}
+extension Input: AcceptAttribute, AlternativeAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute {}
 
 /// The element
 ///
@@ -2246,7 +2246,7 @@ public struct Select: ContentNode {
     }
 }
 
-extension Select: AutoCompleteAttribute, DisabledAttribute, FormAttribute, MultipleAttribute, NameAttribute, RequiredAttribute, SizeAttribute {}
+extension Select: AutocompleteAttribute, DisabledAttribute, FormAttribute, MultipleAttribute, NameAttribute, RequiredAttribute, SizeAttribute {}
 
 
 /// The element
@@ -2540,7 +2540,7 @@ public struct Script: ContentNode {
     }
 }
 
-extension Script: AsyncAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute {}
+extension Script: AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute {}
 
 /// The element
 ///
