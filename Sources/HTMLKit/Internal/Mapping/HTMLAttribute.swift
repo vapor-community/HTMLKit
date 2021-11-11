@@ -1,20 +1,12 @@
-/// An attribute on a node
+/// The struct is for
 ///
-///     HTMLAttributeNode.class("text-dark") // <... class="text-dark"/>
+///
 public struct HTMLAttribute {
 
-    public enum Method: String {
-        case post
-        case get
-    }
-
-    /// The attribute to set
     public let attribute: String
 
-    /// The value of the attribute
     public let value: HTMLContent?
 
-    /// A condition that evaluates if an attributes should be rendered
     public let isIncluded: Conditionable
 
     public init(attribute: String, value: HTMLContent?, isIncluded: Conditionable = true) {
@@ -25,6 +17,7 @@ public struct HTMLAttribute {
 }
 
 extension HTMLAttribute: HTMLContent {
+    
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         try IF(isIncluded) {
             attribute

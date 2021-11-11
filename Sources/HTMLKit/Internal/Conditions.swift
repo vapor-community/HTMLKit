@@ -1,47 +1,10 @@
-protocol IsDefinable {
-    var isDefinded: Bool { get }
-}
-
-/// A protocol that makes a struct to a condition that can be used in an if
-public protocol Conditionable: HTMLContent {
-
-    /// Evaluates an expression with a context
-    ///
-    /// - Parameter context: The context to use when evaluating
-    /// - Returns: true if the expression is correct else false
-    func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool
-}
-
-extension Conditionable {
-
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        try evaluate(with: manager).render(with: manager)
-    }
-
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
-        formula.add(mappable: self)
-    }
-}
-
-extension Bool: Conditionable {
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        return self
-    }
-}
-
-extension HTMLContext: Conditionable where Value == Bool {
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        try manager.value(for: self)
-    }
-}
-
 /// A condition that evaluates an equal expression between a variable and a constant value
+///
+///
 public struct Equal<Value>: Conditionable where Value: Equatable {
 
-    /// The path to the variable
     let path: TemplateValue<Value>
 
-    /// The value to be compared with
     let value: TemplateValue<Value>
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
@@ -50,12 +13,12 @@ public struct Equal<Value>: Conditionable where Value: Equatable {
 }
 
 /// A condition that evaluates an not equal expression between a variable and a constant value
+///
+///
 public struct NotEqual<Value>: Conditionable where Value: Equatable {
 
-    /// The path to the variable
     let path: TemplateValue<Value>
 
-    /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
@@ -64,12 +27,12 @@ public struct NotEqual<Value>: Conditionable where Value: Equatable {
 }
 
 /// A condition that evaluates a less then expression between a variable and a constant value
+///
+///
 public struct LessThen<Value>: Conditionable where Value: Comparable {
 
-    /// The path to the variable
     let path: TemplateValue<Value>
 
-    /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
@@ -78,12 +41,12 @@ public struct LessThen<Value>: Conditionable where Value: Comparable {
 }
 
 /// A condition that evaluates a greater then expression between a variable and a constant value
+///
+///
 public struct GreaterThen<Value>: Conditionable where Value: Comparable {
 
-    /// The path to the variable
     let path: TemplateValue<Value>
 
-    /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
@@ -92,6 +55,8 @@ public struct GreaterThen<Value>: Conditionable where Value: Comparable {
 }
 
 /// A condition that evaluates a greater then expression between a variable and a constant value
+///
+///
 public struct Between<Value>: Conditionable where Value: Comparable {
 
     /// The path to the variable
@@ -109,6 +74,7 @@ public struct Between<Value>: Conditionable where Value: Comparable {
 
 /// A condition that is allways true
 /// Used as the `else` condition
+///
 struct AlwaysTrueCondition: Conditionable {
     func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
         return true
@@ -117,6 +83,7 @@ struct AlwaysTrueCondition: Conditionable {
 
 /// A condition that is allways true
 /// Used as the `else` condition
+///
 struct InvertCondition: Conditionable {
 
     let condition: Conditionable
@@ -126,9 +93,11 @@ struct InvertCondition: Conditionable {
     }
 }
 
+/// The struct is for
+///
+///
 struct BoolCondition<Root>: Conditionable {
 
-    /// The path to the variable
     let path: TemplateValue<Bool>
 
     func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
@@ -136,12 +105,13 @@ struct BoolCondition<Root>: Conditionable {
     }
 }
 
+/// The struct is for
+///
+///
 public struct NullableEqual<Value>: Conditionable where Value: Equatable {
 
-    /// The path to the variable
     let path: TemplateValue<Value?>
 
-    /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
@@ -150,12 +120,12 @@ public struct NullableEqual<Value>: Conditionable where Value: Equatable {
 }
 
 /// A condition that evaluates an not equal expression between a variable and a constant value
+///
+///
 public struct NullableNotEqual<Value>: Conditionable where Value: Equatable {
 
-    /// The path to the variable
     let path: TemplateValue<Value?>
 
-    /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
@@ -164,12 +134,12 @@ public struct NullableNotEqual<Value>: Conditionable where Value: Equatable {
 }
 
 /// A condition that evaluates a less then expression between a variable and a constant value
+///
+///
 public struct NullableLessThen<Value>: Conditionable where Value: Comparable {
 
-    /// The path to the variable
     let path: TemplateValue<Value?>
 
-    /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
@@ -182,12 +152,12 @@ public struct NullableLessThen<Value>: Conditionable where Value: Comparable {
 }
 
 /// A condition that evaluates a greater then expression between a variable and a constant value
+///
+///
 public struct NullableGreaterThen<Value>: Conditionable where Value: Comparable {
 
-    /// The path to the variable
     let path: TemplateValue<Value?>
 
-    /// The value to be compared with
     let value: Value
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
@@ -199,13 +169,13 @@ public struct NullableGreaterThen<Value>: Conditionable where Value: Comparable 
     }
 }
 
-// A condition equal to && in swift
+/// The struct is for
+///
+///
 public struct AndCondition: Conditionable {
 
-    /// The first condition
     let first: Conditionable
 
-    /// The second condition
     let second: Conditionable
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
@@ -213,13 +183,13 @@ public struct AndCondition: Conditionable {
     }
 }
 
-// A condition equal to || in swift
+/// The struct is for
+///
+///
 public struct OrCondition: Conditionable {
 
-    /// The first condition
     let first: Conditionable
 
-    /// The second condition
     let second: Conditionable
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
@@ -228,9 +198,10 @@ public struct OrCondition: Conditionable {
 }
 
 /// A condition that evaluates a greater then expression between a variable and a constant value
+///
+///
 public struct NotNullCondition<Value>: Conditionable {
 
-    /// The path to the variable
     let path: TemplateValue<Value?>
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
@@ -239,13 +210,14 @@ public struct NotNullCondition<Value>: Conditionable {
 }
 
 /// A condition that evaluates a greater then expression between a variable and a constant value
+///
+///
 public struct NotNullConditionGeneral<Value>: Conditionable {
 
-    /// The path to the variable
     let path: TemplateValue<Value>
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        if let value = try path.value(from: manager) as? IsDefinable {
+        if let value = try path.value(from: manager) as? Defineable {
             return value.isDefinded
         } else {
             return true
@@ -254,13 +226,14 @@ public struct NotNullConditionGeneral<Value>: Conditionable {
 }
 
 /// A condition that evaluates a greater then expression between a variable and a constant value
+///
+///
 public struct IsNullConditionGeneral<Value>: Conditionable {
 
-    /// The path to the variable
     let path: TemplateValue<Value>
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
-        if let value = try path.value(from: manager) as? IsDefinable {
+        if let value = try path.value(from: manager) as? Defineable {
             return value.isDefinded == false
         } else {
             return false
@@ -268,6 +241,9 @@ public struct IsNullConditionGeneral<Value>: Conditionable {
     }
 }
 
+/// The struct is for
+///
+///
 public struct InCollectionCondition<Value>: Conditionable where Value: Equatable {
 
     let valuePath: TemplateValue<Value>
@@ -285,6 +261,9 @@ public struct InCollectionCondition<Value>: Conditionable where Value: Equatable
     }
 }
 
+/// The struct is for
+///
+///
 public struct InCollectionConditionOptional<Value>: Conditionable where Value: Equatable {
 
     let valuePath: TemplateValue<Value?>
@@ -305,9 +284,10 @@ public struct InCollectionConditionOptional<Value>: Conditionable where Value: E
 }
 
 /// A condition that evaluates a greater then expression between a variable and a constant value
+///
+///
 public struct IsNullCondition<Value>: Conditionable {
 
-    /// The path to the variable
     let path: TemplateValue<Value?>
 
     public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {

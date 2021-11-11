@@ -1,24 +1,17 @@
 /// The node is for
 ///
 ///
-public protocol ContentNode: AttributeNode {
+public protocol ContentNode: HTMLNode {
 
-    var name: String { get }
+    associatedtype Content
+    
+    var content: Content { get }
 
-    var content: HTMLContent { get }
-
-    init(attributes: [HTMLAttribute], content: HTMLContent)
+    init(attributes: [HTMLAttribute], content: Content)
 }
 
-extension ContentNode {
-    public func copy(with attributes: [HTMLAttribute]) -> Self {
-        .init(attributes: attributes, content: content)
-    }
-
-    public var scripts: HTMLContent { content.scripts }
-}
-
-extension ContentNode {
+extension ContentNode where Content == HTMLContent {
+    
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: "<\(name)")
         try attributes.forEach {
@@ -35,25 +28,56 @@ extension ContentNode {
             + attributes.reduce("") { try $0 + " \($1.render(with: manager))" }
             + ">\(content.render(with: manager))</\(name)>"
     }
+    
+    public func copy(with attributes: [HTMLAttribute]) -> Self {
+        .init(attributes: attributes, content: content)
+    }
+
+    public var scripts: HTMLContent { content.scripts }
+}
+
+extension ContentNode where Content == String {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        
+        formula.add(string: "<\(name)")
+        
+        try attributes.forEach {
+            formula.add(string: " ")
+            try $0.prerender(formula)
+        }
+        
+        formula.add(string: ">")
+        
+        try content.prerender(formula)
+        
+        formula.add(string: "</\(name)>")
+    }
+
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        
+        try "<\(name)"
+            + attributes.reduce("") { try $0 + " \($1.render(with: manager))" }
+            + ">\(content.render(with: manager))</\(name)>"
+    }
+    
+    public func copy(with attributes: [HTMLAttribute]) -> Self {
+        .init(attributes: attributes, content: content)
+    }
+    
+    public var scripts: HTMLContent { content.scripts }
 }
 
 /// The node is for
 ///
 ///
-public protocol EmptyNode: AttributeNode {
-
-    var name: String { get }
+public protocol EmptyNode: HTMLNode {
 
     init(attributes: [HTMLAttribute])
 }
 
 extension EmptyNode {
-    public func copy(with attributes: [HTMLAttribute]) -> Self {
-        .init(attributes: attributes)
-    }
-}
-
-extension EmptyNode {
+    
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: "<\(name)")
         try attributes.forEach {
@@ -66,92 +90,54 @@ extension EmptyNode {
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         try "<\(name)" + attributes.reduce("") { try $0 + " \($1.render(with: manager))" } + ">"
     }
-}
-
-/// The node is for
-///
-///
-public protocol AttributeNode: AddableAttributeNode {
-
-    func copy(with attributes: [HTMLAttribute]) -> Self
-
-    func modify(if condition: Conditionable, modifyer: (Self) -> Self) -> Self
-
-    func wrapAttributes(with condition: Conditionable) -> [HTMLAttribute]
-}
-
-extension AttributeNode {
-
-    public func add(_ attribute: HTMLAttribute, withSpace: Bool = true) -> Self {
-        return copy(with: attributes.add(attribute: attribute))
-    }
-
-    public func add(attributes: [HTMLAttribute], withSpace: Bool = true) -> Self {
-        return self.copy(with: self.attributes.add(attributes: attributes))
-    }
-
-    public func value(of attribute: String) -> HTMLContent? {
-        attributes.first(where: { $0.attribute == attribute })?.value
-    }
-
-    public func modify(if condition: Conditionable, modifyer: (Self) -> Self) -> Self {
-        let emptyNode = self.copy(with: [])
-        let modified = modifyer(emptyNode)
-        return self.add(attributes: modified.wrapAttributes(with: condition))
-    }
-
-    public func modify<Value>(unwrap value: TemplateValue<Value?>, modifyer: (TemplateValue<Value>, Self) -> Self) -> Self {
-        switch value {
-        case .constant(let optional):
-            guard let value = optional else {
-                return self
-            }
-            let emptyNode = self.copy(with: [])
-            let modified = modifyer(.constant(value), emptyNode)
-
-            return self.add(attributes: modified.attributes)
-        case .dynamic(let context):
-            let emptyNode = self.copy(with: [])
-            var modified: Self!
-            if context.isMascadingOptional {
-                modified = modifyer(.dynamic(context.unsafeCast(to: Value.self)), emptyNode)
-            } else {
-                modified = modifyer(.dynamic(context.unsafelyUnwrapped), emptyNode)
-            }
-
-            return self.add(attributes: modified.wrapAttributes(with: context.isDefinded))
-        }
-    }
-
-    public func wrapAttributes(with condition: Conditionable) -> [HTMLAttribute] {
-        attributes.map { attribute in
-            if let value = attribute.value {
-                return HTMLAttribute(
-                    attribute: attribute.attribute,
-                    value: value,
-                    isIncluded: condition
-                )
-            } else {
-                return HTMLAttribute(
-                    attribute: attribute.attribute,
-                    value: nil,
-                    isIncluded: condition
-                )
-            }
-        }
+    
+    public func copy(with attributes: [HTMLAttribute]) -> Self {
+        .init(attributes: attributes)
     }
 }
 
 /// The node is for
 ///
 ///
-public protocol AddableAttributeNode: HTMLContent, GlobalAttributes {
+public protocol CommentNode: HTMLContent {
+    
+    associatedtype Content: HTMLContent
+    
+    var content: Content { get }
+}
 
-    var attributes: [HTMLAttribute] { get }
+extension CommentNode {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        
+        formula.add(string: "<!--\(content)-->")
+    }
 
-    func add(_ attribute: HTMLAttribute, withSpace: Bool) -> Self
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
 
-    func add(attributes: [HTMLAttribute], withSpace: Bool) -> Self
+        return "<!--\(content)-->"
+    }
+}
 
-    func value(of attribute: String) -> HTMLContent?
+/// The node is for
+///
+///
+public protocol DocumentNode: HTMLContent {
+    
+    associatedtype Content: HTMLContent
+    
+    var content: Content { get }
+}
+
+extension DocumentNode {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        
+        formula.add(string: "<!DOCTYPE \(content)>")
+    }
+
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+
+        return "<!DOCTYPE \(content)>"
+    }
 }

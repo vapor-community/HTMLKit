@@ -1,9 +1,9 @@
-
 import Foundation
 
-@propertyWrapper
-@dynamicMemberLookup
-public enum TemplateValue<Value> {
+/// The enum is for
+///
+///
+@propertyWrapper @dynamicMemberLookup public enum TemplateValue<Value> {
     case constant(Value)
     case dynamic(HTMLContext<Value>)
 
@@ -58,18 +58,13 @@ public enum TemplateValue<Value> {
         case .dynamic(let variable): return .dynamic(variable.unsafeCast(to: T.self))
         }
     }
-
-    /// This is used to determine if the value pretends it is a optional
+    
     var isMasqueradingOptional: Bool {
         switch self {
         case .constant: return false
         case .dynamic(let variable): return variable.isMascadingOptional
         }
     }
-
-//    public func map<T>(transform: @escaping (Value) throws -> T) -> TemplateValueMapping<Value, T> {
-//        TemplateValueMapping(variable: self, transform: transform)
-//    }
 }
 
 extension TemplateValue: HTMLContent where Value: HTMLContent {

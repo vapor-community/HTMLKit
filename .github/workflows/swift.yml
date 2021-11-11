@@ -24,7 +24,7 @@ jobs:
   xenial:
     needs: check-doc-coverage
     container: 
-      image: swift:5.1.3-xenial
+      image: swift:5.4.3-xenial
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1.2.0
@@ -33,7 +33,7 @@ jobs:
   bionic:
     needs: check-doc-coverage
     container: 
-      image: swift:5.1.3-bionic
+      image: swift:5.4.3-bionic
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1.2.0

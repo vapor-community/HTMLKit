@@ -1,3 +1,5 @@
+// MARK: types
+
 /// The type is for
 ///
 ///
@@ -300,6 +302,7 @@ public enum RelationshipType: String {
     case dnsPrefetch = "dns-prefetch"
     case appleTouchIcon = "apple-touch-icon"
     case appleTouchStartupImage = "apple-touch-startup-image"
+    case shortcutIcon = "shortcut icon"
 }
 
 /// The enum is for
@@ -409,4 +412,18 @@ public enum DocumentType: String {
     case xhtmlTransitional = #"html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd""#
     case xhtmlFrameset = #"html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd""#
     case xhtml = #"html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd""#
+}
+
+/// The type is for
+///
+///
+public enum OpenGraphType: String {
+
+    case title = "og:title"
+    case image = "og:image"
+    case description = "og:description"
+    case type = "og:type"
+    case url = "og:url"
+    case locale = "og:locale"
+    case siteName = "og:site_name"
 }

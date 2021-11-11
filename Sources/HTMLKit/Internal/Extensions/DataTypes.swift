@@ -2,12 +2,10 @@ import Foundation
 
 extension Array: HTMLContent where Element == HTMLContent {
 
-    // View `HTML` documentation
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         try forEach { try $0.prerender(formula) }
     }
 
-    // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         return try self.reduce("") { try $0 + $1.render(with: manager) }
     }
@@ -18,6 +16,7 @@ extension Array: HTMLContent where Element == HTMLContent {
 }
 
 extension Array where Element == HTMLAttribute {
+    
     public func add(attribute: HTMLAttribute) -> [HTMLAttribute] {
         var attributes = self
         for (index, attr) in attributes.enumerated() {
@@ -68,18 +67,17 @@ extension Array where Element == HTMLAttribute {
 
 extension String: HTMLContent {
 
-    // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         return self
     }
 
-    // View `HTML` documentation
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: self)
     }
 }
 
 extension String: RawRepresentable {
+    
     public typealias RawValue = String
 
     public var rawValue: String { self }
@@ -91,12 +89,10 @@ extension String: RawRepresentable {
 
 extension Int: HTMLContent {
 
-    // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         return String(self)
     }
 
-    // View `HTML` documentation
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: String(self))
     }
@@ -106,12 +102,10 @@ extension Int: HTMLContent {
 
 extension Double: HTMLContent {
 
-    // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         return String(self)
     }
 
-    // View `HTML` documentation
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: String(self))
     }
@@ -121,12 +115,10 @@ extension Double: HTMLContent {
 
 extension Float: HTMLContent {
 
-    // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         return String(self)
     }
 
-    // View `HTML` documentation
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: String(self))
     }
@@ -136,12 +128,10 @@ extension Float: HTMLContent {
 
 extension Bool: HTMLContent {
 
-    // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         return String(self)
     }
 
-    // View `HTML` documentation
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: String(self))
     }
@@ -149,9 +139,14 @@ extension Bool: HTMLContent {
     public var renderWhenLocalizing: Bool { return false }
 }
 
+extension Bool: Conditionable {
+    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+        return self
+    }
+}
+
 extension Optional: HTMLContent where Wrapped: HTMLContent {
 
-    // View `HTML` documentation
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         switch self {
         case .some(let wrapped): try wrapped.prerender(formula)
@@ -159,7 +154,6 @@ extension Optional: HTMLContent where Wrapped: HTMLContent {
         }
     }
 
-    // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         switch self {
         case .none: return ""
@@ -175,7 +169,8 @@ extension Optional: HTMLContent where Wrapped: HTMLContent {
     }
 }
 
-extension Optional: IsDefinable {
+extension Optional: Defineable {
+    
     var isDefinded: Bool {
         switch self {
         case .none: return false
@@ -186,12 +181,10 @@ extension Optional: IsDefinable {
 
 extension UUID: HTMLContent {
 
-    // View `HTML` documentation
     public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
         return self.uuidString
     }
 
-    // View `HTML` documentation
     public func prerender(_ formula: HTMLRenderer.Formula) throws {
         formula.add(string: self.uuidString)
     }
