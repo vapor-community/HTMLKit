@@ -54,7 +54,7 @@ public typealias Optgroup = OptionGroup
 
 // MARK: elements
 
-/// The `<!--` element represents a comment.
+/// The element
 ///
 ///
 public struct Comment: CommentNode {
@@ -66,7 +66,7 @@ public struct Comment: CommentNode {
     }
 }
 
-/// The `<!DOCTYPE>` element represents a comment.
+/// The element
 ///
 ///
 public struct Document: DocumentNode {
@@ -78,255 +78,269 @@ public struct Document: DocumentNode {
     }
 }
 
-/// The `<head>`element
+/// The element
 ///
 ///
 public struct Head: ContentNode {
 
-    public var name: String { "head" }
+    internal var name: String { "head" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<title>`element
+/// The element
 ///
 ///
 public struct Title: ContentNode {
 
-    public var name: String { "title" }
+    internal var name: String { "title" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: String
-
-    public init(content: () -> String) {
+    internal var content: String
+    
+    public init(@StringBuilder content: () -> String) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: String = "") {
+    
+    internal init(attributes: [String: Any]?, content: String) {
+        self.attributes = attributes
         self.content = content
+    }
+}
+
+/// The element
+///
+///
+public struct Base: EmptyNode {
+
+    internal var name: String { "base" }
+
+    internal var attributes: [String: Any]?
+
+    public init() {}
+    
+    internal init(attributes: [String: Any]?) {
         self.attributes = attributes
     }
 }
 
-/// The `<base />`element
+extension Base: ReferenceAttribute, TargetAttribute {}
+
+/// The element
 ///
 ///
-public struct Base: EmptyNode, ReferenceAttribute, TargetAttribute {
+public struct Link: EmptyNode {
 
-    public var name: String { "base" }
+    internal var name: String { "link" }
 
-    public var attributes: [HTMLAttribute]
+    internal var attributes: [String: Any]?
 
-    public init(attributes: [HTMLAttribute] = []) {
+    public init() {}
+    
+    internal init(attributes: [String: Any]?) {
         self.attributes = attributes
     }
 }
 
-/// The `<link />`element
+extension Link: ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute {}
+
+/// The element
 ///
 ///
-public struct Link: EmptyNode, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute {
+public struct Meta: EmptyNode {
 
-    public var name: String { "link" }
+    internal var name: String { "meta" }
 
-    public var attributes: [HTMLAttribute]
+    internal var attributes: [String: Any]?
 
-    public init(attributes: [HTMLAttribute] = []) {
+    public init() {}
+    
+    internal init(attributes: [String: Any]?) {
         self.attributes = attributes
     }
 }
 
-/// The `<meta />`element
+extension Meta: ContentAttribute, NameAttribute, PropertyAttribute {}
+
+/// The element
 ///
 ///
-public struct Meta: EmptyNode, ContentAttribute, NameAttribute, PropertyAttribute {
+public struct Style: ContentNode {
 
-    public var name: String { "meta" }
+    internal var name: String { "style" }
+    
+    internal var attributes: [String: Any]?
 
-    public var attributes: [HTMLAttribute]
+    internal var content: Content
 
-    public init(attributes: [HTMLAttribute] = []) {
-        self.attributes = attributes
-    }
-}
-
-/// The `<style>`element
-///
-///
-public struct Style: ContentNode, TypeAttribute, MediaAttribute {
-
-    public var name: String { "style" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: String
-
-    public init(content: () -> String) {
+    public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: String = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<html>`element
+extension Style: TypeAttribute, MediaAttribute {}
+
+/// The element
 ///
 ///
 public struct Html: ContentNode {
 
-    public var name: String { "html" }
+    internal var name: String { "html" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<body>`element
+/// The element
 ///
 ///
 public struct Body: ContentNode {
 
-    public var name: String { "body" }
+    internal var name: String { "body" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<article>`element
+/// The element
 ///
 ///
 public struct Article: ContentNode {
 
-    public var name: String { "article" }
+    internal var name: String { "article" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<section>`element
+/// The element
 ///
 ///
 public struct Section: ContentNode {
 
-    public var name: String { "section" }
+    internal var name: String { "section" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<nav>`element
+/// The element
 ///
 ///
 public struct Navigation: ContentNode {
 
-    public var name: String { "nav" }
+    internal var name: String { "nav" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<aside>`element
+/// The element
 ///
 ///
 public struct Aside: ContentNode {
 
-    public var name: String { "aside" }
+    internal var name: String { "aside" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<h1>`element
+/// The element
 ///
 ///
 public struct Heading1: ContentNode {
 
-    public var name: String { "h1" }
+    internal var name: String { "h1" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
@@ -341,24 +355,24 @@ extension Heading1: Localizable {
     }
 }
 
-/// The `<h2>`element
+/// The element
 ///
 ///
 public struct Heading2: ContentNode {
 
-    public var name: String { "h2" }
+    internal var name: String { "h2" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
@@ -373,24 +387,24 @@ extension Heading2: Localizable {
     }
 }
 
-/// The `<h3>`element
+/// The element
 ///
 ///
 public struct Heading3: ContentNode {
 
-    public var name: String { "h3" }
+    internal var name: String { "h3" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
@@ -405,24 +419,24 @@ extension Heading3: Localizable {
     }
 }
 
-/// The `<h4>`element
+/// The element
 ///
 ///
 public struct Heading4: ContentNode {
 
-    public var name: String { "h4" }
+    internal var name: String { "h4" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
@@ -437,24 +451,24 @@ extension Heading4: Localizable {
     }
 }
 
-/// The `<h5>`element
+/// The element
 ///
 ///
 public struct Heading5: ContentNode {
 
-    public var name: String { "h5" }
+    internal var name: String { "h5" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
@@ -469,24 +483,24 @@ extension Heading5: Localizable {
     }
 }
 
-/// The `<h6>`element
+/// The element
 ///
 ///
 public struct Heading6: ContentNode {
 
-    public var name: String { "h6" }
+    internal var name: String { "h6" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
@@ -501,108 +515,108 @@ extension Heading6: Localizable {
     }
 }
 
-/// The `<hgroup>`element
+/// The element
 ///
 ///
 public struct HeadingGroup: ContentNode {
 
-    public var name: String { "hgroup" }
+    internal var name: String { "hgroup" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<header>`element
+/// The element
 ///
 ///
 public struct Header: ContentNode {
 
-    public var name: String { "header" }
+    internal var name: String { "header" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<footer>`element
+/// The element
 ///
 ///
 public struct Footer: ContentNode {
 
-    public var name: String { "footer" }
+    internal var name: String { "footer" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<adress>`element
+/// The element
 ///
 ///
 public struct Address: ContentNode {
 
-    public var name: String { "address" }
+    internal var name: String { "address" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<p>`element
+/// The element
 ///
 ///
 public struct Paragraph: ContentNode {
 
-    public var name: String { "p" }
+    internal var name: String { "p" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
@@ -617,61 +631,65 @@ extension Paragraph: Localizable {
     }
 }
 
-/// The `<hr />`element
+/// The element
 ///
 ///
 public struct HorizontalRule: EmptyNode {
 
-    public var attributes: [HTMLAttribute]
+    internal var name: String { "hr" }
+    
+    internal var attributes: [String: Any]?
 
-    public var name: String { "hr" }
-
-    public init(attributes: [HTMLAttribute] = []) {
+    public init() {}
+    
+    internal init(attributes: [String: Any]?) {
         self.attributes = attributes
     }
 }
 
-/// The `<pre>`element
+/// The element
 ///
 ///
 public struct PreformattedText: ContentNode {
 
-    public var name: String { "pre" }
+    internal var name: String { "pre" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<blockquote>`element
-///
-///
-public struct Blockquote: ContentNode, CiteAttribute {
-
-    public var name: String { "blockquote" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
+
+/// The element
+///
+///
+public struct Blockquote: ContentNode {
+
+    internal var name: String { "blockquote" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Blockquote:  CiteAttribute {}
 
 extension Blockquote: Localizable {
     
@@ -684,236 +702,242 @@ extension Blockquote: Localizable {
     }
 }
 
-/// The `<ol>`element
+/// The element
 ///
 ///
-public struct OrderedList: ContentNode, ReversedAttribute, StartAttribute, TypeAttribute {
+public struct OrderedList: ContentNode {
 
-    public var name: String { "ol" }
+    internal var name: String { "ol" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<ul>`element
+extension OrderedList: ReversedAttribute, StartAttribute, TypeAttribute {}
+
+/// The element
 ///
 ///
 public struct UnorderedList: ContentNode {
 
-    public var name: String { "ul" }
+    internal var name: String { "ul" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<li>`element
-///
-///
-public struct ListItem: ContentNode, ValueAttribute {
-
-    public var name: String { "li" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<dl>`element
+/// The element
+///
+///
+public struct ListItem: ContentNode {
+
+    internal var name: String { "li" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension ListItem: ValueAttribute {}
+
+/// The element
 ///
 ///
 public struct DescriptionList: ContentNode {
 
-    public var name: String { "dl" }
+    internal var name: String { "dl" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<dt>`element
+/// The element
 ///
 ///
 public struct TermName: ContentNode {
 
-    public var name: String { "dt" }
+    internal var name: String { "dt" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<dd>`element
+/// The element
 ///
 ///
 public struct TermDefinition: ContentNode {
 
-    public var name: String { "dd" }
+    internal var name: String { "dd" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<figure>`element
+/// The element
 ///
 ///
 public struct Figure: ContentNode {
 
-    public var name: String { "figure" }
+    internal var name: String { "figure" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<figcaption>`element
+/// The element
 ///
 ///
 public struct FigureCaption: ContentNode {
 
-    public var name: String { "figcaption" }
+    internal var name: String { "figcaption" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<main>`element
+/// The element
 ///
 ///
 public struct Main: ContentNode {
 
-    public var name: String { "main" }
+    internal var name: String { "main" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<div>`element
+/// The element
 ///
 ///
 public struct Division: ContentNode {
 
-    public var name: String { "div" }
+    internal var name: String { "div" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<a>`element
-///
-///
-public struct Anchor: ContentNode, DownloadAttribute, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, PingAttribute, ReferrerPolicyAttribute, RelationshipAttribute, TargetAttribute, TypeAttribute {
-
-    public var name: String { "a" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
+
+/// The element
+///
+///
+public struct Anchor: ContentNode {
+
+    internal var name: String { "a" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String : Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Anchor: DownloadAttribute, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, PingAttribute, ReferrerPolicyAttribute, RelationshipAttribute, TargetAttribute, TypeAttribute {}
 
 extension Anchor: Localizable {
     
@@ -926,66 +950,66 @@ extension Anchor: Localizable {
     }
 }
 
-/// The `<em>`element
+/// The element
 ///
 ///
 public struct Emphasize: ContentNode {
 
-    public var name: String { "em" }
+    internal var name: String { "em" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<strong>`element
+/// The element
 ///
 ///
 public struct Strong: ContentNode {
 
-    public var name: String { "strong" }
+    internal var name: String { "strong" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String : Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<small>`element
+/// The element
 ///
 ///
 public struct Small: ContentNode {
 
-    public var name: String { "small" }
+    internal var name: String { "small" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
@@ -1000,24 +1024,24 @@ extension Small: Localizable {
     }
 }
 
-/// The `<s>`element
+/// The element
 ///
 ///
 public struct StrikeThrough: ContentNode {
 
-    public var name: String { "s" }
+    internal var name: String { "s" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
@@ -1032,339 +1056,345 @@ extension StrikeThrough: Localizable {
     }
 }
 
-/// The `<cite>`element
+/// The element
 ///
 ///
 public struct Cite: ContentNode {
 
-    public var name: String { "cite" }
+    internal var name: String { "cite" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<q>`element
-///
-///
-public struct ShortQuote: ContentNode, CiteAttribute {
-
-    public var name: String { "q" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<dfn>`element
+/// The element
+///
+///
+public struct ShortQuote: ContentNode {
+
+    internal var name: String { "q" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension ShortQuote: CiteAttribute {}
+
+/// The element
 ///
 ///
 public struct Definition: ContentNode {
 
-    public var name: String { "dfn" }
+    internal var name: String { "dfn" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<abbr>`element
+/// The element
 ///
 ///
 public struct Abbreviation: ContentNode {
 
-    public var name: String { "abbr" }
+    internal var name: String { "abbr" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<ruby>`element
+/// The element
 ///
 ///
 public struct Ruby: ContentNode {
 
-    public var name: String { "ruby" }
+    internal var name: String { "ruby" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<rt>`element
+/// The element
 ///
 ///
 public struct RubyText: ContentNode {
 
-    public var name: String { "rt" }
+    internal var name: String { "rt" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<rp>`element
+/// The element
 ///
 ///
 public struct RubyPronunciation: ContentNode {
 
-    public var name: String { "rp" }
+    internal var name: String { "rp" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<data>`element
-///
-///
-public struct Data: ContentNode, ValueAttribute {
-
-    public var name: String { "data" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<time>`element
+/// The element
 ///
 ///
-public struct Time: ContentNode, DateTimeAttribute {
+public struct Data: ContentNode {
 
-    public var name: String { "time" }
+    internal var name: String { "data" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<code>`element
+extension Data: ValueAttribute {}
+
+/// The element
+///
+///
+public struct Time: ContentNode {
+
+    internal var name: String { "time" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Time: DateTimeAttribute {}
+
+/// The element
 ///
 ///
 public struct Code: ContentNode {
 
-    public var name: String { "code" }
+    internal var name: String { "code" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<var>`element
+/// The element
 ///
 ///
 public struct Variable: ContentNode {
 
-    public var name: String { "v" }
+    internal var name: String { "v" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<samp>`element
+/// The element
 ///
 ///
 public struct SampleOutput: ContentNode {
 
-    public var name: String { "samp" }
+    internal var name: String { "samp" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<kbd>`element
+/// The element
 ///
 ///
 public struct KeyboardInput: ContentNode {
 
-    public var name: String { "kbd" }
+    internal var name: String { "kbd" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<sub>`element
+/// The element
 ///
 ///
 public struct Subscript: ContentNode {
 
-    public var name: String { "sub" }
+    internal var name: String { "sub" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<sup>`element
+/// The element
 ///
 ///
 public struct Superscript: ContentNode {
 
-    public var name: String { "sup" }
+    internal var name: String { "sup" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<i>`element
+/// The element
 ///
 ///
 public struct Italic: ContentNode {
 
-    public var name: String { "i" }
+    internal var name: String { "i" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
@@ -1379,24 +1409,24 @@ extension Italic: Localizable {
     }
 }
 
-/// The `<b>`element
+/// The element
 ///
 ///
 public struct Bold: ContentNode {
 
-    public var name: String { "b" }
+    internal var name: String { "b" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
@@ -1411,24 +1441,24 @@ extension Bold: Localizable {
     }
 }
 
-/// The `<u>`element
+/// The element
 ///
 ///
 public struct Underline: ContentNode {
 
-    public var name: String { "u" }
+    internal var name: String { "u" }
+    
+    internal var attributes: [String: Any]?
 
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
@@ -1443,497 +1473,549 @@ extension Underline: Localizable {
     }
 }
 
-/// The `<mark>`element
+/// The element
 ///
 ///
 public struct Mark: ContentNode {
 
-    public var name: String { "mark" }
+    internal var name: String { "mark" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<bdi>`element
+/// The element
 ///
 ///
 public struct Bdi: ContentNode {
 
-    public var name: String { "bdi" }
+    internal var name: String { "bdi" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<bdo />`element
+/// The element
 ///
 ///
 public struct Bdo: EmptyNode {
 
-    public var name: String { "bdo" }
+    internal var name: String { "bdo" }
 
-    public var attributes: [HTMLAttribute]
+    internal var attributes: [String: Any]?
 
-    public init(attributes: [HTMLAttribute] = []) {
+    public init() {}
+    
+    internal init(attributes: [String: Any]?) {
         self.attributes = attributes
     }
 }
 
-/// The `<span>`element
+/// The element
 ///
 ///
 public struct Span: ContentNode {
 
-    public var name: String { "span" }
+    internal var name: String { "span" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String : Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<br />`element
+/// The element
 ///
 ///
 public struct LineBreak: EmptyNode {
 
-    public var attributes: [HTMLAttribute]
+    internal var name: String { "br" }
 
-    public var name: String { "br" }
+    internal var attributes: [String: Any]?
 
-    public init(attributes: [HTMLAttribute] = []) {
+    public init() {}
+    
+    internal init(attributes: [String: Any]?) {
         self.attributes = attributes
     }
 }
 
-/// The `<wbr>`element
+/// The element
 ///
 ///
 public struct WordBreak: EmptyNode {
 
-    public var attributes: [HTMLAttribute]
+    internal var name: String { "wbr" }
+    
+    internal var attributes: [String: Any]?
 
-    public var name: String { "wbr" }
-
-    public init(attributes: [HTMLAttribute] = []) {
+    public init() {}
+    
+    internal init(attributes: [String: Any]?) {
         self.attributes = attributes
     }
 }
 
-/// The `<ins>`element
+/// The element
 ///
 ///
-public struct InsertedText: ContentNode, CiteAttribute, DateTimeAttribute {
+public struct InsertedText: ContentNode {
 
-    public var name: String { "ins" }
+    internal var name: String { "ins" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<del>`element
+extension InsertedText: CiteAttribute, DateTimeAttribute {}
+
+/// The element
 ///
 ///
-public struct DeletedText: ContentNode, CiteAttribute, DateTimeAttribute {
+public struct DeletedText: ContentNode {
 
-    public var name: String { "del" }
+    internal var name: String { "del" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<picture>`element
+extension DeletedText: CiteAttribute, DateTimeAttribute {}
+
+/// The element
 ///
 ///
 public struct Picture: ContentNode {
 
-    public var name: String { "picture" }
+    internal var name: String { "picture" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<source />`element
-///
-///
-public struct Source: EmptyNode, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute {
-
-    public var name: String { "source" }
-
-    public var attributes: [HTMLAttribute]
-
-    public init(attributes: [HTMLAttribute] = []) {
-        self.attributes = attributes
-    }
-}
-
-/// The `<img />`element
-///
-///
-public struct Image: EmptyNode, AlternativeAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {
-
-    public var name: String { "img" }
-
-    public var attributes: [HTMLAttribute]
-
-    public init(attributes: [HTMLAttribute] = []) {
-        self.attributes = attributes
-    }
-}
-
-/// The `<iframe>`element
-///
-///
-public struct InlineFrame: ContentNode, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {
     
-    public var name: String { "iframe" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
         self.content = content
-        self.attributes = attributes
     }
 }
 
-/// The `<embed />`element
+/// The element
 ///
 ///
-public struct Embed: EmptyNode, SourceAttribute, TypeAttribute, WidthAttribute, HeightAttribute {
+public struct Source: EmptyNode {
 
-    public var name: String { "embed" }
+    internal var name: String { "source" }
 
-    public var attributes: [HTMLAttribute]
+    internal var attributes: [String: Any]?
 
-    public init(attributes: [HTMLAttribute] = []) {
-        self.attributes = attributes
-    }
-}
-
-/// The `<object>`element
-///
-///
-public struct Object: ContentNode, DataAttribute, TypeAttribute, NameAttribute, FormAttribute, WidthAttribute, HeightAttribute {
+    public init() {}
     
-    public var name: String { "object" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    internal init(attributes: [String: Any]?) {
         self.attributes = attributes
     }
 }
 
-/// The `<param />`element
+extension Source: TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute {}
+
+/// The element
 ///
 ///
-public struct Parameter: EmptyNode, NameAttribute, ValueAttribute {
+public struct Image: EmptyNode {
+
+    internal var name: String { "img" }
+
+    internal var attributes: [String: Any]?
+
+    public init() {}
     
-    public var name: String { "param" }
-
-    public var attributes: [HTMLAttribute]
-
-    public init(attributes: [HTMLAttribute] = []) {
+    internal init(attributes: [String: Any]?) {
         self.attributes = attributes
     }
 }
 
-/// The `<video>`element
+extension Image: AlternativeAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {}
+
+/// The element
 ///
 ///
-public struct Video: ContentNode, SourceAttribute, AutoPlayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute {
-
-    public var name: String { "video" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<audio>`element
-///
-///
-public struct Audio: ContentNode, SourceAttribute, AutoPlayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute {
-
-    public var name: String { "audio" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<track />`element
-///
-///
-public struct Track: EmptyNode, KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute {
-
-    public var name: String { "track" }
-
-    public var attributes: [HTMLAttribute]
-
-    public init(attributes: [HTMLAttribute] = []) {
-        self.attributes = attributes
-    }
-}
-
-/// The `<map>`element
-///
-///
-public struct Map: ContentNode, NameAttribute {
+public struct InlineFrame: ContentNode {
     
-    public var name: String { "map" }
+    internal var name: String { "iframe" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<area>`element
-///
-///
-public struct Area: ContentNode, AlternativeAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
-
-    public var name: String { "area" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
         self.content = content
+    }
+}
+
+extension InlineFrame: SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {}
+
+/// The element
+///
+///
+public struct Embed: EmptyNode {
+
+    internal var name: String { "embed" }
+
+    internal var attributes: [String: Any]?
+
+    public init() {}
+    
+    internal init(attributes: [String: Any]?) {
         self.attributes = attributes
     }
 }
 
-/// The `<table>`element
+extension Embed: SourceAttribute, TypeAttribute, WidthAttribute, HeightAttribute {}
+
+/// The element
 ///
 ///
-public struct Table: ContentNode, WidthAttribute, HeightAttribute {
+public struct Object: ContentNode {
+    
+    internal var name: String { "object" }
 
-    public var name: String { "table" }
+    internal var attributes: [String: Any]?
 
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Object: DataAttribute, TypeAttribute, NameAttribute, FormAttribute, WidthAttribute, HeightAttribute {}
+
+/// The element
+///
+///
+public struct Parameter: EmptyNode {
+    
+    internal var name: String { "param" }
+
+    internal var attributes: [String: Any]?
+
+    public init() {}
+    
+    internal init(attributes: [String: Any]?) {
         self.attributes = attributes
     }
 }
 
-/// The `<caption>`element
+extension Parameter: NameAttribute, ValueAttribute {}
+
+/// The element
+///
+///
+public struct Video: ContentNode {
+
+    internal var name: String { "video" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Video: SourceAttribute, AutoPlayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute {}
+
+/// The element
+///
+///
+public struct Audio: ContentNode {
+
+    internal var name: String { "audio" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Audio: SourceAttribute, AutoPlayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute {}
+
+/// The element
+///
+///
+public struct Track: EmptyNode {
+
+    internal var name: String { "track" }
+
+    internal var attributes: [String: Any]?
+
+    public init() {}
+    
+    internal init(attributes: [String: Any]?) {
+        self.attributes = attributes
+    }
+}
+
+extension Track: KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute {}
+
+/// The element
+///
+///
+public struct Map: ContentNode {
+    
+    internal var name: String { "map" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Map: NameAttribute {}
+
+/// The element
+///
+///
+public struct Area: ContentNode {
+
+    internal var name: String { "area" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Area: AlternativeAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {}
+
+/// The element
+///
+///
+public struct Table: ContentNode {
+
+    internal var name: String { "table" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Table: WidthAttribute, HeightAttribute {}
+
+/// The element
 ///
 ///
 public struct Caption: ContentNode {
 
-    public var name: String { "caption" }
+    internal var name: String { "caption" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<colgroup>`element
-///
-///
-public struct ColumnGroup: ContentNode, SpanAttribute {
-
-    public var name: String { "colgroup" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<col>`element
+/// The element
 ///
 ///
-public struct Column: ContentNode, SpanAttribute {
+public struct ColumnGroup: ContentNode {
 
-    public var name: String { "col" }
+    internal var name: String { "colgroup" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<tbody>`element
+extension ColumnGroup: SpanAttribute {}
+
+/// The element
 ///
 ///
-public struct TableBody: ContentNode, WidthAttribute, HeightAttribute {
+public struct Column: ContentNode {
 
-    public var name: String { "tbody" }
+    internal var name: String { "col" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<thead>`element
+extension Column: SpanAttribute {}
+
+/// The element
 ///
 ///
-public struct TableHead: ContentNode, WidthAttribute, HeightAttribute {
+public struct TableBody: ContentNode {
 
-    public var name: String { "thead" }
+    internal var name: String { "tbody" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<tfoot>`element
+extension TableBody: WidthAttribute, HeightAttribute {}
+
+/// The element
+///
+///
+public struct TableHead: ContentNode {
+
+    internal var name: String { "thead" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension TableHead: WidthAttribute, HeightAttribute {}
+
+/// The element
 ///
 ///
 public struct TableFoot: ContentNode {
@@ -1954,68 +2036,74 @@ public struct TableFoot: ContentNode {
     }
 }
 
-/// The `<tr>`element
+/// The element
 ///
 ///
-public struct TableRow: ContentNode, WidthAttribute, HeightAttribute {
+public struct TableRow: ContentNode {
 
-    public var name: String { "tr" }
+    internal var name: String { "tfoot" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<td>`element
+extension TableRow: WidthAttribute, HeightAttribute {}
+
+/// The element
 ///
 ///
-public struct DataCell: ContentNode, ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute {
+public struct DataCell: ContentNode {
 
-    public var name: String { "td" }
+    internal var name: String { "td" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<th>`element
+extension DataCell: ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute {}
+
+/// The element
 ///
 ///
-public struct HeaderCell: ContentNode, ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute, ScopeAttribute {
+public struct HeaderCell: ContentNode {
 
-    public var name: String { "th" }
+    internal var name: String { "th" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
+
+extension HeaderCell: ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute, ScopeAttribute {}
 
 extension HeaderCell: Localizable {
     
@@ -2028,47 +2116,51 @@ extension HeaderCell: Localizable {
     }
 }
 
-/// The `<form>`element
+/// The element
 ///
 ///
-public struct Form: ContentNode, ActionAttribute, AutoCompleteAttribute, EncodingAttribute, MethodAttribute, NameAttribute, TargetAttribute, RelationshipAttribute {
+public struct Form: ContentNode {
 
-    public var name: String { "form" }
+    internal var name: String { "form" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<label>`element
+extension Form: ActionAttribute, AutoCompleteAttribute, EncodingAttribute, MethodAttribute, NameAttribute, TargetAttribute, RelationshipAttribute {}
+
+/// The element
 ///
 ///
-public struct Label: ContentNode, ForAttribute {
+public struct Label: ContentNode {
 
-    public var name: String { "label" }
+    internal var name: String { "label" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
+
+extension Label: ForAttribute {}
 
 extension Label: Localizable {
     
@@ -2081,40 +2173,46 @@ extension Label: Localizable {
     }
 }
 
-/// The `<input />`element
+/// The element
 ///
 ///
-public struct Input: EmptyNode, AcceptAttribute, AlternativeAttribute, AutoCompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute {
+public struct Input: EmptyNode {
 
-    public var name: String { "input" }
+    internal var name: String { "input" }
 
-    public var attributes: [HTMLAttribute]
+    internal var attributes: [String: Any]?
 
-    public init(attributes: [HTMLAttribute] = []) {
+    public init() {}
+    
+    internal init(attributes: [String: Any]?) {
         self.attributes = attributes
     }
 }
 
-/// The `<button>`element
+extension Input: AcceptAttribute, AlternativeAttribute, AutoCompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute {}
+
+/// The element
 ///
 ///
-public struct Button: ContentNode, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute {
+public struct Button: ContentNode {
 
-    public var name: String { "button" }
+    internal var name: String { "button" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
+
+extension Button: DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute {}
 
 extension Button: Localizable {
     
@@ -2127,361 +2225,384 @@ extension Button: Localizable {
     }
 }
 
-/// The `<select>`element
+/// The element
 ///
 ///
-public struct Select: ContentNode, AutoCompleteAttribute, DisabledAttribute, FormAttribute, MultipleAttribute, NameAttribute, RequiredAttribute, SizeAttribute {
+public struct Select: ContentNode {
 
-    public var name: String { "select" }
+    internal var name: String { "select" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
     
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
+extension Select: AutoCompleteAttribute, DisabledAttribute, FormAttribute, MultipleAttribute, NameAttribute, RequiredAttribute, SizeAttribute {}
 
-/// The `<datalist>`element
+
+/// The element
 ///
 ///
 public struct DataList: ContentNode {
 
-    public var name: String { "datalist" }
+    internal var name: String { "datalist" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<optgroup>`element
-///
-///
-public struct OptionGroup: ContentNode, DisabledAttribute, LabelAttribute {
-
-    public var name: String { "optgroup" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<option>`element
+/// The element
 ///
 ///
-public struct Option: ContentNode, DisabledAttribute, LabelAttribute, ValueAttribute {
+public struct OptionGroup: ContentNode {
 
-    public var name: String { "option" }
+    internal var name: String { "optgroup" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: String
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension OptionGroup: DisabledAttribute, LabelAttribute {}
+
+/// The element
+///
+///
+public struct Option: ContentNode {
+
+    internal var name: String { "option" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: String
 
     public init(content: () -> String) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: String = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: String) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<textarea>`element
+extension Option: DisabledAttribute, LabelAttribute, ValueAttribute {}
+
+/// The element
 ///
 ///
-public struct TextArea: ContentNode, AutoCompleteAttribute, ColumnsAttribute, DisabledAttribute, FormAttribute, MaximumLengthAttribute, MinimumLengthAttribute, NameAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, RowsAttribute, WrapAttribute {
+public struct TextArea: ContentNode {
         
-    public var name: String { "textarea" }
+    internal var name: String { "textarea" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: String
+    internal var content: String
 
-    public init(content: () -> String) {
+    public init(@StringBuilder content: () -> String) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: String = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<output>`element
-///
-///
-public struct Output: ContentNode, ForAttribute, FormAttribute, NameAttribute {
     
-    public var name: String { "output" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    internal init(attributes: [String: Any]?, content: String) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<progress>`element
+extension Textarea: AutoCompleteAttribute, ColumnsAttribute, DisabledAttribute, FormAttribute, MaximumLengthAttribute, MinimumLengthAttribute, NameAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, RowsAttribute, WrapAttribute {}
+
+/// The element
 ///
 ///
-public struct Progress: ContentNode, ValueAttribute, MaximumValueAttribute {
-
-    public var name: String { "progress" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<meter>`element
-///
-///
-public struct Meter: ContentNode, ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, HighAttribute, OptimumAttribute {
-
-    public var name: String { "meter" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<fieldset>`element
-///
-///
-public struct Fieldset: ContentNode, DisabledAttribute, FormAttribute, NameAttribute {
+public struct Output: ContentNode {
     
-    public var name: String { "fieldset" }
+    internal var name: String { "output" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<legend>`element
+extension Output: ForAttribute, FormAttribute, NameAttribute {}
+
+/// The element
+///
+///
+public struct Progress: ContentNode {
+
+    internal var name: String { "progress" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Progress: ValueAttribute, MaximumValueAttribute {}
+
+/// The element
+///
+///
+public struct Meter: ContentNode {
+
+    internal var name: String { "meter" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Meter: ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, HighAttribute, OptimumAttribute {}
+
+/// The element
+///
+///
+public struct Fieldset: ContentNode {
+    
+    internal var name: String { "fieldset" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Fieldset: DisabledAttribute, FormAttribute, NameAttribute {}
+
+/// The element
 ///
 ///
 public struct Legend: ContentNode {
 
-    public var name: String { "legend" }
+    internal var name: String { "legend" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<details>`element
-///
-///
-public struct Details: ContentNode, OpenAttribute {
-
-    public var name: String { "details" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<summary>`element
+/// The element
+///
+///
+public struct Details: ContentNode {
+
+    internal var name: String { "details" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Details: OpenAttribute {}
+
+/// The element
 ///
 ///
 public struct Summary: ContentNode {
 
-    public var name: String { "summary" }
+    internal var name: String { "summary" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<dialog>`element
-///
-///
-public struct Dialog: ContentNode, OpenAttribute {
-
-    public var name: String { "dialog" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<script>`element
+/// The element
 ///
 ///
-public struct Script: ContentNode, AsyncAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute {
+public struct Dialog: ContentNode {
 
-    public var name: String { "script" }
+    internal var name: String { "dialog" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<noscript>`element
+extension Dialog: OpenAttribute {}
+
+/// The element
+///
+///
+public struct Script: ContentNode {
+
+    internal var name: String { "script" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: String
+
+    public init(content: () -> String) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: String) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Script: AsyncAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute {}
+
+/// The element
 ///
 ///
 public struct NoScript: ContentNode {
 
-    public var name: String { "noscript" }
+    internal var name: String { "noscript" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
-/// The `<template>`element
+/// The element
 ///
 ///
 public struct Template: ContentNode {
 
-    public var name: String { "template" }
+    internal var name: String { "template" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
-
-    public init(@ContentBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
-        self.attributes = attributes
-    }
-}
-
-/// The `<canvas>`element
-///
-///
-public struct Canvas: ContentNode, WidthAttribute, HeightAttribute {
-
-    public var name: String { "canvas" }
-
-    public var attributes: [HTMLAttribute] = []
-
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
+/// The element
+///
+///
+public struct Canvas: ContentNode {
+
+    internal var name: String { "canvas" }
+
+    internal var attributes: [String: Any]?
+
+    internal var content: Content
+
+    public init(@ContentBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    internal init(attributes: [String: Any]?, content: Content) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Canvas: WidthAttribute, HeightAttribute {}
