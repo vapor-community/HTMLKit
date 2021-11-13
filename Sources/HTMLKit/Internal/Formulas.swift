@@ -14,11 +14,11 @@ extension HTMLTemplate {
     
     public var context: TemplateValue<Context> { .root() }
 
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try body.render(with: manager)
     }
 
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try body.prerender(formula)
     }
 
@@ -35,11 +35,11 @@ public protocol HTMLPage: Content {
 
 extension HTMLPage {
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try body.render(with: manager)
     }
 
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try body.prerender(formula)
     }
 
@@ -56,11 +56,11 @@ public protocol HTMLComponent: Content {
 
 extension HTMLComponent {
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try body.render(with: manager)
     }
 
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try body.prerender(formula)
     }
 

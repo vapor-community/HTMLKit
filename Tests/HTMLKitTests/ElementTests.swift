@@ -16,7 +16,7 @@ final class ElementTests: XCTestCase {
         }
     }
     
-    var renderer = HTMLRenderer()
+    var renderer = Renderer()
     
     func testHeadElement() throws {
         

@@ -12,7 +12,7 @@ public struct IF {
         let condition: Conditionable
 
         /// The local formula for optimazation
-        var localFormula: HTMLRenderer.Formula
+        var localFormula: Renderer.Formula
 
         /// The view to render.
         /// Set to an empty string in order to create a condition on `\.name == ""`
@@ -24,7 +24,7 @@ public struct IF {
         /// - Parameter condition: The condition to evaluate
         init(condition: Conditionable) {
             self.condition = condition
-            localFormula = HTMLRenderer.Formula()
+            localFormula = Renderer.Formula()
         }
     }
 
@@ -45,17 +45,17 @@ public struct IF {
 extension IF.Condition: Conditionable {
 
     // View `Conditionable` documentation
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         return try condition.evaluate(with: manager)
     }
 
     // View `CompiledTemplate` documentation
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         return try localFormula.render(with: manager)
     }
 
     // View `BrewableFormula` documentation
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try view.prerender(localFormula)
     }
 }
@@ -78,7 +78,7 @@ extension IF: Content {
     }
 
     // View `CompiledTemplate` documentation
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         for condition in conditions {
             if try condition.evaluate(with: manager) {
                 return try condition.render(with: manager)
@@ -88,7 +88,7 @@ extension IF: Content {
     }
 
     // View `BrewableFormula` documentation
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         var isStaticallyEvaluated = true
         for condition in conditions {
             condition.localFormula.calendar = formula.calendar
@@ -98,7 +98,7 @@ extension IF: Content {
                 guard isStaticallyEvaluated else {
                     throw IFPrerenderErrors.dynamiclyEvaluatedCondition
                 }
-                let testContext = HTMLRenderer.ContextManager<Void>(contexts: [:])
+                let testContext = Renderer.ContextManager<Void>(contexts: [:])
                 if try condition.condition.evaluate(with: testContext) {
                     try condition.view.prerender(formula)
                     return // Returning as the first true condition should be the only one that is rendered
@@ -204,7 +204,7 @@ public struct ForEach<Values> where Values: Sequence {
 
     let content: Content
 
-    let localFormula: HTMLRenderer.Formula
+    let localFormula: Renderer.Formula
 
     let condition: Conditionable
     var isEnumerated: Bool = false
@@ -268,12 +268,12 @@ extension ForEach {
 
 extension ForEach: Content {
 
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         formula.add(mappable: self)
         try content.prerender(localFormula)
     }
 
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         switch context {
         case .constant(_):
             return try localFormula.render(with: manager)

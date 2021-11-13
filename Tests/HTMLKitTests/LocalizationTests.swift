@@ -16,7 +16,7 @@ final class LocalizationTests: XCTestCase {
         }
     }
     
-    var renderer = HTMLRenderer()
+    var renderer = Renderer()
     
     override func setUp() {
         super.setUp()

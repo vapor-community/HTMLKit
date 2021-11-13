@@ -16,7 +16,7 @@ internal protocol ContentNode {
 
 extension ContentNode where T == Content {
     
-    internal func build(_ formula: HTMLRenderer.Formula) throws {
+    internal func build(_ formula: Renderer.Formula) throws {
 
         formula.add(string: "<\(name)")
 
@@ -34,7 +34,7 @@ extension ContentNode where T == Content {
         formula.add(string: "</\(name)>")
     }
 
-    internal func build<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
 
         guard let attributes = attributes else {
             return try "<\(name)>\(content.render(with: manager))</\(name)>"
@@ -46,7 +46,7 @@ extension ContentNode where T == Content {
 
 extension ContentNode where T == String {
     
-    internal func build(_ formula: HTMLRenderer.Formula) throws {
+    internal func build(_ formula: Renderer.Formula) throws {
         
         formula.add(string: "<\(name)")
         
@@ -64,7 +64,7 @@ extension ContentNode where T == String {
         formula.add(string: "</\(name)>")
     }
 
-    internal func build<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         
         guard let attributes = attributes else {
             return try "<\(name)>\(content.render(with: manager))</\(name)>"
@@ -88,7 +88,7 @@ internal protocol EmptyNode {
 
 extension EmptyNode {
     
-    internal func build(_ formula: HTMLRenderer.Formula) throws {
+    internal func build(_ formula: Renderer.Formula) throws {
         
         formula.add(string: "<\(name)")
 
@@ -102,7 +102,7 @@ extension EmptyNode {
         formula.add(string: ">")
     }
 
-    internal func build<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         
         guard let attributes = attributes else {
             return "<\(name)>"
@@ -124,12 +124,12 @@ internal protocol CommentNode {
 
 extension CommentNode {
     
-    internal func build(_ formula: HTMLRenderer.Formula) throws {
+    internal func build(_ formula: Renderer.Formula) throws {
         
         formula.add(string: "<!--\(content)-->")
     }
 
-    internal func build<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         
         return "<!--\(content)-->"
     }
@@ -147,12 +147,12 @@ internal protocol DocumentNode {
 
 extension DocumentNode {
     
-    internal func build(_ formula: HTMLRenderer.Formula) throws {
+    internal func build(_ formula: Renderer.Formula) throws {
         
         formula.add(string: "<!DOCTYPE \(content)>")
     }
 
-    internal func build<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
 
         return "<!DOCTYPE \(content)>"
     }

@@ -7,9 +7,9 @@ public protocol Content {
 
     var renderWhenLocalizing: Bool { get }
 
-    func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String
+    func render<T>(with manager: Renderer.ContextManager<T>) throws -> String
 
-    func prerender(_ formula: HTMLRenderer.Formula) throws
+    func prerender(_ formula: Renderer.Formula) throws
 
     var scripts: Content { get }
 }

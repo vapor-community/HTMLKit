@@ -16,7 +16,7 @@ final class RenderingTests: XCTestCase {
         }
     }
     
-    var renderer = HTMLRenderer()
+    var renderer = Renderer()
     
     func testRenderingDocument() throws {
         

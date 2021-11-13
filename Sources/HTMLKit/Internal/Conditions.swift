@@ -7,7 +7,7 @@ public struct Equal<Value>: Conditionable where Value: Equatable {
 
     let value: TemplateValue<Value>
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         try path.value(from: manager) == value.value(from: manager)
     }
 }
@@ -21,7 +21,7 @@ public struct NotEqual<Value>: Conditionable where Value: Equatable {
 
     let value: Value
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         try path.value(from: manager) != value
     }
 }
@@ -35,7 +35,7 @@ public struct LessThen<Value>: Conditionable where Value: Comparable {
 
     let value: Value
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         try path.value(from: manager) < value
     }
 }
@@ -49,7 +49,7 @@ public struct GreaterThen<Value>: Conditionable where Value: Comparable {
 
     let value: Value
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         try path.value(from: manager) > value
     }
 }
@@ -67,7 +67,7 @@ public struct Between<Value>: Conditionable where Value: Comparable {
 
     let lowerBound: Value
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         try lowerBound...upperBound ~= path.value(from: manager)
     }
 }
@@ -76,7 +76,7 @@ public struct Between<Value>: Conditionable where Value: Comparable {
 /// Used as the `else` condition
 ///
 struct AlwaysTrueCondition: Conditionable {
-    func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         return true
     }
 }
@@ -88,7 +88,7 @@ struct InvertCondition: Conditionable {
 
     let condition: Conditionable
 
-    func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         return try !condition.evaluate(with: manager)
     }
 }
@@ -100,7 +100,7 @@ struct BoolCondition<Root>: Conditionable {
 
     let path: TemplateValue<Bool>
 
-    func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         try path.value(from: manager)
     }
 }
@@ -114,7 +114,7 @@ public struct NullableEqual<Value>: Conditionable where Value: Equatable {
 
     let value: Value
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         try path.value(from: manager) == value
     }
 }
@@ -128,7 +128,7 @@ public struct NullableNotEqual<Value>: Conditionable where Value: Equatable {
 
     let value: Value
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         try path.value(from: manager) != value
     }
 }
@@ -142,7 +142,7 @@ public struct NullableLessThen<Value>: Conditionable where Value: Comparable {
 
     let value: Value
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         if let pathValue = try path.value(from: manager) {
             return pathValue < value
         } else {
@@ -160,7 +160,7 @@ public struct NullableGreaterThen<Value>: Conditionable where Value: Comparable 
 
     let value: Value
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         if let pathValue = try path.value(from: manager) {
             return pathValue > value
         } else {
@@ -178,7 +178,7 @@ public struct AndCondition: Conditionable {
 
     let second: Conditionable
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         return try first.evaluate(with: manager) && second.evaluate(with: manager)
     }
 }
@@ -192,7 +192,7 @@ public struct OrCondition: Conditionable {
 
     let second: Conditionable
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         return try first.evaluate(with: manager) || second.evaluate(with: manager)
     }
 }
@@ -204,7 +204,7 @@ public struct NotNullCondition<Value>: Conditionable {
 
     let path: TemplateValue<Value?>
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         try path.value(from: manager) != nil
     }
 }
@@ -216,7 +216,7 @@ public struct NotNullConditionGeneral<Value>: Conditionable {
 
     let path: TemplateValue<Value>
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         if let value = try path.value(from: manager) as? Defineable {
             return value.isDefinded
         } else {
@@ -232,7 +232,7 @@ public struct IsNullConditionGeneral<Value>: Conditionable {
 
     let path: TemplateValue<Value>
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         if let value = try path.value(from: manager) as? Defineable {
             return value.isDefinded == false
         } else {
@@ -254,7 +254,7 @@ public struct InCollectionCondition<Value>: Conditionable where Value: Equatable
         self.arrayPath = array
     }
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         let value = try valuePath.value(from: manager)
         let array = try arrayPath.value(from: manager)
         return array.contains(where: { $0 == value })
@@ -274,7 +274,7 @@ public struct InCollectionConditionOptional<Value>: Conditionable where Value: E
         self.arrayPath = array
     }
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         guard let value = try valuePath.value(from: manager) else {
             return false
         }
@@ -290,13 +290,13 @@ public struct IsNullCondition<Value>: Conditionable {
 
     let path: TemplateValue<Value?>
 
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         try path.value(from: manager) == nil
     }
 }
 
 extension TemplateValue: Conditionable where Value == Bool {
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         switch self {
         case .constant(let value): return value
         case .dynamic(let variable): return try manager.value(for: variable)

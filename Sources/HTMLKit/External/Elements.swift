@@ -68,11 +68,11 @@ public struct Comment: CommentNode {
 
 extension Comment: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -91,11 +91,11 @@ public struct Document: DocumentNode {
 
 extension Document: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -342,11 +342,11 @@ extension Head: CoreAttributes {
 
 extension Head: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -593,11 +593,11 @@ extension Title: CoreAttributes {
 
 extension Title: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -857,11 +857,11 @@ extension Base: CoreAttributes, ReferenceAttribute, TargetAttribute {
 
 extension Base: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -1166,11 +1166,11 @@ extension Link: CoreAttributes, ReferenceAttribute, ReferenceLanguageAttribute, 
 
 extension Link: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -1440,11 +1440,11 @@ extension Meta: CoreAttributes, ContentAttribute, NameAttribute, PropertyAttribu
 
 extension Meta: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -1710,11 +1710,11 @@ extension Style: CoreAttributes, TypeAttribute, MediaAttribute {
 
 extension Style: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -1961,11 +1961,11 @@ extension Html: CoreAttributes {
 
 extension Html: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -2212,11 +2212,11 @@ extension Body: CoreAttributes {
 
 extension Body: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -2463,11 +2463,11 @@ extension Article: CoreAttributes {
 
 extension Article: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -2714,11 +2714,11 @@ extension Section: CoreAttributes {
 
 extension Section: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -2965,11 +2965,11 @@ extension Navigation: CoreAttributes {
 
 extension Navigation: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -3216,11 +3216,11 @@ extension Aside: CoreAttributes {
 
 extension Aside: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -3478,11 +3478,11 @@ extension Heading1: Localizable {
 
 extension Heading1: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -3740,11 +3740,11 @@ extension Heading2: Localizable {
 
 extension Heading2: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -4002,11 +4002,11 @@ extension Heading3: Localizable {
 
 extension Heading3: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -4265,11 +4265,11 @@ extension Heading4: Localizable {
 
 extension Heading4: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -4528,11 +4528,11 @@ extension Heading5: Localizable {
 
 extension Heading5: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -4790,11 +4790,11 @@ extension Heading6: Localizable {
 
 extension Heading6: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -5041,11 +5041,11 @@ extension HeadingGroup: CoreAttributes {
 
 extension HeadingGroup: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -5292,11 +5292,11 @@ extension Header: CoreAttributes {
 
 extension Header: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -5543,11 +5543,11 @@ extension Footer: CoreAttributes {
 
 extension Footer: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -5794,11 +5794,11 @@ extension Address: CoreAttributes {
 
 extension Address: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -6056,11 +6056,11 @@ extension Paragraph: Localizable {
 
 extension Paragraph: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -6302,11 +6302,11 @@ extension HorizontalRule: CoreAttributes {
 
 extension HorizontalRule: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -6553,11 +6553,11 @@ extension PreformattedText: CoreAttributes {
 
 extension PreformattedText: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -6824,11 +6824,11 @@ extension Blockquote: Localizable {
 
 extension Blockquote: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -7102,11 +7102,11 @@ extension OrderedList: CoreAttributes, ReversedAttribute, StartAttribute, TypeAt
 
 extension OrderedList: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -7353,11 +7353,11 @@ extension UnorderedList: CoreAttributes {
 
 extension UnorderedList: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -7613,11 +7613,11 @@ extension ListItem: CoreAttributes, ValueAttribute {
 
 extension ListItem: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -7864,11 +7864,11 @@ extension DescriptionList: CoreAttributes {
 
 extension DescriptionList: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -8115,11 +8115,11 @@ extension TermName: CoreAttributes {
 
 extension TermName: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -8366,11 +8366,11 @@ extension TermDefinition: CoreAttributes {
 
 extension TermDefinition: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -8617,11 +8617,11 @@ extension Figure: CoreAttributes {
 
 extension Figure: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -8868,11 +8868,11 @@ extension FigureCaption: CoreAttributes {
 
 extension FigureCaption: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -9119,11 +9119,11 @@ extension Main: CoreAttributes {
 
 extension Main: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -9370,11 +9370,11 @@ extension Division: CoreAttributes {
 
 extension Division: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -9713,11 +9713,11 @@ extension Anchor: Localizable {
 
 extension Anchor: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -9964,11 +9964,11 @@ extension Emphasize: CoreAttributes {
 
 extension Emphasize: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -10215,11 +10215,11 @@ extension Strong: CoreAttributes {
 
 extension Strong: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -10477,11 +10477,11 @@ extension Small: Localizable {
 
 extension Small: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -10739,11 +10739,11 @@ extension StrikeThrough: Localizable {
 
 extension StrikeThrough: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -10990,11 +10990,11 @@ extension Cite: CoreAttributes {
 
 extension Cite: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -11250,11 +11250,11 @@ extension ShortQuote: CoreAttributes, CiteAttribute {
 
 extension ShortQuote: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -11501,11 +11501,11 @@ extension Definition: CoreAttributes {
 
 extension Definition: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -11752,11 +11752,11 @@ extension Abbreviation: CoreAttributes {
 
 extension Abbreviation: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -12003,11 +12003,11 @@ extension Ruby: CoreAttributes {
 
 extension Ruby: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -12254,11 +12254,11 @@ extension RubyText: CoreAttributes {
 
 extension RubyText: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -12505,11 +12505,11 @@ extension RubyPronunciation: CoreAttributes {
 
 extension RubyPronunciation: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -12765,11 +12765,11 @@ extension Data: CoreAttributes, ValueAttribute {
 
 extension Data: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -13025,11 +13025,11 @@ extension Time: CoreAttributes, DateTimeAttribute {
 
 extension Time: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -13276,11 +13276,11 @@ extension Code: CoreAttributes {
 
 extension Code: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -13527,11 +13527,11 @@ extension Variable: CoreAttributes {
 
 extension Variable: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -13778,11 +13778,11 @@ extension SampleOutput: CoreAttributes {
 
 extension SampleOutput: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -14029,11 +14029,11 @@ extension KeyboardInput: CoreAttributes {
 
 extension KeyboardInput: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -14280,11 +14280,11 @@ extension Subscript: CoreAttributes {
 
 extension Subscript: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -14531,11 +14531,11 @@ extension Superscript: CoreAttributes {
 
 extension Superscript: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -14793,11 +14793,11 @@ extension Italic: Localizable {
 
 extension Italic: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -15055,11 +15055,11 @@ extension Bold: Localizable {
 
 extension Bold: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -15317,11 +15317,11 @@ extension Underline: Localizable {
 
 extension Underline: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -15568,11 +15568,11 @@ extension Mark: CoreAttributes {
 
 extension Mark: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -15819,11 +15819,11 @@ extension Bdi: CoreAttributes {
 
 extension Bdi: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -16065,11 +16065,11 @@ extension Bdo: CoreAttributes {
 
 extension Bdo: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -16316,11 +16316,11 @@ extension Span: CoreAttributes {
 
 extension Span: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -16563,11 +16563,11 @@ extension LineBreak: CoreAttributes {
 
 extension LineBreak: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -16810,11 +16810,11 @@ extension WordBreak: CoreAttributes {
 
 extension WordBreak: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -17079,11 +17079,11 @@ extension InsertedText: CoreAttributes, CiteAttribute, DateTimeAttribute {
 
 extension InsertedText: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -17348,11 +17348,11 @@ extension DeletedText: CoreAttributes, CiteAttribute, DateTimeAttribute {
 
 extension DeletedText: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -17599,11 +17599,11 @@ extension Picture: CoreAttributes {
 
 extension Picture: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -17899,11 +17899,11 @@ extension Source: CoreAttributes, TypeAttribute, SourceAttribute, SizesAttribute
 
 extension Source: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -18199,11 +18199,11 @@ extension Image: CoreAttributes, AlternateAttribute, SourceAttribute, SizesAttri
 
 extension Image: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -18495,11 +18495,11 @@ extension InlineFrame: CoreAttributes, SourceAttribute, NameAttribute, WidthAttr
 
 extension InlineFrame: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -18778,11 +18778,11 @@ extension Embed: CoreAttributes, SourceAttribute, TypeAttribute, WidthAttribute,
 
 extension Embed: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -19083,11 +19083,11 @@ extension Object: CoreAttributes, DataAttribute, TypeAttribute, NameAttribute, F
 
 extension Object: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -19347,11 +19347,11 @@ extension Parameter: CoreAttributes, NameAttribute, ValueAttribute {
 
 extension Parameter: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -19661,11 +19661,11 @@ extension Video: CoreAttributes, SourceAttribute, AutoplayAttribute, LoopAttribu
 
 extension Video: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -19957,11 +19957,11 @@ extension Audio: CoreAttributes, SourceAttribute, AutoplayAttribute, LoopAttribu
 
 extension Audio: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -20239,11 +20239,11 @@ extension Track: CoreAttributes, KindAttribute, SourceAttribute, LabelAttribute,
 
 extension Track: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -20499,11 +20499,11 @@ extension Map: CoreAttributes, NameAttribute {
 
 extension Map: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -20831,11 +20831,11 @@ extension Area: CoreAttributes, AlternateAttribute, CoordinatesAttribute, ShapeA
 
 extension Area: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -21100,11 +21100,11 @@ extension Table: CoreAttributes, WidthAttribute, HeightAttribute {
 
 extension Table: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -21352,11 +21352,11 @@ extension Caption: CoreAttributes {
 
 extension Caption: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -21612,11 +21612,11 @@ extension ColumnGroup: CoreAttributes, SpanAttribute {
 
 extension ColumnGroup: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -21872,11 +21872,11 @@ extension Column: CoreAttributes, SpanAttribute {
 
 extension Column: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -22141,11 +22141,11 @@ extension TableBody: CoreAttributes, WidthAttribute, HeightAttribute {
 
 extension TableBody: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -22410,11 +22410,11 @@ extension TableHead: CoreAttributes, WidthAttribute, HeightAttribute {
 
 extension TableHead: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -22661,11 +22661,11 @@ extension TableFoot: CoreAttributes {
 
 extension TableFoot: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -22930,11 +22930,11 @@ extension TableRow: CoreAttributes, WidthAttribute, HeightAttribute {
 
 extension TableRow: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -23208,11 +23208,11 @@ extension DataCell: CoreAttributes, ColumnSpanAttribute, RowSpanAttribute, Heade
 
 extension DataCell: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -23506,11 +23506,11 @@ extension HeaderCell: Localizable {
 
 extension HeaderCell: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -23820,11 +23820,11 @@ extension Form: CoreAttributes, ActionAttribute, AutocompleteAttribute, Encoding
 
 extension Form: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -24091,11 +24091,11 @@ extension Label: Localizable {
 
 extension Label: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -24562,11 +24562,11 @@ extension Input: CoreAttributes, AcceptAttribute, AlternateAttribute, Autocomple
 
 extension Input: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -24878,11 +24878,11 @@ extension Button: Localizable {
 
 extension Button: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -25192,11 +25192,11 @@ extension Select: CoreAttributes, AutocompleteAttribute, DisabledAttribute, Form
 
 extension Select: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -25443,11 +25443,11 @@ extension DataList: CoreAttributes {
 
 extension DataList: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -25712,11 +25712,11 @@ extension OptionGroup: CoreAttributes, DisabledAttribute, LabelAttribute {
 
 extension OptionGroup: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -25990,11 +25990,11 @@ extension Option: CoreAttributes, DisabledAttribute, LabelAttribute, ValueAttrib
 
 extension Option: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -26349,11 +26349,11 @@ extension TextArea: CoreAttributes, AutocompleteAttribute, ColumnsAttribute, Dis
 
 extension TextArea: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -26628,11 +26628,11 @@ extension Output: CoreAttributes, ForAttribute, FormAttribute, NameAttribute {
 
 extension Output: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -26898,11 +26898,11 @@ extension Progress: CoreAttributes, ValueAttribute, MaximumValueAttribute {
 
 extension Progress: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -27194,11 +27194,11 @@ extension Meter: CoreAttributes, ValueAttribute, MinimumValueAttribute, MaximumV
 
 extension Meter: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -27472,11 +27472,11 @@ extension Fieldset: CoreAttributes, DisabledAttribute, FormAttribute, NameAttrib
 
 extension Fieldset: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -27724,11 +27724,11 @@ extension Legend: CoreAttributes {
 
 extension Legend: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -27984,11 +27984,11 @@ extension Details: CoreAttributes, OpenAttribute {
 
 extension Details: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -28236,11 +28236,11 @@ extension Summary: CoreAttributes {
 
 extension Summary: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -28496,11 +28496,11 @@ extension Dialog: CoreAttributes, OpenAttribute {
 
 extension Dialog: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -28783,11 +28783,11 @@ extension Script: CoreAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribu
 
 extension Script: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -29035,11 +29035,11 @@ extension NoScript: CoreAttributes {
 
 extension NoScript: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -29286,11 +29286,11 @@ extension Template: CoreAttributes {
 
 extension Template: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }
@@ -29555,11 +29555,11 @@ extension Canvas: CoreAttributes, WidthAttribute, HeightAttribute {
 
 extension Canvas: Content {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }
 }

@@ -66,14 +66,14 @@
 
 extension HTMLContext: Content where Value: Content {
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         applyEscaping(
             try manager.value(for: self)
                 .render(with: manager)
         )
     }
 
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         formula.add(mappable: self)
     }
 
@@ -99,7 +99,7 @@ extension HTMLContext: Content where Value: Content {
 
 extension HTMLContext: Conditionable where Value == Bool {
     
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         try manager.value(for: self)
     }
 }

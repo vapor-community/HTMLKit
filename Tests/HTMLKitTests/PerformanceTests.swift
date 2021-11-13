@@ -16,7 +16,7 @@ final class PerformanceTests: XCTestCase {
         }
     }
     
-    var renderer = HTMLRenderer()
+    var renderer = Renderer()
     
     func testPerformanceRenderingWhenUsingDefault() throws {
         

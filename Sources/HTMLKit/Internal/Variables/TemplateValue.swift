@@ -69,14 +69,14 @@ import Foundation
 
 extension TemplateValue: Content where Value: Content {
 
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         switch self {
         case .constant(let value): try value.prerender(formula)
         case .dynamic(let variable): try variable.prerender(formula)
         }
     }
 
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         switch self {
         case .constant(let value): return try value.render(with: manager)
         case .dynamic(let variable): return try variable.render(with: manager)
@@ -117,7 +117,7 @@ extension TemplateValue {
         .dynamic(HTMLContext(T.self))
     }
 
-    public func value<T>(from manager: HTMLRenderer.ContextManager<T>) throws -> Value {
+    public func value<T>(from manager: Renderer.ContextManager<T>) throws -> Value {
         switch self {
         case .constant(let value): return value
         case .dynamic(let variable): return try manager.value(for: variable)
