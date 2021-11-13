@@ -22677,7 +22677,7 @@ extension TableFoot: Content {
 ///
 public struct TableRow: ContentNode {
 
-    internal var name: String { "tfoot" }
+    internal var name: String { "tr" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 

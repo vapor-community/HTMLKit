@@ -7,7 +7,7 @@ public protocol HTMLTemplate: Content {
     
     var context: TemplateValue<Context> { get }
 
-    var body: Content { get }
+    @ContentBuilder var body: Content { get }
 }
 
 extension HTMLTemplate {
@@ -30,7 +30,7 @@ extension HTMLTemplate {
 ///
 public protocol HTMLPage: Content {
     
-    var body: Content { get }
+    @ContentBuilder var body: Content { get }
 }
 
 extension HTMLPage {
@@ -51,7 +51,7 @@ extension HTMLPage {
 ///
 public protocol HTMLComponent: Content {
     
-    var body: Content { get }
+    @ContentBuilder var body: Content { get }
 }
 
 extension HTMLComponent {

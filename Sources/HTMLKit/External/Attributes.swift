@@ -2402,7 +2402,7 @@ extension TypeAttribute {
     }
     
     internal func update(type value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = type
+        attributes[key] = value
         return attributes
     }
 }
