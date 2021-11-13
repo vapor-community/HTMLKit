@@ -1,3 +1,5 @@
+import OrderedCollections
+
 // MARK: aliases
 
 /// The alias points
@@ -22,11 +24,11 @@ extension AccessKeyAttribute {
     
     private var key: String { "accesskey" }
     
-    internal func set(accesskey value: String) -> [String: Any] {
+    internal func set(accesskey value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(accesskey value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(accesskey value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -47,11 +49,11 @@ extension AcceptAttribute {
     
     private var key: String { "accept" }
     
-    internal func set(accept value: String) -> [String: Any] {
+    internal func set(accept value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
 
-    internal func update(accept value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(accept value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -72,11 +74,11 @@ extension ActionAttribute {
     
     private var key: String { "action" }
     
-    internal func set(action value: String) -> [String: Any] {
+    internal func set(action value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(action value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(action value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -97,11 +99,11 @@ extension AlternateAttribute {
     
     private var key: String { "alternate" }
     
-    internal func set(alt value: String) -> [String: Any] {
+    internal func set(alt value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(alt value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(alt value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -122,11 +124,11 @@ extension AsynchronouslyAttribute {
     
     private var key: String { "async" }
     
-    internal func set(async value: String) -> [String: Any] {
+    internal func set(async value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(async value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(async value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -147,11 +149,11 @@ extension AutocapitalizeAttribute {
     
     private var key: String { "autocapitalize" }
     
-    internal func set(autocapitalize value: String) -> [String: Any] {
+    internal func set(autocapitalize value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(autocapitalize value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(autocapitalize value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -172,11 +174,11 @@ extension AutocompleteAttribute {
     
     private var key: String { "autocomplete" }
 
-    internal func set(autocomplete value: Bool) -> [String: Any] {
+    internal func set(autocomplete value: Bool) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
 
-    internal func update(autocomplete value: Bool, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(autocomplete value: Bool, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -197,11 +199,11 @@ extension AutofocusAttribute {
     
     private var key: String { "autofocus" }
     
-    internal func set(autofocus value: String) -> [String: Any] {
+    internal func set(autofocus value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(autofocus value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(autofocus value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -222,11 +224,11 @@ extension AutoplayAttribute {
     
     private var key: String { "autoplay" }
     
-    internal func set(autoplay value: String) -> [String: Any] {
+    internal func set(autoplay value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(autoplay value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(autoplay value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -247,11 +249,11 @@ extension CheckedAttribute {
     
     private var key: String { "checked" }
     
-    internal func set(checked value: String) -> [String: Any] {
+    internal func set(checked value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(checked value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(checked value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -272,11 +274,11 @@ extension CiteAttribute {
     
     private var key: String { "cite" }
     
-    internal func set(cite value: String) -> [String: Any] {
+    internal func set(cite value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(cite value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(cite value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -297,11 +299,11 @@ extension ClassAttribute {
     
     private var key: String { "class" }
     
-    internal func set(`class` value: String) -> [String: Any] {
+    internal func set(`class` value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(`class` value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(`class` value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -322,11 +324,11 @@ extension ColumnsAttribute {
     
     private var key: String { "cols" }
     
-    internal func set(columns value: Int) -> [String: Any] {
+    internal func set(columns value: Int) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
 
-    internal func update(columns value: Int, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(columns value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -347,11 +349,11 @@ extension ColumnSpanAttribute {
     
     private var key: String { "colspan" }
     
-    internal func set(columnspan value: Int) -> [String: Any] {
+    internal func set(columnspan value: Int) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
 
-    internal func update(columnspan value: Int, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(columnspan value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -372,11 +374,11 @@ extension ContentAttribute {
     
     private var key: String { "content" }
 
-    internal func set(content value: String) -> [String: Any] {
+    internal func set(content value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(content value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(content value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -397,11 +399,11 @@ extension EditAttribute {
     
     private var key: String { "contenteditable" }
     
-    internal func set(contenteditable value: Bool) -> [String: Any] {
+    internal func set(contenteditable value: Bool) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(contenteditable value: Bool, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(contenteditable value: Bool, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -422,11 +424,11 @@ extension ControlsAttribute {
     
     private var key: String { "controls" }
     
-    internal func set(controls value: String) -> [String: Any] {
+    internal func set(controls value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(controls value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(controls value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -447,11 +449,11 @@ extension CoordinatesAttribute {
     
     private var key: String { "coords" }
     
-    internal func set(coords value: String) -> [String: Any] {
+    internal func set(coords value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
 
-    internal func update(coords value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(coords value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -472,11 +474,11 @@ extension DataAttribute {
     
     private var key: String { "data" }
     
-    internal func set(data value: String) -> [String: Any] {
+    internal func set(data value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
 
-    internal func update(data value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(data value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -497,11 +499,11 @@ extension DateTimeAttribute {
     
     private var key: String { "datetime" }
     
-    internal func set(time value: Content) -> [String: Any] {
+    internal func set(time value: Content) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(time value: Content, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(time value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -522,11 +524,11 @@ extension DefaultAttribute {
     
     private var key: String { "default" }
     
-    internal func set(`default` value: String) -> [String: Any] {
+    internal func set(`default` value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(`default` value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(`default` value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -547,11 +549,11 @@ extension DeferAttribute {
     
     private var key: String { "defer" }
     
-    internal func set(`defer` value: String) -> [String: Any] {
+    internal func set(`defer` value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(`defer` value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(`defer` value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -572,11 +574,11 @@ extension DirectionAttribute {
 
     private var key: String { "dir" }
 
-    internal func set(direction value: String) -> [String: Any] {
+    internal func set(direction value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
 
-    internal func update(direction value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(direction value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -597,11 +599,11 @@ extension DisabledAttribute {
     
     private var key: String { "disabled" }
     
-    internal func set(disabled value: String) -> [String: Any] {
+    internal func set(disabled value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(disabled value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(disabled value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -622,11 +624,11 @@ extension DownloadAttribute {
     
     private var key: String { "download" }
     
-    internal func set(download value: String) -> [String: Any] {
+    internal func set(download value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(download value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(download value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -647,11 +649,11 @@ extension DragAttribute {
     
     private var key: String { "draggable" }
     
-    internal func set(draggable value: Bool) -> [String: Any] {
+    internal func set(draggable value: Bool) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(draggable value: Bool, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(draggable value: Bool, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -672,11 +674,11 @@ extension EncodingAttribute {
     
     private var key: String { "enctype" }
     
-    internal func set(enctype value: String) -> [String: Any] {
+    internal func set(enctype value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(enctype value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(enctype value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -697,11 +699,11 @@ extension EnterKeyHintAttribute {
     
     private var key: String { "enterkeyhint" }
     
-    internal func set(hint value: String) -> [String: Any] {
+    internal func set(hint value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(hint value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(hint value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -722,11 +724,11 @@ extension ForAttribute {
     
     private var key: String { "for" }
     
-    internal func set(`for` value: String) -> [String: Any] {
+    internal func set(`for` value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(`for` value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(`for` value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -747,11 +749,11 @@ extension FormAttribute {
     
     private var key: String { "form" }
     
-    internal func set(form value: String) -> [String: Any] {
+    internal func set(form value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(form value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(form value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -772,11 +774,11 @@ extension FormActionAttribute {
     
     private var key: String { "formaction" }
     
-    internal func set(formaction value: String) -> [String: Any] {
+    internal func set(formaction value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(formaction value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(formaction value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -797,11 +799,11 @@ extension HeaderAttribute {
     
     private var key: String { "headers" }
     
-    internal func set(headers value: String) -> [String: Any] {
+    internal func set(headers value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(headers value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(headers value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -822,11 +824,11 @@ extension HeightAttribute {
     
     private var key: String { "height" }
     
-    internal func set(height value: Int) -> [String: Any] {
+    internal func set(height value: Int) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(height value: Int, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(height value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -847,11 +849,11 @@ extension HiddenAttribute {
 
     private var key: String { "hidden" }
 
-    internal func set(hidden value: String) -> [String: Any] {
+    internal func set(hidden value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
 
-    internal func update(hidden value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(hidden value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -872,11 +874,11 @@ extension HighAttribute {
     
     private var key: String { "high" }
     
-    internal func set(high value: Int) -> [String: Any] {
+    internal func set(high value: Int) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(high value: Int, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(high value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -897,11 +899,11 @@ extension ReferenceAttribute {
     
     private var key: String { "href" }
     
-    internal func set(ref value: String) -> [String: Any] {
+    internal func set(ref value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(ref value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(ref value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -922,11 +924,11 @@ extension ReferenceLanguageAttribute {
 
     private var key: String { "hreflang" }
     
-    internal func set(reflang value: String) -> [String: Any] {
+    internal func set(reflang value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(reflang value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(reflang value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -947,11 +949,11 @@ extension IdentifierAttribute {
     
     private var key: String { "id" }
     
-    internal func set(id value: String) -> [String: Any] {
+    internal func set(id value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(id value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(id value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -972,11 +974,11 @@ extension IsMapAttribute {
     
     private var key: String { "ismap" }
     
-    internal func set(ismap value: String) -> [String: Any] {
+    internal func set(ismap value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(ismap value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(ismap value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -997,11 +999,11 @@ extension InputModeAttribute {
     
     private var key: String { "inputmode" }
     
-    internal func set(inputmode value: String) -> [String: Any] {
+    internal func set(inputmode value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(inputmode value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(inputmode value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1022,11 +1024,11 @@ extension IsAttribute {
     
     private var key: String { "is" }
     
-    internal func set(`is` value: String) -> [String: Any] {
+    internal func set(`is` value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(`is` value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(`is` value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1047,11 +1049,11 @@ extension ItemIdAttribute {
     
     private var key: String { "itemid" }
     
-    internal func set(itemid value: String) -> [String: Any] {
+    internal func set(itemid value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(itemid value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(itemid value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1072,11 +1074,11 @@ extension ItemPropertyAttribute {
     
     private var key: String { "itemprop" }
     
-    internal func set(itemprop value: String) -> [String: Any] {
+    internal func set(itemprop value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(itemprop value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(itemprop value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1097,11 +1099,11 @@ extension ItemReferenceAttribute {
     
     private var key: String { "itemref" }
     
-    internal func set(itemref value: String) -> [String: Any] {
+    internal func set(itemref value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(itemref value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(itemref value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1122,11 +1124,11 @@ extension ItemScopeAttribute {
     
     private var key: String { "itemscope" }
     
-    internal func set(itemscope value: String) -> [String: Any] {
+    internal func set(itemscope value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(itemscope value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(itemscope value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1147,11 +1149,11 @@ extension ItemTypeAttribute {
     
     private var key: String { "itemtype" }
     
-    internal func set(itemtype value: String) -> [String: Any] {
+    internal func set(itemtype value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(itemtype value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(itemtype value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1172,11 +1174,11 @@ extension KindAttribute {
     
     private var key: String { "kind" }
     
-    internal func set(kind value: Content) -> [String: Any] {
+    internal func set(kind value: Content) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(kind value: Content, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(kind value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1197,11 +1199,11 @@ extension LabelAttribute {
     
     private var key: String { "label" }
     
-    internal func set(label value: Content) -> [String: Any] {
+    internal func set(label value: Content) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(label value: Content, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(label value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1222,11 +1224,11 @@ extension LanguageAttribute {
     
     private var key: String { "lang" }
     
-    internal func set(lang value: String) -> [String: Any] {
+    internal func set(lang value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(lang value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(lang value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1247,11 +1249,11 @@ extension ListAttribute {
     
     private var key: String { "list" }
     
-    internal func set(list value: Content) -> [String: Any] {
+    internal func set(list value: Content) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(list value: Content, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(list value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1272,11 +1274,11 @@ extension LoopAttribute {
     
     private var key: String { "loop" }
     
-    internal func set(loop value: String) -> [String: Any] {
+    internal func set(loop value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(loop value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(loop value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1297,11 +1299,11 @@ extension LowAttribute {
     
     private var key: String { "low" }
     
-    internal func set(loop value: Int) -> [String: Any] {
+    internal func set(loop value: Int) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(loop value: Int, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(loop value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1322,11 +1324,11 @@ extension MaximumValueAttribute {
 
     private var key: String { "max" }
     
-    internal func set(max value: Content) -> [String: Any] {
+    internal func set(max value: Content) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(max value: Content, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(max value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1347,11 +1349,11 @@ extension MaximumLengthAttribute {
 
     private var key: String { "maxlength" }
     
-    internal func set(maxlength value: Content) -> [String: Any] {
+    internal func set(maxlength value: Content) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(maxlength value: Content, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(maxlength value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1372,11 +1374,11 @@ extension MediaAttribute {
 
     private var key: String { "media" }
     
-    internal func set(media value: Content) -> [String: Any] {
+    internal func set(media value: Content) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(media value: Content, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(media value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1397,11 +1399,11 @@ extension MethodAttribute {
 
     private var key: String { "method" }
     
-    internal func set(method value: String) -> [String: Any] {
+    internal func set(method value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(method value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(method value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1422,11 +1424,11 @@ extension MinimumValueAttribute {
 
     private var key: String { "min" }
     
-    internal func set(min value: Content) -> [String: Any] {
+    internal func set(min value: Content) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(min value: Content, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(min value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1447,11 +1449,11 @@ extension MinimumLengthAttribute {
 
     private var key: String { "minlength" }
     
-    internal func set(minlength value: Content) -> [String: Any] {
+    internal func set(minlength value: Content) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(minlength value: Content, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(minlength value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1472,11 +1474,11 @@ extension MultipleAttribute {
     
     private var key: String { "multiple" }
     
-    internal func set(multiple value: String) -> [String: Any] {
+    internal func set(multiple value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(multiple value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(multiple value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1497,11 +1499,11 @@ extension MutedAttribute {
     
     private var key: String { "muted" }
     
-    internal func set(muted value: String) -> [String: Any] {
+    internal func set(muted value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(muted value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(muted value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1522,11 +1524,11 @@ extension NameAttribute {
     
     private var key: String { "name" }
     
-    internal func set(name value: String) -> [String: Any] {
+    internal func set(name value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(name value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(name value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1547,11 +1549,11 @@ extension NonceAttribute {
     
     private var key: String { "nonce" }
     
-    internal func set(nonce value: String) -> [String: Any] {
+    internal func set(nonce value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(nonce value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(nonce value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1572,11 +1574,11 @@ extension NoValidateAttribute {
     
     private var key: String { "novalidate" }
     
-    internal func set(name value: String) -> [String: Any] {
+    internal func set(name value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(name value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(name value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1597,11 +1599,11 @@ extension OpenAttribute {
     
     private var key: String { "open" }
     
-    internal func set(open value: Bool) -> [String: Any] {
+    internal func set(open value: Bool) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(open value: Bool, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(open value: Bool, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1622,11 +1624,11 @@ extension OptimumAttribute {
     
     private var key: String { "optimum" }
     
-    internal func set(optimum value: Float) -> [String: Any] {
+    internal func set(optimum value: Float) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(optimum value: Float, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(optimum value: Float, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1647,11 +1649,11 @@ extension PatternAttribute {
     
     private var key: String { "pattern" }
     
-    internal func set(pattern value: String) -> [String: Any] {
+    internal func set(pattern value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(pattern value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(pattern value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1672,11 +1674,11 @@ extension PartAttribute {
     
     private var key: String { "part" }
     
-    internal func set(part value: String) -> [String: Any] {
+    internal func set(part value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(part value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(part value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1697,11 +1699,11 @@ extension PingAttribute {
 
     private var key: String { "ping" }
     
-    internal func set(ping value: String) -> [String: Any] {
+    internal func set(ping value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(ping value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(ping value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1722,11 +1724,11 @@ extension PlaceholderAttribute {
     
     private var key: String { "placeholder" }
     
-    internal func set(placeholder value: String) -> [String: Any] {
+    internal func set(placeholder value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(placeholer value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(placeholer value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1747,11 +1749,11 @@ extension PosterAttribute {
 
     private var key: String { "poster" }
     
-    internal func set(poster value: String) -> [String: Any] {
+    internal func set(poster value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(poster value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(poster value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1772,11 +1774,11 @@ extension PreloadAttribute {
     
     private var key: String { "preload" }
     
-    internal func set(preload value: String) -> [String: Any] {
+    internal func set(preload value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(preload value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(preload value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1798,11 +1800,11 @@ extension ReadyOnlyAttribute {
     private var key: String { "readonly" }
     
     
-    internal func set(readonly value: String) -> [String: Any] {
+    internal func set(readonly value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(readonly value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(readonly value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1823,11 +1825,11 @@ extension ReferrerPolicyAttribute {
 
     private var key: String { "referrerpolicy" }
     
-    internal func set(policy value: String) -> [String: Any] {
+    internal func set(policy value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(policy value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(policy value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1848,11 +1850,11 @@ extension RelationshipAttribute {
     
     private var key: String { "rel" }
     
-    internal func set(rel value: String) -> [String: Any] {
+    internal func set(rel value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(rel value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(rel value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1873,11 +1875,11 @@ extension RequiredAttribute {
     
     private var key: String { "required" }
     
-    internal func set(required value: String) -> [String: Any] {
+    internal func set(required value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(required value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(required value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1898,11 +1900,11 @@ extension ReversedAttribute {
     
     private var key: String { "reversed" }
     
-    internal func set(reversed value: String) -> [String: Any] {
+    internal func set(reversed value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(reversed value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(reversed value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1923,11 +1925,11 @@ extension RoleAttribute {
     
     private var key: String { "role" }
     
-    internal func set(role value: String) -> [String: Any] {
+    internal func set(role value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(role value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(role value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1945,11 +1947,11 @@ extension RowsAttribute {
 
     private var key: String { "rows" }
     
-    internal func set(rows value: Int) -> [String: Any] {
+    internal func set(rows value: Int) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(rows value: Int, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(rows value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1970,11 +1972,11 @@ extension RowSpanAttribute {
 
     private var key: String { "rowspan" }
     
-    internal func set(rowspan value: Int) -> [String: Any] {
+    internal func set(rowspan value: Int) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(rowspan value: Int, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(rowspan value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -1995,11 +1997,11 @@ extension SandboxAttribute {
     
     private var key: String { "sandbox" }
     
-    internal func set(sandbox value: String) -> [String: Any] {
+    internal func set(sandbox value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(sandbox value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(sandbox value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2020,11 +2022,11 @@ extension ScopeAttribute {
 
     private var key: String { "scope" }
     
-    internal func set(scope value: String) -> [String: Any] {
+    internal func set(scope value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(scope value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(scope value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2045,11 +2047,11 @@ extension ShapeAttribute {
 
     private var key: String { "shape" }
     
-    internal func set(shape value: String) -> [String: Any] {
+    internal func set(shape value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(shape value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(shape value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2070,11 +2072,11 @@ extension SizeAttribute {
 
     private var key: String { "size" }
     
-    internal func set(size value: Int) -> [String: Any] {
+    internal func set(size value: Int) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(size value: Int, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(size value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2095,11 +2097,11 @@ extension SizesAttribute {
 
     private var key: String { "sizes" }
     
-    internal func set(sizes value: Int) -> [String: Any] {
+    internal func set(sizes value: Int) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(sizes value: Int, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(sizes value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2120,11 +2122,11 @@ extension SlotAttribute {
     
     private var key: String { "slot" }
     
-    internal func set(lang value: String) -> [String: Any] {
+    internal func set(lang value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(lang value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(lang value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2145,11 +2147,11 @@ extension SpanAttribute {
 
     private var key: String { "span" }
     
-    internal func set(span value: Int) -> [String: Any] {
+    internal func set(span value: Int) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(span value: Int, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(span value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2170,11 +2172,11 @@ extension SpellCheckAttribute {
     
     private var key: String { "spellcheck" }
     
-    internal func set(spellcheck value: Bool) -> [String: Any] {
+    internal func set(spellcheck value: Bool) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(spellcheck value: Bool, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(spellcheck value: Bool, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2195,11 +2197,11 @@ extension SourceAttribute {
     
     private var key: String { "source" }
     
-    internal func set(source value: String) -> [String: Any] {
+    internal func set(source value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(source value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(source value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2220,11 +2222,11 @@ extension StartAttribute {
     
     private var key: String { "start" }
     
-    internal func set(start value: Int) -> [String: Any] {
+    internal func set(start value: Int) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(start value: Int, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(start value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2245,11 +2247,11 @@ extension StepAttribute {
 
     private var key: String { "step" }
     
-    internal func set(step value: Int) -> [String: Any] {
+    internal func set(step value: Int) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(step value: Int, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(step value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2270,11 +2272,11 @@ extension StyleAttribute {
     
     private var key: String { "style" }
 
-    internal func set(style value: String) -> [String: Any] {
+    internal func set(style value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(style value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(style value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2295,11 +2297,11 @@ extension TabulatorAttribute {
     
     private var key: String { "tabindex" }
     
-    internal func set(index value: Content) -> [String: Any] {
+    internal func set(index value: Content) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(index value: Content, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(index value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2320,11 +2322,11 @@ extension TargetAttribute {
     
     private var key: String { "target" }
     
-    internal func set(target value: String) -> [String: Any] {
+    internal func set(target value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(target value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(target value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2345,11 +2347,11 @@ extension TitleAttribute {
     
     private var key: String { "title" }
     
-    internal func set(title value: String) -> [String: Any] {
+    internal func set(title value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
 
-    internal func update(title value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(title value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2370,11 +2372,11 @@ extension TranslateAttribute {
     
     private var key: String { "translate" }
     
-    internal func set(translate value: String) -> [String: Any] {
+    internal func set(translate value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
 
-    internal func update(translate value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(translate value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2395,11 +2397,11 @@ extension TypeAttribute {
     
     private var key: String { "type" }
     
-    internal func set(type value: String) -> [String: Any] {
+    internal func set(type value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(type value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(type value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = type
         return attributes
     }
@@ -2420,11 +2422,11 @@ extension ValueAttribute {
 
     private var key: String { "value" }
     
-    internal func set(value: String) -> [String: Any] {
+    internal func set(value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2445,11 +2447,11 @@ extension WidthAttribute {
 
     private var key: String { "width" }
     
-    internal func set(width value: Int) -> [String: Any] {
+    internal func set(width value: Int) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(width value: Int, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(width value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2470,11 +2472,11 @@ extension WrapAttribute {
 
     private var key: String { "wrap" }
     
-    internal func set(wrap value: String) -> [String: Any] {
+    internal func set(wrap value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(wrap value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(wrap value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }
@@ -2495,11 +2497,11 @@ extension PropertyAttribute {
     
     private var key: String { "property" }
     
-    internal func set(property value: String) -> [String: Any] {
+    internal func set(property value: String) -> OrderedDictionary<String, Any> {
         return [key: value]
     }
     
-    internal func update(property value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(property value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         attributes[key] = value
         return attributes
     }

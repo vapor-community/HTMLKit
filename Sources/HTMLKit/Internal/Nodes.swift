@@ -1,3 +1,5 @@
+import OrderedCollections
+
 /// The node is for
 ///
 ///
@@ -7,11 +9,11 @@ internal protocol ContentNode {
     
     var name: String { get }
     
-    var attributes: [String: Any]? { get }
+    var attributes: OrderedDictionary<String, Any>? { get }
     
     var content: T { get }
     
-    init(attributes: [String: Any]?, content: T)
+    init(attributes: OrderedDictionary<String, Any>?, content: T)
 }
 
 extension ContentNode where T == Content {
@@ -81,9 +83,9 @@ internal protocol EmptyNode {
 
     var name: String { get }
     
-    var attributes: [String: Any]? { get }
+    var attributes: OrderedDictionary<String, Any>? { get }
     
-    init(attributes: [String: Any]?)
+    init(attributes: OrderedDictionary<String, Any>?)
 }
 
 extension EmptyNode {

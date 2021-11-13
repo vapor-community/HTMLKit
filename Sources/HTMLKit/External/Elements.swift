@@ -1,3 +1,5 @@
+import OrderedCollections
+
 // MARK: aliases
 
 public typealias Nav = Navigation
@@ -107,7 +109,7 @@ public struct Head: ContentNode {
 
     internal var name: String { "head" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -115,7 +117,7 @@ public struct Head: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -358,7 +360,7 @@ public struct Title: ContentNode {
 
     internal var name: String { "title" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: String
     
@@ -366,7 +368,7 @@ public struct Title: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: String) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: String) {
         self.attributes = attributes
         self.content = content
     }
@@ -609,11 +611,11 @@ public struct Base: EmptyNode {
 
     internal var name: String { "base" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     public init() {}
     
-    internal init(attributes: [String: Any]?) {
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
 }
@@ -873,11 +875,11 @@ public struct Link: EmptyNode {
 
     internal var name: String { "link" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     public init() {}
     
-    internal init(attributes: [String: Any]?) {
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
 }
@@ -1182,11 +1184,11 @@ public struct Meta: EmptyNode {
 
     internal var name: String { "meta" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     public init() {}
     
-    internal init(attributes: [String: Any]?) {
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
 }
@@ -1456,7 +1458,7 @@ public struct Style: ContentNode {
 
     internal var name: String { "style" }
     
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -1464,7 +1466,7 @@ public struct Style: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -1726,7 +1728,7 @@ public struct Html: ContentNode {
 
     internal var name: String { "html" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -1734,7 +1736,7 @@ public struct Html: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -1977,7 +1979,7 @@ public struct Body: ContentNode {
 
     internal var name: String { "body" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -1985,7 +1987,7 @@ public struct Body: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -2228,7 +2230,7 @@ public struct Article: ContentNode {
 
     internal var name: String { "article" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -2236,7 +2238,7 @@ public struct Article: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -2479,7 +2481,7 @@ public struct Section: ContentNode {
 
     internal var name: String { "section" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -2487,7 +2489,7 @@ public struct Section: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -2730,7 +2732,7 @@ public struct Navigation: ContentNode {
 
     internal var name: String { "nav" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -2738,7 +2740,7 @@ public struct Navigation: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -2981,7 +2983,7 @@ public struct Aside: ContentNode {
 
     internal var name: String { "aside" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -2989,7 +2991,7 @@ public struct Aside: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -3232,7 +3234,7 @@ public struct Heading1: ContentNode {
 
     internal var name: String { "h1" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -3240,7 +3242,7 @@ public struct Heading1: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -3494,7 +3496,7 @@ public struct Heading2: ContentNode {
 
     internal var name: String { "h2" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -3502,7 +3504,7 @@ public struct Heading2: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -3756,7 +3758,7 @@ public struct Heading3: ContentNode {
 
     internal var name: String { "h3" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -3764,7 +3766,7 @@ public struct Heading3: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -4018,7 +4020,7 @@ public struct Heading4: ContentNode {
 
     internal var name: String { "h4" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -4026,7 +4028,7 @@ public struct Heading4: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -4281,7 +4283,7 @@ public struct Heading5: ContentNode {
 
     internal var name: String { "h5" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -4289,7 +4291,7 @@ public struct Heading5: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -4544,7 +4546,7 @@ public struct Heading6: ContentNode {
 
     internal var name: String { "h6" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -4552,7 +4554,7 @@ public struct Heading6: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -4806,7 +4808,7 @@ public struct HeadingGroup: ContentNode {
 
     internal var name: String { "hgroup" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -4814,7 +4816,7 @@ public struct HeadingGroup: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -5057,7 +5059,7 @@ public struct Header: ContentNode {
 
     internal var name: String { "header" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -5065,7 +5067,7 @@ public struct Header: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -5308,7 +5310,7 @@ public struct Footer: ContentNode {
 
     internal var name: String { "footer" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -5316,7 +5318,7 @@ public struct Footer: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -5559,7 +5561,7 @@ public struct Address: ContentNode {
 
     internal var name: String { "address" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -5567,7 +5569,7 @@ public struct Address: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -5810,7 +5812,7 @@ public struct Paragraph: ContentNode {
 
     internal var name: String { "p" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -5818,7 +5820,7 @@ public struct Paragraph: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -6072,11 +6074,11 @@ public struct HorizontalRule: EmptyNode {
 
     internal var name: String { "hr" }
     
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     public init() {}
     
-    internal init(attributes: [String: Any]?) {
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
 }
@@ -6318,7 +6320,7 @@ public struct PreformattedText: ContentNode {
 
     internal var name: String { "pre" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -6326,7 +6328,7 @@ public struct PreformattedText: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -6569,7 +6571,7 @@ public struct Blockquote: ContentNode {
 
     internal var name: String { "blockquote" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -6577,7 +6579,7 @@ public struct Blockquote: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -6840,7 +6842,7 @@ public struct OrderedList: ContentNode {
 
     internal var name: String { "ol" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -6848,7 +6850,7 @@ public struct OrderedList: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -7118,7 +7120,7 @@ public struct UnorderedList: ContentNode {
 
     internal var name: String { "ul" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -7126,7 +7128,7 @@ public struct UnorderedList: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -7369,7 +7371,7 @@ public struct ListItem: ContentNode {
 
     internal var name: String { "li" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -7377,7 +7379,7 @@ public struct ListItem: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -7629,7 +7631,7 @@ public struct DescriptionList: ContentNode {
 
     internal var name: String { "dl" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -7637,7 +7639,7 @@ public struct DescriptionList: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -7880,7 +7882,7 @@ public struct TermName: ContentNode {
 
     internal var name: String { "dt" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -7888,7 +7890,7 @@ public struct TermName: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -8131,7 +8133,7 @@ public struct TermDefinition: ContentNode {
 
     internal var name: String { "dd" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -8139,7 +8141,7 @@ public struct TermDefinition: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -8382,7 +8384,7 @@ public struct Figure: ContentNode {
 
     internal var name: String { "figure" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -8390,7 +8392,7 @@ public struct Figure: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -8633,7 +8635,7 @@ public struct FigureCaption: ContentNode {
 
     internal var name: String { "figcaption" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -8641,7 +8643,7 @@ public struct FigureCaption: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -8884,7 +8886,7 @@ public struct Main: ContentNode {
 
     internal var name: String { "main" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -8892,7 +8894,7 @@ public struct Main: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -9135,7 +9137,7 @@ public struct Division: ContentNode {
 
     internal var name: String { "div" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -9143,7 +9145,7 @@ public struct Division: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -9386,7 +9388,7 @@ public struct Anchor: ContentNode {
 
     internal var name: String { "a" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -9394,7 +9396,7 @@ public struct Anchor: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String : Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -9729,7 +9731,7 @@ public struct Emphasize: ContentNode {
 
     internal var name: String { "em" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -9737,7 +9739,7 @@ public struct Emphasize: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -9980,7 +9982,7 @@ public struct Strong: ContentNode {
 
     internal var name: String { "strong" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -9988,7 +9990,7 @@ public struct Strong: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String : Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -10231,7 +10233,7 @@ public struct Small: ContentNode {
 
     internal var name: String { "small" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -10239,7 +10241,7 @@ public struct Small: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -10493,7 +10495,7 @@ public struct StrikeThrough: ContentNode {
 
     internal var name: String { "s" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -10501,7 +10503,7 @@ public struct StrikeThrough: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -10755,7 +10757,7 @@ public struct Cite: ContentNode {
 
     internal var name: String { "cite" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -10763,7 +10765,7 @@ public struct Cite: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -11006,7 +11008,7 @@ public struct ShortQuote: ContentNode {
 
     internal var name: String { "q" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -11014,7 +11016,7 @@ public struct ShortQuote: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -11266,7 +11268,7 @@ public struct Definition: ContentNode {
 
     internal var name: String { "dfn" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -11274,7 +11276,7 @@ public struct Definition: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -11517,7 +11519,7 @@ public struct Abbreviation: ContentNode {
 
     internal var name: String { "abbr" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -11525,7 +11527,7 @@ public struct Abbreviation: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -11768,7 +11770,7 @@ public struct Ruby: ContentNode {
 
     internal var name: String { "ruby" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -11776,7 +11778,7 @@ public struct Ruby: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -12019,7 +12021,7 @@ public struct RubyText: ContentNode {
 
     internal var name: String { "rt" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -12027,7 +12029,7 @@ public struct RubyText: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -12270,7 +12272,7 @@ public struct RubyPronunciation: ContentNode {
 
     internal var name: String { "rp" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -12278,7 +12280,7 @@ public struct RubyPronunciation: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -12521,7 +12523,7 @@ public struct Data: ContentNode {
 
     internal var name: String { "data" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -12529,7 +12531,7 @@ public struct Data: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -12781,7 +12783,7 @@ public struct Time: ContentNode {
 
     internal var name: String { "time" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -12789,7 +12791,7 @@ public struct Time: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -13041,7 +13043,7 @@ public struct Code: ContentNode {
 
     internal var name: String { "code" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -13049,7 +13051,7 @@ public struct Code: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -13292,7 +13294,7 @@ public struct Variable: ContentNode {
 
     internal var name: String { "v" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -13300,7 +13302,7 @@ public struct Variable: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -13543,7 +13545,7 @@ public struct SampleOutput: ContentNode {
 
     internal var name: String { "samp" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -13551,7 +13553,7 @@ public struct SampleOutput: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -13794,7 +13796,7 @@ public struct KeyboardInput: ContentNode {
 
     internal var name: String { "kbd" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -13802,7 +13804,7 @@ public struct KeyboardInput: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -14045,7 +14047,7 @@ public struct Subscript: ContentNode {
 
     internal var name: String { "sub" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -14053,7 +14055,7 @@ public struct Subscript: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -14296,7 +14298,7 @@ public struct Superscript: ContentNode {
 
     internal var name: String { "sup" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -14304,7 +14306,7 @@ public struct Superscript: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -14547,7 +14549,7 @@ public struct Italic: ContentNode {
 
     internal var name: String { "i" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -14555,7 +14557,7 @@ public struct Italic: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -14809,7 +14811,7 @@ public struct Bold: ContentNode {
 
     internal var name: String { "b" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -14817,7 +14819,7 @@ public struct Bold: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -15071,7 +15073,7 @@ public struct Underline: ContentNode {
 
     internal var name: String { "u" }
     
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -15079,7 +15081,7 @@ public struct Underline: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -15333,7 +15335,7 @@ public struct Mark: ContentNode {
 
     internal var name: String { "mark" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -15341,7 +15343,7 @@ public struct Mark: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -15584,7 +15586,7 @@ public struct Bdi: ContentNode {
 
     internal var name: String { "bdi" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -15592,7 +15594,7 @@ public struct Bdi: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -15835,11 +15837,11 @@ public struct Bdo: EmptyNode {
 
     internal var name: String { "bdo" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     public init() {}
     
-    internal init(attributes: [String: Any]?) {
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
 }
@@ -16081,7 +16083,7 @@ public struct Span: ContentNode {
 
     internal var name: String { "span" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -16089,7 +16091,7 @@ public struct Span: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String : Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -16332,11 +16334,11 @@ public struct LineBreak: EmptyNode {
 
     internal var name: String { "br" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     public init() {}
     
-    internal init(attributes: [String: Any]?) {
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
 }
@@ -16579,11 +16581,11 @@ public struct WordBreak: EmptyNode {
 
     internal var name: String { "wbr" }
     
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     public init() {}
     
-    internal init(attributes: [String: Any]?) {
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
 }
@@ -16826,7 +16828,7 @@ public struct InsertedText: ContentNode {
 
     internal var name: String { "ins" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -16834,7 +16836,7 @@ public struct InsertedText: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -17095,7 +17097,7 @@ public struct DeletedText: ContentNode {
 
     internal var name: String { "del" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -17103,7 +17105,7 @@ public struct DeletedText: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -17364,7 +17366,7 @@ public struct Picture: ContentNode {
 
     internal var name: String { "picture" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -17372,7 +17374,7 @@ public struct Picture: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -17615,11 +17617,11 @@ public struct Source: EmptyNode {
 
     internal var name: String { "source" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     public init() {}
     
-    internal init(attributes: [String: Any]?) {
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
 }
@@ -17915,11 +17917,11 @@ public struct Image: EmptyNode {
 
     internal var name: String { "img" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     public init() {}
     
-    internal init(attributes: [String: Any]?) {
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
 }
@@ -18215,7 +18217,7 @@ public struct InlineFrame: ContentNode {
     
     internal var name: String { "iframe" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -18223,7 +18225,7 @@ public struct InlineFrame: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -18511,11 +18513,11 @@ public struct Embed: EmptyNode {
 
     internal var name: String { "embed" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     public init() {}
     
-    internal init(attributes: [String: Any]?) {
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
 }
@@ -18794,7 +18796,7 @@ public struct Object: ContentNode {
     
     internal var name: String { "object" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -18802,7 +18804,7 @@ public struct Object: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -19099,11 +19101,11 @@ public struct Parameter: EmptyNode {
     
     internal var name: String { "param" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     public init() {}
     
-    internal init(attributes: [String: Any]?) {
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
 }
@@ -19363,7 +19365,7 @@ public struct Video: ContentNode {
 
     internal var name: String { "video" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -19371,7 +19373,7 @@ public struct Video: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -19677,7 +19679,7 @@ public struct Audio: ContentNode {
 
     internal var name: String { "audio" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -19685,7 +19687,7 @@ public struct Audio: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -19973,11 +19975,11 @@ public struct Track: EmptyNode {
 
     internal var name: String { "track" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     public init() {}
     
-    internal init(attributes: [String: Any]?) {
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
 }
@@ -20255,7 +20257,7 @@ public struct Map: ContentNode {
     
     internal var name: String { "map" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -20263,7 +20265,7 @@ public struct Map: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -20515,7 +20517,7 @@ public struct Area: ContentNode {
 
     internal var name: String { "area" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -20523,7 +20525,7 @@ public struct Area: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -20847,7 +20849,7 @@ public struct Table: ContentNode {
 
     internal var name: String { "table" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -20855,7 +20857,7 @@ public struct Table: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -21116,7 +21118,7 @@ public struct Caption: ContentNode {
 
     internal var name: String { "caption" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -21124,7 +21126,7 @@ public struct Caption: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -21368,7 +21370,7 @@ public struct ColumnGroup: ContentNode {
 
     internal var name: String { "colgroup" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -21376,7 +21378,7 @@ public struct ColumnGroup: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -21628,7 +21630,7 @@ public struct Column: ContentNode {
 
     internal var name: String { "col" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -21636,7 +21638,7 @@ public struct Column: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -21888,7 +21890,7 @@ public struct TableBody: ContentNode {
 
     internal var name: String { "tbody" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -21896,7 +21898,7 @@ public struct TableBody: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -22157,7 +22159,7 @@ public struct TableHead: ContentNode {
 
     internal var name: String { "thead" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -22165,7 +22167,7 @@ public struct TableHead: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -22426,7 +22428,7 @@ public struct TableFoot: ContentNode {
 
     internal var name: String { "tfoot" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -22434,7 +22436,7 @@ public struct TableFoot: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -22677,7 +22679,7 @@ public struct TableRow: ContentNode {
 
     internal var name: String { "tfoot" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -22685,7 +22687,7 @@ public struct TableRow: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -22946,7 +22948,7 @@ public struct DataCell: ContentNode {
 
     internal var name: String { "td" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -22954,7 +22956,7 @@ public struct DataCell: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -23224,7 +23226,7 @@ public struct HeaderCell: ContentNode {
 
     internal var name: String { "th" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -23232,7 +23234,7 @@ public struct HeaderCell: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -23522,7 +23524,7 @@ public struct Form: ContentNode {
 
     internal var name: String { "form" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -23530,7 +23532,7 @@ public struct Form: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -23836,7 +23838,7 @@ public struct Label: ContentNode {
 
     internal var name: String { "label" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -23844,7 +23846,7 @@ public struct Label: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -24107,11 +24109,11 @@ public struct Input: EmptyNode {
 
     internal var name: String { "input" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     public init() {}
     
-    internal init(attributes: [String: Any]?) {
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
 }
@@ -24578,7 +24580,7 @@ public struct Button: ContentNode {
 
     internal var name: String { "button" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -24586,7 +24588,7 @@ public struct Button: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -24894,7 +24896,7 @@ public struct Select: ContentNode {
 
     internal var name: String { "select" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -24902,7 +24904,7 @@ public struct Select: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -25208,7 +25210,7 @@ public struct DataList: ContentNode {
 
     internal var name: String { "datalist" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -25216,7 +25218,7 @@ public struct DataList: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -25459,7 +25461,7 @@ public struct OptionGroup: ContentNode {
 
     internal var name: String { "optgroup" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -25467,7 +25469,7 @@ public struct OptionGroup: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -25728,7 +25730,7 @@ public struct Option: ContentNode {
 
     internal var name: String { "option" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: String
 
@@ -25736,7 +25738,7 @@ public struct Option: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: String) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: String) {
         self.attributes = attributes
         self.content = content
     }
@@ -26006,7 +26008,7 @@ public struct TextArea: ContentNode {
         
     internal var name: String { "textarea" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: String
 
@@ -26014,7 +26016,7 @@ public struct TextArea: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: String) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: String) {
         self.attributes = attributes
         self.content = content
     }
@@ -26365,7 +26367,7 @@ public struct Output: ContentNode {
     
     internal var name: String { "output" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -26373,7 +26375,7 @@ public struct Output: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -26644,7 +26646,7 @@ public struct Progress: ContentNode {
 
     internal var name: String { "progress" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -26652,7 +26654,7 @@ public struct Progress: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -26914,7 +26916,7 @@ public struct Meter: ContentNode {
 
     internal var name: String { "meter" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -26922,7 +26924,7 @@ public struct Meter: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -27210,7 +27212,7 @@ public struct Fieldset: ContentNode {
     
     internal var name: String { "fieldset" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -27218,7 +27220,7 @@ public struct Fieldset: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -27488,7 +27490,7 @@ public struct Legend: ContentNode {
 
     internal var name: String { "legend" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -27496,7 +27498,7 @@ public struct Legend: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -27740,7 +27742,7 @@ public struct Details: ContentNode {
 
     internal var name: String { "details" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -27748,7 +27750,7 @@ public struct Details: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -28000,7 +28002,7 @@ public struct Summary: ContentNode {
 
     internal var name: String { "summary" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -28008,7 +28010,7 @@ public struct Summary: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -28252,7 +28254,7 @@ public struct Dialog: ContentNode {
 
     internal var name: String { "dialog" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -28260,7 +28262,7 @@ public struct Dialog: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -28512,7 +28514,7 @@ public struct Script: ContentNode {
 
     internal var name: String { "script" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: String
 
@@ -28520,7 +28522,7 @@ public struct Script: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: String) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: String) {
         self.attributes = attributes
         self.content = content
     }
@@ -28799,7 +28801,7 @@ public struct NoScript: ContentNode {
 
     internal var name: String { "noscript" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -28807,7 +28809,7 @@ public struct NoScript: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -29051,7 +29053,7 @@ public struct Template: ContentNode {
 
     internal var name: String { "template" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -29059,7 +29061,7 @@ public struct Template: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
@@ -29302,7 +29304,7 @@ public struct Canvas: ContentNode {
 
     internal var name: String { "canvas" }
 
-    internal var attributes: [String: Any]?
+    internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: Content
 
@@ -29310,7 +29312,7 @@ public struct Canvas: ContentNode {
         self.content = content()
     }
     
-    internal init(attributes: [String: Any]?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
         self.attributes = attributes
         self.content = content
     }
