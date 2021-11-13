@@ -5,7 +5,7 @@ import Lingo
 ///
 ///     try renderer.add(template: WelcomeView())           // Builds the formula
 ///     try renderer.render(WelcomeView.self)               // Renders the formula
-public class HTMLRenderer: Renderable {
+public class HTMLRenderer {
 
     static let empty = ContextManager<Void>(rootContext: ())
 
