@@ -560,7 +560,7 @@ public protocol DirectionAttribute {
     /// The func adds
     ///
     ///
-    func direction(_ type: Directions) -> Self
+    func direction(_ type: Direction) -> Self
 }
 
 extension DirectionAttribute {
@@ -660,7 +660,7 @@ public protocol EncodingAttribute {
     /// The func adds
     ///
     ///
-    func encoding(_ type: Encodings) -> Self
+    func encoding(_ type: Encoding) -> Self
 }
 
 extension EncodingAttribute {
@@ -685,7 +685,7 @@ public protocol EnterKeyHintAttribute {
     /// The func adds
     ///
     ///
-    func enterKeyHint(_ value: Hints) -> Self
+    func enterKeyHint(_ type: Hint) -> Self
 }
 
 extension EnterKeyHintAttribute {
@@ -910,7 +910,7 @@ public protocol ReferenceLanguageAttribute {
     /// The func adds
     ///
     ///
-    func referenceLanguage(_ type: Languages) -> Self
+    func referenceLanguage(_ type: Language) -> Self
 }
 
 extension ReferenceLanguageAttribute {
@@ -1210,7 +1210,7 @@ public protocol LanguageAttribute {
     /// The func adds
     ///
     ///
-    func language(_ type: Languages) -> Self
+    func language(_ type: Language) -> Self
 }
 
 extension LanguageAttribute {
@@ -1385,7 +1385,7 @@ public protocol MethodAttribute {
     /// The func adds
     ///
     ///
-    func method(_ type: Methods) -> Self
+    func method(_ type: Method) -> Self
 }
 
 extension MethodAttribute {
@@ -1727,13 +1727,6 @@ extension PlaceholderAttribute {
     }
 }
 
-extension PlaceholderAttribute {
-    
-    public func placeholder(localized key: String) -> Self {
-        self.placeholder(Localized(key: key))
-    }
-}
-
 /// The protocol provides
 ///
 ///
@@ -1818,7 +1811,7 @@ public protocol ReferrerPolicyAttribute {
     /// The func adds
     ///
     ///
-    func referrerPolicy(_ type: Policies) -> Self
+    func referrerPolicy(_ type: Policy) -> Self
 }
 
 extension ReferrerPolicyAttribute {
@@ -1843,7 +1836,7 @@ public protocol RelationshipAttribute {
     /// The func adds
     ///
     ///
-    func relationship(_ type: Relations) -> Self
+    func relationship(_ type: Relation) -> Self
 }
 
 extension RelationshipAttribute {
@@ -2040,7 +2033,7 @@ public protocol ShapeAttribute {
     /// The func adds
     ///
     ///
-    func shape(_ type: Shapes) -> Self
+    func shape(_ type: Shape) -> Self
 }
 
 extension ShapeAttribute {
@@ -2315,7 +2308,7 @@ public protocol TargetAttribute {
     /// The func adds
     ///
     ///
-    func target(_ type: Targets) -> Self
+    func target(_ type: Target) -> Self
 }
 
 extension TargetAttribute {

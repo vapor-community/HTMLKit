@@ -136,7 +136,26 @@ public struct Base: EmptyNode {
     }
 }
 
-extension Base: ReferenceAttribute, TargetAttribute {}
+extension Base: ReferenceAttribute, TargetAttribute {
+    
+    public func reference(_ value: String) -> Base {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(ref: value))
+        }
+        
+        return .init(attributes: update(ref: value, on: &attributes))
+    }
+    
+    public func target(_ type: Target) -> Base {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(target: type.rawValue))
+        }
+        
+        return .init(attributes: update(target: type.rawValue, on: &attributes))
+    }
+}
 
 /// The element
 ///
@@ -154,7 +173,71 @@ public struct Link: EmptyNode {
     }
 }
 
-extension Link: ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute {}
+extension Link: ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute {
+    
+    public func reference(_ value: String) -> Link {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(ref: value))
+        }
+        
+        return .init(attributes: update(ref: value, on: &attributes))
+    }
+    
+    public func referenceLanguage(_ type: Language) -> Link {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(reflang: type.rawValue))
+        }
+        
+        return .init(attributes: update(reflang: type.rawValue, on: &attributes))
+    }
+    
+    public func media(_ value: Content) -> Link {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(media: value))
+        }
+        
+        return .init(attributes: update(media: value, on: &attributes))
+    }
+    
+    public func referrerPolicy(_ type: Policy) -> Link {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(policy: type.rawValue))
+        }
+        
+        return .init(attributes: update(policy: type.rawValue, on: &attributes))
+    }
+    
+    public func relationship(_ type: Relation) -> Link {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(rel: type.rawValue))
+        }
+        
+        return .init(attributes: update(rel: type.rawValue, on: &attributes))
+    }
+    
+    public func sizes(_ size: Int) -> Link {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(sizes: size))
+        }
+        
+        return .init(attributes: update(sizes: size, on: &attributes))
+    }
+    
+    public func type(_ value: String) -> Link {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(type: value))
+        }
+        
+        return .init(attributes: update(type: value, on: &attributes))
+    }
+}
 
 /// The element
 ///
@@ -172,7 +255,35 @@ public struct Meta: EmptyNode {
     }
 }
 
-extension Meta: ContentAttribute, NameAttribute, PropertyAttribute {}
+extension Meta: ContentAttribute, NameAttribute, PropertyAttribute {
+    
+    public func content(_ value: String) -> Meta {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(content: value))
+        }
+        
+        return .init(attributes: update(content: value, on: &attributes))
+    }
+    
+    public func name(_ type: NameType) -> Meta {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(name: type.rawValue))
+        }
+        
+        return .init(attributes: update(name: type.rawValue, on: &attributes))
+    }
+    
+    public func property(_ type: Graphs) -> Meta {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(property: type.rawValue))
+        }
+        
+        return .init(attributes: update(property: type.rawValue, on: &attributes))
+    }
+}
 
 /// The element
 ///
@@ -195,7 +306,28 @@ public struct Style: ContentNode {
     }
 }
 
-extension Style: TypeAttribute, MediaAttribute {}
+extension Style: TypeAttribute, MediaAttribute {
+    
+    public func type(_ value: String) -> Style {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(type: value), content: content)
+        }
+        
+        return .init(attributes: update(type: value, on: &attributes), content: content)
+    }
+    
+    public func media(_ value: Content) -> Style {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(media: value), content: content)
+        }
+        
+        return .init(attributes: update(media: value, on: &attributes), content: content)
+    }
+    
+    
+}
 
 /// The element
 ///
@@ -689,7 +821,17 @@ public struct Blockquote: ContentNode {
     }
 }
 
-extension Blockquote:  CiteAttribute {}
+extension Blockquote:  CiteAttribute {
+    
+    public func cite(_ value: String) -> Blockquote {
+
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(cite: value), content: content)
+        }
+        
+        return .init(attributes: update(cite: value, on: &attributes), content: content)
+    }
+}
 
 extension Blockquote: Localizable {
     
@@ -723,7 +865,35 @@ public struct OrderedList: ContentNode {
     }
 }
 
-extension OrderedList: ReversedAttribute, StartAttribute, TypeAttribute {}
+extension OrderedList: ReversedAttribute, StartAttribute, TypeAttribute {
+    
+    public func reversed() -> OrderedList {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(reversed: "reversed"), content: content)
+        }
+        
+        return .init(attributes: update(reversed: "reversed", on: &attributes), content: content)
+    }
+    
+    public func start(_ size: Int) -> OrderedList {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(start: size), content: content)
+        }
+        
+        return .init(attributes: update(start: size, on: &attributes), content: content)
+    }
+    
+    public func type(_ value: String) -> OrderedList {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(type: value), content: content)
+        }
+        
+        return .init(attributes: update(type: value, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -767,7 +937,17 @@ public struct ListItem: ContentNode {
     }
 }
 
-extension ListItem: ValueAttribute {}
+extension ListItem: ValueAttribute {
+    
+    public func value(_ value: String) -> ListItem {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(value: value), content: content)
+        }
+        
+        return .init(attributes: update(value: value, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -937,7 +1117,89 @@ public struct Anchor: ContentNode {
     }
 }
 
-extension Anchor: DownloadAttribute, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, PingAttribute, ReferrerPolicyAttribute, RelationshipAttribute, TargetAttribute, TypeAttribute {}
+extension Anchor: DownloadAttribute, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, PingAttribute, ReferrerPolicyAttribute, RelationshipAttribute, TargetAttribute, TypeAttribute {
+    
+    public func download() -> Anchor {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(download: "download"), content: content)
+        }
+        
+        return .init(attributes: update(download: "download", on: &attributes), content: content)
+    }
+    
+    public func reference(_ value: String) -> Anchor {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(ref: value), content: content)
+        }
+        
+        return .init(attributes: update(ref: value, on: &attributes), content: content)
+    }
+    
+    public func referenceLanguage(_ type: Language) -> Anchor {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(reflang: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(reflang: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func media(_ value: Content) -> Anchor {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(media: value), content: content)
+        }
+
+        return .init(attributes: update(media: value, on: &attributes), content: content)
+    }
+    
+    public func ping(_ value: String) -> Anchor {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(ping: value), content: content)
+        }
+        
+        return .init(attributes: update(ping: value, on: &attributes), content: content)
+    }
+    
+    public func referrerPolicy(_ type: Policy) -> Anchor {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(policy: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(policy: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func relationship(_ type: Relation) -> Anchor {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(rel: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(rel: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func target(_ type: Target) -> Anchor {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(target: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(target: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func type(_ value: String) -> Anchor {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(type: value), content: content)
+        }
+        
+        return .init(attributes: update(type: value, on: &attributes), content: content)
+    }
+}
 
 extension Anchor: Localizable {
     
@@ -1098,7 +1360,17 @@ public struct ShortQuote: ContentNode {
     }
 }
 
-extension ShortQuote: CiteAttribute {}
+extension ShortQuote: CiteAttribute {
+    
+    public func cite(_ value: String) -> ShortQuote {
+
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(cite: value), content: content)
+        }
+        
+        return .init(attributes: update(cite: value, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -1226,7 +1498,17 @@ public struct Data: ContentNode {
     }
 }
 
-extension Data: ValueAttribute {}
+extension Data: ValueAttribute {
+    
+    public func value(_ value: String) -> Data {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(value: value), content: content)
+        }
+        
+        return .init(attributes: update(value: value, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -1249,7 +1531,17 @@ public struct Time: ContentNode {
     }
 }
 
-extension Time: DateTimeAttribute {}
+extension Time: DateTimeAttribute {
+
+    public func dateTime(_ value: Content) -> Time {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(time: value), content: content)
+        }
+        
+        return .init(attributes: update(time: value, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -1605,7 +1897,26 @@ public struct InsertedText: ContentNode {
     }
 }
 
-extension InsertedText: CiteAttribute, DateTimeAttribute {}
+extension InsertedText: CiteAttribute, DateTimeAttribute {
+    
+    public func cite(_ value: String) -> InsertedText {
+
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(cite: value), content: content)
+        }
+        
+        return .init(attributes: update(cite: value, on: &attributes), content: content)
+    }
+    
+    public func dateTime(_ value: Content) -> InsertedText {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(time: value), content: content)
+        }
+        
+        return .init(attributes: update(time: value, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -1628,7 +1939,26 @@ public struct DeletedText: ContentNode {
     }
 }
 
-extension DeletedText: CiteAttribute, DateTimeAttribute {}
+extension DeletedText: CiteAttribute, DateTimeAttribute {
+    
+    public func cite(_ value: String) -> DeletedText {
+
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(cite: value), content: content)
+        }
+        
+        return .init(attributes: update(cite: value, on: &attributes), content: content)
+    }
+    
+    public func dateTime(_ value: Content) -> DeletedText {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(time: value), content: content)
+        }
+        
+        return .init(attributes: update(time: value, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -1667,7 +1997,62 @@ public struct Source: EmptyNode {
     }
 }
 
-extension Source: TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute {}
+extension Source: TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute {
+    
+    public func type(_ value: String) -> Source {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(type: value))
+        }
+        
+        return .init(attributes: update(type: value, on: &attributes))
+    }
+    
+    public func source(_ value: String) -> Source {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(source: value))
+        }
+        
+        return .init(attributes: update(source: value, on: &attributes))
+    }
+    
+    public func sizes(_ size: Int) -> Source {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(sizes: size))
+        }
+        
+        return .init(attributes: update(sizes: size, on: &attributes))
+    }
+    
+    public func media(_ value: Content) -> Source {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(media: value))
+        }
+        
+        return .init(attributes: update(media: value, on: &attributes))
+    }
+    
+    public func width(_ size: Int) -> Source {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(width: size))
+        }
+        
+        return .init(attributes: update(width: size, on: &attributes))
+    }
+    
+    public func height(_ size: Int) -> Source {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(height: size))
+        }
+        
+        return .init(attributes: update(height: size, on: &attributes))
+    }
+}
 
 /// The element
 ///
@@ -1685,7 +2070,62 @@ public struct Image: EmptyNode {
     }
 }
 
-extension Image: AlternativeAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {}
+extension Image: AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {
+    
+    public func alternate(_ value: String) -> Image {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(alt: value))
+        }
+        
+        return .init(attributes: update(alt: value, on: &attributes))
+    }
+    
+    public func source(_ value: String) -> Image {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(source: value))
+        }
+        
+        return .init(attributes: update(source: value, on: &attributes))
+    }
+    
+    public func sizes(_ size: Int) -> Image {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(sizes: size) )
+        }
+        
+        return .init(attributes: update(sizes: size, on: &attributes))
+    }
+    
+    public func width(_ size: Int) -> Image {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(width: size))
+        }
+        
+        return .init(attributes: update(width: size, on: &attributes))
+    }
+    
+    public func height(_ size: Int) -> Image {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(height: size))
+        }
+        
+        return .init(attributes: update(height: size, on: &attributes))
+    }
+    
+    public func referrerPolicy(_ type: Policy) -> Image {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(policy: type.rawValue))
+        }
+        
+        return .init(attributes: update(policy: type.rawValue, on: &attributes))
+    }
+}
 
 /// The element
 ///
@@ -1708,7 +2148,53 @@ public struct InlineFrame: ContentNode {
     }
 }
 
-extension InlineFrame: SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {}
+extension InlineFrame: SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {
+    
+    public func source(_ value: String) -> InlineFrame {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(source: value), content: content)
+        }
+        
+        return .init(attributes: update(source: value, on: &attributes), content: content)
+    }
+    
+    public func name(_ type: NameType) -> InlineFrame {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(name: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(name: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func width(_ size: Int) -> InlineFrame {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(width: size), content: content)
+        }
+        
+        return .init(attributes: update(width: size, on: &attributes), content: content)
+    }
+    
+    public func height(_ size: Int) -> InlineFrame {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(height: size), content: content)
+        }
+        
+        return .init(attributes: update(height: size, on: &attributes), content: content)
+    }
+    
+    public func referrerPolicy(_ type: Policy) -> InlineFrame {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(policy: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(policy: type.rawValue, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -1726,7 +2212,44 @@ public struct Embed: EmptyNode {
     }
 }
 
-extension Embed: SourceAttribute, TypeAttribute, WidthAttribute, HeightAttribute {}
+extension Embed: SourceAttribute, TypeAttribute, WidthAttribute, HeightAttribute {
+    
+    public func source(_ value: String) -> Embed {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(source: value) )
+        }
+        
+        return .init(attributes: update(source: value, on: &attributes))
+    }
+    
+    public func type(_ value: String) -> Embed {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(type: value))
+        }
+        
+        return .init(attributes: update(type: value, on: &attributes))
+    }
+    
+    public func width(_ size: Int) -> Embed {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(width: size))
+        }
+        
+        return .init(attributes: update(width: size, on: &attributes))
+    }
+    
+    public func height(_ size: Int) -> Embed {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(height: size))
+        }
+        
+        return .init(attributes: update(height: size, on: &attributes))
+    }
+}
 
 /// The element
 ///
@@ -1749,7 +2272,62 @@ public struct Object: ContentNode {
     }
 }
 
-extension Object: DataAttribute, TypeAttribute, NameAttribute, FormAttribute, WidthAttribute, HeightAttribute {}
+extension Object: DataAttribute, TypeAttribute, NameAttribute, FormAttribute, WidthAttribute, HeightAttribute {
+    
+    public func data(_ value: String) -> Object {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(data: value), content: content)
+        }
+        
+        return .init(attributes: update(data: value, on: &attributes), content: content)
+    }
+    
+    public func type(_ value: String) -> Object {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(type: value), content: content)
+        }
+        
+        return .init(attributes: update(type: value, on: &attributes), content: content)
+    }
+    
+    public func name(_ type: NameType) -> Object {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(name: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(name: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func form(_ value: String) -> Object {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(form: value), content: content)
+        }
+        
+        return .init(attributes: update(form: value, on: &attributes), content: content)
+    }
+    
+    public func width(_ size: Int) -> Object {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(width: size), content: content)
+        }
+        
+        return .init(attributes: update(width: size, on: &attributes), content: content)
+    }
+    
+    public func height(_ size: Int) -> Object {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(height: size), content: content)
+        }
+        
+        return .init(attributes: update(height: size, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -1767,7 +2345,26 @@ public struct Parameter: EmptyNode {
     }
 }
 
-extension Parameter: NameAttribute, ValueAttribute {}
+extension Parameter: NameAttribute, ValueAttribute {
+    
+    public func name(_ type: NameType) -> Parameter {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(name: type.rawValue))
+        }
+        
+        return .init(attributes: update(name: type.rawValue, on: &attributes))
+    }
+    
+    public func value(_ value: String) -> Parameter {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(value: value))
+        }
+        
+        return .init(attributes: update(value: value, on: &attributes))
+    }
+}
 
 /// The element
 ///
@@ -1790,7 +2387,71 @@ public struct Video: ContentNode {
     }
 }
 
-extension Video: SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute {}
+extension Video: SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute {
+    
+    public func source(_ value: String) -> Video {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(source: value), content: content)
+        }
+        
+        return .init(attributes: update(source: value, on: &attributes), content: content)
+    }
+    
+    public func autoplay() -> Video {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(autoplay: "autoplay"), content: content)
+        }
+        
+        return .init(attributes: update(autoplay: "autoplay", on: &attributes), content: content)
+    }
+    
+    public func loop() -> Video {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(loop: "loop"), content: content)
+        }
+        
+        return .init(attributes: update(loop: "loop", on: &attributes), content: content)
+    }
+    
+    public func muted() -> Video {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(muted: "muted"), content: content)
+        }
+        
+        return .init(attributes: update(muted: "muted", on: &attributes), content: content)
+    }
+    
+    public func controls() -> Video {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(controls: "controls"), content: content)
+        }
+        
+        return .init(attributes: update(controls: "controls", on: &attributes), content: content)
+    }
+    
+    public func width(_ size: Int) -> Video {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(width: size), content: content)
+        }
+        
+        return .init(attributes: update(width: size, on: &attributes), content: content)
+    }
+    
+    public func height(_ size: Int) -> Video {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(height: size), content: content)
+        }
+        
+        return .init(attributes: update(height: size, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -1813,7 +2474,53 @@ public struct Audio: ContentNode {
     }
 }
 
-extension Audio: SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute {}
+extension Audio: SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute {
+    
+    public func source(_ value: String) -> Audio {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(source: value), content: content)
+        }
+        
+        return .init(attributes: update(source: value, on: &attributes), content: content)
+    }
+    
+    public func autoplay() -> Audio {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(autoplay: "autoplay"), content: content)
+        }
+        
+        return .init(attributes: update(autoplay: "autoplay", on: &attributes), content: content)
+    }
+    
+    public func loop() -> Audio {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(loop: "loop"), content: content)
+        }
+        
+        return .init(attributes: update(loop: "loop", on: &attributes), content: content)
+    }
+    
+    public func muted() -> Audio {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(muted: "muted"), content: content)
+        }
+        
+        return .init(attributes: update(muted: "muted", on: &attributes), content: content)
+    }
+    
+    public func controls() -> Audio {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(controls: "controls"), content: content)
+        }
+        
+        return .init(attributes: update(controls: "controls", on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -1831,7 +2538,44 @@ public struct Track: EmptyNode {
     }
 }
 
-extension Track: KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute {}
+extension Track: KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute {
+    
+    public func kind(_ value: Content) -> Track {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(kind: value))
+        }
+        
+        return .init(attributes: update(kind: value, on: &attributes))
+    }
+    
+    public func source(_ value: String) -> Track {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(source: value))
+        }
+        
+        return .init(attributes: update(source: value, on: &attributes))
+    }
+    
+    public func label(_ value: Content) -> Track {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(label: value))
+        }
+        
+        return .init(attributes: update(label: value, on: &attributes))
+    }
+    
+    public func `default`() -> Track {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(default: "default"))
+        }
+        
+        return .init(attributes: update(default: "default", on: &attributes))
+    }
+}
 
 /// The element
 ///
@@ -1854,7 +2598,17 @@ public struct Map: ContentNode {
     }
 }
 
-extension Map: NameAttribute {}
+extension Map: NameAttribute {
+    
+    public func name(_ value: NameType) -> Map {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(name: value.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(name: value.rawValue, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -1877,7 +2631,89 @@ public struct Area: ContentNode {
     }
 }
 
-extension Area: AlternativeAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {}
+extension Area: AlternateAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
+    
+    public func alternate(_ value: String) -> Area {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(alt: value), content: content)
+        }
+        
+        return .init(attributes: update(alt: value, on: &attributes), content: content)
+    }
+    
+    public func coordinates(_ value: String) -> Area {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(coords: value), content: content)
+        }
+        
+        return .init(attributes: update(coords: value, on: &attributes), content: content)
+    }
+    
+    public func shape(_ type: Shape) -> Area {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(shape: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(shape: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func reference(_ value: String) -> Area {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(ref: value), content: content)
+        }
+        
+        return .init(attributes: update(ref: value, on: &attributes), content: content)
+    }
+    
+    public func target(_ type: Target) -> Area {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(target: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(target: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func download() -> Area {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(download: "download"), content: content)
+        }
+        
+        return .init(attributes: update(download: "download", on: &attributes), content: content)
+    }
+    
+    public func ping(_ value: String) -> Area {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(ping: value), content: content)
+        }
+        
+        return .init(attributes: update(ping: value, on: &attributes), content: content)
+    }
+    
+    public func relationship(_ type: Relation) -> Area {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(rel: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(rel: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func referrerPolicy(_ type: Policy) -> Area {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(policy: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(policy: type.rawValue, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -1900,7 +2736,26 @@ public struct Table: ContentNode {
     }
 }
 
-extension Table: WidthAttribute, HeightAttribute {}
+extension Table: WidthAttribute, HeightAttribute {
+    
+    public func width(_ size: Int) -> Table {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(width: size), content: content)
+        }
+        
+        return .init(attributes: update(width: size, on: &attributes), content: content)
+    }
+    
+    public func height(_ size: Int) -> Table {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(height: size), content: content)
+        }
+        
+        return .init(attributes: update(height: size, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -1944,7 +2799,17 @@ public struct ColumnGroup: ContentNode {
     }
 }
 
-extension ColumnGroup: SpanAttribute {}
+extension ColumnGroup: SpanAttribute {
+    
+    public func span(_ size: Int) -> ColumnGroup {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(span: size), content: content)
+        }
+        
+        return .init(attributes: update(span: size, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -1967,7 +2832,17 @@ public struct Column: ContentNode {
     }
 }
 
-extension Column: SpanAttribute {}
+extension Column: SpanAttribute {
+    
+    public func span(_ size: Int) -> Column {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(span: size), content: content)
+        }
+        
+        return .init(attributes: update(span: size, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -1990,7 +2865,26 @@ public struct TableBody: ContentNode {
     }
 }
 
-extension TableBody: WidthAttribute, HeightAttribute {}
+extension TableBody: WidthAttribute, HeightAttribute {
+    
+    public func width(_ size: Int) -> TableBody {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(width: size), content: content)
+        }
+        
+        return .init(attributes: update(width: size, on: &attributes), content: content)
+    }
+    
+    public func height(_ size: Int) -> TableBody {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(height: size), content: content)
+        }
+        
+        return .init(attributes: update(height: size, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -2013,26 +2907,45 @@ public struct TableHead: ContentNode {
     }
 }
 
-extension TableHead: WidthAttribute, HeightAttribute {}
+extension TableHead: WidthAttribute, HeightAttribute {
+    
+    public func width(_ size: Int) -> TableHead {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(width: size), content: content)
+        }
+        
+        return .init(attributes: update(width: size, on: &attributes), content: content)
+    }
+    
+    public func height(_ size: Int) -> TableHead {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(height: size), content: content)
+        }
+        
+        return .init(attributes: update(height: size, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
 ///
 public struct TableFoot: ContentNode {
 
-    public var name: String { "tfoot" }
+    internal var name: String { "tfoot" }
 
-    public var attributes: [HTMLAttribute] = []
+    internal var attributes: [String: Any]?
 
-    public var content: Content
+    internal var content: Content
 
     public init(@ContentBuilder content: () -> Content) {
         self.content = content()
     }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "") {
-        self.content = content
+    
+    internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
+        self.content = content
     }
 }
 
@@ -2057,7 +2970,26 @@ public struct TableRow: ContentNode {
     }
 }
 
-extension TableRow: WidthAttribute, HeightAttribute {}
+extension TableRow: WidthAttribute, HeightAttribute {
+    
+    public func width(_ size: Int) -> TableRow {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(width: size), content: content)
+        }
+        
+        return .init(attributes: update(width: size, on: &attributes), content: content)
+    }
+    
+    public func height(_ size: Int) -> TableRow {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(height: size), content: content)
+        }
+        
+        return .init(attributes: update(height: size, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -2080,7 +3012,35 @@ public struct DataCell: ContentNode {
     }
 }
 
-extension DataCell: ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute {}
+extension DataCell: ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute {
+
+    public func columnSpan(_ size: Int) -> DataCell {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(columnspan: size), content: content)
+        }
+        
+        return .init(attributes: update(columnspan: size, on: &attributes), content: content)
+    }
+    
+    public func rowSpan(_ size: Int) -> DataCell {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(rowspan: size), content: content)
+        }
+        
+        return .init(attributes: update(rowspan: size, on: &attributes), content: content)
+    }
+    
+    public func headers(_ value: String) -> DataCell {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(headers: value), content: content)
+        }
+        
+        return .init(attributes: update(headers: value, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -2103,7 +3063,44 @@ public struct HeaderCell: ContentNode {
     }
 }
 
-extension HeaderCell: ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute, ScopeAttribute {}
+extension HeaderCell: ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute, ScopeAttribute {
+    
+    public func columnSpan(_ size: Int) -> HeaderCell {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(columnspan: size), content: content)
+        }
+        
+        return .init(attributes: update(columnspan: size, on: &attributes), content: content)
+    }
+    
+    public func rowSpan(_ size: Int) -> HeaderCell {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(rowspan: size), content: content)
+        }
+        
+        return .init(attributes: update(rowspan: size, on: &attributes), content: content)
+    }
+    
+    public func headers(_ value: String) -> HeaderCell {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(headers: value), content: content)
+        }
+        
+        return .init(attributes: update(headers: value, on: &attributes), content: content)
+    }
+    
+    public func scope(_ value: String) -> HeaderCell {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(scope: value), content: content)
+        }
+        
+        return .init(attributes: update(scope: value, on: &attributes), content: content)
+    }
+}
 
 extension HeaderCell: Localizable {
     
@@ -2137,7 +3134,71 @@ public struct Form: ContentNode {
     }
 }
 
-extension Form: ActionAttribute, AutocompleteAttribute, EncodingAttribute, MethodAttribute, NameAttribute, TargetAttribute, RelationshipAttribute {}
+extension Form: ActionAttribute, AutocompleteAttribute, EncodingAttribute, MethodAttribute, NameAttribute, TargetAttribute, RelationshipAttribute {
+    
+    public func action(_ value: String) -> Form {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(action: value), content: content)
+        }
+        
+        return .init(attributes: update(action: value, on: &attributes), content: content)
+    }
+    
+    public func hasCompletion(_ condition: Bool) -> Form {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(autocomplete: condition), content: content)
+        }
+        
+        return .init(attributes: update(autocomplete: condition, on: &attributes), content: content)
+    }
+    
+    public func encoding(_ type: Encoding) -> Form {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(enctype: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(enctype: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func method(_ type: Method) -> Form {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(method: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(method: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func name(_ type: NameType) -> Form {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(name: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(name: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func target(_ type: Target) -> Form {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(target: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(target: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func relationship(_ type: Relation) -> Form {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(rel: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(rel: type.rawValue, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -2160,7 +3221,17 @@ public struct Label: ContentNode {
     }
 }
 
-extension Label: ForAttribute {}
+extension Label: ForAttribute {
+    
+    public func `for`(_ value: String) -> Label {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(for: value), content: content)
+        }
+        
+        return .init(attributes: update(for: value, on: &attributes), content: content)
+    }
+}
 
 extension Label: Localizable {
     
@@ -2189,7 +3260,233 @@ public struct Input: EmptyNode {
     }
 }
 
-extension Input: AcceptAttribute, AlternativeAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute {}
+extension Input: AcceptAttribute, AlternateAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute {
+    
+    public func accept(_ value: String) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(accept: value))
+        }
+        
+        return .init(attributes: update(accept: value, on: &attributes))
+    }
+    
+    public func alternate(_ value: String) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(alt: value))
+        }
+        
+        return .init(attributes: update(alt: value, on: &attributes))
+    }
+    
+    public func hasCompletion(_ condition: Bool) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(autocomplete: condition))
+        }
+        
+        return .init(attributes: update(autocomplete: condition, on: &attributes))
+    }
+    
+    public func checked() -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(checked: "checked"))
+        }
+        
+        return .init(attributes: update(checked: "checked", on: &attributes))
+    }
+    
+    public func disabled() -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(disabled: "disabled"))
+        }
+        
+        return .init(attributes: update(disabled: "disabled", on: &attributes))
+    }
+    
+    public func form(_ value: String) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(form: value))
+        }
+        
+        return .init(attributes: update(form: value, on: &attributes))
+    }
+    
+    public func formAction(_ value: String) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(formaction: value))
+        }
+        
+        return .init(attributes: update(formaction: value, on: &attributes))
+    }
+    
+    public func height(_ size: Int) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(height: size))
+        }
+        
+        return .init(attributes: update(height: size, on: &attributes))
+    }
+    
+    public func list(_ value: Content) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(list: value))
+        }
+        
+        return .init(attributes: update(list: value, on: &attributes))
+    }
+    
+    public func maximum(_ value: Content) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(max: value))
+        }
+        
+        return .init(attributes: update(max: value, on: &attributes))
+    }
+    
+    public func maximum(length value: Content) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(maxlength: value))
+        }
+        
+        return .init(attributes: update(maxlength: value, on: &attributes))
+    }
+    
+    public func minimum(_ value: Content) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(min: value))
+        }
+        
+        return .init(attributes: update(min: value, on: &attributes))
+    }
+    
+    public func minimum(length value: Content) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(minlength: value))
+        }
+        
+        return .init(attributes: update(minlength: value, on: &attributes))
+    }
+    
+    public func multiple() -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(multiple: "multiple"))
+        }
+        
+        return .init(attributes: update(multiple: "multiple", on: &attributes))
+    }
+    
+    public func name(_ type: NameType) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(name: type.rawValue))
+        }
+        
+        return .init(attributes: update(name: type.rawValue, on: &attributes))
+    }
+    
+    public func pattern(_ regex: String) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(pattern: regex))
+        }
+        
+        return .init(attributes: update(pattern: regex, on: &attributes))
+    }
+    
+    public func placeholder(_ value: String) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(placeholder: value))
+        }
+        
+        return .init(attributes: update(placeholer: value, on: &attributes))
+    }
+    
+    public func readonly() -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(readonly: "readonly"))
+        }
+        
+        return .init(attributes: update(readonly: "readonly", on: &attributes))
+    }
+    
+    public func required() -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(required: "required"))
+        }
+        
+        return .init(attributes: update(required: "required", on: &attributes))
+    }
+    
+    public func size(_ size: Int) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(size: size))
+        }
+        
+        return .init(attributes: update(size: size, on: &attributes))
+    }
+    
+    public func source(_ value: String) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(source: value))
+        }
+        
+        return .init(attributes: update(source: value, on: &attributes))
+    }
+    
+    public func step(_ size: Int) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(step: size))
+        }
+        
+        return .init(attributes: update(step: size, on: &attributes))
+    }
+    
+    public func type(_ value: String) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(type: value))
+        }
+        
+        return .init(attributes: update(type: value, on: &attributes))
+    }
+    
+    public func value(_ value: String) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(value: value))
+        }
+        
+        return .init(attributes: update(value: value, on: &attributes))
+    }
+    
+    public func width(_ size: Int) -> Input {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(width: size))
+        }
+        
+        return .init(attributes: update(width: size, on: &attributes))
+    }
+}
 
 /// The element
 ///
@@ -2212,7 +3509,64 @@ public struct Button: ContentNode {
     }
 }
 
-extension Button: DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute {}
+extension Button: DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute {
+    
+    public func disabled() -> Button {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(disabled: "disabled"), content: content)
+        }
+        
+        return .init(attributes: update(disabled: "disabled", on: &attributes), content: content)
+    }
+    
+    public func form(_ value: String) -> Button {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(form: value), content: content)
+        }
+        
+        return .init(attributes: update(form: value, on: &attributes), content: content)
+    }
+    
+    public func formAction(_ value: String) -> Button {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(formaction: value), content: content)
+        }
+        
+        return .init(attributes: update(formaction: value, on: &attributes), content: content)
+    }
+    
+    public func name(_ value: NameType) -> Button {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(name: value.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(name: value.rawValue, on: &attributes), content: content)
+    }
+    
+    public func type(_ value: String) -> Button {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(type: value), content: content)
+        }
+        
+        return .init(attributes: update(type: value, on: &attributes), content: content)
+    }
+    
+    public func value(_ value: String) -> Button {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(value: value), content: content)
+        }
+        
+        return .init(attributes: update(value: value, on: &attributes), content: content)
+    }
+    
+    
+}
 
 extension Button: Localizable {
     
@@ -2246,7 +3600,71 @@ public struct Select: ContentNode {
     }
 }
 
-extension Select: AutocompleteAttribute, DisabledAttribute, FormAttribute, MultipleAttribute, NameAttribute, RequiredAttribute, SizeAttribute {}
+extension Select: AutocompleteAttribute, DisabledAttribute, FormAttribute, MultipleAttribute, NameAttribute, RequiredAttribute, SizeAttribute {
+    
+    public func hasCompletion(_ condition: Bool) -> Select {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(autocomplete: true), content: content)
+        }
+        
+        return .init(attributes: update(autocomplete: true, on: &attributes), content: content)
+    }
+    
+    public func disabled() -> Select {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(disabled: "disabled"), content: content)
+        }
+        
+        return .init(attributes: update(disabled: "disabled", on: &attributes), content: content)
+    }
+    
+    public func form(_ value: String) -> Select {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(form: value), content: content)
+        }
+        
+        return .init(attributes: update(form: value, on: &attributes), content: content)
+    }
+    
+    public func multiple() -> Select {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(multiple: "multiple"), content: content)
+        }
+        
+        return .init(attributes: update(multiple: "multiple", on: &attributes), content: content)
+    }
+    
+    public func name(_ type: NameType) -> Select {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(name: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(name: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func required() -> Select {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(required: "required"), content: content)
+        }
+        
+        return .init(attributes: update(required: "required", on: &attributes), content: content)
+    }
+    
+    public func size(_ size: Int) -> Select {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(size: size), content: content)
+        }
+        
+        return .init(attributes: update(size: size, on: &attributes), content: content)
+    }
+}
 
 
 /// The element
@@ -2291,7 +3709,26 @@ public struct OptionGroup: ContentNode {
     }
 }
 
-extension OptionGroup: DisabledAttribute, LabelAttribute {}
+extension OptionGroup: DisabledAttribute, LabelAttribute {
+
+    public func disabled() -> OptionGroup {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(disabled: "disabled"), content: content)
+        }
+        
+        return .init(attributes: update(disabled: "disabled", on: &attributes), content: content)
+    }
+    
+    public func label(_ value: Content) -> OptionGroup {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(label: value), content: content)
+        }
+        
+        return .init(attributes: update(label: value, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -2314,7 +3751,35 @@ public struct Option: ContentNode {
     }
 }
 
-extension Option: DisabledAttribute, LabelAttribute, ValueAttribute {}
+extension Option: DisabledAttribute, LabelAttribute, ValueAttribute {
+    
+    public func disabled() -> Option {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(disabled: "disabled"), content: content)
+        }
+        
+        return .init(attributes: update(disabled: "disabled", on: &attributes), content: content)
+    }
+    
+    public func label(_ value: Content) -> Option {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(label: value), content: content)
+        }
+        
+        return .init(attributes: update(label: value, on: &attributes), content: content)
+    }
+    
+    public func value(_ value: String) -> Option {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(value: value), content: content)
+        }
+        
+        return .init(attributes: update(value: value, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -2337,7 +3802,116 @@ public struct TextArea: ContentNode {
     }
 }
 
-extension Textarea: AutoCompleteAttribute, ColumnsAttribute, DisabledAttribute, FormAttribute, MaximumLengthAttribute, MinimumLengthAttribute, NameAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, RowsAttribute, WrapAttribute {}
+extension TextArea: AutocompleteAttribute, ColumnsAttribute, DisabledAttribute, FormAttribute, MaximumLengthAttribute, MinimumLengthAttribute, NameAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, RowsAttribute, WrapAttribute {
+    
+    public func hasCompletion(_ condition: Bool) -> TextArea {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(autocomplete: true), content: content)
+        }
+        
+        return .init(attributes: update(autocomplete: true, on: &attributes), content: content)
+    }
+    
+    public func columns(_ size: Int) -> TextArea {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(columns: size), content: content)
+        }
+        
+        return .init(attributes: update(columns: size, on: &attributes), content: content)
+    }
+    
+    public func disabled() -> TextArea {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(disabled: "disabled"), content: content)
+        }
+        
+        return .init(attributes: update(disabled: "disabled", on: &attributes), content: content)
+    }
+    
+    public func form(_ value: String) -> TextArea {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(form: value), content: content)
+        }
+        
+        return .init(attributes: update(form: value, on: &attributes), content: content)
+    }
+    
+    public func maximum(length value: Content) -> TextArea {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(maxlength: value), content: content)
+        }
+        
+        return .init(attributes: update(maxlength: value, on: &attributes), content: content)
+    }
+    
+    public func minimum(length value: Content) -> TextArea {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(minlength: value), content: content)
+        }
+        
+        return .init(attributes: update(minlength: value, on: &attributes), content: content)
+    }
+    
+    public func name(_ type: NameType) -> TextArea {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(name: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(name: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func placeholder(_ value: String) -> TextArea {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(placeholder: value), content: content)
+        }
+        
+        return .init(attributes: update(placeholer: value, on: &attributes), content: content)
+    }
+    
+    public func readonly() -> TextArea {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(readonly: "readonly"), content: content)
+        }
+        
+        return .init(attributes: update(readonly: "readonly", on: &attributes), content: content)
+    }
+    
+    public func required() -> TextArea {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(required: "required"), content: content)
+        }
+        
+        return .init(attributes: update(required: "required", on: &attributes), content: content)
+    }
+    
+    public func rows(_ size: Int) -> TextArea {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(rows: size), content: content)
+        }
+        
+        return .init(attributes: update(rows: size, on: &attributes), content: content)
+    }
+    
+    public func wrap(_ type: Wrapping) -> TextArea {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(wrap: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(wrap: type.rawValue, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -2360,7 +3934,35 @@ public struct Output: ContentNode {
     }
 }
 
-extension Output: ForAttribute, FormAttribute, NameAttribute {}
+extension Output: ForAttribute, FormAttribute, NameAttribute {
+    
+    public func `for`(_ value: String) -> Output {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(for: value), content: content)
+        }
+        
+        return .init(attributes: update(form: value, on: &attributes), content: content)
+    }
+    
+    public func form(_ value: String) -> Output {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(form: value), content: content)
+        }
+        
+        return .init(attributes: update(form: value, on: &attributes), content: content)
+    }
+    
+    public func name(_ type: NameType) -> Output {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(name: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(name: type.rawValue, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -2383,7 +3985,26 @@ public struct Progress: ContentNode {
     }
 }
 
-extension Progress: ValueAttribute, MaximumValueAttribute {}
+extension Progress: ValueAttribute, MaximumValueAttribute {
+    
+    public func maximum(_ value: Content) -> Progress {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(max: value), content: content)
+        }
+        
+        return .init(attributes: update(max: value, on: &attributes), content: content)
+    }
+
+    public func value(_ value: String) -> Progress {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(value: value), content: content)
+        }
+        
+        return .init(attributes: update(value: value, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -2406,7 +4027,53 @@ public struct Meter: ContentNode {
     }
 }
 
-extension Meter: ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, HighAttribute, OptimumAttribute {}
+extension Meter: ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, HighAttribute, OptimumAttribute {
+    
+    public func minimum(_ value: Content) -> Meter {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(min: value), content: content)
+        }
+        
+        return .init(attributes: update(min: value, on: &attributes), content: content)
+    }
+    
+    public func maximum(_ value: Content) -> Meter {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(max: value), content: content)
+        }
+        
+        return .init(attributes: update(max: value, on: &attributes), content: content)
+    }
+    
+    public func high(_ size: Int) -> Meter {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(high: size), content: content)
+        }
+        
+        return .init(attributes: update(high: size, on: &attributes), content: content)
+    }
+    
+    public func optimum(_ value: Float) -> Meter {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(optimum: value), content: content)
+        }
+        
+        return .init(attributes: update(optimum: value, on: &attributes), content: content)
+    }
+    
+    public func value(_ value: String) -> Meter {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(value: value), content: content)
+        }
+        
+        return .init(attributes: update(value: value, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -2429,7 +4096,35 @@ public struct Fieldset: ContentNode {
     }
 }
 
-extension Fieldset: DisabledAttribute, FormAttribute, NameAttribute {}
+extension Fieldset: DisabledAttribute, FormAttribute, NameAttribute {
+    
+    public func disabled() -> Fieldset {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(disabled: "disabled"), content: content)
+        }
+        
+        return .init(attributes: update(disabled: "disabled", on: &attributes), content: content)
+    }
+    
+    public func form(_ value: String) -> Fieldset {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(form: value), content: content)
+        }
+        
+        return .init(attributes: update(form: value, on: &attributes), content: content)
+    }
+    
+    public func name(_ type: NameType) -> Fieldset {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(name: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(name: type.rawValue, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -2473,7 +4168,17 @@ public struct Details: ContentNode {
     }
 }
 
-extension Details: OpenAttribute {}
+extension Details: OpenAttribute {
+    
+    public func isOpen(_ condition: Bool) -> Details {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(open: condition),content: content)
+        }
+        
+        return .init(attributes: update(open: condition, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -2517,7 +4222,17 @@ public struct Dialog: ContentNode {
     }
 }
 
-extension Dialog: OpenAttribute {}
+extension Dialog: OpenAttribute {
+    
+    public func isOpen(_ condition: Bool) -> Dialog {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(open: condition),content: content)
+        }
+        
+        return .init(attributes: update(open: condition, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -2540,7 +4255,44 @@ public struct Script: ContentNode {
     }
 }
 
-extension Script: AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute {}
+extension Script: AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute {
+    
+    public func asynchronously() -> Script {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(async: "async"), content: content)
+        }
+        
+        return .init(attributes: update(async: "async", on: &attributes), content: content)
+    }
+    
+    public func referrerPolicy(_ type: Policy) -> Script {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(policy: type.rawValue), content: content)
+        }
+        
+        return .init(attributes: update(policy: type.rawValue, on: &attributes), content: content)
+    }
+    
+    public func source(_ value: String) -> Script {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(source: value), content: content)
+        }
+        
+        return .init(attributes: update(source: value, on: &attributes), content: content)
+    }
+    
+    public func type(_ value: String) -> Script {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(type: value), content: content)
+        }
+        
+        return .init(attributes: update(type: value, on: &attributes), content: content)
+    }
+}
 
 /// The element
 ///
@@ -2605,4 +4357,23 @@ public struct Canvas: ContentNode {
     }
 }
 
-extension Canvas: WidthAttribute, HeightAttribute {}
+extension Canvas: WidthAttribute, HeightAttribute {
+    
+    public func width(_ size: Int) -> Canvas {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(width: size), content: content)
+        }
+        
+        return .init(attributes: update(width: size, on: &attributes), content: content)
+    }
+    
+    public func height(_ size: Int) -> Canvas {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(height: size), content: content)
+        }
+        
+        return .init(attributes: update(height: size, on: &attributes), content: content)
+    }
+}
