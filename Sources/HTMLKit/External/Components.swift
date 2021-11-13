@@ -6,16 +6,17 @@
 public struct MetaTitle: HTMLComponent, Localizable {
 
     struct Node: ContentNode {
+        
         public var name: String { "title" }
 
-        public var attributes: [HTMLAttribute] = []
+        internal var attributes: [String: Any]?
 
         public var content: Content
     }
 
     public let content: Content
     
-    public var attributes: [HTMLAttribute]
+    public var attributes: [String: Any]?
     
     public let useOpenGraphMetadata: Conditionable
     
@@ -39,21 +40,18 @@ public struct MetaTitle: HTMLComponent, Localizable {
 
     public init(_ localizedKey: String) {
         content = Localized(key: localizedKey)
-        attributes = []
         useOpenGraphMetadata = true
         useTwitterMetadata = true
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         content = Localized(key: localizedKey, context: context)
-        attributes = []
         useOpenGraphMetadata = true
         useTwitterMetadata = true
     }
 
     public init(@ContentBuilder builder: () -> Content) {
         content = builder()
-        attributes = []
         useOpenGraphMetadata = true
         useTwitterMetadata = true
     }

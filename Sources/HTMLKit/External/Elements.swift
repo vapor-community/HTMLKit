@@ -66,6 +66,17 @@ public struct Comment: CommentNode {
     }
 }
 
+extension Comment: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -75,6 +86,17 @@ public struct Document: DocumentNode {
     
     public init(type: DocumentType) {
         self.content = type.rawValue
+    }
+}
+
+extension Document: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -99,6 +121,17 @@ public struct Head: ContentNode {
     }
 }
 
+extension Head: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -117,6 +150,17 @@ public struct Title: ContentNode {
     internal init(attributes: [String: Any]?, content: String) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Title: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -154,6 +198,17 @@ extension Base: ReferenceAttribute, TargetAttribute {
         }
         
         return .init(attributes: update(target: type.rawValue, on: &attributes))
+    }
+}
+
+extension Base: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -239,6 +294,17 @@ extension Link: ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, 
     }
 }
 
+extension Link: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -285,6 +351,17 @@ extension Meta: ContentAttribute, NameAttribute, PropertyAttribute {
     }
 }
 
+extension Meta: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -325,8 +402,17 @@ extension Style: TypeAttribute, MediaAttribute {
         
         return .init(attributes: update(media: value, on: &attributes), content: content)
     }
+}
+
+extension Style: Content {
     
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
     
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
 }
 
 /// The element
@@ -347,6 +433,17 @@ public struct Html: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Html: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -371,6 +468,17 @@ public struct Body: ContentNode {
     }
 }
 
+extension Body: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -389,6 +497,17 @@ public struct Article: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Article: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -413,6 +532,17 @@ public struct Section: ContentNode {
     }
 }
 
+extension Section: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -434,6 +564,17 @@ public struct Navigation: ContentNode {
     }
 }
 
+extension Navigation: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -452,6 +593,17 @@ public struct Aside: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Aside: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -487,6 +639,17 @@ extension Heading1: Localizable {
     }
 }
 
+extension Heading1: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -516,6 +679,17 @@ extension Heading2: Localizable {
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         self.content = Localized(key: localizedKey, context: context)
+    }
+}
+
+extension Heading2: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -551,6 +725,17 @@ extension Heading3: Localizable {
     }
 }
 
+extension Heading3: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -580,6 +765,17 @@ extension Heading4: Localizable {
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         self.content = Localized(key: localizedKey, context: context)
+    }
+}
+
+extension Heading4: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -615,6 +811,17 @@ extension Heading5: Localizable {
     }
 }
 
+extension Heading5: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -647,6 +854,17 @@ extension Heading6: Localizable {
     }
 }
 
+extension Heading6: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -665,6 +883,17 @@ public struct HeadingGroup: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension HeadingGroup: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -689,6 +918,17 @@ public struct Header: ContentNode {
     }
 }
 
+extension Header: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -710,6 +950,17 @@ public struct Footer: ContentNode {
     }
 }
 
+extension Footer: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -728,6 +979,17 @@ public struct Address: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Address: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -763,6 +1025,17 @@ extension Paragraph: Localizable {
     }
 }
 
+extension Paragraph: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -776,6 +1049,17 @@ public struct HorizontalRule: EmptyNode {
     
     internal init(attributes: [String: Any]?) {
         self.attributes = attributes
+    }
+}
+
+extension HorizontalRule: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -797,6 +1081,17 @@ public struct PreformattedText: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension PreformattedText: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -841,6 +1136,17 @@ extension Blockquote: Localizable {
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         self.content = Localized(key: localizedKey, context: context)
+    }
+}
+
+extension Blockquote: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -895,6 +1201,17 @@ extension OrderedList: ReversedAttribute, StartAttribute, TypeAttribute {
     }
 }
 
+extension OrderedList: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -913,6 +1230,17 @@ public struct UnorderedList: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension UnorderedList: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -949,6 +1277,17 @@ extension ListItem: ValueAttribute {
     }
 }
 
+extension ListItem: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -967,6 +1306,17 @@ public struct DescriptionList: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension DescriptionList: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -991,6 +1341,17 @@ public struct TermName: ContentNode {
     }
 }
 
+extension TermName: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1009,6 +1370,17 @@ public struct TermDefinition: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension TermDefinition: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -1033,6 +1405,17 @@ public struct Figure: ContentNode {
     }
 }
 
+extension Figure: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1051,6 +1434,17 @@ public struct FigureCaption: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension FigureCaption: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -1075,6 +1469,17 @@ public struct Main: ContentNode {
     }
 }
 
+extension Main: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1093,6 +1498,17 @@ public struct Division: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Division: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -1212,6 +1628,17 @@ extension Anchor: Localizable {
     }
 }
 
+extension Anchor: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1233,6 +1660,17 @@ public struct Emphasize: ContentNode {
     }
 }
 
+extension Emphasize: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1251,6 +1689,17 @@ public struct Strong: ContentNode {
     internal init(attributes: [String : Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Strong: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -1286,6 +1735,17 @@ extension Small: Localizable {
     }
 }
 
+extension Small: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1318,6 +1778,17 @@ extension StrikeThrough: Localizable {
     }
 }
 
+extension StrikeThrough: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1336,6 +1807,17 @@ public struct Cite: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Cite: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -1372,6 +1854,17 @@ extension ShortQuote: CiteAttribute {
     }
 }
 
+extension ShortQuote: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1390,6 +1883,17 @@ public struct Definition: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Definition: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -1414,6 +1918,17 @@ public struct Abbreviation: ContentNode {
     }
 }
 
+extension Abbreviation: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1432,6 +1947,17 @@ public struct Ruby: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Ruby: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -1456,6 +1982,17 @@ public struct RubyText: ContentNode {
     }
 }
 
+extension RubyText: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1474,6 +2011,17 @@ public struct RubyPronunciation: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension RubyPronunciation: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -1510,6 +2058,17 @@ extension Data: ValueAttribute {
     }
 }
 
+extension Data: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1543,6 +2102,17 @@ extension Time: DateTimeAttribute {
     }
 }
 
+extension Time: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1561,6 +2131,17 @@ public struct Code: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Code: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -1585,6 +2166,17 @@ public struct Variable: ContentNode {
     }
 }
 
+extension Variable: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1603,6 +2195,17 @@ public struct SampleOutput: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension SampleOutput: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -1627,6 +2230,17 @@ public struct KeyboardInput: ContentNode {
     }
 }
 
+extension KeyboardInput: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1648,6 +2262,17 @@ public struct Subscript: ContentNode {
     }
 }
 
+extension Subscript: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1666,6 +2291,17 @@ public struct Superscript: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Superscript: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -1701,6 +2337,17 @@ extension Italic: Localizable {
     }
 }
 
+extension Italic: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1730,6 +2377,17 @@ extension Bold: Localizable {
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         self.content = Localized(key: localizedKey, context: context)
+    }
+}
+
+extension Bold: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -1765,6 +2423,17 @@ extension Underline: Localizable {
     }
 }
 
+extension Underline: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1783,6 +2452,17 @@ public struct Mark: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Mark: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -1807,6 +2487,17 @@ public struct Bdi: ContentNode {
     }
 }
 
+extension Bdi: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1820,6 +2511,17 @@ public struct Bdo: EmptyNode {
     
     internal init(attributes: [String: Any]?) {
         self.attributes = attributes
+    }
+}
+
+extension Bdo: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -1844,6 +2546,17 @@ public struct Span: ContentNode {
     }
 }
 
+extension Span: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1860,6 +2573,17 @@ public struct LineBreak: EmptyNode {
     }
 }
 
+extension LineBreak: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1873,6 +2597,17 @@ public struct WordBreak: EmptyNode {
     
     internal init(attributes: [String: Any]?) {
         self.attributes = attributes
+    }
+}
+
+extension WordBreak: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -1918,6 +2653,17 @@ extension InsertedText: CiteAttribute, DateTimeAttribute {
     }
 }
 
+extension InsertedText: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1960,6 +2706,17 @@ extension DeletedText: CiteAttribute, DateTimeAttribute {
     }
 }
 
+extension DeletedText: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -1978,6 +2735,17 @@ public struct Picture: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Picture: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -2054,6 +2822,17 @@ extension Source: TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute
     }
 }
 
+extension Source: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -2127,6 +2906,17 @@ extension Image: AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttri
     }
 }
 
+extension Image: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -2196,6 +2986,17 @@ extension InlineFrame: SourceAttribute, NameAttribute, WidthAttribute, HeightAtt
     }
 }
 
+extension InlineFrame: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -2248,6 +3049,17 @@ extension Embed: SourceAttribute, TypeAttribute, WidthAttribute, HeightAttribute
         }
         
         return .init(attributes: update(height: size, on: &attributes))
+    }
+}
+
+extension Embed: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -2329,6 +3141,17 @@ extension Object: DataAttribute, TypeAttribute, NameAttribute, FormAttribute, Wi
     }
 }
 
+extension Object: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -2363,6 +3186,17 @@ extension Parameter: NameAttribute, ValueAttribute {
         }
         
         return .init(attributes: update(value: value, on: &attributes))
+    }
+}
+
+extension Parameter: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -2453,6 +3287,17 @@ extension Video: SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribu
     }
 }
 
+extension Video: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -2522,6 +3367,17 @@ extension Audio: SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribu
     }
 }
 
+extension Audio: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -2577,6 +3433,17 @@ extension Track: KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribut
     }
 }
 
+extension Track: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -2607,6 +3474,17 @@ extension Map: NameAttribute {
         }
         
         return .init(attributes: update(name: value.rawValue, on: &attributes), content: content)
+    }
+}
+
+extension Map: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -2715,6 +3593,17 @@ extension Area: AlternateAttribute, CoordinatesAttribute, ShapeAttribute, Refere
     }
 }
 
+extension Area: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -2757,6 +3646,17 @@ extension Table: WidthAttribute, HeightAttribute {
     }
 }
 
+extension Table: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -2775,6 +3675,17 @@ public struct Caption: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Caption: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -2811,6 +3722,17 @@ extension ColumnGroup: SpanAttribute {
     }
 }
 
+extension ColumnGroup: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -2841,6 +3763,17 @@ extension Column: SpanAttribute {
         }
         
         return .init(attributes: update(span: size, on: &attributes), content: content)
+    }
+}
+
+extension Column: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -2886,6 +3819,17 @@ extension TableBody: WidthAttribute, HeightAttribute {
     }
 }
 
+extension TableBody: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -2928,6 +3872,17 @@ extension TableHead: WidthAttribute, HeightAttribute {
     }
 }
 
+extension TableHead: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -2946,6 +3901,17 @@ public struct TableFoot: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension TableFoot: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -2988,6 +3954,17 @@ extension TableRow: WidthAttribute, HeightAttribute {
         }
         
         return .init(attributes: update(height: size, on: &attributes), content: content)
+    }
+}
+
+extension TableRow: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -3039,6 +4016,17 @@ extension DataCell: ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute {
         }
         
         return .init(attributes: update(headers: value, on: &attributes), content: content)
+    }
+}
+
+extension DataCell: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -3110,6 +4098,17 @@ extension HeaderCell: Localizable {
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         self.content = Localized(key: localizedKey, context: context)
+    }
+}
+
+extension HeaderCell: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -3200,6 +4199,17 @@ extension Form: ActionAttribute, AutocompleteAttribute, EncodingAttribute, Metho
     }
 }
 
+extension Form: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -3241,6 +4251,17 @@ extension Label: Localizable {
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         self.content = Localized(key: localizedKey, context: context)
+    }
+}
+
+extension Label: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -3488,6 +4509,17 @@ extension Input: AcceptAttribute, AlternateAttribute, AutocompleteAttribute, Che
     }
 }
 
+extension Input: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -3564,8 +4596,6 @@ extension Button: DisabledAttribute, FormAttribute, FormActionAttribute, NameAtt
         
         return .init(attributes: update(value: value, on: &attributes), content: content)
     }
-    
-    
 }
 
 extension Button: Localizable {
@@ -3576,6 +4606,17 @@ extension Button: Localizable {
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         self.content = Localized(key: localizedKey, context: context)
+    }
+}
+
+extension Button: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -3666,6 +4707,16 @@ extension Select: AutocompleteAttribute, DisabledAttribute, FormAttribute, Multi
     }
 }
 
+extension Select: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
 
 /// The element
 ///
@@ -3685,6 +4736,17 @@ public struct DataList: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension DataList: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -3727,6 +4789,17 @@ extension OptionGroup: DisabledAttribute, LabelAttribute {
         }
         
         return .init(attributes: update(label: value, on: &attributes), content: content)
+    }
+}
+
+extension OptionGroup: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -3778,6 +4851,17 @@ extension Option: DisabledAttribute, LabelAttribute, ValueAttribute {
         }
         
         return .init(attributes: update(value: value, on: &attributes), content: content)
+    }
+}
+
+extension Option: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -3913,6 +4997,17 @@ extension TextArea: AutocompleteAttribute, ColumnsAttribute, DisabledAttribute, 
     }
 }
 
+extension TextArea: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -3964,6 +5059,17 @@ extension Output: ForAttribute, FormAttribute, NameAttribute {
     }
 }
 
+extension Output: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -4003,6 +5109,17 @@ extension Progress: ValueAttribute, MaximumValueAttribute {
         }
         
         return .init(attributes: update(value: value, on: &attributes), content: content)
+    }
+}
+
+extension Progress: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -4075,6 +5192,17 @@ extension Meter: ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, H
     }
 }
 
+extension Meter: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -4126,6 +5254,17 @@ extension Fieldset: DisabledAttribute, FormAttribute, NameAttribute {
     }
 }
 
+extension Fieldset: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -4144,6 +5283,17 @@ public struct Legend: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Legend: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -4180,6 +5330,17 @@ extension Details: OpenAttribute {
     }
 }
 
+extension Details: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -4198,6 +5359,17 @@ public struct Summary: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Summary: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -4231,6 +5403,17 @@ extension Dialog: OpenAttribute {
         }
         
         return .init(attributes: update(open: condition, on: &attributes), content: content)
+    }
+}
+
+extension Dialog: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -4294,6 +5477,17 @@ extension Script: AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttrib
     }
 }
 
+extension Script: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -4315,6 +5509,17 @@ public struct NoScript: ContentNode {
     }
 }
 
+extension NoScript: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 /// The element
 ///
 ///
@@ -4333,6 +5538,17 @@ public struct Template: ContentNode {
     internal init(attributes: [String: Any]?, content: Content) {
         self.attributes = attributes
         self.content = content
+    }
+}
+
+extension Template: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
 
@@ -4375,5 +5591,16 @@ extension Canvas: WidthAttribute, HeightAttribute {
         }
         
         return .init(attributes: update(height: size, on: &attributes), content: content)
+    }
+}
+
+extension Canvas: Content {
+    
+    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
     }
 }
