@@ -3,14 +3,23 @@
 /// The type is for
 ///
 ///
-public enum NameType: String {
+public struct NameType: RawRepresentable {
     
-    case author
-    case description
-    case generator
-    case keywords
-    case viewport
-    case applicationName = "application-name"
+    public var rawValue: String
+    
+    public init?(rawValue: String) {
+        self.rawValue = rawValue
+    }    
+}
+
+extension NameType {
+    
+    static let author = NameType(rawValue: "author")!
+    static let description = NameType(rawValue: "description")!
+    static let generator = NameType(rawValue: "generator")!
+    static let keywords = NameType(rawValue: "keywords")!
+    static let viewport = NameType(rawValue: "viewport")!
+    static let applicationName = NameType(rawValue: "application-name")!
 }
 
 /// The enum is for
@@ -349,31 +358,24 @@ public enum Direction: String {
 /// The type is for
 ///
 ///
-public enum MediaType {
+public struct MediaType: RawRepresentable {
     
-    public enum Common: String {
-        
-        case html = "text/html"
-        case css = "text/css"
-    }
+    public var rawValue: String
     
-    public enum Style: String {
-        
-        case css = "text/css"
+    public init?(rawValue: String) {
+        self.rawValue = rawValue
     }
+}
+
+extension MediaType {
     
-    public enum Source: String {
-        
-        case ogg = "video/ogg"
-        case mp4 = "video/mp4"
-        case webm = "video/webm"
-        case mpeg = "audio/mpeg"
-    }
-    
-    public enum Script: String {
-        
-        case javascript = "application/javascript"
-    }
+    static let html = MediaType(rawValue: "text/html")!
+    static let css = MediaType(rawValue: "text/css")!
+    static let ogg = MediaType(rawValue: "video/ogg")!
+    static let mp4 = MediaType(rawValue: "video/mp4")!
+    static let webm = MediaType(rawValue: "video/webm")!
+    static let mpeg = MediaType(rawValue: "audio/mpeg")!
+    static let javascript = MediaType(rawValue: "application/javascript")!
 }
 
 /// The type is for
