@@ -1,5 +1,10 @@
 // MARK: aliases
 
+/// The alias points
+///
+///
+public typealias CoreAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute
+
 // MARK: attributes
 
 /// The protocol provides
@@ -1067,11 +1072,11 @@ extension ItemPropertyAttribute {
     
     private var key: String { "itemprop" }
     
-    internal func set(id value: String) -> [String: Any] {
+    internal func set(itemprop value: String) -> [String: Any] {
         return [key: value]
     }
     
-    internal func update(id value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(itemprop value: String, on attributes: inout [String: Any]) -> [String: Any] {
         attributes[key] = value
         return attributes
     }
@@ -1142,11 +1147,11 @@ extension ItemTypeAttribute {
     
     private var key: String { "itemtype" }
     
-    internal func set(id value: String) -> [String: Any] {
+    internal func set(itemtype value: String) -> [String: Any] {
         return [key: value]
     }
     
-    internal func update(id value: String, on attributes: inout [String: Any]) -> [String: Any] {
+    internal func update(itemtype value: String, on attributes: inout [String: Any]) -> [String: Any] {
         attributes[key] = value
         return attributes
     }
