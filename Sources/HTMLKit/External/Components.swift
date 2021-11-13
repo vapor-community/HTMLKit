@@ -3,76 +3,34 @@
 /// The component ist for
 ///
 ///
-public struct MetaTitle: HTMLComponent, Localizable {
-
-    struct Node: ContentNode {
-        
-        public var name: String { "title" }
-
-        internal var attributes: [String: Any]?
-
-        public var content: Content
+public struct MetaTitle: HTMLComponent {
+    
+    private var title: String
+    
+    private let useOpenGraph: Bool
+    
+    private let useTwitter: Bool
+    
+    public init(title: String, useOpenGraph: Bool = true, useTwitter: Bool = true) {
+        self.title = title
+        self.useOpenGraph = useOpenGraph
+        self.useTwitter = useTwitter
     }
-
-    public let content: Content
     
-    public var attributes: [String: Any]?
-    
-    public let useOpenGraphMetadata: Conditionable
-    
-    public let useTwitterMetadata: Conditionable
-
     public var body: Content {
-        [
-            Node(attributes: attributes, content: content),
-            IF(useOpenGraphMetadata) {
-                Meta()
-                    .property(.title)
-                    .content(content)
-            },
-            IF(useTwitterMetadata) {
-                Meta()
-                    .property(.title)
-                    .content(content)
-            }
-        ]
-    }
-
-    public init(_ localizedKey: String) {
-        content = Localized(key: localizedKey)
-        useOpenGraphMetadata = true
-        useTwitterMetadata = true
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        content = Localized(key: localizedKey, context: context)
-        useOpenGraphMetadata = true
-        useTwitterMetadata = true
-    }
-
-    public init(@ContentBuilder builder: () -> Content) {
-        content = builder()
-        useOpenGraphMetadata = true
-        useTwitterMetadata = true
-    }
-
-    public init(attributes: [HTMLAttribute] = [], content: Content = "", useOpenGraphMetadata: Conditionable = true, useTwitterMetadata: Conditionable = true) {
-        self.content = content
-        self.attributes = attributes
-        self.useOpenGraphMetadata = useOpenGraphMetadata
-        self.useTwitterMetadata = useTwitterMetadata
-    }
-
-    public func useOpenGraph(metadata: Conditionable) -> MetaTitle {
-        .init(attributes: attributes, content: content, useOpenGraphMetadata: metadata, useTwitterMetadata: useTwitterMetadata)
-    }
-
-    public func useTwitter(metadata: Conditionable) -> MetaTitle {
-        .init(attributes: attributes, content: content, useOpenGraphMetadata: useOpenGraphMetadata, useTwitterMetadata: metadata)
-    }
-
-    public func copy(with attributes: [HTMLAttribute]) -> MetaTitle {
-        .init(attributes: attributes, content: content, useOpenGraphMetadata: useOpenGraphMetadata, useTwitterMetadata: useTwitterMetadata)
+        Title {
+            self.title
+        }
+        if(useOpenGraph) {
+            Meta()
+                .property(.title)
+                .content(self.title)
+        }
+        if(useTwitter) {
+            Meta()
+                .name(.init(rawValue: "twitter:title")!)
+                .content(self.title)
+        }
     }
 }
 
@@ -80,16 +38,11 @@ public struct MetaTitle: HTMLComponent, Localizable {
 ///
 ///
 public struct Stylesheet: HTMLComponent {
-
-    @TemplateValue(String.self)
-    public var url
-
-    public init(url: TemplateValue<String>) {
-        self.url = url
-    }
+    
+    private var url: String
 
     public init(url: String) {
-        self.url = .constant(url)
+        self.url = url
     }
 
     public var body: Content {
@@ -103,77 +56,45 @@ public struct Stylesheet: HTMLComponent {
 /// The component ist for
 ///
 ///
-public struct MetaDescription: HTMLComponent, Localizable {
+public struct MetaDescription: HTMLComponent {
 
-    public var description: Content
+    private var description: String
 
-    public let useOpenGraphMetadata: Conditionable
+    private let useOpenGraph: Bool
     
-    public let useTwitterMetadata: Conditionable
+    private let useTwitter: Bool
 
     public var body: Content {
-        [
+        Meta()
+            .name(.description)
+            .content(description)
+        if(useOpenGraph) {
             Meta()
                 .property(.description)
-                .content(description),
-            IF(useOpenGraphMetadata) {
-                Meta()
-                    .property(.description)
-                    .content(description)
-            },
-            IF(useTwitterMetadata) {
-                Meta()
-                    .property(.description)
-                    .content(description)
-            }
-        ]
+                .content(description)
+        }
+        if(useTwitter) {
+            Meta()
+                .name(.init(rawValue: "twitter:description")!)
+                .content(description)
+        }
     }
 
-    public init(description: () -> Content) {
-        self.description = description()
-        self.useTwitterMetadata = true
-        self.useOpenGraphMetadata = true
-    }
-
-    public init(_ localizedKey: String) {
-        description = Localized(key: localizedKey)
-        self.useTwitterMetadata = true
-        self.useOpenGraphMetadata = true
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        description = Localized(key: localizedKey, context: context)
-        self.useTwitterMetadata = true
-        self.useOpenGraphMetadata = true
-    }
-
-    public init(description: Content, useOpenGraphMetadata: Conditionable, useTwitterMetadata: Conditionable) {
+    public init(description: String, useOpenGraph: Bool = true, useTwitter: Bool = true) {
         self.description = description
-        self.useOpenGraphMetadata = useOpenGraphMetadata
-        self.useTwitterMetadata = useTwitterMetadata
-    }
-
-    public func useOpenGraph(metadata: Conditionable) -> MetaDescription {
-        .init(description: description, useOpenGraphMetadata: metadata, useTwitterMetadata: useTwitterMetadata)
-    }
-
-    public func useTwitter(metadata: Conditionable) -> MetaDescription {
-        .init(description: description, useOpenGraphMetadata: useOpenGraphMetadata, useTwitterMetadata: metadata)
+        self.useOpenGraph = useOpenGraph
+        self.useTwitter = useTwitter
     }
 }
 
 /// The component ist for
 ///
 ///
-public struct FavIcon: HTMLComponent {
+public struct Favicon: HTMLComponent {
 
-    public let url: TemplateValue<String>
+    private let url: String
 
     public init(url: String) {
-        self.url = .constant(url)
-    }
-
-    public init(url: TemplateValue<String>) {
         self.url = url
     }
 
@@ -189,6 +110,9 @@ public struct FavIcon: HTMLComponent {
 ///
 public struct Viewport: HTMLComponent {
 
+    private var mode: WidthMode
+    private var internalScale: Double = 1
+
     public enum WidthMode {
         case accordingToDevice
         case constant(Int)
@@ -200,10 +124,7 @@ public struct Viewport: HTMLComponent {
             }
         }
     }
-
-    public var mode: WidthMode
-    public var internalScale: Double = 1
-
+    
     public init(_ mode: WidthMode, internalScale: Double = 1) {
         self.mode = mode
         self.internalScale = internalScale
@@ -219,46 +140,25 @@ public struct Viewport: HTMLComponent {
 /// The component ist for
 ///
 ///
-public struct Author: HTMLComponent, Localizable {
+public struct Author: HTMLComponent {
 
-    public var author: Content
+    private var author: String
 
-    @TemplateValue(String?.self)
-    public var twitterHandle
+    private var handle: String?
 
     public var body: Content {
-        [
-            Meta().name(.author).content(author),
-            Unwrap(twitterHandle) { handle in
-                Meta()
-                    .name(.init(rawValue: "twitter:creator")!)
-                    .content(handle)
-            }
-        ]
+        Meta()
+            .name(.author)
+            .content(author)
+        if let handle = self.handle {
+            Meta()
+                .name(.init(rawValue: "twitter:creator")!)
+                .content(handle)
+        }
     }
-
-    public init(author: () -> Content) {
-        self.author = author()
-    }
-
-    public init(_ localizedKey: String) {
-        author = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        author = Localized(key: localizedKey, context: context)
-    }
-
-    public init(author: Content, handle: TemplateValue<String?>) {
+    
+    public init(author: String, handle: String? = nil) {
         self.author = author
-        self.twitterHandle = handle
-    }
-
-    public func twitter(handle: TemplateValue<String>) -> Author {
-        .init(author: author, handle: handle.makeOptional())
-    }
-
-    public func twitter(handle: TemplateValue<String?>) -> Author {
-        .init(author: author, handle: handle)
+        self.handle = handle
     }
 }
