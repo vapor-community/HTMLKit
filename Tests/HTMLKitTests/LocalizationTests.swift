@@ -3,17 +3,9 @@ import XCTest
 
 final class LocalizationTests: XCTestCase {
     
-    struct TestPage: HTMLPage {
-        
-        var content: Content
-        
-        var body: Content {
-            content
-        }
-        
-        init(@ContentBuilder builder: () -> Content) {
-            content = builder()
-        }
+    struct TestPage: Page {
+
+        @ContentBuilder var body: Content
     }
     
     var renderer = Renderer()

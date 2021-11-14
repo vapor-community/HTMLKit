@@ -1,7 +1,28 @@
 /// The protocol defines
 ///
 ///
-public protocol HTMLTemplate: Content {
+public protocol Page: Content {
+    
+    @ContentBuilder var body: Content { get }
+}
+
+extension Page {
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try body.render(with: manager)
+    }
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try body.prerender(formula)
+    }
+
+    public var scripts: Content { body.scripts }
+}
+
+/// The protocol defines
+///
+///
+public protocol View: Content {
     
     associatedtype Context
     
@@ -10,7 +31,7 @@ public protocol HTMLTemplate: Content {
     @ContentBuilder var body: Content { get }
 }
 
-extension HTMLTemplate {
+extension View {
     
     public var context: TemplateValue<Context> { .root() }
 
@@ -28,33 +49,12 @@ extension HTMLTemplate {
 /// The protocol defines
 ///
 ///
-public protocol HTMLPage: Content {
+public protocol Component: Content {
     
     @ContentBuilder var body: Content { get }
 }
 
-extension HTMLPage {
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try body.render(with: manager)
-    }
-
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try body.prerender(formula)
-    }
-
-    public var scripts: Content { body.scripts }
-}
-
-/// The protocol defines
-///
-///
-public protocol HTMLComponent: Content {
-    
-    @ContentBuilder var body: Content { get }
-}
-
-extension HTMLComponent {
+extension Component {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try body.render(with: manager)

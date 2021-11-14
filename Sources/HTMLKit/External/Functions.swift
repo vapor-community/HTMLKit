@@ -161,7 +161,7 @@ extension IF: Content {
     }
 }
 
-public struct Unwrap: HTMLComponent {
+public struct Unwrap: Component {
 
     let content: IF
 

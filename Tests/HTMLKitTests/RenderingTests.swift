@@ -3,17 +3,9 @@ import XCTest
 
 final class RenderingTests: XCTestCase {
     
-    struct TestPage: HTMLPage {
+    struct TestPage: Page {
         
-        var content: Content
-        
-        var body: Content {
-            content
-        }
-        
-        init(@ContentBuilder builder: () -> Content) {
-            content = builder()
-        }
+        @ContentBuilder var body: Content
     }
     
     var renderer = Renderer()

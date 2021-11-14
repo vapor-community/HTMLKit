@@ -52,18 +52,18 @@ public class Renderer {
         formulaCache = [:]
     }
 
-    public func render<T: HTMLTemplate>(raw type: T.Type, with context: T.Context) throws -> String {
-        guard let formula = formulaCache[ObjectIdentifier(type)] else {
-            throw Errors.unableToFindFormula
-        }
-        return try formula.render(with: context, lingo: lingo)
-    }
-
-    public func render<T: HTMLPage>(raw type: T.Type) throws -> String {
+    public func render<T: Page>(raw type: T.Type) throws -> String {
         guard let formula = formulaCache[ObjectIdentifier(type)] else {
             throw Errors.unableToFindFormula
         }
         return try formula.render(with: (), lingo: lingo)
+    }
+    
+    public func render<T: View>(raw type: T.Type, with context: T.Context) throws -> String {
+        guard let formula = formulaCache[ObjectIdentifier(type)] else {
+            throw Errors.unableToFindFormula
+        }
+        return try formula.render(with: context, lingo: lingo)
     }
 
     /// Adds a forumla to the renderer
@@ -72,7 +72,7 @@ public class Renderer {
     ///
     /// - Parameter view: The view type to add
     /// - Throws: If the pre-rendering process fails for some reason
-    public func add<T: HTMLTemplate>(view: T) throws {
+    public func add<T: Page>(view: T) throws {
         let formula = Formula()
         try view.prerender(formula)
         formulaCache[ObjectIdentifier(T.self)] = formula
@@ -84,7 +84,7 @@ public class Renderer {
     ///
     /// - Parameter view: The view type to add
     /// - Throws: If the pre-rendering process fails for some reason
-    public func add<T: HTMLPage>(view: T) throws {
+    public func add<T: View>(view: T) throws {
         let formula = Formula()
         try view.prerender(formula)
         formulaCache[ObjectIdentifier(T.self)] = formula

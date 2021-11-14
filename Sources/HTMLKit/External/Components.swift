@@ -3,7 +3,7 @@
 /// The component ist for
 ///
 ///
-public struct MetaTitle: HTMLComponent {
+public struct MetaTitle: Component {
     
     private var title: String
     
@@ -37,7 +37,7 @@ public struct MetaTitle: HTMLComponent {
 /// The component ist for
 ///
 ///
-public struct Stylesheet: HTMLComponent {
+public struct Stylesheet: Component {
     
     private var url: String
 
@@ -56,7 +56,7 @@ public struct Stylesheet: HTMLComponent {
 /// The component ist for
 ///
 ///
-public struct MetaDescription: HTMLComponent {
+public struct MetaDescription: Component {
 
     private var description: String
 
@@ -90,7 +90,7 @@ public struct MetaDescription: HTMLComponent {
 /// The component ist for
 ///
 ///
-public struct Favicon: HTMLComponent {
+public struct Favicon: Component {
 
     private let url: String
 
@@ -108,7 +108,7 @@ public struct Favicon: HTMLComponent {
 /// The component ist for
 ///
 ///
-public struct Viewport: HTMLComponent {
+public struct Viewport: Component {
 
     private var mode: WidthMode
     private var internalScale: Double = 1
@@ -140,7 +140,7 @@ public struct Viewport: HTMLComponent {
 /// The component ist for
 ///
 ///
-public struct Author: HTMLComponent {
+public struct Author: Component {
 
     private var author: String
 
