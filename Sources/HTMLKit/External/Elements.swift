@@ -9381,6 +9381,62 @@ extension Division: Content {
     }
 }
 
+extension Division: Modifiable {
+    
+    public func modify(if condition: Bool, modifyer: (Self) -> Self) -> Self {
+        
+        let element = modifyer(.init(attributes: [:], content: ""))
+        
+        guard var attributes = self.attributes else {
+
+            return .init(attributes: element.attributes!, content: self.content)
+        }
+        
+        return .init(attributes: merge(element.attributes!, with: &attributes), content: self.content)
+    }
+    
+    public func modify<Value>(unwrap value: TemplateValue<Value?>, modifyer: (TemplateValue<Value>, Self) -> Self) -> Self {
+        
+        switch value {
+            
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            let element = modifyer(.constant(value), .init(attributes: [:], content: ""))
+
+            guard var attributes = self.attributes else {
+
+                return .init(attributes: element.attributes!, content: self.content)
+            }
+            
+            return .init(attributes: merge(element.attributes!, with: &attributes), content: self.content)
+            
+        case .dynamic(let context):
+            
+            var element: Self!
+            
+            if context.isMascadingOptional {
+                
+                element = modifyer(.dynamic(context.unsafeCast(to: Value.self)), .init(attributes: [:], content: ""))
+                
+            } else {
+                
+                element = modifyer(.dynamic(context.unsafelyUnwrapped), .init(attributes: [:], content: ""))
+            }
+
+            guard var attributes = self.attributes else {
+
+                return .init(attributes: element.attributes!, content: self.content)
+            }
+            
+            return .init(attributes: merge(element.attributes!, with: &attributes), content: self.content)
+        }
+    }
+}
+
 /// The element
 ///
 ///

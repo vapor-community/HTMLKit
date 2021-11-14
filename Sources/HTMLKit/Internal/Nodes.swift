@@ -16,6 +16,16 @@ internal protocol ContentNode {
     init(attributes: OrderedDictionary<String, Any>?, content: T)
 }
 
+extension ContentNode {
+    
+    internal func merge(_ new: OrderedDictionary<String, Any>, with current: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        
+        current.merge(new) { (current, _) in current }
+        
+        return current
+    }
+}
+
 extension ContentNode where T == Content {
     
     internal func build(_ formula: Renderer.Formula) throws {
@@ -111,6 +121,13 @@ extension EmptyNode {
         }
         
         return "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">" as! String
+    }
+    
+    internal func merge(_ new: OrderedDictionary<String, Any>, with current: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        
+        current.merge(new) { (current, _) in current }
+        
+        return current
     }
 }
 
