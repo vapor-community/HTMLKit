@@ -5,13 +5,13 @@
 ///
 public struct MetaTitle: Component {
     
-    private var title: String
+    private var title: TemplateValue<String>
     
-    private let useOpenGraph: Bool
+    private let useOpenGraph: Conditionable
     
-    private let useTwitter: Bool
+    private let useTwitter: Conditionable
     
-    public init(title: String, useOpenGraph: Bool = true, useTwitter: Bool = true) {
+    public init(title: TemplateValue<String>, useOpenGraph: Conditionable = true, useTwitter: Conditionable = true) {
         self.title = title
         self.useOpenGraph = useOpenGraph
         self.useTwitter = useTwitter
@@ -19,37 +19,18 @@ public struct MetaTitle: Component {
     
     public var body: Content {
         Title {
-            self.title
+            self.title.rawValue
         }
-        if(useOpenGraph) {
+        IF(useOpenGraph) {
             Meta()
                 .property(.title)
-                .content(self.title)
+                .content(self.title.rawValue)
         }
-        if(useTwitter) {
+        IF(useTwitter) {
             Meta()
                 .name(.init(rawValue: "twitter:title")!)
-                .content(self.title)
+                .content(self.title.rawValue)
         }
-    }
-}
-
-/// The component ist for
-///
-///
-public struct Stylesheet: Component {
-    
-    private var url: String
-
-    public init(url: String) {
-        self.url = url
-    }
-
-    public var body: Content {
-        Link()
-            .relationship(.stylesheet)
-            .reference(url)
-            .type("text/css")
     }
 }
 
@@ -58,29 +39,29 @@ public struct Stylesheet: Component {
 ///
 public struct MetaDescription: Component {
 
-    private var description: String
+    private var description: TemplateValue<String>
 
-    private let useOpenGraph: Bool
+    private let useOpenGraph: Conditionable
     
-    private let useTwitter: Bool
+    private let useTwitter: Conditionable
 
     public var body: Content {
         Meta()
             .name(.description)
-            .content(description)
-        if(useOpenGraph) {
+            .content(self.description.rawValue)
+        IF(useOpenGraph) {
             Meta()
                 .property(.description)
-                .content(description)
+                .content(self.description.rawValue)
         }
-        if(useTwitter) {
+        IF(useTwitter) {
             Meta()
                 .name(.init(rawValue: "twitter:description")!)
-                .content(description)
+                .content(self.description.rawValue)
         }
     }
 
-    public init(description: String, useOpenGraph: Bool = true, useTwitter: Bool = true) {
+    public init(description: TemplateValue<String>, useOpenGraph: Conditionable = true, useTwitter: Conditionable = true) {
         self.description = description
         self.useOpenGraph = useOpenGraph
         self.useTwitter = useTwitter
@@ -92,16 +73,35 @@ public struct MetaDescription: Component {
 ///
 public struct Favicon: Component {
 
-    private let url: String
+    private let url: TemplateValue<String>
 
-    public init(url: String) {
+    public init(url: TemplateValue<String>) {
         self.url = url
     }
 
     public var body: Content {
         Link()
             .relationship(.shortcutIcon)
-            .reference(url)
+            .reference(self.url.rawValue)
+    }
+}
+
+/// The component ist for
+///
+///
+public struct Stylesheet: Component {
+    
+    private var url: TemplateValue<String>
+
+    public init(url: TemplateValue<String>) {
+        self.url = url
+    }
+
+    public var body: Content {
+        Link()
+            .relationship(.stylesheet)
+            .reference(self.url.rawValue)
+            .type("text/css")
     }
 }
 
@@ -142,22 +142,22 @@ public struct Viewport: Component {
 ///
 public struct Author: Component {
 
-    private var author: String
+    private var author: TemplateValue<String>
 
-    private var handle: String?
+    private var handle: TemplateValue<String?>
 
     public var body: Content {
         Meta()
             .name(.author)
-            .content(author)
-        if let handle = self.handle {
+            .content(self.author.rawValue)
+        Unwrap(handle) { handle in
             Meta()
                 .name(.init(rawValue: "twitter:creator")!)
-                .content(handle)
+                .content(handle.rawValue)
         }
     }
     
-    public init(author: String, handle: String? = nil) {
+    public init(author: TemplateValue<String>, handle: TemplateValue<String?>) {
         self.author = author
         self.handle = handle
     }

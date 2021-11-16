@@ -3,7 +3,13 @@ import XCTest
 
 final class ContextTests: XCTestCase {
     
-    struct TestModel {
+    struct PageContext {
+        
+        var category: String
+        var isOnline: Bool
+    }
+    
+    struct ViewContext {
         
         var headline: String
         var subtitle: String
@@ -11,21 +17,19 @@ final class ContextTests: XCTestCase {
     
     struct TestPage: Page {
         
-        var body: Content {
-            TestView(context: .constant(TestModel(headline: "test", subtitle: "test")))
-        }
+        @ContentBuilder var body: Content
     }
     
     struct TestView: View {
         
-        var context: TemplateValue<TestModel>
+        var context: TemplateValue<ViewContext>
         
         var body: Content {
             Section{
-                Heading1 {
+                Heading2 {
                     context.headline
                 }
-                Heading2 {
+                Heading3 {
                     context.subtitle
                 }
             }
@@ -36,17 +40,17 @@ final class ContextTests: XCTestCase {
     
     func testViewContext() throws {
         
-        let model = TestModel(headline: "test", subtitle: "test")
+        let context = ViewContext(headline: "test", subtitle: "test")
         
-        let view = TestView(context: .constant(model))
+        let view = TestView(context: .constant(context))
         
         try renderer.add(view: view)
         
-        XCTAssertEqual(try renderer.render(raw: TestView.self, with: model),
+        XCTAssertEqual(try renderer.render(raw: TestView.self, with: context),
                        """
                        <section>\
-                       <h1>test</h1>\
                        <h2>test</h2>\
+                       <h3>test</h3>\
                        </section>
                        """
         )
@@ -54,15 +58,23 @@ final class ContextTests: XCTestCase {
     
     func testPageContext() throws {
         
-        let page = TestPage()
+        let context = PageContext(category: "test", isOnline: false)
+        
+        let page = TestPage {
+            Heading1 {
+                context.category
+            }
+            TestView(context: .constant(ViewContext(headline: "test", subtitle: "test")))
+        }
         
         try renderer.add(view: page)
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <section>\
                        <h1>test</h1>\
+                       <section>\
                        <h2>test</h2>\
+                       <h3>test</h3>\
                        </section>
                        """
         )

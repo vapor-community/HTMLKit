@@ -62,7 +62,7 @@ final class ComponentTests: XCTestCase {
     func testAuthorComponent() throws {
         
         let view = TestPage {
-            Author(author: "text", handle: "@handle")
+            Author(author: "text", handle: .constant("@handle"))
         }
         
         try renderer.add(view: view)
