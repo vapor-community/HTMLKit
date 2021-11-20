@@ -3,20 +3,12 @@ import XCTest
 
 final class LocalizationTests: XCTestCase {
     
-    struct TestPage: HTMLPage {
-        
-        var content: HTMLContent
-        
-        var body: HTMLContent {
-            content
-        }
-        
-        init(@HTMLBuilder builder: () -> HTMLContent) {
-            content = builder()
-        }
+    struct TestPage: Page {
+
+        @ContentBuilder var body: Content
     }
     
-    var renderer = HTMLRenderer()
+    var renderer = Renderer()
     
     override func setUp() {
         super.setUp()

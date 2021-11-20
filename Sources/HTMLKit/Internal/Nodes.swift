@@ -1,120 +1,155 @@
-/// The node is for
-///
-///
-public protocol ContentNode: HTMLNode {
-
-    associatedtype Content
-    
-    var content: Content { get }
-
-    init(attributes: [HTMLAttribute], content: Content)
-}
-
-extension ContentNode where Content == HTMLContent {
-    
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
-        formula.add(string: "<\(name)")
-        try attributes.forEach {
-            formula.add(string: " ")
-            try $0.prerender(formula)
-        }
-        formula.add(string: ">")
-        try content.prerender(formula)
-        formula.add(string: "</\(name)>")
-    }
-
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        try "<\(name)"
-            + attributes.reduce("") { try $0 + " \($1.render(with: manager))" }
-            + ">\(content.render(with: manager))</\(name)>"
-    }
-    
-    public func copy(with attributes: [HTMLAttribute]) -> Self {
-        .init(attributes: attributes, content: content)
-    }
-
-    public var scripts: HTMLContent { content.scripts }
-}
-
-extension ContentNode where Content == String {
-    
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
-        
-        formula.add(string: "<\(name)")
-        
-        try attributes.forEach {
-            formula.add(string: " ")
-            try $0.prerender(formula)
-        }
-        
-        formula.add(string: ">")
-        
-        try content.prerender(formula)
-        
-        formula.add(string: "</\(name)>")
-    }
-
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        
-        try "<\(name)"
-            + attributes.reduce("") { try $0 + " \($1.render(with: manager))" }
-            + ">\(content.render(with: manager))</\(name)>"
-    }
-    
-    public func copy(with attributes: [HTMLAttribute]) -> Self {
-        .init(attributes: attributes, content: content)
-    }
-    
-    public var scripts: HTMLContent { content.scripts }
-}
+import OrderedCollections
 
 /// The node is for
 ///
 ///
-public protocol EmptyNode: HTMLNode {
+internal protocol ContentNode {
 
-    init(attributes: [HTMLAttribute])
+    associatedtype T
+    
+    var name: String { get }
+    
+    var attributes: OrderedDictionary<String, Any>? { get }
+    
+    var content: T { get }
+    
+    init(attributes: OrderedDictionary<String, Any>?, content: T)
+}
+
+extension ContentNode {
+    
+    internal func merge(_ new: OrderedDictionary<String, Any>, with current: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        
+        current.merge(new) { (current, _) in current }
+        
+        return current
+    }
+}
+
+extension ContentNode where T == Content {
+    
+    internal func build(_ formula: Renderer.Formula) throws {
+
+        formula.add(string: "<\(name)")
+
+        if let attributes = attributes {
+
+            attributes.forEach { attribute in
+                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+            }
+        }
+
+        formula.add(string: ">")
+
+        try content.prerender(formula)
+
+        formula.add(string: "</\(name)>")
+    }
+
+    internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+
+        guard let attributes = attributes else {
+            return try "<\(name)>\(content.render(with: manager))</\(name)>"
+        }
+        
+        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+    }
+}
+
+extension ContentNode where T == String {
+    
+    internal func build(_ formula: Renderer.Formula) throws {
+        
+        formula.add(string: "<\(name)")
+        
+        if let attributes = attributes {
+
+            attributes.forEach { attribute in
+                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+            }
+        }
+        
+        formula.add(string: ">")
+        
+        formula.add(string: content)
+        
+        formula.add(string: "</\(name)>")
+    }
+
+    internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        
+        guard let attributes = attributes else {
+            return try "<\(name)>\(content.render(with: manager))</\(name)>"
+        }
+        
+        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+    }
+}
+
+/// The node is for
+///
+///
+internal protocol EmptyNode {
+
+    var name: String { get }
+    
+    var attributes: OrderedDictionary<String, Any>? { get }
+    
+    init(attributes: OrderedDictionary<String, Any>?)
 }
 
 extension EmptyNode {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    internal func build(_ formula: Renderer.Formula) throws {
+        
         formula.add(string: "<\(name)")
-        try attributes.forEach {
-            formula.add(string: " ")
-            try $0.prerender(formula)
+
+        if let attributes = attributes {
+
+            attributes.forEach { attribute in
+                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+            }
         }
+
         formula.add(string: ">")
     }
 
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        try "<\(name)" + attributes.reduce("") { try $0 + " \($1.render(with: manager))" } + ">"
+    internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        
+        guard let attributes = attributes else {
+            return "<\(name)>"
+        }
+        
+        return "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">" as! String
     }
     
-    public func copy(with attributes: [HTMLAttribute]) -> Self {
-        .init(attributes: attributes)
+    internal func merge(_ new: OrderedDictionary<String, Any>, with current: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        
+        current.merge(new) { (current, _) in current }
+        
+        return current
     }
 }
 
 /// The node is for
 ///
 ///
-public protocol CommentNode: HTMLContent {
+internal protocol CommentNode {
     
-    associatedtype Content: HTMLContent
+    associatedtype T
     
-    var content: Content { get }
+    var content: T { get }
 }
 
 extension CommentNode {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    internal func build(_ formula: Renderer.Formula) throws {
         
         formula.add(string: "<!--\(content)-->")
     }
 
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-
+    internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        
         return "<!--\(content)-->"
     }
 }
@@ -122,21 +157,21 @@ extension CommentNode {
 /// The node is for
 ///
 ///
-public protocol DocumentNode: HTMLContent {
+internal protocol DocumentNode {
     
-    associatedtype Content: HTMLContent
+    associatedtype T
     
-    var content: Content { get }
+    var content: T { get }
 }
 
 extension DocumentNode {
     
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    internal func build(_ formula: Renderer.Formula) throws {
         
         formula.add(string: "<!DOCTYPE \(content)>")
     }
 
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
 
         return "<!DOCTYPE \(content)>"
     }

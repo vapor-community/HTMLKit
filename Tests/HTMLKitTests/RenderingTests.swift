@@ -3,20 +3,12 @@ import XCTest
 
 final class RenderingTests: XCTestCase {
     
-    struct TestPage: HTMLPage {
+    struct TestPage: Page {
         
-        var content: HTMLContent
-        
-        var body: HTMLContent {
-            content
-        }
-        
-        init(@HTMLBuilder builder: () -> HTMLContent) {
-            content = builder()
-        }
+        @ContentBuilder var body: Content
     }
     
-    var renderer = HTMLRenderer()
+    var renderer = Renderer()
     
     func testRenderingDocument() throws {
         

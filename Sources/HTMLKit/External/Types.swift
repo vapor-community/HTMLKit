@@ -3,20 +3,29 @@
 /// The type is for
 ///
 ///
-public enum NameType: String {
+public struct NameType: RawRepresentable {
     
-    case author
-    case description
-    case generator
-    case keywords
-    case viewport
-    case applicationName = "application-name"
+    public var rawValue: String
+    
+    public init?(rawValue: String) {
+        self.rawValue = rawValue
+    }    
+}
+
+extension NameType {
+    
+    static let author = NameType(rawValue: "author")!
+    static let description = NameType(rawValue: "description")!
+    static let generator = NameType(rawValue: "generator")!
+    static let keywords = NameType(rawValue: "keywords")!
+    static let viewport = NameType(rawValue: "viewport")!
+    static let applicationName = NameType(rawValue: "application-name")!
 }
 
 /// The enum is for
 ///
 ///
-public enum ButtonType: String {
+public enum Buttons: String {
 
     case submit
     case button
@@ -26,7 +35,7 @@ public enum ButtonType: String {
 /// The type is for
 ///
 ///
-public enum EncodeType: String {
+public enum Encoding: String {
     
     case urlEncoded = "application/x-www-form-urlencoded"
     case multipart = "multipart/form-data"
@@ -36,7 +45,7 @@ public enum EncodeType: String {
 /// The enum is for
 ///
 ///
-public enum MethodType: String {
+public enum Method: String {
     
     case post
     case get
@@ -45,7 +54,7 @@ public enum MethodType: String {
 /// The type is for
 ///
 ///
-public enum InputType: String {
+public enum Inputs: String {
     
     case text
     case button
@@ -74,7 +83,7 @@ public enum InputType: String {
 /// The type is for
 ///
 ///
-public enum LanguageType: String {
+public enum Language: String {
     
     case abkhazian = "ab"
     case afar = "aa"
@@ -265,7 +274,7 @@ public enum LanguageType: String {
 /// The type is for
 ///
 ///
-public enum PolicyType: String {
+public enum Policy: String {
     
     case strictOriginWhenCrossOrigin = "strict-origin-when-cross-origin"
     case noReferrer = "no-referrer"
@@ -280,7 +289,7 @@ public enum PolicyType: String {
 /// The type is for
 ///
 ///
-public enum RelationshipType: String {
+public enum Relation: String {
     
     case alternate
     case author
@@ -308,7 +317,7 @@ public enum RelationshipType: String {
 /// The enum is for
 ///
 ///
-public enum TargetType: String {
+public enum Target: String {
     
     case blank
     case `self`
@@ -319,7 +328,7 @@ public enum TargetType: String {
 /// The type is for
 ///
 ///
-public enum ShapeType: String {
+public enum Shape: String {
     
     case `default`
     case circle
@@ -330,7 +339,7 @@ public enum ShapeType: String {
 /// The type is for
 ///
 ///
-public enum WrapType: String {
+public enum Wrapping: String {
     
     case soft
     case hard
@@ -339,58 +348,40 @@ public enum WrapType: String {
 /// The enum is for
 ///
 ///
-public enum DirectionType: String, HTMLContent {
+public enum Direction: String {
     
     case leftToRight = "ltr"
     case rightToLeft = "rtl"
     case auto
 }
 
-extension DirectionType {
+/// The type is for
+///
+///
+public struct MediaType: RawRepresentable {
     
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
-        self.rawValue
+    public var rawValue: String
+    
+    public init?(rawValue: String) {
+        self.rawValue = rawValue
     }
+}
 
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
-        formula.add(string: self.rawValue)
-    }
+extension MediaType {
+    
+    static let html = MediaType(rawValue: "text/html")!
+    static let css = MediaType(rawValue: "text/css")!
+    static let ogg = MediaType(rawValue: "video/ogg")!
+    static let mp4 = MediaType(rawValue: "video/mp4")!
+    static let webm = MediaType(rawValue: "video/webm")!
+    static let mpeg = MediaType(rawValue: "audio/mpeg")!
+    static let javascript = MediaType(rawValue: "application/javascript")!
 }
 
 /// The type is for
 ///
 ///
-public enum MediaType {
-    
-    public enum Common: String {
-        
-        case html = "text/html"
-        case css = "text/css"
-    }
-    
-    public enum Style: String {
-        
-        case css = "text/css"
-    }
-    
-    public enum Source: String {
-        
-        case ogg = "video/ogg"
-        case mp4 = "video/mp4"
-        case webm = "video/webm"
-        case mpeg = "audio/mpeg"
-    }
-    
-    public enum Script: String {
-        
-        case javascript = "application/javascript"
-    }
-}
-
-/// The type is for
-///
-///
-public enum MarkerType: String {
+public enum Marker: String {
     
     case decimal = "1"
     case uppercaseAlpha = "A"
@@ -417,7 +408,7 @@ public enum DocumentType: String {
 /// The type is for
 ///
 ///
-public enum OpenGraphType: String {
+public enum Graphs: String {
 
     case title = "og:title"
     case image = "og:image"
@@ -426,4 +417,29 @@ public enum OpenGraphType: String {
     case url = "og:url"
     case locale = "og:locale"
     case siteName = "og:site_name"
+}
+
+/// The type is for
+///
+///
+public enum Hint: String {
+    
+    case enter
+    case done
+    case go
+    case next
+    case previous
+    case search
+    case send
+}
+
+/// The type is for
+///
+///
+public enum Capitalization: String {
+    
+    case off = "off"
+    case characters = "characters"
+    case words = "words"
+    case sentences = "sentences"
 }

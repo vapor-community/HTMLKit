@@ -12,26 +12,26 @@ public struct IF {
         let condition: Conditionable
 
         /// The local formula for optimazation
-        var localFormula: HTMLRenderer.Formula
+        var localFormula: Renderer.Formula
 
         /// The view to render.
         /// Set to an empty string in order to create a condition on `\.name == ""`
         /// This should probably be re designed a little
-        var view: HTMLContent = ""
+        var view: Content = ""
 
         /// Creates an if condition
         ///
         /// - Parameter condition: The condition to evaluate
         init(condition: Conditionable) {
             self.condition = condition
-            localFormula = HTMLRenderer.Formula()
+            localFormula = Renderer.Formula()
         }
     }
 
     /// The different conditions that can happen
     let conditions: [Condition]
 
-    public init(_ condition: Conditionable, @HTMLBuilder content: () -> HTMLContent) {
+    public init(_ condition: Conditionable, @ContentBuilder content: () -> Content) {
         let ifCondition = Condition(condition: condition)
         ifCondition.view = content()
         self.conditions = [ifCondition]
@@ -45,17 +45,17 @@ public struct IF {
 extension IF.Condition: Conditionable {
 
     // View `Conditionable` documentation
-    public func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         return try condition.evaluate(with: manager)
     }
 
     // View `CompiledTemplate` documentation
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         return try localFormula.render(with: manager)
     }
 
     // View `BrewableFormula` documentation
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try view.prerender(localFormula)
     }
 }
@@ -67,9 +67,9 @@ enum IFPrerenderErrors: Error {
     case dynamiclyEvaluatedCondition
 }
 
-extension IF: HTMLContent {
+extension IF: Content {
 
-    public var scripts: HTMLContent {
+    public var scripts: Content {
         IF(conditions: conditions.map { htmlCondition in
             let scriptCondition = IF.Condition(condition: htmlCondition.condition)
             scriptCondition.view = htmlCondition.view.scripts
@@ -78,7 +78,7 @@ extension IF: HTMLContent {
     }
 
     // View `CompiledTemplate` documentation
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         for condition in conditions {
             if try condition.evaluate(with: manager) {
                 return try condition.render(with: manager)
@@ -88,7 +88,7 @@ extension IF: HTMLContent {
     }
 
     // View `BrewableFormula` documentation
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         var isStaticallyEvaluated = true
         for condition in conditions {
             condition.localFormula.calendar = formula.calendar
@@ -98,7 +98,7 @@ extension IF: HTMLContent {
                 guard isStaticallyEvaluated else {
                     throw IFPrerenderErrors.dynamiclyEvaluatedCondition
                 }
-                let testContext = HTMLRenderer.ContextManager<Void>(contexts: [:])
+                let testContext = Renderer.ContextManager<Void>(contexts: [:])
                 if try condition.condition.evaluate(with: testContext) {
                     try condition.view.prerender(formula)
                     return // Returning as the first true condition should be the only one that is rendered
@@ -120,7 +120,7 @@ extension IF: HTMLContent {
     ///   - condition: The condition to be evaluated
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func elseIf(_ condition: Conditionable, @HTMLBuilder render: () -> HTMLContent) -> IF {
+    public func elseIf(_ condition: Conditionable, @ContentBuilder render: () -> Content) -> IF {
         let ifCondition = Condition(condition: condition)
         ifCondition.view = render()
         return .init(conditions: conditions + [ifCondition])
@@ -132,7 +132,7 @@ extension IF: HTMLContent {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func elseIf<B>(isNil path: TemplateValue<B?>, @HTMLBuilder render: () -> HTMLContent) -> IF {
+    public func elseIf<B>(isNil path: TemplateValue<B?>, @ContentBuilder render: () -> Content) -> IF {
         let condition = Condition(condition: IsNullCondition<B>(path: path))
         condition.view = render()
         return .init(conditions: conditions + [condition])
@@ -144,7 +144,7 @@ extension IF: HTMLContent {
     ///   - path: The path to evaluate
     ///   - render: The view to render if true
     /// - Returns: returns a modified if statment
-    public func elseIf<Value>(isNotNil path: TemplateValue<Value?>, @HTMLBuilder render: () -> HTMLContent) -> IF {
+    public func elseIf<Value>(isNotNil path: TemplateValue<Value?>, @ContentBuilder render: () -> Content) -> IF {
         let condition = Condition(condition: NotNullCondition<Value>(path: path))
         condition.view = render()
         return .init(conditions: conditions + [condition])
@@ -154,19 +154,19 @@ extension IF: HTMLContent {
     ///
     /// - Parameter render: The view to be rendered
     /// - Returns: A mappable object
-    public func `else`(@HTMLBuilder render: () -> HTMLContent) -> HTMLContent {
+    public func `else`(@ContentBuilder render: () -> Content) -> Content {
         let trueCondition = Condition(condition: AlwaysTrueCondition())
         trueCondition.view = render()
         return IF(conditions: conditions + [trueCondition])
     }
 }
 
-public struct Unwrap: HTMLComponent {
+public struct Unwrap: Component {
 
     let content: IF
 
-    public init<A>(_ value: TemplateValue<A?>, @HTMLBuilder content: (TemplateValue<A>) -> HTMLContent) {
-        var ifContent: HTMLContent = ""
+    public init<A>(_ value: TemplateValue<A?>, @ContentBuilder content: (TemplateValue<A>) -> Content) {
+        var ifContent: Content = ""
         if value.isMasqueradingOptional {
             ifContent = content(value.unsafeCast(to: A.self))
         } else {
@@ -188,11 +188,11 @@ public struct Unwrap: HTMLComponent {
         self.content = content
     }
 
-    public var body: HTMLContent {
+    public var body: Content {
         content
     }
 
-    public func `else`(@HTMLBuilder content: () -> HTMLContent) -> HTMLContent {
+    public func `else`(@ContentBuilder content: () -> Content) -> Content {
         self.content.else(render: content)
     }
 }
@@ -202,14 +202,14 @@ public struct ForEach<Values> where Values: Sequence {
 
     public let context: TemplateValue<Values>
 
-    let content: HTMLContent
+    let content: Content
 
-    let localFormula: HTMLRenderer.Formula
+    let localFormula: Renderer.Formula
 
     let condition: Conditionable
     var isEnumerated: Bool = false
 
-    public init(in context: TemplateValue<Values>, @HTMLBuilder content: (TemplateValue<Values.Element>) -> HTMLContent) {
+    public init(in context: TemplateValue<Values>, @ContentBuilder content: (TemplateValue<Values.Element>) -> Content) {
 
         self.condition = true
         self.context = context
@@ -220,7 +220,7 @@ public struct ForEach<Values> where Values: Sequence {
         localFormula = .init()
     }
 
-    public init(in context: TemplateValue<Values?>, @HTMLBuilder content: (TemplateValue<Values.Element>) -> HTMLContent) {
+    public init(in context: TemplateValue<Values?>, @ContentBuilder content: (TemplateValue<Values.Element>) -> Content) {
 
         self.context = context.unsafelyUnwrapped
         switch context {
@@ -237,7 +237,7 @@ public struct ForEach<Values> where Values: Sequence {
         localFormula = .init()
     }
 
-    public init(enumerated context: TemplateValue<Values>, @HTMLBuilder content: ((element: TemplateValue<Values.Element>, index: TemplateValue<Int>)) -> HTMLContent) {
+    public init(enumerated context: TemplateValue<Values>, @ContentBuilder content: ((element: TemplateValue<Values.Element>, index: TemplateValue<Int>)) -> Content) {
 
         self.condition = true
         self.context = context
@@ -255,25 +255,25 @@ public struct ForEach<Values> where Values: Sequence {
 }
 
 extension ForEach {
-    public init(enumerated context: Values, @HTMLBuilder content: ((element: TemplateValue<Values.Element>, index: TemplateValue<Int>)) -> HTMLContent) {
+    public init(enumerated context: Values, @ContentBuilder content: ((element: TemplateValue<Values.Element>, index: TemplateValue<Int>)) -> Content) {
         self.init(enumerated: .constant(context), content: content)
     }
 }
 
 extension ForEach {
-    public init(in values: Values, @HTMLBuilder content: (TemplateValue<Values.Element>) -> HTMLContent) {
+    public init(in values: Values, @ContentBuilder content: (TemplateValue<Values.Element>) -> Content) {
         self.init(in: .constant(values), content: content)
     }
 }
 
-extension ForEach: HTMLContent {
+extension ForEach: Content {
 
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         formula.add(mappable: self)
         try content.prerender(localFormula)
     }
 
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         switch context {
         case .constant(_):
             return try localFormula.render(with: manager)
@@ -301,13 +301,13 @@ extension ForEach: HTMLContent {
 
 extension TemplateValue where Value: Sequence {
 
-    func forEach(@HTMLBuilder content: (TemplateValue<Value.Element>) -> HTMLContent) -> HTMLContent {
+    func forEach(@ContentBuilder content: (TemplateValue<Value.Element>) -> Content) -> Content {
         ForEach(in: self, content: content)
     }
 }
 
 extension Sequence {
-    public func htmlForEach(@HTMLBuilder content: (TemplateValue<Element>) -> HTMLContent) -> HTMLContent {
+    public func htmlForEach(@ContentBuilder content: (TemplateValue<Element>) -> Content) -> Content {
         ForEach(in: .constant(self), content: content)
     }
 }

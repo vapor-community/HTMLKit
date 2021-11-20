@@ -1,19 +1,19 @@
 /// The modifier is for
 ///
 ///
-public struct EnvironmentModifier: HTMLContent {
+public struct EnvironmentModifier: Content {
 
-    let view: HTMLContent
-    let locale: HTMLContent
+    let view: Content
+    let locale: Content
 
-    let localFormula = HTMLRenderer.Formula()
+    let localFormula = Renderer.Formula()
 
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         try view.prerender(localFormula)
         formula.add(mappable: self)
     }
 
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         let prevLocale = manager.locale
         manager.locale = try locale.render(with: manager)
         let rendering = try localFormula.render(with: manager)

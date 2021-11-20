@@ -1,18 +1,18 @@
 /// The protocol defines
 ///
 ///
-public protocol Conditionable: HTMLContent {
+public protocol Conditionable: Content {
     
-    func evaluate<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> Bool
+    func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool
 }
 
 extension Conditionable {
 
-    public func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String {
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try evaluate(with: manager).render(with: manager)
     }
 
-    public func prerender(_ formula: HTMLRenderer.Formula) throws {
+    public func prerender(_ formula: Renderer.Formula) throws {
         formula.add(mappable: self)
     }
 }

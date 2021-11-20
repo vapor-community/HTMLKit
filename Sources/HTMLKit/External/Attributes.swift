@@ -1,121 +1,36 @@
+import OrderedCollections
+
 // MARK: aliases
+
+/// The alias points
+///
+///
+public typealias CoreAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute
 
 // MARK: attributes
 
 /// The protocol provides
 ///
 ///
-public protocol GlobalAttributes {
-
-    func accessKey(_ value: HTMLContent) -> Self
+public protocol AccessKeyAttribute {
     
-    func `class`(_ value: HTMLContent) -> Self
-
-    func data(for key: String, value: HTMLContent) -> Self
-
-    func aria(for key: String, value: HTMLContent) -> Self
-
-    func data(_ key: String, value: HTMLContent) -> Self
-
-    func aria(_ key: String, value: HTMLContent) -> Self
-
-    func style(css: HTMLContent) -> Self
-
-    func isEditable(_ value: Conditionable) -> Self
-
-    func direction(_ value: DirectionType) -> Self
-
-    func direction(_ value: TemplateValue<DirectionType>) -> Self
-
-    func isHidden(_ value: Conditionable) -> Self
-
-    func id(_ value: HTMLContent) -> Self
-
-    func lang(_ value: TemplateValue<String>) -> Self
-
-    func isSpellchecked(_ value: Conditionable) -> Self
-
-    func tabIndex(_ value: TemplateValue<Int>) -> Self
-
-    func title(_ value: HTMLContent) -> Self
-
-    func role(_ text: HTMLContent) -> Self
-
-    func on(click: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func accessKey(_ value: String) -> Self
 }
 
-extension GlobalAttributes where Self: HTMLNode {
-
-    public func aria(for key: String, value: HTMLContent) -> Self {
-        add(.init(attribute: "aria-" + key, value: value))
+extension AccessKeyAttribute {
+    
+    private var key: String { "accesskey" }
+    
+    internal func set(accesskey value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
     }
-
-    public func aria(_ key: String, value: HTMLContent) -> Self {
-        self.aria(for: key, value: value)
-    }
-
-    public func accessKey(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "accessKey", value: value))
-    }
-
-    public func `class`(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "class", value: value))
-    }
-
-    public func data(for key: String, value: HTMLContent) -> Self {
-        add(.init(attribute: "data-" + key, value: value))
-    }
-
-    public func data(_ key: String, value: HTMLContent) -> Self {
-        self.data(for: key, value: value)
-    }
-
-    public func isEditable(_ value: Conditionable) -> Self {
-        add(.init(attribute: "contenteditable", value: value))
-    }
-
-    public func direction(_ value: TemplateValue<DirectionType>) -> Self {
-        add(.init(attribute: "dir", value: value))
-    }
-
-    public func direction(_ value: DirectionType) -> Self {
-        direction(.constant(value))
-    }
-
-    public func isHidden(_ value: Conditionable) -> Self {
-        add(.init(attribute: "hidden", value: nil, isIncluded: value))
-    }
-
-    public func id(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "id", value: value))
-    }
-
-    public func lang(_ value: TemplateValue<String>) -> Self {
-        add(.init(attribute: "lang", value: value))
-    }
-
-    public func isSpellchecked(_ value: Conditionable) -> Self {
-        add(.init(attribute: "spellcheck", value: value))
-    }
-
-    public func tabIndex(_ value: TemplateValue<Int>) -> Self {
-        add(.init(attribute: "tabindex", value: value))
-    }
-
-    public func title(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "title", value: value))
-    }
-
-    public func role(_ text: HTMLContent) -> Self {
-        add(.init(attribute: "role", value: text))
-    }
-
-    public func style(css: HTMLContent) -> Self {
-        add(.init(attribute: "style", value: css))
-    }
-
-    public func on(click: HTMLContent) -> Self {
-        add(.init(attribute: "onclick", value: click))
+    
+    internal func update(accesskey value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -124,13 +39,23 @@ extension GlobalAttributes where Self: HTMLNode {
 ///
 public protocol AcceptAttribute {
     
-    func accept(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func accept(_ value: String) -> Self
 }
 
-extension AcceptAttribute where Self: HTMLNode {
+extension AcceptAttribute {
     
-    public func accept(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "accept", value: value))
+    private var key: String { "accept" }
+    
+    internal func set(accept value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+
+    internal func update(accept value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -139,88 +64,173 @@ extension AcceptAttribute where Self: HTMLNode {
 ///
 public protocol ActionAttribute {
     
-    func action(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func action(_ value: String) -> Self
 }
 
-extension ActionAttribute where Self: HTMLNode {
+extension ActionAttribute {
     
-    public func action(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "action", value: value))
+    private var key: String { "action" }
+    
+    internal func set(action value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(action value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol AlternativeAttribute {
+public protocol AlternateAttribute {
     
-    func alternative(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func alternate(_ value: String) -> Self
 }
 
-extension AlternativeAttribute where Self: HTMLNode {
+extension AlternateAttribute {
     
-    public func alternative(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "alt", value: value))
+    private var key: String { "alternate" }
+    
+    internal func set(alt value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(alt value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol AsyncAttribute {
+public protocol AsynchronouslyAttribute {
     
-    func async() -> Self
+    /// The func adds
+    ///
+    ///
+    func asynchronously() -> Self
 }
 
-extension AsyncAttribute where Self: HTMLNode {
+extension AsynchronouslyAttribute {
     
-    public func async() -> Self {
-        add(.init(attribute: "async", value: nil))
+    private var key: String { "async" }
+    
+    internal func set(async value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(async value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol AutocapitalizeAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func autocapitalize(_ type: Capitalization) -> Self
+}
+
+extension AutocapitalizeAttribute {
+    
+    private var key: String { "autocapitalize" }
+    
+    internal func set(autocapitalize value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(autocapitalize value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol AutoCompleteAttribute {
+public protocol AutocompleteAttribute {
     
-    func autoComplete(_ condition: Conditionable) -> Self
+    /// The func adds
+    ///
+    ///
+    func hasCompletion(_ condition: Bool) -> Self
 }
 
-extension AutoCompleteAttribute where Self: HTMLNode {
+extension AutocompleteAttribute {
     
-    public func autoComplete(_ condition: Conditionable) -> Self {
-        add(.init(attribute: "autocomplete", value: nil, isIncluded: condition))
+    private var key: String { "autocomplete" }
+
+    internal func set(autocomplete value: Bool) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+
+    internal func update(autocomplete value: Bool, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol AutoFocusAttribute {
+public protocol AutofocusAttribute {
     
-    func autoFocus() -> Self
+    /// The func adds
+    ///
+    ///
+    func autofocus() -> Self
 }
 
-extension AutoFocusAttribute where Self: HTMLNode {
+extension AutofocusAttribute {
     
-    public func autoFocus() -> Self {
-        add(.init(attribute: "autofocus", value: nil))
+    private var key: String { "autofocus" }
+    
+    internal func set(autofocus value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(autofocus value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol AutoPlayAttribute {
+public protocol AutoplayAttribute {
     
-    func autoPlay() -> Self
+    /// The func adds
+    ///
+    ///
+    func autoplay() -> Self
 }
 
-extension AutoPlayAttribute where Self: HTMLNode {
+extension AutoplayAttribute {
     
-    public func autoPlay() -> Self {
-        add(.init(attribute: "autoplay", value: nil))
+    private var key: String { "autoplay" }
+    
+    internal func set(autoplay value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(autoplay value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -229,13 +239,23 @@ extension AutoPlayAttribute where Self: HTMLNode {
 ///
 public protocol CheckedAttribute {
     
+    /// The func adds
+    ///
+    ///
     func checked() -> Self
 }
 
-extension CheckedAttribute where Self: HTMLNode {
+extension CheckedAttribute {
     
-    public func checked() -> Self {
-        add(.init(attribute: "checked", value: nil))
+    private var key: String { "checked" }
+    
+    internal func set(checked value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(checked value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -244,13 +264,48 @@ extension CheckedAttribute where Self: HTMLNode {
 ///
 public protocol CiteAttribute {
     
-    func cite(_ text: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func cite(_ value: String) -> Self
 }
 
-extension CiteAttribute where Self: HTMLNode {
+extension CiteAttribute {
     
-    public func cite(_ text: HTMLContent) -> Self {
-        add(.init(attribute: "cite", value: text))
+    private var key: String { "cite" }
+    
+    internal func set(cite value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(cite value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol provides
+///
+///
+public protocol ClassAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func `class`(_ value: String) -> Self
+}
+
+extension ClassAttribute {
+    
+    private var key: String { "class" }
+    
+    internal func set(`class` value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(`class` value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -259,13 +314,23 @@ extension CiteAttribute where Self: HTMLNode {
 ///
 public protocol ColumnsAttribute {
     
+    /// The func adds
+    ///
+    ///
     func columns(_ size: Int) -> Self
 }
 
-extension ColumnsAttribute where Self: HTMLNode {
+extension ColumnsAttribute {
     
-    public func columns(_ size: Int) -> Self {
-        add(.init(attribute: "cols", value: size))
+    private var key: String { "cols" }
+    
+    internal func set(columns value: Int) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+
+    internal func update(columns value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -274,13 +339,23 @@ extension ColumnsAttribute where Self: HTMLNode {
 ///
 public protocol ColumnSpanAttribute {
     
+    /// The func adds
+    ///
+    ///
     func columnSpan(_ size: Int) -> Self
 }
 
-extension ColumnSpanAttribute where Self: HTMLNode {
+extension ColumnSpanAttribute {
     
-    public func columnSpan(_ size: Int) -> Self {
-        add(.init(attribute: "colspan", value: size))
+    private var key: String { "colspan" }
+    
+    internal func set(columnspan value: Int) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+
+    internal func update(columnspan value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -289,13 +364,48 @@ extension ColumnSpanAttribute where Self: HTMLNode {
 ///
 public protocol ContentAttribute {
     
-    func content(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func content(_ value: String) -> Self
 }
 
-extension ContentAttribute where Self: HTMLNode {
+extension ContentAttribute {
     
-    public func content(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "content", value: value))
+    private var key: String { "content" }
+
+    internal func set(content value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(content value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol EditAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func isEditable(_ value: Bool) -> Self
+}
+
+extension EditAttribute {
+    
+    private var key: String { "contenteditable" }
+    
+    internal func set(contenteditable value: Bool) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(contenteditable value: Bool, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -304,13 +414,23 @@ extension ContentAttribute where Self: HTMLNode {
 ///
 public protocol ControlsAttribute {
     
+    /// The func adds
+    ///
+    ///
     func controls() -> Self
 }
 
-extension ControlsAttribute where Self: HTMLNode {
+extension ControlsAttribute {
     
-    public func controls() -> Self {
-        add(.init(attribute: "controls", value: nil))
+    private var key: String { "controls" }
+    
+    internal func set(controls value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(controls value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -319,13 +439,23 @@ extension ControlsAttribute where Self: HTMLNode {
 ///
 public protocol CoordinatesAttribute {
     
-    func coordinates(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func coordinates(_ value: String) -> Self
 }
 
-extension CoordinatesAttribute where Self: HTMLNode {
+extension CoordinatesAttribute {
     
-    public func coordinates(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "coords", value: value))
+    private var key: String { "coords" }
+    
+    internal func set(coords value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+
+    internal func update(coords value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -334,13 +464,23 @@ extension CoordinatesAttribute where Self: HTMLNode {
 ///
 public protocol DataAttribute {
     
-    func data(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func data(_ value: String) -> Self
 }
 
-extension DataAttribute where Self: HTMLNode {
+extension DataAttribute {
     
-    public func data(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "data", value: value))
+    private var key: String { "data" }
+    
+    internal func set(data value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+
+    internal func update(data value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -349,13 +489,23 @@ extension DataAttribute where Self: HTMLNode {
 ///
 public protocol DateTimeAttribute {
     
-    func dateTime(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func dateTime(_ value: Content) -> Self
 }
 
-extension DateTimeAttribute where Self: HTMLNode {
+extension DateTimeAttribute {
     
-    public func dateTime(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "datetime", value: value))
+    private var key: String { "datetime" }
+    
+    internal func set(time value: Content) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(time value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -364,13 +514,73 @@ extension DateTimeAttribute where Self: HTMLNode {
 ///
 public protocol DefaultAttribute {
     
+    /// The func adds
+    ///
+    ///
     func `default`() -> Self
 }
 
-extension DefaultAttribute where Self: HTMLNode {
+extension DefaultAttribute {
     
-    public func `default`() -> Self {
-        add(.init(attribute: "default", value: nil))
+    private var key: String { "default" }
+    
+    internal func set(`default` value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(`default` value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protocol provides
+///
+///
+public protocol DeferAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func `defer`() -> Self
+}
+
+extension DeferAttribute {
+    
+    private var key: String { "defer" }
+    
+    internal func set(`defer` value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(`defer` value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol DirectionAttribute {
+
+    /// The func adds
+    ///
+    ///
+    func direction(_ type: Direction) -> Self
+}
+
+extension DirectionAttribute {
+
+    private var key: String { "dir" }
+
+    internal func set(direction value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+
+    internal func update(direction value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -379,13 +589,23 @@ extension DefaultAttribute where Self: HTMLNode {
 ///
 public protocol DisabledAttribute {
     
+    /// The func adds
+    ///
+    ///
     func disabled() -> Self
 }
 
-extension DisabledAttribute where Self: HTMLNode {
+extension DisabledAttribute {
     
-    public func disabled() -> Self {
-        add(.init(attribute: "disabled", value: nil))
+    private var key: String { "disabled" }
+    
+    internal func set(disabled value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(disabled value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -394,13 +614,48 @@ extension DisabledAttribute where Self: HTMLNode {
 ///
 public protocol DownloadAttribute {
     
+    /// The func adds
+    ///
+    ///
     func download() -> Self
 }
 
-extension DownloadAttribute where Self: HTMLNode {
+extension DownloadAttribute {
     
-    public func download() -> Self {
-        add(.init(attribute: "download", value: nil))
+    private var key: String { "download" }
+    
+    internal func set(download value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(download value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol DragAttribute {
+ 
+    /// The func adds
+    ///
+    ///
+    func isDraggable(_ value: Bool) -> Self
+}
+
+extension DragAttribute {
+    
+    private var key: String { "draggable" }
+    
+    internal func set(draggable value: Bool) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(draggable value: Bool, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -409,13 +664,48 @@ extension DownloadAttribute where Self: HTMLNode {
 ///
 public protocol EncodingAttribute {
     
-    func encoding(_ type: EncodeType) -> Self
+    /// The func adds
+    ///
+    ///
+    func encoding(_ type: Encoding) -> Self
 }
 
-extension EncodingAttribute where Self: HTMLNode {
+extension EncodingAttribute {
+    
+    private var key: String { "enctype" }
+    
+    internal func set(enctype value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(enctype value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
 
-    public func encoding(_ type: EncodeType) -> Self {
-        add(.init(attribute: "enctype", value: type.rawValue))
+/// The protcol provides
+///
+///
+public protocol EnterKeyHintAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func enterKeyHint(_ type: Hint) -> Self
+}
+
+extension EnterKeyHintAttribute {
+    
+    private var key: String { "enterkeyhint" }
+    
+    internal func set(hint value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(hint value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -424,13 +714,23 @@ extension EncodingAttribute where Self: HTMLNode {
 ///
 public protocol ForAttribute {
     
-    func `for`(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func `for`(_ value: String) -> Self
 }
 
-extension ForAttribute where Self: HTMLNode {
+extension ForAttribute {
     
-    public func `for`(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "for", value: value))
+    private var key: String { "for" }
+    
+    internal func set(`for` value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(`for` value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -439,13 +739,23 @@ extension ForAttribute where Self: HTMLNode {
 ///
 public protocol FormAttribute {
     
-    func form(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func form(_ value: String) -> Self
 }
 
-extension FormAttribute where Self: HTMLNode {
+extension FormAttribute {
     
-    public func form(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "form", value: value))
+    private var key: String { "form" }
+    
+    internal func set(form value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(form value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -454,13 +764,23 @@ extension FormAttribute where Self: HTMLNode {
 ///
 public protocol FormActionAttribute {
     
-    func formAction(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func formAction(_ value: String) -> Self
 }
 
-extension FormActionAttribute where Self: HTMLNode {
+extension FormActionAttribute {
     
-    public func formAction(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "formaction", value: value))
+    private var key: String { "formaction" }
+    
+    internal func set(formaction value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(formaction value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -469,13 +789,23 @@ extension FormActionAttribute where Self: HTMLNode {
 ///
 public protocol HeaderAttribute {
     
-    func header(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func headers(_ value: String) -> Self
 }
 
-extension HeaderAttribute where Self: HTMLNode {
+extension HeaderAttribute {
     
-    public func header(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "header", value: value))
+    private var key: String { "headers" }
+    
+    internal func set(headers value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(headers value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -484,13 +814,48 @@ extension HeaderAttribute where Self: HTMLNode {
 ///
 public protocol HeightAttribute {
     
-    func height(_ height: Int) -> Self
+    /// The func adds
+    ///
+    ///
+    func height(_ size: Int) -> Self
 }
 
-extension HeightAttribute where Self: HTMLNode {
+extension HeightAttribute {
     
-    public func height(_ height: Int) -> Self {
-        add(.init(attribute: "height", value: height))
+    private var key: String { "height" }
+    
+    internal func set(height value: Int) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(height value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protocol provides
+///
+///
+public protocol HiddenAttribute {
+ 
+    /// The func adds
+    ///
+    ///
+    func hidden() -> Self
+}
+
+extension HiddenAttribute {
+
+    private var key: String { "hidden" }
+
+    internal func set(hidden value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+
+    internal func update(hidden value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -499,13 +864,23 @@ extension HeightAttribute where Self: HTMLNode {
 ///
 public protocol HighAttribute {
     
-    func high(_ height: Int) -> Self
+    /// The func adds
+    ///
+    ///
+    func high(_ size: Int) -> Self
 }
 
-extension HighAttribute where Self: HTMLNode {
+extension HighAttribute {
     
-    public func high(_ height: Int) -> Self {
-        add(.init(attribute: "high", value: height))
+    private var key: String { "high" }
+    
+    internal func set(high value: Int) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(high value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -514,13 +889,23 @@ extension HighAttribute where Self: HTMLNode {
 ///
 public protocol ReferenceAttribute {
     
-    func reference(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func reference(_ value: String) -> Self
 }
 
-extension ReferenceAttribute where Self: HTMLNode {
+extension ReferenceAttribute {
     
-    public func reference(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "href", value: value))
+    private var key: String { "href" }
+    
+    internal func set(ref value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(ref value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -529,13 +914,248 @@ extension ReferenceAttribute where Self: HTMLNode {
 ///
 public protocol ReferenceLanguageAttribute {
     
-    func referenceLanguage(_ type: LanguageType) -> Self
+    /// The func adds
+    ///
+    ///
+    func referenceLanguage(_ type: Language) -> Self
 }
 
-extension ReferenceLanguageAttribute where Self: HTMLNode {
+extension ReferenceLanguageAttribute {
 
-    public func referenceLanguage(_ type: LanguageType) -> Self {
-        add(.init(attribute: "hreflang", value: type.rawValue))
+    private var key: String { "hreflang" }
+    
+    internal func set(reflang value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(reflang value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol IdentifierAttribute {
+ 
+    /// The func adds
+    ///
+    ///
+    func id(_ value: String) -> Self
+}
+
+extension IdentifierAttribute {
+    
+    private var key: String { "id" }
+    
+    internal func set(id value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(id value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol IsMapAttribute {
+ 
+    /// The func adds
+    ///
+    ///
+    func isMap() -> Self
+}
+
+extension IsMapAttribute {
+    
+    private var key: String { "ismap" }
+    
+    internal func set(ismap value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(ismap value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol InputModeAttribute {
+ 
+    /// The func adds
+    ///
+    ///
+    func inputMode(_ value: String) -> Self
+}
+
+extension InputModeAttribute {
+    
+    private var key: String { "inputmode" }
+    
+    internal func set(inputmode value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(inputmode value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol IsAttribute {
+ 
+    /// The func adds
+    ///
+    ///
+    func `is`(_ value: String) -> Self
+}
+
+extension IsAttribute {
+    
+    private var key: String { "is" }
+    
+    internal func set(`is` value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(`is` value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol ItemIdAttribute {
+ 
+    /// The func adds
+    ///
+    ///
+    func itemId(_ value: String) -> Self
+}
+
+extension ItemIdAttribute {
+    
+    private var key: String { "itemid" }
+    
+    internal func set(itemid value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(itemid value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol ItemPropertyAttribute {
+ 
+    /// The func adds
+    ///
+    ///
+    func itemProperty(_ value: String) -> Self
+}
+
+extension ItemPropertyAttribute {
+    
+    private var key: String { "itemprop" }
+    
+    internal func set(itemprop value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(itemprop value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol ItemReferenceAttribute {
+ 
+    /// The func adds
+    ///
+    ///
+    func itemReference(_ value: String) -> Self
+}
+
+extension ItemReferenceAttribute {
+    
+    private var key: String { "itemref" }
+    
+    internal func set(itemref value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(itemref value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol ItemScopeAttribute {
+ 
+    /// The func adds
+    ///
+    ///
+    func itemScope(_ value: String) -> Self
+}
+
+extension ItemScopeAttribute {
+    
+    private var key: String { "itemscope" }
+    
+    internal func set(itemscope value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(itemscope value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol ItemTypeAttribute {
+ 
+    /// The func adds
+    ///
+    ///
+    func id(_ value: String) -> Self
+}
+
+extension ItemTypeAttribute {
+    
+    private var key: String { "itemtype" }
+    
+    internal func set(itemtype value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(itemtype value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -544,13 +1164,23 @@ extension ReferenceLanguageAttribute where Self: HTMLNode {
 ///
 public protocol KindAttribute {
     
-    func kind(_ text: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func kind(_ value: Content) -> Self
 }
 
-extension KindAttribute where Self: HTMLNode {
+extension KindAttribute {
     
-    public func kind(_ text: HTMLContent) -> Self {
-        add(.init(attribute: "kind", value: text))
+    private var key: String { "kind" }
+    
+    internal func set(kind value: Content) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(kind value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -559,13 +1189,48 @@ extension KindAttribute where Self: HTMLNode {
 ///
 public protocol LabelAttribute {
     
-    func label(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func label(_ value: Content) -> Self
 }
 
-extension LabelAttribute where Self: HTMLNode {
+extension LabelAttribute {
     
-    public func label(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "label", value: value))
+    private var key: String { "label" }
+    
+    internal func set(label value: Content) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(label value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol LanguageAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func language(_ type: Language) -> Self
+}
+
+extension LanguageAttribute {
+    
+    private var key: String { "lang" }
+    
+    internal func set(lang value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(lang value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -574,13 +1239,23 @@ extension LabelAttribute where Self: HTMLNode {
 ///
 public protocol ListAttribute {
     
-    func list(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func list(_ value: Content) -> Self
 }
 
-extension ListAttribute where Self: HTMLNode {
+extension ListAttribute {
     
-    public func list(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "list", value: value))
+    private var key: String { "list" }
+    
+    internal func set(list value: Content) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(list value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -589,13 +1264,48 @@ extension ListAttribute where Self: HTMLNode {
 ///
 public protocol LoopAttribute {
     
+    /// The func adds
+    ///
+    ///
     func loop() -> Self
 }
 
-extension LoopAttribute where Self: HTMLNode {
+extension LoopAttribute {
     
-    public func loop() -> Self {
-        add(.init(attribute: "loop", value: nil))
+    private var key: String { "loop" }
+    
+    internal func set(loop value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(loop value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protocol provides
+///
+///
+public protocol LowAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func low(_ size: Int) -> Self
+}
+
+extension LowAttribute {
+    
+    private var key: String { "low" }
+    
+    internal func set(loop value: Int) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(loop value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -604,13 +1314,23 @@ extension LoopAttribute where Self: HTMLNode {
 ///
 public protocol MaximumValueAttribute {
     
-    func maximumValue(value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func maximum(_ value: Content) -> Self
 }
 
-extension MaximumValueAttribute where Self: HTMLNode {
+extension MaximumValueAttribute {
 
-    public func maximumValue(value: HTMLContent) -> Self {
-        add(.init(attribute: "max", value: value))
+    private var key: String { "max" }
+    
+    internal func set(max value: Content) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(max value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -619,13 +1339,23 @@ extension MaximumValueAttribute where Self: HTMLNode {
 ///
 public protocol MaximumLengthAttribute {
     
-    func maximumLength(value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func maximum(length value: Content) -> Self
 }
 
-extension MaximumLengthAttribute where Self: HTMLNode {
+extension MaximumLengthAttribute {
 
-    public func maximumLength(value: HTMLContent) -> Self {
-        add(.init(attribute: "maxlength", value: value))
+    private var key: String { "maxlength" }
+    
+    internal func set(maxlength value: Content) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(maxlength value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -634,13 +1364,23 @@ extension MaximumLengthAttribute where Self: HTMLNode {
 ///
 public protocol MediaAttribute {
     
-    func media(value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func media(_ value: Content) -> Self
 }
 
-extension MediaAttribute where Self: HTMLNode {
+extension MediaAttribute {
 
-    public func media(value: HTMLContent) -> Self {
-        add(.init(attribute: "media", value: value))
+    private var key: String { "media" }
+    
+    internal func set(media value: Content) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(media value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -649,13 +1389,23 @@ extension MediaAttribute where Self: HTMLNode {
 ///
 public protocol MethodAttribute {
     
-    func method(_ method: MethodType) -> Self
+    /// The func adds
+    ///
+    ///
+    func method(_ type: Method) -> Self
 }
 
-extension MethodAttribute where Self: HTMLNode {
+extension MethodAttribute {
 
-    public func method(_ method: MethodType) -> Self {
-        add(.init(attribute: "method", value: method.rawValue))
+    private var key: String { "method" }
+    
+    internal func set(method value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(method value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -664,13 +1414,23 @@ extension MethodAttribute where Self: HTMLNode {
 ///
 public protocol MinimumValueAttribute {
     
-    func minimumValue(value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func minimum(_ value: Content) -> Self
 }
 
-extension MinimumValueAttribute where Self: HTMLNode {
+extension MinimumValueAttribute {
 
-    public func minimumValue(value: HTMLContent) -> Self {
-        add(.init(attribute: "min", value: value))
+    private var key: String { "min" }
+    
+    internal func set(min value: Content) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(min value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -679,13 +1439,23 @@ extension MinimumValueAttribute where Self: HTMLNode {
 ///
 public protocol MinimumLengthAttribute {
     
-    func minimumLength(value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func minimum(length value: Content) -> Self
 }
 
-extension MinimumLengthAttribute where Self: HTMLNode {
+extension MinimumLengthAttribute {
 
-    public func minimumLength(value: HTMLContent) -> Self {
-        add(.init(attribute: "minlength", value: value))
+    private var key: String { "minlength" }
+    
+    internal func set(minlength value: Content) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(minlength value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -694,13 +1464,23 @@ extension MinimumLengthAttribute where Self: HTMLNode {
 ///
 public protocol MultipleAttribute {
     
+    /// The func adds
+    ///
+    ///
     func multiple() -> Self
 }
 
-extension MultipleAttribute where Self: HTMLNode {
+extension MultipleAttribute {
     
-    public func multiple() -> Self {
-        add(.init(attribute: "multiple", value: nil))
+    private var key: String { "multiple" }
+    
+    internal func set(multiple value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(multiple value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -709,13 +1489,23 @@ extension MultipleAttribute where Self: HTMLNode {
 ///
 public protocol MutedAttribute {
     
+    /// The func adds
+    ///
+    ///
     func muted() -> Self
 }
 
-extension MutedAttribute where Self: HTMLNode {
+extension MutedAttribute {
     
-    public func muted() -> Self {
-        add(.init(attribute: "muted", value: nil))
+    private var key: String { "muted" }
+    
+    internal func set(muted value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(muted value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -724,13 +1514,73 @@ extension MutedAttribute where Self: HTMLNode {
 ///
 public protocol NameAttribute {
 
-    func name(_ value: NameType) -> Self
+    /// The func adds
+    ///
+    ///
+    func name(_ type: NameType) -> Self
 }
 
-extension NameAttribute where Self: HTMLNode {
+extension NameAttribute {
     
-    public func name(_ value: NameType) -> Self {
-        add(.init(attribute: "name", value: value.rawValue))
+    private var key: String { "name" }
+    
+    internal func set(name value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(name value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol NonceAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func nonce(_ value: String) -> Self
+}
+
+extension NonceAttribute {
+    
+    private var key: String { "nonce" }
+    
+    internal func set(nonce value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(nonce value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protocol provides
+///
+///
+public protocol NoValidateAttribute {
+
+    /// The func adds
+    ///
+    ///
+    func novalidate() -> Self
+}
+
+extension NoValidateAttribute {
+    
+    private var key: String { "novalidate" }
+    
+    internal func set(name value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(name value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -739,13 +1589,23 @@ extension NameAttribute where Self: HTMLNode {
 ///
 public protocol OpenAttribute {
     
-    func isOpen(_ condition: Conditionable) -> Self
+    /// The func adds
+    ///
+    ///
+    func isOpen(_ condition: Bool) -> Self
 }
 
-extension OpenAttribute where Self: HTMLNode {
+extension OpenAttribute {
     
-    public func isOpen(_ condition: Conditionable) -> Self {
-        add(.init(attribute: "open", value: nil, isIncluded: condition))
+    private var key: String { "open" }
+    
+    internal func set(open value: Bool) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(open value: Bool, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -754,13 +1614,23 @@ extension OpenAttribute where Self: HTMLNode {
 ///
 public protocol OptimumAttribute {
     
-    func optimum(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func optimum(_ value: Float) -> Self
 }
 
-extension OptimumAttribute where Self: HTMLNode {
+extension OptimumAttribute {
     
-    public func optimum(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "optimum", value: value))
+    private var key: String { "optimum" }
+    
+    internal func set(optimum value: Float) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(optimum value: Float, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -769,13 +1639,48 @@ extension OptimumAttribute where Self: HTMLNode {
 ///
 public protocol PatternAttribute {
     
+    /// The func adds
+    ///
+    ///
     func pattern(_ regex: String) -> Self
 }
 
-extension PatternAttribute where Self: HTMLNode {
+extension PatternAttribute {
     
-    public func pattern(_ regex: String) -> Self {
-        add(.init(attribute: "pattern", value: regex))
+    private var key: String { "pattern" }
+    
+    internal func set(pattern value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(pattern value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol PartAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func part(_ value: String) -> Self
+}
+
+extension PartAttribute {
+    
+    private var key: String { "part" }
+    
+    internal func set(part value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(part value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -784,13 +1689,23 @@ extension PatternAttribute where Self: HTMLNode {
 ///
 public protocol PingAttribute {
     
-    func ping(_ value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func ping(_ value: String) -> Self
 }
 
-extension PingAttribute where Self: HTMLNode {
+extension PingAttribute {
 
-    public func ping(_ value: HTMLContent) -> Self {
-        add(.init(attribute: "ping", value: value))
+    private var key: String { "ping" }
+    
+    internal func set(ping value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(ping value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -799,20 +1714,23 @@ extension PingAttribute where Self: HTMLNode {
 ///
 public protocol PlaceholderAttribute {
     
-    func placeholder(_ text: HTMLContent) -> Self
-}
-
-extension PlaceholderAttribute where Self: HTMLNode {
-    
-    public func placeholder(_ text: HTMLContent) -> Self {
-        add(.init(attribute: "placeholder", value: text))
-    }
+    /// The func adds
+    ///
+    ///
+    func placeholder(_ value: String) -> Self
 }
 
 extension PlaceholderAttribute {
     
-    public func placeholder(localized key: String) -> Self {
-        self.placeholder(Localized(key: key))
+    private var key: String { "placeholder" }
+    
+    internal func set(placeholder value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(placeholer value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -821,13 +1739,48 @@ extension PlaceholderAttribute {
 ///
 public protocol PosterAttribute {
     
-    func poster(value: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func poster(_ value: String) -> Self
 }
 
-extension PosterAttribute where Self: HTMLNode {
+extension PosterAttribute {
 
-    public func poster(value: HTMLContent) -> Self {
-        add(.init(attribute: "poster", value: value))
+    private var key: String { "poster" }
+    
+    internal func set(poster value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(poster value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protocol provides
+///
+///
+public protocol PreloadAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func preload(_ value: String) -> Self
+}
+
+extension PreloadAttribute {
+    
+    private var key: String { "preload" }
+    
+    internal func set(preload value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(preload value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -836,13 +1789,24 @@ extension PosterAttribute where Self: HTMLNode {
 ///
 public protocol ReadyOnlyAttribute {
     
+    /// The func adds
+    ///
+    ///
     func readonly() -> Self
 }
 
-extension ReadyOnlyAttribute where Self: HTMLNode {
+extension ReadyOnlyAttribute {
     
-    public func readonly() -> Self {
-        add(.init(attribute: "readonly", value: nil))
+    private var key: String { "readonly" }
+    
+    
+    internal func set(readonly value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(readonly value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -851,13 +1815,23 @@ extension ReadyOnlyAttribute where Self: HTMLNode {
 ///
 public protocol ReferrerPolicyAttribute {
     
-    func referrerPolicy(_ type: PolicyType) -> Self
+    /// The func adds
+    ///
+    ///
+    func referrerPolicy(_ type: Policy) -> Self
 }
 
-extension ReferrerPolicyAttribute where Self: HTMLNode {
+extension ReferrerPolicyAttribute {
 
-    public func referrerPolicy(_ type: PolicyType) -> Self {
-        add(.init(attribute: "referrerpolicy", value: type.rawValue))
+    private var key: String { "referrerpolicy" }
+    
+    internal func set(policy value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(policy value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -866,13 +1840,23 @@ extension ReferrerPolicyAttribute where Self: HTMLNode {
 ///
 public protocol RelationshipAttribute {
     
-    func relationship(_ value: RelationshipType) -> Self
+    /// The func adds
+    ///
+    ///
+    func relationship(_ type: Relation) -> Self
 }
 
-extension RelationshipAttribute where Self: HTMLNode {
+extension RelationshipAttribute {
     
-    public func relationship(_ value: RelationshipType) -> Self {
-        add(.init(attribute: "rel", value: value.rawValue))
+    private var key: String { "rel" }
+    
+    internal func set(rel value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(rel value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -881,13 +1865,23 @@ extension RelationshipAttribute where Self: HTMLNode {
 ///
 public protocol RequiredAttribute {
     
+    /// The func adds
+    ///
+    ///
     func required() -> Self
 }
 
-extension RequiredAttribute where Self: HTMLNode {
+extension RequiredAttribute {
     
-    public func required() -> Self {
-        add(.init(attribute: "required", value: nil))
+    private var key: String { "required" }
+    
+    internal func set(required value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(required value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -896,13 +1890,48 @@ extension RequiredAttribute where Self: HTMLNode {
 ///
 public protocol ReversedAttribute {
     
+    /// The func adds
+    ///
+    ///
     func reversed() -> Self
 }
 
-extension ReversedAttribute where Self: HTMLNode {
+extension ReversedAttribute {
     
-    public func reversed() -> Self {
-        add(.init(attribute: "reversed", value: nil))
+    private var key: String { "reversed" }
+    
+    internal func set(reversed value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(reversed value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protocol provides
+///
+///
+public protocol RoleAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func role(_ value: String) -> Self
+}
+
+extension RoleAttribute {
+    
+    private var key: String { "role" }
+    
+    internal func set(role value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(role value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -914,10 +1943,17 @@ public protocol RowsAttribute {
     func rows(_ size: Int) -> Self
 }
 
-extension RowsAttribute where Self: HTMLNode {
+extension RowsAttribute {
 
-    public func rows(_ size: Int) -> Self {
-        add(.init(attribute: "rows", value: size))
+    private var key: String { "rows" }
+    
+    internal func set(rows value: Int) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(rows value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -926,13 +1962,23 @@ extension RowsAttribute where Self: HTMLNode {
 ///
 public protocol RowSpanAttribute {
     
+    /// The func adds
+    ///
+    ///
     func rowSpan(_ size: Int) -> Self
 }
 
-extension RowSpanAttribute where Self: HTMLNode {
+extension RowSpanAttribute {
 
-    public func rowSpan(_ size: Int) -> Self {
-        add(.init(attribute: "rowspan", value: size))
+    private var key: String { "rowspan" }
+    
+    internal func set(rowspan value: Int) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(rowspan value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -941,13 +1987,23 @@ extension RowSpanAttribute where Self: HTMLNode {
 ///
 public protocol SandboxAttribute {
     
+    /// The func adds
+    ///
+    ///
     func sandbox() -> Self
 }
 
-extension SandboxAttribute where Self: HTMLNode {
+extension SandboxAttribute {
     
-    public func sandbox() -> Self {
-        add(.init(attribute: "sandbox", value: nil))
+    private var key: String { "sandbox" }
+    
+    internal func set(sandbox value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(sandbox value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -956,13 +2012,23 @@ extension SandboxAttribute where Self: HTMLNode {
 ///
 public protocol ScopeAttribute {
     
-    func scope(_ text: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func scope(_ value: String) -> Self
 }
 
-extension ScopeAttribute where Self: HTMLNode {
+extension ScopeAttribute {
 
-    public func scope(_ text: HTMLContent) -> Self {
-        add(.init(attribute: "scope", value: text))
+    private var key: String { "scope" }
+    
+    internal func set(scope value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(scope value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -971,13 +2037,23 @@ extension ScopeAttribute where Self: HTMLNode {
 ///
 public protocol ShapeAttribute {
     
-    func shape(_ type: ShapeType) -> Self
+    /// The func adds
+    ///
+    ///
+    func shape(_ type: Shape) -> Self
 }
 
-extension ShapeAttribute where Self: HTMLNode {
+extension ShapeAttribute {
 
-    public func shape(_ type: ShapeType) -> Self {
-        add(.init(attribute: "shape", value: type.rawValue))
+    private var key: String { "shape" }
+    
+    internal func set(shape value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(shape value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -986,13 +2062,23 @@ extension ShapeAttribute where Self: HTMLNode {
 ///
 public protocol SizeAttribute {
     
+    /// The func adds
+    ///
+    ///
     func size(_ size: Int) -> Self
 }
 
-extension SizeAttribute where Self: HTMLNode {
+extension SizeAttribute {
 
-    public func size(_ size: Int) -> Self {
-        add(.init(attribute: "size", value: size))
+    private var key: String { "size" }
+    
+    internal func set(size value: Int) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(size value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -1001,13 +2087,48 @@ extension SizeAttribute where Self: HTMLNode {
 ///
 public protocol SizesAttribute {
     
+    /// The func adds
+    ///
+    ///
     func sizes(_ size: Int) -> Self
 }
 
-extension SizesAttribute where Self: HTMLNode {
+extension SizesAttribute {
 
-    public func sizes(_ size: Int) -> Self {
-        add(.init(attribute: "sizes", value: size))
+    private var key: String { "sizes" }
+    
+    internal func set(sizes value: Int) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(sizes value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol SlotAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func slot(_ value: String) -> Self
+}
+
+extension SlotAttribute {
+    
+    private var key: String { "slot" }
+    
+    internal func set(lang value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(lang value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -1016,13 +2137,48 @@ extension SizesAttribute where Self: HTMLNode {
 ///
 public protocol SpanAttribute {
     
+    /// The func adds
+    ///
+    ///
     func span(_ size: Int) -> Self
 }
 
-extension SpanAttribute where Self: HTMLNode {
+extension SpanAttribute {
 
-    public func span(_ size: Int) -> Self {
-        add(.init(attribute: "span", value: size))
+    private var key: String { "span" }
+    
+    internal func set(span value: Int) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(span value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol SpellCheckAttribute {
+ 
+    /// The func adds
+    ///
+    ///
+    func hasSpellCheck(_ value: Bool) -> Self
+}
+
+extension SpellCheckAttribute {
+    
+    private var key: String { "spellcheck" }
+    
+    internal func set(spellcheck value: Bool) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(spellcheck value: Bool, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -1031,13 +2187,23 @@ extension SpanAttribute where Self: HTMLNode {
 ///
 public protocol SourceAttribute {
     
-    func source(_ link: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func source(_ value: String) -> Self
 }
 
-extension SourceAttribute where Self: HTMLNode {
+extension SourceAttribute {
     
-    public func source(_ link: HTMLContent) -> Self {
-        add(.init(attribute: "src", value: link))
+    private var key: String { "source" }
+    
+    internal func set(source value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(source value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -1046,13 +2212,23 @@ extension SourceAttribute where Self: HTMLNode {
 ///
 public protocol StartAttribute {
     
+    /// The func adds
+    ///
+    ///
     func start(_ size: Int) -> Self
 }
 
-extension StartAttribute where Self: HTMLNode {
-
-    public func start(_ size: Int) -> Self {
-        add(.init(attribute: "start", value: size))
+extension StartAttribute {
+    
+    private var key: String { "start" }
+    
+    internal func set(start value: Int) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(start value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -1061,13 +2237,73 @@ extension StartAttribute where Self: HTMLNode {
 ///
 public protocol StepAttribute {
     
+    /// The func adds
+    ///
+    ///
     func step(_ size: Int) -> Self
 }
 
-extension StepAttribute where Self: HTMLNode {
+extension StepAttribute {
 
-    public func step(_ size: Int) -> Self {
-        add(.init(attribute: "step", value: size))
+    private var key: String { "step" }
+    
+    internal func set(step value: Int) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(step value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol StyleAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func style(_ value: String) -> Self
+}
+
+extension StyleAttribute {
+    
+    private var key: String { "style" }
+
+    internal func set(style value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(style value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol TabulatorAttribute {
+ 
+    /// The func adds
+    ///
+    ///
+    func tabIndex(_ value: String) -> Self
+}
+
+extension TabulatorAttribute {
+    
+    private var key: String { "tabindex" }
+    
+    internal func set(index value: Content) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(index value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -1076,13 +2312,73 @@ extension StepAttribute where Self: HTMLNode {
 ///
 public protocol TargetAttribute {
     
-    func target(_ type: TargetType) -> Self
+    /// The func adds
+    ///
+    ///
+    func target(_ type: Target) -> Self
 }
 
-extension TargetAttribute where Self: HTMLNode {
+extension TargetAttribute {
     
-    public func target(_ type: TargetType) -> Self {
-        add(.init(attribute: "target", value: type.rawValue))
+    private var key: String { "target" }
+    
+    internal func set(target value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(target value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol TitleAttribute {
+ 
+    /// The func adds
+    ///
+    ///
+    func title(_ value: String) -> Self
+}
+
+extension TitleAttribute {
+    
+    private var key: String { "title" }
+    
+    internal func set(title value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+
+    internal func update(title value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
+    }
+}
+
+/// The protcol privides
+///
+///
+public protocol TranslateAttribute {
+ 
+    /// The func adds
+    ///
+    ///
+    func translate(_ value: String) -> Self
+}
+
+extension TranslateAttribute {
+    
+    private var key: String { "translate" }
+    
+    internal func set(translate value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+
+    internal func update(translate value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -1091,13 +2387,23 @@ extension TargetAttribute where Self: HTMLNode {
 ///
 public protocol TypeAttribute {
 
-    func type(_ value: TemplateValue<String>) -> Self
+    /// The func adds
+    ///
+    ///
+    func type(_ value: String) -> Self
 }
 
-extension TypeAttribute where Self: HTMLNode {
+extension TypeAttribute {
     
-    public func type(_ value: TemplateValue<String>) -> Self {
-        add(.init(attribute: "type", value: value))
+    private var key: String { "type" }
+    
+    internal func set(type value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(type value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -1106,13 +2412,23 @@ extension TypeAttribute where Self: HTMLNode {
 ///
 public protocol ValueAttribute {
     
-    func value(_ text: HTMLContent) -> Self
+    /// The func adds
+    ///
+    ///
+    func value(_ value: String) -> Self
 }
 
-extension ValueAttribute where Self: HTMLNode {
+extension ValueAttribute {
 
-    public func value(_ text: HTMLContent) -> Self {
-        add(.init(attribute: "value", value: text))
+    private var key: String { "value" }
+    
+    internal func set(value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -1121,13 +2437,23 @@ extension ValueAttribute where Self: HTMLNode {
 ///
 public protocol WidthAttribute {
     
-    func width(_ width: Int) -> Self
+    /// The func adds
+    ///
+    ///
+    func width(_ size: Int) -> Self
 }
 
-extension WidthAttribute where Self: HTMLNode {
+extension WidthAttribute {
 
-    public func width(_ width: Int) -> Self {
-        add(.init(attribute: "width", value: width))
+    private var key: String { "width" }
+    
+    internal func set(width value: Int) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(width value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
@@ -1136,24 +2462,47 @@ extension WidthAttribute where Self: HTMLNode {
 ///
 public protocol WrapAttribute {
     
-    func wrap(_ type: WrapType) -> Self
+    /// The func adds
+    ///
+    ///
+    func wrap(_ type: Wrapping) -> Self
 }
 
-extension WrapAttribute where Self: HTMLNode {
+extension WrapAttribute {
 
-    public func wrap(_ type: WrapType) -> Self {
-        add(.init(attribute: "wrap", value: type.rawValue))
+    private var key: String { "wrap" }
+    
+    internal func set(wrap value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(wrap value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }
 
+/// The protocol provides
+///
+///
 public protocol PropertyAttribute {
     
-    func property(_ type: OpenGraphType) -> Self
+    /// The func adds
+    ///
+    ///
+    func property(_ type: Graphs) -> Self
 }
 
-extension PropertyAttribute where Self: HTMLNode {
+extension PropertyAttribute {
     
-    public func property(_ type: OpenGraphType) -> Self {
-        add(.init(attribute: "property", value: type.rawValue))
+    private var key: String { "property" }
+    
+    internal func set(property value: String) -> OrderedDictionary<String, Any> {
+        return [key: value]
+    }
+    
+    internal func update(property value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+        attributes[key] = value
+        return attributes
     }
 }

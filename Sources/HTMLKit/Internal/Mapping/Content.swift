@@ -3,22 +3,22 @@ import Foundation
 /// The protocol defines
 ///
 ///
-public protocol HTMLContent {
+public protocol Content {
 
     var renderWhenLocalizing: Bool { get }
 
-    func render<T>(with manager: HTMLRenderer.ContextManager<T>) throws -> String
+    func render<T>(with manager: Renderer.ContextManager<T>) throws -> String
 
-    func prerender(_ formula: HTMLRenderer.Formula) throws
+    func prerender(_ formula: Renderer.Formula) throws
 
-    var scripts: HTMLContent { get }
+    var scripts: Content { get }
 }
 
-extension HTMLContent {
+extension Content {
     
     public var renderWhenLocalizing: Bool { return true }
     
-    public var scripts: HTMLContent { "" }
+    public var scripts: Content { "" }
     
     public func environment(locale: String) -> EnvironmentModifier {
         return EnvironmentModifier(view: self, locale: locale)
@@ -32,16 +32,16 @@ extension HTMLContent {
 /// The function is for
 ///
 ///
-public func + (lhs: HTMLContent, rhs: HTMLContent) -> HTMLContent {
-    var output: Array<HTMLContent> = []
+public func + (lhs: Content, rhs: Content) -> Content {
+    var output: Array<Content> = []
 
-    if let list = lhs as? Array<HTMLContent> {
+    if let list = lhs as? Array<Content> {
         output.append(contentsOf: list)
     } else {
         output.append(lhs)
     }
 
-    if let list = rhs as? Array<HTMLContent> {
+    if let list = rhs as? Array<Content> {
         output.append(list)
     } else {
         output.append(rhs)
@@ -52,6 +52,6 @@ public func + (lhs: HTMLContent, rhs: HTMLContent) -> HTMLContent {
 /// The function is for
 ///
 ///
-public func +=(lhs: inout HTMLContent, rhs: HTMLContent) {
+public func +=(lhs: inout Content, rhs: Content) {
     lhs = lhs + rhs
 }

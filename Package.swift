@@ -16,11 +16,15 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/miroslavkovac/Lingo.git", from: "3.1.0"),
+        .package(url: "https://github.com/apple/swift-collections.git", from: "1.0.1"),
     ],
     targets: [
         .target(
             name: "HTMLKit",
-            dependencies: ["Lingo"]
+            dependencies: [
+                .product(name: "Lingo", package: "Lingo"),
+                .product(name: "Collections", package: "swift-collections")
+            ]
         ),
         .testTarget(
             name: "HTMLKitTests",
