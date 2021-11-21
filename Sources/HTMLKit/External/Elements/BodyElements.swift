@@ -19,21 +19,11 @@ public struct Link: EmptyNode {
 extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, ErrorEventAttribute, LoadEventAttribute {
     
     public func onError(_ value: String) -> Link {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onerror: value))
-        }
-        
-        return .init(attributes: update(onerror: value, on: &attributes))
+        return mutate(onerror: value)
     }
     
     public func onLoad(_ value: String) -> Link {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onload: value))
-        }
-        
-        return .init(attributes: update(onload: value, on: &attributes))
+        return mutate(onload: value)
     }
     
     public func accessKey(_ value: String) -> Link {
@@ -14272,21 +14262,11 @@ public struct Image: EmptyNode {
 extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, ErrorEventAttribute, LoadEventAttribute {
     
     public func onError(_ value: String) -> Image {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onerror: value))
-        }
-        
-        return .init(attributes: update(onerror: value, on: &attributes))
+        return mutate(onerror: value)
     }
     
     public func onLoad(_ value: String) -> Image {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onload: value))
-        }
-        
-        return .init(attributes: update(onload: value, on: &attributes))
+        return mutate(onload: value)
     }
     
     public func accessKey(_ value: String) -> Image {
@@ -15174,12 +15154,7 @@ public struct Object: ContentNode {
 extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute, FormAttribute, WidthAttribute, HeightAttribute, ErrorEventAttribute {
     
     public func onError(_ value: String) -> Object {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onerror: value), content: content)
-        }
-        
-        return .init(attributes: update(onerror: value, on: &attributes), content: content)
+        return mutate(onerror: value)
     }
     
     public func accessKey(_ value: String) -> Object {
@@ -16358,21 +16333,11 @@ public struct Form: ContentNode {
 extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, EncodingAttribute, MethodAttribute, NameAttribute, TargetAttribute, RelationshipAttribute, ResetEventAttribute, SubmitEventAttribute {
     
     public func onReset(_ value: String) -> Form {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onreset: value), content: content)
-        }
-        
-        return .init(attributes: update(onreset: value, on: &attributes), content: content)
+        return mutate(onreset: value)
     }
     
     public func onSubmit(_ value: String) -> Form {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onsubmit: value), content: content)
-        }
-        
-        return .init(attributes: update(onsubmit: value, on: &attributes), content: content)
+        return mutate(onsubmit: value)
     }
     
     public func accessKey(_ value: String) -> Form {
@@ -17786,7 +17751,7 @@ public struct Details: ContentNode {
 extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
     
     public func onToggle(_ value: String) -> Details {
-        self.setOrUpdate(value: value)
+        return mutate(ontoggle: value)
     }
     
     public func accessKey(_ value: String) -> Details {
@@ -18310,21 +18275,11 @@ public struct Script: ContentNode {
 extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute, ErrorEventAttribute, LoadEventAttribute {
     
     public func onError(_ value: String) -> Script {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onerror: value), content: content)
-        }
-        
-        return .init(attributes: update(onerror: value, on: &attributes), content: content)
+        return mutate(onerror: value)
     }
     
     public func onLoad(_ value: String) -> Script {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onload: value), content: content)
-        }
-        
-        return .init(attributes: update(onload: value, on: &attributes), content: content)
+        return mutate(onload: value)
     }
 
     public func accessKey(_ value: String) -> Script {

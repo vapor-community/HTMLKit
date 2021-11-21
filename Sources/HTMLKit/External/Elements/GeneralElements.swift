@@ -752,84 +752,39 @@ public struct Body: ContentNode {
 extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttribute, BeforeUnloadEventAttribute, HashChangeEventAttribute, LoadEventAttribute, OfflineEventAttribute, OnlineEventAttribute, PageShowEventAttribute, ResizeEventAttribute {
     
     public func onAfterPrint(_ value: String) -> Body {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onafterprint: value), content: content)
-        }
-        
-        return .init(attributes: update(onafterprint: value, on: &attributes), content: content)
+        return mutate(onafterprint: value)
     }
     
     public func onBeforePrint(_ value: String) -> Body {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onbeforeprint: value), content: content)
-        }
-        
-        return .init(attributes: update(onbeforeprint: value, on: &attributes), content: content)
+        return mutate(onbeforeprint: value)
     }
     
     public func onBeforeUnload(_ value: String) -> Body {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onbeforeunload: value), content: content)
-        }
-        
-        return .init(attributes: update(onbeforeunload: value, on: &attributes), content: content)
+        return mutate(onbeforeunload: value)
     }
     
     public func onHashChange(_ value: String) -> Body {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onhashchange: value), content: content)
-        }
-        
-        return .init(attributes: update(onhashchange: value, on: &attributes), content: content)
+        return mutate(onhashchange: value)
     }
     
     public func onLoad(_ value: String) -> Body {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onload: value), content: content)
-        }
-        
-        return .init(attributes: update(onload: value, on: &attributes), content: content)
+        return mutate(onload: value)
     }
     
     public func onOffline(_ value: String) -> Body {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onoffline: value), content: content)
-        }
-        
-        return .init(attributes: update(onoffline: value, on: &attributes), content: content)
+        return mutate(onoffline: value)
     }
     
     public func onOnline(_ value: String) -> Body {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(ononline: value), content: content)
-        }
-        
-        return .init(attributes: update(ononline: value, on: &attributes), content: content)
+        return mutate(ononline: value)
     }
     
     public func onPageShow(_ value: String) -> Body {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onpageshow: value), content: content)
-        }
-        
-        return .init(attributes: update(onpageshow: value, on: &attributes), content: content)
+        return mutate(onpageshow: value)
     }
     
     public func onResize(_ value: String) -> Body {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onresize: value), content: content)
-        }
-        
-        return .init(attributes: update(onresize: value, on: &attributes), content: content)
+        return mutate(onresize: value)
     }
 
     public func accessKey(_ value: String) -> Body {

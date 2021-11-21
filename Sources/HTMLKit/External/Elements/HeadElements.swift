@@ -813,12 +813,7 @@ public struct Style: ContentNode {
 extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttribute {
     
     public func onLoad(_ value: String) -> Style {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(onload: value), content: content)
-        }
-        
-        return .init(attributes: update(onload: value, on: &attributes), content: content)
+        return mutate(onload: value)
     }
 
     public func accessKey(_ value: String) -> Style {

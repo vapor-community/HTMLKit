@@ -19,12 +19,7 @@ public struct Input: EmptyNode {
 extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute, InvalidEventAttribute {
     
     public func onInvalid(_ value: String) -> Input {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(oninvalid: value))
-        }
-        
-        return .init(attributes: update(oninvalid: value, on: &attributes))
+        return mutate(oninvalid: value)
     }
     
     public func accessKey(_ value: String) -> Input {
