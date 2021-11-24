@@ -34,219 +34,99 @@ public struct TermName: ContentNode {
 extension TermName: GlobalAttributes {
     
     public func accessKey(_ value: String) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(accesskey: value), content: content)
-        }
-        
-        return .init(attributes: update(accesskey: value, on: &attributes), content: content)
+        return mutate(accesskey: value)
     }
 
     public func autocapitalize(_ type: Capitalization) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(autocapitalize: type.rawValue), content: content)
-        }
-        
-        return .init(attributes: update(autocapitalize: type.rawValue, on: &attributes), content: content)
+        return mutate(autocapitalize: type.rawValue)
     }
 
     public func autofocus() -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(autofocus: "autofocus"), content: content)
-        }
-        
-        return .init(attributes: update(autofocus: "autofocus", on: &attributes), content: content)
+        return mutate(autofocus: "autofocus")
     }
 
     public func `class`(_ value: String) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(class: value), content: content)
-        }
-        
-        return .init(attributes: update(class: value, on: &attributes), content: content)
+        return mutate(class: value)
     }
 
-    public func isEditable(_ value: Bool) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(contenteditable: true), content: content)
-        }
-        
-        return .init(attributes: update(contenteditable: true, on: &attributes), content: content)
+    public func isEditable(_ condition: Bool) -> TermName {
+        return mutate(contenteditable: condition)
     }
 
     public func direction(_ type: Direction) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(direction: type.rawValue), content: content)
-        }
-        
-        return .init(attributes: update(direction: type.rawValue, on: &attributes), content: content)
+        return mutate(dir: type.rawValue)
     }
 
-    public func isDraggable(_ value: Bool) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(draggable: true), content: content)
-        }
-        
-        return .init(attributes: update(draggable: true, on: &attributes), content: content)
+    public func isDraggable(_ condition: Bool) -> TermName {
+        return mutate(draggable: condition)
     }
 
     public func enterKeyHint(_ type: Hint) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(hint: type.rawValue), content: content)
-        }
-        
-        return .init(attributes: update(hint: type.rawValue, on: &attributes), content: content)
+        return mutate(enterkeyhint: type.rawValue)
     }
 
     public func hidden() -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(hidden: "hidden"), content: content)
-        }
-        
-        return .init(attributes: update(hidden: "hidden", on: &attributes), content: content)
+        return mutate(hidden: "hidden")
     }
 
     public func inputMode(_ value: String) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(inputmode: value), content: content)
-        }
-        
-        return .init(attributes: update(inputmode: value, on: &attributes), content: content)
+        return mutate(inputmode: value)
     }
 
     public func `is`(_ value: String) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(is: value), content: content)
-        }
-        
-        return .init(attributes: update(is: value, on: &attributes), content: content)
+        return mutate(is: value)
     }
 
     public func itemId(_ value: String) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(itemid: value), content: content)
-        }
-        
-        return .init(attributes: update(itemid: value, on: &attributes), content: content)
+        return mutate(itemid: value)
     }
 
     public func itemProperty(_ value: String) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(itemprop: value), content: content)
-        }
-        
-        return .init(attributes: update(itemprop: value, on: &attributes), content: content)
+        return mutate(itemprop: value)
     }
 
     public func itemReference(_ value: String) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(itemref: value), content: content)
-        }
-        
-        return .init(attributes: update(itemref: value, on: &attributes), content: content)
+        return mutate(itemref: value)
     }
 
     public func itemScope(_ value: String) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(itemscope: value), content: content)
-        }
-        
-        return .init(attributes: update(itemscope: value, on: &attributes), content: content)
+        return mutate(itemscope: value)
     }
 
     public func id(_ value: String) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(id: value), content: content)
-        }
-        
-        return .init(attributes: update(id: value, on: &attributes), content: content)
+        return mutate(id: value)
     }
 
     public func language(_ type: Language) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(lang: type.rawValue), content: content)
-        }
-        
-        return .init(attributes: update(lang: type.rawValue, on: &attributes), content: content)
+        return mutate(lang: type.rawValue)
     }
 
     public func nonce(_ value: String) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(nonce: value), content: content)
-        }
-        
-        return .init(attributes: update(nonce: value, on: &attributes), content: content)
+        return mutate(nonce: value)
     }
 
     public func role(_ value: String) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(role: value), content: content)
-        }
-        
-        return .init(attributes: update(role: value, on: &attributes), content: content)
+        return mutate(role: value)
     }
 
-    public func hasSpellCheck(_ value: Bool) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(spellcheck: true), content: content)
-        }
-        
-        return .init(attributes: update(spellcheck: true, on: &attributes), content: content)
+    public func hasSpellCheck(_ condition: Bool) -> TermName {
+        return mutate(spellcheck: condition)
     }
 
     public func style(_ value: String) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(style: value), content: content)
-        }
-        
-        return .init(attributes: update(style: value, on: &attributes), content: content)
+        return mutate(style: value)
     }
 
     public func tabIndex(_ value: String) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(index: value), content: content)
-        }
-        
-        return .init(attributes: update(index: value, on: &attributes), content: content)
+        return mutate(tabindex: value)
     }
 
     public func title(_ value: String) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(title: value), content: content)
-        }
-        
-        return .init(attributes: update(title: value, on: &attributes), content: content)
+        return mutate(title: value)
     }
 
     public func translate(_ value: String) -> TermName {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(translate: value), content: content)
-        }
-        
-        return .init(attributes: update(translate: value, on: &attributes), content: content)
+        return mutate(translate: value)
     }
 }
 
@@ -285,219 +165,99 @@ public struct TermDefinition: ContentNode {
 extension TermDefinition: GlobalAttributes {
     
     public func accessKey(_ value: String) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(accesskey: value), content: content)
-        }
-        
-        return .init(attributes: update(accesskey: value, on: &attributes), content: content)
+        return mutate(accesskey: value)
     }
 
     public func autocapitalize(_ type: Capitalization) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(autocapitalize: type.rawValue), content: content)
-        }
-        
-        return .init(attributes: update(autocapitalize: type.rawValue, on: &attributes), content: content)
+        return mutate(autocapitalize: type.rawValue)
     }
 
     public func autofocus() -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(autofocus: "autofocus"), content: content)
-        }
-        
-        return .init(attributes: update(autofocus: "autofocus", on: &attributes), content: content)
+        return mutate(autofocus: "autofocus")
     }
 
     public func `class`(_ value: String) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(class: value), content: content)
-        }
-        
-        return .init(attributes: update(class: value, on: &attributes), content: content)
+        return mutate(class: value)
     }
 
-    public func isEditable(_ value: Bool) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(contenteditable: true), content: content)
-        }
-        
-        return .init(attributes: update(contenteditable: true, on: &attributes), content: content)
+    public func isEditable(_ condition: Bool) -> TermDefinition {
+        return mutate(contenteditable: condition)
     }
 
     public func direction(_ type: Direction) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(direction: type.rawValue), content: content)
-        }
-        
-        return .init(attributes: update(direction: type.rawValue, on: &attributes), content: content)
+        return mutate(dir: type.rawValue)
     }
 
-    public func isDraggable(_ value: Bool) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(draggable: true), content: content)
-        }
-        
-        return .init(attributes: update(draggable: true, on: &attributes), content: content)
+    public func isDraggable(_ condition: Bool) -> TermDefinition {
+        return mutate(draggable: condition)
     }
 
     public func enterKeyHint(_ type: Hint) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(hint: type.rawValue), content: content)
-        }
-        
-        return .init(attributes: update(hint: type.rawValue, on: &attributes), content: content)
+        return mutate(enterkeyhint: type.rawValue)
     }
 
     public func hidden() -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(hidden: "hidden"), content: content)
-        }
-        
-        return .init(attributes: update(hidden: "hidden", on: &attributes), content: content)
+        return mutate(hidden: "hidden")
     }
 
     public func inputMode(_ value: String) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(inputmode: value), content: content)
-        }
-        
-        return .init(attributes: update(inputmode: value, on: &attributes), content: content)
+        return mutate(inputmode: value)
     }
 
     public func `is`(_ value: String) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(is: value), content: content)
-        }
-        
-        return .init(attributes: update(is: value, on: &attributes), content: content)
+        return mutate(is: value)
     }
 
     public func itemId(_ value: String) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(itemid: value), content: content)
-        }
-        
-        return .init(attributes: update(itemid: value, on: &attributes), content: content)
+        return mutate(itemid: value)
     }
 
     public func itemProperty(_ value: String) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(itemprop: value), content: content)
-        }
-        
-        return .init(attributes: update(itemprop: value, on: &attributes), content: content)
+        return mutate(itemprop: value)
     }
 
     public func itemReference(_ value: String) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(itemref: value), content: content)
-        }
-        
-        return .init(attributes: update(itemref: value, on: &attributes), content: content)
+        return mutate(itemref: value)
     }
 
     public func itemScope(_ value: String) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(itemscope: value), content: content)
-        }
-        
-        return .init(attributes: update(itemscope: value, on: &attributes), content: content)
+        return mutate(itemscope: value)
     }
 
     public func id(_ value: String) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(id: value), content: content)
-        }
-        
-        return .init(attributes: update(id: value, on: &attributes), content: content)
+        return mutate(id: value)
     }
 
     public func language(_ type: Language) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(lang: type.rawValue), content: content)
-        }
-        
-        return .init(attributes: update(lang: type.rawValue, on: &attributes), content: content)
+        return mutate(lang: type.rawValue)
     }
 
     public func nonce(_ value: String) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(nonce: value), content: content)
-        }
-        
-        return .init(attributes: update(nonce: value, on: &attributes), content: content)
+        return mutate(nonce: value)
     }
 
     public func role(_ value: String) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(role: value), content: content)
-        }
-        
-        return .init(attributes: update(role: value, on: &attributes), content: content)
+        return mutate(role: value)
     }
 
-    public func hasSpellCheck(_ value: Bool) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(spellcheck: true), content: content)
-        }
-        
-        return .init(attributes: update(spellcheck: true, on: &attributes), content: content)
+    public func hasSpellCheck(_ condition: Bool) -> TermDefinition {
+        return mutate(spellcheck: condition)
     }
 
     public func style(_ value: String) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(style: value), content: content)
-        }
-        
-        return .init(attributes: update(style: value, on: &attributes), content: content)
+        return mutate(style: value)
     }
 
     public func tabIndex(_ value: String) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(index: value), content: content)
-        }
-        
-        return .init(attributes: update(index: value, on: &attributes), content: content)
+        return mutate(tabindex: value)
     }
 
     public func title(_ value: String) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(title: value), content: content)
-        }
-        
-        return .init(attributes: update(title: value, on: &attributes), content: content)
+        return mutate(title: value)
     }
 
     public func translate(_ value: String) -> TermDefinition {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(translate: value), content: content)
-        }
-        
-        return .init(attributes: update(translate: value, on: &attributes), content: content)
+        return mutate(translate: value)
     }
 }
 

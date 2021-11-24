@@ -8,7 +8,7 @@ public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute
 /// The protocol provides
 ///
 ///
-public protocol AccessKeyAttribute {
+public protocol AccessKeyAttribute: Attribute {
     
     /// The func adds
     ///
@@ -18,22 +18,49 @@ public protocol AccessKeyAttribute {
 
 extension AccessKeyAttribute {
     
-    private var key: String { "accesskey" }
+    internal var key: String { "accesskey" }
+}
+
+extension AccessKeyAttribute where Self: ContentNode, T == Content {
     
-    internal func set(accesskey value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(accesskey value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension AccessKeyAttribute where Self: ContentNode, T == String {
     
-    internal func update(accesskey value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(accesskey value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension AccessKeyAttribute where Self: EmptyNode {
+    
+    internal func mutate(accesskey value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol AcceptAttribute {
+public protocol AcceptAttribute: Attribute {
     
     /// The func adds
     ///
@@ -43,22 +70,37 @@ public protocol AcceptAttribute {
 
 extension AcceptAttribute {
     
-    private var key: String { "accept" }
-    
-    internal func set(accept value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
-    }
+    internal var key: String { "accept" }
+}
 
-    internal func update(accept value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+extension AcceptAttribute where Self: ContentNode, T == Content {
+    
+    internal func mutate(accept value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension AcceptAttribute where Self: EmptyNode {
+    
+    internal func mutate(accept value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol ActionAttribute {
+public protocol ActionAttribute: Attribute {
     
     /// The func adds
     ///
@@ -68,22 +110,37 @@ public protocol ActionAttribute {
 
 extension ActionAttribute {
     
-    private var key: String { "action" }
+    internal var key: String { "action" }
+}
+
+extension ActionAttribute where Self: ContentNode, T == Content {
     
-    internal func set(action value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(action value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ActionAttribute where Self: EmptyNode {
     
-    internal func update(action value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(action value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol AlternateAttribute {
+public protocol AlternateAttribute: Attribute {
     
     /// The func adds
     ///
@@ -93,22 +150,37 @@ public protocol AlternateAttribute {
 
 extension AlternateAttribute {
     
-    private var key: String { "alternate" }
+    internal var key: String { "alternate" }
+}
+
+extension AlternateAttribute where Self: ContentNode, T == Content {
     
-    internal func set(alt value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(alternate value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension AlternateAttribute where Self: EmptyNode {
     
-    internal func update(alt value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(alternate value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol AsynchronouslyAttribute {
+public protocol AsynchronouslyAttribute: Attribute {
     
     /// The func adds
     ///
@@ -118,22 +190,37 @@ public protocol AsynchronouslyAttribute {
 
 extension AsynchronouslyAttribute {
     
-    private var key: String { "async" }
+    internal var key: String { "async" }
+}
+
+extension AsynchronouslyAttribute where Self: ContentNode, T == String {
     
-    internal func set(async value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(async value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension AsynchronouslyAttribute where Self: EmptyNode {
     
-    internal func update(async value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(async value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol AutocapitalizeAttribute {
+public protocol AutocapitalizeAttribute: Attribute {
     
     /// The func adds
     ///
@@ -143,22 +230,49 @@ public protocol AutocapitalizeAttribute {
 
 extension AutocapitalizeAttribute {
     
-    private var key: String { "autocapitalize" }
+    internal var key: String { "autocapitalize" }
+}
+
+extension AutocapitalizeAttribute where Self: ContentNode, T == Content {
     
-    internal func set(autocapitalize value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(autocapitalize value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension AutocapitalizeAttribute where Self: ContentNode, T == String {
     
-    internal func update(autocapitalize value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(autocapitalize value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension AutocapitalizeAttribute where Self: EmptyNode {
+    
+    internal func mutate(autocapitalize value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol AutocompleteAttribute {
+public protocol AutocompleteAttribute: Attribute {
     
     /// The func adds
     ///
@@ -168,22 +282,49 @@ public protocol AutocompleteAttribute {
 
 extension AutocompleteAttribute {
     
-    private var key: String { "autocomplete" }
+    internal var key: String { "autocomplete" }
+}
 
-    internal func set(autocomplete value: Bool) -> OrderedDictionary<String, Any> {
-        return [key: value]
+extension AutocompleteAttribute where Self: ContentNode, T == Content {
+    
+    internal func mutate(autocomplete value: Bool) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
 
-    internal func update(autocomplete value: Bool, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+extension AutocompleteAttribute where Self: ContentNode, T == String {
+    
+    internal func mutate(autocomplete value: Bool) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension AutocompleteAttribute where Self: EmptyNode {
+    
+    internal func mutate(autocomplete value: Bool) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol AutofocusAttribute {
+public protocol AutofocusAttribute: Attribute {
     
     /// The func adds
     ///
@@ -193,22 +334,49 @@ public protocol AutofocusAttribute {
 
 extension AutofocusAttribute {
     
-    private var key: String { "autofocus" }
+    internal var key: String { "autofocus" }
+}
+
+extension AutofocusAttribute where Self: ContentNode, T == Content {
     
-    internal func set(autofocus value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(autofocus value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension AutofocusAttribute where Self: ContentNode, T == String {
     
-    internal func update(autofocus value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(autofocus value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension AutofocusAttribute where Self: EmptyNode {
+    
+    internal func mutate(autofocus value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol AutoplayAttribute {
+public protocol AutoplayAttribute: Attribute {
     
     /// The func adds
     ///
@@ -218,22 +386,37 @@ public protocol AutoplayAttribute {
 
 extension AutoplayAttribute {
     
-    private var key: String { "autoplay" }
+    internal var key: String { "autoplay" }
+}
+
+extension AutoplayAttribute where Self: ContentNode, T == Content {
     
-    internal func set(autoplay value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(autoplay value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension AutoplayAttribute where Self: EmptyNode {
     
-    internal func update(autoplay value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(autoplay value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol CheckedAttribute {
+public protocol CheckedAttribute: Attribute {
     
     /// The func adds
     ///
@@ -243,22 +426,37 @@ public protocol CheckedAttribute {
 
 extension CheckedAttribute {
     
-    private var key: String { "checked" }
+    internal var key: String { "checked" }
+}
+
+extension CheckedAttribute where Self: ContentNode, T == Content {
     
-    internal func set(checked value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(checked value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension CheckedAttribute where Self: EmptyNode {
     
-    internal func update(checked value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(checked value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol CiteAttribute {
+public protocol CiteAttribute: Attribute {
     
     /// The func adds
     ///
@@ -268,22 +466,37 @@ public protocol CiteAttribute {
 
 extension CiteAttribute {
     
-    private var key: String { "cite" }
+    internal var key: String { "cite" }
+}
+
+extension CiteAttribute where Self: ContentNode, T == Content {
     
-    internal func set(cite value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(cite value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension CiteAttribute where Self: EmptyNode {
     
-    internal func update(cite value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(cite value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol provides
 ///
 ///
-public protocol ClassAttribute {
+public protocol ClassAttribute: Attribute{
     
     /// The func adds
     ///
@@ -293,22 +506,49 @@ public protocol ClassAttribute {
 
 extension ClassAttribute {
     
-    private var key: String { "class" }
+    internal var key: String { "class" }
+}
+
+extension ClassAttribute where Self: ContentNode, T == Content {
     
-    internal func set(`class` value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(class value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ClassAttribute where Self: ContentNode, T == String {
     
-    internal func update(`class` value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(class value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension ClassAttribute where Self: EmptyNode {
+    
+    internal func mutate(class value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol ColumnsAttribute {
+public protocol ColumnsAttribute: Attribute {
     
     /// The func adds
     ///
@@ -318,22 +558,49 @@ public protocol ColumnsAttribute {
 
 extension ColumnsAttribute {
     
-    private var key: String { "cols" }
-    
-    internal func set(columns value: Int) -> OrderedDictionary<String, Any> {
-        return [key: value]
-    }
+    internal var key: String { "cols" }
+}
 
-    internal func update(columns value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+extension ColumnsAttribute where Self: ContentNode, T == Content {
+    
+    internal func mutate(cols value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension ColumnsAttribute where Self: ContentNode, T == String {
+    
+    internal func mutate(cols value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension ColumnsAttribute where Self: EmptyNode {
+    
+    internal func mutate(cols value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol ColumnSpanAttribute {
+public protocol ColumnSpanAttribute: Attribute {
     
     /// The func adds
     ///
@@ -343,22 +610,37 @@ public protocol ColumnSpanAttribute {
 
 extension ColumnSpanAttribute {
     
-    private var key: String { "colspan" }
-    
-    internal func set(columnspan value: Int) -> OrderedDictionary<String, Any> {
-        return [key: value]
-    }
+    internal var key: String { "colspan" }
+}
 
-    internal func update(columnspan value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+extension ColumnSpanAttribute where Self: ContentNode, T == Content {
+    
+    internal func mutate(colspan value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension ColumnSpanAttribute where Self: EmptyNode {
+    
+    internal func mutate(colspan value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol ContentAttribute {
+public protocol ContentAttribute: Attribute {
     
     /// The func adds
     ///
@@ -368,47 +650,89 @@ public protocol ContentAttribute {
 
 extension ContentAttribute {
     
-    private var key: String { "content" }
+    internal var key: String { "content" }
+}
 
-    internal func set(content value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
-    }
+extension ContentAttribute where Self: ContentNode, T == Content {
     
-    internal func update(content value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(content value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension ContentAttribute where Self: EmptyNode {
+    
+    internal func mutate(content value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol EditAttribute {
+public protocol EditAttribute: Attribute {
     
     /// The func adds
     ///
     ///
-    func isEditable(_ value: Bool) -> Self
+    func isEditable(_ condition: Bool) -> Self
 }
 
 extension EditAttribute {
     
-    private var key: String { "contenteditable" }
+    internal var key: String { "contenteditable" }
+}
+
+extension EditAttribute where Self: ContentNode, T == Content {
     
-    internal func set(contenteditable value: Bool) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(contenteditable value: Bool) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension EditAttribute where Self: ContentNode, T == String {
     
-    internal func update(contenteditable value: Bool, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(contenteditable value: Bool) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension EditAttribute where Self: EmptyNode {
+    
+    internal func mutate(contenteditable value: Bool) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol ControlsAttribute {
+public protocol ControlsAttribute: Attribute {
     
     /// The func adds
     ///
@@ -418,22 +742,37 @@ public protocol ControlsAttribute {
 
 extension ControlsAttribute {
     
-    private var key: String { "controls" }
+    internal var key: String { "controls" }
+}
+
+extension ControlsAttribute where Self: ContentNode, T == Content {
     
-    internal func set(controls value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(controls value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ControlsAttribute where Self: EmptyNode {
     
-    internal func update(controls value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(controls value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol CoordinatesAttribute {
+public protocol CoordinatesAttribute: Attribute {
     
     /// The func adds
     ///
@@ -443,22 +782,37 @@ public protocol CoordinatesAttribute {
 
 extension CoordinatesAttribute {
     
-    private var key: String { "coords" }
-    
-    internal func set(coords value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
-    }
+    internal var key: String { "coords" }
+}
 
-    internal func update(coords value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+extension CoordinatesAttribute where Self: ContentNode, T == Content {
+    
+    internal func mutate(coords value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension CoordinatesAttribute where Self: EmptyNode {
+    
+    internal func mutate(coords value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol DataAttribute {
+public protocol DataAttribute: Attribute{
     
     /// The func adds
     ///
@@ -468,47 +822,77 @@ public protocol DataAttribute {
 
 extension DataAttribute {
     
-    private var key: String { "data" }
-    
-    internal func set(data value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
-    }
+    internal var key: String { "data" }
+}
 
-    internal func update(data value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+extension DataAttribute where Self: ContentNode, T == Content {
+    
+    internal func mutate(data value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension DataAttribute where Self: EmptyNode {
+    
+    internal func mutate(data value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol DateTimeAttribute {
+public protocol DateTimeAttribute: Attribute {
     
     /// The func adds
     ///
     ///
-    func dateTime(_ value: Content) -> Self
+    func dateTime(_ value: String) -> Self
 }
 
 extension DateTimeAttribute {
     
-    private var key: String { "datetime" }
+    internal var key: String { "datetime" }
+}
+
+extension DateTimeAttribute where Self: ContentNode, T == Content {
     
-    internal func set(time value: Content) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(datetime value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension DateTimeAttribute where Self: EmptyNode {
     
-    internal func update(time value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(datetime value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol DefaultAttribute {
+public protocol DefaultAttribute: Attribute {
     
     /// The func adds
     ///
@@ -518,22 +902,37 @@ public protocol DefaultAttribute {
 
 extension DefaultAttribute {
     
-    private var key: String { "default" }
+    internal var key: String { "default" }
+}
+
+extension DefaultAttribute where Self: ContentNode, T == Content {
     
-    internal func set(`default` value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(default value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension DefaultAttribute where Self: EmptyNode {
     
-    internal func update(`default` value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(default value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol DeferAttribute {
+public protocol DeferAttribute: Attribute {
     
     /// The func adds
     ///
@@ -543,22 +942,37 @@ public protocol DeferAttribute {
 
 extension DeferAttribute {
     
-    private var key: String { "defer" }
+    internal var key: String { "defer" }
+}
+
+extension DeferAttribute where Self: ContentNode, T == Content {
     
-    internal func set(`defer` value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(defer value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension DeferAttribute where Self: EmptyNode {
     
-    internal func update(`defer` value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(defer value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol DirectionAttribute {
+public protocol DirectionAttribute: Attribute {
 
     /// The func adds
     ///
@@ -568,22 +982,49 @@ public protocol DirectionAttribute {
 
 extension DirectionAttribute {
 
-    private var key: String { "dir" }
+    internal var key: String { "dir" }
+}
 
-    internal func set(direction value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+extension DirectionAttribute where Self: ContentNode, T == Content {
+    
+    internal func mutate(dir value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
 
-    internal func update(direction value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+extension DirectionAttribute where Self: ContentNode, T == String {
+    
+    internal func mutate(dir value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension DirectionAttribute where Self: EmptyNode {
+    
+    internal func mutate(dir value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol DisabledAttribute {
+public protocol DisabledAttribute: Attribute {
     
     /// The func adds
     ///
@@ -593,22 +1034,49 @@ public protocol DisabledAttribute {
 
 extension DisabledAttribute {
     
-    private var key: String { "disabled" }
+    internal var key: String { "disabled" }
+}
+
+extension DisabledAttribute where Self: ContentNode, T == Content {
     
-    internal func set(disabled value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(disabled value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension DisabledAttribute where Self: ContentNode, T == String {
     
-    internal func update(disabled value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(disabled value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension DisabledAttribute where Self: EmptyNode {
+    
+    internal func mutate(disabled value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol DownloadAttribute {
+public protocol DownloadAttribute: Attribute {
     
     /// The func adds
     ///
@@ -618,47 +1086,89 @@ public protocol DownloadAttribute {
 
 extension DownloadAttribute {
     
-    private var key: String { "download" }
+    internal var key: String { "download" }
+}
+
+extension DownloadAttribute where Self: ContentNode, T == Content {
     
-    internal func set(download value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(download value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension DownloadAttribute where Self: EmptyNode {
     
-    internal func update(download value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(download value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol DragAttribute {
+public protocol DragAttribute: Attribute {
  
     /// The func adds
     ///
     ///
-    func isDraggable(_ value: Bool) -> Self
+    func isDraggable(_ condition: Bool) -> Self
 }
 
 extension DragAttribute {
     
-    private var key: String { "draggable" }
+    internal var key: String { "draggable" }
+}
+
+extension DragAttribute where Self: ContentNode, T == Content {
     
-    internal func set(draggable value: Bool) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(draggable value: Bool) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension DragAttribute where Self: ContentNode, T == String {
     
-    internal func update(draggable value: Bool, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(draggable value: Bool) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension DragAttribute where Self: EmptyNode {
+    
+    internal func mutate(draggable value: Bool) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol EncodingAttribute {
+public protocol EncodingAttribute: Attribute {
     
     /// The func adds
     ///
@@ -668,22 +1178,37 @@ public protocol EncodingAttribute {
 
 extension EncodingAttribute {
     
-    private var key: String { "enctype" }
+    internal var key: String { "enctype" }
+}
+
+extension EncodingAttribute where Self: ContentNode, T == Content {
     
-    internal func set(enctype value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(enctype value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension EncodingAttribute where Self: EmptyNode {
     
-    internal func update(enctype value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(enctype value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol provides
 ///
 ///
-public protocol EnterKeyHintAttribute {
+public protocol EnterKeyHintAttribute: Attribute {
     
     /// The func adds
     ///
@@ -693,22 +1218,49 @@ public protocol EnterKeyHintAttribute {
 
 extension EnterKeyHintAttribute {
     
-    private var key: String { "enterkeyhint" }
+    internal var key: String { "enterkeyhint" }
+}
+
+extension EnterKeyHintAttribute where Self: ContentNode, T == Content {
     
-    internal func set(hint value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(enterkeyhint value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension EnterKeyHintAttribute where Self: ContentNode, T == String {
     
-    internal func update(hint value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(enterkeyhint value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension EnterKeyHintAttribute where Self: EmptyNode {
+    
+    internal func mutate(enterkeyhint value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol ForAttribute {
+public protocol ForAttribute: Attribute {
     
     /// The func adds
     ///
@@ -718,22 +1270,37 @@ public protocol ForAttribute {
 
 extension ForAttribute {
     
-    private var key: String { "for" }
+    internal var key: String { "for" }
+}
+
+extension ForAttribute where Self: ContentNode, T == Content {
     
-    internal func set(`for` value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(for value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ForAttribute where Self: EmptyNode {
     
-    internal func update(`for` value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(for value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol FormAttribute {
+public protocol FormAttribute: Attribute {
     
     /// The func adds
     ///
@@ -743,22 +1310,49 @@ public protocol FormAttribute {
 
 extension FormAttribute {
     
-    private var key: String { "form" }
+    internal var key: String { "form" }
+}
+
+extension FormAttribute where Self: ContentNode, T == Content {
     
-    internal func set(form value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(form value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension FormAttribute where Self: ContentNode, T == String {
     
-    internal func update(form value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(form value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension FormAttribute where Self: EmptyNode {
+    
+    internal func mutate(form value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol FormActionAttribute {
+public protocol FormActionAttribute: Attribute {
     
     /// The func adds
     ///
@@ -768,22 +1362,37 @@ public protocol FormActionAttribute {
 
 extension FormActionAttribute {
     
-    private var key: String { "formaction" }
+    internal var key: String { "formaction" }
+}
+
+extension FormActionAttribute where Self: ContentNode, T == Content {
     
-    internal func set(formaction value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(formaction value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension FormActionAttribute where Self: EmptyNode {
     
-    internal func update(formaction value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(formaction value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol HeaderAttribute {
+public protocol HeaderAttribute: Attribute {
     
     /// The func adds
     ///
@@ -793,22 +1402,37 @@ public protocol HeaderAttribute {
 
 extension HeaderAttribute {
     
-    private var key: String { "headers" }
+    internal var key: String { "headers" }
+}
+
+extension HeaderAttribute where Self: ContentNode, T == Content {
     
-    internal func set(headers value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(headers value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension HeaderAttribute where Self: EmptyNode {
     
-    internal func update(headers value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(headers value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol HeightAttribute {
+public protocol HeightAttribute: Attribute {
     
     /// The func adds
     ///
@@ -818,22 +1442,37 @@ public protocol HeightAttribute {
 
 extension HeightAttribute {
     
-    private var key: String { "height" }
+    internal var key: String { "height" }
+}
+
+extension HeightAttribute where Self: ContentNode, T == Content {
     
-    internal func set(height value: Int) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(height value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension HeightAttribute where Self: EmptyNode {
     
-    internal func update(height value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(height value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol HiddenAttribute {
+public protocol HiddenAttribute: Attribute {
  
     /// The func adds
     ///
@@ -843,22 +1482,49 @@ public protocol HiddenAttribute {
 
 extension HiddenAttribute {
 
-    private var key: String { "hidden" }
+    internal var key: String { "hidden" }
+}
 
-    internal func set(hidden value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+extension HiddenAttribute where Self: ContentNode, T == Content {
+    
+    internal func mutate(hidden value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
 
-    internal func update(hidden value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+extension HiddenAttribute where Self: ContentNode, T == String {
+    
+    internal func mutate(hidden value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension HiddenAttribute where Self: EmptyNode {
+    
+    internal func mutate(hidden value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol HighAttribute {
+public protocol HighAttribute: Attribute {
     
     /// The func adds
     ///
@@ -868,22 +1534,37 @@ public protocol HighAttribute {
 
 extension HighAttribute {
     
-    private var key: String { "high" }
+    internal var key: String { "high" }
+}
+
+extension HighAttribute where Self: ContentNode, T == Content {
     
-    internal func set(high value: Int) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(high value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension HighAttribute where Self: EmptyNode {
     
-    internal func update(high value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(high value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol ReferenceAttribute {
+public protocol ReferenceAttribute: Attribute {
     
     /// The func adds
     ///
@@ -893,22 +1574,37 @@ public protocol ReferenceAttribute {
 
 extension ReferenceAttribute {
     
-    private var key: String { "href" }
+    internal var key: String { "href" }
+}
+
+extension ReferenceAttribute where Self: ContentNode, T == Content {
     
-    internal func set(ref value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(href value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ReferenceAttribute where Self: EmptyNode {
     
-    internal func update(ref value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(href value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol ReferenceLanguageAttribute {
+public protocol ReferenceLanguageAttribute: Attribute {
     
     /// The func adds
     ///
@@ -918,22 +1614,37 @@ public protocol ReferenceLanguageAttribute {
 
 extension ReferenceLanguageAttribute {
 
-    private var key: String { "hreflang" }
+    internal var key: String { "hreflang" }
+}
+
+extension ReferenceLanguageAttribute where Self: ContentNode, T == Content {
     
-    internal func set(reflang value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(hreflang value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ReferenceLanguageAttribute where Self: EmptyNode {
     
-    internal func update(reflang value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(hreflang value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol IdentifierAttribute {
+public protocol IdentifierAttribute: Attribute {
  
     /// The func adds
     ///
@@ -943,22 +1654,49 @@ public protocol IdentifierAttribute {
 
 extension IdentifierAttribute {
     
-    private var key: String { "id" }
+    internal var key: String { "id" }
+}
+
+extension IdentifierAttribute where Self: ContentNode, T == Content {
     
-    internal func set(id value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(id value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension IdentifierAttribute where Self: ContentNode, T == String {
     
-    internal func update(id value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(id value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension IdentifierAttribute where Self: EmptyNode {
+    
+    internal func mutate(id value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol IsMapAttribute {
+public protocol IsMapAttribute: Attribute {
  
     /// The func adds
     ///
@@ -968,22 +1706,37 @@ public protocol IsMapAttribute {
 
 extension IsMapAttribute {
     
-    private var key: String { "ismap" }
+    internal var key: String { "ismap" }
+}
+
+extension IsMapAttribute where Self: ContentNode, T == Content {
     
-    internal func set(ismap value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(ismap value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension IsMapAttribute where Self: EmptyNode {
     
-    internal func update(ismap value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(ismap value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol InputModeAttribute {
+public protocol InputModeAttribute: Attribute {
  
     /// The func adds
     ///
@@ -993,22 +1746,49 @@ public protocol InputModeAttribute {
 
 extension InputModeAttribute {
     
-    private var key: String { "inputmode" }
+    internal var key: String { "inputmode" }
+}
+
+extension InputModeAttribute where Self: ContentNode, T == Content {
     
-    internal func set(inputmode value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(inputmode value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension InputModeAttribute where Self: ContentNode, T == String {
     
-    internal func update(inputmode value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(inputmode value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension InputModeAttribute where Self: EmptyNode {
+    
+    internal func mutate(inputmode value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol IsAttribute {
+public protocol IsAttribute: Attribute {
  
     /// The func adds
     ///
@@ -1018,22 +1798,50 @@ public protocol IsAttribute {
 
 extension IsAttribute {
     
-    private var key: String { "is" }
+    internal var key: String { "is" }
+}
+
+extension IsAttribute where Self: ContentNode, T == Content {
     
-    internal func set(`is` value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
-    }
-    
-    internal func update(`is` value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(is value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
 }
+
+extension IsAttribute where Self: ContentNode, T == String {
+    
+    internal func mutate(is value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension IsAttribute where Self: EmptyNode {
+    
+    internal func mutate(is value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
+    }
+}
+
 
 /// The protcol privides
 ///
 ///
-public protocol ItemIdAttribute {
+public protocol ItemIdAttribute: Attribute {
  
     /// The func adds
     ///
@@ -1043,22 +1851,49 @@ public protocol ItemIdAttribute {
 
 extension ItemIdAttribute {
     
-    private var key: String { "itemid" }
+    internal var key: String { "itemid" }
+}
+
+extension ItemIdAttribute where Self: ContentNode, T == Content {
     
-    internal func set(itemid value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(itemid value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ItemIdAttribute where Self: ContentNode, T == String {
     
-    internal func update(itemid value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(itemid value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension ItemIdAttribute where Self: EmptyNode {
+    
+    internal func mutate(itemid value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol ItemPropertyAttribute {
+public protocol ItemPropertyAttribute: Attribute {
  
     /// The func adds
     ///
@@ -1068,22 +1903,49 @@ public protocol ItemPropertyAttribute {
 
 extension ItemPropertyAttribute {
     
-    private var key: String { "itemprop" }
+    internal var key: String { "itemprop" }
+}
+
+extension ItemPropertyAttribute where Self: ContentNode, T == Content {
     
-    internal func set(itemprop value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(itemprop value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ItemPropertyAttribute where Self: ContentNode, T == String {
     
-    internal func update(itemprop value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(itemprop value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension ItemPropertyAttribute where Self: EmptyNode {
+    
+    internal func mutate(itemprop value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol ItemReferenceAttribute {
+public protocol ItemReferenceAttribute: Attribute {
  
     /// The func adds
     ///
@@ -1093,22 +1955,49 @@ public protocol ItemReferenceAttribute {
 
 extension ItemReferenceAttribute {
     
-    private var key: String { "itemref" }
+    internal var key: String { "itemref" }
+}
+
+extension ItemReferenceAttribute where Self: ContentNode, T == Content {
     
-    internal func set(itemref value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(itemref value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ItemReferenceAttribute where Self: ContentNode, T == String {
     
-    internal func update(itemref value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(itemref value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension ItemReferenceAttribute where Self: EmptyNode {
+    
+    internal func mutate(itemref value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol ItemScopeAttribute {
+public protocol ItemScopeAttribute: Attribute {
  
     /// The func adds
     ///
@@ -1118,22 +2007,49 @@ public protocol ItemScopeAttribute {
 
 extension ItemScopeAttribute {
     
-    private var key: String { "itemscope" }
+    internal var key: String { "itemscope" }
+}
+
+extension ItemScopeAttribute where Self: ContentNode, T == Content {
     
-    internal func set(itemscope value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(itemscope value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ItemScopeAttribute where Self: ContentNode, T == String {
     
-    internal func update(itemscope value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(itemscope value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension ItemScopeAttribute where Self: EmptyNode {
+    
+    internal func mutate(itemscope value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol ItemTypeAttribute {
+public protocol ItemTypeAttribute: Attribute {
  
     /// The func adds
     ///
@@ -1143,72 +2059,129 @@ public protocol ItemTypeAttribute {
 
 extension ItemTypeAttribute {
     
-    private var key: String { "itemtype" }
+    internal var key: String { "itemtype" }
+}
+
+extension ItemTypeAttribute where Self: ContentNode, T == Content {
     
-    internal func set(itemtype value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(itemtype value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ItemTypeAttribute where Self: EmptyNode {
     
-    internal func update(itemtype value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(itemtype value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol KindAttribute {
+public protocol KindAttribute: Attribute {
     
     /// The func adds
     ///
     ///
-    func kind(_ value: Content) -> Self
+    func kind(_ value: String) -> Self
 }
 
 extension KindAttribute {
     
-    private var key: String { "kind" }
+    internal var key: String { "kind" }
+}
+
+extension KindAttribute where Self: ContentNode, T == Content {
     
-    internal func set(kind value: Content) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(kind value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension KindAttribute where Self: EmptyNode {
     
-    internal func update(kind value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(kind value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol LabelAttribute {
+public protocol LabelAttribute: Attribute {
     
     /// The func adds
     ///
     ///
-    func label(_ value: Content) -> Self
+    func label(_ value: String) -> Self
 }
 
 extension LabelAttribute {
     
-    private var key: String { "label" }
+    internal var key: String { "label" }
+}
+
+extension LabelAttribute where Self: ContentNode, T == Content {
     
-    internal func set(label value: Content) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(label value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension LabelAttribute where Self: ContentNode, T == String {
     
-    internal func update(label value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(label value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension LabelAttribute where Self: EmptyNode {
+    
+    internal func mutate(label value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol LanguageAttribute {
+public protocol LanguageAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1218,47 +2191,89 @@ public protocol LanguageAttribute {
 
 extension LanguageAttribute {
     
-    private var key: String { "lang" }
+    internal var key: String { "lang" }
+}
+
+extension LanguageAttribute where Self: ContentNode, T == Content {
     
-    internal func set(lang value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(lang value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension LanguageAttribute where Self: ContentNode, T == String {
     
-    internal func update(lang value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(lang value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension LanguageAttribute where Self: EmptyNode {
+    
+    internal func mutate(lang value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol ListAttribute {
+public protocol ListAttribute: Attribute {
     
     /// The func adds
     ///
     ///
-    func list(_ value: Content) -> Self
+    func list(_ value: String) -> Self
 }
 
 extension ListAttribute {
     
-    private var key: String { "list" }
+    internal var key: String { "list" }
+}
+
+extension ListAttribute where Self: ContentNode, T == Content {
     
-    internal func set(list value: Content) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(list value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ListAttribute where Self: EmptyNode {
     
-    internal func update(list value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(list value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol LoopAttribute {
+public protocol LoopAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1268,22 +2283,37 @@ public protocol LoopAttribute {
 
 extension LoopAttribute {
     
-    private var key: String { "loop" }
+    internal var key: String { "loop" }
+}
+
+extension LoopAttribute where Self: ContentNode, T == Content {
     
-    internal func set(loop value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(loop value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension LoopAttribute where Self: EmptyNode {
     
-    internal func update(loop value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(loop value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol LowAttribute {
+public protocol LowAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1293,97 +2323,169 @@ public protocol LowAttribute {
 
 extension LowAttribute {
     
-    private var key: String { "low" }
+    internal var key: String { "low" }
+}
+
+extension LowAttribute where Self: ContentNode, T == Content {
     
-    internal func set(loop value: Int) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(low value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension LowAttribute where Self: EmptyNode {
     
-    internal func update(loop value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(low value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol MaximumValueAttribute {
+public protocol MaximumValueAttribute: Attribute {
     
     /// The func adds
     ///
     ///
-    func maximum(_ value: Content) -> Self
+    func maximum(_ value: String) -> Self
 }
 
 extension MaximumValueAttribute {
 
-    private var key: String { "max" }
+    internal var key: String { "max" }
+}
+
+extension MaximumValueAttribute where Self: ContentNode, T == Content {
     
-    internal func set(max value: Content) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(max value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension MaximumValueAttribute where Self: EmptyNode {
     
-    internal func update(max value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(max value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol MaximumLengthAttribute {
+public protocol MaximumLengthAttribute: Attribute {
     
     /// The func adds
     ///
     ///
-    func maximum(length value: Content) -> Self
+    func maximum(length value: String) -> Self
 }
 
 extension MaximumLengthAttribute {
 
-    private var key: String { "maxlength" }
+    internal var key: String { "maxlength" }
+}
+
+extension MaximumLengthAttribute where Self: ContentNode, T == Content {
     
-    internal func set(maxlength value: Content) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(maxlength value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension MaximumLengthAttribute where Self: ContentNode, T == String {
     
-    internal func update(maxlength value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(maxlength value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension MaximumLengthAttribute where Self: EmptyNode {
+    
+    internal func mutate(maxlength value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol MediaAttribute {
+public protocol MediaAttribute: Attribute {
     
     /// The func adds
     ///
     ///
-    func media(_ value: Content) -> Self
+    func media(_ value: String) -> Self
 }
 
 extension MediaAttribute {
 
-    private var key: String { "media" }
+    internal var key: String { "media" }
+}
+
+extension MediaAttribute where Self: ContentNode, T == Content {
     
-    internal func set(media value: Content) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(media value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension MediaAttribute where Self: EmptyNode {
     
-    internal func update(media value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(media value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol MethodAttribute {
+public protocol MethodAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1393,72 +2495,129 @@ public protocol MethodAttribute {
 
 extension MethodAttribute {
 
-    private var key: String { "method" }
+    internal var key: String { "method" }
+}
+
+extension MethodAttribute where Self: ContentNode, T == Content {
     
-    internal func set(method value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(method value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension MethodAttribute where Self: EmptyNode {
     
-    internal func update(method value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(method value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol MinimumValueAttribute {
+public protocol MinimumValueAttribute: Attribute {
     
     /// The func adds
     ///
     ///
-    func minimum(_ value: Content) -> Self
+    func minimum(_ value: String) -> Self
 }
 
 extension MinimumValueAttribute {
 
-    private var key: String { "min" }
+    internal var key: String { "min" }
+}
+
+extension MinimumValueAttribute where Self: ContentNode, T == Content {
     
-    internal func set(min value: Content) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(min value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension MinimumValueAttribute where Self: EmptyNode {
     
-    internal func update(min value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(min value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol MinimumLengthAttribute {
+public protocol MinimumLengthAttribute: Attribute {
     
     /// The func adds
     ///
     ///
-    func minimum(length value: Content) -> Self
+    func minimum(length value: String) -> Self
 }
 
 extension MinimumLengthAttribute {
 
-    private var key: String { "minlength" }
+    internal var key: String { "minlength" }
+}
+
+extension MinimumLengthAttribute where Self: ContentNode, T == Content {
     
-    internal func set(minlength value: Content) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(minlength value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension MinimumLengthAttribute where Self: ContentNode, T == String {
     
-    internal func update(minlength value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(minlength value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension MinimumLengthAttribute where Self: EmptyNode {
+    
+    internal func mutate(minlength value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol MultipleAttribute {
+public protocol MultipleAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1468,22 +2627,37 @@ public protocol MultipleAttribute {
 
 extension MultipleAttribute {
     
-    private var key: String { "multiple" }
+    internal var key: String { "multiple" }
+}
+
+extension MultipleAttribute where Self: ContentNode, T == Content {
     
-    internal func set(multiple value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(multiple value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension MultipleAttribute where Self: EmptyNode {
     
-    internal func update(multiple value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(multiple value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol MutedAttribute {
+public protocol MutedAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1493,22 +2667,37 @@ public protocol MutedAttribute {
 
 extension MutedAttribute {
     
-    private var key: String { "muted" }
+    internal var key: String { "muted" }
+}
+
+extension MutedAttribute where Self: ContentNode, T == Content {
     
-    internal func set(muted value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(muted value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension MutedAttribute where Self: EmptyNode {
     
-    internal func update(muted value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(muted value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol NameAttribute {
+public protocol NameAttribute: Attribute {
 
     /// The func adds
     ///
@@ -1518,22 +2707,49 @@ public protocol NameAttribute {
 
 extension NameAttribute {
     
-    private var key: String { "name" }
+    internal var key: String { "name" }
+}
+
+extension NameAttribute where Self: ContentNode, T == Content {
     
-    internal func set(name value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(name value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension NameAttribute where Self: ContentNode, T == String {
     
-    internal func update(name value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(name value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension NameAttribute where Self: EmptyNode {
+    
+    internal func mutate(name value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol NonceAttribute {
+public protocol NonceAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1543,22 +2759,49 @@ public protocol NonceAttribute {
 
 extension NonceAttribute {
     
-    private var key: String { "nonce" }
+    internal var key: String { "nonce" }
+}
+
+extension NonceAttribute where Self: ContentNode, T == Content {
     
-    internal func set(nonce value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(nonce value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension NonceAttribute where Self: ContentNode, T == String {
     
-    internal func update(nonce value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(nonce value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension NonceAttribute where Self: EmptyNode {
+    
+    internal func mutate(nonce value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol NoValidateAttribute {
+public protocol NoValidateAttribute: Attribute {
 
     /// The func adds
     ///
@@ -1568,22 +2811,37 @@ public protocol NoValidateAttribute {
 
 extension NoValidateAttribute {
     
-    private var key: String { "novalidate" }
+    internal var key: String { "novalidate" }
+}
+
+extension NoValidateAttribute where Self: ContentNode, T == Content {
     
-    internal func set(name value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(novalidate value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension NoValidateAttribute where Self: EmptyNode {
     
-    internal func update(name value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(novalidate value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol OpenAttribute {
+public protocol OpenAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1593,22 +2851,37 @@ public protocol OpenAttribute {
 
 extension OpenAttribute {
     
-    private var key: String { "open" }
+    internal var key: String { "open" }
+}
+
+extension OpenAttribute where Self: ContentNode, T == Content {
     
-    internal func set(open value: Bool) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(open value: Bool) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension OpenAttribute where Self: EmptyNode {
     
-    internal func update(open value: Bool, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(open value: Bool) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol OptimumAttribute {
+public protocol OptimumAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1618,22 +2891,37 @@ public protocol OptimumAttribute {
 
 extension OptimumAttribute {
     
-    private var key: String { "optimum" }
+    internal var key: String { "optimum" }
+}
+
+extension OptimumAttribute where Self: ContentNode, T == Content {
     
-    internal func set(optimum value: Float) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(optimum value: Float) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension OptimumAttribute where Self: EmptyNode {
     
-    internal func update(optimum value: Float, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(optimum value: Float) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol PatternAttribute {
+public protocol PatternAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1643,22 +2931,37 @@ public protocol PatternAttribute {
 
 extension PatternAttribute {
     
-    private var key: String { "pattern" }
+    internal var key: String { "pattern" }
+}
+
+extension PatternAttribute where Self: ContentNode, T == Content {
     
-    internal func set(pattern value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(pattern value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension PatternAttribute where Self: EmptyNode {
     
-    internal func update(pattern value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(pattern value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol PartAttribute {
+public protocol PartAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1668,22 +2971,37 @@ public protocol PartAttribute {
 
 extension PartAttribute {
     
-    private var key: String { "part" }
+    internal var key: String { "part" }
+}
+
+extension PartAttribute where Self: ContentNode, T == Content {
     
-    internal func set(part value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(part value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension PartAttribute where Self: EmptyNode {
     
-    internal func update(part value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(part value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol PingAttribute {
+public protocol PingAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1693,22 +3011,37 @@ public protocol PingAttribute {
 
 extension PingAttribute {
 
-    private var key: String { "ping" }
+    internal var key: String { "ping" }
+}
+
+extension PingAttribute where Self: ContentNode, T == Content {
     
-    internal func set(ping value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(ping value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension PingAttribute where Self: EmptyNode {
     
-    internal func update(ping value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(ping value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol PlaceholderAttribute {
+public protocol PlaceholderAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1718,22 +3051,49 @@ public protocol PlaceholderAttribute {
 
 extension PlaceholderAttribute {
     
-    private var key: String { "placeholder" }
+    internal var key: String { "placeholder" }
+}
+
+extension PlaceholderAttribute where Self: ContentNode, T == Content {
     
-    internal func set(placeholder value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(placeholder value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension PlaceholderAttribute where Self: ContentNode, T == String {
     
-    internal func update(placeholer value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(placeholder value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension PlaceholderAttribute where Self: EmptyNode {
+    
+    internal func mutate(placeholder value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol PosterAttribute {
+public protocol PosterAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1743,22 +3103,37 @@ public protocol PosterAttribute {
 
 extension PosterAttribute {
 
-    private var key: String { "poster" }
+    internal var key: String { "poster" }
+}
+
+extension PosterAttribute where Self: ContentNode, T == Content {
     
-    internal func set(poster value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(poster value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension PosterAttribute where Self: EmptyNode {
     
-    internal func update(poster value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(poster value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol PreloadAttribute {
+public protocol PreloadAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1768,22 +3143,37 @@ public protocol PreloadAttribute {
 
 extension PreloadAttribute {
     
-    private var key: String { "preload" }
+    internal var key: String { "preload" }
+}
+
+extension PreloadAttribute where Self: ContentNode, T == Content {
     
-    internal func set(preload value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(preload value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension PreloadAttribute where Self: EmptyNode {
     
-    internal func update(preload value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(preload value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol ReadyOnlyAttribute {
+public protocol ReadyOnlyAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1793,23 +3183,49 @@ public protocol ReadyOnlyAttribute {
 
 extension ReadyOnlyAttribute {
     
-    private var key: String { "readonly" }
+    internal var key: String { "readonly" }
+}
+
+extension ReadyOnlyAttribute where Self: ContentNode, T == Content {
     
-    
-    internal func set(readonly value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(readonly value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ReadyOnlyAttribute where Self: ContentNode, T == String {
     
-    internal func update(readonly value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(readonly value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension ReadyOnlyAttribute where Self: EmptyNode {
+    
+    internal func mutate(readonly value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol ReferrerPolicyAttribute {
+public protocol ReferrerPolicyAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1819,22 +3235,49 @@ public protocol ReferrerPolicyAttribute {
 
 extension ReferrerPolicyAttribute {
 
-    private var key: String { "referrerpolicy" }
+    internal var key: String { "referrerpolicy" }
+}
+
+extension ReferrerPolicyAttribute where Self: ContentNode, T == Content {
     
-    internal func set(policy value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(referrerpolicy value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ReferrerPolicyAttribute where Self: ContentNode, T == String {
     
-    internal func update(policy value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(referrerpolicy value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension ReferrerPolicyAttribute where Self: EmptyNode {
+    
+    internal func mutate(referrerpolicy value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol RelationshipAttribute {
+public protocol RelationshipAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1844,22 +3287,37 @@ public protocol RelationshipAttribute {
 
 extension RelationshipAttribute {
     
-    private var key: String { "rel" }
+    internal var key: String { "rel" }
+}
+
+extension RelationshipAttribute where Self: ContentNode, T == Content {
     
-    internal func set(rel value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(rel value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension RelationshipAttribute where Self: EmptyNode {
     
-    internal func update(rel value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(rel value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol RequiredAttribute {
+public protocol RequiredAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1869,22 +3327,49 @@ public protocol RequiredAttribute {
 
 extension RequiredAttribute {
     
-    private var key: String { "required" }
+    internal var key: String { "required" }
+}
+
+extension RequiredAttribute where Self: ContentNode, T == Content {
     
-    internal func set(required value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(required value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension RequiredAttribute where Self: ContentNode, T == String {
     
-    internal func update(required value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(required value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension RequiredAttribute where Self: EmptyNode {
+    
+    internal func mutate(required value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol ReversedAttribute {
+public protocol ReversedAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1894,22 +3379,37 @@ public protocol ReversedAttribute {
 
 extension ReversedAttribute {
     
-    private var key: String { "reversed" }
+    internal var key: String { "reversed" }
+}
+
+extension ReversedAttribute where Self: ContentNode, T == Content {
     
-    internal func set(reversed value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(reversed value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ReversedAttribute where Self: EmptyNode {
     
-    internal func update(reversed value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(reversed value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol RoleAttribute {
+public protocol RoleAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1919,44 +3419,98 @@ public protocol RoleAttribute {
 
 extension RoleAttribute {
     
-    private var key: String { "role" }
+    internal var key: String { "role" }
+}
+
+extension RoleAttribute where Self: ContentNode, T == Content {
     
-    internal func set(role value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(role value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension RoleAttribute where Self: ContentNode, T == String {
     
-    internal func update(role value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(role value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension RoleAttribute where Self: EmptyNode {
+    
+    internal func mutate(role value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol RowsAttribute {
+public protocol RowsAttribute: Attribute {
     
     func rows(_ size: Int) -> Self
 }
 
 extension RowsAttribute {
 
-    private var key: String { "rows" }
+    internal var key: String { "rows" }
+}
+
+extension RowsAttribute where Self: ContentNode, T == Content {
     
-    internal func set(rows value: Int) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(rows value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension RowsAttribute where Self: ContentNode, T == String {
     
-    internal func update(rows value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(rows value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension RowsAttribute where Self: EmptyNode {
+    
+    internal func mutate(rows value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol RowSpanAttribute {
+public protocol RowSpanAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1966,22 +3520,37 @@ public protocol RowSpanAttribute {
 
 extension RowSpanAttribute {
 
-    private var key: String { "rowspan" }
+    internal var key: String { "rowspan" }
+}
+
+extension RowSpanAttribute where Self: ContentNode, T == Content {
     
-    internal func set(rowspan value: Int) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(rowspan value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension RowSpanAttribute where Self: EmptyNode {
     
-    internal func update(rowspan value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(rowspan value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol SandboxAttribute {
+public protocol SandboxAttribute: Attribute {
     
     /// The func adds
     ///
@@ -1991,22 +3560,37 @@ public protocol SandboxAttribute {
 
 extension SandboxAttribute {
     
-    private var key: String { "sandbox" }
+    internal var key: String { "sandbox" }
+}
+
+extension SandboxAttribute where Self: ContentNode, T == Content {
     
-    internal func set(sandbox value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(sandbox value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension SandboxAttribute where Self: EmptyNode {
     
-    internal func update(sandbox value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(sandbox value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol ScopeAttribute {
+public protocol ScopeAttribute: Attribute {
     
     /// The func adds
     ///
@@ -2016,22 +3600,37 @@ public protocol ScopeAttribute {
 
 extension ScopeAttribute {
 
-    private var key: String { "scope" }
+    internal var key: String { "scope" }
+}
+
+extension ScopeAttribute where Self: ContentNode, T == Content {
     
-    internal func set(scope value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(scope value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ScopeAttribute where Self: EmptyNode {
     
-    internal func update(scope value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(scope value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol ShapeAttribute {
+public protocol ShapeAttribute: Attribute {
     
     /// The func adds
     ///
@@ -2041,22 +3640,37 @@ public protocol ShapeAttribute {
 
 extension ShapeAttribute {
 
-    private var key: String { "shape" }
+    internal var key: String { "shape" }
+}
+
+extension ShapeAttribute where Self: ContentNode, T == Content {
     
-    internal func set(shape value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(shape value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ShapeAttribute where Self: EmptyNode {
     
-    internal func update(shape value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(shape value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol SizeAttribute {
+public protocol SizeAttribute: Attribute {
     
     /// The func adds
     ///
@@ -2066,22 +3680,37 @@ public protocol SizeAttribute {
 
 extension SizeAttribute {
 
-    private var key: String { "size" }
+    internal var key: String { "size" }
+}
+
+extension SizeAttribute where Self: ContentNode, T == Content {
     
-    internal func set(size value: Int) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(size value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension SizeAttribute where Self: EmptyNode {
     
-    internal func update(size value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(size value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol SizesAttribute {
+public protocol SizesAttribute: Attribute {
     
     /// The func adds
     ///
@@ -2091,22 +3720,37 @@ public protocol SizesAttribute {
 
 extension SizesAttribute {
 
-    private var key: String { "sizes" }
+    internal var key: String { "sizes" }
+}
+
+extension SizesAttribute where Self: ContentNode, T == Content {
     
-    internal func set(sizes value: Int) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(sizes value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension SizesAttribute where Self: EmptyNode {
     
-    internal func update(sizes value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(sizes value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol SlotAttribute {
+public protocol SlotAttribute: Attribute {
     
     /// The func adds
     ///
@@ -2116,22 +3760,37 @@ public protocol SlotAttribute {
 
 extension SlotAttribute {
     
-    private var key: String { "slot" }
+    internal var key: String { "slot" }
+}
+
+extension SlotAttribute where Self: ContentNode, T == Content {
     
-    internal func set(lang value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(slot value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension SlotAttribute where Self: EmptyNode {
     
-    internal func update(lang value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(slot value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol SpanAttribute {
+public protocol SpanAttribute: Attribute {
     
     /// The func adds
     ///
@@ -2141,47 +3800,89 @@ public protocol SpanAttribute {
 
 extension SpanAttribute {
 
-    private var key: String { "span" }
+    internal var key: String { "span" }
+}
+
+extension SpanAttribute where Self: ContentNode, T == Content {
     
-    internal func set(span value: Int) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(span value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension SpanAttribute where Self: EmptyNode {
     
-    internal func update(span value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(span value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol SpellCheckAttribute {
+public protocol SpellCheckAttribute: Attribute {
  
     /// The func adds
     ///
     ///
-    func hasSpellCheck(_ value: Bool) -> Self
+    func hasSpellCheck(_ condition: Bool) -> Self
 }
 
 extension SpellCheckAttribute {
     
-    private var key: String { "spellcheck" }
+    internal var key: String { "spellcheck" }
+}
+
+extension SpellCheckAttribute where Self: ContentNode, T == Content {
     
-    internal func set(spellcheck value: Bool) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(spellcheck value: Bool) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension SpellCheckAttribute where Self: ContentNode, T == String {
     
-    internal func update(spellcheck value: Bool, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(spellcheck value: Bool) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension SpellCheckAttribute where Self: EmptyNode {
+    
+    internal func mutate(spellcheck value: Bool) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol SourceAttribute {
+public protocol SourceAttribute: Attribute {
     
     /// The func adds
     ///
@@ -2191,22 +3892,49 @@ public protocol SourceAttribute {
 
 extension SourceAttribute {
     
-    private var key: String { "source" }
+    internal var key: String { "source" }
+}
+
+extension SourceAttribute where Self: ContentNode, T == Content {
     
-    internal func set(source value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(source value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension SourceAttribute where Self: ContentNode, T == String {
     
-    internal func update(source value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(source value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension SourceAttribute where Self: EmptyNode {
+    
+    internal func mutate(source value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol StartAttribute {
+public protocol StartAttribute: Attribute {
     
     /// The func adds
     ///
@@ -2216,22 +3944,37 @@ public protocol StartAttribute {
 
 extension StartAttribute {
     
-    private var key: String { "start" }
+    internal var key: String { "start" }
+}
+
+extension StartAttribute where Self: ContentNode, T == Content {
     
-    internal func set(start value: Int) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(start value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension StartAttribute where Self: EmptyNode {
     
-    internal func update(start value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(start value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol StepAttribute {
+public protocol StepAttribute: Attribute {
     
     /// The func adds
     ///
@@ -2241,22 +3984,37 @@ public protocol StepAttribute {
 
 extension StepAttribute {
 
-    private var key: String { "step" }
+    internal var key: String { "step" }
+}
+
+extension StepAttribute where Self: ContentNode, T == Content {
     
-    internal func set(step value: Int) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(step value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension StepAttribute where Self: EmptyNode {
     
-    internal func update(step value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(step value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol StyleAttribute {
+public protocol StyleAttribute: Attribute {
     
     /// The func adds
     ///
@@ -2266,22 +4024,49 @@ public protocol StyleAttribute {
 
 extension StyleAttribute {
     
-    private var key: String { "style" }
+    internal var key: String { "style" }
+}
 
-    internal func set(style value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
-    }
+extension StyleAttribute where Self: ContentNode, T == Content {
     
-    internal func update(style value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(style value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension StyleAttribute where Self: ContentNode, T == String {
+    
+    internal func mutate(style value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension StyleAttribute where Self: EmptyNode {
+    
+    internal func mutate(style value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol TabulatorAttribute {
+public protocol TabulatorAttribute: Attribute {
  
     /// The func adds
     ///
@@ -2291,22 +4076,49 @@ public protocol TabulatorAttribute {
 
 extension TabulatorAttribute {
     
-    private var key: String { "tabindex" }
+    internal var key: String { "tabindex" }
+}
+
+extension TabulatorAttribute where Self: ContentNode, T == Content {
     
-    internal func set(index value: Content) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(tabindex value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension TabulatorAttribute where Self: ContentNode, T == String {
     
-    internal func update(index value: Content, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(tabindex value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension TabulatorAttribute where Self: EmptyNode {
+    
+    internal func mutate(tabindex value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol TargetAttribute {
+public protocol TargetAttribute: Attribute {
     
     /// The func adds
     ///
@@ -2316,22 +4128,37 @@ public protocol TargetAttribute {
 
 extension TargetAttribute {
     
-    private var key: String { "target" }
+    internal var key: String { "target" }
+}
+
+extension TargetAttribute where Self: ContentNode, T == Content {
     
-    internal func set(target value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(target value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension TargetAttribute where Self: EmptyNode {
     
-    internal func update(target value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(target value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol TitleAttribute {
+public protocol TitleAttribute: Attribute {
  
     /// The func adds
     ///
@@ -2341,22 +4168,49 @@ public protocol TitleAttribute {
 
 extension TitleAttribute {
     
-    private var key: String { "title" }
-    
-    internal func set(title value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
-    }
+    internal var key: String { "title" }
+}
 
-    internal func update(title value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+extension TitleAttribute where Self: ContentNode, T == Content {
+    
+    internal func mutate(title value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension TitleAttribute where Self: ContentNode, T == String {
+    
+    internal func mutate(title value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension TitleAttribute where Self: EmptyNode {
+    
+    internal func mutate(title value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protcol privides
 ///
 ///
-public protocol TranslateAttribute {
+public protocol TranslateAttribute: Attribute {
  
     /// The func adds
     ///
@@ -2366,22 +4220,49 @@ public protocol TranslateAttribute {
 
 extension TranslateAttribute {
     
-    private var key: String { "translate" }
-    
-    internal func set(translate value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
-    }
+    internal var key: String { "translate" }
+}
 
-    internal func update(translate value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+extension TranslateAttribute where Self: ContentNode, T == Content {
+    
+    internal func mutate(translate value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension TranslateAttribute where Self: ContentNode, T == String {
+    
+    internal func mutate(translate value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension TranslateAttribute where Self: EmptyNode {
+    
+    internal func mutate(translate value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol TypeAttribute {
+public protocol TypeAttribute: Attribute {
 
     /// The func adds
     ///
@@ -2391,22 +4272,49 @@ public protocol TypeAttribute {
 
 extension TypeAttribute {
     
-    private var key: String { "type" }
+    internal var key: String { "type" }
+}
+
+extension TypeAttribute where Self: ContentNode, T == Content {
     
-    internal func set(type value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(type value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension TypeAttribute where Self: ContentNode, T == String {
     
-    internal func update(type value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(type value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension TypeAttribute where Self: EmptyNode {
+    
+    internal func mutate(type value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol ValueAttribute {
+public protocol ValueAttribute: Attribute {
     
     /// The func adds
     ///
@@ -2416,22 +4324,49 @@ public protocol ValueAttribute {
 
 extension ValueAttribute {
 
-    private var key: String { "value" }
+    internal var key: String { "value" }
+}
+
+extension ValueAttribute where Self: ContentNode, T == Content {
     
-    internal func set(value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension ValueAttribute where Self: ContentNode, T == String {
     
-    internal func update(value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension ValueAttribute where Self: EmptyNode {
+    
+    internal func mutate(value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol WidthAttribute {
+public protocol WidthAttribute: Attribute {
     
     /// The func adds
     ///
@@ -2441,22 +4376,37 @@ public protocol WidthAttribute {
 
 extension WidthAttribute {
 
-    private var key: String { "width" }
+    internal var key: String { "width" }
+}
+
+extension WidthAttribute where Self: ContentNode, T == Content {
     
-    internal func set(width value: Int) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(width value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension WidthAttribute where Self: EmptyNode {
     
-    internal func update(width value: Int, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(width value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol WrapAttribute {
+public protocol WrapAttribute: Attribute {
     
     /// The func adds
     ///
@@ -2466,22 +4416,49 @@ public protocol WrapAttribute {
 
 extension WrapAttribute {
 
-    private var key: String { "wrap" }
+    internal var key: String { "wrap" }
+}
+
+extension WrapAttribute where Self: ContentNode, T == Content {
     
-    internal func set(wrap value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(wrap value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension WrapAttribute where Self: ContentNode, T == String {
     
-    internal func update(wrap value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(wrap value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension WrapAttribute where Self: EmptyNode {
+    
+    internal func mutate(wrap value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
 
 /// The protocol provides
 ///
 ///
-public protocol PropertyAttribute {
+public protocol PropertyAttribute: Attribute {
     
     /// The func adds
     ///
@@ -2491,14 +4468,29 @@ public protocol PropertyAttribute {
 
 extension PropertyAttribute {
     
-    private var key: String { "property" }
+    internal var key: String { "property" }
+}
+
+extension PropertyAttribute where Self: ContentNode, T == Content {
     
-    internal func set(property value: String) -> OrderedDictionary<String, Any> {
-        return [key: value]
+    internal func mutate(property value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
     }
+}
+
+extension PropertyAttribute where Self: EmptyNode {
     
-    internal func update(property value: String, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        attributes[key] = value
-        return attributes
+    internal func mutate(property value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
