@@ -3,7 +3,7 @@ import OrderedCollections
 /// The node is for
 ///
 ///
-internal protocol ContentNode {
+internal protocol ContentNode: Node {
 
     associatedtype T
     
@@ -89,7 +89,7 @@ extension ContentNode where T == String {
 /// The node is for
 ///
 ///
-internal protocol EmptyNode {
+internal protocol EmptyNode: Node {
 
     var name: String { get }
     
@@ -134,7 +134,7 @@ extension EmptyNode {
 /// The node is for
 ///
 ///
-internal protocol CommentNode {
+internal protocol CommentNode: Node {
     
     associatedtype T
     
@@ -157,7 +157,7 @@ extension CommentNode {
 /// The node is for
 ///
 ///
-internal protocol DocumentNode {
+internal protocol DocumentNode: Node {
     
     associatedtype T
     

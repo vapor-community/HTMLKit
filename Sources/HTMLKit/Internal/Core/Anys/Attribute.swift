@@ -4,8 +4,6 @@ import OrderedCollections
 ///
 ///
 public protocol Attribute {
-    
-    
 }
 
 extension Attribute {
