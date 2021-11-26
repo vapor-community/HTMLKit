@@ -1,5 +1,8 @@
 import Foundation
 
+/// The extension is
+///
+///
 extension Array: Content where Element == Content {
 
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -15,56 +18,9 @@ extension Array: Content where Element == Content {
     }
 }
 
-extension String: Content {
-
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        return self
-    }
-
-    public func prerender(_ formula: Renderer.Formula) throws {
-        formula.add(string: self)
-    }
-}
-
-extension Int: Content {
-
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        return String(self)
-    }
-
-    public func prerender(_ formula: Renderer.Formula) throws {
-        formula.add(string: String(self))
-    }
-
-    public var renderWhenLocalizing: Bool { return false }
-}
-
-extension Double: Content {
-
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        return String(self)
-    }
-
-    public func prerender(_ formula: Renderer.Formula) throws {
-        formula.add(string: String(self))
-    }
-
-    public var renderWhenLocalizing: Bool { return false }
-}
-
-extension Float: Content {
-
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        return String(self)
-    }
-
-    public func prerender(_ formula: Renderer.Formula) throws {
-        formula.add(string: String(self))
-    }
-
-    public var renderWhenLocalizing: Bool { return false }
-}
-
+/// The extension is
+///
+///
 extension Bool: Content {
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -78,12 +34,66 @@ extension Bool: Content {
     public var renderWhenLocalizing: Bool { return false }
 }
 
+/// The extension is
+///
+///
 extension Bool: Conditionable {
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         return self
     }
 }
 
+/// The extension is
+///
+///
+extension Double: Content {
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return String(self)
+    }
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        formula.add(string: String(self))
+    }
+
+    public var renderWhenLocalizing: Bool { return false }
+}
+
+/// The extension is
+///
+///
+extension Float: Content {
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return String(self)
+    }
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        formula.add(string: String(self))
+    }
+
+    public var renderWhenLocalizing: Bool { return false }
+}
+
+/// The extension is
+///
+///
+extension Int: Content {
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return String(self)
+    }
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        formula.add(string: String(self))
+    }
+
+    public var renderWhenLocalizing: Bool { return false }
+}
+
+/// The extension is
+///
+///
 extension Optional: Content where Wrapped: Content {
 
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -108,6 +118,9 @@ extension Optional: Content where Wrapped: Content {
     }
 }
 
+/// The extension is
+///
+///
 extension Optional: Defineable {
     
     var isDefinded: Bool {
@@ -118,6 +131,23 @@ extension Optional: Defineable {
     }
 }
 
+/// The extension is
+///
+///
+extension String: Content {
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return self
+    }
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        formula.add(string: self)
+    }
+}
+
+/// The extension is
+///
+///
 extension UUID: Content {
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
