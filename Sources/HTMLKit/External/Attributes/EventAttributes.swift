@@ -21,7 +21,7 @@ extension AfterPrintEventAttribute {
     internal var key: String { "onafterprint" }
 }
 
-extension AfterPrintEventAttribute where Self: ContentNode, T == AnyContent {
+extension AfterPrintEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onafterprint value: String) -> Self {
         
@@ -61,7 +61,7 @@ extension BeforePrintEventAttribute {
     internal var key: String { "onbeforeprint" }
 }
 
-extension BeforePrintEventAttribute where Self: ContentNode, T == AnyContent {
+extension BeforePrintEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onbeforeprint value: String) -> Self {
         
@@ -101,7 +101,7 @@ extension BeforeUnloadEventAttribute {
     internal var key: String { "onbeforeunload" }
 }
 
-extension BeforeUnloadEventAttribute where Self: ContentNode, T == AnyContent {
+extension BeforeUnloadEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onbeforeunload value: String) -> Self {
         
@@ -141,7 +141,7 @@ extension ErrorEventAttribute {
     internal var key: String { "onerror" }
 }
 
-extension ErrorEventAttribute where Self: ContentNode, T == AnyContent {
+extension ErrorEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onerror value: String) -> Self {
         
@@ -153,7 +153,7 @@ extension ErrorEventAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension ErrorEventAttribute where Self: ContentNode, T == String {
+extension ErrorEventAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(onerror value: String) -> Self {
         
@@ -193,7 +193,7 @@ extension HashChangeEventAttribute {
     internal var key: String { "onhashchange" }
 }
 
-extension HashChangeEventAttribute where Self: ContentNode, T == AnyContent {
+extension HashChangeEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onhashchange value: String) -> Self {
         
@@ -233,7 +233,7 @@ extension LoadEventAttribute {
     internal var key: String { "onload" }
 }
 
-extension LoadEventAttribute where Self: ContentNode, T == AnyContent {
+extension LoadEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onload value: String) -> Self {
         
@@ -245,7 +245,7 @@ extension LoadEventAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension LoadEventAttribute where Self: ContentNode, T == String {
+extension LoadEventAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(onload value: String) -> Self {
         
@@ -285,7 +285,7 @@ extension MessageEventAttribute {
     internal var key: String { "onmessage" }
 }
 
-extension MessageEventAttribute where Self: ContentNode, T == AnyContent {
+extension MessageEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onmessage value: String) -> Self {
         
@@ -325,7 +325,7 @@ extension OfflineEventAttribute {
     internal var key: String { "onoffline" }
 }
 
-extension OfflineEventAttribute where Self: ContentNode, T == AnyContent {
+extension OfflineEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onoffline value: String) -> Self {
         
@@ -365,7 +365,7 @@ extension OnlineEventAttribute {
     internal var key: String { "ononline" }
 }
 
-extension OnlineEventAttribute where Self: ContentNode, T == AnyContent {
+extension OnlineEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(ononline value: String) -> Self {
         
@@ -405,7 +405,7 @@ extension PageHideEventAttribute {
     internal var key: String { "onpagehide" }
 }
 
-extension PageHideEventAttribute where Self: ContentNode, T == AnyContent {
+extension PageHideEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onpagehide value: String) -> Self {
         
@@ -445,7 +445,7 @@ extension PageShowEventAttribute {
     internal var key: String { "onpageshow" }
 }
 
-extension PageShowEventAttribute where Self: ContentNode, T == AnyContent {
+extension PageShowEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onpageshow value: String) -> Self {
         
@@ -485,7 +485,7 @@ extension PopstateEventAttribute {
     internal var key: String { "onpopstate" }
 }
 
-extension PopstateEventAttribute where Self: ContentNode, T == AnyContent {
+extension PopstateEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onpopstate value: String) -> Self {
         
@@ -525,7 +525,7 @@ extension ResizeEventAttribute {
     internal var key: String { "onresize" }
 }
 
-extension ResizeEventAttribute where Self: ContentNode, T == AnyContent {
+extension ResizeEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onresize value: String) -> Self {
         
@@ -565,7 +565,7 @@ extension StorageEventAttribute {
     internal var key: String { "onstorage" }
 }
 
-extension StorageEventAttribute where Self: ContentNode, T == AnyContent {
+extension StorageEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onstorage value: String) -> Self {
         
@@ -605,7 +605,7 @@ extension UnloadEventAttribute {
     internal var key: String { "onunload" }
 }
 
-extension UnloadEventAttribute where Self: ContentNode, T == AnyContent {
+extension UnloadEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onunload value: String) -> Self {
         
@@ -645,7 +645,7 @@ extension BlurEventAttribute {
     internal var key: String { "onblur" }
 }
 
-extension BlurEventAttribute where Self: ContentNode, T == AnyContent {
+extension BlurEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onblur value: String) -> Self {
         
@@ -685,7 +685,7 @@ extension ChangeEventAttribute {
     internal var key: String { "onchange" }
 }
 
-extension ChangeEventAttribute where Self: ContentNode, T == AnyContent {
+extension ChangeEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onchange value: String) -> Self {
         
@@ -725,7 +725,7 @@ extension ContextMenuEventAttribute {
     internal var key: String { "oncontextmenu" }
 }
 
-extension ContextMenuEventAttribute where Self: ContentNode, T == AnyContent {
+extension ContextMenuEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(oncontextmenu value: String) -> Self {
         
@@ -765,7 +765,7 @@ extension FocusEventAttribute {
     internal var key: String { "onfocus" }
 }
 
-extension FocusEventAttribute where Self: ContentNode, T == AnyContent {
+extension FocusEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onfocus value: String) -> Self {
         
@@ -805,7 +805,7 @@ extension InputEventAttribute {
     internal var key: String { "oninput" }
 }
 
-extension InputEventAttribute where Self: ContentNode, T == AnyContent {
+extension InputEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(oninput value: String) -> Self {
         
@@ -845,7 +845,7 @@ extension InvalidEventAttribute {
     internal var key: String { "oninvalid" }
 }
 
-extension InvalidEventAttribute where Self: ContentNode, T == AnyContent {
+extension InvalidEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(oninvalid value: String) -> Self {
         
@@ -885,7 +885,7 @@ extension ResetEventAttribute {
     internal var key: String { "onreset" }
 }
 
-extension ResetEventAttribute where Self: ContentNode, T == AnyContent {
+extension ResetEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onreset value: String) -> Self {
         
@@ -925,7 +925,7 @@ extension SearchEventAttribute {
     internal var key: String { "onsearch" }
 }
 
-extension SearchEventAttribute where Self: ContentNode, T == AnyContent {
+extension SearchEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onsearch value: String) -> Self {
         
@@ -965,7 +965,7 @@ extension SelectEventAttribute {
     internal var key: String { "onselect" }
 }
 
-extension SelectEventAttribute where Self: ContentNode, T == AnyContent {
+extension SelectEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onselect value: String) -> Self {
         
@@ -1005,7 +1005,7 @@ extension SubmitEventAttribute {
     internal var key: String { "onsubmit" }
 }
 
-extension SubmitEventAttribute where Self: ContentNode, T == AnyContent {
+extension SubmitEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onsubmit value: String) -> Self {
         
@@ -1045,7 +1045,7 @@ extension KeyDownEventAttribute {
     internal var key: String { "onkeydown" }
 }
 
-extension KeyDownEventAttribute where Self: ContentNode, T == AnyContent {
+extension KeyDownEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onkeydown value: String) -> Self {
         
@@ -1085,7 +1085,7 @@ extension KeyPressEventAttribute {
     internal var key: String { "onkeypress" }
 }
 
-extension KeyPressEventAttribute where Self: ContentNode, T == AnyContent {
+extension KeyPressEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onkeypress value: String) -> Self {
         
@@ -1125,7 +1125,7 @@ extension KeyUpEventAttribute {
     internal var key: String { "onkeyup" }
 }
 
-extension KeyUpEventAttribute where Self: ContentNode, T == AnyContent {
+extension KeyUpEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onkeyup value: String) -> Self {
         
@@ -1165,7 +1165,7 @@ extension ClickEventAttribute {
     internal var key: String { "onclick" }
 }
 
-extension ClickEventAttribute where Self: ContentNode, T == AnyContent {
+extension ClickEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onclick value: String) -> Self {
         
@@ -1205,7 +1205,7 @@ extension DoubleClickEventAttribute {
     internal var key: String { "ondbclick" }
 }
 
-extension DoubleClickEventAttribute where Self: ContentNode, T == AnyContent {
+extension DoubleClickEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(ondbclick value: String) -> Self {
         
@@ -1245,7 +1245,7 @@ extension MouseDownEventAttribute {
     internal var key: String { "onmousedown" }
 }
 
-extension MouseDownEventAttribute where Self: ContentNode, T == AnyContent {
+extension MouseDownEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onmousedown value: String) -> Self {
         
@@ -1285,7 +1285,7 @@ extension MouseMoveEventAttribute {
     internal var key: String { "onmousemove" }
 }
 
-extension MouseMoveEventAttribute where Self: ContentNode, T == AnyContent {
+extension MouseMoveEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onmousemove value: String) -> Self {
         
@@ -1325,7 +1325,7 @@ extension MouseOutEventAttribute {
     internal var key: String { "onmouseout" }
 }
 
-extension MouseOutEventAttribute where Self: ContentNode, T == AnyContent {
+extension MouseOutEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onmouseout value: String) -> Self {
         
@@ -1365,7 +1365,7 @@ extension MouseOverEventAttribute {
     internal var key: String { "onmouseover" }
 }
 
-extension MouseOverEventAttribute where Self: ContentNode, T == AnyContent {
+extension MouseOverEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onmouseover value: String) -> Self {
         
@@ -1405,7 +1405,7 @@ extension MouseUpEventAttribute {
     internal var key: String { "onmouseup" }
 }
 
-extension MouseUpEventAttribute where Self: ContentNode, T == AnyContent {
+extension MouseUpEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onmouseup value: String) -> Self {
         
@@ -1445,7 +1445,7 @@ extension WheelEventAttribute {
     internal var key: String { "onwheel" }
 }
 
-extension WheelEventAttribute where Self: ContentNode, T == AnyContent {
+extension WheelEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onwheel value: String) -> Self {
         
@@ -1485,7 +1485,7 @@ extension DragEventAttribute {
     internal var key: String { "ondrag" }
 }
 
-extension DragEventAttribute where Self: ContentNode, T == AnyContent {
+extension DragEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(ondrag value: String) -> Self {
         
@@ -1525,7 +1525,7 @@ extension DragEnterEventAttribute {
     internal var key: String { "ondragenter" }
 }
 
-extension DragEnterEventAttribute where Self: ContentNode, T == AnyContent {
+extension DragEnterEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(ondragenter value: String) -> Self {
         
@@ -1565,7 +1565,7 @@ extension DragEndEventAttribute {
     internal var key: String { "ondragend" }
 }
 
-extension DragEndEventAttribute where Self: ContentNode, T == AnyContent {
+extension DragEndEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(ondragend value: String) -> Self {
         
@@ -1605,7 +1605,7 @@ extension DragLeaveEventAttribute {
     internal var key: String { "ondragleave" }
 }
 
-extension DragLeaveEventAttribute where Self: ContentNode, T == AnyContent {
+extension DragLeaveEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(ondragleave value: String) -> Self {
         
@@ -1645,7 +1645,7 @@ extension DragOverEventAttribute {
     internal var key: String { "ondragover" }
 }
 
-extension DragOverEventAttribute where Self: ContentNode, T == AnyContent {
+extension DragOverEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(ondragover value: String) -> Self {
         
@@ -1685,7 +1685,7 @@ extension DragStartEventAttribute {
     internal var key: String { "ondragstart" }
 }
 
-extension DragStartEventAttribute where Self: ContentNode, T == AnyContent {
+extension DragStartEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(ondragstart value: String) -> Self {
         
@@ -1725,7 +1725,7 @@ extension DropEventAttribute {
     internal var key: String { "ondrop" }
 }
 
-extension DropEventAttribute where Self: ContentNode, T == AnyContent {
+extension DropEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(ondrop value: String) -> Self {
         
@@ -1765,7 +1765,7 @@ extension ScrollEventAttribute {
     internal var key: String { "onscroll" }
 }
 
-extension ScrollEventAttribute where Self: ContentNode, T == AnyContent {
+extension ScrollEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onscroll value: String) -> Self {
         
@@ -1805,7 +1805,7 @@ extension CopyEventAttribute {
     internal var key: String { "oncopy" }
 }
 
-extension CopyEventAttribute where Self: ContentNode, T == AnyContent {
+extension CopyEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(oncopy value: String) -> Self {
         
@@ -1845,7 +1845,7 @@ extension CutEventAttribute {
     internal var key: String { "oncut" }
 }
 
-extension CutEventAttribute where Self: ContentNode, T == AnyContent {
+extension CutEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(oncut value: String) -> Self {
         
@@ -1885,7 +1885,7 @@ extension PasteEventAttribute {
     internal var key: String { "onpaste" }
 }
 
-extension PasteEventAttribute where Self: ContentNode, T == AnyContent {
+extension PasteEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onpaste value: String) -> Self {
         
@@ -1925,7 +1925,7 @@ extension AbortEventAttribute {
     internal var key: String { "onabort" }
 }
 
-extension AbortEventAttribute where Self: ContentNode, T == AnyContent {
+extension AbortEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onabort value: String) -> Self {
         
@@ -1965,7 +1965,7 @@ extension CanPlayEventAttribute {
     internal var key: String { "oncanplay" }
 }
 
-extension CanPlayEventAttribute where Self: ContentNode, T == AnyContent {
+extension CanPlayEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(oncanplay value: String) -> Self {
         
@@ -2005,7 +2005,7 @@ extension CanPlayThroughEventAttribute {
     internal var key: String { "oncanplaythrough" }
 }
 
-extension CanPlayThroughEventAttribute where Self: ContentNode, T == AnyContent {
+extension CanPlayThroughEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(oncanplaythrough value: String) -> Self {
         
@@ -2045,7 +2045,7 @@ extension CueChangeEventAttribute {
     internal var key: String { "oncuechange" }
 }
 
-extension CueChangeEventAttribute where Self: ContentNode, T == AnyContent {
+extension CueChangeEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(oncuechange value: String) -> Self {
         
@@ -2085,7 +2085,7 @@ extension DurationChangeEventAttribute {
     internal var key: String { "ondurationchange" }
 }
 
-extension DurationChangeEventAttribute where Self: ContentNode, T == AnyContent {
+extension DurationChangeEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(ondurationchange value: String) -> Self {
         
@@ -2125,7 +2125,7 @@ extension EmptiedEventAttribute {
     internal var key: String { "onemptied" }
 }
 
-extension EmptiedEventAttribute where Self: ContentNode, T == AnyContent {
+extension EmptiedEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onemptied value: String) -> Self {
         
@@ -2165,7 +2165,7 @@ extension EndedEventAttribute {
     internal var key: String { "onended" }
 }
 
-extension EndedEventAttribute where Self: ContentNode, T == AnyContent {
+extension EndedEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onended value: String) -> Self {
         
@@ -2205,7 +2205,7 @@ extension LoadedDataEventAttribute {
     internal var key: String { "onloadeddata" }
 }
 
-extension LoadedDataEventAttribute where Self: ContentNode, T == AnyContent {
+extension LoadedDataEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onloadeddata value: String) -> Self {
         
@@ -2245,7 +2245,7 @@ extension LoadedMetaDataEventAttribute {
     internal var key: String { "onloadedmetadata" }
 }
 
-extension LoadedMetaDataEventAttribute where Self: ContentNode, T == AnyContent {
+extension LoadedMetaDataEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onloadedmetadata value: String) -> Self {
         
@@ -2285,7 +2285,7 @@ extension LoadStartEventAttribute {
     internal var key: String { "onloadstart" }
 }
 
-extension LoadStartEventAttribute where Self: ContentNode, T == AnyContent {
+extension LoadStartEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onloadstart value: String) -> Self {
         
@@ -2325,7 +2325,7 @@ extension PauseEventAttribute {
     internal var key: String { "onpause" }
 }
 
-extension PauseEventAttribute where Self: ContentNode, T == AnyContent {
+extension PauseEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onpause value: String) -> Self {
         
@@ -2365,7 +2365,7 @@ extension PlayEventAttribute {
     internal var key: String { "onplay" }
 }
 
-extension PlayEventAttribute where Self: ContentNode, T == AnyContent {
+extension PlayEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onplay value: String) -> Self {
         
@@ -2405,7 +2405,7 @@ extension PlayingEventAttribute {
     internal var key: String { "onplaying" }
 }
 
-extension PlayingEventAttribute where Self: ContentNode, T == AnyContent {
+extension PlayingEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onplaying value: String) -> Self {
         
@@ -2445,7 +2445,7 @@ extension ProgressEventAttribute {
     internal var key: String { "onprogress" }
 }
 
-extension ProgressEventAttribute where Self: ContentNode, T == AnyContent {
+extension ProgressEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onprogress value: String) -> Self {
         
@@ -2485,7 +2485,7 @@ extension RateChangeEventAttribute {
     internal var key: String { "onratechange" }
 }
 
-extension RateChangeEventAttribute where Self: ContentNode, T == AnyContent {
+extension RateChangeEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onratechange value: String) -> Self {
         
@@ -2525,7 +2525,7 @@ extension SeekedEventAttribute {
     internal var key: String { "onseeked" }
 }
 
-extension SeekedEventAttribute where Self: ContentNode, T == AnyContent {
+extension SeekedEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onseeked value: String) -> Self {
         
@@ -2565,7 +2565,7 @@ extension SeekingEventAttribute {
     internal var key: String { "onseeking" }
 }
 
-extension SeekingEventAttribute where Self: ContentNode, T == AnyContent {
+extension SeekingEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onseeking value: String) -> Self {
         
@@ -2605,7 +2605,7 @@ extension StalledEventAttribute {
     internal var key: String { "onstalled" }
 }
 
-extension StalledEventAttribute where Self: ContentNode, T == AnyContent {
+extension StalledEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onstalled value: String) -> Self {
         
@@ -2645,7 +2645,7 @@ extension SuspendEventAttribute {
     internal var key: String { "onsuspend" }
 }
 
-extension SuspendEventAttribute where Self: ContentNode, T == AnyContent {
+extension SuspendEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onsuspend value: String) -> Self {
         
@@ -2685,7 +2685,7 @@ extension TimeUpdateEventAttribute {
     internal var key: String { "ontimeupdate" }
 }
 
-extension TimeUpdateEventAttribute where Self: ContentNode, T == AnyContent {
+extension TimeUpdateEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(ontimeupdate value: String) -> Self {
         
@@ -2725,7 +2725,7 @@ extension VolumeChangeEventAttribute {
     internal var key: String { "onvolumechange" }
 }
 
-extension VolumeChangeEventAttribute where Self: ContentNode, T == AnyContent {
+extension VolumeChangeEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onvolumechange value: String) -> Self {
         
@@ -2765,7 +2765,7 @@ extension WaitingEventAttribute {
     internal var key: String { "onwaiting" }
 }
 
-extension WaitingEventAttribute where Self: ContentNode, T == AnyContent {
+extension WaitingEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(onwaiting value: String) -> Self {
         
@@ -2805,7 +2805,7 @@ extension ToggleEventAttribute {
     internal var key: String { "ontoggle" }
 }
 
-extension ToggleEventAttribute where Self: ContentNode, T == AnyContent {
+extension ToggleEventAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(ontoggle value: String) -> Self {
         

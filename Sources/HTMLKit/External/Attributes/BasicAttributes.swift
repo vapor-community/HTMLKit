@@ -21,7 +21,7 @@ extension AccessKeyAttribute {
     internal var key: String { "accesskey" }
 }
 
-extension AccessKeyAttribute where Self: ContentNode, T == AnyContent {
+extension AccessKeyAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(accesskey value: String) -> Self {
         
@@ -33,7 +33,7 @@ extension AccessKeyAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension AccessKeyAttribute where Self: ContentNode, T == String {
+extension AccessKeyAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(accesskey value: String) -> Self {
         
@@ -73,7 +73,7 @@ extension AcceptAttribute {
     internal var key: String { "accept" }
 }
 
-extension AcceptAttribute where Self: ContentNode, T == AnyContent {
+extension AcceptAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(accept value: String) -> Self {
         
@@ -113,7 +113,7 @@ extension ActionAttribute {
     internal var key: String { "action" }
 }
 
-extension ActionAttribute where Self: ContentNode, T == AnyContent {
+extension ActionAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(action value: String) -> Self {
         
@@ -153,7 +153,7 @@ extension AlternateAttribute {
     internal var key: String { "alternate" }
 }
 
-extension AlternateAttribute where Self: ContentNode, T == AnyContent {
+extension AlternateAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(alternate value: String) -> Self {
         
@@ -193,7 +193,7 @@ extension AsynchronouslyAttribute {
     internal var key: String { "async" }
 }
 
-extension AsynchronouslyAttribute where Self: ContentNode, T == String {
+extension AsynchronouslyAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(async value: String) -> Self {
         
@@ -233,7 +233,7 @@ extension AutocapitalizeAttribute {
     internal var key: String { "autocapitalize" }
 }
 
-extension AutocapitalizeAttribute where Self: ContentNode, T == AnyContent {
+extension AutocapitalizeAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(autocapitalize value: String) -> Self {
         
@@ -245,7 +245,7 @@ extension AutocapitalizeAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension AutocapitalizeAttribute where Self: ContentNode, T == String {
+extension AutocapitalizeAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(autocapitalize value: String) -> Self {
         
@@ -285,7 +285,7 @@ extension AutocompleteAttribute {
     internal var key: String { "autocomplete" }
 }
 
-extension AutocompleteAttribute where Self: ContentNode, T == AnyContent {
+extension AutocompleteAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(autocomplete value: Bool) -> Self {
         
@@ -297,7 +297,7 @@ extension AutocompleteAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension AutocompleteAttribute where Self: ContentNode, T == String {
+extension AutocompleteAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(autocomplete value: Bool) -> Self {
         
@@ -337,7 +337,7 @@ extension AutofocusAttribute {
     internal var key: String { "autofocus" }
 }
 
-extension AutofocusAttribute where Self: ContentNode, T == AnyContent {
+extension AutofocusAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(autofocus value: String) -> Self {
         
@@ -349,7 +349,7 @@ extension AutofocusAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension AutofocusAttribute where Self: ContentNode, T == String {
+extension AutofocusAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(autofocus value: String) -> Self {
         
@@ -389,7 +389,7 @@ extension AutoplayAttribute {
     internal var key: String { "autoplay" }
 }
 
-extension AutoplayAttribute where Self: ContentNode, T == AnyContent {
+extension AutoplayAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(autoplay value: String) -> Self {
         
@@ -429,7 +429,7 @@ extension CheckedAttribute {
     internal var key: String { "checked" }
 }
 
-extension CheckedAttribute where Self: ContentNode, T == AnyContent {
+extension CheckedAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(checked value: String) -> Self {
         
@@ -469,7 +469,7 @@ extension CiteAttribute {
     internal var key: String { "cite" }
 }
 
-extension CiteAttribute where Self: ContentNode, T == AnyContent {
+extension CiteAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(cite value: String) -> Self {
         
@@ -509,7 +509,7 @@ extension ClassAttribute {
     internal var key: String { "class" }
 }
 
-extension ClassAttribute where Self: ContentNode, T == AnyContent {
+extension ClassAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(class value: String) -> Self {
         
@@ -521,7 +521,7 @@ extension ClassAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension ClassAttribute where Self: ContentNode, T == String {
+extension ClassAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(class value: String) -> Self {
         
@@ -561,7 +561,7 @@ extension ColumnsAttribute {
     internal var key: String { "cols" }
 }
 
-extension ColumnsAttribute where Self: ContentNode, T == AnyContent {
+extension ColumnsAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(cols value: Int) -> Self {
         
@@ -573,7 +573,7 @@ extension ColumnsAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension ColumnsAttribute where Self: ContentNode, T == String {
+extension ColumnsAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(cols value: Int) -> Self {
         
@@ -613,7 +613,7 @@ extension ColumnSpanAttribute {
     internal var key: String { "colspan" }
 }
 
-extension ColumnSpanAttribute where Self: ContentNode, T == AnyContent {
+extension ColumnSpanAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(colspan value: Int) -> Self {
         
@@ -653,7 +653,7 @@ extension ContentAttribute {
     internal var key: String { "content" }
 }
 
-extension ContentAttribute where Self: ContentNode, T == AnyContent {
+extension ContentAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(content value: String) -> Self {
         
@@ -693,7 +693,7 @@ extension EditAttribute {
     internal var key: String { "contenteditable" }
 }
 
-extension EditAttribute where Self: ContentNode, T == AnyContent {
+extension EditAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(contenteditable value: Bool) -> Self {
         
@@ -705,7 +705,7 @@ extension EditAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension EditAttribute where Self: ContentNode, T == String {
+extension EditAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(contenteditable value: Bool) -> Self {
         
@@ -745,7 +745,7 @@ extension ControlsAttribute {
     internal var key: String { "controls" }
 }
 
-extension ControlsAttribute where Self: ContentNode, T == AnyContent {
+extension ControlsAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(controls value: String) -> Self {
         
@@ -785,7 +785,7 @@ extension CoordinatesAttribute {
     internal var key: String { "coords" }
 }
 
-extension CoordinatesAttribute where Self: ContentNode, T == AnyContent {
+extension CoordinatesAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(coords value: String) -> Self {
         
@@ -825,7 +825,7 @@ extension DataAttribute {
     internal var key: String { "data" }
 }
 
-extension DataAttribute where Self: ContentNode, T == AnyContent {
+extension DataAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(data value: String) -> Self {
         
@@ -865,7 +865,7 @@ extension DateTimeAttribute {
     internal var key: String { "datetime" }
 }
 
-extension DateTimeAttribute where Self: ContentNode, T == AnyContent {
+extension DateTimeAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(datetime value: String) -> Self {
         
@@ -905,7 +905,7 @@ extension DefaultAttribute {
     internal var key: String { "default" }
 }
 
-extension DefaultAttribute where Self: ContentNode, T == AnyContent {
+extension DefaultAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(default value: String) -> Self {
         
@@ -945,7 +945,7 @@ extension DeferAttribute {
     internal var key: String { "defer" }
 }
 
-extension DeferAttribute where Self: ContentNode, T == AnyContent {
+extension DeferAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(defer value: String) -> Self {
         
@@ -985,7 +985,7 @@ extension DirectionAttribute {
     internal var key: String { "dir" }
 }
 
-extension DirectionAttribute where Self: ContentNode, T == AnyContent {
+extension DirectionAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(dir value: String) -> Self {
         
@@ -997,7 +997,7 @@ extension DirectionAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension DirectionAttribute where Self: ContentNode, T == String {
+extension DirectionAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(dir value: String) -> Self {
         
@@ -1037,7 +1037,7 @@ extension DisabledAttribute {
     internal var key: String { "disabled" }
 }
 
-extension DisabledAttribute where Self: ContentNode, T == AnyContent {
+extension DisabledAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(disabled value: String) -> Self {
         
@@ -1049,7 +1049,7 @@ extension DisabledAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension DisabledAttribute where Self: ContentNode, T == String {
+extension DisabledAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(disabled value: String) -> Self {
         
@@ -1089,7 +1089,7 @@ extension DownloadAttribute {
     internal var key: String { "download" }
 }
 
-extension DownloadAttribute where Self: ContentNode, T == AnyContent {
+extension DownloadAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(download value: String) -> Self {
         
@@ -1129,7 +1129,7 @@ extension DragAttribute {
     internal var key: String { "draggable" }
 }
 
-extension DragAttribute where Self: ContentNode, T == AnyContent {
+extension DragAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(draggable value: Bool) -> Self {
         
@@ -1141,7 +1141,7 @@ extension DragAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension DragAttribute where Self: ContentNode, T == String {
+extension DragAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(draggable value: Bool) -> Self {
         
@@ -1181,7 +1181,7 @@ extension EncodingAttribute {
     internal var key: String { "enctype" }
 }
 
-extension EncodingAttribute where Self: ContentNode, T == AnyContent {
+extension EncodingAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(enctype value: String) -> Self {
         
@@ -1221,7 +1221,7 @@ extension EnterKeyHintAttribute {
     internal var key: String { "enterkeyhint" }
 }
 
-extension EnterKeyHintAttribute where Self: ContentNode, T == AnyContent {
+extension EnterKeyHintAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(enterkeyhint value: String) -> Self {
         
@@ -1233,7 +1233,7 @@ extension EnterKeyHintAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension EnterKeyHintAttribute where Self: ContentNode, T == String {
+extension EnterKeyHintAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(enterkeyhint value: String) -> Self {
         
@@ -1273,7 +1273,7 @@ extension ForAttribute {
     internal var key: String { "for" }
 }
 
-extension ForAttribute where Self: ContentNode, T == AnyContent {
+extension ForAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(for value: String) -> Self {
         
@@ -1313,7 +1313,7 @@ extension FormAttribute {
     internal var key: String { "form" }
 }
 
-extension FormAttribute where Self: ContentNode, T == AnyContent {
+extension FormAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(form value: String) -> Self {
         
@@ -1325,7 +1325,7 @@ extension FormAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension FormAttribute where Self: ContentNode, T == String {
+extension FormAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(form value: String) -> Self {
         
@@ -1365,7 +1365,7 @@ extension FormActionAttribute {
     internal var key: String { "formaction" }
 }
 
-extension FormActionAttribute where Self: ContentNode, T == AnyContent {
+extension FormActionAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(formaction value: String) -> Self {
         
@@ -1405,7 +1405,7 @@ extension HeaderAttribute {
     internal var key: String { "headers" }
 }
 
-extension HeaderAttribute where Self: ContentNode, T == AnyContent {
+extension HeaderAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(headers value: String) -> Self {
         
@@ -1445,7 +1445,7 @@ extension HeightAttribute {
     internal var key: String { "height" }
 }
 
-extension HeightAttribute where Self: ContentNode, T == AnyContent {
+extension HeightAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(height value: Int) -> Self {
         
@@ -1485,7 +1485,7 @@ extension HiddenAttribute {
     internal var key: String { "hidden" }
 }
 
-extension HiddenAttribute where Self: ContentNode, T == AnyContent {
+extension HiddenAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(hidden value: String) -> Self {
         
@@ -1497,7 +1497,7 @@ extension HiddenAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension HiddenAttribute where Self: ContentNode, T == String {
+extension HiddenAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(hidden value: String) -> Self {
         
@@ -1537,7 +1537,7 @@ extension HighAttribute {
     internal var key: String { "high" }
 }
 
-extension HighAttribute where Self: ContentNode, T == AnyContent {
+extension HighAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(high value: Int) -> Self {
         
@@ -1577,7 +1577,7 @@ extension ReferenceAttribute {
     internal var key: String { "href" }
 }
 
-extension ReferenceAttribute where Self: ContentNode, T == AnyContent {
+extension ReferenceAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(href value: String) -> Self {
         
@@ -1617,7 +1617,7 @@ extension ReferenceLanguageAttribute {
     internal var key: String { "hreflang" }
 }
 
-extension ReferenceLanguageAttribute where Self: ContentNode, T == AnyContent {
+extension ReferenceLanguageAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(hreflang value: String) -> Self {
         
@@ -1657,7 +1657,7 @@ extension IdentifierAttribute {
     internal var key: String { "id" }
 }
 
-extension IdentifierAttribute where Self: ContentNode, T == AnyContent {
+extension IdentifierAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(id value: String) -> Self {
         
@@ -1669,7 +1669,7 @@ extension IdentifierAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension IdentifierAttribute where Self: ContentNode, T == String {
+extension IdentifierAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(id value: String) -> Self {
         
@@ -1709,7 +1709,7 @@ extension IsMapAttribute {
     internal var key: String { "ismap" }
 }
 
-extension IsMapAttribute where Self: ContentNode, T == AnyContent {
+extension IsMapAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(ismap value: String) -> Self {
         
@@ -1749,7 +1749,7 @@ extension InputModeAttribute {
     internal var key: String { "inputmode" }
 }
 
-extension InputModeAttribute where Self: ContentNode, T == AnyContent {
+extension InputModeAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(inputmode value: String) -> Self {
         
@@ -1761,7 +1761,7 @@ extension InputModeAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension InputModeAttribute where Self: ContentNode, T == String {
+extension InputModeAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(inputmode value: String) -> Self {
         
@@ -1801,7 +1801,7 @@ extension IsAttribute {
     internal var key: String { "is" }
 }
 
-extension IsAttribute where Self: ContentNode, T == AnyContent {
+extension IsAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(is value: String) -> Self {
         
@@ -1813,7 +1813,7 @@ extension IsAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension IsAttribute where Self: ContentNode, T == String {
+extension IsAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(is value: String) -> Self {
         
@@ -1854,7 +1854,7 @@ extension ItemIdAttribute {
     internal var key: String { "itemid" }
 }
 
-extension ItemIdAttribute where Self: ContentNode, T == AnyContent {
+extension ItemIdAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(itemid value: String) -> Self {
         
@@ -1866,7 +1866,7 @@ extension ItemIdAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension ItemIdAttribute where Self: ContentNode, T == String {
+extension ItemIdAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(itemid value: String) -> Self {
         
@@ -1906,7 +1906,7 @@ extension ItemPropertyAttribute {
     internal var key: String { "itemprop" }
 }
 
-extension ItemPropertyAttribute where Self: ContentNode, T == AnyContent {
+extension ItemPropertyAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(itemprop value: String) -> Self {
         
@@ -1918,7 +1918,7 @@ extension ItemPropertyAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension ItemPropertyAttribute where Self: ContentNode, T == String {
+extension ItemPropertyAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(itemprop value: String) -> Self {
         
@@ -1958,7 +1958,7 @@ extension ItemReferenceAttribute {
     internal var key: String { "itemref" }
 }
 
-extension ItemReferenceAttribute where Self: ContentNode, T == AnyContent {
+extension ItemReferenceAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(itemref value: String) -> Self {
         
@@ -1970,7 +1970,7 @@ extension ItemReferenceAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension ItemReferenceAttribute where Self: ContentNode, T == String {
+extension ItemReferenceAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(itemref value: String) -> Self {
         
@@ -2010,7 +2010,7 @@ extension ItemScopeAttribute {
     internal var key: String { "itemscope" }
 }
 
-extension ItemScopeAttribute where Self: ContentNode, T == AnyContent {
+extension ItemScopeAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(itemscope value: String) -> Self {
         
@@ -2022,7 +2022,7 @@ extension ItemScopeAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension ItemScopeAttribute where Self: ContentNode, T == String {
+extension ItemScopeAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(itemscope value: String) -> Self {
         
@@ -2062,7 +2062,7 @@ extension ItemTypeAttribute {
     internal var key: String { "itemtype" }
 }
 
-extension ItemTypeAttribute where Self: ContentNode, T == AnyContent {
+extension ItemTypeAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(itemtype value: String) -> Self {
         
@@ -2102,7 +2102,7 @@ extension KindAttribute {
     internal var key: String { "kind" }
 }
 
-extension KindAttribute where Self: ContentNode, T == AnyContent {
+extension KindAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(kind value: String) -> Self {
         
@@ -2142,7 +2142,7 @@ extension LabelAttribute {
     internal var key: String { "label" }
 }
 
-extension LabelAttribute where Self: ContentNode, T == AnyContent {
+extension LabelAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(label value: String) -> Self {
         
@@ -2154,7 +2154,7 @@ extension LabelAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension LabelAttribute where Self: ContentNode, T == String {
+extension LabelAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(label value: String) -> Self {
         
@@ -2194,7 +2194,7 @@ extension LanguageAttribute {
     internal var key: String { "lang" }
 }
 
-extension LanguageAttribute where Self: ContentNode, T == AnyContent {
+extension LanguageAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(lang value: String) -> Self {
         
@@ -2206,7 +2206,7 @@ extension LanguageAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension LanguageAttribute where Self: ContentNode, T == String {
+extension LanguageAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(lang value: String) -> Self {
         
@@ -2246,7 +2246,7 @@ extension ListAttribute {
     internal var key: String { "list" }
 }
 
-extension ListAttribute where Self: ContentNode, T == AnyContent {
+extension ListAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(list value: String) -> Self {
         
@@ -2286,7 +2286,7 @@ extension LoopAttribute {
     internal var key: String { "loop" }
 }
 
-extension LoopAttribute where Self: ContentNode, T == AnyContent {
+extension LoopAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(loop value: String) -> Self {
         
@@ -2326,7 +2326,7 @@ extension LowAttribute {
     internal var key: String { "low" }
 }
 
-extension LowAttribute where Self: ContentNode, T == AnyContent {
+extension LowAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(low value: String) -> Self {
         
@@ -2366,7 +2366,7 @@ extension MaximumValueAttribute {
     internal var key: String { "max" }
 }
 
-extension MaximumValueAttribute where Self: ContentNode, T == AnyContent {
+extension MaximumValueAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(max value: String) -> Self {
         
@@ -2406,7 +2406,7 @@ extension MaximumLengthAttribute {
     internal var key: String { "maxlength" }
 }
 
-extension MaximumLengthAttribute where Self: ContentNode, T == AnyContent {
+extension MaximumLengthAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(maxlength value: String) -> Self {
         
@@ -2418,7 +2418,7 @@ extension MaximumLengthAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension MaximumLengthAttribute where Self: ContentNode, T == String {
+extension MaximumLengthAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(maxlength value: String) -> Self {
         
@@ -2458,7 +2458,7 @@ extension MediaAttribute {
     internal var key: String { "media" }
 }
 
-extension MediaAttribute where Self: ContentNode, T == AnyContent {
+extension MediaAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(media value: String) -> Self {
         
@@ -2498,7 +2498,7 @@ extension MethodAttribute {
     internal var key: String { "method" }
 }
 
-extension MethodAttribute where Self: ContentNode, T == AnyContent {
+extension MethodAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(method value: String) -> Self {
         
@@ -2538,7 +2538,7 @@ extension MinimumValueAttribute {
     internal var key: String { "min" }
 }
 
-extension MinimumValueAttribute where Self: ContentNode, T == AnyContent {
+extension MinimumValueAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(min value: String) -> Self {
         
@@ -2578,7 +2578,7 @@ extension MinimumLengthAttribute {
     internal var key: String { "minlength" }
 }
 
-extension MinimumLengthAttribute where Self: ContentNode, T == AnyContent {
+extension MinimumLengthAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(minlength value: String) -> Self {
         
@@ -2590,7 +2590,7 @@ extension MinimumLengthAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension MinimumLengthAttribute where Self: ContentNode, T == String {
+extension MinimumLengthAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(minlength value: String) -> Self {
         
@@ -2630,7 +2630,7 @@ extension MultipleAttribute {
     internal var key: String { "multiple" }
 }
 
-extension MultipleAttribute where Self: ContentNode, T == AnyContent {
+extension MultipleAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(multiple value: String) -> Self {
         
@@ -2670,7 +2670,7 @@ extension MutedAttribute {
     internal var key: String { "muted" }
 }
 
-extension MutedAttribute where Self: ContentNode, T == AnyContent {
+extension MutedAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(muted value: String) -> Self {
         
@@ -2710,7 +2710,7 @@ extension NameAttribute {
     internal var key: String { "name" }
 }
 
-extension NameAttribute where Self: ContentNode, T == AnyContent {
+extension NameAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(name value: String) -> Self {
         
@@ -2722,7 +2722,7 @@ extension NameAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension NameAttribute where Self: ContentNode, T == String {
+extension NameAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(name value: String) -> Self {
         
@@ -2762,7 +2762,7 @@ extension NonceAttribute {
     internal var key: String { "nonce" }
 }
 
-extension NonceAttribute where Self: ContentNode, T == AnyContent {
+extension NonceAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(nonce value: String) -> Self {
         
@@ -2774,7 +2774,7 @@ extension NonceAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension NonceAttribute where Self: ContentNode, T == String {
+extension NonceAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(nonce value: String) -> Self {
         
@@ -2814,7 +2814,7 @@ extension NoValidateAttribute {
     internal var key: String { "novalidate" }
 }
 
-extension NoValidateAttribute where Self: ContentNode, T == AnyContent {
+extension NoValidateAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(novalidate value: String) -> Self {
         
@@ -2854,7 +2854,7 @@ extension OpenAttribute {
     internal var key: String { "open" }
 }
 
-extension OpenAttribute where Self: ContentNode, T == AnyContent {
+extension OpenAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(open value: Bool) -> Self {
         
@@ -2894,7 +2894,7 @@ extension OptimumAttribute {
     internal var key: String { "optimum" }
 }
 
-extension OptimumAttribute where Self: ContentNode, T == AnyContent {
+extension OptimumAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(optimum value: Float) -> Self {
         
@@ -2934,7 +2934,7 @@ extension PatternAttribute {
     internal var key: String { "pattern" }
 }
 
-extension PatternAttribute where Self: ContentNode, T == AnyContent {
+extension PatternAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(pattern value: String) -> Self {
         
@@ -2974,7 +2974,7 @@ extension PartAttribute {
     internal var key: String { "part" }
 }
 
-extension PartAttribute where Self: ContentNode, T == AnyContent {
+extension PartAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(part value: String) -> Self {
         
@@ -3014,7 +3014,7 @@ extension PingAttribute {
     internal var key: String { "ping" }
 }
 
-extension PingAttribute where Self: ContentNode, T == AnyContent {
+extension PingAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(ping value: String) -> Self {
         
@@ -3054,7 +3054,7 @@ extension PlaceholderAttribute {
     internal var key: String { "placeholder" }
 }
 
-extension PlaceholderAttribute where Self: ContentNode, T == AnyContent {
+extension PlaceholderAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(placeholder value: String) -> Self {
         
@@ -3066,7 +3066,7 @@ extension PlaceholderAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension PlaceholderAttribute where Self: ContentNode, T == String {
+extension PlaceholderAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(placeholder value: String) -> Self {
         
@@ -3106,7 +3106,7 @@ extension PosterAttribute {
     internal var key: String { "poster" }
 }
 
-extension PosterAttribute where Self: ContentNode, T == AnyContent {
+extension PosterAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(poster value: String) -> Self {
         
@@ -3146,7 +3146,7 @@ extension PreloadAttribute {
     internal var key: String { "preload" }
 }
 
-extension PreloadAttribute where Self: ContentNode, T == AnyContent {
+extension PreloadAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(preload value: String) -> Self {
         
@@ -3186,7 +3186,7 @@ extension ReadyOnlyAttribute {
     internal var key: String { "readonly" }
 }
 
-extension ReadyOnlyAttribute where Self: ContentNode, T == AnyContent {
+extension ReadyOnlyAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(readonly value: String) -> Self {
         
@@ -3198,7 +3198,7 @@ extension ReadyOnlyAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension ReadyOnlyAttribute where Self: ContentNode, T == String {
+extension ReadyOnlyAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(readonly value: String) -> Self {
         
@@ -3238,7 +3238,7 @@ extension ReferrerPolicyAttribute {
     internal var key: String { "referrerpolicy" }
 }
 
-extension ReferrerPolicyAttribute where Self: ContentNode, T == AnyContent {
+extension ReferrerPolicyAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(referrerpolicy value: String) -> Self {
         
@@ -3250,7 +3250,7 @@ extension ReferrerPolicyAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension ReferrerPolicyAttribute where Self: ContentNode, T == String {
+extension ReferrerPolicyAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(referrerpolicy value: String) -> Self {
         
@@ -3290,7 +3290,7 @@ extension RelationshipAttribute {
     internal var key: String { "rel" }
 }
 
-extension RelationshipAttribute where Self: ContentNode, T == AnyContent {
+extension RelationshipAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(rel value: String) -> Self {
         
@@ -3330,7 +3330,7 @@ extension RequiredAttribute {
     internal var key: String { "required" }
 }
 
-extension RequiredAttribute where Self: ContentNode, T == AnyContent {
+extension RequiredAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(required value: String) -> Self {
         
@@ -3342,7 +3342,7 @@ extension RequiredAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension RequiredAttribute where Self: ContentNode, T == String {
+extension RequiredAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(required value: String) -> Self {
         
@@ -3382,7 +3382,7 @@ extension ReversedAttribute {
     internal var key: String { "reversed" }
 }
 
-extension ReversedAttribute where Self: ContentNode, T == AnyContent {
+extension ReversedAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(reversed value: String) -> Self {
         
@@ -3422,7 +3422,7 @@ extension RoleAttribute {
     internal var key: String { "role" }
 }
 
-extension RoleAttribute where Self: ContentNode, T == AnyContent {
+extension RoleAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(role value: String) -> Self {
         
@@ -3434,7 +3434,7 @@ extension RoleAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension RoleAttribute where Self: ContentNode, T == String {
+extension RoleAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(role value: String) -> Self {
         
@@ -3471,7 +3471,7 @@ extension RowsAttribute {
     internal var key: String { "rows" }
 }
 
-extension RowsAttribute where Self: ContentNode, T == AnyContent {
+extension RowsAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(rows value: Int) -> Self {
         
@@ -3483,7 +3483,7 @@ extension RowsAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension RowsAttribute where Self: ContentNode, T == String {
+extension RowsAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(rows value: Int) -> Self {
         
@@ -3523,7 +3523,7 @@ extension RowSpanAttribute {
     internal var key: String { "rowspan" }
 }
 
-extension RowSpanAttribute where Self: ContentNode, T == AnyContent {
+extension RowSpanAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(rowspan value: Int) -> Self {
         
@@ -3563,7 +3563,7 @@ extension SandboxAttribute {
     internal var key: String { "sandbox" }
 }
 
-extension SandboxAttribute where Self: ContentNode, T == AnyContent {
+extension SandboxAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(sandbox value: String) -> Self {
         
@@ -3603,7 +3603,7 @@ extension ScopeAttribute {
     internal var key: String { "scope" }
 }
 
-extension ScopeAttribute where Self: ContentNode, T == AnyContent {
+extension ScopeAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(scope value: String) -> Self {
         
@@ -3643,7 +3643,7 @@ extension ShapeAttribute {
     internal var key: String { "shape" }
 }
 
-extension ShapeAttribute where Self: ContentNode, T == AnyContent {
+extension ShapeAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(shape value: String) -> Self {
         
@@ -3683,7 +3683,7 @@ extension SizeAttribute {
     internal var key: String { "size" }
 }
 
-extension SizeAttribute where Self: ContentNode, T == AnyContent {
+extension SizeAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(size value: Int) -> Self {
         
@@ -3723,7 +3723,7 @@ extension SizesAttribute {
     internal var key: String { "sizes" }
 }
 
-extension SizesAttribute where Self: ContentNode, T == AnyContent {
+extension SizesAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(sizes value: Int) -> Self {
         
@@ -3763,7 +3763,7 @@ extension SlotAttribute {
     internal var key: String { "slot" }
 }
 
-extension SlotAttribute where Self: ContentNode, T == AnyContent {
+extension SlotAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(slot value: String) -> Self {
         
@@ -3803,7 +3803,7 @@ extension SpanAttribute {
     internal var key: String { "span" }
 }
 
-extension SpanAttribute where Self: ContentNode, T == AnyContent {
+extension SpanAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(span value: Int) -> Self {
         
@@ -3843,7 +3843,7 @@ extension SpellCheckAttribute {
     internal var key: String { "spellcheck" }
 }
 
-extension SpellCheckAttribute where Self: ContentNode, T == AnyContent {
+extension SpellCheckAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(spellcheck value: Bool) -> Self {
         
@@ -3855,7 +3855,7 @@ extension SpellCheckAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension SpellCheckAttribute where Self: ContentNode, T == String {
+extension SpellCheckAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(spellcheck value: Bool) -> Self {
         
@@ -3895,7 +3895,7 @@ extension SourceAttribute {
     internal var key: String { "source" }
 }
 
-extension SourceAttribute where Self: ContentNode, T == AnyContent {
+extension SourceAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(source value: String) -> Self {
         
@@ -3907,7 +3907,7 @@ extension SourceAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension SourceAttribute where Self: ContentNode, T == String {
+extension SourceAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(source value: String) -> Self {
         
@@ -3947,7 +3947,7 @@ extension StartAttribute {
     internal var key: String { "start" }
 }
 
-extension StartAttribute where Self: ContentNode, T == AnyContent {
+extension StartAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(start value: Int) -> Self {
         
@@ -3987,7 +3987,7 @@ extension StepAttribute {
     internal var key: String { "step" }
 }
 
-extension StepAttribute where Self: ContentNode, T == AnyContent {
+extension StepAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(step value: Int) -> Self {
         
@@ -4027,7 +4027,7 @@ extension StyleAttribute {
     internal var key: String { "style" }
 }
 
-extension StyleAttribute where Self: ContentNode, T == AnyContent {
+extension StyleAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(style value: String) -> Self {
         
@@ -4039,7 +4039,7 @@ extension StyleAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension StyleAttribute where Self: ContentNode, T == String {
+extension StyleAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(style value: String) -> Self {
         
@@ -4079,7 +4079,7 @@ extension TabulatorAttribute {
     internal var key: String { "tabindex" }
 }
 
-extension TabulatorAttribute where Self: ContentNode, T == AnyContent {
+extension TabulatorAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(tabindex value: String) -> Self {
         
@@ -4091,7 +4091,7 @@ extension TabulatorAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension TabulatorAttribute where Self: ContentNode, T == String {
+extension TabulatorAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(tabindex value: String) -> Self {
         
@@ -4131,7 +4131,7 @@ extension TargetAttribute {
     internal var key: String { "target" }
 }
 
-extension TargetAttribute where Self: ContentNode, T == AnyContent {
+extension TargetAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(target value: String) -> Self {
         
@@ -4171,7 +4171,7 @@ extension TitleAttribute {
     internal var key: String { "title" }
 }
 
-extension TitleAttribute where Self: ContentNode, T == AnyContent {
+extension TitleAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(title value: String) -> Self {
         
@@ -4183,7 +4183,7 @@ extension TitleAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension TitleAttribute where Self: ContentNode, T == String {
+extension TitleAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(title value: String) -> Self {
         
@@ -4223,7 +4223,7 @@ extension TranslateAttribute {
     internal var key: String { "translate" }
 }
 
-extension TranslateAttribute where Self: ContentNode, T == AnyContent {
+extension TranslateAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(translate value: String) -> Self {
         
@@ -4235,7 +4235,7 @@ extension TranslateAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension TranslateAttribute where Self: ContentNode, T == String {
+extension TranslateAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(translate value: String) -> Self {
         
@@ -4275,7 +4275,7 @@ extension TypeAttribute {
     internal var key: String { "type" }
 }
 
-extension TypeAttribute where Self: ContentNode, T == AnyContent {
+extension TypeAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(type value: String) -> Self {
         
@@ -4287,7 +4287,7 @@ extension TypeAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension TypeAttribute where Self: ContentNode, T == String {
+extension TypeAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(type value: String) -> Self {
         
@@ -4327,7 +4327,7 @@ extension ValueAttribute {
     internal var key: String { "value" }
 }
 
-extension ValueAttribute where Self: ContentNode, T == AnyContent {
+extension ValueAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(value: String) -> Self {
         
@@ -4339,7 +4339,7 @@ extension ValueAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension ValueAttribute where Self: ContentNode, T == String {
+extension ValueAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(value: String) -> Self {
         
@@ -4379,7 +4379,7 @@ extension WidthAttribute {
     internal var key: String { "width" }
 }
 
-extension WidthAttribute where Self: ContentNode, T == AnyContent {
+extension WidthAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(width value: Int) -> Self {
         
@@ -4419,7 +4419,7 @@ extension WrapAttribute {
     internal var key: String { "wrap" }
 }
 
-extension WrapAttribute where Self: ContentNode, T == AnyContent {
+extension WrapAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(wrap value: String) -> Self {
         
@@ -4431,7 +4431,7 @@ extension WrapAttribute where Self: ContentNode, T == AnyContent {
     }
 }
 
-extension WrapAttribute where Self: ContentNode, T == String {
+extension WrapAttribute where Self: ContentNode, Content == String {
     
     internal func mutate(wrap value: String) -> Self {
         
@@ -4471,7 +4471,7 @@ extension PropertyAttribute {
     internal var key: String { "property" }
 }
 
-extension PropertyAttribute where Self: ContentNode, T == AnyContent {
+extension PropertyAttribute where Self: ContentNode, Content == AnyContent {
     
     internal func mutate(property value: String) -> Self {
         

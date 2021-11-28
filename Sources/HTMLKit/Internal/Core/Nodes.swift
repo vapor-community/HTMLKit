@@ -5,15 +5,15 @@ import OrderedCollections
 ///
 internal protocol ContentNode: AnyNode {
 
-    associatedtype T
+    associatedtype Content
     
     var name: String { get }
     
     var attributes: OrderedDictionary<String, Any>? { get }
     
-    var content: T { get }
+    var content: Content { get }
     
-    init(attributes: OrderedDictionary<String, Any>?, content: T)
+    init(attributes: OrderedDictionary<String, Any>?, content: Content)
 }
 
 extension ContentNode {
@@ -26,7 +26,7 @@ extension ContentNode {
     }
 }
 
-extension ContentNode where T == AnyContent {
+extension ContentNode where Content == AnyContent {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
@@ -56,7 +56,7 @@ extension ContentNode where T == AnyContent {
     }
 }
 
-extension ContentNode where T == String {
+extension ContentNode where Content == String {
     
     internal func build(_ formula: Renderer.Formula) throws {
         
