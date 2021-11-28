@@ -3,7 +3,7 @@ import OrderedCollections
 /// The element
 ///
 ///
-public struct Area: ContentNode {
+public struct Area: ContentNode, MapElement {
 
     internal var name: String { "area" }
 

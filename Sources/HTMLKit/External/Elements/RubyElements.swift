@@ -13,7 +13,7 @@ public typealias Rp = RubyPronunciation
 /// The element
 ///
 ///
-public struct RubyText: ContentNode {
+public struct RubyText: ContentNode, RubyElement {
 
     internal var name: String { "rt" }
 
@@ -144,7 +144,7 @@ extension RubyText: AnyContent {
 /// The element
 ///
 ///
-public struct RubyPronunciation: ContentNode {
+public struct RubyPronunciation: ContentNode, RubyElement {
 
     internal var name: String { "rp" }
 

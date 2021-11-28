@@ -3,7 +3,7 @@ import OrderedCollections
 /// The element
 ///
 ///
-public struct Input: EmptyNode {
+public struct Input: EmptyNode, FormElement {
 
     internal var name: String { "input" }
 
@@ -233,7 +233,7 @@ extension Input: AnyContent {
 /// The element
 ///
 ///
-public struct Label: ContentNode {
+public struct Label: ContentNode, FormElement {
 
     internal var name: String { "label" }
 
@@ -379,7 +379,7 @@ extension Label: AnyContent {
 /// The element
 ///
 ///
-public struct Select: ContentNode {
+public struct Select: ContentNode, FormElement {
 
     internal var name: String { "select" }
 
@@ -538,7 +538,7 @@ extension Select: AnyContent {
 /// The element
 ///
 ///
-public struct TextArea: ContentNode {
+public struct TextArea: ContentNode, FormElement {
         
     internal var name: String { "textarea" }
 
@@ -717,7 +717,7 @@ extension TextArea: AnyContent {
 /// The element
 ///
 ///
-public struct Button: ContentNode {
+public struct Button: ContentNode, FormElement {
 
     internal var name: String { "button" }
 
@@ -883,7 +883,7 @@ extension Button: AnyContent {
 /// The element
 ///
 ///
-public struct Fieldset: ContentNode {
+public struct Fieldset: ContentNode, FormElement {
     
     internal var name: String { "fieldset" }
 

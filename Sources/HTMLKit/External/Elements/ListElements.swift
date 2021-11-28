@@ -8,7 +8,7 @@ public typealias Li = ListItem
 /// The element
 ///
 ///
-public struct ListItem: ContentNode {
+public struct ListItem: ContentNode, ListElement {
 
     internal var name: String { "li" }
 

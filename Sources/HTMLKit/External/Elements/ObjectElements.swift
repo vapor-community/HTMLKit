@@ -3,7 +3,7 @@ import OrderedCollections
 /// The element
 ///
 ///
-public struct Parameter: EmptyNode {
+public struct Parameter: EmptyNode, ObjectElement {
     
     internal var name: String { "param" }
 

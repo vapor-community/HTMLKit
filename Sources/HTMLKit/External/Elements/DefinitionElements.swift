@@ -13,7 +13,7 @@ public typealias Dd = TermDefinition
 /// The element
 ///
 ///
-public struct TermName: ContentNode {
+public struct TermName: ContentNode, DefinitionElement {
 
     internal var name: String { "dt" }
 
@@ -144,7 +144,7 @@ extension TermName: AnyContent {
 /// The element
 ///
 ///
-public struct TermDefinition: ContentNode {
+public struct TermDefinition: ContentNode, DefinitionElement {
 
     internal var name: String { "dd" }
 

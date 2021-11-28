@@ -8,7 +8,7 @@ public typealias Optgroup = OptionGroup
 /// The element
 ///
 ///
-public struct OptionGroup: ContentNode {
+public struct OptionGroup: ContentNode, InputElement {
 
     internal var name: String { "optgroup" }
 
@@ -147,7 +147,7 @@ extension OptionGroup: AnyContent {
 /// The element
 ///
 ///
-public struct Option: ContentNode {
+public struct Option: ContentNode, InputElement {
 
     internal var name: String { "option" }
 
@@ -290,7 +290,7 @@ extension Option: AnyContent {
 /// The element
 ///
 ///
-public struct Legend: ContentNode {
+public struct Legend: ContentNode, InputElement {
 
     internal var name: String { "legend" }
 
@@ -421,7 +421,7 @@ extension Legend: AnyContent {
 /// The element
 ///
 ///
-public struct Summary: ContentNode {
+public struct Summary: ContentNode, InputElement {
 
     internal var name: String { "summary" }
 

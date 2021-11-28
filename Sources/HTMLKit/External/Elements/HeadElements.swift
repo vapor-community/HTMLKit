@@ -3,7 +3,7 @@ import OrderedCollections
 /// The element
 ///
 ///
-public struct Title: ContentNode {
+public struct Title: ContentNode, HeadElement {
 
     internal var name: String { "title" }
 
@@ -134,7 +134,7 @@ extension Title: AnyContent {
 /// The element
 ///
 ///
-public struct Base: EmptyNode {
+public struct Base: EmptyNode, HeadElement {
 
     internal var name: String { "base" }
 
@@ -268,7 +268,7 @@ extension Base: AnyContent {
 /// The element
 ///
 ///
-public struct Meta: EmptyNode {
+public struct Meta: EmptyNode, HeadElement {
 
     internal var name: String { "meta" }
 
@@ -406,7 +406,7 @@ extension Meta: AnyContent {
 /// The element
 ///
 ///
-public struct Style: ContentNode {
+public struct Style: ContentNode, HeadElement {
 
     internal var name: String { "style" }
     

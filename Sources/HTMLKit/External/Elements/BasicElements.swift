@@ -206,7 +206,7 @@ extension Comment: AnyContent {
 /// The element
 ///
 ///
-public struct Document: DocumentNode {
+public struct Document: DocumentNode, BasicElement {
     
     public var content: String
     
@@ -229,7 +229,7 @@ extension Document: AnyContent {
 /// The element
 ///
 ///
-public struct Html: ContentNode {
+public struct Html: ContentNode, BasicElement {
 
     internal var name: String { "html" }
 
@@ -360,7 +360,7 @@ extension Html: AnyContent {
 /// The element
 ///
 ///
-public struct Head: ContentNode {
+public struct Head: ContentNode, BasicElement {
 
     internal var name: String { "head" }
 
@@ -491,7 +491,7 @@ extension Head: AnyContent {
 /// The element
 ///
 ///
-public struct Body: ContentNode {
+public struct Body: ContentNode, BasicElement {
 
     internal var name: String { "body" }
 

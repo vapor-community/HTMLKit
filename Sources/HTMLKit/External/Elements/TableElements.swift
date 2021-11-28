@@ -43,7 +43,7 @@ public typealias Th = HeaderCell
 /// The element
 ///
 ///
-public struct Table: ContentNode {
+public struct Table: ContentNode, TableElement {
 
     internal var name: String { "table" }
 
@@ -182,7 +182,7 @@ extension Table: AnyContent {
 /// The element
 ///
 ///
-public struct Caption: ContentNode {
+public struct Caption: ContentNode, TableElement {
 
     internal var name: String { "caption" }
 
@@ -314,7 +314,7 @@ extension Caption: AnyContent {
 /// The element
 ///
 ///
-public struct ColumnGroup: ContentNode {
+public struct ColumnGroup: ContentNode, TableElement {
 
     internal var name: String { "colgroup" }
 
@@ -449,7 +449,7 @@ extension ColumnGroup: AnyContent {
 /// The element
 ///
 ///
-public struct Column: ContentNode {
+public struct Column: ContentNode, TableElement {
 
     internal var name: String { "col" }
 
@@ -584,7 +584,7 @@ extension Column: AnyContent {
 /// The element
 ///
 ///
-public struct TableBody: ContentNode {
+public struct TableBody: ContentNode, TableElement {
 
     internal var name: String { "tbody" }
 
@@ -723,7 +723,7 @@ extension TableBody: AnyContent {
 /// The element
 ///
 ///
-public struct TableHead: ContentNode {
+public struct TableHead: ContentNode, TableElement {
 
     internal var name: String { "thead" }
 
@@ -862,7 +862,7 @@ extension TableHead: AnyContent {
 /// The element
 ///
 ///
-public struct TableFoot: ContentNode {
+public struct TableFoot: ContentNode, TableElement {
 
     internal var name: String { "tfoot" }
 
@@ -993,7 +993,7 @@ extension TableFoot: AnyContent {
 /// The element
 ///
 ///
-public struct TableRow: ContentNode {
+public struct TableRow: ContentNode, TableElement {
 
     internal var name: String { "tr" }
 
@@ -1132,7 +1132,7 @@ extension TableRow: AnyContent {
 /// The element
 ///
 ///
-public struct DataCell: ContentNode {
+public struct DataCell: ContentNode, TableElement {
 
     internal var name: String { "td" }
 
@@ -1275,7 +1275,7 @@ extension DataCell: AnyContent {
 /// The element
 ///
 ///
-public struct HeaderCell: ContentNode {
+public struct HeaderCell: ContentNode, TableElement {
 
     internal var name: String { "th" }
 

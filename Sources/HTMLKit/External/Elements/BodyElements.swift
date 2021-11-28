@@ -3,7 +3,7 @@ import OrderedCollections
 /// The element
 ///
 ///
-public struct Link: EmptyNode {
+public struct Link: EmptyNode, BodyElement {
 
     internal var name: String { "link" }
 
@@ -165,7 +165,7 @@ extension Link: AnyContent {
 /// The element
 ///
 ///
-public struct Article: ContentNode {
+public struct Article: ContentNode, BodyElement {
 
     internal var name: String { "article" }
 
@@ -296,7 +296,7 @@ extension Article: AnyContent {
 /// The element
 ///
 ///
-public struct Section: ContentNode {
+public struct Section: ContentNode, BodyElement {
 
     internal var name: String { "section" }
 
@@ -427,7 +427,7 @@ extension Section: AnyContent {
 /// The element
 ///
 ///
-public struct Navigation: ContentNode {
+public struct Navigation: ContentNode, BodyElement {
 
     internal var name: String { "nav" }
 
@@ -558,7 +558,7 @@ extension Navigation: AnyContent {
 /// The element
 ///
 ///
-public struct Aside: ContentNode {
+public struct Aside: ContentNode, BodyElement {
 
     internal var name: String { "aside" }
 
@@ -689,7 +689,7 @@ extension Aside: AnyContent {
 /// The element
 ///
 ///
-public struct Heading1: ContentNode {
+public struct Heading1: ContentNode, BodyElement {
 
     internal var name: String { "h1" }
 
@@ -831,7 +831,7 @@ extension Heading1: AnyContent {
 /// The element
 ///
 ///
-public struct Heading2: ContentNode {
+public struct Heading2: ContentNode, BodyElement {
 
     internal var name: String { "h2" }
 
@@ -973,7 +973,7 @@ extension Heading2: AnyContent {
 /// The element
 ///
 ///
-public struct Heading3: ContentNode {
+public struct Heading3: ContentNode, BodyElement {
 
     internal var name: String { "h3" }
 
@@ -1116,7 +1116,7 @@ extension Heading3: AnyContent {
 /// The element
 ///
 ///
-public struct Heading4: ContentNode {
+public struct Heading4: ContentNode, BodyElement {
 
     internal var name: String { "h4" }
 
@@ -1259,7 +1259,7 @@ extension Heading4: AnyContent {
 /// The element
 ///
 ///
-public struct Heading5: ContentNode {
+public struct Heading5: ContentNode, BodyElement {
 
     internal var name: String { "h5" }
 
@@ -1402,7 +1402,7 @@ extension Heading5: AnyContent {
 /// The element
 ///
 ///
-public struct Heading6: ContentNode {
+public struct Heading6: ContentNode, BodyElement {
 
     internal var name: String { "h6" }
 
@@ -1544,7 +1544,7 @@ extension Heading6: AnyContent {
 /// The element
 ///
 ///
-public struct HeadingGroup: ContentNode {
+public struct HeadingGroup: ContentNode, BodyElement {
 
     internal var name: String { "hgroup" }
 
@@ -1675,7 +1675,7 @@ extension HeadingGroup: AnyContent {
 /// The element
 ///
 ///
-public struct Header: ContentNode {
+public struct Header: ContentNode, BodyElement {
 
     internal var name: String { "header" }
 
@@ -1806,7 +1806,7 @@ extension Header: AnyContent {
 /// The element
 ///
 ///
-public struct Footer: ContentNode {
+public struct Footer: ContentNode, BodyElement {
 
     internal var name: String { "footer" }
 
@@ -1937,7 +1937,7 @@ extension Footer: AnyContent {
 /// The element
 ///
 ///
-public struct Address: ContentNode {
+public struct Address: ContentNode, BodyElement {
 
     internal var name: String { "address" }
 
@@ -2070,7 +2070,7 @@ extension Address: AnyContent {
 /// The element
 ///
 ///
-public struct Paragraph: ContentNode {
+public struct Paragraph: ContentNode, BodyElement {
 
     internal var name: String { "p" }
 
@@ -2212,7 +2212,7 @@ extension Paragraph: AnyContent {
 /// The element
 ///
 ///
-public struct HorizontalRule: EmptyNode {
+public struct HorizontalRule: EmptyNode, BodyElement {
 
     internal var name: String { "hr" }
     
@@ -2338,7 +2338,7 @@ extension HorizontalRule: AnyContent {
 /// The element
 ///
 ///
-public struct PreformattedText: ContentNode {
+public struct PreformattedText: ContentNode, BodyElement {
 
     internal var name: String { "pre" }
 
@@ -2469,7 +2469,7 @@ extension PreformattedText: AnyContent {
 /// The element
 ///
 ///
-public struct Blockquote: ContentNode {
+public struct Blockquote: ContentNode, BodyElement {
 
     internal var name: String { "blockquote" }
 
@@ -2615,7 +2615,7 @@ extension Blockquote: AnyContent {
 /// The element
 ///
 ///
-public struct OrderedList: ContentNode {
+public struct OrderedList: ContentNode, BodyElement {
 
     internal var name: String { "ol" }
 
@@ -2758,7 +2758,7 @@ extension OrderedList: AnyContent {
 /// The element
 ///
 ///
-public struct UnorderedList: ContentNode {
+public struct UnorderedList: ContentNode, BodyElement {
 
     internal var name: String { "ul" }
 
@@ -2889,7 +2889,7 @@ extension UnorderedList: AnyContent {
 /// The element
 ///
 ///
-public struct DescriptionList: ContentNode {
+public struct DescriptionList: ContentNode, BodyElement {
 
     internal var name: String { "dl" }
 
@@ -3020,7 +3020,7 @@ extension DescriptionList: AnyContent {
 /// The element
 ///
 ///
-public struct Figure: ContentNode {
+public struct Figure: ContentNode, BodyElement {
 
     internal var name: String { "figure" }
 
@@ -3151,7 +3151,7 @@ extension Figure: AnyContent {
 /// The element
 ///
 ///
-public struct Anchor: ContentNode {
+public struct Anchor: ContentNode, BodyElement {
 
     internal var name: String { "a" }
 
@@ -3329,7 +3329,7 @@ extension Anchor: AnyContent {
 /// The element
 ///
 ///
-public struct Emphasize: ContentNode {
+public struct Emphasize: ContentNode, BodyElement {
 
     internal var name: String { "em" }
 
@@ -3461,7 +3461,7 @@ extension Emphasize: AnyContent {
 /// The element
 ///
 ///
-public struct Strong: ContentNode {
+public struct Strong: ContentNode, BodyElement {
 
     internal var name: String { "strong" }
 
@@ -3592,7 +3592,7 @@ extension Strong: AnyContent {
 /// The element
 ///
 ///
-public struct Small: ContentNode {
+public struct Small: ContentNode, BodyElement {
 
     internal var name: String { "small" }
 
@@ -3734,7 +3734,7 @@ extension Small: AnyContent {
 /// The element
 ///
 ///
-public struct StrikeThrough: ContentNode {
+public struct StrikeThrough: ContentNode, BodyElement {
 
     internal var name: String { "s" }
 
@@ -3876,7 +3876,7 @@ extension StrikeThrough: AnyContent {
 /// The element
 ///
 ///
-public struct Main: ContentNode {
+public struct Main: ContentNode, BodyElement {
 
     internal var name: String { "main" }
 
@@ -4007,7 +4007,7 @@ extension Main: AnyContent {
 /// The element
 ///
 ///
-public struct Division: ContentNode {
+public struct Division: ContentNode, BodyElement {
 
     internal var name: String { "div" }
 
@@ -4194,7 +4194,7 @@ extension Division: Modifiable {
 /// The element
 ///
 ///
-public struct Definition: ContentNode {
+public struct Definition: ContentNode, BodyElement {
 
     internal var name: String { "dfn" }
 
@@ -4325,7 +4325,7 @@ extension Definition: AnyContent {
 /// The element
 ///
 ///
-public struct Cite: ContentNode {
+public struct Cite: ContentNode, BodyElement {
 
     internal var name: String { "cite" }
 
@@ -4456,7 +4456,7 @@ extension Cite: AnyContent {
 /// The element
 ///
 ///
-public struct ShortQuote: ContentNode {
+public struct ShortQuote: ContentNode, BodyElement {
 
     internal var name: String { "q" }
 
@@ -4591,7 +4591,7 @@ extension ShortQuote: AnyContent {
 /// The element
 ///
 ///
-public struct Abbreviation: ContentNode {
+public struct Abbreviation: ContentNode, BodyElement {
 
     internal var name: String { "abbr" }
 
@@ -4722,7 +4722,7 @@ extension Abbreviation: AnyContent {
 /// The element
 ///
 ///
-public struct Ruby: ContentNode {
+public struct Ruby: ContentNode, BodyElement {
 
     internal var name: String { "ruby" }
 
@@ -4853,7 +4853,7 @@ extension Ruby: AnyContent {
 /// The element
 ///
 ///
-public struct Data: ContentNode {
+public struct Data: ContentNode, BodyElement {
 
     internal var name: String { "data" }
 
@@ -4988,7 +4988,7 @@ extension Data: AnyContent {
 /// The element
 ///
 ///
-public struct Time: ContentNode {
+public struct Time: ContentNode, BodyElement {
 
     internal var name: String { "time" }
 
@@ -5123,7 +5123,7 @@ extension Time: AnyContent {
 /// The element
 ///
 ///
-public struct Code: ContentNode {
+public struct Code: ContentNode, BodyElement {
 
     internal var name: String { "code" }
 
@@ -5254,7 +5254,7 @@ extension Code: AnyContent {
 /// The element
 ///
 ///
-public struct Variable: ContentNode {
+public struct Variable: ContentNode, BodyElement {
 
     internal var name: String { "v" }
 
@@ -5385,7 +5385,7 @@ extension Variable: AnyContent {
 /// The element
 ///
 ///
-public struct SampleOutput: ContentNode {
+public struct SampleOutput: ContentNode, BodyElement {
 
     internal var name: String { "samp" }
 
@@ -5516,7 +5516,7 @@ extension SampleOutput: AnyContent {
 /// The element
 ///
 ///
-public struct KeyboardInput: ContentNode {
+public struct KeyboardInput: ContentNode, BodyElement {
 
     internal var name: String { "kbd" }
 
@@ -5647,7 +5647,7 @@ extension KeyboardInput: AnyContent {
 /// The element
 ///
 ///
-public struct Subscript: ContentNode {
+public struct Subscript: ContentNode, BodyElement {
 
     internal var name: String { "sub" }
 
@@ -5778,7 +5778,7 @@ extension Subscript: AnyContent {
 /// The element
 ///
 ///
-public struct Superscript: ContentNode {
+public struct Superscript: ContentNode, BodyElement {
 
     internal var name: String { "sup" }
 
@@ -5909,7 +5909,7 @@ extension Superscript: AnyContent {
 /// The element
 ///
 ///
-public struct Italic: ContentNode {
+public struct Italic: ContentNode, BodyElement {
 
     internal var name: String { "i" }
 
@@ -6051,7 +6051,7 @@ extension Italic: AnyContent {
 /// The element
 ///
 ///
-public struct Bold: ContentNode {
+public struct Bold: ContentNode, BodyElement {
 
     internal var name: String { "b" }
 
@@ -6193,7 +6193,7 @@ extension Bold: AnyContent {
 /// The element
 ///
 ///
-public struct Underline: ContentNode {
+public struct Underline: ContentNode, BodyElement {
 
     internal var name: String { "u" }
     
@@ -6335,7 +6335,7 @@ extension Underline: AnyContent {
 /// The element
 ///
 ///
-public struct Mark: ContentNode {
+public struct Mark: ContentNode, BodyElement {
 
     internal var name: String { "mark" }
 
@@ -6466,7 +6466,7 @@ extension Mark: AnyContent {
 /// The element
 ///
 ///
-public struct Bdi: ContentNode {
+public struct Bdi: ContentNode, BodyElement {
 
     internal var name: String { "bdi" }
 
@@ -6597,7 +6597,7 @@ extension Bdi: AnyContent {
 /// The element
 ///
 ///
-public struct Bdo: EmptyNode {
+public struct Bdo: EmptyNode, BodyElement {
 
     internal var name: String { "bdo" }
 
@@ -6723,7 +6723,7 @@ extension Bdo: AnyContent {
 /// The element
 ///
 ///
-public struct Span: ContentNode {
+public struct Span: ContentNode, BodyElement {
 
     internal var name: String { "span" }
 
@@ -6854,7 +6854,7 @@ extension Span: AnyContent {
 /// The element
 ///
 ///
-public struct LineBreak: EmptyNode {
+public struct LineBreak: EmptyNode, BodyElement {
 
     internal var name: String { "br" }
 
@@ -6980,7 +6980,7 @@ extension LineBreak: AnyContent {
 /// The element
 ///
 ///
-public struct WordBreak: EmptyNode {
+public struct WordBreak: EmptyNode, BodyElement {
 
     internal var name: String { "wbr" }
     
@@ -7106,7 +7106,7 @@ extension WordBreak: AnyContent {
 /// The element
 ///
 ///
-public struct InsertedText: ContentNode {
+public struct InsertedText: ContentNode, BodyElement {
 
     internal var name: String { "ins" }
 
@@ -7245,7 +7245,7 @@ extension InsertedText: AnyContent {
 /// The element
 ///
 ///
-public struct DeletedText: ContentNode {
+public struct DeletedText: ContentNode, BodyElement {
 
     internal var name: String { "del" }
 
@@ -7384,7 +7384,7 @@ extension DeletedText: AnyContent {
 /// The element
 ///
 ///
-public struct Picture: ContentNode {
+public struct Picture: ContentNode, BodyElement {
 
     internal var name: String { "picture" }
 
@@ -7515,7 +7515,7 @@ extension Picture: AnyContent {
 /// The element
 ///
 ///
-public struct Image: EmptyNode {
+public struct Image: EmptyNode, BodyElement {
 
     internal var name: String { "img" }
 
@@ -7673,7 +7673,7 @@ extension Image: AnyContent {
 /// The element
 ///
 ///
-public struct InlineFrame: ContentNode {
+public struct InlineFrame: ContentNode, BodyElement {
     
     internal var name: String { "iframe" }
 
@@ -7824,7 +7824,7 @@ extension InlineFrame: AnyContent {
 /// The element
 ///
 ///
-public struct Embed: EmptyNode {
+public struct Embed: EmptyNode, BodyElement {
 
     internal var name: String { "embed" }
 
@@ -7966,7 +7966,7 @@ extension Embed: AnyContent {
 /// The element
 ///
 ///
-public struct Object: ContentNode {
+public struct Object: ContentNode, BodyElement {
     
     internal var name: String { "object" }
 
@@ -8125,7 +8125,7 @@ extension Object: AnyContent {
 /// The element
 ///
 ///
-public struct Video: ContentNode {
+public struct Video: ContentNode, BodyElement {
 
     internal var name: String { "video" }
 
@@ -8284,7 +8284,7 @@ extension Video: AnyContent {
 /// The element
 ///
 ///
-public struct Audio: ContentNode {
+public struct Audio: ContentNode, BodyElement {
 
     internal var name: String { "audio" }
 
@@ -8435,7 +8435,7 @@ extension Audio: AnyContent {
 /// The element
 ///
 ///
-public struct Map: ContentNode {
+public struct Map: ContentNode, BodyElement {
     
     internal var name: String { "map" }
 
@@ -8570,7 +8570,7 @@ extension Map: AnyContent {
 /// The element
 ///
 ///
-public struct Form: ContentNode {
+public struct Form: ContentNode, BodyElement {
 
     internal var name: String { "form" }
 
@@ -8737,7 +8737,7 @@ extension Form: AnyContent {
 /// The element
 ///
 ///
-public struct DataList: ContentNode {
+public struct DataList: ContentNode, BodyElement {
 
     internal var name: String { "datalist" }
 
@@ -8868,7 +8868,7 @@ extension DataList: AnyContent {
 /// The element
 ///
 ///
-public struct Output: ContentNode {
+public struct Output: ContentNode, BodyElement {
     
     internal var name: String { "output" }
 
@@ -9011,7 +9011,7 @@ extension Output: AnyContent {
 /// The element
 ///
 ///
-public struct Progress: ContentNode {
+public struct Progress: ContentNode, BodyElement {
 
     internal var name: String { "progress" }
 
@@ -9150,7 +9150,7 @@ extension Progress: AnyContent {
 /// The element
 ///
 ///
-public struct Meter: ContentNode {
+public struct Meter: ContentNode, BodyElement {
 
     internal var name: String { "meter" }
 
@@ -9301,7 +9301,7 @@ extension Meter: AnyContent {
 /// The element
 ///
 ///
-public struct Details: ContentNode {
+public struct Details: ContentNode, BodyElement {
 
     internal var name: String { "details" }
 
@@ -9440,7 +9440,7 @@ extension Details: AnyContent {
 /// The element
 ///
 ///
-public struct Dialog: ContentNode {
+public struct Dialog: ContentNode, BodyElement {
 
     internal var name: String { "dialog" }
 
@@ -9575,7 +9575,7 @@ extension Dialog: AnyContent {
 /// The element
 ///
 ///
-public struct Script: ContentNode {
+public struct Script: ContentNode, BodyElement {
 
     internal var name: String { "script" }
 
@@ -9730,7 +9730,7 @@ extension Script: AnyContent {
 /// The element
 ///
 ///
-public struct NoScript: ContentNode {
+public struct NoScript: ContentNode, BodyElement {
 
     internal var name: String { "noscript" }
 
@@ -9861,7 +9861,7 @@ extension NoScript: AnyContent {
 /// The element
 ///
 ///
-public struct Template: ContentNode {
+public struct Template: ContentNode, BodyElement {
 
     internal var name: String { "template" }
 
@@ -9992,7 +9992,7 @@ extension Template: AnyContent {
 /// The element
 ///
 ///
-public struct Canvas: ContentNode {
+public struct Canvas: ContentNode, BodyElement {
 
     internal var name: String { "canvas" }
 

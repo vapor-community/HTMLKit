@@ -8,7 +8,7 @@ public typealias Figcaption = FigureCaption
 /// The element
 ///
 ///
-public struct FigureCaption: ContentNode {
+public struct FigureCaption: ContentNode, FigureElement {
 
     internal var name: String { "figcaption" }
 
