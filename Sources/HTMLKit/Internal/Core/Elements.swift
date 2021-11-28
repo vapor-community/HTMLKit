@@ -1,77 +1,83 @@
 /// The protocol is for
 ///
 ///
-public protocol BodyElement: Element {
+public protocol BodyElement: AnyElement {
 }
 
 /// The protocol is for
 ///
 ///
-public protocol DefinitionElement: Element {
+public protocol DescriptionElement: AnyElement {
 }
 
 /// The protocol is for
 ///
 ///
-public protocol FigureElement: Element {
+public protocol FigureElement: AnyElement {
 }
 
 /// The protocol is for
 ///
 ///
-public protocol FormElement: Element {
+public protocol FormElement: AnyElement {
 }
 
 /// The protocol is for
 ///
 ///
-public protocol BasicElement: Element {
+public protocol BasicElement: AnyElement {
 }
 
 /// The protocol is for
 ///
 ///
-public protocol HeadElement: Element {
+public protocol HeadElement: AnyElement {
 }
 
 /// The protocol is for
 ///
 ///
-public protocol InputElement: Element {
+public protocol InputElement: AnyElement {
 }
 
 /// The protocol is for
 ///
 ///
-public protocol ListElement: Element {
+public protocol ListElement: AnyElement {
 }
 
 /// The protocol is for
 ///
 ///
-public protocol MapElement: Element {
+public protocol MapElement: AnyElement {
 }
 
 /// The protocol is for
 ///
 ///
-public protocol MediaElement: Element {
+public protocol MediaElement: AnyElement {
 }
 
 /// The protocol is for
 ///
 ///
-public protocol ObjectElement: Element {
+public protocol ObjectElement: AnyElement {
 }
 
 /// The protocol is for
 ///
 ///
-public protocol RubyElement: Element {
+public protocol RubyElement: AnyElement {
 }
 
 /// The protocol is for
 ///
 ///
-public protocol TableElement: Element {
+public protocol TableElement: AnyElement {
+}
+
+/// The protocol is for
+///
+///
+public protocol HtmlElement: AnyElement {
 }

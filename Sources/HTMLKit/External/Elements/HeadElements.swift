@@ -3,19 +3,19 @@ import OrderedCollections
 /// The element
 ///
 ///
-public struct Title: ContentNode {
+public struct Title: ContentNode, HeadElement {
 
     internal var name: String { "title" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: String
+    internal var content: [String]
     
-    public init(@StringBuilder content: () -> String) {
+    public init(@ContentBuilder<String> content: () -> [String]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: String) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [String]) {
         self.attributes = attributes
         self.content = content
     }
@@ -120,7 +120,7 @@ extension Title: GlobalAttributes {
     }
 }
 
-extension Title: Content {
+extension Title: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -134,7 +134,7 @@ extension Title: Content {
 /// The element
 ///
 ///
-public struct Base: EmptyNode {
+public struct Base: EmptyNode, HeadElement {
 
     internal var name: String { "base" }
 
@@ -254,7 +254,7 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
     }
 }
 
-extension Base: Content {
+extension Base: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -268,7 +268,7 @@ extension Base: Content {
 /// The element
 ///
 ///
-public struct Meta: EmptyNode {
+public struct Meta: EmptyNode, HeadElement {
 
     internal var name: String { "meta" }
 
@@ -392,7 +392,7 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
     }
 }
 
-extension Meta: Content {
+extension Meta: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -406,19 +406,19 @@ extension Meta: Content {
 /// The element
 ///
 ///
-public struct Style: ContentNode {
+public struct Style: ContentNode, HeadElement {
 
     internal var name: String { "style" }
     
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -535,7 +535,7 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
     }
 }
 
-extension Style: Content {
+extension Style: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)

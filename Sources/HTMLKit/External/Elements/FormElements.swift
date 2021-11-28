@@ -3,7 +3,7 @@ import OrderedCollections
 /// The element
 ///
 ///
-public struct Input: EmptyNode {
+public struct Input: EmptyNode, FormElement {
 
     internal var name: String { "input" }
 
@@ -219,7 +219,7 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
     }
 }
 
-extension Input: Content {
+extension Input: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -233,19 +233,19 @@ extension Input: Content {
 /// The element
 ///
 ///
-public struct Label: ContentNode {
+public struct Label: ContentNode, FormElement {
 
     internal var name: String { "label" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -357,15 +357,15 @@ extension Label: GlobalAttributes, ForAttribute {
 extension Label: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
-extension Label: Content {
+extension Label: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -379,19 +379,19 @@ extension Label: Content {
 /// The element
 ///
 ///
-public struct Select: ContentNode {
+public struct Select: ContentNode, FormElement {
 
     internal var name: String { "select" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -524,7 +524,7 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
     }
 }
 
-extension Select: Content {
+extension Select: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -538,19 +538,19 @@ extension Select: Content {
 /// The element
 ///
 ///
-public struct TextArea: ContentNode {
+public struct TextArea: ContentNode, FormElement {
         
     internal var name: String { "textarea" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: String
+    internal var content: [String]
 
-    public init(@StringBuilder content: () -> String) {
+    public init(@ContentBuilder<String> content: () -> [String]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: String) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [String]) {
         self.attributes = attributes
         self.content = content
     }
@@ -703,7 +703,7 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
     }
 }
 
-extension TextArea: Content {
+extension TextArea: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -717,19 +717,19 @@ extension TextArea: Content {
 /// The element
 ///
 ///
-public struct Button: ContentNode {
+public struct Button: ContentNode, FormElement {
 
     internal var name: String { "button" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -861,15 +861,15 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
 extension Button: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
-extension Button: Content {
+extension Button: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -883,19 +883,19 @@ extension Button: Content {
 /// The element
 ///
 ///
-public struct Fieldset: ContentNode {
+public struct Fieldset: ContentNode, FormElement {
     
     internal var name: String { "fieldset" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -1012,7 +1012,7 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
     }
 }
 
-extension Fieldset: Content {
+extension Fieldset: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)

@@ -3,7 +3,7 @@ import Foundation
 /// The extension is
 ///
 ///
-extension Array: Content where Element == Content {
+extension Array: AnyContent where Element == AnyContent {
 
     public func prerender(_ formula: Renderer.Formula) throws {
         try forEach { try $0.prerender(formula) }
@@ -13,7 +13,232 @@ extension Array: Content where Element == Content {
         return try self.reduce("") { try $0 + $1.render(with: manager) }
     }
 
-    public var scripts: Content {
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
+extension Array where Element == String {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
+extension Array where Element == BodyElement {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
+extension Array where Element == DescriptionElement {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
+extension Array where Element == FigureElement {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
+extension Array where Element == FormElement {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
+extension Array where Element == BasicElement {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
+extension Array where Element == HeadElement {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
+extension Array where Element == InputElement {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
+extension Array where Element == ListElement {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
+extension Array where Element == MapElement {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
+extension Array where Element == MediaElement {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
+extension Array where Element == ObjectElement {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
+extension Array where Element == RubyElement {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
+extension Array where Element == TableElement {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
+extension Array where Element == HtmlElement {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
         return self.reduce("") { $0 + $1.scripts }
     }
 }
@@ -21,7 +246,7 @@ extension Array: Content where Element == Content {
 /// The extension is
 ///
 ///
-extension Bool: Content {
+extension Bool: AnyContent {
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         return String(self)
@@ -46,7 +271,7 @@ extension Bool: Conditionable {
 /// The extension is
 ///
 ///
-extension Double: Content {
+extension Double: AnyContent {
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         return String(self)
@@ -62,7 +287,7 @@ extension Double: Content {
 /// The extension is
 ///
 ///
-extension Float: Content {
+extension Float: AnyContent {
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         return String(self)
@@ -78,7 +303,7 @@ extension Float: Content {
 /// The extension is
 ///
 ///
-extension Int: Content {
+extension Int: AnyContent {
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         return String(self)
@@ -94,7 +319,7 @@ extension Int: Content {
 /// The extension is
 ///
 ///
-extension Optional: Content where Wrapped: Content {
+extension Optional: AnyContent where Wrapped: AnyContent {
 
     public func prerender(_ formula: Renderer.Formula) throws {
         switch self {
@@ -110,7 +335,7 @@ extension Optional: Content where Wrapped: Content {
         }
     }
 
-    public var scripts: Content {
+    public var scripts: AnyContent {
         switch self {
         case .none: return ""
         case .some(let wrapped): return wrapped.scripts
@@ -134,7 +359,7 @@ extension Optional: Defineable {
 /// The extension is
 ///
 ///
-extension String: Content {
+extension String: AnyContent {
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         return self
@@ -148,7 +373,7 @@ extension String: Content {
 /// The extension is
 ///
 ///
-extension UUID: Content {
+extension UUID: AnyContent {
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         return self.uuidString

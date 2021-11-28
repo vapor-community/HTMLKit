@@ -8,7 +8,7 @@ public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute
 /// The protocol provides
 ///
 ///
-public protocol AccessKeyAttribute: Attribute {
+public protocol AccessKeyAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -21,19 +21,7 @@ extension AccessKeyAttribute {
     internal var key: String { "accesskey" }
 }
 
-extension AccessKeyAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(accesskey value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension AccessKeyAttribute where Self: ContentNode, T == String {
+extension AccessKeyAttribute where Self: ContentNode {
     
     internal func mutate(accesskey value: String) -> Self {
         
@@ -60,7 +48,7 @@ extension AccessKeyAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol AcceptAttribute: Attribute {
+public protocol AcceptAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -73,7 +61,7 @@ extension AcceptAttribute {
     internal var key: String { "accept" }
 }
 
-extension AcceptAttribute where Self: ContentNode, T == Content {
+extension AcceptAttribute where Self: ContentNode {
     
     internal func mutate(accept value: String) -> Self {
         
@@ -100,7 +88,7 @@ extension AcceptAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ActionAttribute: Attribute {
+public protocol ActionAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -113,7 +101,7 @@ extension ActionAttribute {
     internal var key: String { "action" }
 }
 
-extension ActionAttribute where Self: ContentNode, T == Content {
+extension ActionAttribute where Self: ContentNode {
     
     internal func mutate(action value: String) -> Self {
         
@@ -140,7 +128,7 @@ extension ActionAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol AlternateAttribute: Attribute {
+public protocol AlternateAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -153,7 +141,7 @@ extension AlternateAttribute {
     internal var key: String { "alternate" }
 }
 
-extension AlternateAttribute where Self: ContentNode, T == Content {
+extension AlternateAttribute where Self: ContentNode {
     
     internal func mutate(alternate value: String) -> Self {
         
@@ -180,7 +168,7 @@ extension AlternateAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol AsynchronouslyAttribute: Attribute {
+public protocol AsynchronouslyAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -193,7 +181,7 @@ extension AsynchronouslyAttribute {
     internal var key: String { "async" }
 }
 
-extension AsynchronouslyAttribute where Self: ContentNode, T == String {
+extension AsynchronouslyAttribute where Self: ContentNode {
     
     internal func mutate(async value: String) -> Self {
         
@@ -220,7 +208,7 @@ extension AsynchronouslyAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol AutocapitalizeAttribute: Attribute {
+public protocol AutocapitalizeAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -233,19 +221,7 @@ extension AutocapitalizeAttribute {
     internal var key: String { "autocapitalize" }
 }
 
-extension AutocapitalizeAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(autocapitalize value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension AutocapitalizeAttribute where Self: ContentNode, T == String {
+extension AutocapitalizeAttribute where Self: ContentNode {
     
     internal func mutate(autocapitalize value: String) -> Self {
         
@@ -272,7 +248,7 @@ extension AutocapitalizeAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol AutocompleteAttribute: Attribute {
+public protocol AutocompleteAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -285,19 +261,7 @@ extension AutocompleteAttribute {
     internal var key: String { "autocomplete" }
 }
 
-extension AutocompleteAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(autocomplete value: Bool) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension AutocompleteAttribute where Self: ContentNode, T == String {
+extension AutocompleteAttribute where Self: ContentNode {
     
     internal func mutate(autocomplete value: Bool) -> Self {
         
@@ -324,7 +288,7 @@ extension AutocompleteAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol AutofocusAttribute: Attribute {
+public protocol AutofocusAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -337,19 +301,7 @@ extension AutofocusAttribute {
     internal var key: String { "autofocus" }
 }
 
-extension AutofocusAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(autofocus value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension AutofocusAttribute where Self: ContentNode, T == String {
+extension AutofocusAttribute where Self: ContentNode {
     
     internal func mutate(autofocus value: String) -> Self {
         
@@ -376,7 +328,7 @@ extension AutofocusAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol AutoplayAttribute: Attribute {
+public protocol AutoplayAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -389,7 +341,7 @@ extension AutoplayAttribute {
     internal var key: String { "autoplay" }
 }
 
-extension AutoplayAttribute where Self: ContentNode, T == Content {
+extension AutoplayAttribute where Self: ContentNode {
     
     internal func mutate(autoplay value: String) -> Self {
         
@@ -416,7 +368,7 @@ extension AutoplayAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol CheckedAttribute: Attribute {
+public protocol CheckedAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -429,7 +381,7 @@ extension CheckedAttribute {
     internal var key: String { "checked" }
 }
 
-extension CheckedAttribute where Self: ContentNode, T == Content {
+extension CheckedAttribute where Self: ContentNode {
     
     internal func mutate(checked value: String) -> Self {
         
@@ -456,7 +408,7 @@ extension CheckedAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol CiteAttribute: Attribute {
+public protocol CiteAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -469,7 +421,7 @@ extension CiteAttribute {
     internal var key: String { "cite" }
 }
 
-extension CiteAttribute where Self: ContentNode, T == Content {
+extension CiteAttribute where Self: ContentNode {
     
     internal func mutate(cite value: String) -> Self {
         
@@ -496,7 +448,7 @@ extension CiteAttribute where Self: EmptyNode {
 /// The protcol provides
 ///
 ///
-public protocol ClassAttribute: Attribute{
+public protocol ClassAttribute: AnyAttribute{
     
     /// The func adds
     ///
@@ -509,19 +461,7 @@ extension ClassAttribute {
     internal var key: String { "class" }
 }
 
-extension ClassAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(class value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension ClassAttribute where Self: ContentNode, T == String {
+extension ClassAttribute where Self: ContentNode {
     
     internal func mutate(class value: String) -> Self {
         
@@ -548,7 +488,7 @@ extension ClassAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ColumnsAttribute: Attribute {
+public protocol ColumnsAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -561,19 +501,7 @@ extension ColumnsAttribute {
     internal var key: String { "cols" }
 }
 
-extension ColumnsAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(cols value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension ColumnsAttribute where Self: ContentNode, T == String {
+extension ColumnsAttribute where Self: ContentNode {
     
     internal func mutate(cols value: Int) -> Self {
         
@@ -600,7 +528,7 @@ extension ColumnsAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ColumnSpanAttribute: Attribute {
+public protocol ColumnSpanAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -613,7 +541,7 @@ extension ColumnSpanAttribute {
     internal var key: String { "colspan" }
 }
 
-extension ColumnSpanAttribute where Self: ContentNode, T == Content {
+extension ColumnSpanAttribute where Self: ContentNode {
     
     internal func mutate(colspan value: Int) -> Self {
         
@@ -640,7 +568,7 @@ extension ColumnSpanAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ContentAttribute: Attribute {
+public protocol ContentAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -653,7 +581,7 @@ extension ContentAttribute {
     internal var key: String { "content" }
 }
 
-extension ContentAttribute where Self: ContentNode, T == Content {
+extension ContentAttribute where Self: ContentNode {
     
     internal func mutate(content value: String) -> Self {
         
@@ -680,7 +608,7 @@ extension ContentAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol EditAttribute: Attribute {
+public protocol EditAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -693,19 +621,7 @@ extension EditAttribute {
     internal var key: String { "contenteditable" }
 }
 
-extension EditAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(contenteditable value: Bool) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension EditAttribute where Self: ContentNode, T == String {
+extension EditAttribute where Self: ContentNode {
     
     internal func mutate(contenteditable value: Bool) -> Self {
         
@@ -732,7 +648,7 @@ extension EditAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ControlsAttribute: Attribute {
+public protocol ControlsAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -745,7 +661,7 @@ extension ControlsAttribute {
     internal var key: String { "controls" }
 }
 
-extension ControlsAttribute where Self: ContentNode, T == Content {
+extension ControlsAttribute where Self: ContentNode {
     
     internal func mutate(controls value: String) -> Self {
         
@@ -772,7 +688,7 @@ extension ControlsAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol CoordinatesAttribute: Attribute {
+public protocol CoordinatesAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -785,7 +701,7 @@ extension CoordinatesAttribute {
     internal var key: String { "coords" }
 }
 
-extension CoordinatesAttribute where Self: ContentNode, T == Content {
+extension CoordinatesAttribute where Self: ContentNode {
     
     internal func mutate(coords value: String) -> Self {
         
@@ -812,7 +728,7 @@ extension CoordinatesAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol DataAttribute: Attribute{
+public protocol DataAttribute: AnyAttribute{
     
     /// The func adds
     ///
@@ -825,7 +741,7 @@ extension DataAttribute {
     internal var key: String { "data" }
 }
 
-extension DataAttribute where Self: ContentNode, T == Content {
+extension DataAttribute where Self: ContentNode {
     
     internal func mutate(data value: String) -> Self {
         
@@ -852,7 +768,7 @@ extension DataAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol DateTimeAttribute: Attribute {
+public protocol DateTimeAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -865,7 +781,7 @@ extension DateTimeAttribute {
     internal var key: String { "datetime" }
 }
 
-extension DateTimeAttribute where Self: ContentNode, T == Content {
+extension DateTimeAttribute where Self: ContentNode {
     
     internal func mutate(datetime value: String) -> Self {
         
@@ -892,7 +808,7 @@ extension DateTimeAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol DefaultAttribute: Attribute {
+public protocol DefaultAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -905,7 +821,7 @@ extension DefaultAttribute {
     internal var key: String { "default" }
 }
 
-extension DefaultAttribute where Self: ContentNode, T == Content {
+extension DefaultAttribute where Self: ContentNode {
     
     internal func mutate(default value: String) -> Self {
         
@@ -932,7 +848,7 @@ extension DefaultAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol DeferAttribute: Attribute {
+public protocol DeferAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -945,7 +861,7 @@ extension DeferAttribute {
     internal var key: String { "defer" }
 }
 
-extension DeferAttribute where Self: ContentNode, T == Content {
+extension DeferAttribute where Self: ContentNode {
     
     internal func mutate(defer value: String) -> Self {
         
@@ -972,7 +888,7 @@ extension DeferAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol DirectionAttribute: Attribute {
+public protocol DirectionAttribute: AnyAttribute {
 
     /// The func adds
     ///
@@ -985,19 +901,7 @@ extension DirectionAttribute {
     internal var key: String { "dir" }
 }
 
-extension DirectionAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(dir value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension DirectionAttribute where Self: ContentNode, T == String {
+extension DirectionAttribute where Self: ContentNode {
     
     internal func mutate(dir value: String) -> Self {
         
@@ -1024,7 +928,7 @@ extension DirectionAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol DisabledAttribute: Attribute {
+public protocol DisabledAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1037,19 +941,7 @@ extension DisabledAttribute {
     internal var key: String { "disabled" }
 }
 
-extension DisabledAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(disabled value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension DisabledAttribute where Self: ContentNode, T == String {
+extension DisabledAttribute where Self: ContentNode {
     
     internal func mutate(disabled value: String) -> Self {
         
@@ -1076,7 +968,7 @@ extension DisabledAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol DownloadAttribute: Attribute {
+public protocol DownloadAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1089,7 +981,7 @@ extension DownloadAttribute {
     internal var key: String { "download" }
 }
 
-extension DownloadAttribute where Self: ContentNode, T == Content {
+extension DownloadAttribute where Self: ContentNode {
     
     internal func mutate(download value: String) -> Self {
         
@@ -1116,7 +1008,7 @@ extension DownloadAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol DragAttribute: Attribute {
+public protocol DragAttribute: AnyAttribute {
  
     /// The func adds
     ///
@@ -1129,19 +1021,7 @@ extension DragAttribute {
     internal var key: String { "draggable" }
 }
 
-extension DragAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(draggable value: Bool) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension DragAttribute where Self: ContentNode, T == String {
+extension DragAttribute where Self: ContentNode {
     
     internal func mutate(draggable value: Bool) -> Self {
         
@@ -1168,7 +1048,7 @@ extension DragAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol EncodingAttribute: Attribute {
+public protocol EncodingAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1181,7 +1061,7 @@ extension EncodingAttribute {
     internal var key: String { "enctype" }
 }
 
-extension EncodingAttribute where Self: ContentNode, T == Content {
+extension EncodingAttribute where Self: ContentNode {
     
     internal func mutate(enctype value: String) -> Self {
         
@@ -1208,7 +1088,7 @@ extension EncodingAttribute where Self: EmptyNode {
 /// The protcol provides
 ///
 ///
-public protocol EnterKeyHintAttribute: Attribute {
+public protocol EnterKeyHintAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1221,19 +1101,7 @@ extension EnterKeyHintAttribute {
     internal var key: String { "enterkeyhint" }
 }
 
-extension EnterKeyHintAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(enterkeyhint value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension EnterKeyHintAttribute where Self: ContentNode, T == String {
+extension EnterKeyHintAttribute where Self: ContentNode {
     
     internal func mutate(enterkeyhint value: String) -> Self {
         
@@ -1260,7 +1128,7 @@ extension EnterKeyHintAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ForAttribute: Attribute {
+public protocol ForAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1273,7 +1141,7 @@ extension ForAttribute {
     internal var key: String { "for" }
 }
 
-extension ForAttribute where Self: ContentNode, T == Content {
+extension ForAttribute where Self: ContentNode {
     
     internal func mutate(for value: String) -> Self {
         
@@ -1300,7 +1168,7 @@ extension ForAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol FormAttribute: Attribute {
+public protocol FormAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1313,19 +1181,7 @@ extension FormAttribute {
     internal var key: String { "form" }
 }
 
-extension FormAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(form value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension FormAttribute where Self: ContentNode, T == String {
+extension FormAttribute where Self: ContentNode {
     
     internal func mutate(form value: String) -> Self {
         
@@ -1352,7 +1208,7 @@ extension FormAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol FormActionAttribute: Attribute {
+public protocol FormActionAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1365,7 +1221,7 @@ extension FormActionAttribute {
     internal var key: String { "formaction" }
 }
 
-extension FormActionAttribute where Self: ContentNode, T == Content {
+extension FormActionAttribute where Self: ContentNode {
     
     internal func mutate(formaction value: String) -> Self {
         
@@ -1392,7 +1248,7 @@ extension FormActionAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol HeaderAttribute: Attribute {
+public protocol HeaderAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1405,7 +1261,7 @@ extension HeaderAttribute {
     internal var key: String { "headers" }
 }
 
-extension HeaderAttribute where Self: ContentNode, T == Content {
+extension HeaderAttribute where Self: ContentNode {
     
     internal func mutate(headers value: String) -> Self {
         
@@ -1432,7 +1288,7 @@ extension HeaderAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol HeightAttribute: Attribute {
+public protocol HeightAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1445,7 +1301,7 @@ extension HeightAttribute {
     internal var key: String { "height" }
 }
 
-extension HeightAttribute where Self: ContentNode, T == Content {
+extension HeightAttribute where Self: ContentNode {
     
     internal func mutate(height value: Int) -> Self {
         
@@ -1472,7 +1328,7 @@ extension HeightAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol HiddenAttribute: Attribute {
+public protocol HiddenAttribute: AnyAttribute {
  
     /// The func adds
     ///
@@ -1485,19 +1341,7 @@ extension HiddenAttribute {
     internal var key: String { "hidden" }
 }
 
-extension HiddenAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(hidden value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension HiddenAttribute where Self: ContentNode, T == String {
+extension HiddenAttribute where Self: ContentNode {
     
     internal func mutate(hidden value: String) -> Self {
         
@@ -1524,7 +1368,7 @@ extension HiddenAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol HighAttribute: Attribute {
+public protocol HighAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1537,7 +1381,7 @@ extension HighAttribute {
     internal var key: String { "high" }
 }
 
-extension HighAttribute where Self: ContentNode, T == Content {
+extension HighAttribute where Self: ContentNode {
     
     internal func mutate(high value: Int) -> Self {
         
@@ -1564,7 +1408,7 @@ extension HighAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ReferenceAttribute: Attribute {
+public protocol ReferenceAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1577,7 +1421,7 @@ extension ReferenceAttribute {
     internal var key: String { "href" }
 }
 
-extension ReferenceAttribute where Self: ContentNode, T == Content {
+extension ReferenceAttribute where Self: ContentNode {
     
     internal func mutate(href value: String) -> Self {
         
@@ -1604,7 +1448,7 @@ extension ReferenceAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ReferenceLanguageAttribute: Attribute {
+public protocol ReferenceLanguageAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1617,7 +1461,7 @@ extension ReferenceLanguageAttribute {
     internal var key: String { "hreflang" }
 }
 
-extension ReferenceLanguageAttribute where Self: ContentNode, T == Content {
+extension ReferenceLanguageAttribute where Self: ContentNode {
     
     internal func mutate(hreflang value: String) -> Self {
         
@@ -1644,7 +1488,7 @@ extension ReferenceLanguageAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol IdentifierAttribute: Attribute {
+public protocol IdentifierAttribute: AnyAttribute {
  
     /// The func adds
     ///
@@ -1657,19 +1501,7 @@ extension IdentifierAttribute {
     internal var key: String { "id" }
 }
 
-extension IdentifierAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(id value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension IdentifierAttribute where Self: ContentNode, T == String {
+extension IdentifierAttribute where Self: ContentNode {
     
     internal func mutate(id value: String) -> Self {
         
@@ -1696,7 +1528,7 @@ extension IdentifierAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol IsMapAttribute: Attribute {
+public protocol IsMapAttribute: AnyAttribute {
  
     /// The func adds
     ///
@@ -1709,7 +1541,7 @@ extension IsMapAttribute {
     internal var key: String { "ismap" }
 }
 
-extension IsMapAttribute where Self: ContentNode, T == Content {
+extension IsMapAttribute where Self: ContentNode {
     
     internal func mutate(ismap value: String) -> Self {
         
@@ -1736,7 +1568,7 @@ extension IsMapAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol InputModeAttribute: Attribute {
+public protocol InputModeAttribute: AnyAttribute {
  
     /// The func adds
     ///
@@ -1749,19 +1581,7 @@ extension InputModeAttribute {
     internal var key: String { "inputmode" }
 }
 
-extension InputModeAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(inputmode value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension InputModeAttribute where Self: ContentNode, T == String {
+extension InputModeAttribute where Self: ContentNode {
     
     internal func mutate(inputmode value: String) -> Self {
         
@@ -1788,7 +1608,7 @@ extension InputModeAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol IsAttribute: Attribute {
+public protocol IsAttribute: AnyAttribute {
  
     /// The func adds
     ///
@@ -1801,19 +1621,7 @@ extension IsAttribute {
     internal var key: String { "is" }
 }
 
-extension IsAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(is value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension IsAttribute where Self: ContentNode, T == String {
+extension IsAttribute where Self: ContentNode {
     
     internal func mutate(is value: String) -> Self {
         
@@ -1841,7 +1649,7 @@ extension IsAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol ItemIdAttribute: Attribute {
+public protocol ItemIdAttribute: AnyAttribute {
  
     /// The func adds
     ///
@@ -1854,19 +1662,7 @@ extension ItemIdAttribute {
     internal var key: String { "itemid" }
 }
 
-extension ItemIdAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(itemid value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension ItemIdAttribute where Self: ContentNode, T == String {
+extension ItemIdAttribute where Self: ContentNode {
     
     internal func mutate(itemid value: String) -> Self {
         
@@ -1893,7 +1689,7 @@ extension ItemIdAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol ItemPropertyAttribute: Attribute {
+public protocol ItemPropertyAttribute: AnyAttribute {
  
     /// The func adds
     ///
@@ -1906,19 +1702,7 @@ extension ItemPropertyAttribute {
     internal var key: String { "itemprop" }
 }
 
-extension ItemPropertyAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(itemprop value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension ItemPropertyAttribute where Self: ContentNode, T == String {
+extension ItemPropertyAttribute where Self: ContentNode {
     
     internal func mutate(itemprop value: String) -> Self {
         
@@ -1945,7 +1729,7 @@ extension ItemPropertyAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol ItemReferenceAttribute: Attribute {
+public protocol ItemReferenceAttribute: AnyAttribute {
  
     /// The func adds
     ///
@@ -1958,19 +1742,7 @@ extension ItemReferenceAttribute {
     internal var key: String { "itemref" }
 }
 
-extension ItemReferenceAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(itemref value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension ItemReferenceAttribute where Self: ContentNode, T == String {
+extension ItemReferenceAttribute where Self: ContentNode {
     
     internal func mutate(itemref value: String) -> Self {
         
@@ -1997,7 +1769,7 @@ extension ItemReferenceAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol ItemScopeAttribute: Attribute {
+public protocol ItemScopeAttribute: AnyAttribute {
  
     /// The func adds
     ///
@@ -2010,19 +1782,7 @@ extension ItemScopeAttribute {
     internal var key: String { "itemscope" }
 }
 
-extension ItemScopeAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(itemscope value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension ItemScopeAttribute where Self: ContentNode, T == String {
+extension ItemScopeAttribute where Self: ContentNode {
     
     internal func mutate(itemscope value: String) -> Self {
         
@@ -2049,7 +1809,7 @@ extension ItemScopeAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol ItemTypeAttribute: Attribute {
+public protocol ItemTypeAttribute: AnyAttribute {
  
     /// The func adds
     ///
@@ -2062,7 +1822,7 @@ extension ItemTypeAttribute {
     internal var key: String { "itemtype" }
 }
 
-extension ItemTypeAttribute where Self: ContentNode, T == Content {
+extension ItemTypeAttribute where Self: ContentNode {
     
     internal func mutate(itemtype value: String) -> Self {
         
@@ -2089,7 +1849,7 @@ extension ItemTypeAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol KindAttribute: Attribute {
+public protocol KindAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2102,7 +1862,7 @@ extension KindAttribute {
     internal var key: String { "kind" }
 }
 
-extension KindAttribute where Self: ContentNode, T == Content {
+extension KindAttribute where Self: ContentNode {
     
     internal func mutate(kind value: String) -> Self {
         
@@ -2129,7 +1889,7 @@ extension KindAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol LabelAttribute: Attribute {
+public protocol LabelAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2142,19 +1902,7 @@ extension LabelAttribute {
     internal var key: String { "label" }
 }
 
-extension LabelAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(label value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension LabelAttribute where Self: ContentNode, T == String {
+extension LabelAttribute where Self: ContentNode {
     
     internal func mutate(label value: String) -> Self {
         
@@ -2181,7 +1929,7 @@ extension LabelAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol LanguageAttribute: Attribute {
+public protocol LanguageAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2194,19 +1942,7 @@ extension LanguageAttribute {
     internal var key: String { "lang" }
 }
 
-extension LanguageAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(lang value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension LanguageAttribute where Self: ContentNode, T == String {
+extension LanguageAttribute where Self: ContentNode {
     
     internal func mutate(lang value: String) -> Self {
         
@@ -2233,7 +1969,7 @@ extension LanguageAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ListAttribute: Attribute {
+public protocol ListAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2246,7 +1982,7 @@ extension ListAttribute {
     internal var key: String { "list" }
 }
 
-extension ListAttribute where Self: ContentNode, T == Content {
+extension ListAttribute where Self: ContentNode {
     
     internal func mutate(list value: String) -> Self {
         
@@ -2273,7 +2009,7 @@ extension ListAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol LoopAttribute: Attribute {
+public protocol LoopAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2286,7 +2022,7 @@ extension LoopAttribute {
     internal var key: String { "loop" }
 }
 
-extension LoopAttribute where Self: ContentNode, T == Content {
+extension LoopAttribute where Self: ContentNode {
     
     internal func mutate(loop value: String) -> Self {
         
@@ -2313,7 +2049,7 @@ extension LoopAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol LowAttribute: Attribute {
+public protocol LowAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2326,7 +2062,7 @@ extension LowAttribute {
     internal var key: String { "low" }
 }
 
-extension LowAttribute where Self: ContentNode, T == Content {
+extension LowAttribute where Self: ContentNode {
     
     internal func mutate(low value: String) -> Self {
         
@@ -2353,7 +2089,7 @@ extension LowAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol MaximumValueAttribute: Attribute {
+public protocol MaximumValueAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2366,7 +2102,7 @@ extension MaximumValueAttribute {
     internal var key: String { "max" }
 }
 
-extension MaximumValueAttribute where Self: ContentNode, T == Content {
+extension MaximumValueAttribute where Self: ContentNode {
     
     internal func mutate(max value: String) -> Self {
         
@@ -2393,7 +2129,7 @@ extension MaximumValueAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol MaximumLengthAttribute: Attribute {
+public protocol MaximumLengthAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2406,19 +2142,7 @@ extension MaximumLengthAttribute {
     internal var key: String { "maxlength" }
 }
 
-extension MaximumLengthAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(maxlength value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension MaximumLengthAttribute where Self: ContentNode, T == String {
+extension MaximumLengthAttribute where Self: ContentNode {
     
     internal func mutate(maxlength value: String) -> Self {
         
@@ -2445,7 +2169,7 @@ extension MaximumLengthAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol MediaAttribute: Attribute {
+public protocol MediaAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2458,7 +2182,7 @@ extension MediaAttribute {
     internal var key: String { "media" }
 }
 
-extension MediaAttribute where Self: ContentNode, T == Content {
+extension MediaAttribute where Self: ContentNode {
     
     internal func mutate(media value: String) -> Self {
         
@@ -2485,7 +2209,7 @@ extension MediaAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol MethodAttribute: Attribute {
+public protocol MethodAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2498,7 +2222,7 @@ extension MethodAttribute {
     internal var key: String { "method" }
 }
 
-extension MethodAttribute where Self: ContentNode, T == Content {
+extension MethodAttribute where Self: ContentNode {
     
     internal func mutate(method value: String) -> Self {
         
@@ -2525,7 +2249,7 @@ extension MethodAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol MinimumValueAttribute: Attribute {
+public protocol MinimumValueAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2538,7 +2262,7 @@ extension MinimumValueAttribute {
     internal var key: String { "min" }
 }
 
-extension MinimumValueAttribute where Self: ContentNode, T == Content {
+extension MinimumValueAttribute where Self: ContentNode {
     
     internal func mutate(min value: String) -> Self {
         
@@ -2565,7 +2289,7 @@ extension MinimumValueAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol MinimumLengthAttribute: Attribute {
+public protocol MinimumLengthAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2578,19 +2302,7 @@ extension MinimumLengthAttribute {
     internal var key: String { "minlength" }
 }
 
-extension MinimumLengthAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(minlength value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension MinimumLengthAttribute where Self: ContentNode, T == String {
+extension MinimumLengthAttribute where Self: ContentNode {
     
     internal func mutate(minlength value: String) -> Self {
         
@@ -2617,7 +2329,7 @@ extension MinimumLengthAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol MultipleAttribute: Attribute {
+public protocol MultipleAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2630,7 +2342,7 @@ extension MultipleAttribute {
     internal var key: String { "multiple" }
 }
 
-extension MultipleAttribute where Self: ContentNode, T == Content {
+extension MultipleAttribute where Self: ContentNode {
     
     internal func mutate(multiple value: String) -> Self {
         
@@ -2657,7 +2369,7 @@ extension MultipleAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol MutedAttribute: Attribute {
+public protocol MutedAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2670,7 +2382,7 @@ extension MutedAttribute {
     internal var key: String { "muted" }
 }
 
-extension MutedAttribute where Self: ContentNode, T == Content {
+extension MutedAttribute where Self: ContentNode {
     
     internal func mutate(muted value: String) -> Self {
         
@@ -2697,7 +2409,7 @@ extension MutedAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol NameAttribute: Attribute {
+public protocol NameAttribute: AnyAttribute {
 
     /// The func adds
     ///
@@ -2710,19 +2422,7 @@ extension NameAttribute {
     internal var key: String { "name" }
 }
 
-extension NameAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(name value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension NameAttribute where Self: ContentNode, T == String {
+extension NameAttribute where Self: ContentNode {
     
     internal func mutate(name value: String) -> Self {
         
@@ -2749,7 +2449,7 @@ extension NameAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol NonceAttribute: Attribute {
+public protocol NonceAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2762,19 +2462,7 @@ extension NonceAttribute {
     internal var key: String { "nonce" }
 }
 
-extension NonceAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(nonce value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension NonceAttribute where Self: ContentNode, T == String {
+extension NonceAttribute where Self: ContentNode {
     
     internal func mutate(nonce value: String) -> Self {
         
@@ -2801,7 +2489,7 @@ extension NonceAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol NoValidateAttribute: Attribute {
+public protocol NoValidateAttribute: AnyAttribute {
 
     /// The func adds
     ///
@@ -2814,7 +2502,7 @@ extension NoValidateAttribute {
     internal var key: String { "novalidate" }
 }
 
-extension NoValidateAttribute where Self: ContentNode, T == Content {
+extension NoValidateAttribute where Self: ContentNode {
     
     internal func mutate(novalidate value: String) -> Self {
         
@@ -2841,7 +2529,7 @@ extension NoValidateAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol OpenAttribute: Attribute {
+public protocol OpenAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2854,7 +2542,7 @@ extension OpenAttribute {
     internal var key: String { "open" }
 }
 
-extension OpenAttribute where Self: ContentNode, T == Content {
+extension OpenAttribute where Self: ContentNode {
     
     internal func mutate(open value: Bool) -> Self {
         
@@ -2881,7 +2569,7 @@ extension OpenAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol OptimumAttribute: Attribute {
+public protocol OptimumAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2894,7 +2582,7 @@ extension OptimumAttribute {
     internal var key: String { "optimum" }
 }
 
-extension OptimumAttribute where Self: ContentNode, T == Content {
+extension OptimumAttribute where Self: ContentNode {
     
     internal func mutate(optimum value: Float) -> Self {
         
@@ -2921,7 +2609,7 @@ extension OptimumAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol PatternAttribute: Attribute {
+public protocol PatternAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2934,7 +2622,7 @@ extension PatternAttribute {
     internal var key: String { "pattern" }
 }
 
-extension PatternAttribute where Self: ContentNode, T == Content {
+extension PatternAttribute where Self: ContentNode {
     
     internal func mutate(pattern value: String) -> Self {
         
@@ -2961,7 +2649,7 @@ extension PatternAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol PartAttribute: Attribute {
+public protocol PartAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2974,7 +2662,7 @@ extension PartAttribute {
     internal var key: String { "part" }
 }
 
-extension PartAttribute where Self: ContentNode, T == Content {
+extension PartAttribute where Self: ContentNode {
     
     internal func mutate(part value: String) -> Self {
         
@@ -3001,7 +2689,7 @@ extension PartAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol PingAttribute: Attribute {
+public protocol PingAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3014,7 +2702,7 @@ extension PingAttribute {
     internal var key: String { "ping" }
 }
 
-extension PingAttribute where Self: ContentNode, T == Content {
+extension PingAttribute where Self: ContentNode {
     
     internal func mutate(ping value: String) -> Self {
         
@@ -3041,7 +2729,7 @@ extension PingAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol PlaceholderAttribute: Attribute {
+public protocol PlaceholderAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3054,19 +2742,7 @@ extension PlaceholderAttribute {
     internal var key: String { "placeholder" }
 }
 
-extension PlaceholderAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(placeholder value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension PlaceholderAttribute where Self: ContentNode, T == String {
+extension PlaceholderAttribute where Self: ContentNode {
     
     internal func mutate(placeholder value: String) -> Self {
         
@@ -3093,7 +2769,7 @@ extension PlaceholderAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol PosterAttribute: Attribute {
+public protocol PosterAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3106,7 +2782,7 @@ extension PosterAttribute {
     internal var key: String { "poster" }
 }
 
-extension PosterAttribute where Self: ContentNode, T == Content {
+extension PosterAttribute where Self: ContentNode {
     
     internal func mutate(poster value: String) -> Self {
         
@@ -3133,7 +2809,7 @@ extension PosterAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol PreloadAttribute: Attribute {
+public protocol PreloadAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3146,7 +2822,7 @@ extension PreloadAttribute {
     internal var key: String { "preload" }
 }
 
-extension PreloadAttribute where Self: ContentNode, T == Content {
+extension PreloadAttribute where Self: ContentNode {
     
     internal func mutate(preload value: String) -> Self {
         
@@ -3173,7 +2849,7 @@ extension PreloadAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ReadyOnlyAttribute: Attribute {
+public protocol ReadyOnlyAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3186,19 +2862,7 @@ extension ReadyOnlyAttribute {
     internal var key: String { "readonly" }
 }
 
-extension ReadyOnlyAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(readonly value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension ReadyOnlyAttribute where Self: ContentNode, T == String {
+extension ReadyOnlyAttribute where Self: ContentNode {
     
     internal func mutate(readonly value: String) -> Self {
         
@@ -3225,7 +2889,7 @@ extension ReadyOnlyAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ReferrerPolicyAttribute: Attribute {
+public protocol ReferrerPolicyAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3238,19 +2902,7 @@ extension ReferrerPolicyAttribute {
     internal var key: String { "referrerpolicy" }
 }
 
-extension ReferrerPolicyAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(referrerpolicy value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension ReferrerPolicyAttribute where Self: ContentNode, T == String {
+extension ReferrerPolicyAttribute where Self: ContentNode {
     
     internal func mutate(referrerpolicy value: String) -> Self {
         
@@ -3277,7 +2929,7 @@ extension ReferrerPolicyAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol RelationshipAttribute: Attribute {
+public protocol RelationshipAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3290,7 +2942,7 @@ extension RelationshipAttribute {
     internal var key: String { "rel" }
 }
 
-extension RelationshipAttribute where Self: ContentNode, T == Content {
+extension RelationshipAttribute where Self: ContentNode {
     
     internal func mutate(rel value: String) -> Self {
         
@@ -3317,7 +2969,7 @@ extension RelationshipAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol RequiredAttribute: Attribute {
+public protocol RequiredAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3330,19 +2982,7 @@ extension RequiredAttribute {
     internal var key: String { "required" }
 }
 
-extension RequiredAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(required value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension RequiredAttribute where Self: ContentNode, T == String {
+extension RequiredAttribute where Self: ContentNode {
     
     internal func mutate(required value: String) -> Self {
         
@@ -3369,7 +3009,7 @@ extension RequiredAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ReversedAttribute: Attribute {
+public protocol ReversedAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3382,7 +3022,7 @@ extension ReversedAttribute {
     internal var key: String { "reversed" }
 }
 
-extension ReversedAttribute where Self: ContentNode, T == Content {
+extension ReversedAttribute where Self: ContentNode {
     
     internal func mutate(reversed value: String) -> Self {
         
@@ -3409,7 +3049,7 @@ extension ReversedAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol RoleAttribute: Attribute {
+public protocol RoleAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3422,19 +3062,7 @@ extension RoleAttribute {
     internal var key: String { "role" }
 }
 
-extension RoleAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(role value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension RoleAttribute where Self: ContentNode, T == String {
+extension RoleAttribute where Self: ContentNode {
     
     internal func mutate(role value: String) -> Self {
         
@@ -3461,7 +3089,7 @@ extension RoleAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol RowsAttribute: Attribute {
+public protocol RowsAttribute: AnyAttribute {
     
     func rows(_ size: Int) -> Self
 }
@@ -3471,19 +3099,7 @@ extension RowsAttribute {
     internal var key: String { "rows" }
 }
 
-extension RowsAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(rows value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension RowsAttribute where Self: ContentNode, T == String {
+extension RowsAttribute where Self: ContentNode {
     
     internal func mutate(rows value: Int) -> Self {
         
@@ -3510,7 +3126,7 @@ extension RowsAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol RowSpanAttribute: Attribute {
+public protocol RowSpanAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3523,7 +3139,7 @@ extension RowSpanAttribute {
     internal var key: String { "rowspan" }
 }
 
-extension RowSpanAttribute where Self: ContentNode, T == Content {
+extension RowSpanAttribute where Self: ContentNode {
     
     internal func mutate(rowspan value: Int) -> Self {
         
@@ -3550,7 +3166,7 @@ extension RowSpanAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol SandboxAttribute: Attribute {
+public protocol SandboxAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3563,7 +3179,7 @@ extension SandboxAttribute {
     internal var key: String { "sandbox" }
 }
 
-extension SandboxAttribute where Self: ContentNode, T == Content {
+extension SandboxAttribute where Self: ContentNode {
     
     internal func mutate(sandbox value: String) -> Self {
         
@@ -3590,7 +3206,7 @@ extension SandboxAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ScopeAttribute: Attribute {
+public protocol ScopeAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3603,7 +3219,7 @@ extension ScopeAttribute {
     internal var key: String { "scope" }
 }
 
-extension ScopeAttribute where Self: ContentNode, T == Content {
+extension ScopeAttribute where Self: ContentNode {
     
     internal func mutate(scope value: String) -> Self {
         
@@ -3630,7 +3246,7 @@ extension ScopeAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ShapeAttribute: Attribute {
+public protocol ShapeAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3643,7 +3259,7 @@ extension ShapeAttribute {
     internal var key: String { "shape" }
 }
 
-extension ShapeAttribute where Self: ContentNode, T == Content {
+extension ShapeAttribute where Self: ContentNode {
     
     internal func mutate(shape value: String) -> Self {
         
@@ -3670,7 +3286,7 @@ extension ShapeAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol SizeAttribute: Attribute {
+public protocol SizeAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3683,7 +3299,7 @@ extension SizeAttribute {
     internal var key: String { "size" }
 }
 
-extension SizeAttribute where Self: ContentNode, T == Content {
+extension SizeAttribute where Self: ContentNode {
     
     internal func mutate(size value: Int) -> Self {
         
@@ -3710,7 +3326,7 @@ extension SizeAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol SizesAttribute: Attribute {
+public protocol SizesAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3723,7 +3339,7 @@ extension SizesAttribute {
     internal var key: String { "sizes" }
 }
 
-extension SizesAttribute where Self: ContentNode, T == Content {
+extension SizesAttribute where Self: ContentNode {
     
     internal func mutate(sizes value: Int) -> Self {
         
@@ -3750,7 +3366,7 @@ extension SizesAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol SlotAttribute: Attribute {
+public protocol SlotAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3763,7 +3379,7 @@ extension SlotAttribute {
     internal var key: String { "slot" }
 }
 
-extension SlotAttribute where Self: ContentNode, T == Content {
+extension SlotAttribute where Self: ContentNode {
     
     internal func mutate(slot value: String) -> Self {
         
@@ -3790,7 +3406,7 @@ extension SlotAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol SpanAttribute: Attribute {
+public protocol SpanAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3803,7 +3419,7 @@ extension SpanAttribute {
     internal var key: String { "span" }
 }
 
-extension SpanAttribute where Self: ContentNode, T == Content {
+extension SpanAttribute where Self: ContentNode {
     
     internal func mutate(span value: Int) -> Self {
         
@@ -3830,7 +3446,7 @@ extension SpanAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol SpellCheckAttribute: Attribute {
+public protocol SpellCheckAttribute: AnyAttribute {
  
     /// The func adds
     ///
@@ -3843,19 +3459,7 @@ extension SpellCheckAttribute {
     internal var key: String { "spellcheck" }
 }
 
-extension SpellCheckAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(spellcheck value: Bool) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension SpellCheckAttribute where Self: ContentNode, T == String {
+extension SpellCheckAttribute where Self: ContentNode {
     
     internal func mutate(spellcheck value: Bool) -> Self {
         
@@ -3882,7 +3486,7 @@ extension SpellCheckAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol SourceAttribute: Attribute {
+public protocol SourceAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3895,19 +3499,7 @@ extension SourceAttribute {
     internal var key: String { "source" }
 }
 
-extension SourceAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(source value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension SourceAttribute where Self: ContentNode, T == String {
+extension SourceAttribute where Self: ContentNode {
     
     internal func mutate(source value: String) -> Self {
         
@@ -3934,7 +3526,7 @@ extension SourceAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol StartAttribute: Attribute {
+public protocol StartAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3947,7 +3539,7 @@ extension StartAttribute {
     internal var key: String { "start" }
 }
 
-extension StartAttribute where Self: ContentNode, T == Content {
+extension StartAttribute where Self: ContentNode {
     
     internal func mutate(start value: Int) -> Self {
         
@@ -3974,7 +3566,7 @@ extension StartAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol StepAttribute: Attribute {
+public protocol StepAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -3987,7 +3579,7 @@ extension StepAttribute {
     internal var key: String { "step" }
 }
 
-extension StepAttribute where Self: ContentNode, T == Content {
+extension StepAttribute where Self: ContentNode {
     
     internal func mutate(step value: Int) -> Self {
         
@@ -4014,7 +3606,7 @@ extension StepAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol StyleAttribute: Attribute {
+public protocol StyleAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -4027,19 +3619,7 @@ extension StyleAttribute {
     internal var key: String { "style" }
 }
 
-extension StyleAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(style value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension StyleAttribute where Self: ContentNode, T == String {
+extension StyleAttribute where Self: ContentNode {
     
     internal func mutate(style value: String) -> Self {
         
@@ -4066,7 +3646,7 @@ extension StyleAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol TabulatorAttribute: Attribute {
+public protocol TabulatorAttribute: AnyAttribute {
  
     /// The func adds
     ///
@@ -4079,19 +3659,7 @@ extension TabulatorAttribute {
     internal var key: String { "tabindex" }
 }
 
-extension TabulatorAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(tabindex value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension TabulatorAttribute where Self: ContentNode, T == String {
+extension TabulatorAttribute where Self: ContentNode {
     
     internal func mutate(tabindex value: String) -> Self {
         
@@ -4118,7 +3686,7 @@ extension TabulatorAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol TargetAttribute: Attribute {
+public protocol TargetAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -4131,7 +3699,7 @@ extension TargetAttribute {
     internal var key: String { "target" }
 }
 
-extension TargetAttribute where Self: ContentNode, T == Content {
+extension TargetAttribute where Self: ContentNode {
     
     internal func mutate(target value: String) -> Self {
         
@@ -4158,7 +3726,7 @@ extension TargetAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol TitleAttribute: Attribute {
+public protocol TitleAttribute: AnyAttribute {
  
     /// The func adds
     ///
@@ -4171,19 +3739,7 @@ extension TitleAttribute {
     internal var key: String { "title" }
 }
 
-extension TitleAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(title value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension TitleAttribute where Self: ContentNode, T == String {
+extension TitleAttribute where Self: ContentNode {
     
     internal func mutate(title value: String) -> Self {
         
@@ -4210,7 +3766,7 @@ extension TitleAttribute where Self: EmptyNode {
 /// The protcol privides
 ///
 ///
-public protocol TranslateAttribute: Attribute {
+public protocol TranslateAttribute: AnyAttribute {
  
     /// The func adds
     ///
@@ -4223,19 +3779,7 @@ extension TranslateAttribute {
     internal var key: String { "translate" }
 }
 
-extension TranslateAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(translate value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension TranslateAttribute where Self: ContentNode, T == String {
+extension TranslateAttribute where Self: ContentNode {
     
     internal func mutate(translate value: String) -> Self {
         
@@ -4262,7 +3806,7 @@ extension TranslateAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol TypeAttribute: Attribute {
+public protocol TypeAttribute: AnyAttribute {
 
     /// The func adds
     ///
@@ -4275,19 +3819,7 @@ extension TypeAttribute {
     internal var key: String { "type" }
 }
 
-extension TypeAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(type value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension TypeAttribute where Self: ContentNode, T == String {
+extension TypeAttribute where Self: ContentNode {
     
     internal func mutate(type value: String) -> Self {
         
@@ -4314,7 +3846,7 @@ extension TypeAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ValueAttribute: Attribute {
+public protocol ValueAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -4327,19 +3859,7 @@ extension ValueAttribute {
     internal var key: String { "value" }
 }
 
-extension ValueAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension ValueAttribute where Self: ContentNode, T == String {
+extension ValueAttribute where Self: ContentNode {
     
     internal func mutate(value: String) -> Self {
         
@@ -4366,7 +3886,7 @@ extension ValueAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol WidthAttribute: Attribute {
+public protocol WidthAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -4379,7 +3899,7 @@ extension WidthAttribute {
     internal var key: String { "width" }
 }
 
-extension WidthAttribute where Self: ContentNode, T == Content {
+extension WidthAttribute where Self: ContentNode {
     
     internal func mutate(width value: Int) -> Self {
         
@@ -4406,7 +3926,7 @@ extension WidthAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol WrapAttribute: Attribute {
+public protocol WrapAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -4419,19 +3939,7 @@ extension WrapAttribute {
     internal var key: String { "wrap" }
 }
 
-extension WrapAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(wrap value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension WrapAttribute where Self: ContentNode, T == String {
+extension WrapAttribute where Self: ContentNode {
     
     internal func mutate(wrap value: String) -> Self {
         
@@ -4458,7 +3966,7 @@ extension WrapAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol PropertyAttribute: Attribute {
+public protocol PropertyAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -4471,7 +3979,7 @@ extension PropertyAttribute {
     internal var key: String { "property" }
 }
 
-extension PropertyAttribute where Self: ContentNode, T == Content {
+extension PropertyAttribute where Self: ContentNode {
     
     internal func mutate(property value: String) -> Self {
         

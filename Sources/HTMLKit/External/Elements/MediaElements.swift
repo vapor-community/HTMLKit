@@ -3,7 +3,7 @@ import OrderedCollections
 /// The element
 ///
 ///
-public struct Source: EmptyNode {
+public struct Source: EmptyNode, MediaElement {
 
     internal var name: String { "source" }
 
@@ -139,7 +139,7 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
     }
 }
 
-extension Source: Content {
+extension Source: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -153,7 +153,7 @@ extension Source: Content {
 /// The element
 ///
 ///
-public struct Track: EmptyNode {
+public struct Track: EmptyNode, MediaElement {
 
     internal var name: String { "track" }
 
@@ -281,7 +281,7 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
     }
 }
 
-extension Track: Content {
+extension Track: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)

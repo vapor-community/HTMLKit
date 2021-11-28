@@ -5,7 +5,7 @@ final class ElementTests: XCTestCase {
     
     struct TestPage: Page {
         
-        @ContentBuilder var body: Content
+        @ContentBuilder<AnyContent> var body: AnyContent
     }
     
     var renderer = Renderer()
@@ -13,7 +13,7 @@ final class ElementTests: XCTestCase {
     func testHeadElement() throws {
         
         let view = TestPage {
-            Head{
+            Head {
             }
         }
         

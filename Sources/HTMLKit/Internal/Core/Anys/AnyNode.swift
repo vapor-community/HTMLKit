@@ -1,5 +1,5 @@
 /// The protocol is for
 ///
 ///
-public protocol Element {
+public protocol AnyNode {
 }

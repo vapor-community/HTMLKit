@@ -8,7 +8,7 @@ extension Renderer {
     public class Formula {
 
         /// The different pices or ingredients needed to render the view
-        var ingredient: [Content]
+        var ingredient: [AnyContent]
 
         /// The calendar to use when rendering dates
         var calendar: Calendar
@@ -42,7 +42,7 @@ extension Renderer {
         /// Adds a generic `Mappable` object
         ///
         /// - Parameter mappable: The `Mappable` to add
-        public func add(mappable: Content) {
+        public func add(mappable: AnyContent) {
             if let stringRepresentation = mappable as? String {
                 add(string: stringRepresentation)
             } else {

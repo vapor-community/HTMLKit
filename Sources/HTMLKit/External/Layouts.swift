@@ -1,9 +1,9 @@
 /// The protocol defines
 ///
 ///
-public protocol Page: Content {
+public protocol Page: AnyContent {
     
-    @ContentBuilder var body: Content { get }
+    @ContentBuilder<AnyContent> var body: AnyContent { get }
 }
 
 extension Page {
@@ -16,19 +16,19 @@ extension Page {
         try body.prerender(formula)
     }
 
-    public var scripts: Content { body.scripts }
+    public var scripts: AnyContent { body.scripts }
 }
 
 /// The protocol defines
 ///
 ///
-public protocol View: Content {
+public protocol View: AnyContent {
     
     associatedtype Context
     
     var context: TemplateValue<Context> { get }
 
-    @ContentBuilder var body: Content { get }
+    @ContentBuilder<AnyContent> var body: AnyContent { get }
 }
 
 extension View {
@@ -43,15 +43,15 @@ extension View {
         try body.prerender(formula)
     }
 
-    public var scripts: Content { body.scripts }
+    public var scripts: AnyContent { body.scripts }
 }
 
 /// The protocol defines
 ///
 ///
-public protocol Component: Content {
+public protocol Component: AnyContent {
     
-    @ContentBuilder var body: Content { get }
+    @ContentBuilder<AnyContent> var body: AnyContent { get }
 }
 
 extension Component {
@@ -64,5 +64,5 @@ extension Component {
         try body.prerender(formula)
     }
 
-    public var scripts: Content { body.scripts }
+    public var scripts: AnyContent { body.scripts }
 }

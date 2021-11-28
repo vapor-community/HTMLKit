@@ -3,10 +3,10 @@ import OrderedCollections
 /// The protocol is for
 ///
 ///
-public protocol Attribute {
+public protocol AnyAttribute {
 }
 
-extension Attribute {
+extension AnyAttribute {
     
     internal func set(key: String, value: Any) -> OrderedDictionary<String, Any> {
         return [key: value]

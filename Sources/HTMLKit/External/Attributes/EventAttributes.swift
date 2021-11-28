@@ -8,7 +8,7 @@ public typealias GlobalEventAttributes = ContextMenuEventAttribute & WheelEventA
 /// The protocol provides
 ///
 ///
-public protocol AfterPrintEventAttribute: Attribute {
+public protocol AfterPrintEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -21,7 +21,7 @@ extension AfterPrintEventAttribute {
     internal var key: String { "onafterprint" }
 }
 
-extension AfterPrintEventAttribute where Self: ContentNode, T == Content {
+extension AfterPrintEventAttribute where Self: ContentNode {
     
     internal func mutate(onafterprint value: String) -> Self {
         
@@ -48,7 +48,7 @@ extension AfterPrintEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol BeforePrintEventAttribute: Attribute {
+public protocol BeforePrintEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -61,7 +61,7 @@ extension BeforePrintEventAttribute {
     internal var key: String { "onbeforeprint" }
 }
 
-extension BeforePrintEventAttribute where Self: ContentNode, T == Content {
+extension BeforePrintEventAttribute where Self: ContentNode {
     
     internal func mutate(onbeforeprint value: String) -> Self {
         
@@ -88,7 +88,7 @@ extension BeforePrintEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol BeforeUnloadEventAttribute: Attribute {
+public protocol BeforeUnloadEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -101,7 +101,7 @@ extension BeforeUnloadEventAttribute {
     internal var key: String { "onbeforeunload" }
 }
 
-extension BeforeUnloadEventAttribute where Self: ContentNode, T == Content {
+extension BeforeUnloadEventAttribute where Self: ContentNode {
     
     internal func mutate(onbeforeunload value: String) -> Self {
         
@@ -128,7 +128,7 @@ extension BeforeUnloadEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ErrorEventAttribute: Attribute {
+public protocol ErrorEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -141,19 +141,7 @@ extension ErrorEventAttribute {
     internal var key: String { "onerror" }
 }
 
-extension ErrorEventAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(onerror value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension ErrorEventAttribute where Self: ContentNode, T == String {
+extension ErrorEventAttribute where Self: ContentNode {
     
     internal func mutate(onerror value: String) -> Self {
         
@@ -180,7 +168,7 @@ extension ErrorEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol HashChangeEventAttribute: Attribute {
+public protocol HashChangeEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -193,7 +181,7 @@ extension HashChangeEventAttribute {
     internal var key: String { "onhashchange" }
 }
 
-extension HashChangeEventAttribute where Self: ContentNode, T == Content {
+extension HashChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(onhashchange value: String) -> Self {
         
@@ -220,7 +208,7 @@ extension HashChangeEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol LoadEventAttribute: Attribute {
+public protocol LoadEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -233,19 +221,7 @@ extension LoadEventAttribute {
     internal var key: String { "onload" }
 }
 
-extension LoadEventAttribute where Self: ContentNode, T == Content {
-    
-    internal func mutate(onload value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension LoadEventAttribute where Self: ContentNode, T == String {
+extension LoadEventAttribute where Self: ContentNode {
     
     internal func mutate(onload value: String) -> Self {
         
@@ -272,7 +248,7 @@ extension LoadEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol MessageEventAttribute: Attribute {
+public protocol MessageEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -285,7 +261,7 @@ extension MessageEventAttribute {
     internal var key: String { "onmessage" }
 }
 
-extension MessageEventAttribute where Self: ContentNode, T == Content {
+extension MessageEventAttribute where Self: ContentNode {
     
     internal func mutate(onmessage value: String) -> Self {
         
@@ -312,7 +288,7 @@ extension MessageEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol OfflineEventAttribute: Attribute {
+public protocol OfflineEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -325,7 +301,7 @@ extension OfflineEventAttribute {
     internal var key: String { "onoffline" }
 }
 
-extension OfflineEventAttribute where Self: ContentNode, T == Content {
+extension OfflineEventAttribute where Self: ContentNode {
     
     internal func mutate(onoffline value: String) -> Self {
         
@@ -352,7 +328,7 @@ extension OfflineEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol OnlineEventAttribute: Attribute {
+public protocol OnlineEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -365,7 +341,7 @@ extension OnlineEventAttribute {
     internal var key: String { "ononline" }
 }
 
-extension OnlineEventAttribute where Self: ContentNode, T == Content {
+extension OnlineEventAttribute where Self: ContentNode {
     
     internal func mutate(ononline value: String) -> Self {
         
@@ -392,7 +368,7 @@ extension OnlineEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol PageHideEventAttribute: Attribute {
+public protocol PageHideEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -405,7 +381,7 @@ extension PageHideEventAttribute {
     internal var key: String { "onpagehide" }
 }
 
-extension PageHideEventAttribute where Self: ContentNode, T == Content {
+extension PageHideEventAttribute where Self: ContentNode {
     
     internal func mutate(onpagehide value: String) -> Self {
         
@@ -432,7 +408,7 @@ extension PageHideEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol PageShowEventAttribute: Attribute {
+public protocol PageShowEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -445,7 +421,7 @@ extension PageShowEventAttribute {
     internal var key: String { "onpageshow" }
 }
 
-extension PageShowEventAttribute where Self: ContentNode, T == Content {
+extension PageShowEventAttribute where Self: ContentNode {
     
     internal func mutate(onpageshow value: String) -> Self {
         
@@ -472,7 +448,7 @@ extension PageShowEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol PopstateEventAttribute: Attribute {
+public protocol PopstateEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -485,7 +461,7 @@ extension PopstateEventAttribute {
     internal var key: String { "onpopstate" }
 }
 
-extension PopstateEventAttribute where Self: ContentNode, T == Content {
+extension PopstateEventAttribute where Self: ContentNode {
     
     internal func mutate(onpopstate value: String) -> Self {
         
@@ -512,7 +488,7 @@ extension PopstateEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ResizeEventAttribute: Attribute {
+public protocol ResizeEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -525,7 +501,7 @@ extension ResizeEventAttribute {
     internal var key: String { "onresize" }
 }
 
-extension ResizeEventAttribute where Self: ContentNode, T == Content {
+extension ResizeEventAttribute where Self: ContentNode {
     
     internal func mutate(onresize value: String) -> Self {
         
@@ -552,7 +528,7 @@ extension ResizeEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol StorageEventAttribute: Attribute {
+public protocol StorageEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -565,7 +541,7 @@ extension StorageEventAttribute {
     internal var key: String { "onstorage" }
 }
 
-extension StorageEventAttribute where Self: ContentNode, T == Content {
+extension StorageEventAttribute where Self: ContentNode {
     
     internal func mutate(onstorage value: String) -> Self {
         
@@ -592,7 +568,7 @@ extension StorageEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol UnloadEventAttribute: Attribute {
+public protocol UnloadEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -605,7 +581,7 @@ extension UnloadEventAttribute {
     internal var key: String { "onunload" }
 }
 
-extension UnloadEventAttribute where Self: ContentNode, T == Content {
+extension UnloadEventAttribute where Self: ContentNode {
     
     internal func mutate(onunload value: String) -> Self {
         
@@ -632,7 +608,7 @@ extension UnloadEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol BlurEventAttribute: Attribute {
+public protocol BlurEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -645,7 +621,7 @@ extension BlurEventAttribute {
     internal var key: String { "onblur" }
 }
 
-extension BlurEventAttribute where Self: ContentNode, T == Content {
+extension BlurEventAttribute where Self: ContentNode {
     
     internal func mutate(onblur value: String) -> Self {
         
@@ -672,7 +648,7 @@ extension BlurEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ChangeEventAttribute: Attribute {
+public protocol ChangeEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -685,7 +661,7 @@ extension ChangeEventAttribute {
     internal var key: String { "onchange" }
 }
 
-extension ChangeEventAttribute where Self: ContentNode, T == Content {
+extension ChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(onchange value: String) -> Self {
         
@@ -712,7 +688,7 @@ extension ChangeEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ContextMenuEventAttribute: Attribute {
+public protocol ContextMenuEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -725,7 +701,7 @@ extension ContextMenuEventAttribute {
     internal var key: String { "oncontextmenu" }
 }
 
-extension ContextMenuEventAttribute where Self: ContentNode, T == Content {
+extension ContextMenuEventAttribute where Self: ContentNode {
     
     internal func mutate(oncontextmenu value: String) -> Self {
         
@@ -752,7 +728,7 @@ extension ContextMenuEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol FocusEventAttribute: Attribute {
+public protocol FocusEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -765,7 +741,7 @@ extension FocusEventAttribute {
     internal var key: String { "onfocus" }
 }
 
-extension FocusEventAttribute where Self: ContentNode, T == Content {
+extension FocusEventAttribute where Self: ContentNode {
     
     internal func mutate(onfocus value: String) -> Self {
         
@@ -792,7 +768,7 @@ extension FocusEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol InputEventAttribute: Attribute {
+public protocol InputEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -805,7 +781,7 @@ extension InputEventAttribute {
     internal var key: String { "oninput" }
 }
 
-extension InputEventAttribute where Self: ContentNode, T == Content {
+extension InputEventAttribute where Self: ContentNode {
     
     internal func mutate(oninput value: String) -> Self {
         
@@ -832,7 +808,7 @@ extension InputEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol InvalidEventAttribute: Attribute {
+public protocol InvalidEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -845,7 +821,7 @@ extension InvalidEventAttribute {
     internal var key: String { "oninvalid" }
 }
 
-extension InvalidEventAttribute where Self: ContentNode, T == Content {
+extension InvalidEventAttribute where Self: ContentNode {
     
     internal func mutate(oninvalid value: String) -> Self {
         
@@ -872,7 +848,7 @@ extension InvalidEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ResetEventAttribute: Attribute {
+public protocol ResetEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -885,7 +861,7 @@ extension ResetEventAttribute {
     internal var key: String { "onreset" }
 }
 
-extension ResetEventAttribute where Self: ContentNode, T == Content {
+extension ResetEventAttribute where Self: ContentNode {
     
     internal func mutate(onreset value: String) -> Self {
         
@@ -912,7 +888,7 @@ extension ResetEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol SearchEventAttribute: Attribute {
+public protocol SearchEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -925,7 +901,7 @@ extension SearchEventAttribute {
     internal var key: String { "onsearch" }
 }
 
-extension SearchEventAttribute where Self: ContentNode, T == Content {
+extension SearchEventAttribute where Self: ContentNode {
     
     internal func mutate(onsearch value: String) -> Self {
         
@@ -952,7 +928,7 @@ extension SearchEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol SelectEventAttribute: Attribute {
+public protocol SelectEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -965,7 +941,7 @@ extension SelectEventAttribute {
     internal var key: String { "onselect" }
 }
 
-extension SelectEventAttribute where Self: ContentNode, T == Content {
+extension SelectEventAttribute where Self: ContentNode {
     
     internal func mutate(onselect value: String) -> Self {
         
@@ -992,7 +968,7 @@ extension SelectEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol SubmitEventAttribute: Attribute {
+public protocol SubmitEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1005,7 +981,7 @@ extension SubmitEventAttribute {
     internal var key: String { "onsubmit" }
 }
 
-extension SubmitEventAttribute where Self: ContentNode, T == Content {
+extension SubmitEventAttribute where Self: ContentNode {
     
     internal func mutate(onsubmit value: String) -> Self {
         
@@ -1032,7 +1008,7 @@ extension SubmitEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol KeyDownEventAttribute: Attribute {
+public protocol KeyDownEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1045,7 +1021,7 @@ extension KeyDownEventAttribute {
     internal var key: String { "onkeydown" }
 }
 
-extension KeyDownEventAttribute where Self: ContentNode, T == Content {
+extension KeyDownEventAttribute where Self: ContentNode {
     
     internal func mutate(onkeydown value: String) -> Self {
         
@@ -1072,7 +1048,7 @@ extension KeyDownEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol KeyPressEventAttribute: Attribute {
+public protocol KeyPressEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1085,7 +1061,7 @@ extension KeyPressEventAttribute {
     internal var key: String { "onkeypress" }
 }
 
-extension KeyPressEventAttribute where Self: ContentNode, T == Content {
+extension KeyPressEventAttribute where Self: ContentNode {
     
     internal func mutate(onkeypress value: String) -> Self {
         
@@ -1112,7 +1088,7 @@ extension KeyPressEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol KeyUpEventAttribute: Attribute {
+public protocol KeyUpEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1125,7 +1101,7 @@ extension KeyUpEventAttribute {
     internal var key: String { "onkeyup" }
 }
 
-extension KeyUpEventAttribute where Self: ContentNode, T == Content {
+extension KeyUpEventAttribute where Self: ContentNode {
     
     internal func mutate(onkeyup value: String) -> Self {
         
@@ -1152,7 +1128,7 @@ extension KeyUpEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ClickEventAttribute: Attribute {
+public protocol ClickEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1165,7 +1141,7 @@ extension ClickEventAttribute {
     internal var key: String { "onclick" }
 }
 
-extension ClickEventAttribute where Self: ContentNode, T == Content {
+extension ClickEventAttribute where Self: ContentNode {
     
     internal func mutate(onclick value: String) -> Self {
         
@@ -1192,7 +1168,7 @@ extension ClickEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol DoubleClickEventAttribute: Attribute {
+public protocol DoubleClickEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1205,7 +1181,7 @@ extension DoubleClickEventAttribute {
     internal var key: String { "ondbclick" }
 }
 
-extension DoubleClickEventAttribute where Self: ContentNode, T == Content {
+extension DoubleClickEventAttribute where Self: ContentNode {
     
     internal func mutate(ondbclick value: String) -> Self {
         
@@ -1232,7 +1208,7 @@ extension DoubleClickEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol MouseDownEventAttribute: Attribute {
+public protocol MouseDownEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1245,7 +1221,7 @@ extension MouseDownEventAttribute {
     internal var key: String { "onmousedown" }
 }
 
-extension MouseDownEventAttribute where Self: ContentNode, T == Content {
+extension MouseDownEventAttribute where Self: ContentNode {
     
     internal func mutate(onmousedown value: String) -> Self {
         
@@ -1272,7 +1248,7 @@ extension MouseDownEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol MouseMoveEventAttribute: Attribute {
+public protocol MouseMoveEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1285,7 +1261,7 @@ extension MouseMoveEventAttribute {
     internal var key: String { "onmousemove" }
 }
 
-extension MouseMoveEventAttribute where Self: ContentNode, T == Content {
+extension MouseMoveEventAttribute where Self: ContentNode {
     
     internal func mutate(onmousemove value: String) -> Self {
         
@@ -1312,7 +1288,7 @@ extension MouseMoveEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol MouseOutEventAttribute: Attribute {
+public protocol MouseOutEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1325,7 +1301,7 @@ extension MouseOutEventAttribute {
     internal var key: String { "onmouseout" }
 }
 
-extension MouseOutEventAttribute where Self: ContentNode, T == Content {
+extension MouseOutEventAttribute where Self: ContentNode {
     
     internal func mutate(onmouseout value: String) -> Self {
         
@@ -1352,7 +1328,7 @@ extension MouseOutEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol MouseOverEventAttribute: Attribute {
+public protocol MouseOverEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1365,7 +1341,7 @@ extension MouseOverEventAttribute {
     internal var key: String { "onmouseover" }
 }
 
-extension MouseOverEventAttribute where Self: ContentNode, T == Content {
+extension MouseOverEventAttribute where Self: ContentNode {
     
     internal func mutate(onmouseover value: String) -> Self {
         
@@ -1392,7 +1368,7 @@ extension MouseOverEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol MouseUpEventAttribute: Attribute {
+public protocol MouseUpEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1405,7 +1381,7 @@ extension MouseUpEventAttribute {
     internal var key: String { "onmouseup" }
 }
 
-extension MouseUpEventAttribute where Self: ContentNode, T == Content {
+extension MouseUpEventAttribute where Self: ContentNode {
     
     internal func mutate(onmouseup value: String) -> Self {
         
@@ -1432,7 +1408,7 @@ extension MouseUpEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol WheelEventAttribute: Attribute {
+public protocol WheelEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1445,7 +1421,7 @@ extension WheelEventAttribute {
     internal var key: String { "onwheel" }
 }
 
-extension WheelEventAttribute where Self: ContentNode, T == Content {
+extension WheelEventAttribute where Self: ContentNode {
     
     internal func mutate(onwheel value: String) -> Self {
         
@@ -1472,7 +1448,7 @@ extension WheelEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol DragEventAttribute: Attribute {
+public protocol DragEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1485,7 +1461,7 @@ extension DragEventAttribute {
     internal var key: String { "ondrag" }
 }
 
-extension DragEventAttribute where Self: ContentNode, T == Content {
+extension DragEventAttribute where Self: ContentNode {
     
     internal func mutate(ondrag value: String) -> Self {
         
@@ -1512,7 +1488,7 @@ extension DragEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol DragEnterEventAttribute: Attribute {
+public protocol DragEnterEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1525,7 +1501,7 @@ extension DragEnterEventAttribute {
     internal var key: String { "ondragenter" }
 }
 
-extension DragEnterEventAttribute where Self: ContentNode, T == Content {
+extension DragEnterEventAttribute where Self: ContentNode {
     
     internal func mutate(ondragenter value: String) -> Self {
         
@@ -1552,7 +1528,7 @@ extension DragEnterEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol DragEndEventAttribute: Attribute {
+public protocol DragEndEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1565,7 +1541,7 @@ extension DragEndEventAttribute {
     internal var key: String { "ondragend" }
 }
 
-extension DragEndEventAttribute where Self: ContentNode, T == Content {
+extension DragEndEventAttribute where Self: ContentNode {
     
     internal func mutate(ondragend value: String) -> Self {
         
@@ -1592,7 +1568,7 @@ extension DragEndEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol DragLeaveEventAttribute: Attribute {
+public protocol DragLeaveEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1605,7 +1581,7 @@ extension DragLeaveEventAttribute {
     internal var key: String { "ondragleave" }
 }
 
-extension DragLeaveEventAttribute where Self: ContentNode, T == Content {
+extension DragLeaveEventAttribute where Self: ContentNode {
     
     internal func mutate(ondragleave value: String) -> Self {
         
@@ -1632,7 +1608,7 @@ extension DragLeaveEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol DragOverEventAttribute: Attribute {
+public protocol DragOverEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1645,7 +1621,7 @@ extension DragOverEventAttribute {
     internal var key: String { "ondragover" }
 }
 
-extension DragOverEventAttribute where Self: ContentNode, T == Content {
+extension DragOverEventAttribute where Self: ContentNode {
     
     internal func mutate(ondragover value: String) -> Self {
         
@@ -1672,7 +1648,7 @@ extension DragOverEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol DragStartEventAttribute: Attribute {
+public protocol DragStartEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1685,7 +1661,7 @@ extension DragStartEventAttribute {
     internal var key: String { "ondragstart" }
 }
 
-extension DragStartEventAttribute where Self: ContentNode, T == Content {
+extension DragStartEventAttribute where Self: ContentNode {
     
     internal func mutate(ondragstart value: String) -> Self {
         
@@ -1712,7 +1688,7 @@ extension DragStartEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol DropEventAttribute: Attribute {
+public protocol DropEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1725,7 +1701,7 @@ extension DropEventAttribute {
     internal var key: String { "ondrop" }
 }
 
-extension DropEventAttribute where Self: ContentNode, T == Content {
+extension DropEventAttribute where Self: ContentNode {
     
     internal func mutate(ondrop value: String) -> Self {
         
@@ -1752,7 +1728,7 @@ extension DropEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ScrollEventAttribute: Attribute {
+public protocol ScrollEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1765,7 +1741,7 @@ extension ScrollEventAttribute {
     internal var key: String { "onscroll" }
 }
 
-extension ScrollEventAttribute where Self: ContentNode, T == Content {
+extension ScrollEventAttribute where Self: ContentNode {
     
     internal func mutate(onscroll value: String) -> Self {
         
@@ -1792,7 +1768,7 @@ extension ScrollEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol CopyEventAttribute: Attribute {
+public protocol CopyEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1805,7 +1781,7 @@ extension CopyEventAttribute {
     internal var key: String { "oncopy" }
 }
 
-extension CopyEventAttribute where Self: ContentNode, T == Content {
+extension CopyEventAttribute where Self: ContentNode {
     
     internal func mutate(oncopy value: String) -> Self {
         
@@ -1832,7 +1808,7 @@ extension CopyEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol CutEventAttribute: Attribute {
+public protocol CutEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1845,7 +1821,7 @@ extension CutEventAttribute {
     internal var key: String { "oncut" }
 }
 
-extension CutEventAttribute where Self: ContentNode, T == Content {
+extension CutEventAttribute where Self: ContentNode {
     
     internal func mutate(oncut value: String) -> Self {
         
@@ -1872,7 +1848,7 @@ extension CutEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol PasteEventAttribute: Attribute {
+public protocol PasteEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1885,7 +1861,7 @@ extension PasteEventAttribute {
     internal var key: String { "onpaste" }
 }
 
-extension PasteEventAttribute where Self: ContentNode, T == Content {
+extension PasteEventAttribute where Self: ContentNode {
     
     internal func mutate(onpaste value: String) -> Self {
         
@@ -1912,7 +1888,7 @@ extension PasteEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol AbortEventAttribute: Attribute {
+public protocol AbortEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1925,7 +1901,7 @@ extension AbortEventAttribute {
     internal var key: String { "onabort" }
 }
 
-extension AbortEventAttribute where Self: ContentNode, T == Content {
+extension AbortEventAttribute where Self: ContentNode {
     
     internal func mutate(onabort value: String) -> Self {
         
@@ -1952,7 +1928,7 @@ extension AbortEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol CanPlayEventAttribute: Attribute {
+public protocol CanPlayEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -1965,7 +1941,7 @@ extension CanPlayEventAttribute {
     internal var key: String { "oncanplay" }
 }
 
-extension CanPlayEventAttribute where Self: ContentNode, T == Content {
+extension CanPlayEventAttribute where Self: ContentNode {
     
     internal func mutate(oncanplay value: String) -> Self {
         
@@ -1992,7 +1968,7 @@ extension CanPlayEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol CanPlayThroughEventAttribute: Attribute {
+public protocol CanPlayThroughEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2005,7 +1981,7 @@ extension CanPlayThroughEventAttribute {
     internal var key: String { "oncanplaythrough" }
 }
 
-extension CanPlayThroughEventAttribute where Self: ContentNode, T == Content {
+extension CanPlayThroughEventAttribute where Self: ContentNode {
     
     internal func mutate(oncanplaythrough value: String) -> Self {
         
@@ -2032,7 +2008,7 @@ extension CanPlayThroughEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol CueChangeEventAttribute: Attribute {
+public protocol CueChangeEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2045,7 +2021,7 @@ extension CueChangeEventAttribute {
     internal var key: String { "oncuechange" }
 }
 
-extension CueChangeEventAttribute where Self: ContentNode, T == Content {
+extension CueChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(oncuechange value: String) -> Self {
         
@@ -2072,7 +2048,7 @@ extension CueChangeEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol DurationChangeEventAttribute: Attribute {
+public protocol DurationChangeEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2085,7 +2061,7 @@ extension DurationChangeEventAttribute {
     internal var key: String { "ondurationchange" }
 }
 
-extension DurationChangeEventAttribute where Self: ContentNode, T == Content {
+extension DurationChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(ondurationchange value: String) -> Self {
         
@@ -2112,7 +2088,7 @@ extension DurationChangeEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol EmptiedEventAttribute: Attribute {
+public protocol EmptiedEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2125,7 +2101,7 @@ extension EmptiedEventAttribute {
     internal var key: String { "onemptied" }
 }
 
-extension EmptiedEventAttribute where Self: ContentNode, T == Content {
+extension EmptiedEventAttribute where Self: ContentNode {
     
     internal func mutate(onemptied value: String) -> Self {
         
@@ -2152,7 +2128,7 @@ extension EmptiedEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol EndedEventAttribute: Attribute {
+public protocol EndedEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2165,7 +2141,7 @@ extension EndedEventAttribute {
     internal var key: String { "onended" }
 }
 
-extension EndedEventAttribute where Self: ContentNode, T == Content {
+extension EndedEventAttribute where Self: ContentNode {
     
     internal func mutate(onended value: String) -> Self {
         
@@ -2192,7 +2168,7 @@ extension EndedEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol LoadedDataEventAttribute: Attribute {
+public protocol LoadedDataEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2205,7 +2181,7 @@ extension LoadedDataEventAttribute {
     internal var key: String { "onloadeddata" }
 }
 
-extension LoadedDataEventAttribute where Self: ContentNode, T == Content {
+extension LoadedDataEventAttribute where Self: ContentNode {
     
     internal func mutate(onloadeddata value: String) -> Self {
         
@@ -2232,7 +2208,7 @@ extension LoadedDataEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol LoadedMetaDataEventAttribute: Attribute {
+public protocol LoadedMetaDataEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2245,7 +2221,7 @@ extension LoadedMetaDataEventAttribute {
     internal var key: String { "onloadedmetadata" }
 }
 
-extension LoadedMetaDataEventAttribute where Self: ContentNode, T == Content {
+extension LoadedMetaDataEventAttribute where Self: ContentNode {
     
     internal func mutate(onloadedmetadata value: String) -> Self {
         
@@ -2272,7 +2248,7 @@ extension LoadedMetaDataEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol LoadStartEventAttribute: Attribute {
+public protocol LoadStartEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2285,7 +2261,7 @@ extension LoadStartEventAttribute {
     internal var key: String { "onloadstart" }
 }
 
-extension LoadStartEventAttribute where Self: ContentNode, T == Content {
+extension LoadStartEventAttribute where Self: ContentNode {
     
     internal func mutate(onloadstart value: String) -> Self {
         
@@ -2312,7 +2288,7 @@ extension LoadStartEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol PauseEventAttribute: Attribute {
+public protocol PauseEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2325,7 +2301,7 @@ extension PauseEventAttribute {
     internal var key: String { "onpause" }
 }
 
-extension PauseEventAttribute where Self: ContentNode, T == Content {
+extension PauseEventAttribute where Self: ContentNode {
     
     internal func mutate(onpause value: String) -> Self {
         
@@ -2352,7 +2328,7 @@ extension PauseEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol PlayEventAttribute: Attribute {
+public protocol PlayEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2365,7 +2341,7 @@ extension PlayEventAttribute {
     internal var key: String { "onplay" }
 }
 
-extension PlayEventAttribute where Self: ContentNode, T == Content {
+extension PlayEventAttribute where Self: ContentNode {
     
     internal func mutate(onplay value: String) -> Self {
         
@@ -2392,7 +2368,7 @@ extension PlayEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol PlayingEventAttribute: Attribute {
+public protocol PlayingEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2405,7 +2381,7 @@ extension PlayingEventAttribute {
     internal var key: String { "onplaying" }
 }
 
-extension PlayingEventAttribute where Self: ContentNode, T == Content {
+extension PlayingEventAttribute where Self: ContentNode {
     
     internal func mutate(onplaying value: String) -> Self {
         
@@ -2432,7 +2408,7 @@ extension PlayingEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ProgressEventAttribute: Attribute {
+public protocol ProgressEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2445,7 +2421,7 @@ extension ProgressEventAttribute {
     internal var key: String { "onprogress" }
 }
 
-extension ProgressEventAttribute where Self: ContentNode, T == Content {
+extension ProgressEventAttribute where Self: ContentNode {
     
     internal func mutate(onprogress value: String) -> Self {
         
@@ -2472,7 +2448,7 @@ extension ProgressEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol RateChangeEventAttribute: Attribute {
+public protocol RateChangeEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2485,7 +2461,7 @@ extension RateChangeEventAttribute {
     internal var key: String { "onratechange" }
 }
 
-extension RateChangeEventAttribute where Self: ContentNode, T == Content {
+extension RateChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(onratechange value: String) -> Self {
         
@@ -2512,7 +2488,7 @@ extension RateChangeEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol SeekedEventAttribute: Attribute {
+public protocol SeekedEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2525,7 +2501,7 @@ extension SeekedEventAttribute {
     internal var key: String { "onseeked" }
 }
 
-extension SeekedEventAttribute where Self: ContentNode, T == Content {
+extension SeekedEventAttribute where Self: ContentNode {
     
     internal func mutate(onseeked value: String) -> Self {
         
@@ -2552,7 +2528,7 @@ extension SeekedEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol SeekingEventAttribute: Attribute {
+public protocol SeekingEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2565,7 +2541,7 @@ extension SeekingEventAttribute {
     internal var key: String { "onseeking" }
 }
 
-extension SeekingEventAttribute where Self: ContentNode, T == Content {
+extension SeekingEventAttribute where Self: ContentNode {
     
     internal func mutate(onseeking value: String) -> Self {
         
@@ -2592,7 +2568,7 @@ extension SeekingEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol StalledEventAttribute: Attribute {
+public protocol StalledEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2605,7 +2581,7 @@ extension StalledEventAttribute {
     internal var key: String { "onstalled" }
 }
 
-extension StalledEventAttribute where Self: ContentNode, T == Content {
+extension StalledEventAttribute where Self: ContentNode {
     
     internal func mutate(onstalled value: String) -> Self {
         
@@ -2632,7 +2608,7 @@ extension StalledEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol SuspendEventAttribute: Attribute {
+public protocol SuspendEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2645,7 +2621,7 @@ extension SuspendEventAttribute {
     internal var key: String { "onsuspend" }
 }
 
-extension SuspendEventAttribute where Self: ContentNode, T == Content {
+extension SuspendEventAttribute where Self: ContentNode {
     
     internal func mutate(onsuspend value: String) -> Self {
         
@@ -2672,7 +2648,7 @@ extension SuspendEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol TimeUpdateEventAttribute: Attribute {
+public protocol TimeUpdateEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2685,7 +2661,7 @@ extension TimeUpdateEventAttribute {
     internal var key: String { "ontimeupdate" }
 }
 
-extension TimeUpdateEventAttribute where Self: ContentNode, T == Content {
+extension TimeUpdateEventAttribute where Self: ContentNode {
     
     internal func mutate(ontimeupdate value: String) -> Self {
         
@@ -2712,7 +2688,7 @@ extension TimeUpdateEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol VolumeChangeEventAttribute: Attribute {
+public protocol VolumeChangeEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2725,7 +2701,7 @@ extension VolumeChangeEventAttribute {
     internal var key: String { "onvolumechange" }
 }
 
-extension VolumeChangeEventAttribute where Self: ContentNode, T == Content {
+extension VolumeChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(onvolumechange value: String) -> Self {
         
@@ -2752,7 +2728,7 @@ extension VolumeChangeEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol WaitingEventAttribute: Attribute {
+public protocol WaitingEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2765,7 +2741,7 @@ extension WaitingEventAttribute {
     internal var key: String { "onwaiting" }
 }
 
-extension WaitingEventAttribute where Self: ContentNode, T == Content {
+extension WaitingEventAttribute where Self: ContentNode {
     
     internal func mutate(onwaiting value: String) -> Self {
         
@@ -2792,7 +2768,7 @@ extension WaitingEventAttribute where Self: EmptyNode {
 /// The protocol provides
 ///
 ///
-public protocol ToggleEventAttribute: Attribute {
+public protocol ToggleEventAttribute: AnyAttribute {
     
     /// The func adds
     ///
@@ -2805,7 +2781,7 @@ extension ToggleEventAttribute {
     internal var key: String { "ontoggle" }
 }
 
-extension ToggleEventAttribute where Self: ContentNode, T == Content {
+extension ToggleEventAttribute where Self: ContentNode {
     
     internal func mutate(ontoggle value: String) -> Self {
         

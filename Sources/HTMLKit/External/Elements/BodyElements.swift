@@ -1,9 +1,189 @@
 import OrderedCollections
 
+/// The alias points
+///
+///
+public typealias Nav = Navigation
+
+/// The alias points
+///
+///
+public typealias H1 = Heading1
+
+/// The alias points
+///
+///
+public typealias H2 = Heading2
+
+/// The alias points
+///
+///
+public typealias H3 = Heading3
+
+/// The alias points
+///
+///
+public typealias H4 = Heading4
+
+/// The alias points
+///
+///
+public typealias H5 = Heading5
+
+/// The alias points
+///
+///
+public typealias H6 = Heading6
+
+/// The alias points
+///
+///
+public typealias Hgroup = HeadingGroup
+
+/// The alias points
+///
+///
+public typealias P = Paragraph
+
+/// The alias points
+///
+///
+public typealias Hr = HorizontalRule
+
+/// The alias points
+///
+///
+public typealias Pre = PreformattedText
+
+/// The alias points
+///
+///
+public typealias Ol = OrderedList
+
+/// The alias points
+///
+///
+public typealias Ul = UnorderedList
+
+/// The alias points
+///
+///
+public typealias Dl = DescriptionList
+
+/// The alias points
+///
+///
+public typealias Div = Division
+
+/// The alias points
+///
+///
+public typealias A = Anchor
+
+/// The alias points
+///
+///
+public typealias Em = Emphasize
+
+/// The alias points
+///
+///
+public typealias S = StrikeThrough
+
+/// The alias points
+///
+///
+public typealias Q = ShortQuote
+
+/// The alias points
+///
+///
+public typealias Dfn = Definition
+
+/// The alias points
+///
+///
+public typealias Abbr = Abbreviation
+
+/// The alias points
+///
+///
+public typealias V = Variable
+
+/// The alias points
+///
+///
+public typealias Samp = SampleOutput
+
+/// The alias points
+///
+///
+public typealias Kbd = KeyboardInput
+
+/// The alias points
+///
+///
+public typealias Sub = Subscript
+
+/// The alias points
+///
+///
+public typealias Sup = Superscript
+
+/// The alias points
+///
+///
+public typealias I = Italic
+
+/// The alias points
+///
+///
+public typealias B = Bold
+
+/// The alias points
+///
+///
+public typealias U = Underline
+
+/// The alias points
+///
+///
+public typealias Br = LineBreak
+
+/// The alias points
+///
+///
+public typealias Wbr = WordBreak
+
+/// The alias points
+///
+///
+public typealias Ins = InsertedText
+
+/// The alias points
+///
+///
+public typealias Del = DeletedText
+
+/// The alias points
+///
+///
+public typealias Img = Image
+
+/// The alias points
+///
+///
+public typealias Iframe = InlineFrame
+
+/// The alias points
+///
+///
+public typealias Param = Parameter
+
 /// The element
 ///
 ///
-public struct Link: EmptyNode {
+public struct Link: EmptyNode, BodyElement {
 
     internal var name: String { "link" }
 
@@ -151,7 +331,7 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
     }
 }
 
-extension Link: Content {
+extension Link: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -165,19 +345,19 @@ extension Link: Content {
 /// The element
 ///
 ///
-public struct Article: ContentNode {
+public struct Article: ContentNode, BodyElement {
 
     internal var name: String { "article" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -282,7 +462,7 @@ extension Article: GlobalAttributes {
     }
 }
 
-extension Article: Content {
+extension Article: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -296,19 +476,19 @@ extension Article: Content {
 /// The element
 ///
 ///
-public struct Section: ContentNode {
+public struct Section: ContentNode, BodyElement {
 
     internal var name: String { "section" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -413,7 +593,7 @@ extension Section: GlobalAttributes {
     }
 }
 
-extension Section: Content {
+extension Section: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -427,19 +607,19 @@ extension Section: Content {
 /// The element
 ///
 ///
-public struct Navigation: ContentNode {
+public struct Navigation: ContentNode, BodyElement {
 
     internal var name: String { "nav" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -544,7 +724,7 @@ extension Navigation: GlobalAttributes {
     }
 }
 
-extension Navigation: Content {
+extension Navigation: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -558,19 +738,19 @@ extension Navigation: Content {
 /// The element
 ///
 ///
-public struct Aside: ContentNode {
+public struct Aside: ContentNode, BodyElement {
 
     internal var name: String { "aside" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -675,7 +855,7 @@ extension Aside: GlobalAttributes {
     }
 }
 
-extension Aside: Content {
+extension Aside: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -689,19 +869,19 @@ extension Aside: Content {
 /// The element
 ///
 ///
-public struct Heading1: ContentNode {
+public struct Heading1: ContentNode, BodyElement {
 
     internal var name: String { "h1" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -809,15 +989,15 @@ extension Heading1: GlobalAttributes {
 extension Heading1: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
-extension Heading1: Content {
+extension Heading1: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -831,19 +1011,19 @@ extension Heading1: Content {
 /// The element
 ///
 ///
-public struct Heading2: ContentNode {
+public struct Heading2: ContentNode, BodyElement {
 
     internal var name: String { "h2" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -951,15 +1131,15 @@ extension Heading2: GlobalAttributes {
 extension Heading2: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
-extension Heading2: Content {
+extension Heading2: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -973,19 +1153,19 @@ extension Heading2: Content {
 /// The element
 ///
 ///
-public struct Heading3: ContentNode {
+public struct Heading3: ContentNode, BodyElement {
 
     internal var name: String { "h3" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -1094,15 +1274,15 @@ return mutate(id: value)
 extension Heading3: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
-extension Heading3: Content {
+extension Heading3: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -1116,19 +1296,19 @@ extension Heading3: Content {
 /// The element
 ///
 ///
-public struct Heading4: ContentNode {
+public struct Heading4: ContentNode, BodyElement {
 
     internal var name: String { "h4" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -1231,21 +1411,20 @@ extension Heading4: GlobalAttributes {
     public func translate(_ value: String) -> Heading4 {
         return mutate(translate: value)
     }
-
 }
 
 extension Heading4: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
-extension Heading4: Content {
+extension Heading4: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -1259,19 +1438,19 @@ extension Heading4: Content {
 /// The element
 ///
 ///
-public struct Heading5: ContentNode {
+public struct Heading5: ContentNode, BodyElement {
 
     internal var name: String { "h5" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -1374,21 +1553,20 @@ extension Heading5: GlobalAttributes {
     public func translate(_ value: String) -> Heading5 {
         return mutate(translate: value)
     }
-
 }
 
 extension Heading5: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
-extension Heading5: Content {
+extension Heading5: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -1402,19 +1580,19 @@ extension Heading5: Content {
 /// The element
 ///
 ///
-public struct Heading6: ContentNode {
+public struct Heading6: ContentNode, BodyElement {
 
     internal var name: String { "h6" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -1522,15 +1700,15 @@ extension Heading6: GlobalAttributes {
 extension Heading6: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
-extension Heading6: Content {
+extension Heading6: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -1544,19 +1722,19 @@ extension Heading6: Content {
 /// The element
 ///
 ///
-public struct HeadingGroup: ContentNode {
+public struct HeadingGroup: ContentNode, BodyElement {
 
     internal var name: String { "hgroup" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -1661,7 +1839,7 @@ extension HeadingGroup: GlobalAttributes {
     }
 }
 
-extension HeadingGroup: Content {
+extension HeadingGroup: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -1675,19 +1853,19 @@ extension HeadingGroup: Content {
 /// The element
 ///
 ///
-public struct Header: ContentNode {
+public struct Header: ContentNode, BodyElement {
 
     internal var name: String { "header" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -1792,7 +1970,7 @@ extension Header: GlobalAttributes {
     }
 }
 
-extension Header: Content {
+extension Header: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -1806,19 +1984,19 @@ extension Header: Content {
 /// The element
 ///
 ///
-public struct Footer: ContentNode {
+public struct Footer: ContentNode, BodyElement {
 
     internal var name: String { "footer" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -1923,7 +2101,7 @@ extension Footer: GlobalAttributes {
     }
 }
 
-extension Footer: Content {
+extension Footer: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -1937,19 +2115,19 @@ extension Footer: Content {
 /// The element
 ///
 ///
-public struct Address: ContentNode {
+public struct Address: ContentNode, BodyElement {
 
     internal var name: String { "address" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -2056,7 +2234,7 @@ return mutate(autocapitalize: type.rawValue)
     }
 }
 
-extension Address: Content {
+extension Address: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -2070,19 +2248,19 @@ extension Address: Content {
 /// The element
 ///
 ///
-public struct Paragraph: ContentNode {
+public struct Paragraph: ContentNode, BodyElement {
 
     internal var name: String { "p" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -2190,15 +2368,15 @@ extension Paragraph: GlobalAttributes {
 extension Paragraph: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
-extension Paragraph: Content {
+extension Paragraph: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -2212,7 +2390,7 @@ extension Paragraph: Content {
 /// The element
 ///
 ///
-public struct HorizontalRule: EmptyNode {
+public struct HorizontalRule: EmptyNode, BodyElement {
 
     internal var name: String { "hr" }
     
@@ -2324,7 +2502,7 @@ extension HorizontalRule: GlobalAttributes {
     }
 }
 
-extension HorizontalRule: Content {
+extension HorizontalRule: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -2338,19 +2516,19 @@ extension HorizontalRule: Content {
 /// The element
 ///
 ///
-public struct PreformattedText: ContentNode {
+public struct PreformattedText: ContentNode, BodyElement {
 
     internal var name: String { "pre" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -2455,7 +2633,7 @@ extension PreformattedText: GlobalAttributes {
     }
 }
 
-extension PreformattedText: Content {
+extension PreformattedText: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -2469,19 +2647,19 @@ extension PreformattedText: Content {
 /// The element
 ///
 ///
-public struct Blockquote: ContentNode {
+public struct Blockquote: ContentNode, BodyElement {
 
     internal var name: String { "blockquote" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -2593,15 +2771,15 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
 extension Blockquote: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
-extension Blockquote: Content {
+extension Blockquote: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -2615,19 +2793,19 @@ extension Blockquote: Content {
 /// The element
 ///
 ///
-public struct OrderedList: ContentNode {
+public struct OrderedList: ContentNode, BodyElement {
 
     internal var name: String { "ol" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [ListElement]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<ListElement> content: () -> [ListElement]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [ListElement]) {
         self.attributes = attributes
         self.content = content
     }
@@ -2744,7 +2922,7 @@ extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, Type
     }
 }
 
-extension OrderedList: Content {
+extension OrderedList: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -2758,19 +2936,19 @@ extension OrderedList: Content {
 /// The element
 ///
 ///
-public struct UnorderedList: ContentNode {
+public struct UnorderedList: ContentNode, BodyElement {
 
     internal var name: String { "ul" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [ListElement]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<ListElement> content: () -> [ListElement]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [ListElement]) {
         self.attributes = attributes
         self.content = content
     }
@@ -2875,7 +3053,7 @@ extension UnorderedList: GlobalAttributes {
     }
 }
 
-extension UnorderedList: Content {
+extension UnorderedList: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -2889,19 +3067,19 @@ extension UnorderedList: Content {
 /// The element
 ///
 ///
-public struct DescriptionList: ContentNode {
+public struct DescriptionList: ContentNode, BodyElement {
 
     internal var name: String { "dl" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [DescriptionElement]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<DescriptionElement> content: () -> [DescriptionElement]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [DescriptionElement]) {
         self.attributes = attributes
         self.content = content
     }
@@ -3006,7 +3184,7 @@ extension DescriptionList: GlobalAttributes {
     }
 }
 
-extension DescriptionList: Content {
+extension DescriptionList: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -3020,19 +3198,19 @@ extension DescriptionList: Content {
 /// The element
 ///
 ///
-public struct Figure: ContentNode {
+public struct Figure: ContentNode, BodyElement {
 
     internal var name: String { "figure" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [FigureElement]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<FigureElement> content: () -> [FigureElement]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [FigureElement]) {
         self.attributes = attributes
         self.content = content
     }
@@ -3137,7 +3315,7 @@ extension Figure: GlobalAttributes {
     }
 }
 
-extension Figure: Content {
+extension Figure: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -3151,19 +3329,19 @@ extension Figure: Content {
 /// The element
 ///
 ///
-public struct Anchor: ContentNode {
+public struct Anchor: ContentNode, BodyElement {
 
     internal var name: String { "a" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -3307,15 +3485,15 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
 extension Anchor: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
-extension Anchor: Content {
+extension Anchor: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -3329,19 +3507,19 @@ extension Anchor: Content {
 /// The element
 ///
 ///
-public struct Emphasize: ContentNode {
+public struct Emphasize: ContentNode, BodyElement {
 
     internal var name: String { "em" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -3447,7 +3625,7 @@ return mutate(accesskey: value)
     }
 }
 
-extension Emphasize: Content {
+extension Emphasize: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -3461,19 +3639,19 @@ extension Emphasize: Content {
 /// The element
 ///
 ///
-public struct Strong: ContentNode {
+public struct Strong: ContentNode, BodyElement {
 
     internal var name: String { "strong" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -3578,7 +3756,7 @@ extension Strong: GlobalAttributes {
     }
 }
 
-extension Strong: Content {
+extension Strong: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -3592,19 +3770,19 @@ extension Strong: Content {
 /// The element
 ///
 ///
-public struct Small: ContentNode {
+public struct Small: ContentNode, BodyElement {
 
     internal var name: String { "small" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -3712,15 +3890,15 @@ extension Small: GlobalAttributes {
 extension Small: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
-extension Small: Content {
+extension Small: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -3734,19 +3912,19 @@ extension Small: Content {
 /// The element
 ///
 ///
-public struct StrikeThrough: ContentNode {
+public struct StrikeThrough: ContentNode, BodyElement {
 
     internal var name: String { "s" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -3854,15 +4032,15 @@ extension StrikeThrough: GlobalAttributes {
 extension StrikeThrough: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
-extension StrikeThrough: Content {
+extension StrikeThrough: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -3876,19 +4054,19 @@ extension StrikeThrough: Content {
 /// The element
 ///
 ///
-public struct Main: ContentNode {
+public struct Main: ContentNode, BodyElement {
 
     internal var name: String { "main" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -3993,7 +4171,7 @@ extension Main: GlobalAttributes {
     }
 }
 
-extension Main: Content {
+extension Main: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -4007,19 +4185,19 @@ extension Main: Content {
 /// The element
 ///
 ///
-public struct Division: ContentNode {
+public struct Division: ContentNode, BodyElement {
 
     internal var name: String { "div" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -4124,7 +4302,7 @@ extension Division: GlobalAttributes {
     }
 }
 
-extension Division: Content {
+extension Division: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -4139,7 +4317,7 @@ extension Division: Modifiable {
     
     public func modify(if condition: Bool, modifyer: (Self) -> Self) -> Self {
         
-        let element = modifyer(.init(attributes: [:], content: ""))
+        let element = modifyer(.init(attributes: [:], content: [""]))
         
         guard var attributes = self.attributes else {
 
@@ -4159,7 +4337,7 @@ extension Division: Modifiable {
                 return self
             }
             
-            let element = modifyer(.constant(value), .init(attributes: [:], content: ""))
+            let element = modifyer(.constant(value), .init(attributes: [:], content: [""]))
 
             guard var attributes = self.attributes else {
 
@@ -4174,11 +4352,11 @@ extension Division: Modifiable {
             
             if context.isMascadingOptional {
                 
-                element = modifyer(.dynamic(context.unsafeCast(to: Value.self)), .init(attributes: [:], content: ""))
+                element = modifyer(.dynamic(context.unsafeCast(to: Value.self)), .init(attributes: [:], content: [""]))
                 
             } else {
                 
-                element = modifyer(.dynamic(context.unsafelyUnwrapped), .init(attributes: [:], content: ""))
+                element = modifyer(.dynamic(context.unsafelyUnwrapped), .init(attributes: [:], content: [""]))
             }
 
             guard var attributes = self.attributes else {
@@ -4194,19 +4372,19 @@ extension Division: Modifiable {
 /// The element
 ///
 ///
-public struct Definition: ContentNode {
+public struct Definition: ContentNode, BodyElement {
 
     internal var name: String { "dfn" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -4311,7 +4489,7 @@ extension Definition: GlobalAttributes {
     }
 }
 
-extension Definition: Content {
+extension Definition: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -4325,19 +4503,19 @@ extension Definition: Content {
 /// The element
 ///
 ///
-public struct Cite: ContentNode {
+public struct Cite: ContentNode, BodyElement {
 
     internal var name: String { "cite" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -4442,7 +4620,7 @@ extension Cite: GlobalAttributes {
     }
 }
 
-extension Cite: Content {
+extension Cite: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -4456,19 +4634,19 @@ extension Cite: Content {
 /// The element
 ///
 ///
-public struct ShortQuote: ContentNode {
+public struct ShortQuote: ContentNode, BodyElement {
 
     internal var name: String { "q" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -4577,7 +4755,7 @@ extension ShortQuote: GlobalAttributes, CiteAttribute {
     }
 }
 
-extension ShortQuote: Content {
+extension ShortQuote: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -4591,19 +4769,19 @@ extension ShortQuote: Content {
 /// The element
 ///
 ///
-public struct Abbreviation: ContentNode {
+public struct Abbreviation: ContentNode, BodyElement {
 
     internal var name: String { "abbr" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -4708,7 +4886,7 @@ extension Abbreviation: GlobalAttributes {
     }
 }
 
-extension Abbreviation: Content {
+extension Abbreviation: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -4722,19 +4900,19 @@ extension Abbreviation: Content {
 /// The element
 ///
 ///
-public struct Ruby: ContentNode {
+public struct Ruby: ContentNode, BodyElement {
 
     internal var name: String { "ruby" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [RubyElement]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<RubyElement> content: () -> [RubyElement]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [RubyElement]) {
         self.attributes = attributes
         self.content = content
     }
@@ -4839,7 +5017,7 @@ extension Ruby: GlobalAttributes {
     }
 }
 
-extension Ruby: Content {
+extension Ruby: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -4853,19 +5031,19 @@ extension Ruby: Content {
 /// The element
 ///
 ///
-public struct Data: ContentNode {
+public struct Data: ContentNode, BodyElement {
 
     internal var name: String { "data" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -4974,7 +5152,7 @@ extension Data: GlobalAttributes, ValueAttribute {
     }
 }
 
-extension Data: Content {
+extension Data: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -4988,19 +5166,19 @@ extension Data: Content {
 /// The element
 ///
 ///
-public struct Time: ContentNode {
+public struct Time: ContentNode, BodyElement {
 
     internal var name: String { "time" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -5109,7 +5287,7 @@ extension Time: GlobalAttributes, DateTimeAttribute {
     }
 }
 
-extension Time: Content {
+extension Time: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -5123,19 +5301,19 @@ extension Time: Content {
 /// The element
 ///
 ///
-public struct Code: ContentNode {
+public struct Code: ContentNode, BodyElement {
 
     internal var name: String { "code" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -5240,7 +5418,7 @@ extension Code: GlobalAttributes {
     }
 }
 
-extension Code: Content {
+extension Code: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -5254,19 +5432,19 @@ extension Code: Content {
 /// The element
 ///
 ///
-public struct Variable: ContentNode {
+public struct Variable: ContentNode, BodyElement {
 
     internal var name: String { "v" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -5371,7 +5549,7 @@ extension Variable: GlobalAttributes {
     }
 }
 
-extension Variable: Content {
+extension Variable: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -5385,19 +5563,19 @@ extension Variable: Content {
 /// The element
 ///
 ///
-public struct SampleOutput: ContentNode {
+public struct SampleOutput: ContentNode, BodyElement {
 
     internal var name: String { "samp" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -5502,7 +5680,7 @@ extension SampleOutput: GlobalAttributes {
     }
 }
 
-extension SampleOutput: Content {
+extension SampleOutput: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -5516,19 +5694,19 @@ extension SampleOutput: Content {
 /// The element
 ///
 ///
-public struct KeyboardInput: ContentNode {
+public struct KeyboardInput: ContentNode, BodyElement {
 
     internal var name: String { "kbd" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -5633,7 +5811,7 @@ extension KeyboardInput: GlobalAttributes {
     }
 }
 
-extension KeyboardInput: Content {
+extension KeyboardInput: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -5647,19 +5825,19 @@ extension KeyboardInput: Content {
 /// The element
 ///
 ///
-public struct Subscript: ContentNode {
+public struct Subscript: ContentNode, BodyElement {
 
     internal var name: String { "sub" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -5764,7 +5942,7 @@ extension Subscript: GlobalAttributes {
     }
 }
 
-extension Subscript: Content {
+extension Subscript: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -5778,19 +5956,19 @@ extension Subscript: Content {
 /// The element
 ///
 ///
-public struct Superscript: ContentNode {
+public struct Superscript: ContentNode, BodyElement {
 
     internal var name: String { "sup" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -5895,7 +6073,7 @@ extension Superscript: GlobalAttributes {
     }
 }
 
-extension Superscript: Content {
+extension Superscript: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -5909,19 +6087,19 @@ extension Superscript: Content {
 /// The element
 ///
 ///
-public struct Italic: ContentNode {
+public struct Italic: ContentNode, BodyElement {
 
     internal var name: String { "i" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -6029,15 +6207,14 @@ extension Italic: GlobalAttributes {
 extension Italic: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
-    }
-}
+        self.content = [Localized(key: localizedKey, context: context)]
+    }}
 
-extension Italic: Content {
+extension Italic: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -6051,19 +6228,19 @@ extension Italic: Content {
 /// The element
 ///
 ///
-public struct Bold: ContentNode {
+public struct Bold: ContentNode, BodyElement {
 
     internal var name: String { "b" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -6171,15 +6348,15 @@ extension Bold: GlobalAttributes {
 extension Bold: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
-extension Bold: Content {
+extension Bold: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -6193,19 +6370,19 @@ extension Bold: Content {
 /// The element
 ///
 ///
-public struct Underline: ContentNode {
+public struct Underline: ContentNode, BodyElement {
 
     internal var name: String { "u" }
     
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -6313,15 +6490,15 @@ extension Underline: GlobalAttributes {
 extension Underline: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
+        self.content = [Localized(key: localizedKey)]
     }
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
-extension Underline: Content {
+extension Underline: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -6335,19 +6512,19 @@ extension Underline: Content {
 /// The element
 ///
 ///
-public struct Mark: ContentNode {
+public struct Mark: ContentNode, BodyElement {
 
     internal var name: String { "mark" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -6452,7 +6629,7 @@ extension Mark: GlobalAttributes {
     }
 }
 
-extension Mark: Content {
+extension Mark: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -6466,19 +6643,19 @@ extension Mark: Content {
 /// The element
 ///
 ///
-public struct Bdi: ContentNode {
+public struct Bdi: ContentNode, BodyElement {
 
     internal var name: String { "bdi" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -6583,7 +6760,7 @@ extension Bdi: GlobalAttributes {
     }
 }
 
-extension Bdi: Content {
+extension Bdi: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -6597,7 +6774,7 @@ extension Bdi: Content {
 /// The element
 ///
 ///
-public struct Bdo: EmptyNode {
+public struct Bdo: EmptyNode, BodyElement {
 
     internal var name: String { "bdo" }
 
@@ -6709,7 +6886,7 @@ extension Bdo: GlobalAttributes {
     }
 }
 
-extension Bdo: Content {
+extension Bdo: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -6723,19 +6900,19 @@ extension Bdo: Content {
 /// The element
 ///
 ///
-public struct Span: ContentNode {
+public struct Span: ContentNode, BodyElement {
 
     internal var name: String { "span" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -6840,7 +7017,7 @@ extension Span: GlobalAttributes {
     }
 }
 
-extension Span: Content {
+extension Span: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -6854,7 +7031,7 @@ extension Span: Content {
 /// The element
 ///
 ///
-public struct LineBreak: EmptyNode {
+public struct LineBreak: EmptyNode, BodyElement {
 
     internal var name: String { "br" }
 
@@ -6966,7 +7143,7 @@ extension LineBreak: GlobalAttributes {
     }
 }
 
-extension LineBreak: Content {
+extension LineBreak: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -6980,7 +7157,7 @@ extension LineBreak: Content {
 /// The element
 ///
 ///
-public struct WordBreak: EmptyNode {
+public struct WordBreak: EmptyNode, BodyElement {
 
     internal var name: String { "wbr" }
     
@@ -7092,7 +7269,7 @@ extension WordBreak: GlobalAttributes {
     }
 }
 
-extension WordBreak: Content {
+extension WordBreak: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -7106,19 +7283,19 @@ extension WordBreak: Content {
 /// The element
 ///
 ///
-public struct InsertedText: ContentNode {
+public struct InsertedText: ContentNode, BodyElement {
 
     internal var name: String { "ins" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -7231,7 +7408,7 @@ extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     }
 }
 
-extension InsertedText: Content {
+extension InsertedText: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -7245,19 +7422,19 @@ extension InsertedText: Content {
 /// The element
 ///
 ///
-public struct DeletedText: ContentNode {
+public struct DeletedText: ContentNode, BodyElement {
 
     internal var name: String { "del" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -7370,7 +7547,7 @@ extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     }
 }
 
-extension DeletedText: Content {
+extension DeletedText: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -7384,19 +7561,19 @@ extension DeletedText: Content {
 /// The element
 ///
 ///
-public struct Picture: ContentNode {
+public struct Picture: ContentNode, BodyElement {
 
     internal var name: String { "picture" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -7501,7 +7678,7 @@ extension Picture: GlobalAttributes {
     }
 }
 
-extension Picture: Content {
+extension Picture: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -7515,7 +7692,7 @@ extension Picture: Content {
 /// The element
 ///
 ///
-public struct Image: EmptyNode {
+public struct Image: EmptyNode, BodyElement {
 
     internal var name: String { "img" }
 
@@ -7659,7 +7836,7 @@ extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAtt
     }
 }
 
-extension Image: Content {
+extension Image: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -7673,19 +7850,19 @@ extension Image: Content {
 /// The element
 ///
 ///
-public struct InlineFrame: ContentNode {
+public struct InlineFrame: ContentNode, BodyElement {
     
     internal var name: String { "iframe" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -7810,7 +7987,7 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
     }
 }
 
-extension InlineFrame: Content {
+extension InlineFrame: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -7824,7 +8001,7 @@ extension InlineFrame: Content {
 /// The element
 ///
 ///
-public struct Embed: EmptyNode {
+public struct Embed: EmptyNode, BodyElement {
 
     internal var name: String { "embed" }
 
@@ -7952,7 +8129,7 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
     }
 }
 
-extension Embed: Content {
+extension Embed: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -7966,19 +8143,19 @@ extension Embed: Content {
 /// The element
 ///
 ///
-public struct Object: ContentNode {
+public struct Object: ContentNode, BodyElement {
     
     internal var name: String { "object" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [ObjectElement]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<ObjectElement> content: () -> [ObjectElement]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [ObjectElement]) {
         self.attributes = attributes
         self.content = content
     }
@@ -8111,7 +8288,7 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
     }
 }
 
-extension Object: Content {
+extension Object: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -8125,19 +8302,19 @@ extension Object: Content {
 /// The element
 ///
 ///
-public struct Video: ContentNode {
+public struct Video: ContentNode, BodyElement {
 
     internal var name: String { "video" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [MediaElement]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<MediaElement> content: () -> [MediaElement]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [MediaElement]) {
         self.attributes = attributes
         self.content = content
     }
@@ -8270,7 +8447,7 @@ extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     }
 }
 
-extension Video: Content {
+extension Video: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -8284,19 +8461,19 @@ extension Video: Content {
 /// The element
 ///
 ///
-public struct Audio: ContentNode {
+public struct Audio: ContentNode, BodyElement {
 
     internal var name: String { "audio" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [MediaElement]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<MediaElement> content: () -> [MediaElement]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [MediaElement]) {
         self.attributes = attributes
         self.content = content
     }
@@ -8421,7 +8598,7 @@ extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     }
 }
 
-extension Audio: Content {
+extension Audio: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -8435,19 +8612,19 @@ extension Audio: Content {
 /// The element
 ///
 ///
-public struct Map: ContentNode {
+public struct Map: ContentNode, BodyElement {
     
     internal var name: String { "map" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [MapElement]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<MapElement> content: () -> [MapElement]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [MapElement]) {
         self.attributes = attributes
         self.content = content
     }
@@ -8556,7 +8733,7 @@ extension Map: GlobalAttributes, NameAttribute {
     }
 }
 
-extension Map: Content {
+extension Map: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -8570,19 +8747,19 @@ extension Map: Content {
 /// The element
 ///
 ///
-public struct Form: ContentNode {
+public struct Form: ContentNode, BodyElement {
 
     internal var name: String { "form" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [FormElement]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<FormElement> content: () -> [FormElement]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [FormElement]) {
         self.attributes = attributes
         self.content = content
     }
@@ -8723,7 +8900,7 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
     }
 }
 
-extension Form: Content {
+extension Form: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -8737,19 +8914,19 @@ extension Form: Content {
 /// The element
 ///
 ///
-public struct DataList: ContentNode {
+public struct DataList: ContentNode, BodyElement {
 
     internal var name: String { "datalist" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -8854,7 +9031,7 @@ extension DataList: GlobalAttributes {
     }
 }
 
-extension DataList: Content {
+extension DataList: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -8868,19 +9045,19 @@ extension DataList: Content {
 /// The element
 ///
 ///
-public struct Output: ContentNode {
+public struct Output: ContentNode, BodyElement {
     
     internal var name: String { "output" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -8997,7 +9174,7 @@ extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
     }
 }
 
-extension Output: Content {
+extension Output: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -9011,19 +9188,19 @@ extension Output: Content {
 /// The element
 ///
 ///
-public struct Progress: ContentNode {
+public struct Progress: ContentNode, BodyElement {
 
     internal var name: String { "progress" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -9136,7 +9313,7 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
     }
 }
 
-extension Progress: Content {
+extension Progress: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -9150,19 +9327,19 @@ extension Progress: Content {
 /// The element
 ///
 ///
-public struct Meter: ContentNode {
+public struct Meter: ContentNode, BodyElement {
 
     internal var name: String { "meter" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -9287,7 +9464,7 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
     }
 }
 
-extension Meter: Content {
+extension Meter: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -9301,19 +9478,19 @@ extension Meter: Content {
 /// The element
 ///
 ///
-public struct Details: ContentNode {
+public struct Details: ContentNode, BodyElement {
 
     internal var name: String { "details" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -9426,7 +9603,7 @@ extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
     }
 }
 
-extension Details: Content {
+extension Details: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -9440,19 +9617,19 @@ extension Details: Content {
 /// The element
 ///
 ///
-public struct Dialog: ContentNode {
+public struct Dialog: ContentNode, BodyElement {
 
     internal var name: String { "dialog" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -9561,7 +9738,7 @@ extension Dialog: GlobalAttributes, OpenAttribute {
     }
 }
 
-extension Dialog: Content {
+extension Dialog: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -9575,19 +9752,19 @@ extension Dialog: Content {
 /// The element
 ///
 ///
-public struct Script: ContentNode {
+public struct Script: ContentNode, BodyElement {
 
     internal var name: String { "script" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: String
+    internal var content: [String]
 
-    public init(@StringBuilder content: () -> String) {
+    public init(@ContentBuilder<String> content: () -> [String]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: String) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [String]) {
         self.attributes = attributes
         self.content = content
     }
@@ -9716,7 +9893,7 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
     }
 }
 
-extension Script: Content {
+extension Script: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -9730,19 +9907,19 @@ extension Script: Content {
 /// The element
 ///
 ///
-public struct NoScript: ContentNode {
+public struct NoScript: ContentNode, BodyElement {
 
     internal var name: String { "noscript" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -9847,7 +10024,7 @@ extension NoScript: GlobalAttributes {
     }
 }
 
-extension NoScript: Content {
+extension NoScript: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -9861,19 +10038,19 @@ extension NoScript: Content {
 /// The element
 ///
 ///
-public struct Template: ContentNode {
+public struct Template: ContentNode, BodyElement {
 
     internal var name: String { "template" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -9978,7 +10155,7 @@ extension Template: GlobalAttributes {
     }
 }
 
-extension Template: Content {
+extension Template: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -9992,19 +10169,19 @@ extension Template: Content {
 /// The element
 ///
 ///
-public struct Canvas: ContentNode {
+public struct Canvas: ContentNode, BodyElement {
 
     internal var name: String { "canvas" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -10117,7 +10294,146 @@ extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
     }
 }
 
-extension Canvas: Content {
+extension Canvas: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
+/// The element
+///
+///
+public struct Table: ContentNode, BodyElement {
+
+    internal var name: String { "table" }
+
+    internal var attributes: OrderedDictionary<String, Any>?
+
+    internal var content: [TableElement]
+
+    public init(@ContentBuilder<TableElement> content: () -> [TableElement]) {
+        self.content = content()
+    }
+    
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [TableElement]) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
+    
+    public func accessKey(_ value: String) -> Table {
+        return mutate(accesskey: value)
+    }
+
+    public func autocapitalize(_ type: Capitalization) -> Table {
+        return mutate(autocapitalize: type.rawValue)
+    }
+
+    public func autofocus() -> Table {
+        return mutate(autofocus: "autofocus")
+    }
+
+    public func `class`(_ value: String) -> Table {
+        return mutate(class: value)
+    }
+
+    public func isEditable(_ condition: Bool) -> Table {
+        return mutate(contenteditable: condition)
+    }
+
+    public func direction(_ type: Direction) -> Table {
+        return mutate(dir: type.rawValue)
+    }
+
+    public func isDraggable(_ condition: Bool) -> Table {
+        return mutate(draggable: condition)
+    }
+
+    public func enterKeyHint(_ type: Hint) -> Table {
+        return mutate(enterkeyhint: type.rawValue)
+    }
+
+    public func hidden() -> Table {
+        return mutate(hidden: "hidden")
+    }
+
+    public func inputMode(_ value: String) -> Table {
+        return mutate(inputmode: value)
+    }
+
+    public func `is`(_ value: String) -> Table {
+        return mutate(is: value)
+    }
+
+    public func itemId(_ value: String) -> Table {
+        return mutate(itemid: value)
+    }
+
+    public func itemProperty(_ value: String) -> Table {
+        return mutate(itemprop: value)
+    }
+
+    public func itemReference(_ value: String) -> Table {
+        return mutate(itemref: value)
+    }
+
+    public func itemScope(_ value: String) -> Table {
+        return mutate(itemscope: value)
+    }
+
+    public func id(_ value: String) -> Table {
+        return mutate(id: value)
+    }
+
+    public func language(_ type: Language) -> Table {
+        return mutate(lang: type.rawValue)
+    }
+
+    public func nonce(_ value: String) -> Table {
+        return mutate(nonce: value)
+    }
+
+    public func role(_ value: String) -> Table {
+        return mutate(role: value)
+    }
+
+    public func hasSpellCheck(_ condition: Bool) -> Table {
+        return mutate(spellcheck: condition)
+    }
+
+    public func style(_ value: String) -> Table {
+        return mutate(style: value)
+    }
+
+    public func tabIndex(_ value: String) -> Table {
+        return mutate(tabindex: value)
+    }
+
+    public func title(_ value: String) -> Table {
+        return mutate(title: value)
+    }
+
+    public func translate(_ value: String) -> Table {
+        return mutate(translate: value)
+    }
+
+    public func width(_ size: Int) -> Table {
+        return mutate(width: size)
+    }
+    
+    public func height(_ size: Int) -> Table {
+        return mutate(height: size)
+    }
+}
+
+extension Table: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)

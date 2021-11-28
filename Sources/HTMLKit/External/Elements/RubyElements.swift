@@ -13,19 +13,19 @@ public typealias Rp = RubyPronunciation
 /// The element
 ///
 ///
-public struct RubyText: ContentNode {
+public struct RubyText: ContentNode, RubyElement {
 
     internal var name: String { "rt" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -130,7 +130,7 @@ extension RubyText: GlobalAttributes {
     }
 }
 
-extension RubyText: Content {
+extension RubyText: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -144,19 +144,19 @@ extension RubyText: Content {
 /// The element
 ///
 ///
-public struct RubyPronunciation: ContentNode {
+public struct RubyPronunciation: ContentNode, RubyElement {
 
     internal var name: String { "rp" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -261,7 +261,7 @@ extension RubyPronunciation: GlobalAttributes {
     }
 }
 
-extension RubyPronunciation: Content {
+extension RubyPronunciation: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)

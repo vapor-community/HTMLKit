@@ -8,19 +8,19 @@ public typealias Optgroup = OptionGroup
 /// The element
 ///
 ///
-public struct OptionGroup: ContentNode {
+public struct OptionGroup: ContentNode, InputElement {
 
     internal var name: String { "optgroup" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -133,7 +133,7 @@ extension OptionGroup: GlobalAttributes, DisabledAttribute, LabelAttribute {
     }
 }
 
-extension OptionGroup: Content {
+extension OptionGroup: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -147,19 +147,19 @@ extension OptionGroup: Content {
 /// The element
 ///
 ///
-public struct Option: ContentNode {
+public struct Option: ContentNode, InputElement {
 
     internal var name: String { "option" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: String
+    internal var content: [String]
 
-    public init(@StringBuilder content: () -> String) {
+    public init(@ContentBuilder<String> content: () -> [String]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: String) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [String]) {
         self.attributes = attributes
         self.content = content
     }
@@ -276,7 +276,7 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
     }
 }
 
-extension Option: Content {
+extension Option: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -290,19 +290,19 @@ extension Option: Content {
 /// The element
 ///
 ///
-public struct Legend: ContentNode {
+public struct Legend: ContentNode, InputElement {
 
     internal var name: String { "legend" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -407,7 +407,7 @@ extension Legend: GlobalAttributes {
     }
 }
 
-extension Legend: Content {
+extension Legend: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -421,19 +421,19 @@ extension Legend: Content {
 /// The element
 ///
 ///
-public struct Summary: ContentNode {
+public struct Summary: ContentNode, InputElement {
 
     internal var name: String { "summary" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -538,7 +538,7 @@ extension Summary: GlobalAttributes {
     }
 }
 
-extension Summary: Content {
+extension Summary: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)

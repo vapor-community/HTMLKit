@@ -13,19 +13,19 @@ public typealias Dd = TermDefinition
 /// The element
 ///
 ///
-public struct TermName: ContentNode {
+public struct TermName: ContentNode, DescriptionElement {
 
     internal var name: String { "dt" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -130,7 +130,7 @@ extension TermName: GlobalAttributes {
     }
 }
 
-extension TermName: Content {
+extension TermName: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -144,19 +144,19 @@ extension TermName: Content {
 /// The element
 ///
 ///
-public struct TermDefinition: ContentNode {
+public struct TermDefinition: ContentNode, DescriptionElement {
 
     internal var name: String { "dd" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -261,7 +261,7 @@ extension TermDefinition: GlobalAttributes {
     }
 }
 
-extension TermDefinition: Content {
+extension TermDefinition: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
