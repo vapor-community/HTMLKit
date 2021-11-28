@@ -17,14 +17,14 @@ final class ContextTests: XCTestCase {
     
     struct TestPage: Page {
         
-        @ContentBuilder var body: Content
+        @ContentBuilder var body: AnyContent
     }
     
     struct TestView: View {
         
         var context: TemplateValue<ViewContext>
         
-        var body: Content {
+        var body: AnyContent {
             Section{
                 Heading2 {
                     context.headline

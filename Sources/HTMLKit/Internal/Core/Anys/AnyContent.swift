@@ -3,7 +3,7 @@ import Foundation
 /// The protocol defines
 ///
 ///
-public protocol Content {
+public protocol AnyContent {
 
     var renderWhenLocalizing: Bool { get }
 
@@ -11,14 +11,14 @@ public protocol Content {
 
     func prerender(_ formula: Renderer.Formula) throws
 
-    var scripts: Content { get }
+    var scripts: AnyContent { get }
 }
 
-extension Content {
+extension AnyContent {
     
     public var renderWhenLocalizing: Bool { return true }
     
-    public var scripts: Content { "" }
+    public var scripts: AnyContent { "" }
     
     public func environment(locale: String) -> EnvironmentModifier {
         return EnvironmentModifier(view: self, locale: locale)
@@ -32,16 +32,16 @@ extension Content {
 /// The function is for
 ///
 ///
-public func + (lhs: Content, rhs: Content) -> Content {
-    var output: Array<Content> = []
+public func + (lhs: AnyContent, rhs: AnyContent) -> AnyContent {
+    var output: Array<AnyContent> = []
 
-    if let list = lhs as? Array<Content> {
+    if let list = lhs as? Array<AnyContent> {
         output.append(contentsOf: list)
     } else {
         output.append(lhs)
     }
 
-    if let list = rhs as? Array<Content> {
+    if let list = rhs as? Array<AnyContent> {
         output.append(list)
     } else {
         output.append(rhs)
@@ -52,6 +52,6 @@ public func + (lhs: Content, rhs: Content) -> Content {
 /// The function is for
 ///
 ///
-public func +=(lhs: inout Content, rhs: Content) {
+public func +=(lhs: inout AnyContent, rhs: AnyContent) {
     lhs = lhs + rhs
 }

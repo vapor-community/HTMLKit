@@ -108,7 +108,7 @@ import Foundation
     }
 }
 
-extension TemplateValue: Content where Value: Content {
+extension TemplateValue: AnyContent where Value: AnyContent {
 
     public func prerender(_ formula: Renderer.Formula) throws {
         

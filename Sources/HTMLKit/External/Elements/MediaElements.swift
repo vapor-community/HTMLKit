@@ -139,7 +139,7 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
     }
 }
 
-extension Source: Content {
+extension Source: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -281,7 +281,7 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
     }
 }
 
-extension Track: Content {
+extension Track: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)

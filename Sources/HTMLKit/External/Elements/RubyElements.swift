@@ -19,13 +19,13 @@ public struct RubyText: ContentNode {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: AnyContent
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder content: () -> AnyContent) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
         self.attributes = attributes
         self.content = content
     }
@@ -130,7 +130,7 @@ extension RubyText: GlobalAttributes {
     }
 }
 
-extension RubyText: Content {
+extension RubyText: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -150,13 +150,13 @@ public struct RubyPronunciation: ContentNode {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: AnyContent
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder content: () -> AnyContent) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
         self.attributes = attributes
         self.content = content
     }
@@ -261,7 +261,7 @@ extension RubyPronunciation: GlobalAttributes {
     }
 }
 
-extension RubyPronunciation: Content {
+extension RubyPronunciation: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)

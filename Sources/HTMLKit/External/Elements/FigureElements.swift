@@ -14,13 +14,13 @@ public struct FigureCaption: ContentNode {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: AnyContent
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder content: () -> AnyContent) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
         self.attributes = attributes
         self.content = content
     }
@@ -125,7 +125,7 @@ extension FigureCaption: GlobalAttributes {
     }
 }
 
-extension FigureCaption: Content {
+extension FigureCaption: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)

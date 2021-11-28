@@ -120,7 +120,7 @@ extension Title: GlobalAttributes {
     }
 }
 
-extension Title: Content {
+extension Title: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -254,7 +254,7 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
     }
 }
 
-extension Base: Content {
+extension Base: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -392,7 +392,7 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
     }
 }
 
-extension Meta: Content {
+extension Meta: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -412,13 +412,13 @@ public struct Style: ContentNode {
     
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: AnyContent
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder content: () -> AnyContent) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
         self.attributes = attributes
         self.content = content
     }
@@ -535,7 +535,7 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
     }
 }
 
-extension Style: Content {
+extension Style: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)

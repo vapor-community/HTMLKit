@@ -11,7 +11,7 @@ public class TemplateValueMapping<B, C> {
     }
 }
 
-extension TemplateValueMapping: Content where C: Content {
+extension TemplateValueMapping: AnyContent where C: AnyContent {
 
     public func prerender(_ formula: Renderer.Formula) throws {
         switch variable {

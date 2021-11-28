@@ -5,7 +5,7 @@ final class LocalizationTests: XCTestCase {
     
     struct TestPage: Page {
 
-        @ContentBuilder var body: Content
+        @ContentBuilder var body: AnyContent
     }
     
     var renderer = Renderer()

@@ -9,13 +9,13 @@ public struct Area: ContentNode {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: AnyContent
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder content: () -> AnyContent) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
         self.attributes = attributes
         self.content = content
     }
@@ -156,7 +156,7 @@ extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, Shap
     }
 }
 
-extension Area: Content {
+extension Area: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)

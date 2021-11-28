@@ -19,13 +19,13 @@ public struct TermName: ContentNode {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: AnyContent
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder content: () -> AnyContent) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
         self.attributes = attributes
         self.content = content
     }
@@ -130,7 +130,7 @@ extension TermName: GlobalAttributes {
     }
 }
 
-extension TermName: Content {
+extension TermName: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
@@ -150,13 +150,13 @@ public struct TermDefinition: ContentNode {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: Content
+    internal var content: AnyContent
 
-    public init(@ContentBuilder content: () -> Content) {
+    public init(@ContentBuilder content: () -> AnyContent) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: Content) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
         self.attributes = attributes
         self.content = content
     }
@@ -261,7 +261,7 @@ extension TermDefinition: GlobalAttributes {
     }
 }
 
-extension TermDefinition: Content {
+extension TermDefinition: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)

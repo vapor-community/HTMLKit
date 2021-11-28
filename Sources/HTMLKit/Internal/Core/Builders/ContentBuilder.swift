@@ -3,7 +3,7 @@
 ///
 @resultBuilder public class ContentBuilder {
 
-    public static func buildBlock(_ children: Content...) -> Content {
+    public static func buildBlock(_ children: AnyContent...) -> AnyContent {
         return children
     }
 }

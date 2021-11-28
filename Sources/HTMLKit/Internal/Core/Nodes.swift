@@ -3,7 +3,7 @@ import OrderedCollections
 /// The node is for
 ///
 ///
-internal protocol ContentNode: Node {
+internal protocol ContentNode: AnyNode {
 
     associatedtype T
     
@@ -26,7 +26,7 @@ extension ContentNode {
     }
 }
 
-extension ContentNode where T == Content {
+extension ContentNode where T == AnyContent {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
@@ -89,7 +89,7 @@ extension ContentNode where T == String {
 /// The node is for
 ///
 ///
-internal protocol EmptyNode: Node {
+internal protocol EmptyNode: AnyNode {
 
     var name: String { get }
     
@@ -134,7 +134,7 @@ extension EmptyNode {
 /// The node is for
 ///
 ///
-internal protocol CommentNode: Node {
+internal protocol CommentNode: AnyNode {
     
     associatedtype T
     
@@ -157,7 +157,7 @@ extension CommentNode {
 /// The node is for
 ///
 ///
-internal protocol DocumentNode: Node {
+internal protocol DocumentNode: AnyNode {
     
     associatedtype T
     
