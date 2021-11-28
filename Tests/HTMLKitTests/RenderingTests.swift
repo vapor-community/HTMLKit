@@ -5,7 +5,7 @@ final class RenderingTests: XCTestCase {
     
     struct TestPage: Page {
         
-        @ContentBuilder var body: AnyContent
+        @ContentBuilder<AnyContent> var body: AnyContent
     }
     
     var renderer = Renderer()

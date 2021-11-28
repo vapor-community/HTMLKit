@@ -19,13 +19,13 @@ public struct RubyText: ContentNode, RubyElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: AnyContent
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> AnyContent) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -150,13 +150,13 @@ public struct RubyPronunciation: ContentNode, RubyElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: AnyContent
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> AnyContent) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }

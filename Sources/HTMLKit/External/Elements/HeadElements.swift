@@ -9,13 +9,13 @@ public struct Title: ContentNode, HeadElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: String
+    internal var content: [String]
     
-    public init(@StringBuilder content: () -> String) {
+    public init(@ContentBuilder<String> content: () -> [String]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: String) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [String]) {
         self.attributes = attributes
         self.content = content
     }
@@ -412,13 +412,13 @@ public struct Style: ContentNode, HeadElement {
     
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: AnyContent
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> AnyContent) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }

@@ -3,7 +3,7 @@
 ///
 public protocol Page: AnyContent {
     
-    @ContentBuilder var body: AnyContent { get }
+    @ContentBuilder<AnyContent> var body: AnyContent { get }
 }
 
 extension Page {
@@ -28,7 +28,7 @@ public protocol View: AnyContent {
     
     var context: TemplateValue<Context> { get }
 
-    @ContentBuilder var body: AnyContent { get }
+    @ContentBuilder<AnyContent> var body: AnyContent { get }
 }
 
 extension View {
@@ -51,7 +51,7 @@ extension View {
 ///
 public protocol Component: AnyContent {
     
-    @ContentBuilder var body: AnyContent { get }
+    @ContentBuilder<AnyContent> var body: AnyContent { get }
 }
 
 extension Component {

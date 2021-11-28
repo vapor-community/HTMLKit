@@ -13,19 +13,19 @@ public typealias Dd = TermDefinition
 /// The element
 ///
 ///
-public struct TermName: ContentNode, DefinitionElement {
+public struct TermName: ContentNode, DescriptionElement {
 
     internal var name: String { "dt" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: AnyContent
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> AnyContent) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -144,19 +144,19 @@ extension TermName: AnyContent {
 /// The element
 ///
 ///
-public struct TermDefinition: ContentNode, DefinitionElement {
+public struct TermDefinition: ContentNode, DescriptionElement {
 
     internal var name: String { "dd" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: AnyContent
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> AnyContent) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }

@@ -5,7 +5,7 @@ public struct Unwrap: Component {
 
     let content: IF
 
-    public init<A>(_ value: TemplateValue<A?>, @ContentBuilder content: (TemplateValue<A>) -> AnyContent) {
+    public init<A>(_ value: TemplateValue<A?>, @ContentBuilder<AnyContent> content: (TemplateValue<A>) -> AnyContent) {
         var ifContent: AnyContent = ""
         if value.isMasqueradingOptional {
             ifContent = content(value.unsafeCast(to: A.self))
@@ -32,7 +32,7 @@ public struct Unwrap: Component {
         content
     }
 
-    public func `else`(@ContentBuilder content: () -> AnyContent) -> AnyContent {
+    public func `else`(@ContentBuilder<AnyContent> content: () -> AnyContent) -> AnyContent {
         self.content.else(render: content)
     }
 }

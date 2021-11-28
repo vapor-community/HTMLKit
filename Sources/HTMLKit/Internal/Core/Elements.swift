@@ -7,7 +7,7 @@ public protocol BodyElement: AnyElement {
 /// The protocol is for
 ///
 ///
-public protocol DefinitionElement: AnyElement {
+public protocol DescriptionElement: AnyElement {
 }
 
 /// The protocol is for
@@ -74,4 +74,10 @@ public protocol RubyElement: AnyElement {
 ///
 ///
 public protocol TableElement: AnyElement {
+}
+
+/// The protocol is for
+///
+///
+public protocol HtmlElement: AnyElement {
 }

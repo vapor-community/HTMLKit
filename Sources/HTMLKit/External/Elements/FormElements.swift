@@ -239,13 +239,13 @@ public struct Label: ContentNode, FormElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: AnyContent
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> AnyContent) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -354,17 +354,6 @@ extension Label: GlobalAttributes, ForAttribute {
     }
 }
 
-extension Label: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
-    }
-}
-
 extension Label: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -385,13 +374,13 @@ public struct Select: ContentNode, FormElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: AnyContent
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> AnyContent) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -544,13 +533,13 @@ public struct TextArea: ContentNode, FormElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: String
+    internal var content: [String]
 
-    public init(@StringBuilder content: () -> String) {
+    public init(@ContentBuilder<String> content: () -> [String]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: String) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [String]) {
         self.attributes = attributes
         self.content = content
     }
@@ -723,13 +712,13 @@ public struct Button: ContentNode, FormElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: AnyContent
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> AnyContent) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -858,17 +847,6 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
     }
 }
 
-extension Button: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = Localized(key: localizedKey)
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = Localized(key: localizedKey, context: context)
-    }
-}
-
 extension Button: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -889,13 +867,13 @@ public struct Fieldset: ContentNode, FormElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: AnyContent
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder content: () -> AnyContent) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: AnyContent) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }

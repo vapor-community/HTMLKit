@@ -5,7 +5,7 @@ final class LocalizationTests: XCTestCase {
     
     struct TestPage: Page {
 
-        @ContentBuilder var body: AnyContent
+        @ContentBuilder<AnyContent> var body: AnyContent
     }
     
     var renderer = Renderer()
@@ -19,7 +19,9 @@ final class LocalizationTests: XCTestCase {
     func testLocalization() throws {
         
         let view = TestPage {
-            Heading1("Hallo Welt")
+            Heading1 {
+                "Text"
+            }
         }
         
         try renderer.add(view: view)

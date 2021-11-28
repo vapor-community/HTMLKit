@@ -17,7 +17,7 @@ final class ContextTests: XCTestCase {
     
     struct TestPage: Page {
         
-        @ContentBuilder var body: AnyContent
+        @ContentBuilder<AnyContent> var body: AnyContent
     }
     
     struct TestView: View {
