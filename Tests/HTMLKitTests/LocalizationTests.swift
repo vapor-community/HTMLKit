@@ -19,9 +19,7 @@ final class LocalizationTests: XCTestCase {
     func testLocalization() throws {
         
         let view = TestPage {
-            Heading1 {
-                "Text"
-            }
+            Heading1("Hallo Welt")
         }
         
         try renderer.add(view: view)

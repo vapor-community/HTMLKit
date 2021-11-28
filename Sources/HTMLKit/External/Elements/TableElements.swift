@@ -1269,6 +1269,17 @@ extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, H
     }
 }
 
+extension HeaderCell: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
 extension HeaderCell: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {

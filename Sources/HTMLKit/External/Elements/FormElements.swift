@@ -354,6 +354,17 @@ extension Label: GlobalAttributes, ForAttribute {
     }
 }
 
+extension Label: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
 extension Label: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -844,6 +855,17 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
     
     public func value(_ value: String) -> Button {
         return mutate(value: value)
+    }
+}
+
+extension Button: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 

@@ -986,6 +986,17 @@ extension Heading1: GlobalAttributes {
     }
 }
 
+extension Heading1: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
 extension Heading1: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -1114,6 +1125,17 @@ extension Heading2: GlobalAttributes {
 
     public func translate(_ value: String) -> Heading2 {
         return mutate(translate: value)
+    }
+}
+
+extension Heading2: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
@@ -1249,6 +1271,17 @@ return mutate(id: value)
     }
 }
 
+extension Heading3: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
 extension Heading3: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -1377,6 +1410,17 @@ extension Heading4: GlobalAttributes {
 
     public func translate(_ value: String) -> Heading4 {
         return mutate(translate: value)
+    }
+}
+
+extension Heading4: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
@@ -1511,6 +1555,17 @@ extension Heading5: GlobalAttributes {
     }
 }
 
+extension Heading5: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
 extension Heading5: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -1639,6 +1694,17 @@ extension Heading6: GlobalAttributes {
 
     public func translate(_ value: String) -> Heading6 {
         return mutate(translate: value)
+    }
+}
+
+extension Heading6: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
@@ -2299,6 +2365,17 @@ extension Paragraph: GlobalAttributes {
     }
 }
 
+extension Paragraph: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
 extension Paragraph: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -2688,6 +2765,17 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
     
     public func cite(_ value: String) -> Blockquote {
         return mutate(cite: value)
+    }
+}
+
+extension Blockquote: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
@@ -3394,6 +3482,17 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
     }
 }
 
+extension Anchor: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
 extension Anchor: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -3788,6 +3887,17 @@ extension Small: GlobalAttributes {
     }
 }
 
+extension Small: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
 extension Small: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -3916,6 +4026,17 @@ extension StrikeThrough: GlobalAttributes {
 
     public func translate(_ value: String) -> StrikeThrough {
         return mutate(translate: value)
+    }
+}
+
+extension StrikeThrough: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
@@ -6083,6 +6204,16 @@ extension Italic: GlobalAttributes {
     }
 }
 
+extension Italic: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }}
+
 extension Italic: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -6214,6 +6345,17 @@ extension Bold: GlobalAttributes {
     }
 }
 
+extension Bold: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
 extension Bold: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -6342,6 +6484,17 @@ extension Underline: GlobalAttributes {
 
     public func translate(_ value: String) -> Underline {
         return mutate(translate: value)
+    }
+}
+
+extension Underline: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
     }
 }
 
