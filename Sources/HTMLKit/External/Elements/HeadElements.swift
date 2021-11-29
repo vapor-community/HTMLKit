@@ -131,6 +131,18 @@ extension Title: AnyContent {
     }
 }
 
+extension Title: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -262,6 +274,18 @@ extension Base: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Base: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -400,6 +424,18 @@ extension Meta: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Meta: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -543,5 +579,17 @@ extension Style: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Style: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

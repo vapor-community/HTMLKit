@@ -150,6 +150,18 @@ extension Source: AnyContent {
     }
 }
 
+extension Source: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -289,5 +301,17 @@ extension Track: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Track: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

@@ -144,6 +144,18 @@ extension OptionGroup: AnyContent {
     }
 }
 
+extension OptionGroup: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -287,6 +299,18 @@ extension Option: AnyContent {
     }
 }
 
+extension Option: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -418,6 +442,18 @@ extension Legend: AnyContent {
     }
 }
 
+extension Legend: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -546,5 +582,17 @@ extension Summary: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Summary: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

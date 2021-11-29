@@ -139,3 +139,15 @@ extension ListItem: AnyContent {
         try self.build(with: manager)
     }
 }
+
+extension ListItem: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}

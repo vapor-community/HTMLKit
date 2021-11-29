@@ -564,6 +564,19 @@ extension EmptyNode {
     }
 }
 
+extension EmptyNode where Self: Modifiable {
+    
+    internal func modify(_ element: Self) -> Self {
+        
+        guard var attributes = self.attributes else {
+
+            return .init(attributes: element.attributes!)
+        }
+        
+        return .init(attributes: merge(element.attributes!, with: &attributes))
+    }
+}
+
 /// The node is for
 ///
 ///

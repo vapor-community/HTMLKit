@@ -342,6 +342,18 @@ extension Link: AnyContent {
     }
 }
 
+extension Link: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -470,6 +482,18 @@ extension Article: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Article: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -604,6 +628,18 @@ extension Section: AnyContent {
     }
 }
 
+extension Section: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -732,6 +768,18 @@ extension Navigation: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Navigation: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -866,6 +914,18 @@ extension Aside: AnyContent {
     }
 }
 
+extension Aside: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -986,6 +1046,17 @@ extension Heading1: GlobalAttributes {
     }
 }
 
+extension Heading1: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 extension Heading1: Localizable {
     
     public init(_ localizedKey: String) {
@@ -997,14 +1068,15 @@ extension Heading1: Localizable {
     }
 }
 
-extension Heading1: AnyContent {
+extension Heading1: Modifiable {
     
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -1128,6 +1200,17 @@ extension Heading2: GlobalAttributes {
     }
 }
 
+extension Heading2: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 extension Heading2: Localizable {
     
     public init(_ localizedKey: String) {
@@ -1139,14 +1222,15 @@ extension Heading2: Localizable {
     }
 }
 
-extension Heading2: AnyContent {
+extension Heading2: Modifiable {
     
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -1234,8 +1318,7 @@ extension Heading3: GlobalAttributes {
     }
 
     public func id(_ value: String) -> Heading3 {
-        
-return mutate(id: value)
+        return mutate(id: value)
     }
 
     public func language(_ type: Language) -> Heading3 {
@@ -1271,6 +1354,17 @@ return mutate(id: value)
     }
 }
 
+extension Heading3: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 extension Heading3: Localizable {
     
     public init(_ localizedKey: String) {
@@ -1282,14 +1376,15 @@ extension Heading3: Localizable {
     }
 }
 
-extension Heading3: AnyContent {
+extension Heading3: Modifiable {
     
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -1413,6 +1508,17 @@ extension Heading4: GlobalAttributes {
     }
 }
 
+extension Heading4: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 extension Heading4: Localizable {
     
     public init(_ localizedKey: String) {
@@ -1424,14 +1530,15 @@ extension Heading4: Localizable {
     }
 }
 
-extension Heading4: AnyContent {
+extension Heading4: Modifiable {
     
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -1555,6 +1662,17 @@ extension Heading5: GlobalAttributes {
     }
 }
 
+extension Heading5: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 extension Heading5: Localizable {
     
     public init(_ localizedKey: String) {
@@ -1566,14 +1684,15 @@ extension Heading5: Localizable {
     }
 }
 
-extension Heading5: AnyContent {
+extension Heading5: Modifiable {
     
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -1697,6 +1816,17 @@ extension Heading6: GlobalAttributes {
     }
 }
 
+extension Heading6: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 extension Heading6: Localizable {
     
     public init(_ localizedKey: String) {
@@ -1708,14 +1838,15 @@ extension Heading6: Localizable {
     }
 }
 
-extension Heading6: AnyContent {
+extension Heading6: Modifiable {
     
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -1850,6 +1981,18 @@ extension HeadingGroup: AnyContent {
     }
 }
 
+extension HeadingGroup: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -1978,6 +2121,18 @@ extension Header: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Header: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -2112,6 +2267,18 @@ extension Footer: AnyContent {
     }
 }
 
+extension Footer: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -2136,13 +2303,11 @@ public struct Address: ContentNode, BodyElement {
 extension Address: GlobalAttributes {
     
     public func accessKey(_ value: String) -> Address {
-        
-return mutate(accesskey: value)
+        return mutate(accesskey: value)
     }
 
     public func autocapitalize(_ type: Capitalization) -> Address {
-        
-return mutate(autocapitalize: type.rawValue)
+        return mutate(autocapitalize: type.rawValue)
     }
 
     public func autofocus() -> Address {
@@ -2242,6 +2407,18 @@ extension Address: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Address: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -2365,6 +2542,17 @@ extension Paragraph: GlobalAttributes {
     }
 }
 
+extension Paragraph: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 extension Paragraph: Localizable {
     
     public init(_ localizedKey: String) {
@@ -2376,14 +2564,15 @@ extension Paragraph: Localizable {
     }
 }
 
-extension Paragraph: AnyContent {
+extension Paragraph: Modifiable {
     
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -2510,6 +2699,18 @@ extension HorizontalRule: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension HorizontalRule: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -2644,6 +2845,18 @@ extension PreformattedText: AnyContent {
     }
 }
 
+extension PreformattedText: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -2768,6 +2981,17 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
     }
 }
 
+extension Blockquote: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 extension Blockquote: Localizable {
     
     public init(_ localizedKey: String) {
@@ -2779,14 +3003,15 @@ extension Blockquote: Localizable {
     }
 }
 
-extension Blockquote: AnyContent {
+extension Blockquote: Modifiable {
     
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -2933,6 +3158,18 @@ extension OrderedList: AnyContent {
     }
 }
 
+extension OrderedList: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -3061,6 +3298,18 @@ extension UnorderedList: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension UnorderedList: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -3195,6 +3444,18 @@ extension DescriptionList: AnyContent {
     }
 }
 
+extension DescriptionList: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -3323,6 +3584,18 @@ extension Figure: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Figure: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -3482,6 +3755,17 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
     }
 }
 
+extension Anchor: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 extension Anchor: Localizable {
     
     public init(_ localizedKey: String) {
@@ -3493,14 +3777,15 @@ extension Anchor: Localizable {
     }
 }
 
-extension Anchor: AnyContent {
+extension Anchor: Modifiable {
     
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -3528,8 +3813,7 @@ public struct Emphasize: ContentNode, BodyElement {
 extension Emphasize: GlobalAttributes {
     
     public func accessKey(_ value: String) -> Emphasize {
-        
-return mutate(accesskey: value)
+        return mutate(accesskey: value)
     }
 
     public func autocapitalize(_ type: Capitalization) -> Emphasize {
@@ -3633,6 +3917,18 @@ extension Emphasize: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Emphasize: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -3767,6 +4063,18 @@ extension Strong: AnyContent {
     }
 }
 
+extension Strong: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -3887,6 +4195,17 @@ extension Small: GlobalAttributes {
     }
 }
 
+extension Small: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 extension Small: Localizable {
     
     public init(_ localizedKey: String) {
@@ -3898,14 +4217,15 @@ extension Small: Localizable {
     }
 }
 
-extension Small: AnyContent {
+extension Small: Modifiable {
     
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -4029,6 +4349,17 @@ extension StrikeThrough: GlobalAttributes {
     }
 }
 
+extension StrikeThrough: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 extension StrikeThrough: Localizable {
     
     public init(_ localizedKey: String) {
@@ -4040,14 +4371,15 @@ extension StrikeThrough: Localizable {
     }
 }
 
-extension StrikeThrough: AnyContent {
+extension StrikeThrough: Modifiable {
     
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -4179,6 +4511,18 @@ extension Main: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Main: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -4318,7 +4662,7 @@ extension Division: Modifiable {
     public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
         
         if condition {
-            return modify(element(.init(attributes: [:], content: [""])))
+            return modify(element(self))
         }
         
         return self
@@ -4456,6 +4800,18 @@ extension Definition: AnyContent {
     }
 }
 
+extension Definition: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -4584,6 +4940,18 @@ extension Cite: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Cite: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -4722,6 +5090,18 @@ extension ShortQuote: AnyContent {
     }
 }
 
+extension ShortQuote: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -4853,6 +5233,18 @@ extension Abbreviation: AnyContent {
     }
 }
 
+extension Abbreviation: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -4981,6 +5373,18 @@ extension Ruby: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Ruby: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -5119,6 +5523,18 @@ extension Data: AnyContent {
     }
 }
 
+extension Data: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -5254,6 +5670,18 @@ extension Time: AnyContent {
     }
 }
 
+extension Time: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -5382,6 +5810,18 @@ extension Code: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Code: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -5516,6 +5956,18 @@ extension Variable: AnyContent {
     }
 }
 
+extension Variable: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -5644,6 +6096,18 @@ extension SampleOutput: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension SampleOutput: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -5778,6 +6242,18 @@ extension KeyboardInput: AnyContent {
     }
 }
 
+extension KeyboardInput: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -5906,6 +6382,18 @@ extension Subscript: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Subscript: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -6040,6 +6528,18 @@ extension Superscript: AnyContent {
     }
 }
 
+extension Superscript: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -6168,7 +6668,8 @@ extension Italic: Localizable {
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         self.content = [Localized(key: localizedKey, context: context)]
-    }}
+    }
+}
 
 extension Italic: AnyContent {
     
@@ -6178,6 +6679,18 @@ extension Italic: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+    
+extension Italic: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -6323,6 +6836,18 @@ extension Bold: AnyContent {
     }
 }
 
+extension Bold: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -6465,6 +6990,18 @@ extension Underline: AnyContent {
     }
 }
 
+extension Underline: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -6593,6 +7130,18 @@ extension Mark: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Mark: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -6727,6 +7276,18 @@ extension Bdi: AnyContent {
     }
 }
 
+extension Bdi: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -6850,6 +7411,18 @@ extension Bdo: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Bdo: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -6984,6 +7557,18 @@ extension Span: AnyContent {
     }
 }
 
+extension Span: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -7110,6 +7695,18 @@ extension LineBreak: AnyContent {
     }
 }
 
+extension LineBreak: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -7233,6 +7830,18 @@ extension WordBreak: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension WordBreak: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -7375,6 +7984,18 @@ extension InsertedText: AnyContent {
     }
 }
 
+extension InsertedText: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -7514,6 +8135,18 @@ extension DeletedText: AnyContent {
     }
 }
 
+extension DeletedText: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -7642,6 +8275,18 @@ extension Picture: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Picture: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -7803,6 +8448,18 @@ extension Image: AnyContent {
     }
 }
 
+extension Image: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -7954,6 +8611,18 @@ extension InlineFrame: AnyContent {
     }
 }
 
+extension InlineFrame: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -8093,6 +8762,18 @@ extension Embed: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Embed: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -8255,6 +8936,18 @@ extension Object: AnyContent {
     }
 }
 
+extension Object: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -8414,6 +9107,18 @@ extension Video: AnyContent {
     }
 }
 
+extension Video: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -8565,6 +9270,18 @@ extension Audio: AnyContent {
     }
 }
 
+extension Audio: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -8697,6 +9414,18 @@ extension Map: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Map: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -8867,6 +9596,18 @@ extension Form: AnyContent {
     }
 }
 
+extension Form: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -8995,6 +9736,18 @@ extension DataList: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension DataList: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -9141,6 +9894,18 @@ extension Output: AnyContent {
     }
 }
 
+extension Output: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -9277,6 +10042,18 @@ extension Progress: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Progress: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -9431,6 +10208,18 @@ extension Meter: AnyContent {
     }
 }
 
+extension Meter: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -9570,6 +10359,18 @@ extension Details: AnyContent {
     }
 }
 
+extension Details: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -9702,6 +10503,18 @@ extension Dialog: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Dialog: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -9860,6 +10673,18 @@ extension Script: AnyContent {
     }
 }
 
+extension Script: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -9991,6 +10816,18 @@ extension NoScript: AnyContent {
     }
 }
 
+extension NoScript: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -10119,6 +10956,18 @@ extension Template: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Template: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -10261,6 +11110,18 @@ extension Canvas: AnyContent {
     }
 }
 
+extension Canvas: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -10397,5 +11258,17 @@ extension Table: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Table: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

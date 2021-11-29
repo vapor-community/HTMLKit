@@ -230,6 +230,18 @@ extension Input: AnyContent {
     }
 }
 
+extension Input: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -354,6 +366,17 @@ extension Label: GlobalAttributes, ForAttribute {
     }
 }
 
+extension Label: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 extension Label: Localizable {
     
     public init(_ localizedKey: String) {
@@ -365,14 +388,15 @@ extension Label: Localizable {
     }
 }
 
-extension Label: AnyContent {
+extension Label: Modifiable {
     
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -532,6 +556,18 @@ extension Select: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Select: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -714,6 +750,18 @@ extension TextArea: AnyContent {
     }
 }
 
+extension TextArea: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -858,6 +906,17 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
     }
 }
 
+extension Button: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 extension Button: Localizable {
     
     public init(_ localizedKey: String) {
@@ -869,14 +928,15 @@ extension Button: Localizable {
     }
 }
 
-extension Button: AnyContent {
+extension Button: Modifiable {
     
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -1020,5 +1080,17 @@ extension Fieldset: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Fieldset: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

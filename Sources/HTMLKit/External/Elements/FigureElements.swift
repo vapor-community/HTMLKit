@@ -135,3 +135,15 @@ extension FigureCaption: AnyContent {
         try self.build(with: manager)
     }
 }
+
+extension FigureCaption: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}

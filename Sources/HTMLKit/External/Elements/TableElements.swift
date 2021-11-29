@@ -158,7 +158,6 @@ extension Caption: GlobalAttributes {
     public func translate(_ value: String) -> Caption {
         return mutate(translate: value)
     }
-
 }
 
 extension Caption: AnyContent {
@@ -169,6 +168,18 @@ extension Caption: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Caption: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -307,6 +318,18 @@ extension ColumnGroup: AnyContent {
     }
 }
 
+extension ColumnGroup: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -439,6 +462,18 @@ extension Column: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Column: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -581,6 +616,18 @@ extension TableBody: AnyContent {
     }
 }
 
+extension TableBody: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -720,6 +767,18 @@ extension TableHead: AnyContent {
     }
 }
 
+extension TableHead: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -848,6 +907,18 @@ extension TableFoot: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension TableFoot: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -987,6 +1058,18 @@ extension TableRow: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension TableRow: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
 
@@ -1133,6 +1216,18 @@ extension DataCell: AnyContent {
     }
 }
 
+extension DataCell: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
 /// The element
 ///
 ///
@@ -1269,6 +1364,17 @@ extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, H
     }
 }
 
+extension HeaderCell: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 extension HeaderCell: Localizable {
     
     public init(_ localizedKey: String) {
@@ -1280,13 +1386,14 @@ extension HeaderCell: Localizable {
     }
 }
 
-extension HeaderCell: AnyContent {
+extension HeaderCell: Modifiable {
     
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
