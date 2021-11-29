@@ -186,6 +186,50 @@ final class RenderingTests: XCTestCase {
                        """
         )
     }
+    
+    func testModified() throws {
+        
+        let isModified: Bool = true
+        
+        let view = TestPage {
+            Division {
+            }
+            .class("unmodified")
+            .modify(if: isModified) {
+                $0.class("modified")
+            }
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <div class="modified"></div>
+                       """
+        )
+    }
+    
+    func testUnmodified() throws {
+        
+        let isModified: Bool = false
+        
+        let view = TestPage {
+            Division {
+            }
+            .class("unmodified")
+            .modify(if: isModified) {
+                $0.class("modified")
+            }
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <div class="unmodified"></div>
+                       """
+        )
+    }
 }
 
 extension RenderingTests {
@@ -199,6 +243,8 @@ extension RenderingTests {
         ("testRenderingAttributesWithUnterscore", testRenderingAttributesWithUnterscore),
         ("testRenderingAttributesWithHyphens", testRenderingAttributesWithHyphens),
         ("testNesting", testNesting),
-        ("testEscaping", testEscaping)
+        ("testEscaping", testEscaping),
+        ("testModified", testModified),
+        ("testUnmodified", testUnmodified)
     ]
 }

@@ -20,9 +20,22 @@ extension ContentNode {
     
     internal func merge(_ new: OrderedDictionary<String, Any>, with current: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         
-        current.merge(new) { (current, _) in current }
+        current.merge(new) { (_, new) in new }
         
         return current
+    }
+}
+
+extension ContentNode where Self: Modifiable {
+    
+    internal func modify(_ element: Self) -> Self {
+        
+        guard var attributes = self.attributes else {
+
+            return .init(attributes: element.attributes!, content: self.content)
+        }
+        
+        return .init(attributes: merge(element.attributes!, with: &attributes), content: self.content)
     }
 }
 
