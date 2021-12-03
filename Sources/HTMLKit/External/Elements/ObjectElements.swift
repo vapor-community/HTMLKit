@@ -77,6 +77,10 @@ extension Parameter: GlobalAttributes, NameAttribute, ValueAttribute {
     public func itemScope(_ value: String) -> Parameter {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Parameter {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Parameter {
         return mutate(id: value)

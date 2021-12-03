@@ -83,6 +83,10 @@ extension Title: GlobalAttributes {
         return mutate(itemscope: value)
     }
     
+    public func itemType(_ value: String) -> Title {
+        return mutate(itemtype: value)
+    }
+    
     public func id(_ value: String) -> Title {
         return mutate(id: value)
     }
@@ -223,6 +227,10 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
     
     public func itemScope(_ value: String) -> Base {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Base {
+        return mutate(itemtype: value)
     }
     
     public func id(_ value: String) -> Base {
@@ -377,6 +385,10 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
 
     public func itemScope(_ value: String) -> Meta {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Meta {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Meta {
@@ -548,6 +560,10 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
 
     public func itemScope(_ value: String) -> Style {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Style {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Style {

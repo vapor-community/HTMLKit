@@ -92,6 +92,10 @@ extension TermName: GlobalAttributes {
     public func itemScope(_ value: String) -> TermName {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> TermName {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> TermName {
         return mutate(id: value)
@@ -238,6 +242,10 @@ extension TermDefinition: GlobalAttributes {
 
     public func itemScope(_ value: String) -> TermDefinition {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> TermDefinition {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> TermDefinition {

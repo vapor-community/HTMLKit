@@ -87,6 +87,10 @@ extension ListItem: GlobalAttributes, ValueAttribute {
     public func itemScope(_ value: String) -> ListItem {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> ListItem {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> ListItem {
         return mutate(id: value)

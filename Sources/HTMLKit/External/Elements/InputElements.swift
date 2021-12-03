@@ -87,6 +87,10 @@ extension OptionGroup: GlobalAttributes, DisabledAttribute, LabelAttribute {
     public func itemScope(_ value: String) -> OptionGroup {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> OptionGroup {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> OptionGroup {
         return mutate(id: value)
@@ -241,6 +245,10 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
 
     public func itemScope(_ value: String) -> Option {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Option {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Option {
@@ -405,6 +413,10 @@ extension Legend: GlobalAttributes {
     public func itemScope(_ value: String) -> Legend {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Legend {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Legend {
         return mutate(id: value)
@@ -551,6 +563,10 @@ extension Summary: GlobalAttributes {
 
     public func itemScope(_ value: String) -> Summary {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Summary {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Summary {

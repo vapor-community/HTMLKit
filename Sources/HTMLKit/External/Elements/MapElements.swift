@@ -82,6 +82,10 @@ extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, Shap
     public func itemScope(_ value: String) -> Area {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Area {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Area {
         return mutate(id: value)

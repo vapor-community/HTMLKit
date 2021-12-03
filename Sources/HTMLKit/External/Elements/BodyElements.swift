@@ -265,6 +265,10 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
     public func itemScope(_ value: String) -> Link {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Link {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Link {
         return mutate(id: value)
@@ -444,6 +448,10 @@ extension Article: GlobalAttributes {
     public func itemScope(_ value: String) -> Article {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Article {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Article {
         return mutate(id: value)
@@ -590,6 +598,10 @@ extension Section: GlobalAttributes {
 
     public func itemScope(_ value: String) -> Section {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Section {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Section {
@@ -738,6 +750,10 @@ extension Navigation: GlobalAttributes {
     public func itemScope(_ value: String) -> Navigation {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Navigation {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Navigation {
         return mutate(id: value)
@@ -885,6 +901,10 @@ extension Aside: GlobalAttributes {
     public func itemScope(_ value: String) -> Aside {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Aside {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Aside {
         return mutate(id: value)
@@ -1031,6 +1051,10 @@ extension Heading1: GlobalAttributes {
 
     public func itemScope(_ value: String) -> Heading1 {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Heading1 {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Heading1 {
@@ -1190,6 +1214,10 @@ extension Heading2: GlobalAttributes {
     public func itemScope(_ value: String) -> Heading2 {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Heading2 {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Heading2 {
         return mutate(id: value)
@@ -1347,6 +1375,10 @@ extension Heading3: GlobalAttributes {
 
     public func itemScope(_ value: String) -> Heading3 {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Heading3 {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Heading3 {
@@ -1506,6 +1538,10 @@ extension Heading4: GlobalAttributes {
     public func itemScope(_ value: String) -> Heading4 {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Heading4 {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Heading4 {
         return mutate(id: value)
@@ -1664,6 +1700,10 @@ extension Heading5: GlobalAttributes {
     public func itemScope(_ value: String) -> Heading5 {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Heading5 {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Heading5 {
         return mutate(id: value)
@@ -1821,6 +1861,10 @@ extension Heading6: GlobalAttributes {
 
     public func itemScope(_ value: String) -> Heading6 {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Heading6 {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Heading6 {
@@ -1981,6 +2025,10 @@ extension HeadingGroup: GlobalAttributes {
         return mutate(itemscope: value)
     }
 
+    public func itemType(_ value: String) -> HeadingGroup {
+        return mutate(itemtype: value)
+    }
+    
     public func id(_ value: String) -> HeadingGroup {
         return mutate(id: value)
     }
@@ -2126,6 +2174,10 @@ extension Header: GlobalAttributes {
 
     public func itemScope(_ value: String) -> Header {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Header {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Header {
@@ -2274,6 +2326,10 @@ extension Footer: GlobalAttributes {
     public func itemScope(_ value: String) -> Footer {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Footer {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Footer {
         return mutate(id: value)
@@ -2421,6 +2477,10 @@ extension Address: GlobalAttributes {
     public func itemScope(_ value: String) -> Address {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Address {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Address {
         return mutate(id: value)
@@ -2567,6 +2627,10 @@ extension Paragraph: GlobalAttributes {
 
     public func itemScope(_ value: String) -> Paragraph {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Paragraph {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Paragraph {
@@ -2721,6 +2785,10 @@ extension HorizontalRule: GlobalAttributes {
     public func itemScope(_ value: String) -> HorizontalRule {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> HorizontalRule {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> HorizontalRule {
         return mutate(id: value)
@@ -2868,6 +2936,10 @@ extension PreformattedText: GlobalAttributes {
     public func itemScope(_ value: String) -> PreformattedText {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> PreformattedText {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> PreformattedText {
         return mutate(id: value)
@@ -3014,6 +3086,10 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
 
     public func itemScope(_ value: String) -> Blockquote {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Blockquote {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Blockquote {
@@ -3177,6 +3253,10 @@ extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, Type
     public func itemScope(_ value: String) -> OrderedList {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> OrderedList {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> OrderedList {
         return mutate(id: value)
@@ -3336,6 +3416,10 @@ extension UnorderedList: GlobalAttributes {
     public func itemScope(_ value: String) -> UnorderedList {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> UnorderedList {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> UnorderedList {
         return mutate(id: value)
@@ -3482,6 +3566,10 @@ extension DescriptionList: GlobalAttributes {
 
     public func itemScope(_ value: String) -> DescriptionList {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> DescriptionList {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> DescriptionList {
@@ -3631,6 +3719,10 @@ extension Figure: GlobalAttributes {
         return mutate(itemscope: value)
     }
 
+    public func itemType(_ value: String) -> Figure {
+        return mutate(itemtype: value)
+    }
+    
     public func id(_ value: String) -> Figure {
         return mutate(id: value)
     }
@@ -3776,6 +3868,10 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
 
     public func itemScope(_ value: String) -> Anchor {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Anchor {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Anchor {
@@ -3975,6 +4071,10 @@ extension Emphasize: GlobalAttributes {
     public func itemScope(_ value: String) -> Emphasize {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Emphasize {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Emphasize {
         return mutate(id: value)
@@ -4122,6 +4222,10 @@ extension Strong: GlobalAttributes {
     public func itemScope(_ value: String) -> Strong {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Strong {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Strong {
         return mutate(id: value)
@@ -4268,6 +4372,10 @@ extension Small: GlobalAttributes {
 
     public func itemScope(_ value: String) -> Small {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Small {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Small {
@@ -4427,6 +4535,10 @@ extension StrikeThrough: GlobalAttributes {
     public func itemScope(_ value: String) -> StrikeThrough {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> StrikeThrough {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> StrikeThrough {
         return mutate(id: value)
@@ -4585,6 +4697,10 @@ extension Main: GlobalAttributes {
     public func itemScope(_ value: String) -> Main {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Main {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Main {
         return mutate(id: value)
@@ -4731,6 +4847,10 @@ extension Division: GlobalAttributes {
 
     public func itemScope(_ value: String) -> Division {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Division {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Division {
@@ -4879,6 +4999,10 @@ extension Definition: GlobalAttributes {
     public func itemScope(_ value: String) -> Definition {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Definition {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Definition {
         return mutate(id: value)
@@ -5026,6 +5150,10 @@ extension Cite: GlobalAttributes {
     public func itemScope(_ value: String) -> Cite {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Cite {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Cite {
         return mutate(id: value)
@@ -5172,6 +5300,10 @@ extension ShortQuote: GlobalAttributes, CiteAttribute {
 
     public func itemScope(_ value: String) -> ShortQuote {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> ShortQuote {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> ShortQuote {
@@ -5324,6 +5456,10 @@ extension Abbreviation: GlobalAttributes {
     public func itemScope(_ value: String) -> Abbreviation {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Abbreviation {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Abbreviation {
         return mutate(id: value)
@@ -5471,6 +5607,10 @@ extension Ruby: GlobalAttributes {
     public func itemScope(_ value: String) -> Ruby {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Ruby {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Ruby {
         return mutate(id: value)
@@ -5617,6 +5757,10 @@ extension Data: GlobalAttributes, ValueAttribute {
 
     public func itemScope(_ value: String) -> Data {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Data {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Data {
@@ -5773,6 +5917,10 @@ extension Time: GlobalAttributes, DateTimeAttribute {
     public func itemScope(_ value: String) -> Time {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Time {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Time {
         return mutate(id: value)
@@ -5924,6 +6072,10 @@ extension Code: GlobalAttributes {
     public func itemScope(_ value: String) -> Code {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Code {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Code {
         return mutate(id: value)
@@ -6070,6 +6222,10 @@ extension Variable: GlobalAttributes {
 
     public func itemScope(_ value: String) -> Variable {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Variable {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Variable {
@@ -6218,6 +6374,10 @@ extension SampleOutput: GlobalAttributes {
     public func itemScope(_ value: String) -> SampleOutput {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> SampleOutput {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> SampleOutput {
         return mutate(id: value)
@@ -6364,6 +6524,10 @@ extension KeyboardInput: GlobalAttributes {
 
     public func itemScope(_ value: String) -> KeyboardInput {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> KeyboardInput {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> KeyboardInput {
@@ -6512,6 +6676,10 @@ extension Subscript: GlobalAttributes {
     public func itemScope(_ value: String) -> Subscript {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Subscript {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Subscript {
         return mutate(id: value)
@@ -6659,6 +6827,10 @@ extension Superscript: GlobalAttributes {
     public func itemScope(_ value: String) -> Superscript {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Superscript {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Superscript {
         return mutate(id: value)
@@ -6805,6 +6977,10 @@ extension Italic: GlobalAttributes {
 
     public func itemScope(_ value: String) -> Italic {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Italic {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Italic {
@@ -6964,6 +7140,10 @@ extension Bold: GlobalAttributes {
     public func itemScope(_ value: String) -> Bold {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Bold {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Bold {
         return mutate(id: value)
@@ -7121,6 +7301,10 @@ extension Underline: GlobalAttributes {
 
     public func itemScope(_ value: String) -> Underline {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Underline {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Underline {
@@ -7280,6 +7464,10 @@ extension Mark: GlobalAttributes {
     public func itemScope(_ value: String) -> Mark {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Mark {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Mark {
         return mutate(id: value)
@@ -7427,6 +7615,10 @@ extension Bdi: GlobalAttributes {
     public func itemScope(_ value: String) -> Bdi {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Bdi {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Bdi {
         return mutate(id: value)
@@ -7568,6 +7760,10 @@ extension Bdo: GlobalAttributes {
 
     public func itemScope(_ value: String) -> Bdo {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Bdo {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Bdo {
@@ -7716,6 +7912,10 @@ extension Span: GlobalAttributes {
     public func itemScope(_ value: String) -> Span {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Span {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Span {
         return mutate(id: value)
@@ -7858,6 +8058,10 @@ extension LineBreak: GlobalAttributes {
     public func itemScope(_ value: String) -> LineBreak {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> LineBreak {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> LineBreak {
         return mutate(id: value)
@@ -7999,6 +8203,10 @@ extension WordBreak: GlobalAttributes {
 
     public func itemScope(_ value: String) -> WordBreak {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> WordBreak {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> WordBreak {
@@ -8146,6 +8354,10 @@ extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
 
     public func itemScope(_ value: String) -> InsertedText {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> InsertedText {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> InsertedText {
@@ -8302,6 +8514,10 @@ extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     public func itemScope(_ value: String) -> DeletedText {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> DeletedText {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> DeletedText {
         return mutate(id: value)
@@ -8457,6 +8673,10 @@ extension Picture: GlobalAttributes {
     public func itemScope(_ value: String) -> Picture {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Picture {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Picture {
         return mutate(id: value)
@@ -8606,6 +8826,10 @@ extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAtt
 
     public func itemScope(_ value: String) -> Image {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Image {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Image {
@@ -8778,6 +9002,10 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
     public func itemScope(_ value: String) -> InlineFrame {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> InlineFrame {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> InlineFrame {
         return mutate(id: value)
@@ -8943,6 +9171,10 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
 
     public func itemScope(_ value: String) -> Embed {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Embed {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Embed {
@@ -9110,6 +9342,10 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
 
     public func itemScope(_ value: String) -> Object {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Object {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Object {
@@ -9286,6 +9522,10 @@ extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     public func itemScope(_ value: String) -> Video {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Video {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Video {
         return mutate(id: value)
@@ -9461,6 +9701,10 @@ extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     public func itemScope(_ value: String) -> Audio {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Audio {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Audio {
         return mutate(id: value)
@@ -9628,6 +9872,10 @@ extension Map: GlobalAttributes, NameAttribute {
     public func itemScope(_ value: String) -> Map {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Map {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Map {
         return mutate(id: value)
@@ -9790,6 +10038,10 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
 
     public func itemScope(_ value: String) -> Form {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Form {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Form {
@@ -9970,6 +10222,10 @@ extension DataList: GlobalAttributes {
     public func itemScope(_ value: String) -> DataList {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> DataList {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> DataList {
         return mutate(id: value)
@@ -10116,6 +10372,10 @@ extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
 
     public func itemScope(_ value: String) -> Output {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Output {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Output {
@@ -10280,6 +10540,10 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
     public func itemScope(_ value: String) -> Progress {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Progress {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Progress {
         return mutate(id: value)
@@ -10438,6 +10702,10 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
 
     public func itemScope(_ value: String) -> Meter {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Meter {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Meter {
@@ -10614,6 +10882,10 @@ extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
     public func itemScope(_ value: String) -> Details {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Details {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Details {
         return mutate(id: value)
@@ -10764,6 +11036,10 @@ extension Dialog: GlobalAttributes, OpenAttribute {
 
     public func itemScope(_ value: String) -> Dialog {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Dialog {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Dialog {
@@ -10923,6 +11199,10 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
 
     public func itemScope(_ value: String) -> Script {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Script {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Script {
@@ -11087,6 +11367,10 @@ extension NoScript: GlobalAttributes {
     public func itemScope(_ value: String) -> NoScript {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> NoScript {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> NoScript {
         return mutate(id: value)
@@ -11234,6 +11518,10 @@ extension Template: GlobalAttributes {
     public func itemScope(_ value: String) -> Template {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Template {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Template {
         return mutate(id: value)
@@ -11380,6 +11668,10 @@ extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
 
     public func itemScope(_ value: String) -> Canvas {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Canvas {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Canvas {
@@ -11535,6 +11827,10 @@ extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
 
     public func itemScope(_ value: String) -> Table {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Table {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Table {

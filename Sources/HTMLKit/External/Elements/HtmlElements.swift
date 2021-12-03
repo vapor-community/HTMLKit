@@ -83,6 +83,10 @@ extension Head: GlobalAttributes {
         return mutate(itemscope: value)
     }
     
+    public func itemType(_ value: String) -> Head {
+        return mutate(itemtype: value)
+    }
+    
     public func id(_ value: String) -> Head {
         return mutate(id: value)
     }
@@ -264,6 +268,10 @@ extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttr
 
     public func itemScope(_ value: String) -> Body {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Body {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Body {

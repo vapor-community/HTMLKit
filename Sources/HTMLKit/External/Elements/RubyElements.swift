@@ -92,6 +92,10 @@ extension RubyText: GlobalAttributes {
     public func itemScope(_ value: String) -> RubyText {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> RubyText {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> RubyText {
         return mutate(id: value)
@@ -238,6 +242,10 @@ extension RubyPronunciation: GlobalAttributes {
 
     public func itemScope(_ value: String) -> RubyPronunciation {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> RubyPronunciation {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> RubyPronunciation {

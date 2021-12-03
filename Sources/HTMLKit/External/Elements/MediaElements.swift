@@ -78,6 +78,10 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
         return mutate(itemscope: value)
     }
 
+    public func itemType(_ value: String) -> Source {
+        return mutate(itemtype: value)
+    }
+    
     public func id(_ value: String) -> Source {
         return mutate(id: value)
     }
@@ -238,6 +242,10 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
 
     public func itemReference(_ value: String) -> Track {
         return mutate(itemref: value)
+    }
+    
+    public func itemType(_ value: String) -> Track {
+        return mutate(itemtype: value)
     }
 
     public func itemScope(_ value: String) -> Track {

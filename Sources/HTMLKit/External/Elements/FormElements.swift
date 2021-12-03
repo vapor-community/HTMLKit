@@ -81,6 +81,10 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
     public func itemScope(_ value: String) -> Input {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Input {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Input {
         return mutate(id: value)
@@ -340,6 +344,10 @@ extension Label: GlobalAttributes, ForAttribute {
     public func itemScope(_ value: String) -> Label {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Label {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Label {
         return mutate(id: value)
@@ -501,6 +509,10 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
 
     public func itemScope(_ value: String) -> Select {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Select {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Select {
@@ -680,6 +692,10 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
 
     public func itemScope(_ value: String) -> TextArea {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> TextArea {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> TextArea {
@@ -884,6 +900,10 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
     public func itemScope(_ value: String) -> Button {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Button {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Button {
         return mutate(id: value)
@@ -1073,6 +1093,10 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
 
     public func itemScope(_ value: String) -> Fieldset {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Fieldset {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> Fieldset {

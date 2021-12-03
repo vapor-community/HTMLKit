@@ -122,6 +122,10 @@ extension Caption: GlobalAttributes {
     public func itemScope(_ value: String) -> Caption {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Caption {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Caption {
         return mutate(id: value)
@@ -268,6 +272,10 @@ extension ColumnGroup: GlobalAttributes, SpanAttribute {
 
     public func itemScope(_ value: String) -> ColumnGroup {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> ColumnGroup {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> ColumnGroup {
@@ -420,6 +428,10 @@ extension Column: GlobalAttributes, SpanAttribute {
     public func itemScope(_ value: String) -> Column {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Column {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Column {
         return mutate(id: value)
@@ -570,6 +582,10 @@ extension TableBody: GlobalAttributes, WidthAttribute, HeightAttribute {
 
     public func itemScope(_ value: String) -> TableBody {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> TableBody {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> TableBody {
@@ -726,6 +742,10 @@ extension TableHead: GlobalAttributes, WidthAttribute, HeightAttribute {
     public func itemScope(_ value: String) -> TableHead {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> TableHead {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> TableHead {
         return mutate(id: value)
@@ -881,6 +901,10 @@ extension TableFoot: GlobalAttributes {
     public func itemScope(_ value: String) -> TableFoot {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> TableFoot {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> TableFoot {
         return mutate(id: value)
@@ -1027,6 +1051,10 @@ extension TableRow: GlobalAttributes, WidthAttribute, HeightAttribute {
 
     public func itemScope(_ value: String) -> TableRow {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> TableRow {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> TableRow {
@@ -1182,6 +1210,10 @@ extension DataCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, Hea
 
     public func itemScope(_ value: String) -> DataCell {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> DataCell {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> DataCell {
@@ -1341,6 +1373,10 @@ extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, H
 
     public func itemScope(_ value: String) -> HeaderCell {
         return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> HeaderCell {
+        return mutate(itemtype: value)
     }
 
     public func id(_ value: String) -> HeaderCell {

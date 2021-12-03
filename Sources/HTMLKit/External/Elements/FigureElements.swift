@@ -87,6 +87,10 @@ extension FigureCaption: GlobalAttributes {
     public func itemScope(_ value: String) -> FigureCaption {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> FigureCaption {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> FigureCaption {
         return mutate(id: value)

@@ -128,6 +128,10 @@ extension Html: GlobalAttributes {
     public func itemScope(_ value: String) -> Html {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Html {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Html {
         return mutate(id: value)
