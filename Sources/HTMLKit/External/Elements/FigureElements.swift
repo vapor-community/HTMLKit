@@ -91,6 +91,10 @@ extension FigureCaption: GlobalAttributes {
     public func id(_ value: String) -> FigureCaption {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> FigureCaption {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> FigureCaption {
         return mutate(lang: type.rawValue)

@@ -269,6 +269,10 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
     public func id(_ value: String) -> Link {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Link {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Link {
         return mutate(lang: type.rawValue)
@@ -306,6 +310,10 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
         return mutate(href: value)
     }
     
+    public func reference(_ value: TemplateValue<String>) -> Link {
+        return mutate(href: value.rawValue)
+    }
+    
     public func referenceLanguage(_ type: Language) -> Link {
         return mutate(hreflang: type.rawValue)
     }
@@ -326,8 +334,8 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
         return mutate(sizes: size)
     }
     
-    public func type(_ value: String) -> Link {
-        return mutate(type: value)
+    public func type(_ value: MediaType) -> Link {
+        return mutate(type: value.rawValue)
     }
 }
 
@@ -439,6 +447,10 @@ extension Article: GlobalAttributes {
 
     public func id(_ value: String) -> Article {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Article {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Article {
@@ -583,6 +595,10 @@ extension Section: GlobalAttributes {
     public func id(_ value: String) -> Section {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Section {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Section {
         return mutate(lang: type.rawValue)
@@ -725,6 +741,10 @@ extension Navigation: GlobalAttributes {
 
     public func id(_ value: String) -> Navigation {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Navigation {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Navigation {
@@ -869,6 +889,10 @@ extension Aside: GlobalAttributes {
     public func id(_ value: String) -> Aside {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Aside {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Aside {
         return mutate(lang: type.rawValue)
@@ -1011,6 +1035,10 @@ extension Heading1: GlobalAttributes {
 
     public func id(_ value: String) -> Heading1 {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Heading1 {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Heading1 {
@@ -1167,6 +1195,10 @@ extension Heading2: GlobalAttributes {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> Heading2 {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Heading2 {
         return mutate(lang: type.rawValue)
     }
@@ -1321,6 +1353,10 @@ extension Heading3: GlobalAttributes {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> Heading3 {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Heading3 {
         return mutate(lang: type.rawValue)
     }
@@ -1473,6 +1509,10 @@ extension Heading4: GlobalAttributes {
 
     public func id(_ value: String) -> Heading4 {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Heading4 {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Heading4 {
@@ -1628,6 +1668,10 @@ extension Heading5: GlobalAttributes {
     public func id(_ value: String) -> Heading5 {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Heading5 {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Heading5 {
         return mutate(lang: type.rawValue)
@@ -1781,6 +1825,10 @@ extension Heading6: GlobalAttributes {
 
     public func id(_ value: String) -> Heading6 {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Heading6 {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Heading6 {
@@ -1936,6 +1984,10 @@ extension HeadingGroup: GlobalAttributes {
     public func id(_ value: String) -> HeadingGroup {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> HeadingGroup {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> HeadingGroup {
         return mutate(lang: type.rawValue)
@@ -2079,6 +2131,10 @@ extension Header: GlobalAttributes {
     public func id(_ value: String) -> Header {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Header {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Header {
         return mutate(lang: type.rawValue)
@@ -2221,6 +2277,10 @@ extension Footer: GlobalAttributes {
 
     public func id(_ value: String) -> Footer {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Footer {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Footer {
@@ -2366,6 +2426,10 @@ extension Address: GlobalAttributes {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> Address {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Address {
         return mutate(lang: type.rawValue)
     }
@@ -2507,6 +2571,10 @@ extension Paragraph: GlobalAttributes {
 
     public func id(_ value: String) -> Paragraph {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Paragraph {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Paragraph {
@@ -2657,6 +2725,10 @@ extension HorizontalRule: GlobalAttributes {
     public func id(_ value: String) -> HorizontalRule {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> HorizontalRule {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> HorizontalRule {
         return mutate(lang: type.rawValue)
@@ -2801,6 +2873,10 @@ extension PreformattedText: GlobalAttributes {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> PreformattedText {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> PreformattedText {
         return mutate(lang: type.rawValue)
     }
@@ -2942,6 +3018,10 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
 
     public func id(_ value: String) -> Blockquote {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Blockquote {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Blockquote {
@@ -3101,6 +3181,10 @@ extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, Type
     public func id(_ value: String) -> OrderedList {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> OrderedList {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> OrderedList {
         return mutate(lang: type.rawValue)
@@ -3256,6 +3340,10 @@ extension UnorderedList: GlobalAttributes {
     public func id(_ value: String) -> UnorderedList {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> UnorderedList {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> UnorderedList {
         return mutate(lang: type.rawValue)
@@ -3398,6 +3486,10 @@ extension DescriptionList: GlobalAttributes {
 
     public func id(_ value: String) -> DescriptionList {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> DescriptionList {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> DescriptionList {
@@ -3542,6 +3634,10 @@ extension Figure: GlobalAttributes {
     public func id(_ value: String) -> Figure {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Figure {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Figure {
         return mutate(lang: type.rawValue)
@@ -3685,6 +3781,10 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
     public func id(_ value: String) -> Anchor {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Anchor {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Anchor {
         return mutate(lang: type.rawValue)
@@ -3724,6 +3824,10 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
     
     public func reference(_ value: String) -> Anchor {
         return mutate(href: value)
+    }
+    
+    public func reference(_ value: TemplateValue<String>) -> Anchor {
+        return mutate(href: value.rawValue)
     }
     
     public func referenceLanguage(_ type: Language) -> Anchor {
@@ -3875,6 +3979,10 @@ extension Emphasize: GlobalAttributes {
     public func id(_ value: String) -> Emphasize {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Emphasize {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Emphasize {
         return mutate(lang: type.rawValue)
@@ -4019,6 +4127,10 @@ extension Strong: GlobalAttributes {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> Strong {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Strong {
         return mutate(lang: type.rawValue)
     }
@@ -4160,6 +4272,10 @@ extension Small: GlobalAttributes {
 
     public func id(_ value: String) -> Small {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Small {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Small {
@@ -4315,6 +4431,10 @@ extension StrikeThrough: GlobalAttributes {
     public func id(_ value: String) -> StrikeThrough {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> StrikeThrough {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> StrikeThrough {
         return mutate(lang: type.rawValue)
@@ -4469,6 +4589,10 @@ extension Main: GlobalAttributes {
     public func id(_ value: String) -> Main {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Main {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Main {
         return mutate(lang: type.rawValue)
@@ -4611,6 +4735,10 @@ extension Division: GlobalAttributes {
 
     public func id(_ value: String) -> Division {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Division {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Division {
@@ -4755,6 +4883,10 @@ extension Definition: GlobalAttributes {
     public func id(_ value: String) -> Definition {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Definition {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Definition {
         return mutate(lang: type.rawValue)
@@ -4897,6 +5029,10 @@ extension Cite: GlobalAttributes {
 
     public func id(_ value: String) -> Cite {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Cite {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Cite {
@@ -5042,6 +5178,10 @@ extension ShortQuote: GlobalAttributes, CiteAttribute {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> ShortQuote {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> ShortQuote {
         return mutate(lang: type.rawValue)
     }
@@ -5188,6 +5328,10 @@ extension Abbreviation: GlobalAttributes {
     public func id(_ value: String) -> Abbreviation {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Abbreviation {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Abbreviation {
         return mutate(lang: type.rawValue)
@@ -5330,6 +5474,10 @@ extension Ruby: GlobalAttributes {
 
     public func id(_ value: String) -> Ruby {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Ruby {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Ruby {
@@ -5474,6 +5622,10 @@ extension Data: GlobalAttributes, ValueAttribute {
     public func id(_ value: String) -> Data {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Data {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Data {
         return mutate(lang: type.rawValue)
@@ -5509,6 +5661,10 @@ extension Data: GlobalAttributes, ValueAttribute {
     
     public func value(_ value: String) -> Data {
         return mutate(value: value)
+    }
+    
+    public func value(_ value: TemplateValue<String>) -> Data {
+        return mutate(value: value.rawValue)
     }
 }
 
@@ -5620,6 +5776,10 @@ extension Time: GlobalAttributes, DateTimeAttribute {
 
     public func id(_ value: String) -> Time {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Time {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Time {
@@ -5769,6 +5929,10 @@ extension Code: GlobalAttributes {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> Code {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Code {
         return mutate(lang: type.rawValue)
     }
@@ -5910,6 +6074,10 @@ extension Variable: GlobalAttributes {
 
     public func id(_ value: String) -> Variable {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Variable {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Variable {
@@ -6054,6 +6222,10 @@ extension SampleOutput: GlobalAttributes {
     public func id(_ value: String) -> SampleOutput {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> SampleOutput {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> SampleOutput {
         return mutate(lang: type.rawValue)
@@ -6196,6 +6368,10 @@ extension KeyboardInput: GlobalAttributes {
 
     public func id(_ value: String) -> KeyboardInput {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> KeyboardInput {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> KeyboardInput {
@@ -6340,6 +6516,10 @@ extension Subscript: GlobalAttributes {
     public func id(_ value: String) -> Subscript {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Subscript {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Subscript {
         return mutate(lang: type.rawValue)
@@ -6483,6 +6663,10 @@ extension Superscript: GlobalAttributes {
     public func id(_ value: String) -> Superscript {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Superscript {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Superscript {
         return mutate(lang: type.rawValue)
@@ -6625,6 +6809,10 @@ extension Italic: GlobalAttributes {
 
     public func id(_ value: String) -> Italic {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Italic {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Italic {
@@ -6780,6 +6968,10 @@ extension Bold: GlobalAttributes {
     public func id(_ value: String) -> Bold {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Bold {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Bold {
         return mutate(lang: type.rawValue)
@@ -6933,6 +7125,10 @@ extension Underline: GlobalAttributes {
 
     public func id(_ value: String) -> Underline {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Underline {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Underline {
@@ -7088,6 +7284,10 @@ extension Mark: GlobalAttributes {
     public func id(_ value: String) -> Mark {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Mark {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Mark {
         return mutate(lang: type.rawValue)
@@ -7231,6 +7431,10 @@ extension Bdi: GlobalAttributes {
     public func id(_ value: String) -> Bdi {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Bdi {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Bdi {
         return mutate(lang: type.rawValue)
@@ -7368,6 +7572,10 @@ extension Bdo: GlobalAttributes {
 
     public func id(_ value: String) -> Bdo {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Bdo {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Bdo {
@@ -7512,6 +7720,10 @@ extension Span: GlobalAttributes {
     public func id(_ value: String) -> Span {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Span {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Span {
         return mutate(lang: type.rawValue)
@@ -7650,6 +7862,10 @@ extension LineBreak: GlobalAttributes {
     public func id(_ value: String) -> LineBreak {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> LineBreak {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> LineBreak {
         return mutate(lang: type.rawValue)
@@ -7787,6 +8003,10 @@ extension WordBreak: GlobalAttributes {
 
     public func id(_ value: String) -> WordBreak {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> WordBreak {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> WordBreak {
@@ -7930,6 +8150,10 @@ extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
 
     public func id(_ value: String) -> InsertedText {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> InsertedText {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> InsertedText {
@@ -8082,6 +8306,10 @@ extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     public func id(_ value: String) -> DeletedText {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> DeletedText {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> DeletedText {
         return mutate(lang: type.rawValue)
@@ -8233,6 +8461,10 @@ extension Picture: GlobalAttributes {
     public func id(_ value: String) -> Picture {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Picture {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Picture {
         return mutate(lang: type.rawValue)
@@ -8378,6 +8610,10 @@ extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAtt
 
     public func id(_ value: String) -> Image {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Image {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Image {
@@ -8546,6 +8782,10 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
     public func id(_ value: String) -> InlineFrame {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> InlineFrame {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> InlineFrame {
         return mutate(lang: type.rawValue)
@@ -8583,8 +8823,12 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
         return mutate(source: value)
     }
     
-    public func name(_ type: NameType) -> InlineFrame {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> InlineFrame {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> InlineFrame {
+        return mutate(name: value.rawValue)
     }
     
     public func width(_ size: Int) -> InlineFrame {
@@ -8704,6 +8948,10 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
     public func id(_ value: String) -> Embed {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Embed {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Embed {
         return mutate(lang: type.rawValue)
@@ -8741,8 +8989,8 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
         return mutate(source: value)
     }
     
-    public func type(_ value: String) -> Embed {
-        return mutate(type: value)
+    public func type(_ value: MediaType) -> Embed {
+        return mutate(type: value.rawValue)
     }
     
     public func width(_ size: Int) -> Embed {
@@ -8799,7 +9047,7 @@ public struct Object: ContentNode, BodyElement {
 }
 
 extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute, FormAttribute, WidthAttribute, HeightAttribute, ErrorEventAttribute {
-    
+
     public func onError(_ value: String) -> Object {
         return mutate(onerror: value)
     }
@@ -8867,6 +9115,10 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
     public func id(_ value: String) -> Object {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Object {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Object {
         return mutate(lang: type.rawValue)
@@ -8904,12 +9156,16 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
         return mutate(data: value)
     }
     
-    public func type(_ value: String) -> Object {
-        return mutate(type: value)
+    public func type(_ value: MediaType) -> Object {
+        return mutate(type: value.rawValue)
     }
     
-    public func name(_ type: NameType) -> Object {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Object {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> Object {
+        return mutate(name: value.rawValue)
     }
     
     public func form(_ value: String) -> Object {
@@ -9033,6 +9289,10 @@ extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
 
     public func id(_ value: String) -> Video {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Video {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Video {
@@ -9205,6 +9465,10 @@ extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     public func id(_ value: String) -> Audio {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Audio {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Audio {
         return mutate(lang: type.rawValue)
@@ -9368,6 +9632,10 @@ extension Map: GlobalAttributes, NameAttribute {
     public func id(_ value: String) -> Map {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Map {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Map {
         return mutate(lang: type.rawValue)
@@ -9401,8 +9669,12 @@ extension Map: GlobalAttributes, NameAttribute {
         return mutate(translate: value)
     }
 
-    public func name(_ type: NameType) -> Map {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Map {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> Map {
+        return mutate(name: value.rawValue)
     }
 }
 
@@ -9523,6 +9795,10 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
     public func id(_ value: String) -> Form {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Form {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Form {
         return mutate(lang: type.rawValue)
@@ -9572,8 +9848,12 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
         return mutate(method: type.rawValue)
     }
     
-    public func name(_ type: NameType) -> Form {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Form {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> Form {
+        return mutate(name: value.rawValue)
     }
     
     public func target(_ type: Target) -> Form {
@@ -9693,6 +9973,10 @@ extension DataList: GlobalAttributes {
 
     public func id(_ value: String) -> DataList {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> DataList {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> DataList {
@@ -9837,6 +10121,10 @@ extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
     public func id(_ value: String) -> Output {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Output {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Output {
         return mutate(lang: type.rawValue)
@@ -9878,8 +10166,12 @@ extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
         return mutate(form: value)
     }
     
-    public func name(_ type: NameType) -> Output {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Output {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> Output {
+        return mutate(name: value.rawValue)
     }
 }
 
@@ -9992,6 +10284,10 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
     public func id(_ value: String) -> Progress {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Progress {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Progress {
         return mutate(lang: type.rawValue)
@@ -10031,6 +10327,10 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
 
     public func value(_ value: String) -> Progress {
         return mutate(value: value)
+    }
+    
+    public func value(_ value: TemplateValue<String>) -> Progress {
+        return mutate(value: value.rawValue)
     }
 }
 
@@ -10143,6 +10443,10 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
     public func id(_ value: String) -> Meter {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Meter {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Meter {
         return mutate(lang: type.rawValue)
@@ -10194,6 +10498,10 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
     
     public func value(_ value: String) -> Meter {
         return mutate(value: value)
+    }
+    
+    public func value(_ value: TemplateValue<String>) -> Meter {
+        return mutate(value: value.rawValue)
     }
 }
 
@@ -10309,6 +10617,10 @@ extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
 
     public func id(_ value: String) -> Details {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Details {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Details {
@@ -10456,6 +10768,10 @@ extension Dialog: GlobalAttributes, OpenAttribute {
 
     public func id(_ value: String) -> Dialog {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Dialog {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Dialog {
@@ -10612,6 +10928,10 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
     public func id(_ value: String) -> Script {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Script {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Script {
         return mutate(lang: type.rawValue)
@@ -10657,8 +10977,8 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
         return mutate(source: value)
     }
     
-    public func type(_ value: String) -> Script {
-        return mutate(type: value)
+    public func type(_ value: MediaType) -> Script {
+        return mutate(type: value.rawValue)
     }
 }
 
@@ -10770,6 +11090,10 @@ extension NoScript: GlobalAttributes {
 
     public func id(_ value: String) -> NoScript {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> NoScript {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> NoScript {
@@ -10918,6 +11242,10 @@ extension Template: GlobalAttributes {
     public func language(_ type: Language) -> Template {
         return mutate(lang: type.rawValue)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Template {
+        return mutate(id: value.rawValue)
+    }
 
     public func nonce(_ value: String) -> Template {
         return mutate(nonce: value)
@@ -11056,6 +11384,10 @@ extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
 
     public func id(_ value: String) -> Canvas {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Canvas {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Canvas {
@@ -11207,6 +11539,10 @@ extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
 
     public func id(_ value: String) -> Table {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Table {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Table {

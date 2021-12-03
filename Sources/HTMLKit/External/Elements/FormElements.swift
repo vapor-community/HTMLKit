@@ -86,6 +86,10 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> Input {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Input {
         return mutate(lang: type.rawValue)
     }
@@ -174,8 +178,12 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(multiple: "multiple")
     }
     
-    public func name(_ type: NameType) -> Input {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Input {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> Input {
+        return mutate(name: value.rawValue)
     }
     
     public func pattern(_ regex: String) -> Input {
@@ -184,6 +192,10 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
     
     public func placeholder(_ value: String) -> Input {
         return mutate(placeholder: value)
+    }
+    
+    public func placeholder(_ value: TemplateValue<String>) -> Input {
+        return mutate(placeholder: value.rawValue)
     }
     
     public func readonly() -> Input {
@@ -206,12 +218,16 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(step: size)
     }
     
-    public func type(_ value: String) -> Input {
-        return mutate(type: value)
+    public func type(_ value: Inputs) -> Input {
+        return mutate(type: value.rawValue)
     }
     
     public func value(_ value: String) -> Input {
         return mutate(value: value)
+    }
+    
+    public func value(_ value: TemplateValue<String>) -> Input {
+        return mutate(value: value.rawValue)
     }
     
     public func width(_ size: Int) -> Input {
@@ -327,6 +343,10 @@ extension Label: GlobalAttributes, ForAttribute {
 
     public func id(_ value: String) -> Label {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Label {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Label {
@@ -486,6 +506,10 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
     public func id(_ value: String) -> Select {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Select {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Select {
         return mutate(lang: type.rawValue)
@@ -535,8 +559,12 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
         return mutate(multiple: "multiple")
     }
     
-    public func name(_ type: NameType) -> Select {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Select {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> Select {
+        return mutate(name: value.rawValue)
     }
     
     public func required() -> Select {
@@ -657,6 +685,10 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
     public func id(_ value: String) -> TextArea {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> TextArea {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> TextArea {
         return mutate(lang: type.rawValue)
@@ -714,12 +746,20 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
         return mutate(minlength: value)
     }
     
-    public func name(_ type: NameType) -> TextArea {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> TextArea {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> TextArea {
+        return mutate(name: value.rawValue)
     }
     
     public func placeholder(_ value: String) -> TextArea {
         return mutate(placeholder: value)
+    }
+    
+    public func placeholder(_ value: TemplateValue<String>) -> TextArea {
+        return mutate(placeholder: value.rawValue)
     }
     
     public func readonly() -> TextArea {
@@ -849,6 +889,10 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> Button {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Button {
         return mutate(lang: type.rawValue)
     }
@@ -893,16 +937,24 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
         return mutate(formaction: value)
     }
     
-    public func name(_ type: NameType) -> Button {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Button {
+        return mutate(name: value)
     }
     
-    public func type(_ value: String) -> Button {
-        return mutate(type: value)
+    public func name(_ value: TemplateValue<String>) -> Button {
+        return mutate(name: value.rawValue)
+    }
+    
+    public func type(_ value: Buttons) -> Button {
+        return mutate(type: value.rawValue)
     }
     
     public func value(_ value: String) -> Button {
         return mutate(value: value)
+    }
+    
+    public func value(_ value: TemplateValue<String>) -> Button {
+        return mutate(value: value.rawValue)
     }
 }
 
@@ -1026,6 +1078,10 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
     public func id(_ value: String) -> Fieldset {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Fieldset {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Fieldset {
         return mutate(lang: type.rawValue)
@@ -1067,8 +1123,12 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
         return mutate(form: value)
     }
     
-    public func name(_ type: NameType) -> Fieldset {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Fieldset {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> Fieldset {
+        return mutate(name: value.rawValue)
     }
 }
 

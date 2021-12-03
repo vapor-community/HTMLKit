@@ -574,6 +574,11 @@ public protocol ContentAttribute: AnyAttribute {
     ///
     ///
     func content(_ value: String) -> Self
+    
+    /// The func adds
+    ///
+    ///
+    func content(_ value: TemplateValue<String>) -> Self
 }
 
 extension ContentAttribute {
@@ -1414,6 +1419,11 @@ public protocol ReferenceAttribute: AnyAttribute {
     ///
     ///
     func reference(_ value: String) -> Self
+    
+    /// The func adds
+    ///
+    ///
+    func reference(_ value: TemplateValue<String>) -> Self
 }
 
 extension ReferenceAttribute {
@@ -1494,6 +1504,11 @@ public protocol IdentifierAttribute: AnyAttribute {
     ///
     ///
     func id(_ value: String) -> Self
+    
+    /// The func adds
+    ///
+    ///
+    func id(_ value: TemplateValue<String>) -> Self
 }
 
 extension IdentifierAttribute {
@@ -1814,7 +1829,7 @@ public protocol ItemTypeAttribute: AnyAttribute {
     /// The func adds
     ///
     ///
-    func id(_ value: String) -> Self
+    func itemType(_ value: String) -> Self
 }
 
 extension ItemTypeAttribute {
@@ -2411,10 +2426,17 @@ extension MutedAttribute where Self: EmptyNode {
 ///
 public protocol NameAttribute: AnyAttribute {
 
+    associatedtype NameValue
+    
     /// The func adds
     ///
     ///
-    func name(_ type: NameType) -> Self
+    func name(_ value: NameValue) -> Self
+    
+    /// The func adds
+    ///
+    ///
+    func name(_ value: TemplateValue<NameValue>) -> Self
 }
 
 extension NameAttribute {
@@ -2735,6 +2757,11 @@ public protocol PlaceholderAttribute: AnyAttribute {
     ///
     ///
     func placeholder(_ value: String) -> Self
+    
+    /// The func adds
+    ///
+    ///
+    func placeholder(_ value: TemplateValue<String>) -> Self
 }
 
 extension PlaceholderAttribute {
@@ -3808,10 +3835,12 @@ extension TranslateAttribute where Self: EmptyNode {
 ///
 public protocol TypeAttribute: AnyAttribute {
 
+    associatedtype TypeValue
+    
     /// The func adds
     ///
     ///
-    func type(_ value: String) -> Self
+    func type(_ value: TypeValue) -> Self
 }
 
 extension TypeAttribute {
@@ -3852,6 +3881,11 @@ public protocol ValueAttribute: AnyAttribute {
     ///
     ///
     func value(_ value: String) -> Self
+    
+    /// The func adds
+    ///
+    ///
+    func value(_ value: TemplateValue<String>) -> Self
 }
 
 extension ValueAttribute {

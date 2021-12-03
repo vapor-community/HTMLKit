@@ -24,7 +24,7 @@ public struct MetaTitle: Component {
         IF(useOpenGraph) {
             Meta()
                 .property(.title)
-                .content(self.title.rawValue)
+                .content(self.title)
         }
         IF(useTwitter) {
             Meta()
@@ -48,11 +48,11 @@ public struct MetaDescription: Component {
     public var body: AnyContent {
         Meta()
             .name(.description)
-            .content(self.description.rawValue)
+            .content(self.description)
         IF(useOpenGraph) {
             Meta()
                 .property(.description)
-                .content(self.description.rawValue)
+                .content(self.description)
         }
         IF(useTwitter) {
             Meta()
@@ -100,8 +100,8 @@ public struct Stylesheet: Component {
     public var body: AnyContent {
         Link()
             .relationship(.stylesheet)
-            .reference(self.url.rawValue)
-            .type("text/css")
+            .reference(self.url)
+            .type(.css)
     }
 }
 
@@ -149,11 +149,11 @@ public struct Author: Component {
     public var body: AnyContent {
         Meta()
             .name(.author)
-            .content(self.author.rawValue)
+            .content(self.author)
         Unwrap(handle) { handle in
             Meta()
                 .name(.init(rawValue: "twitter:creator")!)
-                .content(handle.rawValue)
+                .content(handle)
         }
     }
     

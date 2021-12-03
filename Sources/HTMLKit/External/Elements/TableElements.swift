@@ -126,6 +126,10 @@ extension Caption: GlobalAttributes {
     public func id(_ value: String) -> Caption {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Caption {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Caption {
         return mutate(lang: type.rawValue)
@@ -268,6 +272,10 @@ extension ColumnGroup: GlobalAttributes, SpanAttribute {
 
     public func id(_ value: String) -> ColumnGroup {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> ColumnGroup {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> ColumnGroup {
@@ -415,6 +423,10 @@ extension Column: GlobalAttributes, SpanAttribute {
 
     public func id(_ value: String) -> Column {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Column {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Column {
@@ -564,6 +576,10 @@ extension TableBody: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> TableBody {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> TableBody {
         return mutate(lang: type.rawValue)
     }
@@ -713,6 +729,10 @@ extension TableHead: GlobalAttributes, WidthAttribute, HeightAttribute {
 
     public func id(_ value: String) -> TableHead {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> TableHead {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> TableHead {
@@ -865,6 +885,10 @@ extension TableFoot: GlobalAttributes {
     public func id(_ value: String) -> TableFoot {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> TableFoot {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> TableFoot {
         return mutate(lang: type.rawValue)
@@ -1007,6 +1031,10 @@ extension TableRow: GlobalAttributes, WidthAttribute, HeightAttribute {
 
     public func id(_ value: String) -> TableRow {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> TableRow {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> TableRow {
@@ -1158,6 +1186,10 @@ extension DataCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, Hea
 
     public func id(_ value: String) -> DataCell {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> DataCell {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> DataCell {
@@ -1315,6 +1347,10 @@ extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, H
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> HeaderCell {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> HeaderCell {
         return mutate(lang: type.rawValue)
     }

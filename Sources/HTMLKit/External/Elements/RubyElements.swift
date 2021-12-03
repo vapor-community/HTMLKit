@@ -96,6 +96,10 @@ extension RubyText: GlobalAttributes {
     public func id(_ value: String) -> RubyText {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> RubyText {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> RubyText {
         return mutate(lang: type.rawValue)
@@ -238,6 +242,10 @@ extension RubyPronunciation: GlobalAttributes {
 
     public func id(_ value: String) -> RubyPronunciation {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> RubyPronunciation {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> RubyPronunciation {

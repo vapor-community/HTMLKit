@@ -96,6 +96,10 @@ extension TermName: GlobalAttributes {
     public func id(_ value: String) -> TermName {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> TermName {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> TermName {
         return mutate(lang: type.rawValue)
@@ -238,6 +242,10 @@ extension TermDefinition: GlobalAttributes {
 
     public func id(_ value: String) -> TermDefinition {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> TermDefinition {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> TermDefinition {

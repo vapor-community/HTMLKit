@@ -87,6 +87,10 @@ extension Title: GlobalAttributes {
         return mutate(id: value)
     }
     
+    public func id(_ value: TemplateValue<String>) -> Title {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Title {
         return mutate(lang: type.rawValue)
     }
@@ -225,6 +229,10 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
         return mutate(id: value)
     }
     
+    public func id(_ value: TemplateValue<String>) -> Base {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Base {
         return mutate(lang: type.rawValue)
     }
@@ -259,6 +267,10 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
     
     public func reference(_ value: String) -> Base {
         return mutate(href: value)
+    }
+    
+    public func reference(_ value: TemplateValue<String>) -> Base {
+        return mutate(href: value.rawValue)
     }
     
     public func target(_ type: Target) -> Base {
@@ -370,6 +382,10 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
     public func id(_ value: String) -> Meta {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Meta {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Meta {
         return mutate(lang: type.rawValue)
@@ -407,8 +423,16 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
         return mutate(content: value)
     }
     
-    public func name(_ type: NameType) -> Meta {
-        return mutate(name: type.rawValue)
+    public func content(_ value: TemplateValue<String>) -> Meta {
+        return mutate(content: value.rawValue)
+    }
+    
+    public func name(_ value: NameType) -> Meta {
+        return mutate(name: value.rawValue)
+    }
+    
+    public func name(_ value: TemplateValue<NameType>) -> Meta {
+        return mutate(name: value.rawValue)
     }
     
     public func property(_ type: Graphs) -> Meta {
@@ -529,6 +553,10 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
     public func id(_ value: String) -> Style {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Style {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Style {
         return mutate(lang: type.rawValue)
@@ -562,8 +590,8 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
         return mutate(translate: value)
     }
 
-    public func type(_ value: String) -> Style {
-        return mutate(type: value)
+    public func type(_ value: MediaType) -> Style {
+        return mutate(type: value.rawValue)
     }
     
     public func media(_ value: String) -> Style {

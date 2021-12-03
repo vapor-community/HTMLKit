@@ -91,6 +91,10 @@ extension ListItem: GlobalAttributes, ValueAttribute {
     public func id(_ value: String) -> ListItem {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> ListItem {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> ListItem {
         return mutate(lang: type.rawValue)
@@ -126,6 +130,10 @@ extension ListItem: GlobalAttributes, ValueAttribute {
     
     public func value(_ value: String) -> ListItem {
         return mutate(value: value)
+    }
+    
+    public func value(_ value: TemplateValue<String>) -> ListItem {
+        return mutate(value: value.rawValue)
     }
 }
 

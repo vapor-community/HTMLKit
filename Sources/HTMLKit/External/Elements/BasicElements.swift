@@ -132,6 +132,10 @@ extension Html: GlobalAttributes {
     public func id(_ value: String) -> Html {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Html {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Html {
         return mutate(lang: type.rawValue)

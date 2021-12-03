@@ -81,6 +81,10 @@ extension Parameter: GlobalAttributes, NameAttribute, ValueAttribute {
     public func id(_ value: String) -> Parameter {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Parameter {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Parameter {
         return mutate(lang: type.rawValue)
@@ -114,12 +118,20 @@ extension Parameter: GlobalAttributes, NameAttribute, ValueAttribute {
         return mutate(translate: value)
     }
 
-    public func name(_ type: NameType) -> Parameter {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Parameter {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> Parameter {
+        return mutate(name: value.rawValue)
     }
     
     public func value(_ value: String) -> Parameter {
         return mutate(value: value)
+    }
+    
+    public func value(_ value: TemplateValue<String>) -> Parameter {
+        return mutate(value: value.rawValue)
     }
 }
 

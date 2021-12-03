@@ -86,6 +86,10 @@ extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, Shap
     public func id(_ value: String) -> Area {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Area {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Area {
         return mutate(lang: type.rawValue)
@@ -133,6 +137,10 @@ extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, Shap
     
     public func reference(_ value: String) -> Area {
         return mutate(href: value)
+    }
+    
+    public func reference(_ value: TemplateValue<String>) -> Area {
+        return mutate(href: value.rawValue)
     }
     
     public func target(_ type: Target) -> Area {

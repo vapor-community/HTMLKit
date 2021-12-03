@@ -91,6 +91,10 @@ extension OptionGroup: GlobalAttributes, DisabledAttribute, LabelAttribute {
     public func id(_ value: String) -> OptionGroup {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> OptionGroup {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> OptionGroup {
         return mutate(lang: type.rawValue)
@@ -242,6 +246,10 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
     public func id(_ value: String) -> Option {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Option {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Option {
         return mutate(lang: type.rawValue)
@@ -285,6 +293,10 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
     
     public func value(_ value: String) -> Option {
         return mutate(value: value)
+    }
+    
+    public func value(_ value: TemplateValue<String>) -> Option {
+        return mutate(value: value.rawValue)
     }
 }
 
@@ -396,6 +408,10 @@ extension Legend: GlobalAttributes {
 
     public func id(_ value: String) -> Legend {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Legend {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Legend {
@@ -539,6 +555,10 @@ extension Summary: GlobalAttributes {
 
     public func id(_ value: String) -> Summary {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Summary {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Summary {

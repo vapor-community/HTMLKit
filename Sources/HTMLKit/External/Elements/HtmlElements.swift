@@ -87,6 +87,10 @@ extension Head: GlobalAttributes {
         return mutate(id: value)
     }
     
+    public func id(_ value: TemplateValue<String>) -> Head {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Head {
         return mutate(lang: type.rawValue)
     }
@@ -264,6 +268,10 @@ extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttr
 
     public func id(_ value: String) -> Body {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Body {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Body {

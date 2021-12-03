@@ -81,6 +81,10 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
     public func id(_ value: String) -> Source {
         return mutate(id: value)
     }
+    
+    public func id(_ value: TemplateValue<String>) -> Source {
+        return mutate(id: value.rawValue)
+    }
 
     public func language(_ type: Language) -> Source {
         return mutate(lang: type.rawValue)
@@ -114,8 +118,8 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
         return mutate(translate: value)
     }
 
-    public func type(_ value: String) -> Source {
-        return mutate(type: value)
+    public func type(_ value: MediaType) -> Source {
+        return mutate(type: value.rawValue)
     }
     
     public func source(_ value: String) -> Source {
@@ -242,6 +246,10 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
 
     public func id(_ value: String) -> Track {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Track {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Track {
