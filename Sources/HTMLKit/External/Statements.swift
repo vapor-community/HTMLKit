@@ -1,32 +1,32 @@
-/// A struct making it possible to have a if in the template
+/// # Description:
+/// The file contains basic statements.
 ///
-///     runtimeIf(\.name == "Name", view: ...)
-public struct IF {
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
 
-    /// One condition in the if
+/// # Description:
+/// The statement is for
+///
+/// # References:
+///
+public struct IF {
+    
     public class Condition {
 
-        /// The condition to evaluate
         let condition: Conditionable
-
-        /// The local formula for optimazation
         var localFormula: Renderer.Formula
-
-        /// The view to render.
-        /// Set to an empty string in order to create a condition on `\.name == ""`
-        /// This should probably be re designed a little
         var view: AnyContent = ""
-
-        /// Creates an if condition
-        ///
-        /// - Parameter condition: The condition to evaluate
+        
         init(condition: Conditionable) {
             self.condition = condition
             localFormula = Renderer.Formula()
         }
     }
 
-    /// The different conditions that can happen
     let conditions: [Condition]
 
     public init(_ condition: Conditionable, @ContentBuilder<AnyContent> content: () -> AnyContent) {
@@ -42,17 +42,14 @@ public struct IF {
 
 extension IF.Condition: Conditionable {
 
-    // View `Conditionable` documentation
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         return try condition.evaluate(with: manager)
     }
 
-    // View `CompiledTemplate` documentation
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         return try localFormula.render(with: manager)
     }
-
-    // View `BrewableFormula` documentation
+    
     public func prerender(_ formula: Renderer.Formula) throws {
         try view.prerender(localFormula)
     }
@@ -74,8 +71,7 @@ extension IF: AnyContent {
             return scriptCondition
         })
     }
-
-    // View `CompiledTemplate` documentation
+    
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         for condition in conditions {
             if try condition.evaluate(with: manager) {
@@ -85,7 +81,6 @@ extension IF: AnyContent {
         return ""
     }
 
-    // View `BrewableFormula` documentation
     public func prerender(_ formula: Renderer.Formula) throws {
         var isStaticallyEvaluated = true
         for condition in conditions {
@@ -159,8 +154,10 @@ extension IF: AnyContent {
     }
 }
 
-/// A struct making it possible to have a for each loop in the template
+/// # Description:
+/// The statement is for
 ///
+/// # References:
 ///
 public struct ForEach<Values> where Values: Sequence {
 

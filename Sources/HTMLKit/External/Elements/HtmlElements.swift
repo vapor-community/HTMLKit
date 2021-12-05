@@ -1,7 +1,21 @@
+/// # Description:
+/// The file contains the html elements. The html element Html only allows these elements to be its
+/// descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The element
+/// # Description:
+/// The element contains the information about the document's content.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-head-element
 ///
 public struct Head: ContentNode, HtmlElement {
 
@@ -151,8 +165,11 @@ extension Head: Modifiable {
     }
 }
 
-/// The element
+/// # Description:
+/// The element contains the document's content.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-body-element
 ///
 public struct Body: ContentNode, HtmlElement {
 

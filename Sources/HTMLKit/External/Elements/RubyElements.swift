@@ -1,17 +1,31 @@
+/// # Description:
+/// The file contains the ruby elements. The html element Ruby only allows these elements to be its
+/// descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to RubyText.
 ///
 public typealias Rt = RubyText
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to RubyPronunciation.
 ///
 public typealias Rp = RubyPronunciation
 
-/// The element
+/// # Description:
+/// The element marks the ruby text component of a ruby annotation.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-rt-element
 ///
 public struct RubyText: ContentNode, RubyElement {
 
@@ -161,8 +175,11 @@ extension RubyText: Modifiable {
     }
 }
 
-/// The element
+/// # Description:
+/// The element represents nothing.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-rp-element
 ///
 public struct RubyPronunciation: ContentNode, RubyElement {
 

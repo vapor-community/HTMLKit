@@ -1,7 +1,21 @@
+/// # Description:
+/// The file contains the map elements. The html element Map only allows these elements to be its
+/// descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The element
+/// # Description:
+/// The element defines an image map.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-area-element
 ///
 public struct Area: ContentNode, MapElement {
 

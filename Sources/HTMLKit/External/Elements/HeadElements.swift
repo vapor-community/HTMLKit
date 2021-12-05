@@ -1,7 +1,23 @@
+/// # Description:
+/// The file contains the figure elements. The html element Head only allows these elements to be its
+/// descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The element
+/// # Description:
+/// The element represents the document's title.
 ///
+/// There must be no more than one title element per document.
+///
+/// # References:
+/// https://html.spec.whatwg.org/#the-title-element
 ///
 public struct Title: ContentNode, HeadElement {
 
@@ -151,8 +167,14 @@ extension Title: Modifiable {
     }
 }
 
-/// The element
+
+/// # Description:
+/// The element specifies the document base url.
 ///
+/// There must be no more than one base element per document.
+///
+/// # References:
+/// https://html.spec.whatwg.org/#the-base-element
 ///
 public struct Base: EmptyNode, HeadElement {
 
@@ -309,8 +331,12 @@ extension Base: Modifiable {
     }
 }
 
-/// The element
+/// # Description:
+/// The element provides meta information about the document.
 ///
+///
+/// # References:
+/// https://html.spec.whatwg.org/#the-meta-element
 ///
 public struct Meta: EmptyNode, HeadElement {
 
@@ -475,8 +501,12 @@ extension Meta: Modifiable {
     }
 }
 
-/// The element
+/// # Description:
+/// The element contains style information for the document.
 ///
+///
+/// # References:
+/// https://html.spec.whatwg.org/#the-style-element
 ///
 public struct Style: ContentNode, HeadElement {
 

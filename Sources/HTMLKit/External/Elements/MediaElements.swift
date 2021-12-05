@@ -1,7 +1,21 @@
+/// # Description:
+/// The file contains the media elements. The html elements Audio or Video only allows these elements
+/// to be its descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The element
+/// # Description:
+/// The element allows authors to specify multiple alternative source for other elements.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-source-element
 ///
 public struct Source: EmptyNode, MediaElement {
 
@@ -170,8 +184,11 @@ extension Source: Modifiable {
     }
 }
 
-/// The element
+/// # Description:
+/// The element allows to specify explicit external timed text tracks for media elements.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-track-element
 ///
 public struct Track: EmptyNode, MediaElement {
 

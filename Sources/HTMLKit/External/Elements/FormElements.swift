@@ -1,7 +1,21 @@
+/// # Description:
+/// The file contains the form elements. The html element Form only allows these elements to be its
+/// descendants. There are some exceptions too.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The element
+/// # Description:
+/// The element represents a typed data field to allow the user to edit the data.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-input-element
 ///
 public struct Input: EmptyNode, FormElement {
 
@@ -262,8 +276,11 @@ extension Input: Modifiable {
     }
 }
 
-/// The element
+/// # Description:
+/// The element represents a caption for a form control.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-label-element
 ///
 public struct Label: ContentNode, FormElement {
 
@@ -428,8 +445,11 @@ extension Label: Modifiable {
     }
 }
 
-/// The element
+/// # Description:
+/// The element represents a control for selecting amongst a set of options.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-select-element
 ///
 public struct Select: ContentNode, FormElement {
 
@@ -611,8 +631,11 @@ extension Select: Modifiable {
     }
 }
 
-/// The element
+/// # Description:
+/// The element represents a multiline plain text edit control.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-textarea-element
 ///
 public struct TextArea: ContentNode, FormElement {
         
@@ -818,8 +841,11 @@ extension TextArea: Modifiable {
     }
 }
 
-/// The element
+/// # Description:
+/// The element represents a comment output.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-button-element
 ///
 public struct Button: ContentNode, FormElement {
 
@@ -1012,8 +1038,11 @@ extension Button: Modifiable {
     }
 }
 
-/// The element
+/// # Description:
+/// The element represents a set of form controls grouped together.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-fieldset-element
 ///
 public struct Fieldset: ContentNode, FormElement {
     

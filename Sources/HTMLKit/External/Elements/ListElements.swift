@@ -1,12 +1,26 @@
+/// # Description:
+/// The file contains the list elements. The html elements OrderedList or UnorderedList only
+/// allows these elements to be its descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to ListItem.
 ///
 public typealias Li = ListItem
 
-/// The element
+/// # Description:
+/// The element represents a item of a list.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-li-element
 ///
 public struct ListItem: ContentNode, ListElement {
 

@@ -1,5 +1,17 @@
-/// The protocol defines
+/// # Description:
+/// The file contains layout components.
 ///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
+/// # Description:
+/// The protocol is for
+///
+/// # References:
 ///
 public protocol Page: AnyContent {
     
@@ -19,8 +31,10 @@ extension Page {
     public var scripts: AnyContent { body.scripts }
 }
 
-/// The protocol defines
+/// # Description:
+/// The protocol is for
 ///
+/// # References:
 ///
 public protocol View: AnyContent {
     
@@ -46,8 +60,10 @@ extension View {
     public var scripts: AnyContent { body.scripts }
 }
 
-/// The protocol defines
+/// # Description:
+/// The protocol is for
 ///
+/// # References:
 ///
 public protocol Component: AnyContent {
     

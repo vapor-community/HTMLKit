@@ -1,7 +1,21 @@
+/// # Description:
+/// The file contains the object elements. The html element Object only allows these elements to be its
+/// descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The element
+/// # Description:
+/// The element defines parameters for plugins invoked by an object element.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-param-element
 ///
 public struct Parameter: EmptyNode, ObjectElement {
     

@@ -1,7 +1,17 @@
-// MARK: types
+/// # Description:
+/// The file contains html types.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
 
+/// # Description:
 /// The type is for
 ///
+/// # References:
 ///
 public struct NameType: RawRepresentable {
     
@@ -22,8 +32,10 @@ extension NameType {
     static let applicationName = NameType(rawValue: "application-name")!
 }
 
-/// The enum is for
+/// # Description:
+/// The type is for
 ///
+/// # References:
 ///
 public enum Buttons: String {
 
@@ -32,8 +44,10 @@ public enum Buttons: String {
     case reset
 }
 
+/// # Description:
 /// The type is for
 ///
+/// # References:
 ///
 public enum Encoding: String {
     
@@ -42,8 +56,10 @@ public enum Encoding: String {
     case plainText = "text/plain"
 }
 
-/// The enum is for
+/// # Description:
+/// The type is for
 ///
+/// # References:
 ///
 public enum Method: String {
     
@@ -51,8 +67,10 @@ public enum Method: String {
     case get
 }
 
+/// # Description:
 /// The type is for
 ///
+/// # References:
 ///
 public enum Inputs: String {
     
@@ -80,8 +98,10 @@ public enum Inputs: String {
     case phone = "tel"
 }
 
+/// # Description:
 /// The type is for
 ///
+/// # References:
 ///
 public enum Language: String {
     
@@ -271,8 +291,10 @@ public enum Language: String {
     case zulu = "zu"
 }
 
+/// # Description:
 /// The type is for
 ///
+/// # References:
 ///
 public enum Policy: String {
     
@@ -286,8 +308,10 @@ public enum Policy: String {
     case unsafeUrl = "unsafe-url"
 }
 
+/// # Description:
 /// The type is for
 ///
+/// # References:
 ///
 public enum Relation: String {
     
@@ -314,8 +338,10 @@ public enum Relation: String {
     case shortcutIcon = "shortcut icon"
 }
 
-/// The enum is for
+/// # Description:
+/// The type is for
 ///
+/// # References:
 ///
 public enum Target: String {
     
@@ -336,8 +362,10 @@ public enum Shape: String {
     case rectangle = "rect"
 }
 
+/// # Description:
 /// The type is for
 ///
+/// # References:
 ///
 public enum Wrapping: String {
     
@@ -345,8 +373,10 @@ public enum Wrapping: String {
     case hard
 }
 
-/// The enum is for
+/// # Description:
+/// The type is for
 ///
+/// # References:
 ///
 public enum Direction: String {
     
@@ -355,8 +385,10 @@ public enum Direction: String {
     case auto
 }
 
+/// # Description:
 /// The type is for
 ///
+/// # References:
 ///
 public struct MediaType: RawRepresentable {
     
@@ -378,8 +410,10 @@ extension MediaType {
     static let javascript = MediaType(rawValue: "application/javascript")!
 }
 
+/// # Description:
 /// The type is for
 ///
+/// # References:
 ///
 public enum Marker: String {
     
@@ -390,8 +424,10 @@ public enum Marker: String {
     case lowercaseRoman = "i"
 }
 
+/// # Description:
 /// The type is for
 ///
+/// # References:
 ///
 public enum DocumentType: String {
         
@@ -405,8 +441,10 @@ public enum DocumentType: String {
     case xhtml = #"html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd""#
 }
 
+/// # Description:
 /// The type is for
 ///
+/// # References:
 ///
 public enum Graphs: String {
 
@@ -419,8 +457,10 @@ public enum Graphs: String {
     case siteName = "og:site_name"
 }
 
+/// # Description:
 /// The type is for
 ///
+/// # References:
 ///
 public enum Hint: String {
     
@@ -433,8 +473,10 @@ public enum Hint: String {
     case send
 }
 
+/// # Description:
 /// The type is for
 ///
+/// # References:
 ///
 public enum Capitalization: String {
     
