@@ -1,7 +1,17 @@
-// MARK: components
-
-/// The component ist for
+/// # Description:
+/// The file contains the view components.
 ///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
+/// # Description:
+/// The component returns a meta element with twitter and opengraph.
+///
+/// # References:
 ///
 public struct MetaTitle: Component {
     
@@ -24,7 +34,7 @@ public struct MetaTitle: Component {
         IF(useOpenGraph) {
             Meta()
                 .property(.title)
-                .content(self.title.rawValue)
+                .content(self.title)
         }
         IF(useTwitter) {
             Meta()
@@ -34,8 +44,10 @@ public struct MetaTitle: Component {
     }
 }
 
-/// The component ist for
+/// # Description:
+/// The component returns a meta element with twitter and opengraph.
 ///
+/// # References:
 ///
 public struct MetaDescription: Component {
 
@@ -48,11 +60,11 @@ public struct MetaDescription: Component {
     public var body: AnyContent {
         Meta()
             .name(.description)
-            .content(self.description.rawValue)
+            .content(self.description)
         IF(useOpenGraph) {
             Meta()
                 .property(.description)
-                .content(self.description.rawValue)
+                .content(self.description)
         }
         IF(useTwitter) {
             Meta()
@@ -68,8 +80,10 @@ public struct MetaDescription: Component {
     }
 }
 
-/// The component ist for
+/// # Description:
+/// The component returns a link element.
 ///
+/// # References:
 ///
 public struct Favicon: Component {
 
@@ -86,8 +100,10 @@ public struct Favicon: Component {
     }
 }
 
-/// The component ist for
+/// # Description:
+/// The component returns a link element.
 ///
+/// # References:
 ///
 public struct Stylesheet: Component {
     
@@ -100,13 +116,15 @@ public struct Stylesheet: Component {
     public var body: AnyContent {
         Link()
             .relationship(.stylesheet)
-            .reference(self.url.rawValue)
-            .type("text/css")
+            .reference(self.url)
+            .type(.css)
     }
 }
 
-/// The component ist for
+/// # Description:
+/// The component returns a meta element.
 ///
+/// # References:
 ///
 public struct Viewport: Component {
 
@@ -137,8 +155,10 @@ public struct Viewport: Component {
     }
 }
 
-/// The component ist for
+/// # Description:
+/// The component returns a meta element.
 ///
+/// # References:
 ///
 public struct Author: Component {
 
@@ -149,11 +169,11 @@ public struct Author: Component {
     public var body: AnyContent {
         Meta()
             .name(.author)
-            .content(self.author.rawValue)
+            .content(self.author)
         Unwrap(handle) { handle in
             Meta()
                 .name(.init(rawValue: "twitter:creator")!)
-                .content(handle.rawValue)
+                .content(handle)
         }
     }
     

@@ -1,7 +1,20 @@
+/// # Description:
+/// The file contains the basics elements. These elements should be used at first.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The element
+/// # Description:
+/// The element represents a comment output.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#comments
 ///
 public struct Comment: CommentNode {
     
@@ -23,8 +36,11 @@ extension Comment: AnyContent {
     }
 }
 
-/// The element
+/// # Description:
+/// The element represents the the document.
 ///
+/// # References:
+/// https://dom.spec.whatwg.org/#document-element
 ///
 public struct Document: DocumentNode, BasicElement {
     
@@ -46,8 +62,11 @@ extension Document: AnyContent {
     }
 }
 
-/// The element
+/// # Description:
+/// The element represents the document's root element.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-html-element
 ///
 public struct Html: ContentNode, BasicElement {
 
@@ -128,9 +147,17 @@ extension Html: GlobalAttributes {
     public func itemScope(_ value: String) -> Html {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Html {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Html {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Html {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Html {
@@ -174,5 +201,17 @@ extension Html: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Html: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

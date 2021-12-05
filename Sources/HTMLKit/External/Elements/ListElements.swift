@@ -1,12 +1,26 @@
+/// # Description:
+/// The file contains the list elements. The html elements OrderedList or UnorderedList only
+/// allows these elements to be its descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to ListItem.
 ///
 public typealias Li = ListItem
 
-/// The element
+/// # Description:
+/// The element represents a item of a list.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-li-element
 ///
 public struct ListItem: ContentNode, ListElement {
 
@@ -87,9 +101,17 @@ extension ListItem: GlobalAttributes, ValueAttribute {
     public func itemScope(_ value: String) -> ListItem {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> ListItem {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> ListItem {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> ListItem {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> ListItem {
@@ -127,6 +149,10 @@ extension ListItem: GlobalAttributes, ValueAttribute {
     public func value(_ value: String) -> ListItem {
         return mutate(value: value)
     }
+    
+    public func value(_ value: TemplateValue<String>) -> ListItem {
+        return mutate(value: value.rawValue)
+    }
 }
 
 extension ListItem: AnyContent {
@@ -137,5 +163,17 @@ extension ListItem: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension ListItem: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

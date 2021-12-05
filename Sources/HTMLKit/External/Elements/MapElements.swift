@@ -1,7 +1,21 @@
+/// # Description:
+/// The file contains the map elements. The html element Map only allows these elements to be its
+/// descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The element
+/// # Description:
+/// The element defines an image map.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-area-element
 ///
 public struct Area: ContentNode, MapElement {
 
@@ -82,9 +96,17 @@ extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, Shap
     public func itemScope(_ value: String) -> Area {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Area {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Area {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Area {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Area {
@@ -135,6 +157,10 @@ extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, Shap
         return mutate(href: value)
     }
     
+    public func reference(_ value: TemplateValue<String>) -> Area {
+        return mutate(href: value.rawValue)
+    }
+    
     public func target(_ type: Target) -> Area {
         return mutate(target: type.rawValue)
     }
@@ -164,5 +190,17 @@ extension Area: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Area: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

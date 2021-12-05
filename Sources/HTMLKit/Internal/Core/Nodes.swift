@@ -1,7 +1,19 @@
+/// # Description:
+/// The file contains the node definitions.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The node is for
+/// # Description:
+/// The protocol defines a node with content.
 ///
+/// # References:
 ///
 internal protocol ContentNode: AnyNode {
 
@@ -20,9 +32,22 @@ extension ContentNode {
     
     internal func merge(_ new: OrderedDictionary<String, Any>, with current: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
         
-        current.merge(new) { (current, _) in current }
+        current.merge(new) { (_, new) in new }
         
         return current
+    }
+}
+
+extension ContentNode where Self: Modifiable {
+    
+    internal func modify(_ element: Self) -> Self {
+        
+        guard var attributes = self.attributes else {
+
+            return .init(attributes: element.attributes!, content: self.content)
+        }
+        
+        return .init(attributes: merge(element.attributes!, with: &attributes), content: self.content)
     }
 }
 
@@ -506,8 +531,11 @@ extension ContentNode where Content == String {
     }
 }
 
-/// The node is for
+/// # Description:
+/// The protocol defines a node without content.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#void-elements
 ///
 internal protocol EmptyNode: AnyNode {
 
@@ -551,8 +579,24 @@ extension EmptyNode {
     }
 }
 
-/// The node is for
+extension EmptyNode where Self: Modifiable {
+    
+    internal func modify(_ element: Self) -> Self {
+        
+        guard var attributes = self.attributes else {
+
+            return .init(attributes: element.attributes!)
+        }
+        
+        return .init(attributes: merge(element.attributes!, with: &attributes))
+    }
+}
+
+/// # Description:
+/// The protocol defines a node for comments.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#comments
 ///
 internal protocol CommentNode: AnyNode {
     
@@ -574,8 +618,10 @@ extension CommentNode {
     }
 }
 
-/// The node is for
+/// # Description:
+/// The protocol defines the document node.
 ///
+/// # References:
 ///
 internal protocol DocumentNode: AnyNode {
     

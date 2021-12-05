@@ -1,7 +1,21 @@
+/// # Description:
+/// The file contains the media elements. The html elements Audio or Video only allows these elements
+/// to be its descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The element
+/// # Description:
+/// The element allows authors to specify multiple alternative source for other elements.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-source-element
 ///
 public struct Source: EmptyNode, MediaElement {
 
@@ -78,8 +92,16 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
         return mutate(itemscope: value)
     }
 
+    public func itemType(_ value: String) -> Source {
+        return mutate(itemtype: value)
+    }
+    
     public func id(_ value: String) -> Source {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Source {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Source {
@@ -114,8 +136,8 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
         return mutate(translate: value)
     }
 
-    public func type(_ value: String) -> Source {
-        return mutate(type: value)
+    public func type(_ value: MediaType) -> Source {
+        return mutate(type: value.rawValue)
     }
     
     public func source(_ value: String) -> Source {
@@ -150,8 +172,23 @@ extension Source: AnyContent {
     }
 }
 
-/// The element
+extension Source: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element allows to specify explicit external timed text tracks for media elements.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-track-element
 ///
 public struct Track: EmptyNode, MediaElement {
 
@@ -223,6 +260,10 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
     public func itemReference(_ value: String) -> Track {
         return mutate(itemref: value)
     }
+    
+    public func itemType(_ value: String) -> Track {
+        return mutate(itemtype: value)
+    }
 
     public func itemScope(_ value: String) -> Track {
         return mutate(itemscope: value)
@@ -230,6 +271,10 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
 
     public func id(_ value: String) -> Track {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Track {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Track {
@@ -289,5 +334,17 @@ extension Track: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Track: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

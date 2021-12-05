@@ -1,187 +1,201 @@
+/// # Description:
+/// The file contains the body elements. The html element Body only allows these elements
+/// to be its descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Navigation.
 ///
 public typealias Nav = Navigation
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Heading1.
 ///
 public typealias H1 = Heading1
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Heading2.
 ///
 public typealias H2 = Heading2
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Heading3.
 ///
 public typealias H3 = Heading3
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Heading4.
 ///
 public typealias H4 = Heading4
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Heading5.
 ///
 public typealias H5 = Heading5
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Heading6.
 ///
 public typealias H6 = Heading6
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to HeadingGroup.
 ///
 public typealias Hgroup = HeadingGroup
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Paragraph.
 ///
 public typealias P = Paragraph
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to HorizontalRule.
 ///
 public typealias Hr = HorizontalRule
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to PreformattedText.
 ///
 public typealias Pre = PreformattedText
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to OrderedList.
 ///
 public typealias Ol = OrderedList
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to UnorderedList.
 ///
 public typealias Ul = UnorderedList
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to DescriptionList.
 ///
 public typealias Dl = DescriptionList
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Division.
 ///
 public typealias Div = Division
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Anchor.
 ///
 public typealias A = Anchor
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Emphasize.
 ///
 public typealias Em = Emphasize
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to StrikeThrough.
 ///
 public typealias S = StrikeThrough
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to ShortQuote.
 ///
 public typealias Q = ShortQuote
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Definition.
 ///
 public typealias Dfn = Definition
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Abbreviation.
 ///
 public typealias Abbr = Abbreviation
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Variable.
 ///
 public typealias V = Variable
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to SampleOutput.
 ///
 public typealias Samp = SampleOutput
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to KeyboardInput.
 ///
 public typealias Kbd = KeyboardInput
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Subscript.
 ///
 public typealias Sub = Subscript
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Superscript.
 ///
 public typealias Sup = Superscript
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Italic.
 ///
 public typealias I = Italic
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Bold.
 ///
 public typealias B = Bold
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Underline.
 ///
 public typealias U = Underline
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to LineBreak.
 ///
 public typealias Br = LineBreak
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to WordBreak.
 ///
 public typealias Wbr = WordBreak
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to InsertedText.
 ///
 public typealias Ins = InsertedText
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to DeletedText.
 ///
 public typealias Del = DeletedText
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Image.
 ///
 public typealias Img = Image
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to InlineFrame.
 ///
 public typealias Iframe = InlineFrame
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Parameter.
 ///
 public typealias Param = Parameter
 
-/// The element
+/// # Description:
+/// The element represents a comment output.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-link-element
 ///
 public struct Link: EmptyNode, BodyElement {
 
@@ -265,9 +279,17 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
     public func itemScope(_ value: String) -> Link {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Link {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Link {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Link {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Link {
@@ -306,6 +328,10 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
         return mutate(href: value)
     }
     
+    public func reference(_ value: TemplateValue<String>) -> Link {
+        return mutate(href: value.rawValue)
+    }
+    
     public func referenceLanguage(_ type: Language) -> Link {
         return mutate(hreflang: type.rawValue)
     }
@@ -326,8 +352,8 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
         return mutate(sizes: size)
     }
     
-    public func type(_ value: String) -> Link {
-        return mutate(type: value)
+    public func type(_ value: MediaType) -> Link {
+        return mutate(type: value.rawValue)
     }
 }
 
@@ -342,8 +368,23 @@ extension Link: AnyContent {
     }
 }
 
-/// The element
+extension Link: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a self-contained content.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-article-element
 ///
 public struct Article: ContentNode, BodyElement {
 
@@ -424,9 +465,17 @@ extension Article: GlobalAttributes {
     public func itemScope(_ value: String) -> Article {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Article {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Article {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Article {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Article {
@@ -473,8 +522,23 @@ extension Article: AnyContent {
     }
 }
 
-/// The element
+extension Article: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a generic section of the document.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-section-element
 ///
 public struct Section: ContentNode, BodyElement {
 
@@ -555,9 +619,17 @@ extension Section: GlobalAttributes {
     public func itemScope(_ value: String) -> Section {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Section {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Section {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Section {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Section {
@@ -604,8 +676,23 @@ extension Section: AnyContent {
     }
 }
 
-/// The element
+extension Section: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a section of a page that links to other pages or parts within the page.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-nav-element)
 ///
 public struct Navigation: ContentNode, BodyElement {
 
@@ -686,9 +773,17 @@ extension Navigation: GlobalAttributes {
     public func itemScope(_ value: String) -> Navigation {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Navigation {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Navigation {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Navigation {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Navigation {
@@ -735,8 +830,23 @@ extension Navigation: AnyContent {
     }
 }
 
-/// The element
+extension Navigation: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element defines some content aside from the content it is placed in.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-aside-element
 ///
 public struct Aside: ContentNode, BodyElement {
 
@@ -817,9 +927,17 @@ extension Aside: GlobalAttributes {
     public func itemScope(_ value: String) -> Aside {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Aside {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Aside {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Aside {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Aside {
@@ -866,8 +984,23 @@ extension Aside: AnyContent {
     }
 }
 
-/// The element
+extension Aside: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a heading.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading1: ContentNode, BodyElement {
 
@@ -948,9 +1081,17 @@ extension Heading1: GlobalAttributes {
     public func itemScope(_ value: String) -> Heading1 {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Heading1 {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Heading1 {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Heading1 {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Heading1 {
@@ -986,17 +1127,6 @@ extension Heading1: GlobalAttributes {
     }
 }
 
-extension Heading1: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
-    }
-}
-
 extension Heading1: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -1008,8 +1138,34 @@ extension Heading1: AnyContent {
     }
 }
 
-/// The element
+extension Heading1: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
+extension Heading1: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a heading.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading2: ContentNode, BodyElement {
 
@@ -1090,11 +1246,19 @@ extension Heading2: GlobalAttributes {
     public func itemScope(_ value: String) -> Heading2 {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Heading2 {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Heading2 {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> Heading2 {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Heading2 {
         return mutate(lang: type.rawValue)
     }
@@ -1128,17 +1292,6 @@ extension Heading2: GlobalAttributes {
     }
 }
 
-extension Heading2: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
-    }
-}
-
 extension Heading2: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -1150,8 +1303,34 @@ extension Heading2: AnyContent {
     }
 }
 
-/// The element
+extension Heading2: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
+extension Heading2: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a heading.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading3: ContentNode, BodyElement {
 
@@ -1232,12 +1411,19 @@ extension Heading3: GlobalAttributes {
     public func itemScope(_ value: String) -> Heading3 {
         return mutate(itemscope: value)
     }
-
-    public func id(_ value: String) -> Heading3 {
-        
-return mutate(id: value)
+    
+    public func itemType(_ value: String) -> Heading3 {
+        return mutate(itemtype: value)
     }
 
+    public func id(_ value: String) -> Heading3 {
+        return mutate(id: value)
+    }
+
+    public func id(_ value: TemplateValue<String>) -> Heading3 {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Heading3 {
         return mutate(lang: type.rawValue)
     }
@@ -1271,17 +1457,6 @@ return mutate(id: value)
     }
 }
 
-extension Heading3: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
-    }
-}
-
 extension Heading3: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -1293,8 +1468,34 @@ extension Heading3: AnyContent {
     }
 }
 
-/// The element
+extension Heading3: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
+extension Heading3: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a heading.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading4: ContentNode, BodyElement {
 
@@ -1375,9 +1576,17 @@ extension Heading4: GlobalAttributes {
     public func itemScope(_ value: String) -> Heading4 {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Heading4 {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Heading4 {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Heading4 {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Heading4 {
@@ -1413,17 +1622,6 @@ extension Heading4: GlobalAttributes {
     }
 }
 
-extension Heading4: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
-    }
-}
-
 extension Heading4: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -1435,8 +1633,34 @@ extension Heading4: AnyContent {
     }
 }
 
-/// The element
+extension Heading4: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
+extension Heading4: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a heading.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading5: ContentNode, BodyElement {
 
@@ -1517,9 +1741,17 @@ extension Heading5: GlobalAttributes {
     public func itemScope(_ value: String) -> Heading5 {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Heading5 {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Heading5 {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Heading5 {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Heading5 {
@@ -1555,17 +1787,6 @@ extension Heading5: GlobalAttributes {
     }
 }
 
-extension Heading5: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
-    }
-}
-
 extension Heading5: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -1577,8 +1798,34 @@ extension Heading5: AnyContent {
     }
 }
 
-/// The element
+extension Heading5: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
+extension Heading5: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a heading.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading6: ContentNode, BodyElement {
 
@@ -1659,9 +1906,17 @@ extension Heading6: GlobalAttributes {
     public func itemScope(_ value: String) -> Heading6 {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Heading6 {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Heading6 {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Heading6 {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Heading6 {
@@ -1697,17 +1952,6 @@ extension Heading6: GlobalAttributes {
     }
 }
 
-extension Heading6: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
-    }
-}
-
 extension Heading6: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -1719,8 +1963,34 @@ extension Heading6: AnyContent {
     }
 }
 
-/// The element
+extension Heading6: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
+extension Heading6: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element is used to group a set of heading elements.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-hgroup-element
 ///
 public struct HeadingGroup: ContentNode, BodyElement {
 
@@ -1802,8 +2072,16 @@ extension HeadingGroup: GlobalAttributes {
         return mutate(itemscope: value)
     }
 
+    public func itemType(_ value: String) -> HeadingGroup {
+        return mutate(itemtype: value)
+    }
+    
     public func id(_ value: String) -> HeadingGroup {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> HeadingGroup {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> HeadingGroup {
@@ -1850,8 +2128,23 @@ extension HeadingGroup: AnyContent {
     }
 }
 
-/// The element
+extension HeadingGroup: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a header.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-header-element
 ///
 public struct Header: ContentNode, BodyElement {
 
@@ -1932,9 +2225,17 @@ extension Header: GlobalAttributes {
     public func itemScope(_ value: String) -> Header {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Header {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Header {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Header {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Header {
@@ -1981,8 +2282,23 @@ extension Header: AnyContent {
     }
 }
 
-/// The element
+extension Header: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a footer.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-footer-element
 ///
 public struct Footer: ContentNode, BodyElement {
 
@@ -2063,9 +2379,17 @@ extension Footer: GlobalAttributes {
     public func itemScope(_ value: String) -> Footer {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Footer {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Footer {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Footer {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Footer {
@@ -2112,8 +2436,23 @@ extension Footer: AnyContent {
     }
 }
 
-/// The element
+extension Footer: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents the contact information.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-address-element
 ///
 public struct Address: ContentNode, BodyElement {
 
@@ -2136,13 +2475,11 @@ public struct Address: ContentNode, BodyElement {
 extension Address: GlobalAttributes {
     
     public func accessKey(_ value: String) -> Address {
-        
-return mutate(accesskey: value)
+        return mutate(accesskey: value)
     }
 
     public func autocapitalize(_ type: Capitalization) -> Address {
-        
-return mutate(autocapitalize: type.rawValue)
+        return mutate(autocapitalize: type.rawValue)
     }
 
     public func autofocus() -> Address {
@@ -2196,11 +2533,19 @@ return mutate(autocapitalize: type.rawValue)
     public func itemScope(_ value: String) -> Address {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Address {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Address {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> Address {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Address {
         return mutate(lang: type.rawValue)
     }
@@ -2245,8 +2590,23 @@ extension Address: AnyContent {
     }
 }
 
-/// The element
+extension Address: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element is used to define a paragraph.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-p-element
 ///
 public struct Paragraph: ContentNode, BodyElement {
 
@@ -2327,9 +2687,17 @@ extension Paragraph: GlobalAttributes {
     public func itemScope(_ value: String) -> Paragraph {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Paragraph {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Paragraph {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Paragraph {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Paragraph {
@@ -2365,17 +2733,6 @@ extension Paragraph: GlobalAttributes {
     }
 }
 
-extension Paragraph: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
-    }
-}
-
 extension Paragraph: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -2387,8 +2744,34 @@ extension Paragraph: AnyContent {
     }
 }
 
-/// The element
+extension Paragraph: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
+extension Paragraph: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element is used for horizontal rules that act as dividers between sections.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-hr-element
 ///
 public struct HorizontalRule: EmptyNode, BodyElement {
 
@@ -2464,9 +2847,17 @@ extension HorizontalRule: GlobalAttributes {
     public func itemScope(_ value: String) -> HorizontalRule {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> HorizontalRule {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> HorizontalRule {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> HorizontalRule {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> HorizontalRule {
@@ -2513,8 +2904,23 @@ extension HorizontalRule: AnyContent {
     }
 }
 
-/// The element
+extension HorizontalRule: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a block of preformatted text.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-pre-element
 ///
 public struct PreformattedText: ContentNode, BodyElement {
 
@@ -2595,11 +3001,19 @@ extension PreformattedText: GlobalAttributes {
     public func itemScope(_ value: String) -> PreformattedText {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> PreformattedText {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> PreformattedText {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> PreformattedText {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> PreformattedText {
         return mutate(lang: type.rawValue)
     }
@@ -2644,8 +3058,23 @@ extension PreformattedText: AnyContent {
     }
 }
 
-/// The element
+extension PreformattedText: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a section that is quoted from another source.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-blockquote-element
 ///
 public struct Blockquote: ContentNode, BodyElement {
 
@@ -2726,9 +3155,17 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
     public func itemScope(_ value: String) -> Blockquote {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Blockquote {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Blockquote {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Blockquote {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Blockquote {
@@ -2768,17 +3205,6 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
     }
 }
 
-extension Blockquote: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
-    }
-}
-
 extension Blockquote: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -2790,8 +3216,34 @@ extension Blockquote: AnyContent {
     }
 }
 
-/// The element
+extension Blockquote: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
+extension Blockquote: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a list of items, where the items have been intentionally ordered.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-ol-element
 ///
 public struct OrderedList: ContentNode, BodyElement {
 
@@ -2872,9 +3324,17 @@ extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, Type
     public func itemScope(_ value: String) -> OrderedList {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> OrderedList {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> OrderedList {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> OrderedList {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> OrderedList {
@@ -2933,8 +3393,23 @@ extension OrderedList: AnyContent {
     }
 }
 
-/// The element
+extension OrderedList: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a list of items, where the order of the items is not important.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-ul-element
 ///
 public struct UnorderedList: ContentNode, BodyElement {
 
@@ -3015,9 +3490,17 @@ extension UnorderedList: GlobalAttributes {
     public func itemScope(_ value: String) -> UnorderedList {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> UnorderedList {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> UnorderedList {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> UnorderedList {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> UnorderedList {
@@ -3064,8 +3547,23 @@ extension UnorderedList: AnyContent {
     }
 }
 
-/// The element
+extension UnorderedList: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element defines a list of terms and corresponding definitions.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-dl-element
 ///
 public struct DescriptionList: ContentNode, BodyElement {
 
@@ -3146,9 +3644,17 @@ extension DescriptionList: GlobalAttributes {
     public func itemScope(_ value: String) -> DescriptionList {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> DescriptionList {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> DescriptionList {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> DescriptionList {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> DescriptionList {
@@ -3195,8 +3701,23 @@ extension DescriptionList: AnyContent {
     }
 }
 
-/// The element
+extension DescriptionList: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element can thus be used to annotate illustrations, diagrams, photos, code listings.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-figure-element
 ///
 public struct Figure: ContentNode, BodyElement {
 
@@ -3278,8 +3799,16 @@ extension Figure: GlobalAttributes {
         return mutate(itemscope: value)
     }
 
+    public func itemType(_ value: String) -> Figure {
+        return mutate(itemtype: value)
+    }
+    
     public func id(_ value: String) -> Figure {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Figure {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Figure {
@@ -3326,8 +3855,23 @@ extension Figure: AnyContent {
     }
 }
 
-/// The element
+extension Figure: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a comment output.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-a-element
 ///
 public struct Anchor: ContentNode, BodyElement {
 
@@ -3408,9 +3952,17 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
     public func itemScope(_ value: String) -> Anchor {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Anchor {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Anchor {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Anchor {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Anchor {
@@ -3453,6 +4005,10 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
         return mutate(href: value)
     }
     
+    public func reference(_ value: TemplateValue<String>) -> Anchor {
+        return mutate(href: value.rawValue)
+    }
+    
     public func referenceLanguage(_ type: Language) -> Anchor {
         return mutate(hreflang: type.rawValue)
     }
@@ -3482,17 +4038,6 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
     }
 }
 
-extension Anchor: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
-    }
-}
-
 extension Anchor: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -3504,8 +4049,34 @@ extension Anchor: AnyContent {
     }
 }
 
-/// The element
+extension Anchor: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
+extension Anchor: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element provides typographic emphasis.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-em-element
 ///
 public struct Emphasize: ContentNode, BodyElement {
 
@@ -3528,8 +4099,7 @@ public struct Emphasize: ContentNode, BodyElement {
 extension Emphasize: GlobalAttributes {
     
     public func accessKey(_ value: String) -> Emphasize {
-        
-return mutate(accesskey: value)
+        return mutate(accesskey: value)
     }
 
     public func autocapitalize(_ type: Capitalization) -> Emphasize {
@@ -3587,9 +4157,17 @@ return mutate(accesskey: value)
     public func itemScope(_ value: String) -> Emphasize {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Emphasize {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Emphasize {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Emphasize {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Emphasize {
@@ -3636,8 +4214,23 @@ extension Emphasize: AnyContent {
     }
 }
 
-/// The element
+extension Emphasize: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element provides strong typographic emphasis.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-strong-element
 ///
 public struct Strong: ContentNode, BodyElement {
 
@@ -3718,11 +4311,19 @@ extension Strong: GlobalAttributes {
     public func itemScope(_ value: String) -> Strong {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Strong {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Strong {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> Strong {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Strong {
         return mutate(lang: type.rawValue)
     }
@@ -3767,8 +4368,23 @@ extension Strong: AnyContent {
     }
 }
 
-/// The element
+extension Strong: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents side comments such as small print.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-small-element
 ///
 public struct Small: ContentNode, BodyElement {
 
@@ -3849,9 +4465,17 @@ extension Small: GlobalAttributes {
     public func itemScope(_ value: String) -> Small {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Small {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Small {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Small {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Small {
@@ -3887,17 +4511,6 @@ extension Small: GlobalAttributes {
     }
 }
 
-extension Small: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
-    }
-}
-
 extension Small: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -3909,8 +4522,34 @@ extension Small: AnyContent {
     }
 }
 
-/// The element
+extension Small: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
+extension Small: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents contents that are no longer accurate or no longer relevant.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-s-element
 ///
 public struct StrikeThrough: ContentNode, BodyElement {
 
@@ -3991,9 +4630,17 @@ extension StrikeThrough: GlobalAttributes {
     public func itemScope(_ value: String) -> StrikeThrough {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> StrikeThrough {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> StrikeThrough {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> StrikeThrough {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> StrikeThrough {
@@ -4029,17 +4676,6 @@ extension StrikeThrough: GlobalAttributes {
     }
 }
 
-extension StrikeThrough: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
-    }
-}
-
 extension StrikeThrough: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -4051,8 +4687,34 @@ extension StrikeThrough: AnyContent {
     }
 }
 
-/// The element
+extension StrikeThrough: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
+extension StrikeThrough: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents the dominant contents of the document.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-main-element
 ///
 public struct Main: ContentNode, BodyElement {
 
@@ -4133,9 +4795,17 @@ extension Main: GlobalAttributes {
     public func itemScope(_ value: String) -> Main {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Main {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Main {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Main {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Main {
@@ -4182,8 +4852,23 @@ extension Main: AnyContent {
     }
 }
 
-/// The element
+extension Main: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element is used to represent different kinds of containers.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-div-element
 ///
 public struct Division: ContentNode, BodyElement {
 
@@ -4264,9 +4949,17 @@ extension Division: GlobalAttributes {
     public func itemScope(_ value: String) -> Division {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Division {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Division {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Division {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Division {
@@ -4315,62 +5008,21 @@ extension Division: AnyContent {
 
 extension Division: Modifiable {
     
-    public func modify(if condition: Bool, modifyer: (Self) -> Self) -> Self {
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
         
-        let element = modifyer(.init(attributes: [:], content: [""]))
-        
-        guard var attributes = self.attributes else {
-
-            return .init(attributes: element.attributes!, content: self.content)
+        if condition {
+            return modify(element(self))
         }
         
-        return .init(attributes: merge(element.attributes!, with: &attributes), content: self.content)
-    }
-    
-    public func modify<Value>(unwrap value: TemplateValue<Value?>, modifyer: (TemplateValue<Value>, Self) -> Self) -> Self {
-        
-        switch value {
-            
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            let element = modifyer(.constant(value), .init(attributes: [:], content: [""]))
-
-            guard var attributes = self.attributes else {
-
-                return .init(attributes: element.attributes!, content: self.content)
-            }
-            
-            return .init(attributes: merge(element.attributes!, with: &attributes), content: self.content)
-            
-        case .dynamic(let context):
-            
-            var element: Self!
-            
-            if context.isMascadingOptional {
-                
-                element = modifyer(.dynamic(context.unsafeCast(to: Value.self)), .init(attributes: [:], content: [""]))
-                
-            } else {
-                
-                element = modifyer(.dynamic(context.unsafelyUnwrapped), .init(attributes: [:], content: [""]))
-            }
-
-            guard var attributes = self.attributes else {
-
-                return .init(attributes: element.attributes!, content: self.content)
-            }
-            
-            return .init(attributes: merge(element.attributes!, with: &attributes), content: self.content)
-        }
+        return self
     }
 }
 
-/// The element
+/// # Description:
+/// The element represents a comment output.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-dfn-element
 ///
 public struct Definition: ContentNode, BodyElement {
 
@@ -4451,9 +5103,17 @@ extension Definition: GlobalAttributes {
     public func itemScope(_ value: String) -> Definition {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Definition {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Definition {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Definition {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Definition {
@@ -4500,8 +5160,23 @@ extension Definition: AnyContent {
     }
 }
 
-/// The element
+extension Definition: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element specifies a citation.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-cite-element
 ///
 public struct Cite: ContentNode, BodyElement {
 
@@ -4582,9 +5257,17 @@ extension Cite: GlobalAttributes {
     public func itemScope(_ value: String) -> Cite {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Cite {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Cite {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Cite {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Cite {
@@ -4631,8 +5314,23 @@ extension Cite: AnyContent {
     }
 }
 
-/// The element
+extension Cite: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element is used for a short quotation.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-q-element
 ///
 public struct ShortQuote: ContentNode, BodyElement {
 
@@ -4713,11 +5411,19 @@ extension ShortQuote: GlobalAttributes, CiteAttribute {
     public func itemScope(_ value: String) -> ShortQuote {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> ShortQuote {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> ShortQuote {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> ShortQuote {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> ShortQuote {
         return mutate(lang: type.rawValue)
     }
@@ -4766,8 +5472,23 @@ extension ShortQuote: AnyContent {
     }
 }
 
-/// The element
+extension ShortQuote: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents an abbreviation or acronym.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-abbr-element
 ///
 public struct Abbreviation: ContentNode, BodyElement {
 
@@ -4848,9 +5569,17 @@ extension Abbreviation: GlobalAttributes {
     public func itemScope(_ value: String) -> Abbreviation {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Abbreviation {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Abbreviation {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Abbreviation {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Abbreviation {
@@ -4897,8 +5626,23 @@ extension Abbreviation: AnyContent {
     }
 }
 
-/// The element
+extension Abbreviation: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element allows one or more spans of phrasing content to be marked with ruby annotations.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-ruby-element
 ///
 public struct Ruby: ContentNode, BodyElement {
 
@@ -4979,9 +5723,17 @@ extension Ruby: GlobalAttributes {
     public func itemScope(_ value: String) -> Ruby {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Ruby {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Ruby {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Ruby {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Ruby {
@@ -5028,8 +5780,23 @@ extension Ruby: AnyContent {
     }
 }
 
-/// The element
+extension Ruby: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a comment output.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-data-element
 ///
 public struct Data: ContentNode, BodyElement {
 
@@ -5110,9 +5877,17 @@ extension Data: GlobalAttributes, ValueAttribute {
     public func itemScope(_ value: String) -> Data {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Data {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Data {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Data {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Data {
@@ -5150,6 +5925,10 @@ extension Data: GlobalAttributes, ValueAttribute {
     public func value(_ value: String) -> Data {
         return mutate(value: value)
     }
+    
+    public func value(_ value: TemplateValue<String>) -> Data {
+        return mutate(value: value.rawValue)
+    }
 }
 
 extension Data: AnyContent {
@@ -5163,8 +5942,23 @@ extension Data: AnyContent {
     }
 }
 
-/// The element
+extension Data: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents its contents, along with a machine-readable form of those contents in the datetime attribute.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-time-element
 ///
 public struct Time: ContentNode, BodyElement {
 
@@ -5245,9 +6039,17 @@ extension Time: GlobalAttributes, DateTimeAttribute {
     public func itemScope(_ value: String) -> Time {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Time {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Time {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Time {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Time {
@@ -5298,8 +6100,23 @@ extension Time: AnyContent {
     }
 }
 
-/// The element
+extension Time: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents an example of code.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-code-element
 ///
 public struct Code: ContentNode, BodyElement {
 
@@ -5380,11 +6197,19 @@ extension Code: GlobalAttributes {
     public func itemScope(_ value: String) -> Code {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Code {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Code {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> Code {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Code {
         return mutate(lang: type.rawValue)
     }
@@ -5429,8 +6254,23 @@ extension Code: AnyContent {
     }
 }
 
-/// The element
+extension Code: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element indicates a variable name.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-link-element
 ///
 public struct Variable: ContentNode, BodyElement {
 
@@ -5511,9 +6351,17 @@ extension Variable: GlobalAttributes {
     public func itemScope(_ value: String) -> Variable {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Variable {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Variable {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Variable {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Variable {
@@ -5560,8 +6408,23 @@ extension Variable: AnyContent {
     }
 }
 
-/// The element
+extension Variable: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents sample or quoted output from another program or computing system.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-samp-element
 ///
 public struct SampleOutput: ContentNode, BodyElement {
 
@@ -5642,9 +6505,17 @@ extension SampleOutput: GlobalAttributes {
     public func itemScope(_ value: String) -> SampleOutput {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> SampleOutput {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> SampleOutput {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> SampleOutput {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> SampleOutput {
@@ -5691,8 +6562,23 @@ extension SampleOutput: AnyContent {
     }
 }
 
-/// The element
+extension SampleOutput: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents user input.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-kbd-element
 ///
 public struct KeyboardInput: ContentNode, BodyElement {
 
@@ -5773,9 +6659,17 @@ extension KeyboardInput: GlobalAttributes {
     public func itemScope(_ value: String) -> KeyboardInput {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> KeyboardInput {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> KeyboardInput {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> KeyboardInput {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> KeyboardInput {
@@ -5822,8 +6716,23 @@ extension KeyboardInput: AnyContent {
     }
 }
 
-/// The element
+extension KeyboardInput: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a subscript.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-sub-and-sup-elements
 ///
 public struct Subscript: ContentNode, BodyElement {
 
@@ -5904,9 +6813,17 @@ extension Subscript: GlobalAttributes {
     public func itemScope(_ value: String) -> Subscript {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Subscript {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Subscript {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Subscript {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Subscript {
@@ -5953,8 +6870,23 @@ extension Subscript: AnyContent {
     }
 }
 
-/// The element
+extension Subscript: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a superscript.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-sub-and-sup-elements
 ///
 public struct Superscript: ContentNode, BodyElement {
 
@@ -6035,9 +6967,17 @@ extension Superscript: GlobalAttributes {
     public func itemScope(_ value: String) -> Superscript {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Superscript {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Superscript {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Superscript {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Superscript {
@@ -6084,8 +7024,23 @@ extension Superscript: AnyContent {
     }
 }
 
-/// The element
+extension Superscript: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents an italic font text.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-i-element
 ///
 public struct Italic: ContentNode, BodyElement {
 
@@ -6166,9 +7121,17 @@ extension Italic: GlobalAttributes {
     public func itemScope(_ value: String) -> Italic {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Italic {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Italic {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Italic {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Italic {
@@ -6212,7 +7175,8 @@ extension Italic: Localizable {
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         self.content = [Localized(key: localizedKey, context: context)]
-    }}
+    }
+}
 
 extension Italic: AnyContent {
     
@@ -6224,9 +7188,24 @@ extension Italic: AnyContent {
         try self.build(with: manager)
     }
 }
+    
+extension Italic: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
 
-/// The element
+/// # Description:
+/// The element represents an bold font text.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-b-element
 ///
 public struct Bold: ContentNode, BodyElement {
 
@@ -6307,9 +7286,17 @@ extension Bold: GlobalAttributes {
     public func itemScope(_ value: String) -> Bold {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Bold {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Bold {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Bold {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Bold {
@@ -6367,8 +7354,23 @@ extension Bold: AnyContent {
     }
 }
 
-/// The element
+extension Bold: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element specifies that the enclosed text should be displayed as underlined.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-u-element
 ///
 public struct Underline: ContentNode, BodyElement {
 
@@ -6449,9 +7451,17 @@ extension Underline: GlobalAttributes {
     public func itemScope(_ value: String) -> Underline {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Underline {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Underline {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Underline {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Underline {
@@ -6509,8 +7519,23 @@ extension Underline: AnyContent {
     }
 }
 
-/// The element
+extension Underline: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a run of text in the document marked or highlighted for reference purposes.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-mark-element
 ///
 public struct Mark: ContentNode, BodyElement {
 
@@ -6591,9 +7616,17 @@ extension Mark: GlobalAttributes {
     public func itemScope(_ value: String) -> Mark {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Mark {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Mark {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Mark {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Mark {
@@ -6640,8 +7673,23 @@ extension Mark: AnyContent {
     }
 }
 
-/// The element
+extension Mark: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a span of text that is to be isolated from its surroundings for the purposes of bidirectional text formatting.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-bdi-element
 ///
 public struct Bdi: ContentNode, BodyElement {
 
@@ -6722,9 +7770,17 @@ extension Bdi: GlobalAttributes {
     public func itemScope(_ value: String) -> Bdi {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Bdi {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Bdi {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Bdi {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Bdi {
@@ -6771,8 +7827,23 @@ extension Bdi: AnyContent {
     }
 }
 
-/// The element
+extension Bdi: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents explicit text directionality formatting control.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-bdo-element
 ///
 public struct Bdo: EmptyNode, BodyElement {
 
@@ -6848,9 +7919,17 @@ extension Bdo: GlobalAttributes {
     public func itemScope(_ value: String) -> Bdo {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Bdo {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Bdo {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Bdo {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Bdo {
@@ -6897,8 +7976,23 @@ extension Bdo: AnyContent {
     }
 }
 
-/// The element
+extension Bdo: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element doesn't mean anything on its own.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-span-element
 ///
 public struct Span: ContentNode, BodyElement {
 
@@ -6979,9 +8073,17 @@ extension Span: GlobalAttributes {
     public func itemScope(_ value: String) -> Span {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Span {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Span {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Span {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Span {
@@ -7028,8 +8130,23 @@ extension Span: AnyContent {
     }
 }
 
-/// The element
+extension Span: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a line break.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-br-element
 ///
 public struct LineBreak: EmptyNode, BodyElement {
 
@@ -7105,9 +8222,17 @@ extension LineBreak: GlobalAttributes {
     public func itemScope(_ value: String) -> LineBreak {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> LineBreak {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> LineBreak {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> LineBreak {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> LineBreak {
@@ -7154,8 +8279,23 @@ extension LineBreak: AnyContent {
     }
 }
 
-/// The element
+extension LineBreak: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a line break opportunity.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-wbr-element
 ///
 public struct WordBreak: EmptyNode, BodyElement {
 
@@ -7231,9 +8371,17 @@ extension WordBreak: GlobalAttributes {
     public func itemScope(_ value: String) -> WordBreak {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> WordBreak {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> WordBreak {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> WordBreak {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> WordBreak {
@@ -7280,8 +8428,23 @@ extension WordBreak: AnyContent {
     }
 }
 
-/// The element
+extension WordBreak: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents an addition to the document.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-ins-element
 ///
 public struct InsertedText: ContentNode, BodyElement {
 
@@ -7362,9 +8525,17 @@ extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     public func itemScope(_ value: String) -> InsertedText {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> InsertedText {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> InsertedText {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> InsertedText {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> InsertedText {
@@ -7419,8 +8590,23 @@ extension InsertedText: AnyContent {
     }
 }
 
-/// The element
+extension InsertedText: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a removal from the document.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-del-element
 ///
 public struct DeletedText: ContentNode, BodyElement {
 
@@ -7501,9 +8687,17 @@ extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     public func itemScope(_ value: String) -> DeletedText {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> DeletedText {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> DeletedText {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> DeletedText {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> DeletedText {
@@ -7558,8 +8752,23 @@ extension DeletedText: AnyContent {
     }
 }
 
-/// The element
+extension DeletedText: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element is a container which provides multiple sources to its contained image element.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-picture-element
 ///
 public struct Picture: ContentNode, BodyElement {
 
@@ -7640,9 +8849,17 @@ extension Picture: GlobalAttributes {
     public func itemScope(_ value: String) -> Picture {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Picture {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Picture {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Picture {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Picture {
@@ -7689,8 +8906,23 @@ extension Picture: AnyContent {
     }
 }
 
-/// The element
+extension Picture: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents an image.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-img-element
 ///
 public struct Image: EmptyNode, BodyElement {
 
@@ -7774,9 +9006,17 @@ extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAtt
     public func itemScope(_ value: String) -> Image {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Image {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Image {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Image {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Image {
@@ -7847,8 +9087,23 @@ extension Image: AnyContent {
     }
 }
 
-/// The element
+extension Image: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents its nested browsing context.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-iframe-element
 ///
 public struct InlineFrame: ContentNode, BodyElement {
     
@@ -7929,9 +9184,17 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
     public func itemScope(_ value: String) -> InlineFrame {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> InlineFrame {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> InlineFrame {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> InlineFrame {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> InlineFrame {
@@ -7970,8 +9233,12 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
         return mutate(source: value)
     }
     
-    public func name(_ type: NameType) -> InlineFrame {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> InlineFrame {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> InlineFrame {
+        return mutate(name: value.rawValue)
     }
     
     public func width(_ size: Int) -> InlineFrame {
@@ -7998,8 +9265,23 @@ extension InlineFrame: AnyContent {
     }
 }
 
-/// The element
+extension InlineFrame: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element provides an integration point for an external application or interactive content.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-embed-element
 ///
 public struct Embed: EmptyNode, BodyElement {
 
@@ -8075,9 +9357,17 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
     public func itemScope(_ value: String) -> Embed {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Embed {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Embed {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Embed {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Embed {
@@ -8116,8 +9406,8 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
         return mutate(source: value)
     }
     
-    public func type(_ value: String) -> Embed {
-        return mutate(type: value)
+    public func type(_ value: MediaType) -> Embed {
+        return mutate(type: value.rawValue)
     }
     
     public func width(_ size: Int) -> Embed {
@@ -8140,8 +9430,23 @@ extension Embed: AnyContent {
     }
 }
 
-/// The element
+extension Embed: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents an external resource.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-object-element
 ///
 public struct Object: ContentNode, BodyElement {
     
@@ -8162,7 +9467,7 @@ public struct Object: ContentNode, BodyElement {
 }
 
 extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute, FormAttribute, WidthAttribute, HeightAttribute, ErrorEventAttribute {
-    
+
     public func onError(_ value: String) -> Object {
         return mutate(onerror: value)
     }
@@ -8226,9 +9531,17 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
     public func itemScope(_ value: String) -> Object {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Object {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Object {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Object {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Object {
@@ -8267,12 +9580,16 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
         return mutate(data: value)
     }
     
-    public func type(_ value: String) -> Object {
-        return mutate(type: value)
+    public func type(_ value: MediaType) -> Object {
+        return mutate(type: value.rawValue)
     }
     
-    public func name(_ type: NameType) -> Object {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Object {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> Object {
+        return mutate(name: value.rawValue)
     }
     
     public func form(_ value: String) -> Object {
@@ -8299,8 +9616,23 @@ extension Object: AnyContent {
     }
 }
 
-/// The element
+extension Object: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a comment output.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-video-element
 ///
 public struct Video: ContentNode, BodyElement {
 
@@ -8381,9 +9713,17 @@ extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     public func itemScope(_ value: String) -> Video {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Video {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Video {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Video {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Video {
@@ -8458,8 +9798,23 @@ extension Video: AnyContent {
     }
 }
 
-/// The element
+extension Video: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a comment output.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-audio-element
 ///
 public struct Audio: ContentNode, BodyElement {
 
@@ -8540,9 +9895,17 @@ extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     public func itemScope(_ value: String) -> Audio {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Audio {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Audio {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Audio {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Audio {
@@ -8609,8 +9972,23 @@ extension Audio: AnyContent {
     }
 }
 
-/// The element
+extension Audio: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a comment output.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-map-elements
 ///
 public struct Map: ContentNode, BodyElement {
     
@@ -8691,9 +10069,17 @@ extension Map: GlobalAttributes, NameAttribute {
     public func itemScope(_ value: String) -> Map {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Map {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Map {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Map {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Map {
@@ -8728,8 +10114,12 @@ extension Map: GlobalAttributes, NameAttribute {
         return mutate(translate: value)
     }
 
-    public func name(_ type: NameType) -> Map {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Map {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> Map {
+        return mutate(name: value.rawValue)
     }
 }
 
@@ -8744,8 +10134,23 @@ extension Map: AnyContent {
     }
 }
 
-/// The element
+extension Map: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a comment output.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-form-element
 ///
 public struct Form: ContentNode, BodyElement {
 
@@ -8834,9 +10239,17 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
     public func itemScope(_ value: String) -> Form {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Form {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Form {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Form {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Form {
@@ -8887,8 +10300,12 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
         return mutate(method: type.rawValue)
     }
     
-    public func name(_ type: NameType) -> Form {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Form {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> Form {
+        return mutate(name: value.rawValue)
     }
     
     public func target(_ type: Target) -> Form {
@@ -8911,8 +10328,23 @@ extension Form: AnyContent {
     }
 }
 
-/// The element
+extension Form: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a set of options.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-datalist-element
 ///
 public struct DataList: ContentNode, BodyElement {
 
@@ -8993,9 +10425,17 @@ extension DataList: GlobalAttributes {
     public func itemScope(_ value: String) -> DataList {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> DataList {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> DataList {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> DataList {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> DataList {
@@ -9042,8 +10482,23 @@ extension DataList: AnyContent {
     }
 }
 
-/// The element
+extension DataList: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents the result of a calculation.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-output-element
 ///
 public struct Output: ContentNode, BodyElement {
     
@@ -9124,9 +10579,17 @@ extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
     public func itemScope(_ value: String) -> Output {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Output {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Output {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Output {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Output {
@@ -9169,8 +10632,12 @@ extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
         return mutate(form: value)
     }
     
-    public func name(_ type: NameType) -> Output {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Output {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> Output {
+        return mutate(name: value.rawValue)
     }
 }
 
@@ -9185,8 +10652,23 @@ extension Output: AnyContent {
     }
 }
 
-/// The element
+extension Output: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents the completion progress of a task.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-progress-element
 ///
 public struct Progress: ContentNode, BodyElement {
 
@@ -9267,9 +10749,17 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
     public func itemScope(_ value: String) -> Progress {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Progress {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Progress {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Progress {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Progress {
@@ -9311,6 +10801,10 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
     public func value(_ value: String) -> Progress {
         return mutate(value: value)
     }
+    
+    public func value(_ value: TemplateValue<String>) -> Progress {
+        return mutate(value: value.rawValue)
+    }
 }
 
 extension Progress: AnyContent {
@@ -9324,8 +10818,23 @@ extension Progress: AnyContent {
     }
 }
 
-/// The element
+extension Progress: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a scalar measurement within a known range, or a fractional value.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-meter-element
 ///
 public struct Meter: ContentNode, BodyElement {
 
@@ -9406,9 +10915,17 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
     public func itemScope(_ value: String) -> Meter {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Meter {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Meter {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Meter {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Meter {
@@ -9462,6 +10979,10 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
     public func value(_ value: String) -> Meter {
         return mutate(value: value)
     }
+    
+    public func value(_ value: TemplateValue<String>) -> Meter {
+        return mutate(value: value.rawValue)
+    }
 }
 
 extension Meter: AnyContent {
@@ -9475,8 +10996,23 @@ extension Meter: AnyContent {
     }
 }
 
-/// The element
+extension Meter: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a disclosure widget from which the user can obtain additional information or controls.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-details-element
 ///
 public struct Details: ContentNode, BodyElement {
 
@@ -9561,9 +11097,17 @@ extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
     public func itemScope(_ value: String) -> Details {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Details {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Details {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Details {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Details {
@@ -9614,8 +11158,23 @@ extension Details: AnyContent {
     }
 }
 
-/// The element
+extension Details: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element defines a dialog box or window.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-dialog-element
 ///
 public struct Dialog: ContentNode, BodyElement {
 
@@ -9696,9 +11255,17 @@ extension Dialog: GlobalAttributes, OpenAttribute {
     public func itemScope(_ value: String) -> Dialog {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Dialog {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Dialog {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Dialog {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Dialog {
@@ -9749,8 +11316,23 @@ extension Dialog: AnyContent {
     }
 }
 
-/// The element
+extension Dialog: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element allows to include dynamic script and data blocks in a document.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-script-element
 ///
 public struct Script: ContentNode, BodyElement {
 
@@ -9839,9 +11421,17 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
     public func itemScope(_ value: String) -> Script {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Script {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Script {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Script {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Script {
@@ -9888,8 +11478,8 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
         return mutate(source: value)
     }
     
-    public func type(_ value: String) -> Script {
-        return mutate(type: value)
+    public func type(_ value: MediaType) -> Script {
+        return mutate(type: value.rawValue)
     }
 }
 
@@ -9904,8 +11494,23 @@ extension Script: AnyContent {
     }
 }
 
-/// The element
+extension Script: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a caption for the rest of the contents of a fieldset.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-template-element
 ///
 public struct NoScript: ContentNode, BodyElement {
 
@@ -9986,9 +11591,17 @@ extension NoScript: GlobalAttributes {
     public func itemScope(_ value: String) -> NoScript {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> NoScript {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> NoScript {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> NoScript {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> NoScript {
@@ -10035,8 +11648,23 @@ extension NoScript: AnyContent {
     }
 }
 
-/// The element
+extension NoScript: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element is used to declare fragments of HTML that can be cloned and inserted in the document by script.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-template-element
 ///
 public struct Template: ContentNode, BodyElement {
 
@@ -10117,6 +11745,10 @@ extension Template: GlobalAttributes {
     public func itemScope(_ value: String) -> Template {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Template {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Template {
         return mutate(id: value)
@@ -10124,6 +11756,10 @@ extension Template: GlobalAttributes {
 
     public func language(_ type: Language) -> Template {
         return mutate(lang: type.rawValue)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Template {
+        return mutate(id: value.rawValue)
     }
 
     public func nonce(_ value: String) -> Template {
@@ -10166,8 +11802,23 @@ extension Template: AnyContent {
     }
 }
 
-/// The element
+extension Template: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a comment output.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-canvas-element
 ///
 public struct Canvas: ContentNode, BodyElement {
 
@@ -10248,9 +11899,17 @@ extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
     public func itemScope(_ value: String) -> Canvas {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Canvas {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Canvas {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Canvas {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Canvas {
@@ -10305,8 +11964,23 @@ extension Canvas: AnyContent {
     }
 }
 
-/// The element
+extension Canvas: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a comment output.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-table-element
 ///
 public struct Table: ContentNode, BodyElement {
 
@@ -10387,9 +12061,17 @@ extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
     public func itemScope(_ value: String) -> Table {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Table {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Table {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Table {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Table {
@@ -10441,5 +12123,17 @@ extension Table: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Table: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

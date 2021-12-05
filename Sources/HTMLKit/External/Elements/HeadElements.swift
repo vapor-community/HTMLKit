@@ -1,7 +1,23 @@
+/// # Description:
+/// The file contains the figure elements. The html element Head only allows these elements to be its
+/// descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The element
+/// # Description:
+/// The element represents the document's title.
 ///
+/// There must be no more than one title element per document.
+///
+/// # References:
+/// https://html.spec.whatwg.org/#the-title-element
 ///
 public struct Title: ContentNode, HeadElement {
 
@@ -83,8 +99,16 @@ extension Title: GlobalAttributes {
         return mutate(itemscope: value)
     }
     
+    public func itemType(_ value: String) -> Title {
+        return mutate(itemtype: value)
+    }
+    
     public func id(_ value: String) -> Title {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Title {
+        return mutate(id: value.rawValue)
     }
     
     public func language(_ type: Language) -> Title {
@@ -131,8 +155,26 @@ extension Title: AnyContent {
     }
 }
 
-/// The element
+extension Title: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+
+/// # Description:
+/// The element specifies the document base url.
 ///
+/// There must be no more than one base element per document.
+///
+/// # References:
+/// https://html.spec.whatwg.org/#the-base-element
 ///
 public struct Base: EmptyNode, HeadElement {
 
@@ -209,8 +251,16 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
         return mutate(itemscope: value)
     }
     
+    public func itemType(_ value: String) -> Base {
+        return mutate(itemtype: value)
+    }
+    
     public func id(_ value: String) -> Base {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Base {
+        return mutate(id: value.rawValue)
     }
     
     public func language(_ type: Language) -> Base {
@@ -249,6 +299,10 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
         return mutate(href: value)
     }
     
+    public func reference(_ value: TemplateValue<String>) -> Base {
+        return mutate(href: value.rawValue)
+    }
+    
     public func target(_ type: Target) -> Base {
         return mutate(target: type.rawValue)
     }
@@ -265,8 +319,24 @@ extension Base: AnyContent {
     }
 }
 
-/// The element
+extension Base: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element provides meta information about the document.
 ///
+///
+/// # References:
+/// https://html.spec.whatwg.org/#the-meta-element
 ///
 public struct Meta: EmptyNode, HeadElement {
 
@@ -342,9 +412,17 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
     public func itemScope(_ value: String) -> Meta {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Meta {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Meta {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Meta {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Meta {
@@ -383,8 +461,16 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
         return mutate(content: value)
     }
     
-    public func name(_ type: NameType) -> Meta {
-        return mutate(name: type.rawValue)
+    public func content(_ value: TemplateValue<String>) -> Meta {
+        return mutate(content: value.rawValue)
+    }
+    
+    public func name(_ value: NameType) -> Meta {
+        return mutate(name: value.rawValue)
+    }
+    
+    public func name(_ value: TemplateValue<NameType>) -> Meta {
+        return mutate(name: value.rawValue)
     }
     
     public func property(_ type: Graphs) -> Meta {
@@ -403,8 +489,24 @@ extension Meta: AnyContent {
     }
 }
 
-/// The element
+extension Meta: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element contains style information for the document.
 ///
+///
+/// # References:
+/// https://html.spec.whatwg.org/#the-style-element
 ///
 public struct Style: ContentNode, HeadElement {
 
@@ -489,9 +591,17 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
     public func itemScope(_ value: String) -> Style {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Style {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Style {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Style {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Style {
@@ -526,8 +636,8 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
         return mutate(translate: value)
     }
 
-    public func type(_ value: String) -> Style {
-        return mutate(type: value)
+    public func type(_ value: MediaType) -> Style {
+        return mutate(type: value.rawValue)
     }
     
     public func media(_ value: String) -> Style {
@@ -543,5 +653,17 @@ extension Style: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Style: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

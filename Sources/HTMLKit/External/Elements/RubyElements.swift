@@ -1,17 +1,31 @@
+/// # Description:
+/// The file contains the ruby elements. The html element Ruby only allows these elements to be its
+/// descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to RubyText.
 ///
 public typealias Rt = RubyText
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to RubyPronunciation.
 ///
 public typealias Rp = RubyPronunciation
 
-/// The element
+/// # Description:
+/// The element marks the ruby text component of a ruby annotation.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-rt-element
 ///
 public struct RubyText: ContentNode, RubyElement {
 
@@ -92,9 +106,17 @@ extension RubyText: GlobalAttributes {
     public func itemScope(_ value: String) -> RubyText {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> RubyText {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> RubyText {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> RubyText {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> RubyText {
@@ -141,8 +163,23 @@ extension RubyText: AnyContent {
     }
 }
 
-/// The element
+extension RubyText: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents nothing.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-rp-element
 ///
 public struct RubyPronunciation: ContentNode, RubyElement {
 
@@ -223,9 +260,17 @@ extension RubyPronunciation: GlobalAttributes {
     public func itemScope(_ value: String) -> RubyPronunciation {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> RubyPronunciation {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> RubyPronunciation {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> RubyPronunciation {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> RubyPronunciation {
@@ -269,5 +314,17 @@ extension RubyPronunciation: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension RubyPronunciation: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

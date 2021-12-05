@@ -1,7 +1,21 @@
+/// # Description:
+/// The file contains the form elements. The html element Form only allows these elements to be its
+/// descendants. There are some exceptions too.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The element
+/// # Description:
+/// The element represents a typed data field to allow the user to edit the data.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-input-element
 ///
 public struct Input: EmptyNode, FormElement {
 
@@ -81,11 +95,19 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
     public func itemScope(_ value: String) -> Input {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Input {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Input {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> Input {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Input {
         return mutate(lang: type.rawValue)
     }
@@ -174,8 +196,12 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(multiple: "multiple")
     }
     
-    public func name(_ type: NameType) -> Input {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Input {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> Input {
+        return mutate(name: value.rawValue)
     }
     
     public func pattern(_ regex: String) -> Input {
@@ -184,6 +210,10 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
     
     public func placeholder(_ value: String) -> Input {
         return mutate(placeholder: value)
+    }
+    
+    public func placeholder(_ value: TemplateValue<String>) -> Input {
+        return mutate(placeholder: value.rawValue)
     }
     
     public func readonly() -> Input {
@@ -206,12 +236,16 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(step: size)
     }
     
-    public func type(_ value: String) -> Input {
-        return mutate(type: value)
+    public func type(_ value: Inputs) -> Input {
+        return mutate(type: value.rawValue)
     }
     
     public func value(_ value: String) -> Input {
         return mutate(value: value)
+    }
+    
+    public func value(_ value: TemplateValue<String>) -> Input {
+        return mutate(value: value.rawValue)
     }
     
     public func width(_ size: Int) -> Input {
@@ -230,8 +264,23 @@ extension Input: AnyContent {
     }
 }
 
-/// The element
+extension Input: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a caption for a form control.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-label-element
 ///
 public struct Label: ContentNode, FormElement {
 
@@ -312,9 +361,17 @@ extension Label: GlobalAttributes, ForAttribute {
     public func itemScope(_ value: String) -> Label {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Label {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Label {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Label {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Label {
@@ -354,17 +411,6 @@ extension Label: GlobalAttributes, ForAttribute {
     }
 }
 
-extension Label: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
-    }
-}
-
 extension Label: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -376,8 +422,34 @@ extension Label: AnyContent {
     }
 }
 
-/// The element
+extension Label: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
+extension Label: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a control for selecting amongst a set of options.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-select-element
 ///
 public struct Select: ContentNode, FormElement {
 
@@ -458,9 +530,17 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
     public func itemScope(_ value: String) -> Select {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Select {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Select {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Select {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Select {
@@ -511,8 +591,12 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
         return mutate(multiple: "multiple")
     }
     
-    public func name(_ type: NameType) -> Select {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Select {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> Select {
+        return mutate(name: value.rawValue)
     }
     
     public func required() -> Select {
@@ -535,8 +619,23 @@ extension Select: AnyContent {
     }
 }
 
-/// The element
+extension Select: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a multiline plain text edit control.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-textarea-element
 ///
 public struct TextArea: ContentNode, FormElement {
         
@@ -617,9 +716,17 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
     public func itemScope(_ value: String) -> TextArea {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> TextArea {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> TextArea {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> TextArea {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> TextArea {
@@ -678,12 +785,20 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
         return mutate(minlength: value)
     }
     
-    public func name(_ type: NameType) -> TextArea {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> TextArea {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> TextArea {
+        return mutate(name: value.rawValue)
     }
     
     public func placeholder(_ value: String) -> TextArea {
         return mutate(placeholder: value)
+    }
+    
+    public func placeholder(_ value: TemplateValue<String>) -> TextArea {
+        return mutate(placeholder: value.rawValue)
     }
     
     public func readonly() -> TextArea {
@@ -714,8 +829,23 @@ extension TextArea: AnyContent {
     }
 }
 
-/// The element
+extension TextArea: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a comment output.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-button-element
 ///
 public struct Button: ContentNode, FormElement {
 
@@ -796,11 +926,19 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
     public func itemScope(_ value: String) -> Button {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Button {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Button {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> Button {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> Button {
         return mutate(lang: type.rawValue)
     }
@@ -845,27 +983,24 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
         return mutate(formaction: value)
     }
     
-    public func name(_ type: NameType) -> Button {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Button {
+        return mutate(name: value)
     }
     
-    public func type(_ value: String) -> Button {
-        return mutate(type: value)
+    public func name(_ value: TemplateValue<String>) -> Button {
+        return mutate(name: value.rawValue)
+    }
+    
+    public func type(_ value: Buttons) -> Button {
+        return mutate(type: value.rawValue)
     }
     
     public func value(_ value: String) -> Button {
         return mutate(value: value)
     }
-}
-
-extension Button: Localizable {
     
-    public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
-    }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    public func value(_ value: TemplateValue<String>) -> Button {
+        return mutate(value: value.rawValue)
     }
 }
 
@@ -880,8 +1015,34 @@ extension Button: AnyContent {
     }
 }
 
-/// The element
+extension Button: Localizable {
+    
+    public init(_ localizedKey: String) {
+        self.content = [Localized(key: localizedKey)]
+    }
+
+    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+        self.content = [Localized(key: localizedKey, context: context)]
+    }
+}
+
+extension Button: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a set of form controls grouped together.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-fieldset-element
 ///
 public struct Fieldset: ContentNode, FormElement {
     
@@ -962,9 +1123,17 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
     public func itemScope(_ value: String) -> Fieldset {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Fieldset {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Fieldset {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Fieldset {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Fieldset {
@@ -1007,8 +1176,12 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
         return mutate(form: value)
     }
     
-    public func name(_ type: NameType) -> Fieldset {
-        return mutate(name: type.rawValue)
+    public func name(_ value: String) -> Fieldset {
+        return mutate(name: value)
+    }
+    
+    public func name(_ value: TemplateValue<String>) -> Fieldset {
+        return mutate(name: value.rawValue)
     }
 }
 
@@ -1020,5 +1193,17 @@ extension Fieldset: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Fieldset: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

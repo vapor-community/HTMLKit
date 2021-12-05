@@ -1,7 +1,21 @@
+/// # Description:
+/// The file contains the html elements. The html element Html only allows these elements to be its
+/// descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The element
+/// # Description:
+/// The element contains the information about the document's content.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-head-element
 ///
 public struct Head: ContentNode, HtmlElement {
 
@@ -83,8 +97,16 @@ extension Head: GlobalAttributes {
         return mutate(itemscope: value)
     }
     
+    public func itemType(_ value: String) -> Head {
+        return mutate(itemtype: value)
+    }
+    
     public func id(_ value: String) -> Head {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Head {
+        return mutate(id: value.rawValue)
     }
     
     public func language(_ type: Language) -> Head {
@@ -131,8 +153,23 @@ extension Head: AnyContent {
     }
 }
 
-/// The element
+extension Head: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element contains the document's content.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-body-element
 ///
 public struct Body: ContentNode, HtmlElement {
 
@@ -249,9 +286,17 @@ extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttr
     public func itemScope(_ value: String) -> Body {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Body {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Body {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Body {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Body {
@@ -295,5 +340,17 @@ extension Body: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Body: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

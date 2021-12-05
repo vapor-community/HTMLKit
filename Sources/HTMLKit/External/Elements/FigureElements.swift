@@ -1,12 +1,26 @@
+/// # Description:
+/// The file contains the figure elements. The html element Figure only allows these elements to be its
+/// descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to FigureCaption.
 ///
 public typealias Figcaption = FigureCaption
 
-/// The element
+/// # Description:
+/// The element is used to label a figure.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-figcaption-element
 ///
 public struct FigureCaption: ContentNode, FigureElement {
 
@@ -87,9 +101,17 @@ extension FigureCaption: GlobalAttributes {
     public func itemScope(_ value: String) -> FigureCaption {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> FigureCaption {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> FigureCaption {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> FigureCaption {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> FigureCaption {
@@ -133,5 +155,17 @@ extension FigureCaption: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension FigureCaption: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

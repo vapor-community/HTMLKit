@@ -1,12 +1,26 @@
+/// # Description:
+/// The file contains the input elements. The html element Input only allows these elements to be its
+/// descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to OptionGroup.
 ///
 public typealias Optgroup = OptionGroup
 
-/// The element
+/// # Description:
+/// The element represents a group of options.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-optgroup-element
 ///
 public struct OptionGroup: ContentNode, InputElement {
 
@@ -87,9 +101,17 @@ extension OptionGroup: GlobalAttributes, DisabledAttribute, LabelAttribute {
     public func itemScope(_ value: String) -> OptionGroup {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> OptionGroup {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> OptionGroup {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> OptionGroup {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> OptionGroup {
@@ -144,8 +166,23 @@ extension OptionGroup: AnyContent {
     }
 }
 
-/// The element
+extension OptionGroup: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents an option.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-option-element
 ///
 public struct Option: ContentNode, InputElement {
 
@@ -226,9 +263,17 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
     public func itemScope(_ value: String) -> Option {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Option {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Option {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Option {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Option {
@@ -274,6 +319,10 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
     public func value(_ value: String) -> Option {
         return mutate(value: value)
     }
+    
+    public func value(_ value: TemplateValue<String>) -> Option {
+        return mutate(value: value.rawValue)
+    }
 }
 
 extension Option: AnyContent {
@@ -287,8 +336,23 @@ extension Option: AnyContent {
     }
 }
 
-/// The element
+extension Option: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a caption for the rest of the contents of a fieldset.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-legend-element
 ///
 public struct Legend: ContentNode, InputElement {
 
@@ -369,9 +433,17 @@ extension Legend: GlobalAttributes {
     public func itemScope(_ value: String) -> Legend {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Legend {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Legend {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Legend {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Legend {
@@ -418,8 +490,23 @@ extension Legend: AnyContent {
     }
 }
 
-/// The element
+extension Legend: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a summary, caption, or legend for the rest of the content.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-summary-element
 ///
 public struct Summary: ContentNode, InputElement {
 
@@ -500,9 +587,17 @@ extension Summary: GlobalAttributes {
     public func itemScope(_ value: String) -> Summary {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Summary {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Summary {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Summary {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Summary {
@@ -546,5 +641,17 @@ extension Summary: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Summary: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

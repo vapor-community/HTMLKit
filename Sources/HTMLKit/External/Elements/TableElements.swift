@@ -1,47 +1,61 @@
+/// # Description:
+/// The file contains the table elements. The html element Table only allows these elements to be its
+/// descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to ColumnGroup.
 ///
 public typealias Colgroup = ColumnGroup
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to Column.
 ///
 public typealias Col = Column
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to TableBody.
 ///
 public typealias Tbody = TableBody
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to TableHead.
 ///
 public typealias Thead = TableHead
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to TableFoot.
 ///
 public typealias Tfoot = TableFoot
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to TableRow.
 ///
 public typealias Tr = TableRow
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to DataCell.
 ///
 public typealias Td = DataCell
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to HeaderCell.
 ///
 public typealias Th = HeaderCell
 
-/// The element
+/// # Description:
+/// The element represents the title of the table.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-caption-element
 ///
 public struct Caption: ContentNode, TableElement {
 
@@ -122,9 +136,17 @@ extension Caption: GlobalAttributes {
     public func itemScope(_ value: String) -> Caption {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Caption {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Caption {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Caption {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Caption {
@@ -158,7 +180,6 @@ extension Caption: GlobalAttributes {
     public func translate(_ value: String) -> Caption {
         return mutate(translate: value)
     }
-
 }
 
 extension Caption: AnyContent {
@@ -172,8 +193,23 @@ extension Caption: AnyContent {
     }
 }
 
-/// The element
+extension Caption: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element specifies a group of one or more columns.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-colgroup-element
 ///
 public struct ColumnGroup: ContentNode, TableElement {
 
@@ -254,9 +290,17 @@ extension ColumnGroup: GlobalAttributes, SpanAttribute {
     public func itemScope(_ value: String) -> ColumnGroup {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> ColumnGroup {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> ColumnGroup {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> ColumnGroup {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> ColumnGroup {
@@ -307,8 +351,23 @@ extension ColumnGroup: AnyContent {
     }
 }
 
-/// The element
+extension ColumnGroup: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a column in a table.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-col-element
 ///
 public struct Column: ContentNode, TableElement {
 
@@ -389,9 +448,17 @@ extension Column: GlobalAttributes, SpanAttribute {
     public func itemScope(_ value: String) -> Column {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> Column {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> Column {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Column {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> Column {
@@ -442,8 +509,23 @@ extension Column: AnyContent {
     }
 }
 
-/// The element
+extension Column: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a block of rows in a table.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-tbody-element
 ///
 public struct TableBody: ContentNode, TableElement {
 
@@ -524,11 +606,19 @@ extension TableBody: GlobalAttributes, WidthAttribute, HeightAttribute {
     public func itemScope(_ value: String) -> TableBody {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> TableBody {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> TableBody {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> TableBody {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> TableBody {
         return mutate(lang: type.rawValue)
     }
@@ -581,8 +671,23 @@ extension TableBody: AnyContent {
     }
 }
 
-/// The element
+extension TableBody: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents the block of rows that consist of the column labels.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-thead-element
 ///
 public struct TableHead: ContentNode, TableElement {
 
@@ -663,9 +768,17 @@ extension TableHead: GlobalAttributes, WidthAttribute, HeightAttribute {
     public func itemScope(_ value: String) -> TableHead {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> TableHead {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> TableHead {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> TableHead {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> TableHead {
@@ -720,8 +833,23 @@ extension TableHead: AnyContent {
     }
 }
 
-/// The element
+extension TableHead: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents the block of rows that consist of the column summaries.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-tfoot-element
 ///
 public struct TableFoot: ContentNode, TableElement {
 
@@ -802,9 +930,17 @@ extension TableFoot: GlobalAttributes {
     public func itemScope(_ value: String) -> TableFoot {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> TableFoot {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> TableFoot {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> TableFoot {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> TableFoot {
@@ -851,8 +987,23 @@ extension TableFoot: AnyContent {
     }
 }
 
-/// The element
+extension TableFoot: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a row of cells in a table.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-tr-element
 ///
 public struct TableRow: ContentNode, TableElement {
 
@@ -933,9 +1084,17 @@ extension TableRow: GlobalAttributes, WidthAttribute, HeightAttribute {
     public func itemScope(_ value: String) -> TableRow {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> TableRow {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> TableRow {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> TableRow {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> TableRow {
@@ -990,8 +1149,23 @@ extension TableRow: AnyContent {
     }
 }
 
-/// The element
+extension TableRow: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a data cell in a table.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-td-element
 ///
 public struct DataCell: ContentNode, TableElement {
 
@@ -1072,9 +1246,17 @@ extension DataCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, Hea
     public func itemScope(_ value: String) -> DataCell {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> DataCell {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> DataCell {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> DataCell {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> DataCell {
@@ -1133,8 +1315,23 @@ extension DataCell: AnyContent {
     }
 }
 
-/// The element
+extension DataCell: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element represents a header cell in a table.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-th-element
 ///
 public struct HeaderCell: ContentNode, TableElement {
 
@@ -1215,11 +1412,19 @@ extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, H
     public func itemScope(_ value: String) -> HeaderCell {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> HeaderCell {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> HeaderCell {
         return mutate(id: value)
     }
 
+    public func id(_ value: TemplateValue<String>) -> HeaderCell {
+        return mutate(id: value.rawValue)
+    }
+    
     public func language(_ type: Language) -> HeaderCell {
         return mutate(lang: type.rawValue)
     }
@@ -1269,6 +1474,17 @@ extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, H
     }
 }
 
+extension HeaderCell: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
 extension HeaderCell: Localizable {
     
     public init(_ localizedKey: String) {
@@ -1280,13 +1496,14 @@ extension HeaderCell: Localizable {
     }
 }
 
-extension HeaderCell: AnyContent {
+extension HeaderCell: Modifiable {
     
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }

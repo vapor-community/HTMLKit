@@ -1,5 +1,17 @@
+/// # Description:
+/// The file contains basic functions.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
+/// # Description:
 /// The function is for
 ///
+/// # References:
 ///
 public struct Unwrap: Component {
 

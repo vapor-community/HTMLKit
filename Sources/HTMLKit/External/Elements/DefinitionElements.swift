@@ -1,17 +1,31 @@
+/// # Description:
+/// The file contains the definition elements. The html element DescriptionList only allows these
+/// elements to be its descendants.
+///
+/// # Note:
+/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
+///
+/// # Authors:
+/// Mats Moll: https://github.com/matsmoll
+/// Mattes Mohr: https://github.com/mattesmohr
+
 import OrderedCollections
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to TermName.
 ///
 public typealias Dt = TermName
 
-/// The alias points
-///
+/// # Description:
+/// The alias points to TermDefinition.
 ///
 public typealias Dd = TermDefinition
 
-/// The element
+/// # Description:
+/// The element specifies a term name.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-dt-element
 ///
 public struct TermName: ContentNode, DescriptionElement {
 
@@ -92,9 +106,17 @@ extension TermName: GlobalAttributes {
     public func itemScope(_ value: String) -> TermName {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> TermName {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> TermName {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> TermName {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> TermName {
@@ -141,8 +163,23 @@ extension TermName: AnyContent {
     }
 }
 
-/// The element
+extension TermName: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
+    }
+}
+
+/// # Description:
+/// The element specifies a term definition.
 ///
+/// # References:
+/// https://html.spec.whatwg.org/#the-dd-element
 ///
 public struct TermDefinition: ContentNode, DescriptionElement {
 
@@ -223,9 +260,17 @@ extension TermDefinition: GlobalAttributes {
     public func itemScope(_ value: String) -> TermDefinition {
         return mutate(itemscope: value)
     }
+    
+    public func itemType(_ value: String) -> TermDefinition {
+        return mutate(itemtype: value)
+    }
 
     public func id(_ value: String) -> TermDefinition {
         return mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> TermDefinition {
+        return mutate(id: value.rawValue)
     }
 
     public func language(_ type: Language) -> TermDefinition {
@@ -269,5 +314,17 @@ extension TermDefinition: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension TermDefinition: Modifiable {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return modify(element(self))
+        }
+        
+        return self
     }
 }
