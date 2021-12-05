@@ -19,7 +19,7 @@ jobs:
           inputs: "Sources"
           output: "dcov.json"
       - name: Check Documentation Percent
-        run: sudo bash Scripts/DocCoverage/check-percentage.sh dcov.json 15
+        run: sudo bash Scripts/DocCoverage/check-percentage.sh dcov.json 13
         
   xenial:
     needs: check-doc-coverage
