@@ -378,6 +378,30 @@ extension Link: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -531,6 +555,30 @@ extension Article: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -686,6 +734,30 @@ extension Section: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -840,6 +912,30 @@ extension Navigation: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -993,6 +1089,30 @@ extension Aside: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -1159,6 +1279,30 @@ extension Heading1: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -1323,6 +1467,30 @@ extension Heading2: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -1489,6 +1657,30 @@ extension Heading3: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -1653,6 +1845,30 @@ extension Heading4: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -1819,6 +2035,30 @@ extension Heading5: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -1984,6 +2224,30 @@ extension Heading6: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -2137,6 +2401,30 @@ extension HeadingGroup: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -2292,6 +2580,30 @@ extension Header: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -2446,6 +2758,30 @@ extension Footer: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -2599,6 +2935,30 @@ extension Address: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -2765,6 +3125,30 @@ extension Paragraph: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -2913,6 +3297,30 @@ extension HorizontalRule: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -3067,6 +3475,30 @@ extension PreformattedText: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -3237,6 +3669,30 @@ extension Blockquote: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -3403,6 +3859,30 @@ extension OrderedList: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -3556,6 +4036,30 @@ extension UnorderedList: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -3711,6 +4215,30 @@ extension DescriptionList: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -3864,6 +4392,30 @@ extension Figure: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -4070,6 +4622,30 @@ extension Anchor: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -4224,6 +4800,30 @@ extension Emphasize: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -4377,6 +4977,30 @@ extension Strong: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -4543,6 +5167,30 @@ extension Small: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -4708,6 +5356,30 @@ extension StrikeThrough: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -4861,6 +5533,30 @@ extension Main: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -5016,6 +5712,30 @@ extension Division: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -5170,6 +5890,30 @@ extension Definition: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -5323,6 +6067,30 @@ extension Cite: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -5482,6 +6250,30 @@ extension ShortQuote: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -5636,6 +6428,30 @@ extension Abbreviation: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -5789,6 +6605,30 @@ extension Ruby: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -5952,6 +6792,30 @@ extension Data: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -6110,6 +6974,30 @@ extension Time: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -6263,6 +7151,30 @@ extension Code: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -6418,6 +7330,30 @@ extension Variable: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -6571,6 +7507,30 @@ extension SampleOutput: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -6726,6 +7686,30 @@ extension KeyboardInput: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -6880,6 +7864,30 @@ extension Subscript: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -7033,6 +8041,30 @@ extension Superscript: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -7199,6 +8231,30 @@ extension Italic: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -7363,6 +8419,30 @@ extension Bold: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -7529,6 +8609,30 @@ extension Underline: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -7682,6 +8786,30 @@ extension Mark: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -7837,6 +8965,30 @@ extension Bdi: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -7985,6 +9137,30 @@ extension Bdo: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -8140,6 +9316,30 @@ extension Span: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -8289,6 +9489,30 @@ extension LineBreak: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -8437,6 +9661,30 @@ extension WordBreak: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -8600,6 +9848,30 @@ extension InsertedText: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -8762,6 +10034,30 @@ extension DeletedText: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -8915,6 +10211,30 @@ extension Picture: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -9097,6 +10417,30 @@ extension Image: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -9275,6 +10619,30 @@ extension InlineFrame: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -9439,6 +10807,30 @@ extension Embed: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -9626,6 +11018,30 @@ extension Object: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -9808,6 +11224,30 @@ extension Video: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -9982,6 +11422,30 @@ extension Audio: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -10143,6 +11607,30 @@ extension Map: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -10338,6 +11826,30 @@ extension Form: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -10491,6 +12003,30 @@ extension DataList: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -10662,6 +12198,30 @@ extension Output: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -10827,6 +12387,30 @@ extension Progress: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -11006,6 +12590,30 @@ extension Meter: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -11168,6 +12776,30 @@ extension Details: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -11325,6 +12957,30 @@ extension Dialog: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -11504,6 +13160,30 @@ extension Script: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -11658,6 +13338,30 @@ extension NoScript: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -11811,6 +13515,30 @@ extension Template: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -11974,6 +13702,30 @@ extension Canvas: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -12135,5 +13887,29 @@ extension Table: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
