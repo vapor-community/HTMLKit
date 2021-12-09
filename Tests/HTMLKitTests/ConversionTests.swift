@@ -18,7 +18,7 @@ final class ConversionTests: XCTestCase {
             return XCTFail()
         }
         
-        try converter.convert(directory: directory, option: .file)
+        XCTAssertNoThrow(try converter.convert(directory: directory, option: .print))
     }
     
     func testConvertingFile() throws {
@@ -31,7 +31,7 @@ final class ConversionTests: XCTestCase {
             .appendingPathComponent("index")
             .appendingPathExtension("html")
         
-        try converter.convert(file: file, option: .file)
+        XCTAssertNoThrow(try converter.convert(file: file, option: .print))
     }
 }
 
