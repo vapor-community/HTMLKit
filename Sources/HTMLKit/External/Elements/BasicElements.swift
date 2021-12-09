@@ -16,7 +16,7 @@ import OrderedCollections
 /// # References:
 /// https://html.spec.whatwg.org/#comments
 ///
-public struct Comment: CommentNode {
+public struct Comment: CommentNode, GlobalElement {
     
     public var content: String
     
