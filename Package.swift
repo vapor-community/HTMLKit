@@ -30,7 +30,8 @@ let package = Package(
             name: "HTMLKitTests",
             dependencies: ["HTMLKit"],
             resources: [
-                .process("Localization")
+                .process("Localization"),
+                .process("Conversion")
             ]
         )
     ]
