@@ -8,10 +8,9 @@
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
+import Foundation
 #if canImport(FoundationXML)
 import FoundationXML
-#else
-import Foundation
 #endif
 
 internal struct CommentElement {
