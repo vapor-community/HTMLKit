@@ -9,10 +9,8 @@
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import Foundation
-#if canImport(FoundationXML)
-import FoundationXML
-#endif
 
+@available(macOS 11.0, *)
 internal struct CommentElement {
     
     private var comment: String? {
@@ -41,6 +39,7 @@ internal struct CommentElement {
     }
 }
 
+@available(macOS 11.0, *)
 internal struct TextElement {
     
     private var text: String? {
@@ -68,6 +67,7 @@ internal struct TextElement {
     }
 }
 
+@available(macOS 11.0, *)
 internal struct ContentElement {
 
     private var name: String? {
@@ -152,6 +152,7 @@ internal struct ContentElement {
     }
 }
 
+@available(macOS 11.0, *)
 internal struct EmptyElement {
 
     private var name: String? {
@@ -214,6 +215,7 @@ internal struct EmptyElement {
     }
 }
 
+@available(macOS 11.0, *)
 internal struct PageLayout<T: RawRepresentable> {
     
     private var name: String
@@ -260,6 +262,7 @@ internal struct PageLayout<T: RawRepresentable> {
     }
 }
 
+@available(macOS 11.0, *)
 internal struct ViewLayout {
     
     private var name: String
@@ -292,6 +295,7 @@ internal struct ViewLayout {
     }
 }
 
+@available(macOS 11.0, *)
 internal struct ValueProperty{
     
     private var name: String? {
@@ -342,6 +346,7 @@ internal struct ValueProperty{
     }
 }
 
+@available(macOS 11.0, *)
 internal struct EmptyProperty {
     
     private var name: String? {
@@ -374,7 +379,7 @@ internal struct EmptyProperty {
     }
 }
 
-
+@available(macOS 11.0, *)
 internal struct TypeProperty<T: RawRepresentable>{
     
     private var name: String? {

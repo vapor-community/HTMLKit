@@ -238,7 +238,7 @@ final class RenderingTests: XCTestCase {
         let view = TestPage {
             Input()
                 .modify(unwrap: passcode) {
-                    $0.value($1)
+                    $0.placeholder($1)
                 }
         }
         

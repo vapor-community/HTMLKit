@@ -9,10 +9,8 @@
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import Foundation
-#if canImport(FoundationXML)
-import FoundationXML
-#endif
 
+@available(macOS 11.0, *)
 public class Converter {
     
     public enum Extension: String {
@@ -65,32 +63,32 @@ public class Converter {
             
             if let dtd = document.dtd {
                 
-                let layout = PageLayout<DocumentType>(name: fileName, doctype: dtd, root: root)
+                let layout = PageLayout<DocumentType>(name: fileName, doctype: dtd, root: root).build()
                 
-                print(layout.build())
+                print(layout)
                 
             } else {
                 
-                let layout = ViewLayout(name: fileName, root: root)
+                let layout = ViewLayout(name: fileName, root: root).build()
                 
-                print(layout.build())
+                print(layout)
             }
             
         case .file:
             
             if let dtd = document.dtd {
                 
-                let content = PageLayout<DocumentType>(name: fileName, doctype: dtd, root: root).build()
+                let layout = PageLayout<DocumentType>(name: fileName, doctype: dtd, root: root).build()
                 
-                try content.write(to: file.deletingPathExtension().appendingPathExtension("swift"),
+                try layout.write(to: file.deletingPathExtension().appendingPathExtension("swift"),
                               atomically: true,
                               encoding: .utf8)
                 
             } else {
                 
-                let content = ViewLayout(name: fileName, root: root).build()
+                let layout = ViewLayout(name: fileName, root: root).build()
                 
-                try content.write(to: file.deletingPathExtension().appendingPathExtension("swift"),
+                try layout.write(to: file.deletingPathExtension().appendingPathExtension("swift"),
                               atomically: true,
                               encoding: .utf8)
             }

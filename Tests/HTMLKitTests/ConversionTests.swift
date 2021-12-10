@@ -4,7 +4,7 @@ import XCTest
 final class ConversionTests: XCTestCase {
     
     var converter = Converter()
-    var currentDirectory: URL?
+    var directory: URL?
     
     override func setUp() {
         super.setUp()
@@ -12,26 +12,17 @@ final class ConversionTests: XCTestCase {
         try! setupConversion()
     }
     
-    func testConvertingDirectory() throws {
+    func testConversion() throws {
         
-        guard let directory = currentDirectory else {
-            return XCTFail()
+        guard let directory = directory else {
+            return XCTFail("No directory.")
+        }
+        
+        guard #available(macOS 11.0, *) else {
+            throw XCTSkip("Requires macOS >= 11.0")
         }
         
         XCTAssertNoThrow(try converter.convert(directory: directory, option: .print))
-    }
-    
-    func testConvertingFile() throws {
-        
-        guard let directory = currentDirectory else {
-            return XCTFail()
-        }
-        
-        let file = directory
-            .appendingPathComponent("index")
-            .appendingPathExtension("html")
-        
-        XCTAssertNoThrow(try converter.convert(file: file, option: .print))
     }
 }
 
@@ -41,14 +32,13 @@ extension ConversionTests {
         
         let currentFile = URL(fileURLWithPath: #file).deletingLastPathComponent()
         
-        self.currentDirectory = currentFile.appendingPathComponent("Conversion")
+        self.directory = currentFile.appendingPathComponent("Conversion")
     }
 }
 
 extension ConversionTests {
     
     static var allTests = [
-        ("testConvertingDirectory", testConvertingDirectory),
-        ("testConvertingFile", testConvertingFile),
+        ("testConversion", testConversion)
     ]
 }
