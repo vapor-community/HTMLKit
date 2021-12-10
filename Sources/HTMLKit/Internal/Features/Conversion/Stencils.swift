@@ -9,6 +9,9 @@
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import Foundation
+ #if canImport(FoundationXML)
+ import FoundationXML
+ #endif
 
 @available(macOS 11.0, *)
 internal struct CommentElement {
