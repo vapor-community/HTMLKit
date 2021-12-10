@@ -163,6 +163,30 @@ extension Head: Modifiable {
         
         return self
     }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 /// # Description:
@@ -352,5 +376,29 @@ extension Body: Modifiable {
         }
         
         return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }

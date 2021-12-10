@@ -230,6 +230,26 @@ final class RenderingTests: XCTestCase {
                        """
         )
     }
+    
+    func testModifiedAndUnwrapped() throws {
+        
+        let passcode: TemplateValue<String?> = .constant("test")
+        
+        let view = TestPage {
+            Input()
+                .modify(unwrap: passcode) {
+                    $0.placeholder($1)
+                }
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <input placeholder="test">
+                       """
+        )
+    }
 }
 
 extension RenderingTests {
@@ -245,6 +265,7 @@ extension RenderingTests {
         ("testNesting", testNesting),
         ("testEscaping", testEscaping),
         ("testModified", testModified),
-        ("testUnmodified", testUnmodified)
+        ("testUnmodified", testUnmodified),
+        ("testModifiedAndUnwrapped", testModifiedAndUnwrapped)
     ]
 }
