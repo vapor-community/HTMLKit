@@ -29,8 +29,10 @@ public class Converter {
     public enum Errors: Error {
         case rootNotFound
     }
+    
+    public static let `default` = Converter()
 
-    public init() {}
+    private init() {}
     
     public func convert(directory: URL, fileExtension: Extension = .html, option: Output) throws {
         

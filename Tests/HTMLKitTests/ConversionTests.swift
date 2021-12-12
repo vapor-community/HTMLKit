@@ -3,7 +3,6 @@ import XCTest
 
 final class ConversionTests: XCTestCase {
     
-    var converter = Converter()
     var directory: URL?
     
     override func setUp() {
@@ -22,7 +21,7 @@ final class ConversionTests: XCTestCase {
             throw XCTSkip("Requires macOS >= 11.0")
         }
         
-        XCTAssertNoThrow(try converter.convert(directory: directory, option: .print))
+        XCTAssertNoThrow(try Converter.default.convert(directory: directory, option: .print))
     }
 }
 
