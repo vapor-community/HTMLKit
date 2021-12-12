@@ -3804,7 +3804,7 @@ public protocol SourceAttribute: AnyAttribute {
 
 extension SourceAttribute {
     
-    internal var key: String { "source" }
+    internal var key: String { "src" }
 }
 
 extension SourceAttribute where Self: ContentNode {
