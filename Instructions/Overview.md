@@ -5,12 +5,15 @@ By using Swift's powerful language features and a pre-rendering algorithm, HTMLK
 
 ## Index
 1. Installation
-2. Elements
-3. Layouts
-4. Context
-5. Features
-5.1 Localization
-5.2 Conversion
-5.3 Templating
+2. Essential
+    2.1 Elements
+    2.2 Layouts
+    2.3 Context
+    2.4 Statements
+3. Features
+    3.1 Localization
+    3.2 Conversion
+    3.3 Templating
+4. Example
 
-## Licence
+## References

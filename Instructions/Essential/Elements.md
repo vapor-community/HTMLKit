@@ -1,6 +1,6 @@
 # Elements
 
-The elements are
+The elements represents the HTML tags. Every element has function handlers, wich are representing the attribute of a tag.
 
 ## Essential
 
@@ -20,7 +20,7 @@ Input()
 
 ```swift
 /// Attribute with value
-.class("bg-white")
+.class("value")
 
 /// Attribute as toggle
 .required()
@@ -28,11 +28,20 @@ Input()
 
 ### Modifier
 ```swift
+/// Modifies if the condition is true
 Body {
     ...
 }
-.modifiy(if: isOpen) {
+.modify(if: condition) {
     $0.hidden()
+}
+
+/// Modifies if the value is set
+Body {
+    ...
+}
+.modify(unwrap: value) {
+    $0.placeholder($1)
 }
 ```
 

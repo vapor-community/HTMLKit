@@ -4,7 +4,9 @@ The templating is
 
 ## Essential
 
-### Definition
+### Embed
+
+You can embed the view in the page structure.
 
 ```swift
 /// [SimplePage.swift]
@@ -20,6 +22,25 @@ struct SimplePage: Page {
         }
         Body {
             SimpleView(context: "Hello World!")
+        }
+    }
+}
+```
+
+### Extend
+
+You can extend the page in the view structure.
+
+```swift
+/// [IndexView.swift]
+
+struct IndexView: View {
+
+    var body: AnyContent {
+        SimplePage {
+            Heading1 {
+                "Hello World!"
+            }
         }
     }
 }

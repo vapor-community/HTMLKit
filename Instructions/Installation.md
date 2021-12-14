@@ -4,7 +4,7 @@
 
 ### Packages
 
-Add the packages as dependecies to your package. The provider is the bridge between `HTMLKit` and `Vapor`.
+Add the packages as dependecies to your package.
 
 ```swift
 /// [Package.swift]
@@ -13,7 +13,7 @@ Add the packages as dependecies to your package. The provider is the bridge betw
 dependencies: [
     ...
     .package(name: "HTMLKit", url: "https://github.com/vapor-community/HTMLKit.git", from: "2.4.0"),
-    .package(name: "HTMLKitVaporProvider", url: "https://github.com/MatsMoll/htmlkit-vapor-provider.git", from: "1.1.0")
+    .package(name: "HTMLKitVaporProvider", url: "https://github.com/vapor-community/htmlkit-vapor-provider.git", from: "1.2.0")
 ],
 targets: [
     .target( 
@@ -28,3 +28,5 @@ targets: [
 ```
 
 ## Vapor 3
+
+Check the provider to learn more about supporting Vapor 3.

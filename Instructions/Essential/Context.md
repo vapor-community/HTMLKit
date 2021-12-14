@@ -12,6 +12,7 @@ The context is
 struct IndexContext {
     
     var headline: String
+    var categories: [Category]
 }
 ```
 
