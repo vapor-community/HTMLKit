@@ -14,9 +14,17 @@
 /// # References:
 ///
 @resultBuilder public class ContentBuilder<T> {
+    
+    public static func buildBlock() -> [T] {
+        return []
+    }
 
     public static func buildBlock(_ elements: T...) -> [T] {
         return elements
+    }
+    
+    public static func buildBlock(_ elements: [T]...) -> [T] {
+        return elements.flatMap( { $0 } )
     }
 }
 
@@ -35,6 +43,13 @@ extension ContentBuilder where T == String {
 }
 
 extension ContentBuilder where T: HtmlElement {
+    
+    public static func buildBlock(_ content: T...) -> [T] {
+        return content
+    }
+}
+
+extension ContentBuilder where T: BodyElement {
     
     public static func buildBlock(_ content: T...) -> [T] {
         return content
