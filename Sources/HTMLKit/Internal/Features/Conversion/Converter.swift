@@ -29,8 +29,10 @@ public class Converter {
     public enum Errors: Error {
         case rootNotFound
     }
+    
+    public static let `default` = Converter()
 
-    public init() {}
+    private init() {}
     
     public func convert(directory: URL, fileExtension: Extension = .html, option: Output) throws {
         
@@ -271,8 +273,8 @@ public class Converter {
             ValueProperty(node: attribute).build()
         case "spellcheck":
             ValueProperty(node: attribute).build(verbatim: "hasSpellCheck")
-        case "source":
-            ValueProperty(node: attribute).build()
+        case "src":
+            ValueProperty(node: attribute).build(verbatim: "source")
         case "start":
             ValueProperty(node: attribute).build()
         case "step":
@@ -361,9 +363,9 @@ public class Converter {
                 case "blockquote":
                     ContentElement(element: element).build(preindent: preindent)
                 case "ol":
-                    ContentElement(element: element).build(verbatim: "OrderdList", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "OrderedList", preindent: preindent)
                 case "ul":
-                    ContentElement(element: element).build(verbatim: "UnorderdList", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "UnorderedList", preindent: preindent)
                 case "dl":
                     ContentElement(element: element).build(verbatim: "DescriptionList", preindent: preindent)
                 case "figure":

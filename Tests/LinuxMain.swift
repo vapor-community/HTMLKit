@@ -2,6 +2,7 @@ import XCTest
 @testable import HTMLKitTests
 
 XCTMain([
+    testCase(TemplatingTests.allTests),
     testCase(ComponentTests.allTests),
     testCase(ContextTests.allTests),
     testCase(ElementTests.allTests),

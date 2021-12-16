@@ -89,7 +89,7 @@ internal struct ContentElement {
         }
         
         return attributes.map { attribute in
-            return Converter().decode(attribute: attribute)
+            return Converter.default.decode(attribute: attribute)
         }
     }
     
@@ -100,7 +100,7 @@ internal struct ContentElement {
         }
         
         return children.map { child in
-            return Converter().decode(element: child, preindent: 2)
+            return Converter.default.decode(element: child, preindent: 2)
         }
     }
     
@@ -174,7 +174,7 @@ internal struct EmptyElement {
         }
         
         return attributes.map { attribute in
-            return Converter().decode(attribute: attribute)
+            return Converter.default.decode(attribute: attribute)
         }
     }
     
@@ -224,7 +224,7 @@ internal struct PageLayout<T: RawRepresentable> {
     private var name: String
     
     private var content: String {
-        return Converter().decode(element: root, preindent: 2)
+        return Converter.default.decode(element: root, preindent: 2)
     }
     
     private var type: String {
@@ -271,7 +271,7 @@ internal struct ViewLayout {
     private var name: String
     
     private var content: String {
-        return Converter().decode(element: root, preindent: 2)
+        return Converter.default.decode(element: root, preindent: 2)
     }
     
     private var root: XMLElement

@@ -13,7 +13,7 @@
 ///
 /// # References:
 ///
-public protocol Page: AnyContent {
+public protocol Page: GlobalElement {
     
     @ContentBuilder<AnyContent> var body: AnyContent { get }
 }
@@ -36,7 +36,7 @@ extension Page {
 ///
 /// # References:
 ///
-public protocol View: AnyContent {
+public protocol View: GlobalElement {
     
     associatedtype Context
     
@@ -65,7 +65,7 @@ extension View {
 ///
 /// # References:
 ///
-public protocol Component: AnyContent {
+public protocol Component: GlobalElement {
     
     @ContentBuilder<AnyContent> var body: AnyContent { get }
 }
