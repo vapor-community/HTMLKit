@@ -7,9 +7,9 @@ The context is
 ### Definition
 
 ```swift
-/// [IndexContext.swift]
+/// [SimpleContext.swift]
 
-struct IndexContext {
+struct SimpleContext: Codable {
     
     var headline: String
     var categories: [Category]
@@ -21,7 +21,8 @@ struct IndexContext {
 
 struct SimpleView: View {
 
-    var context: TemplateValue<IndexContext>
+    @TemplateValue(SimpleContext.self)
+    var context
 
     var body: AnyContent {
         Heading1 {

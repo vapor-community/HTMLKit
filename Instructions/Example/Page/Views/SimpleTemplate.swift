@@ -1,10 +1,12 @@
 import HTMLKit
+import HTMLKitVaporProvider
 
 public enum SimpleTemplate {
     
     public struct IndexView: View {
         
-        public var context: TemplateValue<IndexContext>
+        @TemplateValue(IndexContext.self)
+        public var context
         
         public var body: AnyContent {
             SimplePage {
@@ -17,7 +19,8 @@ public enum SimpleTemplate {
     
     public struct CreateView: View {
         
-        public var context: TemplateValue<CreateContext>
+        @TemplateValue(CreateContext.self)
+        public var context
         
         public var body: AnyContent {
             SimplePage {

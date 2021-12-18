@@ -1,4 +1,4 @@
-struct IndexContext {
+struct IndexContext: Codable {
     
     var title: String
 }

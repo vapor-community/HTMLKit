@@ -13,7 +13,7 @@
 ///
 /// # References:
 ///
-public struct IF {
+public struct IF: GlobalElement {
     
     public class Condition {
 
@@ -159,7 +159,7 @@ extension IF: AnyContent {
 ///
 /// # References:
 ///
-public struct ForEach<Values> where Values: Sequence {
+public struct ForEach<Values>: GlobalElement where Values: Sequence {
 
     public let context: TemplateValue<Values>
 
