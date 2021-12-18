@@ -1,34 +1,34 @@
 # Elements
 
-The elements represents the HTML tags. Every element has function handlers, wich are representing the attribute of a tag.
+The elements in HTMLKit represent the official HTML elements. Elements with content use the curly brackets, while elements without content use the round brackets. To add attributes to the element use the offered functions.
 
 ## Essential
 
 ### Definition
 
 ```swift
-/// Element with content
+/// element with content
 Body {
     ...
 }
 
-/// Element without content
+/// element without content
 Input()
 ```
 
 ### Attributes
 
 ```swift
-/// Attribute with value
+/// attribute with value
 .class("value")
 
-/// Attribute as toggle
+/// attribute as toggle
 .required()
 ```
 
 ### Modifier
 ```swift
-/// Modifies if the condition is true
+/// modifies if the condition is true
 Body {
     ...
 }
@@ -36,7 +36,7 @@ Body {
     $0.hidden()
 }
 
-/// Modifies if the value is set
+/// modifies if the value is set
 Body {
     ...
 }
@@ -45,4 +45,33 @@ Body {
 }
 ```
 
-## Variation
+## Limitation
+
+To prevent invalid code, each element owns a element definition. For example the element `Heading1` is a type of `BodyElement`, so it is only allowed to be placed in the `Body` element. See the [wiki](https://github.com/vapor-community/HTMLKit/wiki) for more element definitions.
+
+```swift
+/// [BodyElements.swift]
+
+public struct Heading1: ContentNode, BodyElement {
+    ...
+}
+```
+
+```html
+<html>
+    <head>
+        <h1>headline</h1> <!-- not valid -->
+    </head>
+    <body>
+        <h1>headline</h1> <!-- valid -->
+    </body>
+</html>
+```
+
+If you need to break the limitation, extend the element with the element definition of your choice or define it as `GlobalElement`.
+
+```swift
+extension FormContainer: GlobalElement {
+    ...
+}
+```

@@ -15,12 +15,14 @@ struct SimplePage: Page {
 
     var body: AnyContent {
         Document(type: .html5)
-        Head {
-            Title {
-                "SimplePage"
+        Html {
+            Head {
+                Title {
+                    "SimplePage"
+                }
             }
-        }
-        Body {
+            Body {
+            }
         }
     }
 }
@@ -37,7 +39,8 @@ The view is a partial view of the page. It should be used to display data using 
 
 struct SimpleView: View {
 
-    var context: TemplateValue<String> = ""
+    @TemplateValue(SimpleContext.self)
+    var context
 
     var body: AnyContent {
         Heading1 {
@@ -48,6 +51,8 @@ struct SimpleView: View {
 ```
 
 ### Context
+
+The context as an object holds the information for the view. ... See [Context](https://github.com/vapor-community/HTMLKit/blob/master/Instructions/Essential/Context.md) to learn more about it.
 
 ## Component
 
