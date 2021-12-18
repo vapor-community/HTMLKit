@@ -163,7 +163,7 @@ public protocol AlternateAttribute: AnyAttribute {
 
 extension AlternateAttribute {
     
-    internal var key: String { "alternate" }
+    internal var key: String { "alt" }
 }
 
 extension AlternateAttribute where Self: ContentNode {
