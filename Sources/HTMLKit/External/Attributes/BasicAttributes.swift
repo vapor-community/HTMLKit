@@ -406,6 +406,49 @@ extension AutoplayAttribute where Self: EmptyNode {
 }
 
 /// # Description:
+/// The protocol provides the element with the charset handler.
+///
+/// # References:
+/// https://html.spec.whatwg.org/#attr-meta-charset
+///
+public protocol CharsetAttribute: AnyAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func charset(_ value: Charset) -> Self
+}
+
+extension CharsetAttribute {
+    
+    internal var key: String { "charset" }
+}
+
+extension CharsetAttribute where Self: ContentNode {
+    
+    internal func mutate(charset value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension CharsetAttribute where Self: EmptyNode {
+    
+    internal func mutate(charset value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
+    }
+}
+
+/// # Description:
 /// The protocol provides the element with the checked handler.
 ///
 /// # References:
@@ -1347,6 +1390,49 @@ extension FormActionAttribute where Self: ContentNode {
 extension FormActionAttribute where Self: EmptyNode {
     
     internal func mutate(formaction value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
+    }
+}
+
+/// # Description:
+/// The protocol provides the element with the http-equiv handler.
+///
+/// # References:
+/// https://html.spec.whatwg.org/#attr-meta-http-equiv
+///
+public protocol EquivalentAttribute: AnyAttribute {
+    
+    /// The handler specifiies the header cells for the element.
+    ///
+    ///
+    func equivalent(_ value: Equivalent) -> Self
+}
+
+extension EquivalentAttribute {
+    
+    internal var key: String { "http-equiv" }
+}
+
+extension HeaderAttribute where Self: ContentNode {
+    
+    internal func mutate(httpequiv value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension EquivalentAttribute where Self: EmptyNode {
+    
+    internal func mutate(httpequiv value: String) -> Self {
         
         guard var attributes = self.attributes else {
             return .init(attributes: set(key: key, value: value))

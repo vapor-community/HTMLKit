@@ -12777,7 +12777,7 @@ extension Dialog: Modifiable {
 /// # References:
 /// https://html.spec.whatwg.org/#the-script-element
 ///
-public struct Script: ContentNode, BodyElement {
+public struct Script: ContentNode, BodyElement, HeadElement {
 
     internal var name: String { "script" }
 

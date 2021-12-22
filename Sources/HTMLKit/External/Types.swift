@@ -485,3 +485,46 @@ public enum Capitalization: String {
     case words = "words"
     case sentences = "sentences"
 }
+
+/// # Description:
+/// The type is for
+///
+/// # References:
+///
+public struct Charset: RawRepresentable {
+    
+    public var rawValue: String
+    
+    public init?(rawValue: String) {
+        self.rawValue = rawValue
+    }
+}
+
+extension Charset {
+    
+    static let utf8 = Charset(rawValue: "UTF-8")!
+    static let utf16 = Charset(rawValue: "UTF-16")!
+    static let ansi = Charset(rawValue: "Windows-1252")!
+    static let iso = Charset(rawValue: "ISO-8859-1")!
+}
+
+/// # Description:
+/// The type is for
+///
+/// # References:
+///
+public struct Equivalent: RawRepresentable {
+    
+    public var rawValue: String
+    
+    public init?(rawValue: String) {
+        self.rawValue = rawValue
+    }
+}
+
+extension Equivalent {
+    
+    static let content = Equivalent(rawValue: "content-type")!
+    static let `default` = Equivalent(rawValue: "default-style")!
+    static let refresh = Equivalent(rawValue: "refresh")!
+}

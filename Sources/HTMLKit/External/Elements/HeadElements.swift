@@ -399,7 +399,7 @@ public struct Meta: EmptyNode, HeadElement {
     }
 }
 
-extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttribute {
+extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttribute, CharsetAttribute, EquivalentAttribute {
     
     public func accessKey(_ value: String) -> Meta {
         return mutate(accesskey: value)
@@ -523,6 +523,14 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
     
     public func property(_ type: Graphs) -> Meta {
         return mutate(property: type.rawValue)
+    }
+    
+    public func charset(_ value: Charset) -> Meta {
+        return mutate(charset: value.rawValue)
+    }
+    
+    public func equivalent(_ value: Equivalent) -> Meta {
+        return mutate(httpequiv: value.rawValue)
     }
 }
 
