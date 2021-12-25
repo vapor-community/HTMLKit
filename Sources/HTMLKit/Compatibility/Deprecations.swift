@@ -30,3 +30,6 @@ public protocol HTMLNode {}
 
 @available(*, deprecated, message: "Is no longer in the scope.")
 public enum HTMLIdentifier {}
+
+@available(*, deprecated, message: "Is no longer in the scope.")
+public struct StringValue {}

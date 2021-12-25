@@ -8,6 +8,11 @@
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
+/// # Description:
+/// The builder builds up a result value from a sequence of string.
+///
+/// # References:
+///
 @resultBuilder public class StringBuilder {
 
     public static func buildBlock(_ component: String...) -> String {

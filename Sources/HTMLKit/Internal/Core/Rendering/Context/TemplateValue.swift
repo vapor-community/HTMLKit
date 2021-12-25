@@ -19,8 +19,11 @@ import Foundation
         get {
             switch self {
             case .constant(let value):
+                
                 return "\(value)"
+                
             default:
+                
                 return ""
             }
         }
@@ -29,8 +32,11 @@ import Foundation
     public var isDefined: Conditionable {
         
         if isMasqueradingOptional {
+            
             return true
+            
         } else {
+            
             return NotNullConditionGeneral(path: self)
         }
     }
@@ -38,8 +44,11 @@ import Foundation
     public var isNotDefined: Conditionable {
         
         if isMasqueradingOptional {
+            
             return false
+            
         } else {
+            
             return IsNullConditionGeneral(path: self)
         }
     }
@@ -47,16 +56,26 @@ import Foundation
     var isMasqueradingOptional: Bool {
         
         switch self {
-        case .constant: return false
-        case .dynamic(let variable): return variable.isMascadingOptional
+        case .constant:
+            
+            return false
+            
+        case .dynamic(let variable):
+            
+            return variable.isMascadingOptional
         }
     }
 
     public subscript<Subject>(dynamicMember keyPath: KeyPath<Value, Subject>) -> TemplateValue<Subject> {
         
         switch self {
-        case .constant(let value): return .constant(value[keyPath: keyPath])
-        case .dynamic(let variable): return .dynamic(variable[dynamicMember: keyPath])
+        case .constant(let value):
+            
+            return .constant(value[keyPath: keyPath])
+            
+        case .dynamic(let variable):
+            
+            return .dynamic(variable[dynamicMember: keyPath])
         }
     }
     
@@ -68,8 +87,12 @@ import Foundation
     public func escaping(_ option: EscapingOption) -> TemplateValue<Value> {
         
         switch self {
-        case .dynamic(let variable): return .dynamic(variable.escaping(option))
-        default: return self
+        case .dynamic(let variable):
+            
+            return .dynamic(variable.escaping(option))
+            
+        default:
+            return self
         }
     }
 
@@ -81,24 +104,39 @@ import Foundation
     public func value<T>(from manager: Renderer.ContextManager<T>) throws -> Value {
         
         switch self {
-        case .constant(let value): return value
-        case .dynamic(let variable): return try manager.value(for: variable)
+        case .constant(let value):
+            
+            return value
+            
+        case .dynamic(let variable):
+            
+            return try manager.value(for: variable)
         }
     }
 
     public func makeOptional() -> TemplateValue<Value?> {
         
         switch self {
-        case .constant(let value): return .constant(value)
-        case .dynamic(let variable): return .dynamic(variable.makeOptional())
+        case .constant(let value):
+            
+            return .constant(value)
+            
+        case .dynamic(let variable):
+            
+            return .dynamic(variable.makeOptional())
         }
     }
 
     public func unsafeCast<T>(to type: T.Type) -> TemplateValue<T> {
         
         switch self {
-        case .constant(let value): return .constant(value as! T)
-        case .dynamic(let variable): return .dynamic(variable.unsafeCast(to: T.self))
+        case .constant(let value):
+            
+            return .constant(value as! T)
+            
+        case .dynamic(let variable):
+            
+            return .dynamic(variable.unsafeCast(to: T.self))
         }
     }
     
@@ -113,16 +151,25 @@ extension TemplateValue: AnyContent where Value: AnyContent {
     public func prerender(_ formula: Renderer.Formula) throws {
         
         switch self {
-        case .constant(let value): try value.prerender(formula)
-        case .dynamic(let variable): try variable.prerender(formula)
+        case .constant(let value):
+            
+            try value.prerender(formula)
+            
+        case .dynamic(let variable):
+            try variable.prerender(formula)
         }
     }
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         
         switch self {
-        case .constant(let value): return try value.render(with: manager)
-        case .dynamic(let variable): return try variable.render(with: manager)
+        case .constant(let value):
+            
+            return try value.render(with: manager)
+            
+        case .dynamic(let variable):
+            
+            return try variable.render(with: manager)
         }
     }
 }
@@ -146,5 +193,48 @@ extension TemplateValue: ExpressibleByIntegerLiteral where Value == Int {
 
     public init(integerLiteral value: Int) {
         self = .constant(value)
+    }
+}
+
+extension TemplateValue where Value: Sequence {
+
+    func forEach(@ContentBuilder<AnyContent> content: (TemplateValue<Value.Element>) -> AnyContent) -> AnyContent {
+        ForEach(in: self, content: content)
+    }
+}
+
+extension TemplateValue: Conditionable where Value == Bool {
+    
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
+        
+        switch self {
+        case .constant(let value):
+            return value
+            
+        case .dynamic(let variable):
+            return try manager.value(for: variable)
+        }
+    }
+}
+
+extension TemplateValue where Value == Date {
+    
+    public func style(date: DateFormatter.Style = .short, time: DateFormatter.Style = .short) -> AnyContent {
+        return DateVariable(dateReference: .solid(self), format: .style(.init(dateStyle: date, timeStyle: time)))
+    }
+
+    public func formatted(string format: String) -> AnyContent {
+        return DateVariable(dateReference: .solid(self), format: .literal(format))
+    }
+}
+
+extension TemplateValue where Value == Date? {
+
+    public func style(date: DateFormatter.Style = .short, time: DateFormatter.Style = .short) -> AnyContent {
+        return DateVariable(dateReference: .optional(self), format: .style(.init(dateStyle: date, timeStyle: time)))
+    }
+
+    public func formatted(string format: String) -> AnyContent {
+        return DateVariable(dateReference: .optional(self), format: .literal(format))
     }
 }

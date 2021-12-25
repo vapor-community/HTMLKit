@@ -411,10 +411,12 @@ public struct Legend: ContentNode, InputElement {
     internal var content: [AnyContent]
 
     public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+        
         self.content = content()
     }
     
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+        
         self.attributes = attributes
         self.content = content
     }

@@ -10,13 +10,13 @@ public struct NoData: Encodable {}
 ///
 public struct Localized<B>: AnyContent where B: Encodable {
 
-    enum Errors: Error {
+    public enum Errors: Error {
         case missingLingoConfig
     }
 
-    let key: String
+    public let key: String
 
-    let context: TemplateValue<B>?
+    public let context: TemplateValue<B>?
 
     public init(key: String, context: TemplateValue<B>) {
         self.key = key
@@ -38,7 +38,9 @@ public struct Localized<B>: AnyContent where B: Encodable {
         if let value = try context?.value(from: manager) {
             
             guard let data = try? JSONEncoder().encode(value) else {
-                    print("-- ERROR: Not able to encode content when localizing \(key), in \(locale), with content: \(String(describing: context)).")
+                
+                print("-- ERROR: Not able to encode content when localizing \(key), in \(locale), with content: \(String(describing: context)).")
+                
                 return ""
             }
             

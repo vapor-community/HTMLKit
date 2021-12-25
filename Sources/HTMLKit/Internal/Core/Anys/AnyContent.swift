@@ -18,12 +18,12 @@ import Foundation
 public protocol AnyContent {
 
     var renderWhenLocalizing: Bool { get }
+    
+    var scripts: AnyContent { get }
 
     func render<T>(with manager: Renderer.ContextManager<T>) throws -> String
 
     func prerender(_ formula: Renderer.Formula) throws
-
-    var scripts: AnyContent { get }
 }
 
 extension AnyContent {
