@@ -1,22 +1,22 @@
-/// # Description:
+/// ## Description
 /// The file contains the figure elements. The html element Head only allows these elements to be its
 /// descendants.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The element represents the document's title.
 ///
 /// There must be no more than one title element per document.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-title-element
 ///
 public struct Title: ContentNode, HeadElement {
@@ -142,6 +142,10 @@ extension Title: GlobalAttributes {
     public func translate(_ value: String) -> Title {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Title {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Title: AnyContent {
@@ -192,12 +196,12 @@ extension Title: Modifiable {
 }
 
 
-/// # Description:
+/// ## Description
 /// The element specifies the document base url.
 ///
 /// There must be no more than one base element per document.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-base-element
 ///
 public struct Base: EmptyNode, HeadElement {
@@ -330,6 +334,10 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
     public func target(_ type: Target) -> Base {
         return mutate(target: type.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Base {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Base: AnyContent {
@@ -379,11 +387,11 @@ extension Base: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element provides meta information about the document.
 ///
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-meta-element
 ///
 public struct Meta: EmptyNode, HeadElement {
@@ -399,7 +407,7 @@ public struct Meta: EmptyNode, HeadElement {
     }
 }
 
-extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttribute {
+extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttribute, CharsetAttribute, EquivalentAttribute {
     
     public func accessKey(_ value: String) -> Meta {
         return mutate(accesskey: value)
@@ -524,6 +532,18 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
     public func property(_ type: Graphs) -> Meta {
         return mutate(property: type.rawValue)
     }
+    
+    public func charset(_ value: Charset) -> Meta {
+        return mutate(charset: value.rawValue)
+    }
+    
+    public func equivalent(_ value: Equivalent) -> Meta {
+        return mutate(httpequiv: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Meta {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Meta: AnyContent {
@@ -573,11 +593,11 @@ extension Meta: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element contains style information for the document.
 ///
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-style-element
 ///
 public struct Style: ContentNode, HeadElement {
@@ -715,6 +735,10 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
     public func media(_ value: String) -> Style {
         return mutate(media: value)
     }
+    
+    public func custom(key: String, value: Any) -> Style {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Style: AnyContent {
@@ -764,10 +788,10 @@ extension Style: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-link-element
 ///
 public struct Link: EmptyNode, HeadElement {
@@ -927,6 +951,10 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
     
     public func type(_ value: MediaType) -> Link {
         return mutate(type: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Link {
+        return mutate(key: key, value: value)
     }
 }
 

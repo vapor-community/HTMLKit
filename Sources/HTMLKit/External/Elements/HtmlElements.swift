@@ -1,20 +1,20 @@
-/// # Description:
+/// ## Description
 /// The file contains the html elements. The html element Html only allows these elements to be its
 /// descendants.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The element contains the information about the document's content.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-head-element
 ///
 public struct Head: ContentNode, HtmlElement {
@@ -140,6 +140,10 @@ extension Head: GlobalAttributes {
     public func translate(_ value: String) -> Head {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Head {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Head: AnyContent {
@@ -189,10 +193,10 @@ extension Head: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element contains the document's content.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-body-element
 ///
 public struct Body: ContentNode, HtmlElement {
@@ -353,6 +357,10 @@ extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttr
 
     public func translate(_ value: String) -> Body {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Body {
+        return mutate(key: key, value: value)
     }
 }
 

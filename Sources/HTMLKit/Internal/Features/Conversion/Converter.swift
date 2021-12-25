@@ -1,10 +1,10 @@
-/// # Description:
+/// ## Description
 /// The file contains the converter.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
@@ -304,16 +304,16 @@ public class Converter {
         }
     }
     
-    @StringBuilder internal func decode(element: XMLNode, preindent: Int? = nil) -> String {
+    @StringBuilder internal func decode(element: XMLNode, indent: Int? = nil) -> String {
         
         switch element.kind {
         case .text:
             
-            TextElement(node: element).build(preindent: preindent)
+            TextElement(node: element).build(preindent: indent)
             
         case .comment:
             
-            CommentElement(node: element).build(preindent: preindent)
+            CommentElement(node: element).build(preindent: indent)
             
         default:
             
@@ -321,213 +321,213 @@ public class Converter {
              
                 switch element.localName {
                 case "html":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "head":
-                    ContentElement(element: element).build(verbatim: "Head", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Head", preindent: indent)
                 case "body":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "nav":
-                    ContentElement(element: element).build(verbatim: "Navigation", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Navigation", preindent: indent)
                 case "link":
-                    EmptyElement(element: element).build(preindent: preindent)
+                    EmptyElement(element: element).build(preindent: indent)
                 case "aside":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "section":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "h1":
-                    ContentElement(element: element).build(verbatim: "Heading1", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Heading1", preindent: indent)
                 case "h2":
-                    ContentElement(element: element).build(verbatim: "Heading2", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Heading2", preindent: indent)
                 case "h3":
-                    ContentElement(element: element).build(verbatim: "Heading3", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Heading3", preindent: indent)
                 case "h4":
-                    ContentElement(element: element).build(verbatim: "Heading4", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Heading4", preindent: indent)
                 case "h5":
-                    ContentElement(element: element).build(verbatim: "Heading5", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Heading5", preindent: indent)
                 case "h6":
-                    ContentElement(element: element).build(verbatim: "Heading6", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Heading6", preindent: indent)
                 case "hgroup":
-                    ContentElement(element: element).build(verbatim: "HeadingGroup", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "HeadingGroup", preindent: indent)
                 case "header":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "footer":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "address":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "p":
-                    ContentElement(element: element).build(verbatim: "Paragraph", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Paragraph", preindent: indent)
                 case "hr":
-                    EmptyElement(element: element).build(verbatim: "HorizontalRule", preindent: preindent)
+                    EmptyElement(element: element).build(verbatim: "HorizontalRule", preindent: indent)
                 case "pre":
-                    ContentElement(element: element).build(verbatim: "PreformattedText", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "PreformattedText", preindent: indent)
                 case "blockquote":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "ol":
-                    ContentElement(element: element).build(verbatim: "OrderedList", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "OrderedList", preindent: indent)
                 case "ul":
-                    ContentElement(element: element).build(verbatim: "UnorderedList", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "UnorderedList", preindent: indent)
                 case "dl":
-                    ContentElement(element: element).build(verbatim: "DescriptionList", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "DescriptionList", preindent: indent)
                 case "figure":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "a":
-                    ContentElement(element: element).build(verbatim: "Anchor", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Anchor", preindent: indent)
                 case "em":
-                    ContentElement(element: element).build(verbatim: "Emphasize", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Emphasize", preindent: indent)
                 case "small":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "s":
-                    ContentElement(element: element).build(verbatim: "StrikeThrough", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "StrikeThrough", preindent: indent)
                 case "main":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "div":
-                    ContentElement(element: element).build(verbatim: "Division", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Division", preindent: indent)
                 case "dfn":
-                    ContentElement(element: element).build(verbatim: "Definition", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Definition", preindent: indent)
                 case "cite":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "q":
-                    ContentElement(element: element).build(verbatim: "ShortQuote", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "ShortQuote", preindent: indent)
                 case "rt":
-                    ContentElement(element: element).build(verbatim: "RubyText", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "RubyText", preindent: indent)
                 case "rp":
-                    ContentElement(element: element).build(verbatim: "RubyPronunciation", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "RubyPronunciation", preindent: indent)
                 case "abbr":
-                    ContentElement(element: element).build(verbatim: "Abbreviation", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Abbreviation", preindent: indent)
                 case "data":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "time":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "code":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "v":
-                    ContentElement(element: element).build(verbatim: "Variable", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Variable", preindent: indent)
                 case "samp":
-                    ContentElement(element: element).build(verbatim: "SampleOutput", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "SampleOutput", preindent: indent)
                 case "kbd":
-                    ContentElement(element: element).build(verbatim: "KeyboardOutput", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "KeyboardOutput", preindent: indent)
                 case "sub":
-                    ContentElement(element: element).build(verbatim: "Subscript", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Subscript", preindent: indent)
                 case "sup":
-                    ContentElement(element: element).build(verbatim: "Superscript", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Superscript", preindent: indent)
                 case "i":
-                    ContentElement(element: element).build(verbatim: "Italic", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Italic", preindent: indent)
                 case "b":
-                    ContentElement(element: element).build(verbatim: "Bold", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Bold", preindent: indent)
                 case "u":
-                    ContentElement(element: element).build(verbatim: "SampleOutput", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "SampleOutput", preindent: indent)
                 case "mark":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "bdi":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "bdo":
-                    EmptyElement(element: element).build(preindent: preindent)
+                    EmptyElement(element: element).build(preindent: indent)
                 case "span":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "br":
-                    EmptyElement(element: element).build(verbatim: "LineBreak", preindent: preindent)
+                    EmptyElement(element: element).build(verbatim: "LineBreak", preindent: indent)
                 case "wbr":
-                    EmptyElement(element: element).build(verbatim: "WordBreak", preindent: preindent)
+                    EmptyElement(element: element).build(verbatim: "WordBreak", preindent: indent)
                 case "ins":
-                    ContentElement(element: element).build(verbatim: "InsertedText", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "InsertedText", preindent: indent)
                 case "del":
-                    ContentElement(element: element).build(verbatim: "DeletedText", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "DeletedText", preindent: indent)
                 case "img":
-                    ContentElement(element: element).build(verbatim: "Image", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Image", preindent: indent)
                 case "embed":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "iframe":
-                    ContentElement(element: element).build(verbatim: "InlineFrame", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "InlineFrame", preindent: indent)
                 case "param":
-                    EmptyElement(element: element).build(verbatim: "Parameter", preindent: preindent)
+                    EmptyElement(element: element).build(verbatim: "Parameter", preindent: indent)
                 case "dt":
-                    ContentElement(element: element).build(verbatim: "TermName", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "TermName", preindent: indent)
                 case "dd":
-                    ContentElement(element: element).build(verbatim: "TermDefinition", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "TermDefinition", preindent: indent)
                 case "figcaption":
-                    ContentElement(element: element).build(verbatim: "FigureCaption", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "FigureCaption", preindent: indent)
                 case "optgroup":
-                    ContentElement(element: element).build(verbatim: "OptionGroup", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "OptionGroup", preindent: indent)
                 case "option":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "legend":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "summary":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "li":
-                    ContentElement(element: element).build(verbatim: "ListItem", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "ListItem", preindent: indent)
                 case "colgroup":
-                    ContentElement(element: element).build(verbatim: "ColumnGroup", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "ColumnGroup", preindent: indent)
                 case "col":
-                    ContentElement(element: element).build(verbatim: "Column", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "Column", preindent: indent)
                 case "tbody":
-                    ContentElement(element: element).build(verbatim: "TableBody", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "TableBody", preindent: indent)
                 case "thead":
-                    ContentElement(element: element).build(verbatim: "TableHead", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "TableHead", preindent: indent)
                 case "tfoot":
-                    ContentElement(element: element).build(verbatim: "TableFoot", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "TableFoot", preindent: indent)
                 case "tr":
-                    ContentElement(element: element).build(verbatim: "TableRow", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "TableRow", preindent: indent)
                 case "td":
-                    ContentElement(element: element).build(verbatim: "DataCell", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "DataCell", preindent: indent)
                 case "th":
-                    ContentElement(element: element).build(verbatim: "HeaderCell", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "HeaderCell", preindent: indent)
                 case "textarea":
-                    ContentElement(element: element).build(verbatim: "TextArea", preindent: preindent)
+                    ContentElement(element: element).build(verbatim: "TextArea", preindent: indent)
                 case "input":
-                    EmptyElement(element: element).build(preindent: preindent)
+                    EmptyElement(element: element).build(preindent: indent)
                 case "video":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "audio":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "map":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "area":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "form":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "datalist":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "output":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "meter":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "details":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "dialog":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "script":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "noscript":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "template":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "canvas":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "table":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "fieldset":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "button":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "select":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "label":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "title":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "base":
-                    EmptyElement(element: element).build(preindent: preindent)
+                    EmptyElement(element: element).build(preindent: indent)
                 case "meta":
-                    EmptyElement(element: element).build(preindent: preindent)
+                    EmptyElement(element: element).build(preindent: indent)
                 case "style":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 case "source":
-                    EmptyElement(element: element).build(preindent: preindent)
+                    EmptyElement(element: element).build(preindent: indent)
                 case "track":
-                    EmptyElement(element: element).build(preindent: preindent)
+                    EmptyElement(element: element).build(preindent: indent)
                 case "article":
-                    ContentElement(element: element).build(preindent: preindent)
+                    ContentElement(element: element).build(preindent: indent)
                 default:
                     "element is not listed. contact the author"
                 }

@@ -1,30 +1,30 @@
-/// # Description:
+/// ## Description
 /// The file contains the definition elements. The html element DescriptionList only allows these
 /// elements to be its descendants.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The alias points to TermName.
 ///
 public typealias Dt = TermName
 
-/// # Description:
+/// ## Description
 /// The alias points to TermDefinition.
 ///
 public typealias Dd = TermDefinition
 
-/// # Description:
+/// ## Description
 /// The element specifies a term name.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-dt-element
 ///
 public struct TermName: ContentNode, DescriptionElement {
@@ -150,6 +150,10 @@ extension TermName: GlobalAttributes {
     public func translate(_ value: String) -> TermName {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> TermName {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension TermName: AnyContent {
@@ -199,10 +203,10 @@ extension TermName: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element specifies a term definition.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-dd-element
 ///
 public struct TermDefinition: ContentNode, DescriptionElement {
@@ -327,6 +331,10 @@ extension TermDefinition: GlobalAttributes {
 
     public func translate(_ value: String) -> TermDefinition {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> TermDefinition {
+        return mutate(key: key, value: value)
     }
 }
 

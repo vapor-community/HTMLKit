@@ -1,200 +1,200 @@
-/// # Description:
+/// ## Description
 /// The file contains the body elements. The html element Body only allows these elements
 /// to be its descendants.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The alias points to Navigation.
 ///
 public typealias Nav = Navigation
 
-/// # Description:
+/// ## Description
 /// The alias points to Heading1.
 ///
 public typealias H1 = Heading1
 
-/// # Description:
+/// ## Description
 /// The alias points to Heading2.
 ///
 public typealias H2 = Heading2
 
-/// # Description:
+/// ## Description
 /// The alias points to Heading3.
 ///
 public typealias H3 = Heading3
 
-/// # Description:
+/// ## Description
 /// The alias points to Heading4.
 ///
 public typealias H4 = Heading4
 
-/// # Description:
+/// ## Description
 /// The alias points to Heading5.
 ///
 public typealias H5 = Heading5
 
-/// # Description:
+/// ## Description
 /// The alias points to Heading6.
 ///
 public typealias H6 = Heading6
 
-/// # Description:
+/// ## Description
 /// The alias points to HeadingGroup.
 ///
 public typealias Hgroup = HeadingGroup
 
-/// # Description:
+/// ## Description
 /// The alias points to Paragraph.
 ///
 public typealias P = Paragraph
 
-/// # Description:
+/// ## Description
 /// The alias points to HorizontalRule.
 ///
 public typealias Hr = HorizontalRule
 
-/// # Description:
+/// ## Description
 /// The alias points to PreformattedText.
 ///
 public typealias Pre = PreformattedText
 
-/// # Description:
+/// ## Description
 /// The alias points to OrderedList.
 ///
 public typealias Ol = OrderedList
 
-/// # Description:
+/// ## Description
 /// The alias points to UnorderedList.
 ///
 public typealias Ul = UnorderedList
 
-/// # Description:
+/// ## Description
 /// The alias points to DescriptionList.
 ///
 public typealias Dl = DescriptionList
 
-/// # Description:
+/// ## Description
 /// The alias points to Division.
 ///
 public typealias Div = Division
 
-/// # Description:
+/// ## Description
 /// The alias points to Anchor.
 ///
 public typealias A = Anchor
 
-/// # Description:
+/// ## Description
 /// The alias points to Emphasize.
 ///
 public typealias Em = Emphasize
 
-/// # Description:
+/// ## Description
 /// The alias points to StrikeThrough.
 ///
 public typealias S = StrikeThrough
 
-/// # Description:
+/// ## Description
 /// The alias points to ShortQuote.
 ///
 public typealias Q = ShortQuote
 
-/// # Description:
+/// ## Description
 /// The alias points to Definition.
 ///
 public typealias Dfn = Definition
 
-/// # Description:
+/// ## Description
 /// The alias points to Abbreviation.
 ///
 public typealias Abbr = Abbreviation
 
-/// # Description:
+/// ## Description
 /// The alias points to Variable.
 ///
 public typealias V = Variable
 
-/// # Description:
+/// ## Description
 /// The alias points to SampleOutput.
 ///
 public typealias Samp = SampleOutput
 
-/// # Description:
+/// ## Description
 /// The alias points to KeyboardInput.
 ///
 public typealias Kbd = KeyboardInput
 
-/// # Description:
+/// ## Description
 /// The alias points to Subscript.
 ///
 public typealias Sub = Subscript
 
-/// # Description:
+/// ## Description
 /// The alias points to Superscript.
 ///
 public typealias Sup = Superscript
 
-/// # Description:
+/// ## Description
 /// The alias points to Italic.
 ///
 public typealias I = Italic
 
-/// # Description:
+/// ## Description
 /// The alias points to Bold.
 ///
 public typealias B = Bold
 
-/// # Description:
+/// ## Description
 /// The alias points to Underline.
 ///
 public typealias U = Underline
 
-/// # Description:
+/// ## Description
 /// The alias points to LineBreak.
 ///
 public typealias Br = LineBreak
 
-/// # Description:
+/// ## Description
 /// The alias points to WordBreak.
 ///
 public typealias Wbr = WordBreak
 
-/// # Description:
+/// ## Description
 /// The alias points to InsertedText.
 ///
 public typealias Ins = InsertedText
 
-/// # Description:
+/// ## Description
 /// The alias points to DeletedText.
 ///
 public typealias Del = DeletedText
 
-/// # Description:
+/// ## Description
 /// The alias points to Image.
 ///
 public typealias Img = Image
 
-/// # Description:
+/// ## Description
 /// The alias points to InlineFrame.
 ///
 public typealias Iframe = InlineFrame
 
-/// # Description:
+/// ## Description
 /// The alias points to Parameter.
 ///
 public typealias Param = Parameter
 
-/// # Description:
+/// ## Description
 /// The element represents a self-contained content.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-article-element
 ///
 public struct Article: ContentNode, BodyElement {
@@ -320,6 +320,10 @@ extension Article: GlobalAttributes {
     public func translate(_ value: String) -> Article {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Article {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Article: AnyContent {
@@ -369,10 +373,10 @@ extension Article: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a generic section of the document.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-section-element
 ///
 public struct Section: ContentNode, BodyElement {
@@ -498,6 +502,10 @@ extension Section: GlobalAttributes {
     public func translate(_ value: String) -> Section {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Section {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Section: AnyContent {
@@ -547,10 +555,10 @@ extension Section: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a section of a page that links to other pages or parts within the page.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-nav-element)
 ///
 public struct Navigation: ContentNode, BodyElement {
@@ -676,6 +684,10 @@ extension Navigation: GlobalAttributes {
     public func translate(_ value: String) -> Navigation {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Navigation {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Navigation: AnyContent {
@@ -725,10 +737,10 @@ extension Navigation: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element defines some content aside from the content it is placed in.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-aside-element
 ///
 public struct Aside: ContentNode, BodyElement {
@@ -854,6 +866,10 @@ extension Aside: GlobalAttributes {
     public func translate(_ value: String) -> Aside {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Aside {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Aside: AnyContent {
@@ -903,10 +919,10 @@ extension Aside: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a heading.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading1: ContentNode, BodyElement {
@@ -1032,6 +1048,10 @@ extension Heading1: GlobalAttributes {
     public func translate(_ value: String) -> Heading1 {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Heading1 {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Heading1: AnyContent {
@@ -1092,10 +1112,10 @@ extension Heading1: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a heading.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading2: ContentNode, BodyElement {
@@ -1221,6 +1241,10 @@ extension Heading2: GlobalAttributes {
     public func translate(_ value: String) -> Heading2 {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Heading2 {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Heading2: AnyContent {
@@ -1281,10 +1305,10 @@ extension Heading2: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a heading.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading3: ContentNode, BodyElement {
@@ -1410,6 +1434,10 @@ extension Heading3: GlobalAttributes {
     public func translate(_ value: String) -> Heading3 {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Heading3 {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Heading3: AnyContent {
@@ -1470,10 +1498,10 @@ extension Heading3: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a heading.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading4: ContentNode, BodyElement {
@@ -1599,6 +1627,10 @@ extension Heading4: GlobalAttributes {
     public func translate(_ value: String) -> Heading4 {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Heading4 {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Heading4: AnyContent {
@@ -1659,10 +1691,10 @@ extension Heading4: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a heading.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading5: ContentNode, BodyElement {
@@ -1788,6 +1820,10 @@ extension Heading5: GlobalAttributes {
     public func translate(_ value: String) -> Heading5 {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Heading5 {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Heading5: AnyContent {
@@ -1848,10 +1884,10 @@ extension Heading5: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a heading.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading6: ContentNode, BodyElement {
@@ -1977,6 +2013,10 @@ extension Heading6: GlobalAttributes {
     public func translate(_ value: String) -> Heading6 {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Heading6 {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Heading6: AnyContent {
@@ -2037,10 +2077,10 @@ extension Heading6: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element is used to group a set of heading elements.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-hgroup-element
 ///
 public struct HeadingGroup: ContentNode, BodyElement {
@@ -2166,6 +2206,10 @@ extension HeadingGroup: GlobalAttributes {
     public func translate(_ value: String) -> HeadingGroup {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> HeadingGroup {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension HeadingGroup: AnyContent {
@@ -2215,10 +2259,10 @@ extension HeadingGroup: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a header.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-header-element
 ///
 public struct Header: ContentNode, BodyElement {
@@ -2344,6 +2388,10 @@ extension Header: GlobalAttributes {
     public func translate(_ value: String) -> Header {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Header {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Header: AnyContent {
@@ -2393,10 +2441,10 @@ extension Header: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a footer.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-footer-element
 ///
 public struct Footer: ContentNode, BodyElement {
@@ -2522,6 +2570,10 @@ extension Footer: GlobalAttributes {
     public func translate(_ value: String) -> Footer {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Footer {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Footer: AnyContent {
@@ -2571,10 +2623,10 @@ extension Footer: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents the contact information.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-address-element
 ///
 public struct Address: ContentNode, BodyElement {
@@ -2700,6 +2752,10 @@ extension Address: GlobalAttributes {
     public func translate(_ value: String) -> Address {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Address {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Address: AnyContent {
@@ -2749,10 +2805,10 @@ extension Address: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element is used to define a paragraph.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-p-element
 ///
 public struct Paragraph: ContentNode, BodyElement {
@@ -2878,6 +2934,10 @@ extension Paragraph: GlobalAttributes {
     public func translate(_ value: String) -> Paragraph {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Paragraph {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Paragraph: AnyContent {
@@ -2938,10 +2998,10 @@ extension Paragraph: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element is used for horizontal rules that act as dividers between sections.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-hr-element
 ///
 public struct HorizontalRule: EmptyNode, BodyElement {
@@ -3062,6 +3122,10 @@ extension HorizontalRule: GlobalAttributes {
     public func translate(_ value: String) -> HorizontalRule {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> HorizontalRule {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension HorizontalRule: AnyContent {
@@ -3111,10 +3175,10 @@ extension HorizontalRule: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a block of preformatted text.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-pre-element
 ///
 public struct PreformattedText: ContentNode, BodyElement {
@@ -3240,6 +3304,10 @@ extension PreformattedText: GlobalAttributes {
     public func translate(_ value: String) -> PreformattedText {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> PreformattedText {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension PreformattedText: AnyContent {
@@ -3289,10 +3357,10 @@ extension PreformattedText: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a section that is quoted from another source.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-blockquote-element
 ///
 public struct Blockquote: ContentNode, BodyElement {
@@ -3422,6 +3490,10 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
     public func cite(_ value: String) -> Blockquote {
         return mutate(cite: value)
     }
+    
+    public func custom(key: String, value: Any) -> Blockquote {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Blockquote: AnyContent {
@@ -3482,10 +3554,10 @@ extension Blockquote: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a list of items, where the items have been intentionally ordered.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-ol-element
 ///
 public struct OrderedList: ContentNode, BodyElement {
@@ -3623,6 +3695,10 @@ extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, Type
     public func type(_ value: String) -> OrderedList {
         return mutate(type: value)
     }
+    
+    public func custom(key: String, value: Any) -> OrderedList {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension OrderedList: AnyContent {
@@ -3672,10 +3748,10 @@ extension OrderedList: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a list of items, where the order of the items is not important.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-ul-element
 ///
 public struct UnorderedList: ContentNode, BodyElement {
@@ -3801,6 +3877,10 @@ extension UnorderedList: GlobalAttributes {
     public func translate(_ value: String) -> UnorderedList {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> UnorderedList {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension UnorderedList: AnyContent {
@@ -3850,10 +3930,10 @@ extension UnorderedList: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element defines a list of terms and corresponding definitions.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-dl-element
 ///
 public struct DescriptionList: ContentNode, BodyElement {
@@ -3979,6 +4059,10 @@ extension DescriptionList: GlobalAttributes {
     public func translate(_ value: String) -> DescriptionList {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> DescriptionList {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension DescriptionList: AnyContent {
@@ -4028,10 +4112,10 @@ extension DescriptionList: Modifiable {
     }
 }
 
-/// # Description:
+/// # Figure
 /// The element can thus be used to annotate illustrations, diagrams, photos, code listings.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-figure-element
 ///
 public struct Figure: ContentNode, BodyElement {
@@ -4157,6 +4241,10 @@ extension Figure: GlobalAttributes {
     public func translate(_ value: String) -> Figure {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Figure {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Figure: AnyContent {
@@ -4206,10 +4294,10 @@ extension Figure: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-a-element
 ///
 public struct Anchor: ContentNode, BodyElement {
@@ -4375,6 +4463,10 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
     public func type(_ value: String) -> Anchor {
         return mutate(type: value)
     }
+    
+    public func custom(key: String, value: Any) -> Anchor {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Anchor: AnyContent {
@@ -4435,10 +4527,10 @@ extension Anchor: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element provides typographic emphasis.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-em-element
 ///
 public struct Emphasize: ContentNode, BodyElement {
@@ -4564,6 +4656,10 @@ extension Emphasize: GlobalAttributes {
     public func translate(_ value: String) -> Emphasize {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Emphasize {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Emphasize: AnyContent {
@@ -4613,10 +4709,10 @@ extension Emphasize: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element provides strong typographic emphasis.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-strong-element
 ///
 public struct Strong: ContentNode, BodyElement {
@@ -4742,6 +4838,10 @@ extension Strong: GlobalAttributes {
     public func translate(_ value: String) -> Strong {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Strong {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Strong: AnyContent {
@@ -4791,10 +4891,10 @@ extension Strong: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents side comments such as small print.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-small-element
 ///
 public struct Small: ContentNode, BodyElement {
@@ -4920,6 +5020,10 @@ extension Small: GlobalAttributes {
     public func translate(_ value: String) -> Small {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Small {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Small: AnyContent {
@@ -4980,10 +5084,10 @@ extension Small: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents contents that are no longer accurate or no longer relevant.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-s-element
 ///
 public struct StrikeThrough: ContentNode, BodyElement {
@@ -5109,6 +5213,10 @@ extension StrikeThrough: GlobalAttributes {
     public func translate(_ value: String) -> StrikeThrough {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> StrikeThrough {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension StrikeThrough: AnyContent {
@@ -5169,10 +5277,10 @@ extension StrikeThrough: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents the dominant contents of the document.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-main-element
 ///
 public struct Main: ContentNode, BodyElement {
@@ -5298,6 +5406,10 @@ extension Main: GlobalAttributes {
     public func translate(_ value: String) -> Main {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Main {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Main: AnyContent {
@@ -5347,10 +5459,10 @@ extension Main: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element is used to represent different kinds of containers.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-div-element
 ///
 public struct Division: ContentNode, BodyElement {
@@ -5476,6 +5588,10 @@ extension Division: GlobalAttributes {
     public func translate(_ value: String) -> Division {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Division {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Division: AnyContent {
@@ -5525,10 +5641,10 @@ extension Division: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-dfn-element
 ///
 public struct Definition: ContentNode, BodyElement {
@@ -5654,6 +5770,10 @@ extension Definition: GlobalAttributes {
     public func translate(_ value: String) -> Definition {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Definition {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Definition: AnyContent {
@@ -5703,10 +5823,10 @@ extension Definition: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element specifies a citation.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-cite-element
 ///
 public struct Cite: ContentNode, BodyElement {
@@ -5832,6 +5952,10 @@ extension Cite: GlobalAttributes {
     public func translate(_ value: String) -> Cite {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Cite {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Cite: AnyContent {
@@ -5881,10 +6005,10 @@ extension Cite: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element is used for a short quotation.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-q-element
 ///
 public struct ShortQuote: ContentNode, BodyElement {
@@ -6014,6 +6138,10 @@ extension ShortQuote: GlobalAttributes, CiteAttribute {
     public func cite(_ value: String) -> ShortQuote {
         return mutate(cite: value)
     }
+    
+    public func custom(key: String, value: Any) -> ShortQuote {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension ShortQuote: AnyContent {
@@ -6063,10 +6191,10 @@ extension ShortQuote: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents an abbreviation or acronym.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-abbr-element
 ///
 public struct Abbreviation: ContentNode, BodyElement {
@@ -6192,6 +6320,10 @@ extension Abbreviation: GlobalAttributes {
     public func translate(_ value: String) -> Abbreviation {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Abbreviation {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Abbreviation: AnyContent {
@@ -6241,10 +6373,10 @@ extension Abbreviation: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element allows one or more spans of phrasing content to be marked with ruby annotations.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-ruby-element
 ///
 public struct Ruby: ContentNode, BodyElement {
@@ -6370,6 +6502,10 @@ extension Ruby: GlobalAttributes {
     public func translate(_ value: String) -> Ruby {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Ruby {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Ruby: AnyContent {
@@ -6419,10 +6555,10 @@ extension Ruby: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-data-element
 ///
 public struct Data: ContentNode, BodyElement {
@@ -6556,6 +6692,10 @@ extension Data: GlobalAttributes, ValueAttribute {
     public func value(_ value: TemplateValue<String>) -> Data {
         return mutate(value: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Data {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Data: AnyContent {
@@ -6605,10 +6745,10 @@ extension Data: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents its contents, along with a machine-readable form of those contents in the datetime attribute.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-time-element
 ///
 public struct Time: ContentNode, BodyElement {
@@ -6738,6 +6878,10 @@ extension Time: GlobalAttributes, DateTimeAttribute {
     public func dateTime(_ value: String) -> Time {
         return mutate(datetime: value)
     }
+    
+    public func custom(key: String, value: Any) -> Time {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Time: AnyContent {
@@ -6787,10 +6931,10 @@ extension Time: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents an example of code.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-code-element
 ///
 public struct Code: ContentNode, BodyElement {
@@ -6916,6 +7060,10 @@ extension Code: GlobalAttributes {
     public func translate(_ value: String) -> Code {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Code {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Code: AnyContent {
@@ -6965,10 +7113,10 @@ extension Code: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element indicates a variable name.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-link-element
 ///
 public struct Variable: ContentNode, BodyElement {
@@ -7094,6 +7242,10 @@ extension Variable: GlobalAttributes {
     public func translate(_ value: String) -> Variable {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Variable {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Variable: AnyContent {
@@ -7143,10 +7295,10 @@ extension Variable: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents sample or quoted output from another program or computing system.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-samp-element
 ///
 public struct SampleOutput: ContentNode, BodyElement {
@@ -7272,6 +7424,10 @@ extension SampleOutput: GlobalAttributes {
     public func translate(_ value: String) -> SampleOutput {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> SampleOutput {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension SampleOutput: AnyContent {
@@ -7321,10 +7477,10 @@ extension SampleOutput: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents user input.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-kbd-element
 ///
 public struct KeyboardInput: ContentNode, BodyElement {
@@ -7450,6 +7606,10 @@ extension KeyboardInput: GlobalAttributes {
     public func translate(_ value: String) -> KeyboardInput {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> KeyboardInput {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension KeyboardInput: AnyContent {
@@ -7499,10 +7659,10 @@ extension KeyboardInput: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a subscript.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-sub-and-sup-elements
 ///
 public struct Subscript: ContentNode, BodyElement {
@@ -7628,6 +7788,10 @@ extension Subscript: GlobalAttributes {
     public func translate(_ value: String) -> Subscript {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Subscript {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Subscript: AnyContent {
@@ -7677,10 +7841,10 @@ extension Subscript: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a superscript.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-sub-and-sup-elements
 ///
 public struct Superscript: ContentNode, BodyElement {
@@ -7806,6 +7970,10 @@ extension Superscript: GlobalAttributes {
     public func translate(_ value: String) -> Superscript {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Superscript {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Superscript: AnyContent {
@@ -7855,10 +8023,10 @@ extension Superscript: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents an italic font text.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-i-element
 ///
 public struct Italic: ContentNode, BodyElement {
@@ -7984,6 +8152,10 @@ extension Italic: GlobalAttributes {
     public func translate(_ value: String) -> Italic {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Italic {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Italic: Localizable {
@@ -8044,10 +8216,10 @@ extension Italic: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents an bold font text.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-b-element
 ///
 public struct Bold: ContentNode, BodyElement {
@@ -8173,6 +8345,10 @@ extension Bold: GlobalAttributes {
     public func translate(_ value: String) -> Bold {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Bold {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Bold: Localizable {
@@ -8233,10 +8409,10 @@ extension Bold: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element specifies that the enclosed text should be displayed as underlined.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-u-element
 ///
 public struct Underline: ContentNode, BodyElement {
@@ -8362,6 +8538,10 @@ extension Underline: GlobalAttributes {
     public func translate(_ value: String) -> Underline {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Underline {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Underline: Localizable {
@@ -8422,10 +8602,10 @@ extension Underline: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a run of text in the document marked or highlighted for reference purposes.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-mark-element
 ///
 public struct Mark: ContentNode, BodyElement {
@@ -8551,6 +8731,10 @@ extension Mark: GlobalAttributes {
     public func translate(_ value: String) -> Mark {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Mark {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Mark: AnyContent {
@@ -8600,10 +8784,10 @@ extension Mark: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a span of text that is to be isolated from its surroundings for the purposes of bidirectional text formatting.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-bdi-element
 ///
 public struct Bdi: ContentNode, BodyElement {
@@ -8729,6 +8913,10 @@ extension Bdi: GlobalAttributes {
     public func translate(_ value: String) -> Bdi {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Bdi {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Bdi: AnyContent {
@@ -8778,10 +8966,10 @@ extension Bdi: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents explicit text directionality formatting control.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-bdo-element
 ///
 public struct Bdo: EmptyNode, BodyElement {
@@ -8902,6 +9090,10 @@ extension Bdo: GlobalAttributes {
     public func translate(_ value: String) -> Bdo {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Bdo {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Bdo: AnyContent {
@@ -8951,10 +9143,10 @@ extension Bdo: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element doesn't mean anything on its own.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-span-element
 ///
 public struct Span: ContentNode, BodyElement {
@@ -9080,6 +9272,10 @@ extension Span: GlobalAttributes {
     public func translate(_ value: String) -> Span {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Span {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Span: AnyContent {
@@ -9129,10 +9325,10 @@ extension Span: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a line break.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-br-element
 ///
 public struct LineBreak: EmptyNode, BodyElement {
@@ -9253,6 +9449,10 @@ extension LineBreak: GlobalAttributes {
     public func translate(_ value: String) -> LineBreak {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> LineBreak {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension LineBreak: AnyContent {
@@ -9302,10 +9502,10 @@ extension LineBreak: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a line break opportunity.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-wbr-element
 ///
 public struct WordBreak: EmptyNode, BodyElement {
@@ -9426,6 +9626,10 @@ extension WordBreak: GlobalAttributes {
     public func translate(_ value: String) -> WordBreak {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> WordBreak {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension WordBreak: AnyContent {
@@ -9475,10 +9679,10 @@ extension WordBreak: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents an addition to the document.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-ins-element
 ///
 public struct InsertedText: ContentNode, BodyElement {
@@ -9612,6 +9816,10 @@ extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     public func dateTime(_ value: String) -> InsertedText {
         return mutate(datetime: value)
     }
+    
+    public func custom(key: String, value: Any) -> InsertedText {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension InsertedText: AnyContent {
@@ -9661,10 +9869,10 @@ extension InsertedText: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a removal from the document.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-del-element
 ///
 public struct DeletedText: ContentNode, BodyElement {
@@ -9798,6 +10006,10 @@ extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     public func dateTime(_ value: String) -> DeletedText {
         return mutate(datetime: value)
     }
+    
+    public func custom(key: String, value: Any) -> DeletedText {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension DeletedText: AnyContent {
@@ -9847,10 +10059,10 @@ extension DeletedText: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element is a container which provides multiple sources to its contained image element.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-picture-element
 ///
 public struct Picture: ContentNode, BodyElement {
@@ -9976,6 +10188,10 @@ extension Picture: GlobalAttributes {
     public func translate(_ value: String) -> Picture {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Picture {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Picture: AnyContent {
@@ -10025,10 +10241,10 @@ extension Picture: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents an image.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-img-element
 ///
 public struct Image: EmptyNode, BodyElement {
@@ -10181,6 +10397,10 @@ extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAtt
     public func referrerPolicy(_ type: Policy) -> Image {
         return mutate(referrerpolicy: type.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Image {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Image: AnyContent {
@@ -10230,10 +10450,10 @@ extension Image: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents its nested browsing context.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-iframe-element
 ///
 public struct InlineFrame: ContentNode, BodyElement {
@@ -10383,6 +10603,10 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
     public func referrerPolicy(_ type: Policy) -> InlineFrame {
         return mutate(referrerpolicy: type.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> InlineFrame {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension InlineFrame: AnyContent {
@@ -10432,10 +10656,10 @@ extension InlineFrame: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element provides an integration point for an external application or interactive content.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-embed-element
 ///
 public struct Embed: EmptyNode, BodyElement {
@@ -10572,6 +10796,10 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
     public func height(_ size: Int) -> Embed {
         return mutate(height: size)
     }
+    
+    public func custom(key: String, value: Any) -> Embed {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Embed: AnyContent {
@@ -10621,10 +10849,10 @@ extension Embed: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents an external resource.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-object-element
 ///
 public struct Object: ContentNode, BodyElement {
@@ -10782,6 +11010,10 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
     public func height(_ size: Int) -> Object {
         return mutate(height: size)
     }
+    
+    public func custom(key: String, value: Any) -> Object {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Object: AnyContent {
@@ -10831,10 +11063,10 @@ extension Object: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-video-element
 ///
 public struct Video: ContentNode, BodyElement {
@@ -10988,6 +11220,10 @@ extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     public func height(_ size: Int) -> Video {
         return mutate(height: size)
     }
+    
+    public func custom(key: String, value: Any) -> Video {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Video: AnyContent {
@@ -11037,10 +11273,10 @@ extension Video: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-audio-element
 ///
 public struct Audio: ContentNode, BodyElement {
@@ -11186,6 +11422,10 @@ extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     public func controls() -> Audio {
         return mutate(controls: "controls")
     }
+    
+    public func custom(key: String, value: Any) -> Audio {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Audio: AnyContent {
@@ -11235,10 +11475,10 @@ extension Audio: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-map-elements
 ///
 public struct Map: ContentNode, BodyElement {
@@ -11372,6 +11612,10 @@ extension Map: GlobalAttributes, NameAttribute {
     public func name(_ value: TemplateValue<String>) -> Map {
         return mutate(name: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Map {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Map: AnyContent {
@@ -11421,10 +11665,10 @@ extension Map: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-form-element
 ///
 public struct Form: ContentNode, BodyElement {
@@ -11590,6 +11834,10 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
     public func relationship(_ type: Relation) -> Form {
         return mutate(rel: type.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Form {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Form: AnyContent {
@@ -11639,10 +11887,10 @@ extension Form: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a set of options.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-datalist-element
 ///
 public struct DataList: ContentNode, BodyElement {
@@ -11768,6 +12016,10 @@ extension DataList: GlobalAttributes {
     public func translate(_ value: String) -> DataList {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> DataList {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension DataList: AnyContent {
@@ -11817,10 +12069,10 @@ extension DataList: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents the result of a calculation.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-output-element
 ///
 public struct Output: ContentNode, BodyElement {
@@ -11962,6 +12214,10 @@ extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
     public func name(_ value: TemplateValue<String>) -> Output {
         return mutate(name: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Output {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Output: AnyContent {
@@ -12011,10 +12267,10 @@ extension Output: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents the completion progress of a task.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-progress-element
 ///
 public struct Progress: ContentNode, BodyElement {
@@ -12152,6 +12408,10 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
     public func value(_ value: TemplateValue<String>) -> Progress {
         return mutate(value: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Progress {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Progress: AnyContent {
@@ -12201,10 +12461,10 @@ extension Progress: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a scalar measurement within a known range, or a fractional value.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-meter-element
 ///
 public struct Meter: ContentNode, BodyElement {
@@ -12354,6 +12614,10 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
     public func value(_ value: TemplateValue<String>) -> Meter {
         return mutate(value: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Meter {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Meter: AnyContent {
@@ -12403,10 +12667,10 @@ extension Meter: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a disclosure widget from which the user can obtain additional information or controls.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-details-element
 ///
 public struct Details: ContentNode, BodyElement {
@@ -12540,6 +12804,10 @@ extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
     public func isOpen(_ condition: Bool) -> Details {
         return mutate(open: condition)
     }
+    
+    public func custom(key: String, value: Any) -> Details {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Details: AnyContent {
@@ -12589,10 +12857,10 @@ extension Details: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element defines a dialog box or window.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-dialog-element
 ///
 public struct Dialog: ContentNode, BodyElement {
@@ -12722,6 +12990,10 @@ extension Dialog: GlobalAttributes, OpenAttribute {
     public func isOpen(_ condition: Bool) -> Dialog {
         return mutate(open: condition)
     }
+    
+    public func custom(key: String, value: Any) -> Dialog {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Dialog: AnyContent {
@@ -12771,13 +13043,13 @@ extension Dialog: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element allows to include dynamic script and data blocks in a document.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-script-element
 ///
-public struct Script: ContentNode, BodyElement {
+public struct Script: ContentNode, BodyElement, HeadElement {
 
     internal var name: String { "script" }
 
@@ -12924,6 +13196,10 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
     public func type(_ value: MediaType) -> Script {
         return mutate(type: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Script {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Script: AnyContent {
@@ -12973,10 +13249,10 @@ extension Script: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a caption for the rest of the contents of a fieldset.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-template-element
 ///
 public struct NoScript: ContentNode, BodyElement {
@@ -13102,6 +13378,10 @@ extension NoScript: GlobalAttributes {
     public func translate(_ value: String) -> NoScript {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> NoScript {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension NoScript: AnyContent {
@@ -13151,10 +13431,10 @@ extension NoScript: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element is used to declare fragments of HTML that can be cloned and inserted in the document by script.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-template-element
 ///
 public struct Template: ContentNode, BodyElement {
@@ -13280,6 +13560,10 @@ extension Template: GlobalAttributes {
     public func translate(_ value: String) -> Template {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Template {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Template: AnyContent {
@@ -13329,10 +13613,10 @@ extension Template: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-canvas-element
 ///
 public struct Canvas: ContentNode, BodyElement {
@@ -13466,6 +13750,10 @@ extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
     public func height(_ size: Int) -> Canvas {
         return mutate(height: size)
     }
+    
+    public func custom(key: String, value: Any) -> Canvas {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Canvas: AnyContent {
@@ -13515,10 +13803,10 @@ extension Canvas: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-table-element
 ///
 public struct Table: ContentNode, BodyElement {
@@ -13651,6 +13939,10 @@ extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
     
     public func height(_ size: Int) -> Table {
         return mutate(height: size)
+    }
+    
+    public func custom(key: String, value: Any) -> Table {
+        return mutate(key: key, value: value)
     }
 }
 

@@ -1,29 +1,29 @@
-/// # Description:
+/// ## Description
 /// The file contains the content definition.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import Foundation
 
-/// # Description:
+/// ## Description
 /// The protocol defines a html content.
 ///
-/// # References:
+/// ## References
 ///
 public protocol AnyContent {
 
     var renderWhenLocalizing: Bool { get }
+    
+    var scripts: AnyContent { get }
 
     func render<T>(with manager: Renderer.ContextManager<T>) throws -> String
 
     func prerender(_ formula: Renderer.Formula) throws
-
-    var scripts: AnyContent { get }
 }
 
 extension AnyContent {

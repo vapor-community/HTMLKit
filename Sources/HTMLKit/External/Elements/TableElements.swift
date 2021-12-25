@@ -1,60 +1,60 @@
-/// # Description:
+/// ## Description
 /// The file contains the table elements. The html element Table only allows these elements to be its
 /// descendants.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The alias points to ColumnGroup.
 ///
 public typealias Colgroup = ColumnGroup
 
-/// # Description:
+/// ## Description
 /// The alias points to Column.
 ///
 public typealias Col = Column
 
-/// # Description:
+/// ## Description
 /// The alias points to TableBody.
 ///
 public typealias Tbody = TableBody
 
-/// # Description:
+/// ## Description
 /// The alias points to TableHead.
 ///
 public typealias Thead = TableHead
 
-/// # Description:
+/// ## Description
 /// The alias points to TableFoot.
 ///
 public typealias Tfoot = TableFoot
 
-/// # Description:
+/// ## Description
 /// The alias points to TableRow.
 ///
 public typealias Tr = TableRow
 
-/// # Description:
+/// ## Description
 /// The alias points to DataCell.
 ///
 public typealias Td = DataCell
 
-/// # Description:
+/// ## Description
 /// The alias points to HeaderCell.
 ///
 public typealias Th = HeaderCell
 
-/// # Description:
+/// ## Description
 /// The element represents the title of the table.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-caption-element
 ///
 public struct Caption: ContentNode, TableElement {
@@ -180,6 +180,10 @@ extension Caption: GlobalAttributes {
     public func translate(_ value: String) -> Caption {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Caption {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Caption: AnyContent {
@@ -229,10 +233,10 @@ extension Caption: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element specifies a group of one or more columns.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-colgroup-element
 ///
 public struct ColumnGroup: ContentNode, TableElement {
@@ -362,6 +366,10 @@ extension ColumnGroup: GlobalAttributes, SpanAttribute {
     public func span(_ size: Int) -> ColumnGroup {
         return mutate(span: size)
     }
+    
+    public func custom(key: String, value: Any) -> ColumnGroup {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension ColumnGroup: AnyContent {
@@ -411,10 +419,10 @@ extension ColumnGroup: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a column in a table.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-col-element
 ///
 public struct Column: ContentNode, TableElement {
@@ -544,6 +552,10 @@ extension Column: GlobalAttributes, SpanAttribute {
     public func span(_ size: Int) -> Column {
         return mutate(span: size)
     }
+    
+    public func custom(key: String, value: Any) -> Column {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Column: AnyContent {
@@ -593,10 +605,10 @@ extension Column: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a block of rows in a table.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-tbody-element
 ///
 public struct TableBody: ContentNode, TableElement {
@@ -730,6 +742,10 @@ extension TableBody: GlobalAttributes, WidthAttribute, HeightAttribute {
     public func height(_ size: Int) -> TableBody {
         return mutate(height: size)
     }
+    
+    public func custom(key: String, value: Any) -> TableBody {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension TableBody: AnyContent {
@@ -779,10 +795,10 @@ extension TableBody: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents the block of rows that consist of the column labels.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-thead-element
 ///
 public struct TableHead: ContentNode, TableElement {
@@ -916,6 +932,10 @@ extension TableHead: GlobalAttributes, WidthAttribute, HeightAttribute {
     public func height(_ size: Int) -> TableHead {
         return mutate(height: size)
     }
+    
+    public func custom(key: String, value: Any) -> TableHead {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension TableHead: AnyContent {
@@ -965,10 +985,10 @@ extension TableHead: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents the block of rows that consist of the column summaries.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-tfoot-element
 ///
 public struct TableFoot: ContentNode, TableElement {
@@ -1094,6 +1114,10 @@ extension TableFoot: GlobalAttributes {
     public func translate(_ value: String) -> TableFoot {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> TableFoot {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension TableFoot: AnyContent {
@@ -1143,10 +1167,10 @@ extension TableFoot: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a row of cells in a table.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-tr-element
 ///
 public struct TableRow: ContentNode, TableElement {
@@ -1280,6 +1304,10 @@ extension TableRow: GlobalAttributes, WidthAttribute, HeightAttribute {
     public func height(_ size: Int) -> TableRow {
         return mutate(height: size)
     }
+    
+    public func custom(key: String, value: Any) -> TableRow {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension TableRow: AnyContent {
@@ -1329,10 +1357,10 @@ extension TableRow: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a data cell in a table.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-td-element
 ///
 public struct DataCell: ContentNode, TableElement {
@@ -1470,6 +1498,10 @@ extension DataCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, Hea
     public func headers(_ value: String) -> DataCell {
         return mutate(headers: value)
     }
+    
+    public func custom(key: String, value: Any) -> DataCell {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension DataCell: AnyContent {
@@ -1519,10 +1551,10 @@ extension DataCell: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a header cell in a table.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-th-element
 ///
 public struct HeaderCell: ContentNode, TableElement {
@@ -1663,6 +1695,10 @@ extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, H
     
     public func scope(_ value: String) -> HeaderCell {
         return mutate(scope: value)
+    }
+    
+    public func custom(key: String, value: Any) -> HeaderCell {
+        return mutate(key: key, value: value)
     }
 }
 

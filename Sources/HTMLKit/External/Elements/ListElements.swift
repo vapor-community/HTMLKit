@@ -1,25 +1,25 @@
-/// # Description:
+/// ## Description
 /// The file contains the list elements. The html elements OrderedList or UnorderedList only
 /// allows these elements to be its descendants.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The alias points to ListItem.
 ///
 public typealias Li = ListItem
 
-/// # Description:
+/// ## Description
 /// The element represents a item of a list.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-li-element
 ///
 public struct ListItem: ContentNode, ListElement {
@@ -152,6 +152,10 @@ extension ListItem: GlobalAttributes, ValueAttribute {
     
     public func value(_ value: TemplateValue<String>) -> ListItem {
         return mutate(value: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> ListItem {
+        return mutate(key: key, value: value)
     }
 }
 

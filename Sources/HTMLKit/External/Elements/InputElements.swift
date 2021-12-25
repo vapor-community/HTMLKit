@@ -1,25 +1,25 @@
-/// # Description:
+/// ## Description
 /// The file contains the input elements. The html element Input only allows these elements to be its
 /// descendants.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The alias points to OptionGroup.
 ///
 public typealias Optgroup = OptionGroup
 
-/// # Description:
+/// ## Description
 /// The element represents a group of options.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-optgroup-element
 ///
 public struct OptionGroup: ContentNode, InputElement {
@@ -153,6 +153,10 @@ extension OptionGroup: GlobalAttributes, DisabledAttribute, LabelAttribute {
     public func label(_ value: String) -> OptionGroup {
         return mutate(label: value)
     }
+    
+    public func custom(key: String, value: Any) -> OptionGroup {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension OptionGroup: AnyContent {
@@ -202,10 +206,10 @@ extension OptionGroup: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents an option.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-option-element
 ///
 public struct Option: ContentNode, InputElement {
@@ -347,6 +351,10 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
     public func value(_ value: TemplateValue<String>) -> Option {
         return mutate(value: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Option {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Option: AnyContent {
@@ -396,10 +404,10 @@ extension Option: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a caption for the rest of the contents of a fieldset.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-legend-element
 ///
 public struct Legend: ContentNode, InputElement {
@@ -411,10 +419,12 @@ public struct Legend: ContentNode, InputElement {
     internal var content: [AnyContent]
 
     public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+        
         self.content = content()
     }
     
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+        
         self.attributes = attributes
         self.content = content
     }
@@ -525,6 +535,10 @@ extension Legend: GlobalAttributes {
     public func translate(_ value: String) -> Legend {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Legend {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Legend: AnyContent {
@@ -574,10 +588,10 @@ extension Legend: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a summary, caption, or legend for the rest of the content.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-summary-element
 ///
 public struct Summary: ContentNode, InputElement {
@@ -702,6 +716,10 @@ extension Summary: GlobalAttributes {
 
     public func translate(_ value: String) -> Summary {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Summary {
+        return mutate(key: key, value: value)
     }
 }
 

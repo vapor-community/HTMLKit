@@ -1,123 +1,123 @@
-/// # Description:
+/// ## Description
 /// The file contains the element definitions.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 public typealias GlobalElement = BodyElement & DescriptionElement & FigureElement & FormElement & BasicElement & HeadElement & ListElement & MapElement & MediaElement & ObjectElement & RubyElement & TableElement & HtmlElement
 
-/// # Description:
+/// ## Description
 /// The protocol defines a body element.
 ///
-/// # References:
+/// ## References
 ///
 public protocol BodyElement: AnyElement {
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines a description element.
 ///
-/// # References:
+/// ## References
 ///
 public protocol DescriptionElement: AnyElement {
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines a figure element.
 ///
-/// # References:
+/// ## References
 ///
 public protocol FigureElement: AnyElement {
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines a form element.
 ///
-/// # References:
+/// ## References
 ///
 public protocol FormElement: AnyElement {
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines a basic element.
 ///
-/// # References:
+/// ## References
 ///
 public protocol BasicElement: AnyElement {
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines a head element.
 ///
-/// # References:
+/// ## References
 ///
 public protocol HeadElement: AnyElement {
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines a input element.
 ///
-/// # References:
+/// ## References
 ///
 public protocol InputElement: AnyElement {
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines a list element.
 ///
-/// # References:
+/// ## References
 ///
 public protocol ListElement: AnyElement {
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines a map element.
 ///
-/// # References:
+/// ## References
 ///
 public protocol MapElement: AnyElement {
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines a media element.
 ///
-/// # References:
+/// ## References
 ///
 public protocol MediaElement: AnyElement {
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines a object element.
 ///
-/// # References:
+/// ## References
 ///
 public protocol ObjectElement: AnyElement {
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines a ruby element.
 ///
-/// # References:
+/// ## References
 ///
 public protocol RubyElement: AnyElement {
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines a table element.
 ///
-/// # References:
+/// ## References
 ///
 public protocol TableElement: AnyElement {
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines a html element.
 ///
-/// # References:
+/// ## References
 ///
 public protocol HtmlElement: AnyElement {
 }

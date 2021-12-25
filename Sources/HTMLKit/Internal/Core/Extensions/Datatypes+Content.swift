@@ -383,3 +383,13 @@ extension UUID: AnyContent {
         formula.add(string: self.uuidString)
     }
 }
+
+/// The extension is
+///
+///
+extension Sequence {
+    
+    public func htmlForEach(@ContentBuilder<AnyContent> content: (TemplateValue<Element>) -> AnyContent) -> AnyContent {
+        ForEach(in: .constant(self), content: content)
+    }
+}

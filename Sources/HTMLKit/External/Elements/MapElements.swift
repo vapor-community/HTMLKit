@@ -1,20 +1,20 @@
-/// # Description:
+/// ## Description
 /// The file contains the map elements. The html element Map only allows these elements to be its
 /// descendants.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The element defines an image map.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-area-element
 ///
 public struct Area: ContentNode, MapElement {
@@ -179,6 +179,10 @@ extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, Shap
     
     public func referrerPolicy(_ type: Policy) -> Area {
         return mutate(referrerpolicy: type.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Area {
+        return mutate(key: key, value: value)
     }
 }
 

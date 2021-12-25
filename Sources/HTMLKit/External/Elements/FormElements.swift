@@ -1,20 +1,20 @@
-/// # Description:
+/// ## Description
 /// The file contains the form elements. The html element Form only allows these elements to be its
 /// descendants. There are some exceptions too.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The element represents a typed data field to allow the user to edit the data.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-input-element
 ///
 public struct Input: EmptyNode, FormElement {
@@ -251,6 +251,10 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
     public func width(_ size: Int) -> Input {
         return mutate(width: size)
     }
+    
+    public func custom(key: String, value: Any) -> Input {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Input: AnyContent {
@@ -300,10 +304,10 @@ extension Input: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a caption for a form control.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-label-element
 ///
 public struct Label: ContentNode, FormElement {
@@ -433,6 +437,10 @@ extension Label: GlobalAttributes, ForAttribute {
     public func `for`(_ value: String) -> Label {
         return mutate(for: value)
     }
+    
+    public func custom(key: String, value: Any) -> Label {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Label: AnyContent {
@@ -493,10 +501,10 @@ extension Label: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a control for selecting amongst a set of options.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-select-element
 ///
 public struct Select: ContentNode, FormElement {
@@ -654,6 +662,10 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
     public func size(_ size: Int) -> Select {
         return mutate(size: size)
     }
+    
+    public func custom(key: String, value: Any) -> Select {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Select: AnyContent {
@@ -703,10 +715,10 @@ extension Select: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a multiline plain text edit control.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-textarea-element
 ///
 public struct TextArea: ContentNode, FormElement {
@@ -888,6 +900,10 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
     public func wrap(_ type: Wrapping) -> TextArea {
         return mutate(wrap: type.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> TextArea {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension TextArea: AnyContent {
@@ -937,10 +953,10 @@ extension TextArea: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-button-element
 ///
 public struct Button: ContentNode, FormElement {
@@ -1098,6 +1114,10 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
     public func value(_ value: TemplateValue<String>) -> Button {
         return mutate(value: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Button {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Button: AnyContent {
@@ -1158,10 +1178,10 @@ extension Button: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a set of form controls grouped together.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-fieldset-element
 ///
 public struct Fieldset: ContentNode, FormElement {
@@ -1302,6 +1322,10 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
     
     public func name(_ value: TemplateValue<String>) -> Fieldset {
         return mutate(name: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Fieldset {
+        return mutate(key: key, value: value)
     }
 }
 

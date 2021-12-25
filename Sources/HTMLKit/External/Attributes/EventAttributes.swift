@@ -1,27 +1,27 @@
-/// # Description:
+/// ## Description
 /// The file contains the event attribute handlers.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The alias combines the global attributes.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public typealias GlobalEventAttributes = ContextMenuEventAttribute & WheelEventAttribute & DragEventAttribute & DragEndEventAttribute & DragEnterEventAttribute & DragLeaveEventAttribute & DragOverEventAttribute & DragStartEventAttribute & DropEventAttribute
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onafterprint handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol AfterPrintEventAttribute: AnyAttribute {
@@ -61,10 +61,10 @@ extension AfterPrintEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onbeforeprint handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol BeforePrintEventAttribute: AnyAttribute {
@@ -104,10 +104,10 @@ extension BeforePrintEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onbeforeunload handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol BeforeUnloadEventAttribute: AnyAttribute {
@@ -147,10 +147,10 @@ extension BeforeUnloadEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onerror handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol ErrorEventAttribute: AnyAttribute {
@@ -190,10 +190,10 @@ extension ErrorEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onhashchange handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol HashChangeEventAttribute: AnyAttribute {
@@ -233,10 +233,10 @@ extension HashChangeEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onload handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol LoadEventAttribute: AnyAttribute {
@@ -276,10 +276,10 @@ extension LoadEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onmessage handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol MessageEventAttribute: AnyAttribute {
@@ -319,10 +319,10 @@ extension MessageEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onoffline handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol OfflineEventAttribute: AnyAttribute {
@@ -362,10 +362,10 @@ extension OfflineEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the ononline handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol OnlineEventAttribute: AnyAttribute {
@@ -405,10 +405,10 @@ extension OnlineEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onpagehide handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol PageHideEventAttribute: AnyAttribute {
@@ -448,10 +448,10 @@ extension PageHideEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onpageshow handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol PageShowEventAttribute: AnyAttribute {
@@ -491,10 +491,10 @@ extension PageShowEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onpopstate handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol PopstateEventAttribute: AnyAttribute {
@@ -534,10 +534,10 @@ extension PopstateEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onresize handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol ResizeEventAttribute: AnyAttribute {
@@ -577,10 +577,10 @@ extension ResizeEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onstorage handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol StorageEventAttribute: AnyAttribute {
@@ -620,10 +620,10 @@ extension StorageEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onunload handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol UnloadEventAttribute: AnyAttribute {
@@ -663,10 +663,10 @@ extension UnloadEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onblur handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol BlurEventAttribute: AnyAttribute {
@@ -706,10 +706,10 @@ extension BlurEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onchange handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol ChangeEventAttribute: AnyAttribute {
@@ -749,10 +749,10 @@ extension ChangeEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the oncontextmenu handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol ContextMenuEventAttribute: AnyAttribute {
@@ -792,10 +792,10 @@ extension ContextMenuEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onfocus handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol FocusEventAttribute: AnyAttribute {
@@ -835,10 +835,10 @@ extension FocusEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the oninput handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol InputEventAttribute: AnyAttribute {
@@ -878,10 +878,10 @@ extension InputEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the oninvalid handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol InvalidEventAttribute: AnyAttribute {
@@ -921,10 +921,10 @@ extension InvalidEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onreset handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol ResetEventAttribute: AnyAttribute {
@@ -964,10 +964,10 @@ extension ResetEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onsearch handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol SearchEventAttribute: AnyAttribute {
@@ -1007,10 +1007,10 @@ extension SearchEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onselect handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol SelectEventAttribute: AnyAttribute {
@@ -1050,10 +1050,10 @@ extension SelectEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onsubmit handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol SubmitEventAttribute: AnyAttribute {
@@ -1093,10 +1093,10 @@ extension SubmitEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onkeydown handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol KeyDownEventAttribute: AnyAttribute {
@@ -1136,10 +1136,10 @@ extension KeyDownEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onkeypress handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol KeyPressEventAttribute: AnyAttribute {
@@ -1179,10 +1179,10 @@ extension KeyPressEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onkeyup handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol KeyUpEventAttribute: AnyAttribute {
@@ -1222,10 +1222,10 @@ extension KeyUpEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onclick handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol ClickEventAttribute: AnyAttribute {
@@ -1265,10 +1265,10 @@ extension ClickEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the ondbclick handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol DoubleClickEventAttribute: AnyAttribute {
@@ -1308,10 +1308,10 @@ extension DoubleClickEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onmousedown handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol MouseDownEventAttribute: AnyAttribute {
@@ -1351,10 +1351,10 @@ extension MouseDownEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onmousemove handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol MouseMoveEventAttribute: AnyAttribute {
@@ -1394,10 +1394,10 @@ extension MouseMoveEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onmouseout handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol MouseOutEventAttribute: AnyAttribute {
@@ -1437,10 +1437,10 @@ extension MouseOutEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onmouseover handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol MouseOverEventAttribute: AnyAttribute {
@@ -1480,10 +1480,10 @@ extension MouseOverEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onmouseup handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol MouseUpEventAttribute: AnyAttribute {
@@ -1523,10 +1523,10 @@ extension MouseUpEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onwheel handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol WheelEventAttribute: AnyAttribute {
@@ -1566,10 +1566,10 @@ extension WheelEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the ondrag handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol DragEventAttribute: AnyAttribute {
@@ -1609,10 +1609,10 @@ extension DragEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the ondragenter handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol DragEnterEventAttribute: AnyAttribute {
@@ -1652,10 +1652,10 @@ extension DragEnterEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the ondragend handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol DragEndEventAttribute: AnyAttribute {
@@ -1695,10 +1695,10 @@ extension DragEndEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the ondragleave handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol DragLeaveEventAttribute: AnyAttribute {
@@ -1738,10 +1738,10 @@ extension DragLeaveEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the ondragover handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol DragOverEventAttribute: AnyAttribute {
@@ -1781,10 +1781,10 @@ extension DragOverEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the ondragstart handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol DragStartEventAttribute: AnyAttribute {
@@ -1824,10 +1824,10 @@ extension DragStartEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the ondrop handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol DropEventAttribute: AnyAttribute {
@@ -1867,10 +1867,10 @@ extension DropEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onscroll handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol ScrollEventAttribute: AnyAttribute {
@@ -1910,10 +1910,10 @@ extension ScrollEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the oncopy handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol CopyEventAttribute: AnyAttribute {
@@ -1953,10 +1953,10 @@ extension CopyEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the oncut handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol CutEventAttribute: AnyAttribute {
@@ -1996,10 +1996,10 @@ extension CutEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onpaste handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol PasteEventAttribute: AnyAttribute {
@@ -2039,10 +2039,10 @@ extension PasteEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onabort handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol AbortEventAttribute: AnyAttribute {
@@ -2082,10 +2082,10 @@ extension AbortEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the oncanplay handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol CanPlayEventAttribute: AnyAttribute {
@@ -2125,10 +2125,10 @@ extension CanPlayEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the oncanplaythrough handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol CanPlayThroughEventAttribute: AnyAttribute {
@@ -2168,10 +2168,10 @@ extension CanPlayThroughEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the oncuechange handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol CueChangeEventAttribute: AnyAttribute {
@@ -2211,10 +2211,10 @@ extension CueChangeEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the ondurationchange handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol DurationChangeEventAttribute: AnyAttribute {
@@ -2254,10 +2254,10 @@ extension DurationChangeEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onemptied handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol EmptiedEventAttribute: AnyAttribute {
@@ -2297,10 +2297,10 @@ extension EmptiedEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onended handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol EndedEventAttribute: AnyAttribute {
@@ -2340,10 +2340,10 @@ extension EndedEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onloadeddata handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol LoadedDataEventAttribute: AnyAttribute {
@@ -2383,10 +2383,10 @@ extension LoadedDataEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onloadedmetadata handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol LoadedMetaDataEventAttribute: AnyAttribute {
@@ -2426,10 +2426,10 @@ extension LoadedMetaDataEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onloadstart handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol LoadStartEventAttribute: AnyAttribute {
@@ -2469,10 +2469,10 @@ extension LoadStartEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onpause handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol PauseEventAttribute: AnyAttribute {
@@ -2512,10 +2512,10 @@ extension PauseEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onplay handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol PlayEventAttribute: AnyAttribute {
@@ -2555,10 +2555,10 @@ extension PlayEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onplaying handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol PlayingEventAttribute: AnyAttribute {
@@ -2598,10 +2598,10 @@ extension PlayingEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onprogress handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol ProgressEventAttribute: AnyAttribute {
@@ -2641,10 +2641,10 @@ extension ProgressEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onratechange handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol RateChangeEventAttribute: AnyAttribute {
@@ -2684,10 +2684,10 @@ extension RateChangeEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onseeked handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol SeekedEventAttribute: AnyAttribute {
@@ -2727,10 +2727,10 @@ extension SeekedEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onseeking handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol SeekingEventAttribute: AnyAttribute {
@@ -2770,10 +2770,10 @@ extension SeekingEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onstalled handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol StalledEventAttribute: AnyAttribute {
@@ -2813,10 +2813,10 @@ extension StalledEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onsuspend handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol SuspendEventAttribute: AnyAttribute {
@@ -2856,10 +2856,10 @@ extension SuspendEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the ontimeupdate handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol TimeUpdateEventAttribute: AnyAttribute {
@@ -2899,10 +2899,10 @@ extension TimeUpdateEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onvolumechange handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol VolumeChangeEventAttribute: AnyAttribute {
@@ -2942,10 +2942,10 @@ extension VolumeChangeEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the onwaiting handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol WaitingEventAttribute: AnyAttribute {
@@ -2985,10 +2985,10 @@ extension WaitingEventAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the ontoggle handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol ToggleEventAttribute: AnyAttribute {

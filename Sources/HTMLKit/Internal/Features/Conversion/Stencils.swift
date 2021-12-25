@@ -1,10 +1,10 @@
-/// # Description:
+/// ## Description
 /// The file contains the stencils for the converter.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
@@ -100,7 +100,7 @@ internal struct ContentElement {
         }
         
         return children.map { child in
-            return Converter.default.decode(element: child, preindent: 2)
+            return Converter.default.decode(element: child, indent: 2)
         }
     }
     
@@ -224,7 +224,7 @@ internal struct PageLayout<T: RawRepresentable> {
     private var name: String
     
     private var content: String {
-        return Converter.default.decode(element: root, preindent: 2)
+        return Converter.default.decode(element: root, indent: 2)
     }
     
     private var type: String {
@@ -271,7 +271,7 @@ internal struct ViewLayout {
     private var name: String
     
     private var content: String {
-        return Converter.default.decode(element: root, preindent: 2)
+        return Converter.default.decode(element: root, indent: 2)
     }
     
     private var root: XMLElement

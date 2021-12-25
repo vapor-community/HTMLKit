@@ -1,30 +1,30 @@
-/// # Description:
+/// ## Description
 /// The file contains the ruby elements. The html element Ruby only allows these elements to be its
 /// descendants.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The alias points to RubyText.
 ///
 public typealias Rt = RubyText
 
-/// # Description:
+/// ## Description
 /// The alias points to RubyPronunciation.
 ///
 public typealias Rp = RubyPronunciation
 
-/// # Description:
+/// ## Description
 /// The element marks the ruby text component of a ruby annotation.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-rt-element
 ///
 public struct RubyText: ContentNode, RubyElement {
@@ -150,6 +150,10 @@ extension RubyText: GlobalAttributes {
     public func translate(_ value: String) -> RubyText {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> RubyText {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension RubyText: AnyContent {
@@ -199,10 +203,10 @@ extension RubyText: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents nothing.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-rp-element
 ///
 public struct RubyPronunciation: ContentNode, RubyElement {
@@ -327,6 +331,10 @@ extension RubyPronunciation: GlobalAttributes {
 
     public func translate(_ value: String) -> RubyPronunciation {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> RubyPronunciation {
+        return mutate(key: key, value: value)
     }
 }
 

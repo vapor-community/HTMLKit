@@ -1,27 +1,27 @@
-/// # Description:
+/// ## Description
 /// The file contains the basic attribute handlers.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The alias combines the global attributes.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#global-attributes
 ///
-public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute
+public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & CustomAttribute
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the accesskey handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-accesskey-attribute
 ///
 public protocol AccessKeyAttribute: AnyAttribute {
@@ -61,10 +61,10 @@ extension AccessKeyAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the accept handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-accept
 ///
 public protocol AcceptAttribute: AnyAttribute {
@@ -104,10 +104,10 @@ extension AcceptAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the action handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-alt
 ///
 public protocol ActionAttribute: AnyAttribute {
@@ -147,10 +147,10 @@ extension ActionAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the alternate handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-alt
 ///
 public protocol AlternateAttribute: AnyAttribute {
@@ -190,10 +190,10 @@ extension AlternateAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the asynchronously handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-autocapitalize
 ///
 public protocol AsynchronouslyAttribute: AnyAttribute {
@@ -233,10 +233,10 @@ extension AsynchronouslyAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the autocapitalize handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-autocapitalize
 ///
 public protocol AutocapitalizeAttribute: AnyAttribute {
@@ -276,10 +276,10 @@ extension AutocapitalizeAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the autocomplete handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-fe-autocomplete
 ///
 public protocol AutocompleteAttribute: AnyAttribute {
@@ -319,10 +319,10 @@ extension AutocompleteAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the autofocus handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-fe-autofocus
 ///
 public protocol AutofocusAttribute: AnyAttribute {
@@ -362,10 +362,10 @@ extension AutofocusAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the autoplay handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-checked
 ///
 public protocol AutoplayAttribute: AnyAttribute {
@@ -405,10 +405,53 @@ extension AutoplayAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
+/// The protocol provides the element with the charset handler.
+///
+/// ## References
+/// https://html.spec.whatwg.org/#attr-meta-charset
+///
+public protocol CharsetAttribute: AnyAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func charset(_ value: Charset) -> Self
+}
+
+extension CharsetAttribute {
+    
+    internal var key: String { "charset" }
+}
+
+extension CharsetAttribute where Self: ContentNode {
+    
+    internal func mutate(charset value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension CharsetAttribute where Self: EmptyNode {
+    
+    internal func mutate(charset value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
+    }
+}
+
+/// ## Description
 /// The protocol provides the element with the checked handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-checked
 ///
 public protocol CheckedAttribute: AnyAttribute {
@@ -448,10 +491,10 @@ extension CheckedAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the cite handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-tdth-colspan
 ///
 public protocol CiteAttribute: AnyAttribute {
@@ -491,10 +534,10 @@ extension CiteAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the class handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-tdth-colspan
 ///
 public protocol ClassAttribute: AnyAttribute{
@@ -534,10 +577,10 @@ extension ClassAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the columns handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-tdth-colspan
 ///
 public protocol ColumnsAttribute: AnyAttribute {
@@ -577,10 +620,10 @@ extension ColumnsAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the columnspan handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-tdth-colspan
 ///
 public protocol ColumnSpanAttribute: AnyAttribute {
@@ -620,10 +663,10 @@ extension ColumnSpanAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the content handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-contenteditable
 ///
 public protocol ContentAttribute: AnyAttribute {
@@ -668,10 +711,10 @@ extension ContentAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the iseditable handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-contenteditable
 ///
 public protocol EditAttribute: AnyAttribute {
@@ -711,10 +754,10 @@ extension EditAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the controls handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-accesskey-attribute
 ///
 public protocol ControlsAttribute: AnyAttribute {
@@ -754,10 +797,10 @@ extension ControlsAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the coordinates handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-accesskey-attribute
 ///
 public protocol CoordinatesAttribute: AnyAttribute {
@@ -797,10 +840,10 @@ extension CoordinatesAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the date handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-accesskey-attribute
 ///
 public protocol DataAttribute: AnyAttribute{
@@ -840,10 +883,10 @@ extension DataAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the datetime handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-accesskey-attribute
 ///
 public protocol DateTimeAttribute: AnyAttribute {
@@ -883,10 +926,10 @@ extension DateTimeAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the default handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-track-default
 ///
 public protocol DefaultAttribute: AnyAttribute {
@@ -926,10 +969,10 @@ extension DefaultAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the defer handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-script-defer
 ///
 public protocol DeferAttribute: AnyAttribute {
@@ -969,10 +1012,10 @@ extension DeferAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the direction handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-dir
 ///
 public protocol DirectionAttribute: AnyAttribute {
@@ -1012,10 +1055,10 @@ extension DirectionAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the disabled handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-fe-disabled
 ///
 public protocol DisabledAttribute: AnyAttribute {
@@ -1055,10 +1098,10 @@ extension DisabledAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the download handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-hyperlink-download
 ///
 public protocol DownloadAttribute: AnyAttribute {
@@ -1098,10 +1141,10 @@ extension DownloadAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the isdraggable handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-draggable
 ///
 public protocol DragAttribute: AnyAttribute {
@@ -1141,10 +1184,10 @@ extension DragAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the encoding handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-fs-enctype
 ///
 public protocol EncodingAttribute: AnyAttribute {
@@ -1184,10 +1227,10 @@ extension EncodingAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the enterkeyhint handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-enterkeyhint
 ///
 public protocol EnterKeyHintAttribute: AnyAttribute {
@@ -1227,10 +1270,10 @@ extension EnterKeyHintAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the for handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-label-for
 ///
 public protocol ForAttribute: AnyAttribute {
@@ -1270,10 +1313,10 @@ extension ForAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the form handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-fae-form
 ///
 public protocol FormAttribute: AnyAttribute {
@@ -1313,10 +1356,10 @@ extension FormAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the formaction handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-fs-formaction
 ///
 public protocol FormActionAttribute: AnyAttribute {
@@ -1356,10 +1399,53 @@ extension FormActionAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
+/// The protocol provides the element with the http-equiv handler.
+///
+/// ## References
+/// https://html.spec.whatwg.org/#attr-meta-http-equiv
+///
+public protocol EquivalentAttribute: AnyAttribute {
+    
+    /// The handler specifiies the header cells for the element.
+    ///
+    ///
+    func equivalent(_ value: Equivalent) -> Self
+}
+
+extension EquivalentAttribute {
+    
+    internal var key: String { "http-equiv" }
+}
+
+extension HeaderAttribute where Self: ContentNode {
+    
+    internal func mutate(httpequiv value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension EquivalentAttribute where Self: EmptyNode {
+    
+    internal func mutate(httpequiv value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
+    }
+}
+
+/// ## Description
 /// The protocol provides the element with the headers handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-tdth-headers
 ///
 public protocol HeaderAttribute: AnyAttribute {
@@ -1399,10 +1485,10 @@ extension HeaderAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the height handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-dim-height
 ///
 public protocol HeightAttribute: AnyAttribute {
@@ -1442,10 +1528,10 @@ extension HeightAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with hidden handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-hidden)
 ///
 public protocol HiddenAttribute: AnyAttribute {
@@ -1485,10 +1571,10 @@ extension HiddenAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with high handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-meter-high)
 ///
 public protocol HighAttribute: AnyAttribute {
@@ -1528,10 +1614,10 @@ extension HighAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with reference handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-hyperlink-href)
 ///
 public protocol ReferenceAttribute: AnyAttribute {
@@ -1576,10 +1662,10 @@ extension ReferenceAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the language reference handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-hyperlink-hreflang
 ///
 public protocol ReferenceLanguageAttribute: AnyAttribute {
@@ -1619,10 +1705,10 @@ extension ReferenceLanguageAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the id handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-id-attribute
 ///
 public protocol IdentifierAttribute: AnyAttribute {
@@ -1667,10 +1753,10 @@ extension IdentifierAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the ismap handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-img-ismap
 ///
 public protocol IsMapAttribute: AnyAttribute {
@@ -1710,10 +1796,10 @@ extension IsMapAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the inputmode handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-inputmode
 ///
 public protocol InputModeAttribute: AnyAttribute {
@@ -1753,10 +1839,10 @@ extension InputModeAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the inputmode handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-is
 ///
 public protocol IsAttribute: AnyAttribute {
@@ -1796,10 +1882,10 @@ extension IsAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the itemid handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-itemid
 ///
 public protocol ItemIdAttribute: AnyAttribute {
@@ -1839,10 +1925,10 @@ extension ItemIdAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the itemproperty handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#names:-the-itemprop-attribute
 ///
 public protocol ItemPropertyAttribute: AnyAttribute {
@@ -1882,10 +1968,10 @@ extension ItemPropertyAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the itemreference handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-itemref
 ///
 public protocol ItemReferenceAttribute: AnyAttribute {
@@ -1925,10 +2011,10 @@ extension ItemReferenceAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the itemscope handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-itemscope
 ///
 public protocol ItemScopeAttribute: AnyAttribute {
@@ -1968,10 +2054,10 @@ extension ItemScopeAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the itemtype handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-itemtype
 ///
 public protocol ItemTypeAttribute: AnyAttribute {
@@ -2011,10 +2097,10 @@ extension ItemTypeAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the kind handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-track-kind
 ///
 public protocol KindAttribute: AnyAttribute {
@@ -2054,10 +2140,10 @@ extension KindAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the label handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-track-label
 ///
 public protocol LabelAttribute: AnyAttribute {
@@ -2097,10 +2183,10 @@ extension LabelAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the language handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-lang
 ///
 public protocol LanguageAttribute: AnyAttribute {
@@ -2140,10 +2226,10 @@ extension LanguageAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the list handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-list
 ///
 public protocol ListAttribute: AnyAttribute {
@@ -2183,10 +2269,10 @@ extension ListAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the loop handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-media-loop
 ///
 public protocol LoopAttribute: AnyAttribute {
@@ -2226,10 +2312,10 @@ extension LoopAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the low handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-meter-low
 ///
 public protocol LowAttribute: AnyAttribute {
@@ -2269,10 +2355,10 @@ extension LowAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the maximumvalue handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-max
 /// https://html.spec.whatwg.org/#attr-meter-max
 ///
@@ -2313,10 +2399,10 @@ extension MaximumValueAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the maximumlength handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-maxlength
 ///
 public protocol MaximumLengthAttribute: AnyAttribute {
@@ -2356,10 +2442,10 @@ extension MaximumLengthAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the media handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-link-media
 ///
 public protocol MediaAttribute: AnyAttribute {
@@ -2399,10 +2485,10 @@ extension MediaAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the method handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-fs-method
 ///
 public protocol MethodAttribute: AnyAttribute {
@@ -2442,10 +2528,10 @@ extension MethodAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the minimumvalue handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-min
 ///
 public protocol MinimumValueAttribute: AnyAttribute {
@@ -2485,10 +2571,10 @@ extension MinimumValueAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the minimumlength handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-minlength
 ///
 public protocol MinimumLengthAttribute: AnyAttribute {
@@ -2528,10 +2614,10 @@ extension MinimumLengthAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the multiple handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-multiple
 ///
 public protocol MultipleAttribute: AnyAttribute {
@@ -2571,10 +2657,10 @@ extension MultipleAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the muted handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-media-muted
 ///
 public protocol MutedAttribute: AnyAttribute {
@@ -2614,10 +2700,10 @@ extension MutedAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the name handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-form-name
 ///
 public protocol NameAttribute: AnyAttribute {
@@ -2664,10 +2750,10 @@ extension NameAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the nonce handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-nonce
 ///
 public protocol NonceAttribute: AnyAttribute {
@@ -2707,10 +2793,10 @@ extension NonceAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the novalidate handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-fs-novalidate
 ///
 public protocol NoValidateAttribute: AnyAttribute {
@@ -2750,10 +2836,10 @@ extension NoValidateAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the open handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-details-open
 ///
 public protocol OpenAttribute: AnyAttribute {
@@ -2793,10 +2879,10 @@ extension OpenAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the optimum handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-meter-optimum
 ///
 public protocol OptimumAttribute: AnyAttribute {
@@ -2836,10 +2922,10 @@ extension OptimumAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the pattern handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-pattern
 ///
 public protocol PatternAttribute: AnyAttribute {
@@ -2879,10 +2965,10 @@ extension PatternAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the part handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-pattern
 ///
 public protocol PartAttribute: AnyAttribute {
@@ -2922,10 +3008,10 @@ extension PartAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the ping handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-pattern
 ///
 public protocol PingAttribute: AnyAttribute {
@@ -2965,10 +3051,10 @@ extension PingAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the placeholder handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-placeholder
 ///
 public protocol PlaceholderAttribute: AnyAttribute {
@@ -3013,10 +3099,10 @@ extension PlaceholderAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the poster handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-video-poster
 ///
 public protocol PosterAttribute: AnyAttribute {
@@ -3056,10 +3142,10 @@ extension PosterAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the preload handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-media-preload
 ///
 public protocol PreloadAttribute: AnyAttribute {
@@ -3099,10 +3185,10 @@ extension PreloadAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the readonly handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-readonly-attribute
 ///
 public protocol ReadyOnlyAttribute: AnyAttribute {
@@ -3142,10 +3228,10 @@ extension ReadyOnlyAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the referrerpolicy handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-hyperlink-referrerpolicy
 ///
 public protocol ReferrerPolicyAttribute: AnyAttribute {
@@ -3185,10 +3271,10 @@ extension ReferrerPolicyAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the relationship handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-link-rel
 ///
 public protocol RelationshipAttribute: AnyAttribute {
@@ -3228,10 +3314,10 @@ extension RelationshipAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the required handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-required
 ///
 public protocol RequiredAttribute: AnyAttribute {
@@ -3271,10 +3357,10 @@ extension RequiredAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the reversed handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol ReversedAttribute: AnyAttribute {
@@ -3314,10 +3400,10 @@ extension ReversedAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the role handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol RoleAttribute: AnyAttribute {
@@ -3357,10 +3443,10 @@ extension RoleAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the rows handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol RowsAttribute: AnyAttribute {
@@ -3400,10 +3486,10 @@ extension RowsAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the rowspan handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-tdth-rowspan
 ///
 public protocol RowSpanAttribute: AnyAttribute {
@@ -3443,10 +3529,10 @@ extension RowSpanAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the sandbox handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-iframe-sandbox
 ///
 public protocol SandboxAttribute: AnyAttribute {
@@ -3486,10 +3572,10 @@ extension SandboxAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the scope handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-th-scope
 ///
 public protocol ScopeAttribute: AnyAttribute {
@@ -3529,10 +3615,10 @@ extension ScopeAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the shape handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-area-shape
 ///
 public protocol ShapeAttribute: AnyAttribute {
@@ -3572,10 +3658,10 @@ extension ShapeAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the size handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-size-attribute
 ///
 public protocol SizeAttribute: AnyAttribute {
@@ -3615,10 +3701,10 @@ extension SizeAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the sizes handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol SizesAttribute: AnyAttribute {
@@ -3658,10 +3744,10 @@ extension SizesAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the slot handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-slot
 ///
 public protocol SlotAttribute: AnyAttribute {
@@ -3701,10 +3787,10 @@ extension SlotAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the span handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-colgroup-span
 /// https://html.spec.whatwg.org/#attr-col-span
 ///
@@ -3745,10 +3831,10 @@ extension SpanAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the hasspellcheck handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-spellcheck
 ///
 public protocol SpellCheckAttribute: AnyAttribute {
@@ -3788,10 +3874,10 @@ extension SpellCheckAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the source handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-src
 ///
 public protocol SourceAttribute: AnyAttribute {
@@ -3831,10 +3917,10 @@ extension SourceAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the start handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-start
 ///
 public protocol StartAttribute: AnyAttribute {
@@ -3874,10 +3960,10 @@ extension StartAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the step handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-step-attribute
 ///
 public protocol StepAttribute: AnyAttribute {
@@ -3917,10 +4003,10 @@ extension StepAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the style handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-style
 ///
 public protocol StyleAttribute: AnyAttribute {
@@ -3960,10 +4046,10 @@ extension StyleAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the tabindex handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-tabindex
 ///
 public protocol TabulatorAttribute: AnyAttribute {
@@ -4003,10 +4089,10 @@ extension TabulatorAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the target handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-base-target
 ///
 public protocol TargetAttribute: AnyAttribute {
@@ -4046,10 +4132,10 @@ extension TargetAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the title handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-title
 ///
 public protocol TitleAttribute: AnyAttribute {
@@ -4089,10 +4175,10 @@ extension TitleAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the translate handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-translate
 ///
 public protocol TranslateAttribute: AnyAttribute {
@@ -4132,10 +4218,10 @@ extension TranslateAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the type handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-link-type
 ///
 public protocol TypeAttribute: AnyAttribute {
@@ -4177,10 +4263,10 @@ extension TypeAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the value handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-input-value
 ///
 public protocol ValueAttribute: AnyAttribute {
@@ -4225,10 +4311,10 @@ extension ValueAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the width handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-dim-width
 ///
 public protocol WidthAttribute: AnyAttribute {
@@ -4268,10 +4354,10 @@ extension WidthAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the wrap handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-textarea-wrap
 ///
 public protocol WrapAttribute: AnyAttribute {
@@ -4311,10 +4397,10 @@ extension WrapAttribute where Self: EmptyNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol provides the element with the property handler.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#attr-ol-reversed
 ///
 public protocol PropertyAttribute: AnyAttribute {
@@ -4345,6 +4431,45 @@ extension PropertyAttribute where Self: ContentNode {
 extension PropertyAttribute where Self: EmptyNode {
     
     internal func mutate(property value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
+    }
+}
+
+
+/// ## Description
+/// The protocol provides the element with the property handler.
+///
+/// ## References
+/// https://html.spec.whatwg.org/#attr-ol-reversed
+///
+public protocol CustomAttribute: AnyAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func custom(key: String, value: Any) -> Self
+}
+
+extension CustomAttribute where Self: ContentNode {
+    
+    internal func mutate(key: String, value: Any) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension CustomAttribute where Self: EmptyNode {
+    
+    internal func mutate(key: String, value: Any) -> Self {
         
         guard var attributes = self.attributes else {
             return .init(attributes: set(key: key, value: value))

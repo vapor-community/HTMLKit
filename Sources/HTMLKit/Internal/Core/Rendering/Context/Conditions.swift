@@ -3,12 +3,13 @@
 ///
 public struct Equal<Value>: Conditionable where Value: Equatable {
 
-    let path: TemplateValue<Value>
-
-    let value: TemplateValue<Value>
+    public let path: TemplateValue<Value>
+    
+    public let value: TemplateValue<Value>
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
-        try path.value(from: manager) == value.value(from: manager)
+        
+        return try path.value(from: manager) == value.value(from: manager)
     }
 }
 
@@ -17,12 +18,13 @@ public struct Equal<Value>: Conditionable where Value: Equatable {
 ///
 public struct NotEqual<Value>: Conditionable where Value: Equatable {
 
-    let path: TemplateValue<Value>
-
-    let value: Value
+    public let path: TemplateValue<Value>
+    
+    public let value: Value
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
-        try path.value(from: manager) != value
+        
+        return try path.value(from: manager) != value
     }
 }
 
@@ -31,12 +33,13 @@ public struct NotEqual<Value>: Conditionable where Value: Equatable {
 ///
 public struct LessThen<Value>: Conditionable where Value: Comparable {
 
-    let path: TemplateValue<Value>
-
-    let value: Value
+    public let path: TemplateValue<Value>
+    
+    public let value: Value
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
-        try path.value(from: manager) < value
+        
+        return try path.value(from: manager) < value
     }
 }
 
@@ -45,12 +48,13 @@ public struct LessThen<Value>: Conditionable where Value: Comparable {
 ///
 public struct GreaterThen<Value>: Conditionable where Value: Comparable {
 
-    let path: TemplateValue<Value>
-
-    let value: Value
+    public let path: TemplateValue<Value>
+    
+    public let value: Value
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
-        try path.value(from: manager) > value
+        
+        return try path.value(from: manager) > value
     }
 }
 
@@ -59,36 +63,38 @@ public struct GreaterThen<Value>: Conditionable where Value: Comparable {
 ///
 public struct Between<Value>: Conditionable where Value: Comparable {
 
-    /// The path to the variable
-    let path: TemplateValue<Value>
-
-    /// The value to be compared with
-    let upperBound: Value
-
-    let lowerBound: Value
+    public let path: TemplateValue<Value>
+    
+    public let upperBound: Value
+    
+    public let lowerBound: Value
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
-        try lowerBound...upperBound ~= path.value(from: manager)
+        
+        return try lowerBound...upperBound ~= path.value(from: manager)
     }
 }
 
 /// A condition that is allways true
-/// Used as the `else` condition
 ///
-struct AlwaysTrueCondition: Conditionable {
-    func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
+///
+public struct AlwaysTrueCondition: Conditionable {
+    
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
+        
         return true
     }
 }
 
 /// A condition that is allways true
-/// Used as the `else` condition
 ///
-struct InvertCondition: Conditionable {
+///
+public struct InvertCondition: Conditionable {
 
-    let condition: Conditionable
+    public let condition: Conditionable
 
-    func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
+        
         return try !condition.evaluate(with: manager)
     }
 }
@@ -96,12 +102,13 @@ struct InvertCondition: Conditionable {
 /// The struct is for
 ///
 ///
-struct BoolCondition<Root>: Conditionable {
+public struct BoolCondition<Root>: Conditionable {
 
-    let path: TemplateValue<Bool>
+    public let path: TemplateValue<Bool>
 
-    func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
-        try path.value(from: manager)
+    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
+        
+        return try path.value(from: manager)
     }
 }
 
@@ -110,12 +117,13 @@ struct BoolCondition<Root>: Conditionable {
 ///
 public struct NullableEqual<Value>: Conditionable where Value: Equatable {
 
-    let path: TemplateValue<Value?>
-
-    let value: Value
+    public let path: TemplateValue<Value?>
+    
+    public let value: Value
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
-        try path.value(from: manager) == value
+        
+        return try path.value(from: manager) == value
     }
 }
 
@@ -124,12 +132,13 @@ public struct NullableEqual<Value>: Conditionable where Value: Equatable {
 ///
 public struct NullableNotEqual<Value>: Conditionable where Value: Equatable {
 
-    let path: TemplateValue<Value?>
-
-    let value: Value
+    public let path: TemplateValue<Value?>
+    
+    public let value: Value
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
-        try path.value(from: manager) != value
+        
+        return try path.value(from: manager) != value
     }
 }
 
@@ -138,14 +147,18 @@ public struct NullableNotEqual<Value>: Conditionable where Value: Equatable {
 ///
 public struct NullableLessThen<Value>: Conditionable where Value: Comparable {
 
-    let path: TemplateValue<Value?>
-
-    let value: Value
+    public let path: TemplateValue<Value?>
+    
+    public let value: Value
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
+        
         if let pathValue = try path.value(from: manager) {
+            
             return pathValue < value
+            
         } else {
+            
             return false
         }
     }
@@ -156,14 +169,18 @@ public struct NullableLessThen<Value>: Conditionable where Value: Comparable {
 ///
 public struct NullableGreaterThen<Value>: Conditionable where Value: Comparable {
 
-    let path: TemplateValue<Value?>
-
-    let value: Value
+    public let path: TemplateValue<Value?>
+    
+    public let value: Value
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
+        
         if let pathValue = try path.value(from: manager) {
+            
             return pathValue > value
+            
         } else {
+            
             return false
         }
     }
@@ -174,11 +191,12 @@ public struct NullableGreaterThen<Value>: Conditionable where Value: Comparable 
 ///
 public struct AndCondition: Conditionable {
 
-    let first: Conditionable
-
-    let second: Conditionable
+    public let first: Conditionable
+    
+    public let second: Conditionable
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
+        
         return try first.evaluate(with: manager) && second.evaluate(with: manager)
     }
 }
@@ -188,9 +206,9 @@ public struct AndCondition: Conditionable {
 ///
 public struct OrCondition: Conditionable {
 
-    let first: Conditionable
-
-    let second: Conditionable
+    public let first: Conditionable
+    
+    public let second: Conditionable
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         return try first.evaluate(with: manager) || second.evaluate(with: manager)
@@ -202,7 +220,7 @@ public struct OrCondition: Conditionable {
 ///
 public struct NotNullCondition<Value>: Conditionable {
 
-    let path: TemplateValue<Value?>
+    public let path: TemplateValue<Value?>
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         try path.value(from: manager) != nil
@@ -214,7 +232,7 @@ public struct NotNullCondition<Value>: Conditionable {
 ///
 public struct NotNullConditionGeneral<Value>: Conditionable {
 
-    let path: TemplateValue<Value>
+    public let path: TemplateValue<Value>
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         if let value = try path.value(from: manager) as? Defineable {
@@ -230,7 +248,7 @@ public struct NotNullConditionGeneral<Value>: Conditionable {
 ///
 public struct IsNullConditionGeneral<Value>: Conditionable {
 
-    let path: TemplateValue<Value>
+    public let path: TemplateValue<Value>
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         if let value = try path.value(from: manager) as? Defineable {
@@ -246,17 +264,21 @@ public struct IsNullConditionGeneral<Value>: Conditionable {
 ///
 public struct InCollectionCondition<Value>: Conditionable where Value: Equatable {
 
-    let valuePath: TemplateValue<Value>
-    let arrayPath: TemplateValue<[Value]>
+    public let valuePath: TemplateValue<Value>
+    
+    public let arrayPath: TemplateValue<[Value]>
 
     public init(value: TemplateValue<Value>, array: TemplateValue<[Value]>) {
+        
         self.valuePath = value
         self.arrayPath = array
     }
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
+        
         let value = try valuePath.value(from: manager)
         let array = try arrayPath.value(from: manager)
+        
         return array.contains(where: { $0 == value })
     }
 }
@@ -266,19 +288,24 @@ public struct InCollectionCondition<Value>: Conditionable where Value: Equatable
 ///
 public struct InCollectionConditionOptional<Value>: Conditionable where Value: Equatable {
 
-    let valuePath: TemplateValue<Value?>
-    let arrayPath: TemplateValue<[Value]>
+    public let valuePath: TemplateValue<Value?>
+    
+    public let arrayPath: TemplateValue<[Value]>
 
     public init(value: TemplateValue<Value?>, array: TemplateValue<[Value]>) {
+        
         self.valuePath = value
         self.arrayPath = array
     }
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
+        
         guard let value = try valuePath.value(from: manager) else {
             return false
         }
+        
         let array = try arrayPath.value(from: manager)
+        
         return array.contains(where: { $0 == value })
     }
 }
@@ -288,194 +315,149 @@ public struct InCollectionConditionOptional<Value>: Conditionable where Value: E
 ///
 public struct IsNullCondition<Value>: Conditionable {
 
-    let path: TemplateValue<Value?>
+    public let path: TemplateValue<Value?>
 
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         try path.value(from: manager) == nil
     }
 }
 
-extension TemplateValue: Conditionable where Value == Bool {
-    public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
-        switch self {
-        case .constant(let value): return value
-        case .dynamic(let variable): return try manager.value(for: variable)
-        }
-    }
-}
-
 /// Creates a `Equal` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public func == <Value>(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable where Value: Equatable {
     return Equal(path: lhs, value: TemplateValue<Value>.constant(rhs))
 }
 
 /// Creates a `Equal` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public func == <Value>(lhs: TemplateValue<Value>, rhs: TemplateValue<Value>) -> Conditionable where Value: Equatable {
     return Equal(path: lhs, value: rhs)
 }
 
 /// Creates a `Equal` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public func != <Value>(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable where Value: Equatable {
     return NotEqual(path: lhs, value: rhs)
 }
 
 /// Creates a `LessThen` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public func < <Value>(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable where Value: Comparable {
     return LessThen(path: lhs, value: rhs)
 }
 
 /// Creates a `GreaterThen` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public func > <Value>(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable where Value: Comparable {
     return GreaterThen(path: lhs, value: rhs)
 }
 
+/// Creates a `GreaterThen` condition
+///
+///
 public func ~= <Value>(lhs: Range<Value>, rhs: TemplateValue<Value>) -> Conditionable where Value: Comparable {
     return Between(path: rhs, upperBound: lhs.upperBound, lowerBound: lhs.lowerBound)
 }
 
+/// Creates a `GreaterThen` condition
+///
+///
 public func ~= <Value>(lhs: ClosedRange<Value>, rhs: TemplateValue<Value>) -> Conditionable where Value: Comparable {
     return Between(path: rhs, upperBound: lhs.upperBound, lowerBound: lhs.lowerBound)
 }
 
+/// Creates a `GreaterThen` condition
+///
+///
 public func ~= <Value>(lhs: TemplateValue<Value>, rhs: Range<Value>) -> Conditionable where Value: Comparable {
     return Between(path: lhs, upperBound: rhs.upperBound, lowerBound: rhs.lowerBound)
 }
 
+/// Creates a `GreaterThen` condition
+///
+///
 public func ~= <Value>(lhs: TemplateValue<Value>, rhs: ClosedRange<Value>) -> Conditionable where Value: Comparable {
     return Between(path: lhs, upperBound: rhs.upperBound, lowerBound: rhs.lowerBound)
 }
 
 /// Creates a `Equal` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public func == <Value>(lhs: TemplateValue<Value?>, rhs: Value) -> Conditionable where Value: Equatable {
     return NullableEqual(path: lhs, value: rhs)
 }
 
 /// Creates a `Equal` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public func != <Value>(lhs: TemplateValue<Value?>, rhs: Value) -> Conditionable where Value: Equatable {
     return NullableNotEqual(path: lhs, value: rhs)
 }
 
 /// Creates a `LessThen` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public func < <Value>(lhs: TemplateValue<Value?>, rhs: Value) -> Conditionable where Value: Comparable {
     return NullableLessThen(path: lhs, value: rhs)
 }
 
 /// Creates a `GreaterThen` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public func > <Value>(lhs: TemplateValue<Value?>, rhs: Value) -> Conditionable where Value: Comparable {
     return NullableGreaterThen(path: lhs, value: rhs)
 }
 
 /// Creates a `GreaterThen` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public func >= <Value>(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable where Value: Comparable {
     return InvertCondition(condition: LessThen(path: lhs, value: rhs))
 }
 
 /// Creates a `GreaterThen` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public func <= <Value>(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable where Value: Comparable {
     return InvertCondition(condition: GreaterThen(path: lhs, value: rhs))
 }
 
 /// Creates a `GreaterThen` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public func >= <Value>(lhs: TemplateValue<Value?>, rhs: Value) -> Conditionable where Value: Comparable {
     return InvertCondition(condition: NullableLessThen(path: lhs, value: rhs))
 }
 
 /// Creates a `GreaterThen` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public func <= <Value>(lhs: TemplateValue<Value?>, rhs: Value) -> Conditionable where Value: Comparable {
     return InvertCondition(condition: NullableGreaterThen(path: lhs, value: rhs))
 }
 
 /// Creates a `AndCondition` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public func && (lhs: Conditionable, rhs: Conditionable) -> Conditionable {
     return AndCondition(first: lhs, second: rhs)
 }
 
 /// Creates a `OrCondition` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public func || (lhs: Conditionable, rhs: Conditionable) -> Conditionable {
     return OrCondition(first: lhs, second: rhs)
 }
 
 /// Creates a `InvertCondition` condition
 ///
-/// - Parameters:
-///   - lhs: The key path
-///   - rhs: The constant value
-/// - Returns: A `TemplateConditionable` object
+///
 public prefix func ! (condition: Conditionable) -> Conditionable {
     return InvertCondition(condition: condition)
 }
