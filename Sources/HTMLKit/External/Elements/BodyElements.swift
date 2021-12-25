@@ -320,6 +320,10 @@ extension Article: GlobalAttributes {
     public func translate(_ value: String) -> Article {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Article {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Article: AnyContent {
@@ -497,6 +501,10 @@ extension Section: GlobalAttributes {
 
     public func translate(_ value: String) -> Section {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Section {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -676,6 +684,10 @@ extension Navigation: GlobalAttributes {
     public func translate(_ value: String) -> Navigation {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Navigation {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Navigation: AnyContent {
@@ -854,6 +866,10 @@ extension Aside: GlobalAttributes {
     public func translate(_ value: String) -> Aside {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Aside {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Aside: AnyContent {
@@ -1031,6 +1047,10 @@ extension Heading1: GlobalAttributes {
 
     public func translate(_ value: String) -> Heading1 {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Heading1 {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -1221,6 +1241,10 @@ extension Heading2: GlobalAttributes {
     public func translate(_ value: String) -> Heading2 {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Heading2 {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Heading2: AnyContent {
@@ -1409,6 +1433,10 @@ extension Heading3: GlobalAttributes {
 
     public func translate(_ value: String) -> Heading3 {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Heading3 {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -1599,6 +1627,10 @@ extension Heading4: GlobalAttributes {
     public func translate(_ value: String) -> Heading4 {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Heading4 {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Heading4: AnyContent {
@@ -1787,6 +1819,10 @@ extension Heading5: GlobalAttributes {
 
     public func translate(_ value: String) -> Heading5 {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Heading5 {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -1977,6 +2013,10 @@ extension Heading6: GlobalAttributes {
     public func translate(_ value: String) -> Heading6 {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Heading6 {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Heading6: AnyContent {
@@ -2166,6 +2206,10 @@ extension HeadingGroup: GlobalAttributes {
     public func translate(_ value: String) -> HeadingGroup {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> HeadingGroup {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension HeadingGroup: AnyContent {
@@ -2343,6 +2387,10 @@ extension Header: GlobalAttributes {
 
     public func translate(_ value: String) -> Header {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Header {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -2522,6 +2570,10 @@ extension Footer: GlobalAttributes {
     public func translate(_ value: String) -> Footer {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Footer {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Footer: AnyContent {
@@ -2700,6 +2752,10 @@ extension Address: GlobalAttributes {
     public func translate(_ value: String) -> Address {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Address {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Address: AnyContent {
@@ -2877,6 +2933,10 @@ extension Paragraph: GlobalAttributes {
 
     public func translate(_ value: String) -> Paragraph {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Paragraph {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -3062,6 +3122,10 @@ extension HorizontalRule: GlobalAttributes {
     public func translate(_ value: String) -> HorizontalRule {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> HorizontalRule {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension HorizontalRule: AnyContent {
@@ -3239,6 +3303,10 @@ extension PreformattedText: GlobalAttributes {
 
     public func translate(_ value: String) -> PreformattedText {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> PreformattedText {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -3421,6 +3489,10 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
     
     public func cite(_ value: String) -> Blockquote {
         return mutate(cite: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Blockquote {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -3623,6 +3695,10 @@ extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, Type
     public func type(_ value: String) -> OrderedList {
         return mutate(type: value)
     }
+    
+    public func custom(key: String, value: Any) -> OrderedList {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension OrderedList: AnyContent {
@@ -3800,6 +3876,10 @@ extension UnorderedList: GlobalAttributes {
 
     public func translate(_ value: String) -> UnorderedList {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> UnorderedList {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -3979,6 +4059,10 @@ extension DescriptionList: GlobalAttributes {
     public func translate(_ value: String) -> DescriptionList {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> DescriptionList {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension DescriptionList: AnyContent {
@@ -4156,6 +4240,10 @@ extension Figure: GlobalAttributes {
 
     public func translate(_ value: String) -> Figure {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Figure {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -4375,6 +4463,10 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
     public func type(_ value: String) -> Anchor {
         return mutate(type: value)
     }
+    
+    public func custom(key: String, value: Any) -> Anchor {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Anchor: AnyContent {
@@ -4564,6 +4656,10 @@ extension Emphasize: GlobalAttributes {
     public func translate(_ value: String) -> Emphasize {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Emphasize {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Emphasize: AnyContent {
@@ -4742,6 +4838,10 @@ extension Strong: GlobalAttributes {
     public func translate(_ value: String) -> Strong {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Strong {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Strong: AnyContent {
@@ -4919,6 +5019,10 @@ extension Small: GlobalAttributes {
 
     public func translate(_ value: String) -> Small {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Small {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -5109,6 +5213,10 @@ extension StrikeThrough: GlobalAttributes {
     public func translate(_ value: String) -> StrikeThrough {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> StrikeThrough {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension StrikeThrough: AnyContent {
@@ -5298,6 +5406,10 @@ extension Main: GlobalAttributes {
     public func translate(_ value: String) -> Main {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Main {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Main: AnyContent {
@@ -5475,6 +5587,10 @@ extension Division: GlobalAttributes {
 
     public func translate(_ value: String) -> Division {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Division {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -5654,6 +5770,10 @@ extension Definition: GlobalAttributes {
     public func translate(_ value: String) -> Definition {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Definition {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Definition: AnyContent {
@@ -5831,6 +5951,10 @@ extension Cite: GlobalAttributes {
 
     public func translate(_ value: String) -> Cite {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Cite {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -6014,6 +6138,10 @@ extension ShortQuote: GlobalAttributes, CiteAttribute {
     public func cite(_ value: String) -> ShortQuote {
         return mutate(cite: value)
     }
+    
+    public func custom(key: String, value: Any) -> ShortQuote {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension ShortQuote: AnyContent {
@@ -6192,6 +6320,10 @@ extension Abbreviation: GlobalAttributes {
     public func translate(_ value: String) -> Abbreviation {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Abbreviation {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Abbreviation: AnyContent {
@@ -6369,6 +6501,10 @@ extension Ruby: GlobalAttributes {
 
     public func translate(_ value: String) -> Ruby {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Ruby {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -6556,6 +6692,10 @@ extension Data: GlobalAttributes, ValueAttribute {
     public func value(_ value: TemplateValue<String>) -> Data {
         return mutate(value: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Data {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Data: AnyContent {
@@ -6738,6 +6878,10 @@ extension Time: GlobalAttributes, DateTimeAttribute {
     public func dateTime(_ value: String) -> Time {
         return mutate(datetime: value)
     }
+    
+    public func custom(key: String, value: Any) -> Time {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Time: AnyContent {
@@ -6915,6 +7059,10 @@ extension Code: GlobalAttributes {
 
     public func translate(_ value: String) -> Code {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Code {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -7094,6 +7242,10 @@ extension Variable: GlobalAttributes {
     public func translate(_ value: String) -> Variable {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Variable {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Variable: AnyContent {
@@ -7271,6 +7423,10 @@ extension SampleOutput: GlobalAttributes {
 
     public func translate(_ value: String) -> SampleOutput {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> SampleOutput {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -7450,6 +7606,10 @@ extension KeyboardInput: GlobalAttributes {
     public func translate(_ value: String) -> KeyboardInput {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> KeyboardInput {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension KeyboardInput: AnyContent {
@@ -7627,6 +7787,10 @@ extension Subscript: GlobalAttributes {
 
     public func translate(_ value: String) -> Subscript {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Subscript {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -7806,6 +7970,10 @@ extension Superscript: GlobalAttributes {
     public func translate(_ value: String) -> Superscript {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Superscript {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Superscript: AnyContent {
@@ -7983,6 +8151,10 @@ extension Italic: GlobalAttributes {
 
     public func translate(_ value: String) -> Italic {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Italic {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -8173,6 +8345,10 @@ extension Bold: GlobalAttributes {
     public func translate(_ value: String) -> Bold {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Bold {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Bold: Localizable {
@@ -8361,6 +8537,10 @@ extension Underline: GlobalAttributes {
 
     public func translate(_ value: String) -> Underline {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Underline {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -8551,6 +8731,10 @@ extension Mark: GlobalAttributes {
     public func translate(_ value: String) -> Mark {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Mark {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Mark: AnyContent {
@@ -8729,6 +8913,10 @@ extension Bdi: GlobalAttributes {
     public func translate(_ value: String) -> Bdi {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Bdi {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Bdi: AnyContent {
@@ -8901,6 +9089,10 @@ extension Bdo: GlobalAttributes {
 
     public func translate(_ value: String) -> Bdo {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Bdo {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -9080,6 +9272,10 @@ extension Span: GlobalAttributes {
     public func translate(_ value: String) -> Span {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Span {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Span: AnyContent {
@@ -9253,6 +9449,10 @@ extension LineBreak: GlobalAttributes {
     public func translate(_ value: String) -> LineBreak {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> LineBreak {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension LineBreak: AnyContent {
@@ -9425,6 +9625,10 @@ extension WordBreak: GlobalAttributes {
 
     public func translate(_ value: String) -> WordBreak {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> WordBreak {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -9612,6 +9816,10 @@ extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     public func dateTime(_ value: String) -> InsertedText {
         return mutate(datetime: value)
     }
+    
+    public func custom(key: String, value: Any) -> InsertedText {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension InsertedText: AnyContent {
@@ -9798,6 +10006,10 @@ extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     public func dateTime(_ value: String) -> DeletedText {
         return mutate(datetime: value)
     }
+    
+    public func custom(key: String, value: Any) -> DeletedText {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension DeletedText: AnyContent {
@@ -9975,6 +10187,10 @@ extension Picture: GlobalAttributes {
 
     public func translate(_ value: String) -> Picture {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Picture {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -10181,6 +10397,10 @@ extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAtt
     public func referrerPolicy(_ type: Policy) -> Image {
         return mutate(referrerpolicy: type.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Image {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Image: AnyContent {
@@ -10383,6 +10603,10 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
     public func referrerPolicy(_ type: Policy) -> InlineFrame {
         return mutate(referrerpolicy: type.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> InlineFrame {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension InlineFrame: AnyContent {
@@ -10571,6 +10795,10 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
     
     public func height(_ size: Int) -> Embed {
         return mutate(height: size)
+    }
+    
+    public func custom(key: String, value: Any) -> Embed {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -10782,6 +11010,10 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
     public func height(_ size: Int) -> Object {
         return mutate(height: size)
     }
+    
+    public func custom(key: String, value: Any) -> Object {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Object: AnyContent {
@@ -10988,6 +11220,10 @@ extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     public func height(_ size: Int) -> Video {
         return mutate(height: size)
     }
+    
+    public func custom(key: String, value: Any) -> Video {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Video: AnyContent {
@@ -11186,6 +11422,10 @@ extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     public func controls() -> Audio {
         return mutate(controls: "controls")
     }
+    
+    public func custom(key: String, value: Any) -> Audio {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Audio: AnyContent {
@@ -11371,6 +11611,10 @@ extension Map: GlobalAttributes, NameAttribute {
     
     public func name(_ value: TemplateValue<String>) -> Map {
         return mutate(name: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Map {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -11590,6 +11834,10 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
     public func relationship(_ type: Relation) -> Form {
         return mutate(rel: type.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Form {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Form: AnyContent {
@@ -11767,6 +12015,10 @@ extension DataList: GlobalAttributes {
 
     public func translate(_ value: String) -> DataList {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> DataList {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -11962,6 +12214,10 @@ extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
     public func name(_ value: TemplateValue<String>) -> Output {
         return mutate(name: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Output {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Output: AnyContent {
@@ -12151,6 +12407,10 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
     
     public func value(_ value: TemplateValue<String>) -> Progress {
         return mutate(value: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Progress {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -12354,6 +12614,10 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
     public func value(_ value: TemplateValue<String>) -> Meter {
         return mutate(value: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Meter {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Meter: AnyContent {
@@ -12540,6 +12804,10 @@ extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
     public func isOpen(_ condition: Bool) -> Details {
         return mutate(open: condition)
     }
+    
+    public func custom(key: String, value: Any) -> Details {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Details: AnyContent {
@@ -12721,6 +12989,10 @@ extension Dialog: GlobalAttributes, OpenAttribute {
 
     public func isOpen(_ condition: Bool) -> Dialog {
         return mutate(open: condition)
+    }
+    
+    public func custom(key: String, value: Any) -> Dialog {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -12924,6 +13196,10 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
     public func type(_ value: MediaType) -> Script {
         return mutate(type: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Script {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Script: AnyContent {
@@ -13102,6 +13378,10 @@ extension NoScript: GlobalAttributes {
     public func translate(_ value: String) -> NoScript {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> NoScript {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension NoScript: AnyContent {
@@ -13279,6 +13559,10 @@ extension Template: GlobalAttributes {
 
     public func translate(_ value: String) -> Template {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Template {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -13466,6 +13750,10 @@ extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
     public func height(_ size: Int) -> Canvas {
         return mutate(height: size)
     }
+    
+    public func custom(key: String, value: Any) -> Canvas {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Canvas: AnyContent {
@@ -13651,6 +13939,10 @@ extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
     
     public func height(_ size: Int) -> Table {
         return mutate(height: size)
+    }
+    
+    public func custom(key: String, value: Any) -> Table {
+        return mutate(key: key, value: value)
     }
 }
 

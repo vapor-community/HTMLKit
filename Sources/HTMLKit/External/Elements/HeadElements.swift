@@ -142,6 +142,10 @@ extension Title: GlobalAttributes {
     public func translate(_ value: String) -> Title {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Title {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Title: AnyContent {
@@ -329,6 +333,10 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
     
     public func target(_ type: Target) -> Base {
         return mutate(target: type.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Base {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -532,6 +540,10 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
     public func equivalent(_ value: Equivalent) -> Meta {
         return mutate(httpequiv: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Meta {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Meta: AnyContent {
@@ -722,6 +734,10 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
     
     public func media(_ value: String) -> Style {
         return mutate(media: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Style {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -935,6 +951,10 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
     
     public func type(_ value: MediaType) -> Link {
         return mutate(type: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Link {
+        return mutate(key: key, value: value)
     }
 }
 

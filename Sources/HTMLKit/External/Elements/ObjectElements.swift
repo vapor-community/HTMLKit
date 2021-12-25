@@ -151,6 +151,10 @@ extension Parameter: GlobalAttributes, NameAttribute, ValueAttribute {
     public func value(_ value: TemplateValue<String>) -> Parameter {
         return mutate(value: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Parameter {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Parameter: AnyContent {

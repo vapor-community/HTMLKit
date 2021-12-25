@@ -145,6 +145,10 @@ extension FigureCaption: GlobalAttributes {
     public func translate(_ value: String) -> FigureCaption {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> FigureCaption {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension FigureCaption: AnyContent {

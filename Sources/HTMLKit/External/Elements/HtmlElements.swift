@@ -140,6 +140,10 @@ extension Head: GlobalAttributes {
     public func translate(_ value: String) -> Head {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Head {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Head: AnyContent {
@@ -353,6 +357,10 @@ extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttr
 
     public func translate(_ value: String) -> Body {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Body {
+        return mutate(key: key, value: value)
     }
 }
 

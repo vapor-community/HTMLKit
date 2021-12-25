@@ -191,6 +191,10 @@ extension Html: GlobalAttributes {
     public func translate(_ value: String) -> Html {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Html {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Html: AnyContent {

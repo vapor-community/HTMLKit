@@ -16,7 +16,7 @@ import OrderedCollections
 /// ## References
 /// https://html.spec.whatwg.org/#global-attributes
 ///
-public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute
+public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & CustomAttribute
 
 /// ## Description
 /// The protocol provides the element with the accesskey handler.
@@ -4431,6 +4431,45 @@ extension PropertyAttribute where Self: ContentNode {
 extension PropertyAttribute where Self: EmptyNode {
     
     internal func mutate(property value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value))
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes))
+    }
+}
+
+
+/// ## Description
+/// The protocol provides the element with the property handler.
+///
+/// ## References
+/// https://html.spec.whatwg.org/#attr-ol-reversed
+///
+public protocol CustomAttribute: AnyAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func custom(key: String, value: Any) -> Self
+}
+
+extension CustomAttribute where Self: ContentNode {
+    
+    internal func mutate(key: String, value: Any) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+extension CustomAttribute where Self: EmptyNode {
+    
+    internal func mutate(key: String, value: Any) -> Self {
         
         guard var attributes = self.attributes else {
             return .init(attributes: set(key: key, value: value))

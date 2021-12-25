@@ -180,6 +180,10 @@ extension Caption: GlobalAttributes {
     public func translate(_ value: String) -> Caption {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Caption {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Caption: AnyContent {
@@ -362,6 +366,10 @@ extension ColumnGroup: GlobalAttributes, SpanAttribute {
     public func span(_ size: Int) -> ColumnGroup {
         return mutate(span: size)
     }
+    
+    public func custom(key: String, value: Any) -> ColumnGroup {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension ColumnGroup: AnyContent {
@@ -543,6 +551,10 @@ extension Column: GlobalAttributes, SpanAttribute {
     
     public func span(_ size: Int) -> Column {
         return mutate(span: size)
+    }
+    
+    public func custom(key: String, value: Any) -> Column {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -730,6 +742,10 @@ extension TableBody: GlobalAttributes, WidthAttribute, HeightAttribute {
     public func height(_ size: Int) -> TableBody {
         return mutate(height: size)
     }
+    
+    public func custom(key: String, value: Any) -> TableBody {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension TableBody: AnyContent {
@@ -916,6 +932,10 @@ extension TableHead: GlobalAttributes, WidthAttribute, HeightAttribute {
     public func height(_ size: Int) -> TableHead {
         return mutate(height: size)
     }
+    
+    public func custom(key: String, value: Any) -> TableHead {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension TableHead: AnyContent {
@@ -1093,6 +1113,10 @@ extension TableFoot: GlobalAttributes {
 
     public func translate(_ value: String) -> TableFoot {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> TableFoot {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -1279,6 +1303,10 @@ extension TableRow: GlobalAttributes, WidthAttribute, HeightAttribute {
     
     public func height(_ size: Int) -> TableRow {
         return mutate(height: size)
+    }
+    
+    public func custom(key: String, value: Any) -> TableRow {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -1469,6 +1497,10 @@ extension DataCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, Hea
     
     public func headers(_ value: String) -> DataCell {
         return mutate(headers: value)
+    }
+    
+    public func custom(key: String, value: Any) -> DataCell {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -1663,6 +1695,10 @@ extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, H
     
     public func scope(_ value: String) -> HeaderCell {
         return mutate(scope: value)
+    }
+    
+    public func custom(key: String, value: Any) -> HeaderCell {
+        return mutate(key: key, value: value)
     }
 }
 

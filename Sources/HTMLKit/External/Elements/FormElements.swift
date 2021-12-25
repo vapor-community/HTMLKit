@@ -251,6 +251,10 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
     public func width(_ size: Int) -> Input {
         return mutate(width: size)
     }
+    
+    public func custom(key: String, value: Any) -> Input {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Input: AnyContent {
@@ -432,6 +436,10 @@ extension Label: GlobalAttributes, ForAttribute {
     
     public func `for`(_ value: String) -> Label {
         return mutate(for: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Label {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -653,6 +661,10 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
     
     public func size(_ size: Int) -> Select {
         return mutate(size: size)
+    }
+    
+    public func custom(key: String, value: Any) -> Select {
+        return mutate(key: key, value: value)
     }
 }
 
@@ -888,6 +900,10 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
     public func wrap(_ type: Wrapping) -> TextArea {
         return mutate(wrap: type.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> TextArea {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension TextArea: AnyContent {
@@ -1098,6 +1114,10 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
     public func value(_ value: TemplateValue<String>) -> Button {
         return mutate(value: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Button {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Button: AnyContent {
@@ -1302,6 +1322,10 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
     
     public func name(_ value: TemplateValue<String>) -> Fieldset {
         return mutate(name: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Fieldset {
+        return mutate(key: key, value: value)
     }
 }
 

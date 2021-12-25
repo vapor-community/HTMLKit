@@ -153,6 +153,10 @@ extension ListItem: GlobalAttributes, ValueAttribute {
     public func value(_ value: TemplateValue<String>) -> ListItem {
         return mutate(value: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> ListItem {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension ListItem: AnyContent {

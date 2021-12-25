@@ -150,6 +150,10 @@ extension TermName: GlobalAttributes {
     public func translate(_ value: String) -> TermName {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> TermName {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension TermName: AnyContent {
@@ -327,6 +331,10 @@ extension TermDefinition: GlobalAttributes {
 
     public func translate(_ value: String) -> TermDefinition {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> TermDefinition {
+        return mutate(key: key, value: value)
     }
 }
 

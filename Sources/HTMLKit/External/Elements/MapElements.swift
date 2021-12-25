@@ -180,6 +180,10 @@ extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, Shap
     public func referrerPolicy(_ type: Policy) -> Area {
         return mutate(referrerpolicy: type.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Area {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Area: AnyContent {

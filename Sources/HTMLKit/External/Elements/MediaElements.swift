@@ -159,6 +159,10 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
     public func height(_ size: Int) -> Source {
         return mutate(height: size)
     }
+    
+    public func custom(key: String, value: Any) -> Source {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Source: AnyContent {
@@ -347,6 +351,10 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
     
     public func `default`() -> Track {
         return  mutate(default: "default")
+    }
+    
+    public func custom(key: String, value: Any) -> Track {
+        return mutate(key: key, value: value)
     }
 }
 

@@ -150,6 +150,10 @@ extension RubyText: GlobalAttributes {
     public func translate(_ value: String) -> RubyText {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> RubyText {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension RubyText: AnyContent {
@@ -327,6 +331,10 @@ extension RubyPronunciation: GlobalAttributes {
 
     public func translate(_ value: String) -> RubyPronunciation {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> RubyPronunciation {
+        return mutate(key: key, value: value)
     }
 }
 

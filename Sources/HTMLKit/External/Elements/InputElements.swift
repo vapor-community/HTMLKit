@@ -153,6 +153,10 @@ extension OptionGroup: GlobalAttributes, DisabledAttribute, LabelAttribute {
     public func label(_ value: String) -> OptionGroup {
         return mutate(label: value)
     }
+    
+    public func custom(key: String, value: Any) -> OptionGroup {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension OptionGroup: AnyContent {
@@ -347,6 +351,10 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
     public func value(_ value: TemplateValue<String>) -> Option {
         return mutate(value: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Option {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Option: AnyContent {
@@ -527,6 +535,10 @@ extension Legend: GlobalAttributes {
     public func translate(_ value: String) -> Legend {
         return mutate(translate: value)
     }
+    
+    public func custom(key: String, value: Any) -> Legend {
+        return mutate(key: key, value: value)
+    }
 }
 
 extension Legend: AnyContent {
@@ -704,6 +716,10 @@ extension Summary: GlobalAttributes {
 
     public func translate(_ value: String) -> Summary {
         return mutate(translate: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Summary {
+        return mutate(key: key, value: value)
     }
 }
 
