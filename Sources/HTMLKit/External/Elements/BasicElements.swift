@@ -1,19 +1,19 @@
-/// # Description:
+/// ## Description
 /// The file contains the basics elements. These elements should be used at first.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#comments
 ///
 public struct Comment: CommentNode, GlobalElement {
@@ -36,10 +36,10 @@ extension Comment: AnyContent {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents the the document.
 ///
-/// # References:
+/// ## References
 /// https://dom.spec.whatwg.org/#document-element
 ///
 public struct Document: DocumentNode, BasicElement {
@@ -62,10 +62,10 @@ extension Document: AnyContent {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents the document's root element.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-html-element
 ///
 public struct Html: ContentNode, BasicElement {

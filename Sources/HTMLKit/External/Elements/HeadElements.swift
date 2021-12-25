@@ -1,22 +1,22 @@
-/// # Description:
+/// ## Description
 /// The file contains the figure elements. The html element Head only allows these elements to be its
 /// descendants.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The element represents the document's title.
 ///
 /// There must be no more than one title element per document.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-title-element
 ///
 public struct Title: ContentNode, HeadElement {
@@ -192,12 +192,12 @@ extension Title: Modifiable {
 }
 
 
-/// # Description:
+/// ## Description
 /// The element specifies the document base url.
 ///
 /// There must be no more than one base element per document.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-base-element
 ///
 public struct Base: EmptyNode, HeadElement {
@@ -379,11 +379,11 @@ extension Base: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element provides meta information about the document.
 ///
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-meta-element
 ///
 public struct Meta: EmptyNode, HeadElement {
@@ -581,11 +581,11 @@ extension Meta: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element contains style information for the document.
 ///
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-style-element
 ///
 public struct Style: ContentNode, HeadElement {
@@ -772,10 +772,10 @@ extension Style: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-link-element
 ///
 public struct Link: EmptyNode, HeadElement {

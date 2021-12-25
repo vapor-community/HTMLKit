@@ -1,60 +1,60 @@
-/// # Description:
+/// ## Description
 /// The file contains the table elements. The html element Table only allows these elements to be its
 /// descendants.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The alias points to ColumnGroup.
 ///
 public typealias Colgroup = ColumnGroup
 
-/// # Description:
+/// ## Description
 /// The alias points to Column.
 ///
 public typealias Col = Column
 
-/// # Description:
+/// ## Description
 /// The alias points to TableBody.
 ///
 public typealias Tbody = TableBody
 
-/// # Description:
+/// ## Description
 /// The alias points to TableHead.
 ///
 public typealias Thead = TableHead
 
-/// # Description:
+/// ## Description
 /// The alias points to TableFoot.
 ///
 public typealias Tfoot = TableFoot
 
-/// # Description:
+/// ## Description
 /// The alias points to TableRow.
 ///
 public typealias Tr = TableRow
 
-/// # Description:
+/// ## Description
 /// The alias points to DataCell.
 ///
 public typealias Td = DataCell
 
-/// # Description:
+/// ## Description
 /// The alias points to HeaderCell.
 ///
 public typealias Th = HeaderCell
 
-/// # Description:
+/// ## Description
 /// The element represents the title of the table.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-caption-element
 ///
 public struct Caption: ContentNode, TableElement {
@@ -229,10 +229,10 @@ extension Caption: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element specifies a group of one or more columns.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-colgroup-element
 ///
 public struct ColumnGroup: ContentNode, TableElement {
@@ -411,10 +411,10 @@ extension ColumnGroup: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a column in a table.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-col-element
 ///
 public struct Column: ContentNode, TableElement {
@@ -593,10 +593,10 @@ extension Column: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a block of rows in a table.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-tbody-element
 ///
 public struct TableBody: ContentNode, TableElement {
@@ -779,10 +779,10 @@ extension TableBody: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents the block of rows that consist of the column labels.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-thead-element
 ///
 public struct TableHead: ContentNode, TableElement {
@@ -965,10 +965,10 @@ extension TableHead: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents the block of rows that consist of the column summaries.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-tfoot-element
 ///
 public struct TableFoot: ContentNode, TableElement {
@@ -1143,10 +1143,10 @@ extension TableFoot: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a row of cells in a table.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-tr-element
 ///
 public struct TableRow: ContentNode, TableElement {
@@ -1329,10 +1329,10 @@ extension TableRow: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a data cell in a table.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-td-element
 ///
 public struct DataCell: ContentNode, TableElement {
@@ -1519,10 +1519,10 @@ extension DataCell: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a header cell in a table.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-th-element
 ///
 public struct HeaderCell: ContentNode, TableElement {

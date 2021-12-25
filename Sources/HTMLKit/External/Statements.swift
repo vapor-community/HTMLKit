@@ -1,17 +1,17 @@
-/// # Description:
+/// ## Description
 /// The file contains basic statements.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
-/// # Description:
+/// ## Description
 /// The statement is for
 ///
-/// # References:
+/// ## References
 ///
 public struct IF: GlobalElement {
     
@@ -162,10 +162,10 @@ extension IF: AnyContent {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The statement is for
 ///
-/// # References:
+/// ## References
 ///
 public struct ForEach<Values>: GlobalElement where Values: Sequence {
 
@@ -312,10 +312,10 @@ extension ForEach: AnyContent {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The function is for
 ///
-/// # References:
+/// ## References
 ///
 public struct Unwrap: Component {
 

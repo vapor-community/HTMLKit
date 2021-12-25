@@ -1,17 +1,17 @@
-/// # Description:
+/// ## Description
 /// The file contains the result builder for string.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
-/// # Description:
+/// ## Description
 /// The builder builds up a result value from a sequence of string.
 ///
-/// # References:
+/// ## References
 ///
 @resultBuilder public class StringBuilder {
 

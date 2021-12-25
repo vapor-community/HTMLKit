@@ -1,17 +1,17 @@
-/// # Description:
+/// ## Description
 /// The file contains layout components.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
-/// # Description:
+/// ## Description
 /// The protocol is for
 ///
-/// # References:
+/// ## References
 ///
 public protocol Page: GlobalElement {
     
@@ -31,10 +31,10 @@ extension Page {
     public var scripts: AnyContent { body.scripts }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol is for
 ///
-/// # References:
+/// ## References
 ///
 public protocol View: GlobalElement {
     
@@ -60,10 +60,10 @@ extension View {
     public var scripts: AnyContent { body.scripts }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol is for
 ///
-/// # References:
+/// ## References
 ///
 public protocol Component: GlobalElement {
     

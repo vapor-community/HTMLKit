@@ -1,17 +1,17 @@
-/// # Description:
+/// ## Description
 /// The file contains the view components.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
-/// # Description:
+/// ## Description
 /// The component returns a meta element with twitter and opengraph.
 ///
-/// # References:
+/// ## References
 ///
 public struct MetaTitle: Component {
     
@@ -44,10 +44,10 @@ public struct MetaTitle: Component {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The component returns a meta element with twitter and opengraph.
 ///
-/// # References:
+/// ## References
 ///
 public struct MetaDescription: Component {
 
@@ -80,10 +80,10 @@ public struct MetaDescription: Component {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The component returns a link element.
 ///
-/// # References:
+/// ## References
 ///
 public struct Favicon: Component {
 
@@ -100,10 +100,10 @@ public struct Favicon: Component {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The component returns a link element.
 ///
-/// # References:
+/// ## References
 ///
 public struct Stylesheet: Component {
     
@@ -121,10 +121,10 @@ public struct Stylesheet: Component {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The component returns a meta element.
 ///
-/// # References:
+/// ## References
 ///
 public struct Viewport: Component {
 
@@ -155,10 +155,10 @@ public struct Viewport: Component {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The component returns a meta element.
 ///
-/// # References:
+/// ## References
 ///
 public struct Author: Component {
 

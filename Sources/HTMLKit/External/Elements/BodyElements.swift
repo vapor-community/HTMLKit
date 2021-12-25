@@ -1,200 +1,200 @@
-/// # Description:
+/// ## Description
 /// The file contains the body elements. The html element Body only allows these elements
 /// to be its descendants.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The alias points to Navigation.
 ///
 public typealias Nav = Navigation
 
-/// # Description:
+/// ## Description
 /// The alias points to Heading1.
 ///
 public typealias H1 = Heading1
 
-/// # Description:
+/// ## Description
 /// The alias points to Heading2.
 ///
 public typealias H2 = Heading2
 
-/// # Description:
+/// ## Description
 /// The alias points to Heading3.
 ///
 public typealias H3 = Heading3
 
-/// # Description:
+/// ## Description
 /// The alias points to Heading4.
 ///
 public typealias H4 = Heading4
 
-/// # Description:
+/// ## Description
 /// The alias points to Heading5.
 ///
 public typealias H5 = Heading5
 
-/// # Description:
+/// ## Description
 /// The alias points to Heading6.
 ///
 public typealias H6 = Heading6
 
-/// # Description:
+/// ## Description
 /// The alias points to HeadingGroup.
 ///
 public typealias Hgroup = HeadingGroup
 
-/// # Description:
+/// ## Description
 /// The alias points to Paragraph.
 ///
 public typealias P = Paragraph
 
-/// # Description:
+/// ## Description
 /// The alias points to HorizontalRule.
 ///
 public typealias Hr = HorizontalRule
 
-/// # Description:
+/// ## Description
 /// The alias points to PreformattedText.
 ///
 public typealias Pre = PreformattedText
 
-/// # Description:
+/// ## Description
 /// The alias points to OrderedList.
 ///
 public typealias Ol = OrderedList
 
-/// # Description:
+/// ## Description
 /// The alias points to UnorderedList.
 ///
 public typealias Ul = UnorderedList
 
-/// # Description:
+/// ## Description
 /// The alias points to DescriptionList.
 ///
 public typealias Dl = DescriptionList
 
-/// # Description:
+/// ## Description
 /// The alias points to Division.
 ///
 public typealias Div = Division
 
-/// # Description:
+/// ## Description
 /// The alias points to Anchor.
 ///
 public typealias A = Anchor
 
-/// # Description:
+/// ## Description
 /// The alias points to Emphasize.
 ///
 public typealias Em = Emphasize
 
-/// # Description:
+/// ## Description
 /// The alias points to StrikeThrough.
 ///
 public typealias S = StrikeThrough
 
-/// # Description:
+/// ## Description
 /// The alias points to ShortQuote.
 ///
 public typealias Q = ShortQuote
 
-/// # Description:
+/// ## Description
 /// The alias points to Definition.
 ///
 public typealias Dfn = Definition
 
-/// # Description:
+/// ## Description
 /// The alias points to Abbreviation.
 ///
 public typealias Abbr = Abbreviation
 
-/// # Description:
+/// ## Description
 /// The alias points to Variable.
 ///
 public typealias V = Variable
 
-/// # Description:
+/// ## Description
 /// The alias points to SampleOutput.
 ///
 public typealias Samp = SampleOutput
 
-/// # Description:
+/// ## Description
 /// The alias points to KeyboardInput.
 ///
 public typealias Kbd = KeyboardInput
 
-/// # Description:
+/// ## Description
 /// The alias points to Subscript.
 ///
 public typealias Sub = Subscript
 
-/// # Description:
+/// ## Description
 /// The alias points to Superscript.
 ///
 public typealias Sup = Superscript
 
-/// # Description:
+/// ## Description
 /// The alias points to Italic.
 ///
 public typealias I = Italic
 
-/// # Description:
+/// ## Description
 /// The alias points to Bold.
 ///
 public typealias B = Bold
 
-/// # Description:
+/// ## Description
 /// The alias points to Underline.
 ///
 public typealias U = Underline
 
-/// # Description:
+/// ## Description
 /// The alias points to LineBreak.
 ///
 public typealias Br = LineBreak
 
-/// # Description:
+/// ## Description
 /// The alias points to WordBreak.
 ///
 public typealias Wbr = WordBreak
 
-/// # Description:
+/// ## Description
 /// The alias points to InsertedText.
 ///
 public typealias Ins = InsertedText
 
-/// # Description:
+/// ## Description
 /// The alias points to DeletedText.
 ///
 public typealias Del = DeletedText
 
-/// # Description:
+/// ## Description
 /// The alias points to Image.
 ///
 public typealias Img = Image
 
-/// # Description:
+/// ## Description
 /// The alias points to InlineFrame.
 ///
 public typealias Iframe = InlineFrame
 
-/// # Description:
+/// ## Description
 /// The alias points to Parameter.
 ///
 public typealias Param = Parameter
 
-/// # Description:
+/// ## Description
 /// The element represents a self-contained content.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-article-element
 ///
 public struct Article: ContentNode, BodyElement {
@@ -369,10 +369,10 @@ extension Article: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a generic section of the document.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-section-element
 ///
 public struct Section: ContentNode, BodyElement {
@@ -547,10 +547,10 @@ extension Section: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a section of a page that links to other pages or parts within the page.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-nav-element)
 ///
 public struct Navigation: ContentNode, BodyElement {
@@ -725,10 +725,10 @@ extension Navigation: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element defines some content aside from the content it is placed in.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-aside-element
 ///
 public struct Aside: ContentNode, BodyElement {
@@ -903,10 +903,10 @@ extension Aside: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a heading.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading1: ContentNode, BodyElement {
@@ -1092,10 +1092,10 @@ extension Heading1: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a heading.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading2: ContentNode, BodyElement {
@@ -1281,10 +1281,10 @@ extension Heading2: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a heading.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading3: ContentNode, BodyElement {
@@ -1470,10 +1470,10 @@ extension Heading3: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a heading.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading4: ContentNode, BodyElement {
@@ -1659,10 +1659,10 @@ extension Heading4: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a heading.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading5: ContentNode, BodyElement {
@@ -1848,10 +1848,10 @@ extension Heading5: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a heading.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
 public struct Heading6: ContentNode, BodyElement {
@@ -2037,10 +2037,10 @@ extension Heading6: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element is used to group a set of heading elements.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-hgroup-element
 ///
 public struct HeadingGroup: ContentNode, BodyElement {
@@ -2215,10 +2215,10 @@ extension HeadingGroup: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a header.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-header-element
 ///
 public struct Header: ContentNode, BodyElement {
@@ -2393,10 +2393,10 @@ extension Header: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a footer.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-footer-element
 ///
 public struct Footer: ContentNode, BodyElement {
@@ -2571,10 +2571,10 @@ extension Footer: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents the contact information.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-address-element
 ///
 public struct Address: ContentNode, BodyElement {
@@ -2749,10 +2749,10 @@ extension Address: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element is used to define a paragraph.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-p-element
 ///
 public struct Paragraph: ContentNode, BodyElement {
@@ -2938,10 +2938,10 @@ extension Paragraph: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element is used for horizontal rules that act as dividers between sections.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-hr-element
 ///
 public struct HorizontalRule: EmptyNode, BodyElement {
@@ -3111,10 +3111,10 @@ extension HorizontalRule: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a block of preformatted text.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-pre-element
 ///
 public struct PreformattedText: ContentNode, BodyElement {
@@ -3289,10 +3289,10 @@ extension PreformattedText: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a section that is quoted from another source.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-blockquote-element
 ///
 public struct Blockquote: ContentNode, BodyElement {
@@ -3482,10 +3482,10 @@ extension Blockquote: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a list of items, where the items have been intentionally ordered.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-ol-element
 ///
 public struct OrderedList: ContentNode, BodyElement {
@@ -3672,10 +3672,10 @@ extension OrderedList: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a list of items, where the order of the items is not important.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-ul-element
 ///
 public struct UnorderedList: ContentNode, BodyElement {
@@ -3850,10 +3850,10 @@ extension UnorderedList: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element defines a list of terms and corresponding definitions.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-dl-element
 ///
 public struct DescriptionList: ContentNode, BodyElement {
@@ -4028,10 +4028,10 @@ extension DescriptionList: Modifiable {
     }
 }
 
-/// # Description:
+/// # Figure
 /// The element can thus be used to annotate illustrations, diagrams, photos, code listings.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-figure-element
 ///
 public struct Figure: ContentNode, BodyElement {
@@ -4206,10 +4206,10 @@ extension Figure: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-a-element
 ///
 public struct Anchor: ContentNode, BodyElement {
@@ -4435,10 +4435,10 @@ extension Anchor: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element provides typographic emphasis.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-em-element
 ///
 public struct Emphasize: ContentNode, BodyElement {
@@ -4613,10 +4613,10 @@ extension Emphasize: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element provides strong typographic emphasis.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-strong-element
 ///
 public struct Strong: ContentNode, BodyElement {
@@ -4791,10 +4791,10 @@ extension Strong: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents side comments such as small print.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-small-element
 ///
 public struct Small: ContentNode, BodyElement {
@@ -4980,10 +4980,10 @@ extension Small: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents contents that are no longer accurate or no longer relevant.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-s-element
 ///
 public struct StrikeThrough: ContentNode, BodyElement {
@@ -5169,10 +5169,10 @@ extension StrikeThrough: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents the dominant contents of the document.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-main-element
 ///
 public struct Main: ContentNode, BodyElement {
@@ -5347,10 +5347,10 @@ extension Main: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element is used to represent different kinds of containers.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-div-element
 ///
 public struct Division: ContentNode, BodyElement {
@@ -5525,10 +5525,10 @@ extension Division: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-dfn-element
 ///
 public struct Definition: ContentNode, BodyElement {
@@ -5703,10 +5703,10 @@ extension Definition: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element specifies a citation.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-cite-element
 ///
 public struct Cite: ContentNode, BodyElement {
@@ -5881,10 +5881,10 @@ extension Cite: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element is used for a short quotation.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-q-element
 ///
 public struct ShortQuote: ContentNode, BodyElement {
@@ -6063,10 +6063,10 @@ extension ShortQuote: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents an abbreviation or acronym.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-abbr-element
 ///
 public struct Abbreviation: ContentNode, BodyElement {
@@ -6241,10 +6241,10 @@ extension Abbreviation: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element allows one or more spans of phrasing content to be marked with ruby annotations.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-ruby-element
 ///
 public struct Ruby: ContentNode, BodyElement {
@@ -6419,10 +6419,10 @@ extension Ruby: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-data-element
 ///
 public struct Data: ContentNode, BodyElement {
@@ -6605,10 +6605,10 @@ extension Data: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents its contents, along with a machine-readable form of those contents in the datetime attribute.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-time-element
 ///
 public struct Time: ContentNode, BodyElement {
@@ -6787,10 +6787,10 @@ extension Time: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents an example of code.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-code-element
 ///
 public struct Code: ContentNode, BodyElement {
@@ -6965,10 +6965,10 @@ extension Code: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element indicates a variable name.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-link-element
 ///
 public struct Variable: ContentNode, BodyElement {
@@ -7143,10 +7143,10 @@ extension Variable: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents sample or quoted output from another program or computing system.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-samp-element
 ///
 public struct SampleOutput: ContentNode, BodyElement {
@@ -7321,10 +7321,10 @@ extension SampleOutput: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents user input.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-kbd-element
 ///
 public struct KeyboardInput: ContentNode, BodyElement {
@@ -7499,10 +7499,10 @@ extension KeyboardInput: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a subscript.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-sub-and-sup-elements
 ///
 public struct Subscript: ContentNode, BodyElement {
@@ -7677,10 +7677,10 @@ extension Subscript: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a superscript.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-sub-and-sup-elements
 ///
 public struct Superscript: ContentNode, BodyElement {
@@ -7855,10 +7855,10 @@ extension Superscript: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents an italic font text.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-i-element
 ///
 public struct Italic: ContentNode, BodyElement {
@@ -8044,10 +8044,10 @@ extension Italic: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents an bold font text.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-b-element
 ///
 public struct Bold: ContentNode, BodyElement {
@@ -8233,10 +8233,10 @@ extension Bold: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element specifies that the enclosed text should be displayed as underlined.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-u-element
 ///
 public struct Underline: ContentNode, BodyElement {
@@ -8422,10 +8422,10 @@ extension Underline: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a run of text in the document marked or highlighted for reference purposes.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-mark-element
 ///
 public struct Mark: ContentNode, BodyElement {
@@ -8600,10 +8600,10 @@ extension Mark: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a span of text that is to be isolated from its surroundings for the purposes of bidirectional text formatting.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-bdi-element
 ///
 public struct Bdi: ContentNode, BodyElement {
@@ -8778,10 +8778,10 @@ extension Bdi: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents explicit text directionality formatting control.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-bdo-element
 ///
 public struct Bdo: EmptyNode, BodyElement {
@@ -8951,10 +8951,10 @@ extension Bdo: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element doesn't mean anything on its own.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-span-element
 ///
 public struct Span: ContentNode, BodyElement {
@@ -9129,10 +9129,10 @@ extension Span: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a line break.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-br-element
 ///
 public struct LineBreak: EmptyNode, BodyElement {
@@ -9302,10 +9302,10 @@ extension LineBreak: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a line break opportunity.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-wbr-element
 ///
 public struct WordBreak: EmptyNode, BodyElement {
@@ -9475,10 +9475,10 @@ extension WordBreak: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents an addition to the document.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-ins-element
 ///
 public struct InsertedText: ContentNode, BodyElement {
@@ -9661,10 +9661,10 @@ extension InsertedText: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a removal from the document.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-del-element
 ///
 public struct DeletedText: ContentNode, BodyElement {
@@ -9847,10 +9847,10 @@ extension DeletedText: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element is a container which provides multiple sources to its contained image element.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-picture-element
 ///
 public struct Picture: ContentNode, BodyElement {
@@ -10025,10 +10025,10 @@ extension Picture: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents an image.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-img-element
 ///
 public struct Image: EmptyNode, BodyElement {
@@ -10230,10 +10230,10 @@ extension Image: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents its nested browsing context.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-iframe-element
 ///
 public struct InlineFrame: ContentNode, BodyElement {
@@ -10432,10 +10432,10 @@ extension InlineFrame: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element provides an integration point for an external application or interactive content.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-embed-element
 ///
 public struct Embed: EmptyNode, BodyElement {
@@ -10621,10 +10621,10 @@ extension Embed: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents an external resource.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-object-element
 ///
 public struct Object: ContentNode, BodyElement {
@@ -10831,10 +10831,10 @@ extension Object: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-video-element
 ///
 public struct Video: ContentNode, BodyElement {
@@ -11037,10 +11037,10 @@ extension Video: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-audio-element
 ///
 public struct Audio: ContentNode, BodyElement {
@@ -11235,10 +11235,10 @@ extension Audio: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-map-elements
 ///
 public struct Map: ContentNode, BodyElement {
@@ -11421,10 +11421,10 @@ extension Map: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-form-element
 ///
 public struct Form: ContentNode, BodyElement {
@@ -11639,10 +11639,10 @@ extension Form: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a set of options.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-datalist-element
 ///
 public struct DataList: ContentNode, BodyElement {
@@ -11817,10 +11817,10 @@ extension DataList: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents the result of a calculation.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-output-element
 ///
 public struct Output: ContentNode, BodyElement {
@@ -12011,10 +12011,10 @@ extension Output: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents the completion progress of a task.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-progress-element
 ///
 public struct Progress: ContentNode, BodyElement {
@@ -12201,10 +12201,10 @@ extension Progress: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a scalar measurement within a known range, or a fractional value.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-meter-element
 ///
 public struct Meter: ContentNode, BodyElement {
@@ -12403,10 +12403,10 @@ extension Meter: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a disclosure widget from which the user can obtain additional information or controls.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-details-element
 ///
 public struct Details: ContentNode, BodyElement {
@@ -12589,10 +12589,10 @@ extension Details: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element defines a dialog box or window.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-dialog-element
 ///
 public struct Dialog: ContentNode, BodyElement {
@@ -12771,10 +12771,10 @@ extension Dialog: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element allows to include dynamic script and data blocks in a document.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-script-element
 ///
 public struct Script: ContentNode, BodyElement, HeadElement {
@@ -12973,10 +12973,10 @@ extension Script: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a caption for the rest of the contents of a fieldset.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-template-element
 ///
 public struct NoScript: ContentNode, BodyElement {
@@ -13151,10 +13151,10 @@ extension NoScript: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element is used to declare fragments of HTML that can be cloned and inserted in the document by script.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-template-element
 ///
 public struct Template: ContentNode, BodyElement {
@@ -13329,10 +13329,10 @@ extension Template: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-canvas-element
 ///
 public struct Canvas: ContentNode, BodyElement {
@@ -13515,10 +13515,10 @@ extension Canvas: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The element represents a comment output.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#the-table-element
 ///
 public struct Table: ContentNode, BodyElement {

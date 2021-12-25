@@ -1,19 +1,19 @@
-/// # Description:
+/// ## Description
 /// The file contains the node definitions.
 ///
-/// # Note:
+/// ## Note
 /// If you about to add something to the file, stick to the official documentation to keep the code consistent.
 ///
-/// # Authors:
+/// ## Authors
 /// Mats Moll: https://github.com/matsmoll
 /// Mattes Mohr: https://github.com/mattesmohr
 
 import OrderedCollections
 
-/// # Description:
+/// ## Description
 /// The protocol defines a node with content.
 ///
-/// # References:
+/// ## References
 ///
 internal protocol ContentNode: AnyNode {
 
@@ -531,10 +531,10 @@ extension ContentNode where Content == String {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines a node without content.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#void-elements
 ///
 internal protocol EmptyNode: AnyNode {
@@ -592,10 +592,10 @@ extension EmptyNode where Self: Modifiable {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines a node for comments.
 ///
-/// # References:
+/// ## References
 /// https://html.spec.whatwg.org/#comments
 ///
 internal protocol CommentNode: AnyNode {
@@ -618,10 +618,10 @@ extension CommentNode {
     }
 }
 
-/// # Description:
+/// ## Description
 /// The protocol defines the document node.
 ///
-/// # References:
+/// ## References
 ///
 internal protocol DocumentNode: AnyNode {
     
