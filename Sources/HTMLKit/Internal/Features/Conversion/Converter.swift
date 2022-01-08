@@ -220,7 +220,17 @@ public class Converter {
         case "muted":
             EmptyProperty(node: attribute).build()
         case "name":
-            ValueProperty(node: attribute).build()
+            
+            if let parent = attribute.parent {
+                
+                switch parent.localName {
+                case "meta":
+                    TypeProperty<NameType>(node: attribute).build()
+                default:
+                    ValueProperty(node: attribute).build()
+                }
+            }
+            
         case "nonce":
             ValueProperty(node: attribute).build()
         case "novalidate":
@@ -290,7 +300,25 @@ public class Converter {
         case "translate":
             ValueProperty(node: attribute).build()
         case "type":
-            TypeProperty<Inputs>(node: attribute).build()
+
+            if let parent = attribute.parent {
+                
+                switch parent.localName {
+                case "input":
+                    TypeProperty<Inputs>(node: attribute).build()
+                case "button":
+                    TypeProperty<Buttons>(node: attribute).build()
+                case "link":
+                    TypeProperty<MediaType>(node: attribute).build()
+                case "script":
+                    TypeProperty<MediaType>(node: attribute).build()
+                case "audio":
+                    TypeProperty<MediaType>(node: attribute).build()
+                default:
+                    ValueProperty(node: attribute).build()
+                }
+            }
+            
         case "value":
             ValueProperty(node: attribute).build()
         case "width":
