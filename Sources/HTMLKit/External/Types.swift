@@ -13,23 +13,14 @@
 ///
 /// ## References
 ///
-public struct NameType: RawRepresentable {
+public enum NameType: String {
     
-    public var rawValue: String
-    
-    public init?(rawValue: String) {
-        self.rawValue = rawValue
-    }    
-}
-
-extension NameType {
-    
-    static let author = NameType(rawValue: "author")!
-    static let description = NameType(rawValue: "description")!
-    static let generator = NameType(rawValue: "generator")!
-    static let keywords = NameType(rawValue: "keywords")!
-    static let viewport = NameType(rawValue: "viewport")!
-    static let applicationName = NameType(rawValue: "application-name")!
+    case author = "author"
+    case description = "description"
+    case generator = "generator"
+    case keywords = "keywords"
+    case viewport = "viewport"
+    case applicationName = "application-name"
 }
 
 /// ## Description
@@ -390,24 +381,15 @@ public enum Direction: String {
 ///
 /// ## References
 ///
-public struct MediaType: RawRepresentable {
+public enum MediaType: String {
     
-    public var rawValue: String
-    
-    public init?(rawValue: String) {
-        self.rawValue = rawValue
-    }
-}
-
-extension MediaType {
-    
-    static let html = MediaType(rawValue: "text/html")!
-    static let css = MediaType(rawValue: "text/css")!
-    static let ogg = MediaType(rawValue: "video/ogg")!
-    static let mp4 = MediaType(rawValue: "video/mp4")!
-    static let webm = MediaType(rawValue: "video/webm")!
-    static let mpeg = MediaType(rawValue: "audio/mpeg")!
-    static let javascript = MediaType(rawValue: "application/javascript")!
+    case html = "text/html"
+    case css = "text/css"
+    case ogg = "video/ogg"
+    case mp4 = "video/mp4"
+    case webm = "video/webm"
+    case mpeg = "audio/mpeg"
+    case javascript = "application/javascript"
 }
 
 /// ## Description
@@ -491,21 +473,12 @@ public enum Capitalization: String {
 ///
 /// ## References
 ///
-public struct Charset: RawRepresentable {
+public enum Charset: String {
     
-    public var rawValue: String
-    
-    public init?(rawValue: String) {
-        self.rawValue = rawValue
-    }
-}
-
-extension Charset {
-    
-    static let utf8 = Charset(rawValue: "UTF-8")!
-    static let utf16 = Charset(rawValue: "UTF-16")!
-    static let ansi = Charset(rawValue: "Windows-1252")!
-    static let iso = Charset(rawValue: "ISO-8859-1")!
+    case utf8 = "utf-8"
+    case utf16 = "utf-16"
+    case ansi = "windows-1252"
+    case iso = "iso-8859-1"
 }
 
 /// ## Description
@@ -513,18 +486,9 @@ extension Charset {
 ///
 /// ## References
 ///
-public struct Equivalent: RawRepresentable {
+public enum Equivalent: String {
     
-    public var rawValue: String
-    
-    public init?(rawValue: String) {
-        self.rawValue = rawValue
-    }
-}
-
-extension Equivalent {
-    
-    static let content = Equivalent(rawValue: "content-type")!
-    static let `default` = Equivalent(rawValue: "default-style")!
-    static let refresh = Equivalent(rawValue: "refresh")!
+    case content = "content-type"
+    case `default` = "default-style"
+    case refresh = "refresh"
 }
