@@ -300,7 +300,7 @@ public class Converter {
         case "property":
             TypeProperty<Graphs>(node: attribute).build()
         default:
-            "attribute is not listed. contact the author"
+            CustomProperty(node: attribute).build()
         }
     }
     

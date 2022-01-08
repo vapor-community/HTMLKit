@@ -437,3 +437,38 @@ internal struct TypeProperty<T: RawRepresentable>{
         }
     }
 }
+
+@available(macOS 11.0, *)
+internal struct CustomProperty {
+    
+    private var name: String? {
+        
+        guard let name = node.name else {
+            return nil
+        }
+        
+        return name
+    }
+    
+    private var value: String? {
+        
+        guard let value = node.stringValue else {
+            return nil
+        }
+        
+        return value
+    }
+    
+    private let node: XMLNode
+    
+    internal init(node: XMLNode) {
+        self.node = node
+    }
+    
+    @StringBuilder internal func build() -> String {
+
+        if let name = name {
+            ".custom(key: \"\(name)\", value: \"\(value ?? "")\")\n"
+        }
+    }
+}
