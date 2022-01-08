@@ -116,6 +116,7 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Input {
         return mutate(role: value)
     }
@@ -414,6 +415,7 @@ extension Label: GlobalAttributes, ForAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Label {
         return mutate(role: value)
     }
@@ -615,6 +617,7 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Select {
         return mutate(role: value)
     }
@@ -833,6 +836,7 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> TextArea {
         return mutate(role: value)
     }
@@ -1075,6 +1079,7 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Button {
         return mutate(role: value)
     }
@@ -1304,6 +1309,7 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Fieldset {
         return mutate(role: value)
     }

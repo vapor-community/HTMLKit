@@ -297,6 +297,7 @@ extension Article: GlobalAttributes {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Article {
         return mutate(role: value)
     }
@@ -483,6 +484,7 @@ extension Section: GlobalAttributes {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Section {
         return mutate(role: value)
     }
@@ -669,6 +671,7 @@ extension Navigation: GlobalAttributes {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Navigation {
         return mutate(role: value)
     }
@@ -855,6 +858,7 @@ extension Aside: GlobalAttributes {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Aside {
         return mutate(role: value)
     }
@@ -1041,6 +1045,7 @@ extension Heading1: GlobalAttributes {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Heading1 {
         return mutate(role: value)
     }
@@ -1237,7 +1242,8 @@ extension Heading2: GlobalAttributes {
     public func nonce(_ value: String) -> Heading2 {
         return mutate(nonce: value)
     }
-
+    
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Heading2 {
         return mutate(role: value)
     }
@@ -1435,6 +1441,7 @@ extension Heading3: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Heading3 {
         return mutate(role: value)
     }
@@ -1632,6 +1639,7 @@ extension Heading4: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Heading4 {
         return mutate(role: value)
     }
@@ -1829,6 +1837,7 @@ extension Heading5: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Heading5 {
         return mutate(role: value)
     }
@@ -2026,6 +2035,7 @@ extension Heading6: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Heading6 {
         return mutate(role: value)
     }
@@ -2223,6 +2233,7 @@ extension HeadingGroup: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> HeadingGroup {
         return mutate(role: value)
     }
@@ -2409,6 +2420,7 @@ extension Header: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Header {
         return mutate(role: value)
     }
@@ -2595,6 +2607,7 @@ extension Footer: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Footer {
         return mutate(role: value)
     }
@@ -2781,6 +2794,7 @@ extension Address: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Address {
         return mutate(role: value)
     }
@@ -2967,6 +2981,7 @@ extension Paragraph: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Paragraph {
         return mutate(role: value)
     }
@@ -3159,6 +3174,7 @@ extension HorizontalRule: GlobalAttributes {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> HorizontalRule {
         return mutate(role: value)
     }
@@ -3345,6 +3361,7 @@ extension PreformattedText: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> PreformattedText {
         return mutate(role: value)
     }
@@ -3531,6 +3548,7 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Blockquote {
         return mutate(role: value)
     }
@@ -3732,6 +3750,7 @@ extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, Type
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> OrderedList {
         return mutate(role: value)
     }
@@ -3929,7 +3948,8 @@ extension UnorderedList: GlobalAttributes {
     public func nonce(_ value: String) -> UnorderedList {
         return mutate(nonce: value)
     }
-
+    
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> UnorderedList {
         return mutate(role: value)
     }
@@ -4115,7 +4135,8 @@ extension DescriptionList: GlobalAttributes {
     public func nonce(_ value: String) -> DescriptionList {
         return mutate(nonce: value)
     }
-
+    
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> DescriptionList {
         return mutate(role: value)
     }
@@ -4301,7 +4322,8 @@ extension Figure: GlobalAttributes {
     public func nonce(_ value: String) -> Figure {
         return mutate(nonce: value)
     }
-
+    
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Figure {
         return mutate(role: value)
     }
@@ -4488,6 +4510,7 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Anchor {
         return mutate(role: value)
     }
@@ -4725,6 +4748,7 @@ extension Emphasize: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Emphasize {
         return mutate(role: value)
     }
@@ -4911,6 +4935,7 @@ extension Strong: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Strong {
         return mutate(role: value)
     }
@@ -5097,6 +5122,7 @@ extension Small: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Small {
         return mutate(role: value)
     }
@@ -5294,6 +5320,7 @@ extension StrikeThrough: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> StrikeThrough {
         return mutate(role: value)
     }
@@ -5491,6 +5518,7 @@ extension Main: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Main {
         return mutate(role: value)
     }
@@ -5677,6 +5705,7 @@ extension Division: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Division {
         return mutate(role: value)
     }
@@ -5863,6 +5892,7 @@ extension Definition: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Definition {
         return mutate(role: value)
     }
@@ -6049,6 +6079,7 @@ extension Cite: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Cite {
         return mutate(role: value)
     }
@@ -6235,6 +6266,7 @@ extension ShortQuote: GlobalAttributes, CiteAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> ShortQuote {
         return mutate(role: value)
     }
@@ -6425,6 +6457,7 @@ extension Abbreviation: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Abbreviation {
         return mutate(role: value)
     }
@@ -6611,6 +6644,7 @@ extension Ruby: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Ruby {
         return mutate(role: value)
     }
@@ -6796,7 +6830,8 @@ extension Data: GlobalAttributes, ValueAttribute {
     public func nonce(_ value: String) -> Data {
         return mutate(nonce: value)
     }
-
+    
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Data {
         return mutate(role: value)
     }
@@ -6991,6 +7026,7 @@ extension Time: GlobalAttributes, DateTimeAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Time {
         return mutate(role: value)
     }
@@ -7181,6 +7217,7 @@ extension Code: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Code {
         return mutate(role: value)
     }
@@ -7367,6 +7404,7 @@ extension Variable: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Variable {
         return mutate(role: value)
     }
@@ -7552,7 +7590,8 @@ extension SampleOutput: GlobalAttributes {
     public func nonce(_ value: String) -> SampleOutput {
         return mutate(nonce: value)
     }
-
+    
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> SampleOutput {
         return mutate(role: value)
     }
@@ -7739,6 +7778,7 @@ extension KeyboardInput: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> KeyboardInput {
         return mutate(role: value)
     }
@@ -7925,6 +7965,7 @@ extension Subscript: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Subscript {
         return mutate(role: value)
     }
@@ -8111,6 +8152,7 @@ extension Superscript: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Superscript {
         return mutate(role: value)
     }
@@ -8297,6 +8339,7 @@ extension Italic: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Italic {
         return mutate(role: value)
     }
@@ -8494,6 +8537,7 @@ extension Bold: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Bold {
         return mutate(role: value)
     }
@@ -8691,6 +8735,7 @@ extension Underline: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Underline {
         return mutate(role: value)
     }
@@ -8888,6 +8933,7 @@ extension Mark: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Mark {
         return mutate(role: value)
     }
@@ -9074,6 +9120,7 @@ extension Bdi: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Bdi {
         return mutate(role: value)
     }
@@ -9255,6 +9302,7 @@ extension Bdo: GlobalAttributes {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Bdo {
         return mutate(role: value)
     }
@@ -9441,6 +9489,7 @@ extension Span: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Span {
         return mutate(role: value)
     }
@@ -9622,6 +9671,7 @@ extension LineBreak: GlobalAttributes {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> LineBreak {
         return mutate(role: value)
     }
@@ -9803,6 +9853,7 @@ extension WordBreak: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> WordBreak {
         return mutate(role: value)
     }
@@ -9989,6 +10040,7 @@ extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> InsertedText {
         return mutate(role: value)
     }
@@ -10183,6 +10235,7 @@ extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> DeletedText {
         return mutate(role: value)
     }
@@ -10376,7 +10429,8 @@ extension Picture: GlobalAttributes {
     public func nonce(_ value: String) -> Picture {
         return mutate(nonce: value)
     }
-
+    
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Picture {
         return mutate(role: value)
     }
@@ -10566,6 +10620,7 @@ extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAtt
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Image {
         return mutate(role: value)
     }
@@ -10776,6 +10831,7 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> InlineFrame {
         return mutate(role: value)
     }
@@ -10981,6 +11037,7 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Embed {
         return mutate(role: value)
     }
@@ -11187,6 +11244,7 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Object {
         return mutate(role: value)
     }
@@ -11401,6 +11459,7 @@ extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Video {
         return mutate(role: value)
     }
@@ -11615,6 +11674,7 @@ extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Audio {
         return mutate(role: value)
     }
@@ -11821,6 +11881,7 @@ extension Map: GlobalAttributes, NameAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Map {
         return mutate(role: value)
     }
@@ -12023,6 +12084,7 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Form {
         return mutate(role: value)
     }
@@ -12241,6 +12303,7 @@ extension DataList: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> DataList {
         return mutate(role: value)
     }
@@ -12427,6 +12490,7 @@ extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Output {
         return mutate(role: value)
     }
@@ -12628,7 +12692,8 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
     public func nonce(_ value: String) -> Progress {
         return mutate(nonce: value)
     }
-
+    
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Progress {
         return mutate(role: value)
     }
@@ -12827,6 +12892,7 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Meter {
         return mutate(role: value)
     }
@@ -13041,6 +13107,7 @@ extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Details {
         return mutate(role: value)
     }
@@ -13231,6 +13298,7 @@ extension Dialog: GlobalAttributes, OpenAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Dialog {
         return mutate(role: value)
     }
@@ -13428,7 +13496,8 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
     public func nonce(_ value: String) -> Script {
         return mutate(nonce: value)
     }
-
+    
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Script {
         return mutate(role: value)
     }
@@ -13631,6 +13700,7 @@ extension NoScript: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> NoScript {
         return mutate(role: value)
     }
@@ -13817,6 +13887,7 @@ extension Template: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Template {
         return mutate(role: value)
     }
@@ -14003,6 +14074,7 @@ extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Canvas {
         return mutate(role: value)
     }
@@ -14197,6 +14269,7 @@ extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Table {
         return mutate(role: value)
     }

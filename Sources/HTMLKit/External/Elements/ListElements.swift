@@ -122,6 +122,7 @@ extension ListItem: GlobalAttributes, ValueAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> ListItem {
         return mutate(role: value)
     }

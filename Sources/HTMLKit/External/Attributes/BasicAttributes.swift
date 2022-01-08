@@ -3411,11 +3411,6 @@ public protocol RoleAttribute: AnyAttribute {
     /// The func adds
     ///
     ///
-    func role(_ value: String) -> Self
-    
-    /// The func adds
-    ///
-    ///
     func role(_ value: Roles) -> Self
 }
 

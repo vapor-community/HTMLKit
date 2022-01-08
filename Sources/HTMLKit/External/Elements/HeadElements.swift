@@ -119,6 +119,7 @@ extension Title: GlobalAttributes {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Title {
         return mutate(role: value)
     }
@@ -303,6 +304,7 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Base {
         return mutate(role: value)
     }
@@ -497,6 +499,7 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Meta {
         return mutate(role: value)
     }
@@ -716,6 +719,7 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Style {
         return mutate(role: value)
     }
@@ -913,6 +917,7 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Link {
         return mutate(role: value)
     }

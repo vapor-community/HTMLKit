@@ -127,6 +127,7 @@ extension RubyText: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> RubyText {
         return mutate(role: value)
     }
@@ -313,6 +314,7 @@ extension RubyPronunciation: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> RubyPronunciation {
         return mutate(role: value)
     }

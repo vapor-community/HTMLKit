@@ -157,6 +157,7 @@ extension Caption: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Caption {
         return mutate(role: value)
     }
@@ -343,6 +344,7 @@ extension ColumnGroup: GlobalAttributes, SpanAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> ColumnGroup {
         return mutate(role: value)
     }
@@ -533,6 +535,7 @@ extension Column: GlobalAttributes, SpanAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Column {
         return mutate(role: value)
     }
@@ -723,6 +726,7 @@ extension TableBody: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> TableBody {
         return mutate(role: value)
     }
@@ -917,6 +921,7 @@ extension TableHead: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> TableHead {
         return mutate(role: value)
     }
@@ -1111,6 +1116,7 @@ extension TableFoot: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> TableFoot {
         return mutate(role: value)
     }
@@ -1297,6 +1303,7 @@ extension TableRow: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> TableRow {
         return mutate(role: value)
     }
@@ -1491,6 +1498,7 @@ extension DataCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, Hea
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> DataCell {
         return mutate(role: value)
     }
@@ -1689,6 +1697,7 @@ extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, H
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> HeaderCell {
         return mutate(role: value)
     }

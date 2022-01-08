@@ -112,6 +112,7 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Source {
         return mutate(role: value)
     }
@@ -317,6 +318,7 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Track {
         return mutate(role: value)
     }

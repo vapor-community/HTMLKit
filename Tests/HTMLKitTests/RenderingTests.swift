@@ -95,7 +95,6 @@ final class RenderingTests: XCTestCase {
             Paragraph {
                 "text"
             }
-            .role("role")
             .class("class")
         } 
         
@@ -115,7 +114,6 @@ final class RenderingTests: XCTestCase {
             Paragraph {
                 "text"
             }
-            .role("ro_le")
             .class("cl_ass")
         }
         
@@ -134,7 +132,6 @@ final class RenderingTests: XCTestCase {
             Paragraph {
                 "text"
             }
-            .role("ro-le")
             .class("cl-ass")
         }
         
@@ -174,7 +171,6 @@ final class RenderingTests: XCTestCase {
             Paragraph {
                 "text"
             }
-            .role("role")
             .class("cl'ass")
         }
         

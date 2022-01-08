@@ -117,6 +117,7 @@ extension Head: GlobalAttributes {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Head {
         return mutate(role: value)
     }
@@ -339,6 +340,7 @@ extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttr
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Body {
         return mutate(role: value)
     }

@@ -122,6 +122,7 @@ extension OptionGroup: GlobalAttributes, DisabledAttribute, LabelAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> OptionGroup {
         return mutate(role: value)
     }
@@ -316,6 +317,7 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Option {
         return mutate(role: value)
     }
@@ -520,6 +522,7 @@ extension Legend: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Legend {
         return mutate(role: value)
     }
@@ -706,6 +709,7 @@ extension Summary: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Summary {
         return mutate(role: value)
     }
