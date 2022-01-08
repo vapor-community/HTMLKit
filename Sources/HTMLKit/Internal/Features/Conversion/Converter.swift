@@ -299,6 +299,10 @@ public class Converter {
             TypeProperty<Wrapping>(node: attribute).build()
         case "property":
             TypeProperty<Graphs>(node: attribute).build()
+        case "charset":
+            TypeProperty<Charset>(node: attribute).build()
+        case "http-equiv":
+            TypeProperty<Equivalent>(node: attribute).build()
         default:
             CustomProperty(node: attribute).build()
         }
