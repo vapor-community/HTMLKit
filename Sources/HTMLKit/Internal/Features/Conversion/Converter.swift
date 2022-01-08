@@ -68,7 +68,7 @@ public class Converter {
             
             if let dtd = document.dtd {
                 
-                let layout = PageLayout<DocumentType>(name: fileName, doctype: dtd, root: root).build()
+                let layout = PageLayout<Doctypes>(name: fileName, doctype: dtd, root: root).build()
                 
                 print(layout)
                 
@@ -83,7 +83,7 @@ public class Converter {
             
             if let dtd = document.dtd {
                 
-                let layout = PageLayout<DocumentType>(name: fileName, doctype: dtd, root: root).build()
+                let layout = PageLayout<Doctypes>(name: fileName, doctype: dtd, root: root).build()
                 
                 try layout.write(to: file.deletingPathExtension().appendingPathExtension("swift"),
                               atomically: true,
@@ -225,7 +225,7 @@ public class Converter {
                 
                 switch parent.localName {
                 case "meta":
-                    TypeProperty<NameType>(node: attribute).build()
+                    TypeProperty<Names>(node: attribute).build()
                 default:
                     ValueProperty(node: attribute).build()
                 }
@@ -309,11 +309,11 @@ public class Converter {
                 case "button":
                     TypeProperty<Buttons>(node: attribute).build()
                 case "link":
-                    TypeProperty<MediaType>(node: attribute).build()
+                    TypeProperty<Medias>(node: attribute).build()
                 case "script":
-                    TypeProperty<MediaType>(node: attribute).build()
+                    TypeProperty<Medias>(node: attribute).build()
                 case "audio":
-                    TypeProperty<MediaType>(node: attribute).build()
+                    TypeProperty<Medias>(node: attribute).build()
                 default:
                     ValueProperty(node: attribute).build()
                 }

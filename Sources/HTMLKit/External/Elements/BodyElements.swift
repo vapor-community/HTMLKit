@@ -10785,7 +10785,7 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
         return mutate(source: value)
     }
     
-    public func type(_ value: MediaType) -> Embed {
+    public func type(_ value: Medias) -> Embed {
         return mutate(type: value.rawValue)
     }
     
@@ -10987,7 +10987,7 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
         return mutate(data: value)
     }
     
-    public func type(_ value: MediaType) -> Object {
+    public func type(_ value: Medias) -> Object {
         return mutate(type: value.rawValue)
     }
     
@@ -13193,7 +13193,7 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
         return mutate(source: value)
     }
     
-    public func type(_ value: MediaType) -> Script {
+    public func type(_ value: Medias) -> Script {
         return mutate(type: value.rawValue)
     }
     

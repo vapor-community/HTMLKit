@@ -13,7 +13,7 @@
 ///
 /// ## References
 ///
-public enum NameType: String {
+public enum Names: String {
     
     case author = "author"
     case description = "description"
@@ -381,7 +381,7 @@ public enum Direction: String {
 ///
 /// ## References
 ///
-public enum MediaType: String {
+public enum Medias: String {
     
     case html = "text/html"
     case css = "text/css"
@@ -411,7 +411,7 @@ public enum Marker: String {
 ///
 /// ## References
 ///
-public enum DocumentType: String {
+public enum Doctypes: String {
         
     case html5 = "html"
     case html4Strict = #"HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd""#

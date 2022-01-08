@@ -521,11 +521,11 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
         return mutate(content: value.rawValue)
     }
     
-    public func name(_ value: NameType) -> Meta {
+    public func name(_ value: Names) -> Meta {
         return mutate(name: value.rawValue)
     }
     
-    public func name(_ value: TemplateValue<NameType>) -> Meta {
+    public func name(_ value: TemplateValue<Names>) -> Meta {
         return mutate(name: value.rawValue)
     }
     
@@ -728,7 +728,7 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
         return mutate(translate: value)
     }
 
-    public func type(_ value: MediaType) -> Style {
+    public func type(_ value: Medias) -> Style {
         return mutate(type: value.rawValue)
     }
     
@@ -949,7 +949,7 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
         return mutate(sizes: size)
     }
     
-    public func type(_ value: MediaType) -> Link {
+    public func type(_ value: Medias) -> Link {
         return mutate(type: value.rawValue)
     }
     

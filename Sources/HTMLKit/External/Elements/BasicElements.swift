@@ -46,7 +46,7 @@ public struct Document: DocumentNode, BasicElement {
     
     public var content: String
     
-    public init(type: DocumentType) {
+    public init(type: Doctypes) {
         self.content = type.rawValue
     }
 }

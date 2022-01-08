@@ -136,7 +136,7 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
         return mutate(translate: value)
     }
 
-    public func type(_ value: MediaType) -> Source {
+    public func type(_ value: Medias) -> Source {
         return mutate(type: value.rawValue)
     }
     
