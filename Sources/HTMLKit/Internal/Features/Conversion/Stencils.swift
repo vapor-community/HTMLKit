@@ -400,7 +400,7 @@ internal struct TypeProperty<T: RawRepresentable>{
             return nil
         }
 
-        if let type = T(rawValue: value as! T.RawValue) {
+        if let type = T(rawValue: value.lowercased() as! T.RawValue) {
             return ".\(type)"
         }
         
