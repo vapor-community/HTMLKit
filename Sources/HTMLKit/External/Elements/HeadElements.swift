@@ -123,6 +123,10 @@ extension Title: GlobalAttributes {
         return mutate(role: value)
     }
     
+    public func role(_ value: Roles) -> Title {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> Title {
         return mutate(spellcheck: condition)
     }
@@ -301,6 +305,10 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
     
     public func role(_ value: String) -> Base {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Base {
+        return mutate(role: value.rawValue)
     }
     
     public func hasSpellCheck(_ condition: Bool) -> Base {
@@ -491,6 +499,10 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
     
     public func role(_ value: String) -> Meta {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Meta {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Meta {
@@ -708,6 +720,10 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
         return mutate(role: value)
     }
     
+    public func role(_ value: Roles) -> Style {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> Style {
         return mutate(spellcheck: condition)
     }
@@ -899,6 +915,10 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
     
     public func role(_ value: String) -> Link {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Link {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Link {

@@ -125,6 +125,10 @@ extension OptionGroup: GlobalAttributes, DisabledAttribute, LabelAttribute {
     public func role(_ value: String) -> OptionGroup {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> OptionGroup {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> OptionGroup {
         return mutate(spellcheck: condition)
@@ -314,6 +318,10 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
 
     public func role(_ value: String) -> Option {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Option {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Option {
@@ -516,6 +524,10 @@ extension Legend: GlobalAttributes {
         return mutate(role: value)
     }
 
+    public func role(_ value: Roles) -> Legend {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> Legend {
         return mutate(spellcheck: condition)
     }
@@ -696,6 +708,10 @@ extension Summary: GlobalAttributes {
 
     public func role(_ value: String) -> Summary {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Summary {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Summary {

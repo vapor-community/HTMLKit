@@ -131,6 +131,10 @@ extension TermName: GlobalAttributes {
         return mutate(role: value)
     }
 
+    public func role(_ value: Roles) -> TermName {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> TermName {
         return mutate(spellcheck: condition)
     }
@@ -313,6 +317,10 @@ extension TermDefinition: GlobalAttributes {
         return mutate(role: value)
     }
 
+    public func role(_ value: Roles) -> TermDefinition {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> TermDefinition {
         return mutate(spellcheck: condition)
     }

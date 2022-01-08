@@ -300,6 +300,10 @@ extension Article: GlobalAttributes {
     public func role(_ value: String) -> Article {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Article {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Article {
         return mutate(spellcheck: condition)
@@ -481,6 +485,10 @@ extension Section: GlobalAttributes {
     
     public func role(_ value: String) -> Section {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Section {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Section {
@@ -664,6 +672,10 @@ extension Navigation: GlobalAttributes {
     public func role(_ value: String) -> Navigation {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Navigation {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Navigation {
         return mutate(spellcheck: condition)
@@ -846,6 +858,10 @@ extension Aside: GlobalAttributes {
     public func role(_ value: String) -> Aside {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Aside {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Aside {
         return mutate(spellcheck: condition)
@@ -1027,6 +1043,10 @@ extension Heading1: GlobalAttributes {
     
     public func role(_ value: String) -> Heading1 {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Heading1 {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Heading1 {
@@ -1221,6 +1241,10 @@ extension Heading2: GlobalAttributes {
     public func role(_ value: String) -> Heading2 {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Heading2 {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Heading2 {
         return mutate(spellcheck: condition)
@@ -1413,6 +1437,10 @@ extension Heading3: GlobalAttributes {
 
     public func role(_ value: String) -> Heading3 {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Heading3 {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Heading3 {
@@ -1607,6 +1635,10 @@ extension Heading4: GlobalAttributes {
     public func role(_ value: String) -> Heading4 {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Heading4 {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Heading4 {
         return mutate(spellcheck: condition)
@@ -1800,6 +1832,10 @@ extension Heading5: GlobalAttributes {
     public func role(_ value: String) -> Heading5 {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Heading5 {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Heading5 {
         return mutate(spellcheck: condition)
@@ -1992,6 +2028,10 @@ extension Heading6: GlobalAttributes {
 
     public func role(_ value: String) -> Heading6 {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Heading6 {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Heading6 {
@@ -2187,6 +2227,10 @@ extension HeadingGroup: GlobalAttributes {
         return mutate(role: value)
     }
 
+    public func role(_ value: Roles) -> HeadingGroup {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> HeadingGroup {
         return mutate(spellcheck: condition)
     }
@@ -2367,6 +2411,10 @@ extension Header: GlobalAttributes {
 
     public func role(_ value: String) -> Header {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Header {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Header {
@@ -2550,6 +2598,10 @@ extension Footer: GlobalAttributes {
     public func role(_ value: String) -> Footer {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Footer {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Footer {
         return mutate(spellcheck: condition)
@@ -2732,6 +2784,10 @@ extension Address: GlobalAttributes {
     public func role(_ value: String) -> Address {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Address {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Address {
         return mutate(spellcheck: condition)
@@ -2913,6 +2969,10 @@ extension Paragraph: GlobalAttributes {
 
     public func role(_ value: String) -> Paragraph {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Paragraph {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Paragraph {
@@ -3102,6 +3162,10 @@ extension HorizontalRule: GlobalAttributes {
     public func role(_ value: String) -> HorizontalRule {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> HorizontalRule {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> HorizontalRule {
         return mutate(spellcheck: condition)
@@ -3284,6 +3348,10 @@ extension PreformattedText: GlobalAttributes {
     public func role(_ value: String) -> PreformattedText {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> PreformattedText {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> PreformattedText {
         return mutate(spellcheck: condition)
@@ -3465,6 +3533,10 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
 
     public func role(_ value: String) -> Blockquote {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Blockquote {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Blockquote {
@@ -3663,6 +3735,10 @@ extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, Type
     public func role(_ value: String) -> OrderedList {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> OrderedList {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> OrderedList {
         return mutate(spellcheck: condition)
@@ -3857,6 +3933,10 @@ extension UnorderedList: GlobalAttributes {
     public func role(_ value: String) -> UnorderedList {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> UnorderedList {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> UnorderedList {
         return mutate(spellcheck: condition)
@@ -4038,6 +4118,10 @@ extension DescriptionList: GlobalAttributes {
 
     public func role(_ value: String) -> DescriptionList {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> DescriptionList {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> DescriptionList {
@@ -4221,6 +4305,10 @@ extension Figure: GlobalAttributes {
     public func role(_ value: String) -> Figure {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Figure {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Figure {
         return mutate(spellcheck: condition)
@@ -4402,6 +4490,10 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
 
     public func role(_ value: String) -> Anchor {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Anchor {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Anchor {
@@ -4636,6 +4728,10 @@ extension Emphasize: GlobalAttributes {
     public func role(_ value: String) -> Emphasize {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Emphasize {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Emphasize {
         return mutate(spellcheck: condition)
@@ -4818,6 +4914,10 @@ extension Strong: GlobalAttributes {
     public func role(_ value: String) -> Strong {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Strong {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Strong {
         return mutate(spellcheck: condition)
@@ -4999,6 +5099,10 @@ extension Small: GlobalAttributes {
 
     public func role(_ value: String) -> Small {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Small {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Small {
@@ -5193,6 +5297,10 @@ extension StrikeThrough: GlobalAttributes {
     public func role(_ value: String) -> StrikeThrough {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> StrikeThrough {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> StrikeThrough {
         return mutate(spellcheck: condition)
@@ -5386,6 +5494,10 @@ extension Main: GlobalAttributes {
     public func role(_ value: String) -> Main {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Main {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Main {
         return mutate(spellcheck: condition)
@@ -5568,6 +5680,10 @@ extension Division: GlobalAttributes {
     public func role(_ value: String) -> Division {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Division {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Division {
         return mutate(spellcheck: condition)
@@ -5749,6 +5865,10 @@ extension Definition: GlobalAttributes {
 
     public func role(_ value: String) -> Definition {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Definition {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Definition {
@@ -5933,6 +6053,10 @@ extension Cite: GlobalAttributes {
         return mutate(role: value)
     }
 
+    public func role(_ value: Roles) -> Cite {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> Cite {
         return mutate(spellcheck: condition)
     }
@@ -6113,6 +6237,10 @@ extension ShortQuote: GlobalAttributes, CiteAttribute {
 
     public func role(_ value: String) -> ShortQuote {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> ShortQuote {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> ShortQuote {
@@ -6301,6 +6429,10 @@ extension Abbreviation: GlobalAttributes {
         return mutate(role: value)
     }
 
+    public func role(_ value: Roles) -> Abbreviation {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> Abbreviation {
         return mutate(spellcheck: condition)
     }
@@ -6481,6 +6613,10 @@ extension Ruby: GlobalAttributes {
 
     public func role(_ value: String) -> Ruby {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Ruby {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Ruby {
@@ -6663,6 +6799,10 @@ extension Data: GlobalAttributes, ValueAttribute {
 
     public func role(_ value: String) -> Data {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Data {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Data {
@@ -6854,6 +6994,10 @@ extension Time: GlobalAttributes, DateTimeAttribute {
     public func role(_ value: String) -> Time {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Time {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Time {
         return mutate(spellcheck: condition)
@@ -7040,6 +7184,10 @@ extension Code: GlobalAttributes {
     public func role(_ value: String) -> Code {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Code {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Code {
         return mutate(spellcheck: condition)
@@ -7221,6 +7369,10 @@ extension Variable: GlobalAttributes {
 
     public func role(_ value: String) -> Variable {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Variable {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Variable {
@@ -7404,6 +7556,10 @@ extension SampleOutput: GlobalAttributes {
     public func role(_ value: String) -> SampleOutput {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> SampleOutput {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> SampleOutput {
         return mutate(spellcheck: condition)
@@ -7585,6 +7741,10 @@ extension KeyboardInput: GlobalAttributes {
 
     public func role(_ value: String) -> KeyboardInput {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> KeyboardInput {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> KeyboardInput {
@@ -7769,6 +7929,10 @@ extension Subscript: GlobalAttributes {
         return mutate(role: value)
     }
 
+    public func role(_ value: Roles) -> Subscript {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> Subscript {
         return mutate(spellcheck: condition)
     }
@@ -7949,6 +8113,10 @@ extension Superscript: GlobalAttributes {
 
     public func role(_ value: String) -> Superscript {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Superscript {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Superscript {
@@ -8131,6 +8299,10 @@ extension Italic: GlobalAttributes {
 
     public func role(_ value: String) -> Italic {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Italic {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Italic {
@@ -8325,6 +8497,10 @@ extension Bold: GlobalAttributes {
     public func role(_ value: String) -> Bold {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Bold {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Bold {
         return mutate(spellcheck: condition)
@@ -8517,6 +8693,10 @@ extension Underline: GlobalAttributes {
 
     public func role(_ value: String) -> Underline {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Underline {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Underline {
@@ -8711,6 +8891,10 @@ extension Mark: GlobalAttributes {
     public func role(_ value: String) -> Mark {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Mark {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Mark {
         return mutate(spellcheck: condition)
@@ -8893,6 +9077,10 @@ extension Bdi: GlobalAttributes {
     public func role(_ value: String) -> Bdi {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Bdi {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Bdi {
         return mutate(spellcheck: condition)
@@ -9069,6 +9257,10 @@ extension Bdo: GlobalAttributes {
     
     public func role(_ value: String) -> Bdo {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Bdo {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Bdo {
@@ -9252,6 +9444,10 @@ extension Span: GlobalAttributes {
     public func role(_ value: String) -> Span {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Span {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Span {
         return mutate(spellcheck: condition)
@@ -9429,6 +9625,10 @@ extension LineBreak: GlobalAttributes {
     public func role(_ value: String) -> LineBreak {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> LineBreak {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> LineBreak {
         return mutate(spellcheck: condition)
@@ -9605,6 +9805,10 @@ extension WordBreak: GlobalAttributes {
 
     public func role(_ value: String) -> WordBreak {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> WordBreak {
+        return mutate(role: value.rawValue)
     }
     
     public func hasSpellCheck(_ condition: Bool) -> WordBreak {
@@ -9787,6 +9991,10 @@ extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
 
     public func role(_ value: String) -> InsertedText {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> InsertedText {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> InsertedText {
@@ -9978,6 +10186,10 @@ extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     public func role(_ value: String) -> DeletedText {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> DeletedText {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> DeletedText {
         return mutate(spellcheck: condition)
@@ -10168,6 +10380,10 @@ extension Picture: GlobalAttributes {
     public func role(_ value: String) -> Picture {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Picture {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Picture {
         return mutate(spellcheck: condition)
@@ -10352,6 +10568,10 @@ extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAtt
     
     public func role(_ value: String) -> Image {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Image {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Image {
@@ -10560,6 +10780,10 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
         return mutate(role: value)
     }
 
+    public func role(_ value: Roles) -> InlineFrame {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> InlineFrame {
         return mutate(spellcheck: condition)
     }
@@ -10761,6 +10985,10 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
         return mutate(role: value)
     }
 
+    public func role(_ value: Roles) -> Embed {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> Embed {
         return mutate(spellcheck: condition)
     }
@@ -10961,6 +11189,10 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
 
     public func role(_ value: String) -> Object {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Object {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Object {
@@ -11173,6 +11405,10 @@ extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
         return mutate(role: value)
     }
 
+    public func role(_ value: Roles) -> Video {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> Video {
         return mutate(spellcheck: condition)
     }
@@ -11382,6 +11618,10 @@ extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     public func role(_ value: String) -> Audio {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Audio {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Audio {
         return mutate(spellcheck: condition)
@@ -11584,6 +11824,10 @@ extension Map: GlobalAttributes, NameAttribute {
     public func role(_ value: String) -> Map {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Map {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Map {
         return mutate(spellcheck: condition)
@@ -11781,6 +12025,10 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
 
     public func role(_ value: String) -> Form {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Form {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Form {
@@ -11996,6 +12244,10 @@ extension DataList: GlobalAttributes {
     public func role(_ value: String) -> DataList {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> DataList {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> DataList {
         return mutate(spellcheck: condition)
@@ -12177,6 +12429,10 @@ extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
 
     public func role(_ value: String) -> Output {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Output {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Output {
@@ -12376,6 +12632,10 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
     public func role(_ value: String) -> Progress {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Progress {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Progress {
         return mutate(spellcheck: condition)
@@ -12569,6 +12829,10 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
 
     public func role(_ value: String) -> Meter {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Meter {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Meter {
@@ -12781,6 +13045,10 @@ extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
         return mutate(role: value)
     }
 
+    public func role(_ value: Roles) -> Details {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> Details {
         return mutate(spellcheck: condition)
     }
@@ -12967,6 +13235,10 @@ extension Dialog: GlobalAttributes, OpenAttribute {
         return mutate(role: value)
     }
 
+    public func role(_ value: Roles) -> Dialog {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> Dialog {
         return mutate(spellcheck: condition)
     }
@@ -13159,6 +13431,10 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
 
     public func role(_ value: String) -> Script {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Script {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Script {
@@ -13359,6 +13635,10 @@ extension NoScript: GlobalAttributes {
         return mutate(role: value)
     }
 
+    public func role(_ value: Roles) -> NoScript {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> NoScript {
         return mutate(spellcheck: condition)
     }
@@ -13539,6 +13819,10 @@ extension Template: GlobalAttributes {
 
     public func role(_ value: String) -> Template {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Template {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Template {
@@ -13721,6 +14005,10 @@ extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
 
     public func role(_ value: String) -> Canvas {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Canvas {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Canvas {
@@ -13911,6 +14199,10 @@ extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
 
     public func role(_ value: String) -> Table {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Table {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Table {

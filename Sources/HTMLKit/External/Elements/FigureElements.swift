@@ -125,6 +125,10 @@ extension FigureCaption: GlobalAttributes {
     public func role(_ value: String) -> FigureCaption {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> FigureCaption {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> FigureCaption {
         return mutate(spellcheck: condition)

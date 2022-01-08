@@ -130,6 +130,10 @@ extension RubyText: GlobalAttributes {
     public func role(_ value: String) -> RubyText {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> RubyText {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> RubyText {
         return mutate(spellcheck: condition)
@@ -311,6 +315,10 @@ extension RubyPronunciation: GlobalAttributes {
 
     public func role(_ value: String) -> RubyPronunciation {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> RubyPronunciation {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> RubyPronunciation {

@@ -262,7 +262,7 @@ public class Converter {
         case "reversed":
             EmptyProperty(node: attribute).build()
         case "role":
-            ValueProperty(node: attribute).build()
+            TypeProperty<Roles>(node: attribute).build()
         case "rows":
             ValueProperty(node: attribute).build()
         case "rowspan":

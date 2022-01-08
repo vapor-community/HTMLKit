@@ -115,6 +115,10 @@ extension Parameter: GlobalAttributes, NameAttribute, ValueAttribute {
     public func role(_ value: String) -> Parameter {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Parameter {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Parameter {
         return mutate(spellcheck: condition)

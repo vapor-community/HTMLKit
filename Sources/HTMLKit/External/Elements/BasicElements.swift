@@ -171,6 +171,10 @@ extension Html: GlobalAttributes {
     public func role(_ value: String) -> Html {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Html {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Html {
         return mutate(spellcheck: condition)

@@ -160,6 +160,10 @@ extension Caption: GlobalAttributes {
     public func role(_ value: String) -> Caption {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Caption {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Caption {
         return mutate(spellcheck: condition)
@@ -341,6 +345,10 @@ extension ColumnGroup: GlobalAttributes, SpanAttribute {
 
     public func role(_ value: String) -> ColumnGroup {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> ColumnGroup {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> ColumnGroup {
@@ -528,6 +536,10 @@ extension Column: GlobalAttributes, SpanAttribute {
     public func role(_ value: String) -> Column {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Column {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Column {
         return mutate(spellcheck: condition)
@@ -713,6 +725,10 @@ extension TableBody: GlobalAttributes, WidthAttribute, HeightAttribute {
 
     public func role(_ value: String) -> TableBody {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> TableBody {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> TableBody {
@@ -904,6 +920,10 @@ extension TableHead: GlobalAttributes, WidthAttribute, HeightAttribute {
     public func role(_ value: String) -> TableHead {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> TableHead {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> TableHead {
         return mutate(spellcheck: condition)
@@ -1094,6 +1114,10 @@ extension TableFoot: GlobalAttributes {
     public func role(_ value: String) -> TableFoot {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> TableFoot {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> TableFoot {
         return mutate(spellcheck: condition)
@@ -1275,6 +1299,10 @@ extension TableRow: GlobalAttributes, WidthAttribute, HeightAttribute {
 
     public func role(_ value: String) -> TableRow {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> TableRow {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> TableRow {
@@ -1465,6 +1493,10 @@ extension DataCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, Hea
 
     public func role(_ value: String) -> DataCell {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> DataCell {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> DataCell {
@@ -1659,6 +1691,10 @@ extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, H
 
     public func role(_ value: String) -> HeaderCell {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> HeaderCell {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> HeaderCell {

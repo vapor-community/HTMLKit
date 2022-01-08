@@ -121,6 +121,10 @@ extension Head: GlobalAttributes {
         return mutate(role: value)
     }
     
+    public func role(_ value: Roles) -> Head {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> Head {
         return mutate(spellcheck: condition)
     }
@@ -337,6 +341,10 @@ extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttr
     
     public func role(_ value: String) -> Body {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Body {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Body {

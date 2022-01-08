@@ -115,6 +115,10 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
     public func role(_ value: String) -> Source {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Source {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Source {
         return mutate(spellcheck: condition)
@@ -315,6 +319,10 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
     
     public func role(_ value: String) -> Track {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Track {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Track {

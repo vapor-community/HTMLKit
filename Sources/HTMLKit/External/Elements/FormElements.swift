@@ -119,6 +119,10 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
     public func role(_ value: String) -> Input {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Input {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Input {
         return mutate(spellcheck: condition)
@@ -413,6 +417,10 @@ extension Label: GlobalAttributes, ForAttribute {
     public func role(_ value: String) -> Label {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Label {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Label {
         return mutate(spellcheck: condition)
@@ -609,6 +617,10 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
 
     public func role(_ value: String) -> Select {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Select {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Select {
@@ -823,6 +835,10 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
 
     public func role(_ value: String) -> TextArea {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> TextArea {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> TextArea {
@@ -1062,6 +1078,10 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
     public func role(_ value: String) -> Button {
         return mutate(role: value)
     }
+    
+    public func role(_ value: Roles) -> Button {
+        return mutate(role: value.rawValue)
+    }
 
     public func hasSpellCheck(_ condition: Bool) -> Button {
         return mutate(spellcheck: condition)
@@ -1286,6 +1306,10 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
 
     public func role(_ value: String) -> Fieldset {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Fieldset {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Fieldset {

@@ -492,3 +492,91 @@ public enum Equivalent: String {
     case `default` = "default-style"
     case refresh = "refresh"
 }
+
+/// ## Description
+/// The type is for
+///
+/// ## References
+///
+public enum Roles: String {
+    
+    case alert
+    case alertDialog = "alertdialog"
+    case application
+    case article
+    case banner
+    case button
+    case cell
+    case checkbox
+    case columnHeader = "columnheader"
+    case combobox
+    case command
+    case comment
+    case complementary
+    case composite
+    case contentInfo = "contentinfo"
+    case definition
+    case dialog
+    case directory
+    case document
+    case feed
+    case figure
+    case form
+    case grid
+    case gridCell = "gridcell"
+    case group
+    case heading
+    case img
+    case input
+    case landmark
+    case list
+    case listBox = "listbox"
+    case listItem = "listitem"
+    case log
+    case main
+    case mark
+    case marquee
+    case math
+    case menu
+    case menuBar = "menubar"
+    case menuItem = "menuitem"
+    case menuItemCheckbox = "menuitemcheckbox"
+    case menuItemRadio = "menuitemradio"
+    case meter
+    case navigation
+    case none
+    case note
+    case option
+    case presentation
+    case radio
+    case range
+    case region
+    case roleType = "roletype"
+    case row
+    case rowGroup = "rowgroup"
+    case rowHeader = "rowheader"
+    case scrollbar
+    case search
+    case searchBox = "searchbox"
+    case sectionHead = "sectionhead"
+    case select
+    case separator
+    case status
+    case structure
+    case suggestion
+    case `switch`
+    case tab
+    case table
+    case tabList = "tablist"
+    case tabPanel = "tabpanel"
+    case term
+    case textbox
+    case timer
+    case toolbar
+    case tooltip
+    case tree
+    case treeGrid = "treegrid"
+    case treeItem = "treeitem"
+    case widget
+    case window
+}
