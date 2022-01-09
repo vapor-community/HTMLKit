@@ -68,7 +68,7 @@ public class Converter {
             
             if let dtd = document.dtd {
                 
-                let layout = PageLayout<DocumentType>(name: fileName, doctype: dtd, root: root).build()
+                let layout = PageLayout<Doctypes>(name: fileName, doctype: dtd, root: root).build()
                 
                 print(layout)
                 
@@ -83,7 +83,7 @@ public class Converter {
             
             if let dtd = document.dtd {
                 
-                let layout = PageLayout<DocumentType>(name: fileName, doctype: dtd, root: root).build()
+                let layout = PageLayout<Doctypes>(name: fileName, doctype: dtd, root: root).build()
                 
                 try layout.write(to: file.deletingPathExtension().appendingPathExtension("swift"),
                               atomically: true,
@@ -220,7 +220,17 @@ public class Converter {
         case "muted":
             EmptyProperty(node: attribute).build()
         case "name":
-            ValueProperty(node: attribute).build()
+            
+            if let parent = attribute.parent {
+                
+                switch parent.localName {
+                case "meta":
+                    TypeProperty<Names>(node: attribute).build()
+                default:
+                    ValueProperty(node: attribute).build()
+                }
+            }
+            
         case "nonce":
             ValueProperty(node: attribute).build()
         case "novalidate":
@@ -252,7 +262,7 @@ public class Converter {
         case "reversed":
             EmptyProperty(node: attribute).build()
         case "role":
-            ValueProperty(node: attribute).build()
+            TypeProperty<Roles>(node: attribute).build()
         case "rows":
             ValueProperty(node: attribute).build()
         case "rowspan":
@@ -290,7 +300,25 @@ public class Converter {
         case "translate":
             ValueProperty(node: attribute).build()
         case "type":
-            TypeProperty<Inputs>(node: attribute).build()
+
+            if let parent = attribute.parent {
+                
+                switch parent.localName {
+                case "input":
+                    TypeProperty<Inputs>(node: attribute).build()
+                case "button":
+                    TypeProperty<Buttons>(node: attribute).build()
+                case "link":
+                    TypeProperty<Medias>(node: attribute).build()
+                case "script":
+                    TypeProperty<Medias>(node: attribute).build()
+                case "audio":
+                    TypeProperty<Medias>(node: attribute).build()
+                default:
+                    ValueProperty(node: attribute).build()
+                }
+            }
+            
         case "value":
             ValueProperty(node: attribute).build()
         case "width":
@@ -299,8 +327,12 @@ public class Converter {
             TypeProperty<Wrapping>(node: attribute).build()
         case "property":
             TypeProperty<Graphs>(node: attribute).build()
+        case "charset":
+            TypeProperty<Charset>(node: attribute).build()
+        case "http-equiv":
+            TypeProperty<Equivalent>(node: attribute).build()
         default:
-            "attribute is not listed. contact the author"
+            CustomProperty(node: attribute).build()
         }
     }
     

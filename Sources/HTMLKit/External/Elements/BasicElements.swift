@@ -46,7 +46,7 @@ public struct Document: DocumentNode, BasicElement {
     
     public var content: String
     
-    public init(type: DocumentType) {
+    public init(type: Doctypes) {
         self.content = type.rawValue
     }
 }
@@ -168,8 +168,13 @@ extension Html: GlobalAttributes {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Html {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Html {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Html {

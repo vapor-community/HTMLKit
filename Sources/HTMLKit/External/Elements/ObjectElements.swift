@@ -112,8 +112,13 @@ extension Parameter: GlobalAttributes, NameAttribute, ValueAttribute {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Parameter {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Parameter {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Parameter {

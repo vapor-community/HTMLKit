@@ -116,8 +116,13 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Input {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Input {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Input {
@@ -410,8 +415,13 @@ extension Label: GlobalAttributes, ForAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Label {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Label {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Label {
@@ -607,8 +617,13 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Select {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Select {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Select {
@@ -821,8 +836,13 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> TextArea {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> TextArea {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> TextArea {
@@ -1059,8 +1079,13 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Button {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Button {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Button {
@@ -1284,8 +1309,13 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Fieldset {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Fieldset {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Fieldset {

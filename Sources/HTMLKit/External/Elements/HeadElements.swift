@@ -119,8 +119,13 @@ extension Title: GlobalAttributes {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Title {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Title {
+        return mutate(role: value.rawValue)
     }
     
     public func hasSpellCheck(_ condition: Bool) -> Title {
@@ -299,8 +304,13 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Base {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Base {
+        return mutate(role: value.rawValue)
     }
     
     public func hasSpellCheck(_ condition: Bool) -> Base {
@@ -489,8 +499,13 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Meta {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Meta {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Meta {
@@ -521,11 +536,11 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
         return mutate(content: value.rawValue)
     }
     
-    public func name(_ value: NameType) -> Meta {
+    public func name(_ value: Names) -> Meta {
         return mutate(name: value.rawValue)
     }
     
-    public func name(_ value: TemplateValue<NameType>) -> Meta {
+    public func name(_ value: TemplateValue<Names>) -> Meta {
         return mutate(name: value.rawValue)
     }
     
@@ -704,8 +719,13 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Style {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Style {
+        return mutate(role: value.rawValue)
     }
     
     public func hasSpellCheck(_ condition: Bool) -> Style {
@@ -728,7 +748,7 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
         return mutate(translate: value)
     }
 
-    public func type(_ value: MediaType) -> Style {
+    public func type(_ value: Medias) -> Style {
         return mutate(type: value.rawValue)
     }
     
@@ -897,8 +917,13 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Link {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Link {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Link {
@@ -949,7 +974,7 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
         return mutate(sizes: size)
     }
     
-    public func type(_ value: MediaType) -> Link {
+    public func type(_ value: Medias) -> Link {
         return mutate(type: value.rawValue)
     }
     

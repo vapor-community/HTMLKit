@@ -117,8 +117,13 @@ extension Head: GlobalAttributes {
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Head {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Head {
+        return mutate(role: value.rawValue)
     }
     
     public func hasSpellCheck(_ condition: Bool) -> Head {
@@ -335,8 +340,13 @@ extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttr
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Body {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Body {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Body {

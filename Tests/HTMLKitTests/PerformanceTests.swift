@@ -77,7 +77,7 @@ final class PerformanceTests: XCTestCase {
                         }
                         .id("test")
                         .class("class")
-                        .role("role")
+                        .role(.heading)
                     }
                     Main {
                         Article {
@@ -86,12 +86,12 @@ final class PerformanceTests: XCTestCase {
                             }
                             .id("test")
                             .class("class")
-                            .role("role")
+                            .role(.heading)
                         }
                     }
                     .id("test")
                     .class("class")
-                    .role("role")
+                    .role(.main)
                 }
             }
         }

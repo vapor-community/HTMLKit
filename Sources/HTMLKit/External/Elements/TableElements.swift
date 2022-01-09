@@ -157,8 +157,13 @@ extension Caption: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Caption {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Caption {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Caption {
@@ -339,8 +344,13 @@ extension ColumnGroup: GlobalAttributes, SpanAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> ColumnGroup {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> ColumnGroup {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> ColumnGroup {
@@ -525,8 +535,13 @@ extension Column: GlobalAttributes, SpanAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Column {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Column {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Column {
@@ -711,8 +726,13 @@ extension TableBody: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> TableBody {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> TableBody {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> TableBody {
@@ -901,8 +921,13 @@ extension TableHead: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> TableHead {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> TableHead {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> TableHead {
@@ -1091,8 +1116,13 @@ extension TableFoot: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> TableFoot {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> TableFoot {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> TableFoot {
@@ -1273,8 +1303,13 @@ extension TableRow: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> TableRow {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> TableRow {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> TableRow {
@@ -1463,8 +1498,13 @@ extension DataCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, Hea
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> DataCell {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> DataCell {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> DataCell {
@@ -1657,8 +1697,13 @@ extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, H
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> HeaderCell {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> HeaderCell {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> HeaderCell {

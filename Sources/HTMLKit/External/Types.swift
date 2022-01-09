@@ -13,23 +13,14 @@
 ///
 /// ## References
 ///
-public struct NameType: RawRepresentable {
+public enum Names: String {
     
-    public var rawValue: String
-    
-    public init?(rawValue: String) {
-        self.rawValue = rawValue
-    }    
-}
-
-extension NameType {
-    
-    static let author = NameType(rawValue: "author")!
-    static let description = NameType(rawValue: "description")!
-    static let generator = NameType(rawValue: "generator")!
-    static let keywords = NameType(rawValue: "keywords")!
-    static let viewport = NameType(rawValue: "viewport")!
-    static let applicationName = NameType(rawValue: "application-name")!
+    case author = "author"
+    case description = "description"
+    case generator = "generator"
+    case keywords = "keywords"
+    case viewport = "viewport"
+    case applicationName = "application-name"
 }
 
 /// ## Description
@@ -390,24 +381,15 @@ public enum Direction: String {
 ///
 /// ## References
 ///
-public struct MediaType: RawRepresentable {
+public enum Medias: String {
     
-    public var rawValue: String
-    
-    public init?(rawValue: String) {
-        self.rawValue = rawValue
-    }
-}
-
-extension MediaType {
-    
-    static let html = MediaType(rawValue: "text/html")!
-    static let css = MediaType(rawValue: "text/css")!
-    static let ogg = MediaType(rawValue: "video/ogg")!
-    static let mp4 = MediaType(rawValue: "video/mp4")!
-    static let webm = MediaType(rawValue: "video/webm")!
-    static let mpeg = MediaType(rawValue: "audio/mpeg")!
-    static let javascript = MediaType(rawValue: "application/javascript")!
+    case html = "text/html"
+    case css = "text/css"
+    case ogg = "video/ogg"
+    case mp4 = "video/mp4"
+    case webm = "video/webm"
+    case mpeg = "audio/mpeg"
+    case javascript = "application/javascript"
 }
 
 /// ## Description
@@ -429,7 +411,7 @@ public enum Marker: String {
 ///
 /// ## References
 ///
-public enum DocumentType: String {
+public enum Doctypes: String {
         
     case html5 = "html"
     case html4Strict = #"HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd""#
@@ -491,21 +473,12 @@ public enum Capitalization: String {
 ///
 /// ## References
 ///
-public struct Charset: RawRepresentable {
+public enum Charset: String {
     
-    public var rawValue: String
-    
-    public init?(rawValue: String) {
-        self.rawValue = rawValue
-    }
-}
-
-extension Charset {
-    
-    static let utf8 = Charset(rawValue: "UTF-8")!
-    static let utf16 = Charset(rawValue: "UTF-16")!
-    static let ansi = Charset(rawValue: "Windows-1252")!
-    static let iso = Charset(rawValue: "ISO-8859-1")!
+    case utf8 = "utf-8"
+    case utf16 = "utf-16"
+    case ansi = "windows-1252"
+    case iso = "iso-8859-1"
 }
 
 /// ## Description
@@ -513,18 +486,97 @@ extension Charset {
 ///
 /// ## References
 ///
-public struct Equivalent: RawRepresentable {
+public enum Equivalent: String {
     
-    public var rawValue: String
-    
-    public init?(rawValue: String) {
-        self.rawValue = rawValue
-    }
+    case content = "content-type"
+    case `default` = "default-style"
+    case refresh = "refresh"
 }
 
-extension Equivalent {
+/// ## Description
+/// The type is for
+///
+/// ## References
+///
+public enum Roles: String {
     
-    static let content = Equivalent(rawValue: "content-type")!
-    static let `default` = Equivalent(rawValue: "default-style")!
-    static let refresh = Equivalent(rawValue: "refresh")!
+    case alert
+    case alertDialog = "alertdialog"
+    case application
+    case article
+    case banner
+    case button
+    case cell
+    case checkbox
+    case columnHeader = "columnheader"
+    case combobox
+    case command
+    case comment
+    case complementary
+    case composite
+    case contentInfo = "contentinfo"
+    case definition
+    case dialog
+    case directory
+    case document
+    case feed
+    case figure
+    case form
+    case grid
+    case gridCell = "gridcell"
+    case group
+    case heading
+    case img
+    case input
+    case landmark
+    case list
+    case listBox = "listbox"
+    case listItem = "listitem"
+    case log
+    case main
+    case mark
+    case marquee
+    case math
+    case menu
+    case menuBar = "menubar"
+    case menuItem = "menuitem"
+    case menuItemCheckbox = "menuitemcheckbox"
+    case menuItemRadio = "menuitemradio"
+    case meter
+    case navigation
+    case none
+    case note
+    case option
+    case presentation
+    case radio
+    case range
+    case region
+    case roleType = "roletype"
+    case row
+    case rowGroup = "rowgroup"
+    case rowHeader = "rowheader"
+    case scrollbar
+    case search
+    case searchBox = "searchbox"
+    case sectionHead = "sectionhead"
+    case select
+    case separator
+    case status
+    case structure
+    case suggestion
+    case `switch`
+    case tab
+    case table
+    case tabList = "tablist"
+    case tabPanel = "tabpanel"
+    case term
+    case textbox
+    case timer
+    case toolbar
+    case tooltip
+    case tree
+    case treeGrid = "treegrid"
+    case treeItem = "treeitem"
+    case widget
+    case window
 }

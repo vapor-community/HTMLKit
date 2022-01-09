@@ -127,8 +127,13 @@ extension RubyText: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> RubyText {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> RubyText {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> RubyText {
@@ -309,8 +314,13 @@ extension RubyPronunciation: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> RubyPronunciation {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> RubyPronunciation {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> RubyPronunciation {

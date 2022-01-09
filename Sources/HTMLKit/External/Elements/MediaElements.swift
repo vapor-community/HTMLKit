@@ -112,8 +112,13 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Source {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Source {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Source {
@@ -136,7 +141,7 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
         return mutate(translate: value)
     }
 
-    public func type(_ value: MediaType) -> Source {
+    public func type(_ value: Medias) -> Source {
         return mutate(type: value.rawValue)
     }
     
@@ -313,8 +318,13 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
         return mutate(nonce: value)
     }
     
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> Track {
         return mutate(role: value)
+    }
+    
+    public func role(_ value: Roles) -> Track {
+        return mutate(role: value.rawValue)
     }
 
     public func hasSpellCheck(_ condition: Bool) -> Track {

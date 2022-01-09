@@ -400,7 +400,7 @@ internal struct TypeProperty<T: RawRepresentable>{
             return nil
         }
 
-        if let type = T(rawValue: value as! T.RawValue) {
+        if let type = T(rawValue: value.lowercased() as! T.RawValue) {
             return ".\(type)"
         }
         
@@ -434,6 +434,41 @@ internal struct TypeProperty<T: RawRepresentable>{
         } else if let verbatim = verbatim {
             
             ".\(verbatim)()"
+        }
+    }
+}
+
+@available(macOS 11.0, *)
+internal struct CustomProperty {
+    
+    private var name: String? {
+        
+        guard let name = node.name else {
+            return nil
+        }
+        
+        return name
+    }
+    
+    private var value: String? {
+        
+        guard let value = node.stringValue else {
+            return nil
+        }
+        
+        return value
+    }
+    
+    private let node: XMLNode
+    
+    internal init(node: XMLNode) {
+        self.node = node
+    }
+    
+    @StringBuilder internal func build() -> String {
+
+        if let name = name {
+            ".custom(key: \"\(name)\", value: \"\(value ?? "")\")\n"
         }
     }
 }

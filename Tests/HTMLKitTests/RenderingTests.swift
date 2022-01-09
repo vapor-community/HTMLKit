@@ -95,7 +95,6 @@ final class RenderingTests: XCTestCase {
             Paragraph {
                 "text"
             }
-            .role("role")
             .class("class")
         } 
         
@@ -103,7 +102,7 @@ final class RenderingTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <p role="role" class="class">text</p>
+                       <p class="class">text</p>
                        """
         )
     }
@@ -115,7 +114,6 @@ final class RenderingTests: XCTestCase {
             Paragraph {
                 "text"
             }
-            .role("ro_le")
             .class("cl_ass")
         }
         
@@ -123,7 +121,7 @@ final class RenderingTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <p role="ro_le" class="cl_ass">text</p>
+                       <p class="cl_ass">text</p>
                        """
         )
     }
@@ -134,7 +132,6 @@ final class RenderingTests: XCTestCase {
             Paragraph {
                 "text"
             }
-            .role("ro-le")
             .class("cl-ass")
         }
         
@@ -142,7 +139,7 @@ final class RenderingTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <p role="ro-le" class="cl-ass">text</p>
+                       <p class="cl-ass">text</p>
                        """
         )
     }
@@ -174,7 +171,6 @@ final class RenderingTests: XCTestCase {
             Paragraph {
                 "text"
             }
-            .role("role")
             .class("cl'ass")
         }
         
@@ -182,7 +178,7 @@ final class RenderingTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(raw: TestPage.self),
                        """
-                       <p role="role" class="cl'ass">text</p>
+                       <p class="cl'ass">text</p>
                        """
         )
     }

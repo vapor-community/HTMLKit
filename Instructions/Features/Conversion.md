@@ -1,10 +1,12 @@
 # Conversion
 
-The converter translates HTML into HTMLKit.
+With HTMLKit you can convert your existing HTML code into Swift. It makes the change easier, faster and it can give you an idea how the library works.
 
 ## Essential
 
 ### Call
+
+Call the converter and use the convert function. Pass the directory, where your html files are located and choose the output. We recommend to use the print option first, to get a quick preview on the output. The print shows up in the debug window of your IDE. If you choose the file option, the converter creates the swift files at the same directory you have given to the converter.
 
 ```swift
 /// [configure.swift]
@@ -45,3 +47,7 @@ struct IndexPage: Page {
     }
 }
 ```
+
+## Note
+
+Keep in mind, that maybe the converter has not covered every case. If you miss something, file an [issue](https://github.com/vapor-community/HTMLKit/issues) and let us know to make the converter better.

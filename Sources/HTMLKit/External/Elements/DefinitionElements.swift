@@ -127,10 +127,15 @@ extension TermName: GlobalAttributes {
         return mutate(nonce: value)
     }
 
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> TermName {
         return mutate(role: value)
     }
 
+    public func role(_ value: Roles) -> TermName {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> TermName {
         return mutate(spellcheck: condition)
     }
@@ -308,11 +313,16 @@ extension TermDefinition: GlobalAttributes {
     public func nonce(_ value: String) -> TermDefinition {
         return mutate(nonce: value)
     }
-
+    
+    @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> TermDefinition {
         return mutate(role: value)
     }
 
+    public func role(_ value: Roles) -> TermDefinition {
+        return mutate(role: value.rawValue)
+    }
+    
     public func hasSpellCheck(_ condition: Bool) -> TermDefinition {
         return mutate(spellcheck: condition)
     }
