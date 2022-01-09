@@ -38,7 +38,7 @@ public struct MetaTitle: Component {
         }
         IF(useTwitter) {
             Meta()
-                .name(.init(rawValue: "twitter:title")!)
+                .custom(key: "name", value: "twitter:title")
                 .content(self.title.rawValue)
         }
     }
@@ -68,7 +68,7 @@ public struct MetaDescription: Component {
         }
         IF(useTwitter) {
             Meta()
-                .name(.init(rawValue: "twitter:description")!)
+                .custom(key: "name", value: "twitter:description")
                 .content(self.description.rawValue)
         }
     }
@@ -151,7 +151,7 @@ public struct Viewport: Component {
     public var body: AnyContent {
         Meta()
             .name(.viewport)
-            .content("width=\(mode.width), initial-scale=\(internalScale)")
+            .content("width=\(self.mode.width), initial-scale=\(self.internalScale)")
     }
 }
 
@@ -170,9 +170,9 @@ public struct Author: Component {
         Meta()
             .name(.author)
             .content(self.author)
-        Unwrap(handle) { handle in
+        Unwrap(self.handle) { handle in
             Meta()
-                .name(.init(rawValue: "twitter:creator")!)
+                .custom(key: "name", value: "twitter:creator")
                 .content(handle)
         }
     }
