@@ -1,13 +1,12 @@
 # HTMLKit
 
-Render dynamic HTML templates in a *typesafe* and **performant** way!
-By using Swift's powerful language features and a pre-rendering algorithm, HTMLKit will render insanely fast templates but also catch bugs that otherwise might occur with other templating options.
+Render dynamic HTML templates in a typesafe and performant way! By using Swift's powerful language features and a pre-rendering algorithm, HTMLKit will render insanely fast templates but also catch bugs that otherwise might occur with other templating options.
 
 ## Getting Started
 
 ### Installation
 
-Add the packages as dependecies to your package.
+Add the packages as dependecies and targets to your package file.
 
 ```swift
 /// [Package.swift]
@@ -32,9 +31,11 @@ targets: [
     ...
 ```
 
+Read the [installation instructions](https://github.com/vapor-community/HTMLKit/blob/main/Instructions/Installation.md) for more information.
+
 ### Definition
 
-Create a new file. Add the import and declare a new structure with the Protocol `Page`. Add some content to the `body` property. If you want to learn more about the definitions, take a look here.
+Create a new file in your project. Add the import at the top of your file and declare a new structure. Extend your structure by adding a [layout definition](https://github.com/vapor-community/HTMLKit/blob/main/Instructions/Essential/Layouts.md) to adopt the required properties and methods. Add your content to the `body` property.
 
 ```swift
 /// [SimplePage.swift]
@@ -66,19 +67,16 @@ struct SimplePage: Page {
 
 ### Implementation
 
-Add the import to your controller and call the structure in your handler. Use the `render(for:)` method to render the structure for the request.
+Call the structure you have created in your controller handler and use the render method to render the view for the request.
 
 ```swift
 /// [SimpleController.swift]
 
 ...
-/// 1. Add the import
-import HTMLKit
-
 final class SimpleController {
     ...
     func getPage(req: Request) throws -> EventLoopFuture<View> {
-        /// 2. Call the structure
+        /// 1. Call the structure
         return SimplePage().render(for: req)
     }
     ...
@@ -91,4 +89,10 @@ final class SimpleController {
 
 ### Conversion
 
+### Validation
+
 ## Resources
+
+### Instructions
+
+See the [instructions](https://github.com/vapor-community/HTMLKit/blob/main/Instructions/Overview.md) to learn more about the library and the features.

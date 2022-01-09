@@ -1,10 +1,14 @@
 # Installation
 
-## Essential
+## Requirements
+
+The requirements are
+
+## Configuration
 
 ### Packages
 
-Add the packages as dependecies to your package.
+To use HTMLKit in your project, you have to add the packages as dependecies first. Be sure to add it to your desired targets as well.
 
 ```swift
 /// [Package.swift]
@@ -27,6 +31,21 @@ targets: [
     ...
 ```
 
-## Vapor 3
+From time to time you want to update the packages. You can do it, by changing the version tags manually and saving it. You find the current version tag in the [release history](https://github.com/vapor-community/HTMLKit/releases). We recommand to read the release description first, to understand the possible changes.
+
+### Import
+
+Use the import keyword to load the module in your project files.
+
+```swift
+/// [SimpleTemplate.swift]
+
+import HTMLKit
+...
+```
+
+## Compatibiltiy
+
+### Vapor 3
 
 Check the [provider](https://github.com/vapor-community/htmlkit-vapor-provider) to learn more about supporting Vapor 3.
