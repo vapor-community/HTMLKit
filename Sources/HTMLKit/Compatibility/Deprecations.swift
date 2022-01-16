@@ -13,10 +13,10 @@ public protocol HTMLContent {}
 @available(*, deprecated, renamed: "AnyContent")
 public protocol Content {}
 
-@available(*, deprecated, renamed: "Page")
+@available(*, deprecated, renamed: "View")
 public protocol HTMLTemplate {}
 
-@available(*, deprecated, renamed: "View")
+@available(*, deprecated, renamed: "Page")
 public protocol HTMLPage {}
 
 @available(*, deprecated, renamed: "Component")
