@@ -467,7 +467,7 @@ public class Converter {
                 case "del":
                     ContentElement(element: element).build(verbatim: "DeletedText", preindent: indent)
                 case "img":
-                    ContentElement(element: element).build(verbatim: "Image", preindent: indent)
+                    EmptyElement(element: element).build(verbatim: "Image", preindent: indent)
                 case "embed":
                     ContentElement(element: element).build(preindent: indent)
                 case "iframe":
