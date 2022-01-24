@@ -4478,3 +4478,34 @@ extension CustomAttribute where Self: EmptyNode {
         return .init(attributes: update(key: key, value: value, on: &attributes))
     }
 }
+
+/// ## Description
+/// The protocol provides the element with the selected handler.
+///
+/// ## References
+/// https://html.spec.whatwg.org/#attr-option-selected
+///
+public protocol SelectedAttribute: AnyAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func selected() -> Self
+}
+
+extension SelectedAttribute {
+    
+    internal var key: String { "selected" }
+}
+
+extension SelectedAttribute where Self: ContentNode {
+    
+    internal func mutate(selected value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}

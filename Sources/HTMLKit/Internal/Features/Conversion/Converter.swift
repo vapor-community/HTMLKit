@@ -331,6 +331,8 @@ public class Converter {
             TypeProperty<Charset>(node: attribute).build()
         case "http-equiv":
             TypeProperty<Equivalent>(node: attribute).build()
+        case "selected":
+            EmptyProperty(node: attribute).build()
         default:
             CustomProperty(node: attribute).build()
         }
