@@ -59,7 +59,7 @@ final class TemplatingTests: XCTestCase {
         )
     }
     
-    func textExtend() throws {
+    func testExtend() throws {
         
         struct TestPage: Page {
             
@@ -125,7 +125,7 @@ extension TemplatingTests {
     
     static var allTests = [
         ("testEmbed", testEmbed),
-        ("textExtend", textExtend)
+        ("textExtend", testExtend)
     ]
 }
 
