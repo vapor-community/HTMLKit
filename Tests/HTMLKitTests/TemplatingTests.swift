@@ -6,7 +6,7 @@ final class TemplatingTests: XCTestCase {
     
     var renderer = Renderer()
     
-    func testEmbed() throws {
+    func testEmbeding() throws {
         
         struct TestPage: Page {
             
@@ -59,7 +59,7 @@ final class TemplatingTests: XCTestCase {
         )
     }
     
-    func testExtend() throws {
+    func testExtending() throws {
         
         struct TestPage: Page {
             
@@ -119,13 +119,79 @@ final class TemplatingTests: XCTestCase {
                        """
         )
     }
+    
+    func testExtendingWithSingles() throws {
+        
+        struct TestPage: Page {
+            
+            var content: [BodyElement]
+            
+            init(@ContentBuilder<BodyElement> content: () -> [BodyElement]) {
+                self.content = content()
+            }
+            
+            var body: AnyContent {
+                Document(type: .html5)
+                Html {
+                    Head {
+                        Title {
+                            "Test"
+                        }
+                    }
+                    Body {
+                        content
+                        Script {
+                        }
+                        Script {
+                        }
+                    }
+                }
+            }
+        }
+        
+        struct TestView: View {
+            
+            var context: TemplateValue<String>
+            
+            var body: AnyContent {
+                TestPage {
+                    Heading1 {
+                        context
+                    }
+                    Heading2 {
+                        context
+                    }
+                }
+            }
+        }
+        
+        let view = TestView(context: "Hello World!")
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestView.self, with: "Hello World!"),
+                       """
+                       <!DOCTYPE html>\
+                       <html>\
+                       <head>\
+                       <title>Test</title>\
+                       </head>\
+                       <body>\
+                       <h1>Hello World!</h1>\
+                       <h2>Hello World!</h2>\
+                       </body>\
+                       </html>
+                       """
+        )
+    }
 }
 
 extension TemplatingTests {
     
     static var allTests = [
-        ("testEmbed", testEmbed),
-        ("textExtend", testExtend)
+        ("testEmbeding", testEmbeding),
+        ("testExtending", testExtending),
+        ("testExtendingWithSingles", testExtendingWithSingles)
     ]
 }
 

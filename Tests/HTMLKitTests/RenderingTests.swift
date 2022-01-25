@@ -284,6 +284,7 @@ extension RenderingTests {
         ("testEscaping", testEscaping),
         ("testModified", testModified),
         ("testUnmodified", testUnmodified),
-        ("testModifiedAndUnwrapped", testModifiedAndUnwrapped)
+        ("testModifiedAndUnwrapped", testModifiedAndUnwrapped),
+        ("testRenderingCustomProperty", testRenderingCustomProperty)
     ]
 }
