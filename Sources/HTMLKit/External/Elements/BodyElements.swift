@@ -197,7 +197,7 @@ public typealias Param = Parameter
 /// ## References
 /// https://html.spec.whatwg.org/#the-article-element
 ///
-public struct Article: ContentNode, BodyElement {
+public struct Article: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "article" }
 
@@ -384,7 +384,7 @@ extension Article: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-section-element
 ///
-public struct Section: ContentNode, BodyElement {
+public struct Section: ContentNode, HtmlElement, BodyElement, FigureElement, FormElement, ObjectElement {
 
     internal var name: String { "section" }
 
@@ -571,7 +571,7 @@ extension Section: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-nav-element)
 ///
-public struct Navigation: ContentNode, BodyElement {
+public struct Navigation: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "nav" }
 
@@ -758,7 +758,7 @@ extension Navigation: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-aside-element
 ///
-public struct Aside: ContentNode, BodyElement {
+public struct Aside: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "aside" }
 
@@ -945,7 +945,7 @@ extension Aside: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
-public struct Heading1: ContentNode, BodyElement {
+public struct Heading1: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "h1" }
 
@@ -1143,7 +1143,7 @@ extension Heading1: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
-public struct Heading2: ContentNode, BodyElement {
+public struct Heading2: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "h2" }
 
@@ -1341,7 +1341,7 @@ extension Heading2: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
-public struct Heading3: ContentNode, BodyElement {
+public struct Heading3: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "h3" }
 
@@ -1539,7 +1539,7 @@ extension Heading3: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
-public struct Heading4: ContentNode, BodyElement {
+public struct Heading4: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "h4" }
 
@@ -1737,7 +1737,7 @@ extension Heading4: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
-public struct Heading5: ContentNode, BodyElement {
+public struct Heading5: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "h5" }
 
@@ -1935,7 +1935,7 @@ extension Heading5: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
 ///
-public struct Heading6: ContentNode, BodyElement {
+public struct Heading6: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "h6" }
 
@@ -2133,7 +2133,7 @@ extension Heading6: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-hgroup-element
 ///
-public struct HeadingGroup: ContentNode, BodyElement {
+public struct HeadingGroup: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "hgroup" }
 
@@ -2320,7 +2320,7 @@ extension HeadingGroup: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-header-element
 ///
-public struct Header: ContentNode, BodyElement {
+public struct Header: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "header" }
 
@@ -2507,7 +2507,7 @@ extension Header: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-footer-element
 ///
-public struct Footer: ContentNode, BodyElement {
+public struct Footer: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "footer" }
 
@@ -2694,7 +2694,7 @@ extension Footer: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-address-element
 ///
-public struct Address: ContentNode, BodyElement {
+public struct Address: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "address" }
 
@@ -2881,7 +2881,7 @@ extension Address: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-p-element
 ///
-public struct Paragraph: ContentNode, BodyElement {
+public struct Paragraph: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "p" }
 
@@ -3079,7 +3079,7 @@ extension Paragraph: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-hr-element
 ///
-public struct HorizontalRule: EmptyNode, BodyElement {
+public struct HorizontalRule: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "hr" }
     
@@ -3261,7 +3261,7 @@ extension HorizontalRule: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-pre-element
 ///
-public struct PreformattedText: ContentNode, BodyElement {
+public struct PreformattedText: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "pre" }
 
@@ -3448,7 +3448,7 @@ extension PreformattedText: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-blockquote-element
 ///
-public struct Blockquote: ContentNode, BodyElement {
+public struct Blockquote: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "blockquote" }
 
@@ -3650,7 +3650,7 @@ extension Blockquote: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-ol-element
 ///
-public struct OrderedList: ContentNode, BodyElement {
+public struct OrderedList: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "ol" }
 
@@ -3849,7 +3849,7 @@ extension OrderedList: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-ul-element
 ///
-public struct UnorderedList: ContentNode, BodyElement {
+public struct UnorderedList: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "ul" }
 
@@ -4036,7 +4036,7 @@ extension UnorderedList: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-dl-element
 ///
-public struct DescriptionList: ContentNode, BodyElement {
+public struct DescriptionList: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "dl" }
 
@@ -4223,7 +4223,7 @@ extension DescriptionList: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-figure-element
 ///
-public struct Figure: ContentNode, BodyElement {
+public struct Figure: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "figure" }
 
@@ -4410,7 +4410,7 @@ extension Figure: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-a-element
 ///
-public struct Anchor: ContentNode, BodyElement {
+public struct Anchor: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "a" }
 
@@ -4648,7 +4648,7 @@ extension Anchor: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-em-element
 ///
-public struct Emphasize: ContentNode, BodyElement {
+public struct Emphasize: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "em" }
 
@@ -4835,7 +4835,7 @@ extension Emphasize: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-strong-element
 ///
-public struct Strong: ContentNode, BodyElement {
+public struct Strong: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "strong" }
 
@@ -5022,7 +5022,7 @@ extension Strong: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-small-element
 ///
-public struct Small: ContentNode, BodyElement {
+public struct Small: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "small" }
 
@@ -5220,7 +5220,7 @@ extension Small: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-s-element
 ///
-public struct StrikeThrough: ContentNode, BodyElement {
+public struct StrikeThrough: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "s" }
 
@@ -5418,7 +5418,7 @@ extension StrikeThrough: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-main-element
 ///
-public struct Main: ContentNode, BodyElement {
+public struct Main: ContentNode, HtmlElement, BodyElement, FormElement {
 
     internal var name: String { "main" }
 
@@ -5605,7 +5605,7 @@ extension Main: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-div-element
 ///
-public struct Division: ContentNode, BodyElement {
+public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "div" }
 
@@ -5792,7 +5792,7 @@ extension Division: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-dfn-element
 ///
-public struct Definition: ContentNode, BodyElement {
+public struct Definition: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "dfn" }
 
@@ -5979,7 +5979,7 @@ extension Definition: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-cite-element
 ///
-public struct Cite: ContentNode, BodyElement {
+public struct Cite: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "cite" }
 
@@ -6166,7 +6166,7 @@ extension Cite: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-q-element
 ///
-public struct ShortQuote: ContentNode, BodyElement {
+public struct ShortQuote: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "q" }
 
@@ -6357,7 +6357,7 @@ extension ShortQuote: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-abbr-element
 ///
-public struct Abbreviation: ContentNode, BodyElement {
+public struct Abbreviation: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "abbr" }
 
@@ -6544,7 +6544,7 @@ extension Abbreviation: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-ruby-element
 ///
-public struct Ruby: ContentNode, BodyElement {
+public struct Ruby: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "ruby" }
 
@@ -6731,7 +6731,7 @@ extension Ruby: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-data-element
 ///
-public struct Data: ContentNode, BodyElement {
+public struct Data: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "data" }
 
@@ -6926,7 +6926,7 @@ extension Data: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-time-element
 ///
-public struct Time: ContentNode, BodyElement {
+public struct Time: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "time" }
 
@@ -7117,7 +7117,7 @@ extension Time: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-code-element
 ///
-public struct Code: ContentNode, BodyElement {
+public struct Code: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "code" }
 
@@ -7304,7 +7304,7 @@ extension Code: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-link-element
 ///
-public struct Variable: ContentNode, BodyElement {
+public struct Variable: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "v" }
 
@@ -7491,7 +7491,7 @@ extension Variable: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-samp-element
 ///
-public struct SampleOutput: ContentNode, BodyElement {
+public struct SampleOutput: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "samp" }
 
@@ -7678,7 +7678,7 @@ extension SampleOutput: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-kbd-element
 ///
-public struct KeyboardInput: ContentNode, BodyElement {
+public struct KeyboardInput: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "kbd" }
 
@@ -7865,7 +7865,7 @@ extension KeyboardInput: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-sub-and-sup-elements
 ///
-public struct Subscript: ContentNode, BodyElement {
+public struct Subscript: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "sub" }
 
@@ -8052,7 +8052,7 @@ extension Subscript: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-sub-and-sup-elements
 ///
-public struct Superscript: ContentNode, BodyElement {
+public struct Superscript: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "sup" }
 
@@ -8239,7 +8239,7 @@ extension Superscript: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-i-element
 ///
-public struct Italic: ContentNode, BodyElement {
+public struct Italic: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "i" }
 
@@ -8437,7 +8437,7 @@ extension Italic: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-b-element
 ///
-public struct Bold: ContentNode, BodyElement {
+public struct Bold: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "b" }
 
@@ -8635,7 +8635,7 @@ extension Bold: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-u-element
 ///
-public struct Underline: ContentNode, BodyElement {
+public struct Underline: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "u" }
     
@@ -8833,7 +8833,7 @@ extension Underline: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-mark-element
 ///
-public struct Mark: ContentNode, BodyElement {
+public struct Mark: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "mark" }
 
@@ -9020,7 +9020,7 @@ extension Mark: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-bdi-element
 ///
-public struct Bdi: ContentNode, BodyElement {
+public struct Bdi: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "bdi" }
 
@@ -9207,7 +9207,7 @@ extension Bdi: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-bdo-element
 ///
-public struct Bdo: EmptyNode, BodyElement {
+public struct Bdo: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "bdo" }
 
@@ -9389,7 +9389,7 @@ extension Bdo: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-span-element
 ///
-public struct Span: ContentNode, BodyElement {
+public struct Span: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "span" }
 
@@ -9576,7 +9576,7 @@ extension Span: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-br-element
 ///
-public struct LineBreak: EmptyNode, BodyElement {
+public struct LineBreak: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "br" }
 
@@ -9758,7 +9758,7 @@ extension LineBreak: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-wbr-element
 ///
-public struct WordBreak: EmptyNode, BodyElement {
+public struct WordBreak: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "wbr" }
     
@@ -9940,7 +9940,7 @@ extension WordBreak: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-ins-element
 ///
-public struct InsertedText: ContentNode, BodyElement {
+public struct InsertedText: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "ins" }
 
@@ -10135,7 +10135,7 @@ extension InsertedText: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-del-element
 ///
-public struct DeletedText: ContentNode, BodyElement {
+public struct DeletedText: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "del" }
 
@@ -10330,7 +10330,7 @@ extension DeletedText: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-picture-element
 ///
-public struct Picture: ContentNode, BodyElement {
+public struct Picture: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "picture" }
 
@@ -10517,7 +10517,7 @@ extension Picture: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-img-element
 ///
-public struct Image: EmptyNode, BodyElement {
+public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "img" }
 
@@ -10731,7 +10731,7 @@ extension Image: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-iframe-element
 ///
-public struct InlineFrame: ContentNode, BodyElement {
+public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
     
     internal var name: String { "iframe" }
 
@@ -10942,7 +10942,7 @@ extension InlineFrame: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-embed-element
 ///
-public struct Embed: EmptyNode, BodyElement {
+public struct Embed: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "embed" }
 
@@ -11140,7 +11140,7 @@ extension Embed: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-object-element
 ///
-public struct Object: ContentNode, BodyElement {
+public struct Object: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
     
     internal var name: String { "object" }
 
@@ -11359,7 +11359,7 @@ extension Object: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-video-element
 ///
-public struct Video: ContentNode, BodyElement {
+public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "video" }
 
@@ -11574,7 +11574,7 @@ extension Video: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-audio-element
 ///
-public struct Audio: ContentNode, BodyElement {
+public struct Audio: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "audio" }
 
@@ -11781,7 +11781,7 @@ extension Audio: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-map-elements
 ///
-public struct Map: ContentNode, BodyElement {
+public struct Map: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
     
     internal var name: String { "map" }
 
@@ -11976,7 +11976,7 @@ extension Map: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-form-element
 ///
-public struct Form: ContentNode, BodyElement {
+public struct Form: ContentNode, HtmlElement, BodyElement, FigureElement, ObjectElement {
 
     internal var name: String { "form" }
 
@@ -12203,7 +12203,7 @@ extension Form: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-datalist-element
 ///
-public struct DataList: ContentNode, BodyElement {
+public struct DataList: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "datalist" }
 
@@ -12390,7 +12390,7 @@ extension DataList: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-output-element
 ///
-public struct Output: ContentNode, BodyElement {
+public struct Output: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
     
     internal var name: String { "output" }
 
@@ -12593,7 +12593,7 @@ extension Output: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-progress-element
 ///
-public struct Progress: ContentNode, BodyElement {
+public struct Progress: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "progress" }
 
@@ -12792,7 +12792,7 @@ extension Progress: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-meter-element
 ///
-public struct Meter: ContentNode, BodyElement {
+public struct Meter: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "meter" }
 
@@ -13003,7 +13003,7 @@ extension Meter: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-details-element
 ///
-public struct Details: ContentNode, BodyElement {
+public struct Details: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "details" }
 
@@ -13389,7 +13389,7 @@ extension Dialog: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-script-element
 ///
-public struct Script: ContentNode, BodyElement, HeadElement {
+public struct Script: ContentNode, HeadElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "script" }
 
@@ -13600,7 +13600,7 @@ extension Script: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-template-element
 ///
-public struct NoScript: ContentNode, BodyElement {
+public struct NoScript: ContentNode, HtmlElement, HeadElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "noscript" }
 
@@ -13787,7 +13787,7 @@ extension NoScript: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-template-element
 ///
-public struct Template: ContentNode, BodyElement {
+public struct Template: ContentNode, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "template" }
 
@@ -13974,7 +13974,7 @@ extension Template: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-canvas-element
 ///
-public struct Canvas: ContentNode, BodyElement {
+public struct Canvas: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "canvas" }
 
@@ -14169,7 +14169,7 @@ extension Canvas: Modifiable {
 /// ## References
 /// https://html.spec.whatwg.org/#the-table-element
 ///
-public struct Table: ContentNode, BodyElement {
+public struct Table: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "table" }
 
