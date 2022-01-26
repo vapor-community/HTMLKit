@@ -2,132 +2,20 @@ import HTMLKit
 import XCTest
 
 final class PerformanceTests: XCTestCase {
-    
-    struct TestPage: Page {
-    
-        @ContentBuilder<AnyContent> var body: AnyContent
-    }
-    
+
     var renderer = Renderer()
     
-    func testPerformanceRenderingWhenUsingDefault() throws {
+    func testPerformance() throws {
         
-        let view = TestPage {
-            Html {
-                Body {
-                    Header {
-                        Heading1 {
-                            "Performance Test"
-                        }
-                    }
-                    Main {
-                        Article {
-                            Heading3 {
-                                "Test"
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        let context = SampleContext(id: 0, title: "TestPage", excerpt: "Testpage", modified: Date(), posted: Date())
         
-        try renderer.add(view: view)
+        try renderer.add(view: SampleView())
         
         measure {
-            _ = try! renderer.render(raw: TestPage.self)
-        }
-    }
-    
-    func testPerformanceRenderingWhenUsingTypealiases() throws {
-        
-        let view = TestPage {
-            Html {
-                Body {
-                    Header {
-                        H1 {
-                            "Performance Test"
-                        }
-                    }
-                    Main {
-                        Article {
-                            H3 {
-                                "Test"
-                            }
-                        }
-                    }
-                }
+            
+            for _ in 0...1000 {
+                _ = try! renderer.render(raw: SampleView.self, with: context)
             }
-        }
-        
-        try renderer.add(view: view)
-        
-        measure {
-            _ = try! renderer.render(raw: TestPage.self)
-        }
-    }
-    
-    func testPerformanceWithAttributes() throws {
-        
-        let view = TestPage {
-            Html {
-                Body {
-                    Header {
-                        Heading1 {
-                            "Performance Test"
-                        }
-                        .id("test")
-                        .class("class")
-                        .role(.heading)
-                    }
-                    Main {
-                        Article {
-                            Heading3 {
-                                "Test"
-                            }
-                            .id("test")
-                            .class("class")
-                            .role(.heading)
-                        }
-                    }
-                    .id("test")
-                    .class("class")
-                    .role(.main)
-                }
-            }
-        }
-        
-        try renderer.add(view: view)
-        
-        measure {
-            _ = try! renderer.render(raw: TestPage.self)
-        }
-    }
-    
-    func testPerformanceWithoutAttributes() throws {
-        
-        let view = TestPage {
-            Html {
-                Body {
-                    Header {
-                        Heading1 {
-                            "Performance Test"
-                        }
-                    }
-                    Main {
-                        Article {
-                            Heading3 {
-                                "Test"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-        try renderer.add(view: view)
-        
-        measure {
-            _ = try! renderer.render(raw: TestPage.self)
         }
     }
 }
@@ -135,10 +23,7 @@ final class PerformanceTests: XCTestCase {
 extension PerformanceTests {
     
     static var allTests = [
-        ("testPerformanceRenderingWhenUsingDefault", testPerformanceRenderingWhenUsingDefault),
-        ("testPerformanceRenderingWhenUsingTypealiases", testPerformanceRenderingWhenUsingTypealiases),
-        ("testPerformanceWithAttributes", testPerformanceWithAttributes),
-        ("testPerformanceWithoutAttributes", testPerformanceWithoutAttributes)
+        ("testPerformance", testPerformance)
     ]
 }
 
