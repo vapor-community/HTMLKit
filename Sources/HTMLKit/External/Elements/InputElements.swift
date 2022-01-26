@@ -235,7 +235,7 @@ public struct Option: ContentNode, InputElement {
     }
 }
 
-extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttribute {
+extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttribute, SelectedAttribute {
     
     public func accessKey(_ value: String) -> Option {
         return mutate(accesskey: value)
@@ -364,6 +364,10 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
     
     public func custom(key: String, value: Any) -> Option {
         return mutate(key: key, value: value)
+    }
+    
+    public func selected() -> Option {
+        return mutate(selected: "selected")
     }
 }
 

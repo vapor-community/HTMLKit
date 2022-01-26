@@ -331,6 +331,8 @@ public class Converter {
             TypeProperty<Charset>(node: attribute).build()
         case "http-equiv":
             TypeProperty<Equivalent>(node: attribute).build()
+        case "selected":
+            EmptyProperty(node: attribute).build()
         default:
             CustomProperty(node: attribute).build()
         }
@@ -465,7 +467,7 @@ public class Converter {
                 case "del":
                     ContentElement(element: element).build(verbatim: "DeletedText", preindent: indent)
                 case "img":
-                    ContentElement(element: element).build(verbatim: "Image", preindent: indent)
+                    EmptyElement(element: element).build(verbatim: "Image", preindent: indent)
                 case "embed":
                     ContentElement(element: element).build(preindent: indent)
                 case "iframe":

@@ -246,6 +246,28 @@ final class RenderingTests: XCTestCase {
                        """
         )
     }
+    
+    func testRenderingCustomProperty() throws {
+        
+        let view = TestPage {
+            Division {
+                Paragraph {
+                    "text"
+                }
+            }
+            .custom(key: "key", value: "value")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <div key="value">\
+                       <p>text</p>\
+                       </div>
+                       """
+        )
+    }
 }
 
 extension RenderingTests {
@@ -262,6 +284,7 @@ extension RenderingTests {
         ("testEscaping", testEscaping),
         ("testModified", testModified),
         ("testUnmodified", testUnmodified),
-        ("testModifiedAndUnwrapped", testModifiedAndUnwrapped)
+        ("testModifiedAndUnwrapped", testModifiedAndUnwrapped),
+        ("testRenderingCustomProperty", testRenderingCustomProperty)
     ]
 }
