@@ -501,6 +501,36 @@ extension ContentNode where Content == HtmlElement {
     }
 }
 
+extension ContentNode where Content == VectorElement {
+    
+    internal func build(_ formula: Renderer.Formula) throws {
+
+        formula.add(string: "<\(name)")
+
+        if let attributes = attributes {
+
+            attributes.forEach { attribute in
+                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+            }
+        }
+
+        formula.add(string: ">")
+
+        try content.prerender(formula)
+
+        formula.add(string: "</\(name)>")
+    }
+
+    internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+
+        guard let attributes = attributes else {
+            return try "<\(name)>\(content.render(with: manager))</\(name)>"
+        }
+        
+        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+    }
+}
+
 extension ContentNode where Content == String {
     
     internal func build(_ formula: Renderer.Formula) throws {

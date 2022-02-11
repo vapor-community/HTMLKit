@@ -121,3 +121,11 @@ public protocol TableElement: AnyElement {
 ///
 public protocol HtmlElement: AnyElement {
 }
+
+/// ## Description
+/// The protocol defines a vector element.
+///
+/// ## References
+///
+public protocol VectorElement: AnyElement {
+}
