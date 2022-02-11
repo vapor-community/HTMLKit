@@ -18,6 +18,8 @@ import OrderedCollections
 ///
 public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & CustomAttribute
 
+public typealias GlobalVectorAttributes = IdentifierAttribute & TabulatorAttribute & ClassAttribute & StyleAttribute & FillAttribute & StrokeAttribute & StrokeWidthAttribute
+
 /// ## Description
 /// The protocol provides the element with the accesskey handler.
 ///
@@ -4501,6 +4503,229 @@ extension SelectedAttribute {
 extension SelectedAttribute where Self: ContentNode {
     
     internal func mutate(selected value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+/// ## Description
+/// The protocol provides the element with the fill handler.
+///
+/// ## References
+/// https://html.spec.whatwg.org/#attr-option-selected
+///
+public protocol FillAttribute: AnyAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func fill(_ value: String) -> Self
+}
+
+extension FillAttribute {
+    
+    internal var key: String { "fill" }
+}
+
+extension FillAttribute where Self: ContentNode {
+    
+    internal func mutate(fill value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+/// ## Description
+/// The protocol provides the element with the stroke handler.
+///
+/// ## References
+/// https://html.spec.whatwg.org/#attr-option-selected
+///
+public protocol StrokeAttribute: AnyAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func stroke(_ value: String) -> Self
+}
+
+extension StrokeAttribute {
+    
+    internal var key: String { "stroke" }
+}
+
+extension StrokeAttribute where Self: ContentNode {
+    
+    internal func mutate(stroke value: String) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+/// ## Description
+/// The protocol provides the element with the stroke-width handler.
+///
+/// ## References
+/// https://html.spec.whatwg.org/#attr-option-selected
+///
+public protocol StrokeWidthAttribute: AnyAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func strokeWidth(_ size: Int) -> Self
+}
+
+extension StrokeWidthAttribute {
+    
+    internal var key: String { "stroke-width" }
+}
+
+extension StrokeWidthAttribute where Self: ContentNode {
+    
+    internal func mutate(strokewidth value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+/// ## Description
+/// The protocol provides the element with the radius handler.
+///
+/// ## References
+/// https://html.spec.whatwg.org/#attr-option-selected
+///
+public protocol RadiusAttribute: AnyAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func radius(_ size: Int) -> Self
+}
+
+extension RadiusAttribute {
+    
+    internal var key: String { "r" }
+}
+
+extension RadiusAttribute where Self: ContentNode {
+    
+    internal func mutate(radius value: Int) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: set(key: key, value: value), content: content)
+        }
+        
+        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+    }
+}
+
+/// ## Description
+/// The protocol provides the element with the radius handler.
+///
+/// ## References
+/// https://html.spec.whatwg.org/#attr-option-selected
+///
+public protocol RadiusCoordinatesAttribute: AnyAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func radius(_ point: Point) -> Self
+}
+
+extension RadiusCoordinatesAttribute where Self: ContentNode {
+    
+    internal func mutate(radius: Point) -> Self {
+        
+        guard var attributes = self.attributes else {
+            
+            var attributes = OrderedDictionary<String, Any>()
+            attributes["rx"] = radius.x
+            attributes["ry"] = radius.y
+            
+            return .init(attributes: attributes, content: content)
+        }
+        
+        attributes["rx"] = radius.x
+        attributes["ry"] = radius.y
+        
+        return .init(attributes: attributes, content: content)
+    }
+}
+
+/// ## Description
+/// The protocol provides the element with the radius handler.
+///
+/// ## References
+/// https://html.spec.whatwg.org/#attr-option-selected
+///
+public protocol CenterCoordinatesAttribute: AnyAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func centerPoint(_ point: Point) -> Self
+}
+
+extension CenterCoordinatesAttribute where Self: ContentNode {
+    
+    internal func mutate(centerpoint: Point) -> Self {
+        
+        guard var attributes = self.attributes else {
+            
+            var attributes = OrderedDictionary<String, Any>()
+            attributes["cx"] = centerpoint.x
+            attributes["cy"] = centerpoint.y
+            
+            return .init(attributes: attributes, content: content)
+        }
+        
+        attributes["cx"] = centerpoint.x
+        attributes["cy"] = centerpoint.y
+        
+        return .init(attributes: attributes, content: content)
+    }
+}
+
+/// ## Description
+/// The protocol provides the element with the viewbox handler.
+///
+/// ## References
+/// https://html.spec.whatwg.org/#attr-option-selected
+///
+public protocol ViewBoxAttribute: AnyAttribute {
+    
+    /// The func adds
+    ///
+    ///
+    func viewBox(_ value: String) -> Self
+}
+
+extension ViewBoxAttribute {
+    
+    internal var key: String { "viewbox" }
+}
+
+extension ViewBoxAttribute where Self: ContentNode {
+    
+    internal func mutate(viewbox value: String) -> Self {
         
         guard var attributes = self.attributes else {
             return .init(attributes: set(key: key, value: value), content: content)

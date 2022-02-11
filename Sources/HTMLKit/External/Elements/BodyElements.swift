@@ -14398,8 +14398,8 @@ extension Vector: AnyContent {
     }
 }
 
-extension Vector: IdentifierAttribute, TabulatorAttribute, WidthAttribute, HeightAttribute, ClassAttribute, StyleAttribute {
-    
+extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewBoxAttribute {
+
     public func id(_ value: String) -> Vector {
         return self.mutate(id: value)
     }
@@ -14426,5 +14426,21 @@ extension Vector: IdentifierAttribute, TabulatorAttribute, WidthAttribute, Heigh
     
     public func style(_ value: String) -> Vector {
         return self.mutate(style: value)
+    }
+    
+    public func viewBox(_ value: String) -> Vector {
+        return self.mutate(viewbox: value)
+    }
+    
+    public func fill(_ value: String) -> Vector {
+        return self.mutate(fill: value)
+    }
+    
+    public func stroke(_ value: String) -> Vector {
+        return self.mutate(stroke: value)
+    }
+    
+    public func strokeWidth(_ size: Int) -> Vector {
+        return self.mutate(strokewidth: size)
     }
 }
