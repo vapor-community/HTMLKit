@@ -1740,6 +1740,150 @@ final class ElementTests: XCTestCase {
                        """
         )
     }
+    
+    func testVectorElement() throws {
+        
+        let view = TestPage {
+            Vector {
+            }
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <svg></svg>
+                       """
+        )
+    }
+    
+    func testCircleElement() throws {
+        
+        let view = TestPage {
+            Circle {
+            }
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <circle></circle>
+                       """
+        )
+    }
+    
+    func testRectangleElement() throws {
+        
+        let view = TestPage {
+            Rectangle {
+            }
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <rect></rect>
+                       """
+        )
+    }
+    
+    func testEllipseElement() throws {
+        
+        let view = TestPage {
+            Ellipse {
+            }
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <ellipse></ellipse>
+                       """
+        )
+    }
+    
+    func testLineElement() throws {
+        
+        let view = TestPage {
+            Line {
+            }
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <line></line>
+                       """
+        )
+    }
+    
+    func testPolygonElement() throws {
+        
+        let view = TestPage {
+            Polygon {
+            }
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <polygon></polygon>
+                       """
+        )
+    }
+    
+    func testPolylineElement() throws {
+        
+        let view = TestPage {
+            Polyline {
+            }
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <polyline></polyline>
+                       """
+        )
+    }
+    
+    func testPathElement() throws {
+        
+        let view = TestPage {
+            Path {
+            }
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <path></path>
+                       """
+        )
+    }
+    
+    func testUseElement() throws {
+        
+        let view = TestPage {
+            Use {
+            }
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <use></use>
+                       """
+        )
+    }
 }
 
 extension ElementTests {
@@ -1852,6 +1996,15 @@ extension ElementTests {
         ("testScriptElement", testScriptElement),
         ("testNoScriptElement", testNoScriptElement),
         ("testTemplateElement", testTemplateElement),
-        ("testCanvasElement", testCanvasElement)
+        ("testCanvasElement", testCanvasElement),
+        ("testVectorElement", testVectorElement),
+        ("testCircleElement", testCircleElement),
+        ("testRectangleElement", testRectangleElement),
+        ("testEllipseElement", testEllipseElement),
+        ("testLineElement", testLineElement),
+        ("testPolygonElement", testPolygonElement),
+        ("testPolylineElement", testPolylineElement),
+        ("testPathElement", testPathElement),
+        ("testUseElement", testUseElement)
     ]
 }

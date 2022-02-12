@@ -192,6 +192,11 @@ public typealias Iframe = InlineFrame
 public typealias Param = Parameter
 
 /// ## Description
+/// The alias points to Parameter.
+///
+public typealias Svg = Vector
+
+/// ## Description
 /// The element represents a self-contained content.
 ///
 /// ## References
@@ -14355,5 +14360,103 @@ extension Table: Modifiable {
                 return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
             }
         }
+    }
+}
+
+/// ## Description
+/// The element represents a vector.
+///
+/// ## References
+/// https://html.spec.whatwg.org/#the-table-element
+///
+public struct Vector: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
+
+    internal var name: String { "svg" }
+
+    internal var attributes: OrderedDictionary<String, Any>?
+
+    internal var content: [VectorElement]
+
+    public init(@ContentBuilder<VectorElement> content: () -> [VectorElement]) {
+        self.content = content()
+    }
+    
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [VectorElement]) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Vector: AnyContent {
+    
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+    
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.build(with: manager)
+    }
+}
+
+extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewBoxAttribute {
+
+    public func id(_ value: String) -> Vector {
+        return self.mutate(id: value)
+    }
+    
+    public func id(_ value: TemplateValue<String>) -> Vector {
+        return self.mutate(id: value.rawValue)
+    }
+    
+    public func tabIndex(_ value: String) -> Vector {
+        return self.mutate(tabindex: value)
+    }
+    
+    public func width(_ size: Int) -> Vector {
+        return self.mutate(width: size)
+    }
+    
+    public func height(_ size: Int) -> Vector {
+        return self.mutate(height: size)
+    }
+    
+    public func `class`(_ value: String) -> Vector {
+        return self.mutate(class: value)
+    }
+    
+    public func style(_ value: String) -> Vector {
+        return self.mutate(style: value)
+    }
+    
+    public func viewBox(_ value: String) -> Vector {
+        return self.mutate(viewbox: value)
+    }
+    
+    public func fill(_ value: String) -> Vector {
+        return self.mutate(fill: value)
+    }
+    
+    public func stroke(_ value: String) -> Vector {
+        return self.mutate(stroke: value)
+    }
+    
+    public func strokeWidth(_ size: Int) -> Vector {
+        return self.mutate(strokewidth: size)
+    }
+    
+    public func fillOpacity(_ value: Double) -> Vector {
+        return self.mutate(fillopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Double) -> Vector {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeLineCap(_ type: Linecap) -> Vector {
+        return self.mutate(strokelinecap: type.rawValue)
+    }
+    
+    public func strokeLineJoin(_ type: Linejoin) -> Vector {
+        return self.mutate(strokelinejoin: type.rawValue)
     }
 }

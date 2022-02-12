@@ -243,6 +243,21 @@ extension Array where Element == HtmlElement {
     }
 }
 
+extension Array where Element == VectorElement {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try forEach { try $0.prerender(formula) }
+    }
+
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return try self.reduce("") { try $0 + $1.render(with: manager) }
+    }
+
+    public var scripts: AnyContent {
+        return self.reduce("") { $0 + $1.scripts }
+    }
+}
+
 /// The extension is
 ///
 ///
