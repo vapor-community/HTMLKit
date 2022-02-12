@@ -580,3 +580,27 @@ public enum Roles: String {
     case widget
     case window
 }
+
+/// ## Description
+/// The type is for
+///
+/// ## References
+///
+public enum Linecap: String {
+    
+    case butt
+    case square
+    case round
+}
+
+/// ## Description
+/// The type is for
+///
+/// ## References
+///
+public enum Linejoin: String {
+    
+    case miter
+    case round
+    case bevel
+}

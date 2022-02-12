@@ -29,8 +29,8 @@ public struct Circle: ContentNode, VectorElement {
     }
 }
 
-extension Circle: GlobalVectorAttributes, CenterCoordinatesAttribute, RadiusAttribute {
-
+extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute {
+  
     public func id(_ value: String) -> Circle {
         return self.mutate(id: value)
     }
@@ -70,6 +70,22 @@ extension Circle: GlobalVectorAttributes, CenterCoordinatesAttribute, RadiusAttr
     public func radius(_ size: Int) -> Circle {
         return self.mutate(radius: size)
     }
+    
+    public func fillOpacity(_ value: Double) -> Circle {
+        return self.mutate(fillopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Double) -> Circle {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeLineCap(_ type: Linecap) -> Circle {
+        return self.mutate(strokelinecap: type.rawValue)
+    }
+    
+    public func strokeLineJoin(_ type: Linejoin) -> Circle {
+        return self.mutate(strokelinejoin: type.rawValue)
+    }
 }
 
 extension Circle: AnyContent {
@@ -107,7 +123,7 @@ public struct Rectangle: ContentNode, VectorElement {
     }
 }
 
-extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, RadiusCoordinatesAttribute {
+extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, RadiusPointAttribute {
     
     public func id(_ value: String) -> Rectangle {
         return self.mutate(id: value)
@@ -141,7 +157,7 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return self.mutate(strokewidth: size)
     }
     
-    public func radius(_ point: Point) -> Rectangle {
+    public func radiusPoint(_ point: Point) -> Rectangle {
         return self.mutate(radius: point)
     }
     
@@ -151,6 +167,22 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
     
     public func height(_ size: Int) -> Rectangle {
         return self.mutate(height: size)
+    }
+    
+    public func fillOpacity(_ value: Double) -> Rectangle {
+        return self.mutate(fillopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Double) -> Rectangle {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeLineCap(_ type: Linecap) -> Rectangle {
+        return self.mutate(strokelinecap: type.rawValue)
+    }
+    
+    public func strokeLineJoin(_ type: Linejoin) -> Rectangle {
+        return self.mutate(strokelinejoin: type.rawValue)
     }
 }
 
@@ -189,7 +221,7 @@ public struct Ellipse: ContentNode, VectorElement {
     }
 }
 
-extension Ellipse: GlobalVectorAttributes, CenterCoordinatesAttribute, RadiusCoordinatesAttribute {
+extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttribute {
     
     public func id(_ value: String) -> Ellipse {
         return self.mutate(id: value)
@@ -227,8 +259,24 @@ extension Ellipse: GlobalVectorAttributes, CenterCoordinatesAttribute, RadiusCoo
         return self.mutate(centerpoint: point)
     }
     
-    public func radius(_ point: Point) -> Ellipse {
+    public func radiusPoint(_ point: Point) -> Ellipse {
             return self.mutate(radius: point)
+    }
+    
+    public func fillOpacity(_ value: Double) -> Ellipse {
+        return self.mutate(fillopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Double) -> Ellipse {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeLineCap(_ type: Linecap) -> Ellipse {
+        return self.mutate(strokelinecap: type.rawValue)
+    }
+    
+    public func strokeLineJoin(_ type: Linejoin) -> Ellipse {
+        return self.mutate(strokelinejoin: type.rawValue)
     }
 }
 
@@ -300,6 +348,22 @@ extension Line: GlobalVectorAttributes {
     public func strokeWidth(_ size: Int) -> Line {
         return self.mutate(strokewidth: size)
     }
+    
+    public func fillOpacity(_ value: Double) -> Line {
+        return self.mutate(fillopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Double) -> Line {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeLineCap(_ type: Linecap) -> Line {
+        return self.mutate(strokelinecap: type.rawValue)
+    }
+    
+    public func strokeLineJoin(_ type: Linejoin) -> Line {
+        return self.mutate(strokelinejoin: type.rawValue)
+    }
 }
 
 extension Line: AnyContent {
@@ -369,6 +433,22 @@ extension Polygon: GlobalVectorAttributes {
     
     public func strokeWidth(_ size: Int) -> Polygon {
         return self.mutate(strokewidth: size)
+    }
+    
+    public func fillOpacity(_ value: Double) -> Polygon {
+        return self.mutate(fillopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Double) -> Polygon {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeLineCap(_ type: Linecap) -> Polygon {
+        return self.mutate(strokelinecap: type.rawValue)
+    }
+    
+    public func strokeLineJoin(_ type: Linejoin) -> Polygon {
+        return self.mutate(strokelinejoin: type.rawValue)
     }
 }
 
@@ -440,6 +520,22 @@ extension Polyline: GlobalVectorAttributes {
     public func strokeWidth(_ size: Int) -> Polyline {
         return self.mutate(strokewidth: size)
     }
+    
+    public func fillOpacity(_ value: Double) -> Polyline {
+        return self.mutate(fillopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Double) -> Polyline {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeLineCap(_ type: Linecap) -> Polyline {
+        return self.mutate(strokelinecap: type.rawValue)
+    }
+    
+    public func strokeLineJoin(_ type: Linejoin) -> Polyline {
+        return self.mutate(strokelinejoin: type.rawValue)
+    }
 }
 
 extension Polyline: AnyContent {
@@ -509,6 +605,22 @@ extension Path: GlobalVectorAttributes {
     
     public func strokeWidth(_ size: Int) -> Path {
         return self.mutate(strokewidth: size)
+    }
+    
+    public func fillOpacity(_ value: Double) -> Path {
+        return self.mutate(fillopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Double) -> Path {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeLineCap(_ type: Linecap) -> Path {
+        return self.mutate(strokelinecap: type.rawValue)
+    }
+    
+    public func strokeLineJoin(_ type: Linejoin) -> Path {
+        return self.mutate(strokelinejoin: type.rawValue)
     }
 }
 
@@ -595,6 +707,22 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
     
     public func strokeWidth(_ size: Int) -> Use {
         return self.mutate(strokewidth: size)
+    }
+    
+    public func fillOpacity(_ value: Double) -> Use {
+        return self.mutate(fillopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Double) -> Use {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeLineCap(_ type: Linecap) -> Use {
+        return self.mutate(strokelinecap: type.rawValue)
+    }
+    
+    public func strokeLineJoin(_ type: Linejoin) -> Use {
+        return self.mutate(strokelinejoin: type.rawValue)
     }
 }
 

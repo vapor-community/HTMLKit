@@ -14443,4 +14443,20 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
     public func strokeWidth(_ size: Int) -> Vector {
         return self.mutate(strokewidth: size)
     }
+    
+    public func fillOpacity(_ value: Double) -> Vector {
+        return self.mutate(fillopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Double) -> Vector {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeLineCap(_ type: Linecap) -> Vector {
+        return self.mutate(strokelinecap: type.rawValue)
+    }
+    
+    public func strokeLineJoin(_ type: Linejoin) -> Vector {
+        return self.mutate(strokelinejoin: type.rawValue)
+    }
 }
