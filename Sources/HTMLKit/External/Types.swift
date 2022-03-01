@@ -381,15 +381,25 @@ public enum Direction: String {
 ///
 /// ## References
 ///
-public enum Medias: String {
-    
-    case html = "text/html"
-    case css = "text/css"
-    case ogg = "video/ogg"
-    case mp4 = "video/mp4"
-    case webm = "video/webm"
-    case mpeg = "audio/mpeg"
-    case javascript = "application/javascript"
+public struct Medias: ExpressibleByStringLiteral, RawRepresentable {
+    public var rawValue: String
+
+    public init(stringLiteral value: StringLiteralType) {
+        rawValue = value
+    }
+
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let html: Medias = "text/html"
+    public static let css: Medias = "text/css"
+    public static let ogg: Medias = "video/ogg"
+    public static let mp4: Medias = "video/mp4"
+    public static let webm: Medias = "video/webm"
+    public static let mpeg: Medias = "audio/mpeg"
+    public static let javascript: Medias = "application/javascript"
+    public static let x-icon: Medias = "image/x-icon"
 }
 
 /// ## Description
