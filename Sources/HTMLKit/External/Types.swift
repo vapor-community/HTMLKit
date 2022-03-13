@@ -390,6 +390,7 @@ public enum Medias: String {
     case webm = "video/webm"
     case mpeg = "audio/mpeg"
     case javascript = "application/javascript"
+    case xIcon = "image/x-icon"
 }
 
 /// ## Description
