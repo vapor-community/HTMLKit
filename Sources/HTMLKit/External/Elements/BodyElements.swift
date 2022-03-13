@@ -4577,7 +4577,7 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
     }
     
     public func target(_ type: Target) -> Anchor {
-        return mutate(type: type.rawValue)
+        return mutate(target: type.rawValue)
     }
     
     public func type(_ value: String) -> Anchor {
