@@ -4561,7 +4561,7 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
     }
     
     public func media(_ value: String) -> Anchor {
-        return  mutate(media: value)
+        return mutate(media: value)
     }
     
     public func ping(_ value: String) -> Anchor {
@@ -4569,11 +4569,11 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
     }
     
     public func referrerPolicy(_ type: Policy) -> Anchor {
-        return mutate(type: type.rawValue)
+        return mutate(referrerpolicy: type.rawValue)
     }
     
     public func relationship(_ type: Relation) -> Anchor {
-        return mutate(type: type.rawValue)
+        return mutate(rel: type.rawValue)
     }
     
     public func target(_ type: Target) -> Anchor {
@@ -13879,13 +13879,13 @@ extension Template: GlobalAttributes {
     public func id(_ value: String) -> Template {
         return mutate(id: value)
     }
-
-    public func language(_ type: Language) -> Template {
-        return mutate(lang: type.rawValue)
-    }
     
     public func id(_ value: TemplateValue<String>) -> Template {
         return mutate(id: value.rawValue)
+    }
+
+    public func language(_ type: Language) -> Template {
+        return mutate(lang: type.rawValue)
     }
 
     public func nonce(_ value: String) -> Template {

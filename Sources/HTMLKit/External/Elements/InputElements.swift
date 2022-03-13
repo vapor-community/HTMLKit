@@ -362,12 +362,12 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
         return mutate(value: value.rawValue)
     }
     
-    public func custom(key: String, value: Any) -> Option {
-        return mutate(key: key, value: value)
-    }
-    
     public func selected() -> Option {
         return mutate(selected: "selected")
+    }
+    
+    public func custom(key: String, value: Any) -> Option {
+        return mutate(key: key, value: value)
     }
 }
 
