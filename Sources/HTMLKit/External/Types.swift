@@ -336,10 +336,10 @@ public enum Relation: String {
 ///
 public enum Target: String {
     
-    case blank
-    case `self`
-    case parent
-    case top
+    case blank = "_blank"
+    case `self` = "_self"
+    case parent = "_parent"
+    case top = "_top"
 }
 
 /// The type is for
