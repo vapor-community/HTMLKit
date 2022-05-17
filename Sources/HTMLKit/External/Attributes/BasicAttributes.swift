@@ -3141,3 +3141,10 @@ extension SelectedAttribute where Self: ContentNode {
         return self.mutate(key: self.key, value: value)
     }
 }
+
+extension SelectedAttribute where Self: EmptyNode {
+    
+    internal func mutate(selected value: String) -> Self {
+        return self.mutate(key: self.key, value: value)
+    }
+}
