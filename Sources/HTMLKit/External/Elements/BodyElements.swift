@@ -14474,7 +14474,7 @@ extension Vector: AnyContent {
 }
 
 extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewBoxAttribute {
-
+    
     public func id(_ value: String) -> Vector {
         return self.mutate(id: value)
     }
@@ -14533,5 +14533,9 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
     
     public func strokeLineJoin(_ type: Linejoin) -> Vector {
         return self.mutate(strokelinejoin: type.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Vector {
+        return self.mutate(key: key, value: value)
     }
 }

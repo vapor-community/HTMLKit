@@ -15,7 +15,7 @@
 import OrderedCollections
 
 /// The alias combines the global attributes of the basic attributes.
-public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & CustomAttribute
+public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute
 
 /// The protocol provides the element with the accesskey handler.
 public protocol AccessKeyAttribute: AnyAttribute {
@@ -36,24 +36,14 @@ extension AccessKeyAttribute {
 extension AccessKeyAttribute where Self: ContentNode {
     
     internal func mutate(accesskey value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: key, value: value)
     }
 }
 
 extension AccessKeyAttribute where Self: EmptyNode {
     
     internal func mutate(accesskey value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: key, value: value)
     }
 }
 
@@ -76,24 +66,14 @@ extension AcceptAttribute {
 extension AcceptAttribute where Self: ContentNode {
     
     internal func mutate(accept value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: key, value: value)
     }
 }
 
 extension AcceptAttribute where Self: EmptyNode {
     
     internal func mutate(accept value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: key, value: value)
     }
 }
 
@@ -116,24 +96,14 @@ extension ActionAttribute {
 extension ActionAttribute where Self: ContentNode {
     
     internal func mutate(action value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ActionAttribute where Self: EmptyNode {
     
     internal func mutate(action value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -156,24 +126,14 @@ extension AlternateAttribute {
 extension AlternateAttribute where Self: ContentNode {
     
     internal func mutate(alternate value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension AlternateAttribute where Self: EmptyNode {
     
     internal func mutate(alternate value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -196,24 +156,14 @@ extension AsynchronouslyAttribute {
 extension AsynchronouslyAttribute where Self: ContentNode {
     
     internal func mutate(async value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension AsynchronouslyAttribute where Self: EmptyNode {
     
     internal func mutate(async value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -236,24 +186,14 @@ extension AutocapitalizeAttribute {
 extension AutocapitalizeAttribute where Self: ContentNode {
     
     internal func mutate(autocapitalize value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension AutocapitalizeAttribute where Self: EmptyNode {
     
     internal func mutate(autocapitalize value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -276,24 +216,14 @@ extension AutocompleteAttribute {
 extension AutocompleteAttribute where Self: ContentNode {
     
     internal func mutate(autocomplete value: Bool) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension AutocompleteAttribute where Self: EmptyNode {
     
     internal func mutate(autocomplete value: Bool) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -316,24 +246,14 @@ extension AutofocusAttribute {
 extension AutofocusAttribute where Self: ContentNode {
     
     internal func mutate(autofocus value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension AutofocusAttribute where Self: EmptyNode {
     
     internal func mutate(autofocus value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -356,24 +276,14 @@ extension AutoplayAttribute {
 extension AutoplayAttribute where Self: ContentNode {
     
     internal func mutate(autoplay value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension AutoplayAttribute where Self: EmptyNode {
     
     internal func mutate(autoplay value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -396,24 +306,14 @@ extension CharsetAttribute {
 extension CharsetAttribute where Self: ContentNode {
     
     internal func mutate(charset value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension CharsetAttribute where Self: EmptyNode {
     
     internal func mutate(charset value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -436,24 +336,14 @@ extension CheckedAttribute {
 extension CheckedAttribute where Self: ContentNode {
     
     internal func mutate(checked value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension CheckedAttribute where Self: EmptyNode {
     
     internal func mutate(checked value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -476,24 +366,14 @@ extension CiteAttribute {
 extension CiteAttribute where Self: ContentNode {
     
     internal func mutate(cite value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension CiteAttribute where Self: EmptyNode {
     
     internal func mutate(cite value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -516,24 +396,14 @@ extension ClassAttribute {
 extension ClassAttribute where Self: ContentNode {
     
     internal func mutate(class value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ClassAttribute where Self: EmptyNode {
     
     internal func mutate(class value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -556,24 +426,14 @@ extension ColumnsAttribute {
 extension ColumnsAttribute where Self: ContentNode {
     
     internal func mutate(cols value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ColumnsAttribute where Self: EmptyNode {
     
     internal func mutate(cols value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -596,24 +456,14 @@ extension ColumnSpanAttribute {
 extension ColumnSpanAttribute where Self: ContentNode {
     
     internal func mutate(colspan value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ColumnSpanAttribute where Self: EmptyNode {
     
     internal func mutate(colspan value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -639,24 +489,14 @@ extension ContentAttribute {
 extension ContentAttribute where Self: ContentNode {
     
     internal func mutate(content value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ContentAttribute where Self: EmptyNode {
     
     internal func mutate(content value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -679,24 +519,14 @@ extension EditAttribute {
 extension EditAttribute where Self: ContentNode {
     
     internal func mutate(contenteditable value: Bool) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension EditAttribute where Self: EmptyNode {
     
     internal func mutate(contenteditable value: Bool) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -719,24 +549,14 @@ extension ControlsAttribute {
 extension ControlsAttribute where Self: ContentNode {
     
     internal func mutate(controls value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ControlsAttribute where Self: EmptyNode {
     
     internal func mutate(controls value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -759,24 +579,14 @@ extension CoordinatesAttribute {
 extension CoordinatesAttribute where Self: ContentNode {
     
     internal func mutate(coords value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension CoordinatesAttribute where Self: EmptyNode {
     
     internal func mutate(coords value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -799,24 +609,14 @@ extension DataAttribute {
 extension DataAttribute where Self: ContentNode {
     
     internal func mutate(data value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DataAttribute where Self: EmptyNode {
     
     internal func mutate(data value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -839,24 +639,14 @@ extension DateTimeAttribute {
 extension DateTimeAttribute where Self: ContentNode {
     
     internal func mutate(datetime value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DateTimeAttribute where Self: EmptyNode {
     
     internal func mutate(datetime value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -879,24 +669,14 @@ extension DefaultAttribute {
 extension DefaultAttribute where Self: ContentNode {
     
     internal func mutate(default value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DefaultAttribute where Self: EmptyNode {
     
     internal func mutate(default value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -919,24 +699,14 @@ extension DeferAttribute {
 extension DeferAttribute where Self: ContentNode {
     
     internal func mutate(defer value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DeferAttribute where Self: EmptyNode {
     
     internal func mutate(defer value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -961,24 +731,14 @@ extension DirectionAttribute {
 extension DirectionAttribute where Self: ContentNode {
     
     internal func mutate(dir value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DirectionAttribute where Self: EmptyNode {
     
     internal func mutate(dir value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1001,24 +761,14 @@ extension DisabledAttribute {
 extension DisabledAttribute where Self: ContentNode {
     
     internal func mutate(disabled value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DisabledAttribute where Self: EmptyNode {
     
     internal func mutate(disabled value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1041,24 +791,14 @@ extension DownloadAttribute {
 extension DownloadAttribute where Self: ContentNode {
     
     internal func mutate(download value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DownloadAttribute where Self: EmptyNode {
     
     internal func mutate(download value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1081,24 +821,14 @@ extension DragAttribute {
 extension DragAttribute where Self: ContentNode {
     
     internal func mutate(draggable value: Bool) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DragAttribute where Self: EmptyNode {
     
     internal func mutate(draggable value: Bool) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1123,24 +853,14 @@ extension EncodingAttribute {
 extension EncodingAttribute where Self: ContentNode {
     
     internal func mutate(enctype value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension EncodingAttribute where Self: EmptyNode {
     
     internal func mutate(enctype value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1165,24 +885,14 @@ extension EnterKeyHintAttribute {
 extension EnterKeyHintAttribute where Self: ContentNode {
     
     internal func mutate(enterkeyhint value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension EnterKeyHintAttribute where Self: EmptyNode {
     
     internal func mutate(enterkeyhint value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1207,24 +917,14 @@ extension ForAttribute {
 extension ForAttribute where Self: ContentNode {
     
     internal func mutate(for value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ForAttribute where Self: EmptyNode {
     
     internal func mutate(for value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1247,24 +947,14 @@ extension FormAttribute {
 extension FormAttribute where Self: ContentNode {
     
     internal func mutate(form value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension FormAttribute where Self: EmptyNode {
     
     internal func mutate(form value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1289,24 +979,14 @@ extension FormActionAttribute {
 extension FormActionAttribute where Self: ContentNode {
     
     internal func mutate(formaction value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension FormActionAttribute where Self: EmptyNode {
     
     internal func mutate(formaction value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1331,24 +1011,14 @@ extension EquivalentAttribute {
 extension HeaderAttribute where Self: ContentNode {
     
     internal func mutate(httpequiv value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension EquivalentAttribute where Self: EmptyNode {
     
     internal func mutate(httpequiv value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1373,24 +1043,14 @@ extension HeaderAttribute {
 extension HeaderAttribute where Self: ContentNode {
     
     internal func mutate(headers value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension HeaderAttribute where Self: EmptyNode {
     
     internal func mutate(headers value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1415,24 +1075,14 @@ extension HeightAttribute {
 extension HeightAttribute where Self: ContentNode {
     
     internal func mutate(height value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension HeightAttribute where Self: EmptyNode {
     
     internal func mutate(height value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1455,24 +1105,14 @@ extension HiddenAttribute {
 extension HiddenAttribute where Self: ContentNode {
     
     internal func mutate(hidden value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension HiddenAttribute where Self: EmptyNode {
     
     internal func mutate(hidden value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1497,24 +1137,14 @@ extension HighAttribute {
 extension HighAttribute where Self: ContentNode {
     
     internal func mutate(high value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension HighAttribute where Self: EmptyNode {
     
     internal func mutate(high value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1541,24 +1171,14 @@ extension ReferenceAttribute {
 extension ReferenceAttribute where Self: ContentNode {
     
     internal func mutate(href value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ReferenceAttribute where Self: EmptyNode {
     
     internal func mutate(href value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1583,24 +1203,14 @@ extension ReferenceLanguageAttribute {
 extension ReferenceLanguageAttribute where Self: ContentNode {
     
     internal func mutate(hreflang value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        self.mutate(key: key, value: value)
     }
 }
 
 extension ReferenceLanguageAttribute where Self: EmptyNode {
     
     internal func mutate(hreflang value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1627,24 +1237,14 @@ extension IdentifierAttribute {
 extension IdentifierAttribute where Self: ContentNode {
     
     internal func mutate(id value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension IdentifierAttribute where Self: EmptyNode {
     
     internal func mutate(id value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1667,24 +1267,14 @@ extension IsMapAttribute {
 extension IsMapAttribute where Self: ContentNode {
     
     internal func mutate(ismap value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension IsMapAttribute where Self: EmptyNode {
     
     internal func mutate(ismap value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1707,24 +1297,14 @@ extension InputModeAttribute {
 extension InputModeAttribute where Self: ContentNode {
     
     internal func mutate(inputmode value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension InputModeAttribute where Self: EmptyNode {
     
     internal func mutate(inputmode value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1747,24 +1327,14 @@ extension IsAttribute {
 extension IsAttribute where Self: ContentNode {
     
     internal func mutate(is value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension IsAttribute where Self: EmptyNode {
     
     internal func mutate(is value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1787,24 +1357,14 @@ extension ItemIdAttribute {
 extension ItemIdAttribute where Self: ContentNode {
     
     internal func mutate(itemid value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ItemIdAttribute where Self: EmptyNode {
     
     internal func mutate(itemid value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1827,24 +1387,14 @@ extension ItemPropertyAttribute {
 extension ItemPropertyAttribute where Self: ContentNode {
     
     internal func mutate(itemprop value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ItemPropertyAttribute where Self: EmptyNode {
     
     internal func mutate(itemprop value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1867,24 +1417,14 @@ extension ItemReferenceAttribute {
 extension ItemReferenceAttribute where Self: ContentNode {
     
     internal func mutate(itemref value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ItemReferenceAttribute where Self: EmptyNode {
     
     internal func mutate(itemref value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1907,24 +1447,14 @@ extension ItemScopeAttribute {
 extension ItemScopeAttribute where Self: ContentNode {
     
     internal func mutate(itemscope value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ItemScopeAttribute where Self: EmptyNode {
     
     internal func mutate(itemscope value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1947,24 +1477,14 @@ extension ItemTypeAttribute {
 extension ItemTypeAttribute where Self: ContentNode {
     
     internal func mutate(itemtype value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ItemTypeAttribute where Self: EmptyNode {
     
     internal func mutate(itemtype value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1987,24 +1507,14 @@ extension KindAttribute {
 extension KindAttribute where Self: ContentNode {
     
     internal func mutate(kind value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension KindAttribute where Self: EmptyNode {
     
     internal func mutate(kind value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2027,24 +1537,14 @@ extension LabelAttribute {
 extension LabelAttribute where Self: ContentNode {
     
     internal func mutate(label value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension LabelAttribute where Self: EmptyNode {
     
     internal func mutate(label value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2067,24 +1567,14 @@ extension LanguageAttribute {
 extension LanguageAttribute where Self: ContentNode {
     
     internal func mutate(lang value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension LanguageAttribute where Self: EmptyNode {
     
     internal func mutate(lang value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2107,24 +1597,14 @@ extension ListAttribute {
 extension ListAttribute where Self: ContentNode {
     
     internal func mutate(list value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ListAttribute where Self: EmptyNode {
     
     internal func mutate(list value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2147,24 +1627,14 @@ extension LoopAttribute {
 extension LoopAttribute where Self: ContentNode {
     
     internal func mutate(loop value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension LoopAttribute where Self: EmptyNode {
     
     internal func mutate(loop value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2187,24 +1657,14 @@ extension LowAttribute {
 extension LowAttribute where Self: ContentNode {
     
     internal func mutate(low value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension LowAttribute where Self: EmptyNode {
     
     internal func mutate(low value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2227,24 +1687,14 @@ extension MaximumValueAttribute {
 extension MaximumValueAttribute where Self: ContentNode {
     
     internal func mutate(max value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MaximumValueAttribute where Self: EmptyNode {
     
     internal func mutate(max value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2267,24 +1717,14 @@ extension MaximumLengthAttribute {
 extension MaximumLengthAttribute where Self: ContentNode {
     
     internal func mutate(maxlength value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MaximumLengthAttribute where Self: EmptyNode {
     
     internal func mutate(maxlength value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2307,24 +1747,14 @@ extension MediaAttribute {
 extension MediaAttribute where Self: ContentNode {
     
     internal func mutate(media value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MediaAttribute where Self: EmptyNode {
     
     internal func mutate(media value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2347,24 +1777,14 @@ extension MethodAttribute {
 extension MethodAttribute where Self: ContentNode {
     
     internal func mutate(method value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MethodAttribute where Self: EmptyNode {
     
     internal func mutate(method value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2387,24 +1807,14 @@ extension MinimumValueAttribute {
 extension MinimumValueAttribute where Self: ContentNode {
     
     internal func mutate(min value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MinimumValueAttribute where Self: EmptyNode {
     
     internal func mutate(min value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2427,24 +1837,14 @@ extension MinimumLengthAttribute {
 extension MinimumLengthAttribute where Self: ContentNode {
     
     internal func mutate(minlength value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MinimumLengthAttribute where Self: EmptyNode {
     
     internal func mutate(minlength value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2467,24 +1867,14 @@ extension MultipleAttribute {
 extension MultipleAttribute where Self: ContentNode {
     
     internal func mutate(multiple value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MultipleAttribute where Self: EmptyNode {
     
     internal func mutate(multiple value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2507,24 +1897,14 @@ extension MutedAttribute {
 extension MutedAttribute where Self: ContentNode {
     
     internal func mutate(muted value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MutedAttribute where Self: EmptyNode {
     
     internal func mutate(muted value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2552,24 +1932,14 @@ extension NameAttribute {
 extension NameAttribute where Self: ContentNode {
     
     internal func mutate(name value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension NameAttribute where Self: EmptyNode {
     
     internal func mutate(name value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2592,24 +1962,14 @@ extension NonceAttribute {
 extension NonceAttribute where Self: ContentNode {
     
     internal func mutate(nonce value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension NonceAttribute where Self: EmptyNode {
     
     internal func mutate(nonce value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2632,24 +1992,14 @@ extension NoValidateAttribute {
 extension NoValidateAttribute where Self: ContentNode {
     
     internal func mutate(novalidate value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension NoValidateAttribute where Self: EmptyNode {
     
     internal func mutate(novalidate value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2672,24 +2022,14 @@ extension OpenAttribute {
 extension OpenAttribute where Self: ContentNode {
     
     internal func mutate(open value: Bool) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension OpenAttribute where Self: EmptyNode {
     
     internal func mutate(open value: Bool) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2712,24 +2052,14 @@ extension OptimumAttribute {
 extension OptimumAttribute where Self: ContentNode {
     
     internal func mutate(optimum value: Float) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension OptimumAttribute where Self: EmptyNode {
     
     internal func mutate(optimum value: Float) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2752,24 +2082,14 @@ extension PatternAttribute {
 extension PatternAttribute where Self: ContentNode {
     
     internal func mutate(pattern value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PatternAttribute where Self: EmptyNode {
     
     internal func mutate(pattern value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2792,24 +2112,14 @@ extension PartAttribute {
 extension PartAttribute where Self: ContentNode {
     
     internal func mutate(part value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PartAttribute where Self: EmptyNode {
     
     internal func mutate(part value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2832,24 +2142,14 @@ extension PingAttribute {
 extension PingAttribute where Self: ContentNode {
     
     internal func mutate(ping value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PingAttribute where Self: EmptyNode {
     
     internal func mutate(ping value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2874,24 +2174,14 @@ extension PlaceholderAttribute {
 extension PlaceholderAttribute where Self: ContentNode {
     
     internal func mutate(placeholder value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PlaceholderAttribute where Self: EmptyNode {
     
     internal func mutate(placeholder value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2914,24 +2204,14 @@ extension PosterAttribute {
 extension PosterAttribute where Self: ContentNode {
     
     internal func mutate(poster value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PosterAttribute where Self: EmptyNode {
     
     internal func mutate(poster value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2954,24 +2234,14 @@ extension PreloadAttribute {
 extension PreloadAttribute where Self: ContentNode {
     
     internal func mutate(preload value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PreloadAttribute where Self: EmptyNode {
     
     internal func mutate(preload value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2994,24 +2264,14 @@ extension ReadyOnlyAttribute {
 extension ReadyOnlyAttribute where Self: ContentNode {
     
     internal func mutate(readonly value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ReadyOnlyAttribute where Self: EmptyNode {
     
     internal func mutate(readonly value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3034,24 +2294,14 @@ extension ReferrerPolicyAttribute {
 extension ReferrerPolicyAttribute where Self: ContentNode {
     
     internal func mutate(referrerpolicy value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ReferrerPolicyAttribute where Self: EmptyNode {
     
     internal func mutate(referrerpolicy value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3074,24 +2324,14 @@ extension RelationshipAttribute {
 extension RelationshipAttribute where Self: ContentNode {
     
     internal func mutate(rel value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension RelationshipAttribute where Self: EmptyNode {
     
     internal func mutate(rel value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3114,24 +2354,14 @@ extension RequiredAttribute {
 extension RequiredAttribute where Self: ContentNode {
     
     internal func mutate(required value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension RequiredAttribute where Self: EmptyNode {
     
     internal func mutate(required value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3154,24 +2384,14 @@ extension ReversedAttribute {
 extension ReversedAttribute where Self: ContentNode {
     
     internal func mutate(reversed value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ReversedAttribute where Self: EmptyNode {
     
     internal func mutate(reversed value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3194,24 +2414,14 @@ extension RoleAttribute {
 extension RoleAttribute where Self: ContentNode {
     
     internal func mutate(role value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension RoleAttribute where Self: EmptyNode {
     
     internal func mutate(role value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3234,24 +2444,14 @@ extension RowsAttribute {
 extension RowsAttribute where Self: ContentNode {
     
     internal func mutate(rows value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension RowsAttribute where Self: EmptyNode {
     
     internal func mutate(rows value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3274,24 +2474,14 @@ extension RowSpanAttribute {
 extension RowSpanAttribute where Self: ContentNode {
     
     internal func mutate(rowspan value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension RowSpanAttribute where Self: EmptyNode {
     
     internal func mutate(rowspan value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3314,24 +2504,14 @@ extension SandboxAttribute {
 extension SandboxAttribute where Self: ContentNode {
     
     internal func mutate(sandbox value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SandboxAttribute where Self: EmptyNode {
     
     internal func mutate(sandbox value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3354,24 +2534,14 @@ extension ScopeAttribute {
 extension ScopeAttribute where Self: ContentNode {
     
     internal func mutate(scope value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ScopeAttribute where Self: EmptyNode {
     
     internal func mutate(scope value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3394,24 +2564,14 @@ extension ShapeAttribute {
 extension ShapeAttribute where Self: ContentNode {
     
     internal func mutate(shape value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ShapeAttribute where Self: EmptyNode {
     
     internal func mutate(shape value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3434,24 +2594,14 @@ extension SizeAttribute {
 extension SizeAttribute where Self: ContentNode {
     
     internal func mutate(size value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SizeAttribute where Self: EmptyNode {
     
     internal func mutate(size value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3474,24 +2624,14 @@ extension SizesAttribute {
 extension SizesAttribute where Self: ContentNode {
     
     internal func mutate(sizes value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SizesAttribute where Self: EmptyNode {
     
     internal func mutate(sizes value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3514,24 +2654,14 @@ extension SlotAttribute {
 extension SlotAttribute where Self: ContentNode {
     
     internal func mutate(slot value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SlotAttribute where Self: EmptyNode {
     
     internal func mutate(slot value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3554,24 +2684,14 @@ extension SpanAttribute {
 extension SpanAttribute where Self: ContentNode {
     
     internal func mutate(span value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SpanAttribute where Self: EmptyNode {
     
     internal func mutate(span value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3594,24 +2714,14 @@ extension SpellCheckAttribute {
 extension SpellCheckAttribute where Self: ContentNode {
     
     internal func mutate(spellcheck value: Bool) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SpellCheckAttribute where Self: EmptyNode {
     
     internal func mutate(spellcheck value: Bool) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3634,24 +2744,14 @@ extension SourceAttribute {
 extension SourceAttribute where Self: ContentNode {
     
     internal func mutate(source value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SourceAttribute where Self: EmptyNode {
     
     internal func mutate(source value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3674,24 +2774,14 @@ extension StartAttribute {
 extension StartAttribute where Self: ContentNode {
     
     internal func mutate(start value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension StartAttribute where Self: EmptyNode {
     
     internal func mutate(start value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3714,24 +2804,14 @@ extension StepAttribute {
 extension StepAttribute where Self: ContentNode {
     
     internal func mutate(step value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension StepAttribute where Self: EmptyNode {
     
     internal func mutate(step value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3754,24 +2834,14 @@ extension StyleAttribute {
 extension StyleAttribute where Self: ContentNode {
     
     internal func mutate(style value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension StyleAttribute where Self: EmptyNode {
     
     internal func mutate(style value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3794,24 +2864,14 @@ extension TabulatorAttribute {
 extension TabulatorAttribute where Self: ContentNode {
     
     internal func mutate(tabindex value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension TabulatorAttribute where Self: EmptyNode {
     
     internal func mutate(tabindex value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3834,24 +2894,14 @@ extension TargetAttribute {
 extension TargetAttribute where Self: ContentNode {
     
     internal func mutate(target value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension TargetAttribute where Self: EmptyNode {
     
     internal func mutate(target value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3874,24 +2924,14 @@ extension TitleAttribute {
 extension TitleAttribute where Self: ContentNode {
     
     internal func mutate(title value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension TitleAttribute where Self: EmptyNode {
     
     internal func mutate(title value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3914,24 +2954,14 @@ extension TranslateAttribute {
 extension TranslateAttribute where Self: ContentNode {
     
     internal func mutate(translate value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension TranslateAttribute where Self: EmptyNode {
     
     internal func mutate(translate value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3956,24 +2986,14 @@ extension TypeAttribute {
 extension TypeAttribute where Self: ContentNode {
     
     internal func mutate(type value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension TypeAttribute where Self: EmptyNode {
     
     internal func mutate(type value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -3998,24 +3018,14 @@ extension ValueAttribute {
 extension ValueAttribute where Self: ContentNode {
     
     internal func mutate(value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ValueAttribute where Self: EmptyNode {
     
     internal func mutate(value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -4038,24 +3048,14 @@ extension WidthAttribute {
 extension WidthAttribute where Self: ContentNode {
     
     internal func mutate(width value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension WidthAttribute where Self: EmptyNode {
     
     internal func mutate(width value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -4078,24 +3078,14 @@ extension WrapAttribute {
 extension WrapAttribute where Self: ContentNode {
     
     internal func mutate(wrap value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension WrapAttribute where Self: EmptyNode {
     
     internal func mutate(wrap value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -4118,55 +3108,14 @@ extension PropertyAttribute {
 extension PropertyAttribute where Self: ContentNode {
     
     internal func mutate(property value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PropertyAttribute where Self: EmptyNode {
     
     internal func mutate(property value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
-    }
-}
-
-/// The protocol provides the element with the property handler.
-public protocol CustomAttribute: AnyAttribute {
-    
-    /// The func adds
-    func custom(key: String, value: Any) -> Self
-}
-
-extension CustomAttribute where Self: ContentNode {
-    
-    internal func mutate(key: String, value: Any) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
-    }
-}
-
-extension CustomAttribute where Self: EmptyNode {
-    
-    internal func mutate(key: String, value: Any) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -4189,11 +3138,6 @@ extension SelectedAttribute {
 extension SelectedAttribute where Self: ContentNode {
     
     internal func mutate(selected value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }

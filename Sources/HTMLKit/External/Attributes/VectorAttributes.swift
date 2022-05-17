@@ -36,12 +36,7 @@ extension FillAttribute {
 extension FillAttribute where Self: ContentNode {
     
     internal func mutate(fill value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -64,12 +59,7 @@ extension FillOpacityAttribute {
 extension FillOpacityAttribute where Self: ContentNode {
     
     internal func mutate(fillopacity value: Double) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -92,12 +82,7 @@ extension StrokeAttribute {
 extension StrokeAttribute where Self: ContentNode {
     
     internal func mutate(stroke value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -120,12 +105,7 @@ extension StrokeWidthAttribute {
 extension StrokeWidthAttribute where Self: ContentNode {
     
     internal func mutate(strokewidth value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -148,12 +128,7 @@ extension StrokeOpacityAttribute {
 extension StrokeOpacityAttribute where Self: ContentNode {
     
     internal func mutate(strokeopacity value: Double) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -176,12 +151,7 @@ extension StrokeLineCapAttribute {
 extension StrokeLineCapAttribute where Self: ContentNode {
     
     internal func mutate(strokelinecap value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -204,12 +174,7 @@ extension StrokeLineJoinAttribute {
 extension StrokeLineJoinAttribute where Self: ContentNode {
     
     internal func mutate(strokelinejoin value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -232,12 +197,7 @@ extension RadiusAttribute {
 extension RadiusAttribute where Self: ContentNode {
     
     internal func mutate(radius value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -353,11 +313,6 @@ extension ViewBoxAttribute {
 extension ViewBoxAttribute where Self: ContentNode {
     
     internal func mutate(viewbox value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }

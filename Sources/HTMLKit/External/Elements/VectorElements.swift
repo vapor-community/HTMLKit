@@ -103,6 +103,10 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
     public func strokeLineJoin(_ type: Linejoin) -> Circle {
         return self.mutate(strokelinejoin: type.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Circle {
+        return self.mutate(key: key, value: value)
+    }
 }
 
 extension Circle: AnyContent {
@@ -200,6 +204,10 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
     public func strokeLineJoin(_ type: Linejoin) -> Rectangle {
         return self.mutate(strokelinejoin: type.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Rectangle {
+        return self.mutate(key: key, value: value)
+    }
 }
 
 extension Rectangle: AnyContent {
@@ -293,6 +301,10 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
     public func strokeLineJoin(_ type: Linejoin) -> Ellipse {
         return self.mutate(strokelinejoin: type.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Ellipse {
+        return self.mutate(key: key, value: value)
+    }
 }
 
 extension Ellipse: AnyContent {
@@ -377,6 +389,10 @@ extension Line: GlobalVectorAttributes {
     
     public func strokeLineJoin(_ type: Linejoin) -> Line {
         return self.mutate(strokelinejoin: type.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Line {
+        return self.mutate(key: key, value: value)
     }
 }
 
@@ -463,6 +479,10 @@ extension Polygon: GlobalVectorAttributes {
     public func strokeLineJoin(_ type: Linejoin) -> Polygon {
         return self.mutate(strokelinejoin: type.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Polygon {
+        return self.mutate(key: key, value: value)
+    }
 }
 
 extension Polygon: AnyContent {
@@ -548,6 +568,10 @@ extension Polyline: GlobalVectorAttributes {
     public func strokeLineJoin(_ type: Linejoin) -> Polyline {
         return self.mutate(strokelinejoin: type.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Polyline {
+        return self.mutate(key: key, value: value)
+    }
 }
 
 extension Polyline: AnyContent {
@@ -632,6 +656,10 @@ extension Path: GlobalVectorAttributes {
     
     public func strokeLineJoin(_ type: Linejoin) -> Path {
         return self.mutate(strokelinejoin: type.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Path {
+        return self.mutate(key: key, value: value)
     }
 }
 
@@ -733,6 +761,10 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
     
     public func strokeLineJoin(_ type: Linejoin) -> Use {
         return self.mutate(strokelinejoin: type.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Use {
+        return self.mutate(key: key, value: value)
     }
 }
 

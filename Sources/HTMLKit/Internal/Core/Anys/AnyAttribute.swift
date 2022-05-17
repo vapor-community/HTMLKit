@@ -18,32 +18,35 @@ import OrderedCollections
 ///
 /// A attribute is a modifier of a html-element.
 public protocol AnyAttribute {
+    
+    /// The func adds
+    func custom(key: String, value: Any) -> Self
 }
 
-extension AnyAttribute {
+extension AnyAttribute where Self: ContentNode {
     
-    /// Sets the attribute.
-    ///
-    /// - Parameters:
-    ///    - key: The key of the attribute.
-    ///    - value: The value of the attribute.
-    ///
-    /// - Returns:
-    internal func set(key: String, value: Any) -> OrderedDictionary<String, Any> {
-        return [key: value]
-    }
-    
-    /// Updates the attribute.
-    ///
-    /// It updates the attribute on a existing collection and returns the same collection.
-    ///
-    /// - Parameters:
-    ///    - key: The key of the attribute.
-    ///    - value: The value of the attribute.
-    ///
-    /// - Returns:
-    internal func update(key: String, value: Any, on attributes: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
+    internal func mutate(key: String, value: Any) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: [key: value], content: content)
+        }
+        
         attributes[key] = value
-        return attributes
+        
+        return .init(attributes: attributes, content: content)
+    }
+}
+
+extension AnyAttribute where Self: EmptyNode {
+    
+    internal func mutate(key: String, value: Any) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes:  [key: value])
+        }
+        
+        attributes[key] = value
+        
+        return .init(attributes: attributes)
     }
 }

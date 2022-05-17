@@ -36,24 +36,14 @@ extension AfterPrintEventAttribute {
 extension AfterPrintEventAttribute where Self: ContentNode {
     
     internal func mutate(onafterprint value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: key, value: value)
     }
 }
 
 extension AfterPrintEventAttribute where Self: EmptyNode {
     
     internal func mutate(onafterprint value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: key, value: value)
     }
 }
 
@@ -76,24 +66,14 @@ extension BeforePrintEventAttribute {
 extension BeforePrintEventAttribute where Self: ContentNode {
     
     internal func mutate(onbeforeprint value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension BeforePrintEventAttribute where Self: EmptyNode {
     
     internal func mutate(onbeforeprint value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -116,24 +96,14 @@ extension BeforeUnloadEventAttribute {
 extension BeforeUnloadEventAttribute where Self: ContentNode {
     
     internal func mutate(onbeforeunload value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension BeforeUnloadEventAttribute where Self: EmptyNode {
     
     internal func mutate(onbeforeunload value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -156,24 +126,14 @@ extension ErrorEventAttribute {
 extension ErrorEventAttribute where Self: ContentNode {
     
     internal func mutate(onerror value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ErrorEventAttribute where Self: EmptyNode {
     
     internal func mutate(onerror value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -196,24 +156,14 @@ extension HashChangeEventAttribute {
 extension HashChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(onhashchange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension HashChangeEventAttribute where Self: EmptyNode {
     
     internal func mutate(onhashchange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -236,24 +186,14 @@ extension LoadEventAttribute {
 extension LoadEventAttribute where Self: ContentNode {
     
     internal func mutate(onload value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension LoadEventAttribute where Self: EmptyNode {
     
     internal func mutate(onload value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -276,24 +216,14 @@ extension MessageEventAttribute {
 extension MessageEventAttribute where Self: ContentNode {
     
     internal func mutate(onmessage value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MessageEventAttribute where Self: EmptyNode {
     
     internal func mutate(onmessage value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -316,24 +246,14 @@ extension OfflineEventAttribute {
 extension OfflineEventAttribute where Self: ContentNode {
     
     internal func mutate(onoffline value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension OfflineEventAttribute where Self: EmptyNode {
     
     internal func mutate(onoffline value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -356,24 +276,14 @@ extension OnlineEventAttribute {
 extension OnlineEventAttribute where Self: ContentNode {
     
     internal func mutate(ononline value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension OnlineEventAttribute where Self: EmptyNode {
     
     internal func mutate(ononline value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -396,24 +306,14 @@ extension PageHideEventAttribute {
 extension PageHideEventAttribute where Self: ContentNode {
     
     internal func mutate(onpagehide value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PageHideEventAttribute where Self: EmptyNode {
     
     internal func mutate(onpagehide value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -436,24 +336,14 @@ extension PageShowEventAttribute {
 extension PageShowEventAttribute where Self: ContentNode {
     
     internal func mutate(onpageshow value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PageShowEventAttribute where Self: EmptyNode {
     
     internal func mutate(onpageshow value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -476,24 +366,14 @@ extension PopstateEventAttribute {
 extension PopstateEventAttribute where Self: ContentNode {
     
     internal func mutate(onpopstate value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PopstateEventAttribute where Self: EmptyNode {
     
     internal func mutate(onpopstate value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -516,24 +396,14 @@ extension ResizeEventAttribute {
 extension ResizeEventAttribute where Self: ContentNode {
     
     internal func mutate(onresize value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ResizeEventAttribute where Self: EmptyNode {
     
     internal func mutate(onresize value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -556,24 +426,14 @@ extension StorageEventAttribute {
 extension StorageEventAttribute where Self: ContentNode {
     
     internal func mutate(onstorage value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension StorageEventAttribute where Self: EmptyNode {
     
     internal func mutate(onstorage value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -596,24 +456,14 @@ extension UnloadEventAttribute {
 extension UnloadEventAttribute where Self: ContentNode {
     
     internal func mutate(onunload value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension UnloadEventAttribute where Self: EmptyNode {
     
     internal func mutate(onunload value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -636,24 +486,14 @@ extension BlurEventAttribute {
 extension BlurEventAttribute where Self: ContentNode {
     
     internal func mutate(onblur value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension BlurEventAttribute where Self: EmptyNode {
     
     internal func mutate(onblur value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -676,24 +516,14 @@ extension ChangeEventAttribute {
 extension ChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(onchange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ChangeEventAttribute where Self: EmptyNode {
     
     internal func mutate(onchange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -716,24 +546,14 @@ extension ContextMenuEventAttribute {
 extension ContextMenuEventAttribute where Self: ContentNode {
     
     internal func mutate(oncontextmenu value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ContextMenuEventAttribute where Self: EmptyNode {
     
     internal func mutate(oncontextmenu value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -756,24 +576,14 @@ extension FocusEventAttribute {
 extension FocusEventAttribute where Self: ContentNode {
     
     internal func mutate(onfocus value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension FocusEventAttribute where Self: EmptyNode {
     
     internal func mutate(onfocus value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -796,24 +606,14 @@ extension InputEventAttribute {
 extension InputEventAttribute where Self: ContentNode {
     
     internal func mutate(oninput value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension InputEventAttribute where Self: EmptyNode {
     
     internal func mutate(oninput value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -836,24 +636,14 @@ extension InvalidEventAttribute {
 extension InvalidEventAttribute where Self: ContentNode {
     
     internal func mutate(oninvalid value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension InvalidEventAttribute where Self: EmptyNode {
     
     internal func mutate(oninvalid value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -876,24 +666,14 @@ extension ResetEventAttribute {
 extension ResetEventAttribute where Self: ContentNode {
     
     internal func mutate(onreset value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ResetEventAttribute where Self: EmptyNode {
     
     internal func mutate(onreset value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -916,24 +696,14 @@ extension SearchEventAttribute {
 extension SearchEventAttribute where Self: ContentNode {
     
     internal func mutate(onsearch value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SearchEventAttribute where Self: EmptyNode {
     
     internal func mutate(onsearch value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -956,24 +726,14 @@ extension SelectEventAttribute {
 extension SelectEventAttribute where Self: ContentNode {
     
     internal func mutate(onselect value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SelectEventAttribute where Self: EmptyNode {
     
     internal func mutate(onselect value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -996,24 +756,14 @@ extension SubmitEventAttribute {
 extension SubmitEventAttribute where Self: ContentNode {
     
     internal func mutate(onsubmit value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SubmitEventAttribute where Self: EmptyNode {
     
     internal func mutate(onsubmit value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1036,24 +786,14 @@ extension KeyDownEventAttribute {
 extension KeyDownEventAttribute where Self: ContentNode {
     
     internal func mutate(onkeydown value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension KeyDownEventAttribute where Self: EmptyNode {
     
     internal func mutate(onkeydown value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1076,24 +816,14 @@ extension KeyPressEventAttribute {
 extension KeyPressEventAttribute where Self: ContentNode {
     
     internal func mutate(onkeypress value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension KeyPressEventAttribute where Self: EmptyNode {
     
     internal func mutate(onkeypress value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1116,24 +846,14 @@ extension KeyUpEventAttribute {
 extension KeyUpEventAttribute where Self: ContentNode {
     
     internal func mutate(onkeyup value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension KeyUpEventAttribute where Self: EmptyNode {
     
     internal func mutate(onkeyup value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1156,24 +876,14 @@ extension ClickEventAttribute {
 extension ClickEventAttribute where Self: ContentNode {
     
     internal func mutate(onclick value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ClickEventAttribute where Self: EmptyNode {
     
     internal func mutate(onclick value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1196,24 +906,14 @@ extension DoubleClickEventAttribute {
 extension DoubleClickEventAttribute where Self: ContentNode {
     
     internal func mutate(ondbclick value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DoubleClickEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondbclick value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1236,24 +936,14 @@ extension MouseDownEventAttribute {
 extension MouseDownEventAttribute where Self: ContentNode {
     
     internal func mutate(onmousedown value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MouseDownEventAttribute where Self: EmptyNode {
     
     internal func mutate(onmousedown value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1276,24 +966,14 @@ extension MouseMoveEventAttribute {
 extension MouseMoveEventAttribute where Self: ContentNode {
     
     internal func mutate(onmousemove value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MouseMoveEventAttribute where Self: EmptyNode {
     
     internal func mutate(onmousemove value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1316,24 +996,14 @@ extension MouseOutEventAttribute {
 extension MouseOutEventAttribute where Self: ContentNode {
     
     internal func mutate(onmouseout value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MouseOutEventAttribute where Self: EmptyNode {
     
     internal func mutate(onmouseout value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1356,24 +1026,14 @@ extension MouseOverEventAttribute {
 extension MouseOverEventAttribute where Self: ContentNode {
     
     internal func mutate(onmouseover value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MouseOverEventAttribute where Self: EmptyNode {
     
     internal func mutate(onmouseover value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1396,24 +1056,14 @@ extension MouseUpEventAttribute {
 extension MouseUpEventAttribute where Self: ContentNode {
     
     internal func mutate(onmouseup value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MouseUpEventAttribute where Self: EmptyNode {
     
     internal func mutate(onmouseup value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1436,24 +1086,14 @@ extension WheelEventAttribute {
 extension WheelEventAttribute where Self: ContentNode {
     
     internal func mutate(onwheel value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension WheelEventAttribute where Self: EmptyNode {
     
     internal func mutate(onwheel value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1476,24 +1116,14 @@ extension DragEventAttribute {
 extension DragEventAttribute where Self: ContentNode {
     
     internal func mutate(ondrag value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DragEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondrag value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1516,24 +1146,14 @@ extension DragEnterEventAttribute {
 extension DragEnterEventAttribute where Self: ContentNode {
     
     internal func mutate(ondragenter value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DragEnterEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondragenter value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1556,24 +1176,14 @@ extension DragEndEventAttribute {
 extension DragEndEventAttribute where Self: ContentNode {
     
     internal func mutate(ondragend value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DragEndEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondragend value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1596,24 +1206,14 @@ extension DragLeaveEventAttribute {
 extension DragLeaveEventAttribute where Self: ContentNode {
     
     internal func mutate(ondragleave value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DragLeaveEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondragleave value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1636,24 +1236,14 @@ extension DragOverEventAttribute {
 extension DragOverEventAttribute where Self: ContentNode {
     
     internal func mutate(ondragover value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DragOverEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondragover value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1676,24 +1266,14 @@ extension DragStartEventAttribute {
 extension DragStartEventAttribute where Self: ContentNode {
     
     internal func mutate(ondragstart value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DragStartEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondragstart value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1716,24 +1296,14 @@ extension DropEventAttribute {
 extension DropEventAttribute where Self: ContentNode {
     
     internal func mutate(ondrop value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DropEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondrop value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1756,24 +1326,14 @@ extension ScrollEventAttribute {
 extension ScrollEventAttribute where Self: ContentNode {
     
     internal func mutate(onscroll value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ScrollEventAttribute where Self: EmptyNode {
     
     internal func mutate(onscroll value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1796,24 +1356,14 @@ extension CopyEventAttribute {
 extension CopyEventAttribute where Self: ContentNode {
     
     internal func mutate(oncopy value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension CopyEventAttribute where Self: EmptyNode {
     
     internal func mutate(oncopy value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1836,24 +1386,14 @@ extension CutEventAttribute {
 extension CutEventAttribute where Self: ContentNode {
     
     internal func mutate(oncut value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension CutEventAttribute where Self: EmptyNode {
     
     internal func mutate(oncut value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1876,24 +1416,14 @@ extension PasteEventAttribute {
 extension PasteEventAttribute where Self: ContentNode {
     
     internal func mutate(onpaste value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PasteEventAttribute where Self: EmptyNode {
     
     internal func mutate(onpaste value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1916,24 +1446,14 @@ extension AbortEventAttribute {
 extension AbortEventAttribute where Self: ContentNode {
     
     internal func mutate(onabort value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension AbortEventAttribute where Self: EmptyNode {
     
     internal func mutate(onabort value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1956,24 +1476,14 @@ extension CanPlayEventAttribute {
 extension CanPlayEventAttribute where Self: ContentNode {
     
     internal func mutate(oncanplay value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension CanPlayEventAttribute where Self: EmptyNode {
     
     internal func mutate(oncanplay value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -1996,24 +1506,14 @@ extension CanPlayThroughEventAttribute {
 extension CanPlayThroughEventAttribute where Self: ContentNode {
     
     internal func mutate(oncanplaythrough value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension CanPlayThroughEventAttribute where Self: EmptyNode {
     
     internal func mutate(oncanplaythrough value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2036,24 +1536,14 @@ extension CueChangeEventAttribute {
 extension CueChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(oncuechange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension CueChangeEventAttribute where Self: EmptyNode {
     
     internal func mutate(oncuechange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2076,24 +1566,14 @@ extension DurationChangeEventAttribute {
 extension DurationChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(ondurationchange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DurationChangeEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondurationchange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2116,24 +1596,14 @@ extension EmptiedEventAttribute {
 extension EmptiedEventAttribute where Self: ContentNode {
     
     internal func mutate(onemptied value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension EmptiedEventAttribute where Self: EmptyNode {
     
     internal func mutate(onemptied value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2156,24 +1626,14 @@ extension EndedEventAttribute {
 extension EndedEventAttribute where Self: ContentNode {
     
     internal func mutate(onended value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension EndedEventAttribute where Self: EmptyNode {
     
     internal func mutate(onended value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2196,24 +1656,14 @@ extension LoadedDataEventAttribute {
 extension LoadedDataEventAttribute where Self: ContentNode {
     
     internal func mutate(onloadeddata value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension LoadedDataEventAttribute where Self: EmptyNode {
     
     internal func mutate(onloadeddata value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2236,24 +1686,14 @@ extension LoadedMetaDataEventAttribute {
 extension LoadedMetaDataEventAttribute where Self: ContentNode {
     
     internal func mutate(onloadedmetadata value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension LoadedMetaDataEventAttribute where Self: EmptyNode {
     
     internal func mutate(onloadedmetadata value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2276,24 +1716,14 @@ extension LoadStartEventAttribute {
 extension LoadStartEventAttribute where Self: ContentNode {
     
     internal func mutate(onloadstart value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension LoadStartEventAttribute where Self: EmptyNode {
     
     internal func mutate(onloadstart value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2316,24 +1746,14 @@ extension PauseEventAttribute {
 extension PauseEventAttribute where Self: ContentNode {
     
     internal func mutate(onpause value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PauseEventAttribute where Self: EmptyNode {
     
     internal func mutate(onpause value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2356,24 +1776,14 @@ extension PlayEventAttribute {
 extension PlayEventAttribute where Self: ContentNode {
     
     internal func mutate(onplay value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PlayEventAttribute where Self: EmptyNode {
     
     internal func mutate(onplay value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2396,24 +1806,14 @@ extension PlayingEventAttribute {
 extension PlayingEventAttribute where Self: ContentNode {
     
     internal func mutate(onplaying value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PlayingEventAttribute where Self: EmptyNode {
     
     internal func mutate(onplaying value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2436,24 +1836,14 @@ extension ProgressEventAttribute {
 extension ProgressEventAttribute where Self: ContentNode {
     
     internal func mutate(onprogress value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ProgressEventAttribute where Self: EmptyNode {
     
     internal func mutate(onprogress value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2476,24 +1866,14 @@ extension RateChangeEventAttribute {
 extension RateChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(onratechange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension RateChangeEventAttribute where Self: EmptyNode {
     
     internal func mutate(onratechange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2516,24 +1896,14 @@ extension SeekedEventAttribute {
 extension SeekedEventAttribute where Self: ContentNode {
     
     internal func mutate(onseeked value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SeekedEventAttribute where Self: EmptyNode {
     
     internal func mutate(onseeked value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2556,24 +1926,14 @@ extension SeekingEventAttribute {
 extension SeekingEventAttribute where Self: ContentNode {
     
     internal func mutate(onseeking value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SeekingEventAttribute where Self: EmptyNode {
     
     internal func mutate(onseeking value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2596,24 +1956,14 @@ extension StalledEventAttribute {
 extension StalledEventAttribute where Self: ContentNode {
     
     internal func mutate(onstalled value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension StalledEventAttribute where Self: EmptyNode {
     
     internal func mutate(onstalled value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2636,24 +1986,14 @@ extension SuspendEventAttribute {
 extension SuspendEventAttribute where Self: ContentNode {
     
     internal func mutate(onsuspend value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SuspendEventAttribute where Self: EmptyNode {
     
     internal func mutate(onsuspend value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2676,24 +2016,14 @@ extension TimeUpdateEventAttribute {
 extension TimeUpdateEventAttribute where Self: ContentNode {
     
     internal func mutate(ontimeupdate value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension TimeUpdateEventAttribute where Self: EmptyNode {
     
     internal func mutate(ontimeupdate value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2716,24 +2046,14 @@ extension VolumeChangeEventAttribute {
 extension VolumeChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(onvolumechange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension VolumeChangeEventAttribute where Self: EmptyNode {
     
     internal func mutate(onvolumechange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2756,24 +2076,14 @@ extension WaitingEventAttribute {
 extension WaitingEventAttribute where Self: ContentNode {
     
     internal func mutate(onwaiting value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension WaitingEventAttribute where Self: EmptyNode {
     
     internal func mutate(onwaiting value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
@@ -2796,23 +2106,13 @@ extension ToggleEventAttribute {
 extension ToggleEventAttribute where Self: ContentNode {
     
     internal func mutate(ontoggle value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ToggleEventAttribute where Self: EmptyNode {
     
     internal func mutate(ontoggle value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
