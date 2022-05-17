@@ -1,22 +1,24 @@
-/// ## Description
-/// The file contains the html elements. The html element Html only allows these elements to be its
-/// descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the html elements. The html-element 'html' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
 /// The element contains the information about the document's content.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-head-element
-///
+/// ```html
+/// <head></head>
+/// ```
 public struct Head: ContentNode, HtmlElement {
 
     internal var name: String { "head" }
@@ -198,12 +200,11 @@ extension Head: Modifiable {
     }
 }
 
-/// ## Description
 /// The element contains the document's content.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-body-element
-///
+/// ```html
+/// <body></body>
+/// ```
 public struct Body: ContentNode, HtmlElement {
 
     internal var name: String { "body" }

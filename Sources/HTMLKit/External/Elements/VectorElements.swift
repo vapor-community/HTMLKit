@@ -1,16 +1,33 @@
+/*
+ Abstract:
+ The file contains the vector elements. The html-element 'svg' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
+
 import OrderedCollections
 
-/// ## Description
-/// The alias points to Rectangle.
+/// The alias for the element Rectangle.
 ///
+/// Rect is the official tag and can be used instead of Rectangle.
+///
+/// ```html
+/// <rect></rect>
+/// ```
 public typealias Rect = Rectangle
 
-/// ## Description
-/// The element represents ...
+/// The element represents a svg basic shape, used to draw circles.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-table-element
-///
+/// ```html
+/// <circle></circle>
+/// ```
 public struct Circle: ContentNode, VectorElement {    
 
     internal var name: String { "circle" }
@@ -99,12 +116,11 @@ extension Circle: AnyContent {
     }
 }
 
-/// ## Description
 /// The element represents ...
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-table-element
-///
+/// ```html
+/// <rect></rect>
+/// ```
 public struct Rectangle: ContentNode, VectorElement {
 
     internal var name: String { "rect" }
@@ -197,12 +213,11 @@ extension Rectangle: AnyContent {
     }
 }
 
-/// ## Description
 /// The element represents a comment output.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-table-element
-///
+/// ```html
+/// <ellipse></ellipse>
+/// ```
 public struct Ellipse: ContentNode, VectorElement {
 
     internal var name: String { "ellipse" }
@@ -291,12 +306,11 @@ extension Ellipse: AnyContent {
     }
 }
 
-/// ## Description
 /// The element represents ...
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-table-element
-///
+/// ```html
+/// <line></line>
+/// ```
 public struct Line: ContentNode, VectorElement {
 
     internal var name: String { "line" }
@@ -377,12 +391,11 @@ extension Line: AnyContent {
     }
 }
 
-/// ## Description
 /// The element represents a comment output.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-table-element
-///
+/// ```html
+/// <polygon></polygon>
+/// ```
 public struct Polygon: ContentNode, VectorElement {
 
     internal var name: String { "polygon" }
@@ -463,12 +476,11 @@ extension Polygon: AnyContent {
     }
 }
 
-/// ## Description
 /// The element represents ...
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-table-element
-///
+/// ```html
+/// <polyline></polyline>
+/// ```
 public struct Polyline: ContentNode, VectorElement {
 
     internal var name: String { "polyline" }
@@ -549,12 +561,11 @@ extension Polyline: AnyContent {
     }
 }
 
-/// ## Description
 /// The element represents ...
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-table-element
-///
+/// ```html
+/// <path></path>
+/// ```
 public struct Path: ContentNode, VectorElement {
 
     internal var name: String { "path" }
@@ -635,12 +646,11 @@ extension Path: AnyContent {
     }
 }
 
-/// ## Description
 /// The element represents ...
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-table-element
-///
+/// ```html
+/// <use></use>
+/// ```
 public struct Use: ContentNode, VectorElement {
 
     internal var name: String { "use" }

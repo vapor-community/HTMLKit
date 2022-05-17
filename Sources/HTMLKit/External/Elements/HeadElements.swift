@@ -1,24 +1,24 @@
-/// ## Description
-/// The file contains the figure elements. The html element Head only allows these elements to be its
-/// descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the head elements. The html-element 'head' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
 /// The element represents the document's title.
 ///
-/// There must be no more than one title element per document.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-title-element
-///
+/// ```html
+/// <title></title>
+/// ```
 public struct Title: ContentNode, HeadElement {
 
     internal var name: String { "title" }
@@ -200,15 +200,11 @@ extension Title: Modifiable {
     }
 }
 
-
-/// ## Description
-/// The element specifies the document base url.
+/// The element specifies the document base url.#
 ///
-/// There must be no more than one base element per document.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-base-element
-///
+/// ```html
+/// <base>
+/// ```
 public struct Base: EmptyNode, HeadElement {
 
     internal var name: String { "base" }
@@ -397,13 +393,11 @@ extension Base: Modifiable {
     }
 }
 
-/// ## Description
 /// The element provides meta information about the document.
 ///
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-meta-element
-///
+/// ```html
+/// <meta></meta>
+/// ```
 public struct Meta: EmptyNode, HeadElement {
 
     internal var name: String { "meta" }
@@ -608,13 +602,11 @@ extension Meta: Modifiable {
     }
 }
 
-/// ## Description
 /// The element contains style information for the document.
 ///
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-style-element
-///
+/// ```html
+/// <style></style>
+/// ```
 public struct Style: ContentNode, HeadElement {
 
     internal var name: String { "style" }
@@ -808,12 +800,11 @@ extension Style: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a comment output.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-link-element
-///
+/// ```html
+/// <link>
+/// ```
 public struct Link: EmptyNode, HeadElement {
 
     internal var name: String { "link" }

@@ -1,18 +1,18 @@
-/// ## Description
-/// The file contains the view components.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the basic attribute handlers.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
-/// ## Description
 /// The component returns a meta element with twitter and opengraph.
-///
-/// ## References
-///
 public struct MetaTitle: Component {
     
     private var title: TemplateValue<String>
@@ -44,11 +44,7 @@ public struct MetaTitle: Component {
     }
 }
 
-/// ## Description
 /// The component returns a meta element with twitter and opengraph.
-///
-/// ## References
-///
 public struct MetaDescription: Component {
 
     private var description: TemplateValue<String>
@@ -80,11 +76,7 @@ public struct MetaDescription: Component {
     }
 }
 
-/// ## Description
 /// The component returns a link element.
-///
-/// ## References
-///
 public struct Favicon: Component {
 
     private let url: TemplateValue<String>
@@ -100,11 +92,7 @@ public struct Favicon: Component {
     }
 }
 
-/// ## Description
 /// The component returns a link element.
-///
-/// ## References
-///
 public struct Stylesheet: Component {
     
     private var url: TemplateValue<String>
@@ -121,11 +109,7 @@ public struct Stylesheet: Component {
     }
 }
 
-/// ## Description
 /// The component returns a meta element.
-///
-/// ## References
-///
 public struct Viewport: Component {
 
     private var mode: WidthMode
@@ -155,11 +139,7 @@ public struct Viewport: Component {
     }
 }
 
-/// ## Description
 /// The component returns a meta element.
-///
-/// ## References
-///
 public struct Author: Component {
 
     private var author: TemplateValue<String>

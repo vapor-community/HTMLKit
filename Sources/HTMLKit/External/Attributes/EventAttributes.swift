@@ -1,34 +1,30 @@
-/// ## Description
-/// The file contains the event attribute handlers.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the protocols for the event html-attributes.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
-/// The alias combines the global attributes.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
+/// The alias combines the global attributes of the event attributes.
 public typealias GlobalEventAttributes = ContextMenuEventAttribute & WheelEventAttribute & DragEventAttribute & DragEndEventAttribute & DragEnterEventAttribute & DragLeaveEventAttribute & DragOverEventAttribute & DragStartEventAttribute & DropEventAttribute
 
-/// ## Description
 /// The protocol provides the element with the onafterprint handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol AfterPrintEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onafterprint'.
     ///
-    ///
+    /// ```html
+    /// <tag onafterprint="" />
+    /// ```
     func onAfterPrint(_ value: String) -> Self
 }
 
@@ -61,17 +57,14 @@ extension AfterPrintEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onbeforeprint handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol BeforePrintEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onbeforeprint'.
     ///
-    ///
+    /// ```html
+    /// <tag onbeforeprint="" />
+    /// ```
     func onBeforePrint(_ value: String) -> Self
 }
 
@@ -104,17 +97,14 @@ extension BeforePrintEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onbeforeunload handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol BeforeUnloadEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onbeforeunload'.
     ///
-    ///
+    /// ```html
+    /// <tag onbeforeunload="" />
+    /// ```
     func onBeforeUnload(_ value: String) -> Self
 }
 
@@ -147,17 +137,14 @@ extension BeforeUnloadEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onerror handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ErrorEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onerror'.
     ///
-    ///
+    /// ```html
+    /// <tag onerror="" />
+    /// ```
     func onError(_ value: String) -> Self
 }
 
@@ -190,17 +177,14 @@ extension ErrorEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onhashchange handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol HashChangeEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onhashchange'.
     ///
-    ///
+    /// ```html
+    /// <tag onhashchange="" />
+    /// ```
     func onHashChange(_ value: String) -> Self
 }
 
@@ -233,17 +217,14 @@ extension HashChangeEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onload handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol LoadEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onload'.
     ///
-    ///
+    /// ```html
+    /// <tag onload="" />
+    /// ```
     func onLoad(_ value: String) -> Self
 }
 
@@ -276,17 +257,14 @@ extension LoadEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onmessage handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol MessageEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onmessage'.
     ///
-    ///
+    /// ```html
+    /// <tag onmessage="" />
+    /// ```
     func onMessage(_ value: String) -> Self
 }
 
@@ -319,17 +297,14 @@ extension MessageEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onoffline handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol OfflineEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onoffline'.
     ///
-    ///
+    /// ```html
+    /// <tag onoffline="" />
+    /// ```
     func onOffline(_ value: String) -> Self
 }
 
@@ -362,17 +337,14 @@ extension OfflineEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ononline handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol OnlineEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ononline'.
     ///
-    ///
+    /// ```html
+    /// <tag ononline="" />
+    /// ```
     func onOnline(_ value: String) -> Self
 }
 
@@ -405,17 +377,14 @@ extension OnlineEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onpagehide handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol PageHideEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onpagehide'.
     ///
-    ///
+    /// ```html
+    /// <tag onpagehide="" />
+    /// ```
     func onPageHide(_ value: String) -> Self
 }
 
@@ -448,17 +417,14 @@ extension PageHideEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onpageshow handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol PageShowEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onpageshow'.
     ///
-    ///
+    /// ```html
+    /// <tag onpageshow="" />
+    /// ```
     func onPageShow(_ value: String) -> Self
 }
 
@@ -491,17 +457,14 @@ extension PageShowEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onpopstate handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol PopstateEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onpopstate'.
     ///
-    ///
+    /// ```html
+    /// <tag onpopstate="" />
+    /// ```
     func onPopstate(_ value: String) -> Self
 }
 
@@ -534,17 +497,14 @@ extension PopstateEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onresize handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ResizeEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onresize'.
     ///
-    ///
+    /// ```html
+    /// <tag onresize="" />
+    /// ```
     func onResize(_ value: String) -> Self
 }
 
@@ -577,17 +537,14 @@ extension ResizeEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onstorage handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol StorageEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onstorage'.
     ///
-    ///
+    /// ```html
+    /// <tag onstorage="" />
+    /// ```
     func onStorage(_ value: String) -> Self
 }
 
@@ -620,17 +577,14 @@ extension StorageEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onunload handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol UnloadEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onunload'.
     ///
-    ///
+    /// ```html
+    /// <tag onunload="" />
+    /// ```
     func onUnload(_ value: String) -> Self
 }
 
@@ -663,17 +617,14 @@ extension UnloadEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onblur handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol BlurEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onblur'.
     ///
-    ///
+    /// ```html
+    /// <tag onblur="" />
+    /// ```
     func onBlur(_ value: String) -> Self
 }
 
@@ -706,17 +657,14 @@ extension BlurEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onchange handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ChangeEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onchange'.
     ///
-    ///
+    /// ```html
+    /// <tag onchange="" />
+    /// ```
     func onChange(_ value: String) -> Self
 }
 
@@ -749,17 +697,14 @@ extension ChangeEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oncontextmenu handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ContextMenuEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oncontextmenu'.
     ///
-    ///
+    /// ```html
+    /// <tag ncontextmenu="" />
+    /// ```
     func onContextMenu(_ value: String) -> Self
 }
 
@@ -792,17 +737,14 @@ extension ContextMenuEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onfocus handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol FocusEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onfocus'.
     ///
-    ///
+    /// ```html
+    /// <tag onfocus="" />
+    /// ```
     func onFocus(_ value: String) -> Self
 }
 
@@ -835,17 +777,14 @@ extension FocusEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oninput handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol InputEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oninput'.
     ///
-    ///
+    /// ```html
+    /// <tag oninput="" />
+    /// ```
     func onInput(_ value: String) -> Self
 }
 
@@ -878,17 +817,14 @@ extension InputEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oninvalid handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol InvalidEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oninvalid'.
     ///
-    ///
+    /// ```html
+    /// <tag oninvalid="" />
+    /// ```
     func onInvalid(_ value: String) -> Self
 }
 
@@ -921,17 +857,14 @@ extension InvalidEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onreset handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ResetEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onreset'.
     ///
-    ///
+    /// ```html
+    /// <tag onreset="" />
+    /// ```
     func onReset(_ value: String) -> Self
 }
 
@@ -964,17 +897,14 @@ extension ResetEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onsearch handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol SearchEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onsearch'.
     ///
-    ///
+    /// ```html
+    /// <tag onsearch="" />
+    /// ```
     func onSearch(_ value: String) -> Self
 }
 
@@ -1007,17 +937,14 @@ extension SearchEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onselect handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol SelectEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onselect'.
     ///
-    ///
+    /// ```html
+    /// <tag onselect="" />
+    /// ```
     func onSelect(_ value: String) -> Self
 }
 
@@ -1050,17 +977,14 @@ extension SelectEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onsubmit handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol SubmitEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onsubmit'.
     ///
-    ///
+    /// ```html
+    /// <tag onsubmit="" />
+    /// ```
     func onSubmit(_ value: String) -> Self
 }
 
@@ -1093,17 +1017,14 @@ extension SubmitEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onkeydown handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol KeyDownEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onkeydown'.
     ///
-    ///
+    /// ```html
+    /// <tag onkeydown="" />
+    /// ```
     func onKeyDown(_ value: String) -> Self
 }
 
@@ -1136,17 +1057,14 @@ extension KeyDownEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
-/// The protocol provides the element with the onkeypress handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
+/// The protocol provides the element with the onkeypress handler
 public protocol KeyPressEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onkeypress'.
     ///
-    ///
+    /// ```html
+    /// <tag onkeypress="" />
+    /// ```
     func onKeyPress(_ value: String) -> Self
 }
 
@@ -1179,17 +1097,14 @@ extension KeyPressEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onkeyup handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol KeyUpEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onkeyup'.
     ///
-    ///
+    /// ```html
+    /// <tag onkeyup="" />
+    /// ```
     func onKeyUp(_ value: String) -> Self
 }
 
@@ -1222,17 +1137,14 @@ extension KeyUpEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onclick handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ClickEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onclick'.
     ///
-    ///
+    /// ```html
+    /// <tag onclick="" />
+    /// ```
     func onClick(_ value: String) -> Self
 }
 
@@ -1265,17 +1177,14 @@ extension ClickEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondbclick handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DoubleClickEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondbclick'.
     ///
-    ///
+    /// ```html
+    /// <tag ondbclick="" />
+    /// ```
     func onDoubleClick(_ value: String) -> Self
 }
 
@@ -1308,17 +1217,14 @@ extension DoubleClickEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onmousedown handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol MouseDownEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onmousedown'.
     ///
-    ///
+    /// ```html
+    /// <tag onmousedown="" />
+    /// ```
     func onMouseDown(_ value: String) -> Self
 }
 
@@ -1351,17 +1257,14 @@ extension MouseDownEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onmousemove handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol MouseMoveEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onmousemove'.
     ///
-    ///
+    /// ```html
+    /// <tag onmousemove="" />
+    /// ```
     func onMouseMove(_ value: String) -> Self
 }
 
@@ -1394,17 +1297,14 @@ extension MouseMoveEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onmouseout handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol MouseOutEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onmouseout'.
     ///
-    ///
+    /// ```html
+    /// <tag onmouseout="" />
+    /// ```
     func onMouseOut(_ value: String) -> Self
 }
 
@@ -1437,17 +1337,14 @@ extension MouseOutEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onmouseover handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol MouseOverEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onmouseover'.
     ///
-    ///
+    /// ```html
+    /// <tag onmouseover="" />
+    /// ```
     func onMouseOver(_ value: String) -> Self
 }
 
@@ -1480,17 +1377,14 @@ extension MouseOverEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onmouseup handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol MouseUpEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onmouseup'.
     ///
-    ///
+    /// ```html
+    /// <tag onmouseup="" />
+    /// ```
     func onMouseUp(_ value: String) -> Self
 }
 
@@ -1523,17 +1417,14 @@ extension MouseUpEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onwheel handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol WheelEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onwheel'.
     ///
-    ///
+    /// ```html
+    /// onwheel="" />
+    /// ```
     func onWheel(_ value: String) -> Self
 }
 
@@ -1566,17 +1457,14 @@ extension WheelEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondrag handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DragEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondrag'.
     ///
-    ///
+    /// ```html
+    /// <tag ondrag="" />
+    /// ```
     func onDrag(_ value: String) -> Self
 }
 
@@ -1609,17 +1497,14 @@ extension DragEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondragenter handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DragEnterEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondragenter'.
     ///
-    ///
+    /// ```html
+    /// <tag ondragenter="" />
+    /// ```
     func onDragEnter(_ value: String) -> Self
 }
 
@@ -1652,17 +1537,14 @@ extension DragEnterEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondragend handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DragEndEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondragend'.
     ///
-    ///
+    /// ```html
+    /// <tag ondragend="" />
+    /// ```
     func onDragEnd(_ value: String) -> Self
 }
 
@@ -1695,17 +1577,14 @@ extension DragEndEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondragleave handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DragLeaveEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondragleave'.
     ///
-    ///
+    /// ```html
+    /// <tag ondragleave="" />
+    /// ```
     func onDragLeave(_ value: String) -> Self
 }
 
@@ -1738,17 +1617,14 @@ extension DragLeaveEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondragover handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DragOverEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondragover'.
     ///
-    ///
+    /// ```html
+    /// <tag ondragover="" />
+    /// ```
     func onDragOver(_ value: String) -> Self
 }
 
@@ -1781,17 +1657,14 @@ extension DragOverEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondragstart handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DragStartEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondragstart'.
     ///
-    ///
+    /// ```html
+    /// <tag ondragstart="" />
+    /// ```
     func onDragStart(_ value: String) -> Self
 }
 
@@ -1824,17 +1697,14 @@ extension DragStartEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondrop handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DropEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondrop'.
     ///
-    ///
+    /// ```html
+    /// <tag ondrop="" />
+    /// ```
     func onDrop(_ value: String) -> Self
 }
 
@@ -1867,17 +1737,14 @@ extension DropEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onscroll handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ScrollEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onscroll'.
     ///
-    ///
+    /// ```html
+    /// <tag onscroll="" />
+    /// ```
     func onScroll(_ value: String) -> Self
 }
 
@@ -1910,17 +1777,14 @@ extension ScrollEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oncopy handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol CopyEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oncopy'.
     ///
-    ///
+    /// ```html
+    /// <tag oncopy="" />
+    /// ```
     func onCopy(_ value: String) -> Self
 }
 
@@ -1953,17 +1817,14 @@ extension CopyEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oncut handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol CutEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oncut'.
     ///
-    ///
+    /// ```html
+    /// <tag oncut="" />
+    /// ```
     func onCut(_ value: String) -> Self
 }
 
@@ -1996,17 +1857,14 @@ extension CutEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onpaste handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol PasteEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onpaste'.
     ///
-    ///
+    /// ```html
+    /// <tag onpaste="" />
+    /// ```
     func onPaste(_ value: String) -> Self
 }
 
@@ -2039,17 +1897,14 @@ extension PasteEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onabort handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol AbortEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onabort'.
     ///
-    ///
+    /// ```html
+    /// <tag onabort="" />
+    /// ```
     func onAbort(_ value: String) -> Self
 }
 
@@ -2082,17 +1937,14 @@ extension AbortEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oncanplay handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol CanPlayEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oncanplay'.
     ///
-    ///
+    /// ```html
+    /// <tag oncanplay="" />
+    /// ```
     func onCanPlay(_ value: String) -> Self
 }
 
@@ -2125,17 +1977,14 @@ extension CanPlayEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oncanplaythrough handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol CanPlayThroughEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oncanplaythrough'.
     ///
-    ///
+    /// ```html
+    /// <tag oncanplaythrough="" />
+    /// ```
     func onCanPlayThrough(_ value: String) -> Self
 }
 
@@ -2168,17 +2017,14 @@ extension CanPlayThroughEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oncuechange handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol CueChangeEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oncuechange'.
     ///
-    ///
+    /// ```html
+    /// <tag oncuechange="" />
+    /// ```
     func onCueChange(_ value: String) -> Self
 }
 
@@ -2211,17 +2057,14 @@ extension CueChangeEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondurationchange handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DurationChangeEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondurationchange'.
     ///
-    ///
+    /// ```html
+    /// <tag ondurationchange="" />
+    /// ```
     func onDurationChange(_ value: String) -> Self
 }
 
@@ -2254,17 +2097,14 @@ extension DurationChangeEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onemptied handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol EmptiedEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onemptied'.
     ///
-    ///
+    /// ```html
+    /// <tag onemptied="" />
+    /// ```
     func onEmptied(_ value: String) -> Self
 }
 
@@ -2297,17 +2137,14 @@ extension EmptiedEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onended handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol EndedEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onended'.
     ///
-    ///
+    /// ```html
+    /// <tag onended="" />
+    /// ```
     func onEnded(_ value: String) -> Self
 }
 
@@ -2340,17 +2177,14 @@ extension EndedEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onloadeddata handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol LoadedDataEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onloadeddata'.
     ///
-    ///
+    /// ```html
+    /// <tag onloadeddata="" />
+    /// ```
     func onLoadedData(_ value: String) -> Self
 }
 
@@ -2383,17 +2217,14 @@ extension LoadedDataEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onloadedmetadata handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol LoadedMetaDataEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onloadedmetadata'.
     ///
-    ///
+    /// ```html
+    /// <tag onloadedmetadata="" />
+    /// ```
     func onLoadedMetaData(_ value: String) -> Self
 }
 
@@ -2426,17 +2257,14 @@ extension LoadedMetaDataEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onloadstart handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol LoadStartEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onloadstart'.
     ///
-    ///
+    /// ```html
+    /// <tag onloadstart="" />
+    /// ```
     func onLoadStart(_ value: String) -> Self
 }
 
@@ -2469,17 +2297,14 @@ extension LoadStartEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onpause handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol PauseEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onpause'.
     ///
-    ///
+    /// ```html
+    /// <tag onpause="" />
+    /// ```
     func onPause(_ value: String) -> Self
 }
 
@@ -2512,17 +2337,14 @@ extension PauseEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onplay handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol PlayEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onplay'.
     ///
-    ///
+    /// ```html
+    /// <tag onplay="" />
+    /// ```
     func onPlay(_ value: String) -> Self
 }
 
@@ -2555,17 +2377,14 @@ extension PlayEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onplaying handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol PlayingEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onplaying'.
     ///
-    ///
+    /// ```html
+    /// <tag onplaying="" />
+    /// ```
     func OnPlaying(_ value: String) -> Self
 }
 
@@ -2598,17 +2417,14 @@ extension PlayingEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onprogress handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ProgressEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onprogress'.
     ///
-    ///
+    /// ```html
+    /// <tag onprogress="" />
+    /// ```
     func onProgress(_ value: String) -> Self
 }
 
@@ -2641,17 +2457,14 @@ extension ProgressEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onratechange handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol RateChangeEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onratechange'.
     ///
-    ///
+    /// ```html
+    /// <tag onratechange="" />
+    /// ```
     func onRateChange(_ value: String) -> Self
 }
 
@@ -2684,17 +2497,14 @@ extension RateChangeEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onseeked handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol SeekedEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onseeked'.
     ///
-    ///
+    /// ```html
+    /// <tag onseeked="" />
+    /// ```
     func onSeeked(_ value: String) -> Self
 }
 
@@ -2727,17 +2537,14 @@ extension SeekedEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onseeking handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol SeekingEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onseeking'.
     ///
-    ///
+    /// ```html
+    /// <tag onseeking="" />
+    /// ```
     func onSeeking(_ value: String) -> Self
 }
 
@@ -2770,17 +2577,14 @@ extension SeekingEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onstalled handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol StalledEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onstalled'.
     ///
-    ///
+    /// ```html
+    /// <tag onstalled="" />
+    /// ```
     func onStalled(_ value: String) -> Self
 }
 
@@ -2813,17 +2617,14 @@ extension StalledEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onsuspend handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol SuspendEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onsuspend'.
     ///
-    ///
+    /// ```html
+    /// <tag onsuspend="" />
+    /// ```
     func onSuspend(_ value: String) -> Self
 }
 
@@ -2856,17 +2657,14 @@ extension SuspendEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ontimeupdate handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol TimeUpdateEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ontimeupdate'.
     ///
-    ///
+    /// ```html
+    /// <tag ontimeupdate="" />
+    /// ```
     func onTimeUpdate(_ value: String) -> Self
 }
 
@@ -2899,17 +2697,14 @@ extension TimeUpdateEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onvolumechange handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol VolumeChangeEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onvolumechange'.
     ///
-    ///
+    /// ```html
+    /// <tag onvolumechange="" />
+    /// ```
     func onVolumeChange(_ value: String) -> Self
 }
 
@@ -2942,17 +2737,14 @@ extension VolumeChangeEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onwaiting handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol WaitingEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onwaiting'.
     ///
-    ///
+    /// ```html
+    /// <tag onwaiting="" />
+    /// ```
     func onWaiting(_ value: String) -> Self
 }
 
@@ -2985,17 +2777,14 @@ extension WaitingEventAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ontoggle handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ToggleEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ontoggle'.
     ///
-    ///
+    /// ```html
+    /// <tag ontoggle="" />
+    /// ```
     func onToggle(_ value: String) -> Self
 }
 

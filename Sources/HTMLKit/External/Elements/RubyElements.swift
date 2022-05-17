@@ -1,32 +1,42 @@
-/// ## Description
-/// The file contains the ruby elements. The html element Ruby only allows these elements to be its
-/// descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the ruby elements. The html-element 'ruby' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
-/// The alias points to RubyText.
+/// The alias for the element RubyText.
 ///
+/// Rt is the official tag and can be used instead of RubyText.
+///
+/// ```html
+/// <rt></rt>
+/// ```
 public typealias Rt = RubyText
 
-/// ## Description
-/// The alias points to RubyPronunciation.
+/// The alias for the element RubyPronunciation.
 ///
+/// Rp is the official tag and can be used instead of RubyPronunciation.
+///
+/// ```html
+/// <rp></rp>
+/// ```
 public typealias Rp = RubyPronunciation
 
-/// ## Description
 /// The element marks the ruby text component of a ruby annotation.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-rt-element
-///
+/// ```html
+/// <rt></rt>
+/// ```
 public struct RubyText: ContentNode, RubyElement {
 
     internal var name: String { "rt" }
@@ -208,12 +218,11 @@ extension RubyText: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents nothing.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-rp-element
-///
+/// ```html
+/// <rp></rp>
+/// ```
 public struct RubyPronunciation: ContentNode, RubyElement {
 
     internal var name: String { "rp" }

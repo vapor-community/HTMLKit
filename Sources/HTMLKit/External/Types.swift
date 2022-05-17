@@ -1,18 +1,22 @@
-/// ## Description
-/// The file contains html types.
-///
-/// # Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// # Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains html-types.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
-/// ## Description
-/// The type is for
+/// A name for a element.
 ///
-/// ## References
-///
+/// ```html
+/// <meta name="viewport">
+/// ```
 public enum Names: String {
     
     case author = "author"
@@ -23,46 +27,57 @@ public enum Names: String {
     case applicationName = "application-name"
 }
 
-/// ## Description
-/// The type is for
+/// A typ for buttons.
 ///
-/// ## References
-///
+/// ```html
+/// <button type="submit"></button>
+/// ```
 public enum Buttons: String {
 
+    /// Submits form data.
     case submit
+    
     case button
+    
+    /// Resets the form data to its initial values.
     case reset
 }
 
-/// ## Description
-/// The type is for
+/// A encoding for the form submission.
 ///
-/// ## References
-///
+/// ```html
+/// <form enctype="text/plain"></form>
+/// ```
 public enum Encoding: String {
     
+    /// Encodes the data before sent to server.
     case urlEncoded = "application/x-www-form-urlencoded"
+    
+    /// Allows to upload file data.
     case multipart = "multipart/form-data"
+    
     case plainText = "text/plain"
 }
 
-/// ## Description
-/// The type is for
+/// A method for the form submission.
 ///
-/// ## References
-///
+/// ```html
+/// <form method="get"></form>
+/// ```
 public enum Method: String {
     
+    /// Sends the form data as a post transaction.
     case post
+    
+    /// Appends the form data to name/value pairs.
     case get
 }
 
-/// ## Description
-/// The type is for
+/// A type of input elements.
 ///
-/// ## References
-///
+/// ```html
+/// <input type="password">
+/// ```
 public enum Inputs: String {
     
     case text
@@ -89,11 +104,11 @@ public enum Inputs: String {
     case phone = "tel"
 }
 
-/// ## Description
-/// The type is for
+/// A language
 ///
-/// ## References
-///
+/// ```html
+/// <html lang="en"></html>
+/// ```
 public enum Language: String {
     
     case abkhazian = "ab"
@@ -282,11 +297,11 @@ public enum Language: String {
     case zulu = "zu"
 }
 
-/// ## Description
-/// The type is for
+/// A reference information on a link.
 ///
-/// ## References
-///
+/// ```html
+/// <a referrerpolicy="no-referrer"></a>
+/// ```
 public enum Policy: String {
     
     case strictOriginWhenCrossOrigin = "strict-origin-when-cross-origin"
@@ -299,11 +314,11 @@ public enum Policy: String {
     case unsafeUrl = "unsafe-url"
 }
 
-/// ## Description
-/// The type is for
+/// A reference information between a link and the current document.
 ///
-/// ## References
-///
+/// ```html
+/// <a rel="next"></a>
+/// ```
 public enum Relation: String {
     
     case alternate
@@ -329,21 +344,28 @@ public enum Relation: String {
     case shortcutIcon = "shortcut icon"
 }
 
-/// ## Description
-/// The type is for
+/// A target for reference links.
 ///
-/// ## References
-///
+/// ```html
+/// <button type="submit"></button>
+/// ```
 public enum Target: String {
     
+    /// Opens the target in a separate tab or window.
     case blank = "_blank"
+    
+    /// Opens the target in the parent frame.
     case parent = "_parent"
+    
+    /// Opens the target in the full frame of the window.
     case top = "_top"
 }
 
 /// The type is for
 ///
-///
+/// ```html
+/// <area shape="rect">
+/// ```
 public enum Shape: String {
     
     case `default`
@@ -352,34 +374,42 @@ public enum Shape: String {
     case rectangle = "rect"
 }
 
-/// ## Description
-/// The type is for
+/// A manner of text wrapping.
 ///
-/// ## References
-///
+/// ```html
+/// <textarea wrap="hard">
+/// ```
 public enum Wrapping: String {
     
+    /// Does not wrap the text after form submission.
     case soft
+    
+    /// Wraps the text, after form submission.
     case hard
 }
 
-/// ## Description
-/// The type is for
+/// A text direction.
 ///
-/// ## References
-///
+/// ```html
+/// <p dir="rtl"></p>
+/// ```
 public enum Direction: String {
     
+    /// Sets the direction left to right.
     case leftToRight = "ltr"
+    
+    /// Sets the direction right to left.
     case rightToLeft = "rtl"
+    
+    /// Decides the direction by its content.
     case auto
 }
 
-/// ## Description
 /// The type is for
 ///
-/// ## References
-///
+/// ```html
+/// <link type="text/css"></link>
+/// ```
 public enum Medias: String {
     
     case html = "text/html"
@@ -392,11 +422,11 @@ public enum Medias: String {
     case xIcon = "image/x-icon"
 }
 
-/// ## Description
 /// The type is for
 ///
-/// ## References
-///
+/// ```html
+/// <ol type="I"></ol>
+/// ```
 public enum Marker: String {
     
     case decimal = "1"
@@ -406,11 +436,11 @@ public enum Marker: String {
     case lowercaseRoman = "i"
 }
 
-/// ## Description
 /// The type is for
 ///
-/// ## References
-///
+/// ```html
+/// <!DOCTYPE html5>
+/// ```
 public enum Doctypes: String {
         
     case html5 = "html"
@@ -423,11 +453,11 @@ public enum Doctypes: String {
     case xhtml = #"html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd""#
 }
 
-/// ## Description
 /// The type is for
 ///
-/// ## References
-///
+/// ```html
+/// <meta property="og:title">
+/// ```
 public enum Graphs: String {
 
     case title = "og:title"
@@ -439,11 +469,11 @@ public enum Graphs: String {
     case siteName = "og:site_name"
 }
 
-/// ## Description
 /// The type is for
 ///
-/// ## References
-///
+/// ```html
+/// <input enterkeyhint="next">
+/// ```
 public enum Hint: String {
     
     case enter
@@ -455,37 +485,50 @@ public enum Hint: String {
     case send
 }
 
-/// ## Description
 /// The type is for
 ///
-/// ## References
-///
+/// ```html
+/// <input autocapitalize="words"></input>
+/// ```
 public enum Capitalization: String {
     
+    /// Does not capitlize.
     case off = "off"
+    
+    /// Capitlizes the entire text.
     case characters = "characters"
+    
+    /// Capitlizes the first letter of each word.
     case words = "words"
+    
+    /// Capitlizes first letter of the sentence.
     case sentences = "sentences"
 }
 
-/// ## Description
-/// The type is for
+/// A character encoding for the html-document.
 ///
-/// ## References
-///
+/// ```html
+/// <meta charset="utf-8">
+/// ```
 public enum Charset: String {
     
+    /// Specifies the encoding for unicode.
     case utf8 = "utf-8"
+    
     case utf16 = "utf-16"
+    
+    /// Specifies the encoding for windows-1252.
     case ansi = "windows-1252"
+    
+    /// Specifies the encoding for latin alphabet.
     case iso = "iso-8859-1"
 }
 
-/// ## Description
 /// The type is for
 ///
-/// ## References
-///
+/// ```html
+/// <meta http-equiv="refresh">
+/// ```
 public enum Equivalent: String {
     
     case content = "content-type"
@@ -493,11 +536,11 @@ public enum Equivalent: String {
     case refresh = "refresh"
 }
 
-/// ## Description
 /// The type is for
 ///
-/// ## References
-///
+/// ```html
+/// <a role="button"></a>
+/// ```
 public enum Roles: String {
     
     case alert
@@ -581,11 +624,11 @@ public enum Roles: String {
     case window
 }
 
-/// ## Description
 /// The type is for
 ///
-/// ## References
-///
+/// ```html
+/// <line stroke-linecap="square">
+/// ```
 public enum Linecap: String {
     
     case butt
@@ -593,11 +636,11 @@ public enum Linecap: String {
     case round
 }
 
-/// ## Description
 /// The type is for
 ///
-/// ## References
-///
+/// ```html
+/// <path stroke-linejoin="bevel"></path>
+/// ```
 public enum Linejoin: String {
     
     case miter

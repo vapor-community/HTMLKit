@@ -1,6 +1,4 @@
 /// The protocol defines
-///
-///
 public protocol Conditionable: AnyContent {
     
     func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool

@@ -1,18 +1,18 @@
-/// ## Description
-/// The file contains the basic attribute handlers.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the builder for the content.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
-/// ## Description
 /// The builder builds up a result value from a sequence of any content.
-///
-/// ## References
-///
 @resultBuilder public class ContentBuilder<T> {
     
     public static func buildBlock() -> [T] {

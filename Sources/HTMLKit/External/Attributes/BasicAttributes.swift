@@ -1,34 +1,30 @@
-/// ## Description
-/// The file contains the basic attribute handlers.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the protocols for the basic html-attributes.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
-/// The alias combines the global attributes.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#global-attributes
-///
+/// The alias combines the global attributes of the basic attributes.
 public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & CustomAttribute
 
-/// ## Description
 /// The protocol provides the element with the accesskey handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-accesskey-attribute
-///
 public protocol AccessKeyAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'accesskey'.
     ///
-    ///
+    /// ```html
+    /// <tag accesskey="" />
+    /// ```
     func accessKey(_ value: String) -> Self
 }
 
@@ -61,17 +57,14 @@ extension AccessKeyAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the accept handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-accept
-///
 public protocol AcceptAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'accept'.
     ///
-    ///
+    /// ```html
+    /// <tag accept="" />
+    /// ```
     func accept(_ value: String) -> Self
 }
 
@@ -104,17 +97,14 @@ extension AcceptAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the action handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-alt
-///
 public protocol ActionAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'action'.
     ///
-    ///
+    /// ```html
+    /// <tag action="" />
+    /// ```
     func action(_ value: String) -> Self
 }
 
@@ -147,17 +137,14 @@ extension ActionAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the alternate handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-alt
-///
 public protocol AlternateAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'alt'.
     ///
-    ///
+    /// ```html
+    /// <tag alt="" />
+    /// ```
     func alternate(_ value: String) -> Self
 }
 
@@ -190,17 +177,14 @@ extension AlternateAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the asynchronously handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-autocapitalize
-///
 public protocol AsynchronouslyAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'async'.
     ///
-    ///
+    /// ```html
+    /// <tag async="" />
+    /// ```
     func asynchronously() -> Self
 }
 
@@ -233,17 +217,14 @@ extension AsynchronouslyAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the autocapitalize handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-autocapitalize
-///
 public protocol AutocapitalizeAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'autocapitalize'.
     ///
-    ///
+    /// ```html
+    /// <tag autocapitalize="" />
+    /// ```
     func autocapitalize(_ type: Capitalization) -> Self
 }
 
@@ -276,17 +257,14 @@ extension AutocapitalizeAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the autocomplete handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-fe-autocomplete
-///
 public protocol AutocompleteAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'autocomplete'.
     ///
-    ///
+    /// ```html
+    /// <tag autocomplete="" />
+    /// ```
     func hasCompletion(_ condition: Bool) -> Self
 }
 
@@ -319,17 +297,14 @@ extension AutocompleteAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the autofocus handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-fe-autofocus
-///
 public protocol AutofocusAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'autofocus'.
     ///
-    ///
+    /// ```html
+    /// <tag autofocus />
+    /// ```
     func autofocus() -> Self
 }
 
@@ -362,17 +337,14 @@ extension AutofocusAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the autoplay handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-checked
-///
 public protocol AutoplayAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'autoplay'.
     ///
-    ///
+    /// ```html
+    /// <tag autoplay />
+    /// ```
     func autoplay() -> Self
 }
 
@@ -405,17 +377,14 @@ extension AutoplayAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the charset handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-meta-charset
-///
 public protocol CharsetAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'charset'.
     ///
-    ///
+    /// ```html
+    /// <tag charset="" />
+    /// ```
     func charset(_ value: Charset) -> Self
 }
 
@@ -448,17 +417,14 @@ extension CharsetAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the checked handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-checked
-///
 public protocol CheckedAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'checked'.
     ///
-    ///
+    /// ```html
+    /// <tag checked />
+    /// ```
     func checked() -> Self
 }
 
@@ -491,17 +457,14 @@ extension CheckedAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the cite handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-tdth-colspan
-///
 public protocol CiteAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'cite'.
     ///
-    ///
+    /// ```html
+    /// <tag cite="" />
+    /// ```
     func cite(_ value: String) -> Self
 }
 
@@ -534,17 +497,14 @@ extension CiteAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the class handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-tdth-colspan
-///
 public protocol ClassAttribute: AnyAttribute{
     
-    /// The func adds
+    /// The function represents the html-attribute 'class'.
     ///
-    ///
+    /// ```html
+    /// <tag class="" />
+    /// ```
     func `class`(_ value: String) -> Self
 }
 
@@ -577,17 +537,14 @@ extension ClassAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the columns handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-tdth-colspan
-///
 public protocol ColumnsAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'cols'.
     ///
-    ///
+    /// ```html
+    /// <tag cols="" />
+    /// ```
     func columns(_ size: Int) -> Self
 }
 
@@ -620,17 +577,14 @@ extension ColumnsAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the columnspan handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-tdth-colspan
-///
 public protocol ColumnSpanAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'colspan'.
     ///
-    ///
+    /// ```html
+    /// <tag colspan="" />
+    /// ```
     func columnSpan(_ size: Int) -> Self
 }
 
@@ -663,22 +617,17 @@ extension ColumnSpanAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the content handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-contenteditable
-///
 public protocol ContentAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'content'.
     ///
-    ///
+    /// ```html
+    /// <tag content="" />
+    /// ```
     func content(_ value: String) -> Self
     
     /// The func adds
-    ///
-    ///
     func content(_ value: TemplateValue<String>) -> Self
 }
 
@@ -711,17 +660,14 @@ extension ContentAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the iseditable handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-contenteditable
-///
 public protocol EditAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'contenteditable'.
     ///
-    ///
+    /// ```html
+    /// <tag contenteditable />
+    /// ```
     func isEditable(_ condition: Bool) -> Self
 }
 
@@ -754,17 +700,14 @@ extension EditAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the controls handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-accesskey-attribute
-///
 public protocol ControlsAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'controls'.
     ///
-    ///
+    /// ```html
+    /// <tag controls />
+    /// ```
     func controls() -> Self
 }
 
@@ -797,17 +740,14 @@ extension ControlsAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the coordinates handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-accesskey-attribute
-///
 public protocol CoordinatesAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'coordinates'.
     ///
-    ///
+    /// ```html
+    /// <tag coordinates="" />
+    /// ```
     func coordinates(_ value: String) -> Self
 }
 
@@ -840,17 +780,14 @@ extension CoordinatesAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the date handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-accesskey-attribute
-///
 public protocol DataAttribute: AnyAttribute{
     
-    /// The func adds
+    /// The function represents the html-attribute 'data'.
     ///
-    ///
+    /// ```html
+    /// <tag data="" />
+    /// ```
     func data(_ value: String) -> Self
 }
 
@@ -883,17 +820,14 @@ extension DataAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the datetime handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-accesskey-attribute
-///
 public protocol DateTimeAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'datetime'.
     ///
-    ///
+    /// ```html
+    /// <tag datetime="" />
+    /// ```
     func dateTime(_ value: String) -> Self
 }
 
@@ -926,17 +860,14 @@ extension DateTimeAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the default handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-track-default
-///
 public protocol DefaultAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'default'.
     ///
-    ///
+    /// ```html
+    /// <tag default />
+    /// ```
     func `default`() -> Self
 }
 
@@ -969,17 +900,14 @@ extension DefaultAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the defer handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-script-defer
-///
 public protocol DeferAttribute: AnyAttribute {
     
-    /// The handler defers the script execution.
+    /// The function represents the html-attribute 'defer'.
     ///
-    ///
+    /// ```html
+    /// <tag defer />
+    /// ```
     func `defer`() -> Self
 }
 
@@ -1012,17 +940,16 @@ extension DeferAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the direction handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-dir
-///
 public protocol DirectionAttribute: AnyAttribute {
 
-    /// The handler specifies the element's text directionality.
+    /// The function represents the html-attribute 'dir'.
     ///
+    /// It specifies the element's text directionality.
     ///
+    /// ```html
+    /// <tag dir="" />
+    /// ```
     func direction(_ type: Direction) -> Self
 }
 
@@ -1055,17 +982,14 @@ extension DirectionAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
-/// The protocol provides the element with the disabled handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-fe-disabled
-///
+/// The protocol provides the element with the disabled handler
 public protocol DisabledAttribute: AnyAttribute {
     
-    /// The handler disables the element.
+    /// The function represents the html-attribute 'disabled'.
     ///
-    ///
+    /// ```html
+    /// <tag disabled />
+    /// ```
     func disabled() -> Self
 }
 
@@ -1098,17 +1022,14 @@ extension DisabledAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the download handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-hyperlink-download
-///
 public protocol DownloadAttribute: AnyAttribute {
     
-    /// The handler indicates that the link is used for downloading a source.
+    /// The function represents the html-attribute 'download'.
     ///
-    ///
+    /// ```html
+    /// <tag download />
+    /// ```
     func download() -> Self
 }
 
@@ -1141,17 +1062,14 @@ extension DownloadAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the isdraggable handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-draggable
-///
 public protocol DragAttribute: AnyAttribute {
  
-    /// The handler sets if the element is draggable.
+    /// The function represents the html-attribute 'draggable'.
     ///
-    ///
+    /// ```html
+    /// <tag draggable />
+    /// ```
     func isDraggable(_ condition: Bool) -> Self
 }
 
@@ -1184,17 +1102,16 @@ extension DragAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the encoding handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-fs-enctype
-///
 public protocol EncodingAttribute: AnyAttribute {
     
-    /// The handler specifies encoding type to use for form submission.
+    /// The function represents the html-attribute 'enctype'.
     ///
+    /// It specifies encoding type to use for form submission.
     ///
+    /// ```html
+    /// <tag enctype="" />
+    /// ```
     func encoding(_ type: Encoding) -> Self
 }
 
@@ -1227,17 +1144,16 @@ extension EncodingAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the enterkeyhint handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-enterkeyhint
-///
 public protocol EnterKeyHintAttribute: AnyAttribute {
     
-    /// The handler specifies what action label to present for the enter key on virtual keyboards.
+    /// The function represents the html-attribute 'enterkeyhint'.
     ///
+    /// It specifies what action label to present for the enter key on virtual keyboards.
     ///
+    /// ```html
+    /// <tag enterkeyhint="" />
+    /// ```
     func enterKeyHint(_ type: Hint) -> Self
 }
 
@@ -1270,17 +1186,16 @@ extension EnterKeyHintAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the for handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-label-for
-///
 public protocol ForAttribute: AnyAttribute {
     
-    /// The handler specifies the form control with wich the caption is be associated.
+    /// The function represents the html-attribute 'for'.
     ///
+    /// It specifies the form control with wich the caption is be associated.
     ///
+    /// ```html
+    /// <tag for="" />
+    /// ```
     func `for`(_ value: String) -> Self
 }
 
@@ -1313,17 +1228,14 @@ extension ForAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the form handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-fae-form
-///
 public protocol FormAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'form'.
     ///
-    ///
+    /// ```html
+    /// <tag form="" />
+    /// ```
     func form(_ value: String) -> Self
 }
 
@@ -1356,17 +1268,16 @@ extension FormAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the formaction handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-fs-formaction
-///
 public protocol FormActionAttribute: AnyAttribute {
     
-    /// The handler sets the url to use for form submission.
+    /// The function represents the html-attribute 'formaction'.
     ///
+    /// It sets the url to use for form submissions
     ///
+    /// ```html
+    /// <tag formaction="" />
+    /// ```
     func formAction(_ value: String) -> Self
 }
 
@@ -1399,17 +1310,16 @@ extension FormActionAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the http-equiv handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-meta-http-equiv
-///
 public protocol EquivalentAttribute: AnyAttribute {
     
-    /// The handler specifiies the header cells for the element.
+    /// The function represents the html-attribute 'http-equiv'.
     ///
+    /// It specifiies the header cells for the element.
     ///
+    /// ```html
+    /// <tag http-equiv="" />
+    /// ```
     func equivalent(_ value: Equivalent) -> Self
 }
 
@@ -1442,17 +1352,16 @@ extension EquivalentAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the headers handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-tdth-headers
-///
 public protocol HeaderAttribute: AnyAttribute {
     
-    /// The handler specifiies the header cells for the element.
+    /// The function represents the html-attribute 'headers'.
     ///
+    /// It specifiies the header cells for the element.
     ///
+    /// ```html
+    /// <tag headers="" />
+    /// ```
     func headers(_ value: String) -> Self
 }
 
@@ -1485,17 +1394,16 @@ extension HeaderAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the height handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-dim-height
-///
 public protocol HeightAttribute: AnyAttribute {
     
-    /// The handler sets the height of the element.
+    /// The function represents the html-attribute 'height'.
     ///
+    /// It sets the height of the element.
     ///
+    /// ```html
+    /// <tag height="" />
+    /// ```
     func height(_ size: Int) -> Self
 }
 
@@ -1528,17 +1436,14 @@ extension HeightAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with hidden handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-hidden)
-///
 public protocol HiddenAttribute: AnyAttribute {
  
-    /// The func adds
+    /// The function represents the html-attribute 'hidden'.
     ///
-    ///
+    /// ```html
+    /// <tag hidden />
+    /// ```
     func hidden() -> Self
 }
 
@@ -1571,17 +1476,16 @@ extension HiddenAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with high handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-meter-high)
-///
 public protocol HighAttribute: AnyAttribute {
     
-    /// The handler sets the range of the value.
+    /// The function represents the html-attribute 'high'.
     ///
+    /// It sets the range of the value.
     ///
+    /// ```html
+    /// <tag high="" />
+    /// ```
     func high(_ size: Int) -> Self
 }
 
@@ -1614,22 +1518,18 @@ extension HighAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with reference handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-hyperlink-href)
-///
 public protocol ReferenceAttribute: AnyAttribute {
     
-    /// The handler gives the adress of the link.
+    /// The function represents the html-attribute 'href'.
     ///
+    /// It gives the adress of the link.
     ///
+    /// ```html
+    /// <tag href="" />
+    /// ```
     func reference(_ value: String) -> Self
     
-    /// The handler gives the adress of the link.
-    ///
-    ///
     func reference(_ value: TemplateValue<String>) -> Self
 }
 
@@ -1662,17 +1562,16 @@ extension ReferenceAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the language reference handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-hyperlink-hreflang
-///
 public protocol ReferenceLanguageAttribute: AnyAttribute {
     
-    /// The handler gives the language of the linked resource.
+    /// The function represents the html-attribute 'hreflang'.
     ///
+    /// It gives the language of the linked resource.
     ///
+    /// ```html
+    /// <tag hreflang="" />
+    /// ```
     func referenceLanguage(_ type: Language) -> Self
 }
 
@@ -1705,22 +1604,18 @@ extension ReferenceLanguageAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the id handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-id-attribute
-///
 public protocol IdentifierAttribute: AnyAttribute {
  
-    /// The handler specifies its element's unique identifier.
+    /// The function represents the html-attribute 'id'.
     ///
+    /// It specifies its element's unique identifier.
     ///
+    /// ```html
+    /// <tag id="" />
+    /// ```
     func id(_ value: String) -> Self
     
-    /// The handler specifies its element's unique identifier.
-    ///
-    ///
     func id(_ value: TemplateValue<String>) -> Self
 }
 
@@ -1753,17 +1648,14 @@ extension IdentifierAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ismap handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-img-ismap
-///
 public protocol IsMapAttribute: AnyAttribute {
  
-    /// The func adds
+    /// The function represents the html-attribute 'ismap'.
     ///
-    ///
+    /// ```html
+    /// <tag ismap />
+    /// ```
     func isMap() -> Self
 }
 
@@ -1796,17 +1688,14 @@ extension IsMapAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the inputmode handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-inputmode
-///
 public protocol InputModeAttribute: AnyAttribute {
  
-    /// The func adds
+    /// The function represents the html-attribute 'inputmode'.
     ///
-    ///
+    /// ```html
+    /// <tag inputmode="" />
+    /// ```
     func inputMode(_ value: String) -> Self
 }
 
@@ -1839,17 +1728,14 @@ extension InputModeAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the inputmode handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-is
-///
 public protocol IsAttribute: AnyAttribute {
  
-    /// The func adds
+    /// The function represents the html-attribute 'is'.
     ///
-    ///
+    /// ```html
+    /// <tag is="" />
+    /// ```
     func `is`(_ value: String) -> Self
 }
 
@@ -1882,17 +1768,14 @@ extension IsAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the itemid handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-itemid
-///
 public protocol ItemIdAttribute: AnyAttribute {
  
-    /// The func adds
+    /// The function represents the html-attribute 'itemid'.
     ///
-    ///
+    /// ```html
+    /// <tag itemid="" />
+    /// ```
     func itemId(_ value: String) -> Self
 }
 
@@ -1925,17 +1808,14 @@ extension ItemIdAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the itemproperty handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#names:-the-itemprop-attribute
-///
 public protocol ItemPropertyAttribute: AnyAttribute {
  
-    /// The func adds
+    /// The function represents the html-attribute 'itemprop'.
     ///
-    ///
+    /// ```html
+    /// <tag itemprop="" />
+    /// ```
     func itemProperty(_ value: String) -> Self
 }
 
@@ -1968,17 +1848,14 @@ extension ItemPropertyAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the itemreference handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-itemref
-///
 public protocol ItemReferenceAttribute: AnyAttribute {
  
-    /// The func adds
+    /// The function represents the html-attribute 'itemref'.
     ///
-    ///
+    /// ```html
+    /// <tag itemref="" />
+    /// ```
     func itemReference(_ value: String) -> Self
 }
 
@@ -2011,17 +1888,14 @@ extension ItemReferenceAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the itemscope handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-itemscope
-///
 public protocol ItemScopeAttribute: AnyAttribute {
  
-    /// The func adds
+    /// The function represents the html-attribute 'itemscope'.
     ///
-    ///
+    /// ```html
+    /// <tag itemscope="" />
+    /// ```
     func itemScope(_ value: String) -> Self
 }
 
@@ -2054,17 +1928,14 @@ extension ItemScopeAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
-/// The protocol provides the element with the itemtype handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-itemtype
-///
+/// The protocol provides the element with the itemtype handler
 public protocol ItemTypeAttribute: AnyAttribute {
  
-    /// The func adds
+    /// The function represents the html-attribute 'itemtype'.
     ///
-    ///
+    /// ```html
+    /// <tag itemtype="" />
+    /// ```
     func itemType(_ value: String) -> Self
 }
 
@@ -2097,17 +1968,14 @@ extension ItemTypeAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the kind handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-track-kind
-///
 public protocol KindAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'kind'.
     ///
-    ///
+    /// ```html
+    /// <tag kind="" />
+    /// ```
     func kind(_ value: String) -> Self
 }
 
@@ -2140,17 +2008,14 @@ extension KindAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the label handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-track-label
-///
 public protocol LabelAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'label'.
     ///
-    ///
+    /// ```html
+    /// <tag label="" />
+    /// ```
     func label(_ value: String) -> Self
 }
 
@@ -2183,17 +2048,14 @@ extension LabelAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the language handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-lang
-///
 public protocol LanguageAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'lang'.
     ///
-    ///
+    /// ```html
+    /// <tag lang="" />
+    /// ```
     func language(_ type: Language) -> Self
 }
 
@@ -2226,17 +2088,14 @@ extension LanguageAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the list handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-list
-///
 public protocol ListAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'list'.
     ///
-    ///
+    /// ```html
+    /// <tag list="" />
+    /// ```
     func list(_ value: String) -> Self
 }
 
@@ -2269,17 +2128,14 @@ extension ListAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the loop handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-media-loop
-///
 public protocol LoopAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'loop'.
     ///
-    ///
+    /// ```html
+    /// <tag loop />
+    /// ```
     func loop() -> Self
 }
 
@@ -2312,17 +2168,14 @@ extension LoopAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the low handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-meter-low
-///
 public protocol LowAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'low'.
     ///
-    ///
+    /// ```html
+    /// <tag low="" />
+    /// ```
     func low(_ size: Int) -> Self
 }
 
@@ -2355,18 +2208,14 @@ extension LowAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the maximumvalue handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-max
-/// https://html.spec.whatwg.org/#attr-meter-max
-///
 public protocol MaximumValueAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'max'.
     ///
-    ///
+    /// ```html
+    /// <tag max="" />
+    /// ```
     func maximum(_ value: String) -> Self
 }
 
@@ -2399,17 +2248,14 @@ extension MaximumValueAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the maximumlength handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-maxlength
-///
 public protocol MaximumLengthAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'maxlength'.
     ///
-    ///
+    /// ```html
+    /// <tag maxlength="" />
+    /// ```
     func maximum(length value: String) -> Self
 }
 
@@ -2442,17 +2288,14 @@ extension MaximumLengthAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the media handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-link-media
-///
 public protocol MediaAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'media'.
     ///
-    ///
+    /// ```html
+    /// <tag media="" />
+    /// ```
     func media(_ value: String) -> Self
 }
 
@@ -2485,17 +2328,14 @@ extension MediaAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the method handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-fs-method
-///
 public protocol MethodAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'method'.
     ///
-    ///
+    /// ```html
+    /// <tag method="" />
+    /// ```
     func method(_ type: Method) -> Self
 }
 
@@ -2528,17 +2368,14 @@ extension MethodAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the minimumvalue handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-min
-///
 public protocol MinimumValueAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'min'.
     ///
-    ///
+    /// ```html
+    /// <tag min="" />
+    /// ```
     func minimum(_ value: String) -> Self
 }
 
@@ -2571,17 +2408,14 @@ extension MinimumValueAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the minimumlength handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-minlength
-///
 public protocol MinimumLengthAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'minlength'.
     ///
-    ///
+    /// ```html
+    /// <tag minlength="" />
+    /// ```
     func minimum(length value: String) -> Self
 }
 
@@ -2614,17 +2448,14 @@ extension MinimumLengthAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the multiple handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-multiple
-///
 public protocol MultipleAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'multiple'.
     ///
-    ///
+    /// ```html
+    /// <tag multiple />
+    /// ```
     func multiple() -> Self
 }
 
@@ -2657,17 +2488,14 @@ extension MultipleAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the muted handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-media-muted
-///
 public protocol MutedAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'muted'.
     ///
-    ///
+    /// ```html
+    /// <tag muted />
+    /// ```
     func muted() -> Self
 }
 
@@ -2700,24 +2528,19 @@ extension MutedAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the name handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-form-name
-///
 public protocol NameAttribute: AnyAttribute {
 
     associatedtype NameValue
     
-    /// The func adds
+    /// The function represents the html-attribute 'name'.
     ///
-    ///
+    /// ```html
+    /// <tag name="" />
+    /// ```
     func name(_ value: NameValue) -> Self
     
     /// The func adds
-    ///
-    ///
     func name(_ value: TemplateValue<NameValue>) -> Self
 }
 
@@ -2750,17 +2573,14 @@ extension NameAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the nonce handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-nonce
-///
 public protocol NonceAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'nonce'.
     ///
-    ///
+    /// ```html
+    /// <tag nonce="" />
+    /// ```
     func nonce(_ value: String) -> Self
 }
 
@@ -2793,17 +2613,14 @@ extension NonceAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the novalidate handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-fs-novalidate
-///
 public protocol NoValidateAttribute: AnyAttribute {
 
-    /// The func adds
+    /// The function represents the html-attribute 'novalidate'.
     ///
-    ///
+    /// ```html
+    /// <tag novalidate />
+    /// ```
     func novalidate() -> Self
 }
 
@@ -2836,17 +2653,14 @@ extension NoValidateAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the open handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-details-open
-///
 public protocol OpenAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'open'.
     ///
-    ///
+    /// ```html
+    /// <tag open />
+    /// ```
     func isOpen(_ condition: Bool) -> Self
 }
 
@@ -2879,17 +2693,14 @@ extension OpenAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the optimum handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-meter-optimum
-///
 public protocol OptimumAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'optimum'.
     ///
-    ///
+    /// ```html
+    /// <tag optimum="" />
+    /// ```
     func optimum(_ value: Float) -> Self
 }
 
@@ -2922,17 +2733,14 @@ extension OptimumAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the pattern handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-pattern
-///
 public protocol PatternAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'pattern'.
     ///
-    ///
+    /// ```html
+    /// <tag pattern="" />
+    /// ```
     func pattern(_ regex: String) -> Self
 }
 
@@ -2965,17 +2773,14 @@ extension PatternAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the part handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-pattern
-///
 public protocol PartAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'part'.
     ///
-    ///
+    /// ```html
+    /// <tag part="" />
+    /// ```
     func part(_ value: String) -> Self
 }
 
@@ -3008,17 +2813,14 @@ extension PartAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ping handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-pattern
-///
 public protocol PingAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ping'.
     ///
-    ///
+    /// ```html
+    /// <tag ping="" />
+    /// ```
     func ping(_ value: String) -> Self
 }
 
@@ -3051,22 +2853,16 @@ extension PingAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the placeholder handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-placeholder
-///
 public protocol PlaceholderAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'placeholder'.
     ///
-    ///
+    /// ```html
+    /// <tag placeholder="" />
+    /// ```
     func placeholder(_ value: String) -> Self
     
-    /// The func adds
-    ///
-    ///
     func placeholder(_ value: TemplateValue<String>) -> Self
 }
 
@@ -3099,17 +2895,14 @@ extension PlaceholderAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the poster handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-video-poster
-///
 public protocol PosterAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'poster'.
     ///
-    ///
+    /// ```html
+    /// <tag poster="" />
+    /// ```
     func poster(_ value: String) -> Self
 }
 
@@ -3142,17 +2935,14 @@ extension PosterAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the preload handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-media-preload
-///
 public protocol PreloadAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'preload'.
     ///
-    ///
+    /// ```html
+    /// <tag preload="" />
+    /// ```
     func preload(_ value: String) -> Self
 }
 
@@ -3185,17 +2975,14 @@ extension PreloadAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the readonly handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-readonly-attribute
-///
 public protocol ReadyOnlyAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'readonly'.
     ///
-    ///
+    /// ```html
+    /// <tag readonly />
+    /// ```
     func readonly() -> Self
 }
 
@@ -3228,17 +3015,14 @@ extension ReadyOnlyAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the referrerpolicy handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-hyperlink-referrerpolicy
-///
 public protocol ReferrerPolicyAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'referrerpolicy'.
     ///
-    ///
+    /// ```html
+    /// <tag referrerpolicy="" />
+    /// ```
     func referrerPolicy(_ type: Policy) -> Self
 }
 
@@ -3271,17 +3055,14 @@ extension ReferrerPolicyAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the relationship handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-link-rel
-///
 public protocol RelationshipAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'rel'.
     ///
-    ///
+    /// ```html
+    /// <tag rel="" />
+    /// ```
     func relationship(_ type: Relation) -> Self
 }
 
@@ -3314,17 +3095,14 @@ extension RelationshipAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the required handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-required
-///
 public protocol RequiredAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'required'.
     ///
-    ///
+    /// ```html
+    /// <tag required />
+    /// ```
     func required() -> Self
 }
 
@@ -3357,17 +3135,14 @@ extension RequiredAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the reversed handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ReversedAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'reversed'.
     ///
-    ///
+    /// ```html
+    /// <tag reversed />
+    /// ```
     func reversed() -> Self
 }
 
@@ -3400,17 +3175,14 @@ extension ReversedAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the role handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol RoleAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'role'.
     ///
-    ///
+    /// ```html
+    /// <tag role="" />
+    /// ```
     func role(_ value: Roles) -> Self
 }
 
@@ -3443,17 +3215,14 @@ extension RoleAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the rows handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol RowsAttribute: AnyAttribute {
     
-    /// The func adss
+    /// The function represents the html-attribute 'rows'.
     ///
-    ///
+    /// ```html
+    /// <tag rows="" />
+    /// ```
     func rows(_ size: Int) -> Self
 }
 
@@ -3486,17 +3255,14 @@ extension RowsAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the rowspan handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-tdth-rowspan
-///
 public protocol RowSpanAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'rowspan'.
     ///
-    ///
+    /// ```html
+    /// <tag rowspan="" />
+    /// ```
     func rowSpan(_ size: Int) -> Self
 }
 
@@ -3529,17 +3295,14 @@ extension RowSpanAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the sandbox handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-iframe-sandbox
-///
 public protocol SandboxAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'sandbox'.
     ///
-    ///
+    /// ```html
+    /// <tag sandbox />
+    /// ```
     func sandbox() -> Self
 }
 
@@ -3572,17 +3335,14 @@ extension SandboxAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the scope handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-th-scope
-///
 public protocol ScopeAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'scope'.
     ///
-    ///
+    /// ```html
+    /// <tag scope="" />
+    /// ```
     func scope(_ value: String) -> Self
 }
 
@@ -3615,17 +3375,14 @@ extension ScopeAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the shape handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-area-shape
-///
 public protocol ShapeAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'shape'.
     ///
-    ///
+    /// ```html
+    /// <tag shape="" />
+    /// ```
     func shape(_ type: Shape) -> Self
 }
 
@@ -3658,17 +3415,14 @@ extension ShapeAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the size handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-size-attribute
-///
 public protocol SizeAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'size'.
     ///
-    ///
+    /// ```html
+    /// <tag size="" />
+    /// ```
     func size(_ size: Int) -> Self
 }
 
@@ -3701,17 +3455,14 @@ extension SizeAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the sizes handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol SizesAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'sizes'.
     ///
-    ///
+    /// ```html
+    /// <tag sizes="" />
+    /// ```
     func sizes(_ size: Int) -> Self
 }
 
@@ -3744,17 +3495,14 @@ extension SizesAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the slot handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-slot
-///
 public protocol SlotAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'slot'.
     ///
-    ///
+    /// ```html
+    /// <tag slot="" />
+    /// ```
     func slot(_ value: String) -> Self
 }
 
@@ -3787,18 +3535,14 @@ extension SlotAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the span handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-colgroup-span
-/// https://html.spec.whatwg.org/#attr-col-span
-///
 public protocol SpanAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'span'.
     ///
-    ///
+    /// ```html
+    /// <tag span="" />
+    /// ```
     func span(_ size: Int) -> Self
 }
 
@@ -3831,17 +3575,14 @@ extension SpanAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the hasspellcheck handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-spellcheck
-///
 public protocol SpellCheckAttribute: AnyAttribute {
  
-    /// The func adds
+    /// The function represents the html-attribute 'spellcheck'.
     ///
-    ///
+    /// ```html
+    /// <tag spellcheck="" />
+    /// ```
     func hasSpellCheck(_ condition: Bool) -> Self
 }
 
@@ -3874,17 +3615,14 @@ extension SpellCheckAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the source handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-src
-///
 public protocol SourceAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'src'.
     ///
-    ///
+    /// ```html
+    /// <tag src="" />
+    /// ```
     func source(_ value: String) -> Self
 }
 
@@ -3917,17 +3655,14 @@ extension SourceAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the start handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-start
-///
 public protocol StartAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'start'.
     ///
-    ///
+    /// ```html
+    /// <tag start="" />
+    /// ```
     func start(_ size: Int) -> Self
 }
 
@@ -3960,17 +3695,14 @@ extension StartAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the step handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-step-attribute
-///
 public protocol StepAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'step'.
     ///
-    ///
+    /// ```html
+    /// <tag step="" />
+    /// ```
     func step(_ size: Int) -> Self
 }
 
@@ -4003,17 +3735,14 @@ extension StepAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the style handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-style
-///
 public protocol StyleAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'style'.
     ///
-    ///
+    /// ```html
+    /// <tag style="" />
+    /// ```
     func style(_ value: String) -> Self
 }
 
@@ -4046,17 +3775,14 @@ extension StyleAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the tabindex handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-tabindex
-///
 public protocol TabulatorAttribute: AnyAttribute {
  
-    /// The func adds
+    /// The function represents the html-attribute 'tabindex'.
     ///
-    ///
+    /// ```html
+    /// <tag tabindex="" />
+    /// ```
     func tabIndex(_ value: String) -> Self
 }
 
@@ -4089,17 +3815,14 @@ extension TabulatorAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the target handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-base-target
-///
 public protocol TargetAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'target'.
     ///
-    ///
+    /// ```html
+    /// <tag target="" />
+    /// ```
     func target(_ type: Target) -> Self
 }
 
@@ -4132,17 +3855,14 @@ extension TargetAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the title handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-title
-///
 public protocol TitleAttribute: AnyAttribute {
  
-    /// The func adds
+    /// The function represents the html-attribute 'title'.
     ///
-    ///
+    /// ```html
+    /// <tag title="" />
+    /// ```
     func title(_ value: String) -> Self
 }
 
@@ -4175,17 +3895,14 @@ extension TitleAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the translate handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-translate
-///
 public protocol TranslateAttribute: AnyAttribute {
  
-    /// The func adds
+    /// The function represents the html-attribute 'translate'.
     ///
-    ///
+    /// ```html
+    /// <tag translate="" />
+    /// ```
     func translate(_ value: String) -> Self
 }
 
@@ -4218,19 +3935,16 @@ extension TranslateAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the type handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-link-type
-///
 public protocol TypeAttribute: AnyAttribute {
 
     associatedtype TypeValue
     
-    /// The func adds
+    /// The function represents the html-attribute 'type'.
     ///
-    ///
+    /// ```html
+    /// <tag type="" />
+    /// ```
     func type(_ value: TypeValue) -> Self
 }
 
@@ -4263,22 +3977,16 @@ extension TypeAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the value handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-input-value
-///
 public protocol ValueAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'value'.
     ///
-    ///
+    /// ```html
+    /// <tag value="" />
+    /// ```
     func value(_ value: String) -> Self
     
-    /// The func adds
-    ///
-    ///
     func value(_ value: TemplateValue<String>) -> Self
 }
 
@@ -4311,17 +4019,14 @@ extension ValueAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the width handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-dim-width
-///
 public protocol WidthAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'width'.
     ///
-    ///
+    /// ```html
+    /// <tag width="" />
+    /// ```
     func width(_ size: Int) -> Self
 }
 
@@ -4354,17 +4059,14 @@ extension WidthAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the wrap handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-textarea-wrap
-///
 public protocol WrapAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'wrap'.
     ///
-    ///
+    /// ```html
+    /// <tag wrap="" />
+    /// ```
     func wrap(_ type: Wrapping) -> Self
 }
 
@@ -4397,17 +4099,14 @@ extension WrapAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the property handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol PropertyAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'property'.
     ///
-    ///
+    /// ```html
+    /// <tag property="" />
+    /// ```
     func property(_ type: Graphs) -> Self
 }
 
@@ -4440,18 +4139,10 @@ extension PropertyAttribute where Self: EmptyNode {
     }
 }
 
-
-/// ## Description
 /// The protocol provides the element with the property handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol CustomAttribute: AnyAttribute {
     
     /// The func adds
-    ///
-    ///
     func custom(key: String, value: Any) -> Self
 }
 
@@ -4479,17 +4170,14 @@ extension CustomAttribute where Self: EmptyNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the selected handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-option-selected
-///
 public protocol SelectedAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'selected'.
     ///
-    ///
+    /// ```html
+    /// <tag selected />
+    /// ```
     func selected() -> Self
 }
 

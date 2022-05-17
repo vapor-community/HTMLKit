@@ -1,32 +1,42 @@
-/// ## Description
-/// The file contains the definition elements. The html element DescriptionList only allows these
-/// elements to be its descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the definition elements. The html-element 'description' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
-/// The alias points to TermName.
+/// The alias for the element TermName.
 ///
+/// Dt is the official tag and can be used instead of TermName.
+///
+/// ```html
+/// <dt>
+/// ```
 public typealias Dt = TermName
 
-/// ## Description
-/// The alias points to TermDefinition.
+/// The alias for the element TermDefinition.
 ///
+/// Dd is the official tag and can be used instead of TermDefinition.
+///
+/// ```html
+/// <dd></dd>
+/// ```
 public typealias Dd = TermDefinition
 
-/// ## Description
 /// The element specifies a term name.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-dt-element
-///
+/// ```html
+/// <dt>
+/// ```
 public struct TermName: ContentNode, DescriptionElement {
 
     internal var name: String { "dt" }
@@ -208,12 +218,11 @@ extension TermName: Modifiable {
     }
 }
 
-/// ## Description
 /// The element specifies a term definition.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-dd-element
-///
+/// ```html
+/// <dd></dd>
+/// ```
 public struct TermDefinition: ContentNode, DescriptionElement {
 
     internal var name: String { "dd" }

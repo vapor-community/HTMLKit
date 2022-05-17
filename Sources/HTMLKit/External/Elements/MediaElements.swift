@@ -1,22 +1,24 @@
-/// ## Description
-/// The file contains the media elements. The html elements Audio or Video only allows these elements
-/// to be its descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the media elements. The html-element 'audio' or 'video' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
 /// The element allows authors to specify multiple alternative source for other elements.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-source-element
-///
+/// ```html
+/// <source>
+/// ```
 public struct Source: EmptyNode, MediaElement {
 
     internal var name: String { "source" }
@@ -217,12 +219,11 @@ extension Source: Modifiable {
     }
 }
 
-/// ## Description
 /// The element allows to specify explicit external timed text tracks for media elements.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-track-element
-///
+/// ```html
+/// <track>
+/// ```
 public struct Track: EmptyNode, MediaElement {
 
     internal var name: String { "track" }

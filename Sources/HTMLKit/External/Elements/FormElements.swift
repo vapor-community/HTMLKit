@@ -1,22 +1,24 @@
-/// ## Description
-/// The file contains the form elements. The html element Form only allows these elements to be its
-/// descendants. There are some exceptions too.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the form elements. The html-element 'form' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
 /// The element represents a typed data field to allow the user to edit the data.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-input-element
-///
+/// ```html
+/// <input>
+/// ```
 public struct Input: EmptyNode, FormElement {
 
     internal var name: String { "input" }
@@ -309,12 +311,11 @@ extension Input: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a caption for a form control.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-label-element
-///
+/// ```html
+/// <label></label>
+/// ```
 public struct Label: ContentNode, FormElement {
 
     internal var name: String { "label" }
@@ -511,12 +512,11 @@ extension Label: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a control for selecting amongst a set of options.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-select-element
-///
+/// ```html
+/// <select></select>
+/// ```
 public struct Select: ContentNode, FormElement {
 
     internal var name: String { "select" }
@@ -730,12 +730,11 @@ extension Select: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a multiline plain text edit control.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-textarea-element
-///
+/// ```html
+/// <textarea></textarea>
+/// ```
 public struct TextArea: ContentNode, FormElement {
         
     internal var name: String { "textarea" }
@@ -973,12 +972,11 @@ extension TextArea: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a comment output.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-button-element
-///
+/// ```html
+/// <button></button>
+/// ```
 public struct Button: ContentNode, FormElement {
 
     internal var name: String { "button" }
@@ -1203,12 +1201,11 @@ extension Button: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a set of form controls grouped together.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-fieldset-element
-///
+/// ```html
+/// <fieldset></fieldset>
+/// ```
 public struct Fieldset: ContentNode, FormElement {
     
     internal var name: String { "fieldset" }

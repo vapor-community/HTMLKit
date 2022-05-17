@@ -1,22 +1,24 @@
-/// ## Description
-/// The file contains the object elements. The html element Object only allows these elements to be its
-/// descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the object elements. The html-element 'object' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
 /// The element defines parameters for plugins invoked by an object element.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-param-element
-///
+/// ```html
+/// <param>
+/// ```
 public struct Parameter: EmptyNode, ObjectElement {
     
     internal var name: String { "param" }

@@ -1,20 +1,23 @@
-/// ## Description
-/// The file contains layout components.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the protocols for the layout-components.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
-/// ## Description
-/// The protocol is for
+/// A type that defines a page layout.
 ///
-/// ## References
-///
+/// The page covers the whole frame of a hompage. It can contain views and components.
 public protocol Page: GlobalElement {
     
+    /// The content of the page.
     @ContentBuilder<AnyContent> var body: AnyContent { get }
 }
 
@@ -31,17 +34,16 @@ extension Page {
     public var scripts: AnyContent { body.scripts }
 }
 
-/// ## Description
-/// The protocol is for
+/// A type that defines a view layout.
 ///
-/// ## References
-///
+/// The view is a single part of page. It can contain views ad components.
 public protocol View: GlobalElement {
     
     associatedtype Context
     
     var context: TemplateValue<Context> { get }
 
+    /// The content of the view.
     @ContentBuilder<AnyContent> var body: AnyContent { get }
 }
 
@@ -60,13 +62,12 @@ extension View {
     public var scripts: AnyContent { body.scripts }
 }
 
-/// ## Description
-/// The protocol is for
+/// A type that defines a component layout.
 ///
-/// ## References
-///
+/// The component is a partial part of a view or page.
 public protocol Component: GlobalElement {
     
+    /// The content of the component.
     @ContentBuilder<AnyContent> var body: AnyContent { get }
 }
 

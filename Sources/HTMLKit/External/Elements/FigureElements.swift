@@ -1,27 +1,33 @@
-/// ## Description
-/// The file contains the figure elements. The html element Figure only allows these elements to be its
-/// descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the figure elements. The html-element 'figure' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
-/// The alias points to FigureCaption.
+/// The alias for the element FigureCaption.
 ///
+/// Figcaption is the official tag and can be used instead of FigureCaption.
+///
+/// ```html
+/// <figcaption></figcaption>
+/// ```
 public typealias Figcaption = FigureCaption
 
-/// ## Description
 /// The element is used to label a figure.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-figcaption-element
-///
+/// ```html
+/// <figcaption></figcaption>
+/// ```
 public struct FigureCaption: ContentNode, FigureElement {
 
     internal var name: String { "figcaption" }

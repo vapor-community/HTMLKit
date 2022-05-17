@@ -1,30 +1,39 @@
-/// ## Description
-/// The file contains the node definitions.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the node definitions.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr: https://github.com/mattesmohr
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ 
+ */
 
 import OrderedCollections
 
-/// ## Description
-/// The protocol defines a node with content.
-///
-/// ## References
-///
+/// A type that defines a node with content.
 internal protocol ContentNode: AnyNode {
 
     associatedtype Content
     
+    /// The name of the node.
     var name: String { get }
     
+    /// The attributes of the node.
     var attributes: OrderedDictionary<String, Any>? { get }
     
+    /// The content of the node.
     var content: [Content] { get }
     
+    /// Initiates a node.
+    ///
+    /// - Parameters:
+    ///    - attributes:
+    ///    - content:
     init(attributes: OrderedDictionary<String, Any>?, content: [Content])
 }
 
@@ -561,18 +570,19 @@ extension ContentNode where Content == String {
     }
 }
 
-/// ## Description
-/// The protocol defines a node without content.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#void-elements
-///
+/// A type that defines a node without any content.
 internal protocol EmptyNode: AnyNode {
 
+    /// The name of the node.
     var name: String { get }
     
+    /// The attributes of the node.
     var attributes: OrderedDictionary<String, Any>? { get }
     
+    /// Initiates a node.
+    ///
+    /// - Parameters:
+    ///    - attributes:
     init(attributes: OrderedDictionary<String, Any>?)
 }
 
@@ -622,16 +632,12 @@ extension EmptyNode where Self: Modifiable {
     }
 }
 
-/// ## Description
-/// The protocol defines a node for comments.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#comments
-///
+/// A type that defines a comment node.
 internal protocol CommentNode: AnyNode {
     
     associatedtype T
     
+    /// The content of the node.
     var content: T { get }
 }
 
@@ -648,15 +654,12 @@ extension CommentNode {
     }
 }
 
-/// ## Description
 /// The protocol defines the document node.
-///
-/// ## References
-///
 internal protocol DocumentNode: AnyNode {
     
     associatedtype T
     
+    /// The content of the node.
     var content: T { get }
 }
 

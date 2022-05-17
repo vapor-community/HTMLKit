@@ -1,6 +1,4 @@
 /// The protocol defines
-///
-///
 public protocol Localizable {
     
     init(_ localizedKey: String)
