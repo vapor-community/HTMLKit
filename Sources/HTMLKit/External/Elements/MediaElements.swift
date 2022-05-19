@@ -34,7 +34,7 @@ public struct Source: EmptyNode, MediaElement {
 
 extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute {
     
-    public func accessKey(_ value: String) -> Source {
+    public func accessKey(_ value: Character) -> Source {
         return mutate(accesskey: value)
     }
 
@@ -239,7 +239,7 @@ public struct Track: EmptyNode, MediaElement {
 
 extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute {
     
-    public func accessKey(_ value: String) -> Track {
+    public func accessKey(_ value: Character) -> Track {
         return mutate(accesskey: value)
     }
 

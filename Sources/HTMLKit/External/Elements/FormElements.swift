@@ -38,7 +38,7 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(oninvalid: value)
     }
     
-    public func accessKey(_ value: String) -> Input {
+    public func accessKey(_ value: Character) -> Input {
         return mutate(accesskey: value)
     }
 
@@ -336,7 +336,7 @@ public struct Label: ContentNode, FormElement {
 
 extension Label: GlobalAttributes, ForAttribute {
     
-    public func accessKey(_ value: String) -> Label {
+    public func accessKey(_ value: Character) -> Label {
         return mutate(accesskey: value)
     }
 
@@ -537,7 +537,7 @@ public struct Select: ContentNode, FormElement {
 
 extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, FormAttribute, MultipleAttribute, NameAttribute, RequiredAttribute, SizeAttribute {
     
-    public func accessKey(_ value: String) -> Select {
+    public func accessKey(_ value: Character) -> Select {
         return mutate(accesskey: value)
     }
 
@@ -755,7 +755,7 @@ public struct TextArea: ContentNode, FormElement {
 
 extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, DisabledAttribute, FormAttribute, MaximumLengthAttribute, MinimumLengthAttribute, NameAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, RowsAttribute, WrapAttribute {
     
-    public func accessKey(_ value: String) -> TextArea {
+    public func accessKey(_ value: Character) -> TextArea {
         return mutate(accesskey: value)
     }
 
@@ -997,7 +997,7 @@ public struct Button: ContentNode, FormElement {
 
 extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute {
     
-    public func accessKey(_ value: String) -> Button {
+    public func accessKey(_ value: Character) -> Button {
         return mutate(accesskey: value)
     }
 
@@ -1226,7 +1226,7 @@ public struct Fieldset: ContentNode, FormElement {
 
 extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttribute {
     
-    public func accessKey(_ value: String) -> Fieldset {
+    public func accessKey(_ value: Character) -> Fieldset {
         return mutate(accesskey: value)
     }
 

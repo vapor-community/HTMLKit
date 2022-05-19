@@ -39,7 +39,7 @@ public struct Area: ContentNode, MapElement {
 
 extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
     
-    public func accessKey(_ value: String) -> Area {
+    public func accessKey(_ value: Character) -> Area {
         return mutate(accesskey: value)
     }
 

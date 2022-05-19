@@ -39,7 +39,7 @@ public struct Head: ContentNode, HtmlElement {
 
 extension Head: GlobalAttributes {
 
-    public func accessKey(_ value: String) -> Head {
+    public func accessKey(_ value: Character) -> Head {
         return mutate(accesskey: value)
     }
     
@@ -261,7 +261,7 @@ extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttr
         return mutate(onresize: value)
     }
 
-    public func accessKey(_ value: String) -> Body {
+    public func accessKey(_ value: Character) -> Body {
         return mutate(accesskey: value)
     }
 

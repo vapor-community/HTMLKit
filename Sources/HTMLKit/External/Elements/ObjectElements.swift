@@ -34,7 +34,7 @@ public struct Parameter: EmptyNode, ObjectElement {
 
 extension Parameter: GlobalAttributes, NameAttribute, ValueAttribute {
     
-    public func accessKey(_ value: String) -> Parameter {
+    public func accessKey(_ value: Character) -> Parameter {
         return mutate(accesskey: value)
     }
 

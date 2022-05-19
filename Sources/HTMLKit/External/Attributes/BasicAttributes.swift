@@ -25,7 +25,10 @@ public protocol AccessKeyAttribute: AnyAttribute {
     /// ```html
     /// <tag accesskey="" />
     /// ```
-    func accessKey(_ value: String) -> Self
+    ///
+    /// - Parameters:
+    ///    - value:
+    func accessKey(_ value: Character) -> Self
 }
 
 extension AccessKeyAttribute {
@@ -35,14 +38,14 @@ extension AccessKeyAttribute {
 
 extension AccessKeyAttribute where Self: ContentNode {
     
-    internal func mutate(accesskey value: String) -> Self {
+    internal func mutate(accesskey value: Character) -> Self {
         return self.mutate(key: key, value: value)
     }
 }
 
 extension AccessKeyAttribute where Self: EmptyNode {
     
-    internal func mutate(accesskey value: String) -> Self {
+    internal func mutate(accesskey value: Character) -> Self {
         return self.mutate(key: key, value: value)
     }
 }
@@ -1656,14 +1659,14 @@ extension LowAttribute {
 
 extension LowAttribute where Self: ContentNode {
     
-    internal func mutate(low value: String) -> Self {
+    internal func mutate(low value: Int) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
 
 extension LowAttribute where Self: EmptyNode {
     
-    internal func mutate(low value: String) -> Self {
+    internal func mutate(low value: Int) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
@@ -3097,6 +3100,8 @@ public protocol PropertyAttribute: AnyAttribute {
     /// ```html
     /// <tag property="" />
     /// ```
+    ///
+    /// - Parameter type:
     func property(_ type: Graphs) -> Self
 }
 

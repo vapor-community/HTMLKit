@@ -48,7 +48,7 @@ public struct OptionGroup: ContentNode, InputElement {
 
 extension OptionGroup: GlobalAttributes, DisabledAttribute, LabelAttribute {
 
-    public func accessKey(_ value: String) -> OptionGroup {
+    public func accessKey(_ value: Character) -> OptionGroup {
         return mutate(accesskey: value)
     }
 
@@ -242,7 +242,7 @@ public struct Option: ContentNode, InputElement {
 
 extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttribute, SelectedAttribute {
     
-    public func accessKey(_ value: String) -> Option {
+    public func accessKey(_ value: Character) -> Option {
         return mutate(accesskey: value)
     }
 
@@ -450,7 +450,7 @@ public struct Legend: ContentNode, InputElement {
 
 extension Legend: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Legend {
+    public func accessKey(_ value: Character) -> Legend {
         return mutate(accesskey: value)
     }
 
@@ -636,7 +636,7 @@ public struct Summary: ContentNode, InputElement {
 
 extension Summary: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Summary {
+    public func accessKey(_ value: Character) -> Summary {
         return mutate(accesskey: value)
     }
 

@@ -57,7 +57,7 @@ public struct RubyText: ContentNode, RubyElement {
 
 extension RubyText: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> RubyText {
+    public func accessKey(_ value: Character) -> RubyText {
         return mutate(accesskey: value)
     }
 
@@ -243,7 +243,7 @@ public struct RubyPronunciation: ContentNode, RubyElement {
 
 extension RubyPronunciation: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> RubyPronunciation {
+    public func accessKey(_ value: Character) -> RubyPronunciation {
         return mutate(accesskey: value)
     }
 

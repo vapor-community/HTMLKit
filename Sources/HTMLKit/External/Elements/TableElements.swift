@@ -111,7 +111,7 @@ public struct Caption: ContentNode, TableElement {
 
 extension Caption: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Caption {
+    public func accessKey(_ value: Character) -> Caption {
         return mutate(accesskey: value)
     }
 
@@ -297,7 +297,7 @@ public struct ColumnGroup: ContentNode, TableElement {
 
 extension ColumnGroup: GlobalAttributes, SpanAttribute {
     
-    public func accessKey(_ value: String) -> ColumnGroup {
+    public func accessKey(_ value: Character) -> ColumnGroup {
         return mutate(accesskey: value)
     }
 
@@ -487,7 +487,7 @@ public struct Column: ContentNode, TableElement {
 
 extension Column: GlobalAttributes, SpanAttribute {
     
-    public func accessKey(_ value: String) -> Column {
+    public func accessKey(_ value: Character) -> Column {
         return mutate(accesskey: value)
     }
 
@@ -677,7 +677,7 @@ public struct TableBody: ContentNode, TableElement {
 
 extension TableBody: GlobalAttributes, WidthAttribute, HeightAttribute {
     
-    public func accessKey(_ value: String) -> TableBody {
+    public func accessKey(_ value: Character) -> TableBody {
         return mutate(accesskey: value)
     }
 
@@ -871,7 +871,7 @@ public struct TableHead: ContentNode, TableElement {
 
 extension TableHead: GlobalAttributes, WidthAttribute, HeightAttribute {
     
-    public func accessKey(_ value: String) -> TableHead {
+    public func accessKey(_ value: Character) -> TableHead {
         return mutate(accesskey: value)
     }
 
@@ -1065,7 +1065,7 @@ public struct TableFoot: ContentNode, TableElement {
 
 extension TableFoot: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> TableFoot {
+    public func accessKey(_ value: Character) -> TableFoot {
         return mutate(accesskey: value)
     }
 
@@ -1251,7 +1251,7 @@ public struct TableRow: ContentNode, TableElement {
 
 extension TableRow: GlobalAttributes, WidthAttribute, HeightAttribute {
     
-    public func accessKey(_ value: String) -> TableRow {
+    public func accessKey(_ value: Character) -> TableRow {
         return mutate(accesskey: value)
     }
 
@@ -1445,7 +1445,7 @@ public struct DataCell: ContentNode, TableElement {
 
 extension DataCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute {
 
-    public func accessKey(_ value: String) -> DataCell {
+    public func accessKey(_ value: Character) -> DataCell {
         return mutate(accesskey: value)
     }
 
@@ -1643,7 +1643,7 @@ public struct HeaderCell: ContentNode, TableElement {
 
 extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute, ScopeAttribute {
     
-    public func accessKey(_ value: String) -> HeaderCell {
+    public func accessKey(_ value: Character) -> HeaderCell {
         return mutate(accesskey: value)
     }
 

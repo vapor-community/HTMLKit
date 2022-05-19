@@ -57,7 +57,7 @@ public struct TermName: ContentNode, DescriptionElement {
 
 extension TermName: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> TermName {
+    public func accessKey(_ value: Character) -> TermName {
         return mutate(accesskey: value)
     }
 
@@ -243,7 +243,7 @@ public struct TermDefinition: ContentNode, DescriptionElement {
 
 extension TermDefinition: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> TermDefinition {
+    public func accessKey(_ value: Character) -> TermDefinition {
         return mutate(accesskey: value)
     }
 

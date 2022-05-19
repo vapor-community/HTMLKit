@@ -39,7 +39,7 @@ public struct Title: ContentNode, HeadElement {
 
 extension Title: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Title {
+    public func accessKey(_ value: Character) -> Title {
         return mutate(accesskey: value)
     }
     
@@ -220,7 +220,7 @@ public struct Base: EmptyNode, HeadElement {
 
 extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
     
-    public func accessKey(_ value: String) -> Base {
+    public func accessKey(_ value: Character) -> Base {
         return mutate(accesskey: value)
     }
     
@@ -413,7 +413,7 @@ public struct Meta: EmptyNode, HeadElement {
 
 extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttribute, CharsetAttribute, EquivalentAttribute {
     
-    public func accessKey(_ value: String) -> Meta {
+    public func accessKey(_ value: Character) -> Meta {
         return mutate(accesskey: value)
     }
 
@@ -631,7 +631,7 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
         return mutate(onload: value)
     }
 
-    public func accessKey(_ value: String) -> Style {
+    public func accessKey(_ value: Character) -> Style {
         return mutate(accesskey: value)
     }
 
@@ -828,7 +828,7 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
         return mutate(onload: value)
     }
     
-    public func accessKey(_ value: String) -> Link {
+    public func accessKey(_ value: Character) -> Link {
         return mutate(accesskey: value)
     }
 

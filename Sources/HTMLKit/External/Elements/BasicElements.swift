@@ -89,7 +89,7 @@ public struct Html: ContentNode, BasicElement {
 
 extension Html: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Html {
+    public func accessKey(_ value: Character) -> Html {
         return mutate(accesskey: value)
     }
 

@@ -48,7 +48,7 @@ public struct FigureCaption: ContentNode, FigureElement {
 
 extension FigureCaption: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> FigureCaption {
+    public func accessKey(_ value: Character) -> FigureCaption {
         return mutate(accesskey: value)
     }
 

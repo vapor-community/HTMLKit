@@ -48,7 +48,7 @@ public struct ListItem: ContentNode, ListElement {
 
 extension ListItem: GlobalAttributes, ValueAttribute {
     
-    public func accessKey(_ value: String) -> ListItem {
+    public func accessKey(_ value: Character) -> ListItem {
         return mutate(accesskey: value)
     }
 

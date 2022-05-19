@@ -372,7 +372,7 @@ public struct Article: ContentNode, HtmlElement, BodyElement, FormElement, Figur
 
 extension Article: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Article {
+    public func accessKey(_ value: Character) -> Article {
         return mutate(accesskey: value)
     }
 
@@ -558,7 +558,7 @@ public struct Section: ContentNode, HtmlElement, BodyElement, FigureElement, For
 
 extension Section: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Section {
+    public func accessKey(_ value: Character) -> Section {
         return mutate(accesskey: value)
     }
 
@@ -744,7 +744,7 @@ public struct Navigation: ContentNode, HtmlElement, BodyElement, FormElement, Fi
 
 extension Navigation: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Navigation {
+    public func accessKey(_ value: Character) -> Navigation {
         return mutate(accesskey: value)
     }
 
@@ -930,7 +930,7 @@ public struct Aside: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
 
 extension Aside: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Aside {
+    public func accessKey(_ value: Character) -> Aside {
         return mutate(accesskey: value)
     }
 
@@ -1116,7 +1116,7 @@ public struct Heading1: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Heading1: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Heading1 {
+    public func accessKey(_ value: Character) -> Heading1 {
         return mutate(accesskey: value)
     }
 
@@ -1313,7 +1313,7 @@ public struct Heading2: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Heading2: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Heading2 {
+    public func accessKey(_ value: Character) -> Heading2 {
         return mutate(accesskey: value)
     }
 
@@ -1510,7 +1510,7 @@ public struct Heading3: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Heading3: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Heading3 {
+    public func accessKey(_ value: Character) -> Heading3 {
         return mutate(accesskey: value)
     }
 
@@ -1707,7 +1707,7 @@ public struct Heading4: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Heading4: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Heading4 {
+    public func accessKey(_ value: Character) -> Heading4 {
         return mutate(accesskey: value)
     }
 
@@ -1904,7 +1904,7 @@ public struct Heading5: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Heading5: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Heading5 {
+    public func accessKey(_ value: Character) -> Heading5 {
         return mutate(accesskey: value)
     }
 
@@ -2101,7 +2101,7 @@ public struct Heading6: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Heading6: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Heading6 {
+    public func accessKey(_ value: Character) -> Heading6 {
         return mutate(accesskey: value)
     }
 
@@ -2298,7 +2298,7 @@ public struct HeadingGroup: ContentNode, HtmlElement, BodyElement, FormElement, 
 
 extension HeadingGroup: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> HeadingGroup {
+    public func accessKey(_ value: Character) -> HeadingGroup {
         return mutate(accesskey: value)
     }
 
@@ -2484,7 +2484,7 @@ public struct Header: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Header: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Header {
+    public func accessKey(_ value: Character) -> Header {
         return mutate(accesskey: value)
     }
 
@@ -2670,7 +2670,7 @@ public struct Footer: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Footer: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Footer {
+    public func accessKey(_ value: Character) -> Footer {
         return mutate(accesskey: value)
     }
 
@@ -2856,7 +2856,7 @@ public struct Address: ContentNode, HtmlElement, BodyElement, FormElement, Figur
 
 extension Address: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Address {
+    public func accessKey(_ value: Character) -> Address {
         return mutate(accesskey: value)
     }
 
@@ -3042,7 +3042,7 @@ public struct Paragraph: ContentNode, HtmlElement, BodyElement, FormElement, Fig
 
 extension Paragraph: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Paragraph {
+    public func accessKey(_ value: Character) -> Paragraph {
         return mutate(accesskey: value)
     }
 
@@ -3234,7 +3234,7 @@ public struct HorizontalRule: EmptyNode, HtmlElement, BodyElement, FormElement, 
 
 extension HorizontalRule: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> HorizontalRule {
+    public func accessKey(_ value: Character) -> HorizontalRule {
         return mutate(accesskey: value)
     }
 
@@ -3420,7 +3420,7 @@ public struct PreformattedText: ContentNode, HtmlElement, BodyElement, FormEleme
 
 extension PreformattedText: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> PreformattedText {
+    public func accessKey(_ value: Character) -> PreformattedText {
         return mutate(accesskey: value)
     }
 
@@ -3606,7 +3606,7 @@ public struct Blockquote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
 
 extension Blockquote: GlobalAttributes, CiteAttribute {
     
-    public func accessKey(_ value: String) -> Blockquote {
+    public func accessKey(_ value: Character) -> Blockquote {
         return mutate(accesskey: value)
     }
 
@@ -3807,7 +3807,7 @@ public struct OrderedList: ContentNode, HtmlElement, BodyElement, FormElement, F
 
 extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, TypeAttribute {
     
-    public func accessKey(_ value: String) -> OrderedList {
+    public func accessKey(_ value: Character) -> OrderedList {
         return mutate(accesskey: value)
     }
 
@@ -4005,7 +4005,7 @@ public struct UnorderedList: ContentNode, HtmlElement, BodyElement, FormElement,
 
 extension UnorderedList: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> UnorderedList {
+    public func accessKey(_ value: Character) -> UnorderedList {
         return mutate(accesskey: value)
     }
 
@@ -4191,7 +4191,7 @@ public struct DescriptionList: ContentNode, HtmlElement, BodyElement, FormElemen
 
 extension DescriptionList: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> DescriptionList {
+    public func accessKey(_ value: Character) -> DescriptionList {
         return mutate(accesskey: value)
     }
 
@@ -4377,7 +4377,7 @@ public struct Figure: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Figure: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Figure {
+    public func accessKey(_ value: Character) -> Figure {
         return mutate(accesskey: value)
     }
 
@@ -4563,7 +4563,7 @@ public struct Anchor: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, PingAttribute, ReferrerPolicyAttribute, RelationshipAttribute, TargetAttribute, TypeAttribute {
     
-    public func accessKey(_ value: String) -> Anchor {
+    public func accessKey(_ value: Character) -> Anchor {
         return mutate(accesskey: value)
     }
 
@@ -4800,7 +4800,7 @@ public struct Emphasize: ContentNode, HtmlElement, BodyElement, FormElement, Fig
 
 extension Emphasize: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Emphasize {
+    public func accessKey(_ value: Character) -> Emphasize {
         return mutate(accesskey: value)
     }
 
@@ -4986,7 +4986,7 @@ public struct Strong: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Strong: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Strong {
+    public func accessKey(_ value: Character) -> Strong {
         return mutate(accesskey: value)
     }
 
@@ -5172,7 +5172,7 @@ public struct Small: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
 
 extension Small: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Small {
+    public func accessKey(_ value: Character) -> Small {
         return mutate(accesskey: value)
     }
 
@@ -5369,7 +5369,7 @@ public struct StrikeThrough: ContentNode, HtmlElement, BodyElement, FormElement,
 
 extension StrikeThrough: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> StrikeThrough {
+    public func accessKey(_ value: Character) -> StrikeThrough {
         return mutate(accesskey: value)
     }
 
@@ -5566,7 +5566,7 @@ public struct Main: ContentNode, HtmlElement, BodyElement, FormElement {
 
 extension Main: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Main {
+    public func accessKey(_ value: Character) -> Main {
         return mutate(accesskey: value)
     }
 
@@ -5752,7 +5752,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Division: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Division {
+    public func accessKey(_ value: Character) -> Division {
         return mutate(accesskey: value)
     }
 
@@ -5938,7 +5938,7 @@ public struct Definition: ContentNode, HtmlElement, BodyElement, FormElement, Fi
 
 extension Definition: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Definition {
+    public func accessKey(_ value: Character) -> Definition {
         return mutate(accesskey: value)
     }
 
@@ -6124,7 +6124,7 @@ public struct Cite: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Cite: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Cite {
+    public func accessKey(_ value: Character) -> Cite {
         return mutate(accesskey: value)
     }
 
@@ -6310,7 +6310,7 @@ public struct ShortQuote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
 
 extension ShortQuote: GlobalAttributes, CiteAttribute {
     
-    public func accessKey(_ value: String) -> ShortQuote {
+    public func accessKey(_ value: Character) -> ShortQuote {
         return mutate(accesskey: value)
     }
 
@@ -6500,7 +6500,7 @@ public struct Abbreviation: ContentNode, HtmlElement, BodyElement, FormElement, 
 
 extension Abbreviation: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Abbreviation {
+    public func accessKey(_ value: Character) -> Abbreviation {
         return mutate(accesskey: value)
     }
 
@@ -6686,7 +6686,7 @@ public struct Ruby: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Ruby: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Ruby {
+    public func accessKey(_ value: Character) -> Ruby {
         return mutate(accesskey: value)
     }
 
@@ -6872,7 +6872,7 @@ public struct Data: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Data: GlobalAttributes, ValueAttribute {
     
-    public func accessKey(_ value: String) -> Data {
+    public func accessKey(_ value: Character) -> Data {
         return mutate(accesskey: value)
     }
 
@@ -7066,7 +7066,7 @@ public struct Time: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Time: GlobalAttributes, DateTimeAttribute {
 
-    public func accessKey(_ value: String) -> Time {
+    public func accessKey(_ value: Character) -> Time {
         return mutate(accesskey: value)
     }
 
@@ -7256,7 +7256,7 @@ public struct Code: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Code: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Code {
+    public func accessKey(_ value: Character) -> Code {
         return mutate(accesskey: value)
     }
 
@@ -7442,7 +7442,7 @@ public struct Variable: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Variable: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Variable {
+    public func accessKey(_ value: Character) -> Variable {
         return mutate(accesskey: value)
     }
 
@@ -7628,7 +7628,7 @@ public struct SampleOutput: ContentNode, HtmlElement, BodyElement, FormElement, 
 
 extension SampleOutput: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> SampleOutput {
+    public func accessKey(_ value: Character) -> SampleOutput {
         return mutate(accesskey: value)
     }
 
@@ -7814,7 +7814,7 @@ public struct KeyboardInput: ContentNode, HtmlElement, BodyElement, FormElement,
 
 extension KeyboardInput: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> KeyboardInput {
+    public func accessKey(_ value: Character) -> KeyboardInput {
         return mutate(accesskey: value)
     }
 
@@ -8000,7 +8000,7 @@ public struct Subscript: ContentNode, HtmlElement, BodyElement, FormElement, Fig
 
 extension Subscript: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Subscript {
+    public func accessKey(_ value: Character) -> Subscript {
         return mutate(accesskey: value)
     }
 
@@ -8186,7 +8186,7 @@ public struct Superscript: ContentNode, HtmlElement, BodyElement, FormElement, F
 
 extension Superscript: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Superscript {
+    public func accessKey(_ value: Character) -> Superscript {
         return mutate(accesskey: value)
     }
 
@@ -8372,7 +8372,7 @@ public struct Italic: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Italic: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Italic {
+    public func accessKey(_ value: Character) -> Italic {
         return mutate(accesskey: value)
     }
 
@@ -8569,7 +8569,7 @@ public struct Bold: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Bold: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Bold {
+    public func accessKey(_ value: Character) -> Bold {
         return mutate(accesskey: value)
     }
 
@@ -8766,7 +8766,7 @@ public struct Underline: ContentNode, HtmlElement, BodyElement, FormElement, Fig
 
 extension Underline: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Underline {
+    public func accessKey(_ value: Character) -> Underline {
         return mutate(accesskey: value)
     }
 
@@ -8963,7 +8963,7 @@ public struct Mark: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Mark: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Mark {
+    public func accessKey(_ value: Character) -> Mark {
         return mutate(accesskey: value)
     }
 
@@ -9149,7 +9149,7 @@ public struct Bdi: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
 
 extension Bdi: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Bdi {
+    public func accessKey(_ value: Character) -> Bdi {
         return mutate(accesskey: value)
     }
 
@@ -9330,7 +9330,7 @@ public struct Bdo: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEleme
 
 extension Bdo: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Bdo {
+    public func accessKey(_ value: Character) -> Bdo {
         return mutate(accesskey: value)
     }
 
@@ -9516,7 +9516,7 @@ public struct Span: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Span: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Span {
+    public func accessKey(_ value: Character) -> Span {
         return mutate(accesskey: value)
     }
 
@@ -9697,7 +9697,7 @@ public struct LineBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
 
 extension LineBreak: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> LineBreak {
+    public func accessKey(_ value: Character) -> LineBreak {
         return mutate(accesskey: value)
     }
 
@@ -9878,7 +9878,7 @@ public struct WordBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
 
 extension WordBreak: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> WordBreak {
+    public func accessKey(_ value: Character) -> WordBreak {
         return mutate(accesskey: value)
     }
 
@@ -10064,7 +10064,7 @@ public struct InsertedText: ContentNode, HtmlElement, BodyElement, FormElement, 
 
 extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     
-    public func accessKey(_ value: String) -> InsertedText {
+    public func accessKey(_ value: Character) -> InsertedText {
         return mutate(accesskey: value)
     }
 
@@ -10258,7 +10258,7 @@ public struct DeletedText: ContentNode, HtmlElement, BodyElement, FormElement, F
 
 extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     
-    public func accessKey(_ value: String) -> DeletedText {
+    public func accessKey(_ value: Character) -> DeletedText {
         return mutate(accesskey: value)
     }
 
@@ -10452,7 +10452,7 @@ public struct Picture: ContentNode, HtmlElement, BodyElement, FormElement, Figur
 
 extension Picture: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Picture {
+    public func accessKey(_ value: Character) -> Picture {
         return mutate(accesskey: value)
     }
 
@@ -10641,7 +10641,7 @@ extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAtt
         return mutate(onload: value)
     }
     
-    public func accessKey(_ value: String) -> Image {
+    public func accessKey(_ value: Character) -> Image {
         return mutate(accesskey: value)
     }
 
@@ -10851,7 +10851,7 @@ public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, F
 
 extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {
     
-    public func accessKey(_ value: String) -> InlineFrame {
+    public func accessKey(_ value: Character) -> InlineFrame {
         return mutate(accesskey: value)
     }
 
@@ -11056,7 +11056,7 @@ public struct Embed: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
 
 extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribute, HeightAttribute {
     
-    public func accessKey(_ value: String) -> Embed {
+    public func accessKey(_ value: Character) -> Embed {
         return mutate(accesskey: value)
     }
 
@@ -11262,7 +11262,7 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
         return mutate(onerror: value)
     }
     
-    public func accessKey(_ value: String) -> Object {
+    public func accessKey(_ value: Character) -> Object {
         return mutate(accesskey: value)
     }
 
@@ -11476,7 +11476,7 @@ public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
 
 extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute {
     
-    public func accessKey(_ value: String) -> Video {
+    public func accessKey(_ value: Character) -> Video {
         return mutate(accesskey: value)
     }
 
@@ -11690,7 +11690,7 @@ public struct Audio: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
 
 extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute {
     
-    public func accessKey(_ value: String) -> Audio {
+    public func accessKey(_ value: Character) -> Audio {
         return mutate(accesskey: value)
     }
 
@@ -11897,7 +11897,7 @@ public struct Map: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
 
 extension Map: GlobalAttributes, NameAttribute {
     
-    public func accessKey(_ value: String) -> Map {
+    public func accessKey(_ value: Character) -> Map {
         return mutate(accesskey: value)
     }
 
@@ -12100,7 +12100,7 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
         return mutate(onsubmit: value)
     }
     
-    public func accessKey(_ value: String) -> Form {
+    public func accessKey(_ value: Character) -> Form {
         return mutate(accesskey: value)
     }
 
@@ -12318,7 +12318,7 @@ public struct DataList: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension DataList: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> DataList {
+    public func accessKey(_ value: Character) -> DataList {
         return mutate(accesskey: value)
     }
 
@@ -12504,7 +12504,7 @@ public struct Output: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
     
-    public func accessKey(_ value: String) -> Output {
+    public func accessKey(_ value: Character) -> Output {
         return mutate(accesskey: value)
     }
 
@@ -12706,7 +12706,7 @@ public struct Progress: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
     
-    public func accessKey(_ value: String) -> Progress {
+    public func accessKey(_ value: Character) -> Progress {
         return mutate(accesskey: value)
     }
 
@@ -12904,7 +12904,7 @@ public struct Meter: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
 
 extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, HighAttribute, OptimumAttribute {
     
-    public func accessKey(_ value: String) -> Meter {
+    public func accessKey(_ value: Character) -> Meter {
         return mutate(accesskey: value)
     }
 
@@ -13118,7 +13118,7 @@ extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
         return mutate(ontoggle: value)
     }
     
-    public func accessKey(_ value: String) -> Details {
+    public func accessKey(_ value: Character) -> Details {
         return mutate(accesskey: value)
     }
 
@@ -13304,7 +13304,7 @@ public struct Dialog: ContentNode, BodyElement {
 
 extension Dialog: GlobalAttributes, OpenAttribute {
     
-    public func accessKey(_ value: String) -> Dialog {
+    public func accessKey(_ value: Character) -> Dialog {
         return mutate(accesskey: value)
     }
 
@@ -13502,7 +13502,7 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
         return mutate(onload: value)
     }
 
-    public func accessKey(_ value: String) -> Script {
+    public func accessKey(_ value: Character) -> Script {
         return mutate(accesskey: value)
     }
 
@@ -13704,7 +13704,7 @@ public struct NoScript: ContentNode, HtmlElement, HeadElement, BodyElement, Form
 
 extension NoScript: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> NoScript {
+    public func accessKey(_ value: Character) -> NoScript {
         return mutate(accesskey: value)
     }
 
@@ -13890,7 +13890,7 @@ public struct Template: ContentNode, BodyElement, FormElement, FigureElement, Ob
 
 extension Template: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Template {
+    public func accessKey(_ value: Character) -> Template {
         return mutate(accesskey: value)
     }
 
@@ -14076,7 +14076,7 @@ public struct Canvas: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
     
-    public func accessKey(_ value: String) -> Canvas {
+    public func accessKey(_ value: Character) -> Canvas {
         return mutate(accesskey: value)
     }
 
@@ -14270,7 +14270,7 @@ public struct Table: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
 
 extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
     
-    public func accessKey(_ value: String) -> Table {
+    public func accessKey(_ value: Character) -> Table {
         return mutate(accesskey: value)
     }
 
