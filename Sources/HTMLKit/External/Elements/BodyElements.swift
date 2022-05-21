@@ -13355,8 +13355,8 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
         return mutate(low: value)
     }
     
-    public func high(_ size: Int) -> Meter {
-        return mutate(high: size)
+    public func high(_ value: Float) -> Meter {
+        return mutate(high: value)
     }
     
     public func optimum(_ value: Float) -> Meter {

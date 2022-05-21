@@ -1129,7 +1129,7 @@ public protocol HighAttribute: AnyAttribute {
     /// ```html
     /// <tag high="" />
     /// ```
-    func high(_ size: Int) -> Self
+    func high(_ value: Float) -> Self
 }
 
 extension HighAttribute {
@@ -1139,14 +1139,14 @@ extension HighAttribute {
 
 extension HighAttribute where Self: ContentNode {
     
-    internal func mutate(high value: Int) -> Self {
+    internal func mutate(high value: Float) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
 
 extension HighAttribute where Self: EmptyNode {
     
-    internal func mutate(high value: Int) -> Self {
+    internal func mutate(high value: Float) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
