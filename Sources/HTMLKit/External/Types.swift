@@ -658,3 +658,17 @@ public enum Decision: String {
     case yes
     case no
 }
+
+/// The type is for
+///
+/// ```html
+/// <track kind="subtitles">
+/// ```
+public enum Kinds: String {
+    
+    case captions
+    case chapters
+    case descriptions
+    case metadata
+    case subtitles
+}

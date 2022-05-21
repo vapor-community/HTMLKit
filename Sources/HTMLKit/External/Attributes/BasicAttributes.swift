@@ -1499,7 +1499,7 @@ public protocol KindAttribute: AnyAttribute {
     /// ```html
     /// <tag kind="" />
     /// ```
-    func kind(_ value: String) -> Self
+    func kind(_ type: Kinds) -> Self
 }
 
 extension KindAttribute {

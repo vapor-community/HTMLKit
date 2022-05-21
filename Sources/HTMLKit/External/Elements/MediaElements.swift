@@ -358,8 +358,13 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
         return mutate(translate: type.rawValue)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Kinds) instead")
     public func kind(_ value: String) -> Track {
         return mutate(kind: value)
+    }
+    
+    public func kind(_ type: Kinds) -> Track {
+        return mutate(kind: type.rawValue)
     }
     
     public func source(_ value: String) -> Track {
