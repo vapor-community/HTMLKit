@@ -13140,7 +13140,7 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
         return mutate(translate: type.rawValue)
     }
 
-    public func maximum(_ value: String) -> Progress {
+    public func maximum(_ value: Float) -> Progress {
         return mutate(max: value)
     }
 
@@ -13343,11 +13343,11 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
         return mutate(translate: type.rawValue)
     }
     
-    public func minimum(_ value: String) -> Meter {
+    public func minimum(_ value: Float) -> Meter {
         return mutate(min: value)
     }
     
-    public func maximum(_ value: String) -> Meter {
+    public func maximum(_ value: Float) -> Meter {
         return mutate(max: value)
     }
     

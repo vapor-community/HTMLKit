@@ -1674,12 +1674,14 @@ extension LowAttribute where Self: EmptyNode {
 /// The protocol provides the element with the maximumvalue handler.
 public protocol MaximumValueAttribute: AnyAttribute {
     
+    associatedtype MaximumValueType
+    
     /// The function represents the html-attribute 'max'.
     ///
     /// ```html
     /// <tag max="" />
     /// ```
-    func maximum(_ value: String) -> Self
+    func maximum(_ value: MaximumValueType) -> Self
 }
 
 extension MaximumValueAttribute {
@@ -1689,14 +1691,14 @@ extension MaximumValueAttribute {
 
 extension MaximumValueAttribute where Self: ContentNode {
     
-    internal func mutate(max value: String) -> Self {
+    internal func mutate(max value: MaximumValueType) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MaximumValueAttribute where Self: EmptyNode {
     
-    internal func mutate(max value: String) -> Self {
+    internal func mutate(max value: MaximumValueType) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
@@ -1794,12 +1796,14 @@ extension MethodAttribute where Self: EmptyNode {
 /// The protocol provides the element with the minimumvalue handler.
 public protocol MinimumValueAttribute: AnyAttribute {
     
+    associatedtype MinimumValueType
+    
     /// The function represents the html-attribute 'min'.
     ///
     /// ```html
     /// <tag min="" />
     /// ```
-    func minimum(_ value: String) -> Self
+    func minimum(_ value: MinimumValueType) -> Self
 }
 
 extension MinimumValueAttribute {
@@ -1809,14 +1813,14 @@ extension MinimumValueAttribute {
 
 extension MinimumValueAttribute where Self: ContentNode {
     
-    internal func mutate(min value: String) -> Self {
+    internal func mutate(min value: MinimumValueType) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MinimumValueAttribute where Self: EmptyNode {
     
-    internal func mutate(min value: String) -> Self {
+    internal func mutate(min value: MinimumValueType) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
