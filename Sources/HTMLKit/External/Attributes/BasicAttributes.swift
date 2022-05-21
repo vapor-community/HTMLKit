@@ -1711,7 +1711,7 @@ public protocol MaximumLengthAttribute: AnyAttribute {
     /// ```html
     /// <tag maxlength="" />
     /// ```
-    func maximum(length value: String) -> Self
+    func maximum(length value: Int) -> Self
 }
 
 extension MaximumLengthAttribute {
@@ -1721,14 +1721,14 @@ extension MaximumLengthAttribute {
 
 extension MaximumLengthAttribute where Self: ContentNode {
     
-    internal func mutate(maxlength value: String) -> Self {
+    internal func mutate(maxlength value: Int) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MaximumLengthAttribute where Self: EmptyNode {
     
-    internal func mutate(maxlength value: String) -> Self {
+    internal func mutate(maxlength value: Int) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
@@ -1833,7 +1833,7 @@ public protocol MinimumLengthAttribute: AnyAttribute {
     /// ```html
     /// <tag minlength="" />
     /// ```
-    func minimum(length value: String) -> Self
+    func minimum(length value: Int) -> Self
 }
 
 extension MinimumLengthAttribute {
@@ -1843,14 +1843,14 @@ extension MinimumLengthAttribute {
 
 extension MinimumLengthAttribute where Self: ContentNode {
     
-    internal func mutate(minlength value: String) -> Self {
+    internal func mutate(minlength value: Int) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MinimumLengthAttribute where Self: EmptyNode {
     
-    internal func mutate(minlength value: String) -> Self {
+    internal func mutate(minlength value: Int) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }

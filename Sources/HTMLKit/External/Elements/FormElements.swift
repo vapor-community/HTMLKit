@@ -192,7 +192,7 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(max: value)
     }
     
-    public func maximum(length value: String) -> Input {
+    public func maximum(length value: Int) -> Input {
         return mutate(maxlength: value)
     }
     
@@ -200,7 +200,7 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(min: value)
     }
     
-    public func minimum(length value: String) -> Input {
+    public func minimum(length value: Int) -> Input {
         return mutate(minlength: value)
     }
     
@@ -900,11 +900,11 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
         return mutate(form: value)
     }
     
-    public func maximum(length value: String) -> TextArea {
+    public func maximum(length value: Int) -> TextArea {
         return mutate(maxlength: value)
     }
     
-    public func minimum(length value: String) -> TextArea {
+    public func minimum(length value: Int) -> TextArea {
         return mutate(minlength: value)
     }
     
