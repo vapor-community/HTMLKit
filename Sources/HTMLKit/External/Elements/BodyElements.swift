@@ -11764,7 +11764,7 @@ public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute {
+extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute, PreloadAttribute {
     
     public func accessKey(_ value: Character) -> Video {
         return mutate(accesskey: value)
@@ -11908,6 +11908,10 @@ extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
         return mutate(height: size)
     }
     
+    public func preload(_ type: Preload) -> Video {
+        return mutate(preload: type.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Video {
         return mutate(key: key, value: value)
     }
@@ -11983,7 +11987,7 @@ public struct Audio: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute {
+extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, PreloadAttribute {
     
     public func accessKey(_ value: Character) -> Audio {
         return mutate(accesskey: value)
@@ -12117,6 +12121,10 @@ extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     
     public func controls() -> Audio {
         return mutate(controls: "controls")
+    }
+    
+    public func preload(_ type: Preload) -> Audio {
+        return mutate(preload: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Audio {

@@ -2230,7 +2230,7 @@ public protocol PreloadAttribute: AnyAttribute {
     /// ```html
     /// <tag preload="" />
     /// ```
-    func preload(_ value: String) -> Self
+    func preload(_ type: Preload) -> Self
 }
 
 extension PreloadAttribute {

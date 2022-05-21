@@ -672,3 +672,15 @@ public enum Kinds: String {
     case metadata
     case subtitles
 }
+
+/// The type is for
+///
+/// ```html
+/// <audio preload="none">
+/// ```
+public enum Preload: String {
+    
+    case auto
+    case metadata
+    case none
+}
