@@ -12179,8 +12179,7 @@ extension Audio: Modifiable {
     }
 }
 
-// TODO: Revise the comment.
-/// The element represents a comment output.
+/// The element is used to define a image map.
 ///
 /// ```html
 /// <map></map>
@@ -12379,8 +12378,7 @@ extension Map: Modifiable {
     }
 }
 
-// TODO: Revise the comment.
-/// The element represents a comment output.
+/// The element is used as a container for all the form elements.
 ///
 /// ```html
 /// <form></form>
