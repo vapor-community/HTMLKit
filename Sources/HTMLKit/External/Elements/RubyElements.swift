@@ -154,7 +154,7 @@ extension RubyText: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> RubyText {
+    public func tabIndex(_ value: Int) -> RubyText {
         return mutate(tabindex: value)
     }
 
@@ -345,7 +345,7 @@ extension RubyPronunciation: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> RubyPronunciation {
+    public func tabIndex(_ value: Int) -> RubyPronunciation {
         return mutate(tabindex: value)
     }
 

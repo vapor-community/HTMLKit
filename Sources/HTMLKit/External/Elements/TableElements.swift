@@ -208,7 +208,7 @@ extension Caption: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Caption {
+    public func tabIndex(_ value: Int) -> Caption {
         return mutate(tabindex: value)
     }
 
@@ -399,7 +399,7 @@ extension ColumnGroup: GlobalAttributes, SpanAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> ColumnGroup {
+    public func tabIndex(_ value: Int) -> ColumnGroup {
         return mutate(tabindex: value)
     }
 
@@ -594,7 +594,7 @@ extension Column: GlobalAttributes, SpanAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Column {
+    public func tabIndex(_ value: Int) -> Column {
         return mutate(tabindex: value)
     }
 
@@ -789,7 +789,7 @@ extension TableBody: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> TableBody {
+    public func tabIndex(_ value: Int) -> TableBody {
         return mutate(tabindex: value)
     }
 
@@ -988,7 +988,7 @@ extension TableHead: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> TableHead {
+    public func tabIndex(_ value: Int) -> TableHead {
         return mutate(tabindex: value)
     }
 
@@ -1187,7 +1187,7 @@ extension TableFoot: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> TableFoot {
+    public func tabIndex(_ value: Int) -> TableFoot {
         return mutate(tabindex: value)
     }
 
@@ -1378,7 +1378,7 @@ extension TableRow: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> TableRow {
+    public func tabIndex(_ value: Int) -> TableRow {
         return mutate(tabindex: value)
     }
 
@@ -1577,7 +1577,7 @@ extension DataCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, Hea
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> DataCell {
+    public func tabIndex(_ value: Int) -> DataCell {
         return mutate(tabindex: value)
     }
 
@@ -1780,7 +1780,7 @@ extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, H
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> HeaderCell {
+    public func tabIndex(_ value: Int) -> HeaderCell {
         return mutate(tabindex: value)
     }
 

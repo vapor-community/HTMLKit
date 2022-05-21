@@ -136,7 +136,7 @@ extension Title: GlobalAttributes {
         return mutate(style: value)
     }
     
-    public func tabIndex(_ value: String) -> Title {
+    public func tabIndex(_ value: Int) -> Title {
         return mutate(tabindex: value)
     }
     
@@ -322,7 +322,7 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
         return mutate(style: value)
     }
     
-    public func tabIndex(_ value: String) -> Base {
+    public func tabIndex(_ value: Int) -> Base {
         return mutate(tabindex: value)
     }
     
@@ -520,7 +520,7 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Meta {
+    public func tabIndex(_ value: Int) -> Meta {
         return mutate(tabindex: value)
     }
 
@@ -743,7 +743,7 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Style {
+    public func tabIndex(_ value: Int) -> Style {
         return mutate(tabindex: value)
     }
 
@@ -945,7 +945,7 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Link {
+    public func tabIndex(_ value: Int) -> Link {
         return mutate(tabindex: value)
     }
 

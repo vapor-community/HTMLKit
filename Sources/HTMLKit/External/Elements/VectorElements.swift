@@ -56,7 +56,7 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
         return self.mutate(id: value.rawValue)
     }
     
-    public func tabIndex(_ value: String) -> Circle {
+    public func tabIndex(_ value: Int) -> Circle {
         return self.mutate(tabindex: value)
     }
     
@@ -153,7 +153,7 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return self.mutate(id: value.rawValue)
     }
     
-    public func tabIndex(_ value: String) -> Rectangle {
+    public func tabIndex(_ value: Int) -> Rectangle {
         return self.mutate(tabindex: value)
     }
     
@@ -254,7 +254,7 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
         return self.mutate(id: value.rawValue)
     }
     
-    public func tabIndex(_ value: String) -> Ellipse {
+    public func tabIndex(_ value: Int) -> Ellipse {
         return self.mutate(tabindex: value)
     }
     
@@ -351,7 +351,7 @@ extension Line: GlobalVectorAttributes {
         return self.mutate(id: value.rawValue)
     }
     
-    public func tabIndex(_ value: String) -> Line {
+    public func tabIndex(_ value: Int) -> Line {
         return self.mutate(tabindex: value)
     }
     
@@ -440,7 +440,7 @@ extension Polygon: GlobalVectorAttributes {
         return self.mutate(id: value.rawValue)
     }
     
-    public func tabIndex(_ value: String) -> Polygon {
+    public func tabIndex(_ value: Int) -> Polygon {
         return self.mutate(tabindex: value)
     }
     
@@ -529,7 +529,7 @@ extension Polyline: GlobalVectorAttributes {
         return self.mutate(id: value.rawValue)
     }
     
-    public func tabIndex(_ value: String) -> Polyline {
+    public func tabIndex(_ value: Int) -> Polyline {
         return self.mutate(tabindex: value)
     }
     
@@ -618,7 +618,7 @@ extension Path: GlobalVectorAttributes {
         return self.mutate(id: value.rawValue)
     }
     
-    public func tabIndex(_ value: String) -> Path {
+    public func tabIndex(_ value: Int) -> Path {
         return self.mutate(tabindex: value)
     }
     
@@ -707,7 +707,7 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
         return self.mutate(id: value.rawValue)
     }
     
-    public func tabIndex(_ value: String) -> Use {
+    public func tabIndex(_ value: Int) -> Use {
         return self.mutate(tabindex: value)
     }
     

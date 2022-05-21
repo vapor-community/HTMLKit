@@ -469,7 +469,7 @@ extension Article: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Article {
+    public func tabIndex(_ value: Int) -> Article {
         return mutate(tabindex: value)
     }
 
@@ -660,7 +660,7 @@ extension Section: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Section {
+    public func tabIndex(_ value: Int) -> Section {
         return mutate(tabindex: value)
     }
 
@@ -851,7 +851,7 @@ extension Navigation: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Navigation {
+    public func tabIndex(_ value: Int) -> Navigation {
         return mutate(tabindex: value)
     }
 
@@ -1042,7 +1042,7 @@ extension Aside: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Aside {
+    public func tabIndex(_ value: Int) -> Aside {
         return mutate(tabindex: value)
     }
 
@@ -1233,7 +1233,7 @@ extension Heading1: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Heading1 {
+    public func tabIndex(_ value: Int) -> Heading1 {
         return mutate(tabindex: value)
     }
 
@@ -1435,7 +1435,7 @@ extension Heading2: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Heading2 {
+    public func tabIndex(_ value: Int) -> Heading2 {
         return mutate(tabindex: value)
     }
 
@@ -1637,7 +1637,7 @@ extension Heading3: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Heading3 {
+    public func tabIndex(_ value: Int) -> Heading3 {
         return mutate(tabindex: value)
     }
 
@@ -1839,7 +1839,7 @@ extension Heading4: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Heading4 {
+    public func tabIndex(_ value: Int) -> Heading4 {
         return mutate(tabindex: value)
     }
 
@@ -2041,7 +2041,7 @@ extension Heading5: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Heading5 {
+    public func tabIndex(_ value: Int) -> Heading5 {
         return mutate(tabindex: value)
     }
 
@@ -2243,7 +2243,7 @@ extension Heading6: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Heading6 {
+    public func tabIndex(_ value: Int) -> Heading6 {
         return mutate(tabindex: value)
     }
 
@@ -2445,7 +2445,7 @@ extension HeadingGroup: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> HeadingGroup {
+    public func tabIndex(_ value: Int) -> HeadingGroup {
         return mutate(tabindex: value)
     }
 
@@ -2636,7 +2636,7 @@ extension Header: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Header {
+    public func tabIndex(_ value: Int) -> Header {
         return mutate(tabindex: value)
     }
 
@@ -2827,7 +2827,7 @@ extension Footer: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Footer {
+    public func tabIndex(_ value: Int) -> Footer {
         return mutate(tabindex: value)
     }
 
@@ -3018,7 +3018,7 @@ extension Address: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Address {
+    public func tabIndex(_ value: Int) -> Address {
         return mutate(tabindex: value)
     }
 
@@ -3209,7 +3209,7 @@ extension Paragraph: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Paragraph {
+    public func tabIndex(_ value: Int) -> Paragraph {
         return mutate(tabindex: value)
     }
 
@@ -3406,7 +3406,7 @@ extension HorizontalRule: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> HorizontalRule {
+    public func tabIndex(_ value: Int) -> HorizontalRule {
         return mutate(tabindex: value)
     }
 
@@ -3597,7 +3597,7 @@ extension PreformattedText: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> PreformattedText {
+    public func tabIndex(_ value: Int) -> PreformattedText {
         return mutate(tabindex: value)
     }
 
@@ -3788,7 +3788,7 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Blockquote {
+    public func tabIndex(_ value: Int) -> Blockquote {
         return mutate(tabindex: value)
     }
 
@@ -3994,7 +3994,7 @@ extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, Type
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> OrderedList {
+    public func tabIndex(_ value: Int) -> OrderedList {
         return mutate(tabindex: value)
     }
 
@@ -4197,7 +4197,7 @@ extension UnorderedList: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> UnorderedList {
+    public func tabIndex(_ value: Int) -> UnorderedList {
         return mutate(tabindex: value)
     }
 
@@ -4388,7 +4388,7 @@ extension DescriptionList: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> DescriptionList {
+    public func tabIndex(_ value: Int) -> DescriptionList {
         return mutate(tabindex: value)
     }
 
@@ -4579,7 +4579,7 @@ extension Figure: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Figure {
+    public func tabIndex(_ value: Int) -> Figure {
         return mutate(tabindex: value)
     }
 
@@ -4770,7 +4770,7 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Anchor {
+    public func tabIndex(_ value: Int) -> Anchor {
         return mutate(tabindex: value)
     }
 
@@ -5012,7 +5012,7 @@ extension Emphasize: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Emphasize {
+    public func tabIndex(_ value: Int) -> Emphasize {
         return mutate(tabindex: value)
     }
 
@@ -5203,7 +5203,7 @@ extension Strong: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Strong {
+    public func tabIndex(_ value: Int) -> Strong {
         return mutate(tabindex: value)
     }
 
@@ -5394,7 +5394,7 @@ extension Small: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Small {
+    public func tabIndex(_ value: Int) -> Small {
         return mutate(tabindex: value)
     }
 
@@ -5596,7 +5596,7 @@ extension StrikeThrough: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> StrikeThrough {
+    public func tabIndex(_ value: Int) -> StrikeThrough {
         return mutate(tabindex: value)
     }
 
@@ -5798,7 +5798,7 @@ extension Main: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Main {
+    public func tabIndex(_ value: Int) -> Main {
         return mutate(tabindex: value)
     }
 
@@ -5989,7 +5989,7 @@ extension Division: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Division {
+    public func tabIndex(_ value: Int) -> Division {
         return mutate(tabindex: value)
     }
 
@@ -6180,7 +6180,7 @@ extension Definition: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Definition {
+    public func tabIndex(_ value: Int) -> Definition {
         return mutate(tabindex: value)
     }
 
@@ -6371,7 +6371,7 @@ extension Cite: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Cite {
+    public func tabIndex(_ value: Int) -> Cite {
         return mutate(tabindex: value)
     }
 
@@ -6562,7 +6562,7 @@ extension ShortQuote: GlobalAttributes, CiteAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> ShortQuote {
+    public func tabIndex(_ value: Int) -> ShortQuote {
         return mutate(tabindex: value)
     }
 
@@ -6757,7 +6757,7 @@ extension Abbreviation: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Abbreviation {
+    public func tabIndex(_ value: Int) -> Abbreviation {
         return mutate(tabindex: value)
     }
 
@@ -6948,7 +6948,7 @@ extension Ruby: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Ruby {
+    public func tabIndex(_ value: Int) -> Ruby {
         return mutate(tabindex: value)
     }
 
@@ -7139,7 +7139,7 @@ extension Data: GlobalAttributes, ValueAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Data {
+    public func tabIndex(_ value: Int) -> Data {
         return mutate(tabindex: value)
     }
 
@@ -7338,7 +7338,7 @@ extension Time: GlobalAttributes, DateTimeAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Time {
+    public func tabIndex(_ value: Int) -> Time {
         return mutate(tabindex: value)
     }
 
@@ -7533,7 +7533,7 @@ extension Code: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Code {
+    public func tabIndex(_ value: Int) -> Code {
         return mutate(tabindex: value)
     }
 
@@ -7724,7 +7724,7 @@ extension Variable: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Variable {
+    public func tabIndex(_ value: Int) -> Variable {
         return mutate(tabindex: value)
     }
 
@@ -7915,7 +7915,7 @@ extension SampleOutput: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> SampleOutput {
+    public func tabIndex(_ value: Int) -> SampleOutput {
         return mutate(tabindex: value)
     }
 
@@ -8106,7 +8106,7 @@ extension KeyboardInput: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> KeyboardInput {
+    public func tabIndex(_ value: Int) -> KeyboardInput {
         return mutate(tabindex: value)
     }
 
@@ -8297,7 +8297,7 @@ extension Subscript: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Subscript {
+    public func tabIndex(_ value: Int) -> Subscript {
         return mutate(tabindex: value)
     }
 
@@ -8488,7 +8488,7 @@ extension Superscript: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Superscript {
+    public func tabIndex(_ value: Int) -> Superscript {
         return mutate(tabindex: value)
     }
 
@@ -8679,7 +8679,7 @@ extension Italic: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Italic {
+    public func tabIndex(_ value: Int) -> Italic {
         return mutate(tabindex: value)
     }
 
@@ -8881,7 +8881,7 @@ extension Bold: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Bold {
+    public func tabIndex(_ value: Int) -> Bold {
         return mutate(tabindex: value)
     }
 
@@ -9083,7 +9083,7 @@ extension Underline: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Underline {
+    public func tabIndex(_ value: Int) -> Underline {
         return mutate(tabindex: value)
     }
 
@@ -9285,7 +9285,7 @@ extension Mark: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Mark {
+    public func tabIndex(_ value: Int) -> Mark {
         return mutate(tabindex: value)
     }
 
@@ -9476,7 +9476,7 @@ extension Bdi: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Bdi {
+    public func tabIndex(_ value: Int) -> Bdi {
         return mutate(tabindex: value)
     }
 
@@ -9662,7 +9662,7 @@ extension Bdo: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Bdo {
+    public func tabIndex(_ value: Int) -> Bdo {
         return mutate(tabindex: value)
     }
 
@@ -9853,7 +9853,7 @@ extension Span: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Span {
+    public func tabIndex(_ value: Int) -> Span {
         return mutate(tabindex: value)
     }
 
@@ -10039,7 +10039,7 @@ extension LineBreak: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> LineBreak {
+    public func tabIndex(_ value: Int) -> LineBreak {
         return mutate(tabindex: value)
     }
 
@@ -10225,7 +10225,7 @@ extension WordBreak: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> WordBreak {
+    public func tabIndex(_ value: Int) -> WordBreak {
         return mutate(tabindex: value)
     }
 
@@ -10416,7 +10416,7 @@ extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> InsertedText {
+    public func tabIndex(_ value: Int) -> InsertedText {
         return mutate(tabindex: value)
     }
 
@@ -10615,7 +10615,7 @@ extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> DeletedText {
+    public func tabIndex(_ value: Int) -> DeletedText {
         return mutate(tabindex: value)
     }
 
@@ -10814,7 +10814,7 @@ extension Picture: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Picture {
+    public func tabIndex(_ value: Int) -> Picture {
         return mutate(tabindex: value)
     }
 
@@ -11008,7 +11008,7 @@ extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAtt
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Image {
+    public func tabIndex(_ value: Int) -> Image {
         return mutate(tabindex: value)
     }
 
@@ -11223,7 +11223,7 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> InlineFrame {
+    public func tabIndex(_ value: Int) -> InlineFrame {
         return mutate(tabindex: value)
     }
 
@@ -11433,7 +11433,7 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Embed {
+    public func tabIndex(_ value: Int) -> Embed {
         return mutate(tabindex: value)
     }
 
@@ -11644,7 +11644,7 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Object {
+    public func tabIndex(_ value: Int) -> Object {
         return mutate(tabindex: value)
     }
 
@@ -11863,7 +11863,7 @@ extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Video {
+    public func tabIndex(_ value: Int) -> Video {
         return mutate(tabindex: value)
     }
 
@@ -12082,7 +12082,7 @@ extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Audio {
+    public func tabIndex(_ value: Int) -> Audio {
         return mutate(tabindex: value)
     }
 
@@ -12294,7 +12294,7 @@ extension Map: GlobalAttributes, NameAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Map {
+    public func tabIndex(_ value: Int) -> Map {
         return mutate(tabindex: value)
     }
 
@@ -12502,7 +12502,7 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Form {
+    public func tabIndex(_ value: Int) -> Form {
         return mutate(tabindex: value)
     }
 
@@ -12725,7 +12725,7 @@ extension DataList: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> DataList {
+    public func tabIndex(_ value: Int) -> DataList {
         return mutate(tabindex: value)
     }
 
@@ -12916,7 +12916,7 @@ extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Output {
+    public func tabIndex(_ value: Int) -> Output {
         return mutate(tabindex: value)
     }
 
@@ -13123,7 +13123,7 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Progress {
+    public func tabIndex(_ value: Int) -> Progress {
         return mutate(tabindex: value)
     }
 
@@ -13326,7 +13326,7 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Meter {
+    public func tabIndex(_ value: Int) -> Meter {
         return mutate(tabindex: value)
     }
 
@@ -13549,7 +13549,7 @@ extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Details {
+    public func tabIndex(_ value: Int) -> Details {
         return mutate(tabindex: value)
     }
 
@@ -13740,7 +13740,7 @@ extension Dialog: GlobalAttributes, OpenAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Dialog {
+    public func tabIndex(_ value: Int) -> Dialog {
         return mutate(tabindex: value)
     }
 
@@ -13943,7 +13943,7 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Script {
+    public func tabIndex(_ value: Int) -> Script {
         return mutate(tabindex: value)
     }
 
@@ -14150,7 +14150,7 @@ extension NoScript: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> NoScript {
+    public func tabIndex(_ value: Int) -> NoScript {
         return mutate(tabindex: value)
     }
 
@@ -14341,7 +14341,7 @@ extension Template: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Template {
+    public func tabIndex(_ value: Int) -> Template {
         return mutate(tabindex: value)
     }
 
@@ -14532,7 +14532,7 @@ extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Canvas {
+    public func tabIndex(_ value: Int) -> Canvas {
         return mutate(tabindex: value)
     }
 
@@ -14731,7 +14731,7 @@ extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Table {
+    public func tabIndex(_ value: Int) -> Table {
         return mutate(tabindex: value)
     }
 
@@ -14852,7 +14852,7 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
         return self.mutate(id: value.rawValue)
     }
     
-    public func tabIndex(_ value: String) -> Vector {
+    public func tabIndex(_ value: Int) -> Vector {
         return self.mutate(tabindex: value)
     }
     

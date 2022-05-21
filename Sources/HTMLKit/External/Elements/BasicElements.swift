@@ -186,7 +186,7 @@ extension Html: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Html {
+    public func tabIndex(_ value: Int) -> Html {
         return mutate(tabindex: value)
     }
 

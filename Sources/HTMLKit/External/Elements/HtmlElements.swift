@@ -136,7 +136,7 @@ extension Head: GlobalAttributes {
         return mutate(style: value)
     }
     
-    public func tabIndex(_ value: String) -> Head {
+    public func tabIndex(_ value: Int) -> Head {
         return mutate(tabindex: value)
     }
     
@@ -363,7 +363,7 @@ extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttr
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Body {
+    public func tabIndex(_ value: Int) -> Body {
         return mutate(tabindex: value)
     }
 

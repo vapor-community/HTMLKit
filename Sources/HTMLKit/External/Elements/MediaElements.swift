@@ -131,7 +131,7 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Source {
+    public func tabIndex(_ value: Int) -> Source {
         return mutate(tabindex: value)
     }
 
@@ -341,7 +341,7 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Track {
+    public func tabIndex(_ value: Int) -> Track {
         return mutate(tabindex: value)
     }
 

@@ -145,7 +145,7 @@ extension FigureCaption: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> FigureCaption {
+    public func tabIndex(_ value: Int) -> FigureCaption {
         return mutate(tabindex: value)
     }
 

@@ -2860,7 +2860,7 @@ public protocol TabulatorAttribute: AnyAttribute {
     /// ```html
     /// <tag tabindex="" />
     /// ```
-    func tabIndex(_ value: String) -> Self
+    func tabIndex(_ value: Int) -> Self
 }
 
 extension TabulatorAttribute {
@@ -2870,14 +2870,14 @@ extension TabulatorAttribute {
 
 extension TabulatorAttribute where Self: ContentNode {
     
-    internal func mutate(tabindex value: String) -> Self {
+    internal func mutate(tabindex value: Int) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
 
 extension TabulatorAttribute where Self: EmptyNode {
     
-    internal func mutate(tabindex value: String) -> Self {
+    internal func mutate(tabindex value: Int) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }

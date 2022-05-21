@@ -154,7 +154,7 @@ extension TermName: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> TermName {
+    public func tabIndex(_ value: Int) -> TermName {
         return mutate(tabindex: value)
     }
 
@@ -345,7 +345,7 @@ extension TermDefinition: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> TermDefinition {
+    public func tabIndex(_ value: Int) -> TermDefinition {
         return mutate(tabindex: value)
     }
 

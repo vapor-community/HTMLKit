@@ -136,7 +136,7 @@ extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, Shap
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Area {
+    public func tabIndex(_ value: Int) -> Area {
         return mutate(tabindex: value)
     }
 

@@ -145,7 +145,7 @@ extension ListItem: GlobalAttributes, ValueAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> ListItem {
+    public func tabIndex(_ value: Int) -> ListItem {
         return mutate(tabindex: value)
     }
 

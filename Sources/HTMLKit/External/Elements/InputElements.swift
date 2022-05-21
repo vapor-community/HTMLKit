@@ -145,7 +145,7 @@ extension OptionGroup: GlobalAttributes, DisabledAttribute, LabelAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> OptionGroup {
+    public func tabIndex(_ value: Int) -> OptionGroup {
         return mutate(tabindex: value)
     }
 
@@ -344,7 +344,7 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Option {
+    public func tabIndex(_ value: Int) -> Option {
         return mutate(tabindex: value)
     }
 
@@ -557,7 +557,7 @@ extension Legend: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Legend {
+    public func tabIndex(_ value: Int) -> Legend {
         return mutate(tabindex: value)
     }
 
@@ -748,7 +748,7 @@ extension Summary: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Summary {
+    public func tabIndex(_ value: Int) -> Summary {
         return mutate(tabindex: value)
     }
 

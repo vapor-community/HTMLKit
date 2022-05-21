@@ -135,7 +135,7 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Input {
+    public func tabIndex(_ value: Int) -> Input {
         return mutate(tabindex: value)
     }
 
@@ -438,7 +438,7 @@ extension Label: GlobalAttributes, ForAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Label {
+    public func tabIndex(_ value: Int) -> Label {
         return mutate(tabindex: value)
     }
 
@@ -644,7 +644,7 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Select {
+    public func tabIndex(_ value: Int) -> Select {
         return mutate(tabindex: value)
     }
 
@@ -867,7 +867,7 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> TextArea {
+    public func tabIndex(_ value: Int) -> TextArea {
         return mutate(tabindex: value)
     }
 
@@ -1114,7 +1114,7 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Button {
+    public func tabIndex(_ value: Int) -> Button {
         return mutate(tabindex: value)
     }
 
@@ -1348,7 +1348,7 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Fieldset {
+    public func tabIndex(_ value: Int) -> Fieldset {
         return mutate(tabindex: value)
     }
 

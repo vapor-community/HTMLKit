@@ -131,7 +131,7 @@ extension Parameter: GlobalAttributes, NameAttribute, ValueAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Parameter {
+    public func tabIndex(_ value: Int) -> Parameter {
         return mutate(tabindex: value)
     }
 
