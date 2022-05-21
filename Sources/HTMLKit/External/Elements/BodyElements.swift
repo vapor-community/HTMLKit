@@ -13227,8 +13227,8 @@ public struct Meter: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, HighAttribute, OptimumAttribute {
-    
+extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, LowAttribute, HighAttribute, OptimumAttribute {
+
     public func accessKey(_ value: Character) -> Meter {
         return mutate(accesskey: value)
     }
@@ -13349,6 +13349,10 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
     
     public func maximum(_ value: String) -> Meter {
         return mutate(max: value)
+    }
+    
+    public func low(_ value: Float) -> Meter {
+        return mutate(low: value)
     }
     
     public func high(_ size: Int) -> Meter {

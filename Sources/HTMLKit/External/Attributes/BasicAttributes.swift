@@ -1649,7 +1649,7 @@ public protocol LowAttribute: AnyAttribute {
     /// ```html
     /// <tag low="" />
     /// ```
-    func low(_ size: Int) -> Self
+    func low(_ value: Float) -> Self
 }
 
 extension LowAttribute {
@@ -1659,14 +1659,14 @@ extension LowAttribute {
 
 extension LowAttribute where Self: ContentNode {
     
-    internal func mutate(low value: Int) -> Self {
+    internal func mutate(low value: Float) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
 
 extension LowAttribute where Self: EmptyNode {
     
-    internal func mutate(low value: Int) -> Self {
+    internal func mutate(low value: Float) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
