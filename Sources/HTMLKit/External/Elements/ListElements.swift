@@ -153,8 +153,13 @@ extension ListItem: GlobalAttributes, ValueAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> ListItem {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> ListItem {
+        return mutate(translate: type.rawValue)
     }
     
     public func value(_ value: String) -> ListItem {

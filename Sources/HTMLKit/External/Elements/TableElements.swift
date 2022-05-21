@@ -216,8 +216,13 @@ extension Caption: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Caption {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Caption {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Caption {
@@ -402,8 +407,13 @@ extension ColumnGroup: GlobalAttributes, SpanAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> ColumnGroup {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> ColumnGroup {
+        return mutate(translate: type.rawValue)
     }
 
     public func span(_ size: Int) -> ColumnGroup {
@@ -592,8 +602,13 @@ extension Column: GlobalAttributes, SpanAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Column {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Column {
+        return mutate(translate: type.rawValue)
     }
     
     public func span(_ size: Int) -> Column {
@@ -782,8 +797,13 @@ extension TableBody: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> TableBody {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> TableBody {
+        return mutate(translate: type.rawValue)
     }
     
     public func width(_ size: Int) -> TableBody {
@@ -976,8 +996,13 @@ extension TableHead: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> TableHead {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> TableHead {
+        return mutate(translate: type.rawValue)
     }
 
     public func width(_ size: Int) -> TableHead {
@@ -1170,8 +1195,13 @@ extension TableFoot: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> TableFoot {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> TableFoot {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TableFoot {
@@ -1356,8 +1386,13 @@ extension TableRow: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> TableRow {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> TableRow {
+        return mutate(translate: type.rawValue)
     }
 
     public func width(_ size: Int) -> TableRow {
@@ -1550,8 +1585,13 @@ extension DataCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, Hea
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> DataCell {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> DataCell {
+        return mutate(translate: type.rawValue)
     }
 
     public func columnSpan(_ size: Int) -> DataCell {
@@ -1748,8 +1788,13 @@ extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, H
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> HeaderCell {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> HeaderCell {
+        return mutate(translate: type.rawValue)
     }
 
     public func columnSpan(_ size: Int) -> HeaderCell {

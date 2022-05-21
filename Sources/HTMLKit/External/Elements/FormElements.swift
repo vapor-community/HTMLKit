@@ -143,8 +143,13 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Input {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Input {
+        return mutate(translate: type.rawValue)
     }
 
     public func accept(_ value: String) -> Input {
@@ -441,8 +446,13 @@ extension Label: GlobalAttributes, ForAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Label {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Label {
+        return mutate(translate: type.rawValue)
     }
     
     public func `for`(_ value: String) -> Label {
@@ -642,8 +652,13 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Select {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Select {
+        return mutate(translate: type.rawValue)
     }
 
     public func hasCompletion(_ condition: Bool) -> Select {
@@ -860,8 +875,13 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> TextArea {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> TextArea {
+        return mutate(translate: type.rawValue)
     }
 
     public func hasCompletion(_ condition: Bool) -> TextArea {
@@ -1102,8 +1122,13 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Button {
-        return  mutate(translate: value)
+        return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Button {
+        return  mutate(translate: type.rawValue)
     }
     
     public func disabled() -> Button {
@@ -1331,8 +1356,13 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Fieldset {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Fieldset {
+        return mutate(translate: type.rawValue)
     }
 
     public func disabled() -> Fieldset {

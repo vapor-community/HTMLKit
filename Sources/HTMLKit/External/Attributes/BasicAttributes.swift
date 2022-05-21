@@ -2946,7 +2946,7 @@ public protocol TranslateAttribute: AnyAttribute {
     /// ```html
     /// <tag translate="" />
     /// ```
-    func translate(_ value: String) -> Self
+    func translate(_ type: Decision) -> Self
 }
 
 extension TranslateAttribute {

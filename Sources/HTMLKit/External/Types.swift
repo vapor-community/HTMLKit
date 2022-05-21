@@ -647,3 +647,14 @@ public enum Linejoin: String {
     case round
     case bevel
 }
+
+/// The type is for
+///
+/// ```html
+/// <span translate="yes"></span>
+/// ```
+public enum Decision: String {
+    
+    case yes
+    case no
+}

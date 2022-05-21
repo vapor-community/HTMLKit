@@ -139,8 +139,13 @@ extension Parameter: GlobalAttributes, NameAttribute, ValueAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Parameter {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Parameter {
+        return mutate(translate: type.rawValue)
     }
 
     public func name(_ value: String) -> Parameter {

@@ -153,8 +153,13 @@ extension FigureCaption: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> FigureCaption {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> FigureCaption {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> FigureCaption {

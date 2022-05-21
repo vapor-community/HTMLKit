@@ -139,8 +139,13 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Source {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Source {
+        return mutate(translate: type.rawValue)
     }
 
     public func type(_ value: Medias) -> Source {
@@ -344,8 +349,13 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
         return  mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Track {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Track {
+        return mutate(translate: type.rawValue)
     }
 
     public func kind(_ value: String) -> Track {

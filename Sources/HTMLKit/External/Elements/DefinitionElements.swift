@@ -161,9 +161,14 @@ extension TermName: GlobalAttributes {
     public func title(_ value: String) -> TermName {
         return mutate(title: value)
     }
-
+    
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> TermName {
         return mutate(translate: value)
+    }
+
+    public func translate(_ type: Decision) -> TermName {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TermName {
@@ -348,8 +353,13 @@ extension TermDefinition: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> TermDefinition {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> TermDefinition {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TermDefinition {

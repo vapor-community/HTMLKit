@@ -153,8 +153,13 @@ extension OptionGroup: GlobalAttributes, DisabledAttribute, LabelAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> OptionGroup {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> OptionGroup {
+        return mutate(translate: type.rawValue)
     }
 
     public func disabled() -> OptionGroup {
@@ -347,8 +352,13 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Option {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Option {
+        return mutate(translate: type.rawValue)
     }
 
     public func disabled() -> Option {
@@ -555,8 +565,13 @@ extension Legend: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Legend {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Legend {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Legend {
@@ -741,8 +756,13 @@ extension Summary: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Summary {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Summary {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Summary {

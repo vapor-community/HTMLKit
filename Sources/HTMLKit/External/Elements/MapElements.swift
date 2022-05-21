@@ -144,8 +144,13 @@ extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, Shap
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Area {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Area {
+        return mutate(translate: type.rawValue)
     }
     
     public func alternate(_ value: String) -> Area {

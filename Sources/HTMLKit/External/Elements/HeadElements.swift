@@ -144,8 +144,13 @@ extension Title: GlobalAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Title {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Title {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Title {
@@ -325,8 +330,13 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Base {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Base {
+        return mutate(translate: type.rawValue)
     }
     
     public func reference(_ value: String) -> Base {
@@ -518,8 +528,13 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Meta {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Meta {
+        return mutate(translate: type.rawValue)
     }
 
     public func content(_ value: String) -> Meta {
@@ -736,8 +751,13 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Style {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Style {
+        return mutate(translate: type.rawValue)
     }
 
     public func type(_ value: Medias) -> Style {
@@ -933,8 +953,13 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Link {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Link {
+        return mutate(translate: type.rawValue)
     }
     
     public func reference(_ value: String) -> Link {

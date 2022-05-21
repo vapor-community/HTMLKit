@@ -162,8 +162,13 @@ extension RubyText: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> RubyText {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> RubyText {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> RubyText {
@@ -347,9 +352,14 @@ extension RubyPronunciation: GlobalAttributes {
     public func title(_ value: String) -> RubyPronunciation {
         return mutate(title: value)
     }
-
+    
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> RubyPronunciation {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> RubyPronunciation {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> RubyPronunciation {

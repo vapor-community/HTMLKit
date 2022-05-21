@@ -476,9 +476,14 @@ extension Article: GlobalAttributes {
     public func title(_ value: String) -> Article {
         return mutate(title: value)
     }
-
+    
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Article {
         return mutate(translate: value)
+    }
+
+    public func translate(_ type: Decision) -> Article {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Article {
@@ -662,9 +667,14 @@ extension Section: GlobalAttributes {
     public func title(_ value: String) -> Section {
         return mutate(title: value)
     }
-
+    
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Section {
         return mutate(translate: value)
+    }
+
+    public func translate(_ type: Decision) -> Section {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Section {
@@ -849,8 +859,13 @@ extension Navigation: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Navigation {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Navigation {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Navigation {
@@ -1035,8 +1050,13 @@ extension Aside: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Aside {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Aside {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Aside {
@@ -1221,8 +1241,13 @@ extension Heading1: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Heading1 {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Heading1 {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Heading1 {
@@ -1418,8 +1443,13 @@ extension Heading2: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Heading2 {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Heading2 {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Heading2 {
@@ -1615,8 +1645,13 @@ extension Heading3: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Heading3 {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Heading3 {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Heading3 {
@@ -1812,8 +1847,13 @@ extension Heading4: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Heading4 {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Heading4 {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Heading4 {
@@ -2009,8 +2049,13 @@ extension Heading5: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Heading5 {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Heading5 {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Heading5 {
@@ -2206,8 +2251,13 @@ extension Heading6: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Heading6 {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Heading6 {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Heading6 {
@@ -2403,8 +2453,13 @@ extension HeadingGroup: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> HeadingGroup {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> HeadingGroup {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> HeadingGroup {
@@ -2589,8 +2644,13 @@ extension Header: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Header {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Header {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Header {
@@ -2775,8 +2835,13 @@ extension Footer: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Footer {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Footer {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Footer {
@@ -2961,8 +3026,13 @@ extension Address: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Address {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Address {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Address {
@@ -3147,8 +3217,13 @@ extension Paragraph: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Paragraph {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Paragraph {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Paragraph {
@@ -3339,8 +3414,13 @@ extension HorizontalRule: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> HorizontalRule {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> HorizontalRule {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> HorizontalRule {
@@ -3525,8 +3605,13 @@ extension PreformattedText: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> PreformattedText {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> PreformattedText {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> PreformattedText {
@@ -3711,8 +3796,13 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Blockquote {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Blockquote {
+        return mutate(translate: type.rawValue)
     }
     
     public func cite(_ value: String) -> Blockquote {
@@ -3912,8 +4002,13 @@ extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, Type
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> OrderedList {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> OrderedList {
+        return mutate(translate: type.rawValue)
     }
 
     public func reversed() -> OrderedList {
@@ -4110,8 +4205,13 @@ extension UnorderedList: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> UnorderedList {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> UnorderedList {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> UnorderedList {
@@ -4296,8 +4396,13 @@ extension DescriptionList: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> DescriptionList {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> DescriptionList {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> DescriptionList {
@@ -4482,8 +4587,13 @@ extension Figure: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Figure {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Figure {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Figure {
@@ -4668,8 +4778,13 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Anchor {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Anchor {
+        return mutate(translate: type.rawValue)
     }
     
     public func download() -> Anchor {
@@ -4905,8 +5020,13 @@ extension Emphasize: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Emphasize {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Emphasize {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Emphasize {
@@ -5091,8 +5211,13 @@ extension Strong: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Strong {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Strong {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Strong {
@@ -5277,8 +5402,13 @@ extension Small: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Small {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Small {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Small {
@@ -5474,8 +5604,13 @@ extension StrikeThrough: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> StrikeThrough {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> StrikeThrough {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> StrikeThrough {
@@ -5671,8 +5806,13 @@ extension Main: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Main {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Main {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Main {
@@ -5857,8 +5997,13 @@ extension Division: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Division {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Division {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Division {
@@ -6043,8 +6188,13 @@ extension Definition: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Definition {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Definition {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Definition {
@@ -6229,8 +6379,13 @@ extension Cite: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Cite {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Cite {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Cite {
@@ -6415,8 +6570,13 @@ extension ShortQuote: GlobalAttributes, CiteAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> ShortQuote {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> ShortQuote {
+        return mutate(translate: type.rawValue)
     }
     
     public func cite(_ value: String) -> ShortQuote {
@@ -6605,8 +6765,13 @@ extension Abbreviation: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Abbreviation {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Abbreviation {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Abbreviation {
@@ -6791,8 +6956,13 @@ extension Ruby: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Ruby {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Ruby {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Ruby {
@@ -6977,8 +7147,13 @@ extension Data: GlobalAttributes, ValueAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Data {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Data {
+        return mutate(translate: type.rawValue)
     }
     
     public func value(_ value: String) -> Data {
@@ -7171,8 +7346,13 @@ extension Time: GlobalAttributes, DateTimeAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Time {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Time {
+        return mutate(translate: type.rawValue)
     }
 
     public func dateTime(_ value: String) -> Time {
@@ -7361,8 +7541,13 @@ extension Code: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Code {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Code {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Code {
@@ -7547,8 +7732,13 @@ extension Variable: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Variable {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Variable {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Variable {
@@ -7733,8 +7923,13 @@ extension SampleOutput: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> SampleOutput {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> SampleOutput {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> SampleOutput {
@@ -7919,8 +8114,13 @@ extension KeyboardInput: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> KeyboardInput {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> KeyboardInput {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> KeyboardInput {
@@ -8105,8 +8305,13 @@ extension Subscript: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Subscript {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Subscript {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Subscript {
@@ -8291,8 +8496,13 @@ extension Superscript: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Superscript {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Superscript {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Superscript {
@@ -8477,8 +8687,13 @@ extension Italic: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Italic {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Italic {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Italic {
@@ -8674,8 +8889,13 @@ extension Bold: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Bold {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Bold {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Bold {
@@ -8871,8 +9091,13 @@ extension Underline: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Underline {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Underline {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Underline {
@@ -9068,8 +9293,13 @@ extension Mark: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Mark {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Mark {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Mark {
@@ -9254,8 +9484,13 @@ extension Bdi: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Bdi {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Bdi {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Bdi {
@@ -9435,8 +9670,13 @@ extension Bdo: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Bdo {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Bdo {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Bdo {
@@ -9621,8 +9861,13 @@ extension Span: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Span {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Span {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Span {
@@ -9802,8 +10047,13 @@ extension LineBreak: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> LineBreak {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> LineBreak {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> LineBreak {
@@ -9983,8 +10233,13 @@ extension WordBreak: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> WordBreak {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> WordBreak {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> WordBreak {
@@ -10169,8 +10424,13 @@ extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> InsertedText {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> InsertedText {
+        return mutate(translate: type.rawValue)
     }
     
     public func cite(_ value: String) -> InsertedText {
@@ -10363,8 +10623,13 @@ extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> DeletedText {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> DeletedText {
+        return mutate(translate: type.rawValue)
     }
 
     public func cite(_ value: String) -> DeletedText {
@@ -10557,8 +10822,13 @@ extension Picture: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Picture {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Picture {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Picture {
@@ -10746,8 +11016,13 @@ extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAtt
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Image {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Image {
+        return mutate(translate: type.rawValue)
     }
 
     public func alternate(_ value: String) -> Image {
@@ -10930,7 +11205,7 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
     public func nonce(_ value: String) -> InlineFrame {
         return mutate(nonce: value)
     }
-
+    
     @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> InlineFrame {
         return mutate(role: value)
@@ -10956,8 +11231,13 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> InlineFrame {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> InlineFrame {
+        return mutate(translate: type.rawValue)
     }
 
     public func source(_ value: String) -> InlineFrame {
@@ -11161,8 +11441,13 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Embed {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Embed {
+        return mutate(translate: type.rawValue)
     }
 
     public func source(_ value: String) -> Embed {
@@ -11367,8 +11652,13 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Object {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Object {
+        return mutate(translate: type.rawValue)
     }
     
     public func data(_ value: String) -> Object {
@@ -11581,8 +11871,13 @@ extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Video {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Video {
+        return mutate(translate: type.rawValue)
     }
 
     public func source(_ value: String) -> Video {
@@ -11795,8 +12090,13 @@ extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Audio {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Audio {
+        return mutate(translate: type.rawValue)
     }
 
     public func source(_ value: String) -> Audio {
@@ -12002,8 +12302,13 @@ extension Map: GlobalAttributes, NameAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Map {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Map {
+        return mutate(translate: type.rawValue)
     }
 
     public func name(_ value: String) -> Map {
@@ -12205,8 +12510,13 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Form {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Form {
+        return mutate(translate: type.rawValue)
     }
 
     public func action(_ value: String) -> Form {
@@ -12423,8 +12733,13 @@ extension DataList: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> DataList {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> DataList {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> DataList {
@@ -12609,8 +12924,13 @@ extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Output {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Output {
+        return mutate(translate: type.rawValue)
     }
     
     public func `for`(_ value: String) -> Output {
@@ -12811,8 +13131,13 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Progress {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Progress {
+        return mutate(translate: type.rawValue)
     }
 
     public func maximum(_ value: String) -> Progress {
@@ -13009,8 +13334,13 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Meter {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Meter {
+        return mutate(translate: type.rawValue)
     }
     
     public func minimum(_ value: String) -> Meter {
@@ -13223,8 +13553,13 @@ extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Details {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Details {
+        return mutate(translate: type.rawValue)
     }
 
     public func isOpen(_ condition: Bool) -> Details {
@@ -13409,8 +13744,13 @@ extension Dialog: GlobalAttributes, OpenAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Dialog {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Dialog {
+        return mutate(translate: type.rawValue)
     }
 
     public func isOpen(_ condition: Bool) -> Dialog {
@@ -13607,8 +13947,13 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Script {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Script {
+        return mutate(translate: type.rawValue)
     }
 
     public func asynchronously() -> Script {
@@ -13809,8 +14154,13 @@ extension NoScript: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> NoScript {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> NoScript {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> NoScript {
@@ -13995,8 +14345,13 @@ extension Template: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Template {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Template {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Template {
@@ -14181,8 +14536,13 @@ extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Canvas {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Canvas {
+        return mutate(translate: type.rawValue)
     }
     
     public func width(_ size: Int) -> Canvas {
@@ -14375,8 +14735,13 @@ extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Table {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Table {
+        return mutate(translate: type.rawValue)
     }
 
     public func width(_ size: Int) -> Table {
