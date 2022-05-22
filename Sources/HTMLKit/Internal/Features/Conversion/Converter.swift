@@ -112,7 +112,7 @@ public class Converter {
             throw Errors.rootNotFound
         }
         
-        let content = Converter.default.decode(element: root, indent: 2)
+        let content = Converter.default.decode(element: root, indent: 0)
         return content
     }
     
@@ -464,6 +464,8 @@ public class Converter {
                     ContentElement(element: element).build(verbatim: "Italic", preindent: indent)
                 case "b":
                     ContentElement(element: element).build(verbatim: "Bold", preindent: indent)
+                case "strong":
+                    ContentElement(element: element).build(verbatim: "Strong", preindent: indent)
                 case "u":
                     ContentElement(element: element).build(verbatim: "SampleOutput", preindent: indent)
                 case "mark":
