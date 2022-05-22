@@ -1,32 +1,42 @@
-/// ## Description
-/// The file contains the ruby elements. The html element Ruby only allows these elements to be its
-/// descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the ruby elements. The html-element 'ruby' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
-/// The alias points to RubyText.
+/// The alias for the element RubyText.
 ///
+/// Rt is the official tag and can be used instead of RubyText.
+///
+/// ```html
+/// <rt></rt>
+/// ```
 public typealias Rt = RubyText
 
-/// ## Description
-/// The alias points to RubyPronunciation.
+/// The alias for the element RubyPronunciation.
 ///
+/// Rp is the official tag and can be used instead of RubyPronunciation.
+///
+/// ```html
+/// <rp></rp>
+/// ```
 public typealias Rp = RubyPronunciation
 
-/// ## Description
 /// The element marks the ruby text component of a ruby annotation.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-rt-element
-///
+/// ```html
+/// <rt></rt>
+/// ```
 public struct RubyText: ContentNode, RubyElement {
 
     internal var name: String { "rt" }
@@ -47,7 +57,7 @@ public struct RubyText: ContentNode, RubyElement {
 
 extension RubyText: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> RubyText {
+    public func accessKey(_ value: Character) -> RubyText {
         return mutate(accesskey: value)
     }
 
@@ -144,7 +154,7 @@ extension RubyText: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> RubyText {
+    public func tabIndex(_ value: Int) -> RubyText {
         return mutate(tabindex: value)
     }
 
@@ -152,8 +162,13 @@ extension RubyText: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> RubyText {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> RubyText {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> RubyText {
@@ -208,12 +223,11 @@ extension RubyText: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents nothing.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-rp-element
-///
+/// ```html
+/// <rp></rp>
+/// ```
 public struct RubyPronunciation: ContentNode, RubyElement {
 
     internal var name: String { "rp" }
@@ -234,7 +248,7 @@ public struct RubyPronunciation: ContentNode, RubyElement {
 
 extension RubyPronunciation: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> RubyPronunciation {
+    public func accessKey(_ value: Character) -> RubyPronunciation {
         return mutate(accesskey: value)
     }
 
@@ -331,16 +345,21 @@ extension RubyPronunciation: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> RubyPronunciation {
+    public func tabIndex(_ value: Int) -> RubyPronunciation {
         return mutate(tabindex: value)
     }
 
     public func title(_ value: String) -> RubyPronunciation {
         return mutate(title: value)
     }
-
+    
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> RubyPronunciation {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> RubyPronunciation {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> RubyPronunciation {

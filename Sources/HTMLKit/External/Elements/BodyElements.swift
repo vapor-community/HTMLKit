@@ -1,207 +1,357 @@
-/// ## Description
-/// The file contains the body elements. The html element Body only allows these elements
-/// to be its descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the body elements. The html-element 'body' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
-/// The alias points to Navigation.
+/// The alias for the element Navigation.
 ///
+/// Nav is the official tag and can be used instead of Navigation.
+///
+/// ```html
+/// <nav></nav>
+/// ```
 public typealias Nav = Navigation
 
-/// ## Description
-/// The alias points to Heading1.
+/// The alias for the element Heading1.
 ///
+/// H1 is the official tag and can be used instead of Heading1.
+///
+/// ```html
+/// <h1></h1>
+/// ```
 public typealias H1 = Heading1
 
-/// ## Description
-/// The alias points to Heading2.
+/// The alias for the element Heading2.
 ///
+/// H2 is the official tag and can be used instead of Heading2.
+///
+/// ```html
+/// <h2></h2>
+/// ```
 public typealias H2 = Heading2
 
-/// ## Description
-/// The alias points to Heading3.
+/// The alias for the element Heading3.
 ///
+/// H3 is the official tag and can be used instead of Heading3.
+///
+/// ```html
+/// <h3></h3>
+/// ```
 public typealias H3 = Heading3
 
-/// ## Description
-/// The alias points to Heading4.
+/// The alias for the element Heading4.
 ///
+/// H4 is the official tag and can be used instead of Heading4.
+///
+/// ```html
+/// <h4></h4>
+/// ```
 public typealias H4 = Heading4
 
-/// ## Description
-/// The alias points to Heading5.
+/// The alias for the element Heading5.
 ///
+/// H5 is the official tag and can be used instead of Heading5.
+///
+/// ```html
+/// <h5></h5>
+/// ```
 public typealias H5 = Heading5
 
-/// ## Description
-/// The alias points to Heading6.
+/// The alias for the element Heading6.
 ///
+/// H6 is the official tag and can be used instead of Heading6.
+///
+/// ```html
+/// <h6></h6>
+/// ```
 public typealias H6 = Heading6
 
-/// ## Description
-/// The alias points to HeadingGroup.
+/// The alias for the element HeadingGroup.
 ///
+/// Hgroup is the official tag and can be used instead of HeadingGroup.
+///
+/// ```html
+/// <hgroup></hgroup>
+/// ```
 public typealias Hgroup = HeadingGroup
 
-/// ## Description
-/// The alias points to Paragraph.
+/// The alias for the element Paragraph.
 ///
+/// P is the official tag and can be used instead of Paragraph.
+///
+/// ```html
+/// <p></p>
+/// ```
 public typealias P = Paragraph
 
-/// ## Description
-/// The alias points to HorizontalRule.
+/// The alias for the element HorizontalRule.
 ///
+/// Hr is the official tag and can be used instead of HorizontalRule.
+///
+/// ```html
+/// <hr>
+/// ```
 public typealias Hr = HorizontalRule
 
-/// ## Description
-/// The alias points to PreformattedText.
+/// The alias for the element PreformattedText.
 ///
+/// Pre is the official tag and can be used instead of PreformattedText.
+///
+/// ```html
+/// <pre></pre>
+/// ```
 public typealias Pre = PreformattedText
 
-/// ## Description
-/// The alias points to OrderedList.
+/// The alias for the element OrderedList.
 ///
+/// Ol is the official tag and can be used instead of OrderedList.
+///
+/// ```html
+/// <ol></ol>
+/// ```
 public typealias Ol = OrderedList
 
-/// ## Description
-/// The alias points to UnorderedList.
+/// The alias for the element UnorderedList.
 ///
+/// Ul is the official tag and can be used instead of UnorderedList.
+///
+/// ```html
+/// <ul></ul>
+/// ```
 public typealias Ul = UnorderedList
 
-/// ## Description
-/// The alias points to DescriptionList.
+/// The alias for the element DescriptionList.
 ///
+/// Dl is the official tag and can be used instead of DescriptionList.
+///
+/// ```html
+/// <dl></dl>
+/// ```
 public typealias Dl = DescriptionList
 
-/// ## Description
-/// The alias points to Division.
+/// The alias for the element Division.
 ///
+/// Div is the official tag and can be used instead of Division.
+///
+/// ```html
+/// <div></div>
+/// ```
 public typealias Div = Division
 
-/// ## Description
-/// The alias points to Anchor.
+/// The alias for the element Anchor.
 ///
+/// A is the official tag and can be used instead of Anchor.
+///
+/// ```html
+/// <a></a>
+/// ```
 public typealias A = Anchor
 
-/// ## Description
-/// The alias points to Emphasize.
+/// The alias for the element Emphasize.
 ///
+/// Em is the official tag and can be used instead of Emphasize.
+///
+/// ```html
+/// <em></em>
+/// ```
 public typealias Em = Emphasize
 
-/// ## Description
-/// The alias points to StrikeThrough.
+/// The alias for the element StrikeThrough.
 ///
+/// S is the official tag and can be used instead of StrikeThrough.
+///
+/// ```html
+/// <s></s>
+/// ```
 public typealias S = StrikeThrough
 
-/// ## Description
-/// The alias points to ShortQuote.
+/// The alias for the element ShortQuote.
 ///
+/// Q is the official tag and can be used instead of ShortQuote.
+///
+/// ```html
+/// <q></q>
+/// ```
 public typealias Q = ShortQuote
 
-/// ## Description
-/// The alias points to Definition.
+/// The alias for the element Definition.
 ///
+/// Dfn is the official tag and can be used instead of Definition.
+///
+/// ```html
+/// <dfn></dfn>
+/// ```
 public typealias Dfn = Definition
 
-/// ## Description
-/// The alias points to Abbreviation.
+/// The alias for the element Abbreviation.
 ///
+/// Abbr is the official tag and can be used instead of Abbreviation.
+///
+/// ```html
+/// <abbr></abbr>
+/// ```
 public typealias Abbr = Abbreviation
 
-/// ## Description
-/// The alias points to Variable.
+/// The alias for the element Variable.
 ///
+/// V is the official tag and can be used instead of Variable.
+///
+/// ```html
+/// <v></v>
+/// ```
 public typealias V = Variable
 
-/// ## Description
-/// The alias points to SampleOutput.
+/// The alias for the element SampleOutput.
 ///
+/// Samp is the official tag and can be used instead of SampleOutput.
+///
+/// ```html
+/// <samp></samp>
+/// ```
 public typealias Samp = SampleOutput
 
-/// ## Description
-/// The alias points to KeyboardInput.
+/// The alias for the element KeyboardInput.
 ///
+/// Kbd is the official tag and can be used instead of KeyboardInput.
+///
+/// ```html
+/// <kdb></kdb>
+/// ```
 public typealias Kbd = KeyboardInput
 
-/// ## Description
-/// The alias points to Subscript.
+/// The alias for the element Subscript.
 ///
+/// Sub is the official tag and can be used instead of Subscript.
+///
+/// ```html
+/// <sub></sub>
+/// ```
 public typealias Sub = Subscript
 
-/// ## Description
-/// The alias points to Superscript.
+/// The alias for the element Superscript.
 ///
+/// Sup is the official tag and can be used instead of Superscript.
+///
+/// ```html
+/// <sup></sup>
+/// ```
 public typealias Sup = Superscript
 
-/// ## Description
-/// The alias points to Italic.
+/// The alias for the element Italic.
 ///
+/// I is the official tag and can be used instead of Italic.
+///
+/// ```html
+/// <i></i>
+/// ```
 public typealias I = Italic
 
-/// ## Description
-/// The alias points to Bold.
+/// The alias for the element Bold.
 ///
+/// Bold is the official tag and can be used instead of Bold.
+///
+/// ```html
+/// <b></b>
+/// ```
 public typealias B = Bold
 
-/// ## Description
-/// The alias points to Underline.
+/// The alias for the element Underline.
 ///
+/// U is the official tag and can be used instead of Underline.
+///
+/// ```html
+/// <u></u>
+/// ```
 public typealias U = Underline
 
-/// ## Description
-/// The alias points to LineBreak.
+/// The alias for the element LineBreak.
 ///
+/// Br is the official tag and can be used instead of LineBreak.
+///
+/// ```html
+/// <br>
+/// ```
 public typealias Br = LineBreak
 
-/// ## Description
-/// The alias points to WordBreak.
+/// The alias for the element WordBreak.
 ///
+/// Wbr is the official tag and can be used instead of WordBreak.
+///
+/// ```html
+/// <wbr>
+/// ```
 public typealias Wbr = WordBreak
 
-/// ## Description
-/// The alias points to InsertedText.
+/// The alias for the element InsertedText.
 ///
+/// Ins is the official tag and can be used instead of InsertedText.
+///
+/// ```html
+/// <ins></ins>
+/// ```
 public typealias Ins = InsertedText
 
-/// ## Description
-/// The alias points to DeletedText.
+/// The alias for the element DeletedText.
 ///
+/// Del is the official tag and can be used instead of DeletedText.
+///
+/// ```html
+/// <del></del>
+/// ```
 public typealias Del = DeletedText
 
-/// ## Description
-/// The alias points to Image.
+/// The alias for the element Image.
 ///
+/// Img is the official tag and can be used instead of Image.
+///
+/// ```html
+/// <img>
+/// ```
 public typealias Img = Image
 
-/// ## Description
-/// The alias points to InlineFrame.
+/// The alias for the element InlineFrame.
 ///
+/// Iframe is the official tag and can be used instead of InlineFrame.
+///
+/// ```html
+/// <iframe></iframe>
+/// ```
 public typealias Iframe = InlineFrame
 
-/// ## Description
-/// The alias points to Parameter.
+/// The alias for the element Parameter.
 ///
+/// Param is the official tag and can be used instead of Parameter.
+///
+/// ```html
+/// <param>
+/// ```
 public typealias Param = Parameter
 
-/// ## Description
-/// The alias points to Parameter.
+/// The alias for the element Vector.
 ///
+/// Svg is the official tag and can be used instead of Vector.
+///
+/// ```html
+/// <svg></svg>
+/// ```
 public typealias Svg = Vector
 
-/// ## Description
 /// The element represents a self-contained content.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-article-element
-///
+/// ```html
+/// <article></article>
+/// ```
 public struct Article: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "article" }
@@ -222,7 +372,7 @@ public struct Article: ContentNode, HtmlElement, BodyElement, FormElement, Figur
 
 extension Article: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Article {
+    public func accessKey(_ value: Character) -> Article {
         return mutate(accesskey: value)
     }
 
@@ -319,16 +469,21 @@ extension Article: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Article {
+    public func tabIndex(_ value: Int) -> Article {
         return mutate(tabindex: value)
     }
 
     public func title(_ value: String) -> Article {
         return mutate(title: value)
     }
-
+    
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Article {
         return mutate(translate: value)
+    }
+
+    public func translate(_ type: Decision) -> Article {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Article {
@@ -383,12 +538,11 @@ extension Article: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a generic section of the document.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-section-element
-///
+/// ```html
+/// <section></section>
+/// ```
 public struct Section: ContentNode, HtmlElement, BodyElement, FigureElement, FormElement, ObjectElement {
 
     internal var name: String { "section" }
@@ -409,7 +563,7 @@ public struct Section: ContentNode, HtmlElement, BodyElement, FigureElement, For
 
 extension Section: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Section {
+    public func accessKey(_ value: Character) -> Section {
         return mutate(accesskey: value)
     }
 
@@ -506,16 +660,21 @@ extension Section: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Section {
+    public func tabIndex(_ value: Int) -> Section {
         return mutate(tabindex: value)
     }
 
     public func title(_ value: String) -> Section {
         return mutate(title: value)
     }
-
+    
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Section {
         return mutate(translate: value)
+    }
+
+    public func translate(_ type: Decision) -> Section {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Section {
@@ -570,12 +729,11 @@ extension Section: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a section of a page that links to other pages or parts within the page.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-nav-element)
-///
+/// ```html
+/// <nav></nav>
+/// ```
 public struct Navigation: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "nav" }
@@ -596,7 +754,7 @@ public struct Navigation: ContentNode, HtmlElement, BodyElement, FormElement, Fi
 
 extension Navigation: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Navigation {
+    public func accessKey(_ value: Character) -> Navigation {
         return mutate(accesskey: value)
     }
 
@@ -693,7 +851,7 @@ extension Navigation: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Navigation {
+    public func tabIndex(_ value: Int) -> Navigation {
         return mutate(tabindex: value)
     }
 
@@ -701,8 +859,13 @@ extension Navigation: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Navigation {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Navigation {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Navigation {
@@ -757,12 +920,11 @@ extension Navigation: Modifiable {
     }
 }
 
-/// ## Description
 /// The element defines some content aside from the content it is placed in.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-aside-element
-///
+/// ```html
+/// <aside></aside>
+/// ```
 public struct Aside: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "aside" }
@@ -783,7 +945,7 @@ public struct Aside: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
 
 extension Aside: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Aside {
+    public func accessKey(_ value: Character) -> Aside {
         return mutate(accesskey: value)
     }
 
@@ -880,7 +1042,7 @@ extension Aside: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Aside {
+    public func tabIndex(_ value: Int) -> Aside {
         return mutate(tabindex: value)
     }
 
@@ -888,8 +1050,13 @@ extension Aside: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Aside {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Aside {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Aside {
@@ -944,12 +1111,11 @@ extension Aside: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a heading.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
-///
+/// ```html
+/// <h1></h1>
+/// ```
 public struct Heading1: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "h1" }
@@ -970,7 +1136,7 @@ public struct Heading1: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Heading1: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Heading1 {
+    public func accessKey(_ value: Character) -> Heading1 {
         return mutate(accesskey: value)
     }
 
@@ -1067,7 +1233,7 @@ extension Heading1: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Heading1 {
+    public func tabIndex(_ value: Int) -> Heading1 {
         return mutate(tabindex: value)
     }
 
@@ -1075,8 +1241,13 @@ extension Heading1: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Heading1 {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Heading1 {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Heading1 {
@@ -1142,12 +1313,11 @@ extension Heading1: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a heading.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
-///
+/// ```html
+/// <h2></h2>
+/// ```
 public struct Heading2: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "h2" }
@@ -1168,7 +1338,7 @@ public struct Heading2: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Heading2: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Heading2 {
+    public func accessKey(_ value: Character) -> Heading2 {
         return mutate(accesskey: value)
     }
 
@@ -1265,7 +1435,7 @@ extension Heading2: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Heading2 {
+    public func tabIndex(_ value: Int) -> Heading2 {
         return mutate(tabindex: value)
     }
 
@@ -1273,8 +1443,13 @@ extension Heading2: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Heading2 {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Heading2 {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Heading2 {
@@ -1340,12 +1515,11 @@ extension Heading2: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a heading.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
-///
+/// ```html
+/// <h3></h3>
+/// ```
 public struct Heading3: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "h3" }
@@ -1366,7 +1540,7 @@ public struct Heading3: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Heading3: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Heading3 {
+    public func accessKey(_ value: Character) -> Heading3 {
         return mutate(accesskey: value)
     }
 
@@ -1463,7 +1637,7 @@ extension Heading3: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Heading3 {
+    public func tabIndex(_ value: Int) -> Heading3 {
         return mutate(tabindex: value)
     }
 
@@ -1471,8 +1645,13 @@ extension Heading3: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Heading3 {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Heading3 {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Heading3 {
@@ -1538,12 +1717,11 @@ extension Heading3: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a heading.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
-///
+/// ```html
+/// <h4></h4>
+/// ```
 public struct Heading4: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "h4" }
@@ -1564,7 +1742,7 @@ public struct Heading4: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Heading4: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Heading4 {
+    public func accessKey(_ value: Character) -> Heading4 {
         return mutate(accesskey: value)
     }
 
@@ -1661,7 +1839,7 @@ extension Heading4: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Heading4 {
+    public func tabIndex(_ value: Int) -> Heading4 {
         return mutate(tabindex: value)
     }
 
@@ -1669,8 +1847,13 @@ extension Heading4: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Heading4 {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Heading4 {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Heading4 {
@@ -1736,12 +1919,11 @@ extension Heading4: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a heading.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
-///
+/// ```html
+/// <h5></h5>
+/// ```
 public struct Heading5: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "h5" }
@@ -1762,7 +1944,7 @@ public struct Heading5: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Heading5: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Heading5 {
+    public func accessKey(_ value: Character) -> Heading5 {
         return mutate(accesskey: value)
     }
 
@@ -1859,7 +2041,7 @@ extension Heading5: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Heading5 {
+    public func tabIndex(_ value: Int) -> Heading5 {
         return mutate(tabindex: value)
     }
 
@@ -1867,8 +2049,13 @@ extension Heading5: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Heading5 {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Heading5 {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Heading5 {
@@ -1934,12 +2121,11 @@ extension Heading5: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a heading.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
-///
+/// ```html
+/// <h6></h6>
+/// ```
 public struct Heading6: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "h6" }
@@ -1960,7 +2146,7 @@ public struct Heading6: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Heading6: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Heading6 {
+    public func accessKey(_ value: Character) -> Heading6 {
         return mutate(accesskey: value)
     }
 
@@ -2057,7 +2243,7 @@ extension Heading6: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Heading6 {
+    public func tabIndex(_ value: Int) -> Heading6 {
         return mutate(tabindex: value)
     }
 
@@ -2065,8 +2251,13 @@ extension Heading6: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Heading6 {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Heading6 {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Heading6 {
@@ -2132,12 +2323,11 @@ extension Heading6: Modifiable {
     }
 }
 
-/// ## Description
 /// The element is used to group a set of heading elements.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-hgroup-element
-///
+/// ```html
+/// <hgroup></hgroup>
+/// ```
 public struct HeadingGroup: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "hgroup" }
@@ -2158,7 +2348,7 @@ public struct HeadingGroup: ContentNode, HtmlElement, BodyElement, FormElement, 
 
 extension HeadingGroup: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> HeadingGroup {
+    public func accessKey(_ value: Character) -> HeadingGroup {
         return mutate(accesskey: value)
     }
 
@@ -2255,7 +2445,7 @@ extension HeadingGroup: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> HeadingGroup {
+    public func tabIndex(_ value: Int) -> HeadingGroup {
         return mutate(tabindex: value)
     }
 
@@ -2263,8 +2453,13 @@ extension HeadingGroup: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> HeadingGroup {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> HeadingGroup {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> HeadingGroup {
@@ -2319,12 +2514,11 @@ extension HeadingGroup: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a header.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-header-element
-///
+/// ```html
+/// <header></header>
+/// ```
 public struct Header: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "header" }
@@ -2345,7 +2539,7 @@ public struct Header: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Header: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Header {
+    public func accessKey(_ value: Character) -> Header {
         return mutate(accesskey: value)
     }
 
@@ -2442,7 +2636,7 @@ extension Header: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Header {
+    public func tabIndex(_ value: Int) -> Header {
         return mutate(tabindex: value)
     }
 
@@ -2450,8 +2644,13 @@ extension Header: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Header {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Header {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Header {
@@ -2506,12 +2705,11 @@ extension Header: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a footer.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-footer-element
-///
+/// ```html
+/// <footer></footer>
+/// ```
 public struct Footer: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "footer" }
@@ -2532,7 +2730,7 @@ public struct Footer: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Footer: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Footer {
+    public func accessKey(_ value: Character) -> Footer {
         return mutate(accesskey: value)
     }
 
@@ -2629,7 +2827,7 @@ extension Footer: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Footer {
+    public func tabIndex(_ value: Int) -> Footer {
         return mutate(tabindex: value)
     }
 
@@ -2637,8 +2835,13 @@ extension Footer: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Footer {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Footer {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Footer {
@@ -2693,12 +2896,11 @@ extension Footer: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents the contact information.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-address-element
-///
+/// ```html
+/// <adress></adress>
+/// ```
 public struct Address: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "address" }
@@ -2719,7 +2921,7 @@ public struct Address: ContentNode, HtmlElement, BodyElement, FormElement, Figur
 
 extension Address: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Address {
+    public func accessKey(_ value: Character) -> Address {
         return mutate(accesskey: value)
     }
 
@@ -2816,7 +3018,7 @@ extension Address: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Address {
+    public func tabIndex(_ value: Int) -> Address {
         return mutate(tabindex: value)
     }
 
@@ -2824,8 +3026,13 @@ extension Address: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Address {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Address {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Address {
@@ -2880,12 +3087,11 @@ extension Address: Modifiable {
     }
 }
 
-/// ## Description
 /// The element is used to define a paragraph.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-p-element
-///
+/// ```html
+/// <p></p>
+/// ```
 public struct Paragraph: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "p" }
@@ -2906,7 +3112,7 @@ public struct Paragraph: ContentNode, HtmlElement, BodyElement, FormElement, Fig
 
 extension Paragraph: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Paragraph {
+    public func accessKey(_ value: Character) -> Paragraph {
         return mutate(accesskey: value)
     }
 
@@ -3003,7 +3209,7 @@ extension Paragraph: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Paragraph {
+    public func tabIndex(_ value: Int) -> Paragraph {
         return mutate(tabindex: value)
     }
 
@@ -3011,8 +3217,13 @@ extension Paragraph: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Paragraph {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Paragraph {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Paragraph {
@@ -3078,12 +3289,11 @@ extension Paragraph: Modifiable {
     }
 }
 
-/// ## Description
 /// The element is used for horizontal rules that act as dividers between sections.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-hr-element
-///
+/// ```html
+/// <hr>
+/// ```
 public struct HorizontalRule: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "hr" }
@@ -3099,7 +3309,7 @@ public struct HorizontalRule: EmptyNode, HtmlElement, BodyElement, FormElement, 
 
 extension HorizontalRule: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> HorizontalRule {
+    public func accessKey(_ value: Character) -> HorizontalRule {
         return mutate(accesskey: value)
     }
 
@@ -3196,7 +3406,7 @@ extension HorizontalRule: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> HorizontalRule {
+    public func tabIndex(_ value: Int) -> HorizontalRule {
         return mutate(tabindex: value)
     }
 
@@ -3204,8 +3414,13 @@ extension HorizontalRule: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> HorizontalRule {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> HorizontalRule {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> HorizontalRule {
@@ -3260,12 +3475,11 @@ extension HorizontalRule: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a block of preformatted text.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-pre-element
-///
+/// ```html
+/// <pre></pre>
+/// ```
 public struct PreformattedText: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "pre" }
@@ -3286,7 +3500,7 @@ public struct PreformattedText: ContentNode, HtmlElement, BodyElement, FormEleme
 
 extension PreformattedText: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> PreformattedText {
+    public func accessKey(_ value: Character) -> PreformattedText {
         return mutate(accesskey: value)
     }
 
@@ -3383,7 +3597,7 @@ extension PreformattedText: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> PreformattedText {
+    public func tabIndex(_ value: Int) -> PreformattedText {
         return mutate(tabindex: value)
     }
 
@@ -3391,8 +3605,13 @@ extension PreformattedText: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> PreformattedText {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> PreformattedText {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> PreformattedText {
@@ -3447,12 +3666,11 @@ extension PreformattedText: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a section that is quoted from another source.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-blockquote-element
-///
+/// ```html
+/// <blockquote></blockquote>
+/// ```
 public struct Blockquote: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "blockquote" }
@@ -3473,7 +3691,7 @@ public struct Blockquote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
 
 extension Blockquote: GlobalAttributes, CiteAttribute {
     
-    public func accessKey(_ value: String) -> Blockquote {
+    public func accessKey(_ value: Character) -> Blockquote {
         return mutate(accesskey: value)
     }
 
@@ -3570,7 +3788,7 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Blockquote {
+    public func tabIndex(_ value: Int) -> Blockquote {
         return mutate(tabindex: value)
     }
 
@@ -3578,8 +3796,13 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Blockquote {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Blockquote {
+        return mutate(translate: type.rawValue)
     }
     
     public func cite(_ value: String) -> Blockquote {
@@ -3649,12 +3872,11 @@ extension Blockquote: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a list of items, where the items have been intentionally ordered.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-ol-element
-///
+/// ```html
+/// <ol></ol>
+/// ```
 public struct OrderedList: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "ol" }
@@ -3675,7 +3897,7 @@ public struct OrderedList: ContentNode, HtmlElement, BodyElement, FormElement, F
 
 extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, TypeAttribute {
     
-    public func accessKey(_ value: String) -> OrderedList {
+    public func accessKey(_ value: Character) -> OrderedList {
         return mutate(accesskey: value)
     }
 
@@ -3772,7 +3994,7 @@ extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, Type
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> OrderedList {
+    public func tabIndex(_ value: Int) -> OrderedList {
         return mutate(tabindex: value)
     }
 
@@ -3780,8 +4002,13 @@ extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, Type
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> OrderedList {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> OrderedList {
+        return mutate(translate: type.rawValue)
     }
 
     public func reversed() -> OrderedList {
@@ -3848,12 +4075,11 @@ extension OrderedList: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a list of items, where the order of the items is not important.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-ul-element
-///
+/// ```html
+/// <ul></ul>
+/// ```
 public struct UnorderedList: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "ul" }
@@ -3874,7 +4100,7 @@ public struct UnorderedList: ContentNode, HtmlElement, BodyElement, FormElement,
 
 extension UnorderedList: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> UnorderedList {
+    public func accessKey(_ value: Character) -> UnorderedList {
         return mutate(accesskey: value)
     }
 
@@ -3971,7 +4197,7 @@ extension UnorderedList: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> UnorderedList {
+    public func tabIndex(_ value: Int) -> UnorderedList {
         return mutate(tabindex: value)
     }
 
@@ -3979,8 +4205,13 @@ extension UnorderedList: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> UnorderedList {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> UnorderedList {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> UnorderedList {
@@ -4035,12 +4266,11 @@ extension UnorderedList: Modifiable {
     }
 }
 
-/// ## Description
 /// The element defines a list of terms and corresponding definitions.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-dl-element
-///
+/// ```html
+/// <dl></dl>
+/// ```
 public struct DescriptionList: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "dl" }
@@ -4061,7 +4291,7 @@ public struct DescriptionList: ContentNode, HtmlElement, BodyElement, FormElemen
 
 extension DescriptionList: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> DescriptionList {
+    public func accessKey(_ value: Character) -> DescriptionList {
         return mutate(accesskey: value)
     }
 
@@ -4158,7 +4388,7 @@ extension DescriptionList: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> DescriptionList {
+    public func tabIndex(_ value: Int) -> DescriptionList {
         return mutate(tabindex: value)
     }
 
@@ -4166,8 +4396,13 @@ extension DescriptionList: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> DescriptionList {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> DescriptionList {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> DescriptionList {
@@ -4222,12 +4457,11 @@ extension DescriptionList: Modifiable {
     }
 }
 
-/// # Figure
 /// The element can thus be used to annotate illustrations, diagrams, photos, code listings.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-figure-element
-///
+/// ```html
+/// <figure></figure>
+/// ```
 public struct Figure: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "figure" }
@@ -4248,7 +4482,7 @@ public struct Figure: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Figure: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Figure {
+    public func accessKey(_ value: Character) -> Figure {
         return mutate(accesskey: value)
     }
 
@@ -4345,7 +4579,7 @@ extension Figure: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Figure {
+    public func tabIndex(_ value: Int) -> Figure {
         return mutate(tabindex: value)
     }
 
@@ -4353,8 +4587,13 @@ extension Figure: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Figure {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Figure {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Figure {
@@ -4409,12 +4648,11 @@ extension Figure: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a comment output.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-a-element
-///
+/// ```html
+/// <a></a>
+/// ```
 public struct Anchor: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "a" }
@@ -4435,7 +4673,7 @@ public struct Anchor: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, PingAttribute, ReferrerPolicyAttribute, RelationshipAttribute, TargetAttribute, TypeAttribute {
     
-    public func accessKey(_ value: String) -> Anchor {
+    public func accessKey(_ value: Character) -> Anchor {
         return mutate(accesskey: value)
     }
 
@@ -4532,7 +4770,7 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Anchor {
+    public func tabIndex(_ value: Int) -> Anchor {
         return mutate(tabindex: value)
     }
 
@@ -4540,8 +4778,13 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Anchor {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Anchor {
+        return mutate(translate: type.rawValue)
     }
     
     public func download() -> Anchor {
@@ -4647,12 +4890,11 @@ extension Anchor: Modifiable {
     }
 }
 
-/// ## Description
 /// The element provides typographic emphasis.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-em-element
-///
+/// ```html
+/// <em></em>
+/// ```
 public struct Emphasize: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "em" }
@@ -4673,7 +4915,7 @@ public struct Emphasize: ContentNode, HtmlElement, BodyElement, FormElement, Fig
 
 extension Emphasize: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Emphasize {
+    public func accessKey(_ value: Character) -> Emphasize {
         return mutate(accesskey: value)
     }
 
@@ -4770,7 +5012,7 @@ extension Emphasize: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Emphasize {
+    public func tabIndex(_ value: Int) -> Emphasize {
         return mutate(tabindex: value)
     }
 
@@ -4778,8 +5020,13 @@ extension Emphasize: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Emphasize {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Emphasize {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Emphasize {
@@ -4834,12 +5081,11 @@ extension Emphasize: Modifiable {
     }
 }
 
-/// ## Description
 /// The element provides strong typographic emphasis.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-strong-element
-///
+/// ```html
+/// <strong></strong>
+/// ```
 public struct Strong: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "strong" }
@@ -4860,7 +5106,7 @@ public struct Strong: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Strong: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Strong {
+    public func accessKey(_ value: Character) -> Strong {
         return mutate(accesskey: value)
     }
 
@@ -4957,7 +5203,7 @@ extension Strong: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Strong {
+    public func tabIndex(_ value: Int) -> Strong {
         return mutate(tabindex: value)
     }
 
@@ -4965,8 +5211,13 @@ extension Strong: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Strong {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Strong {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Strong {
@@ -5021,12 +5272,11 @@ extension Strong: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents side comments such as small print.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-small-element
-///
+/// ```html
+/// <small></small>
+/// ```
 public struct Small: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "small" }
@@ -5047,7 +5297,7 @@ public struct Small: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
 
 extension Small: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Small {
+    public func accessKey(_ value: Character) -> Small {
         return mutate(accesskey: value)
     }
 
@@ -5144,7 +5394,7 @@ extension Small: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Small {
+    public func tabIndex(_ value: Int) -> Small {
         return mutate(tabindex: value)
     }
 
@@ -5152,8 +5402,13 @@ extension Small: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Small {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Small {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Small {
@@ -5219,12 +5474,11 @@ extension Small: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents contents that are no longer accurate or no longer relevant.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-s-element
-///
+/// ```html
+/// <s></s>
+/// ```
 public struct StrikeThrough: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "s" }
@@ -5245,7 +5499,7 @@ public struct StrikeThrough: ContentNode, HtmlElement, BodyElement, FormElement,
 
 extension StrikeThrough: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> StrikeThrough {
+    public func accessKey(_ value: Character) -> StrikeThrough {
         return mutate(accesskey: value)
     }
 
@@ -5342,7 +5596,7 @@ extension StrikeThrough: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> StrikeThrough {
+    public func tabIndex(_ value: Int) -> StrikeThrough {
         return mutate(tabindex: value)
     }
 
@@ -5350,8 +5604,13 @@ extension StrikeThrough: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> StrikeThrough {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> StrikeThrough {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> StrikeThrough {
@@ -5417,12 +5676,11 @@ extension StrikeThrough: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents the dominant contents of the document.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-main-element
-///
+/// ```html
+/// <main></main>
+/// ```
 public struct Main: ContentNode, HtmlElement, BodyElement, FormElement {
 
     internal var name: String { "main" }
@@ -5443,7 +5701,7 @@ public struct Main: ContentNode, HtmlElement, BodyElement, FormElement {
 
 extension Main: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Main {
+    public func accessKey(_ value: Character) -> Main {
         return mutate(accesskey: value)
     }
 
@@ -5540,7 +5798,7 @@ extension Main: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Main {
+    public func tabIndex(_ value: Int) -> Main {
         return mutate(tabindex: value)
     }
 
@@ -5548,8 +5806,13 @@ extension Main: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Main {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Main {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Main {
@@ -5604,12 +5867,11 @@ extension Main: Modifiable {
     }
 }
 
-/// ## Description
 /// The element is used to represent different kinds of containers.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-div-element
-///
+/// ```html
+/// <div></div>
+/// ```
 public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "div" }
@@ -5630,7 +5892,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Division: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Division {
+    public func accessKey(_ value: Character) -> Division {
         return mutate(accesskey: value)
     }
 
@@ -5727,7 +5989,7 @@ extension Division: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Division {
+    public func tabIndex(_ value: Int) -> Division {
         return mutate(tabindex: value)
     }
 
@@ -5735,8 +5997,13 @@ extension Division: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Division {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Division {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Division {
@@ -5791,12 +6058,11 @@ extension Division: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a comment output.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-dfn-element
-///
+/// ```html
+/// <dfn></dfn>
+/// ```
 public struct Definition: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "dfn" }
@@ -5817,7 +6083,7 @@ public struct Definition: ContentNode, HtmlElement, BodyElement, FormElement, Fi
 
 extension Definition: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Definition {
+    public func accessKey(_ value: Character) -> Definition {
         return mutate(accesskey: value)
     }
 
@@ -5914,7 +6180,7 @@ extension Definition: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Definition {
+    public func tabIndex(_ value: Int) -> Definition {
         return mutate(tabindex: value)
     }
 
@@ -5922,8 +6188,13 @@ extension Definition: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Definition {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Definition {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Definition {
@@ -5978,12 +6249,11 @@ extension Definition: Modifiable {
     }
 }
 
-/// ## Description
 /// The element specifies a citation.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-cite-element
-///
+/// ```html
+/// <cite></cite>
+/// ```
 public struct Cite: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "cite" }
@@ -6004,7 +6274,7 @@ public struct Cite: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Cite: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Cite {
+    public func accessKey(_ value: Character) -> Cite {
         return mutate(accesskey: value)
     }
 
@@ -6101,7 +6371,7 @@ extension Cite: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Cite {
+    public func tabIndex(_ value: Int) -> Cite {
         return mutate(tabindex: value)
     }
 
@@ -6109,8 +6379,13 @@ extension Cite: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Cite {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Cite {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Cite {
@@ -6165,12 +6440,11 @@ extension Cite: Modifiable {
     }
 }
 
-/// ## Description
 /// The element is used for a short quotation.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-q-element
-///
+/// ```html
+/// <q></q>
+/// ```
 public struct ShortQuote: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "q" }
@@ -6191,7 +6465,7 @@ public struct ShortQuote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
 
 extension ShortQuote: GlobalAttributes, CiteAttribute {
     
-    public func accessKey(_ value: String) -> ShortQuote {
+    public func accessKey(_ value: Character) -> ShortQuote {
         return mutate(accesskey: value)
     }
 
@@ -6288,7 +6562,7 @@ extension ShortQuote: GlobalAttributes, CiteAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> ShortQuote {
+    public func tabIndex(_ value: Int) -> ShortQuote {
         return mutate(tabindex: value)
     }
 
@@ -6296,8 +6570,13 @@ extension ShortQuote: GlobalAttributes, CiteAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> ShortQuote {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> ShortQuote {
+        return mutate(translate: type.rawValue)
     }
     
     public func cite(_ value: String) -> ShortQuote {
@@ -6356,12 +6635,11 @@ extension ShortQuote: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents an abbreviation or acronym.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-abbr-element
-///
+/// ```html
+/// <abbr></abbr>
+/// ```
 public struct Abbreviation: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "abbr" }
@@ -6382,7 +6660,7 @@ public struct Abbreviation: ContentNode, HtmlElement, BodyElement, FormElement, 
 
 extension Abbreviation: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Abbreviation {
+    public func accessKey(_ value: Character) -> Abbreviation {
         return mutate(accesskey: value)
     }
 
@@ -6479,7 +6757,7 @@ extension Abbreviation: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Abbreviation {
+    public func tabIndex(_ value: Int) -> Abbreviation {
         return mutate(tabindex: value)
     }
 
@@ -6487,8 +6765,13 @@ extension Abbreviation: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Abbreviation {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Abbreviation {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Abbreviation {
@@ -6543,12 +6826,11 @@ extension Abbreviation: Modifiable {
     }
 }
 
-/// ## Description
 /// The element allows one or more spans of phrasing content to be marked with ruby annotations.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-ruby-element
-///
+/// ```html
+/// <ruby></ruby>
+/// ```
 public struct Ruby: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "ruby" }
@@ -6569,7 +6851,7 @@ public struct Ruby: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Ruby: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Ruby {
+    public func accessKey(_ value: Character) -> Ruby {
         return mutate(accesskey: value)
     }
 
@@ -6666,7 +6948,7 @@ extension Ruby: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Ruby {
+    public func tabIndex(_ value: Int) -> Ruby {
         return mutate(tabindex: value)
     }
 
@@ -6674,8 +6956,13 @@ extension Ruby: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Ruby {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Ruby {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Ruby {
@@ -6730,12 +7017,11 @@ extension Ruby: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a comment output.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-data-element
-///
+/// ```html
+/// <data></data>
+/// ```
 public struct Data: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "data" }
@@ -6756,7 +7042,7 @@ public struct Data: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Data: GlobalAttributes, ValueAttribute {
     
-    public func accessKey(_ value: String) -> Data {
+    public func accessKey(_ value: Character) -> Data {
         return mutate(accesskey: value)
     }
 
@@ -6853,7 +7139,7 @@ extension Data: GlobalAttributes, ValueAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Data {
+    public func tabIndex(_ value: Int) -> Data {
         return mutate(tabindex: value)
     }
 
@@ -6861,8 +7147,13 @@ extension Data: GlobalAttributes, ValueAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Data {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Data {
+        return mutate(translate: type.rawValue)
     }
     
     public func value(_ value: String) -> Data {
@@ -6925,12 +7216,11 @@ extension Data: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents its contents, along with a machine-readable form of those contents in the datetime attribute.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-time-element
-///
+/// ```html
+/// <time></time>
+/// ```
 public struct Time: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "time" }
@@ -6951,7 +7241,7 @@ public struct Time: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Time: GlobalAttributes, DateTimeAttribute {
 
-    public func accessKey(_ value: String) -> Time {
+    public func accessKey(_ value: Character) -> Time {
         return mutate(accesskey: value)
     }
 
@@ -7048,7 +7338,7 @@ extension Time: GlobalAttributes, DateTimeAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Time {
+    public func tabIndex(_ value: Int) -> Time {
         return mutate(tabindex: value)
     }
 
@@ -7056,8 +7346,13 @@ extension Time: GlobalAttributes, DateTimeAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Time {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Time {
+        return mutate(translate: type.rawValue)
     }
 
     public func dateTime(_ value: String) -> Time {
@@ -7116,12 +7411,11 @@ extension Time: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents an example of code.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-code-element
-///
+/// ```html
+/// <code></code>
+/// ```
 public struct Code: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "code" }
@@ -7142,7 +7436,7 @@ public struct Code: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Code: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Code {
+    public func accessKey(_ value: Character) -> Code {
         return mutate(accesskey: value)
     }
 
@@ -7239,7 +7533,7 @@ extension Code: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Code {
+    public func tabIndex(_ value: Int) -> Code {
         return mutate(tabindex: value)
     }
 
@@ -7247,8 +7541,13 @@ extension Code: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Code {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Code {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Code {
@@ -7303,12 +7602,11 @@ extension Code: Modifiable {
     }
 }
 
-/// ## Description
 /// The element indicates a variable name.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-link-element
-///
+/// ```html
+/// <v></v>
+/// ```
 public struct Variable: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "v" }
@@ -7329,7 +7627,7 @@ public struct Variable: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Variable: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Variable {
+    public func accessKey(_ value: Character) -> Variable {
         return mutate(accesskey: value)
     }
 
@@ -7426,7 +7724,7 @@ extension Variable: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Variable {
+    public func tabIndex(_ value: Int) -> Variable {
         return mutate(tabindex: value)
     }
 
@@ -7434,8 +7732,13 @@ extension Variable: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Variable {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Variable {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Variable {
@@ -7490,12 +7793,11 @@ extension Variable: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents sample or quoted output from another program or computing system.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-samp-element
-///
+/// ```html
+/// <samp></samp>
+/// ```
 public struct SampleOutput: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "samp" }
@@ -7516,7 +7818,7 @@ public struct SampleOutput: ContentNode, HtmlElement, BodyElement, FormElement, 
 
 extension SampleOutput: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> SampleOutput {
+    public func accessKey(_ value: Character) -> SampleOutput {
         return mutate(accesskey: value)
     }
 
@@ -7613,7 +7915,7 @@ extension SampleOutput: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> SampleOutput {
+    public func tabIndex(_ value: Int) -> SampleOutput {
         return mutate(tabindex: value)
     }
 
@@ -7621,8 +7923,13 @@ extension SampleOutput: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> SampleOutput {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> SampleOutput {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> SampleOutput {
@@ -7677,12 +7984,11 @@ extension SampleOutput: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents user input.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-kbd-element
-///
+/// ```html
+/// <kdb></kbd>
+/// ```
 public struct KeyboardInput: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "kbd" }
@@ -7703,7 +8009,7 @@ public struct KeyboardInput: ContentNode, HtmlElement, BodyElement, FormElement,
 
 extension KeyboardInput: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> KeyboardInput {
+    public func accessKey(_ value: Character) -> KeyboardInput {
         return mutate(accesskey: value)
     }
 
@@ -7800,7 +8106,7 @@ extension KeyboardInput: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> KeyboardInput {
+    public func tabIndex(_ value: Int) -> KeyboardInput {
         return mutate(tabindex: value)
     }
 
@@ -7808,8 +8114,13 @@ extension KeyboardInput: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> KeyboardInput {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> KeyboardInput {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> KeyboardInput {
@@ -7864,12 +8175,11 @@ extension KeyboardInput: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a subscript.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-sub-and-sup-elements
-///
+/// ```html
+/// <sub></sub>
+/// ```
 public struct Subscript: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "sub" }
@@ -7890,7 +8200,7 @@ public struct Subscript: ContentNode, HtmlElement, BodyElement, FormElement, Fig
 
 extension Subscript: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Subscript {
+    public func accessKey(_ value: Character) -> Subscript {
         return mutate(accesskey: value)
     }
 
@@ -7987,7 +8297,7 @@ extension Subscript: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Subscript {
+    public func tabIndex(_ value: Int) -> Subscript {
         return mutate(tabindex: value)
     }
 
@@ -7995,8 +8305,13 @@ extension Subscript: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Subscript {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Subscript {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Subscript {
@@ -8051,12 +8366,11 @@ extension Subscript: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a superscript.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-sub-and-sup-elements
-///
+/// ```html
+/// <sup></sup>
+/// ```
 public struct Superscript: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "sup" }
@@ -8077,7 +8391,7 @@ public struct Superscript: ContentNode, HtmlElement, BodyElement, FormElement, F
 
 extension Superscript: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Superscript {
+    public func accessKey(_ value: Character) -> Superscript {
         return mutate(accesskey: value)
     }
 
@@ -8174,7 +8488,7 @@ extension Superscript: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Superscript {
+    public func tabIndex(_ value: Int) -> Superscript {
         return mutate(tabindex: value)
     }
 
@@ -8182,8 +8496,13 @@ extension Superscript: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Superscript {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Superscript {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Superscript {
@@ -8238,12 +8557,11 @@ extension Superscript: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents an italic font text.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-i-element
-///
+/// ```html
+/// <i></i>
+/// ```
 public struct Italic: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "i" }
@@ -8264,7 +8582,7 @@ public struct Italic: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Italic: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Italic {
+    public func accessKey(_ value: Character) -> Italic {
         return mutate(accesskey: value)
     }
 
@@ -8361,7 +8679,7 @@ extension Italic: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Italic {
+    public func tabIndex(_ value: Int) -> Italic {
         return mutate(tabindex: value)
     }
 
@@ -8369,8 +8687,13 @@ extension Italic: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Italic {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Italic {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Italic {
@@ -8436,12 +8759,11 @@ extension Italic: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents an bold font text.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-b-element
-///
+/// ```html
+/// <b></b>
+/// ```
 public struct Bold: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "b" }
@@ -8462,7 +8784,7 @@ public struct Bold: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Bold: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Bold {
+    public func accessKey(_ value: Character) -> Bold {
         return mutate(accesskey: value)
     }
 
@@ -8559,7 +8881,7 @@ extension Bold: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Bold {
+    public func tabIndex(_ value: Int) -> Bold {
         return mutate(tabindex: value)
     }
 
@@ -8567,8 +8889,13 @@ extension Bold: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Bold {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Bold {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Bold {
@@ -8634,12 +8961,11 @@ extension Bold: Modifiable {
     }
 }
 
-/// ## Description
 /// The element specifies that the enclosed text should be displayed as underlined.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-u-element
-///
+/// ```html
+/// <u></u>
+/// ```
 public struct Underline: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "u" }
@@ -8660,7 +8986,7 @@ public struct Underline: ContentNode, HtmlElement, BodyElement, FormElement, Fig
 
 extension Underline: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Underline {
+    public func accessKey(_ value: Character) -> Underline {
         return mutate(accesskey: value)
     }
 
@@ -8757,7 +9083,7 @@ extension Underline: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Underline {
+    public func tabIndex(_ value: Int) -> Underline {
         return mutate(tabindex: value)
     }
 
@@ -8765,8 +9091,13 @@ extension Underline: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Underline {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Underline {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Underline {
@@ -8832,12 +9163,11 @@ extension Underline: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a run of text in the document marked or highlighted for reference purposes.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-mark-element
-///
+/// ```html
+/// <mark></mark>
+/// ```
 public struct Mark: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "mark" }
@@ -8858,7 +9188,7 @@ public struct Mark: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Mark: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Mark {
+    public func accessKey(_ value: Character) -> Mark {
         return mutate(accesskey: value)
     }
 
@@ -8955,7 +9285,7 @@ extension Mark: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Mark {
+    public func tabIndex(_ value: Int) -> Mark {
         return mutate(tabindex: value)
     }
 
@@ -8963,8 +9293,13 @@ extension Mark: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Mark {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Mark {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Mark {
@@ -9019,12 +9354,11 @@ extension Mark: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a span of text that is to be isolated from its surroundings for the purposes of bidirectional text formatting.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-bdi-element
-///
+/// ```html
+/// <bdi></bdi>
+/// ```
 public struct Bdi: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "bdi" }
@@ -9045,7 +9379,7 @@ public struct Bdi: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
 
 extension Bdi: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Bdi {
+    public func accessKey(_ value: Character) -> Bdi {
         return mutate(accesskey: value)
     }
 
@@ -9142,7 +9476,7 @@ extension Bdi: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Bdi {
+    public func tabIndex(_ value: Int) -> Bdi {
         return mutate(tabindex: value)
     }
 
@@ -9150,8 +9484,13 @@ extension Bdi: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Bdi {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Bdi {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Bdi {
@@ -9206,12 +9545,11 @@ extension Bdi: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents explicit text directionality formatting control.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-bdo-element
-///
+/// ```html
+/// <bdo></bdo>
+/// ```
 public struct Bdo: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "bdo" }
@@ -9227,7 +9565,7 @@ public struct Bdo: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEleme
 
 extension Bdo: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Bdo {
+    public func accessKey(_ value: Character) -> Bdo {
         return mutate(accesskey: value)
     }
 
@@ -9324,7 +9662,7 @@ extension Bdo: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Bdo {
+    public func tabIndex(_ value: Int) -> Bdo {
         return mutate(tabindex: value)
     }
 
@@ -9332,8 +9670,13 @@ extension Bdo: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Bdo {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Bdo {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Bdo {
@@ -9388,12 +9731,11 @@ extension Bdo: Modifiable {
     }
 }
 
-/// ## Description
 /// The element doesn't mean anything on its own.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-span-element
-///
+/// ```html
+/// <span></span>
+/// ```
 public struct Span: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "span" }
@@ -9414,7 +9756,7 @@ public struct Span: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
 extension Span: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Span {
+    public func accessKey(_ value: Character) -> Span {
         return mutate(accesskey: value)
     }
 
@@ -9511,7 +9853,7 @@ extension Span: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Span {
+    public func tabIndex(_ value: Int) -> Span {
         return mutate(tabindex: value)
     }
 
@@ -9519,8 +9861,13 @@ extension Span: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Span {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Span {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Span {
@@ -9575,12 +9922,11 @@ extension Span: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a line break.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-br-element
-///
+/// ```html
+/// <br>
+/// ```
 public struct LineBreak: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "br" }
@@ -9596,7 +9942,7 @@ public struct LineBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
 
 extension LineBreak: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> LineBreak {
+    public func accessKey(_ value: Character) -> LineBreak {
         return mutate(accesskey: value)
     }
 
@@ -9693,7 +10039,7 @@ extension LineBreak: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> LineBreak {
+    public func tabIndex(_ value: Int) -> LineBreak {
         return mutate(tabindex: value)
     }
 
@@ -9701,8 +10047,13 @@ extension LineBreak: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> LineBreak {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> LineBreak {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> LineBreak {
@@ -9757,12 +10108,11 @@ extension LineBreak: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a line break opportunity.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-wbr-element
-///
+/// ```html
+/// <wbr>
+/// ```
 public struct WordBreak: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "wbr" }
@@ -9778,7 +10128,7 @@ public struct WordBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
 
 extension WordBreak: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> WordBreak {
+    public func accessKey(_ value: Character) -> WordBreak {
         return mutate(accesskey: value)
     }
 
@@ -9875,7 +10225,7 @@ extension WordBreak: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> WordBreak {
+    public func tabIndex(_ value: Int) -> WordBreak {
         return mutate(tabindex: value)
     }
 
@@ -9883,8 +10233,13 @@ extension WordBreak: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> WordBreak {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> WordBreak {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> WordBreak {
@@ -9939,12 +10294,11 @@ extension WordBreak: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents an addition to the document.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-ins-element
-///
+/// ```html
+/// <ins></ins>
+/// ```
 public struct InsertedText: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "ins" }
@@ -9965,7 +10319,7 @@ public struct InsertedText: ContentNode, HtmlElement, BodyElement, FormElement, 
 
 extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     
-    public func accessKey(_ value: String) -> InsertedText {
+    public func accessKey(_ value: Character) -> InsertedText {
         return mutate(accesskey: value)
     }
 
@@ -10062,7 +10416,7 @@ extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> InsertedText {
+    public func tabIndex(_ value: Int) -> InsertedText {
         return mutate(tabindex: value)
     }
 
@@ -10070,8 +10424,13 @@ extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> InsertedText {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> InsertedText {
+        return mutate(translate: type.rawValue)
     }
     
     public func cite(_ value: String) -> InsertedText {
@@ -10134,12 +10493,11 @@ extension InsertedText: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a removal from the document.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-del-element
-///
+/// ```html
+/// <del></del>
+/// ```
 public struct DeletedText: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "del" }
@@ -10160,7 +10518,7 @@ public struct DeletedText: ContentNode, HtmlElement, BodyElement, FormElement, F
 
 extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     
-    public func accessKey(_ value: String) -> DeletedText {
+    public func accessKey(_ value: Character) -> DeletedText {
         return mutate(accesskey: value)
     }
 
@@ -10257,7 +10615,7 @@ extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> DeletedText {
+    public func tabIndex(_ value: Int) -> DeletedText {
         return mutate(tabindex: value)
     }
 
@@ -10265,8 +10623,13 @@ extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> DeletedText {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> DeletedText {
+        return mutate(translate: type.rawValue)
     }
 
     public func cite(_ value: String) -> DeletedText {
@@ -10329,12 +10692,11 @@ extension DeletedText: Modifiable {
     }
 }
 
-/// ## Description
 /// The element is a container which provides multiple sources to its contained image element.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-picture-element
-///
+/// ```html
+/// <picture></picture>
+/// ```
 public struct Picture: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "picture" }
@@ -10355,7 +10717,7 @@ public struct Picture: ContentNode, HtmlElement, BodyElement, FormElement, Figur
 
 extension Picture: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Picture {
+    public func accessKey(_ value: Character) -> Picture {
         return mutate(accesskey: value)
     }
 
@@ -10452,7 +10814,7 @@ extension Picture: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Picture {
+    public func tabIndex(_ value: Int) -> Picture {
         return mutate(tabindex: value)
     }
 
@@ -10460,8 +10822,13 @@ extension Picture: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Picture {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Picture {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Picture {
@@ -10516,12 +10883,11 @@ extension Picture: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents an image.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-img-element
-///
+/// ```html
+/// <img>
+/// ```
 public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "img" }
@@ -10545,7 +10911,7 @@ extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAtt
         return mutate(onload: value)
     }
     
-    public func accessKey(_ value: String) -> Image {
+    public func accessKey(_ value: Character) -> Image {
         return mutate(accesskey: value)
     }
 
@@ -10642,7 +11008,7 @@ extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAtt
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Image {
+    public func tabIndex(_ value: Int) -> Image {
         return mutate(tabindex: value)
     }
 
@@ -10650,8 +11016,13 @@ extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAtt
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Image {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Image {
+        return mutate(translate: type.rawValue)
     }
 
     public func alternate(_ value: String) -> Image {
@@ -10730,12 +11101,11 @@ extension Image: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents its nested browsing context.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-iframe-element
-///
+/// ```html
+/// <iframe></iframe>
+/// ```
 public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
     
     internal var name: String { "iframe" }
@@ -10756,7 +11126,7 @@ public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, F
 
 extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {
     
-    public func accessKey(_ value: String) -> InlineFrame {
+    public func accessKey(_ value: Character) -> InlineFrame {
         return mutate(accesskey: value)
     }
 
@@ -10835,7 +11205,7 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
     public func nonce(_ value: String) -> InlineFrame {
         return mutate(nonce: value)
     }
-
+    
     @available(*, deprecated, message: "use role(_ value: Roles) instead")
     public func role(_ value: String) -> InlineFrame {
         return mutate(role: value)
@@ -10853,7 +11223,7 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> InlineFrame {
+    public func tabIndex(_ value: Int) -> InlineFrame {
         return mutate(tabindex: value)
     }
 
@@ -10861,8 +11231,13 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> InlineFrame {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> InlineFrame {
+        return mutate(translate: type.rawValue)
     }
 
     public func source(_ value: String) -> InlineFrame {
@@ -10941,12 +11316,11 @@ extension InlineFrame: Modifiable {
     }
 }
 
-/// ## Description
 /// The element provides an integration point for an external application or interactive content.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-embed-element
-///
+/// ```html
+/// <embed></embed>
+/// ```
 public struct Embed: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "embed" }
@@ -10962,7 +11336,7 @@ public struct Embed: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
 
 extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribute, HeightAttribute {
     
-    public func accessKey(_ value: String) -> Embed {
+    public func accessKey(_ value: Character) -> Embed {
         return mutate(accesskey: value)
     }
 
@@ -11059,7 +11433,7 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Embed {
+    public func tabIndex(_ value: Int) -> Embed {
         return mutate(tabindex: value)
     }
 
@@ -11067,8 +11441,13 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Embed {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Embed {
+        return mutate(translate: type.rawValue)
     }
 
     public func source(_ value: String) -> Embed {
@@ -11139,12 +11518,11 @@ extension Embed: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents an external resource.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-object-element
-///
+/// ```html
+/// <object></object>
+/// ```
 public struct Object: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
     
     internal var name: String { "object" }
@@ -11169,7 +11547,7 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
         return mutate(onerror: value)
     }
     
-    public func accessKey(_ value: String) -> Object {
+    public func accessKey(_ value: Character) -> Object {
         return mutate(accesskey: value)
     }
 
@@ -11266,7 +11644,7 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Object {
+    public func tabIndex(_ value: Int) -> Object {
         return mutate(tabindex: value)
     }
 
@@ -11274,8 +11652,13 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Object {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Object {
+        return mutate(translate: type.rawValue)
     }
     
     public func data(_ value: String) -> Object {
@@ -11358,12 +11741,11 @@ extension Object: Modifiable {
     }
 }
 
-/// ## Description
-/// The element represents a comment output.
+/// The element is used to embed video content in a document.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-video-element
-///
+/// ```html
+/// <video></video>
+/// ```
 public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "video" }
@@ -11382,9 +11764,9 @@ public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute {
+extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute, PreloadAttribute {
     
-    public func accessKey(_ value: String) -> Video {
+    public func accessKey(_ value: Character) -> Video {
         return mutate(accesskey: value)
     }
 
@@ -11481,7 +11863,7 @@ extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Video {
+    public func tabIndex(_ value: Int) -> Video {
         return mutate(tabindex: value)
     }
 
@@ -11489,8 +11871,13 @@ extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Video {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Video {
+        return mutate(translate: type.rawValue)
     }
 
     public func source(_ value: String) -> Video {
@@ -11519,6 +11906,10 @@ extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     
     public func height(_ size: Int) -> Video {
         return mutate(height: size)
+    }
+    
+    public func preload(_ type: Preload) -> Video {
+        return mutate(preload: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Video {
@@ -11573,12 +11964,11 @@ extension Video: Modifiable {
     }
 }
 
-/// ## Description
-/// The element represents a comment output.
+/// The element is used to embed audio content in a document.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-audio-element
-///
+/// ```html
+/// <audio></audio>
+/// ```
 public struct Audio: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "audio" }
@@ -11597,9 +11987,9 @@ public struct Audio: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute {
+extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, PreloadAttribute {
     
-    public func accessKey(_ value: String) -> Audio {
+    public func accessKey(_ value: Character) -> Audio {
         return mutate(accesskey: value)
     }
 
@@ -11696,7 +12086,7 @@ extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Audio {
+    public func tabIndex(_ value: Int) -> Audio {
         return mutate(tabindex: value)
     }
 
@@ -11704,8 +12094,13 @@ extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Audio {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Audio {
+        return mutate(translate: type.rawValue)
     }
 
     public func source(_ value: String) -> Audio {
@@ -11726,6 +12121,10 @@ extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     
     public func controls() -> Audio {
         return mutate(controls: "controls")
+    }
+    
+    public func preload(_ type: Preload) -> Audio {
+        return mutate(preload: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Audio {
@@ -11780,12 +12179,11 @@ extension Audio: Modifiable {
     }
 }
 
-/// ## Description
-/// The element represents a comment output.
+/// The element is used to define a image map.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-map-elements
-///
+/// ```html
+/// <map></map>
+/// ```
 public struct Map: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
     
     internal var name: String { "map" }
@@ -11806,7 +12204,7 @@ public struct Map: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
 
 extension Map: GlobalAttributes, NameAttribute {
     
-    public func accessKey(_ value: String) -> Map {
+    public func accessKey(_ value: Character) -> Map {
         return mutate(accesskey: value)
     }
 
@@ -11903,7 +12301,7 @@ extension Map: GlobalAttributes, NameAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Map {
+    public func tabIndex(_ value: Int) -> Map {
         return mutate(tabindex: value)
     }
 
@@ -11911,8 +12309,13 @@ extension Map: GlobalAttributes, NameAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Map {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Map {
+        return mutate(translate: type.rawValue)
     }
 
     public func name(_ value: String) -> Map {
@@ -11975,12 +12378,11 @@ extension Map: Modifiable {
     }
 }
 
-/// ## Description
-/// The element represents a comment output.
+/// The element is used as a container for all the form elements.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-form-element
-///
+/// ```html
+/// <form></form>
+/// ```
 public struct Form: ContentNode, HtmlElement, BodyElement, FigureElement, ObjectElement {
 
     internal var name: String { "form" }
@@ -12009,7 +12411,7 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
         return mutate(onsubmit: value)
     }
     
-    public func accessKey(_ value: String) -> Form {
+    public func accessKey(_ value: Character) -> Form {
         return mutate(accesskey: value)
     }
 
@@ -12106,7 +12508,7 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Form {
+    public func tabIndex(_ value: Int) -> Form {
         return mutate(tabindex: value)
     }
 
@@ -12114,8 +12516,13 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Form {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Form {
+        return mutate(translate: type.rawValue)
     }
 
     public func action(_ value: String) -> Form {
@@ -12202,12 +12609,11 @@ extension Form: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a set of options.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-datalist-element
-///
+/// ```html
+/// <datalist></datalist>
+/// ```
 public struct DataList: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "datalist" }
@@ -12228,7 +12634,7 @@ public struct DataList: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension DataList: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> DataList {
+    public func accessKey(_ value: Character) -> DataList {
         return mutate(accesskey: value)
     }
 
@@ -12325,7 +12731,7 @@ extension DataList: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> DataList {
+    public func tabIndex(_ value: Int) -> DataList {
         return mutate(tabindex: value)
     }
 
@@ -12333,8 +12739,13 @@ extension DataList: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> DataList {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> DataList {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> DataList {
@@ -12389,12 +12800,11 @@ extension DataList: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents the result of a calculation.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-output-element
-///
+/// ```html
+/// <output></output>
+/// ```
 public struct Output: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
     
     internal var name: String { "output" }
@@ -12415,7 +12825,7 @@ public struct Output: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
     
-    public func accessKey(_ value: String) -> Output {
+    public func accessKey(_ value: Character) -> Output {
         return mutate(accesskey: value)
     }
 
@@ -12512,7 +12922,7 @@ extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Output {
+    public func tabIndex(_ value: Int) -> Output {
         return mutate(tabindex: value)
     }
 
@@ -12520,8 +12930,13 @@ extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Output {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Output {
+        return mutate(translate: type.rawValue)
     }
     
     public func `for`(_ value: String) -> Output {
@@ -12592,12 +13007,11 @@ extension Output: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents the completion progress of a task.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-progress-element
-///
+/// ```html
+/// <progress></progress>
+/// ```
 public struct Progress: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "progress" }
@@ -12618,7 +13032,7 @@ public struct Progress: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
 extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
     
-    public func accessKey(_ value: String) -> Progress {
+    public func accessKey(_ value: Character) -> Progress {
         return mutate(accesskey: value)
     }
 
@@ -12715,7 +13129,7 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Progress {
+    public func tabIndex(_ value: Int) -> Progress {
         return mutate(tabindex: value)
     }
 
@@ -12723,11 +13137,16 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Progress {
         return mutate(translate: value)
     }
+    
+    public func translate(_ type: Decision) -> Progress {
+        return mutate(translate: type.rawValue)
+    }
 
-    public func maximum(_ value: String) -> Progress {
+    public func maximum(_ value: Float) -> Progress {
         return mutate(max: value)
     }
 
@@ -12791,12 +13210,11 @@ extension Progress: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a scalar measurement within a known range, or a fractional value.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-meter-element
-///
+/// ```html
+/// <meter></meter>
+/// ```
 public struct Meter: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "meter" }
@@ -12815,9 +13233,9 @@ public struct Meter: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, HighAttribute, OptimumAttribute {
-    
-    public func accessKey(_ value: String) -> Meter {
+extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, LowAttribute, HighAttribute, OptimumAttribute {
+
+    public func accessKey(_ value: Character) -> Meter {
         return mutate(accesskey: value)
     }
 
@@ -12914,7 +13332,7 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Meter {
+    public func tabIndex(_ value: Int) -> Meter {
         return mutate(tabindex: value)
     }
 
@@ -12922,20 +13340,29 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Meter {
         return mutate(translate: value)
     }
     
-    public func minimum(_ value: String) -> Meter {
+    public func translate(_ type: Decision) -> Meter {
+        return mutate(translate: type.rawValue)
+    }
+    
+    public func minimum(_ value: Float) -> Meter {
         return mutate(min: value)
     }
     
-    public func maximum(_ value: String) -> Meter {
+    public func maximum(_ value: Float) -> Meter {
         return mutate(max: value)
     }
     
-    public func high(_ size: Int) -> Meter {
-        return mutate(high: size)
+    public func low(_ value: Float) -> Meter {
+        return mutate(low: value)
+    }
+    
+    public func high(_ value: Float) -> Meter {
+        return mutate(high: value)
     }
     
     public func optimum(_ value: Float) -> Meter {
@@ -13002,12 +13429,11 @@ extension Meter: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a disclosure widget from which the user can obtain additional information or controls.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-details-element
-///
+/// ```html
+/// <details></details>
+/// ```
 public struct Details: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "details" }
@@ -13032,7 +13458,7 @@ extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
         return mutate(ontoggle: value)
     }
     
-    public func accessKey(_ value: String) -> Details {
+    public func accessKey(_ value: Character) -> Details {
         return mutate(accesskey: value)
     }
 
@@ -13129,7 +13555,7 @@ extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Details {
+    public func tabIndex(_ value: Int) -> Details {
         return mutate(tabindex: value)
     }
 
@@ -13137,8 +13563,13 @@ extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Details {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Details {
+        return mutate(translate: type.rawValue)
     }
 
     public func isOpen(_ condition: Bool) -> Details {
@@ -13197,12 +13628,7 @@ extension Details: Modifiable {
     }
 }
 
-/// ## Description
 /// The element defines a dialog box or window.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-dialog-element
-///
 public struct Dialog: ContentNode, BodyElement {
 
     internal var name: String { "dialog" }
@@ -13223,7 +13649,7 @@ public struct Dialog: ContentNode, BodyElement {
 
 extension Dialog: GlobalAttributes, OpenAttribute {
     
-    public func accessKey(_ value: String) -> Dialog {
+    public func accessKey(_ value: Character) -> Dialog {
         return mutate(accesskey: value)
     }
 
@@ -13320,7 +13746,7 @@ extension Dialog: GlobalAttributes, OpenAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Dialog {
+    public func tabIndex(_ value: Int) -> Dialog {
         return mutate(tabindex: value)
     }
 
@@ -13328,8 +13754,13 @@ extension Dialog: GlobalAttributes, OpenAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Dialog {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Dialog {
+        return mutate(translate: type.rawValue)
     }
 
     public func isOpen(_ condition: Bool) -> Dialog {
@@ -13388,12 +13819,11 @@ extension Dialog: Modifiable {
     }
 }
 
-/// ## Description
 /// The element allows to include dynamic script and data blocks in a document.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-script-element
-///
+/// ```html
+/// <script></script>
+/// ```
 public struct Script: ContentNode, HeadElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "script" }
@@ -13422,7 +13852,7 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
         return mutate(onload: value)
     }
 
-    public func accessKey(_ value: String) -> Script {
+    public func accessKey(_ value: Character) -> Script {
         return mutate(accesskey: value)
     }
 
@@ -13519,7 +13949,7 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Script {
+    public func tabIndex(_ value: Int) -> Script {
         return mutate(tabindex: value)
     }
 
@@ -13527,8 +13957,13 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Script {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Script {
+        return mutate(translate: type.rawValue)
     }
 
     public func asynchronously() -> Script {
@@ -13599,12 +14034,11 @@ extension Script: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a caption for the rest of the contents of a fieldset.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-template-element
-///
+/// ```html
+/// <noscript></noscript>
+/// ```
 public struct NoScript: ContentNode, HtmlElement, HeadElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "noscript" }
@@ -13625,7 +14059,7 @@ public struct NoScript: ContentNode, HtmlElement, HeadElement, BodyElement, Form
 
 extension NoScript: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> NoScript {
+    public func accessKey(_ value: Character) -> NoScript {
         return mutate(accesskey: value)
     }
 
@@ -13722,7 +14156,7 @@ extension NoScript: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> NoScript {
+    public func tabIndex(_ value: Int) -> NoScript {
         return mutate(tabindex: value)
     }
 
@@ -13730,8 +14164,13 @@ extension NoScript: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> NoScript {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> NoScript {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> NoScript {
@@ -13786,12 +14225,11 @@ extension NoScript: Modifiable {
     }
 }
 
-/// ## Description
 /// The element is used to declare fragments of HTML that can be cloned and inserted in the document by script.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-template-element
-///
+/// ```html
+/// <template></template>
+/// ```
 public struct Template: ContentNode, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "template" }
@@ -13812,7 +14250,7 @@ public struct Template: ContentNode, BodyElement, FormElement, FigureElement, Ob
 
 extension Template: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Template {
+    public func accessKey(_ value: Character) -> Template {
         return mutate(accesskey: value)
     }
 
@@ -13909,7 +14347,7 @@ extension Template: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Template {
+    public func tabIndex(_ value: Int) -> Template {
         return mutate(tabindex: value)
     }
 
@@ -13917,8 +14355,13 @@ extension Template: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Template {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Template {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Template {
@@ -13973,12 +14416,11 @@ extension Template: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a comment output.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-canvas-element
-///
+/// ```html
+/// <canvas></canvas>
+/// ```
 public struct Canvas: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "canvas" }
@@ -13999,7 +14441,7 @@ public struct Canvas: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
 extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
     
-    public func accessKey(_ value: String) -> Canvas {
+    public func accessKey(_ value: Character) -> Canvas {
         return mutate(accesskey: value)
     }
 
@@ -14096,7 +14538,7 @@ extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Canvas {
+    public func tabIndex(_ value: Int) -> Canvas {
         return mutate(tabindex: value)
     }
 
@@ -14104,8 +14546,13 @@ extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Canvas {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Canvas {
+        return mutate(translate: type.rawValue)
     }
     
     public func width(_ size: Int) -> Canvas {
@@ -14168,12 +14615,11 @@ extension Canvas: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a comment output.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-table-element
-///
+/// ```html
+/// <table></table>
+/// ```
 public struct Table: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "table" }
@@ -14194,7 +14640,7 @@ public struct Table: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
 
 extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
     
-    public func accessKey(_ value: String) -> Table {
+    public func accessKey(_ value: Character) -> Table {
         return mutate(accesskey: value)
     }
 
@@ -14291,7 +14737,7 @@ extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Table {
+    public func tabIndex(_ value: Int) -> Table {
         return mutate(tabindex: value)
     }
 
@@ -14299,8 +14745,13 @@ extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Table {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Table {
+        return mutate(translate: type.rawValue)
     }
 
     public func width(_ size: Int) -> Table {
@@ -14363,12 +14814,11 @@ extension Table: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a vector.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-table-element
-///
+/// ```html
+/// <svg></svg>
+/// ```
 public struct Vector: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "svg" }
@@ -14399,7 +14849,7 @@ extension Vector: AnyContent {
 }
 
 extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewBoxAttribute {
-
+    
     public func id(_ value: String) -> Vector {
         return self.mutate(id: value)
     }
@@ -14408,7 +14858,7 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
         return self.mutate(id: value.rawValue)
     }
     
-    public func tabIndex(_ value: String) -> Vector {
+    public func tabIndex(_ value: Int) -> Vector {
         return self.mutate(tabindex: value)
     }
     
@@ -14458,5 +14908,9 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
     
     public func strokeLineJoin(_ type: Linejoin) -> Vector {
         return self.mutate(strokelinejoin: type.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Vector {
+        return self.mutate(key: key, value: value)
     }
 }

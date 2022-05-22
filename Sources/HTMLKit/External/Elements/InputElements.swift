@@ -1,27 +1,33 @@
-/// ## Description
-/// The file contains the input elements. The html element Input only allows these elements to be its
-/// descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the input elements. The html-element 'input' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
-/// The alias points to OptionGroup.
+/// The alias for the element OptionGroup.
 ///
+/// Optgroup is the official tag and can be used instead of OptionGroup.
+///
+/// ```html
+/// <optgroup></optgroup>
+/// ```
 public typealias Optgroup = OptionGroup
 
-/// ## Description
 /// The element represents a group of options.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-optgroup-element
-///
+/// ```html
+/// <optgroup></optgroup>
+/// ```
 public struct OptionGroup: ContentNode, InputElement {
 
     internal var name: String { "optgroup" }
@@ -42,7 +48,7 @@ public struct OptionGroup: ContentNode, InputElement {
 
 extension OptionGroup: GlobalAttributes, DisabledAttribute, LabelAttribute {
 
-    public func accessKey(_ value: String) -> OptionGroup {
+    public func accessKey(_ value: Character) -> OptionGroup {
         return mutate(accesskey: value)
     }
 
@@ -139,7 +145,7 @@ extension OptionGroup: GlobalAttributes, DisabledAttribute, LabelAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> OptionGroup {
+    public func tabIndex(_ value: Int) -> OptionGroup {
         return mutate(tabindex: value)
     }
 
@@ -147,8 +153,13 @@ extension OptionGroup: GlobalAttributes, DisabledAttribute, LabelAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> OptionGroup {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> OptionGroup {
+        return mutate(translate: type.rawValue)
     }
 
     public func disabled() -> OptionGroup {
@@ -211,12 +222,11 @@ extension OptionGroup: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents an option.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-option-element
-///
+/// ```html
+/// <option></option>
+/// ```
 public struct Option: ContentNode, InputElement {
 
     internal var name: String { "option" }
@@ -237,7 +247,7 @@ public struct Option: ContentNode, InputElement {
 
 extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttribute, SelectedAttribute {
     
-    public func accessKey(_ value: String) -> Option {
+    public func accessKey(_ value: Character) -> Option {
         return mutate(accesskey: value)
     }
 
@@ -334,7 +344,7 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Option {
+    public func tabIndex(_ value: Int) -> Option {
         return mutate(tabindex: value)
     }
 
@@ -342,8 +352,13 @@ extension Option: GlobalAttributes, DisabledAttribute, LabelAttribute, ValueAttr
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Option {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Option {
+        return mutate(translate: type.rawValue)
     }
 
     public func disabled() -> Option {
@@ -418,12 +433,11 @@ extension Option: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a caption for the rest of the contents of a fieldset.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-legend-element
-///
+/// ```html
+/// <legend></legend>
+/// ```
 public struct Legend: ContentNode, InputElement {
 
     internal var name: String { "legend" }
@@ -446,7 +460,7 @@ public struct Legend: ContentNode, InputElement {
 
 extension Legend: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Legend {
+    public func accessKey(_ value: Character) -> Legend {
         return mutate(accesskey: value)
     }
 
@@ -543,7 +557,7 @@ extension Legend: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Legend {
+    public func tabIndex(_ value: Int) -> Legend {
         return mutate(tabindex: value)
     }
 
@@ -551,8 +565,13 @@ extension Legend: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Legend {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Legend {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Legend {
@@ -607,12 +626,11 @@ extension Legend: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a summary, caption, or legend for the rest of the content.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-summary-element
-///
+/// ```html
+/// <summary></summary>
+/// ```
 public struct Summary: ContentNode, InputElement {
 
     internal var name: String { "summary" }
@@ -633,7 +651,7 @@ public struct Summary: ContentNode, InputElement {
 
 extension Summary: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Summary {
+    public func accessKey(_ value: Character) -> Summary {
         return mutate(accesskey: value)
     }
 
@@ -730,7 +748,7 @@ extension Summary: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Summary {
+    public func tabIndex(_ value: Int) -> Summary {
         return mutate(tabindex: value)
     }
 
@@ -738,8 +756,13 @@ extension Summary: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Summary {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Summary {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Summary {

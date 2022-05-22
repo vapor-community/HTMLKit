@@ -1,62 +1,96 @@
-/// ## Description
-/// The file contains the table elements. The html element Table only allows these elements to be its
-/// descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the table elements. The html-element 'table' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
-/// The alias points to ColumnGroup.
+/// The alias for the element ColumnGroup.
 ///
+/// Colgroup is the official tag and can be used instead of ColumnGroup.
+///
+/// ```html
+/// <colgroup></colgroup>
+/// ```
 public typealias Colgroup = ColumnGroup
 
-/// ## Description
-/// The alias points to Column.
+/// The alias for the element Column.
 ///
+/// Col is the official tag and can be used instead of Column.
+///
+/// ```html
+/// <col></col>
+/// ```
 public typealias Col = Column
 
-/// ## Description
-/// The alias points to TableBody.
+/// The alias for the element TableBody.
 ///
+/// Tbody is the official tag and can be used instead of TableBody.
+///
+/// ```html
+/// <tbody></tbody>
+/// ```
 public typealias Tbody = TableBody
 
-/// ## Description
-/// The alias points to TableHead.
+/// The alias for the element TableHead.
 ///
+/// Thead is the official tag and can be used instead of TableHead.
+///
+/// ```html
+/// <thead></thead>
+/// ```
 public typealias Thead = TableHead
 
-/// ## Description
-/// The alias points to TableFoot.
+/// The alias for the element TableFoot.
 ///
+/// Tfoot is the official tag and can be used instead of TableFoot.
+///
+/// ```html
+/// <tfoot></tfoot>
+/// ```
 public typealias Tfoot = TableFoot
 
-/// ## Description
-/// The alias points to TableRow.
+/// The alias for the element TableRow.
 ///
+/// Tr is the official tag and can be used instead of TableRow.
+///
+/// ```html
+/// <tr></tr>
+/// ```
 public typealias Tr = TableRow
 
-/// ## Description
-/// The alias points to DataCell.
+/// The alias for the element DataCell.
 ///
+/// Td is the official tag and can be used instead of DataCell.
+///
+/// ```html
+/// <td></td>
+/// ```
 public typealias Td = DataCell
 
-/// ## Description
-/// The alias points to HeaderCell.
+/// The alias for the element HeaderCell.
 ///
+/// Th is the official tag and can be used instead of HeaderCell.
+///
+/// ```html
+/// <th></th>
+/// ```
 public typealias Th = HeaderCell
 
-/// ## Description
 /// The element represents the title of the table.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-caption-element
-///
+/// ```html
+/// <caption></caption>
+/// ```
 public struct Caption: ContentNode, TableElement {
 
     internal var name: String { "caption" }
@@ -77,7 +111,7 @@ public struct Caption: ContentNode, TableElement {
 
 extension Caption: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Caption {
+    public func accessKey(_ value: Character) -> Caption {
         return mutate(accesskey: value)
     }
 
@@ -174,7 +208,7 @@ extension Caption: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Caption {
+    public func tabIndex(_ value: Int) -> Caption {
         return mutate(tabindex: value)
     }
 
@@ -182,8 +216,13 @@ extension Caption: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Caption {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Caption {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Caption {
@@ -238,12 +277,11 @@ extension Caption: Modifiable {
     }
 }
 
-/// ## Description
 /// The element specifies a group of one or more columns.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-colgroup-element
-///
+/// ```html
+/// <colgroup></colgroup>
+/// ```
 public struct ColumnGroup: ContentNode, TableElement {
 
     internal var name: String { "colgroup" }
@@ -264,7 +302,7 @@ public struct ColumnGroup: ContentNode, TableElement {
 
 extension ColumnGroup: GlobalAttributes, SpanAttribute {
     
-    public func accessKey(_ value: String) -> ColumnGroup {
+    public func accessKey(_ value: Character) -> ColumnGroup {
         return mutate(accesskey: value)
     }
 
@@ -361,7 +399,7 @@ extension ColumnGroup: GlobalAttributes, SpanAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> ColumnGroup {
+    public func tabIndex(_ value: Int) -> ColumnGroup {
         return mutate(tabindex: value)
     }
 
@@ -369,8 +407,13 @@ extension ColumnGroup: GlobalAttributes, SpanAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> ColumnGroup {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> ColumnGroup {
+        return mutate(translate: type.rawValue)
     }
 
     public func span(_ size: Int) -> ColumnGroup {
@@ -429,12 +472,11 @@ extension ColumnGroup: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a column in a table.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-col-element
-///
+/// ```html
+/// <col></col>
+/// ```
 public struct Column: ContentNode, TableElement {
 
     internal var name: String { "col" }
@@ -455,7 +497,7 @@ public struct Column: ContentNode, TableElement {
 
 extension Column: GlobalAttributes, SpanAttribute {
     
-    public func accessKey(_ value: String) -> Column {
+    public func accessKey(_ value: Character) -> Column {
         return mutate(accesskey: value)
     }
 
@@ -552,7 +594,7 @@ extension Column: GlobalAttributes, SpanAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Column {
+    public func tabIndex(_ value: Int) -> Column {
         return mutate(tabindex: value)
     }
 
@@ -560,8 +602,13 @@ extension Column: GlobalAttributes, SpanAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Column {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Column {
+        return mutate(translate: type.rawValue)
     }
     
     public func span(_ size: Int) -> Column {
@@ -620,12 +667,11 @@ extension Column: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a block of rows in a table.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-tbody-element
-///
+/// ```html
+/// <tbody></tbody>
+/// ```
 public struct TableBody: ContentNode, TableElement {
 
     internal var name: String { "tbody" }
@@ -646,7 +692,7 @@ public struct TableBody: ContentNode, TableElement {
 
 extension TableBody: GlobalAttributes, WidthAttribute, HeightAttribute {
     
-    public func accessKey(_ value: String) -> TableBody {
+    public func accessKey(_ value: Character) -> TableBody {
         return mutate(accesskey: value)
     }
 
@@ -743,7 +789,7 @@ extension TableBody: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> TableBody {
+    public func tabIndex(_ value: Int) -> TableBody {
         return mutate(tabindex: value)
     }
 
@@ -751,8 +797,13 @@ extension TableBody: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> TableBody {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> TableBody {
+        return mutate(translate: type.rawValue)
     }
     
     public func width(_ size: Int) -> TableBody {
@@ -815,12 +866,11 @@ extension TableBody: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents the block of rows that consist of the column labels.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-thead-element
-///
+/// ```html
+/// <thead></thead>
+/// ```
 public struct TableHead: ContentNode, TableElement {
 
     internal var name: String { "thead" }
@@ -841,7 +891,7 @@ public struct TableHead: ContentNode, TableElement {
 
 extension TableHead: GlobalAttributes, WidthAttribute, HeightAttribute {
     
-    public func accessKey(_ value: String) -> TableHead {
+    public func accessKey(_ value: Character) -> TableHead {
         return mutate(accesskey: value)
     }
 
@@ -938,7 +988,7 @@ extension TableHead: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> TableHead {
+    public func tabIndex(_ value: Int) -> TableHead {
         return mutate(tabindex: value)
     }
 
@@ -946,8 +996,13 @@ extension TableHead: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> TableHead {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> TableHead {
+        return mutate(translate: type.rawValue)
     }
 
     public func width(_ size: Int) -> TableHead {
@@ -1010,12 +1065,11 @@ extension TableHead: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents the block of rows that consist of the column summaries.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-tfoot-element
-///
+/// ```html
+/// <tfoot></tfoot>
+/// ```
 public struct TableFoot: ContentNode, TableElement {
 
     internal var name: String { "tfoot" }
@@ -1036,7 +1090,7 @@ public struct TableFoot: ContentNode, TableElement {
 
 extension TableFoot: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> TableFoot {
+    public func accessKey(_ value: Character) -> TableFoot {
         return mutate(accesskey: value)
     }
 
@@ -1133,7 +1187,7 @@ extension TableFoot: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> TableFoot {
+    public func tabIndex(_ value: Int) -> TableFoot {
         return mutate(tabindex: value)
     }
 
@@ -1141,8 +1195,13 @@ extension TableFoot: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> TableFoot {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> TableFoot {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TableFoot {
@@ -1197,12 +1256,11 @@ extension TableFoot: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a row of cells in a table.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-tr-element
-///
+/// ```html
+/// <tr></tr>
+/// ```
 public struct TableRow: ContentNode, TableElement {
 
     internal var name: String { "tr" }
@@ -1223,7 +1281,7 @@ public struct TableRow: ContentNode, TableElement {
 
 extension TableRow: GlobalAttributes, WidthAttribute, HeightAttribute {
     
-    public func accessKey(_ value: String) -> TableRow {
+    public func accessKey(_ value: Character) -> TableRow {
         return mutate(accesskey: value)
     }
 
@@ -1320,7 +1378,7 @@ extension TableRow: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> TableRow {
+    public func tabIndex(_ value: Int) -> TableRow {
         return mutate(tabindex: value)
     }
 
@@ -1328,8 +1386,13 @@ extension TableRow: GlobalAttributes, WidthAttribute, HeightAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> TableRow {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> TableRow {
+        return mutate(translate: type.rawValue)
     }
 
     public func width(_ size: Int) -> TableRow {
@@ -1392,12 +1455,11 @@ extension TableRow: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a data cell in a table.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-td-element
-///
+/// ```html
+/// <td></td>
+/// ```
 public struct DataCell: ContentNode, TableElement {
 
     internal var name: String { "td" }
@@ -1418,7 +1480,7 @@ public struct DataCell: ContentNode, TableElement {
 
 extension DataCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute {
 
-    public func accessKey(_ value: String) -> DataCell {
+    public func accessKey(_ value: Character) -> DataCell {
         return mutate(accesskey: value)
     }
 
@@ -1515,7 +1577,7 @@ extension DataCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, Hea
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> DataCell {
+    public func tabIndex(_ value: Int) -> DataCell {
         return mutate(tabindex: value)
     }
 
@@ -1523,8 +1585,13 @@ extension DataCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, Hea
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> DataCell {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> DataCell {
+        return mutate(translate: type.rawValue)
     }
 
     public func columnSpan(_ size: Int) -> DataCell {
@@ -1591,12 +1658,11 @@ extension DataCell: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a header cell in a table.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-th-element
-///
+/// ```html
+/// <th></th>
+/// ```
 public struct HeaderCell: ContentNode, TableElement {
 
     internal var name: String { "th" }
@@ -1617,7 +1683,7 @@ public struct HeaderCell: ContentNode, TableElement {
 
 extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute, ScopeAttribute {
     
-    public func accessKey(_ value: String) -> HeaderCell {
+    public func accessKey(_ value: Character) -> HeaderCell {
         return mutate(accesskey: value)
     }
 
@@ -1714,7 +1780,7 @@ extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, H
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> HeaderCell {
+    public func tabIndex(_ value: Int) -> HeaderCell {
         return mutate(tabindex: value)
     }
 
@@ -1722,8 +1788,13 @@ extension HeaderCell: GlobalAttributes, ColumnSpanAttribute, RowSpanAttribute, H
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> HeaderCell {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> HeaderCell {
+        return mutate(translate: type.rawValue)
     }
 
     public func columnSpan(_ size: Int) -> HeaderCell {

@@ -1,8 +1,5 @@
 import Foundation
 
-/// The extension is
-///
-///
 extension Array: AnyContent where Element == AnyContent {
 
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -258,9 +255,6 @@ extension Array where Element == VectorElement {
     }
 }
 
-/// The extension is
-///
-///
 extension Bool: AnyContent {
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -274,18 +268,12 @@ extension Bool: AnyContent {
     public var renderWhenLocalizing: Bool { return false }
 }
 
-/// The extension is
-///
-///
 extension Bool: Conditionable {
     public func evaluate<T>(with manager: Renderer.ContextManager<T>) throws -> Bool {
         return self
     }
 }
 
-/// The extension is
-///
-///
 extension Double: AnyContent {
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -299,9 +287,6 @@ extension Double: AnyContent {
     public var renderWhenLocalizing: Bool { return false }
 }
 
-/// The extension is
-///
-///
 extension Float: AnyContent {
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -315,9 +300,6 @@ extension Float: AnyContent {
     public var renderWhenLocalizing: Bool { return false }
 }
 
-/// The extension is
-///
-///
 extension Int: AnyContent {
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -331,9 +313,6 @@ extension Int: AnyContent {
     public var renderWhenLocalizing: Bool { return false }
 }
 
-/// The extension is
-///
-///
 extension Optional: AnyContent where Wrapped: AnyContent {
 
     public func prerender(_ formula: Renderer.Formula) throws {
@@ -358,9 +337,6 @@ extension Optional: AnyContent where Wrapped: AnyContent {
     }
 }
 
-/// The extension is
-///
-///
 extension Optional: Defineable {
     
     var isDefinded: Bool {
@@ -371,9 +347,6 @@ extension Optional: Defineable {
     }
 }
 
-/// The extension is
-///
-///
 extension String: AnyContent {
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -385,9 +358,6 @@ extension String: AnyContent {
     }
 }
 
-/// The extension is
-///
-///
 extension UUID: AnyContent {
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -399,9 +369,6 @@ extension UUID: AnyContent {
     }
 }
 
-/// The extension is
-///
-///
 extension Sequence {
     
     public func htmlForEach(@ContentBuilder<AnyContent> content: (TemplateValue<Element>) -> AnyContent) -> AnyContent {

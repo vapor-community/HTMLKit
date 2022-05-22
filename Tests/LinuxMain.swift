@@ -8,5 +8,6 @@ XCTMain([
     testCase(LocalizationTests.allTests),
     testCase(PerformanceTests.allTests),
     testCase(RenderingTests.allTests),
-    testCase(TemplatingTests.allTests)
+    testCase(TemplatingTests.allTests),
+    testCase(AttributesTests.allTests)
 ])

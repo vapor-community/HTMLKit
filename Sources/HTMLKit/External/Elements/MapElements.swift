@@ -1,22 +1,24 @@
-/// ## Description
-/// The file contains the map elements. The html element Map only allows these elements to be its
-/// descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the map elements. The html-element 'map' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
 /// The element defines an image map.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-area-element
-///
+/// ```html
+/// <area></area>
+/// ```
 public struct Area: ContentNode, MapElement {
 
     internal var name: String { "area" }
@@ -37,7 +39,7 @@ public struct Area: ContentNode, MapElement {
 
 extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
     
-    public func accessKey(_ value: String) -> Area {
+    public func accessKey(_ value: Character) -> Area {
         return mutate(accesskey: value)
     }
 
@@ -134,7 +136,7 @@ extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, Shap
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Area {
+    public func tabIndex(_ value: Int) -> Area {
         return mutate(tabindex: value)
     }
 
@@ -142,8 +144,13 @@ extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, Shap
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Area {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Area {
+        return mutate(translate: type.rawValue)
     }
     
     public func alternate(_ value: String) -> Area {

@@ -1,27 +1,33 @@
-/// ## Description
-/// The file contains the list elements. The html elements OrderedList or UnorderedList only
-/// allows these elements to be its descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the list elements. The html-element 'ol' or 'ul' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
-/// The alias points to ListItem.
+/// The alias for the element ListItem.
 ///
+/// Li is the official tag and can be used instead of ListItem.
+///
+/// ```html
+/// <li></li>
+/// ```
 public typealias Li = ListItem
 
-/// ## Description
 /// The element represents a item of a list.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-li-element
-///
+/// ```html
+/// <li></li>
+/// ```
 public struct ListItem: ContentNode, ListElement {
 
     internal var name: String { "li" }
@@ -42,7 +48,7 @@ public struct ListItem: ContentNode, ListElement {
 
 extension ListItem: GlobalAttributes, ValueAttribute {
     
-    public func accessKey(_ value: String) -> ListItem {
+    public func accessKey(_ value: Character) -> ListItem {
         return mutate(accesskey: value)
     }
 
@@ -139,7 +145,7 @@ extension ListItem: GlobalAttributes, ValueAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> ListItem {
+    public func tabIndex(_ value: Int) -> ListItem {
         return mutate(tabindex: value)
     }
 
@@ -147,8 +153,13 @@ extension ListItem: GlobalAttributes, ValueAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> ListItem {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> ListItem {
+        return mutate(translate: type.rawValue)
     }
     
     public func value(_ value: String) -> ListItem {

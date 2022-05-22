@@ -1,32 +1,30 @@
-/// ## Description
-/// The file contains the basic attribute handlers.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the protocols for the vector html-attributes.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
-/// The alias combines the global attributes.
-///
-/// ## References
+/// The alias combines the global attributes of the vector attributes.
 public typealias GlobalVectorAttributes = IdentifierAttribute & TabulatorAttribute & ClassAttribute & StyleAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute
 
-/// ## Description
 /// The protocol provides the element with the fill handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-option-selected
-///
 public protocol FillAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'fill'.
     ///
-    ///
+    /// ```html
+    /// <tag fill="" />
+    /// ```
     func fill(_ value: String) -> Self
 }
 
@@ -38,26 +36,18 @@ extension FillAttribute {
 extension FillAttribute where Self: ContentNode {
     
     internal func mutate(fill value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the fill-opacity handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-option-selected
-///
 public protocol FillOpacityAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'fill-opacity"'.
     ///
-    ///
+    /// ```html
+    /// <tag fill-opacity="" />
+    /// ```
     func fillOpacity(_ value: Double) -> Self
 }
 
@@ -69,26 +59,18 @@ extension FillOpacityAttribute {
 extension FillOpacityAttribute where Self: ContentNode {
     
     internal func mutate(fillopacity value: Double) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the stroke handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-option-selected
-///
 public protocol StrokeAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'stroke'.
     ///
-    ///
+    /// ```html
+    /// <tag stroke="" />
+    /// ```
     func stroke(_ value: String) -> Self
 }
 
@@ -100,26 +82,18 @@ extension StrokeAttribute {
 extension StrokeAttribute where Self: ContentNode {
     
     internal func mutate(stroke value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the stroke-width handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-option-selected
-///
 public protocol StrokeWidthAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'stroke-width'.
     ///
-    ///
+    /// ```html
+    /// <tag stroke-width="" />
+    /// ```
     func strokeWidth(_ size: Int) -> Self
 }
 
@@ -131,26 +105,18 @@ extension StrokeWidthAttribute {
 extension StrokeWidthAttribute where Self: ContentNode {
     
     internal func mutate(strokewidth value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the stroke-opacity handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-option-selected
-///
 public protocol StrokeOpacityAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'stroke-opacity'.
     ///
-    ///
+    /// ```html
+    /// <tag stroke-opacity="" />
+    /// ```
     func strokeOpacity(_ value: Double) -> Self
 }
 
@@ -162,26 +128,18 @@ extension StrokeOpacityAttribute {
 extension StrokeOpacityAttribute where Self: ContentNode {
     
     internal func mutate(strokeopacity value: Double) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the stroke-linecap handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-option-selected
-///
 public protocol StrokeLineCapAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'stroke-linecap'.
     ///
-    ///
+    /// ```html
+    /// <tag stroke-linecap="" />
+    /// ```
     func strokeLineCap(_ type: Linecap) -> Self
 }
 
@@ -193,26 +151,18 @@ extension StrokeLineCapAttribute {
 extension StrokeLineCapAttribute where Self: ContentNode {
     
     internal func mutate(strokelinecap value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the stroke-linejoin handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-option-selected
-///
 public protocol StrokeLineJoinAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'stroke-linejoin'.
     ///
-    ///
+    /// ```html
+    /// <tag stroke-linejoin="" />
+    /// ```
     func strokeLineJoin(_ type: Linejoin) -> Self
 }
 
@@ -224,26 +174,18 @@ extension StrokeLineJoinAttribute {
 extension StrokeLineJoinAttribute where Self: ContentNode {
     
     internal func mutate(strokelinejoin value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the radius handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-option-selected
-///
 public protocol RadiusAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'r'.
     ///
-    ///
+    /// ```html
+    /// <tag r="" />
+    /// ```
     func radius(_ size: Int) -> Self
 }
 
@@ -255,26 +197,18 @@ extension RadiusAttribute {
 extension RadiusAttribute where Self: ContentNode {
     
     internal func mutate(radius value: Int) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the radius handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-option-selected
-///
 public protocol PositionPointAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'x' and 'y'.
     ///
-    ///
+    /// ```html
+    /// <tag x="" y="" />
+    /// ```
     func positionPoint(_ point: Point) -> Self
 }
 
@@ -298,17 +232,14 @@ extension PositionPointAttribute where Self: ContentNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the radius handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-option-selected
-///
 public protocol RadiusPointAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'rx' and 'ry'.
     ///
-    ///
+    /// ```html
+    /// <tag rx="" ry="" />
+    /// ```
     func radiusPoint(_ point: Point) -> Self
 }
 
@@ -332,17 +263,14 @@ extension RadiusPointAttribute where Self: ContentNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the radius handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-option-selected
-///
 public protocol CenterPointAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'cx' and 'cy'.
     ///
-    ///
+    /// ```html
+    /// <tag cx="" cy="" />
+    /// ```
     func centerPoint(_ point: Point) -> Self
 }
 
@@ -366,17 +294,14 @@ extension CenterPointAttribute where Self: ContentNode {
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the viewbox handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-option-selected
-///
 public protocol ViewBoxAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'viewbox'.
     ///
-    ///
+    /// ```html
+    /// <tag viewbox="" />
+    /// ```
     func viewBox(_ value: String) -> Self
 }
 
@@ -388,11 +313,6 @@ extension ViewBoxAttribute {
 extension ViewBoxAttribute where Self: ContentNode {
     
     internal func mutate(viewbox value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }

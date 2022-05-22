@@ -1,24 +1,24 @@
-/// ## Description
-/// The file contains the figure elements. The html element Head only allows these elements to be its
-/// descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the head elements. The html-element 'head' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
 /// The element represents the document's title.
 ///
-/// There must be no more than one title element per document.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-title-element
-///
+/// ```html
+/// <title></title>
+/// ```
 public struct Title: ContentNode, HeadElement {
 
     internal var name: String { "title" }
@@ -39,7 +39,7 @@ public struct Title: ContentNode, HeadElement {
 
 extension Title: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Title {
+    public func accessKey(_ value: Character) -> Title {
         return mutate(accesskey: value)
     }
     
@@ -136,7 +136,7 @@ extension Title: GlobalAttributes {
         return mutate(style: value)
     }
     
-    public func tabIndex(_ value: String) -> Title {
+    public func tabIndex(_ value: Int) -> Title {
         return mutate(tabindex: value)
     }
     
@@ -144,8 +144,13 @@ extension Title: GlobalAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Title {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Title {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Title {
@@ -200,15 +205,11 @@ extension Title: Modifiable {
     }
 }
 
-
-/// ## Description
-/// The element specifies the document base url.
+/// The element specifies the document base url.#
 ///
-/// There must be no more than one base element per document.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-base-element
-///
+/// ```html
+/// <base>
+/// ```
 public struct Base: EmptyNode, HeadElement {
 
     internal var name: String { "base" }
@@ -224,7 +225,7 @@ public struct Base: EmptyNode, HeadElement {
 
 extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
     
-    public func accessKey(_ value: String) -> Base {
+    public func accessKey(_ value: Character) -> Base {
         return mutate(accesskey: value)
     }
     
@@ -321,7 +322,7 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
         return mutate(style: value)
     }
     
-    public func tabIndex(_ value: String) -> Base {
+    public func tabIndex(_ value: Int) -> Base {
         return mutate(tabindex: value)
     }
     
@@ -329,8 +330,13 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Base {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Base {
+        return mutate(translate: type.rawValue)
     }
     
     public func reference(_ value: String) -> Base {
@@ -397,13 +403,11 @@ extension Base: Modifiable {
     }
 }
 
-/// ## Description
 /// The element provides meta information about the document.
 ///
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-meta-element
-///
+/// ```html
+/// <meta></meta>
+/// ```
 public struct Meta: EmptyNode, HeadElement {
 
     internal var name: String { "meta" }
@@ -419,7 +423,7 @@ public struct Meta: EmptyNode, HeadElement {
 
 extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttribute, CharsetAttribute, EquivalentAttribute {
     
-    public func accessKey(_ value: String) -> Meta {
+    public func accessKey(_ value: Character) -> Meta {
         return mutate(accesskey: value)
     }
 
@@ -516,7 +520,7 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Meta {
+    public func tabIndex(_ value: Int) -> Meta {
         return mutate(tabindex: value)
     }
 
@@ -524,8 +528,13 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Meta {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Meta {
+        return mutate(translate: type.rawValue)
     }
 
     public func content(_ value: String) -> Meta {
@@ -608,13 +617,11 @@ extension Meta: Modifiable {
     }
 }
 
-/// ## Description
 /// The element contains style information for the document.
 ///
-///
-/// ## References
-/// https://html.spec.whatwg.org/#the-style-element
-///
+/// ```html
+/// <style></style>
+/// ```
 public struct Style: ContentNode, HeadElement {
 
     internal var name: String { "style" }
@@ -639,7 +646,7 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
         return mutate(onload: value)
     }
 
-    public func accessKey(_ value: String) -> Style {
+    public func accessKey(_ value: Character) -> Style {
         return mutate(accesskey: value)
     }
 
@@ -736,7 +743,7 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Style {
+    public func tabIndex(_ value: Int) -> Style {
         return mutate(tabindex: value)
     }
 
@@ -744,8 +751,13 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Style {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Style {
+        return mutate(translate: type.rawValue)
     }
 
     public func type(_ value: Medias) -> Style {
@@ -808,12 +820,11 @@ extension Style: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a comment output.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-link-element
-///
+/// ```html
+/// <link>
+/// ```
 public struct Link: EmptyNode, HeadElement {
 
     internal var name: String { "link" }
@@ -837,7 +848,7 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
         return mutate(onload: value)
     }
     
-    public func accessKey(_ value: String) -> Link {
+    public func accessKey(_ value: Character) -> Link {
         return mutate(accesskey: value)
     }
 
@@ -934,7 +945,7 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Link {
+    public func tabIndex(_ value: Int) -> Link {
         return mutate(tabindex: value)
     }
 
@@ -942,8 +953,13 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Link {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Link {
+        return mutate(translate: type.rawValue)
     }
     
     public func reference(_ value: String) -> Link {

@@ -1,22 +1,24 @@
-/// ## Description
-/// The file contains the media elements. The html elements Audio or Video only allows these elements
-/// to be its descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the media elements. The html-element 'audio' or 'video' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
 /// The element allows authors to specify multiple alternative source for other elements.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-source-element
-///
+/// ```html
+/// <source>
+/// ```
 public struct Source: EmptyNode, MediaElement {
 
     internal var name: String { "source" }
@@ -32,7 +34,7 @@ public struct Source: EmptyNode, MediaElement {
 
 extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute {
     
-    public func accessKey(_ value: String) -> Source {
+    public func accessKey(_ value: Character) -> Source {
         return mutate(accesskey: value)
     }
 
@@ -129,7 +131,7 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Source {
+    public func tabIndex(_ value: Int) -> Source {
         return mutate(tabindex: value)
     }
 
@@ -137,8 +139,13 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Source {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Source {
+        return mutate(translate: type.rawValue)
     }
 
     public func type(_ value: Medias) -> Source {
@@ -217,12 +224,11 @@ extension Source: Modifiable {
     }
 }
 
-/// ## Description
 /// The element allows to specify explicit external timed text tracks for media elements.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-track-element
-///
+/// ```html
+/// <track>
+/// ```
 public struct Track: EmptyNode, MediaElement {
 
     internal var name: String { "track" }
@@ -238,7 +244,7 @@ public struct Track: EmptyNode, MediaElement {
 
 extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute {
     
-    public func accessKey(_ value: String) -> Track {
+    public func accessKey(_ value: Character) -> Track {
         return mutate(accesskey: value)
     }
 
@@ -335,7 +341,7 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Track {
+    public func tabIndex(_ value: Int) -> Track {
         return mutate(tabindex: value)
     }
 
@@ -343,12 +349,22 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
         return  mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Track {
         return mutate(translate: value)
     }
+    
+    public func translate(_ type: Decision) -> Track {
+        return mutate(translate: type.rawValue)
+    }
 
+    @available(*, deprecated, message: "use translate(_ type: Kinds) instead")
     public func kind(_ value: String) -> Track {
         return mutate(kind: value)
+    }
+    
+    public func kind(_ type: Kinds) -> Track {
+        return mutate(kind: type.rawValue)
     }
     
     public func source(_ value: String) -> Track {

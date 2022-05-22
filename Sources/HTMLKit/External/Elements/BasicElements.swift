@@ -1,21 +1,24 @@
-/// ## Description
-/// The file contains the basics elements. These elements should be used at first.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the basic html-elements. These elements should be used at first in a html-document.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
 /// The element represents a comment output.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#comments
-///
+/// ```html
+/// <!-- -->
+/// ```
 public struct Comment: CommentNode, GlobalElement {
     
     public var content: String
@@ -36,12 +39,11 @@ extension Comment: AnyContent {
     }
 }
 
-/// ## Description
-/// The element represents the the document.
+/// The element represents the document type.
 ///
-/// ## References
-/// https://dom.spec.whatwg.org/#document-element
-///
+/// ```html
+/// <!DOCTYPE html>
+/// ```
 public struct Document: DocumentNode, BasicElement {
     
     public var content: String
@@ -62,12 +64,11 @@ extension Document: AnyContent {
     }
 }
 
-/// ## Description
 /// The element represents the document's root element.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-html-element
-///
+/// ```html
+/// <html></html>
+/// ```
 public struct Html: ContentNode, BasicElement {
 
     internal var name: String { "html" }
@@ -88,7 +89,7 @@ public struct Html: ContentNode, BasicElement {
 
 extension Html: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> Html {
+    public func accessKey(_ value: Character) -> Html {
         return mutate(accesskey: value)
     }
 
@@ -185,7 +186,7 @@ extension Html: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Html {
+    public func tabIndex(_ value: Int) -> Html {
         return mutate(tabindex: value)
     }
 
@@ -193,8 +194,13 @@ extension Html: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Html {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Html {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Html {

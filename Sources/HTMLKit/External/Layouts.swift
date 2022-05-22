@@ -1,84 +1,40 @@
-/// ## Description
-/// The file contains layout components.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the protocols for the layout-components.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
-/// ## Description
-/// The protocol is for
+/// A type that defines a page layout.
 ///
-/// ## References
-///
-public protocol Page: GlobalElement {
-    
-    @ContentBuilder<AnyContent> var body: AnyContent { get }
+/// The page covers the whole frame of a hompage. It can contain views and components.
+public protocol Page: AnyLayout, GlobalElement {
 }
 
-extension Page {
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try body.render(with: manager)
-    }
-
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try body.prerender(formula)
-    }
-
-    public var scripts: AnyContent { body.scripts }
-}
-
-/// ## Description
-/// The protocol is for
+/// A type that defines a view layout.
 ///
-/// ## References
-///
-public protocol View: GlobalElement {
+/// The view is a single part of page. It can contain views ad components.
+public protocol View: AnyLayout, GlobalElement {
     
     associatedtype Context
     
     var context: TemplateValue<Context> { get }
-
-    @ContentBuilder<AnyContent> var body: AnyContent { get }
 }
 
 extension View {
     
     public var context: TemplateValue<Context> { .root() }
-
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try body.render(with: manager)
-    }
-
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try body.prerender(formula)
-    }
-
-    public var scripts: AnyContent { body.scripts }
 }
 
-/// ## Description
-/// The protocol is for
+/// A type that defines a component layout.
 ///
-/// ## References
-///
-public protocol Component: GlobalElement {
-    
-    @ContentBuilder<AnyContent> var body: AnyContent { get }
-}
-
-extension Component {
-    
-    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        try body.render(with: manager)
-    }
-
-    public func prerender(_ formula: Renderer.Formula) throws {
-        try body.prerender(formula)
-    }
-
-    public var scripts: AnyContent { body.scripts }
+/// The component is a partial part of a view or page.
+public protocol Component: AnyLayout, GlobalElement {
 }

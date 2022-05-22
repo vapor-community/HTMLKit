@@ -1,18 +1,18 @@
-/// ## Description
-/// The file contains basic statements.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the statements.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
-/// ## Description
 /// The statement is for
-///
-/// ## References
-///
 public struct IF: GlobalElement {
     
     public enum IFPrerenderErrors: Error {
@@ -162,11 +162,7 @@ extension IF: AnyContent {
     }
 }
 
-/// ## Description
 /// The statement is for
-///
-/// ## References
-///
 public struct ForEach<Values>: GlobalElement where Values: Sequence {
 
     public let context: TemplateValue<Values>
@@ -312,11 +308,7 @@ extension ForEach: AnyContent {
     }
 }
 
-/// ## Description
 /// The function is for
-///
-/// ## References
-///
 public struct Unwrap: Component {
 
     public let content: IF

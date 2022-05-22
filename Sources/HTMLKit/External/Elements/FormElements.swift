@@ -1,22 +1,24 @@
-/// ## Description
-/// The file contains the form elements. The html element Form only allows these elements to be its
-/// descendants. There are some exceptions too.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the form elements. The html-element 'form' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
 /// The element represents a typed data field to allow the user to edit the data.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-input-element
-///
+/// ```html
+/// <input>
+/// ```
 public struct Input: EmptyNode, FormElement {
 
     internal var name: String { "input" }
@@ -36,7 +38,7 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(oninvalid: value)
     }
     
-    public func accessKey(_ value: String) -> Input {
+    public func accessKey(_ value: Character) -> Input {
         return mutate(accesskey: value)
     }
 
@@ -133,7 +135,7 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Input {
+    public func tabIndex(_ value: Int) -> Input {
         return mutate(tabindex: value)
     }
 
@@ -141,8 +143,13 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Input {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Input {
+        return mutate(translate: type.rawValue)
     }
 
     public func accept(_ value: String) -> Input {
@@ -185,7 +192,7 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(max: value)
     }
     
-    public func maximum(length value: String) -> Input {
+    public func maximum(length value: Int) -> Input {
         return mutate(maxlength: value)
     }
     
@@ -193,7 +200,7 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
         return mutate(min: value)
     }
     
-    public func minimum(length value: String) -> Input {
+    public func minimum(length value: Int) -> Input {
         return mutate(minlength: value)
     }
     
@@ -309,12 +316,11 @@ extension Input: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a caption for a form control.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-label-element
-///
+/// ```html
+/// <label></label>
+/// ```
 public struct Label: ContentNode, FormElement {
 
     internal var name: String { "label" }
@@ -335,7 +341,7 @@ public struct Label: ContentNode, FormElement {
 
 extension Label: GlobalAttributes, ForAttribute {
     
-    public func accessKey(_ value: String) -> Label {
+    public func accessKey(_ value: Character) -> Label {
         return mutate(accesskey: value)
     }
 
@@ -432,7 +438,7 @@ extension Label: GlobalAttributes, ForAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Label {
+    public func tabIndex(_ value: Int) -> Label {
         return mutate(tabindex: value)
     }
 
@@ -440,8 +446,13 @@ extension Label: GlobalAttributes, ForAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Label {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Label {
+        return mutate(translate: type.rawValue)
     }
     
     public func `for`(_ value: String) -> Label {
@@ -511,12 +522,11 @@ extension Label: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a control for selecting amongst a set of options.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-select-element
-///
+/// ```html
+/// <select></select>
+/// ```
 public struct Select: ContentNode, FormElement {
 
     internal var name: String { "select" }
@@ -537,7 +547,7 @@ public struct Select: ContentNode, FormElement {
 
 extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, FormAttribute, MultipleAttribute, NameAttribute, RequiredAttribute, SizeAttribute {
     
-    public func accessKey(_ value: String) -> Select {
+    public func accessKey(_ value: Character) -> Select {
         return mutate(accesskey: value)
     }
 
@@ -634,7 +644,7 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Select {
+    public func tabIndex(_ value: Int) -> Select {
         return mutate(tabindex: value)
     }
 
@@ -642,8 +652,13 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Select {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Select {
+        return mutate(translate: type.rawValue)
     }
 
     public func hasCompletion(_ condition: Bool) -> Select {
@@ -730,12 +745,11 @@ extension Select: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a multiline plain text edit control.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-textarea-element
-///
+/// ```html
+/// <textarea></textarea>
+/// ```
 public struct TextArea: ContentNode, FormElement {
         
     internal var name: String { "textarea" }
@@ -756,7 +770,7 @@ public struct TextArea: ContentNode, FormElement {
 
 extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, DisabledAttribute, FormAttribute, MaximumLengthAttribute, MinimumLengthAttribute, NameAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, RowsAttribute, WrapAttribute {
     
-    public func accessKey(_ value: String) -> TextArea {
+    public func accessKey(_ value: Character) -> TextArea {
         return mutate(accesskey: value)
     }
 
@@ -853,7 +867,7 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> TextArea {
+    public func tabIndex(_ value: Int) -> TextArea {
         return mutate(tabindex: value)
     }
 
@@ -861,8 +875,13 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> TextArea {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> TextArea {
+        return mutate(translate: type.rawValue)
     }
 
     public func hasCompletion(_ condition: Bool) -> TextArea {
@@ -881,11 +900,11 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
         return mutate(form: value)
     }
     
-    public func maximum(length value: String) -> TextArea {
+    public func maximum(length value: Int) -> TextArea {
         return mutate(maxlength: value)
     }
     
-    public func minimum(length value: String) -> TextArea {
+    public func minimum(length value: Int) -> TextArea {
         return mutate(minlength: value)
     }
     
@@ -973,12 +992,11 @@ extension TextArea: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a comment output.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-button-element
-///
+/// ```html
+/// <button></button>
+/// ```
 public struct Button: ContentNode, FormElement {
 
     internal var name: String { "button" }
@@ -999,7 +1017,7 @@ public struct Button: ContentNode, FormElement {
 
 extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute {
     
-    public func accessKey(_ value: String) -> Button {
+    public func accessKey(_ value: Character) -> Button {
         return mutate(accesskey: value)
     }
 
@@ -1096,7 +1114,7 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Button {
+    public func tabIndex(_ value: Int) -> Button {
         return mutate(tabindex: value)
     }
 
@@ -1104,8 +1122,13 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Button {
-        return  mutate(translate: value)
+        return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Button {
+        return  mutate(translate: type.rawValue)
     }
     
     public func disabled() -> Button {
@@ -1203,12 +1226,11 @@ extension Button: Modifiable {
     }
 }
 
-/// ## Description
 /// The element represents a set of form controls grouped together.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-fieldset-element
-///
+/// ```html
+/// <fieldset></fieldset>
+/// ```
 public struct Fieldset: ContentNode, FormElement {
     
     internal var name: String { "fieldset" }
@@ -1229,7 +1251,7 @@ public struct Fieldset: ContentNode, FormElement {
 
 extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttribute {
     
-    public func accessKey(_ value: String) -> Fieldset {
+    public func accessKey(_ value: Character) -> Fieldset {
         return mutate(accesskey: value)
     }
 
@@ -1326,7 +1348,7 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Fieldset {
+    public func tabIndex(_ value: Int) -> Fieldset {
         return mutate(tabindex: value)
     }
 
@@ -1334,8 +1356,13 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Fieldset {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Fieldset {
+        return mutate(translate: type.rawValue)
     }
 
     public func disabled() -> Fieldset {

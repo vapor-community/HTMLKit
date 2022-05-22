@@ -1,22 +1,24 @@
-/// ## Description
-/// The file contains the object elements. The html element Object only allows these elements to be its
-/// descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the object elements. The html-element 'object' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
 /// The element defines parameters for plugins invoked by an object element.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-param-element
-///
+/// ```html
+/// <param>
+/// ```
 public struct Parameter: EmptyNode, ObjectElement {
     
     internal var name: String { "param" }
@@ -32,7 +34,7 @@ public struct Parameter: EmptyNode, ObjectElement {
 
 extension Parameter: GlobalAttributes, NameAttribute, ValueAttribute {
     
-    public func accessKey(_ value: String) -> Parameter {
+    public func accessKey(_ value: Character) -> Parameter {
         return mutate(accesskey: value)
     }
 
@@ -129,7 +131,7 @@ extension Parameter: GlobalAttributes, NameAttribute, ValueAttribute {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Parameter {
+    public func tabIndex(_ value: Int) -> Parameter {
         return mutate(tabindex: value)
     }
 
@@ -137,8 +139,13 @@ extension Parameter: GlobalAttributes, NameAttribute, ValueAttribute {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Parameter {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Parameter {
+        return mutate(translate: type.rawValue)
     }
 
     public func name(_ value: String) -> Parameter {

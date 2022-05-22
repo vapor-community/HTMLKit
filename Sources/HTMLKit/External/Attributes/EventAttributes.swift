@@ -1,34 +1,30 @@
-/// ## Description
-/// The file contains the event attribute handlers.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the protocols for the event html-attributes.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
-/// The alias combines the global attributes.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
+/// The alias combines the global attributes of the event attributes.
 public typealias GlobalEventAttributes = ContextMenuEventAttribute & WheelEventAttribute & DragEventAttribute & DragEndEventAttribute & DragEnterEventAttribute & DragLeaveEventAttribute & DragOverEventAttribute & DragStartEventAttribute & DropEventAttribute
 
-/// ## Description
 /// The protocol provides the element with the onafterprint handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol AfterPrintEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onafterprint'.
     ///
-    ///
+    /// ```html
+    /// <tag onafterprint="" />
+    /// ```
     func onAfterPrint(_ value: String) -> Self
 }
 
@@ -40,38 +36,25 @@ extension AfterPrintEventAttribute {
 extension AfterPrintEventAttribute where Self: ContentNode {
     
     internal func mutate(onafterprint value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: key, value: value)
     }
 }
 
 extension AfterPrintEventAttribute where Self: EmptyNode {
     
     internal func mutate(onafterprint value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onbeforeprint handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol BeforePrintEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onbeforeprint'.
     ///
-    ///
+    /// ```html
+    /// <tag onbeforeprint="" />
+    /// ```
     func onBeforePrint(_ value: String) -> Self
 }
 
@@ -83,38 +66,25 @@ extension BeforePrintEventAttribute {
 extension BeforePrintEventAttribute where Self: ContentNode {
     
     internal func mutate(onbeforeprint value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension BeforePrintEventAttribute where Self: EmptyNode {
     
     internal func mutate(onbeforeprint value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onbeforeunload handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol BeforeUnloadEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onbeforeunload'.
     ///
-    ///
+    /// ```html
+    /// <tag onbeforeunload="" />
+    /// ```
     func onBeforeUnload(_ value: String) -> Self
 }
 
@@ -126,38 +96,25 @@ extension BeforeUnloadEventAttribute {
 extension BeforeUnloadEventAttribute where Self: ContentNode {
     
     internal func mutate(onbeforeunload value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension BeforeUnloadEventAttribute where Self: EmptyNode {
     
     internal func mutate(onbeforeunload value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onerror handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ErrorEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onerror'.
     ///
-    ///
+    /// ```html
+    /// <tag onerror="" />
+    /// ```
     func onError(_ value: String) -> Self
 }
 
@@ -169,38 +126,25 @@ extension ErrorEventAttribute {
 extension ErrorEventAttribute where Self: ContentNode {
     
     internal func mutate(onerror value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ErrorEventAttribute where Self: EmptyNode {
     
     internal func mutate(onerror value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onhashchange handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol HashChangeEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onhashchange'.
     ///
-    ///
+    /// ```html
+    /// <tag onhashchange="" />
+    /// ```
     func onHashChange(_ value: String) -> Self
 }
 
@@ -212,38 +156,25 @@ extension HashChangeEventAttribute {
 extension HashChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(onhashchange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension HashChangeEventAttribute where Self: EmptyNode {
     
     internal func mutate(onhashchange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onload handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol LoadEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onload'.
     ///
-    ///
+    /// ```html
+    /// <tag onload="" />
+    /// ```
     func onLoad(_ value: String) -> Self
 }
 
@@ -255,38 +186,25 @@ extension LoadEventAttribute {
 extension LoadEventAttribute where Self: ContentNode {
     
     internal func mutate(onload value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension LoadEventAttribute where Self: EmptyNode {
     
     internal func mutate(onload value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onmessage handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol MessageEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onmessage'.
     ///
-    ///
+    /// ```html
+    /// <tag onmessage="" />
+    /// ```
     func onMessage(_ value: String) -> Self
 }
 
@@ -298,38 +216,25 @@ extension MessageEventAttribute {
 extension MessageEventAttribute where Self: ContentNode {
     
     internal func mutate(onmessage value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MessageEventAttribute where Self: EmptyNode {
     
     internal func mutate(onmessage value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onoffline handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol OfflineEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onoffline'.
     ///
-    ///
+    /// ```html
+    /// <tag onoffline="" />
+    /// ```
     func onOffline(_ value: String) -> Self
 }
 
@@ -341,38 +246,25 @@ extension OfflineEventAttribute {
 extension OfflineEventAttribute where Self: ContentNode {
     
     internal func mutate(onoffline value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension OfflineEventAttribute where Self: EmptyNode {
     
     internal func mutate(onoffline value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ononline handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol OnlineEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ononline'.
     ///
-    ///
+    /// ```html
+    /// <tag ononline="" />
+    /// ```
     func onOnline(_ value: String) -> Self
 }
 
@@ -384,38 +276,25 @@ extension OnlineEventAttribute {
 extension OnlineEventAttribute where Self: ContentNode {
     
     internal func mutate(ononline value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension OnlineEventAttribute where Self: EmptyNode {
     
     internal func mutate(ononline value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onpagehide handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol PageHideEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onpagehide'.
     ///
-    ///
+    /// ```html
+    /// <tag onpagehide="" />
+    /// ```
     func onPageHide(_ value: String) -> Self
 }
 
@@ -427,38 +306,25 @@ extension PageHideEventAttribute {
 extension PageHideEventAttribute where Self: ContentNode {
     
     internal func mutate(onpagehide value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PageHideEventAttribute where Self: EmptyNode {
     
     internal func mutate(onpagehide value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onpageshow handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol PageShowEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onpageshow'.
     ///
-    ///
+    /// ```html
+    /// <tag onpageshow="" />
+    /// ```
     func onPageShow(_ value: String) -> Self
 }
 
@@ -470,38 +336,25 @@ extension PageShowEventAttribute {
 extension PageShowEventAttribute where Self: ContentNode {
     
     internal func mutate(onpageshow value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PageShowEventAttribute where Self: EmptyNode {
     
     internal func mutate(onpageshow value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onpopstate handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol PopstateEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onpopstate'.
     ///
-    ///
+    /// ```html
+    /// <tag onpopstate="" />
+    /// ```
     func onPopstate(_ value: String) -> Self
 }
 
@@ -513,38 +366,25 @@ extension PopstateEventAttribute {
 extension PopstateEventAttribute where Self: ContentNode {
     
     internal func mutate(onpopstate value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PopstateEventAttribute where Self: EmptyNode {
     
     internal func mutate(onpopstate value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onresize handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ResizeEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onresize'.
     ///
-    ///
+    /// ```html
+    /// <tag onresize="" />
+    /// ```
     func onResize(_ value: String) -> Self
 }
 
@@ -556,38 +396,25 @@ extension ResizeEventAttribute {
 extension ResizeEventAttribute where Self: ContentNode {
     
     internal func mutate(onresize value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ResizeEventAttribute where Self: EmptyNode {
     
     internal func mutate(onresize value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onstorage handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol StorageEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onstorage'.
     ///
-    ///
+    /// ```html
+    /// <tag onstorage="" />
+    /// ```
     func onStorage(_ value: String) -> Self
 }
 
@@ -599,38 +426,25 @@ extension StorageEventAttribute {
 extension StorageEventAttribute where Self: ContentNode {
     
     internal func mutate(onstorage value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension StorageEventAttribute where Self: EmptyNode {
     
     internal func mutate(onstorage value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onunload handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol UnloadEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onunload'.
     ///
-    ///
+    /// ```html
+    /// <tag onunload="" />
+    /// ```
     func onUnload(_ value: String) -> Self
 }
 
@@ -642,38 +456,25 @@ extension UnloadEventAttribute {
 extension UnloadEventAttribute where Self: ContentNode {
     
     internal func mutate(onunload value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension UnloadEventAttribute where Self: EmptyNode {
     
     internal func mutate(onunload value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onblur handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol BlurEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onblur'.
     ///
-    ///
+    /// ```html
+    /// <tag onblur="" />
+    /// ```
     func onBlur(_ value: String) -> Self
 }
 
@@ -685,38 +486,25 @@ extension BlurEventAttribute {
 extension BlurEventAttribute where Self: ContentNode {
     
     internal func mutate(onblur value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension BlurEventAttribute where Self: EmptyNode {
     
     internal func mutate(onblur value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onchange handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ChangeEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onchange'.
     ///
-    ///
+    /// ```html
+    /// <tag onchange="" />
+    /// ```
     func onChange(_ value: String) -> Self
 }
 
@@ -728,38 +516,25 @@ extension ChangeEventAttribute {
 extension ChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(onchange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ChangeEventAttribute where Self: EmptyNode {
     
     internal func mutate(onchange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oncontextmenu handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ContextMenuEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oncontextmenu'.
     ///
-    ///
+    /// ```html
+    /// <tag ncontextmenu="" />
+    /// ```
     func onContextMenu(_ value: String) -> Self
 }
 
@@ -771,38 +546,25 @@ extension ContextMenuEventAttribute {
 extension ContextMenuEventAttribute where Self: ContentNode {
     
     internal func mutate(oncontextmenu value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ContextMenuEventAttribute where Self: EmptyNode {
     
     internal func mutate(oncontextmenu value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onfocus handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol FocusEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onfocus'.
     ///
-    ///
+    /// ```html
+    /// <tag onfocus="" />
+    /// ```
     func onFocus(_ value: String) -> Self
 }
 
@@ -814,38 +576,25 @@ extension FocusEventAttribute {
 extension FocusEventAttribute where Self: ContentNode {
     
     internal func mutate(onfocus value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension FocusEventAttribute where Self: EmptyNode {
     
     internal func mutate(onfocus value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oninput handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol InputEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oninput'.
     ///
-    ///
+    /// ```html
+    /// <tag oninput="" />
+    /// ```
     func onInput(_ value: String) -> Self
 }
 
@@ -857,38 +606,25 @@ extension InputEventAttribute {
 extension InputEventAttribute where Self: ContentNode {
     
     internal func mutate(oninput value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension InputEventAttribute where Self: EmptyNode {
     
     internal func mutate(oninput value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oninvalid handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol InvalidEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oninvalid'.
     ///
-    ///
+    /// ```html
+    /// <tag oninvalid="" />
+    /// ```
     func onInvalid(_ value: String) -> Self
 }
 
@@ -900,38 +636,25 @@ extension InvalidEventAttribute {
 extension InvalidEventAttribute where Self: ContentNode {
     
     internal func mutate(oninvalid value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension InvalidEventAttribute where Self: EmptyNode {
     
     internal func mutate(oninvalid value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onreset handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ResetEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onreset'.
     ///
-    ///
+    /// ```html
+    /// <tag onreset="" />
+    /// ```
     func onReset(_ value: String) -> Self
 }
 
@@ -943,38 +666,25 @@ extension ResetEventAttribute {
 extension ResetEventAttribute where Self: ContentNode {
     
     internal func mutate(onreset value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ResetEventAttribute where Self: EmptyNode {
     
     internal func mutate(onreset value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onsearch handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol SearchEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onsearch'.
     ///
-    ///
+    /// ```html
+    /// <tag onsearch="" />
+    /// ```
     func onSearch(_ value: String) -> Self
 }
 
@@ -986,38 +696,25 @@ extension SearchEventAttribute {
 extension SearchEventAttribute where Self: ContentNode {
     
     internal func mutate(onsearch value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SearchEventAttribute where Self: EmptyNode {
     
     internal func mutate(onsearch value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onselect handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol SelectEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onselect'.
     ///
-    ///
+    /// ```html
+    /// <tag onselect="" />
+    /// ```
     func onSelect(_ value: String) -> Self
 }
 
@@ -1029,38 +726,25 @@ extension SelectEventAttribute {
 extension SelectEventAttribute where Self: ContentNode {
     
     internal func mutate(onselect value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SelectEventAttribute where Self: EmptyNode {
     
     internal func mutate(onselect value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onsubmit handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol SubmitEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onsubmit'.
     ///
-    ///
+    /// ```html
+    /// <tag onsubmit="" />
+    /// ```
     func onSubmit(_ value: String) -> Self
 }
 
@@ -1072,38 +756,25 @@ extension SubmitEventAttribute {
 extension SubmitEventAttribute where Self: ContentNode {
     
     internal func mutate(onsubmit value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SubmitEventAttribute where Self: EmptyNode {
     
     internal func mutate(onsubmit value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onkeydown handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol KeyDownEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onkeydown'.
     ///
-    ///
+    /// ```html
+    /// <tag onkeydown="" />
+    /// ```
     func onKeyDown(_ value: String) -> Self
 }
 
@@ -1115,38 +786,25 @@ extension KeyDownEventAttribute {
 extension KeyDownEventAttribute where Self: ContentNode {
     
     internal func mutate(onkeydown value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension KeyDownEventAttribute where Self: EmptyNode {
     
     internal func mutate(onkeydown value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
-/// The protocol provides the element with the onkeypress handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
+/// The protocol provides the element with the onkeypress handler
 public protocol KeyPressEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onkeypress'.
     ///
-    ///
+    /// ```html
+    /// <tag onkeypress="" />
+    /// ```
     func onKeyPress(_ value: String) -> Self
 }
 
@@ -1158,38 +816,25 @@ extension KeyPressEventAttribute {
 extension KeyPressEventAttribute where Self: ContentNode {
     
     internal func mutate(onkeypress value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension KeyPressEventAttribute where Self: EmptyNode {
     
     internal func mutate(onkeypress value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onkeyup handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol KeyUpEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onkeyup'.
     ///
-    ///
+    /// ```html
+    /// <tag onkeyup="" />
+    /// ```
     func onKeyUp(_ value: String) -> Self
 }
 
@@ -1201,38 +846,25 @@ extension KeyUpEventAttribute {
 extension KeyUpEventAttribute where Self: ContentNode {
     
     internal func mutate(onkeyup value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension KeyUpEventAttribute where Self: EmptyNode {
     
     internal func mutate(onkeyup value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onclick handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ClickEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onclick'.
     ///
-    ///
+    /// ```html
+    /// <tag onclick="" />
+    /// ```
     func onClick(_ value: String) -> Self
 }
 
@@ -1244,38 +876,25 @@ extension ClickEventAttribute {
 extension ClickEventAttribute where Self: ContentNode {
     
     internal func mutate(onclick value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ClickEventAttribute where Self: EmptyNode {
     
     internal func mutate(onclick value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondbclick handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DoubleClickEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondbclick'.
     ///
-    ///
+    /// ```html
+    /// <tag ondbclick="" />
+    /// ```
     func onDoubleClick(_ value: String) -> Self
 }
 
@@ -1287,38 +906,25 @@ extension DoubleClickEventAttribute {
 extension DoubleClickEventAttribute where Self: ContentNode {
     
     internal func mutate(ondbclick value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DoubleClickEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondbclick value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onmousedown handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol MouseDownEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onmousedown'.
     ///
-    ///
+    /// ```html
+    /// <tag onmousedown="" />
+    /// ```
     func onMouseDown(_ value: String) -> Self
 }
 
@@ -1330,38 +936,25 @@ extension MouseDownEventAttribute {
 extension MouseDownEventAttribute where Self: ContentNode {
     
     internal func mutate(onmousedown value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MouseDownEventAttribute where Self: EmptyNode {
     
     internal func mutate(onmousedown value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onmousemove handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol MouseMoveEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onmousemove'.
     ///
-    ///
+    /// ```html
+    /// <tag onmousemove="" />
+    /// ```
     func onMouseMove(_ value: String) -> Self
 }
 
@@ -1373,38 +966,25 @@ extension MouseMoveEventAttribute {
 extension MouseMoveEventAttribute where Self: ContentNode {
     
     internal func mutate(onmousemove value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MouseMoveEventAttribute where Self: EmptyNode {
     
     internal func mutate(onmousemove value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onmouseout handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol MouseOutEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onmouseout'.
     ///
-    ///
+    /// ```html
+    /// <tag onmouseout="" />
+    /// ```
     func onMouseOut(_ value: String) -> Self
 }
 
@@ -1416,38 +996,25 @@ extension MouseOutEventAttribute {
 extension MouseOutEventAttribute where Self: ContentNode {
     
     internal func mutate(onmouseout value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MouseOutEventAttribute where Self: EmptyNode {
     
     internal func mutate(onmouseout value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onmouseover handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol MouseOverEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onmouseover'.
     ///
-    ///
+    /// ```html
+    /// <tag onmouseover="" />
+    /// ```
     func onMouseOver(_ value: String) -> Self
 }
 
@@ -1459,38 +1026,25 @@ extension MouseOverEventAttribute {
 extension MouseOverEventAttribute where Self: ContentNode {
     
     internal func mutate(onmouseover value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MouseOverEventAttribute where Self: EmptyNode {
     
     internal func mutate(onmouseover value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onmouseup handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol MouseUpEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onmouseup'.
     ///
-    ///
+    /// ```html
+    /// <tag onmouseup="" />
+    /// ```
     func onMouseUp(_ value: String) -> Self
 }
 
@@ -1502,38 +1056,25 @@ extension MouseUpEventAttribute {
 extension MouseUpEventAttribute where Self: ContentNode {
     
     internal func mutate(onmouseup value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension MouseUpEventAttribute where Self: EmptyNode {
     
     internal func mutate(onmouseup value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onwheel handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol WheelEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onwheel'.
     ///
-    ///
+    /// ```html
+    /// onwheel="" />
+    /// ```
     func onWheel(_ value: String) -> Self
 }
 
@@ -1545,38 +1086,25 @@ extension WheelEventAttribute {
 extension WheelEventAttribute where Self: ContentNode {
     
     internal func mutate(onwheel value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension WheelEventAttribute where Self: EmptyNode {
     
     internal func mutate(onwheel value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondrag handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DragEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondrag'.
     ///
-    ///
+    /// ```html
+    /// <tag ondrag="" />
+    /// ```
     func onDrag(_ value: String) -> Self
 }
 
@@ -1588,38 +1116,25 @@ extension DragEventAttribute {
 extension DragEventAttribute where Self: ContentNode {
     
     internal func mutate(ondrag value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DragEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondrag value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondragenter handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DragEnterEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondragenter'.
     ///
-    ///
+    /// ```html
+    /// <tag ondragenter="" />
+    /// ```
     func onDragEnter(_ value: String) -> Self
 }
 
@@ -1631,38 +1146,25 @@ extension DragEnterEventAttribute {
 extension DragEnterEventAttribute where Self: ContentNode {
     
     internal func mutate(ondragenter value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DragEnterEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondragenter value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondragend handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DragEndEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondragend'.
     ///
-    ///
+    /// ```html
+    /// <tag ondragend="" />
+    /// ```
     func onDragEnd(_ value: String) -> Self
 }
 
@@ -1674,38 +1176,25 @@ extension DragEndEventAttribute {
 extension DragEndEventAttribute where Self: ContentNode {
     
     internal func mutate(ondragend value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DragEndEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondragend value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondragleave handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DragLeaveEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondragleave'.
     ///
-    ///
+    /// ```html
+    /// <tag ondragleave="" />
+    /// ```
     func onDragLeave(_ value: String) -> Self
 }
 
@@ -1717,38 +1206,25 @@ extension DragLeaveEventAttribute {
 extension DragLeaveEventAttribute where Self: ContentNode {
     
     internal func mutate(ondragleave value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DragLeaveEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondragleave value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondragover handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DragOverEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondragover'.
     ///
-    ///
+    /// ```html
+    /// <tag ondragover="" />
+    /// ```
     func onDragOver(_ value: String) -> Self
 }
 
@@ -1760,38 +1236,25 @@ extension DragOverEventAttribute {
 extension DragOverEventAttribute where Self: ContentNode {
     
     internal func mutate(ondragover value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DragOverEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondragover value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondragstart handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DragStartEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondragstart'.
     ///
-    ///
+    /// ```html
+    /// <tag ondragstart="" />
+    /// ```
     func onDragStart(_ value: String) -> Self
 }
 
@@ -1803,38 +1266,25 @@ extension DragStartEventAttribute {
 extension DragStartEventAttribute where Self: ContentNode {
     
     internal func mutate(ondragstart value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DragStartEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondragstart value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondrop handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DropEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondrop'.
     ///
-    ///
+    /// ```html
+    /// <tag ondrop="" />
+    /// ```
     func onDrop(_ value: String) -> Self
 }
 
@@ -1846,38 +1296,25 @@ extension DropEventAttribute {
 extension DropEventAttribute where Self: ContentNode {
     
     internal func mutate(ondrop value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DropEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondrop value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onscroll handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ScrollEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onscroll'.
     ///
-    ///
+    /// ```html
+    /// <tag onscroll="" />
+    /// ```
     func onScroll(_ value: String) -> Self
 }
 
@@ -1889,38 +1326,25 @@ extension ScrollEventAttribute {
 extension ScrollEventAttribute where Self: ContentNode {
     
     internal func mutate(onscroll value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ScrollEventAttribute where Self: EmptyNode {
     
     internal func mutate(onscroll value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oncopy handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol CopyEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oncopy'.
     ///
-    ///
+    /// ```html
+    /// <tag oncopy="" />
+    /// ```
     func onCopy(_ value: String) -> Self
 }
 
@@ -1932,38 +1356,25 @@ extension CopyEventAttribute {
 extension CopyEventAttribute where Self: ContentNode {
     
     internal func mutate(oncopy value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension CopyEventAttribute where Self: EmptyNode {
     
     internal func mutate(oncopy value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oncut handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol CutEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oncut'.
     ///
-    ///
+    /// ```html
+    /// <tag oncut="" />
+    /// ```
     func onCut(_ value: String) -> Self
 }
 
@@ -1975,38 +1386,25 @@ extension CutEventAttribute {
 extension CutEventAttribute where Self: ContentNode {
     
     internal func mutate(oncut value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension CutEventAttribute where Self: EmptyNode {
     
     internal func mutate(oncut value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onpaste handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol PasteEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onpaste'.
     ///
-    ///
+    /// ```html
+    /// <tag onpaste="" />
+    /// ```
     func onPaste(_ value: String) -> Self
 }
 
@@ -2018,38 +1416,25 @@ extension PasteEventAttribute {
 extension PasteEventAttribute where Self: ContentNode {
     
     internal func mutate(onpaste value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PasteEventAttribute where Self: EmptyNode {
     
     internal func mutate(onpaste value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onabort handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol AbortEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onabort'.
     ///
-    ///
+    /// ```html
+    /// <tag onabort="" />
+    /// ```
     func onAbort(_ value: String) -> Self
 }
 
@@ -2061,38 +1446,25 @@ extension AbortEventAttribute {
 extension AbortEventAttribute where Self: ContentNode {
     
     internal func mutate(onabort value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension AbortEventAttribute where Self: EmptyNode {
     
     internal func mutate(onabort value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oncanplay handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol CanPlayEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oncanplay'.
     ///
-    ///
+    /// ```html
+    /// <tag oncanplay="" />
+    /// ```
     func onCanPlay(_ value: String) -> Self
 }
 
@@ -2104,38 +1476,25 @@ extension CanPlayEventAttribute {
 extension CanPlayEventAttribute where Self: ContentNode {
     
     internal func mutate(oncanplay value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension CanPlayEventAttribute where Self: EmptyNode {
     
     internal func mutate(oncanplay value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oncanplaythrough handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol CanPlayThroughEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oncanplaythrough'.
     ///
-    ///
+    /// ```html
+    /// <tag oncanplaythrough="" />
+    /// ```
     func onCanPlayThrough(_ value: String) -> Self
 }
 
@@ -2147,38 +1506,25 @@ extension CanPlayThroughEventAttribute {
 extension CanPlayThroughEventAttribute where Self: ContentNode {
     
     internal func mutate(oncanplaythrough value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension CanPlayThroughEventAttribute where Self: EmptyNode {
     
     internal func mutate(oncanplaythrough value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the oncuechange handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol CueChangeEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'oncuechange'.
     ///
-    ///
+    /// ```html
+    /// <tag oncuechange="" />
+    /// ```
     func onCueChange(_ value: String) -> Self
 }
 
@@ -2190,38 +1536,25 @@ extension CueChangeEventAttribute {
 extension CueChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(oncuechange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension CueChangeEventAttribute where Self: EmptyNode {
     
     internal func mutate(oncuechange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ondurationchange handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol DurationChangeEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ondurationchange'.
     ///
-    ///
+    /// ```html
+    /// <tag ondurationchange="" />
+    /// ```
     func onDurationChange(_ value: String) -> Self
 }
 
@@ -2233,38 +1566,25 @@ extension DurationChangeEventAttribute {
 extension DurationChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(ondurationchange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension DurationChangeEventAttribute where Self: EmptyNode {
     
     internal func mutate(ondurationchange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onemptied handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol EmptiedEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onemptied'.
     ///
-    ///
+    /// ```html
+    /// <tag onemptied="" />
+    /// ```
     func onEmptied(_ value: String) -> Self
 }
 
@@ -2276,38 +1596,25 @@ extension EmptiedEventAttribute {
 extension EmptiedEventAttribute where Self: ContentNode {
     
     internal func mutate(onemptied value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension EmptiedEventAttribute where Self: EmptyNode {
     
     internal func mutate(onemptied value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onended handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol EndedEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onended'.
     ///
-    ///
+    /// ```html
+    /// <tag onended="" />
+    /// ```
     func onEnded(_ value: String) -> Self
 }
 
@@ -2319,38 +1626,25 @@ extension EndedEventAttribute {
 extension EndedEventAttribute where Self: ContentNode {
     
     internal func mutate(onended value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension EndedEventAttribute where Self: EmptyNode {
     
     internal func mutate(onended value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onloadeddata handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol LoadedDataEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onloadeddata'.
     ///
-    ///
+    /// ```html
+    /// <tag onloadeddata="" />
+    /// ```
     func onLoadedData(_ value: String) -> Self
 }
 
@@ -2362,38 +1656,25 @@ extension LoadedDataEventAttribute {
 extension LoadedDataEventAttribute where Self: ContentNode {
     
     internal func mutate(onloadeddata value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension LoadedDataEventAttribute where Self: EmptyNode {
     
     internal func mutate(onloadeddata value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onloadedmetadata handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol LoadedMetaDataEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onloadedmetadata'.
     ///
-    ///
+    /// ```html
+    /// <tag onloadedmetadata="" />
+    /// ```
     func onLoadedMetaData(_ value: String) -> Self
 }
 
@@ -2405,38 +1686,25 @@ extension LoadedMetaDataEventAttribute {
 extension LoadedMetaDataEventAttribute where Self: ContentNode {
     
     internal func mutate(onloadedmetadata value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension LoadedMetaDataEventAttribute where Self: EmptyNode {
     
     internal func mutate(onloadedmetadata value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onloadstart handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol LoadStartEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onloadstart'.
     ///
-    ///
+    /// ```html
+    /// <tag onloadstart="" />
+    /// ```
     func onLoadStart(_ value: String) -> Self
 }
 
@@ -2448,38 +1716,25 @@ extension LoadStartEventAttribute {
 extension LoadStartEventAttribute where Self: ContentNode {
     
     internal func mutate(onloadstart value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension LoadStartEventAttribute where Self: EmptyNode {
     
     internal func mutate(onloadstart value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onpause handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol PauseEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onpause'.
     ///
-    ///
+    /// ```html
+    /// <tag onpause="" />
+    /// ```
     func onPause(_ value: String) -> Self
 }
 
@@ -2491,38 +1746,25 @@ extension PauseEventAttribute {
 extension PauseEventAttribute where Self: ContentNode {
     
     internal func mutate(onpause value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PauseEventAttribute where Self: EmptyNode {
     
     internal func mutate(onpause value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onplay handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol PlayEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onplay'.
     ///
-    ///
+    /// ```html
+    /// <tag onplay="" />
+    /// ```
     func onPlay(_ value: String) -> Self
 }
 
@@ -2534,38 +1776,25 @@ extension PlayEventAttribute {
 extension PlayEventAttribute where Self: ContentNode {
     
     internal func mutate(onplay value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PlayEventAttribute where Self: EmptyNode {
     
     internal func mutate(onplay value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onplaying handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol PlayingEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onplaying'.
     ///
-    ///
+    /// ```html
+    /// <tag onplaying="" />
+    /// ```
     func OnPlaying(_ value: String) -> Self
 }
 
@@ -2577,38 +1806,25 @@ extension PlayingEventAttribute {
 extension PlayingEventAttribute where Self: ContentNode {
     
     internal func mutate(onplaying value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension PlayingEventAttribute where Self: EmptyNode {
     
     internal func mutate(onplaying value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onprogress handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ProgressEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onprogress'.
     ///
-    ///
+    /// ```html
+    /// <tag onprogress="" />
+    /// ```
     func onProgress(_ value: String) -> Self
 }
 
@@ -2620,38 +1836,25 @@ extension ProgressEventAttribute {
 extension ProgressEventAttribute where Self: ContentNode {
     
     internal func mutate(onprogress value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ProgressEventAttribute where Self: EmptyNode {
     
     internal func mutate(onprogress value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onratechange handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol RateChangeEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onratechange'.
     ///
-    ///
+    /// ```html
+    /// <tag onratechange="" />
+    /// ```
     func onRateChange(_ value: String) -> Self
 }
 
@@ -2663,38 +1866,25 @@ extension RateChangeEventAttribute {
 extension RateChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(onratechange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension RateChangeEventAttribute where Self: EmptyNode {
     
     internal func mutate(onratechange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onseeked handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol SeekedEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onseeked'.
     ///
-    ///
+    /// ```html
+    /// <tag onseeked="" />
+    /// ```
     func onSeeked(_ value: String) -> Self
 }
 
@@ -2706,38 +1896,25 @@ extension SeekedEventAttribute {
 extension SeekedEventAttribute where Self: ContentNode {
     
     internal func mutate(onseeked value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SeekedEventAttribute where Self: EmptyNode {
     
     internal func mutate(onseeked value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onseeking handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol SeekingEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onseeking'.
     ///
-    ///
+    /// ```html
+    /// <tag onseeking="" />
+    /// ```
     func onSeeking(_ value: String) -> Self
 }
 
@@ -2749,38 +1926,25 @@ extension SeekingEventAttribute {
 extension SeekingEventAttribute where Self: ContentNode {
     
     internal func mutate(onseeking value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SeekingEventAttribute where Self: EmptyNode {
     
     internal func mutate(onseeking value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onstalled handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol StalledEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onstalled'.
     ///
-    ///
+    /// ```html
+    /// <tag onstalled="" />
+    /// ```
     func onStalled(_ value: String) -> Self
 }
 
@@ -2792,38 +1956,25 @@ extension StalledEventAttribute {
 extension StalledEventAttribute where Self: ContentNode {
     
     internal func mutate(onstalled value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension StalledEventAttribute where Self: EmptyNode {
     
     internal func mutate(onstalled value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onsuspend handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol SuspendEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onsuspend'.
     ///
-    ///
+    /// ```html
+    /// <tag onsuspend="" />
+    /// ```
     func onSuspend(_ value: String) -> Self
 }
 
@@ -2835,38 +1986,25 @@ extension SuspendEventAttribute {
 extension SuspendEventAttribute where Self: ContentNode {
     
     internal func mutate(onsuspend value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension SuspendEventAttribute where Self: EmptyNode {
     
     internal func mutate(onsuspend value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ontimeupdate handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol TimeUpdateEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ontimeupdate'.
     ///
-    ///
+    /// ```html
+    /// <tag ontimeupdate="" />
+    /// ```
     func onTimeUpdate(_ value: String) -> Self
 }
 
@@ -2878,38 +2016,25 @@ extension TimeUpdateEventAttribute {
 extension TimeUpdateEventAttribute where Self: ContentNode {
     
     internal func mutate(ontimeupdate value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension TimeUpdateEventAttribute where Self: EmptyNode {
     
     internal func mutate(ontimeupdate value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onvolumechange handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol VolumeChangeEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onvolumechange'.
     ///
-    ///
+    /// ```html
+    /// <tag onvolumechange="" />
+    /// ```
     func onVolumeChange(_ value: String) -> Self
 }
 
@@ -2921,38 +2046,25 @@ extension VolumeChangeEventAttribute {
 extension VolumeChangeEventAttribute where Self: ContentNode {
     
     internal func mutate(onvolumechange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension VolumeChangeEventAttribute where Self: EmptyNode {
     
     internal func mutate(onvolumechange value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the onwaiting handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol WaitingEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'onwaiting'.
     ///
-    ///
+    /// ```html
+    /// <tag onwaiting="" />
+    /// ```
     func onWaiting(_ value: String) -> Self
 }
 
@@ -2964,38 +2076,25 @@ extension WaitingEventAttribute {
 extension WaitingEventAttribute where Self: ContentNode {
     
     internal func mutate(onwaiting value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension WaitingEventAttribute where Self: EmptyNode {
     
     internal func mutate(onwaiting value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }
 
-/// ## Description
 /// The protocol provides the element with the ontoggle handler.
-///
-/// ## References
-/// https://html.spec.whatwg.org/#attr-ol-reversed
-///
 public protocol ToggleEventAttribute: AnyAttribute {
     
-    /// The func adds
+    /// The function represents the html-attribute 'ontoggle'.
     ///
-    ///
+    /// ```html
+    /// <tag ontoggle="" />
+    /// ```
     func onToggle(_ value: String) -> Self
 }
 
@@ -3007,23 +2106,13 @@ extension ToggleEventAttribute {
 extension ToggleEventAttribute where Self: ContentNode {
     
     internal func mutate(ontoggle value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value), content: content)
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes), content: content)
+        return self.mutate(key: self.key, value: value)
     }
 }
 
 extension ToggleEventAttribute where Self: EmptyNode {
     
     internal func mutate(ontoggle value: String) -> Self {
-        
-        guard var attributes = self.attributes else {
-            return .init(attributes: set(key: key, value: value))
-        }
-        
-        return .init(attributes: update(key: key, value: value, on: &attributes))
+        return self.mutate(key: self.key, value: value)
     }
 }

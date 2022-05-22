@@ -1,22 +1,24 @@
-/// ## Description
-/// The file contains the html elements. The html element Html only allows these elements to be its
-/// descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the html elements. The html-element 'html' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
 /// The element contains the information about the document's content.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-head-element
-///
+/// ```html
+/// <head></head>
+/// ```
 public struct Head: ContentNode, HtmlElement {
 
     internal var name: String { "head" }
@@ -37,7 +39,7 @@ public struct Head: ContentNode, HtmlElement {
 
 extension Head: GlobalAttributes {
 
-    public func accessKey(_ value: String) -> Head {
+    public func accessKey(_ value: Character) -> Head {
         return mutate(accesskey: value)
     }
     
@@ -134,7 +136,7 @@ extension Head: GlobalAttributes {
         return mutate(style: value)
     }
     
-    public func tabIndex(_ value: String) -> Head {
+    public func tabIndex(_ value: Int) -> Head {
         return mutate(tabindex: value)
     }
     
@@ -142,8 +144,13 @@ extension Head: GlobalAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Head {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Head {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Head {
@@ -198,12 +205,11 @@ extension Head: Modifiable {
     }
 }
 
-/// ## Description
 /// The element contains the document's content.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-body-element
-///
+/// ```html
+/// <body></body>
+/// ```
 public struct Body: ContentNode, HtmlElement {
 
     internal var name: String { "body" }
@@ -260,7 +266,7 @@ extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttr
         return mutate(onresize: value)
     }
 
-    public func accessKey(_ value: String) -> Body {
+    public func accessKey(_ value: Character) -> Body {
         return mutate(accesskey: value)
     }
 
@@ -357,7 +363,7 @@ extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttr
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> Body {
+    public func tabIndex(_ value: Int) -> Body {
         return mutate(tabindex: value)
     }
 
@@ -365,8 +371,13 @@ extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttr
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> Body {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> Body {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Body {

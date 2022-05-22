@@ -1,32 +1,42 @@
-/// ## Description
-/// The file contains the definition elements. The html element DescriptionList only allows these
-/// elements to be its descendants.
-///
-/// ## Note
-/// If you about to add something to the file, stick to the official documentation to keep the code consistent.
-///
-/// ## Authors
-/// Mats Moll: https://github.com/matsmoll
-/// Mattes Mohr: https://github.com/mattesmohr
+/*
+ Abstract:
+ The file contains the definition elements. The html-element 'description' only allows these elements to be its descendants.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
 
 import OrderedCollections
 
-/// ## Description
-/// The alias points to TermName.
+/// The alias for the element TermName.
 ///
+/// Dt is the official tag and can be used instead of TermName.
+///
+/// ```html
+/// <dt>
+/// ```
 public typealias Dt = TermName
 
-/// ## Description
-/// The alias points to TermDefinition.
+/// The alias for the element TermDefinition.
 ///
+/// Dd is the official tag and can be used instead of TermDefinition.
+///
+/// ```html
+/// <dd></dd>
+/// ```
 public typealias Dd = TermDefinition
 
-/// ## Description
 /// The element specifies a term name.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-dt-element
-///
+/// ```html
+/// <dt>
+/// ```
 public struct TermName: ContentNode, DescriptionElement {
 
     internal var name: String { "dt" }
@@ -47,7 +57,7 @@ public struct TermName: ContentNode, DescriptionElement {
 
 extension TermName: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> TermName {
+    public func accessKey(_ value: Character) -> TermName {
         return mutate(accesskey: value)
     }
 
@@ -144,16 +154,21 @@ extension TermName: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> TermName {
+    public func tabIndex(_ value: Int) -> TermName {
         return mutate(tabindex: value)
     }
 
     public func title(_ value: String) -> TermName {
         return mutate(title: value)
     }
-
+    
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> TermName {
         return mutate(translate: value)
+    }
+
+    public func translate(_ type: Decision) -> TermName {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TermName {
@@ -208,12 +223,11 @@ extension TermName: Modifiable {
     }
 }
 
-/// ## Description
 /// The element specifies a term definition.
 ///
-/// ## References
-/// https://html.spec.whatwg.org/#the-dd-element
-///
+/// ```html
+/// <dd></dd>
+/// ```
 public struct TermDefinition: ContentNode, DescriptionElement {
 
     internal var name: String { "dd" }
@@ -234,7 +248,7 @@ public struct TermDefinition: ContentNode, DescriptionElement {
 
 extension TermDefinition: GlobalAttributes {
     
-    public func accessKey(_ value: String) -> TermDefinition {
+    public func accessKey(_ value: Character) -> TermDefinition {
         return mutate(accesskey: value)
     }
 
@@ -331,7 +345,7 @@ extension TermDefinition: GlobalAttributes {
         return mutate(style: value)
     }
 
-    public func tabIndex(_ value: String) -> TermDefinition {
+    public func tabIndex(_ value: Int) -> TermDefinition {
         return mutate(tabindex: value)
     }
 
@@ -339,8 +353,13 @@ extension TermDefinition: GlobalAttributes {
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
     public func translate(_ value: String) -> TermDefinition {
         return mutate(translate: value)
+    }
+    
+    public func translate(_ type: Decision) -> TermDefinition {
+        return mutate(translate: type.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TermDefinition {
