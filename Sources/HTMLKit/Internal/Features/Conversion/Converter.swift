@@ -104,6 +104,18 @@ public class Converter {
         }
     }
     
+    /// Converts only as a component to be put into an existing Page or View layout
+    public func convert(html: String) throws -> String {
+        let document = try XMLDocument(xmlString: html, options: [.documentIncludeContentTypeDeclaration])
+        
+        guard let root = document.rootElement() else {
+            throw Errors.rootNotFound
+        }
+        
+        let content = Converter.default.decode(element: root, indent: 2)
+        return content
+    }
+    
     @StringBuilder private func decode(attribute: XMLNode) -> String {
         
         switch attribute.localName {
