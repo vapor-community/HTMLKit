@@ -112,8 +112,8 @@ public class Converter {
             throw Errors.rootNotFound
         }
         
-        let content = Converter.default.decode(element: root, indent: 0)
-        return content
+        let content = Converter.default.decode(element: root, indent: nil)
+        return content.replacingOccurrences(of: "\t\t\t", with: "\t")
     }
     
     @StringBuilder private func decode(attribute: XMLNode) -> String {
