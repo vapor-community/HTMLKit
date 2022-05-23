@@ -104,14 +104,18 @@ public class Converter {
         }
     }
     
-    /// Converts only as a component to be put into an existing Page or View layout
+    /// Converts an HTML component to be put into an existing Page or View layout.
+    /// The whole html string needs to be inside a tag.
+    /// For example, multiple `div`s will give an error. They need to be inside another `div`.
     public func convert(html: String) throws -> String {
-        let document = try XMLDocument(xmlString: html, options: [.documentIncludeContentTypeDeclaration])
+        // The converter puts a new line inside a single quote Swift string, which breaks the code. To avoid that:
+        let htmlString = html.replacingOccurrences(of: "\n", with: "")
+        let document = try XMLDocument(xmlString: htmlString, options: [.documentIncludeContentTypeDeclaration])
         
         guard let root = document.rootElement() else {
             throw Errors.rootNotFound
         }
-        
+        // The user would put this to a line that's already indented. So, remove the extra indentation:
         let content = Converter.default.decode(element: root, indent: nil)
         return content.replacingOccurrences(of: "\t\t\t", with: "\t")
     }
