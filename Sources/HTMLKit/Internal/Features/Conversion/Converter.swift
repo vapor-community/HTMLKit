@@ -108,9 +108,8 @@ public class Converter {
     /// The whole html string needs to be inside a tag.
     /// For example, multiple `div`s will give an error. They need to be inside another `div`.
     public func convert(html: String) throws -> String {
-        // The converter puts a new line inside a single quote Swift string, which breaks the code. To avoid that:
-        let htmlString = html.replacingOccurrences(of: "\n", with: "")
-        let document = try XMLDocument(xmlString: htmlString, options: [.documentIncludeContentTypeDeclaration])
+        
+        let document = try XMLDocument(xmlString: html, options: [.documentIncludeContentTypeDeclaration])
         
         guard let root = document.rootElement() else {
             throw Errors.rootNotFound
@@ -645,7 +644,12 @@ extension Converter {
             let indent = String(repeating: "\t", count: (node.level - 1) + (preindent ?? 0))
             
             if let text = text {
-                "\(indent)\"\(text)\"\n"
+                if node.parent?.localName != "pre" {
+                    let cleanText = text.replacingOccurrences(of: "\n", with: "")
+                    "\(indent)\"\(cleanText)\"\n"
+                } else {
+                    "\(indent)\"\"\"\(text)\"\"\"\n"
+                }
             }
         }
     }
