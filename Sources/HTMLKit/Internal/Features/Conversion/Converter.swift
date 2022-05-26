@@ -648,7 +648,7 @@ extension Converter {
                     let cleanText = text.replacingOccurrences(of: "\n", with: "")
                     "\(indent)\"\(cleanText)\"\n"
                 } else {
-                    "\(indent)\"\"\"\(text)\"\"\"\n"
+                    "\(indent)\"\"\"\n\(text)\"\"\"\n"
                 }
             }
         }
