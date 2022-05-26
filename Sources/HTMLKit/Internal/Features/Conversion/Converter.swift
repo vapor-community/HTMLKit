@@ -644,7 +644,7 @@ extension Converter {
             let indent = String(repeating: "\t", count: (node.level - 1) + (preindent ?? 0))
             
             if let text = text {
-                if node.parent?.localName = "pre" {
+                if node.parent?.localName == "pre" {
                     "\(indent)\"\"\"\n\(text)\"\"\"\n"
                 } else {
                     let cleanText = text.trimmingCharacters(in: .whitespacesAndNewlines)
