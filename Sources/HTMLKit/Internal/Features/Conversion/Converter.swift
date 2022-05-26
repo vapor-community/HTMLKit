@@ -644,11 +644,11 @@ extension Converter {
             let indent = String(repeating: "\t", count: (node.level - 1) + (preindent ?? 0))
             
             if let text = text {
-                if node.parent?.localName != "pre" {
-                    let cleanText = text.replacingOccurrences(of: "\n", with: "")
-                    "\(indent)\"\(cleanText)\"\n"
-                } else {
+                if node.parent?.localName = "pre" {
                     "\(indent)\"\"\"\n\(text)\"\"\"\n"
+                } else {
+                    let cleanText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+                    "\(indent)\"\(cleanText)\"\n"
                 }
             }
         }
