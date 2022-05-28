@@ -104,6 +104,21 @@ public class Converter {
         }
     }
     
+    /// Converts an HTML component to be put into an existing Page or View layout.
+    /// The whole html string needs to be inside a tag.
+    /// For example, multiple `div`s will give an error. They need to be inside another `div`.
+    public func convert(html: String) throws -> String {
+        
+        let document = try XMLDocument(xmlString: html, options: [.documentIncludeContentTypeDeclaration])
+        
+        guard let root = document.rootElement() else {
+            throw Errors.rootNotFound
+        }
+        // The user would put this to a line that's already indented. So, remove the extra indentation:
+        let content = Converter.default.decode(element: root, indent: nil)
+        return content.replacingOccurrences(of: "\t\t\t", with: "\t")
+    }
+    
     @StringBuilder private func decode(attribute: XMLNode) -> String {
         
         switch attribute.localName {
@@ -452,6 +467,8 @@ public class Converter {
                     ContentElement(element: element).build(verbatim: "Italic", preindent: indent)
                 case "b":
                     ContentElement(element: element).build(verbatim: "Bold", preindent: indent)
+                case "strong":
+                    ContentElement(element: element).build(verbatim: "Strong", preindent: indent)
                 case "u":
                     ContentElement(element: element).build(verbatim: "SampleOutput", preindent: indent)
                 case "mark":
@@ -627,7 +644,12 @@ extension Converter {
             let indent = String(repeating: "\t", count: (node.level - 1) + (preindent ?? 0))
             
             if let text = text {
-                "\(indent)\"\(text)\"\n"
+                if node.parent?.localName == "pre" {
+                    "\(indent)\"\"\"\n\(text)\"\"\"\n"
+                } else {
+                    let cleanText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+                    "\(indent)\"\(cleanText)\"\n"
+                }
             }
         }
     }
