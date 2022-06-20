@@ -323,6 +323,7 @@ public enum Relation: String {
     
     case alternate
     case author
+    case external
     case help
     case icon
     case licence
