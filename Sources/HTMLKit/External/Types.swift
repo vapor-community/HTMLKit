@@ -23,6 +23,7 @@ public enum Names: String {
     case description = "description"
     case generator = "generator"
     case keywords = "keywords"
+    case robots = "robots"
     case viewport = "viewport"
     case applicationName = "application-name"
 }
