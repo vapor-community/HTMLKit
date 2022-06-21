@@ -629,7 +629,7 @@ extension Path: GlobalVectorAttributes {
     public func style(_ value: String) -> Path {
         return self.mutate(style: value)
     }
-    
+
     public func fill(_ value: String) -> Path {
         return self.mutate(fill: value)
     }
@@ -661,6 +661,14 @@ extension Path: GlobalVectorAttributes {
     public func custom(key: String, value: Any) -> Path {
         return self.mutate(key: key, value: value)
     }
+}
+
+extension Path: DrawAttribute {
+
+    public func draw(_ value: String) -> Path {
+        return self.mutate(draw: value)
+    }
+
 }
 
 extension Path: AnyContent {
