@@ -629,7 +629,7 @@ extension Path: GlobalVectorAttributes {
     public func style(_ value: String) -> Path {
         return self.mutate(style: value)
     }
-    
+
     public func fill(_ value: String) -> Path {
         return self.mutate(fill: value)
     }
@@ -663,12 +663,117 @@ extension Path: GlobalVectorAttributes {
     }
 }
 
+extension Path: DrawAttribute {
+
+    public func draw(_ value: String) -> Path {
+        return self.mutate(draw: value)
+    }
+
+}
+
 extension Path: AnyContent {
     
     public func prerender(_ formula: Renderer.Formula) throws {
         try self.build(formula)
     }
     
+    public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        try self.build(with: manager)
+    }
+}
+
+/// The element represents ...
+///
+/// ```html
+/// <g></g>
+/// ```
+public struct Group: ContentNode, VectorElement {
+
+    internal var name: String { "g" }
+
+    internal var attributes: OrderedDictionary<String, Any>?
+
+    internal var content: [AnyContent]
+
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+        self.content = content()
+    }
+
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+        self.attributes = attributes
+        self.content = content
+    }
+}
+
+extension Group: GlobalVectorAttributes {
+
+    public func id(_ value: String) -> Self {
+        return self.mutate(id: value)
+    }
+
+    public func id(_ value: TemplateValue<String>) -> Self {
+        return self.mutate(id: value.rawValue)
+    }
+
+    public func tabIndex(_ value: Int) -> Self {
+        return self.mutate(tabindex: value)
+    }
+
+    public func `class`(_ value: String) -> Self {
+        return self.mutate(class: value)
+    }
+
+    public func style(_ value: String) -> Self {
+        return self.mutate(style: value)
+    }
+
+    public func fill(_ value: String) -> Self {
+        return self.mutate(fill: value)
+    }
+
+    public func stroke(_ value: String) -> Self {
+        return self.mutate(stroke: value)
+    }
+
+    public func strokeWidth(_ size: Int) -> Self {
+        return self.mutate(strokewidth: size)
+    }
+
+    public func fillOpacity(_ value: Double) -> Self {
+        return self.mutate(fillopacity: value)
+    }
+
+    public func strokeOpacity(_ value: Double) -> Self {
+        return self.mutate(strokeopacity: value)
+    }
+
+    public func strokeLineCap(_ type: Linecap) -> Self {
+        return self.mutate(strokelinecap: type.rawValue)
+    }
+
+    public func strokeLineJoin(_ type: Linejoin) -> Self {
+        return self.mutate(strokelinejoin: type.rawValue)
+    }
+
+    public func custom(key: String, value: Any) -> Self {
+        return self.mutate(key: key, value: value)
+    }
+}
+
+extension Group: DrawAttribute {
+
+    public func draw(_ value: String) -> Self {
+        return self.mutate(draw: value)
+    }
+
+}
+
+extension Group: AnyContent {
+
+    public func prerender(_ formula: Renderer.Formula) throws {
+        try self.build(formula)
+    }
+
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
     }

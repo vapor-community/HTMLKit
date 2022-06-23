@@ -17,6 +17,30 @@ import OrderedCollections
 /// The alias combines the global attributes of the vector attributes.
 public typealias GlobalVectorAttributes = IdentifierAttribute & TabulatorAttribute & ClassAttribute & StyleAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute
 
+/// The protocol provides the element with the draw handler.
+public protocol DrawAttribute: AnyAttribute {
+
+    /// The function represents the html-attribute 'd'.
+    ///
+    /// ```html
+    /// <tag d="" />
+    /// ```
+    func draw(_ value: String) -> Self
+}
+
+extension DrawAttribute {
+
+    internal var key: String { "d" }
+}
+
+extension DrawAttribute where Self: ContentNode {
+
+    internal func mutate(draw value: String) -> Self {
+        return self.mutate(key: self.key, value: value)
+    }
+}
+
+
 /// The protocol provides the element with the fill handler.
 public protocol FillAttribute: AnyAttribute {
     
