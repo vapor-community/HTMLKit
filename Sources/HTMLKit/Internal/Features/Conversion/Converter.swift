@@ -105,6 +105,7 @@ public class Converter {
     }
     
     /// Converts an HTML component to be put into an existing Page or View layout.
+    /// 
     /// The whole html string needs to be inside a tag.
     /// For example, multiple `div`s will give an error. They need to be inside another `div`.
     public func convert(html: String) throws -> String {
@@ -114,8 +115,10 @@ public class Converter {
         guard let root = document.rootElement() else {
             throw Errors.rootNotFound
         }
+        
+        let content = Converter.default.decode(element: root)
+        
         // The user would put this to a line that's already indented. So, remove the extra indentation:
-        let content = Converter.default.decode(element: root, indent: nil)
         return content.replacingOccurrences(of: "\t\t\t", with: "\t")
     }
     
@@ -688,11 +691,14 @@ extension Converter {
             let indent = String(repeating: "\t", count: (node.level - 1) + (preindent ?? 0))
             
             if let text = text {
+                
                 if node.parent?.localName == "pre" {
+                    
                     "\(indent)\"\"\"\n\(text)\"\"\"\n"
+                    
                 } else {
-                    let cleanText = text.trimmingCharacters(in: .whitespacesAndNewlines)
-                    "\(indent)\"\(cleanText)\"\n"
+                    
+                    "\(indent)\"\(text.trimmingCharacters(in: .whitespacesAndNewlines))\"\n"
                 }
             }
         }
