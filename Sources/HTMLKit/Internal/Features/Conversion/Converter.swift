@@ -362,6 +362,24 @@ public class Converter {
             ValueProperty<String>(node: attribute).build(verbatim: "maximum")
         case "minlength":
             ValueProperty<String>(node: attribute).build(verbatim: "minimum")
+        case "fill":
+            ValueProperty<String>(node: attribute).build()
+        case "fill-opacity":
+            ValueProperty<Double>(node: attribute).build(verbatim: "fillOpacity")
+        case "stroke":
+            ValueProperty<String>(node: attribute).build()
+        case "stroke-width":
+            ValueProperty<Int>(node: attribute).build(verbatim: "strokeWidth")
+        case "stroke-opacity":
+            ValueProperty<Double>(node: attribute).build(verbatim: "strokeOpacity")
+        case "stroke-linecap":
+            TypeProperty<Linecap>(node: attribute).build(verbatim: "strokeLineCap")
+        case "stroke-linejoin":
+            TypeProperty<Linejoin>(node: attribute).build(verbatim: "strokeLineJoin")
+        case "r":
+            ValueProperty<Int>(node: attribute).build(verbatim: "radius")
+        case "viewbox":
+            ValueProperty<String>(node: attribute).build(verbatim: "viewBox")
         default:
             CustomProperty(node: attribute).build()
         }
@@ -592,6 +610,22 @@ public class Converter {
                 case "track":
                     EmptyElement(element: element).build(preindent: indent)
                 case "article":
+                    ContentElement(element: element).build(preindent: indent)
+                case "progress":
+                    ContentElement(element: element).build(preindent: indent)
+                case "circle":
+                    ContentElement(element: element).build(preindent: indent)
+                case "rect":
+                    ContentElement(element: element).build(verbatim: "Rectangle", preindent: indent)
+                case "ellipse":
+                    ContentElement(element: element).build(preindent: indent)
+                case "line":
+                    ContentElement(element: element).build(preindent: indent)
+                case "polygon":
+                    ContentElement(element: element).build(preindent: indent)
+                case "path":
+                    ContentElement(element: element).build(preindent: indent)
+                case "use":
                     ContentElement(element: element).build(preindent: indent)
                 default:
                     "element is not listed. contact the author"
@@ -1029,7 +1063,7 @@ extension Converter {
 
             if let verbatim = verbatim, let value = value {
                 
-                ".\(verbatim)(\(value))\n"
+                ".\(verbatim)(.\(value))\n"
                 
             } else if let verbatim = verbatim {
                 
