@@ -4,7 +4,6 @@ import XCTest
 final class ConversionTests: XCTestCase {
     
     var directory: URL?
-    var componentPath: URL?
     
     override func setUp() {
         super.setUp()
@@ -12,7 +11,7 @@ final class ConversionTests: XCTestCase {
         try! setupConversion()
     }
     
-    func testConversion() throws {
+    func testFileConversion() throws {
         
         guard let directory = directory else {
             return XCTFail("No directory.")
@@ -23,12 +22,23 @@ final class ConversionTests: XCTestCase {
         }
         
         XCTAssertNoThrow(try Converter.default.convert(directory: directory, option: .print))
+    }
+    
+    func testStringConversion() throws {
         
-        guard let componentPath = componentPath else {
-            return XCTFail("No component html file to convert to string.")
+        guard #available(macOS 11.0, *) else {
+            throw XCTSkip("Requires macOS >= 11.0")
         }
-        let htmlComponent = try String(contentsOf: componentPath, encoding: String.Encoding.utf8)
-        XCTAssertNoThrow(try Converter.default.convert(html: htmlComponent))
+        
+        guard let directory = directory else {
+            return XCTFail("No directory.")
+        }
+        
+        guard let content = try? String(contentsOf: directory.appendingPathComponent("component.html")) else {
+            return XCTFail("No file.")
+        }
+        
+        XCTAssertNoThrow(try Converter.default.convert(html: content))
     }
 }
 
@@ -39,14 +49,13 @@ extension ConversionTests {
         let currentFile = URL(fileURLWithPath: #file).deletingLastPathComponent()
         
         self.directory = currentFile.appendingPathComponent("Conversion")
-        
-        self.componentPath = self.directory?.appendingPathComponent("component.html")
     }
 }
 
 extension ConversionTests {
     
     static var allTests = [
-        ("testConversion", testConversion)
+        ("testFileConversion", testFileConversion),
+        ("testStringConversion", testStringConversion)
     ]
 }

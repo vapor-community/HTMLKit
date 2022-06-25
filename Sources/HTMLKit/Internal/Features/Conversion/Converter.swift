@@ -105,6 +105,7 @@ public class Converter {
     }
     
     /// Converts an HTML component to be put into an existing Page or View layout.
+    /// 
     /// The whole html string needs to be inside a tag.
     /// For example, multiple `div`s will give an error. They need to be inside another `div`.
     public func convert(html: String) throws -> String {
@@ -114,8 +115,10 @@ public class Converter {
         guard let root = document.rootElement() else {
             throw Errors.rootNotFound
         }
+        
+        let content = Converter.default.decode(element: root)
+        
         // The user would put this to a line that's already indented. So, remove the extra indentation:
-        let content = Converter.default.decode(element: root, indent: nil)
         return content.replacingOccurrences(of: "\t\t\t", with: "\t")
     }
     
@@ -123,19 +126,19 @@ public class Converter {
         
         switch attribute.localName {
         case "accesskey":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "accept":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "action":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "alt":
-            ValueProperty(node: attribute).build(verbatim: "alternate")
+            ValueProperty<String>(node: attribute).build(verbatim: "alternate")
         case "async":
             EmptyProperty(node: attribute).build(verbatim: "asynchronously")
         case "autocapitalize":
             TypeProperty<Capitalization>(node: attribute).build()
         case "autocomplete":
-            ValueProperty(node: attribute).build()
+            ValueProperty<Bool>(node: attribute).build(verbatim: "hasCompletion")
         case "autofocus":
             EmptyProperty(node: attribute).build()
         case "autoplay":
@@ -143,25 +146,25 @@ public class Converter {
         case "checked":
             EmptyProperty(node: attribute).build()
         case "cite":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "class":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "cols":
-            ValueProperty(node: attribute).build(verbatim: "columns")
+            ValueProperty<Int>(node: attribute).build(verbatim: "columns")
         case "colspan":
-            ValueProperty(node: attribute).build(verbatim: "columnSpan")
+            ValueProperty<Int>(node: attribute).build(verbatim: "columnSpan")
         case "content":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "contenteditable":
-            ValueProperty(node: attribute).build(verbatim: "isEditable")
+            ValueProperty<Bool>(node: attribute).build(verbatim: "isEditable")
         case "controls":
             EmptyProperty(node: attribute).build()
         case "coords":
-            ValueProperty(node: attribute).build(verbatim: "coordinates")
+            ValueProperty<String>(node: attribute).build(verbatim: "coordinates")
         case "data":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "datetime":
-            ValueProperty(node: attribute).build(verbatim: "dateTime")
+            ValueProperty<String>(node: attribute).build(verbatim: "dateTime")
         case "default":
             EmptyProperty(node: attribute).build()
         case "defer":
@@ -173,67 +176,77 @@ public class Converter {
         case "download":
             EmptyProperty(node: attribute).build()
         case "draggable":
-            ValueProperty(node: attribute).build(verbatim: "isDraggable")
+            ValueProperty<String>(node: attribute).build(verbatim: "isDraggable")
         case "enctype":
             TypeProperty<Encoding>(node: attribute).build(verbatim: "encoding")
         case "enterkeyhint":
             TypeProperty<Hint>(node: attribute).build(verbatim: "enterKeyHint")
         case "for":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "form":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "formaction":
-            ValueProperty(node: attribute).build(verbatim: "formAction")
+            ValueProperty<String>(node: attribute).build(verbatim: "formAction")
         case "headers":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "height":
-            ValueProperty(node: attribute).build()
+            ValueProperty<Int>(node: attribute).build()
         case "hidden":
             EmptyProperty(node: attribute).build()
         case "high":
-            ValueProperty(node: attribute).build()
+            ValueProperty<Float>(node: attribute).build()
         case "href":
-            ValueProperty(node: attribute).build(verbatim: "reference")
+            ValueProperty<String>(node: attribute).build(verbatim: "reference")
         case "hreflang":
             TypeProperty<Language>(node: attribute).build(verbatim: "referenceLanguage")
         case "id":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "ismap":
             EmptyProperty(node: attribute).build(verbatim: "isMap")
         case "inputmode":
-            ValueProperty(node: attribute).build(verbatim: "inputMode")
+            ValueProperty<String>(node: attribute).build(verbatim: "inputMode")
         case "is":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "itemid":
-            ValueProperty(node: attribute).build(verbatim: "itemId")
+            ValueProperty<String>(node: attribute).build(verbatim: "itemId")
         case "itemproperty":
-            ValueProperty(node: attribute).build(verbatim: "itemProperty")
+            ValueProperty<String>(node: attribute).build(verbatim: "itemProperty")
         case "itemref":
-            ValueProperty(node: attribute).build(verbatim: "itemReference")
+            ValueProperty<String>(node: attribute).build(verbatim: "itemReference")
         case "itemscope":
-            ValueProperty(node: attribute).build(verbatim: "itemScope")
+            ValueProperty<String>(node: attribute).build(verbatim: "itemScope")
         case "itemtype":
-            ValueProperty(node: attribute).build(verbatim: "itemType")
+            ValueProperty<String>(node: attribute).build(verbatim: "itemType")
         case "kind":
-            ValueProperty(node: attribute).build()
+            TypeProperty<Kinds>(node: attribute).build()
         case "label":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "lang":
             TypeProperty<Language>(node: attribute).build(verbatim: "language")
         case "list":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "loop":
             EmptyProperty(node: attribute).build()
         case "low":
-            ValueProperty(node: attribute).build()
+            ValueProperty<Float>(node: attribute).build()
         case "max":
-            ValueProperty(node: attribute).build(verbatim: "maximum")
+
+            if let parent = attribute.parent {
+                
+                switch parent.localName {
+                case "progress", "meter":
+                    ValueProperty<Float>(node: attribute).build(verbatim: "maximum")
+                default:
+                    ValueProperty<String>(node: attribute).build(verbatim: "maximum")
+                }
+            }
+            
         case "media":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "method":
             TypeProperty<Method>(node: attribute).build()
         case "min":
-            ValueProperty(node: attribute).build(verbatim: "minimum")
+            ValueProperty<String>(node: attribute).build(verbatim: "minimum")
         case "multiple":
             EmptyProperty(node: attribute).build()
         case "muted":
@@ -246,30 +259,30 @@ public class Converter {
                 case "meta":
                     TypeProperty<Names>(node: attribute).build()
                 default:
-                    ValueProperty(node: attribute).build()
+                    ValueProperty<String>(node: attribute).build()
                 }
             }
             
         case "nonce":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "novalidate":
             EmptyProperty(node: attribute).build()
         case "open":
-            ValueProperty(node: attribute).build(verbatim: "isOpen")
+            ValueProperty<Bool>(node: attribute).build(verbatim: "isOpen")
         case "optimum":
-            ValueProperty(node: attribute).build()
+            ValueProperty<Float>(node: attribute).build()
         case "pattern":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "part":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "ping":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "placeholder":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "poster":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "preload":
-            ValueProperty(node: attribute).build()
+            TypeProperty<Preload>(node: attribute).build()
         case "readonly":
             EmptyProperty(node: attribute).build()
         case "referrerpolicy":
@@ -283,41 +296,41 @@ public class Converter {
         case "role":
             TypeProperty<Roles>(node: attribute).build()
         case "rows":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "rowspan":
-            ValueProperty(node: attribute).build(verbatim: "rowSpan")
+            ValueProperty<Int>(node: attribute).build(verbatim: "rowSpan")
         case "sandbox":
             EmptyProperty(node: attribute).build()
         case "scope":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "shape":
             TypeProperty<Shape>(node: attribute).build()
         case "size":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "sizes":
-            ValueProperty(node: attribute).build()
+            ValueProperty<Int>(node: attribute).build()
         case "slot":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "span":
-            ValueProperty(node: attribute).build()
+            ValueProperty<Int>(node: attribute).build()
         case "spellcheck":
-            ValueProperty(node: attribute).build(verbatim: "hasSpellCheck")
+            ValueProperty<Bool>(node: attribute).build(verbatim: "hasSpellCheck")
         case "src":
-            ValueProperty(node: attribute).build(verbatim: "source")
+            ValueProperty<String>(node: attribute).build(verbatim: "source")
         case "start":
-            ValueProperty(node: attribute).build()
+            ValueProperty<Int>(node: attribute).build()
         case "step":
-            ValueProperty(node: attribute).build()
+            ValueProperty<Int>(node: attribute).build()
         case "style":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "tabindex":
-            ValueProperty(node: attribute).build(verbatim: "tabIndex")
+            ValueProperty<Int>(node: attribute).build(verbatim: "tabIndex")
         case "target":
             TypeProperty<Target>(node: attribute).build()
         case "title":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "translate":
-            ValueProperty(node: attribute).build()
+            TypeProperty<Decision>(node: attribute).build()
         case "type":
 
             if let parent = attribute.parent {
@@ -327,21 +340,17 @@ public class Converter {
                     TypeProperty<Inputs>(node: attribute).build()
                 case "button":
                     TypeProperty<Buttons>(node: attribute).build()
-                case "link":
-                    TypeProperty<Medias>(node: attribute).build()
-                case "script":
-                    TypeProperty<Medias>(node: attribute).build()
-                case "audio":
+                case "link", "script", "audio":
                     TypeProperty<Medias>(node: attribute).build()
                 default:
-                    ValueProperty(node: attribute).build()
+                    ValueProperty<String>(node: attribute).build()
                 }
             }
             
         case "value":
-            ValueProperty(node: attribute).build()
+            ValueProperty<String>(node: attribute).build()
         case "width":
-            ValueProperty(node: attribute).build()
+            ValueProperty<Int>(node: attribute).build()
         case "wrap":
             TypeProperty<Wrapping>(node: attribute).build()
         case "property":
@@ -352,6 +361,28 @@ public class Converter {
             TypeProperty<Equivalent>(node: attribute).build()
         case "selected":
             EmptyProperty(node: attribute).build()
+        case "maxlength":
+            ValueProperty<String>(node: attribute).build(verbatim: "maximum")
+        case "minlength":
+            ValueProperty<String>(node: attribute).build(verbatim: "minimum")
+        case "fill":
+            ValueProperty<String>(node: attribute).build()
+        case "fill-opacity":
+            ValueProperty<Double>(node: attribute).build(verbatim: "fillOpacity")
+        case "stroke":
+            ValueProperty<String>(node: attribute).build()
+        case "stroke-width":
+            ValueProperty<Int>(node: attribute).build(verbatim: "strokeWidth")
+        case "stroke-opacity":
+            ValueProperty<Double>(node: attribute).build(verbatim: "strokeOpacity")
+        case "stroke-linecap":
+            TypeProperty<Linecap>(node: attribute).build(verbatim: "strokeLineCap")
+        case "stroke-linejoin":
+            TypeProperty<Linejoin>(node: attribute).build(verbatim: "strokeLineJoin")
+        case "r":
+            ValueProperty<Int>(node: attribute).build(verbatim: "radius")
+        case "viewbox":
+            ValueProperty<String>(node: attribute).build(verbatim: "viewBox")
         default:
             CustomProperty(node: attribute).build()
         }
@@ -583,6 +614,22 @@ public class Converter {
                     EmptyElement(element: element).build(preindent: indent)
                 case "article":
                     ContentElement(element: element).build(preindent: indent)
+                case "progress":
+                    ContentElement(element: element).build(preindent: indent)
+                case "circle":
+                    ContentElement(element: element).build(preindent: indent)
+                case "rect":
+                    ContentElement(element: element).build(verbatim: "Rectangle", preindent: indent)
+                case "ellipse":
+                    ContentElement(element: element).build(preindent: indent)
+                case "line":
+                    ContentElement(element: element).build(preindent: indent)
+                case "polygon":
+                    ContentElement(element: element).build(preindent: indent)
+                case "path":
+                    ContentElement(element: element).build(preindent: indent)
+                case "use":
+                    ContentElement(element: element).build(preindent: indent)
                 default:
                     "element is not listed. contact the author"
                 }
@@ -644,11 +691,14 @@ extension Converter {
             let indent = String(repeating: "\t", count: (node.level - 1) + (preindent ?? 0))
             
             if let text = text {
+                
                 if node.parent?.localName == "pre" {
+                    
                     "\(indent)\"\"\"\n\(text)\"\"\"\n"
+                    
                 } else {
-                    let cleanText = text.trimmingCharacters(in: .whitespacesAndNewlines)
-                    "\(indent)\"\(cleanText)\"\n"
+                    
+                    "\(indent)\"\(text.trimmingCharacters(in: .whitespacesAndNewlines))\"\n"
                 }
             }
         }
@@ -868,7 +918,7 @@ extension Converter {
             
             struct \(name)View: View {
             
-                var context: TemplateValue<String> = ""
+                @TemplateValue(String.self) var context
             
                 public var body: AnyContent {
             \(content)
@@ -878,7 +928,7 @@ extension Converter {
         }
     }
 
-    private struct ValueProperty{
+    private struct ValueProperty<T: InitRepresentable> {
         
         private var name: String? {
             
@@ -889,12 +939,13 @@ extension Converter {
             return name
         }
         
-        private var value: String? {
+        private var value: T? {
+            
             guard let value = node.stringValue else {
                 return nil
             }
             
-            return value
+            return T(value: value)
         }
         
         private let node: XMLNode
@@ -905,13 +956,21 @@ extension Converter {
         
         @StringBuilder internal func build() -> String {
 
-            if let name = name, let value = value {
+            if let name = self.name, let value = self.value {
                 
-                ".\(name)(\"\(value)\")\n"
+                switch value {
+                case is Float, is Int, is Double, is Bool:
+                    
+                    ".\(name)(\(value))\n"
+                    
+                default:
+                    
+                    ".\(name)(\"\(value)\")\n"
+                }
                 
-            } else if let name = name{
+            } else if let name = name {
                 
-                ".\(name)()"
+                ".\(name)()\n"
             }
         }
         
@@ -919,11 +978,19 @@ extension Converter {
 
             if let verbatim = verbatim, let value = value {
                 
-                ".\(verbatim)(\"\(value)\")\n"
+                switch value {
+                case is Float, is Int, is Double, is Bool:
+                    
+                    ".\(verbatim)(\(value))\n"
+                    
+                default:
+                    
+                    ".\(verbatim)(\"\(value)\")\n"
+                }
                 
             } else if let verbatim = verbatim {
                 
-                ".\(verbatim)()"
+                ".\(verbatim)()\n"
             }
         }
     }
@@ -971,17 +1038,13 @@ extension Converter {
             return name
         }
         
-        private var value: String? {
+        private var value: T? {
 
             guard let value = node.stringValue  else {
                 return nil
             }
-
-            if let type = T(rawValue: value.lowercased() as! T.RawValue) {
-                return ".\(type)"
-            }
             
-            return ""
+            return T(rawValue: value.lowercased() as! T.RawValue)
         }
         
         private let node: XMLNode
@@ -994,11 +1057,11 @@ extension Converter {
 
             if let name = name, let value = value {
                 
-                ".\(name)(\(value))\n"
+                ".\(name)(.\(value))\n"
                 
             } else if let name = name{
                 
-                ".\(name)()"
+                ".\(name)()\n"
             }
         }
         
@@ -1006,11 +1069,11 @@ extension Converter {
 
             if let verbatim = verbatim, let value = value {
                 
-                ".\(verbatim)(\(value))\n"
+                ".\(verbatim)(.\(value))\n"
                 
             } else if let verbatim = verbatim {
                 
-                ".\(verbatim)()"
+                ".\(verbatim)()\n"
             }
         }
     }
@@ -1047,5 +1110,45 @@ extension Converter {
                 ".custom(key: \"\(name)\", value: \"\(value ?? "")\")\n"
             }
         }
+    }
+}
+
+public protocol InitRepresentable {
+    
+    init?(value: String)
+}
+
+extension String: InitRepresentable {
+    
+    public init?(value: String) {
+        self.init(value)
+    }
+}
+
+extension Float: InitRepresentable {
+    
+    public init?(value: String) {
+        self.init(value)
+    }
+}
+
+extension Int: InitRepresentable {
+    
+    public init?(value: String) {
+        self.init(value)
+    }
+}
+
+extension Double: InitRepresentable {
+    
+    public init?(value: String) {
+        self.init(value)
+    }
+}
+
+extension Bool: InitRepresentable {
+    
+    public init?(value: String) {
+        self.init(value)
     }
 }
