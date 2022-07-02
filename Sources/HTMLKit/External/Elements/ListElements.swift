@@ -46,7 +46,7 @@ public struct ListItem: ContentNode, ListElement {
     }
 }
 
-extension ListItem: GlobalAttributes, ValueAttribute {
+extension ListItem: GlobalAttributes, GlobalEventAttributes, ValueAttribute {
     
     public func accessKey(_ value: Character) -> ListItem {
         return mutate(accesskey: value)
@@ -172,6 +172,26 @@ extension ListItem: GlobalAttributes, ValueAttribute {
     
     public func custom(key: String, value: Any) -> ListItem {
         return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> ListItem {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> ListItem {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> ListItem {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> ListItem {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> ListItem {
+        return mutate(key: event.rawValue, value: value)
     }
 }
 

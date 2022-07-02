@@ -32,7 +32,7 @@ public struct Parameter: EmptyNode, ObjectElement {
     }
 }
 
-extension Parameter: GlobalAttributes, NameAttribute, ValueAttribute {
+extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, ValueAttribute {
     
     public func accessKey(_ value: Character) -> Parameter {
         return mutate(accesskey: value)
@@ -166,6 +166,26 @@ extension Parameter: GlobalAttributes, NameAttribute, ValueAttribute {
     
     public func custom(key: String, value: Any) -> Parameter {
         return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> Parameter {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Parameter {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Parameter {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Parameter {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Parameter {
+        return mutate(key: event.rawValue, value: value)
     }
 }
 

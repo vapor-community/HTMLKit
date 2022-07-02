@@ -37,7 +37,7 @@ public struct Title: ContentNode, HeadElement {
     }
 }
 
-extension Title: GlobalAttributes {
+extension Title: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Title {
         return mutate(accesskey: value)
@@ -156,6 +156,26 @@ extension Title: GlobalAttributes {
     public func custom(key: String, value: Any) -> Title {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Title {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Title {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Title {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Title {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Title {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Title: AnyContent {
@@ -223,7 +243,7 @@ public struct Base: EmptyNode, HeadElement {
     }
 }
 
-extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
+extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, TargetAttribute {
     
     public func accessKey(_ value: Character) -> Base {
         return mutate(accesskey: value)
@@ -354,6 +374,26 @@ extension Base: GlobalAttributes, ReferenceAttribute, TargetAttribute {
     public func custom(key: String, value: Any) -> Base {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Base {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Base {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Base {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Base {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Base {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Base: AnyContent {
@@ -421,7 +461,7 @@ public struct Meta: EmptyNode, HeadElement {
     }
 }
 
-extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttribute, CharsetAttribute, EquivalentAttribute {
+extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameAttribute, PropertyAttribute, CharsetAttribute, EquivalentAttribute {
     
     public func accessKey(_ value: Character) -> Meta {
         return mutate(accesskey: value)
@@ -568,6 +608,26 @@ extension Meta: GlobalAttributes, ContentAttribute, NameAttribute, PropertyAttri
     public func custom(key: String, value: Any) -> Meta {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Meta {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Meta {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Meta {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Meta {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Meta {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Meta: AnyContent {
@@ -640,11 +700,7 @@ public struct Style: ContentNode, HeadElement {
     }
 }
 
-extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttribute {
-    
-    public func onLoad(_ value: String) -> Style {
-        return mutate(onload: value)
-    }
+extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAttribute {
 
     public func accessKey(_ value: Character) -> Style {
         return mutate(accesskey: value)
@@ -771,6 +827,26 @@ extension Style: GlobalAttributes, TypeAttribute, MediaAttribute, LoadEventAttri
     public func custom(key: String, value: Any) -> Style {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Style {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Style {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Style {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Style {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Style {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Style: AnyContent {
@@ -838,15 +914,7 @@ public struct Link: EmptyNode, HeadElement {
     }
 }
 
-extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, ErrorEventAttribute, LoadEventAttribute {
-    
-    public func onError(_ value: String) -> Link {
-        return mutate(onerror: value)
-    }
-    
-    public func onLoad(_ value: String) -> Link {
-        return mutate(onload: value)
-    }
+extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FormEventAttribute {
     
     public func accessKey(_ value: Character) -> Link {
         return mutate(accesskey: value)
@@ -996,6 +1064,30 @@ extension Link: GlobalAttributes, ReferenceAttribute, ReferenceLanguageAttribute
     
     public func custom(key: String, value: Any) -> Link {
         return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Form, _ value: String) -> Link {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> Link {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Link {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Link {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Link {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Link {
+        return mutate(key: event.rawValue, value: value)
     }
 }
 

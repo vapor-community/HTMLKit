@@ -1,14 +1,5 @@
 public enum Events {
     
-    public enum Global: String {
-        
-        case error = "onerror"
-        case offline = "onoffline"
-        case online = "ononline"
-        case rejectionhandled = "onrejectionhandled"
-        case unhandledrejection = "onunhandledrejection"
-    }
-    
     public enum Window: String {
         
         case afterprint = "onafterprint"
@@ -18,17 +9,23 @@ public enum Events {
         case languagechange = "onlanguagechange"
         case message = "onmessage"
         case messageerror = "onmessageerror"
+        case offline = "onoffline"
+        case online = "ononline"
         case pagehide = "onpagehide"
         case pageshow = "onpageshow"
         case popstate = "onpopstate"
+        case rejectionhandled = "onrejectionhandled"
         case storage = "onstorage"
+        case unhandledrejection = "onunhandledrejection"
         case unload = "onunload"
+        case error = "onerror"
     }
     
     public enum Focus: String {
         
         case blur = "onblur"
         case focus = "onfocus"
+        case error = "onerror"
     }
     
     public enum Pointer: String {
@@ -43,6 +40,7 @@ public enum Events {
         case pointerup = "onpointerup"
         case gotpointercapture = "ongotpointercapture"
         case lostpointercapture = "onlostpointercapture"
+        case error = "onerror"
     }
     
     public enum Mouse: String {
@@ -57,11 +55,13 @@ public enum Events {
         case mouseout = "onmouseout"
         case mouseover = "onmouseover"
         case mouseup = "onmouseup"
+        case error = "onerror"
     }
     
     public enum Wheel: String {
         
         case wheel = "onwheel"
+        case error = "onerror"
     }
     
     public enum Input: String {
@@ -69,12 +69,14 @@ public enum Events {
         case beforeinput = "onbeforeinput"
         case input = "oninput"
         case select = "onselect"
+        case error = "onerror"
     }
     
     public enum Keyboard: String {
         
         case keydown = "onkeydown"
         case keyup = "onkeyup"
+        case error = "onerror"
     }
     
     public enum Drag: String {
@@ -85,7 +87,8 @@ public enum Events {
         case dragleave = "ondragleave"
         case dragover = "ondragover"
         case dragstart = "ondragstart"
-        case ondrop = "ondrop"
+        case drop = "ondrop"
+        case error = "onerror"
     }
     
     public enum Clipboard: String {
@@ -93,12 +96,14 @@ public enum Events {
         case copy = "oncopy"
         case cut = "oncut"
         case paste = "onpaste"
+        case error = "onerror"
     }
     
     public enum Selection: String {
         
         case selectionchange = "onselectionchange"
         case selectstart = "onselectstart"
+        case error = "onerror"
     }
     
     public enum Media: String {
@@ -109,7 +114,6 @@ public enum Events {
         case durationchange = "ondurationchange"
         case emptied = "onemptied"
         case ended = "onended"
-        case error = "onerror"
         case play = "onplay"
         case playing = "onplaying"
         case pause = "onpause"
@@ -121,11 +125,19 @@ public enum Events {
         case timeupdate = "ontimeupdate"
         case volumenchange = "onvolumechange"
         case waiting = "onwaiting"
+        case error = "onerror"
     }
     
     public enum Form: String {
         
         case reset = "onreset"
         case submit = "onsubmit"
+        case error = "onerror"
+    }
+    
+    public enum Detail: String {
+        
+        case toggle = "ontoggle"
+        case error = "onerror"
     }
 }

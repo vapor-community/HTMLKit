@@ -46,7 +46,7 @@ public struct FigureCaption: ContentNode, FigureElement {
     }
 }
 
-extension FigureCaption: GlobalAttributes {
+extension FigureCaption: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> FigureCaption {
         return mutate(accesskey: value)
@@ -164,6 +164,26 @@ extension FigureCaption: GlobalAttributes {
     
     public func custom(key: String, value: Any) -> FigureCaption {
         return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> FigureCaption {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> FigureCaption {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> FigureCaption {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> FigureCaption {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> FigureCaption {
+        return mutate(key: event.rawValue, value: value)
     }
 }
 

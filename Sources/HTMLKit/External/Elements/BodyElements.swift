@@ -370,7 +370,7 @@ public struct Article: ContentNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension Article: GlobalAttributes {
+extension Article: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Article {
         return mutate(accesskey: value)
@@ -489,6 +489,26 @@ extension Article: GlobalAttributes {
     public func custom(key: String, value: Any) -> Article {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Article {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Article {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Article {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Article {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Article {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Article: AnyContent {
@@ -561,7 +581,7 @@ public struct Section: ContentNode, HtmlElement, BodyElement, FigureElement, For
     }
 }
 
-extension Section: GlobalAttributes {
+extension Section: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Section {
         return mutate(accesskey: value)
@@ -680,6 +700,26 @@ extension Section: GlobalAttributes {
     public func custom(key: String, value: Any) -> Section {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Section {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Section {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Section {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Section {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Section {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Section: AnyContent {
@@ -752,7 +792,7 @@ public struct Navigation: ContentNode, HtmlElement, BodyElement, FormElement, Fi
     }
 }
 
-extension Navigation: GlobalAttributes {
+extension Navigation: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Navigation {
         return mutate(accesskey: value)
@@ -871,6 +911,26 @@ extension Navigation: GlobalAttributes {
     public func custom(key: String, value: Any) -> Navigation {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Navigation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Navigation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Navigation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Navigation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Navigation {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Navigation: AnyContent {
@@ -943,7 +1003,7 @@ public struct Aside: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Aside: GlobalAttributes {
+extension Aside: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Aside {
         return mutate(accesskey: value)
@@ -1062,6 +1122,26 @@ extension Aside: GlobalAttributes {
     public func custom(key: String, value: Any) -> Aside {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Aside {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Aside {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Aside {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Aside {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Aside {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Aside: AnyContent {
@@ -1134,7 +1214,7 @@ public struct Heading1: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading1: GlobalAttributes {
+extension Heading1: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Heading1 {
         return mutate(accesskey: value)
@@ -1253,6 +1333,26 @@ extension Heading1: GlobalAttributes {
     public func custom(key: String, value: Any) -> Heading1 {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Heading1 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Heading1 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Heading1 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Heading1 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Heading1 {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Heading1: AnyContent {
@@ -1336,7 +1436,7 @@ public struct Heading2: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading2: GlobalAttributes {
+extension Heading2: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Heading2 {
         return mutate(accesskey: value)
@@ -1455,6 +1555,26 @@ extension Heading2: GlobalAttributes {
     public func custom(key: String, value: Any) -> Heading2 {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Heading2 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Heading2 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Heading2 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Heading2 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Heading2 {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Heading2: AnyContent {
@@ -1538,7 +1658,7 @@ public struct Heading3: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading3: GlobalAttributes {
+extension Heading3: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Heading3 {
         return mutate(accesskey: value)
@@ -1657,6 +1777,26 @@ extension Heading3: GlobalAttributes {
     public func custom(key: String, value: Any) -> Heading3 {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Heading3 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Heading3 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Heading3 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Heading3 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Heading3 {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Heading3: AnyContent {
@@ -1740,7 +1880,7 @@ public struct Heading4: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading4: GlobalAttributes {
+extension Heading4: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Heading4 {
         return mutate(accesskey: value)
@@ -1859,6 +1999,26 @@ extension Heading4: GlobalAttributes {
     public func custom(key: String, value: Any) -> Heading4 {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Heading4 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Heading4 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Heading4 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Heading4 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Heading4 {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Heading4: AnyContent {
@@ -1942,7 +2102,7 @@ public struct Heading5: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading5: GlobalAttributes {
+extension Heading5: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Heading5 {
         return mutate(accesskey: value)
@@ -2061,6 +2221,26 @@ extension Heading5: GlobalAttributes {
     public func custom(key: String, value: Any) -> Heading5 {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Heading5 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Heading5 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Heading5 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Heading5 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Heading5 {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Heading5: AnyContent {
@@ -2144,7 +2324,7 @@ public struct Heading6: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading6: GlobalAttributes {
+extension Heading6: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Heading6 {
         return mutate(accesskey: value)
@@ -2263,6 +2443,26 @@ extension Heading6: GlobalAttributes {
     public func custom(key: String, value: Any) -> Heading6 {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Heading6 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Heading6 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Heading6 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Heading6 {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Heading6 {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Heading6: AnyContent {
@@ -2346,7 +2546,7 @@ public struct HeadingGroup: ContentNode, HtmlElement, BodyElement, FormElement, 
     }
 }
 
-extension HeadingGroup: GlobalAttributes {
+extension HeadingGroup: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> HeadingGroup {
         return mutate(accesskey: value)
@@ -2465,6 +2665,26 @@ extension HeadingGroup: GlobalAttributes {
     public func custom(key: String, value: Any) -> HeadingGroup {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> HeadingGroup {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> HeadingGroup {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> HeadingGroup {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> HeadingGroup {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> HeadingGroup {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension HeadingGroup: AnyContent {
@@ -2537,7 +2757,7 @@ public struct Header: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Header: GlobalAttributes {
+extension Header: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Header {
         return mutate(accesskey: value)
@@ -2656,6 +2876,26 @@ extension Header: GlobalAttributes {
     public func custom(key: String, value: Any) -> Header {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Header {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Header {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Header {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Header {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Header {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Header: AnyContent {
@@ -2728,7 +2968,7 @@ public struct Footer: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Footer: GlobalAttributes {
+extension Footer: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Footer {
         return mutate(accesskey: value)
@@ -2847,6 +3087,26 @@ extension Footer: GlobalAttributes {
     public func custom(key: String, value: Any) -> Footer {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Footer {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Footer {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Footer {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Footer {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Footer {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Footer: AnyContent {
@@ -2919,7 +3179,7 @@ public struct Address: ContentNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension Address: GlobalAttributes {
+extension Address: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Address {
         return mutate(accesskey: value)
@@ -3038,6 +3298,26 @@ extension Address: GlobalAttributes {
     public func custom(key: String, value: Any) -> Address {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Address {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Address {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Address {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Address {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Address {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Address: AnyContent {
@@ -3110,7 +3390,7 @@ public struct Paragraph: ContentNode, HtmlElement, BodyElement, FormElement, Fig
     }
 }
 
-extension Paragraph: GlobalAttributes {
+extension Paragraph: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Paragraph {
         return mutate(accesskey: value)
@@ -3229,6 +3509,26 @@ extension Paragraph: GlobalAttributes {
     public func custom(key: String, value: Any) -> Paragraph {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Paragraph {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Paragraph {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Paragraph {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Paragraph {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Paragraph {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Paragraph: AnyContent {
@@ -3307,7 +3607,7 @@ public struct HorizontalRule: EmptyNode, HtmlElement, BodyElement, FormElement, 
     }
 }
 
-extension HorizontalRule: GlobalAttributes {
+extension HorizontalRule: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> HorizontalRule {
         return mutate(accesskey: value)
@@ -3426,6 +3726,26 @@ extension HorizontalRule: GlobalAttributes {
     public func custom(key: String, value: Any) -> HorizontalRule {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> HorizontalRule {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> HorizontalRule {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> HorizontalRule {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> HorizontalRule {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> HorizontalRule {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension HorizontalRule: AnyContent {
@@ -3498,7 +3818,7 @@ public struct PreformattedText: ContentNode, HtmlElement, BodyElement, FormEleme
     }
 }
 
-extension PreformattedText: GlobalAttributes {
+extension PreformattedText: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> PreformattedText {
         return mutate(accesskey: value)
@@ -3617,6 +3937,26 @@ extension PreformattedText: GlobalAttributes {
     public func custom(key: String, value: Any) -> PreformattedText {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> PreformattedText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> PreformattedText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> PreformattedText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> PreformattedText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> PreformattedText {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension PreformattedText: AnyContent {
@@ -3689,7 +4029,7 @@ public struct Blockquote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
     }
 }
 
-extension Blockquote: GlobalAttributes, CiteAttribute {
+extension Blockquote: GlobalAttributes, GlobalEventAttributes, CiteAttribute {
     
     public func accessKey(_ value: Character) -> Blockquote {
         return mutate(accesskey: value)
@@ -3812,6 +4152,26 @@ extension Blockquote: GlobalAttributes, CiteAttribute {
     public func custom(key: String, value: Any) -> Blockquote {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Blockquote {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Blockquote {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Blockquote {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Blockquote {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Blockquote {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Blockquote: AnyContent {
@@ -3895,7 +4255,7 @@ public struct OrderedList: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, TypeAttribute {
+extension OrderedList: GlobalAttributes, GlobalEventAttributes, ReversedAttribute, StartAttribute, TypeAttribute {
     
     public func accessKey(_ value: Character) -> OrderedList {
         return mutate(accesskey: value)
@@ -4026,6 +4386,26 @@ extension OrderedList: GlobalAttributes, ReversedAttribute, StartAttribute, Type
     public func custom(key: String, value: Any) -> OrderedList {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> OrderedList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> OrderedList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> OrderedList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> OrderedList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> OrderedList {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension OrderedList: AnyContent {
@@ -4098,7 +4478,7 @@ public struct UnorderedList: ContentNode, HtmlElement, BodyElement, FormElement,
     }
 }
 
-extension UnorderedList: GlobalAttributes {
+extension UnorderedList: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> UnorderedList {
         return mutate(accesskey: value)
@@ -4217,6 +4597,26 @@ extension UnorderedList: GlobalAttributes {
     public func custom(key: String, value: Any) -> UnorderedList {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> UnorderedList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> UnorderedList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> UnorderedList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> UnorderedList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> UnorderedList {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension UnorderedList: AnyContent {
@@ -4289,7 +4689,7 @@ public struct DescriptionList: ContentNode, HtmlElement, BodyElement, FormElemen
     }
 }
 
-extension DescriptionList: GlobalAttributes {
+extension DescriptionList: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> DescriptionList {
         return mutate(accesskey: value)
@@ -4408,6 +4808,26 @@ extension DescriptionList: GlobalAttributes {
     public func custom(key: String, value: Any) -> DescriptionList {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> DescriptionList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> DescriptionList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> DescriptionList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> DescriptionList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> DescriptionList {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension DescriptionList: AnyContent {
@@ -4480,7 +4900,7 @@ public struct Figure: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Figure: GlobalAttributes {
+extension Figure: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Figure {
         return mutate(accesskey: value)
@@ -4599,6 +5019,26 @@ extension Figure: GlobalAttributes {
     public func custom(key: String, value: Any) -> Figure {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Figure {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Figure {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Figure {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Figure {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Figure {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Figure: AnyContent {
@@ -4671,7 +5111,7 @@ public struct Anchor: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, PingAttribute, ReferrerPolicyAttribute, RelationshipAttribute, TargetAttribute, TypeAttribute {
+extension Anchor: GlobalAttributes, GlobalEventAttributes, DownloadAttribute, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, PingAttribute, ReferrerPolicyAttribute, RelationshipAttribute, TargetAttribute, TypeAttribute {
     
     public func accessKey(_ value: Character) -> Anchor {
         return mutate(accesskey: value)
@@ -4830,6 +5270,26 @@ extension Anchor: GlobalAttributes, DownloadAttribute, ReferenceAttribute, Refer
     public func custom(key: String, value: Any) -> Anchor {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Anchor {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Anchor {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Anchor {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Anchor {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Anchor {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Anchor: AnyContent {
@@ -4913,7 +5373,7 @@ public struct Emphasize: ContentNode, HtmlElement, BodyElement, FormElement, Fig
     }
 }
 
-extension Emphasize: GlobalAttributes {
+extension Emphasize: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Emphasize {
         return mutate(accesskey: value)
@@ -5032,6 +5492,26 @@ extension Emphasize: GlobalAttributes {
     public func custom(key: String, value: Any) -> Emphasize {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Emphasize {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Emphasize {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Emphasize {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Emphasize {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Emphasize {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Emphasize: AnyContent {
@@ -5104,7 +5584,7 @@ public struct Strong: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Strong: GlobalAttributes {
+extension Strong: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Strong {
         return mutate(accesskey: value)
@@ -5223,6 +5703,26 @@ extension Strong: GlobalAttributes {
     public func custom(key: String, value: Any) -> Strong {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Strong {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Strong {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Strong {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Strong {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Strong {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Strong: AnyContent {
@@ -5295,7 +5795,7 @@ public struct Small: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Small: GlobalAttributes {
+extension Small: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Small {
         return mutate(accesskey: value)
@@ -5414,6 +5914,26 @@ extension Small: GlobalAttributes {
     public func custom(key: String, value: Any) -> Small {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Small {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Small {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Small {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Small {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Small {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Small: AnyContent {
@@ -5497,7 +6017,7 @@ public struct StrikeThrough: ContentNode, HtmlElement, BodyElement, FormElement,
     }
 }
 
-extension StrikeThrough: GlobalAttributes {
+extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> StrikeThrough {
         return mutate(accesskey: value)
@@ -5616,6 +6136,26 @@ extension StrikeThrough: GlobalAttributes {
     public func custom(key: String, value: Any) -> StrikeThrough {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> StrikeThrough {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> StrikeThrough {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> StrikeThrough {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> StrikeThrough {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> StrikeThrough {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension StrikeThrough: AnyContent {
@@ -5699,7 +6239,7 @@ public struct Main: ContentNode, HtmlElement, BodyElement, FormElement {
     }
 }
 
-extension Main: GlobalAttributes {
+extension Main: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Main {
         return mutate(accesskey: value)
@@ -5818,6 +6358,26 @@ extension Main: GlobalAttributes {
     public func custom(key: String, value: Any) -> Main {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Main {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Main {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Main {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Main {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Main {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Main: AnyContent {
@@ -5890,7 +6450,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Division: GlobalAttributes {
+extension Division: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Division {
         return mutate(accesskey: value)
@@ -6009,6 +6569,26 @@ extension Division: GlobalAttributes {
     public func custom(key: String, value: Any) -> Division {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Division {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Division {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Division {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Division {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Division {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Division: AnyContent {
@@ -6081,7 +6661,7 @@ public struct Definition: ContentNode, HtmlElement, BodyElement, FormElement, Fi
     }
 }
 
-extension Definition: GlobalAttributes {
+extension Definition: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Definition {
         return mutate(accesskey: value)
@@ -6200,6 +6780,26 @@ extension Definition: GlobalAttributes {
     public func custom(key: String, value: Any) -> Definition {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Definition {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Definition {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Definition {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Definition {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Definition {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Definition: AnyContent {
@@ -6272,7 +6872,7 @@ public struct Cite: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Cite: GlobalAttributes {
+extension Cite: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Cite {
         return mutate(accesskey: value)
@@ -6391,6 +6991,26 @@ extension Cite: GlobalAttributes {
     public func custom(key: String, value: Any) -> Cite {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Cite {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Cite {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Cite {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Cite {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Cite {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Cite: AnyContent {
@@ -6463,7 +7083,7 @@ public struct ShortQuote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
     }
 }
 
-extension ShortQuote: GlobalAttributes, CiteAttribute {
+extension ShortQuote: GlobalAttributes, GlobalEventAttributes, CiteAttribute {
     
     public func accessKey(_ value: Character) -> ShortQuote {
         return mutate(accesskey: value)
@@ -6586,6 +7206,26 @@ extension ShortQuote: GlobalAttributes, CiteAttribute {
     public func custom(key: String, value: Any) -> ShortQuote {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> ShortQuote {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> ShortQuote {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> ShortQuote {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> ShortQuote {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> ShortQuote {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension ShortQuote: AnyContent {
@@ -6658,7 +7298,7 @@ public struct Abbreviation: ContentNode, HtmlElement, BodyElement, FormElement, 
     }
 }
 
-extension Abbreviation: GlobalAttributes {
+extension Abbreviation: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Abbreviation {
         return mutate(accesskey: value)
@@ -6777,6 +7417,26 @@ extension Abbreviation: GlobalAttributes {
     public func custom(key: String, value: Any) -> Abbreviation {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Abbreviation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Abbreviation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Abbreviation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Abbreviation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Abbreviation {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Abbreviation: AnyContent {
@@ -6849,7 +7509,7 @@ public struct Ruby: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Ruby: GlobalAttributes {
+extension Ruby: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Ruby {
         return mutate(accesskey: value)
@@ -6968,6 +7628,26 @@ extension Ruby: GlobalAttributes {
     public func custom(key: String, value: Any) -> Ruby {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Ruby {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Ruby {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Ruby {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Ruby {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Ruby {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Ruby: AnyContent {
@@ -7040,7 +7720,7 @@ public struct Data: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Data: GlobalAttributes, ValueAttribute {
+extension Data: GlobalAttributes, GlobalEventAttributes, ValueAttribute {
     
     public func accessKey(_ value: Character) -> Data {
         return mutate(accesskey: value)
@@ -7167,6 +7847,26 @@ extension Data: GlobalAttributes, ValueAttribute {
     public func custom(key: String, value: Any) -> Data {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Data {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Data {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Data {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Data {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Data {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Data: AnyContent {
@@ -7239,7 +7939,7 @@ public struct Time: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Time: GlobalAttributes, DateTimeAttribute {
+extension Time: GlobalAttributes, GlobalEventAttributes, DateTimeAttribute {
 
     public func accessKey(_ value: Character) -> Time {
         return mutate(accesskey: value)
@@ -7362,6 +8062,26 @@ extension Time: GlobalAttributes, DateTimeAttribute {
     public func custom(key: String, value: Any) -> Time {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Time {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Time {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Time {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Time {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Time {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Time: AnyContent {
@@ -7434,7 +8154,7 @@ public struct Code: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Code: GlobalAttributes {
+extension Code: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Code {
         return mutate(accesskey: value)
@@ -7553,6 +8273,26 @@ extension Code: GlobalAttributes {
     public func custom(key: String, value: Any) -> Code {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Code {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Code {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Code {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Code {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Code {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Code: AnyContent {
@@ -7625,7 +8365,7 @@ public struct Variable: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Variable: GlobalAttributes {
+extension Variable: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Variable {
         return mutate(accesskey: value)
@@ -7744,6 +8484,26 @@ extension Variable: GlobalAttributes {
     public func custom(key: String, value: Any) -> Variable {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Variable {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Variable {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Variable {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Variable {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Variable {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Variable: AnyContent {
@@ -7816,7 +8576,7 @@ public struct SampleOutput: ContentNode, HtmlElement, BodyElement, FormElement, 
     }
 }
 
-extension SampleOutput: GlobalAttributes {
+extension SampleOutput: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> SampleOutput {
         return mutate(accesskey: value)
@@ -7935,6 +8695,26 @@ extension SampleOutput: GlobalAttributes {
     public func custom(key: String, value: Any) -> SampleOutput {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> SampleOutput {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> SampleOutput {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> SampleOutput {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> SampleOutput {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> SampleOutput {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension SampleOutput: AnyContent {
@@ -8007,7 +8787,7 @@ public struct KeyboardInput: ContentNode, HtmlElement, BodyElement, FormElement,
     }
 }
 
-extension KeyboardInput: GlobalAttributes {
+extension KeyboardInput: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> KeyboardInput {
         return mutate(accesskey: value)
@@ -8126,6 +8906,26 @@ extension KeyboardInput: GlobalAttributes {
     public func custom(key: String, value: Any) -> KeyboardInput {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> KeyboardInput {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> KeyboardInput {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> KeyboardInput {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> KeyboardInput {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> KeyboardInput {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension KeyboardInput: AnyContent {
@@ -8198,7 +8998,7 @@ public struct Subscript: ContentNode, HtmlElement, BodyElement, FormElement, Fig
     }
 }
 
-extension Subscript: GlobalAttributes {
+extension Subscript: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Subscript {
         return mutate(accesskey: value)
@@ -8317,6 +9117,26 @@ extension Subscript: GlobalAttributes {
     public func custom(key: String, value: Any) -> Subscript {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Subscript {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Subscript {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Subscript {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Subscript {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Subscript {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Subscript: AnyContent {
@@ -8389,7 +9209,7 @@ public struct Superscript: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension Superscript: GlobalAttributes {
+extension Superscript: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Superscript {
         return mutate(accesskey: value)
@@ -8508,6 +9328,26 @@ extension Superscript: GlobalAttributes {
     public func custom(key: String, value: Any) -> Superscript {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Superscript {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Superscript {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Superscript {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Superscript {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Superscript {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Superscript: AnyContent {
@@ -8580,7 +9420,7 @@ public struct Italic: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Italic: GlobalAttributes {
+extension Italic: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Italic {
         return mutate(accesskey: value)
@@ -8699,6 +9539,26 @@ extension Italic: GlobalAttributes {
     public func custom(key: String, value: Any) -> Italic {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Italic {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Italic {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Italic {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Italic {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Italic {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Italic: Localizable {
@@ -8782,7 +9642,7 @@ public struct Bold: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Bold: GlobalAttributes {
+extension Bold: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Bold {
         return mutate(accesskey: value)
@@ -8901,6 +9761,26 @@ extension Bold: GlobalAttributes {
     public func custom(key: String, value: Any) -> Bold {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Bold {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Bold {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Bold {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Bold {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Bold {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Bold: Localizable {
@@ -8984,7 +9864,7 @@ public struct Underline: ContentNode, HtmlElement, BodyElement, FormElement, Fig
     }
 }
 
-extension Underline: GlobalAttributes {
+extension Underline: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Underline {
         return mutate(accesskey: value)
@@ -9103,6 +9983,26 @@ extension Underline: GlobalAttributes {
     public func custom(key: String, value: Any) -> Underline {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Underline {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Underline {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Underline {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Underline {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Underline {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Underline: Localizable {
@@ -9186,7 +10086,7 @@ public struct Mark: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Mark: GlobalAttributes {
+extension Mark: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Mark {
         return mutate(accesskey: value)
@@ -9305,6 +10205,26 @@ extension Mark: GlobalAttributes {
     public func custom(key: String, value: Any) -> Mark {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Mark {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Mark {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Mark {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Mark {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Mark {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Mark: AnyContent {
@@ -9377,7 +10297,7 @@ public struct Bdi: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Bdi: GlobalAttributes {
+extension Bdi: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Bdi {
         return mutate(accesskey: value)
@@ -9496,6 +10416,26 @@ extension Bdi: GlobalAttributes {
     public func custom(key: String, value: Any) -> Bdi {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Bdi {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Bdi {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Bdi {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Bdi {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Bdi {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Bdi: AnyContent {
@@ -9563,7 +10503,7 @@ public struct Bdo: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEleme
     }
 }
 
-extension Bdo: GlobalAttributes {
+extension Bdo: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Bdo {
         return mutate(accesskey: value)
@@ -9682,6 +10622,26 @@ extension Bdo: GlobalAttributes {
     public func custom(key: String, value: Any) -> Bdo {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Bdo {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Bdo {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Bdo {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Bdo {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Bdo {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Bdo: AnyContent {
@@ -9754,7 +10714,7 @@ public struct Span: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Span: GlobalAttributes {
+extension Span: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Span {
         return mutate(accesskey: value)
@@ -9873,6 +10833,26 @@ extension Span: GlobalAttributes {
     public func custom(key: String, value: Any) -> Span {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Span {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Span {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Span {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Span {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Span {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Span: AnyContent {
@@ -9940,7 +10920,7 @@ public struct LineBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension LineBreak: GlobalAttributes {
+extension LineBreak: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> LineBreak {
         return mutate(accesskey: value)
@@ -10059,6 +11039,26 @@ extension LineBreak: GlobalAttributes {
     public func custom(key: String, value: Any) -> LineBreak {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> LineBreak {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> LineBreak {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> LineBreak {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> LineBreak {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> LineBreak {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension LineBreak: AnyContent {
@@ -10126,7 +11126,7 @@ public struct WordBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension WordBreak: GlobalAttributes {
+extension WordBreak: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> WordBreak {
         return mutate(accesskey: value)
@@ -10245,6 +11245,26 @@ extension WordBreak: GlobalAttributes {
     public func custom(key: String, value: Any) -> WordBreak {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> WordBreak {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> WordBreak {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> WordBreak {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> WordBreak {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> WordBreak {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension WordBreak: AnyContent {
@@ -10317,7 +11337,7 @@ public struct InsertedText: ContentNode, HtmlElement, BodyElement, FormElement, 
     }
 }
 
-extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
+extension InsertedText: GlobalAttributes, GlobalEventAttributes, CiteAttribute, DateTimeAttribute {
     
     public func accessKey(_ value: Character) -> InsertedText {
         return mutate(accesskey: value)
@@ -10444,6 +11464,26 @@ extension InsertedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     public func custom(key: String, value: Any) -> InsertedText {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> InsertedText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> InsertedText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> InsertedText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> InsertedText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> InsertedText {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension InsertedText: AnyContent {
@@ -10516,7 +11556,7 @@ public struct DeletedText: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
+extension DeletedText: GlobalAttributes, GlobalEventAttributes, CiteAttribute, DateTimeAttribute {
     
     public func accessKey(_ value: Character) -> DeletedText {
         return mutate(accesskey: value)
@@ -10643,6 +11683,26 @@ extension DeletedText: GlobalAttributes, CiteAttribute, DateTimeAttribute {
     public func custom(key: String, value: Any) -> DeletedText {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> DeletedText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> DeletedText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> DeletedText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> DeletedText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> DeletedText {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension DeletedText: AnyContent {
@@ -10715,7 +11775,7 @@ public struct Picture: ContentNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension Picture: GlobalAttributes {
+extension Picture: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Picture {
         return mutate(accesskey: value)
@@ -10834,6 +11894,26 @@ extension Picture: GlobalAttributes {
     public func custom(key: String, value: Any) -> Picture {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Picture {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Picture {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Picture {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Picture {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Picture {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Picture: AnyContent {
@@ -10901,15 +11981,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, ErrorEventAttribute, LoadEventAttribute {
-    
-    public func onError(_ value: String) -> Image {
-        return mutate(onerror: value)
-    }
-    
-    public func onLoad(_ value: String) -> Image {
-        return mutate(onload: value)
-    }
+extension Image: GlobalAttributes, GlobalEventAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {
     
     public func accessKey(_ value: Character) -> Image {
         return mutate(accesskey: value)
@@ -11052,6 +12124,26 @@ extension Image: GlobalAttributes, AlternateAttribute, SourceAttribute, SizesAtt
     public func custom(key: String, value: Any) -> Image {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Image {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Image {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Image {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Image {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Image {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Image: AnyContent {
@@ -11124,7 +12216,7 @@ public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {
+extension InlineFrame: GlobalAttributes, GlobalEventAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {
     
     public func accessKey(_ value: Character) -> InlineFrame {
         return mutate(accesskey: value)
@@ -11267,6 +12359,26 @@ extension InlineFrame: GlobalAttributes, SourceAttribute, NameAttribute, WidthAt
     public func custom(key: String, value: Any) -> InlineFrame {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> InlineFrame {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> InlineFrame {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> InlineFrame {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> InlineFrame {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> InlineFrame {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension InlineFrame: AnyContent {
@@ -11334,7 +12446,7 @@ public struct Embed: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribute, HeightAttribute {
+extension Embed: GlobalAttributes, GlobalEventAttributes, SourceAttribute, TypeAttribute, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> Embed {
         return mutate(accesskey: value)
@@ -11469,6 +12581,26 @@ extension Embed: GlobalAttributes, SourceAttribute, TypeAttribute, WidthAttribut
     public func custom(key: String, value: Any) -> Embed {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Embed {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Embed {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Embed {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Embed {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Embed {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Embed: AnyContent {
@@ -11541,11 +12673,7 @@ public struct Object: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute, FormAttribute, WidthAttribute, HeightAttribute, ErrorEventAttribute {
-
-    public func onError(_ value: String) -> Object {
-        return mutate(onerror: value)
-    }
+extension Object: GlobalAttributes, GlobalEventAttributes, DataAttribute, TypeAttribute, NameAttribute, FormAttribute, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> Object {
         return mutate(accesskey: value)
@@ -11692,6 +12820,26 @@ extension Object: GlobalAttributes, DataAttribute, TypeAttribute, NameAttribute,
     public func custom(key: String, value: Any) -> Object {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Object {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Object {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Object {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Object {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Object {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Object: AnyContent {
@@ -11764,7 +12912,7 @@ public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute, PreloadAttribute {
+extension Video: GlobalAttributes, GlobalEventAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute, PreloadAttribute {
     
     public func accessKey(_ value: Character) -> Video {
         return mutate(accesskey: value)
@@ -11915,6 +13063,26 @@ extension Video: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     public func custom(key: String, value: Any) -> Video {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Video {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Video {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Video {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Video {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Video {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Video: AnyContent {
@@ -11987,7 +13155,7 @@ public struct Audio: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, PreloadAttribute {
+extension Audio: GlobalAttributes, GlobalEventAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, PreloadAttribute {
     
     public func accessKey(_ value: Character) -> Audio {
         return mutate(accesskey: value)
@@ -12130,6 +13298,26 @@ extension Audio: GlobalAttributes, SourceAttribute, AutoplayAttribute, LoopAttri
     public func custom(key: String, value: Any) -> Audio {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Audio {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Audio {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Audio {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Audio {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Audio {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Audio: AnyContent {
@@ -12202,7 +13390,7 @@ public struct Map: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Map: GlobalAttributes, NameAttribute {
+extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
     
     public func accessKey(_ value: Character) -> Map {
         return mutate(accesskey: value)
@@ -12329,6 +13517,26 @@ extension Map: GlobalAttributes, NameAttribute {
     public func custom(key: String, value: Any) -> Map {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Map {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Map {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Map {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Map {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Map {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Map: AnyContent {
@@ -12401,15 +13609,7 @@ public struct Form: ContentNode, HtmlElement, BodyElement, FigureElement, Object
     }
 }
 
-extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, EncodingAttribute, MethodAttribute, NameAttribute, TargetAttribute, RelationshipAttribute, ResetEventAttribute, SubmitEventAttribute {
-    
-    public func onReset(_ value: String) -> Form {
-        return mutate(onreset: value)
-    }
-    
-    public func onSubmit(_ value: String) -> Form {
-        return mutate(onsubmit: value)
-    }
+extension Form: GlobalAttributes, GlobalEventAttributes, ActionAttribute, AutocompleteAttribute, EncodingAttribute, MethodAttribute, NameAttribute, TargetAttribute, RelationshipAttribute {
     
     public func accessKey(_ value: Character) -> Form {
         return mutate(accesskey: value)
@@ -12560,6 +13760,26 @@ extension Form: GlobalAttributes, ActionAttribute, AutocompleteAttribute, Encodi
     public func custom(key: String, value: Any) -> Form {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Form {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Form {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Form {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Form {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Form {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Form: AnyContent {
@@ -12632,7 +13852,7 @@ public struct DataList: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension DataList: GlobalAttributes {
+extension DataList: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> DataList {
         return mutate(accesskey: value)
@@ -12751,6 +13971,26 @@ extension DataList: GlobalAttributes {
     public func custom(key: String, value: Any) -> DataList {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> DataList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> DataList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> DataList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> DataList {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> DataList {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension DataList: AnyContent {
@@ -12823,7 +14063,7 @@ public struct Output: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
+extension Output: GlobalAttributes, GlobalEventAttributes, ForAttribute, FormAttribute, NameAttribute {
     
     public func accessKey(_ value: Character) -> Output {
         return mutate(accesskey: value)
@@ -12958,6 +14198,26 @@ extension Output: GlobalAttributes, ForAttribute, FormAttribute, NameAttribute {
     public func custom(key: String, value: Any) -> Output {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Output {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Output {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Output {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Output {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Output {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Output: AnyContent {
@@ -13030,7 +14290,7 @@ public struct Progress: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
+extension Progress: GlobalAttributes, GlobalEventAttributes, ValueAttribute, MaximumValueAttribute {
     
     public func accessKey(_ value: Character) -> Progress {
         return mutate(accesskey: value)
@@ -13161,6 +14421,26 @@ extension Progress: GlobalAttributes, ValueAttribute, MaximumValueAttribute {
     public func custom(key: String, value: Any) -> Progress {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Progress {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Progress {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Progress {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Progress {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Progress {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Progress: AnyContent {
@@ -13233,7 +14513,7 @@ public struct Meter: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, LowAttribute, HighAttribute, OptimumAttribute {
+extension Meter: GlobalAttributes, GlobalEventAttributes, ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, LowAttribute, HighAttribute, OptimumAttribute {
 
     public func accessKey(_ value: Character) -> Meter {
         return mutate(accesskey: value)
@@ -13380,6 +14660,26 @@ extension Meter: GlobalAttributes, ValueAttribute, MinimumValueAttribute, Maximu
     public func custom(key: String, value: Any) -> Meter {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Meter {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Meter {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Meter {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Meter {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Meter {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Meter: AnyContent {
@@ -13452,11 +14752,7 @@ public struct Details: ContentNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
-    
-    public func onToggle(_ value: String) -> Details {
-        return mutate(ontoggle: value)
-    }
+extension Details: GlobalAttributes, GlobalEventAttributes, OpenAttribute, DetailEventAttribute {
     
     public func accessKey(_ value: Character) -> Details {
         return mutate(accesskey: value)
@@ -13579,6 +14875,30 @@ extension Details: GlobalAttributes, OpenAttribute, ToggleEventAttribute {
     public func custom(key: String, value: Any) -> Details {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Details {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Details {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Details {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Details {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Details {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Detail, _ value: String) -> Details {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Details: AnyContent {
@@ -13647,7 +14967,7 @@ public struct Dialog: ContentNode, BodyElement {
     }
 }
 
-extension Dialog: GlobalAttributes, OpenAttribute {
+extension Dialog: GlobalAttributes, GlobalEventAttributes, OpenAttribute {
     
     public func accessKey(_ value: Character) -> Dialog {
         return mutate(accesskey: value)
@@ -13770,6 +15090,26 @@ extension Dialog: GlobalAttributes, OpenAttribute {
     public func custom(key: String, value: Any) -> Dialog {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Dialog {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Dialog {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Dialog {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Dialog {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Dialog {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Dialog: AnyContent {
@@ -13842,15 +15182,7 @@ public struct Script: ContentNode, HeadElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute, ErrorEventAttribute, LoadEventAttribute {
-    
-    public func onError(_ value: String) -> Script {
-        return mutate(onerror: value)
-    }
-    
-    public func onLoad(_ value: String) -> Script {
-        return mutate(onload: value)
-    }
+extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute {
 
     public func accessKey(_ value: Character) -> Script {
         return mutate(accesskey: value)
@@ -13985,6 +15317,26 @@ extension Script: GlobalAttributes, AsynchronouslyAttribute, ReferrerPolicyAttri
     public func custom(key: String, value: Any) -> Script {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Script {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Script {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Script {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Script {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Script {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Script: AnyContent {
@@ -14057,7 +15409,7 @@ public struct NoScript: ContentNode, HtmlElement, HeadElement, BodyElement, Form
     }
 }
 
-extension NoScript: GlobalAttributes {
+extension NoScript: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> NoScript {
         return mutate(accesskey: value)
@@ -14176,6 +15528,26 @@ extension NoScript: GlobalAttributes {
     public func custom(key: String, value: Any) -> NoScript {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> NoScript {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> NoScript {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> NoScript {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> NoScript {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> NoScript {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension NoScript: AnyContent {
@@ -14248,7 +15620,7 @@ public struct Template: ContentNode, BodyElement, FormElement, FigureElement, Ob
     }
 }
 
-extension Template: GlobalAttributes {
+extension Template: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Template {
         return mutate(accesskey: value)
@@ -14367,6 +15739,26 @@ extension Template: GlobalAttributes {
     public func custom(key: String, value: Any) -> Template {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Template {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Template {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Template {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Template {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Template {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Template: AnyContent {
@@ -14439,7 +15831,7 @@ public struct Canvas: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
+extension Canvas: GlobalAttributes, GlobalEventAttributes, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> Canvas {
         return mutate(accesskey: value)
@@ -14566,6 +15958,26 @@ extension Canvas: GlobalAttributes, WidthAttribute, HeightAttribute {
     public func custom(key: String, value: Any) -> Canvas {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Canvas {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Canvas {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Canvas {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Canvas {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Canvas {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Canvas: AnyContent {
@@ -14638,7 +16050,7 @@ public struct Table: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
+extension Table: GlobalAttributes, GlobalEventAttributes, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> Table {
         return mutate(accesskey: value)
@@ -14764,6 +16176,26 @@ extension Table: GlobalAttributes, WidthAttribute, HeightAttribute {
     
     public func custom(key: String, value: Any) -> Table {
         return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> Table {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Table {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Table {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Table {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Table {
+        return mutate(key: event.rawValue, value: value)
     }
 }
 

@@ -37,8 +37,8 @@ public struct Head: ContentNode, HtmlElement {
     }
 }
 
-extension Head: GlobalAttributes {
-
+extension Head: GlobalAttributes, GlobalEventAttributes {
+    
     public func accessKey(_ value: Character) -> Head {
         return mutate(accesskey: value)
     }
@@ -156,6 +156,26 @@ extension Head: GlobalAttributes {
     public func custom(key: String, value: Any) -> Head {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Head {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Head {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Head {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Head {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Head {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Head: AnyContent {
@@ -228,43 +248,7 @@ public struct Body: ContentNode, HtmlElement {
     }
 }
 
-extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttribute, BeforeUnloadEventAttribute, HashChangeEventAttribute, LoadEventAttribute, OfflineEventAttribute, OnlineEventAttribute, PageShowEventAttribute, ResizeEventAttribute {
-    
-    public func onAfterPrint(_ value: String) -> Body {
-        return mutate(onafterprint: value)
-    }
-    
-    public func onBeforePrint(_ value: String) -> Body {
-        return mutate(onbeforeprint: value)
-    }
-    
-    public func onBeforeUnload(_ value: String) -> Body {
-        return mutate(onbeforeunload: value)
-    }
-    
-    public func onHashChange(_ value: String) -> Body {
-        return mutate(onhashchange: value)
-    }
-    
-    public func onLoad(_ value: String) -> Body {
-        return mutate(onload: value)
-    }
-    
-    public func onOffline(_ value: String) -> Body {
-        return mutate(onoffline: value)
-    }
-    
-    public func onOnline(_ value: String) -> Body {
-        return mutate(ononline: value)
-    }
-    
-    public func onPageShow(_ value: String) -> Body {
-        return mutate(onpageshow: value)
-    }
-    
-    public func onResize(_ value: String) -> Body {
-        return mutate(onresize: value)
-    }
+extension Body: GlobalAttributes, GlobalEventAttributes, WindowEventAttribute {
 
     public func accessKey(_ value: Character) -> Body {
         return mutate(accesskey: value)
@@ -382,6 +366,30 @@ extension Body: GlobalAttributes, AfterPrintEventAttribute, BeforePrintEventAttr
     
     public func custom(key: String, value: Any) -> Body {
         return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> Body {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Body {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Window, _ value: String) -> Body {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Body {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Body {
+        return mutate(key: event.rawValue, value: value)
+    }
+
+    public func on(event: Events.Wheel, _ value: String) -> Body {
+        return mutate(key: event.rawValue, value: value)
     }
 }
 

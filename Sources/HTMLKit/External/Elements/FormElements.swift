@@ -32,11 +32,7 @@ public struct Input: EmptyNode, FormElement {
     }
 }
 
-extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute, InvalidEventAttribute {
-    
-    public func onInvalid(_ value: String) -> Input {
-        return mutate(oninvalid: value)
-    }
+extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, AlternateAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute {
     
     public func accessKey(_ value: Character) -> Input {
         return mutate(accesskey: value)
@@ -267,6 +263,26 @@ extension Input: GlobalAttributes, AcceptAttribute, AlternateAttribute, Autocomp
     public func custom(key: String, value: Any) -> Input {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Input {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Input {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Input {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Input {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Input {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Input: AnyContent {
@@ -339,7 +355,7 @@ public struct Label: ContentNode, FormElement {
     }
 }
 
-extension Label: GlobalAttributes, ForAttribute {
+extension Label: GlobalAttributes, GlobalEventAttributes, ForAttribute {
     
     public func accessKey(_ value: Character) -> Label {
         return mutate(accesskey: value)
@@ -462,6 +478,26 @@ extension Label: GlobalAttributes, ForAttribute {
     public func custom(key: String, value: Any) -> Label {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Label {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Label {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Label {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Label {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Label {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Label: AnyContent {
@@ -545,8 +581,8 @@ public struct Select: ContentNode, FormElement {
     }
 }
 
-extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, FormAttribute, MultipleAttribute, NameAttribute, RequiredAttribute, SizeAttribute {
-    
+extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute, DisabledAttribute, FormAttribute, MultipleAttribute, NameAttribute, RequiredAttribute, SizeAttribute {
+
     public func accessKey(_ value: Character) -> Select {
         return mutate(accesskey: value)
     }
@@ -696,6 +732,26 @@ extension Select: GlobalAttributes, AutocompleteAttribute, DisabledAttribute, Fo
     public func custom(key: String, value: Any) -> Select {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Select {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Select {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Select {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Select {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Select {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Select: AnyContent {
@@ -768,7 +824,7 @@ public struct TextArea: ContentNode, FormElement {
     }
 }
 
-extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, DisabledAttribute, FormAttribute, MaximumLengthAttribute, MinimumLengthAttribute, NameAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, RowsAttribute, WrapAttribute {
+extension TextArea: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute, ColumnsAttribute, DisabledAttribute, FormAttribute, MaximumLengthAttribute, MinimumLengthAttribute, NameAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, RowsAttribute, WrapAttribute {
     
     public func accessKey(_ value: Character) -> TextArea {
         return mutate(accesskey: value)
@@ -943,6 +999,26 @@ extension TextArea: GlobalAttributes, AutocompleteAttribute, ColumnsAttribute, D
     public func custom(key: String, value: Any) -> TextArea {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> TextArea {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> TextArea {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> TextArea {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> TextArea {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> TextArea {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension TextArea: AnyContent {
@@ -1015,7 +1091,7 @@ public struct Button: ContentNode, FormElement {
     }
 }
 
-extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute {
+extension Button: GlobalAttributes, GlobalEventAttributes, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute {
     
     public func accessKey(_ value: Character) -> Button {
         return mutate(accesskey: value)
@@ -1166,6 +1242,26 @@ extension Button: GlobalAttributes, DisabledAttribute, FormAttribute, FormAction
     public func custom(key: String, value: Any) -> Button {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Button {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Button {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Button {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Button {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Button {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Button: AnyContent {
@@ -1249,7 +1345,7 @@ public struct Fieldset: ContentNode, FormElement {
     }
 }
 
-extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttribute {
+extension Fieldset: GlobalAttributes, GlobalEventAttributes, DisabledAttribute, FormAttribute, NameAttribute {
     
     public func accessKey(_ value: Character) -> Fieldset {
         return mutate(accesskey: value)
@@ -1383,6 +1479,26 @@ extension Fieldset: GlobalAttributes, DisabledAttribute, FormAttribute, NameAttr
     
     public func custom(key: String, value: Any) -> Fieldset {
         return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> Fieldset {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Fieldset {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Fieldset {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Fieldset {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Fieldset {
+        return mutate(key: event.rawValue, value: value)
     }
 }
 

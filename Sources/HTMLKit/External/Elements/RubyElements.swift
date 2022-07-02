@@ -55,7 +55,7 @@ public struct RubyText: ContentNode, RubyElement {
     }
 }
 
-extension RubyText: GlobalAttributes {
+extension RubyText: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> RubyText {
         return mutate(accesskey: value)
@@ -174,6 +174,26 @@ extension RubyText: GlobalAttributes {
     public func custom(key: String, value: Any) -> RubyText {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> RubyText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> RubyText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> RubyText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> RubyText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> RubyText {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension RubyText: AnyContent {
@@ -246,7 +266,7 @@ public struct RubyPronunciation: ContentNode, RubyElement {
     }
 }
 
-extension RubyPronunciation: GlobalAttributes {
+extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> RubyPronunciation {
         return mutate(accesskey: value)
@@ -364,6 +384,26 @@ extension RubyPronunciation: GlobalAttributes {
     
     public func custom(key: String, value: Any) -> RubyPronunciation {
         return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> RubyPronunciation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> RubyPronunciation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> RubyPronunciation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> RubyPronunciation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> RubyPronunciation {
+        return mutate(key: event.rawValue, value: value)
     }
 }
 
