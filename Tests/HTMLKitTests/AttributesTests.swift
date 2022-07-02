@@ -9,7 +9,7 @@ final class AttributesTests: XCTestCase {
         @ContentBuilder<AnyContent> var body: AnyContent
     }
     
-    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadyOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute
+    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadyOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute
     
     struct Tag: ContentNode, GlobalElement, AllAttributes {
         
@@ -466,6 +466,58 @@ final class AttributesTests: XCTestCase {
         
         func custom(key: String, value: Any) -> Tag {
             return self.mutate(key: key, value: value)
+        }
+        
+        func on(event: Events.Window, _ value: String) -> Tag {
+            return self.mutate(key: event.rawValue, value: value)
+        }
+        
+        func on(event: Events.Focus, _ value: String) -> Tag {
+            return self.mutate(key: event.rawValue, value: value)
+        }
+        
+        func on(event: Events.Pointer, _ value: String) -> Tag {
+            return self.mutate(key: event.rawValue, value: value)
+        }
+        
+        func on(event: Events.Mouse, _ value: String) -> Tag {
+            return self.mutate(key: event.rawValue, value: value)
+        }
+        
+        func on(event: Events.Wheel, _ value: String) -> Tag {
+            return self.mutate(key: event.rawValue, value: value)
+        }
+        
+        func on(event: Events.Input, _ value: String) -> Tag {
+            return self.mutate(key: event.rawValue, value: value)
+        }
+        
+        func on(event: Events.Keyboard, _ value: String) -> Tag {
+            return self.mutate(key: event.rawValue, value: value)
+        }
+        
+        func on(event: Events.Drag, _ value: String) -> Tag {
+            return self.mutate(key: event.rawValue, value: value)
+        }
+        
+        func on(event: Events.Clipboard, _ value: String) -> Tag {
+            return self.mutate(key: event.rawValue, value: value)
+        }
+        
+        func on(event: Events.Selection, _ value: String) -> Tag {
+            return self.mutate(key: event.rawValue, value: value)
+        }
+        
+        func on(event: Events.Media, _ value: String) -> Tag {
+            return self.mutate(key: event.rawValue, value: value)
+        }
+        
+        func on(event: Events.Form, _ value: String) -> Tag {
+            return self.mutate(key: event.rawValue, value: value)
+        }
+        
+        func on(event: Events.Detail, _ value: String) -> Tag {
+            return self.mutate(key: event.rawValue, value: value)
         }
         
         func prerender(_ formula: Renderer.Formula) throws {
@@ -2059,6 +2111,227 @@ final class AttributesTests: XCTestCase {
                        """
         )
     }
+    
+    func testWindowEventAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .on(event: .afterprint, "script")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag onafterprint="script"></tag>
+                       """
+        )
+    }
+    
+    func testFocusEventAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .on(event: .focus, "script")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag onfocus="script"></tag>
+                       """
+        )
+    }
+    
+    func testPointerEventAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .on(event: .pointerup, "script")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag onpointerup="script"></tag>
+                       """
+        )
+    }
+    
+    func testMouseEventAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .on(event: .mouseup, "script")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag onmouseup="script"></tag>
+                       """
+        )
+    }
+    
+    func testWheelEventAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .on(event: .wheel, "script")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag onwheel="script"></tag>
+                       """
+        )
+    }
+    
+    func testInputEventAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .on(event: .input, "script")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag oninput="script"></tag>
+                       """
+        )
+    }
+    
+    func testKeyboardEventAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .on(event: .keyup, "script")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag onkeyup="script"></tag>
+                       """
+        )
+    }
+    
+    func testDragEventAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .on(event: .drag, "script")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag ondrag="script"></tag>
+                       """
+        )
+    }
+    
+    func testClipboardEventAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .on(event: .paste, "script")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag onpaste="script"></tag>
+                       """
+        )
+    }
+    
+    func testSelectionEventAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .on(event: .selectstart, "script")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag onselectstart="script"></tag>
+                       """
+        )
+    }
+    
+    func testMediaEventAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .on(event: .play, "script")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag onplay="script"></tag>
+                       """
+        )
+    }
+    
+    func testFormEventAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .on(event: .submit, "script")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag onsubmit="script"></tag>
+                       """
+        )
+    }
+    
+    func testDetailEventAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .on(event: .toggle, "script")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag ontoggle="script"></tag>
+                       """
+        )
+    }
 }
 
 extension AttributesTests {
@@ -2156,6 +2429,19 @@ extension AttributesTests {
         ("testTargetAttribute", testTargetAttribute),
         ("testTypeAttribute", testTypeAttribute),
         ("testSelectedAttribute", testSelectedAttribute),
-        ("testCustomAttribute", testCustomAttribute)
+        ("testCustomAttribute", testCustomAttribute),
+        ("testWindowEventAttribute", testWindowEventAttribute),
+        ("testFocusEventAttribute", testFocusEventAttribute),
+        ("testPointerEventAttribute", testPointerEventAttribute),
+        ("testMouseEventAttribute", testMouseEventAttribute),
+        ("testWheelEventAttribute", testWheelEventAttribute),
+        ("testInputEventAttribute", testInputEventAttribute),
+        ("testKeyboardEventAttribute", testKeyboardEventAttribute),
+        ("testDragEventAttribute", testDragEventAttribute),
+        ("testClipboardEventAttribute", testClipboardEventAttribute),
+        ("testSelectionEventAttribute", testSelectionEventAttribute),
+        ("testMediaEventAttribute", testMediaEventAttribute),
+        ("testFormEventAttribute", testFormEventAttribute),
+        ("testDetailEventAttribute", testDetailEventAttribute)
     ]
 }
