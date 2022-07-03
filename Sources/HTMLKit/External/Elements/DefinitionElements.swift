@@ -55,7 +55,7 @@ public struct TermName: ContentNode, DescriptionElement {
     }
 }
 
-extension TermName: GlobalAttributes {
+extension TermName: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> TermName {
         return mutate(accesskey: value)
@@ -174,6 +174,26 @@ extension TermName: GlobalAttributes {
     public func custom(key: String, value: Any) -> TermName {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> TermName {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> TermName {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> TermName {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> TermName {
+        return mutate(key: event.rawValue, value: value)
+    }
+
+    public func on(event: Events.Wheel, _ value: String) -> TermName {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension TermName: AnyContent {
@@ -246,7 +266,7 @@ public struct TermDefinition: ContentNode, DescriptionElement {
     }
 }
 
-extension TermDefinition: GlobalAttributes {
+extension TermDefinition: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> TermDefinition {
         return mutate(accesskey: value)
@@ -364,6 +384,26 @@ extension TermDefinition: GlobalAttributes {
     
     public func custom(key: String, value: Any) -> TermDefinition {
         return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> TermDefinition {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> TermDefinition {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> TermDefinition {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> TermDefinition {
+        return mutate(key: event.rawValue, value: value)
+    }
+
+    public func on(event: Events.Wheel, _ value: String) -> TermDefinition {
+        return mutate(key: event.rawValue, value: value)
     }
 }
 

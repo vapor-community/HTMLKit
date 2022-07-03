@@ -87,7 +87,7 @@ public struct Html: ContentNode, BasicElement {
     }
 }
 
-extension Html: GlobalAttributes {
+extension Html: GlobalAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Html {
         return mutate(accesskey: value)
@@ -205,6 +205,26 @@ extension Html: GlobalAttributes {
     
     public func custom(key: String, value: Any) -> Html {
         return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> Html {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Html {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Html {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Html {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Html {
+        return mutate(key: event.rawValue, value: value)
     }
 }
 

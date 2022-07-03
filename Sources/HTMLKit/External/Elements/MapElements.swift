@@ -37,7 +37,7 @@ public struct Area: ContentNode, MapElement {
     }
 }
 
-extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
+extension Area: GlobalAttributes, GlobalEventAttributes, AlternateAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
     
     public func accessKey(_ value: Character) -> Area {
         return mutate(accesskey: value)
@@ -195,6 +195,26 @@ extension Area: GlobalAttributes, AlternateAttribute, CoordinatesAttribute, Shap
     
     public func custom(key: String, value: Any) -> Area {
         return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> Area {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Area {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Area {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Area {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Area {
+        return mutate(key: event.rawValue, value: value)
     }
 }
 

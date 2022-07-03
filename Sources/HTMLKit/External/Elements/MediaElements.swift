@@ -32,7 +32,7 @@ public struct Source: EmptyNode, MediaElement {
     }
 }
 
-extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute {
+extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> Source {
         return mutate(accesskey: value)
@@ -175,6 +175,26 @@ extension Source: GlobalAttributes, TypeAttribute, SourceAttribute, SizesAttribu
     public func custom(key: String, value: Any) -> Source {
         return mutate(key: key, value: value)
     }
+    
+    public func on(event: Events.Drag, _ value: String) -> Source {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Source {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Source {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Source {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Source {
+        return mutate(key: event.rawValue, value: value)
+    }
 }
 
 extension Source: AnyContent {
@@ -242,7 +262,7 @@ public struct Track: EmptyNode, MediaElement {
     }
 }
 
-extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute {
+extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute {
     
     public func accessKey(_ value: Character) -> Track {
         return mutate(accesskey: value)
@@ -381,6 +401,26 @@ extension Track: GlobalAttributes, KindAttribute, SourceAttribute, LabelAttribut
     
     public func custom(key: String, value: Any) -> Track {
         return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> Track {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Track {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Track {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Track {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Track {
+        return mutate(key: event.rawValue, value: value)
     }
 }
 
