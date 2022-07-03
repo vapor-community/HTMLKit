@@ -8,6 +8,7 @@
 
 import OrderedCollections
 
+/// The alias combines the global attributes of the event attributes.
 public typealias GlobalEventAttributes = ClipboardEventAttribute & DragEventAttribute & WheelEventAttribute & KeyboardEventAttribute & MouseEventAttribute
 
 /// The protocol provides the element with event handler.
