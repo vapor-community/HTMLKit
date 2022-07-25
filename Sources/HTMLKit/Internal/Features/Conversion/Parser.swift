@@ -11,6 +11,7 @@ internal class Parser {
         case noLocalName
         case unkownElement(String)
         case unkownAttribute(String)
+        case unknownTag(String)
         
         var description: String {
             
@@ -23,6 +24,9 @@ internal class Parser {
                 
             case .unkownAttribute(let attribute):
                 return "Attribute '\(attribute) not found."
+                
+            case .unknownTag(let tag):
+                return "Tag '\(tag)' not found."
             }
         }
     }
@@ -31,12 +35,67 @@ internal class Parser {
     
     private init() {}
     
+    internal func parse(tag: LeafTag) throws -> String {
+        
+        switch tag.kind {
+        case .variable:
+            return VariableTag(element: tag).build()
+            
+        case .count:
+            return CountTag(element: tag).build()
+            
+        case .import:
+            return ImportTag(element: tag).build()
+            
+        case .statement:
+            return StatementTag(element: tag).build()
+            
+        case .condition:
+            return ConditionTag(element: tag).build()
+            
+        case .loop:
+            return LoopTag(element: tag).build()
+            
+        case .extend:
+            return ExtendTag(element: tag).build()
+            
+        case .export:
+            return ExportTag(element: tag).build()
+            
+        case .closure:
+            return ClosureTag(element: tag).build()
+            
+        case .capitalize:
+            return CapitalizeTag(element: tag).build()
+            
+        case .lowercase:
+            return LowercaseTag(element: tag).build()
+            
+        case .uppercase:
+            return UppercaseTag(element: tag).build()
+            
+        case .date:
+            return DateTag(element: tag).build()
+            
+        default:
+            throw ParserError.unknownTag("tag")
+        }
+    }
+    
     internal func parse(node: XMLNode) throws -> String {
         
         switch node.kind {
             
         case .text:
-            return TextElement(node: node).build()
+
+            if let value = node.stringValue {
+                
+                if let tag = LeafTag(value: value, level: node.level) {
+                    return try parse(tag: tag)
+                }
+                
+                return TextElement(node: node).build()
+            }
             
         case .comment:
             return CommentElement(node: node).build()
@@ -1291,6 +1350,411 @@ extension Parser {
             }
             
             return ".custom(key: \"\(try name)\", value: \"\")\n"
+        }
+    }
+    
+    internal struct VariableTag {
+        
+        private var text: String? {
+            
+            guard let value = element.value else {
+                return nil
+            }
+            
+            return value
+        }
+        
+        private var level: Int {
+            return element.level - 1
+        }
+        
+        private let element: LeafTag
+        
+        internal init(element: LeafTag) {
+            self.element = element
+        }
+        
+        @StringBuilder internal func build(preindent: Int? = nil) -> String {
+            
+            let indent = String(repeating: "\t", count: level + (preindent ?? 0))
+            
+            if let text = text {
+                "\(indent)context.\(text)\n"
+            }
+        }
+    }
+
+    internal struct CountTag {
+        
+        private var text: String? {
+            
+            guard let value = element.value else {
+                return nil
+            }
+            
+            return value
+        }
+        
+        private var level: Int {
+            return element.level - 1
+        }
+        
+        private let element: LeafTag
+        
+        internal init(element: LeafTag) {
+            self.element = element
+        }
+        
+        @StringBuilder internal func build(preindent: Int? = nil) -> String {
+            
+            let indent = String(repeating: "\t", count: level + (preindent ?? 0))
+            
+            if let text = text {
+                "\(indent)context.\(text).count\n"
+            }
+        }
+    }
+
+    internal struct ImportTag {
+        
+        private var level: Int {
+            return element.level - 1
+        }
+        
+        private let element: LeafTag
+        
+        internal init(element: LeafTag) {
+            self.element = element
+        }
+        
+        @StringBuilder internal func build(preindent: Int? = nil) -> String {
+            
+            let indent = String(repeating: "\t", count: level + (preindent ?? 0))
+            
+            "\(indent)content\n"
+        }
+    }
+
+    internal struct StatementTag {
+        
+        private var text: String? {
+            
+            guard let value = element.value else {
+                return nil
+            }
+            
+            return value.capitalized
+        }
+        
+        private var level: Int {
+            return element.level - 1
+        }
+        
+        private let element: LeafTag
+        
+        internal init(element: LeafTag) {
+            self.element = element
+        }
+        
+        @StringBuilder internal func build(preindent: Int? = nil) -> String {
+            
+            let indent = String(repeating: "\t", count: level + (preindent ?? 0))
+            
+            if let text = text {
+                "\(indent)IF(\(text)) {\n"
+            }
+        }
+    }
+
+    internal struct ConditionTag {
+        
+        private var level: Int {
+            return element.level - 1
+        }
+        
+        private let element: LeafTag
+        
+        internal init(element: LeafTag) {
+            self.element = element
+        }
+        
+        @StringBuilder internal func build(preindent: Int? = nil) -> String {
+            
+            let indent = String(repeating: "\t", count: level + (preindent ?? 0))
+            
+            "\(indent)}.else {\n"
+        }
+    }
+
+    internal struct LoopTag {
+        
+        private var collection: String? {
+            
+            guard let value = element.value else {
+                return nil
+            }
+            
+            return value.components(separatedBy: " in ").last
+        }
+        
+        private var single: String? {
+            
+            guard let value = element.value else {
+                return nil
+            }
+            
+            return value.components(separatedBy: " in ").first
+        }
+        
+        private var level: Int {
+            return element.level - 1
+        }
+        
+        private let element: LeafTag
+        
+        internal init(element: LeafTag) {
+            self.element = element
+        }
+        
+        @StringBuilder internal func build(preindent: Int? = nil) -> String {
+            
+            let indent = String(repeating: "\t", count: level + (preindent ?? 0))
+            
+            if let collection = collection, let single = single {
+                "\(indent)ForEach(in: \(collection)) { \(single) in\n"
+            }
+        }
+    }
+
+    internal struct ExtendTag {
+        
+        private var text: String? {
+            
+            guard let value = element.value else {
+                return nil
+            }
+            
+            return value.capitalized
+        }
+        
+        private var level: Int {
+            return element.level - 1
+        }
+        
+        private let element: LeafTag
+        
+        internal init(element: LeafTag) {
+            self.element = element
+        }
+        
+        @StringBuilder internal func build(preindent: Int? = nil) -> String {
+            
+            let indent = String(repeating: "\t", count: level + (preindent ?? 0))
+            
+            if let text = text {
+                "\(indent)\(text)View()\n"
+            }
+        }
+    }
+
+    internal struct ExportTag {
+        
+        private var children: [String]? {
+            
+            guard let value = element.value else {
+                return nil
+            }
+            
+            let components: [String] = value.components(separatedBy: "#")
+                .compactMap { component in
+                
+                if !component.isEmpty {
+                    return component.substring(from: "(\"", to: "\")")
+                }
+                
+                return nil
+            }
+            
+            return components
+        }
+        
+        private var level: Int {
+            return element.level - 1
+        }
+        
+        private let element: LeafTag
+        
+        internal init(element: LeafTag) {
+            self.element = element
+        }
+        
+        @StringBuilder internal func build(preindent: Int? = nil) -> String {
+            
+            let indent = String(repeating: "\t", count: level + (preindent ?? 0))
+            
+            if let children = children {
+                
+                if let first = children.first {
+                    "\(indent)\(first.capitalized) {\n"
+                }
+                
+                if let last = children.last {
+                    "\(indent)\(last.capitalized) {\n"
+                }
+            }
+        }
+    }
+
+    internal struct ClosureTag {
+        
+        private var level: Int {
+            return element.level - 1
+        }
+        
+        private let element: LeafTag
+        
+        internal init(element: LeafTag) {
+            self.element = element
+        }
+        
+        @StringBuilder internal func build(preindent: Int? = nil) -> String {
+            
+            let indent = String(repeating: "\t", count: level + (preindent ?? 0))
+            
+            "\(indent)}\n"
+        }
+    }
+
+    internal struct UppercaseTag {
+        
+        private var text: String? {
+            
+            guard let value = element.value else {
+                return nil
+            }
+            
+            return value
+        }
+        
+        private var level: Int {
+            return element.level - 1
+        }
+        
+        private let element: LeafTag
+        
+        internal init(element: LeafTag) {
+            self.element = element
+        }
+        
+        @StringBuilder internal func build(preindent: Int? = nil) -> String {
+            
+            let indent = String(repeating: "\t", count: level + (preindent ?? 0))
+            
+            if let text = text {
+                "\(indent)context.\(text).uppercased()\n"
+            }
+        }
+    }
+
+    internal struct LowercaseTag {
+        
+        private var text: String? {
+            
+            guard let value = element.value else {
+                return nil
+            }
+            
+            return value
+        }
+        
+        private var level: Int {
+            return element.level - 1
+        }
+        
+        private let element: LeafTag
+        
+        internal init(element: LeafTag) {
+            self.element = element
+        }
+        
+        @StringBuilder internal func build(preindent: Int? = nil) -> String {
+            
+            let indent = String(repeating: "\t", count: level + (preindent ?? 0))
+            
+            if let text = text {
+                "\(indent)context.\(text).lowercased()\n"
+            }
+        }
+    }
+
+    internal struct CapitalizeTag {
+        
+        private var text: String? {
+            
+            guard let value = element.value else {
+                return nil
+            }
+            
+            return value
+        }
+        
+        private var level: Int {
+            return element.level - 1
+        }
+        
+        private let element: LeafTag
+        
+        internal init(element: LeafTag) {
+            self.element = element
+        }
+        
+        @StringBuilder internal func build(preindent: Int? = nil) -> String {
+            
+            let indent = String(repeating: "\t", count: level + (preindent ?? 0))
+            
+            if let text = text {
+                "\(indent)context.\(text).capitalized\n"
+            }
+        }
+    }
+
+    internal struct DateTag {
+        
+        private var parameter: String? {
+            
+            guard let value = element.value else {
+                return nil
+            }
+            
+            return value.substring(to: ",")
+        }
+        
+        private var format: String? {
+            
+            guard let value = element.value else {
+                return nil
+            }
+            
+            return value.substring(from: "\"", to: "\"", lastOption: .backwards)
+        }
+        
+        private var level: Int {
+            return element.level - 1
+        }
+        
+        private let element: LeafTag
+        
+        internal init(element: LeafTag) {
+            self.element = element
+        }
+        
+        @StringBuilder internal func build(preindent: Int? = nil) -> String {
+            
+            let indent = String(repeating: "\t", count: level + (preindent ?? 0))
+            
+            if let parameter = parameter, let format = format {
+                "\(indent)context.\(parameter).formatted(string: \"\(format)\")\n"
+            }
         }
     }
 }
