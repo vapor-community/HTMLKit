@@ -38,7 +38,7 @@ final class ConversionTests: XCTestCase {
             return XCTFail("No file.")
         }
         
-        XCTAssertNoThrow(try Converter.default.convert(html: content))
+        XCTAssertNoThrow(try Converter.default.convert(string: content))
     }
 }
 
@@ -56,6 +56,5 @@ extension ConversionTests {
     
     static var allTests = [
         ("testFileConversion", testFileConversion),
-        ("testStringConversion", testStringConversion)
     ]
 }
