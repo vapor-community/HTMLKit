@@ -686,3 +686,153 @@ public enum Preload: String {
     case metadata
     case none
 }
+
+public enum Accessibility {
+    
+    /// The type is for
+    ///
+    /// ```html
+    /// <tag aria-autocomplete="none">
+    /// ```
+    public enum Complete: String {
+        
+        case none
+        case inline
+        case list
+        case both
+    }
+
+    /// The type is for
+    ///
+    /// ```html
+    /// <tag aria-checked="false">
+    /// ```
+    public enum Check: String {
+        
+        case `false`
+        case `mixed`
+        case `true`
+        case `undefined`
+    }
+
+    /// The type is for
+    ///
+    /// ```html
+    /// <tag aria-current="step">
+    /// ```
+    public enum Current: String {
+        
+        case `false`
+        case `true`
+        case page
+        case step
+        case location
+        case date
+        case time
+    }
+
+    /// The type is for
+    ///
+    /// ```html
+    /// <tag aria-haspopup="false">
+    /// ```
+    public enum Popup: String {
+        
+        case `false`
+        case `true`
+        case menu
+        case listbox
+        case tree
+        case grid
+        case dialog
+    }
+
+    /// The type is for
+    ///
+    /// ```html
+    /// <tag aria-invalid="grammar">
+    /// ```
+    public enum Invalid: String {
+        
+        case `false`
+        case grammar
+        case spelling
+        case `true`
+    }
+
+    /// The type is for
+    ///
+    /// ```html
+    /// <tag aria-live="assertive">
+    /// ```
+    public enum Live: String {
+        
+        case assertive
+        case off
+        case polite
+    }
+
+    /// The type is for
+    ///
+    /// ```html
+    /// <tag aria-orientation="horizontal">
+    /// ```
+    public enum Orientation: String {
+        
+        case undefined
+        case horizontal
+        case vertical
+    }
+
+    /// The type is for
+    ///
+    /// ```html
+    /// <tag aria-pressed="mixed">
+    /// ```
+    public enum Pressed: String {
+        
+        case undefined
+        case `false`
+        case mixed
+        case `true`
+    }
+
+    /// The type is for
+    ///
+    /// ```html
+    /// <tag aria-relevant="all">
+    /// ```
+    public enum Relevant: String {
+        
+        case additions
+        case additionsText
+        case all
+        case removals
+        case text
+    }
+
+    /// The type is for
+    ///
+    /// ```html
+    /// <tag aria-selected="false">
+    /// ```
+    public enum Selected: String {
+        
+        case undefined
+        case `false`
+        case `true`
+    }
+
+    /// The type is for
+    ///
+    /// ```html
+    /// <tag aria-sort="ascending">
+    /// ```
+    public enum Sort: String {
+        
+        case ascending
+        case descending
+        case other
+        case none
+    }
+}
