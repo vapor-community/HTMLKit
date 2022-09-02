@@ -46,7 +46,7 @@ public struct FigureCaption: ContentNode, FigureElement {
     }
 }
 
-extension FigureCaption: GlobalAttributes, GlobalEventAttributes {
+extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func accessKey(_ value: Character) -> FigureCaption {
         return mutate(accesskey: value)
@@ -184,6 +184,82 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes {
     
     public func on(event: Events.Wheel, _ value: String) -> FigureCaption {
         return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func aria(atomic value: Bool) -> FigureCaption {
+        return mutate(ariaatomic: value)
+    }
+    
+    public func aria(busy value: Bool) -> FigureCaption {
+        return mutate(ariabusy: value)
+    }
+    
+    public func aria(controls value: String) -> FigureCaption {
+        return mutate(ariacontrols: value)
+    }
+    
+    public func aria(current value: Accessibility.Current) -> FigureCaption {
+        return mutate(ariacurrent: value.rawValue)
+    }
+    
+    public func aria(describedBy value: String) -> FigureCaption {
+        return mutate(ariadescribedby: value)
+    }
+    
+    public func aria(details value: String) -> FigureCaption {
+        return mutate(ariadetails: value)
+    }
+    
+    public func aria(disabled value: Bool) -> FigureCaption {
+        return mutate(ariadisabled: value)
+    }
+    
+    public func aria(errorMessage value: String) -> FigureCaption {
+        return mutate(ariaerrormessage: value)
+    }
+    
+    public func aria(flowTo value: String) -> FigureCaption {
+        return mutate(ariaflowto: value)
+    }
+    
+    public func aria(hasPopup value: Accessibility.Popup) -> FigureCaption {
+        return mutate(ariahaspopup: value.rawValue)
+    }
+    
+    public func aria(hidden value: Bool) -> FigureCaption {
+        return mutate(ariahidden: value)
+    }
+    
+    public func aria(invalid value: Accessibility.Invalid) -> FigureCaption {
+        return mutate(ariainvalid: value.rawValue)
+    }
+    
+    public func aria(keyShortcuts value: String) -> FigureCaption {
+        return mutate(ariakeyshortcuts: value)
+    }
+    
+    public func aria(label value: String) -> FigureCaption {
+        return mutate(arialabel: value)
+    }
+    
+    public func aria(labeledBy value: String) -> FigureCaption {
+        return mutate(arialabeledby: value)
+    }
+    
+    public func aria(live value: Accessibility.Live) -> FigureCaption {
+        return mutate(arialive: value.rawValue)
+    }
+    
+    public func aria(owns value: String) -> FigureCaption {
+        return mutate(ariaowns: value)
+    }
+    
+    public func aria(relevant value: Accessibility.Relevant) -> FigureCaption {
+        return mutate(ariarelevant: value.rawValue)
+    }
+    
+    public func aria(roleDescription value: String) -> FigureCaption {
+        return mutate(ariaroledescription: value)
     }
 }
 

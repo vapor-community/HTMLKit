@@ -37,7 +37,7 @@ public struct Area: ContentNode, MapElement {
     }
 }
 
-extension Area: GlobalAttributes, GlobalEventAttributes, AlternateAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
+extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
     
     public func accessKey(_ value: Character) -> Area {
         return mutate(accesskey: value)
@@ -215,6 +215,82 @@ extension Area: GlobalAttributes, GlobalEventAttributes, AlternateAttribute, Coo
     
     public func on(event: Events.Mouse, _ value: String) -> Area {
         return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func aria(atomic value: Bool) -> Area {
+        return mutate(ariaatomic: value)
+    }
+    
+    public func aria(busy value: Bool) -> Area {
+        return mutate(ariabusy: value)
+    }
+    
+    public func aria(controls value: String) -> Area {
+        return mutate(ariacontrols: value)
+    }
+    
+    public func aria(current value: Accessibility.Current) -> Area {
+        return mutate(ariacurrent: value.rawValue)
+    }
+    
+    public func aria(describedBy value: String) -> Area {
+        return mutate(ariadescribedby: value)
+    }
+    
+    public func aria(details value: String) -> Area {
+        return mutate(ariadetails: value)
+    }
+    
+    public func aria(disabled value: Bool) -> Area {
+        return mutate(ariadisabled: value)
+    }
+    
+    public func aria(errorMessage value: String) -> Area {
+        return mutate(ariaerrormessage: value)
+    }
+    
+    public func aria(flowTo value: String) -> Area {
+        return mutate(ariaflowto: value)
+    }
+    
+    public func aria(hasPopup value: Accessibility.Popup) -> Area {
+        return mutate(ariahaspopup: value.rawValue)
+    }
+    
+    public func aria(hidden value: Bool) -> Area {
+        return mutate(ariahidden: value)
+    }
+    
+    public func aria(invalid value: Accessibility.Invalid) -> Area {
+        return mutate(ariainvalid: value.rawValue)
+    }
+    
+    public func aria(keyShortcuts value: String) -> Area {
+        return mutate(ariakeyshortcuts: value)
+    }
+    
+    public func aria(label value: String) -> Area {
+        return mutate(arialabel: value)
+    }
+    
+    public func aria(labeledBy value: String) -> Area {
+        return mutate(arialabeledby: value)
+    }
+    
+    public func aria(live value: Accessibility.Live) -> Area {
+        return mutate(arialive: value.rawValue)
+    }
+    
+    public func aria(owns value: String) -> Area {
+        return mutate(ariaowns: value)
+    }
+    
+    public func aria(relevant value: Accessibility.Relevant) -> Area {
+        return mutate(ariarelevant: value.rawValue)
+    }
+    
+    public func aria(roleDescription value: String) -> Area {
+        return mutate(ariaroledescription: value)
     }
 }
 
