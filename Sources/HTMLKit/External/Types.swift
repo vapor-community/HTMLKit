@@ -722,12 +722,25 @@ public enum Accessibility {
     /// ```
     public enum Current: String {
         
+        /// Does not represent the current item within a set.
         case `false`
+        
+        /// Represents the current item within a set.
         case `true`
+        
+        /// Represents the current page within a set of pages.
         case page
+        
+        /// Represents the current step within a process.
         case step
+        
+        /// Represents the current location within an context.
         case location
+        
+        /// Represents the current date within a collection of dates.
         case date
+        
+        /// Represents the current time within a set of times.
         case time
     }
 
@@ -740,10 +753,20 @@ public enum Accessibility {
         
         case `false`
         case `true`
+        
+        /// Indicates the popup is a menu.
         case menu
+        
+        /// Indicates the popup is a listbox.
         case listbox
+        
+        /// Indicates the popup is a tree.
         case tree
+        
+        /// Indicates the popup is a grid.
         case grid
+        
+        /// Indicates the popup is a dialog.
         case dialog
     }
 
@@ -754,10 +777,17 @@ public enum Accessibility {
     /// ```
     public enum Invalid: String {
         
+        /// Indicates that there are no detected errors.
         case `false`
-        case grammar
-        case spelling
+        
+        /// Indicates that errors were detected.
         case `true`
+        
+        /// Indicates that a grammatical error was deteced.
+        case grammar
+        
+        /// Indicates that a spelling error was deteced.
+        case spelling
     }
 
     /// The type is for
@@ -767,20 +797,30 @@ public enum Accessibility {
     /// ```
     public enum Live: String {
         
+        /// Indicates that updates to the region should be presented the user immediately.
         case assertive
+        
+        /// Indicates that updates to the region should not be presented to the user unless the used is currently focused on that region.
         case off
+        
+        /// Indicates that updates to the region should be presented at the next graceful opportunity.
         case polite
     }
 
-    /// The type is for
+    /// A indicator for the orientation of an element.
     ///
     /// ```html
     /// <tag aria-orientation="horizontal">
     /// ```
     public enum Orientation: String {
         
+        /// Indicates that the element's orientation is unkown.
         case undefined
+        
+        /// Indicates that the element is oriented horizontally.
         case horizontal
+        
+        /// Indicates that the element is oriented vertically.
         case vertical
     }
 
@@ -823,16 +863,23 @@ public enum Accessibility {
         case `true`
     }
 
-    /// The type is for
+    /// A indicator for the sort algorithm in a grid or table.
     ///
     /// ```html
     /// <tag aria-sort="ascending">
     /// ```
     public enum Sort: String {
         
-        case ascending
-        case descending
-        case other
+        /// Indicates that there is no sort algorithm defined.
         case none
+        
+        /// Indicates a different sort algorithm.
+        case other
+        
+        /// Indicates that the items are sorted in ascending order.
+        case ascending
+        
+        /// Indicates that the items are sorted in descending order.
+        case descending
     }
 }
