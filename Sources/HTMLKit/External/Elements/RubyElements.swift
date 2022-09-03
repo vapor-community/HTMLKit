@@ -55,7 +55,7 @@ public struct RubyText: ContentNode, RubyElement {
     }
 }
 
-extension RubyText: GlobalAttributes, GlobalEventAttributes {
+extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func accessKey(_ value: Character) -> RubyText {
         return mutate(accesskey: value)
@@ -194,6 +194,82 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes {
     public func on(event: Events.Mouse, _ value: String) -> RubyText {
         return mutate(key: event.rawValue, value: value)
     }
+    
+    public func aria(atomic value: Bool) -> RubyText {
+        return mutate(ariaatomic: value)
+    }
+    
+    public func aria(busy value: Bool) -> RubyText {
+        return mutate(ariabusy: value)
+    }
+    
+    public func aria(controls value: String) -> RubyText {
+        return mutate(ariacontrols: value)
+    }
+    
+    public func aria(current value: Accessibility.Current) -> RubyText {
+        return mutate(ariacurrent: value.rawValue)
+    }
+    
+    public func aria(describedBy value: String) -> RubyText {
+        return mutate(ariadescribedby: value)
+    }
+    
+    public func aria(details value: String) -> RubyText {
+        return mutate(ariadetails: value)
+    }
+    
+    public func aria(disabled value: Bool) -> RubyText {
+        return mutate(ariadisabled: value)
+    }
+    
+    public func aria(errorMessage value: String) -> RubyText {
+        return mutate(ariaerrormessage: value)
+    }
+    
+    public func aria(flowTo value: String) -> RubyText {
+        return mutate(ariaflowto: value)
+    }
+    
+    public func aria(hasPopup value: Accessibility.Popup) -> RubyText {
+        return mutate(ariahaspopup: value.rawValue)
+    }
+    
+    public func aria(hidden value: Bool) -> RubyText {
+        return mutate(ariahidden: value)
+    }
+    
+    public func aria(invalid value: Accessibility.Invalid) -> RubyText {
+        return mutate(ariainvalid: value.rawValue)
+    }
+    
+    public func aria(keyShortcuts value: String) -> RubyText {
+        return mutate(ariakeyshortcuts: value)
+    }
+    
+    public func aria(label value: String) -> RubyText {
+        return mutate(arialabel: value)
+    }
+    
+    public func aria(labeledBy value: String) -> RubyText {
+        return mutate(arialabeledby: value)
+    }
+    
+    public func aria(live value: Accessibility.Live) -> RubyText {
+        return mutate(arialive: value.rawValue)
+    }
+    
+    public func aria(owns value: String) -> RubyText {
+        return mutate(ariaowns: value)
+    }
+    
+    public func aria(relevant value: Accessibility.Relevant) -> RubyText {
+        return mutate(ariarelevant: value.rawValue)
+    }
+    
+    public func aria(roleDescription value: String) -> RubyText {
+        return mutate(ariaroledescription: value)
+    }
 }
 
 extension RubyText: AnyContent {
@@ -266,7 +342,7 @@ public struct RubyPronunciation: ContentNode, RubyElement {
     }
 }
 
-extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes {
+extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func accessKey(_ value: Character) -> RubyPronunciation {
         return mutate(accesskey: value)
@@ -404,6 +480,82 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes {
     
     public func on(event: Events.Mouse, _ value: String) -> RubyPronunciation {
         return mutate(key: event.rawValue, value: value)
+    }
+
+    public func aria(atomic value: Bool) -> RubyPronunciation {
+        return mutate(ariaatomic: value)
+    }
+    
+    public func aria(busy value: Bool) -> RubyPronunciation {
+        return mutate(ariabusy: value)
+    }
+    
+    public func aria(controls value: String) -> RubyPronunciation {
+        return mutate(ariacontrols: value)
+    }
+    
+    public func aria(current value: Accessibility.Current) -> RubyPronunciation {
+        return mutate(ariacurrent: value.rawValue)
+    }
+    
+    public func aria(describedBy value: String) -> RubyPronunciation {
+        return mutate(ariadescribedby: value)
+    }
+    
+    public func aria(details value: String) -> RubyPronunciation {
+        return mutate(ariadetails: value)
+    }
+    
+    public func aria(disabled value: Bool) -> RubyPronunciation {
+        return mutate(ariadisabled: value)
+    }
+    
+    public func aria(errorMessage value: String) -> RubyPronunciation {
+        return mutate(ariaerrormessage: value)
+    }
+    
+    public func aria(flowTo value: String) -> RubyPronunciation {
+        return mutate(ariaflowto: value)
+    }
+    
+    public func aria(hasPopup value: Accessibility.Popup) -> RubyPronunciation {
+        return mutate(ariahaspopup: value.rawValue)
+    }
+    
+    public func aria(hidden value: Bool) -> RubyPronunciation {
+        return mutate(ariahidden: value)
+    }
+    
+    public func aria(invalid value: Accessibility.Invalid) -> RubyPronunciation {
+        return mutate(ariainvalid: value.rawValue)
+    }
+    
+    public func aria(keyShortcuts value: String) -> RubyPronunciation {
+        return mutate(ariakeyshortcuts: value)
+    }
+    
+    public func aria(label value: String) -> RubyPronunciation {
+        return mutate(arialabel: value)
+    }
+    
+    public func aria(labeledBy value: String) -> RubyPronunciation {
+        return mutate(arialabeledby: value)
+    }
+    
+    public func aria(live value: Accessibility.Live) -> RubyPronunciation {
+        return mutate(arialive: value.rawValue)
+    }
+    
+    public func aria(owns value: String) -> RubyPronunciation {
+        return mutate(ariaowns: value)
+    }
+    
+    public func aria(relevant value: Accessibility.Relevant) -> RubyPronunciation {
+        return mutate(ariarelevant: value.rawValue)
+    }
+    
+    public func aria(roleDescription value: String) -> RubyPronunciation {
+        return mutate(ariaroledescription: value)
     }
 }
 

@@ -248,7 +248,7 @@ public struct Body: ContentNode, HtmlElement {
     }
 }
 
-extension Body: GlobalAttributes, GlobalEventAttributes, WindowEventAttribute {
+extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WindowEventAttribute {
 
     public func accessKey(_ value: Character) -> Body {
         return mutate(accesskey: value)
@@ -390,6 +390,82 @@ extension Body: GlobalAttributes, GlobalEventAttributes, WindowEventAttribute {
 
     public func on(event: Events.Wheel, _ value: String) -> Body {
         return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func aria(atomic value: Bool) -> Body {
+        return mutate(ariaatomic: value)
+    }
+    
+    public func aria(busy value: Bool) -> Body {
+        return mutate(ariabusy: value)
+    }
+    
+    public func aria(controls value: String) -> Body {
+        return mutate(ariacontrols: value)
+    }
+    
+    public func aria(current value: Accessibility.Current) -> Body {
+        return mutate(ariacurrent: value.rawValue)
+    }
+    
+    public func aria(describedBy value: String) -> Body {
+        return mutate(ariadescribedby: value)
+    }
+    
+    public func aria(details value: String) -> Body {
+        return mutate(ariadetails: value)
+    }
+    
+    public func aria(disabled value: Bool) -> Body {
+        return mutate(ariadisabled: value)
+    }
+    
+    public func aria(errorMessage value: String) -> Body {
+        return mutate(ariaerrormessage: value)
+    }
+    
+    public func aria(flowTo value: String) -> Body {
+        return mutate(ariaflowto: value)
+    }
+    
+    public func aria(hasPopup value: Accessibility.Popup) -> Body {
+        return mutate(ariahaspopup: value.rawValue)
+    }
+    
+    public func aria(hidden value: Bool) -> Body {
+        return mutate(ariahidden: value)
+    }
+    
+    public func aria(invalid value: Accessibility.Invalid) -> Body {
+        return mutate(ariainvalid: value.rawValue)
+    }
+    
+    public func aria(keyShortcuts value: String) -> Body {
+        return mutate(ariakeyshortcuts: value)
+    }
+    
+    public func aria(label value: String) -> Body {
+        return mutate(arialabel: value)
+    }
+    
+    public func aria(labeledBy value: String) -> Body {
+        return mutate(arialabeledby: value)
+    }
+    
+    public func aria(live value: Accessibility.Live) -> Body {
+        return mutate(arialive: value.rawValue)
+    }
+    
+    public func aria(owns value: String) -> Body {
+        return mutate(ariaowns: value)
+    }
+    
+    public func aria(relevant value: Accessibility.Relevant) -> Body {
+        return mutate(ariarelevant: value.rawValue)
+    }
+    
+    public func aria(roleDescription value: String) -> Body {
+        return mutate(ariaroledescription: value)
     }
 }
 

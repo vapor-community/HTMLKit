@@ -9,7 +9,7 @@ final class AttributesTests: XCTestCase {
         @ContentBuilder<AnyContent> var body: AnyContent
     }
     
-    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadyOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute
+    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadyOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
     
     struct Tag: ContentNode, GlobalElement, AllAttributes {
         
@@ -518,6 +518,82 @@ final class AttributesTests: XCTestCase {
         
         func on(event: Events.Detail, _ value: String) -> Tag {
             return self.mutate(key: event.rawValue, value: value)
+        }
+        
+        public func aria(atomic value: Bool) -> Tag {
+            return mutate(ariaatomic: value)
+        }
+        
+        public func aria(busy value: Bool) -> Tag {
+            return mutate(ariabusy: value)
+        }
+        
+        public func aria(controls value: String) -> Tag {
+            return mutate(ariacontrols: value)
+        }
+        
+        public func aria(current value: Accessibility.Current) -> Tag {
+            return mutate(ariacurrent: value.rawValue)
+        }
+        
+        public func aria(describedBy value: String) -> Tag {
+            return mutate(ariadescribedby: value)
+        }
+        
+        public func aria(details value: String) -> Tag {
+            return mutate(ariadetails: value)
+        }
+        
+        public func aria(disabled value: Bool) -> Tag {
+            return mutate(ariadisabled: value)
+        }
+        
+        public func aria(errorMessage value: String) -> Tag {
+            return mutate(ariaerrormessage: value)
+        }
+        
+        public func aria(flowTo value: String) -> Tag {
+            return mutate(ariaflowto: value)
+        }
+        
+        public func aria(hasPopup value: Accessibility.Popup) -> Tag {
+            return mutate(ariahaspopup: value.rawValue)
+        }
+        
+        public func aria(hidden value: Bool) -> Tag {
+            return mutate(ariahidden: value)
+        }
+        
+        public func aria(invalid value: Accessibility.Invalid) -> Tag {
+            return mutate(ariainvalid: value.rawValue)
+        }
+        
+        public func aria(keyShortcuts value: String) -> Tag {
+            return mutate(ariakeyshortcuts: value)
+        }
+        
+        public func aria(label value: String) -> Tag {
+            return mutate(arialabel: value)
+        }
+        
+        public func aria(labeledBy value: String) -> Tag {
+            return mutate(arialabeledby: value)
+        }
+        
+        public func aria(live value: Accessibility.Live) -> Tag {
+            return mutate(arialive: value.rawValue)
+        }
+        
+        public func aria(owns value: String) -> Tag {
+            return mutate(ariaowns: value)
+        }
+        
+        public func aria(relevant value: Accessibility.Relevant) -> Tag {
+            return mutate(ariarelevant: value.rawValue)
+        }
+        
+        public func aria(roleDescription value: String) -> Tag {
+            return mutate(ariaroledescription: value)
         }
         
         func prerender(_ formula: Renderer.Formula) throws {
@@ -2332,6 +2408,329 @@ final class AttributesTests: XCTestCase {
                        """
         )
     }
+    
+    func testAtomicAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(atomic: true)
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-atomic="true"></tag>
+                       """
+        )
+    }
+    
+    func testBusyAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(busy: true)
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-busy="true"></tag>
+                       """
+        )
+    }
+    
+    func testControlsAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(controls: "name")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-controls="name"></tag>
+                       """
+        )
+    }
+    
+    func testCurrentAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(current: .page)
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-current="page"></tag>
+                       """
+        )
+    }
+    
+    func testDescribedByAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(describedBy: "description")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-describedby="description"></tag>
+                       """
+        )
+    }
+    
+    func testDetailsAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(details: "details")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-details="details"></tag>
+                       """
+        )
+    }
+    
+    func testDisabledAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(disabled: true)
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-disabled="true"></tag>
+                       """
+        )
+    }
+    
+    func testErrorMessageAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(errorMessage: "error")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-errormessage="error"></tag>
+                       """
+        )
+    }
+    
+    func testFlowToAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(flowTo: "flow")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-flowto="flow"></tag>
+                       """
+        )
+    }
+    
+    func testHasPopupAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(hasPopup: .grid)
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-haspopup="grid"></tag>
+                       """
+        )
+    }
+    
+    func testHiddenAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(hidden: true)
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-hidden="true"></tag>
+                       """
+        )
+    }
+    
+    func testInvalidAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(invalid: .grammar)
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-invalid="grammar"></tag>
+                       """
+        )
+    }
+    
+    func testKeyShortcutsAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(keyShortcuts: "shortcut")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-keyshortcuts="shortcut"></tag>
+                       """
+        )
+    }
+    
+    func testLabelAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(label: "label")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-label="label"></tag>
+                       """
+        )
+    }
+    
+    func testLabeledByAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(labeledBy: "label")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-labeledby="label"></tag>
+                       """
+        )
+    }
+    
+    func testLiveAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(live: .polite)
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-live="polite"></tag>
+                       """
+        )
+    }
+    
+    func testOwnsAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(owns: "live")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-owns="live"></tag>
+                       """
+        )
+    }
+    
+    func testRelevantAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(relevant: .additions)
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-relevant="additions"></tag>
+                       """
+        )
+    }
+    
+    func testRoleDescriptionAriaAttribute() throws {
+        
+        let view = TestPage {
+            Tag {
+            }
+            .aria(roleDescription: "description")
+        }
+        
+        try renderer.add(view: view)
+        
+        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+                       """
+                       <tag aria-roledescription="description"></tag>
+                       """
+        )
+    }
 }
 
 extension AttributesTests {
@@ -2442,6 +2841,24 @@ extension AttributesTests {
         ("testSelectionEventAttribute", testSelectionEventAttribute),
         ("testMediaEventAttribute", testMediaEventAttribute),
         ("testFormEventAttribute", testFormEventAttribute),
-        ("testDetailEventAttribute", testDetailEventAttribute)
+        ("testDetailEventAttribute", testDetailEventAttribute),
+        ("testRoleDescriptionAriaAttribute", testRoleDescriptionAriaAttribute),
+        ("testRelevantAriaAttribute", testRelevantAriaAttribute),
+        ("testOwnsAriaAttribute", testOwnsAriaAttribute),
+        ("testLiveAriaAttribute", testLiveAriaAttribute),
+        ("testLabeledByAriaAttribute", testLabeledByAriaAttribute),
+        ("testLabelAriaAttribute", testLabelAriaAttribute),
+        ("testKeyShortcutsAriaAttribute", testKeyShortcutsAriaAttribute),
+        ("testInvalidAriaAttribute", testInvalidAriaAttribute),
+        ("testHiddenAriaAttribute", testHiddenAriaAttribute),
+        ("testHasPopupAriaAttribute", testHasPopupAriaAttribute),
+        ("testFlowToAriaAttribute", testFlowToAriaAttribute),
+        ("testErrorMessageAriaAttribute", testErrorMessageAriaAttribute),
+        ("testDisabledAriaAttribute", testDetailsAriaAttribute),
+        ("testDescribedByAriaAttribute", testDescribedByAriaAttribute),
+        ("testCurrentAriaAttribute", testCurrentAriaAttribute),
+        ("testControlsAriaAttribute", testControlsAriaAttribute),
+        ("testBusyAriaAttribute", testBusyAriaAttribute),
+        ("testAtomicAriaAttribute", testAtomicAriaAttribute)
     ]
 }

@@ -46,7 +46,7 @@ public struct OptionGroup: ContentNode, InputElement {
     }
 }
 
-extension OptionGroup: GlobalAttributes, GlobalEventAttributes, DisabledAttribute, LabelAttribute {
+extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, DisabledAttribute, LabelAttribute {
 
     public func accessKey(_ value: Character) -> OptionGroup {
         return mutate(accesskey: value)
@@ -193,6 +193,82 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, DisabledAttribut
     public func on(event: Events.Mouse, _ value: String) -> OptionGroup {
         return mutate(key: event.rawValue, value: value)
     }
+    
+    public func aria(atomic value: Bool) -> OptionGroup {
+        return mutate(ariaatomic: value)
+    }
+    
+    public func aria(busy value: Bool) -> OptionGroup {
+        return mutate(ariabusy: value)
+    }
+    
+    public func aria(controls value: String) -> OptionGroup {
+        return mutate(ariacontrols: value)
+    }
+    
+    public func aria(current value: Accessibility.Current) -> OptionGroup {
+        return mutate(ariacurrent: value.rawValue)
+    }
+    
+    public func aria(describedBy value: String) -> OptionGroup {
+        return mutate(ariadescribedby: value)
+    }
+    
+    public func aria(details value: String) -> OptionGroup {
+        return mutate(ariadetails: value)
+    }
+    
+    public func aria(disabled value: Bool) -> OptionGroup {
+        return mutate(ariadisabled: value)
+    }
+    
+    public func aria(errorMessage value: String) -> OptionGroup {
+        return mutate(ariaerrormessage: value)
+    }
+    
+    public func aria(flowTo value: String) -> OptionGroup {
+        return mutate(ariaflowto: value)
+    }
+    
+    public func aria(hasPopup value: Accessibility.Popup) -> OptionGroup {
+        return mutate(ariahaspopup: value.rawValue)
+    }
+    
+    public func aria(hidden value: Bool) -> OptionGroup {
+        return mutate(ariahidden: value)
+    }
+    
+    public func aria(invalid value: Accessibility.Invalid) -> OptionGroup {
+        return mutate(ariainvalid: value.rawValue)
+    }
+    
+    public func aria(keyShortcuts value: String) -> OptionGroup {
+        return mutate(ariakeyshortcuts: value)
+    }
+    
+    public func aria(label value: String) -> OptionGroup {
+        return mutate(arialabel: value)
+    }
+    
+    public func aria(labeledBy value: String) -> OptionGroup {
+        return mutate(arialabeledby: value)
+    }
+    
+    public func aria(live value: Accessibility.Live) -> OptionGroup {
+        return mutate(arialive: value.rawValue)
+    }
+    
+    public func aria(owns value: String) -> OptionGroup {
+        return mutate(ariaowns: value)
+    }
+    
+    public func aria(relevant value: Accessibility.Relevant) -> OptionGroup {
+        return mutate(ariarelevant: value.rawValue)
+    }
+    
+    public func aria(roleDescription value: String) -> OptionGroup {
+        return mutate(ariaroledescription: value)
+    }
 }
 
 extension OptionGroup: AnyContent {
@@ -265,7 +341,7 @@ public struct Option: ContentNode, InputElement {
     }
 }
 
-extension Option: GlobalAttributes, GlobalEventAttributes, DisabledAttribute, LabelAttribute, ValueAttribute, SelectedAttribute {
+extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, DisabledAttribute, LabelAttribute, ValueAttribute, SelectedAttribute {
     
     public func accessKey(_ value: Character) -> Option {
         return mutate(accesskey: value)
@@ -424,6 +500,82 @@ extension Option: GlobalAttributes, GlobalEventAttributes, DisabledAttribute, La
     public func on(event: Events.Mouse, _ value: String) -> Option {
         return mutate(key: event.rawValue, value: value)
     }
+    
+    public func aria(atomic value: Bool) -> Option {
+        return mutate(ariaatomic: value)
+    }
+    
+    public func aria(busy value: Bool) -> Option {
+        return mutate(ariabusy: value)
+    }
+    
+    public func aria(controls value: String) -> Option {
+        return mutate(ariacontrols: value)
+    }
+    
+    public func aria(current value: Accessibility.Current) -> Option {
+        return mutate(ariacurrent: value.rawValue)
+    }
+    
+    public func aria(describedBy value: String) -> Option {
+        return mutate(ariadescribedby: value)
+    }
+    
+    public func aria(details value: String) -> Option {
+        return mutate(ariadetails: value)
+    }
+    
+    public func aria(disabled value: Bool) -> Option {
+        return mutate(ariadisabled: value)
+    }
+    
+    public func aria(errorMessage value: String) -> Option {
+        return mutate(ariaerrormessage: value)
+    }
+    
+    public func aria(flowTo value: String) -> Option {
+        return mutate(ariaflowto: value)
+    }
+    
+    public func aria(hasPopup value: Accessibility.Popup) -> Option {
+        return mutate(ariahaspopup: value.rawValue)
+    }
+    
+    public func aria(hidden value: Bool) -> Option {
+        return mutate(ariahidden: value)
+    }
+    
+    public func aria(invalid value: Accessibility.Invalid) -> Option {
+        return mutate(ariainvalid: value.rawValue)
+    }
+    
+    public func aria(keyShortcuts value: String) -> Option {
+        return mutate(ariakeyshortcuts: value)
+    }
+    
+    public func aria(label value: String) -> Option {
+        return mutate(arialabel: value)
+    }
+    
+    public func aria(labeledBy value: String) -> Option {
+        return mutate(arialabeledby: value)
+    }
+    
+    public func aria(live value: Accessibility.Live) -> Option {
+        return mutate(arialive: value.rawValue)
+    }
+    
+    public func aria(owns value: String) -> Option {
+        return mutate(ariaowns: value)
+    }
+    
+    public func aria(relevant value: Accessibility.Relevant) -> Option {
+        return mutate(ariarelevant: value.rawValue)
+    }
+    
+    public func aria(roleDescription value: String) -> Option {
+        return mutate(ariaroledescription: value)
+    }
 }
 
 extension Option: AnyContent {
@@ -498,7 +650,7 @@ public struct Legend: ContentNode, InputElement {
     }
 }
 
-extension Legend: GlobalAttributes, GlobalEventAttributes {
+extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func accessKey(_ value: Character) -> Legend {
         return mutate(accesskey: value)
@@ -637,6 +789,82 @@ extension Legend: GlobalAttributes, GlobalEventAttributes {
     public func on(event: Events.Mouse, _ value: String) -> Legend {
         return mutate(key: event.rawValue, value: value)
     }
+    
+    public func aria(atomic value: Bool) -> Legend {
+        return mutate(ariaatomic: value)
+    }
+    
+    public func aria(busy value: Bool) -> Legend {
+        return mutate(ariabusy: value)
+    }
+    
+    public func aria(controls value: String) -> Legend {
+        return mutate(ariacontrols: value)
+    }
+    
+    public func aria(current value: Accessibility.Current) -> Legend {
+        return mutate(ariacurrent: value.rawValue)
+    }
+    
+    public func aria(describedBy value: String) -> Legend {
+        return mutate(ariadescribedby: value)
+    }
+    
+    public func aria(details value: String) -> Legend {
+        return mutate(ariadetails: value)
+    }
+    
+    public func aria(disabled value: Bool) -> Legend {
+        return mutate(ariadisabled: value)
+    }
+    
+    public func aria(errorMessage value: String) -> Legend {
+        return mutate(ariaerrormessage: value)
+    }
+    
+    public func aria(flowTo value: String) -> Legend {
+        return mutate(ariaflowto: value)
+    }
+    
+    public func aria(hasPopup value: Accessibility.Popup) -> Legend {
+        return mutate(ariahaspopup: value.rawValue)
+    }
+    
+    public func aria(hidden value: Bool) -> Legend {
+        return mutate(ariahidden: value)
+    }
+    
+    public func aria(invalid value: Accessibility.Invalid) -> Legend {
+        return mutate(ariainvalid: value.rawValue)
+    }
+    
+    public func aria(keyShortcuts value: String) -> Legend {
+        return mutate(ariakeyshortcuts: value)
+    }
+    
+    public func aria(label value: String) -> Legend {
+        return mutate(arialabel: value)
+    }
+    
+    public func aria(labeledBy value: String) -> Legend {
+        return mutate(arialabeledby: value)
+    }
+    
+    public func aria(live value: Accessibility.Live) -> Legend {
+        return mutate(arialive: value.rawValue)
+    }
+    
+    public func aria(owns value: String) -> Legend {
+        return mutate(ariaowns: value)
+    }
+    
+    public func aria(relevant value: Accessibility.Relevant) -> Legend {
+        return mutate(ariarelevant: value.rawValue)
+    }
+    
+    public func aria(roleDescription value: String) -> Legend {
+        return mutate(ariaroledescription: value)
+    }
 }
 
 extension Legend: AnyContent {
@@ -709,7 +937,7 @@ public struct Summary: ContentNode, InputElement {
     }
 }
 
-extension Summary: GlobalAttributes, GlobalEventAttributes {
+extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func accessKey(_ value: Character) -> Summary {
         return mutate(accesskey: value)
@@ -847,6 +1075,82 @@ extension Summary: GlobalAttributes, GlobalEventAttributes {
     
     public func on(event: Events.Mouse, _ value: String) -> Summary {
         return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func aria(atomic value: Bool) -> Summary {
+        return mutate(ariaatomic: value)
+    }
+    
+    public func aria(busy value: Bool) -> Summary {
+        return mutate(ariabusy: value)
+    }
+    
+    public func aria(controls value: String) -> Summary {
+        return mutate(ariacontrols: value)
+    }
+    
+    public func aria(current value: Accessibility.Current) -> Summary {
+        return mutate(ariacurrent: value.rawValue)
+    }
+    
+    public func aria(describedBy value: String) -> Summary {
+        return mutate(ariadescribedby: value)
+    }
+    
+    public func aria(details value: String) -> Summary {
+        return mutate(ariadetails: value)
+    }
+    
+    public func aria(disabled value: Bool) -> Summary {
+        return mutate(ariadisabled: value)
+    }
+    
+    public func aria(errorMessage value: String) -> Summary {
+        return mutate(ariaerrormessage: value)
+    }
+    
+    public func aria(flowTo value: String) -> Summary {
+        return mutate(ariaflowto: value)
+    }
+    
+    public func aria(hasPopup value: Accessibility.Popup) -> Summary {
+        return mutate(ariahaspopup: value.rawValue)
+    }
+    
+    public func aria(hidden value: Bool) -> Summary {
+        return mutate(ariahidden: value)
+    }
+    
+    public func aria(invalid value: Accessibility.Invalid) -> Summary {
+        return mutate(ariainvalid: value.rawValue)
+    }
+    
+    public func aria(keyShortcuts value: String) -> Summary {
+        return mutate(ariakeyshortcuts: value)
+    }
+    
+    public func aria(label value: String) -> Summary {
+        return mutate(arialabel: value)
+    }
+    
+    public func aria(labeledBy value: String) -> Summary {
+        return mutate(arialabeledby: value)
+    }
+    
+    public func aria(live value: Accessibility.Live) -> Summary {
+        return mutate(arialive: value.rawValue)
+    }
+    
+    public func aria(owns value: String) -> Summary {
+        return mutate(ariaowns: value)
+    }
+    
+    public func aria(relevant value: Accessibility.Relevant) -> Summary {
+        return mutate(ariarelevant: value.rawValue)
+    }
+    
+    public func aria(roleDescription value: String) -> Summary {
+        return mutate(ariaroledescription: value)
     }
 }
 
