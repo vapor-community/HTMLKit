@@ -365,6 +365,8 @@ public class Converter {
             ValueProperty<String>(node: attribute).build(verbatim: "maximum")
         case "minlength":
             ValueProperty<String>(node: attribute).build(verbatim: "minimum")
+        case "d":
+            ValueProperty<String>(node: attribute).build(verbatim: "draw")
         case "fill":
             ValueProperty<String>(node: attribute).build()
         case "fill-opacity":
@@ -874,6 +876,8 @@ public class Converter {
                     ContentElement(element: element).build(preindent: indent)
                 case "use":
                     ContentElement(element: element).build(preindent: indent)
+                case "g":
+                    ContentElement(element: element).build(verbatim: "Group", preindent: indent)
                 default:
                     "element is not listed. contact the author"
                 }
