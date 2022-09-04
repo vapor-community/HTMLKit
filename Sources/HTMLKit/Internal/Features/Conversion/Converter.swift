@@ -383,6 +383,250 @@ public class Converter {
             ValueProperty<Int>(node: attribute).build(verbatim: "radius")
         case "viewbox":
             ValueProperty<String>(node: attribute).build(verbatim: "viewBox")
+        case "onafterprint":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onbeforeprint":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onbeforeunload":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onhashchange":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onlanguagechange":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onmessage":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onmessageerror":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onoffline":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "ononline":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onpagehide":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onpageshow":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onpopstate":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onrejectionhandled":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onstorage":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onunhandledrejection":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onunload":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onerror":
+            EventProperty<Events.Window>(node: attribute).build()
+        case "onblur":
+            EventProperty<Events.Focus>(node: attribute).build()
+        case "onfocus":
+            EventProperty<Events.Focus>(node: attribute).build()
+        case "onpointercancel":
+            EventProperty<Events.Pointer>(node: attribute).build()
+        case "onpointerdown":
+            EventProperty<Events.Pointer>(node: attribute).build()
+        case "onpointerenter":
+            EventProperty<Events.Pointer>(node: attribute).build()
+        case "onpointerleave":
+            EventProperty<Events.Pointer>(node: attribute).build()
+        case "onpointermove":
+            EventProperty<Events.Pointer>(node: attribute).build()
+        case "onpointerout":
+            EventProperty<Events.Pointer>(node: attribute).build()
+        case "onpointerover":
+            EventProperty<Events.Pointer>(node: attribute).build()
+        case "onpointerup":
+            EventProperty<Events.Pointer>(node: attribute).build()
+        case "onlostpointercapture":
+            EventProperty<Events.Pointer>(node: attribute).build()
+        case "onclick":
+            EventProperty<Events.Mouse>(node: attribute).build()
+        case "oncontextmenu":
+            EventProperty<Events.Mouse>(node: attribute).build()
+        case "ondblclick":
+            EventProperty<Events.Mouse>(node: attribute).build()
+        case "onmousedown":
+            EventProperty<Events.Mouse>(node: attribute).build()
+        case "onmouseenter":
+            EventProperty<Events.Mouse>(node: attribute).build()
+        case "onmouseleave":
+            EventProperty<Events.Mouse>(node: attribute).build()
+        case "onmousemove":
+            EventProperty<Events.Mouse>(node: attribute).build()
+        case "onmouseout":
+            EventProperty<Events.Mouse>(node: attribute).build()
+        case "onmouseover":
+            EventProperty<Events.Mouse>(node: attribute).build()
+        case "onmouseup":
+            EventProperty<Events.Mouse>(node: attribute).build()
+        case "onwheel":
+            EventProperty<Events.Wheel>(node: attribute).build()
+        case "onbeforeinput":
+            EventProperty<Events.Input>(node: attribute).build()
+        case "oninput":
+            EventProperty<Events.Input>(node: attribute).build()
+        case "onselect":
+            EventProperty<Events.Input>(node: attribute).build()
+        case "onkeydown":
+            EventProperty<Events.Keyboard>(node: attribute).build()
+        case "onkeyup":
+            EventProperty<Events.Keyboard>(node: attribute).build()
+        case "ondrag":
+            EventProperty<Events.Drag>(node: attribute).build()
+        case "ondragend":
+            EventProperty<Events.Drag>(node: attribute).build()
+        case "ondragenter":
+            EventProperty<Events.Drag>(node: attribute).build()
+        case "ondragleave":
+            EventProperty<Events.Drag>(node: attribute).build()
+        case "ondragover":
+            EventProperty<Events.Drag>(node: attribute).build()
+        case "ondragstart":
+            EventProperty<Events.Drag>(node: attribute).build()
+        case "ondrop":
+            EventProperty<Events.Drag>(node: attribute).build()
+        case "oncopy":
+            EventProperty<Events.Clipboard>(node: attribute).build()
+        case "oncut":
+            EventProperty<Events.Clipboard>(node: attribute).build()
+        case "onpaste":
+            EventProperty<Events.Clipboard>(node: attribute).build()
+        case "onselectionchange":
+            EventProperty<Events.Selection>(node: attribute).build()
+        case "onselectstart":
+            EventProperty<Events.Selection>(node: attribute).build()
+        case "onabort":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "oncanplay":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "oncanplaythrough":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "ondurationchange":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "onemptied":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "onended":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "onplay":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "onplaying":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "onpause":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "onratechange":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "onseeked":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "onseeking":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "onstalled":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "onsuspend":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "ontimeupdate":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "onvolumechange":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "onwaiting":
+            EventProperty<Events.Media>(node: attribute).build()
+        case "onreset":
+            EventProperty<Events.Form>(node: attribute).build()
+        case "onsubmit":
+            EventProperty<Events.Form>(node: attribute).build()
+        case "ontoggle":
+            EventProperty<Events.Detail>(node: attribute).build()
+        case "aria-activedescendant":
+            ValueProperty<String>(node: attribute, kind: .aria).build(verbatim: "activeDescendant")
+        case "aria-atomic":
+            ValueProperty<Bool>(node: attribute, kind: .aria).build(verbatim: "atomic")
+        case "aria-autocomplete":
+            TypeProperty<Accessibility.Complete>(node: attribute, kind: .aria).build(verbatim: "autoComplete")
+        case "aria-busy":
+            ValueProperty<Bool>(node: attribute, kind: .aria).build(verbatim: "busy")
+        case "aria-checked":
+            TypeProperty<Accessibility.Check>(node: attribute, kind: .aria).build(verbatim: "checked")
+        case "aria-colcount":
+            ValueProperty<Int>(node: attribute, kind: .aria).build(verbatim: "columnCount")
+        case "aria-colindex":
+            ValueProperty<Int>(node: attribute, kind: .aria).build(verbatim: "columnIndex")
+        case "aria-colspan":
+            ValueProperty<Int>(node: attribute, kind: .aria).build(verbatim: "columnSpan")
+        case "aria-controls":
+            ValueProperty<String>(node: attribute, kind: .aria).build(verbatim: "controls")
+        case "aria-current":
+            TypeProperty<Accessibility.Current>(node: attribute, kind: .aria).build(verbatim: "current")
+        case "aria-describedby":
+            ValueProperty<String>(node: attribute, kind: .aria).build(verbatim: "describedBy")
+        case "aria-details":
+            ValueProperty<String>(node: attribute, kind: .aria).build(verbatim: "details")
+        case "aria-disabled":
+            ValueProperty<Bool>(node: attribute, kind: .aria).build(verbatim: "disabled")
+        case "aria-errormessage":
+            ValueProperty<String>(node: attribute, kind: .aria).build(verbatim: "errorMessage")
+        case "aria-expanded":
+            ValueProperty<Bool>(node: attribute, kind: .aria).build(verbatim: "expanded")
+        case "aria-flowto":
+            ValueProperty<String>(node: attribute, kind: .aria).build(verbatim: "flowTo")
+        case "aria-haspopup":
+            TypeProperty<Accessibility.Popup>(node: attribute, kind: .aria).build(verbatim: "hasPopup")
+        case "aria-hidden":
+            ValueProperty<Bool>(node: attribute).build(verbatim: "hidden")
+        case "aria-invalid":
+            TypeProperty<Accessibility.Invalid>(node: attribute, kind: .aria).build(verbatim: "invalid")
+        case "aria-keyshortcuts":
+            ValueProperty<String>(node: attribute, kind: .aria).build(verbatim: "keyShortcuts")
+        case "aria-label":
+            ValueProperty<String>(node: attribute, kind: .aria).build(verbatim: "label")
+        case "aria-labeledby":
+            ValueProperty<String>(node: attribute, kind: .aria).build(verbatim: "labeledBy")
+        case "aria-level":
+            ValueProperty<Int>(node: attribute, kind: .aria).build(verbatim: "level")
+        case "aria-live":
+            TypeProperty<Accessibility.Live>(node: attribute, kind: .aria).build(verbatim: "live")
+        case "aria-modal":
+            ValueProperty<Bool>(node: attribute, kind: .aria).build(verbatim: "modal")
+        case "aria-multiline":
+            ValueProperty<Bool>(node: attribute, kind: .aria).build(verbatim: "multiline")
+        case "aria-multiselectable":
+            ValueProperty<Bool>(node: attribute, kind: .aria).build(verbatim: "multiselectable")
+        case "aria-orientation":
+            TypeProperty<Accessibility.Orientation>(node: attribute, kind: .aria).build(verbatim: "orientation")
+        case "aria-owns":
+            ValueProperty<String>(node: attribute, kind: .aria).build(verbatim: "owns")
+        case "aria-placeholder":
+            ValueProperty<String>(node: attribute, kind: .aria).build(verbatim: "placeholder")
+        case "aria-posinset":
+            ValueProperty<Int>(node: attribute, kind: .aria).build(verbatim: "positionIndex")
+        case "aria-pressed":
+            TypeProperty<Accessibility.Pressed>(node: attribute, kind: .aria).build(verbatim: "pressed")
+        case "aria-readonly":
+            ValueProperty<Bool>(node: attribute, kind: .aria).build(verbatim: "readonly")
+        case "aria-relevant":
+            TypeProperty<Accessibility.Relevant>(node: attribute, kind: .aria).build(verbatim: "relevant")
+        case "aria-required":
+            ValueProperty<Bool>(node: attribute, kind: .aria).build(verbatim: "required")
+        case "aria-roledescription":
+            ValueProperty<String>(node: attribute, kind: .aria).build(verbatim: "roleDescription")
+        case "aria-rowcount":
+            ValueProperty<Int>(node: attribute, kind: .aria).build(verbatim: "rowCount")
+        case "aria-rowindex":
+            ValueProperty<Int>(node: attribute, kind: .aria).build(verbatim: "rowIndex")
+        case "aria-rowspan":
+            ValueProperty<Int>(node: attribute, kind: .aria).build(verbatim: "rowSpan")
+        case "aria-selected":
+            TypeProperty<Accessibility.Selected>(node: attribute, kind: .aria).build(verbatim: "selected")
+        case "aria-setsize":
+            ValueProperty<Int>(node: attribute, kind: .aria).build(verbatim: "setSize")
+        case "aria-sort":
+            TypeProperty<Accessibility.Sort>(node: attribute, kind: .aria).build(verbatim: "sort")
+        case "aria-valuemax":
+            ValueProperty<Float>(node: attribute, kind: .aria).build(verbatim: "valueMaximum")
+        case "aria-valuemin":
+            ValueProperty<Float>(node: attribute, kind: .aria).build(verbatim: "valueMinimum")
+        case "aria-valuenow":
+            ValueProperty<Float>(node: attribute, kind: .aria).build(verbatim: "valueNow")
+        case "aria-valuetext":
+            ValueProperty<String>(node: attribute, kind: .aria).build(verbatim: "valueText")
         default:
             CustomProperty(node: attribute).build()
         }
@@ -930,6 +1174,13 @@ extension Converter {
 
     private struct ValueProperty<T: InitRepresentable> {
         
+        internal enum PropertyKind {
+            case normal
+            case aria
+        }
+        
+        private var kind: PropertyKind
+        
         private var name: String? {
             
             guard let name = node.name else {
@@ -950,47 +1201,82 @@ extension Converter {
         
         private let node: XMLNode
         
-        internal init(node: XMLNode) {
+        internal init(node: XMLNode, kind: PropertyKind = .normal) {
             self.node = node
+            self.kind = kind
         }
         
         @StringBuilder internal func build() -> String {
 
-            if let name = self.name, let value = self.value {
+            switch kind {
+            case .normal:
                 
-                switch value {
-                case is Float, is Int, is Double, is Bool:
+                if let name = self.name, let value = self.value {
                     
-                    ".\(name)(\(value))\n"
+                    switch value {
+                    case is Float, is Int, is Double, is Bool:
+                        
+                        ".\(name)(\(value))\n"
+                        
+                    default:
+                        
+                        ".\(name)(\"\(value)\")\n"
+                    }
                     
-                default:
+                } else if let name = name {
                     
-                    ".\(name)(\"\(value)\")\n"
+                    ".\(name)()\n"
                 }
                 
-            } else if let name = name {
+            case .aria:
                 
-                ".\(name)()\n"
+                if let name = self.name, let value = self.value {
+                    
+                    switch value {
+                    case is Float, is Int, is Double, is Bool:
+                        ".aria(\(name): \(value))\n"
+                        
+                    default:
+                        ".aria(\(name): \"\(value)\")\n"
+                    }
+                }
             }
         }
         
         @StringBuilder internal func build(verbatim: String? = nil) -> String {
 
-            if let verbatim = verbatim, let value = value {
+            switch kind {
+            case .normal:
                 
-                switch value {
-                case is Float, is Int, is Double, is Bool:
+                if let verbatim = verbatim, let value = value {
                     
-                    ".\(verbatim)(\(value))\n"
+                    switch value {
+                    case is Float, is Int, is Double, is Bool:
+                        
+                        ".\(verbatim)(\(value))\n"
+                        
+                    default:
+                        
+                        ".\(verbatim)(\"\(value)\")\n"
+                    }
                     
-                default:
+                } else if let verbatim = verbatim {
                     
-                    ".\(verbatim)(\"\(value)\")\n"
+                    ".\(verbatim)()\n"
                 }
                 
-            } else if let verbatim = verbatim {
+            case .aria:
                 
-                ".\(verbatim)()\n"
+                if let verbatim = verbatim, let value = value {
+                    
+                    switch value {
+                    case is Float, is Int, is Double, is Bool:
+                        ".aria(\(verbatim): \(value))\n"
+                        
+                    default:
+                        ".aria(\(verbatim): \"\(value)\")\n"
+                    }
+                }
             }
         }
     }
@@ -1029,6 +1315,13 @@ extension Converter {
 
     private struct TypeProperty<T: RawRepresentable>{
         
+        internal enum PropertyKind {
+            case normal
+            case aria
+        }
+        
+        private var kind: PropertyKind
+        
         private var name: String? {
             
             guard let name = node.name else {
@@ -1049,31 +1342,52 @@ extension Converter {
         
         private let node: XMLNode
         
-        internal init(node: XMLNode) {
+        internal init(node: XMLNode, kind: PropertyKind = .normal) {
             self.node = node
+            self.kind = kind
         }
         
         @StringBuilder internal func build() -> String {
 
-            if let name = name, let value = value {
+            switch kind {
+            case .normal:
                 
-                ".\(name)(.\(value))\n"
+                if let name = name, let value = value {
+                    
+                    ".\(name)(.\(value))\n"
+                    
+                } else if let name = name{
+                    
+                    ".\(name)()\n"
+                }
                 
-            } else if let name = name{
+            case .aria:
                 
-                ".\(name)()\n"
+                if let name = name, let value = value {
+                    ".aria(\(name): .\(value))\n"
+                }
             }
         }
         
         @StringBuilder internal func build(verbatim: String? = nil) -> String {
 
-            if let verbatim = verbatim, let value = value {
+            switch kind {
+            case .normal:
                 
-                ".\(verbatim)(.\(value))\n"
+                if let verbatim = verbatim, let value = value {
+                    
+                    ".\(verbatim)(.\(value))\n"
+                    
+                } else if let verbatim = verbatim {
+                    
+                    ".\(verbatim)()\n"
+                }
                 
-            } else if let verbatim = verbatim {
+            case .aria:
                 
-                ".\(verbatim)()\n"
+                if let verbatim = verbatim, let value = value {
+                    ".aria(\(verbatim): .\(value))\n"
+                }
             }
         }
     }
@@ -1108,6 +1422,40 @@ extension Converter {
 
             if let name = name {
                 ".custom(key: \"\(name)\", value: \"\(value ?? "")\")\n"
+            }
+        }
+    }
+    
+    private struct EventProperty<T: RawRepresentable> {
+        
+        private var name: T? {
+
+            guard let name = node.localName  else {
+                return nil
+            }
+            
+            return T(rawValue: name.lowercased() as! T.RawValue)
+        }
+        
+        private var value: String? {
+            
+            guard let value = node.stringValue else {
+                return nil
+            }
+            
+            return value
+        }
+        
+        private let node: XMLNode
+        
+        internal init(node: XMLNode) {
+            self.node = node
+        }
+        
+        @StringBuilder internal func build() -> String {
+
+            if let name = name {
+                ".on(event: .\(name), \"\(value ?? "")\")\n"
             }
         }
     }
