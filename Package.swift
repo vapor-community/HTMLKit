@@ -1,5 +1,4 @@
-// swift-tools-version:5.4
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version:5.6
 
 import PackageDescription
 
@@ -17,6 +16,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/miroslavkovac/Lingo.git", from: "3.1.0"),
         .package(url: "https://github.com/apple/swift-collections.git", from: "1.0.1"),
+        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0")
     ],
     targets: [
         .target(

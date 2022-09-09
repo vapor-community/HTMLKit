@@ -1,8 +1,10 @@
 # Statements
 
-## Essential
+## Overview
 
-### If
+### Branch Statements
+
+If
 
 ```swift
 IF(context.categories.isEmpty) {
@@ -15,12 +17,14 @@ IF(context.categories.isEmpty) {
 }
 ```
 
-### ForEach
+### Loop Statements
+
+ForEach
 
 ```swift
 ForEach(in: context.categories) { category in
     Division {
-        Paragraph {
+        Paragraph {
             category.title
         }
         ...
@@ -28,7 +32,9 @@ ForEach(in: context.categories) { category in
 }
 ```
 
-### Unwrap
+### Optional Statements
+
+Unwrap
 
 ```swift
 Unwrap(category.content) { content in

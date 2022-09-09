@@ -1,14 +1,8 @@
 # Context
 
-The context is
-
-## Essential
-
-### Definition
+## Overview
 
 ```swift
-/// [SimpleContext.swift]
-
 struct SimpleContext: Codable {
     
     var headline: String
@@ -17,8 +11,6 @@ struct SimpleContext: Codable {
 ```
 
 ```swift
-/// [SimpleView.swift]
-
 struct SimpleView: View {
 
     @TemplateValue(SimpleContext.self)

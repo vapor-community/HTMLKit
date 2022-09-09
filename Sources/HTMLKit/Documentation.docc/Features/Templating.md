@@ -1,16 +1,12 @@
 # Templating
 
-The templating is
-
-## Essential
+## Overview
 
 ### Embed
 
 You can embed the view in the page structure.
 
 ```swift
-/// [SimplePage.swift]
-
 struct SimplePage: Page {
 
     var body: AnyContent {
@@ -32,8 +28,6 @@ struct SimplePage: Page {
 You can extend the page in the view structure.
 
 ```swift
-/// [IndexView.swift]
-
 struct IndexView: View {
 
     var body: AnyContent {
@@ -49,8 +43,6 @@ struct IndexView: View {
 ### Output
 
 ```html
-<!-- SimplePage.html -->
-
 <!DOCTYPE html> 
 <html>
     <head>
@@ -61,4 +53,3 @@ struct IndexView: View {
     </body>
 </html>
 ```
-

@@ -1,8 +1,8 @@
 # Elements
 
-The elements in HTMLKit represent the official HTML elements. Elements with content use the curly brackets, while elements without content use the round brackets. To add attributes to the element use the offered functions.
+## Overview
 
-## Essential
+The elements in HTMLKit represent the official HTML elements. Elements with content use the curly brackets, while elements without content use the round brackets. To add attributes to the element use the offered functions.
 
 ### Definition
 
@@ -50,8 +50,6 @@ Body {
 To prevent invalid code, each element owns a element definition. For example the element `Heading1` is a type of `BodyElement`, so it is only allowed to be placed in the `Body` element. See the [wiki](https://github.com/vapor-community/HTMLKit/wiki) for more element definitions.
 
 ```swift
-/// [BodyElements.swift]
-
 public struct Heading1: ContentNode, BodyElement {
     ...
 }

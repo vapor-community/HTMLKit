@@ -1,29 +1,26 @@
 # Conversion
 
-With HTMLKit you can convert your existing HTML code into Swift. It makes the change easier, faster and it can give you an idea how the library works.
+Use conversion
 
-## Essential
+## Overview
+
+With HTMLKit you can convert your existing HTML code into Swift. It makes the change easier, faster and it can give you an idea how the library works.
 
 ### Call
 
 Call the converter and use the convert function. Pass the directory, where your html files are located and choose the output. We recommend to use the print option first, to get a quick preview on the output. The print shows up in the debug window of your IDE. If you choose the file option, the converter creates the swift files at the same directory you have given to the converter.
 
 ```swift
-/// [configure.swift]
-...
 /// creates the output as file
 try Converter.default.convert(directory: directory, extension: .html, option: .file)
 
 /// prints the output
 try Converter.default.convert(directory: directory, extension: .html, option: .print)
-...
 ```
 
 ### Input
 
 ```html
-<!-- Simple.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 </html>
@@ -32,8 +29,6 @@ try Converter.default.convert(directory: directory, extension: .html, option: .p
 ### Output
 
 ```swift
-/// [SimplePage.swift]
-
 import HTMLKit
 
 struct IndexPage: Page {
