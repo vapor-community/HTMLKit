@@ -51,11 +51,3 @@ extension ConversionTests {
         self.directory = currentFile.appendingPathComponent("Conversion")
     }
 }
-
-extension ConversionTests {
-    
-    static var allTests = [
-        ("testFileConversion", testFileConversion),
-        ("testStringConversion", testStringConversion)
-    ]
-}

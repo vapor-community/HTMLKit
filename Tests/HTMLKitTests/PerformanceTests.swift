@@ -19,11 +19,3 @@ final class PerformanceTests: XCTestCase {
         }
     }
 }
-
-extension PerformanceTests {
-    
-    static var allTests = [
-        ("testPerformance", testPerformance)
-    ]
-}
-

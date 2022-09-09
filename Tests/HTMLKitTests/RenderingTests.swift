@@ -269,22 +269,3 @@ final class RenderingTests: XCTestCase {
         )
     }
 }
-
-extension RenderingTests {
-    
-    static var allTests = [
-        ("testRenderingDocument", testRenderingDocument),
-        ("testRenderingContentTag", testRenderingContentTag),
-        ("testRenderingEmptyTag", testRenderingEmptyTag),
-        ("testRenderingCommentTag", testRenderingCommentTag),
-        ("testRenderingAttributes", testRenderingAttributes),
-        ("testRenderingAttributesWithUnterscore", testRenderingAttributesWithUnterscore),
-        ("testRenderingAttributesWithHyphens", testRenderingAttributesWithHyphens),
-        ("testNesting", testNesting),
-        ("testEscaping", testEscaping),
-        ("testModified", testModified),
-        ("testUnmodified", testUnmodified),
-        ("testModifiedAndUnwrapped", testModifiedAndUnwrapped),
-        ("testRenderingCustomProperty", testRenderingCustomProperty)
-    ]
-}

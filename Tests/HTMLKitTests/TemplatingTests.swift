@@ -187,13 +187,3 @@ final class TemplatingTests: XCTestCase {
         )
     }
 }
-
-extension TemplatingTests {
-    
-    static var allTests = [
-        ("testEmbeding", testEmbeding),
-        ("testExtending", testExtending),
-        ("testExtendingWithSingles", testExtendingWithSingles)
-    ]
-}
-
