@@ -26,11 +26,27 @@ let package = Package(
                 .product(name: "Collections", package: "swift-collections")
             ]
         ),
+        .target(
+            name: "Converter",
+            dependencies: [
+                .target(name: "HTMLKit")
+            ]
+        ),
         .testTarget(
             name: "HTMLKitTests",
-            dependencies: ["HTMLKit"],
+            dependencies: [
+                .target(name: "HTMLKit")
+            ],
             resources: [
-                .process("Localization"),
+                .process("Localization")
+            ]
+        ),
+        .testTarget(
+            name: "ConverterTests",
+            dependencies: [
+                .target(name: "Converter")
+            ],
+            resources: [
                 .process("Conversion")
             ]
         )

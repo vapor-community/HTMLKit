@@ -12,6 +12,7 @@
  If you about to add something to the file, stick to the official documentation to keep the code consistent.
  */
 
+import HTMLKit
 import Foundation
  #if canImport(FoundationXML)
  import FoundationXML
@@ -244,7 +245,7 @@ public class Converter {
         case "media":
             ValueProperty<String>(node: attribute).build()
         case "method":
-            TypeProperty<Method>(node: attribute).build()
+            TypeProperty<HTMLKit.Method>(node: attribute).build()
         case "min":
             ValueProperty<String>(node: attribute).build(verbatim: "minimum")
         case "multiple":
