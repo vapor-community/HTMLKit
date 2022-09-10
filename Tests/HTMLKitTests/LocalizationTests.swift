@@ -43,10 +43,3 @@ extension LocalizationTests {
         try renderer.registerLocalization(atPath: currentDirectory.path, defaultLocale: "en")
     }
 }
-
-extension LocalizationTests {
-    
-    static var allTests = [
-        ("testLocalization", testLocalization)
-    ]
-}

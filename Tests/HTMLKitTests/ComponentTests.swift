@@ -105,15 +105,3 @@ final class ComponentTests: XCTestCase {
         )
     }
 }
-
-extension ComponentTests {
-    
-    static var allTests = [
-        ("testMetaTitleComponent", testMetaTitleComponent),
-        ("testMetaDescriptionComponent", testMetaDescriptionComponent),
-        ("testFaviconComponent", testFaviconComponent),
-        ("testAuthorComponent", testAuthorComponent),
-        ("testStylesheetComponent", testStylesheetComponent),
-        ("testViewportComponent", testViewportComponent)
-    ]
-}

@@ -80,11 +80,3 @@ final class ContextTests: XCTestCase {
         )
     }
 }
-
-extension ContextTests {
-    
-    static var allTests = [
-        ("testViewContext", testViewContext),
-        ("testPageContext", testPageContext)
-    ]
-}
