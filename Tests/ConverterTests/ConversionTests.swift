@@ -20,7 +20,7 @@ final class ConversionTests: XCTestCase {
             return XCTFail("No directory.")
         }
         
-        XCTAssertNoThrow(try Converter.default.convert(directory: directory, option: .print))
+        XCTAssertNoThrow(try Converter.default.convert(directory: directory, option: .debug))
 #endif
     }
     
@@ -37,7 +37,7 @@ final class ConversionTests: XCTestCase {
             return XCTFail("No file.")
         }
         
-        XCTAssertNoThrow(try Converter.default.convert(html: content))
+        XCTAssertNoThrow(try Converter.default.convert(string: content))
 #endif
     }
 }
