@@ -13,23 +13,22 @@ final class ConversionTests: XCTestCase {
     
     func testFileConversion() throws {
         
+#if os(Linux)
+        throw XCTSkip("Requires macOS >= 11.0")
+#else
         guard let directory = directory else {
             return XCTFail("No directory.")
         }
         
-        guard #available(macOS 11.0, *) else {
-            throw XCTSkip("Requires macOS >= 11.0")
-        }
-        
         XCTAssertNoThrow(try Converter.default.convert(directory: directory, option: .print))
+#endif
     }
     
     func testStringConversion() throws {
         
-        guard #available(macOS 11.0, *) else {
-            throw XCTSkip("Requires macOS >= 11.0")
-        }
-        
+#if os(Linux)
+        throw XCTSkip("Requires macOS >= 11.0")
+#else
         guard let directory = directory else {
             return XCTFail("No directory.")
         }
@@ -39,6 +38,7 @@ final class ConversionTests: XCTestCase {
         }
         
         XCTAssertNoThrow(try Converter.default.convert(html: content))
+#endif
     }
 }
 
