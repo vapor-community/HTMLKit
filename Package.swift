@@ -49,6 +49,10 @@ let package = Package(
             resources: [
                 .process("Conversion")
             ]
+        ),
+        .plugin(
+            name: "ConverterPlugin",
+            capability: .command(intent: .custom(verb: "convert", description: "Convert html content"))
         )
     ]
 )
