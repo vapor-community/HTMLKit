@@ -50,9 +50,19 @@ let package = Package(
                 .process("Conversion")
             ]
         ),
+        .executableTarget(
+            name: "ConvertCommand",
+            dependencies: [
+                .target(name: "Converter")
+            ],
+            path: "Sources/Commands"
+        ),
         .plugin(
             name: "ConverterPlugin",
-            capability: .command(intent: .custom(verb: "convert", description: "Convert html content"))
+            capability: .command(intent: .custom(verb: "convert", description: "Convert html content")),
+            dependencies: [
+                .target(name: "ConvertCommand")
+            ]
         )
     ]
 )
