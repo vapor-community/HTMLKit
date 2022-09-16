@@ -3,32 +3,51 @@ import Converter
 
 @main
 @available(macOS 11.0, *)
-struct ConvertCommand {
+internal struct ConvertCommand {
     
-    var sourceDirectory: String
-    var targetDirectory: String?
-    var output: String
-    
-    func run() throws {
-        
-        try Converter.default.convert(directory: URL(fileURLWithPath: sourceDirectory),
-                                      option: .debug)
+    private static var outputOption: String {
+        return CommandLine.arguments[1]
     }
     
-    static func main() throws {
-            
+    private static var sourcePath: String {
+        return CommandLine.arguments[2]
+    }
+    
+    private static var targetPath: String? {
+        
         if CommandLine.arguments.count < 4 {
+            return nil
+        }
+        
+        return CommandLine.arguments[3]
+    }
+    
+    internal static func main() throws {
+        
+        if !FileManager.default.fileExists(atPath: sourcePath) {
+            print("No valid source path.")
             
-            let command = ConvertCommand(sourceDirectory: CommandLine.arguments[1],
-                                         output: CommandLine.arguments[2])
-            try command.run()
+            exit(1)
             
         } else {
             
-            let command = ConvertCommand(sourceDirectory: CommandLine.arguments[1],
-                                         targetDirectory: CommandLine.arguments[2],
-                                         output: CommandLine.arguments[3])
-            try command.run()
+            let url = URL(fileURLWithPath: sourcePath)
+            
+            if outputOption != "debug" {
+                
+                if let targetPath = self.targetPath {
+                    
+                    try Converter.default.convert(source: url, target: URL(fileURLWithPath: targetPath))
+                    
+                } else {
+                    print("Unkown target path.")
+                    
+                    exit(1)
+                }
+                
+            } else {
+                try Converter.default.convert(source: url)
+            }
         }
     }
 }
