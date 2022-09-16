@@ -6,34 +6,62 @@ struct ConverterPlugin: CommandPlugin {
     
     func performCommand(context: PluginContext, arguments: [String]) async throws {
         
-        let tool = try context.tool(named: "ConverterCommand")
+        let tool = try context.tool(named: "ConvertCommand")
         
         var extractor = ArgumentExtractor(arguments)
         
-        let sourceArgument = extractor.extractOption(named: "source")
-        let targetArgument = extractor.extractOption(named: "target")
+        let usageArgument = extractor.extractFlag(named: "command-usage")
         
-        var processArguments = [String]()
-        
-        if !sourceArgument.isEmpty {
+        if usageArgument > 0 {
             
-            processArguments.insert(sourceArgument.first!, at: 0)
-        }
-        
-        if !targetArgument.isEmpty {
+            let explanation = """
+            USAGE: convert --output-option <output option> --source-path <source directory> --target-path <target directory>
             
-            processArguments.insert(targetArgument.first!, at: 1)
-            processArguments.insert("debug", at: 2)
+            ARGUMENTS:
+                <output option> - file or debug
+                <source directory> - The path of directory, wich the html are located.
+                <target directory> - The path of directory, where the converted files should be saved.
+            """
+            
+            print(explanation)
             
         } else {
-            processArguments.insert("print", at: 1)
-        }
-        
-        let process = try Process.run(URL(fileURLWithPath: tool.path.string), arguments: processArguments)
-        process.waitUntilExit()
-        
-        if process.terminationReason == .exit && process.terminationStatus == 0 {
-            print("The conversion has finished.")
+            
+            let outputArgument = extractor.extractOption(named: "output-option")
+            let sourceArgument = extractor.extractOption(named: "source-path")
+            let targetArgument = extractor.extractOption(named: "target-path")
+            
+            var processArguments = [String]()
+            
+            if !outputArgument.isEmpty {
+                processArguments.insert(outputArgument.first!, at: 0)
+                
+            } else {
+                Diagnostics.error("Missing argument --output-option.")
+            }
+            
+            if !sourceArgument.isEmpty {
+                processArguments.insert(sourceArgument.first!, at: 1)
+                
+            } else {
+                Diagnostics.error("Missing argument --source-path.")
+            }
+            
+            if !targetArgument.isEmpty {
+                processArguments.insert(targetArgument.first!, at: 2)
+            }
+            
+            print("The conversion starts...")
+            
+            let process = try Process.run(URL(fileURLWithPath: tool.path.string), arguments: processArguments)
+            process.waitUntilExit()
+            
+            if process.terminationReason == .exit && process.terminationStatus == 0 {
+                print("The conversion has finished.")
+                
+            } else {
+                Diagnostics.error("The conversion has failed: \(process.terminationReason)")
+            }
         }
     }
 }
