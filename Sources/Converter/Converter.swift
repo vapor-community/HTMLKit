@@ -7,27 +7,18 @@ import Foundation
 @available(macOS 11.0, *)
 public class Converter {
     
-    public enum FileExtension: String {
-        case html
-        case leaf
-    }
-    
-    public enum ConverterOutput: String {
-        case debug
-        case file
-    }
-    
     public enum ConverterError: Error {
         case rootNotFound
+        case emptyFile
     }
     
     public static let `default` = Converter()
 
     private init() {}
     
-    public func convert(string: String) throws -> String {
+    private func convert(content: String) throws -> String {
         
-        let document = try XMLDocument(xmlString: string, options: [.documentIncludeContentTypeDeclaration])
+        let document = try XMLDocument(xmlString: content, options: [.documentIncludeContentTypeDeclaration])
         
         guard let root = document.rootElement() else {
             throw ConverterError.rootNotFound
@@ -36,31 +27,88 @@ public class Converter {
         return try Parser.shared.parse(node: root)
     }
     
-    public func convert(file: URL, option: ConverterOutput) throws {
+    public func convert(source path: URL) throws {
         
-        let result = try convert(string: String(contentsOf: file))
-        
-        switch option {
-        case .debug:
-            print(result)
+        if !path.hasDirectoryPath {
             
-        case .file:
-            print(result)
+            let content = try String(contentsOf: path)
+            
+            if content.count > 1 {
+                print(try convert(content: content))
+                
+            } else {
+                throw ConverterError.emptyFile
+            }
+            
+        } else {
+            
+            if let enumerator = FileManager.default.enumerator(at: path, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) {
+                
+                for case let path as URL in enumerator {
+                    
+                    if !path.hasDirectoryPath {
+                        
+                        if !path.isFileURL {
+                            enumerator.skipDescendants()
+                            
+                        } else {
+                            
+                            let content = try String(contentsOf: path)
+                            
+                            if content.count > 1 {
+                                print(try convert(content: content))
+                                
+                            } else {
+                                throw ConverterError.emptyFile
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
-    public func convert(directory: URL, fileExtension: FileExtension = .html, option: ConverterOutput) throws {
+    public func convert(source path: URL, target: URL) throws {
         
-        if let enumerator = FileManager.default.enumerator(at: directory, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) {
+        if !path.hasDirectoryPath {
             
-            for case let path as URL in enumerator {
+            let content = try String(contentsOf: path)
+            
+            if content.count > 1 {
                 
-                if !path.hasDirectoryPath {
+                let result = try convert(content: content)
+                
+                try result.write(to: target, atomically: true, encoding: .utf8)
+                
+            } else {
+                throw ConverterError.emptyFile
+            }
+            
+        } else {
+         
+            if let enumerator = FileManager.default.enumerator(at: path, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) {
+                
+                for case let path as URL in enumerator {
+                    
+                    if !path.hasDirectoryPath {
 
-                    if path.pathExtension != fileExtension.rawValue {
-                        enumerator.skipDescendants()
-                    } else {
-                        try convert(file: path, option: option)
+                        if !path.isFileURL {
+                            enumerator.skipDescendants()
+                            
+                        } else {
+                            
+                            let content = try String(contentsOf: path)
+                            
+                            if content.count > 1 {
+                                
+                                let result = try convert(content: content)
+                                
+                                try result.write(to: target, atomically: true, encoding: .utf8)
+                                
+                            } else {
+                                throw ConverterError.emptyFile
+                            }
+                        }
                     }
                 }
             }

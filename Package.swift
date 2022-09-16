@@ -59,7 +59,7 @@ let package = Package(
         ),
         .plugin(
             name: "ConverterPlugin",
-            capability: .command(intent: .custom(verb: "convert", description: "Convert html content")),
+            capability: .command(intent: .custom(verb: "convert", description: "Convert html content"), permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the converted file.")]),
             dependencies: [
                 .target(name: "ConvertCommand")
             ]
