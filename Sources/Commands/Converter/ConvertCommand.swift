@@ -33,11 +33,13 @@ internal struct ConvertCommand {
             
             let url = URL(fileURLWithPath: sourcePath)
             
-            if outputOption != "debug" {
+            switch outputOption {
+            case "file":
                 
                 if let targetPath = self.targetPath {
-                    
                     try Converter.default.convert(source: url, target: URL(fileURLWithPath: targetPath))
+                    
+                    exit(0)
                     
                 } else {
                     print("Unkown target path.")
@@ -45,8 +47,22 @@ internal struct ConvertCommand {
                     exit(1)
                 }
                 
-            } else {
-                try Converter.default.convert(source: url)
+            case "debug":
+                
+                if targetPath != nil {
+                    print("Wrong output option.")
+                    
+                    exit(1)
+                    
+                } else {
+                    try Converter.default.convert(source: url)
+                    
+                    exit(0)
+                }
+                
+            default:
+                break
+                
             }
         }
     }

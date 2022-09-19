@@ -6,6 +6,8 @@ struct ConverterPlugin: CommandPlugin {
     
     func performCommand(context: PluginContext, arguments: [String]) async throws {
         
+        let outputOptions = ["debug", "file"]
+        
         let tool = try context.tool(named: "ConvertCommand")
         
         var extractor = ArgumentExtractor(arguments)
@@ -15,12 +17,12 @@ struct ConverterPlugin: CommandPlugin {
         if usageArgument > 0 {
             
             let explanation = """
-            USAGE: convert --output-option <output option> --source-path <source directory> --target-path <target directory>
+            USAGE: convert --output-option <option> --source-path <path> --target-path <path>
             
             ARGUMENTS:
                 <output option> - file or debug
-                <source directory> - The path of directory, wich the html are located.
-                <target directory> - The path of directory, where the converted files should be saved.
+                <source path> - The path, where the html files are located.
+                <target path> - The path, where the converted files should be saved into.
             """
             
             print(explanation)
@@ -33,22 +35,27 @@ struct ConverterPlugin: CommandPlugin {
             
             var processArguments = [String]()
             
-            if !outputArgument.isEmpty {
-                processArguments.insert(outputArgument.first!, at: 0)
+            if let output = outputArgument.first {
+                
+                if !outputOptions.contains(output) {
+                    Diagnostics.error("Invalid output option. Choose 'file' or 'debug' instead.")
+                }
+                
+                processArguments.insert(output, at: 0)
                 
             } else {
                 Diagnostics.error("Missing argument --output-option.")
             }
             
-            if !sourceArgument.isEmpty {
-                processArguments.insert(sourceArgument.first!, at: 1)
+            if let source = sourceArgument.first {
+                processArguments.insert(source, at: 1)
                 
             } else {
                 Diagnostics.error("Missing argument --source-path.")
             }
             
-            if !targetArgument.isEmpty {
-                processArguments.insert(targetArgument.first!, at: 2)
+            if let target = targetArgument.first {
+                processArguments.insert(target, at: 2)
             }
             
             print("The conversion starts...")
