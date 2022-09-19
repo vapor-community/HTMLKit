@@ -26,12 +26,42 @@ let package = Package(
                 .product(name: "Collections", package: "swift-collections")
             ]
         ),
+        .target(
+            name: "Converter",
+            dependencies: [
+                .target(name: "HTMLKit")
+            ]
+        ),
         .testTarget(
             name: "HTMLKitTests",
-            dependencies: ["HTMLKit"],
+            dependencies: [
+                .target(name: "HTMLKit")
+            ],
             resources: [
-                .process("Localization"),
+                .process("Localization")
+            ]
+        ),
+        .testTarget(
+            name: "ConverterTests",
+            dependencies: [
+                .target(name: "Converter")
+            ],
+            resources: [
                 .process("Conversion")
+            ]
+        ),
+        .executableTarget(
+            name: "ConvertCommand",
+            dependencies: [
+                .target(name: "Converter")
+            ],
+            path: "Sources/Commands"
+        ),
+        .plugin(
+            name: "ConverterPlugin",
+            capability: .command(intent: .custom(verb: "convert", description: "Convert html content"), permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the converted file.")]),
+            dependencies: [
+                .target(name: "ConvertCommand")
             ]
         )
     ]
