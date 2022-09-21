@@ -32,6 +32,12 @@ let package = Package(
                 .target(name: "HTMLKit")
             ]
         ),
+        .target(
+            name: "HTMLKitComponents",
+            dependencies: [
+                .target(name: "HTMLKit")
+            ]
+        ),
         .testTarget(
             name: "HTMLKitTests",
             dependencies: [
@@ -48,6 +54,12 @@ let package = Package(
             ],
             resources: [
                 .process("Conversion")
+            ]
+        ),
+        .testTarget(
+            name: "HTMLKitComponentsTests",
+            dependencies: [
+                .target(name: "HTMLKitComponents")
             ]
         ),
         .executableTarget(
