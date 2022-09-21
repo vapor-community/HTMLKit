@@ -27,7 +27,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: "Converter",
+            name: "HTMLKitConverter",
             dependencies: [
                 .target(name: "HTMLKit")
             ]
@@ -42,9 +42,9 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "ConverterTests",
+            name: "HTMLKitConverterTests",
             dependencies: [
-                .target(name: "Converter")
+                .target(name: "HTMLKitConverter")
             ],
             resources: [
                 .process("Conversion")
@@ -53,7 +53,7 @@ let package = Package(
         .executableTarget(
             name: "ConvertCommand",
             dependencies: [
-                .target(name: "Converter")
+                .target(name: "HTMLKitConverter")
             ],
             path: "Sources/Commands"
         ),

@@ -1,5 +1,5 @@
 import Foundation
-import Converter
+import HTMLKitConverter
 
 @main
 @available(macOS 11.0, *)
