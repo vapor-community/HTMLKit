@@ -1,0 +1,31 @@
+/**
+ group component
+ */
+
+.group {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.group > .button {
+    border-radius: 0;
+}
+
+.group > .button:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.group > .button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.group > .symbol + * {
+    margin-left: 15px;
+}
+
+.group > * + .symbol {
+    margin-left: 15px;
+}

@@ -1,0 +1,167 @@
+:root {
+    
+    /**
+     neutral colors
+     
+     - black: #000000
+     - white: #FFFFFF
+     */
+    
+    --blackColor: hsla(0, 0%, 0%, 100%);
+    --whiteColor: hsla(0, 0%, 100%, 100%);
+    
+    /**
+     supporting colors
+     
+     - blue: #4098D7
+     - brown: #BF7140
+     - cyan: #38BEC9
+     - green: #57AE5B
+     - indigo: #647ACB
+     - mint: #91E697
+     - pink: #DA4A91
+     - purple: #724BB7
+     - red: #D64545
+     - teal: #3EBD93
+     - orange: #E67635
+     - yellow: #F7D070
+     - gray: #9E9E9E
+     - silver: #F7F7F7
+     */
+    
+    --blueColor: hsla(205, 65%, 55%, 100%);
+    --brownColor: hsla(23, 50%, 50%, 100%);
+    --cyanColor: hsla(185, 57%, 50%, 100%);
+    --greenColor: hsla(123, 35%, 51%, 100%);
+    --indigoColor: hsla(227, 50%, 59%, 100%);
+    --mintColor: hsla(124, 63%, 74%, 100%);
+    --pinkColor: hsla(330, 66%, 57%, 100%);
+    --purpleColor: hsla(262, 43%, 51%, 100%);
+    --redColor: hsla(0, 64%, 55%, 100%);
+    --tealColor: hsla(160, 51%, 49%, 100%);
+    --orangeColor: hsla(22, 78%, 55%, 100%);
+    --yellowColor: hsla(43, 89%, 70%, 100%);
+    --grayColor: hsla(0, 0%, 62%, 100%);
+    --silverColor: hsla(0, 0%, 97%, 100%);
+    
+    /**
+     custom colors
+     - primary: #007FFF
+     - secondary: #132F4E
+     **/
+    
+    --primaryColor: hsla(210, 100%, 50%, 100%);
+    --secondaryColor: hsla(211, 60%, 19%, 100%);
+    
+    /**
+     toggle variables
+     - background #E6E6E6
+     - active background: #77BF40
+     - toggle border: #DFE3E7
+     - toggle focus: #DFE3E7
+     - slider background: #FFFFFF
+     - slider border: #FFFFFF
+     */
+    
+    --toggleBackgroundColor: hsla(0, 0%, 90%, 100%);
+    --toggleActiveBackgroundColor: hsla(94, 50%, 50%, 100%);
+    --toggleBorderColor: hsla(210, 14%, 89%, 100%);
+    --toggleFocusColor: hsla(210, 14%, 89%, 40%);
+    --sliderBackgroundColor: hsla(0, 0%, 100%, 100%);
+    --sliderBorderColor: hsla(0, 0%, 100%, 100%);
+    
+    /**
+     text variables
+     */
+    
+    --textFontFamily: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --textFontSize: 100%;
+    --textFontWeight: 400;
+    --textLineHeight: 1.1em;
+    --smallFontSize: 0.8em;
+    --smallFontWeight: 600;
+    --smallLineHeight: 1.6em;
+    --normalFontSize: 1.4em;
+    --normalFontWeight: 600;
+    --normalLineHeight: 1.8em;
+    --mediumFontSize: 1.6em;
+    --mediumFontWeight: 600;
+    --mediumLineHeight: 2.0em;
+    --largeFontSize: 2.3em;
+    --largeFontWeight: 900;
+    --largeLineHeight: 2.7em;
+    
+    /**
+     snippet variables
+     */
+    
+    --snippetFontSize: 12px;
+    --snippetLineHeight: 20px;
+    --snippetBackgroundColor: #FFFFFF;
+    --snippetFontColor: #000000;
+    --lineNumberFontColor: #000000;
+    
+    /**
+     list variables
+     */
+    
+    --listRowPaddingY: 0px;
+    --listRowPaddingX: 15px;
+    --listGapSize: 15px;
+    
+    /**
+     link variables
+     */
+    
+    /**
+     input variables
+     */
+    
+    --inputPaddingY: 12px;
+    --inputPaddingX: 16px;
+    --inputTextColor: var(--blackColor);
+    --inputBackgroundColor: var(--whiteColor);
+    --inputBorderColor: hsla(210, 14%, 89%, 100%);
+    --inputBorderWidth: 1px;
+    --inputBorderRadius: 5px;
+    --inputFocusColor: hsla(210, 14%, 89%, 40%);
+    
+    /**
+     slider variables
+     */
+    
+    --sliderBackgroundColor: var(--whiteColor);
+    --sliderBorderColor: var(--whiteColor);
+    --thumbBorderColor: var(--whiteColor);
+    --thumbBackgroundColor: var(--whiteColor);
+    
+    /**
+     divider variables
+     */
+    
+    --dividerColor: #FFFFFF;
+    
+    /**
+     collection variables
+     */
+    
+    /**
+     button variables
+     */
+    
+    --buttonPaddingY: 12px;
+    --buttonPaddingX: 16px;
+    --buttonBorderWidth: 1px;
+    --buttonBorderRadius: 5px;
+    --buttonFontSize: 14px;
+    --buttonFontWeight: normal;
+    --buttonLineHeight: 1.2rem;
+    
+    /**
+     list variables
+     */
+    
+    --listBorderColor: hsla(210, 14%, 89%, 100%);
+    --listBorderWidth: 1px;
+    --listBorderRadius: 5px;
+}

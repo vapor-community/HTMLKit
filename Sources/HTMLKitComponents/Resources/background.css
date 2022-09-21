@@ -1,0 +1,79 @@
+/**
+ background component
+ */
+
+.background\:black {
+    background-color: var(--blackColor);
+}
+
+.background\:blue {
+    background-color: var(--blueColor);
+}
+
+.background\:brown {
+    background-color: var(--brownColor);
+}
+
+.background\:transparent {
+    background-color: transparent;
+}
+
+.background\:cyan {
+    background-color: var(--cyanColor);
+}
+
+.background\:gray {
+    background-color: var(--grayColor);
+}
+
+.background\:green {
+    background-color: var(--greenColor);
+}
+
+.background\:indigo {
+    background-color: var(--indigoColor);
+}
+
+.background\:mint {
+    background-color: var(--mintColor);
+}
+
+.background\:orange {
+    background-color: var(--orangeColor);
+}
+
+.background\:pink {
+    background-color: var(--pinkColor);
+}
+
+.background\:purple {
+    background-color: var(--purpleColor);
+}
+
+.background\:red {
+    background-color: var(--redColor);
+}
+
+.background\:teal {
+    background-color: var(--tealColor);
+}
+
+.background\:white {
+    background-color: var(--whiteColor);
+}
+
+.background\:yellow {
+    background-color: var(--yellowColor);
+}
+
+.background\:silver {
+    background-color: var(--silverColor);
+}
+
+.background\:primary {
+    background-color: var(--primaryColor);
+}
+
+.background\:secondary {
+    background-color: var(--secondaryColor);
+}

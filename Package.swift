@@ -36,6 +36,9 @@ let package = Package(
             name: "HTMLKitComponents",
             dependencies: [
                 .target(name: "HTMLKit")
+            ],
+            resources: [
+                .process("Resources")
             ]
         ),
         .testTarget(
