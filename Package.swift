@@ -71,7 +71,11 @@ let package = Package(
             dependencies: [
                 .target(name: "HTMLKitConverter")
             ],
-            path: "Sources/Commands"
+            path: "Sources/Commands/Converter"
+        ),
+        .executableTarget(
+            name: "DeployCommand",
+            path: "Sources/Commands/Components"
         ),
         .plugin(
             name: "ConverterPlugin",
