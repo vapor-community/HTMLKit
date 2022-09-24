@@ -10,7 +10,11 @@ let package = Package(
     products: [
         .library(
             name: "HTMLKit",
-            targets: ["HTMLKit"]
+            targets: ["HTMLKit", "HTMLKitComponents"]
+        ),
+        .plugin(
+            name: "ComponentsPlugin",
+            targets: ["ComponentsPlugin"]
         )
     ],
     dependencies: [
@@ -75,18 +79,31 @@ let package = Package(
         ),
         .executableTarget(
             name: "DeployCommand",
+            dependencies: [
+                .target(name: "HTMLKitComponents")
+            ],
             path: "Sources/Commands/Components"
         ),
         .plugin(
             name: "ConverterPlugin",
-            capability: .command(intent: .custom(verb: "convert", description: "Convert html content"), permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the converted file.")]),
+            capability: .command(
+                intent: .custom(
+                    verb: "convert",
+                    description: "Convert html content"),
+                permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the converted file.")]
+            ),
             dependencies: [
                 .target(name: "ConvertCommand")
             ]
         ),
         .plugin(
             name: "ComponentsPlugin",
-            capability: .command(intent: .custom(verb: "deploy", description: "Deploy css files"), permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the minified css file.")]),
+            capability: .command(
+                intent: .custom(
+                    verb: "deploy",
+                    description: "Deploy css files"),
+                permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the minified css file.")]
+            ),
             dependencies: [
                 .target(name: "DeployCommand")
             ]
