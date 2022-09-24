@@ -1,0 +1,39 @@
+/**
+ collection component
+ */
+
+.collection {
+    display: grid;
+    gap: var(--collectionGapSize);
+}
+
+.collection-item {
+    overflow: hidden;
+}
+
+.collection.style\:grid > .collection-item {
+    border-width: var(--collectionBorderWidth);
+    border-style: solid;
+    border-color: var(--collectionBorderColor);
+    border-radius: var(--collectionBorderRadius);
+}
+
+.collection.ratio\:50 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.collection.ratio\:33 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.collection.ratio\:25 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.collection.ratio\:20 {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.collection.ratio\:15 {
+    grid-template-columns: repeat(6, 1fr);
+}

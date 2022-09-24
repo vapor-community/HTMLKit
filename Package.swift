@@ -10,7 +10,11 @@ let package = Package(
     products: [
         .library(
             name: "HTMLKit",
-            targets: ["HTMLKit"]
+            targets: ["HTMLKit", "HTMLKitComponents"]
+        ),
+        .plugin(
+            name: "ComponentsPlugin",
+            targets: ["ComponentsPlugin"]
         ),
         .plugin(
             name: "ConverterPlugin",
@@ -31,9 +35,18 @@ let package = Package(
             ]
         ),
         .target(
-            name: "Converter",
+            name: "HTMLKitConverter",
             dependencies: [
                 .target(name: "HTMLKit")
+            ]
+        ),
+        .target(
+            name: "HTMLKitComponents",
+            dependencies: [
+                .target(name: "HTMLKit")
+            ],
+            resources: [
+                .process("Resources")
             ]
         ),
         .testTarget(
@@ -46,26 +59,57 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "ConverterTests",
+            name: "HTMLKitConverterTests",
             dependencies: [
-                .target(name: "Converter")
+                .target(name: "HTMLKitConverter")
             ],
             resources: [
                 .process("Conversion")
             ]
         ),
+        .testTarget(
+            name: "HTMLKitComponentsTests",
+            dependencies: [
+                .target(name: "HTMLKitComponents"),
+                .target(name: "HTMLKit")
+            ]
+        ),
         .executableTarget(
             name: "ConvertCommand",
             dependencies: [
-                .target(name: "Converter")
+                .target(name: "HTMLKitConverter")
             ],
-            path: "Sources/Commands"
+            path: "Sources/Commands/Converter"
+        ),
+        .executableTarget(
+            name: "DeployCommand",
+            dependencies: [
+                .target(name: "HTMLKitComponents")
+            ],
+            path: "Sources/Commands/Components"
         ),
         .plugin(
             name: "ConverterPlugin",
-            capability: .command(intent: .custom(verb: "convert", description: "Convert html content"), permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the converted file.")]),
+            capability: .command(
+                intent: .custom(
+                    verb: "convert",
+                    description: "Convert html content"),
+                permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the converted file.")]
+            ),
             dependencies: [
                 .target(name: "ConvertCommand")
+            ]
+        ),
+        .plugin(
+            name: "ComponentsPlugin",
+            capability: .command(
+                intent: .custom(
+                    verb: "deploy",
+                    description: "Deploy css files"),
+                permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the minified css file.")]
+            ),
+            dependencies: [
+                .target(name: "DeployCommand")
             ]
         )
     ]

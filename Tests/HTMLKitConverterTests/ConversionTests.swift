@@ -1,4 +1,4 @@
-import Converter
+import HTMLKitConverter
 import XCTest
 
 final class ConversionTests: XCTestCase {
