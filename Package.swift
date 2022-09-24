@@ -62,7 +62,8 @@ let package = Package(
         .testTarget(
             name: "HTMLKitComponentsTests",
             dependencies: [
-                .target(name: "HTMLKitComponents")
+                .target(name: "HTMLKitComponents"),
+                .target(name: "HTMLKit")
             ]
         ),
         .executableTarget(
