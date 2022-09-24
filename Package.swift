@@ -83,6 +83,13 @@ let package = Package(
             dependencies: [
                 .target(name: "ConvertCommand")
             ]
+        ),
+        .plugin(
+            name: "ComponentsPlugin",
+            capability: .command(intent: .custom(verb: "deploy", description: "Deploy css files"), permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the minified css file.")]),
+            dependencies: [
+                .target(name: "DeployCommand")
+            ]
         )
     ]
 )
