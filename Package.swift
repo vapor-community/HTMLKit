@@ -15,6 +15,10 @@ let package = Package(
         .plugin(
             name: "ComponentsPlugin",
             targets: ["ComponentsPlugin"]
+        ),
+        .plugin(
+            name: "ConverterPlugin",
+            targets: ["ConverterPlugin"]
         )
     ],
     dependencies: [
