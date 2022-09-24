@@ -11,6 +11,10 @@ let package = Package(
         .library(
             name: "HTMLKit",
             targets: ["HTMLKit"]
+        ),
+        .plugin(
+            name: "ConverterPlugin",
+            targets: ["ConverterPlugin"]
         )
     ],
     dependencies: [
