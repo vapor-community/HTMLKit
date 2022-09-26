@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "HTMLKit",
     platforms: [
-      .macOS(.v10_14),
+      .macOS(.v10_15),
     ],
     products: [
         .library(
@@ -24,7 +24,8 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/miroslavkovac/Lingo.git", from: "3.1.0"),
         .package(url: "https://github.com/apple/swift-collections.git", from: "1.0.1"),
-        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0")
+        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.65.2")
     ],
     targets: [
         .target(
@@ -47,6 +48,13 @@ let package = Package(
             ],
             resources: [
                 .process("Resources")
+            ]
+        ),
+        .target(
+            name: "HTMLKitVaporProvider",
+            dependencies: [
+                .target(name: "HTMLKit"),
+                .product(name: "Vapor", package: "vapor")
             ]
         ),
         .testTarget(
@@ -72,6 +80,14 @@ let package = Package(
             dependencies: [
                 .target(name: "HTMLKitComponents"),
                 .target(name: "HTMLKit")
+            ]
+        ),
+        .testTarget(
+            name: "HTMLKitVaporProviderTests",
+            dependencies: [
+                .target(name: "HTMLKitVaporProvider"),
+                .target(name: "HTMLKit"),
+                .product(name: "XCTVapor", package: "vapor")
             ]
         ),
         .executableTarget(
