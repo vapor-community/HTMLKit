@@ -1,4 +1,5 @@
 import HTMLKit
+import Vapor
 
 public class VaporCache {
     
@@ -12,12 +13,18 @@ public class VaporCache {
         self.cache = .init()
     }
     
-    public func get(name: String) -> HTMLKit.Renderer.Formula? {
-        return self.cache[name] ?? nil
+    public func retrieve(name: String, on loop: EventLoop) -> EventLoopFuture<HTMLKit.Renderer.Formula?> {
+        
+        if let cache = self.cache[name] {
+            return loop.makeSucceededFuture(cache)
+            
+        } else {
+            return loop.makeSucceededFuture(nil)
+        }
     }
     
     public func upsert(name: String, formula: HTMLKit.Renderer.Formula) {
-        self.cache[name] = formula
+        self.cache.updateValue(formula, forKey: name)
     }
     
     public func remove(name: String) {

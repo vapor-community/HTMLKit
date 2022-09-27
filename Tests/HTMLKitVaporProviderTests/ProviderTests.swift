@@ -3,8 +3,15 @@ import HTMLKit
 import HTMLKitVaporProvider
 
 final class ProviderTests: XCTestCase {
+    
+    struct TestContext: Vapor.Content {
+        let greeting: String
+    }
 
-    struct TestPage: Page {
+    struct TestView: HTMLKit.View {
+        
+        @TemplateValue(TestContext.self)
+        var context
         
         var body: AnyContent {
             Document(type: .html5)
@@ -15,6 +22,9 @@ final class ProviderTests: XCTestCase {
                     }
                 }
                 Body {
+                    Paragraph {
+                        context.greeting
+                    }
                 }
             }
         }
@@ -28,10 +38,10 @@ final class ProviderTests: XCTestCase {
         
         app.views.use(.htmlkit)
         
-        app.htmlkit.add(page: TestPage())
+        app.htmlkit.add(view: TestView())
         
         app.get("test") { request -> EventLoopFuture<Vapor.View> in
-            return request.view.render("TestPage")
+            return request.view.render("TestView", TestContext(greeting: "hello world"))
         }
         
         try app.test(.GET, "test") { response in
@@ -44,6 +54,9 @@ final class ProviderTests: XCTestCase {
                             <title>title</title>\
                             </head>\
                             <body>\
+                            <p>\
+                            hello world\
+                            </p>\
                             </body>\
                             </html>
                             """
@@ -57,10 +70,10 @@ final class ProviderTests: XCTestCase {
         
         defer { app.shutdown() }
         
-        app.htmlkit.add(page: TestPage())
+        app.htmlkit.add(view: TestView())
         
         app.get("test") { request -> EventLoopFuture<Vapor.View> in
-            return request.htmlkit.render("TestPage")
+            return request.htmlkit.render("TestView", TestContext(greeting: "hello world"))
         }
         
         try app.test(.GET, "test") { response in
@@ -73,6 +86,9 @@ final class ProviderTests: XCTestCase {
                             <title>title</title>\
                             </head>\
                             <body>\
+                            <p>\
+                            hello world\
+                            </p>\
                             </body>\
                             </html>
                             """
@@ -87,10 +103,10 @@ final class ProviderTests: XCTestCase {
         
         defer { app.shutdown() }
         
-        app.htmlkit.add(page: TestPage())
+        app.htmlkit.add(view: TestView())
         
         app.get("test") { request async throws -> Vapor.View in
-            return try await request.htmlkit.render("TestPage")
+            return try await request.htmlkit.render("TestView", TestContext(greeting: "hello world"))
         }
         
         try app.test(.GET, "test") { response in
@@ -103,6 +119,9 @@ final class ProviderTests: XCTestCase {
                             <title>title</title>\
                             </head>\
                             <body>\
+                            <p>\
+                            hello world\
+                            </p>\
                             </body>\
                             </html>
                             """

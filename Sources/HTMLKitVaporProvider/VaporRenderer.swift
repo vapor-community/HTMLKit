@@ -3,49 +3,56 @@ import Vapor
 
 public class VaporRenderer {
     
+    public enum RendererError: Error {
+        
+        case unkownTemplate(String)
+        
+        public var description: String {
+            
+            switch self {
+            case .unkownTemplate(let name):
+                return "Template '\(name)' not found."
+            }
+        }
+    }
+    
     private var renderer: HTMLKit.Renderer {
         return .init()
     }
     
-    public var eventLoop: EventLoop
+    private var eventLoop: EventLoop
     
-    public var cache: VaporCache
+    private var cache: VaporCache
     
     public init(eventLoop: EventLoop, cache: VaporCache) {
         self.eventLoop = eventLoop
         self.cache = cache
     }
     
-    public func retrieve(name: String) -> EventLoopFuture<HTMLKit.Renderer.Formula?> {
+    public func render(name: String, context: Encodable) -> EventLoopFuture<ByteBuffer> {
         
-        if let formula = self.cache.get(name: name) {
-            return self.eventLoop.makeSucceededFuture(formula)
-        }
+        return self.cache.retrieve(name: name, on: self.eventLoop).flatMap { formula in
         
-        return self.eventLoop.makeSucceededFuture(nil)
-    }
-    
-    public func render(name: String) -> EventLoopFuture<ByteBuffer> {
-        
-        return self.retrieve(name: name).map { formula in
+            guard let formula = formula else {
+                return self.eventLoop.makeFailedFuture(RendererError.unkownTemplate(name))
+            }
             
             var buffer = ByteBufferAllocator().buffer(capacity: 4096)
             
-            if let formula = formula {
+            let manager = HTMLKit.Renderer.ContextManager(rootContext: context)
+            
+            for ingredient in formula.ingredient {
                 
-                for ingredient in formula.ingredient {
-                    
-                    if let string = ingredient as? String {
-                        buffer.writeString(string)
-                    }
+                if let value = try? ingredient.render(with: manager) {
+                    buffer.writeString(value)
                 }
             }
             
-            return buffer
+            return self.eventLoop.makeSucceededFuture(buffer)
         }
     }
     
-    public func add<T: HTMLKit.Page>(page: T) {
+    public func add<T:HTMLKit.Page>(page: T) {
         
         let formula = HTMLKit.Renderer.Formula()
         
@@ -54,7 +61,7 @@ public class VaporRenderer {
         self.cache.upsert(name: String(describing: type(of: page)), formula: formula)
     }
     
-    public func add<T: HTMLKit.View>(view: T) {
+    public func add<T:HTMLKit.View>(view: T) {
         
         let formula = HTMLKit.Renderer.Formula()
         
@@ -71,7 +78,7 @@ extension VaporRenderer: ViewRenderer {
     }
     
     public func render<E:Encodable>(_ name: String, _ context: E) -> EventLoopFuture<Vapor.View> {
-        return self.render(name: name).map { buffer in
+        return self.render(name: name, context: context).map { buffer in
             return View(data: buffer)
         }
     }
