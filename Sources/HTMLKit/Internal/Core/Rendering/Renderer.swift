@@ -61,7 +61,7 @@ public class Renderer {
     }
 
     /// A cache that contains all the composed content.
-    public var formulaCache: [ObjectIdentifier: Formula]
+    public var formulaCache: Cache
 
     /// The localization to use when rendering.
     public var lingo: Lingo?
@@ -74,13 +74,13 @@ public class Renderer {
 
     /// Initiates the renderer.
     public init() {
-        self.formulaCache = [:]
+        self.formulaCache = .init()
     }
 
     /// Renders a formula.
     public func render<T: Page>(raw type: T.Type) throws -> String {
         
-        guard let formula = formulaCache[ObjectIdentifier(type)] else {
+        guard let formula = formulaCache.retrieve(identifier: ObjectIdentifier(type)) else {
             throw Errors.unableToFindFormula
         }
         
@@ -90,7 +90,7 @@ public class Renderer {
     /// Renders a formula.
     public func render<T: View>(raw type: T.Type, with context: T.Context) throws -> String {
         
-        guard let formula = formulaCache[ObjectIdentifier(type)] else {
+        guard let formula = formulaCache.retrieve(identifier: ObjectIdentifier(type)) else {
             throw Errors.unableToFindFormula
         }
         
@@ -104,7 +104,7 @@ public class Renderer {
         
         try view.prerender(formula)
         
-        self.formulaCache[ObjectIdentifier(T.self)] = formula
+        self.formulaCache.upsert(formula: formula, for: ObjectIdentifier(T.self))
     }
 
     /// Adds a formula to the cache.
@@ -114,7 +114,7 @@ public class Renderer {
         
         try view.prerender(formula)
         
-        self.formulaCache[ObjectIdentifier(T.self)] = formula
+        self.formulaCache.upsert(formula: formula, for: ObjectIdentifier(T.self))
     }
     
     /// Registers a localization directory for the renderer.
@@ -159,6 +159,31 @@ extension Renderer {
             return try ingredients.reduce(into: "") { (result, ingridient) in
                 return result += try ingridient.render(with: manager)
             }
+        }
+    }
+    
+    public class Cache {
+        
+        private var stack: [ObjectIdentifier: Formula]
+        
+        public var count: Int {
+            return self.stack.keys.count
+        }
+        
+        public init() {
+            self.stack = [:]
+        }
+        
+        public func retrieve(identifier: ObjectIdentifier) -> Formula? {
+            return self.stack[identifier] ?? nil
+        }
+        
+        public func upsert(formula: Formula, for identifier: ObjectIdentifier) {
+            self.stack.updateValue(formula, forKey: identifier)
+        }
+        
+        public func remove(identifier: ObjectIdentifier) {
+            self.stack.removeValue(forKey: identifier)
         }
     }
 }
