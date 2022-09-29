@@ -6,31 +6,36 @@ final class ContextTests: XCTestCase {
     struct PageContext {
         
         var category: String
-        var isOnline: Bool
+        var viewContext: ViewContext
     }
     
     struct ViewContext {
         
         var headline: String
-        var subtitle: String
     }
     
     struct TestPage: Page {
         
-        @ContentBuilder<AnyContent> var body: AnyContent
+        @TemplateValue(PageContext.self)
+        var context
+        
+        var body: AnyContent {
+            Heading1 {
+                context.category
+            }
+            TestView(context: context.viewContext)
+        }
     }
     
     struct TestView: View {
         
-        var context: TemplateValue<ViewContext>
+        @TemplateValue(ViewContext.self)
+        var context
         
         var body: AnyContent {
             Section{
                 Heading2 {
                     context.headline
-                }
-                Heading3 {
-                    context.subtitle
                 }
             }
         }
@@ -40,17 +45,14 @@ final class ContextTests: XCTestCase {
     
     func testViewContext() throws {
         
-        let context = ViewContext(headline: "test", subtitle: "test")
+        let context = ViewContext(headline: "test")
         
-        let view = TestView(context: .constant(context))
+        try renderer.add(layout: TestView())
         
-        try renderer.add(view: view)
-        
-        XCTAssertEqual(try renderer.render(raw: TestView.self, with: context),
+        XCTAssertEqual(try renderer.render(layout: TestView.self, with: context),
                        """
                        <section>\
                        <h2>test</h2>\
-                       <h3>test</h3>\
                        </section>
                        """
         )
@@ -58,18 +60,11 @@ final class ContextTests: XCTestCase {
     
     func testPageContext() throws {
         
-        let context = PageContext(category: "test", isOnline: false)
+        let context = PageContext(category: "test", viewContext: .init(headline: "test"))
         
-        let page = TestPage {
-            Heading1 {
-                context.category
-            }
-            TestView(context: .constant(ViewContext(headline: "test", subtitle: "test")))
-        }
+        try renderer.add(layout: TestPage())
         
-        try renderer.add(view: page)
-        
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self, with: context),
                        """
                        <h1>test</h1>\
                        <section>\

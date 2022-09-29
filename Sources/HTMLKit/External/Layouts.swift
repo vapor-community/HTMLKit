@@ -22,15 +22,6 @@ public protocol Page: AnyLayout, GlobalElement {
 ///
 /// The view is a single part of page. It can contain views ad components.
 public protocol View: AnyLayout, GlobalElement {
-    
-    associatedtype Context
-    
-    var context: TemplateValue<Context> { get }
-}
-
-extension View {
-    
-    public var context: TemplateValue<Context> { .root() }
 }
 
 /// A type that defines a component layout.

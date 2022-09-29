@@ -50,7 +50,8 @@ struct SamplePage: Page {
 
 struct SampleView: View {
     
-    @TemplateValue(SampleContext.self) var context
+    @TemplateValue(SampleContext.self)
+    var context
     
     var body: AnyContent {
         SamplePage {

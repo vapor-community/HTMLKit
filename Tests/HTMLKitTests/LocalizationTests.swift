@@ -18,13 +18,13 @@ final class LocalizationTests: XCTestCase {
     
     func testLocalization() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Heading1("Hallo Welt")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <h1>Hello World</h1>
                        """
