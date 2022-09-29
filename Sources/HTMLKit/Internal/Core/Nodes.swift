@@ -64,20 +64,20 @@ extension ContentNode where Content == AnyContent {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -94,20 +94,20 @@ extension ContentNode where Content == BodyElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -124,20 +124,20 @@ extension ContentNode where Content == DescriptionElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -154,20 +154,20 @@ extension ContentNode where Content == FigureElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -184,20 +184,20 @@ extension ContentNode where Content == FormElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -214,20 +214,20 @@ extension ContentNode where Content == BasicElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -244,20 +244,20 @@ extension ContentNode where Content == HeadElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -274,20 +274,20 @@ extension ContentNode where Content == InputElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -304,20 +304,20 @@ extension ContentNode where Content == ListElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -334,20 +334,20 @@ extension ContentNode where Content == MapElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -364,20 +364,20 @@ extension ContentNode where Content == MediaElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -394,20 +394,20 @@ extension ContentNode where Content == ObjectElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -424,20 +424,20 @@ extension ContentNode where Content == RubyElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -454,20 +454,20 @@ extension ContentNode where Content == TableElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -484,20 +484,20 @@ extension ContentNode where Content == HtmlElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -514,20 +514,20 @@ extension ContentNode where Content == VectorElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
 
         try content.prerender(formula)
 
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -544,20 +544,20 @@ extension ContentNode where Content == String {
     
     internal func build(_ formula: Renderer.Formula) throws {
         
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
         
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
         
-        formula.add(string: ">")
+        formula.add(content: ">")
         
         try content.prerender(formula)
         
-        formula.add(string: "</\(name)>")
+        formula.add(content: "</\(name)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -590,16 +590,16 @@ extension EmptyNode {
     
     internal func build(_ formula: Renderer.Formula) throws {
         
-        formula.add(string: "<\(name)")
+        formula.add(content: "<\(name)")
 
         if let attributes = attributes {
 
             attributes.forEach { attribute in
-                formula.add(string: " \(attribute.key)=\"\(attribute.value)\"")
+                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
             }
         }
 
-        formula.add(string: ">")
+        formula.add(content: ">")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
@@ -644,12 +644,10 @@ internal protocol CommentNode: AnyNode {
 extension CommentNode {
     
     internal func build(_ formula: Renderer.Formula) throws {
-        
-        formula.add(string: "<!--\(content)-->")
+        formula.add(content: "<!--\(content)-->")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        
         return "<!--\(content)-->"
     }
 }
@@ -666,12 +664,10 @@ internal protocol DocumentNode: AnyNode {
 extension DocumentNode {
     
     internal func build(_ formula: Renderer.Formula) throws {
-        
-        formula.add(string: "<!DOCTYPE \(content)>")
+        formula.add(content: "<!DOCTYPE \(content)>")
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
         return "<!DOCTYPE \(content)>"
     }
 }

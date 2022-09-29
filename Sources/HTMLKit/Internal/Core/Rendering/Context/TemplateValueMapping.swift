@@ -25,7 +25,7 @@ extension TemplateValueMapping: AnyContent where C: AnyContent {
             
         case .dynamic(_):
             
-            formula.add(mappable: self)
+            formula.add(content: self)
         }
     }
 

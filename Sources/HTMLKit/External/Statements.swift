@@ -125,7 +125,7 @@ extension IF: AnyContent {
         }
         
         if isStaticallyEvaluated == false {
-            formula.add(mappable: self)
+            formula.add(content: self)
         }
     }
 
@@ -261,7 +261,7 @@ extension ForEach: AnyContent {
 
     public func prerender(_ formula: Renderer.Formula) throws {
         
-        formula.add(mappable: self)
+        formula.add(content: self)
         
         try content.prerender(localFormula)
     }

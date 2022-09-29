@@ -74,7 +74,6 @@ public struct DateVariable: AnyContent {
     }
 
     public func prerender(_ formula: Renderer.Formula) throws {
-        
-        formula.add(mappable: self)
+        formula.add(content: self)
     }
 }

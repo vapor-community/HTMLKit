@@ -82,7 +82,7 @@ extension HTMLContext: AnyContent where Value: AnyContent {
 
     public func prerender(_ formula: Renderer.Formula) throws {
         
-        formula.add(mappable: self)
+        formula.add(content: self)
     }
 
     func applyEscaping(_ render: String) -> String {

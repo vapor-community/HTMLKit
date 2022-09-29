@@ -13,7 +13,7 @@ public struct EnvironmentModifier: AnyContent {
         
         try view.prerender(localFormula)
         
-        formula.add(mappable: self)
+        formula.add(content: self)
     }
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {

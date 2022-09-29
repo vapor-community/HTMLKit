@@ -20,7 +20,7 @@ public struct Localized<B>: AnyContent where B: Encodable {
     }
 
     public func prerender(_ formula: Renderer.Formula) throws {
-        formula.add(mappable: self)
+        formula.add(content: self)
     }
 
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {

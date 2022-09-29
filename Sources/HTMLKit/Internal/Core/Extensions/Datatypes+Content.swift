@@ -262,7 +262,7 @@ extension Bool: AnyContent {
     }
 
     public func prerender(_ formula: Renderer.Formula) throws {
-        formula.add(string: String(self))
+        formula.add(content: String(self))
     }
 
     public var renderWhenLocalizing: Bool { return false }
@@ -281,7 +281,7 @@ extension Double: AnyContent {
     }
 
     public func prerender(_ formula: Renderer.Formula) throws {
-        formula.add(string: String(self))
+        formula.add(content: String(self))
     }
 
     public var renderWhenLocalizing: Bool { return false }
@@ -294,7 +294,7 @@ extension Float: AnyContent {
     }
 
     public func prerender(_ formula: Renderer.Formula) throws {
-        formula.add(string: String(self))
+        formula.add(content: String(self))
     }
 
     public var renderWhenLocalizing: Bool { return false }
@@ -307,7 +307,7 @@ extension Int: AnyContent {
     }
 
     public func prerender(_ formula: Renderer.Formula) throws {
-        formula.add(string: String(self))
+        formula.add(content: String(self))
     }
 
     public var renderWhenLocalizing: Bool { return false }
@@ -354,7 +354,7 @@ extension String: AnyContent {
     }
 
     public func prerender(_ formula: Renderer.Formula) throws {
-        formula.add(string: self)
+        formula.add(content: self)
     }
 }
 
@@ -365,7 +365,7 @@ extension UUID: AnyContent {
     }
 
     public func prerender(_ formula: Renderer.Formula) throws {
-        formula.add(string: self.uuidString)
+        formula.add(content: self.uuidString)
     }
 }
 
