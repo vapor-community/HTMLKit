@@ -825,7 +825,7 @@ public struct Path: ContentNode, VectorElement {
     }
 }
 
-extension Path: GlobalVectorAttributes {
+extension Path: GlobalVectorAttributes, DrawAttribute {
     
     public func id(_ value: String) -> Path {
         return self.mutate(id: value)
@@ -875,17 +875,13 @@ extension Path: GlobalVectorAttributes {
         return self.mutate(strokelinejoin: type.rawValue)
     }
     
-    public func custom(key: String, value: Any) -> Path {
-        return self.mutate(key: key, value: value)
-    }
-}
-
-extension Path: DrawAttribute {
-
     public func draw(_ value: String) -> Path {
         return self.mutate(draw: value)
     }
-
+    
+    public func custom(key: String, value: Any) -> Path {
+        return self.mutate(key: key, value: value)
+    }
 }
 
 extension Path: AnyContent {
@@ -1006,14 +1002,6 @@ extension Group: GlobalVectorAttributes {
     public func custom(key: String, value: Any) -> Self {
         return self.mutate(key: key, value: value)
     }
-}
-
-extension Group: DrawAttribute {
-
-    public func draw(_ value: String) -> Self {
-        return self.mutate(draw: value)
-    }
-
 }
 
 extension Group: AnyContent {
