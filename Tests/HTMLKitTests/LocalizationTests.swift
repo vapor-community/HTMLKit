@@ -40,6 +40,6 @@ extension LocalizationTests {
         
         let currentDirectory = currentFile.appendingPathComponent("Localization")
         
-        try renderer.registerLocalization(atPath: currentDirectory.path, defaultLocale: "en")
+        try renderer.add(localization: .init(source: currentDirectory.path, locale: .english))
     }
 }

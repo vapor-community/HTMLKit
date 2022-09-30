@@ -85,6 +85,11 @@ public class Renderer {
         
         self.cache.upsert(formula: formula, for: ObjectIdentifier(T.self))
     }
+    
+    /// Registers a localization.
+    public func add(localization: Localization) throws {
+        self.lingo = try Lingo(rootPath: localization.source, defaultLocale: localization.locale.rawValue)
+    }
 
     /// Renders a formula.
     public func render<T: AnyLayout>(layout: T.Type) throws -> String {
@@ -104,11 +109,6 @@ public class Renderer {
         }
         
         return try formula.render(with: context, lingo: lingo)
-    }
-    
-    /// Registers a localization directory for the renderer.
-    public func registerLocalization(atPath path: String = "Resources/Localization", defaultLocale: String = "en") throws {
-        self.lingo = try Lingo(rootPath: path, defaultLocale: defaultLocale)
     }
 }
 
@@ -174,6 +174,32 @@ extension Renderer {
             self.stack.removeValue(forKey: identifier)
         }
     }
+    
+    public class Localization {
+        
+        public enum Locale: String {
+            
+            case arabic = "ar"
+            case english = "en"
+            case french = "fr"
+            case german = "de"
+            case hindi = "es"
+            case bengali = "bn"
+            case russian = "ru"
+            case portuguese = "pt"
+            case indonesian = "id"
+        }
+        
+        internal let source: String
+        
+        internal let locale: Locale
+        
+        public init(source: String, locale: Locale) {
+            
+            self.source = source
+            self.locale = locale
+        }
+    }
 }
 
 extension Renderer {
@@ -222,5 +248,11 @@ extension Renderer {
         }
 
         return try formula.render(with: context, lingo: lingo)
+    }
+    
+    /// Registers a localization directory for the renderer.
+    @available(*, deprecated, message: "Use add(localization:) instead.")
+    public func registerLocalization(atPath path: String = "Resources/Localization", defaultLocale: String = "en") throws {
+        self.lingo = try Lingo(rootPath: path, defaultLocale: defaultLocale)
     }
 }
