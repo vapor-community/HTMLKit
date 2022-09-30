@@ -69,7 +69,6 @@ final class ContextTests: XCTestCase {
                        <h1>test</h1>\
                        <section>\
                        <h2>test</h2>\
-                       <h3>test</h3>\
                        </section>
                        """
         )
