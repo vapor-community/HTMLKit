@@ -175,3 +175,52 @@ extension Renderer {
         }
     }
 }
+
+extension Renderer {
+    
+    // MARK: Deprecations
+    
+    /// Adds a formula to the cache.
+    @available(*, deprecated, message: "Use add(layout:) instead.")
+    public func add<T: Page>(view: T) throws {
+        
+        let formula = Formula()
+
+        try view.prerender(formula)
+        
+        self.cache.upsert(formula: formula, for: ObjectIdentifier(T.self))
+    }
+    
+    /// Adds a formula to the cache.
+    @available(*, deprecated, message: "Use add(layout:) instead.")
+    public func add<T: View>(view: T) throws {
+
+        let formula = Formula()
+
+        try view.prerender(formula)
+
+        self.cache.upsert(formula: formula, for: ObjectIdentifier(T.self))
+    }
+    
+    /// Renders a formula.
+    @available(*, deprecated, message: "Use render(layout:) instead.")
+    public func render<T: Page>(raw type: T.Type) throws -> String {
+        
+        guard let formula = self.cache.retrieve(identifier: ObjectIdentifier(type)) else {
+            throw Errors.unableToFindFormula
+        }
+
+        return try formula.render(with: (), lingo: lingo)
+    }
+    
+    /// Renders a formula.
+    @available(*, deprecated, message: "Use render(layout:, with:) instead.")
+    public func render<T: View>(raw type: T.Type, with context: Any) throws -> String {
+        
+        guard let formula = self.cache.retrieve(identifier: ObjectIdentifier(type)) else {
+            throw Errors.unableToFindFormula
+        }
+
+        return try formula.render(with: context, lingo: lingo)
+    }
+}
