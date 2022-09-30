@@ -85,6 +85,37 @@ public struct Html: ContentNode, BasicElement {
         self.attributes = attributes
         self.content = content
     }
+    
+    public func modify(if condition: Bool, element: (Html) -> Html) -> Html {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Html, TemplateValue<T>) -> Html) -> Html {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 extension Html: GlobalAttributes, GlobalEventAttributes {
@@ -236,41 +267,5 @@ extension Html: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
-    }
-}
-
-extension Html: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
     }
 }

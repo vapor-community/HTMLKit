@@ -30,6 +30,39 @@ public struct Input: EmptyNode, FormElement {
     internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
+    
+    public func modify(if condition: Bool, element: (Input) -> Input) -> Input {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Input, TemplateValue<T>) -> Input) -> Input {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, AlternateAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute {
@@ -296,42 +329,6 @@ extension Input: AnyContent {
     }
 }
 
-extension Input: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
-}
-
 /// The element represents a caption for a form control.
 ///
 /// ```html
@@ -352,6 +349,37 @@ public struct Label: ContentNode, FormElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (Label) -> Label) -> Label {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Label, TemplateValue<T>) -> Label) -> Label {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -598,42 +626,6 @@ extension Label: Localizable {
     }
 }
 
-extension Label: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
-}
-
 /// The element represents a control for selecting amongst a set of options.
 ///
 /// ```html
@@ -654,6 +646,37 @@ public struct Select: ContentNode, FormElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (Select) -> Select) -> Select {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Select, TemplateValue<T>) -> Select) -> Select {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -841,42 +864,6 @@ extension Select: AnyContent {
     }
 }
 
-extension Select: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
-}
-
 /// The element represents a multiline plain text edit control.
 ///
 /// ```html
@@ -897,6 +884,37 @@ public struct TextArea: ContentNode, FormElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [String]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (TextArea) -> TextArea) -> TextArea {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TextArea, TemplateValue<T>) -> TextArea) -> TextArea {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -1184,42 +1202,6 @@ extension TextArea: AnyContent {
     }
 }
 
-extension TextArea: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
-}
-
 /// The element represents a comment output.
 ///
 /// ```html
@@ -1240,6 +1222,37 @@ public struct Button: ContentNode, FormElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (Button) -> Button) -> Button {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Button, TemplateValue<T>) -> Button) -> Button {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -1514,42 +1527,6 @@ extension Button: Localizable {
     }
 }
 
-extension Button: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
-}
-
 /// The element represents a set of form controls grouped together.
 ///
 /// ```html
@@ -1570,6 +1547,37 @@ public struct Fieldset: ContentNode, FormElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (Fieldset) -> Fieldset) -> Fieldset {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Fieldset, TemplateValue<T>) -> Fieldset) -> Fieldset {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -1814,41 +1822,5 @@ extension Fieldset: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
-    }
-}
-
-extension Fieldset: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
     }
 }

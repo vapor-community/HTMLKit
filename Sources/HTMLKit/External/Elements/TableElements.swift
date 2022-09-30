@@ -107,6 +107,37 @@ public struct Caption: ContentNode, TableElement {
         self.attributes = attributes
         self.content = content
     }
+    
+    public func modify(if condition: Bool, element: (Caption) -> Caption) -> Caption {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Caption, TemplateValue<T>) -> Caption) -> Caption {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
@@ -337,42 +368,6 @@ extension Caption: AnyContent {
     }
 }
 
-extension Caption: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
-}
-
 /// The element specifies a group of one or more columns.
 ///
 /// ```html
@@ -393,6 +388,37 @@ public struct ColumnGroup: ContentNode, TableElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (ColumnGroup) -> ColumnGroup) -> ColumnGroup {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (ColumnGroup, TemplateValue<T>) -> ColumnGroup) -> ColumnGroup {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -552,42 +578,6 @@ extension ColumnGroup: AnyContent {
     }
 }
 
-extension ColumnGroup: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
-}
-
 /// The element represents a column in a table.
 ///
 /// ```html
@@ -608,6 +598,37 @@ public struct Column: ContentNode, TableElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (Column) -> Column) -> Column {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Column, TemplateValue<T>) -> Column) -> Column {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -767,42 +788,6 @@ extension Column: AnyContent {
     }
 }
 
-extension Column: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
-}
-
 /// The element represents a block of rows in a table.
 ///
 /// ```html
@@ -823,6 +808,37 @@ public struct TableBody: ContentNode, TableElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (TableBody) -> TableBody) -> TableBody {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TableBody, TemplateValue<T>) -> TableBody) -> TableBody {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -1062,42 +1078,6 @@ extension TableBody: AnyContent {
     }
 }
 
-extension TableBody: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
-}
-
 /// The element represents the block of rows that consist of the column labels.
 ///
 /// ```html
@@ -1118,6 +1098,37 @@ public struct TableHead: ContentNode, TableElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (TableHead) -> TableHead) -> TableHead {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TableHead, TemplateValue<T>) -> TableHead) -> TableHead {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -1357,42 +1368,6 @@ extension TableHead: AnyContent {
     }
 }
 
-extension TableHead: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
-}
-
 /// The element represents the block of rows that consist of the column summaries.
 ///
 /// ```html
@@ -1413,6 +1388,37 @@ public struct TableFoot: ContentNode, TableElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (TableFoot) -> TableFoot) -> TableFoot {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TableFoot, TemplateValue<T>) -> TableFoot) -> TableFoot {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -1644,42 +1650,6 @@ extension TableFoot: AnyContent {
     }
 }
 
-extension TableFoot: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
-}
-
 /// The element represents a row of cells in a table.
 ///
 /// ```html
@@ -1700,6 +1670,37 @@ public struct TableRow: ContentNode, TableElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (TableRow) -> TableRow) -> TableRow {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TableRow, TemplateValue<T>) -> TableRow) -> TableRow {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -1939,42 +1940,6 @@ extension TableRow: AnyContent {
     }
 }
 
-extension TableRow: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
-}
-
 /// The element represents a data cell in a table.
 ///
 /// ```html
@@ -1995,6 +1960,37 @@ public struct DataCell: ContentNode, TableElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (DataCell) -> DataCell) -> DataCell {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (DataCell, TemplateValue<T>) -> DataCell) -> DataCell {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -2238,42 +2234,6 @@ extension DataCell: AnyContent {
     }
 }
 
-extension DataCell: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
-}
-
 /// The element represents a header cell in a table.
 ///
 /// ```html
@@ -2294,6 +2254,37 @@ public struct HeaderCell: ContentNode, TableElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (HeaderCell) -> HeaderCell) -> HeaderCell {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (HeaderCell, TemplateValue<T>) -> HeaderCell) -> HeaderCell {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -2549,41 +2540,5 @@ extension HeaderCell: Localizable {
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         self.content = [Localized(key: localizedKey, context: context)]
-    }
-}
-
-extension HeaderCell: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
     }
 }

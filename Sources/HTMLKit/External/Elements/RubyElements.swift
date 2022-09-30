@@ -53,6 +53,37 @@ public struct RubyText: ContentNode, RubyElement {
         self.attributes = attributes
         self.content = content
     }
+    
+    public func modify(if condition: Bool, element: (RubyText) -> RubyText) -> RubyText {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (RubyText, TemplateValue<T>) -> RubyText) -> RubyText {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
@@ -283,42 +314,6 @@ extension RubyText: AnyContent {
     }
 }
 
-extension RubyText: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
-}
-
 /// The element represents nothing.
 ///
 /// ```html
@@ -339,6 +334,37 @@ public struct RubyPronunciation: ContentNode, RubyElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (RubyPronunciation) -> RubyPronunciation) -> RubyPronunciation {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (RubyPronunciation, TemplateValue<T>) -> RubyPronunciation) -> RubyPronunciation {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -567,41 +593,5 @@ extension RubyPronunciation: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
-    }
-}
-
-extension RubyPronunciation: Modifiable {
-    
-    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
-        
-        if condition {
-            return modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Self, TemplateValue<T>) -> Self) -> Self {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMascadingOptional {
-                
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
     }
 }

@@ -44,6 +44,37 @@ public struct Circle: ContentNode, VectorElement {
         self.attributes = attributes
         self.content = content
     }
+    
+    public func modify(if condition: Bool, element: (Circle) -> Circle) -> Circle {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Circle, TemplateValue<T>) -> Circle) -> Circle {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute {
@@ -140,6 +171,37 @@ public struct Rectangle: ContentNode, VectorElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (Rectangle) -> Rectangle) -> Rectangle {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Rectangle, TemplateValue<T>) -> Rectangle) -> Rectangle {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -242,6 +304,37 @@ public struct Ellipse: ContentNode, VectorElement {
         self.attributes = attributes
         self.content = content
     }
+    
+    public func modify(if condition: Bool, element: (Ellipse) -> Ellipse) -> Ellipse {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Ellipse, TemplateValue<T>) -> Ellipse) -> Ellipse {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttribute {
@@ -339,6 +432,37 @@ public struct Line: ContentNode, VectorElement {
         self.attributes = attributes
         self.content = content
     }
+    
+    public func modify(if condition: Bool, element: (Line) -> Line) -> Line {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Line, TemplateValue<T>) -> Line) -> Line {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 extension Line: GlobalVectorAttributes {
@@ -427,6 +551,37 @@ public struct Polygon: ContentNode, VectorElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (Polygon) -> Polygon) -> Polygon {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Polygon, TemplateValue<T>) -> Polygon) -> Polygon {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -517,6 +672,37 @@ public struct Polyline: ContentNode, VectorElement {
         self.attributes = attributes
         self.content = content
     }
+    
+    public func modify(if condition: Bool, element: (Polyline) -> Polyline) -> Polyline {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Polyline, TemplateValue<T>) -> Polyline) -> Polyline {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 extension Polyline: GlobalVectorAttributes {
@@ -605,6 +791,37 @@ public struct Path: ContentNode, VectorElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (Path) -> Path) -> Path {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Path, TemplateValue<T>) -> Path) -> Path {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 
@@ -703,6 +920,37 @@ public struct Group: ContentNode, VectorElement {
         self.attributes = attributes
         self.content = content
     }
+    
+    public func modify(if condition: Bool, element: (Group) -> Group) -> Group {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Group, TemplateValue<T>) -> Group) -> Group {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
+    }
 }
 
 extension Group: GlobalVectorAttributes {
@@ -799,6 +1047,37 @@ public struct Use: ContentNode, VectorElement {
     internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (Use) -> Use) -> Use {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Use, TemplateValue<T>) -> Use) -> Use {
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let value = optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(value)))
+            
+        case .dynamic(let context):
+            
+            if context.isMascadingOptional {
+                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
+            
+            } else {
+                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
+            }
+        }
     }
 }
 

@@ -39,24 +39,15 @@ internal protocol ContentNode: AnyNode {
 
 extension ContentNode {
     
-    internal func merge(_ new: OrderedDictionary<String, Any>, with current: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        
-        current.merge(new) { (_, new) in new }
-        
-        return current
-    }
-}
-
-extension ContentNode where Self: Modifiable {
-    
     internal func modify(_ element: Self) -> Self {
         
         guard var attributes = self.attributes else {
-
-            return .init(attributes: element.attributes!, content: self.content)
+            return .init(attributes: element.attributes, content: self.content)
         }
         
-        return .init(attributes: merge(element.attributes!, with: &attributes), content: self.content)
+        attributes.merge(element.attributes!) { (_, new) in new }
+       
+        return .init(attributes: attributes, content: self.content)
     }
 }
 
@@ -611,24 +602,15 @@ extension EmptyNode {
         return "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">" as! String
     }
     
-    internal func merge(_ new: OrderedDictionary<String, Any>, with current: inout OrderedDictionary<String, Any>) -> OrderedDictionary<String, Any> {
-        
-        current.merge(new) { (current, _) in current }
-        
-        return current
-    }
-}
-
-extension EmptyNode where Self: Modifiable {
-    
     internal func modify(_ element: Self) -> Self {
         
         guard var attributes = self.attributes else {
-
-            return .init(attributes: element.attributes!)
+            return .init(attributes: element.attributes)
         }
         
-        return .init(attributes: merge(element.attributes!, with: &attributes))
+        attributes.merge(element.attributes!) { (_, new) in new }
+        
+        return .init(attributes: attributes)
     }
 }
 
