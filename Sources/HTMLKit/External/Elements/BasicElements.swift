@@ -48,7 +48,7 @@ public struct Document: DocumentNode, BasicElement {
     
     public var content: String
     
-    public init(type: Doctypes) {
+    public init(_ type: Doctypes) {
         self.content = type.rawValue
     }
 }
@@ -61,6 +61,16 @@ extension Document: AnyContent {
     
     public func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
         try self.build(with: manager)
+    }
+}
+
+extension Document {
+    
+    // MARK: Deprecations
+    
+    @available(*, deprecated, message: "Use Document(_ type:) instead.")
+    public init(type: Doctypes) {
+        self.content = type.rawValue
     }
 }
 

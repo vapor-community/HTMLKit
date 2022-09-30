@@ -13,7 +13,7 @@ final class RenderingTests: XCTestCase {
     func testRenderingDocument() throws {
         
         let page = TestPage {
-            Document(type: .html5)
+            Document(.html5)
             Html {
                 Body {
                     Paragraph {

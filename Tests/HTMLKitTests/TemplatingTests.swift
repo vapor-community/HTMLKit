@@ -11,7 +11,7 @@ final class TemplatingTests: XCTestCase {
         struct TestPage: Page {
             
             var body: AnyContent {
-                Document(type: .html5)
+                Document(.html5)
                 Html {
                     Head {
                         Title {
@@ -69,7 +69,7 @@ final class TemplatingTests: XCTestCase {
             }
             
             var body: AnyContent {
-                Document(type: .html5)
+                Document(.html5)
                 Html {
                     Head {
                         Title {
@@ -129,7 +129,7 @@ final class TemplatingTests: XCTestCase {
             }
             
             var body: AnyContent {
-                Document(type: .html5)
+                Document(.html5)
                 Html {
                     Head {
                         Title {
