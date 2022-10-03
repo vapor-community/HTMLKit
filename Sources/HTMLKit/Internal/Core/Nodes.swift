@@ -39,6 +39,19 @@ internal protocol ContentNode: AnyNode {
 
 extension ContentNode {
     
+    internal var startTag: String {
+        
+        guard let attributes = attributes else {
+            return "<\(name)>"
+        }
+        
+        return "<\(name) \(attributes.map { "\($0.key)=\"\($0.value)\"" }.joined(separator: " "))>"
+    }
+    
+    internal var endTag: String {
+        return "</\(name)>"
+    }
+    
     internal func modify(_ element: Self) -> Self {
         
         guard var attributes = self.attributes else {
@@ -54,30 +67,16 @@ extension ContentNode {
 extension ContentNode where Content == AnyContent {
     
     internal func build(_ formula: Renderer.Formula) throws {
-
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -85,29 +84,15 @@ extension ContentNode where Content == BodyElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -115,29 +100,15 @@ extension ContentNode where Content == DescriptionElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -145,29 +116,15 @@ extension ContentNode where Content == FigureElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -175,29 +132,15 @@ extension ContentNode where Content == FormElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -205,29 +148,15 @@ extension ContentNode where Content == BasicElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -235,29 +164,15 @@ extension ContentNode where Content == HeadElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -265,29 +180,15 @@ extension ContentNode where Content == InputElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -295,29 +196,15 @@ extension ContentNode where Content == ListElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -325,29 +212,15 @@ extension ContentNode where Content == MapElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -355,29 +228,15 @@ extension ContentNode where Content == MediaElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -385,29 +244,15 @@ extension ContentNode where Content == ObjectElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -415,29 +260,15 @@ extension ContentNode where Content == RubyElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -445,29 +276,15 @@ extension ContentNode where Content == TableElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -475,29 +292,15 @@ extension ContentNode where Content == HtmlElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -505,29 +308,15 @@ extension ContentNode where Content == VectorElement {
     
     internal func build(_ formula: Renderer.Formula) throws {
 
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-
+        formula.add(content: startTag)
+        
         try content.prerender(formula)
-
-        formula.add(content: "</\(name)>")
+        
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -535,29 +324,15 @@ extension ContentNode where Content == String {
     
     internal func build(_ formula: Renderer.Formula) throws {
         
-        formula.add(content: "<\(name)")
-        
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-        
-        formula.add(content: ">")
+        formula.add(content: startTag)
         
         try content.prerender(formula)
         
-        formula.add(content: "</\(name)>")
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        
-        guard let attributes = attributes else {
-            return try "<\(name)>\(content.render(with: manager))</\(name)>"
-        }
-        
-        return try "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">\(content.render(with: manager))</\(name)>" as! String
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
@@ -579,27 +354,21 @@ internal protocol EmptyNode: AnyNode {
 
 extension EmptyNode {
     
-    internal func build(_ formula: Renderer.Formula) throws {
-        
-        formula.add(content: "<\(name)")
-
-        if let attributes = attributes {
-
-            attributes.forEach { attribute in
-                formula.add(content: " \(attribute.key)=\"\(attribute.value)\"")
-            }
-        }
-
-        formula.add(content: ">")
-    }
-
-    internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+    internal var startTag: String {
         
         guard let attributes = attributes else {
             return "<\(name)>"
         }
         
-        return "<\(name)" + attributes.map { attribute in return " \(attribute.key)=\"\(attribute.value)\"" } + ">" as! String
+        return "<\(name) \(attributes.map { "\($0.key)=\"\($0.value)\"" }.joined(separator: " "))>"
+    }
+    
+    internal func build(_ formula: Renderer.Formula) throws {
+        formula.add(content: startTag)
+    }
+
+    internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        return startTag
     }
     
     internal func modify(_ element: Self) -> Self {
@@ -617,39 +386,50 @@ extension EmptyNode {
 /// A type that defines a comment node.
 internal protocol CommentNode: AnyNode {
     
-    associatedtype T
-    
     /// The content of the node.
-    var content: T { get }
+    var content: String { get }
 }
 
 extension CommentNode {
     
+    internal var startTag: String {
+        return "<!--"
+    }
+    
+    internal var endTag: String {
+        return "-->"
+    }
+    
     internal func build(_ formula: Renderer.Formula) throws {
-        formula.add(content: "<!--\(content)-->")
+        
+        formula.add(content: startTag)
+        formula.add(content: content)
+        formula.add(content: endTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        return "<!--\(content)-->"
+        return try startTag + content.render(with: manager) + endTag
     }
 }
 
 /// The protocol defines the document node.
 internal protocol DocumentNode: AnyNode {
     
-    associatedtype T
-    
     /// The content of the node.
-    var content: T { get }
+    var content: String { get }
 }
 
 extension DocumentNode {
     
+    internal var startTag: String {
+        return "<!DOCTYPE \(content)>"
+    }
+    
     internal func build(_ formula: Renderer.Formula) throws {
-        formula.add(content: "<!DOCTYPE \(content)>")
+        formula.add(content: startTag)
     }
 
     internal func build<T>(with manager: Renderer.ContextManager<T>) throws -> String {
-        return "<!DOCTYPE \(content)>"
+        return startTag
     }
 }
