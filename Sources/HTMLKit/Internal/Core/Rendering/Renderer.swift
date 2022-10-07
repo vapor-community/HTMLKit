@@ -15,7 +15,7 @@ public class Renderer {
     public enum Errors: LocalizedError {
         
         case unableToFindFormula
-        case unableToRetriveValue
+        case unableToRetrieveValue
         case unableToRegisterKeyPath
         case unableToAddVariable
         case unableToCastVariable
@@ -26,8 +26,8 @@ public class Renderer {
             case .unableToFindFormula:
                 return "Unable to find a formula for the given view type"
                 
-            case .unableToRetriveValue:
-                return "Unable to retrive the wanted value in the context"
+            case .unableToRetrieveValue:
+                return "Unable to retrieve the wanted value in the context"
                 
             case .unableToRegisterKeyPath:
                 return "Unable to register a KeyPath when creating the template formula"
@@ -36,7 +36,7 @@ public class Renderer {
                 return "Unable to add variable to formula"
                 
             case .unableToCastVariable:
-                return "Unable to cast value when retriving variable"
+                return "Unable to cast value when retrieving variable"
             }
         }
         
@@ -139,7 +139,7 @@ extension Renderer {
         }
 
         public func render<T>(with context: T, lingo: Lingo?) throws -> String {
-            return try render(with: ContextManager(rootContext: context, lingo: lingo))
+            return try render(with: ContextManager(context: context, lingo: lingo))
         }
 
         public func render<T>(with manager: ContextManager<T>) throws -> String {
@@ -198,6 +198,55 @@ extension Renderer {
             
             self.source = source
             self.locale = locale
+        }
+    }
+    
+    public class ContextManager<Context> {
+
+        public let lingo: Lingo?
+        public var locale: String?
+        public var contexts: [String: Any]
+        
+        @available(*, deprecated, message: "Use init(context:, lingo:) instead.")
+        public init(rootContext: Context, lingo: Lingo? = nil) {
+            
+            self.contexts = ["": rootContext]
+            self.lingo = lingo
+            self.locale = nil
+        }
+        
+        public init(context: Context, lingo: Lingo? = nil) {
+            
+            self.contexts = ["": context]
+            self.lingo = lingo
+            self.locale = nil
+        }
+
+        public init(contexts: [String: Any], lingo: Lingo? = nil) {
+            
+            self.contexts = contexts
+            self.lingo = lingo
+            self.locale = nil
+        }
+
+        public func value<T>(for variable: HTMLContext<T>) throws -> T {
+            
+            if let context = contexts[variable.rootId] {
+                
+                if let value = context[keyPath: variable.keyPath] as? T {
+                    return value
+                    
+                } else {
+                    throw Errors.unableToCastVariable
+                }
+                
+            } else {
+                throw Errors.unableToRetrieveValue
+            }
+        }
+
+        public func set<T>(_ context: T, for variable: HTMLContext<T>) {
+            self.contexts[variable.rootId] = context
         }
     }
 }
