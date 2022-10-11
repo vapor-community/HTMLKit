@@ -1,8 +1,6 @@
 import Foundation
 
 /// The enum is for
-///
-///
 @propertyWrapper @dynamicMemberLookup public enum TemplateValue<Value> {
     
     case constant(Value)
@@ -19,24 +17,31 @@ import Foundation
         get {
             switch self {
             case .constant(let value):
-                
                 return "\(value)"
                 
             default:
-                
                 return ""
             }
+        }
+    }
+    
+    internal var isMasqueradingOptional: Bool {
+        
+        switch self {
+        case .constant:
+            return false
+            
+        case .dynamic(let variable):
+            return variable.isMasqueradingOptional
         }
     }
     
     public var isDefined: Conditionable {
         
         if isMasqueradingOptional {
-            
             return true
             
         } else {
-            
             return NotNullConditionGeneral(path: self)
         }
     }
@@ -44,60 +49,29 @@ import Foundation
     public var isNotDefined: Conditionable {
         
         if isMasqueradingOptional {
-            
             return false
             
         } else {
-            
             return IsNullConditionGeneral(path: self)
         }
     }
     
-    var isMasqueradingOptional: Bool {
-        
-        switch self {
-        case .constant:
-            
-            return false
-            
-        case .dynamic(let variable):
-            
-            return variable.isMasqueradingOptional
-        }
+    public init(_ value: Value.Type) {
+        self = .dynamic(HTMLContext(value.self))
     }
 
     public subscript<Subject>(dynamicMember keyPath: KeyPath<Value, Subject>) -> TemplateValue<Subject> {
         
         switch self {
         case .constant(let value):
-            
             return .constant(value[keyPath: keyPath])
             
         case .dynamic(let variable):
-            
             return .dynamic(variable[dynamicMember: keyPath])
-        }
-    }
-    
-    public init(_ root: Value.Type) {
-        
-        self = .root()
-    }
-
-    public func escaping(_ option: EscapingOption) -> TemplateValue<Value> {
-        
-        switch self {
-        case .dynamic(let variable):
-            
-            return .dynamic(variable.escaping(option))
-            
-        default:
-            return self
         }
     }
 
     public func value<T>(at keyPath: KeyPath<Value, T>) -> TemplateValue<T> {
-        
         return self[dynamicMember: keyPath]
     }
     
@@ -105,11 +79,9 @@ import Foundation
         
         switch self {
         case .constant(let value):
-            
             return value
             
         case .dynamic(let variable):
-            
             return try manager.value(for: variable)
         }
     }
@@ -118,31 +90,33 @@ import Foundation
         
         switch self {
         case .constant(let value):
-            
             return .constant(value)
             
         case .dynamic(let variable):
-            
             return .dynamic(variable.makeOptional())
         }
     }
-
+    
+    public func escaping(_ option: EscapingOption) -> TemplateValue<Value> {
+        
+        switch self {
+        case .dynamic(let variable):
+            return .dynamic(variable.escaping(option))
+            
+        default:
+            return self
+        }
+    }
+    
     public func unsafeCast<T>(to type: T.Type) -> TemplateValue<T> {
         
         switch self {
         case .constant(let value):
-            
             return .constant(value as! T)
             
         case .dynamic(let variable):
-            
             return .dynamic(variable.unsafeCast(to: T.self))
         }
-    }
-    
-    public static func root<T>() -> TemplateValue<T> {
-        
-        .dynamic(HTMLContext(T.self))
     }
 }
 
@@ -152,7 +126,6 @@ extension TemplateValue: AnyContent where Value: AnyContent {
         
         switch self {
         case .constant(let value):
-            
             try value.prerender(formula)
             
         case .dynamic(let variable):
@@ -164,11 +137,9 @@ extension TemplateValue: AnyContent where Value: AnyContent {
         
         switch self {
         case .constant(let value):
-            
             return try value.render(with: manager)
             
         case .dynamic(let variable):
-            
             return try variable.render(with: manager)
         }
     }
