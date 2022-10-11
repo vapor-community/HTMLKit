@@ -53,7 +53,7 @@ public struct Input: EmptyNode, FormElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
@@ -373,7 +373,7 @@ public struct Label: ContentNode, FormElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -670,7 +670,7 @@ public struct Select: ContentNode, FormElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -908,7 +908,7 @@ public struct TextArea: ContentNode, FormElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -1246,7 +1246,7 @@ public struct Button: ContentNode, FormElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -1571,7 +1571,7 @@ public struct Fieldset: ContentNode, FormElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {

@@ -67,7 +67,7 @@ public struct Circle: ContentNode, VectorElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -195,7 +195,7 @@ public struct Rectangle: ContentNode, VectorElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -327,7 +327,7 @@ public struct Ellipse: ContentNode, VectorElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -455,7 +455,7 @@ public struct Line: ContentNode, VectorElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -575,7 +575,7 @@ public struct Polygon: ContentNode, VectorElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -695,7 +695,7 @@ public struct Polyline: ContentNode, VectorElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -815,7 +815,7 @@ public struct Path: ContentNode, VectorElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -939,7 +939,7 @@ public struct Group: ContentNode, VectorElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -1059,7 +1059,7 @@ public struct Use: ContentNode, VectorElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {

@@ -67,7 +67,7 @@ public struct OptionGroup: ContentNode, InputElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -357,7 +357,7 @@ public struct Option: ContentNode, InputElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -661,7 +661,7 @@ public struct Legend: ContentNode, InputElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -943,7 +943,7 @@ public struct Summary: ContentNode, InputElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {

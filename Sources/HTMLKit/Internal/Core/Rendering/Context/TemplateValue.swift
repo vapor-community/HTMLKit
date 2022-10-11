@@ -62,7 +62,7 @@ import Foundation
             
         case .dynamic(let variable):
             
-            return variable.isMascadingOptional
+            return variable.isMasqueradingOptional
         }
     }
 

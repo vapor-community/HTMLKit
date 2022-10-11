@@ -130,7 +130,7 @@ public struct Caption: ContentNode, TableElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -412,7 +412,7 @@ public struct ColumnGroup: ContentNode, TableElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -622,7 +622,7 @@ public struct Column: ContentNode, TableElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -832,7 +832,7 @@ public struct TableBody: ContentNode, TableElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -1122,7 +1122,7 @@ public struct TableHead: ContentNode, TableElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -1412,7 +1412,7 @@ public struct TableFoot: ContentNode, TableElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -1694,7 +1694,7 @@ public struct TableRow: ContentNode, TableElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -1984,7 +1984,7 @@ public struct DataCell: ContentNode, TableElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -2278,7 +2278,7 @@ public struct HeaderCell: ContentNode, TableElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {

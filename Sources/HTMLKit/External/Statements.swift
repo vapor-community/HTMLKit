@@ -188,7 +188,7 @@ public struct ForEach<Values>: GlobalElement where Values: Sequence {
             }
             
         case .dynamic(let variable):
-            self.content = content(.dynamic(.root(Values.Element.self, rootId: "\(variable.pathId)-loop")))
+            self.content = content(.dynamic(HTMLContext(Values.Element.self, rootId: "\(variable.pathId)-loop")))
         }
         
         self.localFormula = .init()
@@ -211,7 +211,7 @@ public struct ForEach<Values>: GlobalElement where Values: Sequence {
             }
             
         case .dynamic(let variable):
-            self.content = content(.dynamic(.root(Values.Element.self, rootId: variable.unsafelyUnwrapped.pathId + "-loop")))
+            self.content = content(.dynamic(HTMLContext(Values.Element.self, rootId: variable.unsafelyUnwrapped.pathId + "-loop")))
         }
         
         self.condition = context.isDefined
@@ -233,8 +233,8 @@ public struct ForEach<Values>: GlobalElement where Values: Sequence {
             
         case .dynamic(let variable): self.content = content(
             (
-                .dynamic(.root(Values.Element.self, rootId: "\(variable.pathId)-loop")),
-                .dynamic(.root(Int.self, rootId: "\(variable.pathId)-loop-index"))
+                .dynamic(HTMLContext(Values.Element.self, rootId: "\(variable.pathId)-loop")),
+                .dynamic(HTMLContext(Int.self, rootId: "\(variable.pathId)-loop-index"))
             ))
         }
         
@@ -287,9 +287,9 @@ extension ForEach: AnyContent {
                 
                 for (index, element) in elements.enumerated() {
                     
-                    manager.set(index, for: .root(Int.self, rootId: variable.pathId + "-loop-index"))
+                    manager.set(index, for: HTMLContext(Int.self, rootId: variable.pathId + "-loop-index"))
                     
-                    manager.set(element, for: .root(Values.Element.self, rootId: variable.pathId + "-loop"))
+                    manager.set(element, for: HTMLContext(Values.Element.self, rootId: variable.pathId + "-loop"))
                     
                     rendering += try localFormula.render(with: manager)
                 }
@@ -298,7 +298,7 @@ extension ForEach: AnyContent {
                 
                 for element in elements {
                     
-                    manager.set(element, for: .root(Values.Element.self, rootId: variable.pathId + "-loop"))
+                    manager.set(element, for: HTMLContext(Values.Element.self, rootId: variable.pathId + "-loop"))
                     rendering += try localFormula.render(with: manager)
                 }
             }

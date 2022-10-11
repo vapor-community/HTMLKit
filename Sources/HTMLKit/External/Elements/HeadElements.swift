@@ -58,7 +58,7 @@ public struct Title: ContentNode, HeadElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -259,7 +259,7 @@ public struct Base: EmptyNode, HeadElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -472,7 +472,7 @@ public struct Meta: EmptyNode, HeadElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -706,7 +706,7 @@ public struct Style: ContentNode, HeadElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -915,7 +915,7 @@ public struct Link: EmptyNode, HeadElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {

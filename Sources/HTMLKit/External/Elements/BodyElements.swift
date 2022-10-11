@@ -391,7 +391,7 @@ public struct Article: ContentNode, HtmlElement, BodyElement, FormElement, Figur
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -673,7 +673,7 @@ public struct Section: ContentNode, HtmlElement, BodyElement, FigureElement, For
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -955,7 +955,7 @@ public struct Navigation: ContentNode, HtmlElement, BodyElement, FormElement, Fi
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -1237,7 +1237,7 @@ public struct Aside: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -1519,7 +1519,7 @@ public struct Heading1: ContentNode, HtmlElement, BodyElement, FormElement, Figu
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -1812,7 +1812,7 @@ public struct Heading2: ContentNode, HtmlElement, BodyElement, FormElement, Figu
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -2105,7 +2105,7 @@ public struct Heading3: ContentNode, HtmlElement, BodyElement, FormElement, Figu
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -2398,7 +2398,7 @@ public struct Heading4: ContentNode, HtmlElement, BodyElement, FormElement, Figu
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -2691,7 +2691,7 @@ public struct Heading5: ContentNode, HtmlElement, BodyElement, FormElement, Figu
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -2984,7 +2984,7 @@ public struct Heading6: ContentNode, HtmlElement, BodyElement, FormElement, Figu
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -3277,7 +3277,7 @@ public struct HeadingGroup: ContentNode, HtmlElement, BodyElement, FormElement, 
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -3559,7 +3559,7 @@ public struct Header: ContentNode, HtmlElement, BodyElement, FormElement, Figure
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -3841,7 +3841,7 @@ public struct Footer: ContentNode, HtmlElement, BodyElement, FormElement, Figure
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -4123,7 +4123,7 @@ public struct Address: ContentNode, HtmlElement, BodyElement, FormElement, Figur
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -4405,7 +4405,7 @@ public struct Paragraph: ContentNode, HtmlElement, BodyElement, FormElement, Fig
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -4693,7 +4693,7 @@ public struct HorizontalRule: EmptyNode, HtmlElement, BodyElement, FormElement, 
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -4975,7 +4975,7 @@ public struct PreformattedText: ContentNode, HtmlElement, BodyElement, FormEleme
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -5257,7 +5257,7 @@ public struct Blockquote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -5554,7 +5554,7 @@ public struct OrderedList: ContentNode, HtmlElement, BodyElement, FormElement, F
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -5848,7 +5848,7 @@ public struct UnorderedList: ContentNode, HtmlElement, BodyElement, FormElement,
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -6130,7 +6130,7 @@ public struct DescriptionList: ContentNode, HtmlElement, BodyElement, FormElemen
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -6412,7 +6412,7 @@ public struct Figure: ContentNode, HtmlElement, BodyElement, FormElement, Figure
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -6694,7 +6694,7 @@ public struct Anchor: ContentNode, HtmlElement, BodyElement, FormElement, Figure
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -7027,7 +7027,7 @@ public struct Emphasize: ContentNode, HtmlElement, BodyElement, FormElement, Fig
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -7309,7 +7309,7 @@ public struct Strong: ContentNode, HtmlElement, BodyElement, FormElement, Figure
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -7591,7 +7591,7 @@ public struct Small: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -7884,7 +7884,7 @@ public struct StrikeThrough: ContentNode, HtmlElement, BodyElement, FormElement,
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -8101,7 +8101,7 @@ public struct Main: ContentNode, HtmlElement, BodyElement, FormElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -8383,7 +8383,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -8665,7 +8665,7 @@ public struct Definition: ContentNode, HtmlElement, BodyElement, FormElement, Fi
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -8947,7 +8947,7 @@ public struct Cite: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -9229,7 +9229,7 @@ public struct ShortQuote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -9515,7 +9515,7 @@ public struct Abbreviation: ContentNode, HtmlElement, BodyElement, FormElement, 
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -9797,7 +9797,7 @@ public struct Ruby: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -10079,7 +10079,7 @@ public struct Data: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -10369,7 +10369,7 @@ public struct Time: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -10655,7 +10655,7 @@ public struct Code: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -10937,7 +10937,7 @@ public struct Variable: ContentNode, HtmlElement, BodyElement, FormElement, Figu
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -11219,7 +11219,7 @@ public struct SampleOutput: ContentNode, HtmlElement, BodyElement, FormElement, 
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -11501,7 +11501,7 @@ public struct KeyboardInput: ContentNode, HtmlElement, BodyElement, FormElement,
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -11783,7 +11783,7 @@ public struct Subscript: ContentNode, HtmlElement, BodyElement, FormElement, Fig
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -12065,7 +12065,7 @@ public struct Superscript: ContentNode, HtmlElement, BodyElement, FormElement, F
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -12347,7 +12347,7 @@ public struct Italic: ContentNode, HtmlElement, BodyElement, FormElement, Figure
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -12640,7 +12640,7 @@ public struct Bold: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -12933,7 +12933,7 @@ public struct Underline: ContentNode, HtmlElement, BodyElement, FormElement, Fig
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -13226,7 +13226,7 @@ public struct Mark: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -13508,7 +13508,7 @@ public struct Bdi: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -13785,7 +13785,7 @@ public struct Bdo: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEleme
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -14067,7 +14067,7 @@ public struct Span: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -14344,7 +14344,7 @@ public struct LineBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -14621,7 +14621,7 @@ public struct WordBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -14903,7 +14903,7 @@ public struct InsertedText: ContentNode, HtmlElement, BodyElement, FormElement, 
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -15193,7 +15193,7 @@ public struct DeletedText: ContentNode, HtmlElement, BodyElement, FormElement, F
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -15483,7 +15483,7 @@ public struct Picture: ContentNode, HtmlElement, BodyElement, FormElement, Figur
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -15684,7 +15684,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -15990,7 +15990,7 @@ public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, F
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -16291,7 +16291,7 @@ public struct Embed: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -16589,7 +16589,7 @@ public struct Object: ContentNode, HtmlElement, BodyElement, FormElement, Figure
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -16899,7 +16899,7 @@ public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -17213,7 +17213,7 @@ public struct Audio: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -17519,7 +17519,7 @@ public struct Map: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -17733,7 +17733,7 @@ public struct Form: ContentNode, HtmlElement, BodyElement, FigureElement, Object
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -18047,7 +18047,7 @@ public struct DataList: ContentNode, HtmlElement, BodyElement, FormElement, Figu
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -18329,7 +18329,7 @@ public struct Output: ContentNode, HtmlElement, BodyElement, FormElement, Figure
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -18627,7 +18627,7 @@ public struct Progress: ContentNode, HtmlElement, BodyElement, FormElement, Figu
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -18921,7 +18921,7 @@ public struct Meter: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -19231,7 +19231,7 @@ public struct Details: ContentNode, HtmlElement, BodyElement, FormElement, Figur
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -19517,7 +19517,7 @@ public struct Dialog: ContentNode, BodyElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -19803,7 +19803,7 @@ public struct Script: ContentNode, HeadElement, BodyElement, FormElement, Figure
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -20025,7 +20025,7 @@ public struct NoScript: ContentNode, HtmlElement, HeadElement, BodyElement, Form
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -20231,7 +20231,7 @@ public struct Template: ContentNode, BodyElement, FormElement, FigureElement, Ob
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -20437,7 +20437,7 @@ public struct Canvas: ContentNode, HtmlElement, BodyElement, FormElement, Figure
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -20727,7 +20727,7 @@ public struct Table: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
@@ -21017,7 +21017,7 @@ public struct Vector: ContentNode, HtmlElement, BodyElement, FormElement, Figure
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {

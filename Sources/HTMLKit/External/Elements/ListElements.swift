@@ -67,7 +67,7 @@ public struct ListItem: ContentNode, ListElement {
             
         case .dynamic(let context):
             
-            if context.isMascadingOptional {
+            if context.isMasqueradingOptional {
                 return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
             
             } else {
