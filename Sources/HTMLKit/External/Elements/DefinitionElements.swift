@@ -92,8 +92,8 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> TermName {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> TermName {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> TermName {
@@ -104,20 +104,20 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> TermName {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> TermName {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> TermName {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> TermName {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> TermName {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> TermName {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> TermName {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> TermName {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> TermName {
@@ -160,8 +160,8 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> TermName {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> TermName {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> TermName {
@@ -177,8 +177,8 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(role: value.rawValue)
     }
     
-    public func hasSpellCheck(_ condition: Bool) -> TermName {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> TermName {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> TermName {
@@ -193,13 +193,13 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> TermName {
         return mutate(translate: value)
     }
 
-    public func translate(_ type: Values.Decision) -> TermName {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> TermName {
+        return mutate(translate: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TermName {
@@ -374,8 +374,8 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> TermDefinition {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> TermDefinition {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> TermDefinition {
@@ -386,20 +386,20 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> TermDefinition {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> TermDefinition {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> TermDefinition {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> TermDefinition {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> TermDefinition {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> TermDefinition {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> TermDefinition {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> TermDefinition {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> TermDefinition {
@@ -442,8 +442,8 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> TermDefinition {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> TermDefinition {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> TermDefinition {
@@ -459,8 +459,8 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(role: value.rawValue)
     }
     
-    public func hasSpellCheck(_ condition: Bool) -> TermDefinition {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> TermDefinition {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> TermDefinition {
@@ -475,13 +475,13 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> TermDefinition {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> TermDefinition {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> TermDefinition {
+        return mutate(translate: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TermDefinition {

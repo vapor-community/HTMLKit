@@ -164,7 +164,7 @@ public protocol StrokeLineCapAttribute: AnyAttribute {
     /// ```html
     /// <tag stroke-linecap="" />
     /// ```
-    func strokeLineCap(_ type: Values.Linecap) -> Self
+    func strokeLineCap(_ value: Values.Linecap) -> Self
 }
 
 extension StrokeLineCapAttribute {

@@ -83,8 +83,8 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> ListItem {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> ListItem {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> ListItem {
@@ -95,20 +95,20 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> ListItem {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> ListItem {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> ListItem {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> ListItem {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> ListItem {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> ListItem {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> ListItem {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> ListItem {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> ListItem {
@@ -151,8 +151,8 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> ListItem {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> ListItem {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> ListItem {
@@ -168,8 +168,8 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(role: value.rawValue)
     }
     
-    public func hasSpellCheck(_ condition: Bool) -> ListItem {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> ListItem {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> ListItem {
@@ -184,13 +184,13 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> ListItem {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> ListItem {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> ListItem {
+        return mutate(translate: value.rawValue)
     }
     
     public func value(_ value: String) -> ListItem {

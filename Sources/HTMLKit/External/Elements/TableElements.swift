@@ -146,8 +146,8 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> Caption {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> Caption {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> Caption {
@@ -158,20 +158,20 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> Caption {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> Caption {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> Caption {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> Caption {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> Caption {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> Caption {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> Caption {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> Caption {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> Caption {
@@ -214,8 +214,8 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> Caption {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> Caption {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> Caption {
@@ -231,8 +231,8 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> Caption {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> Caption {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> Caption {
@@ -247,13 +247,13 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> Caption {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> Caption {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> Caption {
+        return mutate(translate: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Caption {
@@ -428,8 +428,8 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> ColumnGroup {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> ColumnGroup {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> ColumnGroup {
@@ -440,20 +440,20 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> ColumnGroup {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> ColumnGroup {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> ColumnGroup {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> ColumnGroup {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> ColumnGroup {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> ColumnGroup {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> ColumnGroup {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> ColumnGroup {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> ColumnGroup {
@@ -496,8 +496,8 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> ColumnGroup {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> ColumnGroup {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> ColumnGroup {
@@ -513,8 +513,8 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> ColumnGroup {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> ColumnGroup {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> ColumnGroup {
@@ -529,13 +529,13 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> ColumnGroup {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> ColumnGroup {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> ColumnGroup {
+        return mutate(translate: value.rawValue)
     }
 
     public func span(_ size: Int) -> ColumnGroup {
@@ -638,8 +638,8 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> Column {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> Column {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> Column {
@@ -650,20 +650,20 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> Column {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> Column {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> Column {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> Column {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> Column {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> Column {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> Column {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> Column {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> Column {
@@ -706,8 +706,8 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> Column {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> Column {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> Column {
@@ -723,8 +723,8 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> Column {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> Column {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> Column {
@@ -739,13 +739,13 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> Column {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> Column {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> Column {
+        return mutate(translate: value.rawValue)
     }
     
     public func span(_ size: Int) -> Column {
@@ -848,8 +848,8 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> TableBody {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> TableBody {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> TableBody {
@@ -860,20 +860,20 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> TableBody {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> TableBody {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> TableBody {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> TableBody {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> TableBody {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> TableBody {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> TableBody {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> TableBody {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> TableBody {
@@ -916,8 +916,8 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(id: value.rawValue)
     }
     
-    public func language(_ type: Values.Language) -> TableBody {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> TableBody {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> TableBody {
@@ -933,8 +933,8 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> TableBody {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> TableBody {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> TableBody {
@@ -949,13 +949,13 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> TableBody {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> TableBody {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> TableBody {
+        return mutate(translate: value.rawValue)
     }
     
     public func width(_ size: Int) -> TableBody {
@@ -1138,8 +1138,8 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> TableHead {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> TableHead {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> TableHead {
@@ -1150,20 +1150,20 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> TableHead {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> TableHead {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> TableHead {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> TableHead {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> TableHead {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> TableHead {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> TableHead {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> TableHead {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> TableHead {
@@ -1206,8 +1206,8 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> TableHead {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> TableHead {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> TableHead {
@@ -1223,8 +1223,8 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> TableHead {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> TableHead {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> TableHead {
@@ -1239,13 +1239,13 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> TableHead {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> TableHead {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> TableHead {
+        return mutate(translate: value.rawValue)
     }
 
     public func width(_ size: Int) -> TableHead {
@@ -1428,8 +1428,8 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> TableFoot {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> TableFoot {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> TableFoot {
@@ -1440,20 +1440,20 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> TableFoot {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> TableFoot {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> TableFoot {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> TableFoot {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> TableFoot {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> TableFoot {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> TableFoot {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> TableFoot {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> TableFoot {
@@ -1496,8 +1496,8 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> TableFoot {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> TableFoot {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> TableFoot {
@@ -1513,8 +1513,8 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> TableFoot {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> TableFoot {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> TableFoot {
@@ -1529,13 +1529,13 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> TableFoot {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> TableFoot {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> TableFoot {
+        return mutate(translate: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TableFoot {
@@ -1710,8 +1710,8 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> TableRow {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> TableRow {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> TableRow {
@@ -1722,20 +1722,20 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> TableRow {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> TableRow {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> TableRow {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> TableRow {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> TableRow {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> TableRow {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> TableRow {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> TableRow {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> TableRow {
@@ -1778,8 +1778,8 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> TableRow {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> TableRow {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> TableRow {
@@ -1795,8 +1795,8 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> TableRow {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> TableRow {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> TableRow {
@@ -1811,13 +1811,13 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> TableRow {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> TableRow {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> TableRow {
+        return mutate(translate: value.rawValue)
     }
 
     public func width(_ size: Int) -> TableRow {
@@ -2000,8 +2000,8 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> DataCell {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> DataCell {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> DataCell {
@@ -2012,20 +2012,20 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> DataCell {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> DataCell {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> DataCell {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> DataCell {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> DataCell {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> DataCell {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> DataCell {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> DataCell {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> DataCell {
@@ -2068,8 +2068,8 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> DataCell {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> DataCell {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> DataCell {
@@ -2085,8 +2085,8 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> DataCell {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> DataCell {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> DataCell {
@@ -2101,13 +2101,13 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> DataCell {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> DataCell {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> DataCell {
+        return mutate(translate: value.rawValue)
     }
 
     public func columnSpan(_ size: Int) -> DataCell {
@@ -2294,8 +2294,8 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> HeaderCell {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> HeaderCell {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> HeaderCell {
@@ -2306,20 +2306,20 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> HeaderCell {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> HeaderCell {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> HeaderCell {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> HeaderCell {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> HeaderCell {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> HeaderCell {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> HeaderCell {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> HeaderCell {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> HeaderCell {
@@ -2362,8 +2362,8 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(id: value.rawValue)
     }
     
-    public func language(_ type: Values.Language) -> HeaderCell {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> HeaderCell {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> HeaderCell {
@@ -2379,8 +2379,8 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> HeaderCell {
-        return  mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> HeaderCell {
+        return  mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> HeaderCell {
@@ -2395,13 +2395,13 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> HeaderCell {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> HeaderCell {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> HeaderCell {
+        return mutate(translate: value.rawValue)
     }
 
     public func columnSpan(_ size: Int) -> HeaderCell {

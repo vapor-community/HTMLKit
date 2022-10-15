@@ -127,12 +127,12 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
         return self.mutate(strokeopacity: value)
     }
     
-    public func strokeLineCap(_ type: Values.Linecap) -> Circle {
-        return self.mutate(strokelinecap: type.rawValue)
+    public func strokeLineCap(_ value: Values.Linecap) -> Circle {
+        return self.mutate(strokelinecap: value.rawValue)
     }
     
-    public func strokeLineJoin(_ type: Values.Linejoin) -> Circle {
-        return self.mutate(strokelinejoin: type.rawValue)
+    public func strokeLineJoin(_ value: Values.Linejoin) -> Circle {
+        return self.mutate(strokelinejoin: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Circle {
@@ -259,12 +259,12 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return self.mutate(strokeopacity: value)
     }
     
-    public func strokeLineCap(_ type: Values.Linecap) -> Rectangle {
-        return self.mutate(strokelinecap: type.rawValue)
+    public func strokeLineCap(_ value: Values.Linecap) -> Rectangle {
+        return self.mutate(strokelinecap: value.rawValue)
     }
     
-    public func strokeLineJoin(_ type: Values.Linejoin) -> Rectangle {
-        return self.mutate(strokelinejoin: type.rawValue)
+    public func strokeLineJoin(_ value: Values.Linejoin) -> Rectangle {
+        return self.mutate(strokelinejoin: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Rectangle {
@@ -387,12 +387,12 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
         return self.mutate(strokeopacity: value)
     }
     
-    public func strokeLineCap(_ type: Values.Linecap) -> Ellipse {
-        return self.mutate(strokelinecap: type.rawValue)
+    public func strokeLineCap(_ value: Values.Linecap) -> Ellipse {
+        return self.mutate(strokelinecap: value.rawValue)
     }
     
-    public func strokeLineJoin(_ type: Values.Linejoin) -> Ellipse {
-        return self.mutate(strokelinejoin: type.rawValue)
+    public func strokeLineJoin(_ value: Values.Linejoin) -> Ellipse {
+        return self.mutate(strokelinejoin: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Ellipse {
@@ -507,12 +507,12 @@ extension Line: GlobalVectorAttributes {
         return self.mutate(strokeopacity: value)
     }
     
-    public func strokeLineCap(_ type: Values.Linecap) -> Line {
-        return self.mutate(strokelinecap: type.rawValue)
+    public func strokeLineCap(_ value: Values.Linecap) -> Line {
+        return self.mutate(strokelinecap: value.rawValue)
     }
     
-    public func strokeLineJoin(_ type: Values.Linejoin) -> Line {
-        return self.mutate(strokelinejoin: type.rawValue)
+    public func strokeLineJoin(_ value: Values.Linejoin) -> Line {
+        return self.mutate(strokelinejoin: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Line {
@@ -627,12 +627,12 @@ extension Polygon: GlobalVectorAttributes {
         return self.mutate(strokeopacity: value)
     }
     
-    public func strokeLineCap(_ type: Values.Linecap) -> Polygon {
-        return self.mutate(strokelinecap: type.rawValue)
+    public func strokeLineCap(_ value: Values.Linecap) -> Polygon {
+        return self.mutate(strokelinecap: value.rawValue)
     }
     
-    public func strokeLineJoin(_ type: Values.Linejoin) -> Polygon {
-        return self.mutate(strokelinejoin: type.rawValue)
+    public func strokeLineJoin(_ value: Values.Linejoin) -> Polygon {
+        return self.mutate(strokelinejoin: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Polygon {
@@ -747,12 +747,12 @@ extension Polyline: GlobalVectorAttributes {
         return self.mutate(strokeopacity: value)
     }
     
-    public func strokeLineCap(_ type: Values.Linecap) -> Polyline {
-        return self.mutate(strokelinecap: type.rawValue)
+    public func strokeLineCap(_ value: Values.Linecap) -> Polyline {
+        return self.mutate(strokelinecap: value.rawValue)
     }
     
-    public func strokeLineJoin(_ type: Values.Linejoin) -> Polyline {
-        return self.mutate(strokelinejoin: type.rawValue)
+    public func strokeLineJoin(_ value: Values.Linejoin) -> Polyline {
+        return self.mutate(strokelinejoin: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Polyline {
@@ -867,12 +867,12 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
         return self.mutate(strokeopacity: value)
     }
     
-    public func strokeLineCap(_ type: Values.Linecap) -> Path {
-        return self.mutate(strokelinecap: type.rawValue)
+    public func strokeLineCap(_ value: Values.Linecap) -> Path {
+        return self.mutate(strokelinecap: value.rawValue)
     }
     
-    public func strokeLineJoin(_ type: Values.Linejoin) -> Path {
-        return self.mutate(strokelinejoin: type.rawValue)
+    public func strokeLineJoin(_ value: Values.Linejoin) -> Path {
+        return self.mutate(strokelinejoin: value.rawValue)
     }
     
     public func draw(_ value: String) -> Path {
@@ -991,12 +991,12 @@ extension Group: GlobalVectorAttributes {
         return self.mutate(strokeopacity: value)
     }
 
-    public func strokeLineCap(_ type: Values.Linecap) -> Self {
-        return self.mutate(strokelinecap: type.rawValue)
+    public func strokeLineCap(_ value: Values.Linecap) -> Self {
+        return self.mutate(strokelinecap: value.rawValue)
     }
 
-    public func strokeLineJoin(_ type: Values.Linejoin) -> Self {
-        return self.mutate(strokelinejoin: type.rawValue)
+    public func strokeLineJoin(_ value: Values.Linejoin) -> Self {
+        return self.mutate(strokelinejoin: value.rawValue)
     }
 
     public func custom(key: String, value: Any) -> Self {
@@ -1127,12 +1127,12 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
         return self.mutate(strokeopacity: value)
     }
     
-    public func strokeLineCap(_ type: Values.Linecap) -> Use {
-        return self.mutate(strokelinecap: type.rawValue)
+    public func strokeLineCap(_ value: Values.Linecap) -> Use {
+        return self.mutate(strokelinecap: value.rawValue)
     }
     
-    public func strokeLineJoin(_ type: Values.Linejoin) -> Use {
-        return self.mutate(strokelinejoin: type.rawValue)
+    public func strokeLineJoin(_ value: Values.Linejoin) -> Use {
+        return self.mutate(strokelinejoin: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Use {

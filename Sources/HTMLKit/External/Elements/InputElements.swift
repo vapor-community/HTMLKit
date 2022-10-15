@@ -83,8 +83,8 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> OptionGroup {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> OptionGroup {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> OptionGroup {
@@ -95,20 +95,20 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> OptionGroup {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> OptionGroup {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> OptionGroup {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> OptionGroup {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> OptionGroup {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> OptionGroup {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> OptionGroup {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> OptionGroup {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> OptionGroup {
@@ -151,8 +151,8 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> OptionGroup {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> OptionGroup {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> OptionGroup {
@@ -168,8 +168,8 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> OptionGroup {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> OptionGroup {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> OptionGroup {
@@ -184,13 +184,13 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> OptionGroup {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> OptionGroup {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> OptionGroup {
+        return mutate(translate: value.rawValue)
     }
 
     public func disabled() -> OptionGroup {
@@ -373,8 +373,8 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> Option {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> Option {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> Option {
@@ -385,20 +385,20 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> Option {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> Option {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> Option {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> Option {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> Option {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> Option {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> Option {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> Option {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> Option {
@@ -441,8 +441,8 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> Option {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> Option {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> Option {
@@ -458,8 +458,8 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> Option {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> Option {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> Option {
@@ -474,13 +474,13 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> Option {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> Option {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> Option {
+        return mutate(translate: value.rawValue)
     }
 
     public func disabled() -> Option {
@@ -677,8 +677,8 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> Legend {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> Legend {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> Legend {
@@ -689,20 +689,20 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> Legend {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> Legend {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> Legend {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> Legend {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> Legend {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> Legend {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> Legend {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> Legend {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> Legend {
@@ -745,8 +745,8 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> Legend {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> Legend {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> Legend {
@@ -762,8 +762,8 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(role: value.rawValue)
     }
     
-    public func hasSpellCheck(_ condition: Bool) -> Legend {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> Legend {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> Legend {
@@ -778,13 +778,13 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> Legend {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> Legend {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> Legend {
+        return mutate(translate: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Legend {
@@ -959,8 +959,8 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> Summary {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> Summary {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> Summary {
@@ -971,20 +971,20 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> Summary {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> Summary {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> Summary {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> Summary {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> Summary {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> Summary {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> Summary {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> Summary {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> Summary {
@@ -1027,8 +1027,8 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> Summary {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> Summary {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> Summary {
@@ -1044,8 +1044,8 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> Summary {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> Summary {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> Summary {
@@ -1060,13 +1060,13 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> Summary {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> Summary {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> Summary {
+        return mutate(translate: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Summary {

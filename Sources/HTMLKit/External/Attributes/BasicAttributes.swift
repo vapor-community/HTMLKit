@@ -178,7 +178,7 @@ public protocol AutocapitalizeAttribute: AnyAttribute {
     /// ```html
     /// <tag autocapitalize="" />
     /// ```
-    func autocapitalize(_ type: Values.Capitalization) -> Self
+    func autocapitalize(_ value: Values.Capitalization) -> Self
 }
 
 extension AutocapitalizeAttribute {
@@ -208,7 +208,7 @@ public protocol AutocompleteAttribute: AnyAttribute {
     /// ```html
     /// <tag autocomplete="" />
     /// ```
-    func hasCompletion(_ condition: Bool) -> Self
+    func hasCompletion(_ value: Bool) -> Self
 }
 
 extension AutocompleteAttribute {
@@ -511,7 +511,7 @@ public protocol EditAttribute: AnyAttribute {
     /// ```html
     /// <tag contenteditable />
     /// ```
-    func isEditable(_ condition: Bool) -> Self
+    func isEditable(_ value: Bool) -> Self
 }
 
 extension EditAttribute {
@@ -723,7 +723,7 @@ public protocol DirectionAttribute: AnyAttribute {
     /// ```html
     /// <tag dir="" />
     /// ```
-    func direction(_ type: Values.Direction) -> Self
+    func direction(_ value: Values.Direction) -> Self
 }
 
 extension DirectionAttribute {
@@ -813,7 +813,7 @@ public protocol DragAttribute: AnyAttribute {
     /// ```html
     /// <tag draggable />
     /// ```
-    func isDraggable(_ condition: Bool) -> Self
+    func isDraggable(_ value: Bool) -> Self
 }
 
 extension DragAttribute {
@@ -845,7 +845,7 @@ public protocol EncodingAttribute: AnyAttribute {
     /// ```html
     /// <tag enctype="" />
     /// ```
-    func encoding(_ type: Values.Encoding) -> Self
+    func encoding(_ value: Values.Encoding) -> Self
 }
 
 extension EncodingAttribute {
@@ -877,7 +877,7 @@ public protocol EnterKeyHintAttribute: AnyAttribute {
     /// ```html
     /// <tag enterkeyhint="" />
     /// ```
-    func enterKeyHint(_ type: Values.Hint) -> Self
+    func enterKeyHint(_ value: Values.Hint) -> Self
 }
 
 extension EnterKeyHintAttribute {
@@ -1195,7 +1195,7 @@ public protocol ReferenceLanguageAttribute: AnyAttribute {
     /// ```html
     /// <tag hreflang="" />
     /// ```
-    func referenceLanguage(_ type: Values.Language) -> Self
+    func referenceLanguage(_ value: Values.Language) -> Self
 }
 
 extension ReferenceLanguageAttribute {
@@ -1499,7 +1499,7 @@ public protocol KindAttribute: AnyAttribute {
     /// ```html
     /// <tag kind="" />
     /// ```
-    func kind(_ type: Values.Kind) -> Self
+    func kind(_ value: Values.Kind) -> Self
 }
 
 extension KindAttribute {
@@ -1559,7 +1559,7 @@ public protocol LanguageAttribute: AnyAttribute {
     /// ```html
     /// <tag lang="" />
     /// ```
-    func language(_ type: Values.Language) -> Self
+    func language(_ value: Values.Language) -> Self
 }
 
 extension LanguageAttribute {
@@ -1771,7 +1771,7 @@ public protocol MethodAttribute: AnyAttribute {
     /// ```html
     /// <tag method="" />
     /// ```
-    func method(_ type: Values.Method) -> Self
+    func method(_ value: Values.Method) -> Self
 }
 
 extension MethodAttribute {
@@ -2018,7 +2018,7 @@ public protocol OpenAttribute: AnyAttribute {
     /// ```html
     /// <tag open />
     /// ```
-    func isOpen(_ condition: Bool) -> Self
+    func isOpen(_ value: Bool) -> Self
 }
 
 extension OpenAttribute {
@@ -2230,7 +2230,7 @@ public protocol PreloadAttribute: AnyAttribute {
     /// ```html
     /// <tag preload="" />
     /// ```
-    func preload(_ type: Values.Preload) -> Self
+    func preload(_ value: Values.Preload) -> Self
 }
 
 extension PreloadAttribute {
@@ -2290,7 +2290,7 @@ public protocol ReferrerPolicyAttribute: AnyAttribute {
     /// ```html
     /// <tag referrerpolicy="" />
     /// ```
-    func referrerPolicy(_ type: Values.Policy) -> Self
+    func referrerPolicy(_ value: Values.Policy) -> Self
 }
 
 extension ReferrerPolicyAttribute {
@@ -2320,7 +2320,7 @@ public protocol RelationshipAttribute: AnyAttribute {
     /// ```html
     /// <tag rel="" />
     /// ```
-    func relationship(_ type: Values.Relation) -> Self
+    func relationship(_ value: Values.Relation) -> Self
 }
 
 extension RelationshipAttribute {
@@ -2560,7 +2560,7 @@ public protocol ShapeAttribute: AnyAttribute {
     /// ```html
     /// <tag shape="" />
     /// ```
-    func shape(_ type: Values.Shape) -> Self
+    func shape(_ value: Values.Shape) -> Self
 }
 
 extension ShapeAttribute {
@@ -2710,7 +2710,7 @@ public protocol SpellCheckAttribute: AnyAttribute {
     /// ```html
     /// <tag spellcheck="" />
     /// ```
-    func hasSpellCheck(_ condition: Bool) -> Self
+    func hasSpellCheck(_ value: Bool) -> Self
 }
 
 extension SpellCheckAttribute {
@@ -2890,7 +2890,7 @@ public protocol TargetAttribute: AnyAttribute {
     /// ```html
     /// <tag target="" />
     /// ```
-    func target(_ type: Values.Target) -> Self
+    func target(_ value: Values.Target) -> Self
 }
 
 extension TargetAttribute {
@@ -2950,7 +2950,7 @@ public protocol TranslateAttribute: AnyAttribute {
     /// ```html
     /// <tag translate="" />
     /// ```
-    func translate(_ type: Values.Decision) -> Self
+    func translate(_ value: Values.Decision) -> Self
 }
 
 extension TranslateAttribute {
@@ -3074,7 +3074,7 @@ public protocol WrapAttribute: AnyAttribute {
     /// ```html
     /// <tag wrap="" />
     /// ```
-    func wrap(_ type: Values.Wrapping) -> Self
+    func wrap(_ value: Values.Wrapping) -> Self
 }
 
 extension WrapAttribute {
@@ -3106,7 +3106,7 @@ public protocol PropertyAttribute: AnyAttribute {
     /// ```
     ///
     /// - Parameter type:
-    func property(_ type: Values.Graph) -> Self
+    func property(_ value: Values.Graph) -> Self
 }
 
 extension PropertyAttribute {

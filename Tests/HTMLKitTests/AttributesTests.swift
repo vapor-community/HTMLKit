@@ -32,8 +32,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(accesskey: value)
         }
         
-        func autocapitalize(_ type: Values.Capitalization) -> Tag {
-            return self.mutate(autocapitalize: type.rawValue)
+        func autocapitalize(_ value: Values.Capitalization) -> Tag {
+            return self.mutate(autocapitalize: value.rawValue)
         }
         
         func autofocus() -> Tag {
@@ -44,20 +44,20 @@ final class AttributesTests: XCTestCase {
             return self.mutate(class: value)
         }
         
-        func direction(_ type: Values.Direction) -> Tag {
-            return self.mutate(dir: type.rawValue)
+        func direction(_ value: Values.Direction) -> Tag {
+            return self.mutate(dir: value.rawValue)
         }
         
-        func isDraggable(_ condition: Bool) -> Tag {
-            return self.mutate(draggable: condition)
+        func isDraggable(_ value: Bool) -> Tag {
+            return self.mutate(draggable: value)
         }
         
-        func isEditable(_ condition: Bool) -> Tag {
-            return self.mutate(contenteditable: condition)
+        func isEditable(_ value: Bool) -> Tag {
+            return self.mutate(contenteditable: value)
         }
         
-        func enterKeyHint(_ type: Values.Hint) -> Tag {
-            return self.mutate(enterkeyhint: type.rawValue)
+        func enterKeyHint(_ value: Values.Hint) -> Tag {
+            return self.mutate(enterkeyhint: value.rawValue)
         }
         
         func hidden() -> Tag {
@@ -100,8 +100,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(itemtype: value)
         }
         
-        func language(_ type: Values.Language) -> Tag {
-            return self.mutate(lang: type.rawValue)
+        func language(_ value: Values.Language) -> Tag {
+            return self.mutate(lang: value.rawValue)
         }
         
         func nonce(_ value: String) -> Tag {
@@ -112,8 +112,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(role: value.rawValue)
         }
         
-        func hasSpellCheck(_ condition: Bool) -> Tag {
-            return self.mutate(spellcheck: condition)
+        func hasSpellCheck(_ value: Bool) -> Tag {
+            return self.mutate(spellcheck: value)
         }
         
         func style(_ value: String) -> Tag {
@@ -128,8 +128,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(title: value)
         }
         
-        func translate(_ type: Values.Decision) -> Tag {
-            return self.mutate(translate: type.rawValue)
+        func translate(_ value: Values.Decision) -> Tag {
+            return self.mutate(translate: value.rawValue)
         }
         
         func accept(_ value: String) -> Tag {
@@ -148,8 +148,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(async: "async")
         }
         
-        func hasCompletion(_ condition: Bool) -> Tag {
-            return self.mutate(autocomplete: condition)
+        func hasCompletion(_ value: Bool) -> Tag {
+            return self.mutate(autocomplete: value)
         }
         
         func autoplay() -> Tag {
@@ -216,8 +216,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(download: "download")
         }
         
-        func encoding(_ type: Values.Encoding) -> Tag {
-            return self.mutate(enctype: type.rawValue)
+        func encoding(_ value: Values.Encoding) -> Tag {
+            return self.mutate(enctype: value.rawValue)
         }
         
         func `for`(_ value: String) -> Tag {
@@ -256,16 +256,16 @@ final class AttributesTests: XCTestCase {
             return self.mutate(href: value.rawValue)
         }
         
-        func referenceLanguage(_ type: Values.Language) -> Tag {
-            return self.mutate(hreflang: type.rawValue)
+        func referenceLanguage(_ value: Values.Language) -> Tag {
+            return self.mutate(hreflang: value.rawValue)
         }
         
         func isMap() -> Tag {
             return self.mutate(ismap: "ismap")
         }
         
-        func kind(_ type: Values.Kind) -> Tag {
-            return self.mutate(kind: type.rawValue)
+        func kind(_ value: Values.Kind) -> Tag {
+            return self.mutate(kind: value.rawValue)
         }
         
         func label(_ value: String) -> Tag {
@@ -296,8 +296,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(media: value)
         }
         
-        func method(_ type: HTMLKit.Values.Method) -> Tag {
-            return self.mutate(method: type.rawValue)
+        func method(_ value: HTMLKit.Values.Method) -> Tag {
+            return self.mutate(method: value.rawValue)
         }
         
         func minimum(_ value: Float) -> Tag {
@@ -328,8 +328,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(novalidate: "novalidate")
         }
         
-        func isOpen(_ condition: Bool) -> Tag {
-            return self.mutate(open: condition)
+        func isOpen(_ value: Bool) -> Tag {
+            return self.mutate(open: value)
         }
         
         func optimum(_ value: Float) -> Tag {
@@ -360,20 +360,20 @@ final class AttributesTests: XCTestCase {
             return self.mutate(poster: value)
         }
         
-        func preload(_ type: Values.Preload) -> Tag {
-            return self.mutate(preload: type.rawValue)
+        func preload(_ value: Values.Preload) -> Tag {
+            return self.mutate(preload: value.rawValue)
         }
         
         func readonly() -> Tag {
             return self.mutate(readonly: "readonly")
         }
         
-        func referrerPolicy(_ type: Values.Policy) -> Tag {
-            return self.mutate(referrerpolicy: type.rawValue)
+        func referrerPolicy(_ value: Values.Policy) -> Tag {
+            return self.mutate(referrerpolicy: value.rawValue)
         }
         
-        func relationship(_ type: Values.Relation) -> Tag {
-            return self.mutate(rel: type.rawValue)
+        func relationship(_ value: Values.Relation) -> Tag {
+            return self.mutate(rel: value.rawValue)
         }
         
         func required() -> Tag {
@@ -400,8 +400,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(scope: value)
         }
         
-        func shape(_ type: Values.Shape) -> Tag {
-            return self.mutate(shape: type.rawValue)
+        func shape(_ value: Values.Shape) -> Tag {
+            return self.mutate(shape: value.rawValue)
         }
         
         func size(_ size: Int) -> Tag {
@@ -432,8 +432,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(step: size)
         }
         
-        func target(_ type: Values.Target) -> Tag {
-            return self.mutate(target: type.rawValue)
+        func target(_ value: Values.Target) -> Tag {
+            return self.mutate(target: value.rawValue)
         }
         
         func type(_ value: String) -> Tag {
@@ -452,12 +452,12 @@ final class AttributesTests: XCTestCase {
             return self.mutate(width: size)
         }
         
-        func wrap(_ type: Values.Wrapping) -> Tag {
-            return self.mutate(wrap: type.rawValue)
+        func wrap(_ value: Values.Wrapping) -> Tag {
+            return self.mutate(wrap: value.rawValue)
         }
         
-        func property(_ type: Values.Graph) -> Tag {
-            return self.mutate(property: type.rawValue)
+        func property(_ value: Values.Graph) -> Tag {
+            return self.mutate(property: value.rawValue)
         }
         
         func selected() -> Tag {

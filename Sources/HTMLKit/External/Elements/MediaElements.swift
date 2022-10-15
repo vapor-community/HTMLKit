@@ -69,8 +69,8 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> Source {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> Source {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> Source {
@@ -81,20 +81,20 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> Source {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> Source {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> Source {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> Source {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> Source {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> Source {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> Source {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> Source {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> Source {
@@ -137,8 +137,8 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> Source {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> Source {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> Source {
@@ -154,8 +154,8 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> Source {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> Source {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> Source {
@@ -170,13 +170,13 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> Source {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> Source {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> Source {
+        return mutate(translate: value.rawValue)
     }
 
     public func type(_ value: Values.Media) -> Source {
@@ -294,8 +294,8 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> Track {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> Track {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> Track {
@@ -306,20 +306,20 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> Track {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> Track {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> Track {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> Track {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> Track {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> Track {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> Track {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> Track {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> Track {
@@ -362,8 +362,8 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> Track {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> Track {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> Track {
@@ -379,8 +379,8 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> Track {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> Track {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> Track {
@@ -395,22 +395,22 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return  mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> Track {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> Track {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> Track {
+        return mutate(translate: value.rawValue)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Kinds) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Kinds) instead")
     public func kind(_ value: String) -> Track {
         return mutate(kind: value)
     }
     
-    public func kind(_ type: Values.Kind) -> Track {
-        return mutate(kind: type.rawValue)
+    public func kind(_ value: Values.Kind) -> Track {
+        return mutate(kind: value.rawValue)
     }
     
     public func source(_ value: String) -> Track {

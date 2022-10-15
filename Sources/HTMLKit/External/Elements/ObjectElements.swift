@@ -69,8 +69,8 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> Parameter {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> Parameter {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> Parameter {
@@ -81,20 +81,20 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> Parameter {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> Parameter {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> Parameter {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> Parameter {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> Parameter {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> Parameter {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> Parameter {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> Parameter {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> Parameter {
@@ -137,8 +137,8 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> Parameter {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> Parameter {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> Parameter {
@@ -154,8 +154,8 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> Parameter {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> Parameter {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> Parameter {
@@ -170,13 +170,13 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> Parameter {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> Parameter {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> Parameter {
+        return mutate(translate: value.rawValue)
     }
 
     public func name(_ value: String) -> Parameter {

@@ -74,8 +74,8 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> Area {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> Area {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> Area {
@@ -86,20 +86,20 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> Area {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> Area {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> Area {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> Area {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> Area {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> Area {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> Area {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> Area {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> Area {
@@ -142,8 +142,8 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> Area {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> Area {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> Area {
@@ -159,8 +159,8 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> Area {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> Area {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> Area {
@@ -175,13 +175,13 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> Area {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> Area {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> Area {
+        return mutate(translate: value.rawValue)
     }
     
     public func alternate(_ value: String) -> Area {
@@ -192,8 +192,8 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(coords: value)
     }
     
-    public func shape(_ type: Values.Shape) -> Area {
-        return mutate(shape: type.rawValue)
+    public func shape(_ value: Values.Shape) -> Area {
+        return mutate(shape: value.rawValue)
     }
     
     public func reference(_ value: String) -> Area {
@@ -204,8 +204,8 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(href: value.rawValue)
     }
     
-    public func target(_ type: Values.Target) -> Area {
-        return mutate(target: type.rawValue)
+    public func target(_ value: Values.Target) -> Area {
+        return mutate(target: value.rawValue)
     }
     
     public func download() -> Area {
@@ -216,12 +216,12 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(ping: value)
     }
     
-    public func relationship(_ type: Values.Relation) -> Area {
-        return mutate(rel: type.rawValue)
+    public func relationship(_ value: Values.Relation) -> Area {
+        return mutate(rel: value.rawValue)
     }
     
-    public func referrerPolicy(_ type: Values.Policy) -> Area {
-        return mutate(referrerpolicy: type.rawValue)
+    public func referrerPolicy(_ value: Values.Policy) -> Area {
+        return mutate(referrerpolicy: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Area {

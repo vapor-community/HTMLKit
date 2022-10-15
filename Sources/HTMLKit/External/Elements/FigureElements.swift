@@ -83,8 +83,8 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Values.Capitalization) -> FigureCaption {
-        return mutate(autocapitalize: type.rawValue)
+    public func autocapitalize(_ value: Values.Capitalization) -> FigureCaption {
+        return mutate(autocapitalize: value.rawValue)
     }
 
     public func autofocus() -> FigureCaption {
@@ -95,20 +95,20 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(class: value)
     }
 
-    public func isEditable(_ condition: Bool) -> FigureCaption {
-        return mutate(contenteditable: condition)
+    public func isEditable(_ value: Bool) -> FigureCaption {
+        return mutate(contenteditable: value)
     }
 
-    public func direction(_ type: Values.Direction) -> FigureCaption {
-        return mutate(dir: type.rawValue)
+    public func direction(_ value: Values.Direction) -> FigureCaption {
+        return mutate(dir: value.rawValue)
     }
 
-    public func isDraggable(_ condition: Bool) -> FigureCaption {
-        return mutate(draggable: condition)
+    public func isDraggable(_ value: Bool) -> FigureCaption {
+        return mutate(draggable: value)
     }
 
-    public func enterKeyHint(_ type: Values.Hint) -> FigureCaption {
-        return mutate(enterkeyhint: type.rawValue)
+    public func enterKeyHint(_ value: Values.Hint) -> FigureCaption {
+        return mutate(enterkeyhint: value.rawValue)
     }
 
     public func hidden() -> FigureCaption {
@@ -151,8 +151,8 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Values.Language) -> FigureCaption {
-        return mutate(lang: type.rawValue)
+    public func language(_ value: Values.Language) -> FigureCaption {
+        return mutate(lang: value.rawValue)
     }
 
     public func nonce(_ value: String) -> FigureCaption {
@@ -168,8 +168,8 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(role: value.rawValue)
     }
 
-    public func hasSpellCheck(_ condition: Bool) -> FigureCaption {
-        return mutate(spellcheck: condition)
+    public func hasSpellCheck(_ value: Bool) -> FigureCaption {
+        return mutate(spellcheck: value)
     }
 
     public func style(_ value: String) -> FigureCaption {
@@ -184,13 +184,13 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
+    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> FigureCaption {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Values.Decision) -> FigureCaption {
-        return mutate(translate: type.rawValue)
+    public func translate(_ value: Values.Decision) -> FigureCaption {
+        return mutate(translate: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> FigureCaption {
