@@ -69,7 +69,7 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> Source {
+    public func autocapitalize(_ type: Values.Capitalization) -> Source {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -85,7 +85,7 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> Source {
+    public func direction(_ type: Values.Direction) -> Source {
         return mutate(dir: type.rawValue)
     }
 
@@ -93,7 +93,7 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> Source {
+    public func enterKeyHint(_ type: Values.Hint) -> Source {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -137,7 +137,7 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> Source {
+    public func language(_ type: Values.Language) -> Source {
         return mutate(lang: type.rawValue)
     }
 
@@ -145,12 +145,12 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> Source {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> Source {
+    public func role(_ value: Values.Role) -> Source {
         return mutate(role: value.rawValue)
     }
 
@@ -170,16 +170,16 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> Source {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> Source {
+    public func translate(_ type: Values.Decision) -> Source {
         return mutate(translate: type.rawValue)
     }
 
-    public func type(_ value: Medias) -> Source {
+    public func type(_ value: Values.Media) -> Source {
         return mutate(type: value.rawValue)
     }
     
@@ -294,7 +294,7 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> Track {
+    public func autocapitalize(_ type: Values.Capitalization) -> Track {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -310,7 +310,7 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> Track {
+    public func direction(_ type: Values.Direction) -> Track {
         return mutate(dir: type.rawValue)
     }
 
@@ -318,7 +318,7 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> Track {
+    public func enterKeyHint(_ type: Values.Hint) -> Track {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -362,7 +362,7 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> Track {
+    public func language(_ type: Values.Language) -> Track {
         return mutate(lang: type.rawValue)
     }
 
@@ -370,12 +370,12 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> Track {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> Track {
+    public func role(_ value: Values.Role) -> Track {
         return mutate(role: value.rawValue)
     }
 
@@ -395,21 +395,21 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return  mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> Track {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> Track {
+    public func translate(_ type: Values.Decision) -> Track {
         return mutate(translate: type.rawValue)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Kinds) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Kinds) instead")
     public func kind(_ value: String) -> Track {
         return mutate(kind: value)
     }
     
-    public func kind(_ type: Kinds) -> Track {
+    public func kind(_ type: Values.Kind) -> Track {
         return mutate(kind: type.rawValue)
     }
     

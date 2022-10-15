@@ -92,7 +92,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> RubyText {
+    public func autocapitalize(_ type: Values.Capitalization) -> RubyText {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -108,7 +108,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> RubyText {
+    public func direction(_ type: Values.Direction) -> RubyText {
         return mutate(dir: type.rawValue)
     }
 
@@ -116,7 +116,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> RubyText {
+    public func enterKeyHint(_ type: Values.Hint) -> RubyText {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -160,7 +160,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> RubyText {
+    public func language(_ type: Values.Language) -> RubyText {
         return mutate(lang: type.rawValue)
     }
 
@@ -168,12 +168,12 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> RubyText {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> RubyText {
+    public func role(_ value: Values.Role) -> RubyText {
         return mutate(role: value.rawValue)
     }
 
@@ -193,12 +193,12 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> RubyText {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> RubyText {
+    public func translate(_ type: Values.Decision) -> RubyText {
         return mutate(translate: type.rawValue)
     }
     
@@ -238,7 +238,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariacontrols: value)
     }
     
-    public func aria(current value: Accessibility.Current) -> RubyText {
+    public func aria(current value: Values.Accessibility.Current) -> RubyText {
         return mutate(ariacurrent: value.rawValue)
     }
     
@@ -262,7 +262,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaflowto: value)
     }
     
-    public func aria(hasPopup value: Accessibility.Popup) -> RubyText {
+    public func aria(hasPopup value: Values.Accessibility.Popup) -> RubyText {
         return mutate(ariahaspopup: value.rawValue)
     }
     
@@ -270,7 +270,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: value)
     }
     
-    public func aria(invalid value: Accessibility.Invalid) -> RubyText {
+    public func aria(invalid value: Values.Accessibility.Invalid) -> RubyText {
         return mutate(ariainvalid: value.rawValue)
     }
     
@@ -286,7 +286,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: value)
     }
     
-    public func aria(live value: Accessibility.Live) -> RubyText {
+    public func aria(live value: Values.Accessibility.Live) -> RubyText {
         return mutate(arialive: value.rawValue)
     }
     
@@ -294,7 +294,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaowns: value)
     }
     
-    public func aria(relevant value: Accessibility.Relevant) -> RubyText {
+    public func aria(relevant value: Values.Accessibility.Relevant) -> RubyText {
         return mutate(ariarelevant: value.rawValue)
     }
     
@@ -374,7 +374,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> RubyPronunciation {
+    public func autocapitalize(_ type: Values.Capitalization) -> RubyPronunciation {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -390,7 +390,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> RubyPronunciation {
+    public func direction(_ type: Values.Direction) -> RubyPronunciation {
         return mutate(dir: type.rawValue)
     }
 
@@ -398,7 +398,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> RubyPronunciation {
+    public func enterKeyHint(_ type: Values.Hint) -> RubyPronunciation {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -442,7 +442,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> RubyPronunciation {
+    public func language(_ type: Values.Language) -> RubyPronunciation {
         return mutate(lang: type.rawValue)
     }
 
@@ -450,12 +450,12 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> RubyPronunciation {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> RubyPronunciation {
+    public func role(_ value: Values.Role) -> RubyPronunciation {
         return mutate(role: value.rawValue)
     }
 
@@ -475,12 +475,12 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(title: value)
     }
     
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> RubyPronunciation {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> RubyPronunciation {
+    public func translate(_ type: Values.Decision) -> RubyPronunciation {
         return mutate(translate: type.rawValue)
     }
     
@@ -520,7 +520,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(ariacontrols: value)
     }
     
-    public func aria(current value: Accessibility.Current) -> RubyPronunciation {
+    public func aria(current value: Values.Accessibility.Current) -> RubyPronunciation {
         return mutate(ariacurrent: value.rawValue)
     }
     
@@ -544,7 +544,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(ariaflowto: value)
     }
     
-    public func aria(hasPopup value: Accessibility.Popup) -> RubyPronunciation {
+    public func aria(hasPopup value: Values.Accessibility.Popup) -> RubyPronunciation {
         return mutate(ariahaspopup: value.rawValue)
     }
     
@@ -552,7 +552,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(ariahidden: value)
     }
     
-    public func aria(invalid value: Accessibility.Invalid) -> RubyPronunciation {
+    public func aria(invalid value: Values.Accessibility.Invalid) -> RubyPronunciation {
         return mutate(ariainvalid: value.rawValue)
     }
     
@@ -568,7 +568,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(arialabeledby: value)
     }
     
-    public func aria(live value: Accessibility.Live) -> RubyPronunciation {
+    public func aria(live value: Values.Accessibility.Live) -> RubyPronunciation {
         return mutate(arialive: value.rawValue)
     }
     
@@ -576,7 +576,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(ariaowns: value)
     }
     
-    public func aria(relevant value: Accessibility.Relevant) -> RubyPronunciation {
+    public func aria(relevant value: Values.Accessibility.Relevant) -> RubyPronunciation {
         return mutate(ariarelevant: value.rawValue)
     }
     

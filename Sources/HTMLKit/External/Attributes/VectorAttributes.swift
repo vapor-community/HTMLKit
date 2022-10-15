@@ -164,7 +164,7 @@ public protocol StrokeLineCapAttribute: AnyAttribute {
     /// ```html
     /// <tag stroke-linecap="" />
     /// ```
-    func strokeLineCap(_ type: Linecap) -> Self
+    func strokeLineCap(_ type: Values.Linecap) -> Self
 }
 
 extension StrokeLineCapAttribute {
@@ -187,7 +187,7 @@ public protocol StrokeLineJoinAttribute: AnyAttribute {
     /// ```html
     /// <tag stroke-linejoin="" />
     /// ```
-    func strokeLineJoin(_ type: Linejoin) -> Self
+    func strokeLineJoin(_ value: Values.Linejoin) -> Self
 }
 
 extension StrokeLineJoinAttribute {

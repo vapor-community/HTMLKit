@@ -77,7 +77,7 @@ public protocol AriaAutoCompleteAttribute: AnyAttribute {
     /// ```html
     /// <tag aria-autocomplete="" />
     /// ```
-    func aria(autoComplete value: Accessibility.Complete) -> Self
+    func aria(autoComplete value: Values.Accessibility.Complete) -> Self
 }
 
 extension AriaAutoCompleteAttribute {
@@ -137,7 +137,7 @@ public protocol AriaCheckedAttribute: AnyAttribute {
     /// ```html
     /// <tag aria-checked="" />
     /// ```
-    func aria(checked value: Accessibility.Check) -> Self
+    func aria(checked value: Values.Accessibility.Check) -> Self
 }
 
 extension AriaCheckedAttribute {
@@ -287,7 +287,7 @@ public protocol AriaCurrentAttribute: AnyAttribute {
     /// ```html
     /// <tag aria-current="" />
     /// ```
-    func aria(current value: Accessibility.Current) -> Self
+    func aria(current value: Values.Accessibility.Current) -> Self
 }
 
 extension AriaCurrentAttribute {
@@ -497,7 +497,7 @@ public protocol AriaPopupAttribute: AnyAttribute {
     /// ```html
     /// <tag aria-haspopup="" />
     /// ```
-    func aria(hasPopup value: Accessibility.Popup) -> Self
+    func aria(hasPopup value: Values.Accessibility.Popup) -> Self
 }
 
 extension AriaPopupAttribute {
@@ -557,7 +557,7 @@ public protocol AriaInvalidAttribute: AnyAttribute {
     /// ```html
     /// <tag aria-invalid="" />
     /// ```
-    func aria(invalid value: Accessibility.Invalid) -> Self
+    func aria(invalid value: Values.Accessibility.Invalid) -> Self
 }
 
 extension AriaInvalidAttribute {
@@ -707,7 +707,7 @@ public protocol AriaLiveAttribute: AnyAttribute {
     /// ```html
     /// <tag aria-live="" />
     /// ```
-    func aria(live value: Accessibility.Live) -> Self
+    func aria(live value: Values.Accessibility.Live) -> Self
 }
 
 extension AriaLiveAttribute {
@@ -827,7 +827,7 @@ public protocol AriaOrientationAttribute: AnyAttribute {
     /// ```html
     /// <tag aria-orientation="" />
     /// ```
-    func aria(orientation value: Accessibility.Orientation) -> Self
+    func aria(orientation value: Values.Accessibility.Orientation) -> Self
 }
 
 extension AriaOrientationAttribute {
@@ -947,7 +947,7 @@ public protocol AriaPressedAttribute: AnyAttribute {
     /// ```html
     /// <tag aria-pressed="" />
     /// ```
-    func aria(presssed value: Accessibility.Pressed) -> Self
+    func aria(presssed value: Values.Accessibility.Pressed) -> Self
 }
 
 extension AriaPressedAttribute {
@@ -1007,7 +1007,7 @@ public protocol AriaRelevantAttribute: AnyAttribute {
     /// ```html
     /// <tag aria-relevant="" />
     /// ```
-    func aria(relevant value: Accessibility.Relevant) -> Self
+    func aria(relevant value: Values.Accessibility.Relevant) -> Self
 }
 
 extension AriaRelevantAttribute {
@@ -1187,7 +1187,7 @@ public protocol AriaSelectedAttribute: AnyAttribute {
     /// ```html
     /// <tag aria-selected="" />
     /// ```
-    func aria(selected value: Accessibility.Selected) -> Self
+    func aria(selected value: Values.Accessibility.Selected) -> Self
 }
 
 extension AriaSelectedAttribute {
@@ -1247,7 +1247,7 @@ public protocol AriaSortAttribute: AnyAttribute {
     /// ```html
     /// <tag aria-sort="" />
     /// ```
-    func aria(sort value: Accessibility.Sort) -> Self
+    func aria(sort value: Values.Accessibility.Sort) -> Self
 }
 
 extension AriaSortAttribute {

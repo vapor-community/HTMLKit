@@ -178,7 +178,7 @@ public protocol AutocapitalizeAttribute: AnyAttribute {
     /// ```html
     /// <tag autocapitalize="" />
     /// ```
-    func autocapitalize(_ type: Capitalization) -> Self
+    func autocapitalize(_ type: Values.Capitalization) -> Self
 }
 
 extension AutocapitalizeAttribute {
@@ -298,7 +298,7 @@ public protocol CharsetAttribute: AnyAttribute {
     /// ```html
     /// <tag charset="" />
     /// ```
-    func charset(_ value: Charset) -> Self
+    func charset(_ value: Values.Charset) -> Self
 }
 
 extension CharsetAttribute {
@@ -723,7 +723,7 @@ public protocol DirectionAttribute: AnyAttribute {
     /// ```html
     /// <tag dir="" />
     /// ```
-    func direction(_ type: Direction) -> Self
+    func direction(_ type: Values.Direction) -> Self
 }
 
 extension DirectionAttribute {
@@ -845,7 +845,7 @@ public protocol EncodingAttribute: AnyAttribute {
     /// ```html
     /// <tag enctype="" />
     /// ```
-    func encoding(_ type: Encoding) -> Self
+    func encoding(_ type: Values.Encoding) -> Self
 }
 
 extension EncodingAttribute {
@@ -877,7 +877,7 @@ public protocol EnterKeyHintAttribute: AnyAttribute {
     /// ```html
     /// <tag enterkeyhint="" />
     /// ```
-    func enterKeyHint(_ type: Hint) -> Self
+    func enterKeyHint(_ type: Values.Hint) -> Self
 }
 
 extension EnterKeyHintAttribute {
@@ -1003,7 +1003,7 @@ public protocol EquivalentAttribute: AnyAttribute {
     /// ```html
     /// <tag http-equiv="" />
     /// ```
-    func equivalent(_ value: Equivalent) -> Self
+    func equivalent(_ value: Values.Equivalent) -> Self
 }
 
 extension EquivalentAttribute {
@@ -1195,7 +1195,7 @@ public protocol ReferenceLanguageAttribute: AnyAttribute {
     /// ```html
     /// <tag hreflang="" />
     /// ```
-    func referenceLanguage(_ type: Language) -> Self
+    func referenceLanguage(_ type: Values.Language) -> Self
 }
 
 extension ReferenceLanguageAttribute {
@@ -1499,7 +1499,7 @@ public protocol KindAttribute: AnyAttribute {
     /// ```html
     /// <tag kind="" />
     /// ```
-    func kind(_ type: Kinds) -> Self
+    func kind(_ type: Values.Kind) -> Self
 }
 
 extension KindAttribute {
@@ -1559,7 +1559,7 @@ public protocol LanguageAttribute: AnyAttribute {
     /// ```html
     /// <tag lang="" />
     /// ```
-    func language(_ type: Language) -> Self
+    func language(_ type: Values.Language) -> Self
 }
 
 extension LanguageAttribute {
@@ -1771,7 +1771,7 @@ public protocol MethodAttribute: AnyAttribute {
     /// ```html
     /// <tag method="" />
     /// ```
-    func method(_ type: Method) -> Self
+    func method(_ type: Values.Method) -> Self
 }
 
 extension MethodAttribute {
@@ -2230,7 +2230,7 @@ public protocol PreloadAttribute: AnyAttribute {
     /// ```html
     /// <tag preload="" />
     /// ```
-    func preload(_ type: Preload) -> Self
+    func preload(_ type: Values.Preload) -> Self
 }
 
 extension PreloadAttribute {
@@ -2290,7 +2290,7 @@ public protocol ReferrerPolicyAttribute: AnyAttribute {
     /// ```html
     /// <tag referrerpolicy="" />
     /// ```
-    func referrerPolicy(_ type: Policy) -> Self
+    func referrerPolicy(_ type: Values.Policy) -> Self
 }
 
 extension ReferrerPolicyAttribute {
@@ -2320,7 +2320,7 @@ public protocol RelationshipAttribute: AnyAttribute {
     /// ```html
     /// <tag rel="" />
     /// ```
-    func relationship(_ type: Relation) -> Self
+    func relationship(_ type: Values.Relation) -> Self
 }
 
 extension RelationshipAttribute {
@@ -2410,7 +2410,7 @@ public protocol RoleAttribute: AnyAttribute {
     /// ```html
     /// <tag role="" />
     /// ```
-    func role(_ value: Roles) -> Self
+    func role(_ value: Values.Role) -> Self
 }
 
 extension RoleAttribute {
@@ -2560,7 +2560,7 @@ public protocol ShapeAttribute: AnyAttribute {
     /// ```html
     /// <tag shape="" />
     /// ```
-    func shape(_ type: Shape) -> Self
+    func shape(_ type: Values.Shape) -> Self
 }
 
 extension ShapeAttribute {
@@ -2890,7 +2890,7 @@ public protocol TargetAttribute: AnyAttribute {
     /// ```html
     /// <tag target="" />
     /// ```
-    func target(_ type: Target) -> Self
+    func target(_ type: Values.Target) -> Self
 }
 
 extension TargetAttribute {
@@ -2950,7 +2950,7 @@ public protocol TranslateAttribute: AnyAttribute {
     /// ```html
     /// <tag translate="" />
     /// ```
-    func translate(_ type: Decision) -> Self
+    func translate(_ type: Values.Decision) -> Self
 }
 
 extension TranslateAttribute {
@@ -3074,7 +3074,7 @@ public protocol WrapAttribute: AnyAttribute {
     /// ```html
     /// <tag wrap="" />
     /// ```
-    func wrap(_ type: Wrapping) -> Self
+    func wrap(_ type: Values.Wrapping) -> Self
 }
 
 extension WrapAttribute {
@@ -3106,7 +3106,7 @@ public protocol PropertyAttribute: AnyAttribute {
     /// ```
     ///
     /// - Parameter type:
-    func property(_ type: Graphs) -> Self
+    func property(_ type: Values.Graph) -> Self
 }
 
 extension PropertyAttribute {

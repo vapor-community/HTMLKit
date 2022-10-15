@@ -83,7 +83,7 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> FigureCaption {
+    public func autocapitalize(_ type: Values.Capitalization) -> FigureCaption {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -99,7 +99,7 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> FigureCaption {
+    public func direction(_ type: Values.Direction) -> FigureCaption {
         return mutate(dir: type.rawValue)
     }
 
@@ -107,7 +107,7 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> FigureCaption {
+    public func enterKeyHint(_ type: Values.Hint) -> FigureCaption {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -151,7 +151,7 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> FigureCaption {
+    public func language(_ type: Values.Language) -> FigureCaption {
         return mutate(lang: type.rawValue)
     }
 
@@ -159,12 +159,12 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> FigureCaption {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> FigureCaption {
+    public func role(_ value: Values.Role) -> FigureCaption {
         return mutate(role: value.rawValue)
     }
 
@@ -184,12 +184,12 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> FigureCaption {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> FigureCaption {
+    public func translate(_ type: Values.Decision) -> FigureCaption {
         return mutate(translate: type.rawValue)
     }
     
@@ -229,7 +229,7 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariacontrols: value)
     }
     
-    public func aria(current value: Accessibility.Current) -> FigureCaption {
+    public func aria(current value: Values.Accessibility.Current) -> FigureCaption {
         return mutate(ariacurrent: value.rawValue)
     }
     
@@ -253,7 +253,7 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariaflowto: value)
     }
     
-    public func aria(hasPopup value: Accessibility.Popup) -> FigureCaption {
+    public func aria(hasPopup value: Values.Accessibility.Popup) -> FigureCaption {
         return mutate(ariahaspopup: value.rawValue)
     }
     
@@ -261,7 +261,7 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariahidden: value)
     }
     
-    public func aria(invalid value: Accessibility.Invalid) -> FigureCaption {
+    public func aria(invalid value: Values.Accessibility.Invalid) -> FigureCaption {
         return mutate(ariainvalid: value.rawValue)
     }
     
@@ -277,7 +277,7 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(arialabeledby: value)
     }
     
-    public func aria(live value: Accessibility.Live) -> FigureCaption {
+    public func aria(live value: Values.Accessibility.Live) -> FigureCaption {
         return mutate(arialive: value.rawValue)
     }
     
@@ -285,7 +285,7 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariaowns: value)
     }
     
-    public func aria(relevant value: Accessibility.Relevant) -> FigureCaption {
+    public func aria(relevant value: Values.Accessibility.Relevant) -> FigureCaption {
         return mutate(ariarelevant: value.rawValue)
     }
     

@@ -48,7 +48,7 @@ public struct Document: DocumentNode, BasicElement {
     
     public var content: String
     
-    public init(_ type: Doctypes) {
+    public init(_ type: Values.Doctype) {
         self.content = type.rawValue
     }
 }
@@ -69,7 +69,7 @@ extension Document {
     // MARK: Deprecations
     
     @available(*, deprecated, message: "Use Document(_ type:) instead.")
-    public init(type: Doctypes) {
+    public init(type: Values.Doctype) {
         self.content = type.rawValue
     }
 }
@@ -134,7 +134,7 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> Html {
+    public func autocapitalize(_ type: Values.Capitalization) -> Html {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -150,7 +150,7 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> Html {
+    public func direction(_ type: Values.Direction) -> Html {
         return mutate(dir: type.rawValue)
     }
 
@@ -158,7 +158,7 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> Html {
+    public func enterKeyHint(_ type: Values.Hint) -> Html {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -202,7 +202,7 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> Html {
+    public func language(_ type: Values.Language) -> Html {
         return mutate(lang: type.rawValue)
     }
 
@@ -210,12 +210,12 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> Html {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> Html {
+    public func role(_ value: Values.Role) -> Html {
         return mutate(role: value.rawValue)
     }
 
@@ -235,12 +235,12 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> Html {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> Html {
+    public func translate(_ type: Values.Decision) -> Html {
         return mutate(translate: type.rawValue)
     }
     

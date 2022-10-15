@@ -146,7 +146,7 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> Caption {
+    public func autocapitalize(_ type: Values.Capitalization) -> Caption {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -162,7 +162,7 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> Caption {
+    public func direction(_ type: Values.Direction) -> Caption {
         return mutate(dir: type.rawValue)
     }
 
@@ -170,7 +170,7 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> Caption {
+    public func enterKeyHint(_ type: Values.Hint) -> Caption {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -214,7 +214,7 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> Caption {
+    public func language(_ type: Values.Language) -> Caption {
         return mutate(lang: type.rawValue)
     }
 
@@ -222,12 +222,12 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> Caption {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> Caption {
+    public func role(_ value: Values.Role) -> Caption {
         return mutate(role: value.rawValue)
     }
 
@@ -247,12 +247,12 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> Caption {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> Caption {
+    public func translate(_ type: Values.Decision) -> Caption {
         return mutate(translate: type.rawValue)
     }
     
@@ -292,7 +292,7 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariacontrols: value)
     }
     
-    public func aria(current value: Accessibility.Current) -> Caption {
+    public func aria(current value: Values.Accessibility.Current) -> Caption {
         return mutate(ariacurrent: value.rawValue)
     }
     
@@ -316,7 +316,7 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariaflowto: value)
     }
     
-    public func aria(hasPopup value: Accessibility.Popup) -> Caption {
+    public func aria(hasPopup value: Values.Accessibility.Popup) -> Caption {
         return mutate(ariahaspopup: value.rawValue)
     }
     
@@ -324,7 +324,7 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariahidden: value)
     }
     
-    public func aria(invalid value: Accessibility.Invalid) -> Caption {
+    public func aria(invalid value: Values.Accessibility.Invalid) -> Caption {
         return mutate(ariainvalid: value.rawValue)
     }
     
@@ -340,7 +340,7 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(arialabeledby: value)
     }
     
-    public func aria(live value: Accessibility.Live) -> Caption {
+    public func aria(live value: Values.Accessibility.Live) -> Caption {
         return mutate(arialive: value.rawValue)
     }
     
@@ -348,7 +348,7 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariaowns: value)
     }
     
-    public func aria(relevant value: Accessibility.Relevant) -> Caption {
+    public func aria(relevant value: Values.Accessibility.Relevant) -> Caption {
         return mutate(ariarelevant: value.rawValue)
     }
     
@@ -428,7 +428,7 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> ColumnGroup {
+    public func autocapitalize(_ type: Values.Capitalization) -> ColumnGroup {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -444,7 +444,7 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> ColumnGroup {
+    public func direction(_ type: Values.Direction) -> ColumnGroup {
         return mutate(dir: type.rawValue)
     }
 
@@ -452,7 +452,7 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> ColumnGroup {
+    public func enterKeyHint(_ type: Values.Hint) -> ColumnGroup {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -496,7 +496,7 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> ColumnGroup {
+    public func language(_ type: Values.Language) -> ColumnGroup {
         return mutate(lang: type.rawValue)
     }
 
@@ -504,12 +504,12 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> ColumnGroup {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> ColumnGroup {
+    public func role(_ value: Values.Role) -> ColumnGroup {
         return mutate(role: value.rawValue)
     }
 
@@ -529,12 +529,12 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> ColumnGroup {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> ColumnGroup {
+    public func translate(_ type: Values.Decision) -> ColumnGroup {
         return mutate(translate: type.rawValue)
     }
 
@@ -638,7 +638,7 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> Column {
+    public func autocapitalize(_ type: Values.Capitalization) -> Column {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -654,7 +654,7 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> Column {
+    public func direction(_ type: Values.Direction) -> Column {
         return mutate(dir: type.rawValue)
     }
 
@@ -662,7 +662,7 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> Column {
+    public func enterKeyHint(_ type: Values.Hint) -> Column {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -706,7 +706,7 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> Column {
+    public func language(_ type: Values.Language) -> Column {
         return mutate(lang: type.rawValue)
     }
 
@@ -714,12 +714,12 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> Column {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> Column {
+    public func role(_ value: Values.Role) -> Column {
         return mutate(role: value.rawValue)
     }
 
@@ -739,12 +739,12 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> Column {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> Column {
+    public func translate(_ type: Values.Decision) -> Column {
         return mutate(translate: type.rawValue)
     }
     
@@ -848,7 +848,7 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> TableBody {
+    public func autocapitalize(_ type: Values.Capitalization) -> TableBody {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -864,7 +864,7 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> TableBody {
+    public func direction(_ type: Values.Direction) -> TableBody {
         return mutate(dir: type.rawValue)
     }
 
@@ -872,7 +872,7 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> TableBody {
+    public func enterKeyHint(_ type: Values.Hint) -> TableBody {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -916,7 +916,7 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(id: value.rawValue)
     }
     
-    public func language(_ type: Language) -> TableBody {
+    public func language(_ type: Values.Language) -> TableBody {
         return mutate(lang: type.rawValue)
     }
 
@@ -924,12 +924,12 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> TableBody {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> TableBody {
+    public func role(_ value: Values.Role) -> TableBody {
         return mutate(role: value.rawValue)
     }
 
@@ -949,12 +949,12 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> TableBody {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> TableBody {
+    public func translate(_ type: Values.Decision) -> TableBody {
         return mutate(translate: type.rawValue)
     }
     
@@ -1002,7 +1002,7 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariacontrols: value)
     }
     
-    public func aria(current value: Accessibility.Current) -> TableBody {
+    public func aria(current value: Values.Accessibility.Current) -> TableBody {
         return mutate(ariacurrent: value.rawValue)
     }
     
@@ -1026,7 +1026,7 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariaflowto: value)
     }
     
-    public func aria(hasPopup value: Accessibility.Popup) -> TableBody {
+    public func aria(hasPopup value: Values.Accessibility.Popup) -> TableBody {
         return mutate(ariahaspopup: value.rawValue)
     }
     
@@ -1034,7 +1034,7 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahidden: value)
     }
     
-    public func aria(invalid value: Accessibility.Invalid) -> TableBody {
+    public func aria(invalid value: Values.Accessibility.Invalid) -> TableBody {
         return mutate(ariainvalid: value.rawValue)
     }
     
@@ -1050,7 +1050,7 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialabeledby: value)
     }
     
-    public func aria(live value: Accessibility.Live) -> TableBody {
+    public func aria(live value: Values.Accessibility.Live) -> TableBody {
         return mutate(arialive: value.rawValue)
     }
     
@@ -1058,7 +1058,7 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariaowns: value)
     }
     
-    public func aria(relevant value: Accessibility.Relevant) -> TableBody {
+    public func aria(relevant value: Values.Accessibility.Relevant) -> TableBody {
         return mutate(ariarelevant: value.rawValue)
     }
     
@@ -1138,7 +1138,7 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> TableHead {
+    public func autocapitalize(_ type: Values.Capitalization) -> TableHead {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -1154,7 +1154,7 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> TableHead {
+    public func direction(_ type: Values.Direction) -> TableHead {
         return mutate(dir: type.rawValue)
     }
 
@@ -1162,7 +1162,7 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> TableHead {
+    public func enterKeyHint(_ type: Values.Hint) -> TableHead {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -1206,7 +1206,7 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> TableHead {
+    public func language(_ type: Values.Language) -> TableHead {
         return mutate(lang: type.rawValue)
     }
 
@@ -1214,12 +1214,12 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> TableHead {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> TableHead {
+    public func role(_ value: Values.Role) -> TableHead {
         return mutate(role: value.rawValue)
     }
 
@@ -1239,12 +1239,12 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> TableHead {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> TableHead {
+    public func translate(_ type: Values.Decision) -> TableHead {
         return mutate(translate: type.rawValue)
     }
 
@@ -1292,7 +1292,7 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariacontrols: value)
     }
     
-    public func aria(current value: Accessibility.Current) -> TableHead {
+    public func aria(current value: Values.Accessibility.Current) -> TableHead {
         return mutate(ariacurrent: value.rawValue)
     }
     
@@ -1316,7 +1316,7 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariaflowto: value)
     }
     
-    public func aria(hasPopup value: Accessibility.Popup) -> TableHead {
+    public func aria(hasPopup value: Values.Accessibility.Popup) -> TableHead {
         return mutate(ariahaspopup: value.rawValue)
     }
     
@@ -1324,7 +1324,7 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahidden: value)
     }
     
-    public func aria(invalid value: Accessibility.Invalid) -> TableHead {
+    public func aria(invalid value: Values.Accessibility.Invalid) -> TableHead {
         return mutate(ariainvalid: value.rawValue)
     }
     
@@ -1340,7 +1340,7 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialabeledby: value)
     }
     
-    public func aria(live value: Accessibility.Live) -> TableHead {
+    public func aria(live value: Values.Accessibility.Live) -> TableHead {
         return mutate(arialive: value.rawValue)
     }
     
@@ -1348,7 +1348,7 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariaowns: value)
     }
     
-    public func aria(relevant value: Accessibility.Relevant) -> TableHead {
+    public func aria(relevant value: Values.Accessibility.Relevant) -> TableHead {
         return mutate(ariarelevant: value.rawValue)
     }
     
@@ -1428,7 +1428,7 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> TableFoot {
+    public func autocapitalize(_ type: Values.Capitalization) -> TableFoot {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -1444,7 +1444,7 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> TableFoot {
+    public func direction(_ type: Values.Direction) -> TableFoot {
         return mutate(dir: type.rawValue)
     }
 
@@ -1452,7 +1452,7 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> TableFoot {
+    public func enterKeyHint(_ type: Values.Hint) -> TableFoot {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -1496,7 +1496,7 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> TableFoot {
+    public func language(_ type: Values.Language) -> TableFoot {
         return mutate(lang: type.rawValue)
     }
 
@@ -1504,12 +1504,12 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> TableFoot {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> TableFoot {
+    public func role(_ value: Values.Role) -> TableFoot {
         return mutate(role: value.rawValue)
     }
 
@@ -1529,12 +1529,12 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> TableFoot {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> TableFoot {
+    public func translate(_ type: Values.Decision) -> TableFoot {
         return mutate(translate: type.rawValue)
     }
     
@@ -1574,7 +1574,7 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariacontrols: value)
     }
     
-    public func aria(current value: Accessibility.Current) -> TableFoot {
+    public func aria(current value: Values.Accessibility.Current) -> TableFoot {
         return mutate(ariacurrent: value.rawValue)
     }
     
@@ -1598,7 +1598,7 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariaflowto: value)
     }
     
-    public func aria(hasPopup value: Accessibility.Popup) -> TableFoot {
+    public func aria(hasPopup value: Values.Accessibility.Popup) -> TableFoot {
         return mutate(ariahaspopup: value.rawValue)
     }
     
@@ -1606,7 +1606,7 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahidden: value)
     }
     
-    public func aria(invalid value: Accessibility.Invalid) -> TableFoot {
+    public func aria(invalid value: Values.Accessibility.Invalid) -> TableFoot {
         return mutate(ariainvalid: value.rawValue)
     }
     
@@ -1622,7 +1622,7 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialabeledby: value)
     }
     
-    public func aria(live value: Accessibility.Live) -> TableFoot {
+    public func aria(live value: Values.Accessibility.Live) -> TableFoot {
         return mutate(arialive: value.rawValue)
     }
     
@@ -1630,7 +1630,7 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariaowns: value)
     }
     
-    public func aria(relevant value: Accessibility.Relevant) -> TableFoot {
+    public func aria(relevant value: Values.Accessibility.Relevant) -> TableFoot {
         return mutate(ariarelevant: value.rawValue)
     }
     
@@ -1710,7 +1710,7 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> TableRow {
+    public func autocapitalize(_ type: Values.Capitalization) -> TableRow {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -1726,7 +1726,7 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> TableRow {
+    public func direction(_ type: Values.Direction) -> TableRow {
         return mutate(dir: type.rawValue)
     }
 
@@ -1734,7 +1734,7 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> TableRow {
+    public func enterKeyHint(_ type: Values.Hint) -> TableRow {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -1778,7 +1778,7 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> TableRow {
+    public func language(_ type: Values.Language) -> TableRow {
         return mutate(lang: type.rawValue)
     }
 
@@ -1786,12 +1786,12 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> TableRow {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> TableRow {
+    public func role(_ value: Values.Role) -> TableRow {
         return mutate(role: value.rawValue)
     }
 
@@ -1811,12 +1811,12 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> TableRow {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> TableRow {
+    public func translate(_ type: Values.Decision) -> TableRow {
         return mutate(translate: type.rawValue)
     }
 
@@ -1864,7 +1864,7 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariacontrols: value)
     }
     
-    public func aria(current value: Accessibility.Current) -> TableRow {
+    public func aria(current value: Values.Accessibility.Current) -> TableRow {
         return mutate(ariacurrent: value.rawValue)
     }
     
@@ -1888,7 +1888,7 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaflowto: value)
     }
     
-    public func aria(hasPopup value: Accessibility.Popup) -> TableRow {
+    public func aria(hasPopup value: Values.Accessibility.Popup) -> TableRow {
         return mutate(ariahaspopup: value.rawValue)
     }
     
@@ -1896,7 +1896,7 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: value)
     }
     
-    public func aria(invalid value: Accessibility.Invalid) -> TableRow {
+    public func aria(invalid value: Values.Accessibility.Invalid) -> TableRow {
         return mutate(ariainvalid: value.rawValue)
     }
     
@@ -1912,7 +1912,7 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: value)
     }
     
-    public func aria(live value: Accessibility.Live) -> TableRow {
+    public func aria(live value: Values.Accessibility.Live) -> TableRow {
         return mutate(arialive: value.rawValue)
     }
     
@@ -1920,7 +1920,7 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaowns: value)
     }
     
-    public func aria(relevant value: Accessibility.Relevant) -> TableRow {
+    public func aria(relevant value: Values.Accessibility.Relevant) -> TableRow {
         return mutate(ariarelevant: value.rawValue)
     }
     
@@ -2000,7 +2000,7 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> DataCell {
+    public func autocapitalize(_ type: Values.Capitalization) -> DataCell {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -2016,7 +2016,7 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> DataCell {
+    public func direction(_ type: Values.Direction) -> DataCell {
         return mutate(dir: type.rawValue)
     }
 
@@ -2024,7 +2024,7 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> DataCell {
+    public func enterKeyHint(_ type: Values.Hint) -> DataCell {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -2068,7 +2068,7 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> DataCell {
+    public func language(_ type: Values.Language) -> DataCell {
         return mutate(lang: type.rawValue)
     }
 
@@ -2076,12 +2076,12 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> DataCell {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> DataCell {
+    public func role(_ value: Values.Role) -> DataCell {
         return mutate(role: value.rawValue)
     }
 
@@ -2101,12 +2101,12 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> DataCell {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> DataCell {
+    public func translate(_ type: Values.Decision) -> DataCell {
         return mutate(translate: type.rawValue)
     }
 
@@ -2158,7 +2158,7 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariacontrols: value)
     }
     
-    public func aria(current value: Accessibility.Current) -> DataCell {
+    public func aria(current value: Values.Accessibility.Current) -> DataCell {
         return mutate(ariacurrent: value.rawValue)
     }
     
@@ -2182,7 +2182,7 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaflowto: value)
     }
     
-    public func aria(hasPopup value: Accessibility.Popup) -> DataCell {
+    public func aria(hasPopup value: Values.Accessibility.Popup) -> DataCell {
         return mutate(ariahaspopup: value.rawValue)
     }
     
@@ -2190,7 +2190,7 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: value)
     }
     
-    public func aria(invalid value: Accessibility.Invalid) -> DataCell {
+    public func aria(invalid value: Values.Accessibility.Invalid) -> DataCell {
         return mutate(ariainvalid: value.rawValue)
     }
     
@@ -2206,7 +2206,7 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: value)
     }
     
-    public func aria(live value: Accessibility.Live) -> DataCell {
+    public func aria(live value: Values.Accessibility.Live) -> DataCell {
         return mutate(arialive: value.rawValue)
     }
     
@@ -2214,7 +2214,7 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaowns: value)
     }
     
-    public func aria(relevant value: Accessibility.Relevant) -> DataCell {
+    public func aria(relevant value: Values.Accessibility.Relevant) -> DataCell {
         return mutate(ariarelevant: value.rawValue)
     }
     
@@ -2294,7 +2294,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> HeaderCell {
+    public func autocapitalize(_ type: Values.Capitalization) -> HeaderCell {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -2310,7 +2310,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> HeaderCell {
+    public func direction(_ type: Values.Direction) -> HeaderCell {
         return mutate(dir: type.rawValue)
     }
 
@@ -2318,7 +2318,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> HeaderCell {
+    public func enterKeyHint(_ type: Values.Hint) -> HeaderCell {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -2362,7 +2362,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(id: value.rawValue)
     }
     
-    public func language(_ type: Language) -> HeaderCell {
+    public func language(_ type: Values.Language) -> HeaderCell {
         return mutate(lang: type.rawValue)
     }
 
@@ -2370,12 +2370,12 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> HeaderCell {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> HeaderCell {
+    public func role(_ value: Values.Role) -> HeaderCell {
         return mutate(role: value.rawValue)
     }
 
@@ -2395,12 +2395,12 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> HeaderCell {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> HeaderCell {
+    public func translate(_ type: Values.Decision) -> HeaderCell {
         return mutate(translate: type.rawValue)
     }
 
@@ -2456,7 +2456,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariacontrols: value)
     }
     
-    public func aria(current value: Accessibility.Current) -> HeaderCell {
+    public func aria(current value: Values.Accessibility.Current) -> HeaderCell {
         return mutate(ariacurrent: value.rawValue)
     }
     
@@ -2480,7 +2480,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariaflowto: value)
     }
     
-    public func aria(hasPopup value: Accessibility.Popup) -> HeaderCell {
+    public func aria(hasPopup value: Values.Accessibility.Popup) -> HeaderCell {
         return mutate(ariahaspopup: value.rawValue)
     }
     
@@ -2488,7 +2488,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariahidden: value)
     }
     
-    public func aria(invalid value: Accessibility.Invalid) -> HeaderCell {
+    public func aria(invalid value: Values.Accessibility.Invalid) -> HeaderCell {
         return mutate(ariainvalid: value.rawValue)
     }
     
@@ -2504,7 +2504,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(arialabeledby: value)
     }
     
-    public func aria(live value: Accessibility.Live) -> HeaderCell {
+    public func aria(live value: Values.Accessibility.Live) -> HeaderCell {
         return mutate(arialive: value.rawValue)
     }
     
@@ -2512,7 +2512,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariaowns: value)
     }
     
-    public func aria(relevant value: Accessibility.Relevant) -> HeaderCell {
+    public func aria(relevant value: Values.Accessibility.Relevant) -> HeaderCell {
         return mutate(ariarelevant: value.rawValue)
     }
     

@@ -69,7 +69,7 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> Parameter {
+    public func autocapitalize(_ type: Values.Capitalization) -> Parameter {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -85,7 +85,7 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> Parameter {
+    public func direction(_ type: Values.Direction) -> Parameter {
         return mutate(dir: type.rawValue)
     }
 
@@ -93,7 +93,7 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> Parameter {
+    public func enterKeyHint(_ type: Values.Hint) -> Parameter {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -137,7 +137,7 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> Parameter {
+    public func language(_ type: Values.Language) -> Parameter {
         return mutate(lang: type.rawValue)
     }
 
@@ -145,12 +145,12 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> Parameter {
         return mutate(role: value)
     }
     
-    public func role(_ value: Roles) -> Parameter {
+    public func role(_ value: Values.Role) -> Parameter {
         return mutate(role: value.rawValue)
     }
 
@@ -170,12 +170,12 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> Parameter {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> Parameter {
+    public func translate(_ type: Values.Decision) -> Parameter {
         return mutate(translate: type.rawValue)
     }
 

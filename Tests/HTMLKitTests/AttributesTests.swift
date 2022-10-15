@@ -32,7 +32,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(accesskey: value)
         }
         
-        func autocapitalize(_ type: Capitalization) -> Tag {
+        func autocapitalize(_ type: Values.Capitalization) -> Tag {
             return self.mutate(autocapitalize: type.rawValue)
         }
         
@@ -44,7 +44,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(class: value)
         }
         
-        func direction(_ type: Direction) -> Tag {
+        func direction(_ type: Values.Direction) -> Tag {
             return self.mutate(dir: type.rawValue)
         }
         
@@ -56,7 +56,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(contenteditable: condition)
         }
         
-        func enterKeyHint(_ type: Hint) -> Tag {
+        func enterKeyHint(_ type: Values.Hint) -> Tag {
             return self.mutate(enterkeyhint: type.rawValue)
         }
         
@@ -100,7 +100,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(itemtype: value)
         }
         
-        func language(_ type: Language) -> Tag {
+        func language(_ type: Values.Language) -> Tag {
             return self.mutate(lang: type.rawValue)
         }
         
@@ -108,7 +108,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(nonce: value)
         }
         
-        func role(_ value: Roles) -> Tag {
+        func role(_ value: Values.Role) -> Tag {
             return self.mutate(role: value.rawValue)
         }
         
@@ -128,7 +128,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(title: value)
         }
         
-        func translate(_ type: Decision) -> Tag {
+        func translate(_ type: Values.Decision) -> Tag {
             return self.mutate(translate: type.rawValue)
         }
         
@@ -156,7 +156,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(autoplay: "autoplay")
         }
         
-        func charset(_ value: Charset) -> Tag {
+        func charset(_ value: Values.Charset) -> Tag {
             return self.mutate(charset: value.rawValue)
         }
         
@@ -216,7 +216,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(download: "download")
         }
         
-        func encoding(_ type: Encoding) -> Tag {
+        func encoding(_ type: Values.Encoding) -> Tag {
             return self.mutate(enctype: type.rawValue)
         }
         
@@ -232,7 +232,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(formaction: value)
         }
         
-        func equivalent(_ value: Equivalent) -> Tag {
+        func equivalent(_ value: Values.Equivalent) -> Tag {
             return self.mutate(httpequiv: value.rawValue)
         }
         
@@ -256,7 +256,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(href: value.rawValue)
         }
         
-        func referenceLanguage(_ type: Language) -> Tag {
+        func referenceLanguage(_ type: Values.Language) -> Tag {
             return self.mutate(hreflang: type.rawValue)
         }
         
@@ -264,7 +264,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(ismap: "ismap")
         }
         
-        func kind(_ type: Kinds) -> Tag {
+        func kind(_ type: Values.Kind) -> Tag {
             return self.mutate(kind: type.rawValue)
         }
         
@@ -296,7 +296,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(media: value)
         }
         
-        func method(_ type: HTMLKit.Method) -> Tag {
+        func method(_ type: HTMLKit.Values.Method) -> Tag {
             return self.mutate(method: type.rawValue)
         }
         
@@ -360,7 +360,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(poster: value)
         }
         
-        func preload(_ type: Preload) -> Tag {
+        func preload(_ type: Values.Preload) -> Tag {
             return self.mutate(preload: type.rawValue)
         }
         
@@ -368,11 +368,11 @@ final class AttributesTests: XCTestCase {
             return self.mutate(readonly: "readonly")
         }
         
-        func referrerPolicy(_ type: Policy) -> Tag {
+        func referrerPolicy(_ type: Values.Policy) -> Tag {
             return self.mutate(referrerpolicy: type.rawValue)
         }
         
-        func relationship(_ type: Relation) -> Tag {
+        func relationship(_ type: Values.Relation) -> Tag {
             return self.mutate(rel: type.rawValue)
         }
         
@@ -400,7 +400,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(scope: value)
         }
         
-        func shape(_ type: Shape) -> Tag {
+        func shape(_ type: Values.Shape) -> Tag {
             return self.mutate(shape: type.rawValue)
         }
         
@@ -432,7 +432,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(step: size)
         }
         
-        func target(_ type: Target) -> Tag {
+        func target(_ type: Values.Target) -> Tag {
             return self.mutate(target: type.rawValue)
         }
         
@@ -452,11 +452,11 @@ final class AttributesTests: XCTestCase {
             return self.mutate(width: size)
         }
         
-        func wrap(_ type: Wrapping) -> Tag {
+        func wrap(_ type: Values.Wrapping) -> Tag {
             return self.mutate(wrap: type.rawValue)
         }
         
-        func property(_ type: Graphs) -> Tag {
+        func property(_ type: Values.Graph) -> Tag {
             return self.mutate(property: type.rawValue)
         }
         
@@ -532,7 +532,7 @@ final class AttributesTests: XCTestCase {
             return mutate(ariacontrols: value)
         }
         
-        public func aria(current value: Accessibility.Current) -> Tag {
+        public func aria(current value: Values.Accessibility.Current) -> Tag {
             return mutate(ariacurrent: value.rawValue)
         }
         
@@ -556,7 +556,7 @@ final class AttributesTests: XCTestCase {
             return mutate(ariaflowto: value)
         }
         
-        public func aria(hasPopup value: Accessibility.Popup) -> Tag {
+        public func aria(hasPopup value: Values.Accessibility.Popup) -> Tag {
             return mutate(ariahaspopup: value.rawValue)
         }
         
@@ -564,7 +564,7 @@ final class AttributesTests: XCTestCase {
             return mutate(ariahidden: value)
         }
         
-        public func aria(invalid value: Accessibility.Invalid) -> Tag {
+        public func aria(invalid value: Values.Accessibility.Invalid) -> Tag {
             return mutate(ariainvalid: value.rawValue)
         }
         
@@ -580,7 +580,7 @@ final class AttributesTests: XCTestCase {
             return mutate(arialabeledby: value)
         }
         
-        public func aria(live value: Accessibility.Live) -> Tag {
+        public func aria(live value: Values.Accessibility.Live) -> Tag {
             return mutate(arialive: value.rawValue)
         }
         
@@ -588,7 +588,7 @@ final class AttributesTests: XCTestCase {
             return mutate(ariaowns: value)
         }
         
-        public func aria(relevant value: Accessibility.Relevant) -> Tag {
+        public func aria(relevant value: Values.Accessibility.Relevant) -> Tag {
             return mutate(ariarelevant: value.rawValue)
         }
         

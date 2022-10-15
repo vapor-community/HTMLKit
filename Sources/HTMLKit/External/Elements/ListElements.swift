@@ -83,7 +83,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> ListItem {
+    public func autocapitalize(_ type: Values.Capitalization) -> ListItem {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -99,7 +99,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> ListItem {
+    public func direction(_ type: Values.Direction) -> ListItem {
         return mutate(dir: type.rawValue)
     }
 
@@ -107,7 +107,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> ListItem {
+    public func enterKeyHint(_ type: Values.Hint) -> ListItem {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -151,7 +151,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> ListItem {
+    public func language(_ type: Values.Language) -> ListItem {
         return mutate(lang: type.rawValue)
     }
 
@@ -159,12 +159,12 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> ListItem {
         return mutate(role: value)
     }
 
-    public func role(_ value: Roles) -> ListItem {
+    public func role(_ value: Values.Role) -> ListItem {
         return mutate(role: value.rawValue)
     }
     
@@ -184,12 +184,12 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> ListItem {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> ListItem {
+    public func translate(_ type: Values.Decision) -> ListItem {
         return mutate(translate: type.rawValue)
     }
     
@@ -237,7 +237,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariacontrols: value)
     }
     
-    public func aria(current value: Accessibility.Current) -> ListItem {
+    public func aria(current value: Values.Accessibility.Current) -> ListItem {
         return mutate(ariacurrent: value.rawValue)
     }
     
@@ -261,7 +261,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaflowto: value)
     }
     
-    public func aria(hasPopup value: Accessibility.Popup) -> ListItem {
+    public func aria(hasPopup value: Values.Accessibility.Popup) -> ListItem {
         return mutate(ariahaspopup: value.rawValue)
     }
     
@@ -269,7 +269,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: value)
     }
     
-    public func aria(invalid value: Accessibility.Invalid) -> ListItem {
+    public func aria(invalid value: Values.Accessibility.Invalid) -> ListItem {
         return mutate(ariainvalid: value.rawValue)
     }
     
@@ -285,7 +285,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: value)
     }
     
-    public func aria(live value: Accessibility.Live) -> ListItem {
+    public func aria(live value: Values.Accessibility.Live) -> ListItem {
         return mutate(arialive: value.rawValue)
     }
     
@@ -293,7 +293,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaowns: value)
     }
     
-    public func aria(relevant value: Accessibility.Relevant) -> ListItem {
+    public func aria(relevant value: Values.Accessibility.Relevant) -> ListItem {
         return mutate(ariarelevant: value.rawValue)
     }
     

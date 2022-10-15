@@ -92,7 +92,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> TermName {
+    public func autocapitalize(_ type: Values.Capitalization) -> TermName {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -108,7 +108,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> TermName {
+    public func direction(_ type: Values.Direction) -> TermName {
         return mutate(dir: type.rawValue)
     }
 
@@ -116,7 +116,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> TermName {
+    public func enterKeyHint(_ type: Values.Hint) -> TermName {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -160,7 +160,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> TermName {
+    public func language(_ type: Values.Language) -> TermName {
         return mutate(lang: type.rawValue)
     }
 
@@ -168,12 +168,12 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> TermName {
         return mutate(role: value)
     }
 
-    public func role(_ value: Roles) -> TermName {
+    public func role(_ value: Values.Role) -> TermName {
         return mutate(role: value.rawValue)
     }
     
@@ -193,12 +193,12 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> TermName {
         return mutate(translate: value)
     }
 
-    public func translate(_ type: Decision) -> TermName {
+    public func translate(_ type: Values.Decision) -> TermName {
         return mutate(translate: type.rawValue)
     }
     
@@ -238,7 +238,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariacontrols: value)
     }
     
-    public func aria(current value: Accessibility.Current) -> TermName {
+    public func aria(current value: Values.Accessibility.Current) -> TermName {
         return mutate(ariacurrent: value.rawValue)
     }
     
@@ -262,7 +262,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaflowto: value)
     }
     
-    public func aria(hasPopup value: Accessibility.Popup) -> TermName {
+    public func aria(hasPopup value: Values.Accessibility.Popup) -> TermName {
         return mutate(ariahaspopup: value.rawValue)
     }
     
@@ -270,7 +270,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: value)
     }
     
-    public func aria(invalid value: Accessibility.Invalid) -> TermName {
+    public func aria(invalid value: Values.Accessibility.Invalid) -> TermName {
         return mutate(ariainvalid: value.rawValue)
     }
     
@@ -286,7 +286,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: value)
     }
     
-    public func aria(live value: Accessibility.Live) -> TermName {
+    public func aria(live value: Values.Accessibility.Live) -> TermName {
         return mutate(arialive: value.rawValue)
     }
     
@@ -294,7 +294,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaowns: value)
     }
     
-    public func aria(relevant value: Accessibility.Relevant) -> TermName {
+    public func aria(relevant value: Values.Accessibility.Relevant) -> TermName {
         return mutate(ariarelevant: value.rawValue)
     }
     
@@ -374,7 +374,7 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(accesskey: value)
     }
 
-    public func autocapitalize(_ type: Capitalization) -> TermDefinition {
+    public func autocapitalize(_ type: Values.Capitalization) -> TermDefinition {
         return mutate(autocapitalize: type.rawValue)
     }
 
@@ -390,7 +390,7 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(contenteditable: condition)
     }
 
-    public func direction(_ type: Direction) -> TermDefinition {
+    public func direction(_ type: Values.Direction) -> TermDefinition {
         return mutate(dir: type.rawValue)
     }
 
@@ -398,7 +398,7 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(draggable: condition)
     }
 
-    public func enterKeyHint(_ type: Hint) -> TermDefinition {
+    public func enterKeyHint(_ type: Values.Hint) -> TermDefinition {
         return mutate(enterkeyhint: type.rawValue)
     }
 
@@ -442,7 +442,7 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(id: value.rawValue)
     }
 
-    public func language(_ type: Language) -> TermDefinition {
+    public func language(_ type: Values.Language) -> TermDefinition {
         return mutate(lang: type.rawValue)
     }
 
@@ -450,12 +450,12 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Roles) instead")
+    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> TermDefinition {
         return mutate(role: value)
     }
 
-    public func role(_ value: Roles) -> TermDefinition {
+    public func role(_ value: Values.Role) -> TermDefinition {
         return mutate(role: value.rawValue)
     }
     
@@ -475,12 +475,12 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(title: value)
     }
 
-    @available(*, deprecated, message: "use translate(_ type: Decision) instead")
+    @available(*, deprecated, message: "use translate(_ type: Values.Decision) instead")
     public func translate(_ value: String) -> TermDefinition {
         return mutate(translate: value)
     }
     
-    public func translate(_ type: Decision) -> TermDefinition {
+    public func translate(_ type: Values.Decision) -> TermDefinition {
         return mutate(translate: type.rawValue)
     }
     
@@ -520,7 +520,7 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(ariacontrols: value)
     }
     
-    public func aria(current value: Accessibility.Current) -> TermDefinition {
+    public func aria(current value: Values.Accessibility.Current) -> TermDefinition {
         return mutate(ariacurrent: value.rawValue)
     }
     
@@ -544,7 +544,7 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(ariaflowto: value)
     }
     
-    public func aria(hasPopup value: Accessibility.Popup) -> TermDefinition {
+    public func aria(hasPopup value: Values.Accessibility.Popup) -> TermDefinition {
         return mutate(ariahaspopup: value.rawValue)
     }
     
@@ -552,7 +552,7 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(ariahidden: value)
     }
     
-    public func aria(invalid value: Accessibility.Invalid) -> TermDefinition {
+    public func aria(invalid value: Values.Accessibility.Invalid) -> TermDefinition {
         return mutate(ariainvalid: value.rawValue)
     }
     
@@ -568,7 +568,7 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(arialabeledby: value)
     }
     
-    public func aria(live value: Accessibility.Live) -> TermDefinition {
+    public func aria(live value: Values.Accessibility.Live) -> TermDefinition {
         return mutate(arialive: value.rawValue)
     }
     
@@ -576,7 +576,7 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(ariaowns: value)
     }
     
-    public func aria(relevant value: Accessibility.Relevant) -> TermDefinition {
+    public func aria(relevant value: Values.Accessibility.Relevant) -> TermDefinition {
         return mutate(ariarelevant: value.rawValue)
     }
     
