@@ -596,11 +596,11 @@ final class AttributesTests: XCTestCase {
             return mutate(ariaroledescription: value)
         }
         
-        func prerender(_ formula: Renderer.Formula) throws {
+        func prerender(_ formula: Formula) throws {
             try self.build(formula)
         }
         
-        func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        func render<T>(with manager: ContextManager<T>) throws -> String {
             try self.build(with: manager)
         }
     }
