@@ -54,7 +54,7 @@ public struct IF: GlobalElement {
 
     public func elseIf<T>(isNil path: TemplateValue<T?>, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
         
-        let condition = Condition(condition: IsNullCondition<T>(path: path))
+        let condition = Condition(condition: IsNullCondition<T>(lhs: path))
         condition.view = content()
         
         return .init(conditions: conditions + [condition])
@@ -62,7 +62,7 @@ public struct IF: GlobalElement {
 
     public func elseIf<T>(isNotNil path: TemplateValue<T?>, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
         
-        let condition = Condition(condition: NotNullCondition<T>(path: path))
+        let condition = Condition(condition: NotNullCondition<T>(lhs: path))
         condition.view = content()
         
         return .init(conditions: conditions + [condition])

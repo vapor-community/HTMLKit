@@ -47,7 +47,7 @@ import Foundation
             return true
             
         } else {
-            return NotNullConditionGeneral(path: self)
+            return NotNullConditionGeneral(lhs: self)
         }
     }
     
@@ -57,7 +57,7 @@ import Foundation
             return false
             
         } else {
-            return IsNullConditionGeneral(path: self)
+            return IsNullConditionGeneral(lhs: self)
         }
     }
     
@@ -212,5 +212,54 @@ extension TemplateValue where Value == Date? {
 
     public func formatted(string format: String) -> AnyContent {
         return DateVariable(dateReference: .optional(self), format: .literal(format))
+    }
+}
+
+extension TemplateValue where Value: Equatable {
+    
+    /// The operator for a equal condition
+    public static func ==(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable {
+        return EqualCondition(lhs: lhs, rhs: rhs)
+    }
+
+    /// The operator for a not-equal condition
+    public static func !=(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable {
+        return NotEqualCondition(lhs: lhs, rhs: rhs)
+    }
+}
+
+extension TemplateValue where Value: Comparable {
+    
+    /// The operator for a less-than condition
+    public static func <(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable {
+        return LessThanCondition(lhs: lhs, rhs: rhs)
+    }
+
+    /// The operator for a less-than-or-equal condition
+    public static func <=(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable {
+        return InvertCondition(lhs: GreaterThanCondition(lhs: lhs, rhs: rhs))
+    }
+    
+    /// The operator for a greater-than condition
+    public static func >(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable {
+        return GreaterThanCondition(lhs: lhs, rhs: rhs)
+    }
+
+    /// The operator for a greater-than-or-equal condition
+    public static func >=(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable {
+        return InvertCondition(lhs: LessThanCondition(lhs: lhs, rhs: rhs))
+    }
+}
+
+extension TemplateValue where Value: Strideable {
+    
+    /// The operator for a range condition
+    public static func ~=(lhs: TemplateValue<Value>, rhs: Range<Value>) -> Conditionable {
+        return BetweenCondition(lhs: lhs, rhs: rhs)
+    }
+
+    /// The operator for a range condition
+    public static func ~=(lhs: TemplateValue<Value>, rhs: ClosedRange<Value>) -> Conditionable {
+        return BetweenCondition(lhs: lhs, rhs: rhs)
     }
 }
