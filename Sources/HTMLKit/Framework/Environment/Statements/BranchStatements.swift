@@ -1,3 +1,17 @@
+/*
+ Abstract:
+ The file contains the statements.
+ 
+ Authors:
+ - Mats Moll (https://github.com/matsmoll)
+ 
+ Contributors:
+ - Mattes Mohr (https://github.com/mattesmohr)
+ 
+ Note:
+ If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ */
+
 /// The statement is for
 public struct IF: GlobalElement {
     
@@ -6,49 +20,66 @@ public struct IF: GlobalElement {
         case dynamiclyEvaluatedCondition
     }
     
-    public class Condition {
+    internal class Condition {
 
-        public let condition: Conditionable
+        internal let condition: Conditionable
         
-        public var localFormula: Formula
+        internal var formula: Formula
         
-        public var view: AnyContent = ""
+        internal var view: AnyContent
         
-        public init(condition: Conditionable) {
+        internal init(condition: Conditionable) {
             
             self.condition = condition
-            localFormula = Formula()
+            self.view = ""
+            self.formula = Formula()
         }
     }
 
-    public let conditions: [Condition]
+    internal let conditions: [Condition]
 
-    public init(_ condition: Conditionable, @ContentBuilder<AnyContent> content: () -> AnyContent) {
-        
-        let ifCondition = Condition(condition: condition)
-        ifCondition.view = content()
-        
-        self.conditions = [ifCondition]
-    }
-
-    public init(conditions: [Condition]) {
-        
+    internal init(conditions: [Condition]) {
         self.conditions = conditions
     }
-}
-
-extension IF.Condition: Conditionable {
-
-    public func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return try condition.evaluate(with: manager)
-    }
-
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        return try localFormula.render(with: manager)
+    
+    public init(_ condition: Conditionable, @ContentBuilder<AnyContent> content: () -> AnyContent) {
+        
+        let condition = Condition(condition: condition)
+        condition.view = content()
+        
+        self.conditions = [condition]
     }
     
-    public func prerender(_ formula: Formula) throws {
-        try view.prerender(localFormula)
+    public func elseIf(_ condition: Conditionable, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
+        
+        let condition = Condition(condition: condition)
+        condition.view = content()
+        
+        return .init(conditions: conditions + [condition])
+    }
+
+    public func elseIf<T>(isNil path: TemplateValue<T?>, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
+        
+        let condition = Condition(condition: IsNullCondition<T>(path: path))
+        condition.view = content()
+        
+        return .init(conditions: conditions + [condition])
+    }
+
+    public func elseIf<T>(isNotNil path: TemplateValue<T?>, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
+        
+        let condition = Condition(condition: NotNullCondition<T>(path: path))
+        condition.view = content()
+        
+        return .init(conditions: conditions + [condition])
+    }
+
+    public func `else`(@ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
+        
+        let condition = Condition(condition: AlwaysTrueCondition())
+        condition.view = content()
+        
+        return .init(conditions: conditions + [condition])
     }
 }
 
@@ -65,27 +96,15 @@ extension IF: AnyContent {
         })
     }
     
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        
-        for condition in conditions {
-            
-            if try condition.evaluate(with: manager) {
-                return try condition.render(with: manager)
-            }
-        }
-        
-        return ""
-    }
-
     public func prerender(_ formula: Formula) throws {
         
         var isStaticallyEvaluated = true
         
         for condition in conditions {
             
-            condition.localFormula.calendar = formula.calendar
+            condition.formula.calendar = formula.calendar
             
-            condition.localFormula.timeZone = formula.timeZone
+            condition.formula.timeZone = formula.timeZone
 
             do {
                 
@@ -114,36 +133,35 @@ extension IF: AnyContent {
             formula.add(content: self)
         }
     }
-
-    public func elseIf(_ condition: Conditionable, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
+    
+    public func render<T>(with manager: ContextManager<T>) throws -> String {
         
-        let ifCondition = Condition(condition: condition)
-        ifCondition.view = content()
+        for condition in conditions {
+            
+            if try condition.evaluate(with: manager) {
+                return try condition.render(with: manager)
+            }
+        }
         
-        return .init(conditions: conditions + [ifCondition])
-    }
-
-    public func elseIf<B>(isNil path: TemplateValue<B?>, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
-        
-        let condition = Condition(condition: IsNullCondition<B>(path: path))
-        condition.view = content()
-        
-        return .init(conditions: conditions + [condition])
-    }
-
-    public func elseIf<Value>(isNotNil path: TemplateValue<Value?>, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
-        
-        let condition = Condition(condition: NotNullCondition<Value>(path: path))
-        condition.view = content()
-        
-        return .init(conditions: conditions + [condition])
-    }
-
-    public func `else`(@ContentBuilder<AnyContent> content: () -> AnyContent) -> AnyContent {
-        
-        let trueCondition = Condition(condition: AlwaysTrueCondition())
-        trueCondition.view = content()
-        
-        return IF(conditions: conditions + [trueCondition])
+        return ""
     }
 }
+
+extension IF.Condition: AnyContent {
+    
+    public func prerender(_ formula: Formula) throws {
+        try view.prerender(formula)
+    }
+
+    public func render<T>(with manager: ContextManager<T>) throws -> String {
+        return try formula.render(with: manager)
+    }
+}
+
+extension IF.Condition: Conditionable {
+
+    public func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
+        return try condition.evaluate(with: manager)
+    }
+}
+
