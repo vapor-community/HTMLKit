@@ -1,6 +1,6 @@
 /*
  Abstract:
- The file contains event-types.
+ The file contains serveral enumerations of event attributes.
  
  Note:
  If you about to add something to the file, stick to the official documentation to keep the code consistent.

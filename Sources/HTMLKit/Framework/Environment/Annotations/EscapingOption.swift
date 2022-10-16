@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file contains the escaping option.
+ */
+
 /// The enum is for
 ///
 ///

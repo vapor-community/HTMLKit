@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file contains the cache. The cache stacks the formulas of the renderer.
+ */
+
 public class Cache {
     
     private var stack: [ObjectIdentifier: Formula]

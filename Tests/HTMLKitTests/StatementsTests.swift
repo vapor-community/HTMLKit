@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file tests the statements.
+ */
+
 import HTMLKit
 import XCTest
 

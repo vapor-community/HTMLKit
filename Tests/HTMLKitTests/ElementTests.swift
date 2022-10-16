@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file tests the rendering of the elements.
+ */
+
 import HTMLKit
 import XCTest
 

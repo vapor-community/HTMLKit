@@ -1,3 +1,11 @@
+/*
+ Abstract:
+ The file contains statements for optional chaining.
+ 
+ Markings:
+ - Unwrap
+ */
+
 /// The function is for
 public struct Unwrap: GlobalElement {
 

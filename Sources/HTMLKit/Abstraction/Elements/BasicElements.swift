@@ -1,12 +1,6 @@
 /*
  Abstract:
- The file contains the basic html-elements. These elements should be used at first in a html-document.
- 
- Authors:
- - Mats Moll (https://github.com/matsmoll)
- 
- Contributors:
- - Mattes Mohr (https://github.com/mattesmohr)
+ The file contains the basic html-elements. These elements should be used at first in an html-document.
  
  Note:
  If you about to add something to the file, stick to the official documentation to keep the code consistent.

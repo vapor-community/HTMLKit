@@ -1,15 +1,9 @@
 /*
  Abstract:
- The file contains the statements.
+ The file contains the branch statements.
  
- Authors:
- - Mats Moll (https://github.com/matsmoll)
- 
- Contributors:
- - Mattes Mohr (https://github.com/mattesmohr)
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ Markings:
+ - If
  */
 
 /// The statement is for

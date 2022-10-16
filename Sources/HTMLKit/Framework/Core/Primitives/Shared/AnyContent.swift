@@ -1,15 +1,6 @@
 /*
  Abstract:
- The file contains the content definition.
- 
- Authors:
- - Mats Moll (https://github.com/matsmoll)
- 
- Contributors:
- - Mattes Mohr (https://github.com/mattesmohr)
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ The file contains the default definition of the content. It defines which properties and methods a content should come with.
  */
 
 import Foundation

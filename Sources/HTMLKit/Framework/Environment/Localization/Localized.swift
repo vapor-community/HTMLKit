@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file contains the localized.
+ */
+
 import Foundation
 
 /// The struct ist for

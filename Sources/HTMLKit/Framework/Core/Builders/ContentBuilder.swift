@@ -1,15 +1,6 @@
 /*
  Abstract:
- The file contains the builder for the content.
- 
- Authors:
- - Mats Moll (https://github.com/matsmoll)
- 
- Contributors:
- - Mattes Mohr (https://github.com/mattesmohr)
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ The file contains the builder to build up the result from a sequence of elements.
  */
 
 /// The builder builds up a result value from a sequence of any content.

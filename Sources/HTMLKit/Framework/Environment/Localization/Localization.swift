@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file contains the localization.
+ */
+
 public class Localization {
     
     public enum Locale: String {

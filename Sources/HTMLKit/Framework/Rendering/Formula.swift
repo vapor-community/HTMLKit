@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file contains the formula. The formula contains the string output given by the renderer.
+ */
+
 import Foundation
 import Lingo
 

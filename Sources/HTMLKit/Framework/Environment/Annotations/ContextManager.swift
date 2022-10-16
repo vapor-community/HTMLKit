@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file contains the context manager.
+ */
+
 import Foundation
 import Lingo
 

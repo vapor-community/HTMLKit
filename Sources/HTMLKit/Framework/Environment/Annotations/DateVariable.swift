@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file contains a type for a datetime variable.
+ */
+
 import Foundation
 
 /// A struct that renders a data in a specified format

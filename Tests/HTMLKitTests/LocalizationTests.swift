@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file tests the localization.
+ */
+
 import HTMLKit
 import XCTest
 

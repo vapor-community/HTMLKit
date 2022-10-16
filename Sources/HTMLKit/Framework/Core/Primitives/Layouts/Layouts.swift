@@ -1,15 +1,6 @@
 /*
  Abstract:
- The file contains the protocols for the layout-components.
- 
- Authors:
- - Mats Moll (https://github.com/matsmoll)
- 
- Contributors:
- - Mattes Mohr (https://github.com/mattesmohr)
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ The file contains the default definition of different types of layouts.
  */
 
 /// A type that defines a page layout.

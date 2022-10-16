@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file contains the conditions.
+ */
+
 /// A condition that evaluates an equal expression between a variable and a constant value
 internal struct Equal<Value>: Conditionable where Value: Equatable {
 

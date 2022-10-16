@@ -2,12 +2,6 @@
  Abstract:
  The file contains the body elements. The html-element 'body' only allows these elements to be its descendants.
  
- Authors:
- - Mats Moll (https://github.com/matsmoll)
- 
- Contributors:
- - Mattes Mohr (https://github.com/mattesmohr)
- 
  Note:
  If you about to add something to the file, stick to the official documentation to keep the code consistent.
  */

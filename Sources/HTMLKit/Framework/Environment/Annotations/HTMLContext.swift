@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file contains the html context.
+ */
+
 /// The class is for
 @propertyWrapper @dynamicMemberLookup public class HTMLContext<Value> {
     

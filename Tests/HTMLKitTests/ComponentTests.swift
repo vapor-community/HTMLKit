@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file tests the rendering of the tag helpers.
+ */
+
 import HTMLKit
 import XCTest
 

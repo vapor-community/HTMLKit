@@ -1,9 +1,7 @@
-//
-//  File.swift
-//  
-//
-//  Created by Mattes Mohr on 17.05.22.
-//
+/*
+ Abstract:
+ The file contains the default definition of a layout. It defines which properties and methods a layout should come with.
+ */
 
 import Foundation
 

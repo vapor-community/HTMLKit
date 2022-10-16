@@ -1,3 +1,11 @@
+/*
+ Abstract:
+ The file contains the loop statements.
+ 
+ Markings:
+ - ForEach
+ */
+
 /// The statement is for
 public struct ForEach<Values>: GlobalElement where Values: Sequence {
 

@@ -1,15 +1,6 @@
 /*
  Abstract:
- The file contains the node definition.
- 
- Authors:
- - Mats Moll (https://github.com/matsmoll)
- 
- Contributors:
- - Mattes Mohr (https://github.com/mattesmohr)
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ The file contains the default definition of a node. It defines which properties and methods a node should come with.
  */
 
 /// A type that represents any html-node.

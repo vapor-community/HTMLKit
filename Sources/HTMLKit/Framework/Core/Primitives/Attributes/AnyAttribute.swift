@@ -1,15 +1,6 @@
 /*
  Abstract:
- The file contains the attribute definition.
- 
- Authors:
- - Mats Moll (https://github.com/matsmoll)
- 
- Contributors:
- - Mattes Mohr (https://github.com/mattesmohr)
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ The file contains the default definition of an attribute. It defines which properties and methods an attribute should come with. A attribute is a part of a element and is contained in a node.
  */
 
 import OrderedCollections

@@ -1,9 +1,6 @@
 /*
  Abstract:
- The file contains the renderer.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
+ The file contains the renderer. The renderer runs through the content and transforms it into string output.
  */
 
 import Foundation

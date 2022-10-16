@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file contains the template value.
+ */
+
 import Foundation
 
 /// The enum is for

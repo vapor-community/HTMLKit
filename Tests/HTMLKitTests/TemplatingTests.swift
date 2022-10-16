@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file tests the templating.
+ */
+
 import HTMLKit
 import XCTest
 import OrderedCollections

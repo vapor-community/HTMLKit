@@ -1,12 +1,6 @@
 /*
  Abstract:
- The file contains the basic attribute handlers.
- 
- Authors:
- - Mats Moll (https://github.com/matsmoll)
- 
- Contributors:
- - Mattes Mohr (https://github.com/mattesmohr)
+ The file contains the tag helpers. A helper combine several html elements, wich are commonly used.
  
  Note:
  If you about to add something to the file, stick to the official documentation to keep the code consistent.

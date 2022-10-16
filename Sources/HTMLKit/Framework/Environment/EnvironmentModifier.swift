@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file contains the environment modifier.
+ */
+
 /// The modifier is for
 ///
 ///
