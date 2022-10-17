@@ -10,7 +10,7 @@ let package = Package(
     products: [
         .library(
             name: "HTMLKit",
-            targets: ["HTMLKit", "HTMLKitComponents"]
+            targets: ["HTMLKit", "HTMLKitComponents", "HTMLKitVaporProvider"]
         ),
         .plugin(
             name: "ComponentsPlugin",

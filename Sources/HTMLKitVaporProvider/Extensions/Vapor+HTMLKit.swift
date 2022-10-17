@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file contains the extensions of some Vapor directives.
+ */
+
 import HTMLKit
 import Vapor
 
@@ -45,12 +50,8 @@ extension Application {
             }
         }
         
-        public func add<T: HTMLKit.Page>(page: T) {
-            self.renderer.add(page: page)
-        }
-        
-        public func add<T: HTMLKit.View>(view: T) {
-            self.renderer.add(view: view)
+        public func add<T: HTMLKit.AnyLayout>(layout: T) {
+            self.renderer.add(layout: layout)
         }
     }
 }

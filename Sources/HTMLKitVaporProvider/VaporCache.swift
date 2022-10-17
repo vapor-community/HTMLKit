@@ -1,21 +1,26 @@
+/*
+ Abstract:
+ The file contains the cache of the Vapor renderer.
+ */
+
 import HTMLKit
 import Vapor
 
 public class VaporCache {
     
-    private var cache: [String: HTMLKit.Renderer.Formula]
+    private var storage: [String: HTMLKit.Formula]
     
     public var count: Int {
-        return self.cache.keys.count
+        return self.storage.keys.count
     }
     
     public init() {
-        self.cache = .init()
+        self.storage = [:]
     }
     
-    public func retrieve(name: String, on loop: EventLoop) -> EventLoopFuture<HTMLKit.Renderer.Formula?> {
+    public func retrieve(name: String, on loop: EventLoop) -> EventLoopFuture<HTMLKit.Formula?> {
         
-        if let cache = self.cache[name] {
+        if let cache = self.storage[name] {
             return loop.makeSucceededFuture(cache)
             
         } else {
@@ -23,11 +28,11 @@ public class VaporCache {
         }
     }
     
-    public func upsert(name: String, formula: HTMLKit.Renderer.Formula) {
-        self.cache.updateValue(formula, forKey: name)
+    public func upsert(name: String, formula: HTMLKit.Formula) {
+        self.storage.updateValue(formula, forKey: name)
     }
     
     public func remove(name: String) {
-        self.cache.removeValue(forKey: name)
+        self.storage.removeValue(forKey: name)
     }
 }
