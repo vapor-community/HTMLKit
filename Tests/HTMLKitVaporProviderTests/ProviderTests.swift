@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file tests the provider.
+ */
+
 import XCTVapor
 import HTMLKit
 import HTMLKitVaporProvider
@@ -14,7 +19,7 @@ final class ProviderTests: XCTestCase {
         var context
         
         var body: AnyContent {
-            Document(type: .html5)
+            Document(.html5)
             Html {
                 Head {
                     Title {
@@ -38,7 +43,7 @@ final class ProviderTests: XCTestCase {
         
         app.views.use(.htmlkit)
         
-        app.htmlkit.add(view: TestView())
+        app.htmlkit.add(layout: TestView())
         
         app.get("test") { request -> EventLoopFuture<Vapor.View> in
             return request.view.render("TestView", TestContext(greeting: "hello world"))
@@ -70,7 +75,7 @@ final class ProviderTests: XCTestCase {
         
         defer { app.shutdown() }
         
-        app.htmlkit.add(view: TestView())
+        app.htmlkit.add(layout: TestView())
         
         app.get("test") { request -> EventLoopFuture<Vapor.View> in
             return request.htmlkit.render("TestView", TestContext(greeting: "hello world"))
@@ -103,7 +108,7 @@ final class ProviderTests: XCTestCase {
         
         defer { app.shutdown() }
         
-        app.htmlkit.add(view: TestView())
+        app.htmlkit.add(layout: TestView())
         
         app.get("test") { request async throws -> Vapor.View in
             return try await request.htmlkit.render("TestView", TestContext(greeting: "hello world"))

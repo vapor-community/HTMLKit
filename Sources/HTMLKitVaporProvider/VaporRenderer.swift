@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file contains the Vapor renderer.
+ */
+
 import HTMLKit
 import Vapor
 
@@ -39,9 +44,9 @@ public class VaporRenderer {
             
             var buffer = ByteBufferAllocator().buffer(capacity: 4096)
             
-            let manager = HTMLKit.Renderer.ContextManager(rootContext: context)
+            let manager = HTMLKit.ContextManager(context: context)
             
-            for ingredient in formula.ingredient {
+            for ingredient in formula.ingredients {
                 
                 if let value = try? ingredient.render(with: manager) {
                     buffer.writeString(value)
@@ -52,22 +57,13 @@ public class VaporRenderer {
         }
     }
     
-    public func add<T:HTMLKit.Page>(page: T) {
+    public func add<T:HTMLKit.AnyLayout>(layout: T) {
         
-        let formula = HTMLKit.Renderer.Formula()
+        let formula = HTMLKit.Formula()
         
-        try? page.prerender(formula)
+        try? layout.prerender(formula)
         
-        self.cache.upsert(name: String(describing: type(of: page)), formula: formula)
-    }
-    
-    public func add<T:HTMLKit.View>(view: T) {
-        
-        let formula = HTMLKit.Renderer.Formula()
-        
-        try? view.prerender(formula)
-        
-        self.cache.upsert(name: String(describing: type(of: view)), formula: formula)
+        self.cache.upsert(name: String(describing: type(of: layout)), formula: formula)
     }
 }
 
