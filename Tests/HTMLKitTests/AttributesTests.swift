@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file tests the rendering of the attributes.
+ */
+
 @testable import HTMLKit
 import OrderedCollections
 import XCTest
@@ -32,8 +37,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(accesskey: value)
         }
         
-        func autocapitalize(_ type: Capitalization) -> Tag {
-            return self.mutate(autocapitalize: type.rawValue)
+        func autocapitalize(_ value: Values.Capitalization) -> Tag {
+            return self.mutate(autocapitalize: value.rawValue)
         }
         
         func autofocus() -> Tag {
@@ -44,20 +49,20 @@ final class AttributesTests: XCTestCase {
             return self.mutate(class: value)
         }
         
-        func direction(_ type: Direction) -> Tag {
-            return self.mutate(dir: type.rawValue)
+        func direction(_ value: Values.Direction) -> Tag {
+            return self.mutate(dir: value.rawValue)
         }
         
-        func isDraggable(_ condition: Bool) -> Tag {
-            return self.mutate(draggable: condition)
+        func isDraggable(_ value: Bool) -> Tag {
+            return self.mutate(draggable: value)
         }
         
-        func isEditable(_ condition: Bool) -> Tag {
-            return self.mutate(contenteditable: condition)
+        func isEditable(_ value: Bool) -> Tag {
+            return self.mutate(contenteditable: value)
         }
         
-        func enterKeyHint(_ type: Hint) -> Tag {
-            return self.mutate(enterkeyhint: type.rawValue)
+        func enterKeyHint(_ value: Values.Hint) -> Tag {
+            return self.mutate(enterkeyhint: value.rawValue)
         }
         
         func hidden() -> Tag {
@@ -100,20 +105,20 @@ final class AttributesTests: XCTestCase {
             return self.mutate(itemtype: value)
         }
         
-        func language(_ type: Language) -> Tag {
-            return self.mutate(lang: type.rawValue)
+        func language(_ value: Values.Language) -> Tag {
+            return self.mutate(lang: value.rawValue)
         }
         
         func nonce(_ value: String) -> Tag {
             return self.mutate(nonce: value)
         }
         
-        func role(_ value: Roles) -> Tag {
+        func role(_ value: Values.Role) -> Tag {
             return self.mutate(role: value.rawValue)
         }
         
-        func hasSpellCheck(_ condition: Bool) -> Tag {
-            return self.mutate(spellcheck: condition)
+        func hasSpellCheck(_ value: Bool) -> Tag {
+            return self.mutate(spellcheck: value)
         }
         
         func style(_ value: String) -> Tag {
@@ -128,8 +133,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(title: value)
         }
         
-        func translate(_ type: Decision) -> Tag {
-            return self.mutate(translate: type.rawValue)
+        func translate(_ value: Values.Decision) -> Tag {
+            return self.mutate(translate: value.rawValue)
         }
         
         func accept(_ value: String) -> Tag {
@@ -148,15 +153,15 @@ final class AttributesTests: XCTestCase {
             return self.mutate(async: "async")
         }
         
-        func hasCompletion(_ condition: Bool) -> Tag {
-            return self.mutate(autocomplete: condition)
+        func hasCompletion(_ value: Bool) -> Tag {
+            return self.mutate(autocomplete: value)
         }
         
         func autoplay() -> Tag {
             return self.mutate(autoplay: "autoplay")
         }
         
-        func charset(_ value: Charset) -> Tag {
+        func charset(_ value: Values.Charset) -> Tag {
             return self.mutate(charset: value.rawValue)
         }
         
@@ -216,8 +221,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(download: "download")
         }
         
-        func encoding(_ type: Encoding) -> Tag {
-            return self.mutate(enctype: type.rawValue)
+        func encoding(_ value: Values.Encoding) -> Tag {
+            return self.mutate(enctype: value.rawValue)
         }
         
         func `for`(_ value: String) -> Tag {
@@ -232,7 +237,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(formaction: value)
         }
         
-        func equivalent(_ value: Equivalent) -> Tag {
+        func equivalent(_ value: Values.Equivalent) -> Tag {
             return self.mutate(httpequiv: value.rawValue)
         }
         
@@ -256,16 +261,16 @@ final class AttributesTests: XCTestCase {
             return self.mutate(href: value.rawValue)
         }
         
-        func referenceLanguage(_ type: Language) -> Tag {
-            return self.mutate(hreflang: type.rawValue)
+        func referenceLanguage(_ value: Values.Language) -> Tag {
+            return self.mutate(hreflang: value.rawValue)
         }
         
         func isMap() -> Tag {
             return self.mutate(ismap: "ismap")
         }
         
-        func kind(_ type: Kinds) -> Tag {
-            return self.mutate(kind: type.rawValue)
+        func kind(_ value: Values.Kind) -> Tag {
+            return self.mutate(kind: value.rawValue)
         }
         
         func label(_ value: String) -> Tag {
@@ -296,8 +301,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(media: value)
         }
         
-        func method(_ type: HTMLKit.Method) -> Tag {
-            return self.mutate(method: type.rawValue)
+        func method(_ value: HTMLKit.Values.Method) -> Tag {
+            return self.mutate(method: value.rawValue)
         }
         
         func minimum(_ value: Float) -> Tag {
@@ -328,8 +333,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(novalidate: "novalidate")
         }
         
-        func isOpen(_ condition: Bool) -> Tag {
-            return self.mutate(open: condition)
+        func isOpen(_ value: Bool) -> Tag {
+            return self.mutate(open: value)
         }
         
         func optimum(_ value: Float) -> Tag {
@@ -360,20 +365,20 @@ final class AttributesTests: XCTestCase {
             return self.mutate(poster: value)
         }
         
-        func preload(_ type: Preload) -> Tag {
-            return self.mutate(preload: type.rawValue)
+        func preload(_ value: Values.Preload) -> Tag {
+            return self.mutate(preload: value.rawValue)
         }
         
         func readonly() -> Tag {
             return self.mutate(readonly: "readonly")
         }
         
-        func referrerPolicy(_ type: Policy) -> Tag {
-            return self.mutate(referrerpolicy: type.rawValue)
+        func referrerPolicy(_ value: Values.Policy) -> Tag {
+            return self.mutate(referrerpolicy: value.rawValue)
         }
         
-        func relationship(_ type: Relation) -> Tag {
-            return self.mutate(rel: type.rawValue)
+        func relationship(_ value: Values.Relation) -> Tag {
+            return self.mutate(rel: value.rawValue)
         }
         
         func required() -> Tag {
@@ -400,8 +405,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(scope: value)
         }
         
-        func shape(_ type: Shape) -> Tag {
-            return self.mutate(shape: type.rawValue)
+        func shape(_ value: Values.Shape) -> Tag {
+            return self.mutate(shape: value.rawValue)
         }
         
         func size(_ size: Int) -> Tag {
@@ -432,8 +437,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(step: size)
         }
         
-        func target(_ type: Target) -> Tag {
-            return self.mutate(target: type.rawValue)
+        func target(_ value: Values.Target) -> Tag {
+            return self.mutate(target: value.rawValue)
         }
         
         func type(_ value: String) -> Tag {
@@ -452,12 +457,12 @@ final class AttributesTests: XCTestCase {
             return self.mutate(width: size)
         }
         
-        func wrap(_ type: Wrapping) -> Tag {
-            return self.mutate(wrap: type.rawValue)
+        func wrap(_ value: Values.Wrapping) -> Tag {
+            return self.mutate(wrap: value.rawValue)
         }
         
-        func property(_ type: Graphs) -> Tag {
-            return self.mutate(property: type.rawValue)
+        func property(_ value: Values.Graph) -> Tag {
+            return self.mutate(property: value.rawValue)
         }
         
         func selected() -> Tag {
@@ -532,7 +537,7 @@ final class AttributesTests: XCTestCase {
             return mutate(ariacontrols: value)
         }
         
-        public func aria(current value: Accessibility.Current) -> Tag {
+        public func aria(current value: Values.Accessibility.Current) -> Tag {
             return mutate(ariacurrent: value.rawValue)
         }
         
@@ -556,7 +561,7 @@ final class AttributesTests: XCTestCase {
             return mutate(ariaflowto: value)
         }
         
-        public func aria(hasPopup value: Accessibility.Popup) -> Tag {
+        public func aria(hasPopup value: Values.Accessibility.Popup) -> Tag {
             return mutate(ariahaspopup: value.rawValue)
         }
         
@@ -564,7 +569,7 @@ final class AttributesTests: XCTestCase {
             return mutate(ariahidden: value)
         }
         
-        public func aria(invalid value: Accessibility.Invalid) -> Tag {
+        public func aria(invalid value: Values.Accessibility.Invalid) -> Tag {
             return mutate(ariainvalid: value.rawValue)
         }
         
@@ -580,7 +585,7 @@ final class AttributesTests: XCTestCase {
             return mutate(arialabeledby: value)
         }
         
-        public func aria(live value: Accessibility.Live) -> Tag {
+        public func aria(live value: Values.Accessibility.Live) -> Tag {
             return mutate(arialive: value.rawValue)
         }
         
@@ -588,7 +593,7 @@ final class AttributesTests: XCTestCase {
             return mutate(ariaowns: value)
         }
         
-        public func aria(relevant value: Accessibility.Relevant) -> Tag {
+        public func aria(relevant value: Values.Accessibility.Relevant) -> Tag {
             return mutate(ariarelevant: value.rawValue)
         }
         
@@ -596,11 +601,11 @@ final class AttributesTests: XCTestCase {
             return mutate(ariaroledescription: value)
         }
         
-        func prerender(_ formula: Renderer.Formula) throws {
+        func prerender(_ formula: Formula) throws {
             try self.build(formula)
         }
         
-        func render<T>(with manager: Renderer.ContextManager<T>) throws -> String {
+        func render<T>(with manager: ContextManager<T>) throws -> String {
             try self.build(with: manager)
         }
     }
@@ -609,15 +614,15 @@ final class AttributesTests: XCTestCase {
     
     func testAccesskeyAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .accessKey("s")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag accesskey="s"></tag>
                        """
@@ -626,15 +631,15 @@ final class AttributesTests: XCTestCase {
     
     func testAutocapitalizeAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .autocapitalize(.words)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag autocapitalize="words"></tag>
                        """
@@ -643,15 +648,15 @@ final class AttributesTests: XCTestCase {
     
     func testAutofocusAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .autofocus()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag autofocus="autofocus"></tag>
                        """
@@ -660,15 +665,15 @@ final class AttributesTests: XCTestCase {
     
     func testClassAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .class("container")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag class="container"></tag>
                        """
@@ -677,15 +682,15 @@ final class AttributesTests: XCTestCase {
     
     func testDirectionAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .direction(.leftToRight)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag dir="ltr"></tag>
                        """
@@ -694,15 +699,15 @@ final class AttributesTests: XCTestCase {
     
     func testDraggableAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .isDraggable(true)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag draggable="true"></tag>
                        """
@@ -711,15 +716,15 @@ final class AttributesTests: XCTestCase {
     
     func testEditableAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .isEditable(true)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag contenteditable="true"></tag>
                        """
@@ -728,15 +733,15 @@ final class AttributesTests: XCTestCase {
     
     func testEnterkeyhintAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .enterKeyHint(.enter)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag enterkeyhint="enter"></tag>
                        """
@@ -745,15 +750,15 @@ final class AttributesTests: XCTestCase {
     
     func testHiddenAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .hidden()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag hidden="hidden"></tag>
                        """
@@ -762,15 +767,15 @@ final class AttributesTests: XCTestCase {
     
     func testIdentifierAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .id("navigation")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag id="navigation"></tag>
                        """
@@ -779,15 +784,15 @@ final class AttributesTests: XCTestCase {
     
     func testLanguageAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .language(.german)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag lang="de"></tag>
                        """
@@ -796,15 +801,15 @@ final class AttributesTests: XCTestCase {
     
     func testNonceAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .nonce("84a97f593e589c45")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag nonce="84a97f593e589c45"></tag>
                        """
@@ -813,15 +818,15 @@ final class AttributesTests: XCTestCase {
     
     func testRoleAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .role(.range)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag role="range"></tag>
                        """
@@ -830,15 +835,15 @@ final class AttributesTests: XCTestCase {
     
     func testHasSpellCheckAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .hasSpellCheck(true)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag spellcheck="true"></tag>
                        """
@@ -847,15 +852,15 @@ final class AttributesTests: XCTestCase {
     
     func testStyleAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .style("background-color:powderblue;")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag style="background-color:powderblue;"></tag>
                        """
@@ -864,15 +869,15 @@ final class AttributesTests: XCTestCase {
     
     func testTabIndexAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .tabIndex(3)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag tabindex="3"></tag>
                        """
@@ -881,15 +886,15 @@ final class AttributesTests: XCTestCase {
     
     func testTitleAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .title("homepage")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag title="homepage"></tag>
                        """
@@ -898,15 +903,15 @@ final class AttributesTests: XCTestCase {
     
     func testTranslateAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .translate(.yes)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag translate="yes"></tag>
                        """
@@ -915,15 +920,15 @@ final class AttributesTests: XCTestCase {
     
     func testAcceptAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .accept("accept")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag accept="accept"></tag>
                        """
@@ -932,15 +937,15 @@ final class AttributesTests: XCTestCase {
     
     func testActionAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .action("action")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag action="action"></tag>
                        """
@@ -949,15 +954,15 @@ final class AttributesTests: XCTestCase {
     
     func testAlternateAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .alternate("a tag and a attribute")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag alt="a tag and a attribute"></tag>
                        """
@@ -966,15 +971,15 @@ final class AttributesTests: XCTestCase {
     
     func testAsynchronouslyAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .asynchronously()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag async="async"></tag>
                        """
@@ -983,15 +988,15 @@ final class AttributesTests: XCTestCase {
     
     func testCompleteAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .hasCompletion(true)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag autocomplete="true"></tag>
                        """
@@ -1000,15 +1005,15 @@ final class AttributesTests: XCTestCase {
     
     func testAutoplayAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .autoplay()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag autoplay="autoplay"></tag>
                        """
@@ -1017,15 +1022,15 @@ final class AttributesTests: XCTestCase {
     
     func testCharsetAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .charset(.utf8)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag charset="utf-8"></tag>
                        """
@@ -1034,15 +1039,15 @@ final class AttributesTests: XCTestCase {
     
     func testCheckedAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .checked()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag checked="checked"></tag>
                        """
@@ -1051,15 +1056,15 @@ final class AttributesTests: XCTestCase {
     
     func testCiteAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .cite("cite")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag cite="cite"></tag>
                        """
@@ -1068,15 +1073,15 @@ final class AttributesTests: XCTestCase {
     
     func testColumnsAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .columns(2)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag cols="2"></tag>
                        """
@@ -1085,15 +1090,15 @@ final class AttributesTests: XCTestCase {
     
     func testColumnSpanAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .columnSpan(2)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag colspan="2"></tag>
                        """
@@ -1102,15 +1107,15 @@ final class AttributesTests: XCTestCase {
     
     func testContentAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .content("content")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag content="content"></tag>
                        """
@@ -1119,15 +1124,15 @@ final class AttributesTests: XCTestCase {
     
     func testControlsAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .controls()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag controls="controls"></tag>
                        """
@@ -1136,15 +1141,15 @@ final class AttributesTests: XCTestCase {
     
     func testCoordinatesAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .coordinates("255,132,316,150")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag coords="255,132,316,150"></tag>
                        """
@@ -1153,15 +1158,15 @@ final class AttributesTests: XCTestCase {
     
     func testDataAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .data("https://www.github.com")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag data="https://www.github.com"></tag>
                        """
@@ -1170,15 +1175,15 @@ final class AttributesTests: XCTestCase {
     
     func testDateTimeAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .dateTime("YYYY-MM-DDThh:mm:ssTZD")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag datetime="YYYY-MM-DDThh:mm:ssTZD"></tag>
                        """
@@ -1187,15 +1192,15 @@ final class AttributesTests: XCTestCase {
     
     func testDefaultAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .default()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag default="default"></tag>
                        """
@@ -1204,15 +1209,15 @@ final class AttributesTests: XCTestCase {
     
     func testDeferAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .defer()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag defer="defer"></tag>
                        """
@@ -1221,15 +1226,15 @@ final class AttributesTests: XCTestCase {
     
     func testDisabledAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .disabled()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag disabled="disabled"></tag>
                        """
@@ -1238,15 +1243,15 @@ final class AttributesTests: XCTestCase {
     
     func testDownloadAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .download()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag download="download"></tag>
                        """
@@ -1255,15 +1260,15 @@ final class AttributesTests: XCTestCase {
     
     func testEncodingAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .encoding(.plainText)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag enctype="text/plain"></tag>
                        """
@@ -1272,15 +1277,15 @@ final class AttributesTests: XCTestCase {
     
     func testForAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .for("for")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag for="for"></tag>
                        """
@@ -1289,15 +1294,15 @@ final class AttributesTests: XCTestCase {
     
     func testFormAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .form("/action.php")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag form="/action.php"></tag>
                        """
@@ -1306,15 +1311,15 @@ final class AttributesTests: XCTestCase {
     
     func testFormActionAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .formAction("/action.php")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag formaction="/action.php"></tag>
                        """
@@ -1323,15 +1328,15 @@ final class AttributesTests: XCTestCase {
     
     func testEquivalentAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .equivalent(.refresh)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag headers="refresh"></tag>
                        """
@@ -1340,15 +1345,15 @@ final class AttributesTests: XCTestCase {
     
     func testHeadersAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .headers("name")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag headers="name"></tag>
                        """
@@ -1357,15 +1362,15 @@ final class AttributesTests: XCTestCase {
     
     func testHeightAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .height(2)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag height="2"></tag>
                        """
@@ -1374,15 +1379,15 @@ final class AttributesTests: XCTestCase {
     
     func testHighAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .high(2.0)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag high="2.0"></tag>
                        """
@@ -1391,15 +1396,15 @@ final class AttributesTests: XCTestCase {
     
     func testReferenceAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .reference("/index.html")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag href="/index.html"></tag>
                        """
@@ -1408,15 +1413,15 @@ final class AttributesTests: XCTestCase {
     
     func testReferenceLanguageAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .referenceLanguage(.german)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag hreflang="de"></tag>
                        """
@@ -1425,15 +1430,15 @@ final class AttributesTests: XCTestCase {
     
     func testIsMapAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .isMap()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag ismap="ismap"></tag>
                        """
@@ -1442,15 +1447,15 @@ final class AttributesTests: XCTestCase {
     
     func testKindAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .kind(.subtitles)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag kind="subtitles"></tag>
                        """
@@ -1459,15 +1464,15 @@ final class AttributesTests: XCTestCase {
     
     func testLabelAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .label("Soccer")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag label="Soccer"></tag>
                        """
@@ -1476,15 +1481,15 @@ final class AttributesTests: XCTestCase {
     
     func testListAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .list("browsers")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag list="browsers"></tag>
                        """
@@ -1493,15 +1498,15 @@ final class AttributesTests: XCTestCase {
     
     func testLoopAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .loop()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag loop="loop"></tag>
                        """
@@ -1510,15 +1515,15 @@ final class AttributesTests: XCTestCase {
     
     func testLowAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .low(2.0)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag low="2.0"></tag>
                        """
@@ -1527,15 +1532,15 @@ final class AttributesTests: XCTestCase {
     
     func testMaximumAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .maximum("1948-01-01")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag max="1948-01-01"></tag>
                        """
@@ -1544,15 +1549,15 @@ final class AttributesTests: XCTestCase {
     
     func testMaximumLengthAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .maximum(length: 2)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag maxlength="2"></tag>
                        """
@@ -1561,15 +1566,15 @@ final class AttributesTests: XCTestCase {
 
     func testMediaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .media("print and (resolution:300dpi)")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag media="print and (resolution:300dpi)"></tag>
                        """
@@ -1578,15 +1583,15 @@ final class AttributesTests: XCTestCase {
     
     func testMethodAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .method(.get)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag method="get"></tag>
                        """
@@ -1595,15 +1600,15 @@ final class AttributesTests: XCTestCase {
     
     func testMinimumAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .minimum(2.0)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag min="2.0"></tag>
                        """
@@ -1612,15 +1617,15 @@ final class AttributesTests: XCTestCase {
     
     func testMinimumLengthAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .minimum(length: 2)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag minlength="2"></tag>
                        """
@@ -1629,15 +1634,15 @@ final class AttributesTests: XCTestCase {
     
     func testMultipleAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .multiple()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag multiple="multiple"></tag>
                        """
@@ -1646,15 +1651,15 @@ final class AttributesTests: XCTestCase {
     
     func testMutedAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .muted()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag muted="muted"></tag>
                        """
@@ -1663,15 +1668,15 @@ final class AttributesTests: XCTestCase {
     
     func testNameAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .name("name")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag name="name"></tag>
                        """
@@ -1680,15 +1685,15 @@ final class AttributesTests: XCTestCase {
     
     func testNoValidateAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .novalidate()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag novalidate="novalidate"></tag>
                        """
@@ -1697,15 +1702,15 @@ final class AttributesTests: XCTestCase {
     
     func testIsOpenAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .isOpen(true)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag open="true"></tag>
                        """
@@ -1714,15 +1719,15 @@ final class AttributesTests: XCTestCase {
     
     func testOptimumAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .optimum(2.0)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag optimum="2.0"></tag>
                        """
@@ -1731,15 +1736,15 @@ final class AttributesTests: XCTestCase {
     
     func testPatternAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .pattern("[A-Za-z]{3}")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag pattern="[A-Za-z]{3}"></tag>
                        """
@@ -1748,15 +1753,15 @@ final class AttributesTests: XCTestCase {
     
     func testPartAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .part("part")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag part="part"></tag>
                        """
@@ -1765,15 +1770,15 @@ final class AttributesTests: XCTestCase {
     
     func testPingAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .ping("https://www.github.com")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag ping="https://www.github.com"></tag>
                        """
@@ -1782,15 +1787,15 @@ final class AttributesTests: XCTestCase {
     
     func testPlaceholderAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .placeholder("123-45-678")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag placeholder="123-45-678"></tag>
                        """
@@ -1799,15 +1804,15 @@ final class AttributesTests: XCTestCase {
     
     func testPosterAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .poster("https://www.github.com")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag poster="https://www.github.com"></tag>
                        """
@@ -1816,15 +1821,15 @@ final class AttributesTests: XCTestCase {
     
     func testPreloadAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .preload(.metadata)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag preload="metadata"></tag>
                        """
@@ -1833,15 +1838,15 @@ final class AttributesTests: XCTestCase {
     
     func testReadonlyAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .readonly()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag readonly="readonly"></tag>
                        """
@@ -1850,15 +1855,15 @@ final class AttributesTests: XCTestCase {
     
     func testReferrerPolicyAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .referrerPolicy(.origin)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag referrerpolicy="origin"></tag>
                        """
@@ -1867,15 +1872,15 @@ final class AttributesTests: XCTestCase {
     
     func testRelationshipAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .relationship(.author)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag rel="author"></tag>
                        """
@@ -1884,15 +1889,15 @@ final class AttributesTests: XCTestCase {
     
     func testRequiredAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .required()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag required="required"></tag>
                        """
@@ -1901,15 +1906,15 @@ final class AttributesTests: XCTestCase {
     
     func testReversedAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .reversed()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag reversed="reversed"></tag>
                        """
@@ -1918,15 +1923,15 @@ final class AttributesTests: XCTestCase {
     
     func testRowsAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .rows(2)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag rows="2"></tag>
                        """
@@ -1935,15 +1940,15 @@ final class AttributesTests: XCTestCase {
     
     func testRowSpanAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .rowSpan(2)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag rowspan="2"></tag>
                        """
@@ -1952,15 +1957,15 @@ final class AttributesTests: XCTestCase {
     
     func testSandboxAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .sandbox()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag sandbox="sandbox"></tag>
                        """
@@ -1969,15 +1974,15 @@ final class AttributesTests: XCTestCase {
     
     func testScopeAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .scope("scope")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag scope="scope"></tag>
                        """
@@ -1986,15 +1991,15 @@ final class AttributesTests: XCTestCase {
     
     func testShapeAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .shape(.circle)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag shape="circle"></tag>
                        """
@@ -2003,15 +2008,15 @@ final class AttributesTests: XCTestCase {
     
     func testSizeAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .size(2)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag size="2"></tag>
                        """
@@ -2020,15 +2025,15 @@ final class AttributesTests: XCTestCase {
     
     func testSizesAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .sizes(2)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag sizes="2"></tag>
                        """
@@ -2037,15 +2042,15 @@ final class AttributesTests: XCTestCase {
     
     func testSlotAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .slot("slot")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag slot="slot"></tag>
                        """
@@ -2054,15 +2059,15 @@ final class AttributesTests: XCTestCase {
     
     func testSpanAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .span(2)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag span="2"></tag>
                        """
@@ -2071,15 +2076,15 @@ final class AttributesTests: XCTestCase {
     
     func testSourceAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .source("source")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag src="source"></tag>
                        """
@@ -2088,15 +2093,15 @@ final class AttributesTests: XCTestCase {
     
     func testStartAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .start(2)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag start="2"></tag>
                        """
@@ -2105,15 +2110,15 @@ final class AttributesTests: XCTestCase {
     
     func testStepAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .step(2)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag step="2"></tag>
                        """
@@ -2122,15 +2127,15 @@ final class AttributesTests: XCTestCase {
     
     func testTargetAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .target(.blank)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag target="_blank"></tag>
                        """
@@ -2139,15 +2144,15 @@ final class AttributesTests: XCTestCase {
     
     func testTypeAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .type("type")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag type="type"></tag>
                        """
@@ -2156,15 +2161,15 @@ final class AttributesTests: XCTestCase {
     
     func testSelectedAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .selected()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag selected="selected"></tag>
                        """
@@ -2173,15 +2178,15 @@ final class AttributesTests: XCTestCase {
     
     func testCustomAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .custom(key: "data-animal-type", value: "bird")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag data-animal-type="bird"></tag>
                        """
@@ -2190,15 +2195,15 @@ final class AttributesTests: XCTestCase {
     
     func testWindowEventAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .on(event: .afterprint, "script")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag onafterprint="script"></tag>
                        """
@@ -2207,15 +2212,15 @@ final class AttributesTests: XCTestCase {
     
     func testFocusEventAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .on(event: .focus, "script")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag onfocus="script"></tag>
                        """
@@ -2224,15 +2229,15 @@ final class AttributesTests: XCTestCase {
     
     func testPointerEventAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .on(event: .pointerup, "script")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag onpointerup="script"></tag>
                        """
@@ -2241,15 +2246,15 @@ final class AttributesTests: XCTestCase {
     
     func testMouseEventAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .on(event: .mouseup, "script")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag onmouseup="script"></tag>
                        """
@@ -2258,15 +2263,15 @@ final class AttributesTests: XCTestCase {
     
     func testWheelEventAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .on(event: .wheel, "script")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag onwheel="script"></tag>
                        """
@@ -2275,15 +2280,15 @@ final class AttributesTests: XCTestCase {
     
     func testInputEventAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .on(event: .input, "script")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag oninput="script"></tag>
                        """
@@ -2292,15 +2297,15 @@ final class AttributesTests: XCTestCase {
     
     func testKeyboardEventAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .on(event: .keyup, "script")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag onkeyup="script"></tag>
                        """
@@ -2309,15 +2314,15 @@ final class AttributesTests: XCTestCase {
     
     func testDragEventAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .on(event: .drag, "script")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag ondrag="script"></tag>
                        """
@@ -2326,15 +2331,15 @@ final class AttributesTests: XCTestCase {
     
     func testClipboardEventAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .on(event: .paste, "script")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag onpaste="script"></tag>
                        """
@@ -2343,15 +2348,15 @@ final class AttributesTests: XCTestCase {
     
     func testSelectionEventAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .on(event: .selectstart, "script")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag onselectstart="script"></tag>
                        """
@@ -2360,15 +2365,15 @@ final class AttributesTests: XCTestCase {
     
     func testMediaEventAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .on(event: .play, "script")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag onplay="script"></tag>
                        """
@@ -2377,15 +2382,15 @@ final class AttributesTests: XCTestCase {
     
     func testFormEventAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .on(event: .submit, "script")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag onsubmit="script"></tag>
                        """
@@ -2394,15 +2399,15 @@ final class AttributesTests: XCTestCase {
     
     func testDetailEventAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .on(event: .toggle, "script")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag ontoggle="script"></tag>
                        """
@@ -2411,15 +2416,15 @@ final class AttributesTests: XCTestCase {
     
     func testAtomicAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(atomic: true)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-atomic="true"></tag>
                        """
@@ -2428,15 +2433,15 @@ final class AttributesTests: XCTestCase {
     
     func testBusyAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(busy: true)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-busy="true"></tag>
                        """
@@ -2445,15 +2450,15 @@ final class AttributesTests: XCTestCase {
     
     func testControlsAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(controls: "name")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-controls="name"></tag>
                        """
@@ -2462,15 +2467,15 @@ final class AttributesTests: XCTestCase {
     
     func testCurrentAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(current: .page)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-current="page"></tag>
                        """
@@ -2479,15 +2484,15 @@ final class AttributesTests: XCTestCase {
     
     func testDescribedByAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(describedBy: "description")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-describedby="description"></tag>
                        """
@@ -2496,15 +2501,15 @@ final class AttributesTests: XCTestCase {
     
     func testDetailsAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(details: "details")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-details="details"></tag>
                        """
@@ -2513,15 +2518,15 @@ final class AttributesTests: XCTestCase {
     
     func testDisabledAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(disabled: true)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-disabled="true"></tag>
                        """
@@ -2530,15 +2535,15 @@ final class AttributesTests: XCTestCase {
     
     func testErrorMessageAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(errorMessage: "error")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-errormessage="error"></tag>
                        """
@@ -2547,15 +2552,15 @@ final class AttributesTests: XCTestCase {
     
     func testFlowToAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(flowTo: "flow")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-flowto="flow"></tag>
                        """
@@ -2564,15 +2569,15 @@ final class AttributesTests: XCTestCase {
     
     func testHasPopupAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(hasPopup: .grid)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-haspopup="grid"></tag>
                        """
@@ -2581,15 +2586,15 @@ final class AttributesTests: XCTestCase {
     
     func testHiddenAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(hidden: true)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-hidden="true"></tag>
                        """
@@ -2598,15 +2603,15 @@ final class AttributesTests: XCTestCase {
     
     func testInvalidAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(invalid: .grammar)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-invalid="grammar"></tag>
                        """
@@ -2615,15 +2620,15 @@ final class AttributesTests: XCTestCase {
     
     func testKeyShortcutsAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(keyShortcuts: "shortcut")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-keyshortcuts="shortcut"></tag>
                        """
@@ -2632,15 +2637,15 @@ final class AttributesTests: XCTestCase {
     
     func testLabelAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(label: "label")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-label="label"></tag>
                        """
@@ -2649,15 +2654,15 @@ final class AttributesTests: XCTestCase {
     
     func testLabeledByAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(labeledBy: "label")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-labeledby="label"></tag>
                        """
@@ -2666,15 +2671,15 @@ final class AttributesTests: XCTestCase {
     
     func testLiveAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(live: .polite)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-live="polite"></tag>
                        """
@@ -2683,15 +2688,15 @@ final class AttributesTests: XCTestCase {
     
     func testOwnsAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(owns: "live")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-owns="live"></tag>
                        """
@@ -2700,15 +2705,15 @@ final class AttributesTests: XCTestCase {
     
     func testRelevantAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(relevant: .additions)
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-relevant="additions"></tag>
                        """
@@ -2717,15 +2722,15 @@ final class AttributesTests: XCTestCase {
     
     func testRoleDescriptionAriaAttribute() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Tag {
             }
             .aria(roleDescription: "description")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-roledescription="description"></tag>
                        """

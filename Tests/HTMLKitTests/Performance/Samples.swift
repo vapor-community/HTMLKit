@@ -19,7 +19,7 @@ struct SamplePage: Page {
     }
 
     var body: AnyContent {
-        Document(type: .html5)
+        Document(.html5)
         Html {
             Head {
                 Meta()
@@ -50,7 +50,8 @@ struct SamplePage: Page {
 
 struct SampleView: View {
     
-    @TemplateValue(SampleContext.self) var context
+    @TemplateValue(SampleContext.self)
+    var context
     
     var body: AnyContent {
         SamplePage {

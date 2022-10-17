@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file tests the localization.
+ */
+
 import HTMLKit
 import XCTest
 
@@ -18,13 +23,13 @@ final class LocalizationTests: XCTestCase {
     
     func testLocalization() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Heading1("Hallo Welt")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <h1>Hello World</h1>
                        """
@@ -40,6 +45,6 @@ extension LocalizationTests {
         
         let currentDirectory = currentFile.appendingPathComponent("Localization")
         
-        try renderer.registerLocalization(atPath: currentDirectory.path, defaultLocale: "en")
+        try renderer.add(localization: .init(source: currentDirectory.path, locale: .english))
     }
 }

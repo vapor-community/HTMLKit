@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file tests the templating.
+ */
+
 import HTMLKit
 import XCTest
 import OrderedCollections
@@ -11,7 +16,7 @@ final class TemplatingTests: XCTestCase {
         struct TestPage: Page {
             
             var body: AnyContent {
-                Document(type: .html5)
+                Document(.html5)
                 Html {
                     Head {
                         Title {
@@ -19,7 +24,7 @@ final class TemplatingTests: XCTestCase {
                         }
                     }
                     Body {
-                        TestView(context: "Hello World!")
+                        TestView()
                     }
                 }
             }
@@ -27,7 +32,8 @@ final class TemplatingTests: XCTestCase {
         
         struct TestView: View {
             
-            var context: TemplateValue<String>
+            @TemplateValue(String.self)
+            var context
             
             var body: AnyContent {
                 Heading1 {
@@ -39,11 +45,9 @@ final class TemplatingTests: XCTestCase {
             }
         }
         
-        let view = TestPage()
+        try renderer.add(layout: TestPage())
         
-        try renderer.add(view: view)
-        
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self, with: "Hello World!"),
                        """
                        <!DOCTYPE html>\
                        <html>\
@@ -70,7 +74,7 @@ final class TemplatingTests: XCTestCase {
             }
             
             var body: AnyContent {
-                Document(type: .html5)
+                Document(.html5)
                 Html {
                     Head {
                         Title {
@@ -86,7 +90,8 @@ final class TemplatingTests: XCTestCase {
         
         struct TestView: View {
             
-            var context: TemplateValue<String>
+            @TemplateValue(String.self)
+            var context
             
             var body: AnyContent {
                 TestPage {
@@ -100,11 +105,9 @@ final class TemplatingTests: XCTestCase {
             }
         }
         
-        let view = TestView(context: "Hello World!")
+        try renderer.add(layout: TestView())
         
-        try renderer.add(view: view)
-        
-        XCTAssertEqual(try renderer.render(raw: TestView.self, with: "Hello World!"),
+        XCTAssertEqual(try renderer.render(layout: TestView.self, with: "Hello World!"),
                        """
                        <!DOCTYPE html>\
                        <html>\
@@ -131,7 +134,7 @@ final class TemplatingTests: XCTestCase {
             }
             
             var body: AnyContent {
-                Document(type: .html5)
+                Document(.html5)
                 Html {
                     Head {
                         Title {
@@ -151,7 +154,8 @@ final class TemplatingTests: XCTestCase {
         
         struct TestView: View {
             
-            var context: TemplateValue<String>
+            @TemplateValue(String.self)
+            var context
             
             var body: AnyContent {
                 TestPage {
@@ -164,12 +168,10 @@ final class TemplatingTests: XCTestCase {
                 }
             }
         }
+
+        try renderer.add(layout: TestView())
         
-        let view = TestView(context: "Hello World!")
-        
-        try renderer.add(view: view)
-        
-        XCTAssertEqual(try renderer.render(raw: TestView.self, with: "Hello World!"),
+        XCTAssertEqual(try renderer.render(layout: TestView.self, with: "Hello World!"),
                        """
                        <!DOCTYPE html>\
                        <html>\

@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file tests the rendering.
+ */
+
 import HTMLKit
 import XCTest
 
@@ -12,8 +17,8 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingDocument() throws {
         
-        let view = TestPage {
-            Document(type: .html5)
+        let page = TestPage {
+            Document(.html5)
             Html {
                 Body {
                     Paragraph {
@@ -23,9 +28,9 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <!DOCTYPE html>\
                        <html>\
@@ -39,7 +44,7 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingContentTag() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Division {
                 Paragraph {
                     "text"
@@ -47,9 +52,9 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div>\
                        <p>text</p>\
@@ -60,13 +65,13 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingEmptyTag() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Input()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <input>
                        """
@@ -75,13 +80,13 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingCommentTag() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Comment("text")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <!--text-->
                        """
@@ -91,16 +96,16 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingAttributes() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Paragraph {
                 "text"
             }
             .class("class")
         } 
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <p class="class">text</p>
                        """
@@ -110,16 +115,16 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingAttributesWithUnterscore() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Paragraph {
                 "text"
             }
             .class("cl_ass")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <p class="cl_ass">text</p>
                        """
@@ -128,16 +133,16 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingAttributesWithHyphens() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Paragraph {
                 "text"
             }
             .class("cl-ass")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <p class="cl-ass">text</p>
                        """
@@ -146,7 +151,7 @@ final class RenderingTests: XCTestCase {
     
     func testNesting() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Division {
                 Paragraph {
                     "text"
@@ -154,9 +159,9 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div>\
                        <p>text</p>\
@@ -167,16 +172,16 @@ final class RenderingTests: XCTestCase {
     
     func testEscaping() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Paragraph {
                 "text"
             }
             .class("cl'ass")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <p class="cl'ass">text</p>
                        """
@@ -187,7 +192,7 @@ final class RenderingTests: XCTestCase {
         
         let isModified: Bool = true
         
-        let view = TestPage {
+        let page = TestPage {
             Division {
             }
             .class("unmodified")
@@ -196,9 +201,9 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div class="modified"></div>
                        """
@@ -209,7 +214,7 @@ final class RenderingTests: XCTestCase {
         
         let isModified: Bool = false
         
-        let view = TestPage {
+        let page = TestPage {
             Division {
             }
             .class("unmodified")
@@ -218,9 +223,9 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div class="unmodified"></div>
                        """
@@ -231,16 +236,16 @@ final class RenderingTests: XCTestCase {
         
         let passcode: TemplateValue<String?> = .constant("test")
         
-        let view = TestPage {
+        let page = TestPage {
             Input()
                 .modify(unwrap: passcode) {
                     $0.placeholder($1)
                 }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <input placeholder="test">
                        """
@@ -249,7 +254,7 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingCustomProperty() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Division {
                 Paragraph {
                     "text"
@@ -258,9 +263,9 @@ final class RenderingTests: XCTestCase {
             .custom(key: "key", value: "value")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div key="value">\
                        <p>text</p>\

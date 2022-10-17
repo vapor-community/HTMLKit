@@ -424,7 +424,7 @@ internal class Parser {
                 return try EmptyAttribute(node: node).build(verbatim: "asynchronously")
                 
             case "autocapitalize":
-                return try TypeAttribute<Capitalization>(node: node).build()
+                return try TypeAttribute<Values.Capitalization>(node: node).build()
                 
             case "autocomplete":
                 return try ValueAttribute<Bool>(node: node).build(verbatim: "hasCompletion")
@@ -475,7 +475,7 @@ internal class Parser {
                 return try EmptyAttribute(node: node).build()
                 
             case "dir":
-                return try TypeAttribute<Direction>(node: node).build(verbatim: "direction")
+                return try TypeAttribute<Values.Direction>(node: node).build(verbatim: "direction")
                 
             case "disabled":
                 return try EmptyAttribute(node: node).build()
@@ -487,10 +487,10 @@ internal class Parser {
                 return try ValueAttribute<String>(node: node).build(verbatim: "isDraggable")
                 
             case "enctype":
-                return try TypeAttribute<Encoding>(node: node).build(verbatim: "encoding")
+                return try TypeAttribute<Values.Encoding>(node: node).build(verbatim: "encoding")
                 
             case "enterkeyhint":
-                return try TypeAttribute<Hint>(node: node).build(verbatim: "enterKeyHint")
+                return try TypeAttribute<Values.Hint>(node: node).build(verbatim: "enterKeyHint")
                 
             case "for":
                 return try ValueAttribute<String>(node: node).build()
@@ -517,7 +517,7 @@ internal class Parser {
                 return try ValueAttribute<String>(node: node).build(verbatim: "reference")
                 
             case "hreflang":
-                return try TypeAttribute<Language>(node: node).build(verbatim: "referenceLanguage")
+                return try TypeAttribute<Values.Language>(node: node).build(verbatim: "referenceLanguage")
                 
             case "id":
                 return try ValueAttribute<String>(node: node).build()
@@ -547,13 +547,13 @@ internal class Parser {
                 return try ValueAttribute<String>(node: node).build(verbatim: "itemType")
                 
             case "kind":
-                return try TypeAttribute<Kinds>(node: node).build()
+                return try TypeAttribute<Values.Kind>(node: node).build()
                 
             case "label":
                 return try ValueAttribute<String>(node: node).build()
                 
             case "lang":
-                return try TypeAttribute<Language>(node: node).build(verbatim: "language")
+                return try TypeAttribute<Values.Language>(node: node).build(verbatim: "language")
                 
             case "list":
                 return try ValueAttribute<String>(node: node).build()
@@ -581,7 +581,7 @@ internal class Parser {
                 return try ValueAttribute<String>(node: node).build()
                 
             case "method":
-                return try TypeAttribute<HTMLKit.Method>(node: node).build()
+                return try TypeAttribute<HTMLKit.Values.Method>(node: node).build()
                 
             case "min":
                 return try ValueAttribute<String>(node: node).build(verbatim: "minimum")
@@ -598,7 +598,7 @@ internal class Parser {
                     
                     switch parent.localName {
                     case "meta":
-                        return try TypeAttribute<Names>(node: node).build()
+                        return try TypeAttribute<Values.Name>(node: node).build()
                         
                     default:
                         return try ValueAttribute<String>(node: node).build()
@@ -633,16 +633,16 @@ internal class Parser {
                 return try ValueAttribute<String>(node: node).build()
                 
             case "preload":
-                return try TypeAttribute<Preload>(node: node).build()
+                return try TypeAttribute<Values.Preload>(node: node).build()
                 
             case "readonly":
                 return try EmptyAttribute(node: node).build()
                 
             case "referrerpolicy":
-                return try TypeAttribute<Policy>(node: node).build(verbatim: "referrerPolicy")
+                return try TypeAttribute<Values.Policy>(node: node).build(verbatim: "referrerPolicy")
                 
             case "rel":
-                return try TypeAttribute<Relation>(node: node).build(verbatim: "relationship")
+                return try TypeAttribute<Values.Relation>(node: node).build(verbatim: "relationship")
                 
             case "required":
                 return try EmptyAttribute(node: node).build()
@@ -651,7 +651,7 @@ internal class Parser {
                 return try EmptyAttribute(node: node).build()
                 
             case "role":
-                return try TypeAttribute<Roles>(node: node).build()
+                return try TypeAttribute<Values.Role>(node: node).build()
                 
             case "rows":
                 return try ValueAttribute<String>(node: node).build()
@@ -666,7 +666,7 @@ internal class Parser {
                 return try ValueAttribute<String>(node: node).build()
                 
             case "shape":
-                return try TypeAttribute<Shape>(node: node).build()
+                return try TypeAttribute<Values.Shape>(node: node).build()
                 
             case "size":
                 return try ValueAttribute<String>(node: node).build()
@@ -699,13 +699,13 @@ internal class Parser {
                 return try ValueAttribute<Int>(node: node).build(verbatim: "tabIndex")
                 
             case "target":
-                return try TypeAttribute<Target>(node: node).build()
+                return try TypeAttribute<Values.Target>(node: node).build()
                 
             case "title":
                 return try ValueAttribute<String>(node: node).build()
                 
             case "translate":
-                return try TypeAttribute<Decision>(node: node).build()
+                return try TypeAttribute<Values.Decision>(node: node).build()
                 
             case "type":
 
@@ -714,13 +714,13 @@ internal class Parser {
                     switch parent.localName {
                         
                     case "input":
-                        return try TypeAttribute<Inputs>(node: node).build()
+                        return try TypeAttribute<Values.Input>(node: node).build()
                         
                     case "button":
-                        return try TypeAttribute<Buttons>(node: node).build()
+                        return try TypeAttribute<Values.Button>(node: node).build()
                         
                     case "link", "script", "audio":
-                        return try TypeAttribute<Medias>(node: node).build()
+                        return try TypeAttribute<Values.Media>(node: node).build()
                         
                     default:
                         return try ValueAttribute<String>(node: node).build()
@@ -734,16 +734,16 @@ internal class Parser {
                 return try ValueAttribute<Int>(node: node).build()
                 
             case "wrap":
-                return try TypeAttribute<Wrapping>(node: node).build()
+                return try TypeAttribute<Values.Wrapping>(node: node).build()
                 
             case "property":
-                return try TypeAttribute<Graphs>(node: node).build()
+                return try TypeAttribute<Values.Graph>(node: node).build()
                 
             case "charset":
-                return try TypeAttribute<Charset>(node: node).build()
+                return try TypeAttribute<Values.Charset>(node: node).build()
                 
             case "http-equiv":
-                return try TypeAttribute<Equivalent>(node: node).build()
+                return try TypeAttribute<Values.Equivalent>(node: node).build()
                 
             case "selected":
                 return try EmptyAttribute(node: node).build()
@@ -773,10 +773,10 @@ internal class Parser {
                 return try ValueAttribute<Double>(node: node).build(verbatim: "strokeOpacity")
                 
             case "stroke-linecap":
-                return try TypeAttribute<Linecap>(node: node).build(verbatim: "strokeLineCap")
+                return try TypeAttribute<Values.Linecap>(node: node).build(verbatim: "strokeLineCap")
                 
             case "stroke-linejoin":
-                return try TypeAttribute<Linejoin>(node: node).build(verbatim: "strokeLineJoin")
+                return try TypeAttribute<Values.Linejoin>(node: node).build(verbatim: "strokeLineJoin")
                 
             case "r":
                 return try ValueAttribute<Int>(node: node).build(verbatim: "radius")
@@ -1019,13 +1019,13 @@ internal class Parser {
                 return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "atomic")
                 
             case "aria-autocomplete":
-                return try TypeAttribute<Accessibility.Complete>(node: node, kind: .aria).build(verbatim: "autoComplete")
+                return try TypeAttribute<Values.Accessibility.Complete>(node: node, kind: .aria).build(verbatim: "autoComplete")
                 
             case "aria-busy":
                 return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "busy")
                 
             case "aria-checked":
-                return try TypeAttribute<Accessibility.Check>(node: node, kind: .aria).build(verbatim: "checked")
+                return try TypeAttribute<Values.Accessibility.Check>(node: node, kind: .aria).build(verbatim: "checked")
                 
             case "aria-colcount":
                 return try ValueAttribute<Int>(node: node, kind: .aria).build(verbatim: "columnCount")
@@ -1040,7 +1040,7 @@ internal class Parser {
                 return try ValueAttribute<String>(node: node, kind: .aria).build(verbatim: "controls")
                 
             case "aria-current":
-                return try TypeAttribute<Accessibility.Current>(node: node, kind: .aria).build(verbatim: "current")
+                return try TypeAttribute<Values.Accessibility.Current>(node: node, kind: .aria).build(verbatim: "current")
                 
             case "aria-describedby":
                 return try ValueAttribute<String>(node: node, kind: .aria).build(verbatim: "describedBy")
@@ -1061,13 +1061,13 @@ internal class Parser {
                 return try ValueAttribute<String>(node: node, kind: .aria).build(verbatim: "flowTo")
                 
             case "aria-haspopup":
-                return try TypeAttribute<Accessibility.Popup>(node: node, kind: .aria).build(verbatim: "hasPopup")
+                return try TypeAttribute<Values.Accessibility.Popup>(node: node, kind: .aria).build(verbatim: "hasPopup")
                 
             case "aria-hidden":
                 return try ValueAttribute<Bool>(node: node).build(verbatim: "hidden")
                 
             case "aria-invalid":
-                return try TypeAttribute<Accessibility.Invalid>(node: node, kind: .aria).build(verbatim: "invalid")
+                return try TypeAttribute<Values.Accessibility.Invalid>(node: node, kind: .aria).build(verbatim: "invalid")
                 
             case "aria-keyshortcuts":
                 return try ValueAttribute<String>(node: node, kind: .aria).build(verbatim: "keyShortcuts")
@@ -1082,7 +1082,7 @@ internal class Parser {
                 return try ValueAttribute<Int>(node: node, kind: .aria).build(verbatim: "level")
                 
             case "aria-live":
-                return try TypeAttribute<Accessibility.Live>(node: node, kind: .aria).build(verbatim: "live")
+                return try TypeAttribute<Values.Accessibility.Live>(node: node, kind: .aria).build(verbatim: "live")
                 
             case "aria-modal":
                 return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "modal")
@@ -1094,7 +1094,7 @@ internal class Parser {
                 return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "multiselectable")
                 
             case "aria-orientation":
-                return try TypeAttribute<Accessibility.Orientation>(node: node, kind: .aria).build(verbatim: "orientation")
+                return try TypeAttribute<Values.Accessibility.Orientation>(node: node, kind: .aria).build(verbatim: "orientation")
                 
             case "aria-owns":
                 return try ValueAttribute<String>(node: node, kind: .aria).build(verbatim: "owns")
@@ -1106,13 +1106,13 @@ internal class Parser {
                 return try ValueAttribute<Int>(node: node, kind: .aria).build(verbatim: "positionIndex")
                 
             case "aria-pressed":
-                return try TypeAttribute<Accessibility.Pressed>(node: node, kind: .aria).build(verbatim: "pressed")
+                return try TypeAttribute<Values.Accessibility.Pressed>(node: node, kind: .aria).build(verbatim: "pressed")
                 
             case "aria-readonly":
                 return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "readonly")
                 
             case "aria-relevant":
-                return try TypeAttribute<Accessibility.Relevant>(node: node, kind: .aria).build(verbatim: "relevant")
+                return try TypeAttribute<Values.Accessibility.Relevant>(node: node, kind: .aria).build(verbatim: "relevant")
                 
             case "aria-required":
                 return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "required")
@@ -1130,13 +1130,13 @@ internal class Parser {
                 return try ValueAttribute<Int>(node: node, kind: .aria).build(verbatim: "rowSpan")
                 
             case "aria-selected":
-                return try TypeAttribute<Accessibility.Selected>(node: node, kind: .aria).build(verbatim: "selected")
+                return try TypeAttribute<Values.Accessibility.Selected>(node: node, kind: .aria).build(verbatim: "selected")
                 
             case "aria-setsize":
                 return try ValueAttribute<Int>(node: node, kind: .aria).build(verbatim: "setSize")
                 
             case "aria-sort":
-                return try TypeAttribute<Accessibility.Sort>(node: node, kind: .aria).build(verbatim: "sort")
+                return try TypeAttribute<Values.Accessibility.Sort>(node: node, kind: .aria).build(verbatim: "sort")
                 
             case "aria-valuemax":
                 return try ValueAttribute<Float>(node: node, kind: .aria).build(verbatim: "valueMaximum")

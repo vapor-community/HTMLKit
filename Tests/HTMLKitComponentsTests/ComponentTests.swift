@@ -13,15 +13,15 @@ final class ComponentTests: XCTestCase {
     
     func testActionButton() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             ActionButton(destination: "uri") {
                 "Button"
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <a href="uri" class="button" role="button">Button</a>
                        """
@@ -30,14 +30,14 @@ final class ComponentTests: XCTestCase {
     
     func testGroup() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             HTMLKitComponents.Group {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div class="group"></div>
                        """
@@ -46,14 +46,14 @@ final class ComponentTests: XCTestCase {
     
     func testCollection() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Collection {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <ul class="collection ratio:50"></ul>
                        """
@@ -62,14 +62,14 @@ final class ComponentTests: XCTestCase {
     
     func testCollectionItem() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             CollectionItem {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <li class="collection-item"></li>
                        """
@@ -78,14 +78,14 @@ final class ComponentTests: XCTestCase {
     
     func testFormContainer() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             HTMLKitComponents.Form {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <form method="post" class="form"></form>
                        """
@@ -94,15 +94,15 @@ final class ComponentTests: XCTestCase {
     
     func testFieldLabel() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             FieldLabel(for: "name") {
                 "Name"
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <label for="name" class="label">Name</label>
                        """
@@ -111,13 +111,13 @@ final class ComponentTests: XCTestCase {
     
     func testTextField() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             TextField(name: "name")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <input type="text" id="name" name="name" class="input type:textfield">
                        """
@@ -126,15 +126,15 @@ final class ComponentTests: XCTestCase {
     
     func testTextEditor() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             TextEditor(name: "name") {
                 "value"
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <textarea id="name" name="name" class="input type:texteditor" rows="1">value</textarea>
                        """
@@ -143,13 +143,13 @@ final class ComponentTests: XCTestCase {
 
     func testSlider() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Slider(name: "name")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <input type="range" id="name" name="name" class="input type:slider">
                        """
@@ -158,13 +158,13 @@ final class ComponentTests: XCTestCase {
   
     func testDatePicker() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             DatePicker(name: "name")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <input type="date" id="name" name="name" class="input type:datepicker">
                        """
@@ -173,13 +173,13 @@ final class ComponentTests: XCTestCase {
   
     func testSecureField() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             SecureField(name: "password")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <input type="password" id="password" name="password" class="input type:securefield">
                        """
@@ -188,13 +188,13 @@ final class ComponentTests: XCTestCase {
     
     func testCheckField() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             CheckField(name: "name", value: "value")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <input type="checkbox" id="name" name="name" value="value" class="input type:checkfield">
                        """
@@ -203,13 +203,13 @@ final class ComponentTests: XCTestCase {
     
     func testRadioSelect() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             RadioSelect(name: "name", value: "value")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <input type="radio" id="name" name="name" value="value" class="input type:radioselect">
                        """
@@ -218,13 +218,13 @@ final class ComponentTests: XCTestCase {
     
     func testImage() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Image(source: "source")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div class="image">\
                        <img src="source" role="img">\
@@ -235,14 +235,14 @@ final class ComponentTests: XCTestCase {
     
     func testList() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             List(direction: .vertical) {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <ul class="list direction:vertical"></ul>
                        """
@@ -251,14 +251,14 @@ final class ComponentTests: XCTestCase {
     
     func testListRow() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             ListRow {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <li class="list-row"></li>
                        """
@@ -267,15 +267,15 @@ final class ComponentTests: XCTestCase {
     
     func testLink() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Link(destination: "uri") {
                 "link"
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <a href="uri" class="link">link</a>
                        """
@@ -284,14 +284,14 @@ final class ComponentTests: XCTestCase {
     
     func testVStack() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             VStack {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div class="vstack alignment:leading"></div>
                        """
@@ -300,14 +300,14 @@ final class ComponentTests: XCTestCase {
     
     func testHStack() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             HStack {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div class="hstack alignment:center"></div>
                        """
@@ -316,14 +316,14 @@ final class ComponentTests: XCTestCase {
 
     func testZStack() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             ZStack {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div class="zstack"></div>
                        """
@@ -333,14 +333,14 @@ final class ComponentTests: XCTestCase {
     
     func testStackColumn() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             StackColumn(size: .twelve) {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div class="stack-column size:12"></div>
                        """
@@ -349,7 +349,7 @@ final class ComponentTests: XCTestCase {
     
     func testText() throws {
        
-        let view = TestPage {
+        let page = TestPage {
             Text {
             }
             .fontSize(.large)
@@ -358,9 +358,9 @@ final class ComponentTests: XCTestCase {
             .bold()
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <p class="text size:large transformation:uppercase color:blue weight:bold"></p>
                        """
@@ -369,14 +369,14 @@ final class ComponentTests: XCTestCase {
     
     func testProgressView() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             ProgressView(name: "name") {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <progress class="progress"></progress>
                        """
@@ -385,7 +385,7 @@ final class ComponentTests: XCTestCase {
     
     func testSnippet() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Snippet(highlight: .html) {
                 """
                 <div>
@@ -395,9 +395,9 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <pre class="snippet hightlight:html">\
                        <p>&lt;div&gt;</p>\
@@ -410,13 +410,13 @@ final class ComponentTests: XCTestCase {
     
     func testToggle() throws {
         
-        let view = TestPage {
+        let page = TestPage {
             Toggle(name: "name")
         }
         
-        try renderer.add(view: view)
+        try renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(raw: TestPage.self),
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <label tabindex="0" class="toggle">\
                        <input type="checkbox" id="name" name="name">\
