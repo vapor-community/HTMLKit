@@ -8,6 +8,7 @@ import Vapor
 
 extension Application.Views.Provider {
     
+    /// Access to the view renderer
     public static var htmlkit: Self {
         return .init {
             $0.views.use {
@@ -19,10 +20,12 @@ extension Application.Views.Provider {
 
 extension Application {
     
+    /// Access to the vapor provider
     public var htmlkit: HtmlKit  {
         return .init(application: self)
     }
     
+    /// The vapor provider
     public struct HtmlKit {
         
         public let application: Application
@@ -58,6 +61,7 @@ extension Application {
 
 extension Request {
     
+    /// Access to the view renderer
     public var htmlkit: VaporRenderer {
         return .init(eventLoop: self.eventLoop, cache: self.application.htmlkit.cache)
     }

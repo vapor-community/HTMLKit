@@ -1,45 +1,62 @@
 /*
  Abstract:
- The file contains the Vapor renderer.
+ The file contains the Vapor view renderer.
  */
 
 import HTMLKit
 import Vapor
 
+/// The view renderer
 public class VaporRenderer {
     
+    /// A enumeration of possible errors of the view renderer
     public enum RendererError: Error {
         
-        case unkownTemplate(String)
+        case unkownLayout(String)
         
         public var description: String {
             
             switch self {
-            case .unkownTemplate(let name):
-                return "Template '\(name)' not found."
+            case .unkownLayout(let name):
+                return "Layout with the name '\(name)' could not be found."
             }
         }
     }
     
+    /// The renderer of htmlkit
     private var renderer: HTMLKit.Renderer {
         return .init()
     }
     
+    /// The event loop the view renderer is running on
     private var eventLoop: EventLoop
     
+    /// The cache of the view renderer
     private var cache: VaporCache
     
+    /// Creates the view renderer
     public init(eventLoop: EventLoop, cache: VaporCache) {
         self.eventLoop = eventLoop
         self.cache = cache
     }
     
+    /// Adds the layout to the cache
+    public func add<T:HTMLKit.AnyLayout>(layout: T) {
+        
+        let formula = HTMLKit.Formula()
+        
+        try? layout.prerender(formula)
+        
+        self.cache.upsert(name: String(reflecting: T.self), formula: formula)
+    }
+    
+    /// Renders a layout and its context
     public func render(name: String, context: Encodable) -> EventLoopFuture<ByteBuffer> {
         
         return self.cache.retrieve(name: name, on: self.eventLoop).flatMap { formula in
         
             guard let formula = formula else {
-                return self.eventLoop.makeFailedFuture(RendererError.unkownTemplate(name))
+                return self.eventLoop.makeFailedFuture(RendererError.unkownLayout(name))
             }
             
             var buffer = ByteBufferAllocator().buffer(capacity: 4096)
@@ -56,15 +73,6 @@ public class VaporRenderer {
             return self.eventLoop.makeSucceededFuture(buffer)
         }
     }
-    
-    public func add<T:HTMLKit.AnyLayout>(layout: T) {
-        
-        let formula = HTMLKit.Formula()
-        
-        try? layout.prerender(formula)
-        
-        self.cache.upsert(name: String(describing: type(of: layout)), formula: formula)
-    }
 }
 
 extension VaporRenderer: ViewRenderer {
@@ -78,4 +86,18 @@ extension VaporRenderer: ViewRenderer {
             return View(data: buffer)
         }
     }
+}
+
+extension VaporRenderer.RendererError: AbortError {
+ 
+    @_implements(AbortError, reason)
+    public var abortReason: String { self.description }
+    
+    public var status: HTTPResponseStatus { .internalServerError }
+}
+
+extension VaporRenderer.RendererError: DebuggableError {
+
+    @_implements(DebuggableError, reason)
+    public var debuggableReason: String { self.description }
 }
