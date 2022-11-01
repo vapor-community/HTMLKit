@@ -7,23 +7,18 @@ import HTMLKit
 import Vapor
 
 /// The cache
-public class VaporCache {
+public class ViewCache {
     
     /// The cache storage
-    private var storage: [String: HTMLKit.Formula]
-    
-    /// The amount of storing keys
-    public var count: Int {
-        return self.storage.keys.count
-    }
+    internal var storage: [String: HTMLKit.Formula]
     
     /// Creates the cache
-    public init() {
+    internal init() {
         self.storage = [:]
     }
     
     /// Retrieves a formula from the storage
-    public func retrieve(name: String, on loop: EventLoop) -> EventLoopFuture<HTMLKit.Formula?> {
+    internal func retrieve(name: String, on loop: EventLoop) -> EventLoopFuture<HTMLKit.Formula?> {
         
         if let cache = self.storage[name] {
             return loop.makeSucceededFuture(cache)
@@ -34,12 +29,22 @@ public class VaporCache {
     }
     
     /// Sets or updates a formula at the storage
-    public func upsert(name: String, formula: HTMLKit.Formula) {
+    internal func upsert(name: String, formula: HTMLKit.Formula) {
         self.storage.updateValue(formula, forKey: name)
     }
     
     /// Removes a formula from the storage
-    public func remove(name: String) {
+    internal func remove(name: String) {
         self.storage.removeValue(forKey: name)
+    }
+    
+    /// Adds a view to the storage
+    public func add<T: HTMLKit.AnyLayout>(view: T) {
+        
+        let formula = HTMLKit.Formula()
+        
+        try? view.prerender(formula)
+        
+        self.storage.updateValue(formula, forKey: String(reflecting: T.self))
     }
 }

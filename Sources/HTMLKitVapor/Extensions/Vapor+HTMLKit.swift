@@ -28,64 +28,56 @@ extension Application {
     /// The vapor provider
     public struct HtmlKit {
         
-        /// The view renderer
-        public var renderer: VaporRenderer {
-            return .init(eventLoop: self.application.eventLoopGroup.next(), cache: self.cache, lingo: localization)
-        }
-        
-        public struct VariablesStorageKey: StorageKey {
-            public typealias Value = VaporCache
+        internal struct CacheStorageKey: StorageKey {
+            
+            public typealias Value = ViewCache
         }
         
         /// The view cache
-        public var cache: VaporCache {
+        public var views: ViewCache {
             
-            if let cache = self.application.storage[VariablesStorageKey.self] {
+            if let cache = self.application.storage[CacheStorageKey.self] {
                 return cache
             }
             
-            let cache = VaporCache()
+            let cache = ViewCache()
             
-            self.application.storage[VariablesStorageKey.self] = cache
+            self.application.storage[CacheStorageKey.self] = cache
             
             return cache
         }
         
-        internal struct LocalizationKey: StorageKey {
+        internal struct LingoStorageKey: StorageKey {
             
-            public typealias Value = ViewLocalization
+            public typealias Value = LingoConfiguration
         }
         
         /// The view localization
-        public var localization: ViewLocalization {
+        public var lingo: LingoConfiguration {
             
-            get {
-        
-                if let lingo = self.application.storage[LocalizationKey.self] {
-                    return lingo
-                }
-                
-                let lingo = ViewLocalization()
-                
-                self.application.storage[LocalizationKey.self] = lingo
-                
-                return lingo
+            if let configuration = self.application.storage[LingoStorageKey.self] {
+                return configuration
             }
             
-            nonmutating set {
-                self.application.storage[LocalizationKey.self] = newValue
-            }
+            let configuration = LingoConfiguration()
+            
+            self.application.storage[LingoStorageKey.self] = configuration
+            
+            return configuration
         }
         
+        /// The view renderer
+        internal var renderer: ViewRenderer {
+            return .init(eventLoop: self.application.eventLoopGroup.next(), cache: self.views, lingo: lingo)
+        }
+        
+        /// The application dependency
         public let application: Application
         
-        public func add<T: HTMLKit.AnyLayout>(layout: T) {
+        /// Creates the provider
+        public init(application: Application) {
             
-            let formula = HTMLKit.Formula()
-            
-            try? layout.prerender(formula)
-            
-            self.cache.upsert(name: String(reflecting: T.self), formula: formula)
+            self.application = application
         }
     }
 }
@@ -93,7 +85,7 @@ extension Application {
 extension Request {
     
     /// Access to the view renderer
-    public var htmlkit: VaporRenderer {
-        return .init(eventLoop: self.eventLoop, cache: self.application.htmlkit.cache, lingo: self.application.htmlkit.localization)
+    public var htmlkit: ViewRenderer {
+        return .init(eventLoop: self.eventLoop, cache: self.application.htmlkit.views, lingo: self.application.htmlkit.lingo)
     }
 }

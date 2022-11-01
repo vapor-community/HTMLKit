@@ -88,8 +88,8 @@ final class ProviderTests: XCTestCase {
         
         app.views.use(.htmlkit)
         
-        app.htmlkit.add(layout: User.TestView())
-        app.htmlkit.add(layout: Admin.TestView())
+        app.htmlkit.views.add(view: User.TestView())
+        app.htmlkit.views.add(view: Admin.TestView())
         
         app.get("test") { request -> EventLoopFuture<Vapor.View> in
             return request.view.render("HTMLKitVaporTests.ProviderTests.User.TestView")
@@ -119,8 +119,8 @@ final class ProviderTests: XCTestCase {
         
         defer { app.shutdown() }
         
-        app.htmlkit.add(layout: User.TestView())
-        app.htmlkit.add(layout: Admin.TestView())
+        app.htmlkit.views.add(view: User.TestView())
+        app.htmlkit.views.add(view: Admin.TestView())
         
         app.get("test") { request -> EventLoopFuture<Vapor.View> in
             return request.htmlkit.render("HTMLKitVaporTests.ProviderTests.Admin.TestView", TestContext(greeting: "Hello World"))
@@ -151,8 +151,8 @@ final class ProviderTests: XCTestCase {
         
         defer { app.shutdown() }
         
-        app.htmlkit.add(layout: User.TestView())
-        app.htmlkit.add(layout: Admin.TestView())
+        app.htmlkit.views.add(view: User.TestView())
+        app.htmlkit.views.add(view: Admin.TestView())
         
         app.get("test") { request async throws -> Vapor.View in
             return try await request.htmlkit.render("HTMLKitVaporTests.ProviderTests.User.TestView")
@@ -189,12 +189,12 @@ final class ProviderTests: XCTestCase {
         
         app.views.use(.htmlkit)
         
-        app.htmlkit.add(layout: Visitor.TestView())
-        app.htmlkit.add(layout: User.TestView())
-        app.htmlkit.add(layout: Admin.TestView())
+        app.htmlkit.views.add(view: Visitor.TestView())
+        app.htmlkit.views.add(view: User.TestView())
+        app.htmlkit.views.add(view: Admin.TestView())
         
-        app.htmlkit.localization.set(directory: currentDirectory)
-        app.htmlkit.localization.set(locale: .french)
+        app.htmlkit.lingo.set(directory: currentDirectory)
+        app.htmlkit.lingo.set(locale: .french)
         
         app.get("test") { request async throws -> Vapor.View in
             return try await request.view.render("HTMLKitVaporTests.ProviderTests.Visitor.TestView")

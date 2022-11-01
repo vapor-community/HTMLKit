@@ -8,7 +8,7 @@ import Vapor
 import Lingo
 
 /// The view renderer
-public class VaporRenderer {
+public class ViewRenderer {
     
     /// A enumeration of possible errors of the view renderer
     public enum RendererError: Error {
@@ -24,33 +24,21 @@ public class VaporRenderer {
         }
     }
     
-    /// The renderer of htmlkit
-    private var renderer: HTMLKit.Renderer {
-        return .init()
-    }
-    
     /// The event loop the view renderer is running on
-    private var eventLoop: EventLoop
+    internal var eventLoop: EventLoop
     
     /// The cache of the view renderer
-    private var cache: VaporCache
+    internal var cache: ViewCache
     
     /// The localiatzion of the view renderer
-    private var lingo: Lingo?
+    internal var lingo: Lingo?
     
     /// Creates the view renderer
-    public init(eventLoop: EventLoop, cache: VaporCache) {
+    public init(eventLoop: EventLoop, cache: ViewCache, lingo: LingoConfiguration) {
         
         self.eventLoop = eventLoop
         self.cache = cache
-        self.lingo = nil
-    }
-    
-    /// Creates the view renderer
-    public convenience init(eventLoop: EventLoop, cache: VaporCache, lingo: ViewLocalization) {
-        
-        self.init(eventLoop: eventLoop, cache: cache)
-        self.lingo = try? Lingo(rootPath: lingo.directory, defaultLocale: lingo.locale)
+        self.lingo = try? Lingo(rootPath: lingo.defaultDirectory, defaultLocale: lingo.defaultLocale)
     }
     
     /// Renders a layout and its context
@@ -78,9 +66,9 @@ public class VaporRenderer {
     }
 }
 
-extension VaporRenderer: ViewRenderer {
+extension ViewRenderer: Vapor.ViewRenderer {
     
-    public func `for`(_ request: Request) -> ViewRenderer {
+    public func `for`(_ request: Request) -> Vapor.ViewRenderer {
         return request.htmlkit
     }
     
@@ -91,7 +79,7 @@ extension VaporRenderer: ViewRenderer {
     }
 }
 
-extension VaporRenderer.RendererError: AbortError {
+extension ViewRenderer.RendererError: AbortError {
  
     @_implements(AbortError, reason)
     public var abortReason: String { self.description }
@@ -99,7 +87,7 @@ extension VaporRenderer.RendererError: AbortError {
     public var status: HTTPResponseStatus { .internalServerError }
 }
 
-extension VaporRenderer.RendererError: DebuggableError {
+extension ViewRenderer.RendererError: DebuggableError {
 
     @_implements(DebuggableError, reason)
     public var debuggableReason: String { self.description }
