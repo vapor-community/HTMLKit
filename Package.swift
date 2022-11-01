@@ -54,7 +54,8 @@ let package = Package(
             name: "HTMLKitVapor",
             dependencies: [
                 .target(name: "HTMLKit"),
-                .product(name: "Vapor", package: "vapor")
+                .product(name: "Vapor", package: "vapor"),
+                .product(name: "Lingo", package: "lingo")
             ]
         ),
         .testTarget(
@@ -88,6 +89,9 @@ let package = Package(
                 .target(name: "HTMLKitVapor"),
                 .target(name: "HTMLKit"),
                 .product(name: "XCTVapor", package: "vapor")
+            ],
+            resources: [
+                .process("Localization")
             ]
         ),
         .executableTarget(

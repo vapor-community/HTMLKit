@@ -5,6 +5,7 @@
 
 import HTMLKit
 import Vapor
+import Lingo
 
 /// The view renderer
 public class VaporRenderer {
@@ -34,20 +35,22 @@ public class VaporRenderer {
     /// The cache of the view renderer
     private var cache: VaporCache
     
+    /// The localiatzion of the view renderer
+    private var lingo: Lingo?
+    
     /// Creates the view renderer
     public init(eventLoop: EventLoop, cache: VaporCache) {
+        
         self.eventLoop = eventLoop
         self.cache = cache
+        self.lingo = nil
     }
     
-    /// Adds the layout to the cache
-    public func add<T:HTMLKit.AnyLayout>(layout: T) {
+    /// Creates the view renderer
+    public convenience init(eventLoop: EventLoop, cache: VaporCache, lingo: ViewLocalization) {
         
-        let formula = HTMLKit.Formula()
-        
-        try? layout.prerender(formula)
-        
-        self.cache.upsert(name: String(reflecting: T.self), formula: formula)
+        self.init(eventLoop: eventLoop, cache: cache)
+        self.lingo = try? Lingo(rootPath: lingo.directory, defaultLocale: lingo.locale)
     }
     
     /// Renders a layout and its context
@@ -60,8 +63,8 @@ public class VaporRenderer {
             }
             
             var buffer = ByteBufferAllocator().buffer(capacity: 4096)
-            
-            let manager = HTMLKit.ContextManager(context: context)
+
+            let manager = HTMLKit.ContextManager(context: context, lingo: self.lingo)
             
             for ingredient in formula.ingredients {
                 
