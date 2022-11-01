@@ -5,7 +5,7 @@
 
 import XCTVapor
 import HTMLKit
-import HTMLKitVaporProvider
+import HTMLKitVapor
 
 final class ProviderTests: XCTestCase {
     
@@ -75,7 +75,7 @@ final class ProviderTests: XCTestCase {
         app.htmlkit.add(layout: Admin.TestView())
         
         app.get("test") { request -> EventLoopFuture<Vapor.View> in
-            return request.view.render("HTMLKitVaporProviderTests.ProviderTests.User.TestView", TestContext(greeting: "hello world"))
+            return request.view.render("HTMLKitVaporTests.ProviderTests.User.TestView", TestContext(greeting: "hello world"))
         }
         
         try app.test(.GET, "test") { response in
@@ -108,7 +108,7 @@ final class ProviderTests: XCTestCase {
         app.htmlkit.add(layout: Admin.TestView())
         
         app.get("test") { request -> EventLoopFuture<Vapor.View> in
-            return request.htmlkit.render("HTMLKitVaporProviderTests.ProviderTests.Admin.TestView", TestContext(greeting: "hello world"))
+            return request.htmlkit.render("HTMLKitVaporTests.ProviderTests.Admin.TestView", TestContext(greeting: "hello world"))
         }
         
         try app.test(.GET, "test") { response in
@@ -142,7 +142,7 @@ final class ProviderTests: XCTestCase {
         app.htmlkit.add(layout: Admin.TestView())
         
         app.get("test") { request async throws -> Vapor.View in
-            return try await request.htmlkit.render("HTMLKitVaporProviderTests.ProviderTests.User.TestView", TestContext(greeting: "hello world"))
+            return try await request.htmlkit.render("HTMLKitVaporTests.ProviderTests.User.TestView", TestContext(greeting: "hello world"))
         }
         
         try app.test(.GET, "test") { response in
