@@ -35,6 +35,22 @@ final class LocalizationTests: XCTestCase {
                        """
         )
     }
+    
+    func testEnvironmentLocale() throws {
+        
+        let page = TestPage {
+            Heading1("Hallo Welt")
+                .environment(locale: "fr")
+        }
+        
+        try renderer.add(layout: page)
+        
+        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+                       """
+                       <h1>Bonjour le monde</h1>
+                       """
+        )
+    }
 }
 
 extension LocalizationTests {
