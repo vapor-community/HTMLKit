@@ -2,7 +2,7 @@ import PackagePlugin
 import Foundation
 
 @main
-struct ConverterPlugin: CommandPlugin {
+struct ComponentsPlugin: CommandPlugin {
     
     func performCommand(context: PluginContext, arguments: [String]) async throws {
         
@@ -16,6 +16,8 @@ struct ConverterPlugin: CommandPlugin {
             
             let explanation = """
             USAGE: deploy
+            
+            ARGUMENTS:
             """
             
             print(explanation)
