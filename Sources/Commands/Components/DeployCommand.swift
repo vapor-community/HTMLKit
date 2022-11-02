@@ -24,7 +24,8 @@ internal struct DeployCommand {
                 .appendingPathComponent("Resources", isDirectory: true)
             
             let distributionFile = URL(fileURLWithPath: targetPath)
-                .appendingPathComponent("Public")
+                .appendingPathComponent("Public", isDirectory: true)
+                .appendingPathComponent("HtmlKit", isDirectory: true)
                 .appendingPathComponent("css")
                 .appendingPathComponent("all")
                 .appendingPathExtension("css")

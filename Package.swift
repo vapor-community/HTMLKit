@@ -10,7 +10,7 @@ let package = Package(
     products: [
         .library(
             name: "HTMLKit",
-            targets: ["HTMLKit", "HTMLKitComponents", "HTMLKitVaporProvider"]
+            targets: ["HTMLKit", "HTMLKitComponents", "HTMLKitVapor"]
         ),
         .plugin(
             name: "ComponentsPlugin",
@@ -51,10 +51,11 @@ let package = Package(
             ]
         ),
         .target(
-            name: "HTMLKitVaporProvider",
+            name: "HTMLKitVapor",
             dependencies: [
                 .target(name: "HTMLKit"),
-                .product(name: "Vapor", package: "vapor")
+                .product(name: "Vapor", package: "vapor"),
+                .product(name: "Lingo", package: "lingo")
             ]
         ),
         .testTarget(
@@ -83,11 +84,14 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "HTMLKitVaporProviderTests",
+            name: "HTMLKitVaporTests",
             dependencies: [
-                .target(name: "HTMLKitVaporProvider"),
+                .target(name: "HTMLKitVapor"),
                 .target(name: "HTMLKit"),
                 .product(name: "XCTVapor", package: "vapor")
+            ],
+            resources: [
+                .process("Localization")
             ]
         ),
         .executableTarget(

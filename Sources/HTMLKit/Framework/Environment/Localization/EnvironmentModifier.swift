@@ -6,7 +6,7 @@
 /// The modifier is for
 ///
 ///
-public struct EnvironmentModifier: AnyContent {
+public struct EnvironmentModifier: GlobalElement {
 
     public let view: AnyContent
     
