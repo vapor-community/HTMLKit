@@ -1,22 +1,36 @@
-# Localization
+# Globalization
 
-Use localization
+Localize the content.
 
 ## Overview
 
-HTMLKit can render your content in different languages by using Localization.
+> Note: The chapter is only, when you use the vapor framework. 
 
-### Registration
+The framework uses the framework [Lingo](https://github.com/miroslavkovac/Lingo) to translate and formate the content by the local language and culture.
 
-The localization is optional, so if you want to use it, you need to register it first. Pass the directory path and the local identifier to the renderer. Keep in mind, that the directory path is the root directory where your localization files are located.
+### Configure
+
+The localization is optional. If you want to use it, you need to set it up in the file *configure.swift* of your Vapor project:
 
 ```swift
-try app.htmlkit.renderer.registerLocalization(atPath: path, defaultLocale: "en")
+import HTMLKitVapor
+import Vapor
+
+public func configure(_ app: Application) throws {
+
+    /// 1. Specify the directory path
+    app.htmlkit.lingo.set(directory: currentDirectory)
+
+    /// 2. Specify the default language
+    app.htmlkit.lingo.set(locale: .english)
+
+    try routes(app)
+}
 ```
 
 ### Definition
 
-Define your localizations in a .json file. If you want to get to know more about definitions, take a a look at the [Lingo library](https://github.com/miroslavkovac/Lingo#usage).
+In order to make the template translatable, you have to create a file. 
 
 ```json
 {
@@ -24,36 +38,8 @@ Define your localizations in a .json file. If you want to get to know more about
 }
 ```
 
-### Implementation
+## Topics
 
-You can retrieve the definition by calling the localized initialiser of a localizable element. Most of the phrasing elements in HTMLKit should be localizable and provide you with the specific initialiser. Please [open an issue](https://github.com/vapor-community/HTMLKit/issues), if you find an element without it.
+### Localization
 
-```swift
-struct IndexView: View {
-
-    var body: AnyContent {
-        Article {
-            Heading1("Hallo.Welt")
-        }
-    }
-}
-```
-
-Also the locale for the environment can be changed for example by user input. Use the environment modifier on the element and pass the specific local identifier for it.
-
-```swift
-struct IndexView: View {
-
-    struct Context {
-        let date: Date
-        let locale: String
-    }
-
-    var body: AnyContent {
-        Article {
-            ...
-        }
-        .environment(locale: context.locale)
-    }
-}
-```
+- <doc:Localization>
