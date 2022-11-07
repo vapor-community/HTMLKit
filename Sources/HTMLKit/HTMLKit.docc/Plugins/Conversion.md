@@ -1,48 +1,17 @@
-# Conversion
+# Use conversion
 
-Use conversion
+Converts HTML markup into HTMLKit syntax.
 
 ## Overview
 
-With HTMLKit you can convert your existing HTML code into Swift. It makes the change easier, faster and it can give you an idea how the library works.
+The framework comes with a plugin, wich converts HTML markup into the HTMLKit syntax. It makes the change to the framework way easier and faster.
 
-### Call
+### Command
 
-Call the converter and use the convert function. Pass the directory, where your html files are located and choose the output. We recommend to use the print option first, to get a quick preview on the output. The print shows up in the debug window of your IDE. If you choose the file option, the converter creates the swift files at the same directory you have given to the converter.
+Use the following command in your terminal:
 
-```swift
-/// creates the output as file
-try Converter.default.convert(directory: directory, extension: .html, option: .file)
-
-/// prints the output
-try Converter.default.convert(directory: directory, extension: .html, option: .print)
+```sh
+swift package --allow-writing-to-package-directory convert --source-path [source-path] --target-path [target-path] --output-option debug
 ```
 
-### Input
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-</html>
-```
-
-### Output
-
-```swift
-import HTMLKit
-
-struct IndexPage: Page {
-
-    public var body: AnyContent {
-        Document(type: .html5)
-        Html {
-        }
-        .language(.english)
-        
-    }
-}
-```
-
-## Note
-
-Keep in mind, that maybe the converter has not covered every case. If you miss something, file an [issue](https://github.com/vapor-community/HTMLKit/issues) and let us know to make the converter better.
+As output option, you can choose between _file_ or _debug_. The option _file_ writes the output at the target path, while the option _debug_ prints it into the terminal.
