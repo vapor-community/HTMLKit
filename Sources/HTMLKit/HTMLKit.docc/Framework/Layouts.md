@@ -1,8 +1,9 @@
-# Templating
+# Template
+
+Scaffold the content
+
 
 ## Overview
-
-### Embed
 
 You can embed the view in the page structure.
 
@@ -23,8 +24,6 @@ struct SimplePage: Page {
 }
 ```
 
-### Extend
-
 You can extend the page in the view structure.
 
 ```swift
@@ -40,16 +39,14 @@ struct IndexView: View {
 }
 ```
 
-### Output
+## Topics
 
-```html
-<!DOCTYPE html> 
-<html>
-    <head>
-        <title>SimplePage</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
-```
+### Template layouts
+
+- <doc:Page>
+- <doc:View>
+- <doc:Component>
+
+### Template value
+
+- <doc:Context>
