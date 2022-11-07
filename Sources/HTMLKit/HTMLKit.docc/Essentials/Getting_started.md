@@ -1,21 +1,19 @@
 # Getting started
 
-Learn how to use it.
+Learn how to use the framework.
 
-### Requirements
+> Important: The framework requires Swift 5.6 or higher. 
 
-HTMLKit requires Swift 5.6 or higher.
+### Manifest
 
-### Installation
-
-To use HTMLKit in your project, you have to add the package as dependency to your package description first. Be sure to add it as your desired targets as well.
+To use the the framework in your project you need to add it to the package manifest first.
 
 ```swift
 let package = Package(
     ...
     dependencies: [
         // 1. Add the package
-        .package(url: "https://github.com/vapor-community/HTMLKit.git", from: "2.6.0"),
+        .package(url: "https://github.com/vapor-community/HTMLKit.git", from: "2.8.0"),
     ],
     targets: [
         .target(
@@ -28,15 +26,4 @@ let package = Package(
         ...
     ]
 )
-```
-
-From time to time you want to update the package. You can do it, by changing the version tag manually and saving it. You find the current version tag in the [release history](https://github.com/vapor-community/HTMLKit/releases). We recommand to read the release description first, to understand the possible changes.
-
-### Usage
-
-Use the import keyword to load the module in your project files.
-
-```swift
-import HTMLKit
-...
 ```
