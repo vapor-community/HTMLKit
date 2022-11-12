@@ -4,5 +4,11 @@
  */
 
 /// A type that represents any html-node.
-public protocol AnyNode {
+internal protocol AnyNode {
+    
+    var startTag: String { get }
+    
+    func build(_ formula: Formula) throws
+    
+    func build<T>(with manager: ContextManager<T>) throws -> String
 }
