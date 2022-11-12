@@ -40,45 +40,4 @@ public struct DateVariable: AnyContent {
     public let dateReference: Reference
 
     public var format: Format
-
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-
-        var optionalDate: Date?
-        
-        switch dateReference {
-        case .solid(let path):
-            
-            optionalDate = try path.value(from: manager)
-            
-        case .optional(let path):
-            
-            optionalDate = try path.value(from: manager)
-        }
-
-        guard let date = optionalDate else { return "" }
-
-        let formatter = DateFormatter()
-
-        if let locale = manager.locale {
-            
-            formatter.locale = .init(identifier: locale)
-        }
-        
-        switch format {
-        case .literal(let format):
-            
-            formatter.dateFormat = format
-            
-        case .style(let style):
-            
-            formatter.dateStyle = style.dateStyle
-            formatter.timeStyle = style.timeStyle
-        }
-        
-        return formatter.string(from: date)
-    }
-
-    public func prerender(_ formula: Formula) throws {
-        formula.add(content: self)
-    }
 }

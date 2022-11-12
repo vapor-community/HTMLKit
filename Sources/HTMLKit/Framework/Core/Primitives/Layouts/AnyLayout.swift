@@ -12,14 +12,6 @@ public protocol AnyLayout: AnyContent {
 }
 
 extension AnyLayout {
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try body.render(with: manager)
-    }
-
-    public func prerender(_ formula: Formula) throws {
-        try body.prerender(formula)
-    }
 
     public var scripts: AnyContent { body.scripts }
 }

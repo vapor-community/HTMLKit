@@ -203,17 +203,6 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
     }
 }
 
-extension Title: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element specifies the document base url.#
 ///
 /// ```html
@@ -413,17 +402,6 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
     
     public func on(event: Events.Mouse, _ value: String) -> Base {
         return mutate(key: event.rawValue, value: value)
-    }
-}
-
-extension Base: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -645,17 +623,6 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
     }
 }
 
-extension Meta: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element contains style information for the document.
 ///
 /// ```html
@@ -856,17 +823,6 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     
     public func on(event: Events.Wheel, _ value: String) -> Style {
         return mutate(key: event.rawValue, value: value)
-    }
-}
-
-extension Style: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -1093,16 +1049,5 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     
     public func on(event: Events.Wheel, _ value: String) -> Link {
         return mutate(key: event.rawValue, value: value)
-    }
-}
-
-extension Link: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }

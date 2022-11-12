@@ -47,13 +47,4 @@ public struct Unwrap: GlobalElement {
     }
 }
 
-extension Unwrap: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try content.prerender(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try content.render(with: manager)
-    }
-}
+extension Unwrap: AnyContent {}

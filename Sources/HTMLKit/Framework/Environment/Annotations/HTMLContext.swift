@@ -68,16 +68,6 @@
 }
 
 extension HTMLContext: AnyContent where Value: AnyContent {
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        return applyEscaping(
-            try manager.value(for: self).render(with: manager)
-        )
-    }
-
-    public func prerender(_ formula: Formula) throws {
-        formula.add(content: self)
-    }
 
     internal func applyEscaping(_ render: String) -> String {
         

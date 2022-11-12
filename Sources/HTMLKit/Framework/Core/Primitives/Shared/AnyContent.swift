@@ -7,19 +7,11 @@ import Foundation
 
 /// A type that represents any html-content.
 public protocol AnyContent {
-
-    var renderWhenLocalizing: Bool { get }
     
     var scripts: AnyContent { get }
-
-    func render<T>(with manager: ContextManager<T>) throws -> String
-
-    func prerender(_ formula: Formula) throws
 }
 
 extension AnyContent {
-    
-    public var renderWhenLocalizing: Bool { return true }
     
     public var scripts: AnyContent { "" }
     

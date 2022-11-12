@@ -125,30 +125,7 @@ import Foundation
     }
 }
 
-extension TemplateValue: AnyContent where Value: AnyContent {
-
-    public func prerender(_ formula: Formula) throws {
-        
-        switch self {
-        case .constant(let value):
-            try value.prerender(formula)
-            
-        case .dynamic(let variable):
-            try variable.prerender(formula)
-        }
-    }
-
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        
-        switch self {
-        case .constant(let value):
-            return try value.render(with: manager)
-            
-        case .dynamic(let variable):
-            return try variable.render(with: manager)
-        }
-    }
-}
+extension TemplateValue: AnyContent where Value: AnyContent {}
 
 extension TemplateValue: ExpressibleByStringLiteral, ExpressibleByUnicodeScalarLiteral, ExpressibleByExtendedGraphemeClusterLiteral where Value == String {
 

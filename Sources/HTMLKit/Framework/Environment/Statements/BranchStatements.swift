@@ -89,68 +89,9 @@ extension IF: AnyContent {
             return scriptCondition
         })
     }
-    
-    public func prerender(_ formula: Formula) throws {
-        
-        var isStaticallyEvaluated = true
-        
-        for condition in conditions {
-            
-            condition.formula.calendar = formula.calendar
-            
-            condition.formula.timeZone = formula.timeZone
-
-            do {
-                
-                guard isStaticallyEvaluated else {
-                    throw IFPrerenderErrors.dynamiclyEvaluatedCondition
-                }
-                
-                let testContext = ContextManager<Void>(contexts: [:])
-                
-                if try condition.condition.evaluate(with: testContext) {
-                    
-                    try condition.view.prerender(formula)
-                    
-                    return // Returning as the first true condition should be the only one that is rendered
-                }
-                
-            } catch {
-                
-                isStaticallyEvaluated = false
-                
-                try condition.prerender(formula)
-            }
-        }
-        
-        if isStaticallyEvaluated == false {
-            formula.add(content: self)
-        }
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        
-        for condition in conditions {
-            
-            if try condition.evaluate(with: manager) {
-                return try condition.render(with: manager)
-            }
-        }
-        
-        return ""
-    }
 }
 
-extension IF.Condition: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try view.prerender(formula)
-    }
-
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        return try formula.render(with: manager)
-    }
-}
+extension IF.Condition: AnyContent {}
 
 extension IF.Condition: Conditionable {
 

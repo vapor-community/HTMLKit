@@ -222,17 +222,6 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     }
 }
 
-extension Source: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element allows to specify explicit external timed text tracks for media elements.
 ///
 /// ```html
@@ -441,16 +430,5 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
     
     public func on(event: Events.Mouse, _ value: String) -> Track {
         return mutate(key: event.rawValue, value: value)
-    }
-}
-
-extension Track: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }

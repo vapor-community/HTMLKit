@@ -296,17 +296,6 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     }
 }
 
-extension OptionGroup: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents an option.
 ///
 /// ```html
@@ -598,17 +587,6 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     }
 }
 
-extension Option: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a caption for the rest of the contents of a fieldset.
 ///
 /// ```html
@@ -882,17 +860,6 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     }
 }
 
-extension Legend: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a summary, caption, or legend for the rest of the content.
 ///
 /// ```html
@@ -1161,16 +1128,5 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     
     public func aria(roleDescription value: String) -> Summary {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Summary: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }

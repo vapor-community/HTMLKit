@@ -351,17 +351,6 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     }
 }
 
-extension Caption: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element specifies a group of one or more columns.
 ///
 /// ```html
@@ -561,17 +550,6 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     }
 }
 
-extension ColumnGroup: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a column in a table.
 ///
 /// ```html
@@ -768,17 +746,6 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     
     public func on(event: Events.Wheel, _ value: String) -> Column {
         return mutate(key: event.rawValue, value: value)
-    }
-}
-
-extension Column: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -1061,17 +1028,6 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-extension TableBody: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents the block of rows that consist of the column labels.
 ///
 /// ```html
@@ -1351,17 +1307,6 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-extension TableHead: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents the block of rows that consist of the column summaries.
 ///
 /// ```html
@@ -1630,17 +1575,6 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     
     public func aria(roleDescription value: String) -> TableFoot {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension TableFoot: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -1920,17 +1854,6 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func aria(roleDescription value: String) -> TableRow {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension TableRow: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -2217,17 +2140,6 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-extension DataCell: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a header cell in a table.
 ///
 /// ```html
@@ -2287,59 +2199,59 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func accessKey(_ value: Character) -> HeaderCell {
         return mutate(accesskey: value)
     }
-
+    
     public func autocapitalize(_ value: Values.Capitalization) -> HeaderCell {
         return mutate(autocapitalize: value.rawValue)
     }
-
+    
     public func autofocus() -> HeaderCell {
         return mutate(autofocus: "autofocus")
     }
-
+    
     public func `class`(_ value: String) -> HeaderCell {
         return mutate(class: value)
     }
-
+    
     public func isEditable(_ value: Bool) -> HeaderCell {
         return mutate(contenteditable: value)
     }
-
+    
     public func direction(_ value: Values.Direction) -> HeaderCell {
         return mutate(dir: value.rawValue)
     }
-
+    
     public func isDraggable(_ value: Bool) -> HeaderCell {
         return mutate(draggable: value)
     }
-
+    
     public func enterKeyHint(_ value: Values.Hint) -> HeaderCell {
         return mutate(enterkeyhint: value.rawValue)
     }
-
+    
     public func hidden() -> HeaderCell {
         return mutate(hidden: "hidden")
     }
-
+    
     public func inputMode(_ value: String) -> HeaderCell {
         return mutate(inputmode: value)
     }
-
+    
     public func `is`(_ value: String) -> HeaderCell {
         return mutate(is: value)
     }
-
+    
     public func itemId(_ value: String) -> HeaderCell {
         return mutate(itemid: value)
     }
-
+    
     public func itemProperty(_ value: String) -> HeaderCell {
         return mutate(itemprop: value)
     }
-
+    
     public func itemReference(_ value: String) -> HeaderCell {
         return mutate(itemref: value)
     }
-
+    
     public func itemScope(_ value: String) -> HeaderCell {
         return mutate(itemscope: value)
     }
@@ -2347,11 +2259,11 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func itemType(_ value: String) -> HeaderCell {
         return mutate(itemtype: value)
     }
-
+    
     public func id(_ value: String) -> HeaderCell {
         return mutate(id: value)
     }
-
+    
     public func id(_ value: TemplateValue<String>) -> HeaderCell {
         return mutate(id: value.rawValue)
     }
@@ -2359,11 +2271,11 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func language(_ value: Values.Language) -> HeaderCell {
         return mutate(lang: value.rawValue)
     }
-
+    
     public func nonce(_ value: String) -> HeaderCell {
         return mutate(nonce: value)
     }
-
+    
     @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
     public func role(_ value: String) -> HeaderCell {
         return mutate(role: value)
@@ -2372,23 +2284,23 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func role(_ value: Values.Role) -> HeaderCell {
         return mutate(role: value.rawValue)
     }
-
+    
     public func hasSpellCheck(_ value: Bool) -> HeaderCell {
         return  mutate(spellcheck: value)
     }
-
+    
     public func style(_ value: String) -> HeaderCell {
         return mutate(style: value)
     }
-
+    
     public func tabIndex(_ value: Int) -> HeaderCell {
         return mutate(tabindex: value)
     }
-
+    
     public func title(_ value: String) -> HeaderCell {
         return mutate(title: value)
     }
-
+    
     @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
     public func translate(_ value: String) -> HeaderCell {
         return mutate(translate: value)
@@ -2397,7 +2309,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func translate(_ value: Values.Decision) -> HeaderCell {
         return mutate(translate: value.rawValue)
     }
-
+    
     public func columnSpan(_ size: Int) -> HeaderCell {
         return mutate(colspan: size)
     }
@@ -2512,17 +2424,6 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     
     public func aria(roleDescription value: String) -> HeaderCell {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension HeaderCell: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
