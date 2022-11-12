@@ -3,27 +3,27 @@
  The file contains the cache. The cache stacks the formulas of the renderer.
  */
 
-public class Cache {
+internal class Cache {
     
-    private var stack: [ObjectIdentifier: Formula]
+    private var stack: [String: Formula]
     
-    public var count: Int {
+    internal var count: Int {
         return self.stack.keys.count
     }
     
-    public init() {
+    internal init() {
         self.stack = [:]
     }
     
-    public func retrieve(identifier: ObjectIdentifier) -> Formula? {
-        return self.stack[identifier] ?? nil
+    internal func retrieve(key: String) -> Formula? {
+        return self.stack[key] ?? nil
     }
     
-    public func upsert(formula: Formula, for identifier: ObjectIdentifier) {
-        self.stack.updateValue(formula, forKey: identifier)
+    internal func upsert(formula: Formula, for key: String) {
+        self.stack.updateValue(formula, forKey: key)
     }
     
-    public func remove(identifier: ObjectIdentifier) {
-        self.stack.removeValue(forKey: identifier)
+    internal func remove(key: String) {
+        self.stack.removeValue(forKey: key)
     }
 }
