@@ -6,7 +6,7 @@
 import OrderedCollections
 
 /// A type that defines a node with content.
-internal protocol ContentNode: AnyNode {
+internal protocol ContentNode: Node {
 
     associatedtype Content
     
@@ -52,282 +52,55 @@ extension ContentNode {
        
         return .init(attributes: attributes, content: self.content)
     }
-}
-
-extension ContentNode where Content == AnyContent {
     
-    internal func build(_ formula: Formula) throws {
+    internal func prerender(with formula: Formula) {
         
-        formula.add(content: startTag)
+        formula.add(ingridient: startTag)
         
-        try content.prerender(formula)
+        if let layouts = content as? [AnyLayout] {
+            
+            for layout in layouts {
+                
+                if let nodes = layout.body as? [Node] {
+                    
+                    for node in nodes {
+                        node.prerender(with: formula)
+                    }
+                }
+            }
+        }
         
-        formula.add(content: endTag)
+        if let nodes = content as? [Node] {
+            
+            for node in nodes {
+                node.prerender(with: formula)
+            }
+        }
+        
+        formula.add(ingridient: endTag)
     }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == BodyElement {
     
-    internal func build(_ formula: Formula) throws {
-
-        formula.add(content: startTag)
+    internal func render<T>(with manager: ContextManager<T>) -> String {
         
-        try content.prerender(formula)
+        var result = ""
         
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == DescriptionElement {
-    
-    internal func build(_ formula: Formula) throws {
-
-        formula.add(content: startTag)
+        result += startTag
         
-        try content.prerender(formula)
+        if let nodes = content as? [Node] {
+            
+            for node in nodes {
+                result += node.render(with: manager)
+            }
+        }
         
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == FigureElement {
-    
-    internal func build(_ formula: Formula) throws {
-
-        formula.add(content: startTag)
+        result += endTag
         
-        try content.prerender(formula)
-        
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == FormElement {
-    
-    internal func build(_ formula: Formula) throws {
-
-        formula.add(content: startTag)
-        
-        try content.prerender(formula)
-        
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == BasicElement {
-    
-    internal func build(_ formula: Formula) throws {
-
-        formula.add(content: startTag)
-        
-        try content.prerender(formula)
-        
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == HeadElement {
-    
-    internal func build(_ formula: Formula) throws {
-
-        formula.add(content: startTag)
-        
-        try content.prerender(formula)
-        
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == InputElement {
-    
-    internal func build(_ formula: Formula) throws {
-
-        formula.add(content: startTag)
-        
-        try content.prerender(formula)
-        
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == ListElement {
-    
-    internal func build(_ formula: Formula) throws {
-
-        formula.add(content: startTag)
-        
-        try content.prerender(formula)
-        
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == MapElement {
-    
-    internal func build(_ formula: Formula) throws {
-
-        formula.add(content: startTag)
-        
-        try content.prerender(formula)
-        
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == MediaElement {
-    
-    internal func build(_ formula: Formula) throws {
-
-        formula.add(content: startTag)
-        
-        try content.prerender(formula)
-        
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == ObjectElement {
-    
-    internal func build(_ formula: Formula) throws {
-
-        formula.add(content: startTag)
-        
-        try content.prerender(formula)
-        
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == RubyElement {
-    
-    internal func build(_ formula: Formula) throws {
-
-        formula.add(content: startTag)
-        
-        try content.prerender(formula)
-        
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == TableElement {
-    
-    internal func build(_ formula: Formula) throws {
-
-        formula.add(content: startTag)
-        
-        try content.prerender(formula)
-        
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == HtmlElement {
-    
-    internal func build(_ formula: Formula) throws {
-
-        formula.add(content: startTag)
-        
-        try content.prerender(formula)
-        
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == VectorElement {
-    
-    internal func build(_ formula: Formula) throws {
-
-        formula.add(content: startTag)
-        
-        try content.prerender(formula)
-        
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
-    }
-}
-
-extension ContentNode where Content == String {
-    
-    internal func build(_ formula: Formula) throws {
-        
-        formula.add(content: startTag)
-        
-        try content.prerender(formula)
-        
-        formula.add(content: endTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
+        return result
     }
 }
 
 /// A type that defines a node without any content.
-internal protocol EmptyNode: AnyNode {
+internal protocol EmptyNode: Node {
 
     /// The name of the node.
     var name: String { get }
@@ -353,14 +126,6 @@ extension EmptyNode {
         return "<\(name) \(attributes.map { "\($0.key)=\"\($0.value)\"" }.joined(separator: " "))>"
     }
     
-    internal func build(_ formula: Formula) throws {
-        formula.add(content: startTag)
-    }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return startTag
-    }
-    
     internal func modify(_ element: Self) -> Self {
         
         guard var attributes = self.attributes else {
@@ -371,10 +136,18 @@ extension EmptyNode {
         
         return .init(attributes: attributes)
     }
+    
+    internal func prerender(with formula: Formula) {
+        formula.add(ingridient: startTag)
+    }
+    
+    internal func render<T>(with manager: ContextManager<T>) -> String {
+        return startTag
+    }
 }
 
 /// A type that defines a comment node.
-internal protocol CommentNode: AnyNode {
+internal protocol CommentNode: Node {
     
     /// The content of the node.
     var content: String { get }
@@ -390,20 +163,20 @@ extension CommentNode {
         return "-->"
     }
     
-    internal func build(_ formula: Formula) throws {
+    internal func prerender(with formula: Formula) {
         
-        formula.add(content: startTag)
-        formula.add(content: content)
-        formula.add(content: endTag)
+        formula.add(ingridient: startTag)
+        formula.add(ingridient: content)
+        formula.add(ingridient: endTag)
     }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
-        return try startTag + content.render(with: manager) + endTag
+    
+    internal func render<T>(with manager: ContextManager<T>) -> String {
+        return startTag
     }
 }
 
 /// The protocol defines the document node.
-internal protocol DocumentNode: AnyNode {
+internal protocol DocumentNode: Node {
     
     /// The content of the node.
     var content: String { get }
@@ -415,11 +188,11 @@ extension DocumentNode {
         return "<!DOCTYPE \(content)>"
     }
     
-    internal func build(_ formula: Formula) throws {
-        formula.add(content: startTag)
+    internal func prerender(with formula: Formula) {       
+        formula.add(ingridient: startTag)
     }
-
-    internal func build<T>(with manager: ContextManager<T>) throws -> String {
+    
+    internal func render<T>(with manager: ContextManager<T>) -> String {
         return startTag
     }
 }

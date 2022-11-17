@@ -28,9 +28,9 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <!DOCTYPE html>\
                        <html>\
@@ -52,9 +52,9 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <div>\
                        <p>text</p>\
@@ -69,9 +69,9 @@ final class RenderingTests: XCTestCase {
             Input()
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <input>
                        """
@@ -84,9 +84,9 @@ final class RenderingTests: XCTestCase {
             Comment("text")
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <!--text-->
                        """
@@ -103,9 +103,9 @@ final class RenderingTests: XCTestCase {
             .class("class")
         } 
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <p class="class">text</p>
                        """
@@ -122,9 +122,9 @@ final class RenderingTests: XCTestCase {
             .class("cl_ass")
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <p class="cl_ass">text</p>
                        """
@@ -140,9 +140,9 @@ final class RenderingTests: XCTestCase {
             .class("cl-ass")
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <p class="cl-ass">text</p>
                        """
@@ -159,9 +159,9 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <div>\
                        <p>text</p>\
@@ -179,9 +179,9 @@ final class RenderingTests: XCTestCase {
             .class("cl'ass")
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <p class="cl'ass">text</p>
                        """
@@ -201,9 +201,9 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <div class="modified"></div>
                        """
@@ -223,9 +223,9 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <div class="unmodified"></div>
                        """
@@ -243,9 +243,9 @@ final class RenderingTests: XCTestCase {
                 }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <input placeholder="test">
                        """
@@ -263,9 +263,9 @@ final class RenderingTests: XCTestCase {
             .custom(key: "key", value: "value")
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <div key="value">\
                        <p>text</p>\

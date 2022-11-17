@@ -32,9 +32,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <p>true</p>
                        """
@@ -58,9 +58,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <p>true</p>
                        """
@@ -84,9 +84,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <p>true</p>
                        """
@@ -115,9 +115,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <p>true</p>\
                        <p>true</p>
@@ -142,9 +142,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <p>true</p>
                        """
@@ -173,9 +173,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <p>true</p>\
                        <p>true</p>
@@ -200,9 +200,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <p>true</p>
                        """
@@ -226,9 +226,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <p>true</p>
                        """
@@ -252,9 +252,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <p>true</p>
                        """
@@ -278,9 +278,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <p>true</p>
                        """

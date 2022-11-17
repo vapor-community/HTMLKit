@@ -21,9 +21,9 @@ final class ComponentTests: XCTestCase {
             MetaTitle(title: "text")
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <title>text</title>\
                        <meta property="og:title" content="text">\
@@ -38,9 +38,9 @@ final class ComponentTests: XCTestCase {
             MetaDescription(description: "text")
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <meta name="description" content="text">\
                        <meta property="og:description" content="text">\
@@ -55,9 +55,9 @@ final class ComponentTests: XCTestCase {
             Favicon(url: "url")
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <link rel="shortcut icon" href="url">
                        """
@@ -70,9 +70,9 @@ final class ComponentTests: XCTestCase {
             Author(author: "text", handle: .constant("@handle"))
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <meta name="author" content="text">\
                        <meta name="twitter:creator" content="@handle">
@@ -86,9 +86,9 @@ final class ComponentTests: XCTestCase {
             Stylesheet(url: "url")
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <link rel="stylesheet" href="url" type="text/css">
                        """
@@ -101,9 +101,9 @@ final class ComponentTests: XCTestCase {
             Viewport(.accordingToDevice)
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
                        """

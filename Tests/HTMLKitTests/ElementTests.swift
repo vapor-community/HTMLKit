@@ -22,9 +22,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <head></head>
                        """
@@ -38,9 +38,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <title></title>
                        """
@@ -53,9 +53,9 @@ final class ElementTests: XCTestCase {
             Base()
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <base>
                        """
@@ -68,9 +68,9 @@ final class ElementTests: XCTestCase {
             Link()
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <link>
                        """
@@ -83,9 +83,9 @@ final class ElementTests: XCTestCase {
             Meta()
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <meta>
                        """
@@ -99,9 +99,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <style></style>
                        """
@@ -115,9 +115,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <html></html>
                        """
@@ -131,9 +131,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <body></body>
                        """
@@ -147,9 +147,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <article></article>
                        """
@@ -163,9 +163,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <section></section>
                        """
@@ -179,9 +179,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <nav></nav>
                        """
@@ -195,9 +195,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <aside></aside>
                        """
@@ -211,9 +211,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <h1></h1>
                        """
@@ -227,9 +227,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <h2></h2>
                        """
@@ -243,9 +243,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <h3></h3>
                        """
@@ -259,9 +259,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <h4></h4>
                        """
@@ -275,9 +275,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <h5></h5>
                        """
@@ -291,9 +291,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <h6></h6>
                        """
@@ -307,9 +307,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <hgroup></hgroup>
                        """
@@ -323,9 +323,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <header></header>
                        """
@@ -339,9 +339,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <footer></footer>
                        """
@@ -355,9 +355,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <address></address>
                        """
@@ -371,9 +371,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <p></p>
                        """
@@ -386,9 +386,9 @@ final class ElementTests: XCTestCase {
             HorizontalRule()
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <hr>
                        """
@@ -402,9 +402,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <pre></pre>
                        """
@@ -418,9 +418,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <blockquote></blockquote>
                        """
@@ -434,9 +434,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <ol></ol>
                        """
@@ -450,9 +450,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <ul></ul>
                        """
@@ -466,9 +466,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <li></li>
                        """
@@ -482,9 +482,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <dl></dl>
                        """
@@ -498,9 +498,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <dt></dt>
                        """
@@ -514,9 +514,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <dd></dd>
                        """
@@ -530,9 +530,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <figure></figure>
                        """
@@ -546,9 +546,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <figcaption></figcaption>
                        """
@@ -562,9 +562,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <main></main>
                        """
@@ -578,9 +578,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <div></div>
                        """
@@ -594,9 +594,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <a></a>
                        """
@@ -610,9 +610,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <em></em>
                        """
@@ -626,9 +626,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <strong></strong>
                        """
@@ -642,9 +642,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <small></small>
                        """
@@ -658,9 +658,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <s></s>
                        """
@@ -674,9 +674,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <cite></cite>
                        """
@@ -690,9 +690,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <q></q>
                        """
@@ -706,9 +706,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <dfn></dfn>
                        """
@@ -722,9 +722,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <abbr></abbr>
                        """
@@ -738,9 +738,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <ruby></ruby>
                        """
@@ -754,9 +754,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <rt></rt>
                        """
@@ -770,9 +770,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <rp></rp>
                        """
@@ -786,9 +786,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <data></data>
                        """
@@ -802,9 +802,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <time></time>
                        """
@@ -818,9 +818,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <code></code>
                        """
@@ -834,9 +834,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <v></v>
                        """
@@ -850,9 +850,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <samp></samp>
                        """
@@ -866,9 +866,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <kbd></kbd>
                        """
@@ -882,9 +882,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <sub></sub>
                        """
@@ -898,9 +898,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <sup></sup>
                        """
@@ -914,9 +914,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <i></i>
                        """
@@ -930,9 +930,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <b></b>
                        """
@@ -946,9 +946,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <u></u>
                        """
@@ -962,9 +962,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <mark></mark>
                        """
@@ -978,9 +978,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <bdi></bdi>
                        """
@@ -993,9 +993,9 @@ final class ElementTests: XCTestCase {
             Bdo()
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <bdo>
                        """
@@ -1009,9 +1009,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <span></span>
                        """
@@ -1024,9 +1024,9 @@ final class ElementTests: XCTestCase {
             LineBreak()
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <br>
                        """
@@ -1039,9 +1039,9 @@ final class ElementTests: XCTestCase {
             WordBreak()
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <wbr>
                        """
@@ -1055,9 +1055,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <ins></ins>
                        """
@@ -1071,9 +1071,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <del></del>
                        """
@@ -1087,9 +1087,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <picture></picture>
                        """
@@ -1102,9 +1102,9 @@ final class ElementTests: XCTestCase {
             Source()
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <source>
                        """
@@ -1117,9 +1117,9 @@ final class ElementTests: XCTestCase {
             Image()
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <img>
                        """
@@ -1133,9 +1133,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <iframe></iframe>
                        """
@@ -1148,9 +1148,9 @@ final class ElementTests: XCTestCase {
             Embed()
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <embed>
                        """
@@ -1164,9 +1164,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <object></object>
                        """
@@ -1179,9 +1179,9 @@ final class ElementTests: XCTestCase {
             Parameter()
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <param>
                        """
@@ -1195,9 +1195,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <video></video>
                        """
@@ -1211,9 +1211,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <audio></audio>
                        """
@@ -1226,9 +1226,9 @@ final class ElementTests: XCTestCase {
             Track()
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <track>
                        """
@@ -1242,9 +1242,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <map></map>
                        """
@@ -1258,9 +1258,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <area></area>
                        """
@@ -1274,9 +1274,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <table></table>
                        """
@@ -1290,9 +1290,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <caption></caption>
                        """
@@ -1306,9 +1306,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <colgroup></colgroup>
                        """
@@ -1322,9 +1322,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <col></col>
                        """
@@ -1338,9 +1338,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <tbody></tbody>
                        """
@@ -1354,9 +1354,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <thead></thead>
                        """
@@ -1370,9 +1370,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <tfoot></tfoot>
                        """
@@ -1386,9 +1386,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <tr></tr>
                        """
@@ -1402,9 +1402,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <td></td>
                        """
@@ -1418,9 +1418,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <th></th>
                        """
@@ -1434,9 +1434,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <form></form>
                        """
@@ -1450,9 +1450,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <label></label>
                        """
@@ -1465,9 +1465,9 @@ final class ElementTests: XCTestCase {
             Input()
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <input>
                        """
@@ -1481,9 +1481,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <button></button>
                        """
@@ -1497,9 +1497,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <datalist></datalist>
                        """
@@ -1513,9 +1513,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <optgroup></optgroup>
                        """
@@ -1529,9 +1529,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <option></option>
                        """
@@ -1545,9 +1545,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <textarea></textarea>
                        """
@@ -1561,9 +1561,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <output></output>
                        """
@@ -1577,9 +1577,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <progress></progress>
                        """
@@ -1593,9 +1593,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <meter></meter>
                        """
@@ -1609,9 +1609,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <fieldset></fieldset>
                        """
@@ -1625,9 +1625,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <legend></legend>
                        """
@@ -1641,9 +1641,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <details></details>
                        """
@@ -1657,9 +1657,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <summary></summary>
                        """
@@ -1673,9 +1673,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <dialog></dialog>
                        """
@@ -1689,9 +1689,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <script></script>
                        """
@@ -1705,9 +1705,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <noscript></noscript>
                        """
@@ -1721,9 +1721,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <template></template>
                        """
@@ -1737,9 +1737,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <canvas></canvas>
                        """
@@ -1753,9 +1753,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <svg></svg>
                        """
@@ -1769,9 +1769,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <circle></circle>
                        """
@@ -1785,9 +1785,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <rect></rect>
                        """
@@ -1801,9 +1801,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <ellipse></ellipse>
                        """
@@ -1817,9 +1817,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <line></line>
                        """
@@ -1833,9 +1833,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <polygon></polygon>
                        """
@@ -1849,9 +1849,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <polyline></polyline>
                        """
@@ -1865,9 +1865,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <path></path>
                        """
@@ -1881,9 +1881,9 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(renderer.render(layout: page),
                        """
                        <use></use>
                        """

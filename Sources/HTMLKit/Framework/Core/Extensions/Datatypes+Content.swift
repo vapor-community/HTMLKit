@@ -5,165 +5,85 @@
 
 import Foundation
 
-extension Array: AnyContent where Element == AnyContent {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
+extension Array: AnyContent {
 }
 
-extension Array where Element == String {
+extension String: AnyContent {}
 
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
+extension String: Node {
+    
+    internal func prerender(with formula: Formula) {
+        formula.add(ingridient: self)
     }
-}
-
-extension Array where Element == BodyElement {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
-}
-
-extension Array where Element == DescriptionElement {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
-}
-
-extension Array where Element == FigureElement {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
-}
-
-extension Array where Element == FormElement {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
-}
-
-extension Array where Element == BasicElement {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
-}
-
-extension Array where Element == HeadElement {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
-}
-
-extension Array where Element == InputElement {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
-}
-
-extension Array where Element == ListElement {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
-}
-
-extension Array where Element == MapElement {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
-}
-
-extension Array where Element == MediaElement {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
-}
-
-extension Array where Element == ObjectElement {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
-}
-
-extension Array where Element == RubyElement {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
-}
-
-extension Array where Element == TableElement {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
-}
-
-extension Array where Element == HtmlElement {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
-}
-
-extension Array where Element == VectorElement {
-
-    public var scripts: AnyContent {
-        return self.reduce("") { $0 + $1.scripts }
-    }
-}
-
-extension Bool: AnyContent {}
-
-extension Bool: Conditionable {
-    public func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
+    
+    
+    func render<T>(with manager: ContextManager<T>) -> String {        
         return self
+    }
+}
+
+extension Int: AnyContent {}
+
+extension Int: Node {
+    
+    internal func prerender(with formula: Formula) {
+        formula.add(ingridient: String(self))
+    }
+    
+    func render<T>(with manager: ContextManager<T>) -> String {
+        return String(self)
+    }
+}
+
+extension Float: AnyContent {}
+
+extension Float: Node {
+
+    internal func prerender(with formula: Formula) {
+        formula.add(ingridient: String(self))
+    }
+    
+    func render<T>(with manager: ContextManager<T>) -> String {
+        return String(self)
     }
 }
 
 extension Double: AnyContent {}
 
-extension Float: AnyContent {}
+extension Double: Node {
 
-extension Int: AnyContent {}
-
-extension Optional: AnyContent where Wrapped: AnyContent {
-
-    public var scripts: AnyContent {
-        switch self {
-        case .none: return ""
-        case .some(let wrapped): return wrapped.scripts
-        }
+    internal func prerender(with formula: Formula) {
+        formula.add(ingridient: String(self))
     }
-}
-
-extension Optional: Defineable {
     
-    var isDefinded: Bool {
-        switch self {
-        case .none: return false
-        default: return true
-        }
+    func render<T>(with manager: ContextManager<T>) -> String {
+        return String(self)
     }
 }
 
-extension String: AnyContent {}
+extension Bool: AnyContent {}
 
-extension UUID: AnyContent {}
+extension Bool: Node {
+    
+    internal func prerender(with formula: Formula) {
+        formula.add(ingridient:  String(self))
+    }
+    
+    func render<T>(with manager: ContextManager<T>) -> String {
+        return String(self)
+    }
+}
+
+extension Bool: Conditionable {
+    
+    public func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
+        return self
+    }
+}
 
 extension Sequence {
     
+    @available(*, deprecated, message: "The method will be removed entirely.")
     public func htmlForEach(@ContentBuilder<AnyContent> content: (TemplateValue<Element>) -> AnyContent) -> AnyContent {
         ForEach(in: .constant(self), content: content)
     }

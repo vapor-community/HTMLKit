@@ -8,13 +8,13 @@ import XCTest
 
 final class ContextTests: XCTestCase {
     
-    struct PageContext {
+    struct PageContext: Codable {
         
         var category: String
         var viewContext: ViewContext
     }
     
-    struct ViewContext {
+    struct ViewContext: Codable {
         
         var headline: String
     }
@@ -52,9 +52,9 @@ final class ContextTests: XCTestCase {
         
         let context = ViewContext(headline: "test")
         
-        try renderer.add(layout: TestView())
+        renderer.add(layout: TestView())
         
-        XCTAssertEqual(try renderer.render(layout: TestView.self, with: context),
+        XCTAssertEqual(renderer.render(layout: TestView(), with: context),
                        """
                        <section>\
                        <h2>test</h2>\
@@ -67,9 +67,9 @@ final class ContextTests: XCTestCase {
         
         let context = PageContext(category: "test", viewContext: .init(headline: "test"))
         
-        try renderer.add(layout: TestPage())
+        renderer.add(layout: TestPage())
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self, with: context),
+        XCTAssertEqual(renderer.render(layout: TestPage(), with: context),
                        """
                        <h1>test</h1>\
                        <section>\

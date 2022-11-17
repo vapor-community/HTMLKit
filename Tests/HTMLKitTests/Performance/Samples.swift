@@ -1,7 +1,7 @@
 import HTMLKit
 import Foundation
 
-struct SampleContext {
+struct SampleContext: Codable  {
     
     var id: Int
     var title: String
