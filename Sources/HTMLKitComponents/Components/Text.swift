@@ -47,16 +47,6 @@ public struct Text: Component {
         }
     }
     
-    /// The behaviour of the text.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
-    }
-    
     public func id(_ value: String) -> Text {
         
         var newSelf = self

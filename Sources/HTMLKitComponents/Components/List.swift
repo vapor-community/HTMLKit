@@ -39,16 +39,6 @@ public struct List: Component {
         .class(classes.joined(separator: " "))
     }
     
-    /// The behaviour of the list.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
-    }
-    
     /// Sets the style for the list.
     public func listStyle(_ style: Tokens.ListStyle) -> List {
         
@@ -91,16 +81,6 @@ public struct ListRow: Component {
             content
         }
         .class(classes.joined(separator: " "))
-    }
-    
-    /// The behaviour of the row.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
     }
 }
 

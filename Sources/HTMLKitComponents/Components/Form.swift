@@ -39,16 +39,6 @@ public struct Form: Component {
         .method(.post)
         .class(classes.joined(separator: " "))
     }
-    
-    /// The behaviour of the container.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
-    }
 }
 
 /// A component that displays the name of the form control.
@@ -209,16 +199,6 @@ public struct TextEditor: Component {
         .name(name)
         .class(classes.joined(separator: " "))
         .rows(rows)
-    }
-    
-    /// The behaviour of the editor.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
     }
     
     /// Sets the limit of the maximum lines.
@@ -403,16 +383,6 @@ public struct SelectField: Component {
         .id(name)
         .name(name)
         .class(classes.joined(separator: " "))
-    }
-    
-    /// The behaviour of the field.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
     }
 }
 

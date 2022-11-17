@@ -10,8 +10,3 @@ public protocol AnyLayout: AnyContent {
     /// The content of the page.
     @ContentBuilder<AnyContent> var body: AnyContent { get }
 }
-
-extension AnyLayout {
-
-    public var scripts: AnyContent { body.scripts }
-}

@@ -46,16 +46,6 @@ public struct ActionButton: Component {
         .class(self.classes.joined(separator: " "))
         .role(.button)
     }
-    
-    /// The behaviour of the button.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [self.content.scripts, Script { events }]
-        }
-        
-        return [self.content.scripts]
-    }
 }
 
 extension ActionButton: ButtonModifier {

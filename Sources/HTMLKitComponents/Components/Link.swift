@@ -45,16 +45,6 @@ public struct Link: Component {
         .reference(destination.rawValue)
         .class(classes.joined(separator: " "))
     }
-    
-    /// The behaviour of the link.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
-    }
 }
 
 extension Link: TextModifier {

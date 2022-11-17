@@ -7,37 +7,26 @@ import Foundation
 
 /// A type that represents any html-content.
 public protocol AnyContent {
-    
-    var scripts: AnyContent { get }
 }
 
-extension AnyContent {
+public func +(lhs: AnyContent, rhs: AnyContent) -> AnyContent {
     
-    public var scripts: AnyContent { "" }
-    
-    public func environment(locale: String) -> EnvironmentModifier {
-        return EnvironmentModifier(view: self, locale: locale)
-    }
+    var output: [AnyContent] = []
 
-    public func environment(locale: TemplateValue<String>) -> EnvironmentModifier {
-        return EnvironmentModifier(view: self, locale: locale)
-    }
-}
-
-public func + (lhs: AnyContent, rhs: AnyContent) -> AnyContent {
-    var output: Array<AnyContent> = []
-
-    if let list = lhs as? Array<AnyContent> {
+    if let list = lhs as? [AnyContent] {
         output.append(contentsOf: list)
+        
     } else {
         output.append(lhs)
     }
 
-    if let list = rhs as? Array<AnyContent> {
+    if let list = rhs as? [AnyContent] {
         output.append(list)
+        
     } else {
         output.append(rhs)
     }
+    
     return output
 }
 

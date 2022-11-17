@@ -39,16 +39,6 @@ public struct Collection: Component {
         .class(classes.joined(separator: " "))
     }
     
-    /// The behaviour of the collection.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
-    }
-    
     /// Sets the style for the collection.
     public func collectionStyle(_ style: Tokens.CollectionStyle) -> Collection {
         
@@ -91,15 +81,5 @@ public struct CollectionItem: Component {
             content
         }
         .class(classes.joined(separator: " "))
-    }
-    
-    /// The behaviour of the collection.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
     }
 }
