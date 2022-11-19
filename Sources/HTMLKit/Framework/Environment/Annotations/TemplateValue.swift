@@ -240,3 +240,39 @@ extension TemplateValue where Value: Strideable {
         return BetweenCondition(lhs: lhs, rhs: rhs)
     }
 }
+
+extension TemplateValue: Node where Value: AnyContent {
+    
+    func prerender(with formula: Formula) {
+        
+        switch self {
+        case .constant(let value):
+            
+            if let node = value as? Node {
+                node.prerender(with: formula)
+            }
+            
+        case .dynamic(let variable):
+            variable.prerender(with: formula)
+        }
+    }
+    
+    func render<T>(with manager: ContextManager<T>) -> String {
+        
+        var result = ""
+        
+        switch self {
+        case .constant(let value):
+            
+            if let node = value as? Node {
+                result += node.render(with: manager)
+            }
+            
+            
+        case .dynamic(let variable):
+            result += variable.render(with: manager)
+        }
+        
+        return result
+    }
+}
