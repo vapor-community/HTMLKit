@@ -9,28 +9,22 @@
 /// The statement is for
 public struct IF: GlobalElement {
     
-    public enum IFPrerenderErrors: Error {
-        
-        case dynamiclyEvaluatedCondition
-    }
-    
-    internal class Condition {
+    internal class Condition: AnyContent {
 
         internal let condition: Conditionable
         
         internal var formula: Formula
         
-        internal var view: AnyContent
+        internal var view: AnyContent?
         
         internal init(condition: Conditionable) {
             
             self.condition = condition
-            self.view = ""
             self.formula = Formula()
         }
     }
 
-    internal let conditions: [Condition]
+    private let conditions: [Condition]
 
     internal init(conditions: [Condition]) {
         self.conditions = conditions
@@ -77,21 +71,95 @@ public struct IF: GlobalElement {
     }
 }
 
-extension IF: AnyContent {
-
-    public var scripts: AnyContent {
+extension IF: Node {
+    
+    internal func prerender(with formula: Formula) {
         
-        IF(conditions: conditions.map { htmlCondition in
+        for condition in self.conditions {
             
-            let scriptCondition = IF.Condition(condition: htmlCondition.condition)
-            scriptCondition.view = htmlCondition.view.scripts
+            do {
+                
+                if try condition.condition.evaluate(with: ContextManager<Void>(contexts: [:])) {
+                    
+                    if let content = condition.view as? [AnyContent] {
+                        
+                        if let nodes = content[0] as? [Node] {
+                            
+                            for node in nodes {
+                                node.prerender(with: formula)
+                            }
+                        }
+                        
+                        if let node = content[0] as? Node {
+                            node.prerender(with: formula)
+                        }
+                        
+                    } else {
+                        
+                        if let nodes = condition.view as? [Node] {
+                            
+                            for node in nodes {
+                                node.prerender(with: formula)
+                            }
+                        }
+                    }
+                    
+                    return
+                }
+                
+            } catch {
+                condition.prerender(with: formula)
+            }
+        }
+    }
+    
+    internal func render<T>(with manager: ContextManager<T>) -> String {
+        
+        var result = ""
+        
+        for condition in self.conditions {
             
-            return scriptCondition
-        })
+            do {
+                
+                if try condition.evaluate(with: manager) {
+                    result += condition.render(with: manager)
+                }
+                
+            } catch {
+                return result
+            }
+        }
+        
+        return result
     }
 }
 
-extension IF.Condition: AnyContent {}
+extension IF.Condition: Node {
+    
+    internal func prerender(with formula: Formula) {
+        
+        if let nodes = view as? [Node] {
+            
+            for node in nodes {
+                node.prerender(with: formula)
+            }
+        }
+    }
+
+    internal func render<T>(with manager: ContextManager<T>) -> String {
+        
+        var result = ""
+        
+        for ingridient in formula.ingredients {
+            
+            if let node = ingridient as? Node {
+                result += node.render(with: manager)
+            }
+        }
+        
+        return result
+    }
+}
 
 extension IF.Condition: Conditionable {
 
@@ -99,4 +167,3 @@ extension IF.Condition: Conditionable {
         return try condition.evaluate(with: manager)
     }
 }
-
