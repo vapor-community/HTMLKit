@@ -34,12 +34,24 @@ public class Renderer {
         
         let formula = prerender(layout: layout)
         
-        self.cache.upsert(formula: formula, for: String(reflecting: layout.self))
+        let name = resolve(name: String(reflecting: layout.self))
+        
+        self.cache.upsert(formula: formula, for: name)
     }
     
     /// Registers a localization.
     public func add(localization: Localization) throws {
         self.lingo = try Lingo(rootPath: localization.source, defaultLocale: localization.locale.rawValue)
+    }
+    
+    /// Resolves the layout name
+    internal func resolve(name: String) -> String {
+        
+        let substring = name.prefix(while: { (character) -> Bool in
+            return character != "("
+        })
+        
+        return String(substring)
     }
     
     /// Prerenders the layout
@@ -87,13 +99,25 @@ public class Renderer {
         
         return result
     }
+    
+    /// Rerenders the formula
+    public func rerender<T>(name: String, manager: ContextManager<T>) -> String? {
+        
+        if let formula = self.cache.retrieve(key: name) {
+            return rerender(formula: formula, manager: manager)
+        }
+        
+        return nil
+    }
 
     /// Renders a layout
     public func render(layout: some AnyLayout) -> String {
         
         let manager = ContextManager(context: (), lingo: self.lingo)
         
-        if let formula = self.cache.retrieve(key: String(reflecting: layout.self)) {
+        let name = resolve(name: String(reflecting: layout.self))
+        
+        if let formula = self.cache.retrieve(key: name) {
             return rerender(formula: formula, manager: manager)
         }
         
@@ -117,7 +141,9 @@ public class Renderer {
         
         let manager = ContextManager(context: context, lingo: self.lingo)
         
-        if let formula = self.cache.retrieve(key: String(reflecting: layout.self)) {
+        let name = resolve(name: String(reflecting: layout.self))
+        
+        if let formula = self.cache.retrieve(key: name) {
             return rerender(formula: formula, manager: manager)
         }
         

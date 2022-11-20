@@ -4,9 +4,10 @@
  */
 
 import Foundation
+import Lingo
 
 /// The localization
-public class LingoConfiguration {
+final public class LingoConfiguration {
     
     /// A enumeration of possible locale identifier
     public enum Locale: String {
@@ -28,6 +29,10 @@ public class LingoConfiguration {
     /// The locale indentifier
     internal var defaultLocale: String
     
+    internal var lingo: Lingo? {
+        return try? Lingo(rootPath: defaultDirectory, defaultLocale: defaultLocale)
+    }
+    
     /// Creates a configuration
     internal init() {
         
@@ -37,11 +42,11 @@ public class LingoConfiguration {
     
     /// Sets the root path
     public func set(directory: URL) {
-        self.defaultDirectory = directory.path
+        defaultDirectory = directory.path
     }
     
     /// Sets the default locale indentifier
     public func set(locale: Locale) {
-        self.defaultLocale = locale.rawValue
+        defaultLocale = locale.rawValue
     }
 }

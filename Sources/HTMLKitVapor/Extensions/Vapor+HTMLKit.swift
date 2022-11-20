@@ -28,28 +28,28 @@ extension Application {
     /// The vapor provider
     public struct HtmlKit {
         
-        internal struct CacheStorageKey: StorageKey {
-            
-            public typealias Value = ViewCache
-        }
-        
-        /// The view cache
-        public var views: ViewCache {
-            
-            if let cache = self.application.storage[CacheStorageKey.self] {
-                return cache
-            }
-            
-            let cache = ViewCache()
-            
-            self.application.storage[CacheStorageKey.self] = cache
-            
-            return cache
-        }
-        
         internal struct LingoStorageKey: StorageKey {
             
             public typealias Value = LingoConfiguration
+        }
+        
+        internal struct ViewsStorageKey: StorageKey {
+            
+            public typealias Value = ViewsConfiguration
+        }
+        
+        /// The view cache
+        public var views: ViewsConfiguration {
+            
+            if let configuration = self.application.storage[ViewsStorageKey.self] {
+                return configuration
+            }
+            
+            let configuration = ViewsConfiguration()
+            
+            self.application.storage[ViewsStorageKey.self] = configuration
+            
+            return configuration
         }
         
         /// The view localization
@@ -68,7 +68,7 @@ extension Application {
         
         /// The view renderer
         internal var renderer: ViewRenderer {
-            return .init(eventLoop: self.application.eventLoopGroup.next(), cache: self.views, lingo: lingo)
+            return .init(eventLoop: self.application.eventLoopGroup.next(), views: views, lingo: lingo)
         }
         
         /// The application dependency
@@ -86,6 +86,6 @@ extension Request {
     
     /// Access to the view renderer
     public var htmlkit: ViewRenderer {
-        return .init(eventLoop: self.eventLoop, cache: self.application.htmlkit.views, lingo: self.application.htmlkit.lingo)
+        return .init(eventLoop: self.eventLoop, views: self.application.htmlkit.views, lingo: self.application.htmlkit.lingo)
     }
 }

@@ -19,7 +19,7 @@ public class ViewRenderer {
             
             switch self {
             case .unkownLayout(let name):
-                return "Layout with the name '\(name)' could not be found."
+                return "A layout with the name '\(name)' could not be found."
             }
         }
     }
@@ -27,42 +27,35 @@ public class ViewRenderer {
     /// The event loop the view renderer is running on
     internal var eventLoop: EventLoop
     
-    /// The cache of the view renderer
-    internal var cache: ViewCache
-    
-    /// The localiatzion of the view renderer
+    /// The localization of the view renderer
     internal var lingo: Lingo?
     
+    /// The renderer for the view renderer
+    internal var renderer: Renderer
+    
     /// Creates the view renderer
-    public init(eventLoop: EventLoop, cache: ViewCache, lingo: LingoConfiguration) {
+    public init(eventLoop: EventLoop, views: ViewsConfiguration, lingo: LingoConfiguration) {
         
         self.eventLoop = eventLoop
-        self.cache = cache
-        self.lingo = try? Lingo(rootPath: lingo.defaultDirectory, defaultLocale: lingo.defaultLocale)
+        self.renderer = views.renderer
+        self.lingo = lingo.lingo
     }
     
     /// Renders a layout and its context
     public func render(name: String, context: Encodable) -> EventLoopFuture<ByteBuffer> {
         
-        return self.cache.retrieve(name: name, on: self.eventLoop).flatMap { formula in
+        let manager = HTMLKit.ContextManager(context: context, lingo: self.lingo)
         
-            guard let formula = formula else {
-                return self.eventLoop.makeFailedFuture(RendererError.unkownLayout(name))
-            }
+        var buffer = ByteBufferAllocator().buffer(capacity: 4096)
+        
+        if let content = self.renderer.rerender(name: name, manager: manager) {
+            buffer.writeString(content)
             
-            var buffer = ByteBufferAllocator().buffer(capacity: 4096)
-
-            let manager = HTMLKit.ContextManager(context: context, lingo: self.lingo)
-            
-            for ingredient in formula.ingredients {
-                
-                if let value = try? ingredient.render(with: manager) {
-                    buffer.writeString(value)
-                }
-            }
-            
-            return self.eventLoop.makeSucceededFuture(buffer)
+        } else {
+            return self.eventLoop.makeFailedFuture(RendererError.unkownLayout(name))
         }
+        
+        return self.eventLoop.makeSucceededFuture(buffer)
     }
 }
 
