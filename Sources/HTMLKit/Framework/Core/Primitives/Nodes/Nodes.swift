@@ -77,6 +77,19 @@ extension ContentNode {
             }
         }
         
+        if let contents = content as? [AnyContent] {
+            
+            for content in contents {
+                
+                if let nodes = content as? [Node] {
+                    
+                    for node in nodes {
+                        node.prerender(with: formula)
+                    }
+                }
+            }
+        }
+        
         formula.add(ingridient: endTag)
     }
     
