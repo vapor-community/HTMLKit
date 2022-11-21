@@ -1,10 +1,12 @@
 # Html abstraction
 
+Learn more about the abstraction.
+
 ## Overview
 
-The elements in HTMLKit represent the official HTML elements. Elements with content use the curly brackets, while elements without content use the round brackets. To add attributes to the element use the offered functions.
+The elements in HTMLKit are an abstraction of the official HTML elements. Elements with content use the curly brackets, while elements without content use the round brackets. To add attributes to the element use the functions on the element.
 
-### Definition
+### Elements
 
 ```swift
 /// element with content
@@ -26,28 +28,9 @@ Input()
 .required()
 ```
 
-### Modifier
-```swift
-/// modifies if the condition is true
-Body {
-    ...
-}
-.modify(if: condition) {
-    $0.hidden()
-}
-
-/// modifies if the value is set
-Body {
-    ...
-}
-.modify(unwrap: value) {
-    $0.placeholder($1)
-}
-```
-
 ## Limitation
 
-To prevent invalid code, each element owns a element definition. For example the element `Heading1` is a type of `BodyElement`, so it is only allowed to be placed in the `Body` element. See the [wiki](https://github.com/vapor-community/HTMLKit/wiki) for more element definitions.
+To prevent invalid code, each element owns a element definition. For example the element `Heading1` is a type of `BodyElement`, so it is only allowed to be placed in the `Body` element.
 
 ```swift
 public struct Heading1: ContentNode, BodyElement {
