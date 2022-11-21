@@ -1,6 +1,6 @@
 # Divider
 
-A component that seperates content visually.
+A component to seperate content visually.
 
 ## Declaration
 

@@ -1,14 +1,12 @@
 # Components
 
-Components Summary
+Construct UI interfaces using the components.
 
 ## Overview
 
-Components Overview
+The components library follows the idea of a complete design system. The library also comes with CSS (Cascading Style Sheet) to help you constructing your vision, without the need to completely rebuild it or furthermore any knowledge in CSS.
 
 ## Topics
-
-### Content
 
 ### Form components
 
@@ -52,3 +50,4 @@ Components Overview
 
 - <doc:Snippet>
 - <doc:ProgressView>
+- <doc:Image>

@@ -1,6 +1,6 @@
 # SecureField
 
-Button Summary
+A component to enter sensitive information.
 
 ## Declaration
 
@@ -11,5 +11,11 @@ struct SecureField : Component
 ## Overview
 
 ```swift
-SecureField(name:, value:)
+SecureField(name: "password")
 ```
+
+## Modifiers
+
+- func borderShape(_ shape: Tokens.BorderShape)
+
+- func backgroundColor(_ color: Tokens.BackgroundColor)

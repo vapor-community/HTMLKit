@@ -11,5 +11,11 @@ struct TextField : Component
 ## Overview
 
 ```swift
-TextField(name:, value:)
+TextField(name: "firstname")
 ```
+
+## Modifiers
+
+- func borderShape(_ shape: Tokens.BorderShape)
+
+- func backgroundColor(_ color: Tokens.BackgroundColor)

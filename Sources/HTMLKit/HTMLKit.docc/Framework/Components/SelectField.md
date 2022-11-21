@@ -1,6 +1,6 @@
 # SelectField
 
-Button Summary
+A component for selecting one or multiple options.
 
 ## Declaration
 
@@ -11,6 +11,12 @@ struct SelectField : Component
 ## Overview
 
 ```swift
-SelectField(name:) {
+SelectField(name: "category") {
 }
 ```
+
+## Modifiers
+
+- func borderShape(_ shape: Tokens.BorderShape)
+
+- func backgroundColor(_ color: Tokens.BackgroundColor)

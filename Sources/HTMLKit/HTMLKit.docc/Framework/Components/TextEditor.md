@@ -11,6 +11,15 @@ struct TextEditor : Component
 ## Overview
 
 ```swift
-TextEditor(name:) {
+TextEditor(name: "description") {
+    "Lorem ipsum..."
 }
 ```
+
+## Modifiers
+
+- func lineLimit(_ value: Int)
+
+- func borderShape(_ shape: Tokens.BorderShape)
+
+- func backgroundColor(_ color: Tokens.BackgroundColor)

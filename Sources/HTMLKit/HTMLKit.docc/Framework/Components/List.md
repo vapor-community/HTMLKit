@@ -1,6 +1,6 @@
 # List
 
-A component that collects and arranges list items vertically.
+A component to collect and arrange list items vertically.
 
 ## Declaration
 
@@ -11,7 +11,7 @@ struct List : Component
 ## Overview
 
 ```swift
-List(direction:) {
+List(direction: .vertical) {
     ListRow {
         Text {
             "Lorem ipsum..."
@@ -19,3 +19,7 @@ List(direction:) {
     }
 }
 ```
+
+## Modifiers
+
+- func listStyle(_ style: Tokens.ListStyle)

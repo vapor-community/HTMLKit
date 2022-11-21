@@ -1,6 +1,6 @@
 # Snippet
 
-A component that displays code content.
+A component to display code content.
 
 ## Declaration
 
@@ -11,6 +11,9 @@ struct Snippet : Component
 ## Overview
 
 ```swift
-Snippet {
+Snippet(language: .css) {
+    .body {
+        background-color: black;
+    }
 }
 ```

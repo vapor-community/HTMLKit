@@ -11,5 +11,7 @@ struct FieldLabel : Component
 ## Overview
 
 ```swift
-FieldLabel(for:)
+FieldLabel(for: "firstname") {
+    "Firstname"
+}
 ```

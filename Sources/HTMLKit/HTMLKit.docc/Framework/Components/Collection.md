@@ -1,6 +1,6 @@
 # Collection
 
-A component that collects and arranges collection items horizontally.
+A component to collect and arrange collection items horizontally.
 
 ## Declaration
 
@@ -13,6 +13,11 @@ struct Collection : Component
 ```swift
 Collection(ratio: .half) {
     CollectionItem {
+        Image(source: "../assets/thumbnail.png")
     }
 }
 ```
+
+### Modifiers
+
+- collectionStyle(_ style: Token.CollectionStyle)

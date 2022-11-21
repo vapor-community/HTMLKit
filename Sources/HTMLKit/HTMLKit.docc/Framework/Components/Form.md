@@ -12,5 +12,9 @@ struct Form : Component
 
 ```swift
 Form {
+    FieldLabel(name: "firstname") {
+        "Firstname"
+    }
+    TextField(name: "firstname")
 }
 ```

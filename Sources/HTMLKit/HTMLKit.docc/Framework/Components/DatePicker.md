@@ -1,6 +1,6 @@
 # DatePicker
 
-Button Summary
+A component for selecting a specific date and year.
 
 ## Declaration
 
@@ -11,5 +11,11 @@ struct DatePicker : Component
 ## Overview
 
 ```swift
-DatePicker(name:, value:)
+DatePicker(name: "release")
 ```
+
+## Modifiers
+
+- func borderShape(_ shape: Tokens.BorderShape)
+
+- func backgroundColor(_ color: Tokens.BackgroundColor)
