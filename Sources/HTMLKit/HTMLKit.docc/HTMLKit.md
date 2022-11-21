@@ -45,3 +45,4 @@ The framework comes with an intergration for the web framework [Vapor](https://s
 ### Plugins
 
 - <doc:Conversion>
+- <doc:ComponentsPlugin>
