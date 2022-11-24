@@ -1,11 +1,11 @@
 # Template
 
-Scaffold the content
+Embed or extend views to create templates.
 
 
 ## Overview
 
-You can embed the view in the page structure.
+There will be situations, where you would like to use certain views at multiple places in your project and that's where the template systems comes in handy. You can embed the view in another or extend the view to be used for a different view.
 
 ```swift
 struct SimplePage: Page {
@@ -24,15 +24,15 @@ struct SimplePage: Page {
 }
 ```
 
-You can extend the page in the view structure.
-
 ```swift
-struct IndexView: View {
+struct SimpleView: View {
+
+    var context: String
 
     var body: AnyContent {
         SimplePage {
             Heading1 {
-                "Hello World!"
+                context
             }
         }
     }

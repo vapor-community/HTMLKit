@@ -1,6 +1,6 @@
 # Use conversion
 
-Converts HTML markup into HTMLKit syntax.
+Converts HTML markup
 
 ## Overview
 

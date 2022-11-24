@@ -1,16 +1,14 @@
 # Globalization
 
-Localize the content.
+Localize your content for a wider audience.
 
 ## Overview
 
-> Note: The chapter is only, when you use the vapor framework. 
-
-The framework uses the framework [Lingo](https://github.com/miroslavkovac/Lingo) to translate and formate the content by the local language and culture.
+The framework uses the localization framework [Lingo](https://github.com/miroslavkovac/Lingo) to translate and formate the content by  local language and culture.
 
 ### Configure
 
-The localization is optional. If you want to use it, you need to set it up in the file *configure.swift* of your Vapor project:
+Before you can use the localization, you need to set it up in the *configure.swift* file of your Vapor project:
 
 ```swift
 import HTMLKitVapor
@@ -28,13 +26,13 @@ public func configure(_ app: Application) throws {
 }
 ```
 
-### Definition
+### Message file
 
-In order to make the template translatable, you have to create a file. 
+Next you have to create a message file (for example en.json), wich contains the the translations strings for the given language.
 
 ```json
 {
-    "Hallo.Welt": "Hello World"
+    "Hallo Welt": "Hello World"
 }
 ```
 

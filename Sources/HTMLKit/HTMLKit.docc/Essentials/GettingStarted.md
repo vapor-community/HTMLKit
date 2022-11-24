@@ -27,3 +27,5 @@ let package = Package(
     ]
 )
 ```
+
+Import the module in one of your files next.

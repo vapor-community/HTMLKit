@@ -1,6 +1,6 @@
 # Vapor integration
 
-Learn how to host it.
+Use the framework together with Vapor.
 
 ## Overview
 
@@ -8,7 +8,7 @@ The HTMLKit framework uses the web framework [Vapor](https://swiftpackageindex.c
 
 ### Configure
 
-Before we can use the view renderer, we need to do some adjustments in the file *configure.swift* of your Vapor project:
+Before you can use the view renderer, you need to do some adjustments in the *configure.swift* file of your Vapor project:
 
 ```swift
 /// 1. Load the module
@@ -29,7 +29,7 @@ public func configure(_ app: Application) throws {
 
 ### Request
 
-Now you can call the method _render_ on the request in one of your controllers:
+Now you can call the method *render* on the request in one of your controllers:
 
 ```swift
 import Vapor

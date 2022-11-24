@@ -4,7 +4,28 @@ Construct UI interfaces using the components.
 
 ## Overview
 
-The components library follows the idea of a complete design system. The library also comes with CSS (Cascading Style Sheet) to help you constructing your vision, without the need to completely rebuild it or furthermore any knowledge in CSS.
+The components library follows the idea of a complete design system. It offers you standardized, reusable components imitating the syntax and semantic of SwiftUI. The library also comes with CSS (Cascading Style Sheet) to help you constructing your vision, without the need to completely rebuild it or furthermore any knowledge in CSS.
+
+```swift
+HStack {
+    StackColumn(size: .twelve) {
+        Paragraph {
+            "Lorem ipsum..."
+        }
+    }
+}
+```
+
+```css
+.hstack {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+```
 
 ## Topics
 
