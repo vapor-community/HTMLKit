@@ -4,7 +4,7 @@ Localize your content for a wider audience.
 
 ## Overview
 
-The framework uses the localization framework [Lingo](https://github.com/miroslavkovac/Lingo) to translate and formate the content by  local language and culture.
+The framework uses the localization framework [Lingo](https://swiftpackageindex.com/miroslavkovac/Lingo) to translate and formate the content by  local language and culture.
 
 ### Configure
 

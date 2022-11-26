@@ -37,8 +37,8 @@ The framework comes with an intergration for the web framework [Vapor](https://s
 
 - <doc:Elements>
 - <doc:Components>
-- <doc:Layouts>
 - <doc:Statements>
+- <doc:Template>
 - <doc:Globalization>
 
 ### Plugins

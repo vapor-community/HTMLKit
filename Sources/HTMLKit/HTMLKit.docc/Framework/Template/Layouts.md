@@ -1,11 +1,13 @@
-# Template
+# Layouts
 
-Embed or extend views to create templates.
+Embed or extend views to create a layout.
 
 
 ## Overview
 
-There will be situations, where you would like to use certain views at multiple places in your project and that's where the template systems comes in handy. You can embed the view in another or extend the view to be used for a different view.
+There will be situations, where you would like to use certain views at multiple places in your project and that's where the layout system comes in handy. You can embed the view in another or extend the view to be used for a different view.
+
+### Embed the view
 
 ```swift
 struct SimplePage: Page {
@@ -24,6 +26,8 @@ struct SimplePage: Page {
 }
 ```
 
+### Extend the page
+
 ```swift
 struct SimpleView: View {
 
@@ -41,12 +45,7 @@ struct SimpleView: View {
 
 ## Topics
 
-### Template layouts
+### Layouts
 
 - <doc:Page>
 - <doc:View>
-- <doc:Component>
-
-### Template value
-
-- <doc:Context>
