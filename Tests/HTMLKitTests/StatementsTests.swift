@@ -15,7 +15,7 @@ final class StatementsTests: XCTestCase {
     
     var renderer = Renderer()
     
-    func testIfStatement() throws {
+    func testIfStatementWithConstantValue() throws {
         
         let isValid: TemplateValue<Bool> = .constant(true)
         
@@ -40,7 +40,37 @@ final class StatementsTests: XCTestCase {
         )
     }
     
-    func testElseStatement() throws {
+    func testIfStatementWithVariableValue() throws {
+        
+        struct TestContext {
+            var isValid: Bool
+        }
+        
+        @TemplateValue(TestContext.self)
+        var item
+        
+        let page = TestPage {
+            IF(item.isValid) {
+                Paragraph {
+                    "true"
+                }
+            }.else {
+                Paragraph {
+                    "false"
+                }
+            }
+        }
+        
+        try renderer.add(layout: page)
+        
+        XCTAssertEqual(try renderer.render(layout: TestPage.self, with: TestContext(isValid: true)),
+                       """
+                       <p>true</p>
+                       """
+        )
+    }
+    
+    func testElseStatementWithConstantValue() throws {
         
         let isValid: TemplateValue<Bool> = .constant(false)
         
@@ -59,6 +89,36 @@ final class StatementsTests: XCTestCase {
         try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
+                       """
+                       <p>false</p>
+                       """
+        )
+    }
+    
+    func testElseStatementWithVariableValue() throws {
+        
+        struct TestContext {
+            var isValid: Bool
+        }
+        
+        @TemplateValue(TestContext.self)
+        var item
+        
+        let page = TestPage {
+            IF(item.isValid) {
+                Paragraph {
+                    "true"
+                }
+            }.else {
+                Paragraph {
+                    "false"
+                }
+            }
+        }
+        
+        try renderer.add(layout: page)
+        
+        XCTAssertEqual(try renderer.render(layout: TestPage.self, with: TestContext(isValid: false)),
                        """
                        <p>false</p>
                        """
