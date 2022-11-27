@@ -9,24 +9,16 @@
 /// The statement is for
 public struct IF: GlobalElement {
     
-    public enum IFPrerenderErrors: Error {
-        
-        case dynamiclyEvaluatedCondition
-    }
-    
     internal class Condition {
 
         internal let condition: Conditionable
         
-        internal var formula: Formula
-        
-        internal var view: AnyContent
+        internal var content: AnyContent
         
         internal init(condition: Conditionable) {
             
             self.condition = condition
-            self.view = ""
-            self.formula = Formula()
+            self.content = ""
         }
     }
 
@@ -39,7 +31,7 @@ public struct IF: GlobalElement {
     public init(_ condition: Conditionable, @ContentBuilder<AnyContent> content: () -> AnyContent) {
         
         let condition = Condition(condition: condition)
-        condition.view = content()
+        condition.content = content()
         
         self.conditions = [condition]
     }
@@ -47,7 +39,7 @@ public struct IF: GlobalElement {
     public func elseIf(_ condition: Conditionable, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
         
         let condition = Condition(condition: condition)
-        condition.view = content()
+        condition.content = content()
         
         return .init(conditions: conditions + [condition])
     }
@@ -55,7 +47,7 @@ public struct IF: GlobalElement {
     public func elseIf<T>(isNil path: TemplateValue<T?>, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
         
         let condition = Condition(condition: IsNullCondition<T>(lhs: path))
-        condition.view = content()
+        condition.content = content()
         
         return .init(conditions: conditions + [condition])
     }
@@ -63,7 +55,7 @@ public struct IF: GlobalElement {
     public func elseIf<T>(isNotNil path: TemplateValue<T?>, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
         
         let condition = Condition(condition: NotNullCondition<T>(lhs: path))
-        condition.view = content()
+        condition.content = content()
         
         return .init(conditions: conditions + [condition])
     }
@@ -71,7 +63,7 @@ public struct IF: GlobalElement {
     public func `else`(@ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
         
         let condition = Condition(condition: AlwaysTrueCondition())
-        condition.view = content()
+        condition.content = content()
         
         return .init(conditions: conditions + [condition])
     }
@@ -84,7 +76,7 @@ extension IF: AnyContent {
         IF(conditions: conditions.map { htmlCondition in
             
             let scriptCondition = IF.Condition(condition: htmlCondition.condition)
-            scriptCondition.view = htmlCondition.view.scripts
+            scriptCondition.content = htmlCondition.content.scripts
             
             return scriptCondition
         })
@@ -95,31 +87,22 @@ extension IF: AnyContent {
         var isStaticallyEvaluated = true
         
         for condition in conditions {
-            
-            condition.formula.calendar = formula.calendar
-            
-            condition.formula.timeZone = formula.timeZone
 
             do {
                 
                 guard isStaticallyEvaluated else {
-                    throw IFPrerenderErrors.dynamiclyEvaluatedCondition
+                    break
                 }
                 
-                let testContext = ContextManager<Void>(contexts: [:])
-                
-                if try condition.condition.evaluate(with: testContext) {
+                if try condition.condition.evaluate(with: ContextManager<Void>(contexts: [:])) {
                     
-                    try condition.view.prerender(formula)
+                    try condition.content.prerender(formula)
                     
-                    return // Returning as the first true condition should be the only one that is rendered
+                    break
                 }
                 
             } catch {
-                
                 isStaticallyEvaluated = false
-                
-                try condition.prerender(formula)
             }
         }
         
@@ -144,11 +127,11 @@ extension IF: AnyContent {
 extension IF.Condition: AnyContent {
     
     public func prerender(_ formula: Formula) throws {
-        try view.prerender(formula)
+        try content.prerender(formula)
     }
 
     public func render<T>(with manager: ContextManager<T>) throws -> String {
-        return try formula.render(with: manager)
+        return try content.render(with: manager)
     }
 }
 
