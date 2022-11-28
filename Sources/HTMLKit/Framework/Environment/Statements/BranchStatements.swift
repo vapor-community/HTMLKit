@@ -13,14 +13,11 @@ public struct IF: GlobalElement {
 
         internal let condition: Conditionable
         
-        internal var formula: Formula
-        
         internal var content: AnyContent?
         
         internal init(condition: Conditionable) {
             
             self.condition = condition
-            self.formula = Formula()
         }
     }
 
@@ -75,13 +72,19 @@ extension IF: Node {
     
     internal func prerender(with formula: Formula) {
         
+        var isStaticallyEvaluated = true
+        
         for condition in self.conditions {
             
             do {
                 
+                guard isStaticallyEvaluated else {
+                    break
+                }
+                
                 if try condition.condition.evaluate(with: ContextManager<Void>(contexts: [:])) {
                     
-                    if let content = condition.view as? [AnyContent] {
+                    if let content = condition.content as? [AnyContent] {
                         
                         if let nodes = content[0] as? [Node] {
                             
@@ -96,7 +99,7 @@ extension IF: Node {
                         
                     } else {
                         
-                        if let nodes = condition.view as? [Node] {
+                        if let nodes = condition.content as? [Node] {
                             
                             for node in nodes {
                                 node.prerender(with: formula)
@@ -104,12 +107,16 @@ extension IF: Node {
                         }
                     }
                     
-                    return
+                    break
                 }
                 
             } catch {
-                condition.prerender(with: formula)
+                isStaticallyEvaluated = false
             }
+        }
+        
+        if isStaticallyEvaluated == false {
+            formula.add(ingridient: self)
         }
     }
     
@@ -122,7 +129,10 @@ extension IF: Node {
             do {
                 
                 if try condition.evaluate(with: manager) {
+                    
                     result += condition.render(with: manager)
+                    
+                    break
                 }
                 
             } catch {
@@ -138,7 +148,7 @@ extension IF.Condition: Node {
     
     internal func prerender(with formula: Formula) {
         
-        if let nodes = view as? [Node] {
+        if let nodes = content as? [Node] {
             
             for node in nodes {
                 node.prerender(with: formula)
@@ -150,9 +160,9 @@ extension IF.Condition: Node {
         
         var result = ""
         
-        for ingridient in formula.ingredients {
+        if let nodes = content as? [Node] {
             
-            if let node = ingridient as? Node {
+            for node in nodes {
                 result += node.render(with: manager)
             }
         }

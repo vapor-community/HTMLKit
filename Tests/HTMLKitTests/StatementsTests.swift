@@ -42,7 +42,7 @@ final class StatementsTests: XCTestCase {
     
     func testIfStatementWithVariableValue() throws {
         
-        struct TestContext {
+        struct TestContext: Codable {
             var isValid: Bool
         }
         
@@ -61,9 +61,9 @@ final class StatementsTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self, with: TestContext(isValid: true)),
+        XCTAssertEqual(renderer.render(layout: page, with: TestContext(isValid: true)),
                        """
                        <p>true</p>
                        """
@@ -97,7 +97,7 @@ final class StatementsTests: XCTestCase {
     
     func testElseStatementWithVariableValue() throws {
         
-        struct TestContext {
+        struct TestContext: Codable {
             var isValid: Bool
         }
         
@@ -116,9 +116,9 @@ final class StatementsTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
+        renderer.add(layout: page)
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self, with: TestContext(isValid: false)),
+        XCTAssertEqual(renderer.render(layout: page, with: TestContext(isValid: false)),
                        """
                        <p>false</p>
                        """
