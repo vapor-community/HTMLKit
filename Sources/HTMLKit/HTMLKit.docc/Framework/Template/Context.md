@@ -1,6 +1,10 @@
 # Context
 
+Add data to your template.
+
 ## Overview
+
+The context holds the data for the content variables, wich get replaced when the template is evaulated.
 
 ```swift
 struct SimpleContext: Codable {
@@ -23,3 +27,9 @@ struct SimpleView: View {
     }
 }
 ```
+
+## Topics
+
+### Annotations
+
+- ``HTMLKit/TemplateValue``

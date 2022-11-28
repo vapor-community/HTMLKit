@@ -9,13 +9,13 @@
 /// The statement is for
 public struct IF: GlobalElement {
     
-    internal class Condition: AnyContent {
+    internal class Condition {
 
         internal let condition: Conditionable
         
         internal var formula: Formula
         
-        internal var view: AnyContent?
+        internal var content: AnyContent?
         
         internal init(condition: Conditionable) {
             
@@ -33,7 +33,7 @@ public struct IF: GlobalElement {
     public init(_ condition: Conditionable, @ContentBuilder<AnyContent> content: () -> AnyContent) {
         
         let condition = Condition(condition: condition)
-        condition.view = content()
+        condition.content = content()
         
         self.conditions = [condition]
     }
@@ -41,7 +41,7 @@ public struct IF: GlobalElement {
     public func elseIf(_ condition: Conditionable, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
         
         let condition = Condition(condition: condition)
-        condition.view = content()
+        condition.content = content()
         
         return .init(conditions: conditions + [condition])
     }
@@ -49,7 +49,7 @@ public struct IF: GlobalElement {
     public func elseIf<T>(isNil path: TemplateValue<T?>, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
         
         let condition = Condition(condition: IsNullCondition<T>(lhs: path))
-        condition.view = content()
+        condition.content = content()
         
         return .init(conditions: conditions + [condition])
     }
@@ -57,7 +57,7 @@ public struct IF: GlobalElement {
     public func elseIf<T>(isNotNil path: TemplateValue<T?>, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
         
         let condition = Condition(condition: NotNullCondition<T>(lhs: path))
-        condition.view = content()
+        condition.content = content()
         
         return .init(conditions: conditions + [condition])
     }
@@ -65,7 +65,7 @@ public struct IF: GlobalElement {
     public func `else`(@ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
         
         let condition = Condition(condition: AlwaysTrueCondition())
-        condition.view = content()
+        condition.content = content()
         
         return .init(conditions: conditions + [condition])
     }

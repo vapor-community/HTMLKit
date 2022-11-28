@@ -1,26 +1,47 @@
 # ``HTMLKit``
 
+Create and render HTML templates.
+
+
 ## Overview
 
-- DSL (domain specific language)
-- Pre-Rendering
-- Templating
+The HTMLKit framework consists a list of features to create HTML templates in a type-safe and performant way:
+
+
+- **Declarative syntax** - The declarative syntax helps you write valid HTML markup.
+
+- **Template system** - You can scaffold your written code into various, reusable layouts to create an entire template.
+
+- **Dynamic context** - Apply context to your template to process content dynamically.
+
+- **Preprocess content** - The static content of the template will be preprocessed, to spare time and performance, when the template is executed.
+
+- **Language localization** - Specify the parts of the template, that should be translated or formatted for local languages and cultures.
+
+- **UI components** - Construct user interfaces with the components library.
+
+
+## Integration
+
+The framework comes with an intergration for the web framework [Vapor](https://swiftpackageindex.com/vapor/vapor).
+
 
 ## Topics
 
 ### Essentials
 
-- <doc:Getting_started>
+- <doc:GettingStarted>
+- <doc:VaporIntegration>
 
-### Parts
+### Framework
 
-- <doc:Context>
 - <doc:Elements>
-- <doc:Layouts>
+- <doc:Components>
 - <doc:Statements>
+- <doc:Template>
+- <doc:Globalization>
 
-### Features
+### Plugins
 
-- <doc:Conversion>
-- <doc:Localization>
-- <doc:Templating>
+- <doc:ConverterPlugin>
+- <doc:ComponentsPlugin>
