@@ -8,13 +8,13 @@ import OrderedCollections
 /// A type that represents any html-attribute.
 ///
 /// A attribute is a modifier of a html-element.
-public protocol AnyAttribute {
+public protocol Attribute {
     
     /// The func adds
     func custom(key: String, value: Any) -> Self
 }
 
-extension AnyAttribute where Self: ContentNode {
+extension Attribute where Self: ContentNode {
     
     internal func mutate(key: String, value: Any) -> Self {
         
@@ -28,7 +28,7 @@ extension AnyAttribute where Self: ContentNode {
     }
 }
 
-extension AnyAttribute where Self: EmptyNode {
+extension Attribute where Self: EmptyNode {
     
     internal func mutate(key: String, value: Any) -> Self {
         

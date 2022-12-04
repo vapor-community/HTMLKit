@@ -1330,7 +1330,7 @@ final class AttributesTests: XCTestCase {
         
         XCTAssertEqual(renderer.render(view: view),
                        """
-                       <tag headers="refresh"></tag>
+                       <tag http-equiv="refresh"></tag>
                        """
         )
     }

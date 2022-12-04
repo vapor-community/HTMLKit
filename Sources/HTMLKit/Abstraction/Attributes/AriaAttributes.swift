@@ -9,7 +9,7 @@
 public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaActiveDescendantAttribute: AnyAttribute {
+public protocol AriaActiveDescendantAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-activedescendant'.
     ///
@@ -19,28 +19,23 @@ public protocol AriaActiveDescendantAttribute: AnyAttribute {
     func aria(activeDescendant value: String) -> Self
 }
 
-extension AriaActiveDescendantAttribute {
-    
-    internal var key: String { "aria-activedescendant" }
-}
-
 extension AriaActiveDescendantAttribute where Self: ContentNode {
     
     internal func mutate(ariaactivedescendant value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-activedescendant", value: value)
     }
 }
 
 extension AriaActiveDescendantAttribute where Self: EmptyNode {
     
     internal func mutate(ariaactivedescendant value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-activedescendant", value: value)
     }
 }
 
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaAtomicAttribute: AnyAttribute {
+public protocol AriaAtomicAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-atomic'.
     ///
@@ -50,27 +45,22 @@ public protocol AriaAtomicAttribute: AnyAttribute {
     func aria(atomic value: Bool) -> Self
 }
 
-extension AriaAtomicAttribute {
-    
-    internal var key: String { "aria-atomic" }
-}
-
 extension AriaAtomicAttribute where Self: ContentNode {
     
     internal func mutate(ariaatomic value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-atomic", value: value)
     }
 }
 
 extension AriaAtomicAttribute where Self: EmptyNode {
     
     internal func mutate(ariaatomic value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-atomic", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaAutoCompleteAttribute: AnyAttribute {
+public protocol AriaAutoCompleteAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-autocomplete'.
     ///
@@ -80,27 +70,22 @@ public protocol AriaAutoCompleteAttribute: AnyAttribute {
     func aria(autoComplete value: Values.Accessibility.Complete) -> Self
 }
 
-extension AriaAutoCompleteAttribute {
-    
-    internal var key: String { "aria-autocomplete" }
-}
-
 extension AriaAutoCompleteAttribute where Self: ContentNode {
     
     internal func mutate(ariaautocomplete value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-autocomplete", value: value)
     }
 }
 
 extension AriaAutoCompleteAttribute where Self: EmptyNode {
     
     internal func mutate(ariaautocomplete value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-autocomplete", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaBusyAttribute: AnyAttribute {
+public protocol AriaBusyAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-busy'.
     ///
@@ -110,27 +95,22 @@ public protocol AriaBusyAttribute: AnyAttribute {
     func aria(busy value: Bool) -> Self
 }
 
-extension AriaBusyAttribute {
-    
-    internal var key: String { "aria-busy" }
-}
-
 extension AriaBusyAttribute where Self: ContentNode {
     
     internal func mutate(ariabusy value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-busy", value: value)
     }
 }
 
 extension AriaBusyAttribute where Self: EmptyNode {
     
     internal func mutate(ariabusy value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-busy", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaCheckedAttribute: AnyAttribute {
+public protocol AriaCheckedAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-checked'.
     ///
@@ -140,27 +120,22 @@ public protocol AriaCheckedAttribute: AnyAttribute {
     func aria(checked value: Values.Accessibility.Check) -> Self
 }
 
-extension AriaCheckedAttribute {
-    
-    internal var key: String { "aria-checked" }
-}
-
 extension AriaCheckedAttribute where Self: ContentNode {
     
     internal func mutate(ariachecked value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-checked", value: value)
     }
 }
 
 extension AriaCheckedAttribute where Self: EmptyNode {
     
     internal func mutate(ariachecked value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-checked", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaColumnCountAttribute: AnyAttribute {
+public protocol AriaColumnCountAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-colcount'.
     ///
@@ -170,27 +145,22 @@ public protocol AriaColumnCountAttribute: AnyAttribute {
     func aria(columnCount value: Int) -> Self
 }
 
-extension AriaColumnCountAttribute {
-    
-    internal var key: String { "aria-colcount" }
-}
-
 extension AriaColumnCountAttribute where Self: ContentNode {
     
     internal func mutate(ariacolcount value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-colcount", value: value)
     }
 }
 
 extension AriaColumnCountAttribute where Self: EmptyNode {
     
     internal func mutate(ariacolcount value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-colcount", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaColumnIndexAttribute: AnyAttribute {
+public protocol AriaColumnIndexAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-colindex'.
     ///
@@ -200,27 +170,22 @@ public protocol AriaColumnIndexAttribute: AnyAttribute {
     func aria(columnIndex value: Int) -> Self
 }
 
-extension AriaColumnIndexAttribute {
-    
-    internal var key: String { "aria-colindex" }
-}
-
 extension AriaColumnIndexAttribute where Self: ContentNode {
     
     internal func mutate(ariacolindex value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-colindex", value: value)
     }
 }
 
 extension AriaColumnIndexAttribute where Self: EmptyNode {
     
     internal func mutate(ariacolindex value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-colindex", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaColumnSpanAttribute: AnyAttribute {
+public protocol AriaColumnSpanAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-colspan'.
     ///
@@ -230,27 +195,22 @@ public protocol AriaColumnSpanAttribute: AnyAttribute {
     func aria(columnSpan value: Int) -> Self
 }
 
-extension AriaColumnSpanAttribute {
-    
-    internal var key: String { "aria-colspan" }
-}
-
 extension AriaColumnSpanAttribute where Self: ContentNode {
     
     internal func mutate(ariacolspan value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-colspan", value: value)
     }
 }
 
 extension AriaColumnSpanAttribute where Self: EmptyNode {
     
     internal func mutate(ariacolspan value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-colspan", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaControlsAttribute: AnyAttribute {
+public protocol AriaControlsAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-controls'.
     ///
@@ -260,27 +220,22 @@ public protocol AriaControlsAttribute: AnyAttribute {
     func aria(controls value: String) -> Self
 }
 
-extension AriaControlsAttribute {
-    
-    internal var key: String { "aria-controls" }
-}
-
 extension AriaControlsAttribute where Self: ContentNode {
     
     internal func mutate(ariacontrols value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-controls", value: value)
     }
 }
 
 extension AriaControlsAttribute where Self: EmptyNode {
     
     internal func mutate(ariacontrols value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-controls", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaCurrentAttribute: AnyAttribute {
+public protocol AriaCurrentAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-current'.
     ///
@@ -290,27 +245,22 @@ public protocol AriaCurrentAttribute: AnyAttribute {
     func aria(current value: Values.Accessibility.Current) -> Self
 }
 
-extension AriaCurrentAttribute {
-    
-    internal var key: String { "aria-current" }
-}
-
 extension AriaCurrentAttribute where Self: ContentNode {
     
     internal func mutate(ariacurrent value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-current", value: value)
     }
 }
 
 extension AriaCurrentAttribute where Self: EmptyNode {
     
     internal func mutate(ariacurrent value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-current", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaDescribedAttribute: AnyAttribute {
+public protocol AriaDescribedAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-describedby'.
     ///
@@ -320,27 +270,22 @@ public protocol AriaDescribedAttribute: AnyAttribute {
     func aria(describedBy value: String) -> Self
 }
 
-extension AriaDescribedAttribute {
-    
-    internal var key: String { "aria-describedby" }
-}
-
 extension AriaDescribedAttribute where Self: ContentNode {
     
     internal func mutate(ariadescribedby value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-describedby", value: value)
     }
 }
 
 extension AriaDescribedAttribute where Self: EmptyNode {
     
     internal func mutate(ariadescribedby value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-describedby", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaDetailsAttribute: AnyAttribute {
+public protocol AriaDetailsAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-details'.
     ///
@@ -350,27 +295,22 @@ public protocol AriaDetailsAttribute: AnyAttribute {
     func aria(details value: String) -> Self
 }
 
-extension AriaDetailsAttribute {
-    
-    internal var key: String { "aria-details" }
-}
-
 extension AriaDetailsAttribute where Self: ContentNode {
     
     internal func mutate(ariadetails value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-details", value: value)
     }
 }
 
 extension AriaDetailsAttribute where Self: EmptyNode {
     
     internal func mutate(ariadetails value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-details", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaDisabledAttribute: AnyAttribute {
+public protocol AriaDisabledAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-disabled'.
     ///
@@ -380,27 +320,22 @@ public protocol AriaDisabledAttribute: AnyAttribute {
     func aria(disabled value: Bool) -> Self
 }
 
-extension AriaDisabledAttribute {
-    
-    internal var key: String { "aria-disabled" }
-}
-
 extension AriaDisabledAttribute where Self: ContentNode {
     
     internal func mutate(ariadisabled value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-disabled", value: value)
     }
 }
 
 extension AriaDisabledAttribute where Self: EmptyNode {
     
     internal func mutate(ariadisabled value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-disabled", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaErrorMessageAttribute: AnyAttribute {
+public protocol AriaErrorMessageAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-errormessage'.
     ///
@@ -410,27 +345,22 @@ public protocol AriaErrorMessageAttribute: AnyAttribute {
     func aria(errorMessage value: String) -> Self
 }
 
-extension AriaErrorMessageAttribute {
-    
-    internal var key: String { "aria-errormessage" }
-}
-
 extension AriaErrorMessageAttribute where Self: ContentNode {
     
     internal func mutate(ariaerrormessage value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-errormessage", value: value)
     }
 }
 
 extension AriaErrorMessageAttribute where Self: EmptyNode {
     
     internal func mutate(ariaerrormessage value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-errormessage", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaExpandedAttribute: AnyAttribute {
+public protocol AriaExpandedAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-expanded'.
     ///
@@ -448,19 +378,19 @@ extension AriaExpandedAttribute {
 extension AriaExpandedAttribute where Self: ContentNode {
     
     internal func mutate(ariaexpanded value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-expanded", value: value)
     }
 }
 
 extension AriaExpandedAttribute where Self: EmptyNode {
     
     internal func mutate(ariaexpanded value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-expanded", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaFlowToAttribute: AnyAttribute {
+public protocol AriaFlowToAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-flowto'.
     ///
@@ -470,27 +400,22 @@ public protocol AriaFlowToAttribute: AnyAttribute {
     func aria(flowTo value: String) -> Self
 }
 
-extension AriaFlowToAttribute {
-    
-    internal var key: String { "aria-flowto" }
-}
-
 extension AriaFlowToAttribute where Self: ContentNode {
     
     internal func mutate(ariaflowto value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-flowto", value: value)
     }
 }
 
 extension AriaFlowToAttribute where Self: EmptyNode {
     
     internal func mutate(ariaflowto value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-flowto", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaPopupAttribute: AnyAttribute {
+public protocol AriaPopupAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-haspopup'.
     ///
@@ -500,27 +425,22 @@ public protocol AriaPopupAttribute: AnyAttribute {
     func aria(hasPopup value: Values.Accessibility.Popup) -> Self
 }
 
-extension AriaPopupAttribute {
-    
-    internal var key: String { "aria-haspopup" }
-}
-
 extension AriaPopupAttribute where Self: ContentNode {
     
     internal func mutate(ariahaspopup value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-haspopup", value: value)
     }
 }
 
 extension AriaPopupAttribute where Self: EmptyNode {
     
     internal func mutate(ariahaspopup value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-haspopup", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaHiddenAttribute: AnyAttribute {
+public protocol AriaHiddenAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-hidden'.
     ///
@@ -530,27 +450,22 @@ public protocol AriaHiddenAttribute: AnyAttribute {
     func aria(hidden value: Bool) -> Self
 }
 
-extension AriaHiddenAttribute {
-    
-    internal var key: String { "aria-hidden" }
-}
-
 extension AriaHiddenAttribute where Self: ContentNode {
     
     internal func mutate(ariahidden value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-hidden", value: value)
     }
 }
 
 extension AriaHiddenAttribute where Self: EmptyNode {
     
     internal func mutate(ariahidden value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-hidden", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaInvalidAttribute: AnyAttribute {
+public protocol AriaInvalidAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-invalid'.
     ///
@@ -560,27 +475,22 @@ public protocol AriaInvalidAttribute: AnyAttribute {
     func aria(invalid value: Values.Accessibility.Invalid) -> Self
 }
 
-extension AriaInvalidAttribute {
-    
-    internal var key: String { "aria-invalid" }
-}
-
 extension AriaInvalidAttribute where Self: ContentNode {
     
     internal func mutate(ariainvalid value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-invalid", value: value)
     }
 }
 
 extension AriaInvalidAttribute where Self: EmptyNode {
     
     internal func mutate(ariainvalid value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-invalid", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaShortcutsAttribute: AnyAttribute {
+public protocol AriaShortcutsAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-keyshortcuts'.
     ///
@@ -590,27 +500,22 @@ public protocol AriaShortcutsAttribute: AnyAttribute {
     func aria(keyShortcuts value: String) -> Self
 }
 
-extension AriaShortcutsAttribute {
-    
-    internal var key: String { "aria-keyshortcuts" }
-}
-
 extension AriaShortcutsAttribute where Self: ContentNode {
     
     internal func mutate(ariakeyshortcuts value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-keyshortcuts", value: value)
     }
 }
 
 extension AriaShortcutsAttribute where Self: EmptyNode {
     
     internal func mutate(ariakeyshortcuts value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-keyshortcuts", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaLabelAttribute: AnyAttribute {
+public protocol AriaLabelAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-label'.
     ///
@@ -620,27 +525,22 @@ public protocol AriaLabelAttribute: AnyAttribute {
     func aria(label value: String) -> Self
 }
 
-extension AriaLabelAttribute {
-    
-    internal var key: String { "aria-label" }
-}
-
 extension AriaLabelAttribute where Self: ContentNode {
     
     internal func mutate(arialabel value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-label", value: value)
     }
 }
 
 extension AriaLabelAttribute where Self: EmptyNode {
     
     internal func mutate(arialabel value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-label", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaLabeledAttribute: AnyAttribute {
+public protocol AriaLabeledAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-labeledby'.
     ///
@@ -650,27 +550,22 @@ public protocol AriaLabeledAttribute: AnyAttribute {
     func aria(labeledBy value: String) -> Self
 }
 
-extension AriaLabeledAttribute {
-    
-    internal var key: String { "aria-labeledby" }
-}
-
 extension AriaLabeledAttribute where Self: ContentNode {
     
     internal func mutate(arialabeledby value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-labeledby", value: value)
     }
 }
 
 extension AriaLabeledAttribute where Self: EmptyNode {
     
     internal func mutate(arialabeledby value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-labeledby", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaLevelAttribute: AnyAttribute {
+public protocol AriaLevelAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-level'.
     ///
@@ -680,27 +575,22 @@ public protocol AriaLevelAttribute: AnyAttribute {
     func aria(level value: Int) -> Self
 }
 
-extension AriaLevelAttribute {
-    
-    internal var key: String { "aria-level" }
-}
-
 extension AriaLevelAttribute where Self: ContentNode {
     
     internal func mutate(arialevel value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-level", value: value)
     }
 }
 
 extension AriaLevelAttribute where Self: EmptyNode {
     
     internal func mutate(arialevel value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-level", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaLiveAttribute: AnyAttribute {
+public protocol AriaLiveAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-live'.
     ///
@@ -710,27 +600,22 @@ public protocol AriaLiveAttribute: AnyAttribute {
     func aria(live value: Values.Accessibility.Live) -> Self
 }
 
-extension AriaLiveAttribute {
-    
-    internal var key: String { "aria-live" }
-}
-
 extension AriaLiveAttribute where Self: ContentNode {
     
     internal func mutate(arialive value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-live", value: value)
     }
 }
 
 extension AriaLiveAttribute where Self: EmptyNode {
     
     internal func mutate(arialive value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-live", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaModalAttribute: AnyAttribute {
+public protocol AriaModalAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-modal'.
     ///
@@ -740,27 +625,22 @@ public protocol AriaModalAttribute: AnyAttribute {
     func aria(modal value: Bool) -> Self
 }
 
-extension AriaModalAttribute {
-    
-    internal var key: String { "aria-modal" }
-}
-
 extension AriaModalAttribute where Self: ContentNode {
     
     internal func mutate(ariamodal value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-modal", value: value)
     }
 }
 
 extension AriaModalAttribute where Self: EmptyNode {
     
     internal func mutate(ariamodal value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-modal", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaMultilineAttribute: AnyAttribute {
+public protocol AriaMultilineAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-multiline'.
     ///
@@ -770,27 +650,22 @@ public protocol AriaMultilineAttribute: AnyAttribute {
     func aria(multiline value: Bool) -> Self
 }
 
-extension AriaMultilineAttribute {
-    
-    internal var key: String { "aria-multiline" }
-}
-
 extension AriaMultilineAttribute where Self: ContentNode {
     
     internal func mutate(ariamultiline value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-multiline", value: value)
     }
 }
 
 extension AriaMultilineAttribute where Self: EmptyNode {
     
     internal func mutate(ariamultiline value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-multiline", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaMultiselectAttribute: AnyAttribute {
+public protocol AriaMultiselectAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-multiselectable'.
     ///
@@ -800,27 +675,22 @@ public protocol AriaMultiselectAttribute: AnyAttribute {
     func aria(multiselectable value: Bool) -> Self
 }
 
-extension AriaMultiselectAttribute {
-    
-    internal var key: String { "aria-multiselectable" }
-}
-
 extension AriaMultiselectAttribute where Self: ContentNode {
     
     internal func mutate(ariamultiselectable value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-multiselectable", value: value)
     }
 }
 
 extension AriaMultiselectAttribute where Self: EmptyNode {
     
     internal func mutate(ariamultiselectable value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-multiselectable", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaOrientationAttribute: AnyAttribute {
+public protocol AriaOrientationAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-orientation'.
     ///
@@ -830,27 +700,22 @@ public protocol AriaOrientationAttribute: AnyAttribute {
     func aria(orientation value: Values.Accessibility.Orientation) -> Self
 }
 
-extension AriaOrientationAttribute {
-    
-    internal var key: String { "aria-orientation" }
-}
-
 extension AriaOrientationAttribute where Self: ContentNode {
     
     internal func mutate(ariaorientation value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-orientation", value: value)
     }
 }
 
 extension AriaOrientationAttribute where Self: EmptyNode {
     
     internal func mutate(ariaorientation value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-orientation", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaOwnsAttribute: AnyAttribute {
+public protocol AriaOwnsAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-owns'.
     ///
@@ -860,27 +725,22 @@ public protocol AriaOwnsAttribute: AnyAttribute {
     func aria(owns value: String) -> Self
 }
 
-extension AriaOwnsAttribute {
-    
-    internal var key: String { "aria-owns" }
-}
-
 extension AriaOwnsAttribute where Self: ContentNode {
     
     internal func mutate(ariaowns value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-owns", value: value)
     }
 }
 
 extension AriaOwnsAttribute where Self: EmptyNode {
     
     internal func mutate(ariaowns value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-owns", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaPlaceholderAttribute: AnyAttribute {
+public protocol AriaPlaceholderAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-placeholder'.
     ///
@@ -890,27 +750,22 @@ public protocol AriaPlaceholderAttribute: AnyAttribute {
     func aria(placeholder value: String) -> Self
 }
 
-extension AriaPlaceholderAttribute {
-    
-    internal var key: String { "aria-placeholder" }
-}
-
 extension AriaPlaceholderAttribute where Self: ContentNode {
     
     internal func mutate(ariaplaceholder value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-placeholder", value: value)
     }
 }
 
 extension AriaPlaceholderAttribute where Self: EmptyNode {
     
     internal func mutate(ariaplaceholder value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-placeholder", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaPositionInsetAttribute: AnyAttribute {
+public protocol AriaPositionInsetAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-posinset'.
     ///
@@ -920,27 +775,22 @@ public protocol AriaPositionInsetAttribute: AnyAttribute {
     func aria(positionInset_ value: Int) -> Self
 }
 
-extension AriaPositionInsetAttribute {
-    
-    internal var key: String { "aria-posinset" }
-}
-
 extension AriaPositionInsetAttribute where Self: ContentNode {
     
     internal func mutate(ariaposinset value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-posinset", value: value)
     }
 }
 
 extension AriaPositionInsetAttribute where Self: EmptyNode {
     
     internal func mutate(ariaposinset value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-posinset", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaPressedAttribute: AnyAttribute {
+public protocol AriaPressedAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-pressed'.
     ///
@@ -950,27 +800,22 @@ public protocol AriaPressedAttribute: AnyAttribute {
     func aria(presssed value: Values.Accessibility.Pressed) -> Self
 }
 
-extension AriaPressedAttribute {
-    
-    internal var key: String { "aria-pressed" }
-}
-
 extension AriaPressedAttribute where Self: ContentNode {
     
     internal func mutate(ariapressed value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-pressed", value: value)
     }
 }
 
 extension AriaPressedAttribute where Self: EmptyNode {
     
     internal func mutate(ariapressed value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-pressed", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaReadonlyAttribute: AnyAttribute {
+public protocol AriaReadonlyAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-readonly'.
     ///
@@ -980,27 +825,22 @@ public protocol AriaReadonlyAttribute: AnyAttribute {
     func aria(readonly value: Bool) -> Self
 }
 
-extension AriaReadonlyAttribute {
-    
-    internal var key: String { "aria-readonly" }
-}
-
 extension AriaReadonlyAttribute where Self: ContentNode {
     
     internal func mutate(ariareadonly value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-readonly", value: value)
     }
 }
 
 extension AriaReadonlyAttribute where Self: EmptyNode {
     
     internal func mutate(ariareadonly value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-readonly", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaRelevantAttribute: AnyAttribute {
+public protocol AriaRelevantAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-relevant'.
     ///
@@ -1010,27 +850,22 @@ public protocol AriaRelevantAttribute: AnyAttribute {
     func aria(relevant value: Values.Accessibility.Relevant) -> Self
 }
 
-extension AriaRelevantAttribute {
-    
-    internal var key: String { "aria-relevant" }
-}
-
 extension AriaRelevantAttribute where Self: ContentNode {
     
     internal func mutate(ariarelevant value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-relevant", value: value)
     }
 }
 
 extension AriaRelevantAttribute where Self: EmptyNode {
     
     internal func mutate(ariarelevant value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-relevant", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaRequiredAttribute: AnyAttribute {
+public protocol AriaRequiredAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-required'.
     ///
@@ -1040,27 +875,22 @@ public protocol AriaRequiredAttribute: AnyAttribute {
     func aria(required value: Bool) -> Self
 }
 
-extension AriaRequiredAttribute {
-    
-    internal var key: String { "aria-required" }
-}
-
 extension AriaRequiredAttribute where Self: ContentNode {
     
     internal func mutate(ariarequired value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-required", value: value)
     }
 }
 
 extension AriaRequiredAttribute where Self: EmptyNode {
     
     internal func mutate(ariarequired value: Bool) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-required", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaRoleDescriptionAttribute: AnyAttribute {
+public protocol AriaRoleDescriptionAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-roledescription'.
     ///
@@ -1070,27 +900,22 @@ public protocol AriaRoleDescriptionAttribute: AnyAttribute {
     func aria(roleDescription value: String) -> Self
 }
 
-extension AriaRoleDescriptionAttribute {
-    
-    internal var key: String { "aria-roledescription" }
-}
-
 extension AriaRoleDescriptionAttribute where Self: ContentNode {
     
     internal func mutate(ariaroledescription value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-roledescription", value: value)
     }
 }
 
 extension AriaRoleDescriptionAttribute where Self: EmptyNode {
     
     internal func mutate(ariaroledescription value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-roledescription", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaRowCountAttribute: AnyAttribute {
+public protocol AriaRowCountAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-rowcount'.
     ///
@@ -1100,27 +925,22 @@ public protocol AriaRowCountAttribute: AnyAttribute {
     func aria(rowCount value: Int) -> Self
 }
 
-extension AriaRowCountAttribute {
-    
-    internal var key: String { "aria-rowcount" }
-}
-
 extension AriaRowCountAttribute where Self: ContentNode {
     
     internal func mutate(ariarowcount value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-rowcount", value: value)
     }
 }
 
 extension AriaRowCountAttribute where Self: EmptyNode {
     
     internal func mutate(ariarowcount value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-rowcount", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaRowIndexAttribute: AnyAttribute {
+public protocol AriaRowIndexAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-rowindex'.
     ///
@@ -1130,27 +950,22 @@ public protocol AriaRowIndexAttribute: AnyAttribute {
     func aria(rowIndex value: Int) -> Self
 }
 
-extension AriaRowIndexAttribute {
-    
-    internal var key: String { "aria-rowindex" }
-}
-
 extension AriaRowIndexAttribute where Self: ContentNode {
     
     internal func mutate(ariarowindex value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-rowindex", value: value)
     }
 }
 
 extension AriaRowIndexAttribute where Self: EmptyNode {
     
     internal func mutate(ariarowindex value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-rowindex", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaRowSpanAttribute: AnyAttribute {
+public protocol AriaRowSpanAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-rowspan'.
     ///
@@ -1160,27 +975,22 @@ public protocol AriaRowSpanAttribute: AnyAttribute {
     func aria(rowSpan value: Int) -> Self
 }
 
-extension AriaRowSpanAttribute {
-    
-    internal var key: String { "aria-rowspan" }
-}
-
 extension AriaRowSpanAttribute where Self: ContentNode {
     
     internal func mutate(ariarowspan value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-rowspan", value: value)
     }
 }
 
 extension AriaRowSpanAttribute where Self: EmptyNode {
     
     internal func mutate(ariarowspan value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-rowspan", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaSelectedAttribute: AnyAttribute {
+public protocol AriaSelectedAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-selected'.
     ///
@@ -1190,27 +1000,22 @@ public protocol AriaSelectedAttribute: AnyAttribute {
     func aria(selected value: Values.Accessibility.Selected) -> Self
 }
 
-extension AriaSelectedAttribute {
-    
-    internal var key: String { "aria-selected" }
-}
-
 extension AriaSelectedAttribute where Self: ContentNode {
     
     internal func mutate(ariaselected value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-selected", value: value)
     }
 }
 
 extension AriaSelectedAttribute where Self: EmptyNode {
     
     internal func mutate(ariaselected value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-selected", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaSetSizeAttribute: AnyAttribute {
+public protocol AriaSetSizeAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-setsize'.
     ///
@@ -1220,27 +1025,22 @@ public protocol AriaSetSizeAttribute: AnyAttribute {
     func aria(setSize value: Int) -> Self
 }
 
-extension AriaSetSizeAttribute {
-    
-    internal var key: String { "aria-setsize" }
-}
-
 extension AriaSetSizeAttribute where Self: ContentNode {
     
     internal func mutate(ariasetsize value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-setsize", value: value)
     }
 }
 
 extension AriaSetSizeAttribute where Self: EmptyNode {
     
     internal func mutate(ariasetsize value: Int) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-setsize", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaSortAttribute: AnyAttribute {
+public protocol AriaSortAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-sort'.
     ///
@@ -1250,27 +1050,22 @@ public protocol AriaSortAttribute: AnyAttribute {
     func aria(sort value: Values.Accessibility.Sort) -> Self
 }
 
-extension AriaSortAttribute {
-    
-    internal var key: String { "aria-sort" }
-}
-
 extension AriaSortAttribute where Self: ContentNode {
     
     internal func mutate(ariasort value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-sort", value: value)
     }
 }
 
 extension AriaSortAttribute where Self: EmptyNode {
     
     internal func mutate(ariasort value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-sort", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaValueMaximumAttribute: AnyAttribute {
+public protocol AriaValueMaximumAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-valuemax'.
     ///
@@ -1280,27 +1075,22 @@ public protocol AriaValueMaximumAttribute: AnyAttribute {
     func aria(valueMaximum value: Float) -> Self
 }
 
-extension AriaValueMaximumAttribute {
-    
-    internal var key: String { "aria-valuemax" }
-}
-
 extension AriaValueMaximumAttribute where Self: ContentNode {
     
     internal func mutate(ariavaluemax value: Float) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-valuemax", value: value)
     }
 }
 
 extension AriaValueMaximumAttribute where Self: EmptyNode {
     
     internal func mutate(ariavaluemax value: Float) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-valuemax", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaValueMininumAttribute: AnyAttribute {
+public protocol AriaValueMininumAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-valuemin'.
     ///
@@ -1310,27 +1100,22 @@ public protocol AriaValueMininumAttribute: AnyAttribute {
     func aria(valueMinimum value: Float) -> Self
 }
 
-extension AriaValueMininumAttribute {
-    
-    internal var key: String { "aria-valuemin" }
-}
-
 extension AriaValueMininumAttribute where Self: ContentNode {
     
     internal func mutate(ariavaluemin value: Float) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-valuemin", value: value)
     }
 }
 
 extension AriaValueMininumAttribute where Self: EmptyNode {
     
     internal func mutate(ariavaluemin value: Float) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-valuemin", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaValueNowAttribute: AnyAttribute {
+public protocol AriaValueNowAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-valuenow"'.
     ///
@@ -1340,27 +1125,22 @@ public protocol AriaValueNowAttribute: AnyAttribute {
     func aria(valueNow value: Float) -> Self
 }
 
-extension AriaValueNowAttribute {
-    
-    internal var key: String { "aria-valuenow" }
-}
-
 extension AriaValueNowAttribute where Self: ContentNode {
     
     internal func mutate(ariavaluenow value: Float) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-valuenow", value: value)
     }
 }
 
 extension AriaValueNowAttribute where Self: EmptyNode {
     
     internal func mutate(ariavaluenow value: Float) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-valuenow", value: value)
     }
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaValueTextAttribute: AnyAttribute {
+public protocol AriaValueTextAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-valuetext'.
     ///
@@ -1370,21 +1150,16 @@ public protocol AriaValueTextAttribute: AnyAttribute {
     func aria(valueText value: String) -> Self
 }
 
-extension AriaValueTextAttribute {
-    
-    internal var key: String { "aria-valuetext" }
-}
-
 extension AriaValueTextAttribute where Self: ContentNode {
     
     internal func mutate(ariavaluetext value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-valuetext", value: value)
     }
 }
 
 extension AriaValueTextAttribute where Self: EmptyNode {
     
     internal func mutate(ariavaluetext value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "aria-valuetext", value: value)
     }
 }
