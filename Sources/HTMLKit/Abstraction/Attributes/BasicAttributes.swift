@@ -25,14 +25,14 @@ public protocol AccessKeyAttribute: Attribute {
     func accessKey(_ value: Character) -> Self
 }
 
-extension AccessKeyAttribute where Self: ContentNode {
+extension AccessKeyAttribute where Self: ContentElement {
     
     internal func mutate(accesskey value: Character) -> Self {
         return self.mutate(key: "accesskey", value: value)
     }
 }
 
-extension AccessKeyAttribute where Self: EmptyNode {
+extension AccessKeyAttribute where Self: EmptyElement {
     
     internal func mutate(accesskey value: Character) -> Self {
         return self.mutate(key: "accesskey", value: value)
@@ -50,14 +50,14 @@ public protocol AcceptAttribute: Attribute {
     func accept(_ value: String) -> Self
 }
 
-extension AcceptAttribute where Self: ContentNode {
+extension AcceptAttribute where Self: ContentElement {
     
     internal func mutate(accept value: String) -> Self {
         return self.mutate(key: "accept", value: value)
     }
 }
 
-extension AcceptAttribute where Self: EmptyNode {
+extension AcceptAttribute where Self: EmptyElement {
     
     internal func mutate(accept value: String) -> Self {
         return self.mutate(key: "accept", value: value)
@@ -75,14 +75,14 @@ public protocol ActionAttribute: Attribute {
     func action(_ value: String) -> Self
 }
 
-extension ActionAttribute where Self: ContentNode {
+extension ActionAttribute where Self: ContentElement {
     
     internal func mutate(action value: String) -> Self {
         return self.mutate(key: "action", value: value)
     }
 }
 
-extension ActionAttribute where Self: EmptyNode {
+extension ActionAttribute where Self: EmptyElement {
     
     internal func mutate(action value: String) -> Self {
         return self.mutate(key: "action", value: value)
@@ -100,14 +100,14 @@ public protocol AlternateAttribute: Attribute {
     func alternate(_ value: String) -> Self
 }
 
-extension AlternateAttribute where Self: ContentNode {
+extension AlternateAttribute where Self: ContentElement {
     
     internal func mutate(alternate value: String) -> Self {
         return self.mutate(key: "alt", value: value)
     }
 }
 
-extension AlternateAttribute where Self: EmptyNode {
+extension AlternateAttribute where Self: EmptyElement {
     
     internal func mutate(alternate value: String) -> Self {
         return self.mutate(key: "alt", value: value)
@@ -125,14 +125,14 @@ public protocol AsynchronouslyAttribute: Attribute {
     func asynchronously() -> Self
 }
 
-extension AsynchronouslyAttribute where Self: ContentNode {
+extension AsynchronouslyAttribute where Self: ContentElement {
     
     internal func mutate(async value: String) -> Self {
         return self.mutate(key: "async", value: value)
     }
 }
 
-extension AsynchronouslyAttribute where Self: EmptyNode {
+extension AsynchronouslyAttribute where Self: EmptyElement {
     
     internal func mutate(async value: String) -> Self {
         return self.mutate(key: "async", value: value)
@@ -150,14 +150,14 @@ public protocol AutocapitalizeAttribute: Attribute {
     func autocapitalize(_ value: Values.Capitalization) -> Self
 }
 
-extension AutocapitalizeAttribute where Self: ContentNode {
+extension AutocapitalizeAttribute where Self: ContentElement {
     
     internal func mutate(autocapitalize value: String) -> Self {
         return self.mutate(key: "autocapitalize", value: value)
     }
 }
 
-extension AutocapitalizeAttribute where Self: EmptyNode {
+extension AutocapitalizeAttribute where Self: EmptyElement {
     
     internal func mutate(autocapitalize value: String) -> Self {
         return self.mutate(key: "autocapitalize", value: value)
@@ -175,14 +175,14 @@ public protocol AutocompleteAttribute: Attribute {
     func hasCompletion(_ value: Bool) -> Self
 }
 
-extension AutocompleteAttribute where Self: ContentNode {
+extension AutocompleteAttribute where Self: ContentElement {
     
     internal func mutate(autocomplete value: Bool) -> Self {
         return self.mutate(key: "autocomplete", value: value)
     }
 }
 
-extension AutocompleteAttribute where Self: EmptyNode {
+extension AutocompleteAttribute where Self: EmptyElement {
     
     internal func mutate(autocomplete value: Bool) -> Self {
         return self.mutate(key: "autocomplete", value: value)
@@ -200,14 +200,14 @@ public protocol AutofocusAttribute: Attribute {
     func autofocus() -> Self
 }
 
-extension AutofocusAttribute where Self: ContentNode {
+extension AutofocusAttribute where Self: ContentElement {
     
     internal func mutate(autofocus value: String) -> Self {
         return self.mutate(key: "autofocus", value: value)
     }
 }
 
-extension AutofocusAttribute where Self: EmptyNode {
+extension AutofocusAttribute where Self: EmptyElement {
     
     internal func mutate(autofocus value: String) -> Self {
         return self.mutate(key: "autofocus", value: value)
@@ -225,14 +225,14 @@ public protocol AutoplayAttribute: Attribute {
     func autoplay() -> Self
 }
 
-extension AutoplayAttribute where Self: ContentNode {
+extension AutoplayAttribute where Self: ContentElement {
     
     internal func mutate(autoplay value: String) -> Self {
         return self.mutate(key: "autoplay", value: value)
     }
 }
 
-extension AutoplayAttribute where Self: EmptyNode {
+extension AutoplayAttribute where Self: EmptyElement {
     
     internal func mutate(autoplay value: String) -> Self {
         return self.mutate(key: "autoplay", value: value)
@@ -250,14 +250,14 @@ public protocol CharsetAttribute: Attribute {
     func charset(_ value: Values.Charset) -> Self
 }
 
-extension CharsetAttribute where Self: ContentNode {
+extension CharsetAttribute where Self: ContentElement {
     
     internal func mutate(charset value: String) -> Self {
         return self.mutate(key: "charset", value: value)
     }
 }
 
-extension CharsetAttribute where Self: EmptyNode {
+extension CharsetAttribute where Self: EmptyElement {
     
     internal func mutate(charset value: String) -> Self {
         return self.mutate(key: "charset", value: value)
@@ -275,14 +275,14 @@ public protocol CheckedAttribute: Attribute {
     func checked() -> Self
 }
 
-extension CheckedAttribute where Self: ContentNode {
+extension CheckedAttribute where Self: ContentElement {
     
     internal func mutate(checked value: String) -> Self {
         return self.mutate(key: "checked", value: value)
     }
 }
 
-extension CheckedAttribute where Self: EmptyNode {
+extension CheckedAttribute where Self: EmptyElement {
     
     internal func mutate(checked value: String) -> Self {
         return self.mutate(key: "checked", value: value)
@@ -300,14 +300,14 @@ public protocol CiteAttribute: Attribute {
     func cite(_ value: String) -> Self
 }
 
-extension CiteAttribute where Self: ContentNode {
+extension CiteAttribute where Self: ContentElement {
     
     internal func mutate(cite value: String) -> Self {
         return self.mutate(key: "cite", value: value)
     }
 }
 
-extension CiteAttribute where Self: EmptyNode {
+extension CiteAttribute where Self: EmptyElement {
     
     internal func mutate(cite value: String) -> Self {
         return self.mutate(key: "cite", value: value)
@@ -325,14 +325,14 @@ public protocol ClassAttribute: Attribute{
     func `class`(_ value: String) -> Self
 }
 
-extension ClassAttribute where Self: ContentNode {
+extension ClassAttribute where Self: ContentElement {
     
     internal func mutate(class value: String) -> Self {
         return self.mutate(key: "class", value: value)
     }
 }
 
-extension ClassAttribute where Self: EmptyNode {
+extension ClassAttribute where Self: EmptyElement {
     
     internal func mutate(class value: String) -> Self {
         return self.mutate(key: "class", value: value)
@@ -350,14 +350,14 @@ public protocol ColumnsAttribute: Attribute {
     func columns(_ size: Int) -> Self
 }
 
-extension ColumnsAttribute where Self: ContentNode {
+extension ColumnsAttribute where Self: ContentElement {
     
     internal func mutate(cols value: Int) -> Self {
         return self.mutate(key: "cols", value: value)
     }
 }
 
-extension ColumnsAttribute where Self: EmptyNode {
+extension ColumnsAttribute where Self: EmptyElement {
     
     internal func mutate(cols value: Int) -> Self {
         return self.mutate(key: "cols", value: value)
@@ -375,14 +375,14 @@ public protocol ColumnSpanAttribute: Attribute {
     func columnSpan(_ size: Int) -> Self
 }
 
-extension ColumnSpanAttribute where Self: ContentNode {
+extension ColumnSpanAttribute where Self: ContentElement {
     
     internal func mutate(colspan value: Int) -> Self {
         return self.mutate(key: "colspan", value: value)
     }
 }
 
-extension ColumnSpanAttribute where Self: EmptyNode {
+extension ColumnSpanAttribute where Self: EmptyElement {
     
     internal func mutate(colspan value: Int) -> Self {
         return self.mutate(key: "colspan", value: value)
@@ -403,14 +403,14 @@ public protocol ContentAttribute: Attribute {
     func content(_ value: TemplateValue<String>) -> Self
 }
 
-extension ContentAttribute where Self: ContentNode {
+extension ContentAttribute where Self: ContentElement {
     
     internal func mutate(content value: String) -> Self {
         return self.mutate(key: "content", value: value)
     }
 }
 
-extension ContentAttribute where Self: EmptyNode {
+extension ContentAttribute where Self: EmptyElement {
     
     internal func mutate(content value: String) -> Self {
         return self.mutate(key: "content", value: value)
@@ -428,14 +428,14 @@ public protocol EditAttribute: Attribute {
     func isEditable(_ value: Bool) -> Self
 }
 
-extension EditAttribute where Self: ContentNode {
+extension EditAttribute where Self: ContentElement {
     
     internal func mutate(contenteditable value: Bool) -> Self {
         return self.mutate(key: "contenteditable", value: value)
     }
 }
 
-extension EditAttribute where Self: EmptyNode {
+extension EditAttribute where Self: EmptyElement {
     
     internal func mutate(contenteditable value: Bool) -> Self {
         return self.mutate(key: "contenteditable", value: value)
@@ -453,14 +453,14 @@ public protocol ControlsAttribute: Attribute {
     func controls() -> Self
 }
 
-extension ControlsAttribute where Self: ContentNode {
+extension ControlsAttribute where Self: ContentElement {
     
     internal func mutate(controls value: String) -> Self {
         return self.mutate(key: "controls", value: value)
     }
 }
 
-extension ControlsAttribute where Self: EmptyNode {
+extension ControlsAttribute where Self: EmptyElement {
     
     internal func mutate(controls value: String) -> Self {
         return self.mutate(key: "controls", value: value)
@@ -478,14 +478,14 @@ public protocol CoordinatesAttribute: Attribute {
     func coordinates(_ value: String) -> Self
 }
 
-extension CoordinatesAttribute where Self: ContentNode {
+extension CoordinatesAttribute where Self: ContentElement {
     
     internal func mutate(coords value: String) -> Self {
         return self.mutate(key: "coords", value: value)
     }
 }
 
-extension CoordinatesAttribute where Self: EmptyNode {
+extension CoordinatesAttribute where Self: EmptyElement {
     
     internal func mutate(coords value: String) -> Self {
         return self.mutate(key: "coords", value: value)
@@ -503,14 +503,14 @@ public protocol DataAttribute: Attribute{
     func data(_ value: String) -> Self
 }
 
-extension DataAttribute where Self: ContentNode {
+extension DataAttribute where Self: ContentElement {
     
     internal func mutate(data value: String) -> Self {
         return self.mutate(key: "data", value: value)
     }
 }
 
-extension DataAttribute where Self: EmptyNode {
+extension DataAttribute where Self: EmptyElement {
     
     internal func mutate(data value: String) -> Self {
         return self.mutate(key: "data", value: value)
@@ -528,14 +528,14 @@ public protocol DateTimeAttribute: Attribute {
     func dateTime(_ value: String) -> Self
 }
 
-extension DateTimeAttribute where Self: ContentNode {
+extension DateTimeAttribute where Self: ContentElement {
     
     internal func mutate(datetime value: String) -> Self {
         return self.mutate(key: "datetime", value: value)
     }
 }
 
-extension DateTimeAttribute where Self: EmptyNode {
+extension DateTimeAttribute where Self: EmptyElement {
     
     internal func mutate(datetime value: String) -> Self {
         return self.mutate(key: "datetime", value: value)
@@ -553,14 +553,14 @@ public protocol DefaultAttribute: Attribute {
     func `default`() -> Self
 }
 
-extension DefaultAttribute where Self: ContentNode {
+extension DefaultAttribute where Self: ContentElement {
     
     internal func mutate(default value: String) -> Self {
         return self.mutate(key: "default", value: value)
     }
 }
 
-extension DefaultAttribute where Self: EmptyNode {
+extension DefaultAttribute where Self: EmptyElement {
     
     internal func mutate(default value: String) -> Self {
         return self.mutate(key: "default", value: value)
@@ -578,14 +578,14 @@ public protocol DeferAttribute: Attribute {
     func `defer`() -> Self
 }
 
-extension DeferAttribute where Self: ContentNode {
+extension DeferAttribute where Self: ContentElement {
     
     internal func mutate(defer value: String) -> Self {
         return self.mutate(key: "defer", value: value)
     }
 }
 
-extension DeferAttribute where Self: EmptyNode {
+extension DeferAttribute where Self: EmptyElement {
     
     internal func mutate(defer value: String) -> Self {
         return self.mutate(key: "defer", value: value)
@@ -605,14 +605,14 @@ public protocol DirectionAttribute: Attribute {
     func direction(_ value: Values.Direction) -> Self
 }
 
-extension DirectionAttribute where Self: ContentNode {
+extension DirectionAttribute where Self: ContentElement {
     
     internal func mutate(dir value: String) -> Self {
         return self.mutate(key: "dir", value: value)
     }
 }
 
-extension DirectionAttribute where Self: EmptyNode {
+extension DirectionAttribute where Self: EmptyElement {
     
     internal func mutate(dir value: String) -> Self {
         return self.mutate(key: "dir", value: value)
@@ -630,14 +630,14 @@ public protocol DisabledAttribute: Attribute {
     func disabled() -> Self
 }
 
-extension DisabledAttribute where Self: ContentNode {
+extension DisabledAttribute where Self: ContentElement {
     
     internal func mutate(disabled value: String) -> Self {
         return self.mutate(key: "disabled", value: value)
     }
 }
 
-extension DisabledAttribute where Self: EmptyNode {
+extension DisabledAttribute where Self: EmptyElement {
     
     internal func mutate(disabled value: String) -> Self {
         return self.mutate(key: "disabled", value: value)
@@ -655,14 +655,14 @@ public protocol DownloadAttribute: Attribute {
     func download() -> Self
 }
 
-extension DownloadAttribute where Self: ContentNode {
+extension DownloadAttribute where Self: ContentElement {
     
     internal func mutate(download value: String) -> Self {
         return self.mutate(key: "download", value: value)
     }
 }
 
-extension DownloadAttribute where Self: EmptyNode {
+extension DownloadAttribute where Self: EmptyElement {
     
     internal func mutate(download value: String) -> Self {
         return self.mutate(key: "download", value: value)
@@ -680,14 +680,14 @@ public protocol DragAttribute: Attribute {
     func isDraggable(_ value: Bool) -> Self
 }
 
-extension DragAttribute where Self: ContentNode {
+extension DragAttribute where Self: ContentElement {
     
     internal func mutate(draggable value: Bool) -> Self {
         return self.mutate(key: "draggable", value: value)
     }
 }
 
-extension DragAttribute where Self: EmptyNode {
+extension DragAttribute where Self: EmptyElement {
     
     internal func mutate(draggable value: Bool) -> Self {
         return self.mutate(key: "draggable", value: value)
@@ -707,14 +707,14 @@ public protocol EncodingAttribute: Attribute {
     func encoding(_ value: Values.Encoding) -> Self
 }
 
-extension EncodingAttribute where Self: ContentNode {
+extension EncodingAttribute where Self: ContentElement {
     
     internal func mutate(enctype value: String) -> Self {
         return self.mutate(key: "enctype", value: value)
     }
 }
 
-extension EncodingAttribute where Self: EmptyNode {
+extension EncodingAttribute where Self: EmptyElement {
     
     internal func mutate(enctype value: String) -> Self {
         return self.mutate(key: "enctype", value: value)
@@ -734,14 +734,14 @@ public protocol EnterKeyHintAttribute: Attribute {
     func enterKeyHint(_ value: Values.Hint) -> Self
 }
 
-extension EnterKeyHintAttribute where Self: ContentNode {
+extension EnterKeyHintAttribute where Self: ContentElement {
     
     internal func mutate(enterkeyhint value: String) -> Self {
         return self.mutate(key: "enterkeyhint", value: value)
     }
 }
 
-extension EnterKeyHintAttribute where Self: EmptyNode {
+extension EnterKeyHintAttribute where Self: EmptyElement {
     
     internal func mutate(enterkeyhint value: String) -> Self {
         return self.mutate(key: "enterkeyhint", value: value)
@@ -761,14 +761,14 @@ public protocol ForAttribute: Attribute {
     func `for`(_ value: String) -> Self
 }
 
-extension ForAttribute where Self: ContentNode {
+extension ForAttribute where Self: ContentElement {
     
     internal func mutate(for value: String) -> Self {
         return self.mutate(key: "for", value: value)
     }
 }
 
-extension ForAttribute where Self: EmptyNode {
+extension ForAttribute where Self: EmptyElement {
     
     internal func mutate(for value: String) -> Self {
         return self.mutate(key: "for", value: value)
@@ -786,14 +786,14 @@ public protocol FormAttribute: Attribute {
     func form(_ value: String) -> Self
 }
 
-extension FormAttribute where Self: ContentNode {
+extension FormAttribute where Self: ContentElement {
     
     internal func mutate(form value: String) -> Self {
         return self.mutate(key: "form", value: value)
     }
 }
 
-extension FormAttribute where Self: EmptyNode {
+extension FormAttribute where Self: EmptyElement {
     
     internal func mutate(form value: String) -> Self {
         return self.mutate(key: "form", value: value)
@@ -813,14 +813,14 @@ public protocol FormActionAttribute: Attribute {
     func formAction(_ value: String) -> Self
 }
 
-extension FormActionAttribute where Self: ContentNode {
+extension FormActionAttribute where Self: ContentElement {
     
     internal func mutate(formaction value: String) -> Self {
         return self.mutate(key: "formaction", value: value)
     }
 }
 
-extension FormActionAttribute where Self: EmptyNode {
+extension FormActionAttribute where Self: EmptyElement {
     
     internal func mutate(formaction value: String) -> Self {
         return self.mutate(key: "formaction", value: value)
@@ -840,14 +840,14 @@ public protocol EquivalentAttribute: Attribute {
     func equivalent(_ value: Values.Equivalent) -> Self
 }
 
-extension HeaderAttribute where Self: ContentNode {
+extension HeaderAttribute where Self: ContentElement {
     
     internal func mutate(httpequiv value: String) -> Self {
         return self.mutate(key: "http-equiv", value: value)
     }
 }
 
-extension EquivalentAttribute where Self: EmptyNode {
+extension EquivalentAttribute where Self: EmptyElement {
     
     internal func mutate(httpequiv value: String) -> Self {
         return self.mutate(key: "http-equiv", value: value)
@@ -867,14 +867,14 @@ public protocol HeaderAttribute: Attribute {
     func headers(_ value: String) -> Self
 }
 
-extension HeaderAttribute where Self: ContentNode {
+extension HeaderAttribute where Self: ContentElement {
     
     internal func mutate(headers value: String) -> Self {
         return self.mutate(key: "headers", value: value)
     }
 }
 
-extension HeaderAttribute where Self: EmptyNode {
+extension HeaderAttribute where Self: EmptyElement {
     
     internal func mutate(headers value: String) -> Self {
         return self.mutate(key: "headers", value: value)
@@ -894,14 +894,14 @@ public protocol HeightAttribute: Attribute {
     func height(_ size: Int) -> Self
 }
 
-extension HeightAttribute where Self: ContentNode {
+extension HeightAttribute where Self: ContentElement {
     
     internal func mutate(height value: Int) -> Self {
         return self.mutate(key: "height", value: value)
     }
 }
 
-extension HeightAttribute where Self: EmptyNode {
+extension HeightAttribute where Self: EmptyElement {
     
     internal func mutate(height value: Int) -> Self {
         return self.mutate(key: "height", value: value)
@@ -919,14 +919,14 @@ public protocol HiddenAttribute: Attribute {
     func hidden() -> Self
 }
 
-extension HiddenAttribute where Self: ContentNode {
+extension HiddenAttribute where Self: ContentElement {
     
     internal func mutate(hidden value: String) -> Self {
         return self.mutate(key: "hidden", value: value)
     }
 }
 
-extension HiddenAttribute where Self: EmptyNode {
+extension HiddenAttribute where Self: EmptyElement {
     
     internal func mutate(hidden value: String) -> Self {
         return self.mutate(key: "hidden", value: value)
@@ -946,14 +946,14 @@ public protocol HighAttribute: Attribute {
     func high(_ value: Float) -> Self
 }
 
-extension HighAttribute where Self: ContentNode {
+extension HighAttribute where Self: ContentElement {
     
     internal func mutate(high value: Float) -> Self {
         return self.mutate(key: "high", value: value)
     }
 }
 
-extension HighAttribute where Self: EmptyNode {
+extension HighAttribute where Self: EmptyElement {
     
     internal func mutate(high value: Float) -> Self {
         return self.mutate(key: "high", value: value)
@@ -975,14 +975,14 @@ public protocol ReferenceAttribute: Attribute {
     func reference(_ value: TemplateValue<String>) -> Self
 }
 
-extension ReferenceAttribute where Self: ContentNode {
+extension ReferenceAttribute where Self: ContentElement {
     
     internal func mutate(href value: String) -> Self {
         return self.mutate(key: "href", value: value)
     }
 }
 
-extension ReferenceAttribute where Self: EmptyNode {
+extension ReferenceAttribute where Self: EmptyElement {
     
     internal func mutate(href value: String) -> Self {
         return self.mutate(key: "href", value: value)
@@ -1002,14 +1002,14 @@ public protocol ReferenceLanguageAttribute: Attribute {
     func referenceLanguage(_ value: Values.Language) -> Self
 }
 
-extension ReferenceLanguageAttribute where Self: ContentNode {
+extension ReferenceLanguageAttribute where Self: ContentElement {
     
     internal func mutate(hreflang value: String) -> Self {
         return self.mutate(key: "hreflang", value: value)
     }
 }
 
-extension ReferenceLanguageAttribute where Self: EmptyNode {
+extension ReferenceLanguageAttribute where Self: EmptyElement {
     
     internal func mutate(hreflang value: String) -> Self {
         return self.mutate(key: "hreflang", value: value)
@@ -1031,14 +1031,14 @@ public protocol IdentifierAttribute: Attribute {
     func id(_ value: TemplateValue<String>) -> Self
 }
 
-extension IdentifierAttribute where Self: ContentNode {
+extension IdentifierAttribute where Self: ContentElement {
     
     internal func mutate(id value: String) -> Self {
         return self.mutate(key: "id", value: value)
     }
 }
 
-extension IdentifierAttribute where Self: EmptyNode {
+extension IdentifierAttribute where Self: EmptyElement {
     
     internal func mutate(id value: String) -> Self {
         return self.mutate(key: "id", value: value)
@@ -1056,14 +1056,14 @@ public protocol IsMapAttribute: Attribute {
     func isMap() -> Self
 }
 
-extension IsMapAttribute where Self: ContentNode {
+extension IsMapAttribute where Self: ContentElement {
     
     internal func mutate(ismap value: String) -> Self {
         return self.mutate(key: "ismap", value: value)
     }
 }
 
-extension IsMapAttribute where Self: EmptyNode {
+extension IsMapAttribute where Self: EmptyElement {
     
     internal func mutate(ismap value: String) -> Self {
         return self.mutate(key: "ismap", value: value)
@@ -1081,14 +1081,14 @@ public protocol InputModeAttribute: Attribute {
     func inputMode(_ value: String) -> Self
 }
 
-extension InputModeAttribute where Self: ContentNode {
+extension InputModeAttribute where Self: ContentElement {
     
     internal func mutate(inputmode value: String) -> Self {
         return self.mutate(key: "inputmode", value: value)
     }
 }
 
-extension InputModeAttribute where Self: EmptyNode {
+extension InputModeAttribute where Self: EmptyElement {
     
     internal func mutate(inputmode value: String) -> Self {
         return self.mutate(key: "inputmode", value: value)
@@ -1106,14 +1106,14 @@ public protocol IsAttribute: Attribute {
     func `is`(_ value: String) -> Self
 }
 
-extension IsAttribute where Self: ContentNode {
+extension IsAttribute where Self: ContentElement {
     
     internal func mutate(is value: String) -> Self {
         return self.mutate(key: "is", value: value)
     }
 }
 
-extension IsAttribute where Self: EmptyNode {
+extension IsAttribute where Self: EmptyElement {
     
     internal func mutate(is value: String) -> Self {
         return self.mutate(key: "is", value: value)
@@ -1131,14 +1131,14 @@ public protocol ItemIdAttribute: Attribute {
     func itemId(_ value: String) -> Self
 }
 
-extension ItemIdAttribute where Self: ContentNode {
+extension ItemIdAttribute where Self: ContentElement {
     
     internal func mutate(itemid value: String) -> Self {
         return self.mutate(key: "itemid", value: value)
     }
 }
 
-extension ItemIdAttribute where Self: EmptyNode {
+extension ItemIdAttribute where Self: EmptyElement {
     
     internal func mutate(itemid value: String) -> Self {
         return self.mutate(key: "itemid", value: value)
@@ -1156,14 +1156,14 @@ public protocol ItemPropertyAttribute: Attribute {
     func itemProperty(_ value: String) -> Self
 }
 
-extension ItemPropertyAttribute where Self: ContentNode {
+extension ItemPropertyAttribute where Self: ContentElement {
     
     internal func mutate(itemprop value: String) -> Self {
         return self.mutate(key: "itemprop", value: value)
     }
 }
 
-extension ItemPropertyAttribute where Self: EmptyNode {
+extension ItemPropertyAttribute where Self: EmptyElement {
     
     internal func mutate(itemprop value: String) -> Self {
         return self.mutate(key: "itemprop", value: value)
@@ -1181,14 +1181,14 @@ public protocol ItemReferenceAttribute: Attribute {
     func itemReference(_ value: String) -> Self
 }
 
-extension ItemReferenceAttribute where Self: ContentNode {
+extension ItemReferenceAttribute where Self: ContentElement {
     
     internal func mutate(itemref value: String) -> Self {
         return self.mutate(key: "itemref", value: value)
     }
 }
 
-extension ItemReferenceAttribute where Self: EmptyNode {
+extension ItemReferenceAttribute where Self: EmptyElement {
     
     internal func mutate(itemref value: String) -> Self {
         return self.mutate(key: "itemref", value: value)
@@ -1206,14 +1206,14 @@ public protocol ItemScopeAttribute: Attribute {
     func itemScope(_ value: String) -> Self
 }
 
-extension ItemScopeAttribute where Self: ContentNode {
+extension ItemScopeAttribute where Self: ContentElement {
     
     internal func mutate(itemscope value: String) -> Self {
         return self.mutate(key: "itemscope", value: value)
     }
 }
 
-extension ItemScopeAttribute where Self: EmptyNode {
+extension ItemScopeAttribute where Self: EmptyElement {
     
     internal func mutate(itemscope value: String) -> Self {
         return self.mutate(key: "itemscope", value: value)
@@ -1231,14 +1231,14 @@ public protocol ItemTypeAttribute: Attribute {
     func itemType(_ value: String) -> Self
 }
 
-extension ItemTypeAttribute where Self: ContentNode {
+extension ItemTypeAttribute where Self: ContentElement {
     
     internal func mutate(itemtype value: String) -> Self {
         return self.mutate(key: "itemtype", value: value)
     }
 }
 
-extension ItemTypeAttribute where Self: EmptyNode {
+extension ItemTypeAttribute where Self: EmptyElement {
     
     internal func mutate(itemtype value: String) -> Self {
         return self.mutate(key: "itemtype", value: value)
@@ -1261,14 +1261,14 @@ extension KindAttribute {
     internal var key: String { "kind" }
 }
 
-extension KindAttribute where Self: ContentNode {
+extension KindAttribute where Self: ContentElement {
     
     internal func mutate(kind value: String) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
 
-extension KindAttribute where Self: EmptyNode {
+extension KindAttribute where Self: EmptyElement {
     
     internal func mutate(kind value: String) -> Self {
         return self.mutate(key: self.key, value: value)
@@ -1286,14 +1286,14 @@ public protocol LabelAttribute: Attribute {
     func label(_ value: String) -> Self
 }
 
-extension LabelAttribute where Self: ContentNode {
+extension LabelAttribute where Self: ContentElement {
     
     internal func mutate(label value: String) -> Self {
         return self.mutate(key: "label", value: value)
     }
 }
 
-extension LabelAttribute where Self: EmptyNode {
+extension LabelAttribute where Self: EmptyElement {
     
     internal func mutate(label value: String) -> Self {
         return self.mutate(key: "label", value: value)
@@ -1311,14 +1311,14 @@ public protocol LanguageAttribute: Attribute {
     func language(_ value: Values.Language) -> Self
 }
 
-extension LanguageAttribute where Self: ContentNode {
+extension LanguageAttribute where Self: ContentElement {
     
     internal func mutate(lang value: String) -> Self {
         return self.mutate(key: "lang", value: value)
     }
 }
 
-extension LanguageAttribute where Self: EmptyNode {
+extension LanguageAttribute where Self: EmptyElement {
     
     internal func mutate(lang value: String) -> Self {
         return self.mutate(key: "lang", value: value)
@@ -1336,14 +1336,14 @@ public protocol ListAttribute: Attribute {
     func list(_ value: String) -> Self
 }
 
-extension ListAttribute where Self: ContentNode {
+extension ListAttribute where Self: ContentElement {
     
     internal func mutate(list value: String) -> Self {
         return self.mutate(key: "list", value: value)
     }
 }
 
-extension ListAttribute where Self: EmptyNode {
+extension ListAttribute where Self: EmptyElement {
     
     internal func mutate(list value: String) -> Self {
         return self.mutate(key: "list", value: value)
@@ -1361,14 +1361,14 @@ public protocol LoopAttribute: Attribute {
     func loop() -> Self
 }
 
-extension LoopAttribute where Self: ContentNode {
+extension LoopAttribute where Self: ContentElement {
     
     internal func mutate(loop value: String) -> Self {
         return self.mutate(key: "loop", value: value)
     }
 }
 
-extension LoopAttribute where Self: EmptyNode {
+extension LoopAttribute where Self: EmptyElement {
     
     internal func mutate(loop value: String) -> Self {
         return self.mutate(key: "loop", value: value)
@@ -1386,14 +1386,14 @@ public protocol LowAttribute: Attribute {
     func low(_ value: Float) -> Self
 }
 
-extension LowAttribute where Self: ContentNode {
+extension LowAttribute where Self: ContentElement {
     
     internal func mutate(low value: Float) -> Self {
         return self.mutate(key: "low", value: value)
     }
 }
 
-extension LowAttribute where Self: EmptyNode {
+extension LowAttribute where Self: EmptyElement {
     
     internal func mutate(low value: Float) -> Self {
         return self.mutate(key: "low", value: value)
@@ -1413,14 +1413,14 @@ public protocol MaximumValueAttribute: Attribute {
     func maximum(_ value: MaximumValueType) -> Self
 }
 
-extension MaximumValueAttribute where Self: ContentNode {
+extension MaximumValueAttribute where Self: ContentElement {
     
     internal func mutate(max value: MaximumValueType) -> Self {
         return self.mutate(key: "max", value: value)
     }
 }
 
-extension MaximumValueAttribute where Self: EmptyNode {
+extension MaximumValueAttribute where Self: EmptyElement {
     
     internal func mutate(max value: MaximumValueType) -> Self {
         return self.mutate(key: "max", value: value)
@@ -1438,14 +1438,14 @@ public protocol MaximumLengthAttribute: Attribute {
     func maximum(length value: Int) -> Self
 }
 
-extension MaximumLengthAttribute where Self: ContentNode {
+extension MaximumLengthAttribute where Self: ContentElement {
     
     internal func mutate(maxlength value: Int) -> Self {
         return self.mutate(key: "maxlength", value: value)
     }
 }
 
-extension MaximumLengthAttribute where Self: EmptyNode {
+extension MaximumLengthAttribute where Self: EmptyElement {
     
     internal func mutate(maxlength value: Int) -> Self {
         return self.mutate(key: "maxlength", value: value)
@@ -1463,14 +1463,14 @@ public protocol MediaAttribute: Attribute {
     func media(_ value: String) -> Self
 }
 
-extension MediaAttribute where Self: ContentNode {
+extension MediaAttribute where Self: ContentElement {
     
     internal func mutate(media value: String) -> Self {
         return self.mutate(key: "media", value: value)
     }
 }
 
-extension MediaAttribute where Self: EmptyNode {
+extension MediaAttribute where Self: EmptyElement {
     
     internal func mutate(media value: String) -> Self {
         return self.mutate(key: "media", value: value)
@@ -1488,14 +1488,14 @@ public protocol MethodAttribute: Attribute {
     func method(_ value: Values.Method) -> Self
 }
 
-extension MethodAttribute where Self: ContentNode {
+extension MethodAttribute where Self: ContentElement {
     
     internal func mutate(method value: String) -> Self {
         return self.mutate(key: "method", value: value)
     }
 }
 
-extension MethodAttribute where Self: EmptyNode {
+extension MethodAttribute where Self: EmptyElement {
     
     internal func mutate(method value: String) -> Self {
         return self.mutate(key: "method", value: value)
@@ -1515,14 +1515,14 @@ public protocol MinimumValueAttribute: Attribute {
     func minimum(_ value: MinimumValueType) -> Self
 }
 
-extension MinimumValueAttribute where Self: ContentNode {
+extension MinimumValueAttribute where Self: ContentElement {
     
     internal func mutate(min value: MinimumValueType) -> Self {
         return self.mutate(key: "min", value: value)
     }
 }
 
-extension MinimumValueAttribute where Self: EmptyNode {
+extension MinimumValueAttribute where Self: EmptyElement {
     
     internal func mutate(min value: MinimumValueType) -> Self {
         return self.mutate(key: "min", value: value)
@@ -1545,14 +1545,14 @@ extension MinimumLengthAttribute {
     internal var key: String { "minlength" }
 }
 
-extension MinimumLengthAttribute where Self: ContentNode {
+extension MinimumLengthAttribute where Self: ContentElement {
     
     internal func mutate(minlength value: Int) -> Self {
         return self.mutate(key: self.key, value: value)
     }
 }
 
-extension MinimumLengthAttribute where Self: EmptyNode {
+extension MinimumLengthAttribute where Self: EmptyElement {
     
     internal func mutate(minlength value: Int) -> Self {
         return self.mutate(key: self.key, value: value)
@@ -1570,14 +1570,14 @@ public protocol MultipleAttribute: Attribute {
     func multiple() -> Self
 }
 
-extension MultipleAttribute where Self: ContentNode {
+extension MultipleAttribute where Self: ContentElement {
     
     internal func mutate(multiple value: String) -> Self {
         return self.mutate(key: "multiple", value: value)
     }
 }
 
-extension MultipleAttribute where Self: EmptyNode {
+extension MultipleAttribute where Self: EmptyElement {
     
     internal func mutate(multiple value: String) -> Self {
         return self.mutate(key: "multiple", value: value)
@@ -1595,14 +1595,14 @@ public protocol MutedAttribute: Attribute {
     func muted() -> Self
 }
 
-extension MutedAttribute where Self: ContentNode {
+extension MutedAttribute where Self: ContentElement {
     
     internal func mutate(muted value: String) -> Self {
         return self.mutate(key: "muted", value: value)
     }
 }
 
-extension MutedAttribute where Self: EmptyNode {
+extension MutedAttribute where Self: EmptyElement {
     
     internal func mutate(muted value: String) -> Self {
         return self.mutate(key: "muted", value: value)
@@ -1625,14 +1625,14 @@ public protocol NameAttribute: Attribute {
     func name(_ value: TemplateValue<NameValue>) -> Self
 }
 
-extension NameAttribute where Self: ContentNode {
+extension NameAttribute where Self: ContentElement {
     
     internal func mutate(name value: String) -> Self {
         return self.mutate(key: "name", value: value)
     }
 }
 
-extension NameAttribute where Self: EmptyNode {
+extension NameAttribute where Self: EmptyElement {
     
     internal func mutate(name value: String) -> Self {
         return self.mutate(key: "name", value: value)
@@ -1650,14 +1650,14 @@ public protocol NonceAttribute: Attribute {
     func nonce(_ value: String) -> Self
 }
 
-extension NonceAttribute where Self: ContentNode {
+extension NonceAttribute where Self: ContentElement {
     
     internal func mutate(nonce value: String) -> Self {
         return self.mutate(key: "nonce", value: value)
     }
 }
 
-extension NonceAttribute where Self: EmptyNode {
+extension NonceAttribute where Self: EmptyElement {
     
     internal func mutate(nonce value: String) -> Self {
         return self.mutate(key: "nonce", value: value)
@@ -1675,14 +1675,14 @@ public protocol NoValidateAttribute: Attribute {
     func novalidate() -> Self
 }
 
-extension NoValidateAttribute where Self: ContentNode {
+extension NoValidateAttribute where Self: ContentElement {
     
     internal func mutate(novalidate value: String) -> Self {
         return self.mutate(key: "novalidate", value: value)
     }
 }
 
-extension NoValidateAttribute where Self: EmptyNode {
+extension NoValidateAttribute where Self: EmptyElement {
     
     internal func mutate(novalidate value: String) -> Self {
         return self.mutate(key: "novalidate", value: value)
@@ -1700,14 +1700,14 @@ public protocol OpenAttribute: Attribute {
     func isOpen(_ value: Bool) -> Self
 }
 
-extension OpenAttribute where Self: ContentNode {
+extension OpenAttribute where Self: ContentElement {
     
     internal func mutate(open value: Bool) -> Self {
         return self.mutate(key: "open", value: value)
     }
 }
 
-extension OpenAttribute where Self: EmptyNode {
+extension OpenAttribute where Self: EmptyElement {
     
     internal func mutate(open value: Bool) -> Self {
         return self.mutate(key: "open", value: value)
@@ -1725,14 +1725,14 @@ public protocol OptimumAttribute: Attribute {
     func optimum(_ value: Float) -> Self
 }
 
-extension OptimumAttribute where Self: ContentNode {
+extension OptimumAttribute where Self: ContentElement {
     
     internal func mutate(optimum value: Float) -> Self {
         return self.mutate(key: "optimum", value: value)
     }
 }
 
-extension OptimumAttribute where Self: EmptyNode {
+extension OptimumAttribute where Self: EmptyElement {
     
     internal func mutate(optimum value: Float) -> Self {
         return self.mutate(key: "optimum", value: value)
@@ -1750,14 +1750,14 @@ public protocol PatternAttribute: Attribute {
     func pattern(_ regex: String) -> Self
 }
 
-extension PatternAttribute where Self: ContentNode {
+extension PatternAttribute where Self: ContentElement {
     
     internal func mutate(pattern value: String) -> Self {
         return self.mutate(key: "pattern", value: value)
     }
 }
 
-extension PatternAttribute where Self: EmptyNode {
+extension PatternAttribute where Self: EmptyElement {
     
     internal func mutate(pattern value: String) -> Self {
         return self.mutate(key: "pattern", value: value)
@@ -1775,14 +1775,14 @@ public protocol PartAttribute: Attribute {
     func part(_ value: String) -> Self
 }
 
-extension PartAttribute where Self: ContentNode {
+extension PartAttribute where Self: ContentElement {
     
     internal func mutate(part value: String) -> Self {
         return self.mutate(key: "part", value: value)
     }
 }
 
-extension PartAttribute where Self: EmptyNode {
+extension PartAttribute where Self: EmptyElement {
     
     internal func mutate(part value: String) -> Self {
         return self.mutate(key: "part", value: value)
@@ -1800,14 +1800,14 @@ public protocol PingAttribute: Attribute {
     func ping(_ value: String) -> Self
 }
 
-extension PingAttribute where Self: ContentNode {
+extension PingAttribute where Self: ContentElement {
     
     internal func mutate(ping value: String) -> Self {
         return self.mutate(key: "ping", value: value)
     }
 }
 
-extension PingAttribute where Self: EmptyNode {
+extension PingAttribute where Self: EmptyElement {
     
     internal func mutate(ping value: String) -> Self {
         return self.mutate(key: "ping", value: value)
@@ -1827,14 +1827,14 @@ public protocol PlaceholderAttribute: Attribute {
     func placeholder(_ value: TemplateValue<String>) -> Self
 }
 
-extension PlaceholderAttribute where Self: ContentNode {
+extension PlaceholderAttribute where Self: ContentElement {
     
     internal func mutate(placeholder value: String) -> Self {
         return self.mutate(key: "placeholder", value: value)
     }
 }
 
-extension PlaceholderAttribute where Self: EmptyNode {
+extension PlaceholderAttribute where Self: EmptyElement {
     
     internal func mutate(placeholder value: String) -> Self {
         return self.mutate(key: "placeholder", value: value)
@@ -1852,14 +1852,14 @@ public protocol PosterAttribute: Attribute {
     func poster(_ value: String) -> Self
 }
 
-extension PosterAttribute where Self: ContentNode {
+extension PosterAttribute where Self: ContentElement {
     
     internal func mutate(poster value: String) -> Self {
         return self.mutate(key: "poster", value: value)
     }
 }
 
-extension PosterAttribute where Self: EmptyNode {
+extension PosterAttribute where Self: EmptyElement {
     
     internal func mutate(poster value: String) -> Self {
         return self.mutate(key: "poster", value: value)
@@ -1877,14 +1877,14 @@ public protocol PreloadAttribute: Attribute {
     func preload(_ value: Values.Preload) -> Self
 }
 
-extension PreloadAttribute where Self: ContentNode {
+extension PreloadAttribute where Self: ContentElement {
     
     internal func mutate(preload value: String) -> Self {
         return self.mutate(key: "preload", value: value)
     }
 }
 
-extension PreloadAttribute where Self: EmptyNode {
+extension PreloadAttribute where Self: EmptyElement {
     
     internal func mutate(preload value: String) -> Self {
         return self.mutate(key: "preload", value: value)
@@ -1902,14 +1902,14 @@ public protocol ReadyOnlyAttribute: Attribute {
     func readonly() -> Self
 }
 
-extension ReadyOnlyAttribute where Self: ContentNode {
+extension ReadyOnlyAttribute where Self: ContentElement {
     
     internal func mutate(readonly value: String) -> Self {
         return self.mutate(key: "readonly", value: value)
     }
 }
 
-extension ReadyOnlyAttribute where Self: EmptyNode {
+extension ReadyOnlyAttribute where Self: EmptyElement {
     
     internal func mutate(readonly value: String) -> Self {
         return self.mutate(key: "readonly", value: value)
@@ -1927,14 +1927,14 @@ public protocol ReferrerPolicyAttribute: Attribute {
     func referrerPolicy(_ value: Values.Policy) -> Self
 }
 
-extension ReferrerPolicyAttribute where Self: ContentNode {
+extension ReferrerPolicyAttribute where Self: ContentElement {
     
     internal func mutate(referrerpolicy value: String) -> Self {
         return self.mutate(key: "referrerpolicy", value: value)
     }
 }
 
-extension ReferrerPolicyAttribute where Self: EmptyNode {
+extension ReferrerPolicyAttribute where Self: EmptyElement {
     
     internal func mutate(referrerpolicy value: String) -> Self {
         return self.mutate(key: "referrerpolicy", value: value)
@@ -1952,14 +1952,14 @@ public protocol RelationshipAttribute: Attribute {
     func relationship(_ value: Values.Relation) -> Self
 }
 
-extension RelationshipAttribute where Self: ContentNode {
+extension RelationshipAttribute where Self: ContentElement {
     
     internal func mutate(rel value: String) -> Self {
         return self.mutate(key: "rel", value: value)
     }
 }
 
-extension RelationshipAttribute where Self: EmptyNode {
+extension RelationshipAttribute where Self: EmptyElement {
     
     internal func mutate(rel value: String) -> Self {
         return self.mutate(key: "rel", value: value)
@@ -1977,14 +1977,14 @@ public protocol RequiredAttribute: Attribute {
     func required() -> Self
 }
 
-extension RequiredAttribute where Self: ContentNode {
+extension RequiredAttribute where Self: ContentElement {
     
     internal func mutate(required value: String) -> Self {
         return self.mutate(key: "required", value: value)
     }
 }
 
-extension RequiredAttribute where Self: EmptyNode {
+extension RequiredAttribute where Self: EmptyElement {
     
     internal func mutate(required value: String) -> Self {
         return self.mutate(key: "required", value: value)
@@ -2002,14 +2002,14 @@ public protocol ReversedAttribute: Attribute {
     func reversed() -> Self
 }
 
-extension ReversedAttribute where Self: ContentNode {
+extension ReversedAttribute where Self: ContentElement {
     
     internal func mutate(reversed value: String) -> Self {
         return self.mutate(key: "reversed", value: value)
     }
 }
 
-extension ReversedAttribute where Self: EmptyNode {
+extension ReversedAttribute where Self: EmptyElement {
     
     internal func mutate(reversed value: String) -> Self {
         return self.mutate(key: "reversed", value: value)
@@ -2027,14 +2027,14 @@ public protocol RoleAttribute: Attribute {
     func role(_ value: Values.Role) -> Self
 }
 
-extension RoleAttribute where Self: ContentNode {
+extension RoleAttribute where Self: ContentElement {
     
     internal func mutate(role value: String) -> Self {
         return self.mutate(key: "role", value: value)
     }
 }
 
-extension RoleAttribute where Self: EmptyNode {
+extension RoleAttribute where Self: EmptyElement {
     
     internal func mutate(role value: String) -> Self {
         return self.mutate(key: "role", value: value)
@@ -2052,14 +2052,14 @@ public protocol RowsAttribute: Attribute {
     func rows(_ size: Int) -> Self
 }
 
-extension RowsAttribute where Self: ContentNode {
+extension RowsAttribute where Self: ContentElement {
     
     internal func mutate(rows value: Int) -> Self {
         return self.mutate(key: "rows", value: value)
     }
 }
 
-extension RowsAttribute where Self: EmptyNode {
+extension RowsAttribute where Self: EmptyElement {
     
     internal func mutate(rows value: Int) -> Self {
         return self.mutate(key: "rows", value: value)
@@ -2077,14 +2077,14 @@ public protocol RowSpanAttribute: Attribute {
     func rowSpan(_ size: Int) -> Self
 }
 
-extension RowSpanAttribute where Self: ContentNode {
+extension RowSpanAttribute where Self: ContentElement {
     
     internal func mutate(rowspan value: Int) -> Self {
         return self.mutate(key: "rowspan", value: value)
     }
 }
 
-extension RowSpanAttribute where Self: EmptyNode {
+extension RowSpanAttribute where Self: EmptyElement {
     
     internal func mutate(rowspan value: Int) -> Self {
         return self.mutate(key: "rowspan", value: value)
@@ -2102,14 +2102,14 @@ public protocol SandboxAttribute: Attribute {
     func sandbox() -> Self
 }
 
-extension SandboxAttribute where Self: ContentNode {
+extension SandboxAttribute where Self: ContentElement {
     
     internal func mutate(sandbox value: String) -> Self {
         return self.mutate(key: "sandbox", value: value)
     }
 }
 
-extension SandboxAttribute where Self: EmptyNode {
+extension SandboxAttribute where Self: EmptyElement {
     
     internal func mutate(sandbox value: String) -> Self {
         return self.mutate(key: "sandbox", value: value)
@@ -2127,14 +2127,14 @@ public protocol ScopeAttribute: Attribute {
     func scope(_ value: String) -> Self
 }
 
-extension ScopeAttribute where Self: ContentNode {
+extension ScopeAttribute where Self: ContentElement {
     
     internal func mutate(scope value: String) -> Self {
         return self.mutate(key: "scope", value: value)
     }
 }
 
-extension ScopeAttribute where Self: EmptyNode {
+extension ScopeAttribute where Self: EmptyElement {
     
     internal func mutate(scope value: String) -> Self {
         return self.mutate(key: "scope", value: value)
@@ -2152,14 +2152,14 @@ public protocol ShapeAttribute: Attribute {
     func shape(_ value: Values.Shape) -> Self
 }
 
-extension ShapeAttribute where Self: ContentNode {
+extension ShapeAttribute where Self: ContentElement {
     
     internal func mutate(shape value: String) -> Self {
         return self.mutate(key: "shape", value: value)
     }
 }
 
-extension ShapeAttribute where Self: EmptyNode {
+extension ShapeAttribute where Self: EmptyElement {
     
     internal func mutate(shape value: String) -> Self {
         return self.mutate(key: "shape", value: value)
@@ -2177,14 +2177,14 @@ public protocol SizeAttribute: Attribute {
     func size(_ size: Int) -> Self
 }
 
-extension SizeAttribute where Self: ContentNode {
+extension SizeAttribute where Self: ContentElement {
     
     internal func mutate(size value: Int) -> Self {
         return self.mutate(key: "size", value: value)
     }
 }
 
-extension SizeAttribute where Self: EmptyNode {
+extension SizeAttribute where Self: EmptyElement {
     
     internal func mutate(size value: Int) -> Self {
         return self.mutate(key: "size", value: value)
@@ -2202,14 +2202,14 @@ public protocol SizesAttribute: Attribute {
     func sizes(_ size: Int) -> Self
 }
 
-extension SizesAttribute where Self: ContentNode {
+extension SizesAttribute where Self: ContentElement {
     
     internal func mutate(sizes value: Int) -> Self {
         return self.mutate(key: "sizes", value: value)
     }
 }
 
-extension SizesAttribute where Self: EmptyNode {
+extension SizesAttribute where Self: EmptyElement {
     
     internal func mutate(sizes value: Int) -> Self {
         return self.mutate(key: "sizes", value: value)
@@ -2227,14 +2227,14 @@ public protocol SlotAttribute: Attribute {
     func slot(_ value: String) -> Self
 }
 
-extension SlotAttribute where Self: ContentNode {
+extension SlotAttribute where Self: ContentElement {
     
     internal func mutate(slot value: String) -> Self {
         return self.mutate(key: "slot", value: value)
     }
 }
 
-extension SlotAttribute where Self: EmptyNode {
+extension SlotAttribute where Self: EmptyElement {
     
     internal func mutate(slot value: String) -> Self {
         return self.mutate(key: "slot", value: value)
@@ -2252,14 +2252,14 @@ public protocol SpanAttribute: Attribute {
     func span(_ size: Int) -> Self
 }
 
-extension SpanAttribute where Self: ContentNode {
+extension SpanAttribute where Self: ContentElement {
     
     internal func mutate(span value: Int) -> Self {
         return self.mutate(key: "span", value: value)
     }
 }
 
-extension SpanAttribute where Self: EmptyNode {
+extension SpanAttribute where Self: EmptyElement {
     
     internal func mutate(span value: Int) -> Self {
         return self.mutate(key: "span", value: value)
@@ -2277,14 +2277,14 @@ public protocol SpellCheckAttribute: Attribute {
     func hasSpellCheck(_ value: Bool) -> Self
 }
 
-extension SpellCheckAttribute where Self: ContentNode {
+extension SpellCheckAttribute where Self: ContentElement {
     
     internal func mutate(spellcheck value: Bool) -> Self {
         return self.mutate(key: "spellcheck", value: value)
     }
 }
 
-extension SpellCheckAttribute where Self: EmptyNode {
+extension SpellCheckAttribute where Self: EmptyElement {
     
     internal func mutate(spellcheck value: Bool) -> Self {
         return self.mutate(key: "spellcheck", value: value)
@@ -2302,14 +2302,14 @@ public protocol SourceAttribute: Attribute {
     func source(_ value: String) -> Self
 }
 
-extension SourceAttribute where Self: ContentNode {
+extension SourceAttribute where Self: ContentElement {
     
     internal func mutate(source value: String) -> Self {
         return self.mutate(key: "src", value: value)
     }
 }
 
-extension SourceAttribute where Self: EmptyNode {
+extension SourceAttribute where Self: EmptyElement {
     
     internal func mutate(source value: String) -> Self {
         return self.mutate(key: "src", value: value)
@@ -2327,14 +2327,14 @@ public protocol StartAttribute: Attribute {
     func start(_ size: Int) -> Self
 }
 
-extension StartAttribute where Self: ContentNode {
+extension StartAttribute where Self: ContentElement {
     
     internal func mutate(start value: Int) -> Self {
         return self.mutate(key: "start", value: value)
     }
 }
 
-extension StartAttribute where Self: EmptyNode {
+extension StartAttribute where Self: EmptyElement {
     
     internal func mutate(start value: Int) -> Self {
         return self.mutate(key: "start", value: value)
@@ -2352,14 +2352,14 @@ public protocol StepAttribute: Attribute {
     func step(_ size: Int) -> Self
 }
 
-extension StepAttribute where Self: ContentNode {
+extension StepAttribute where Self: ContentElement {
     
     internal func mutate(step value: Int) -> Self {
         return self.mutate(key: "step", value: value)
     }
 }
 
-extension StepAttribute where Self: EmptyNode {
+extension StepAttribute where Self: EmptyElement {
     
     internal func mutate(step value: Int) -> Self {
         return self.mutate(key: "step", value: value)
@@ -2377,14 +2377,14 @@ public protocol StyleAttribute: Attribute {
     func style(_ value: String) -> Self
 }
 
-extension StyleAttribute where Self: ContentNode {
+extension StyleAttribute where Self: ContentElement {
     
     internal func mutate(style value: String) -> Self {
         return self.mutate(key: "style", value: value)
     }
 }
 
-extension StyleAttribute where Self: EmptyNode {
+extension StyleAttribute where Self: EmptyElement {
     
     internal func mutate(style value: String) -> Self {
         return self.mutate(key: "style", value: value)
@@ -2402,14 +2402,14 @@ public protocol TabulatorAttribute: Attribute {
     func tabIndex(_ value: Int) -> Self
 }
 
-extension TabulatorAttribute where Self: ContentNode {
+extension TabulatorAttribute where Self: ContentElement {
     
     internal func mutate(tabindex value: Int) -> Self {
         return self.mutate(key: "tabindex", value: value)
     }
 }
 
-extension TabulatorAttribute where Self: EmptyNode {
+extension TabulatorAttribute where Self: EmptyElement {
     
     internal func mutate(tabindex value: Int) -> Self {
         return self.mutate(key: "tabindex", value: value)
@@ -2427,14 +2427,14 @@ public protocol TargetAttribute: Attribute {
     func target(_ value: Values.Target) -> Self
 }
 
-extension TargetAttribute where Self: ContentNode {
+extension TargetAttribute where Self: ContentElement {
     
     internal func mutate(target value: String) -> Self {
         return self.mutate(key: "target", value: value)
     }
 }
 
-extension TargetAttribute where Self: EmptyNode {
+extension TargetAttribute where Self: EmptyElement {
     
     internal func mutate(target value: String) -> Self {
         return self.mutate(key: "target", value: value)
@@ -2452,14 +2452,14 @@ public protocol TitleAttribute: Attribute {
     func title(_ value: String) -> Self
 }
 
-extension TitleAttribute where Self: ContentNode {
+extension TitleAttribute where Self: ContentElement {
     
     internal func mutate(title value: String) -> Self {
         return self.mutate(key: "title", value: value)
     }
 }
 
-extension TitleAttribute where Self: EmptyNode {
+extension TitleAttribute where Self: EmptyElement {
     
     internal func mutate(title value: String) -> Self {
         return self.mutate(key: "title", value: value)
@@ -2477,14 +2477,14 @@ public protocol TranslateAttribute: Attribute {
     func translate(_ value: Values.Decision) -> Self
 }
 
-extension TranslateAttribute where Self: ContentNode {
+extension TranslateAttribute where Self: ContentElement {
     
     internal func mutate(translate value: String) -> Self {
         return self.mutate(key: "translate", value: value)
     }
 }
 
-extension TranslateAttribute where Self: EmptyNode {
+extension TranslateAttribute where Self: EmptyElement {
     
     internal func mutate(translate value: String) -> Self {
         return self.mutate(key: "translate", value: value)
@@ -2504,14 +2504,14 @@ public protocol TypeAttribute: Attribute {
     func type(_ value: TypeValue) -> Self
 }
 
-extension TypeAttribute where Self: ContentNode {
+extension TypeAttribute where Self: ContentElement {
     
     internal func mutate(type value: String) -> Self {
         return self.mutate(key: "type", value: value)
     }
 }
 
-extension TypeAttribute where Self: EmptyNode {
+extension TypeAttribute where Self: EmptyElement {
     
     internal func mutate(type value: String) -> Self {
         return self.mutate(key: "type", value: value)
@@ -2531,14 +2531,14 @@ public protocol ValueAttribute: Attribute {
     func value(_ value: TemplateValue<String>) -> Self
 }
 
-extension ValueAttribute where Self: ContentNode {
+extension ValueAttribute where Self: ContentElement {
     
     internal func mutate(value: String) -> Self {
         return self.mutate(key: "value", value: value)
     }
 }
 
-extension ValueAttribute where Self: EmptyNode {
+extension ValueAttribute where Self: EmptyElement {
     
     internal func mutate(value: String) -> Self {
         return self.mutate(key: "value", value: value)
@@ -2556,14 +2556,14 @@ public protocol WidthAttribute: Attribute {
     func width(_ size: Int) -> Self
 }
 
-extension WidthAttribute where Self: ContentNode {
+extension WidthAttribute where Self: ContentElement {
     
     internal func mutate(width value: Int) -> Self {
         return self.mutate(key: "width", value: value)
     }
 }
 
-extension WidthAttribute where Self: EmptyNode {
+extension WidthAttribute where Self: EmptyElement {
     
     internal func mutate(width value: Int) -> Self {
         return self.mutate(key: "width", value: value)
@@ -2581,14 +2581,14 @@ public protocol WrapAttribute: Attribute {
     func wrap(_ value: Values.Wrapping) -> Self
 }
 
-extension WrapAttribute where Self: ContentNode {
+extension WrapAttribute where Self: ContentElement {
     
     internal func mutate(wrap value: String) -> Self {
         return self.mutate(key: "wrap", value: value)
     }
 }
 
-extension WrapAttribute where Self: EmptyNode {
+extension WrapAttribute where Self: EmptyElement {
     
     internal func mutate(wrap value: String) -> Self {
         return self.mutate(key: "wrap", value: value)
@@ -2608,14 +2608,14 @@ public protocol PropertyAttribute: Attribute {
     func property(_ value: Values.Graph) -> Self
 }
 
-extension PropertyAttribute where Self: ContentNode {
+extension PropertyAttribute where Self: ContentElement {
     
     internal func mutate(property value: String) -> Self {
         return self.mutate(key: "property", value: value)
     }
 }
 
-extension PropertyAttribute where Self: EmptyNode {
+extension PropertyAttribute where Self: EmptyElement {
     
     internal func mutate(property value: String) -> Self {
         return self.mutate(key: "property", value: value)
@@ -2633,14 +2633,14 @@ public protocol SelectedAttribute: Attribute {
     func selected() -> Self
 }
 
-extension SelectedAttribute where Self: ContentNode {
+extension SelectedAttribute where Self: ContentElement {
     
     internal func mutate(selected value: String) -> Self {
         return self.mutate(key: "selected", value: value)
     }
 }
 
-extension SelectedAttribute where Self: EmptyNode {
+extension SelectedAttribute where Self: EmptyElement {
     
     internal func mutate(selected value: String) -> Self {
         return self.mutate(key: "selected", value: value)

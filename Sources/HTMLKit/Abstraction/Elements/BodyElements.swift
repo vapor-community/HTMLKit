@@ -346,7 +346,7 @@ public typealias Svg = Vector
 /// ```html
 /// <article></article>
 /// ```
-public struct Article: ContentNode, AnyElement {
+public struct Article: ContentElement {
 
     internal var name: String { "article" }
 
@@ -617,7 +617,7 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
 /// ```html
 /// <section></section>
 /// ```
-public struct Section: ContentNode, AnyElement {
+public struct Section: ContentElement {
 
     internal var name: String { "section" }
 
@@ -888,7 +888,7 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
 /// ```html
 /// <nav></nav>
 /// ```
-public struct Navigation: ContentNode, AnyElement {
+public struct Navigation: ContentElement {
 
     internal var name: String { "nav" }
 
@@ -1159,7 +1159,7 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 /// ```html
 /// <aside></aside>
 /// ```
-public struct Aside: ContentNode, AnyElement {
+public struct Aside: ContentElement {
 
     internal var name: String { "aside" }
 
@@ -1430,7 +1430,7 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 /// ```html
 /// <h1></h1>
 /// ```
-public struct Heading1: ContentNode, AnyElement {
+public struct Heading1: ContentElement {
 
     internal var name: String { "h1" }
 
@@ -1712,7 +1712,7 @@ extension Heading1: Localizable {
 /// ```html
 /// <h2></h2>
 /// ```
-public struct Heading2: ContentNode, AnyElement {
+public struct Heading2: ContentElement {
 
     internal var name: String { "h2" }
 
@@ -1994,7 +1994,7 @@ extension Heading2: Localizable {
 /// ```html
 /// <h3></h3>
 /// ```
-public struct Heading3: ContentNode, AnyElement {
+public struct Heading3: ContentElement {
 
     internal var name: String { "h3" }
 
@@ -2276,7 +2276,7 @@ extension Heading3: Localizable {
 /// ```html
 /// <h4></h4>
 /// ```
-public struct Heading4: ContentNode, AnyElement {
+public struct Heading4: ContentElement {
 
     internal var name: String { "h4" }
 
@@ -2558,7 +2558,7 @@ extension Heading4: Localizable {
 /// ```html
 /// <h5></h5>
 /// ```
-public struct Heading5: ContentNode, AnyElement {
+public struct Heading5: ContentElement {
 
     internal var name: String { "h5" }
 
@@ -2840,7 +2840,7 @@ extension Heading5: Localizable {
 /// ```html
 /// <h6></h6>
 /// ```
-public struct Heading6: ContentNode, AnyElement {
+public struct Heading6: ContentElement {
 
     internal var name: String { "h6" }
 
@@ -3122,7 +3122,7 @@ extension Heading6: Localizable {
 /// ```html
 /// <hgroup></hgroup>
 /// ```
-public struct HeadingGroup: ContentNode, AnyElement {
+public struct HeadingGroup: ContentElement {
 
     internal var name: String { "hgroup" }
 
@@ -3393,7 +3393,7 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
 /// ```html
 /// <header></header>
 /// ```
-public struct Header: ContentNode, AnyElement {
+public struct Header: ContentElement {
 
     internal var name: String { "header" }
 
@@ -3664,7 +3664,7 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
 /// ```html
 /// <footer></footer>
 /// ```
-public struct Footer: ContentNode, AnyElement {
+public struct Footer: ContentElement {
 
     internal var name: String { "footer" }
 
@@ -3935,7 +3935,7 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
 /// ```html
 /// <adress></adress>
 /// ```
-public struct Address: ContentNode, AnyElement {
+public struct Address: ContentElement {
 
     internal var name: String { "address" }
 
@@ -4206,7 +4206,7 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
 /// ```html
 /// <p></p>
 /// ```
-public struct Paragraph: ContentNode, AnyElement {
+public struct Paragraph: ContentElement {
 
     internal var name: String { "p" }
 
@@ -4488,7 +4488,7 @@ extension Paragraph: Localizable {
 /// ```html
 /// <hr>
 /// ```
-public struct HorizontalRule: EmptyNode, AnyElement {
+public struct HorizontalRule: EmptyElement {
 
     internal var name: String { "hr" }
     
@@ -4754,7 +4754,7 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
 /// ```html
 /// <pre></pre>
 /// ```
-public struct PreformattedText: ContentNode, AnyElement {
+public struct PreformattedText: ContentElement {
 
     internal var name: String { "pre" }
 
@@ -5025,7 +5025,7 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
 /// ```html
 /// <blockquote></blockquote>
 /// ```
-public struct Blockquote: ContentNode, AnyElement {
+public struct Blockquote: ContentElement {
 
     internal var name: String { "blockquote" }
 
@@ -5311,7 +5311,7 @@ extension Blockquote: Localizable {
 /// ```html
 /// <ol></ol>
 /// ```
-public struct OrderedList: ContentNode, AnyElement {
+public struct OrderedList: ContentElement {
 
     internal var name: String { "ol" }
 
@@ -5594,7 +5594,7 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
 /// ```html
 /// <ul></ul>
 /// ```
-public struct UnorderedList: ContentNode, AnyElement {
+public struct UnorderedList: ContentElement {
 
     internal var name: String { "ul" }
 
@@ -5865,7 +5865,7 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
 /// ```html
 /// <dl></dl>
 /// ```
-public struct DescriptionList: ContentNode, AnyElement {
+public struct DescriptionList: ContentElement {
 
     internal var name: String { "dl" }
 
@@ -6136,7 +6136,7 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
 /// ```html
 /// <figure></figure>
 /// ```
-public struct Figure: ContentNode, AnyElement {
+public struct Figure: ContentElement {
 
     internal var name: String { "figure" }
 
@@ -6407,7 +6407,7 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
 /// ```html
 /// <a></a>
 /// ```
-public struct Anchor: ContentNode, AnyElement {
+public struct Anchor: ContentElement {
 
     internal var name: String { "a" }
 
@@ -6729,7 +6729,7 @@ extension Anchor: Localizable {
 /// ```html
 /// <em></em>
 /// ```
-public struct Emphasize: ContentNode, AnyElement {
+public struct Emphasize: ContentElement {
 
     internal var name: String { "em" }
 
@@ -7000,7 +7000,7 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 /// ```html
 /// <strong></strong>
 /// ```
-public struct Strong: ContentNode, AnyElement {
+public struct Strong: ContentElement {
 
     internal var name: String { "strong" }
 
@@ -7271,7 +7271,7 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
 /// ```html
 /// <small></small>
 /// ```
-public struct Small: ContentNode, AnyElement {
+public struct Small: ContentElement {
 
     internal var name: String { "small" }
 
@@ -7553,7 +7553,7 @@ extension Small: Localizable {
 /// ```html
 /// <s></s>
 /// ```
-public struct StrikeThrough: ContentNode, AnyElement {
+public struct StrikeThrough: ContentElement {
 
     internal var name: String { "s" }
 
@@ -7759,7 +7759,7 @@ extension StrikeThrough: Localizable {
 /// ```html
 /// <main></main>
 /// ```
-public struct Main: ContentNode, AnyElement {
+public struct Main: ContentElement {
 
     internal var name: String { "main" }
 
@@ -8030,7 +8030,7 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 /// ```html
 /// <div></div>
 /// ```
-public struct Division: ContentNode, AnyElement {
+public struct Division: ContentElement {
 
     internal var name: String { "div" }
 
@@ -8301,7 +8301,7 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 /// ```html
 /// <dfn></dfn>
 /// ```
-public struct Definition: ContentNode, AnyElement {
+public struct Definition: ContentElement {
 
     internal var name: String { "dfn" }
 
@@ -8572,7 +8572,7 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 /// ```html
 /// <cite></cite>
 /// ```
-public struct Cite: ContentNode, AnyElement {
+public struct Cite: ContentElement {
 
     internal var name: String { "cite" }
 
@@ -8843,7 +8843,7 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 /// ```html
 /// <q></q>
 /// ```
-public struct ShortQuote: ContentNode, AnyElement {
+public struct ShortQuote: ContentElement {
 
     internal var name: String { "q" }
 
@@ -9118,7 +9118,7 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 /// ```html
 /// <abbr></abbr>
 /// ```
-public struct Abbreviation: ContentNode, AnyElement {
+public struct Abbreviation: ContentElement {
 
     internal var name: String { "abbr" }
 
@@ -9389,7 +9389,7 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
 /// ```html
 /// <ruby></ruby>
 /// ```
-public struct Ruby: ContentNode, AnyElement {
+public struct Ruby: ContentElement {
 
     internal var name: String { "ruby" }
 
@@ -9660,7 +9660,7 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 /// ```html
 /// <data></data>
 /// ```
-public struct Data: ContentNode, AnyElement {
+public struct Data: ContentElement {
 
     internal var name: String { "data" }
 
@@ -9939,7 +9939,7 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
 /// ```html
 /// <time></time>
 /// ```
-public struct Time: ContentNode, AnyElement {
+public struct Time: ContentElement {
 
     internal var name: String { "time" }
 
@@ -10214,7 +10214,7 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
 /// ```html
 /// <code></code>
 /// ```
-public struct Code: ContentNode, AnyElement {
+public struct Code: ContentElement {
 
     internal var name: String { "code" }
 
@@ -10485,7 +10485,7 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 /// ```html
 /// <v></v>
 /// ```
-public struct Variable: ContentNode, AnyElement {
+public struct Variable: ContentElement {
 
     internal var name: String { "v" }
 
@@ -10756,7 +10756,7 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 /// ```html
 /// <samp></samp>
 /// ```
-public struct SampleOutput: ContentNode, AnyElement {
+public struct SampleOutput: ContentElement {
 
     internal var name: String { "samp" }
 
@@ -11027,7 +11027,7 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
 /// ```html
 /// <kdb></kbd>
 /// ```
-public struct KeyboardInput: ContentNode, AnyElement {
+public struct KeyboardInput: ContentElement {
 
     internal var name: String { "kbd" }
 
@@ -11298,7 +11298,7 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
 /// ```html
 /// <sub></sub>
 /// ```
-public struct Subscript: ContentNode, AnyElement {
+public struct Subscript: ContentElement {
 
     internal var name: String { "sub" }
 
@@ -11569,7 +11569,7 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 /// ```html
 /// <sup></sup>
 /// ```
-public struct Superscript: ContentNode, AnyElement {
+public struct Superscript: ContentElement {
 
     internal var name: String { "sup" }
 
@@ -11840,7 +11840,7 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
 /// ```html
 /// <i></i>
 /// ```
-public struct Italic: ContentNode, AnyElement {
+public struct Italic: ContentElement {
 
     internal var name: String { "i" }
 
@@ -12122,7 +12122,7 @@ extension Italic: Localizable {
 /// ```html
 /// <b></b>
 /// ```
-public struct Bold: ContentNode, AnyElement {
+public struct Bold: ContentElement {
 
     internal var name: String { "b" }
 
@@ -12404,7 +12404,7 @@ extension Bold: Localizable {
 /// ```html
 /// <u></u>
 /// ```
-public struct Underline: ContentNode, AnyElement {
+public struct Underline: ContentElement {
 
     internal var name: String { "u" }
     
@@ -12686,7 +12686,7 @@ extension Underline: Localizable {
 /// ```html
 /// <mark></mark>
 /// ```
-public struct Mark: ContentNode, AnyElement {
+public struct Mark: ContentElement {
 
     internal var name: String { "mark" }
 
@@ -12957,7 +12957,7 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 /// ```html
 /// <bdi></bdi>
 /// ```
-public struct Bdi: ContentNode, AnyElement {
+public struct Bdi: ContentElement {
 
     internal var name: String { "bdi" }
 
@@ -13228,7 +13228,7 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 /// ```html
 /// <bdo></bdo>
 /// ```
-public struct Bdo: EmptyNode, AnyElement {
+public struct Bdo: EmptyElement {
 
     internal var name: String { "bdo" }
 
@@ -13494,7 +13494,7 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 /// ```html
 /// <span></span>
 /// ```
-public struct Span: ContentNode, AnyElement {
+public struct Span: ContentElement {
 
     internal var name: String { "span" }
 
@@ -13765,7 +13765,7 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 /// ```html
 /// <br>
 /// ```
-public struct LineBreak: EmptyNode, AnyElement {
+public struct LineBreak: EmptyElement {
 
     internal var name: String { "br" }
 
@@ -14031,7 +14031,7 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 /// ```html
 /// <wbr>
 /// ```
-public struct WordBreak: EmptyNode, AnyElement {
+public struct WordBreak: EmptyElement {
 
     internal var name: String { "wbr" }
     
@@ -14297,7 +14297,7 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 /// ```html
 /// <ins></ins>
 /// ```
-public struct InsertedText: ContentNode, AnyElement {
+public struct InsertedText: ContentElement {
 
     internal var name: String { "ins" }
 
@@ -14576,7 +14576,7 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
 /// ```html
 /// <del></del>
 /// ```
-public struct DeletedText: ContentNode, AnyElement {
+public struct DeletedText: ContentElement {
 
     internal var name: String { "del" }
 
@@ -14855,7 +14855,7 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
 /// ```html
 /// <picture></picture>
 /// ```
-public struct Picture: ContentNode, AnyElement {
+public struct Picture: ContentElement {
 
     internal var name: String { "picture" }
 
@@ -15050,7 +15050,7 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
 /// ```html
 /// <img>
 /// ```
-public struct Image: EmptyNode, AnyElement {
+public struct Image: EmptyElement {
 
     internal var name: String { "img" }
 
@@ -15340,7 +15340,7 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 /// ```html
 /// <iframe></iframe>
 /// ```
-public struct InlineFrame: ContentNode, AnyElement {
+public struct InlineFrame: ContentElement {
     
     internal var name: String { "iframe" }
 
@@ -15635,7 +15635,7 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
 /// ```html
 /// <embed></embed>
 /// ```
-public struct Embed: EmptyNode, AnyElement {
+public struct Embed: EmptyElement {
 
     internal var name: String { "embed" }
 
@@ -15917,7 +15917,7 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 /// ```html
 /// <object></object>
 /// ```
-public struct Object: ContentNode, AnyElement {
+public struct Object: ContentElement {
     
     internal var name: String { "object" }
 
@@ -16216,7 +16216,7 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 /// ```html
 /// <video></video>
 /// ```
-public struct Video: ContentNode, AnyElement {
+public struct Video: ContentElement {
 
     internal var name: String { "video" }
 
@@ -16519,7 +16519,7 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 /// ```html
 /// <audio></audio>
 /// ```
-public struct Audio: ContentNode, AnyElement {
+public struct Audio: ContentElement {
 
     internal var name: String { "audio" }
 
@@ -16814,7 +16814,7 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 /// ```html
 /// <map></map>
 /// ```
-public struct Map: ContentNode, AnyElement {
+public struct Map: ContentElement {
     
     internal var name: String { "map" }
 
@@ -17017,7 +17017,7 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
 /// ```html
 /// <form></form>
 /// ```
-public struct Form: ContentNode, AnyElement {
+public struct Form: ContentElement {
 
     internal var name: String { "form" }
 
@@ -17320,7 +17320,7 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
 /// ```html
 /// <datalist></datalist>
 /// ```
-public struct DataList: ContentNode, AnyElement {
+public struct DataList: ContentElement {
 
     internal var name: String { "datalist" }
 
@@ -17591,7 +17591,7 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 /// ```html
 /// <output></output>
 /// ```
-public struct Output: ContentNode, AnyElement {
+public struct Output: ContentElement {
     
     internal var name: String { "output" }
 
@@ -17878,7 +17878,7 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 /// ```html
 /// <progress></progress>
 /// ```
-public struct Progress: ContentNode, AnyElement {
+public struct Progress: ContentElement {
 
     internal var name: String { "progress" }
 
@@ -18161,7 +18161,7 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 /// ```html
 /// <meter></meter>
 /// ```
-public struct Meter: ContentNode, AnyElement {
+public struct Meter: ContentElement {
 
     internal var name: String { "meter" }
 
@@ -18460,7 +18460,7 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 /// ```html
 /// <details></details>
 /// ```
-public struct Details: ContentNode, AnyElement {
+public struct Details: ContentElement {
 
     internal var name: String { "details" }
 
@@ -18735,7 +18735,7 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
 }
 
 /// The element defines a dialog box or window.
-public struct Dialog: ContentNode, AnyElement {
+public struct Dialog: ContentElement {
 
     internal var name: String { "dialog" }
 
@@ -19010,7 +19010,7 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 /// ```html
 /// <script></script>
 /// ```
-public struct Script: ContentNode, AnyElement {
+public struct Script: ContentElement {
 
     internal var name: String { "script" }
 
@@ -19221,7 +19221,7 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
 /// ```html
 /// <noscript></noscript>
 /// ```
-public struct NoScript: ContentNode, AnyElement {
+public struct NoScript: ContentElement {
 
     internal var name: String { "noscript" }
 
@@ -19416,7 +19416,7 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
 /// ```html
 /// <template></template>
 /// ```
-public struct Template: ContentNode, AnyElement {
+public struct Template: ContentElement {
 
     internal var name: String { "template" }
 
@@ -19611,7 +19611,7 @@ extension Template: GlobalAttributes, GlobalEventAttributes {
 /// ```html
 /// <canvas></canvas>
 /// ```
-public struct Canvas: ContentNode, AnyElement {
+public struct Canvas: ContentElement {
 
     internal var name: String { "canvas" }
 
@@ -19890,7 +19890,7 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 /// ```html
 /// <table></table>
 /// ```
-public struct Table: ContentNode, AnyElement {
+public struct Table: ContentElement {
 
     internal var name: String { "table" }
 
@@ -20169,7 +20169,7 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 /// ```html
 /// <svg></svg>
 /// ```
-public struct Vector: ContentNode, AnyElement {
+public struct Vector: ContentElement {
 
     internal var name: String { "svg" }
 

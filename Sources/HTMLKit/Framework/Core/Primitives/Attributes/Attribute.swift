@@ -14,7 +14,7 @@ public protocol Attribute {
     func custom(key: String, value: Any) -> Self
 }
 
-extension Attribute where Self: ContentNode {
+extension Attribute where Self: ContentElement {
     
     internal func mutate(key: String, value: Any) -> Self {
         
@@ -28,7 +28,7 @@ extension Attribute where Self: ContentNode {
     }
 }
 
-extension Attribute where Self: EmptyNode {
+extension Attribute where Self: EmptyElement {
     
     internal func mutate(key: String, value: Any) -> Self {
         

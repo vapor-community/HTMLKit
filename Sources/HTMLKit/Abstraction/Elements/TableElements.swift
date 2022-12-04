@@ -85,7 +85,7 @@ public typealias Th = HeaderCell
 /// ```html
 /// <caption></caption>
 /// ```
-public struct Caption: ContentNode, AnyElement {
+public struct Caption: ContentElement {
 
     internal var name: String { "caption" }
 
@@ -356,7 +356,7 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
 /// ```html
 /// <colgroup></colgroup>
 /// ```
-public struct ColumnGroup: ContentNode, AnyElement {
+public struct ColumnGroup: ContentElement {
 
     internal var name: String { "colgroup" }
 
@@ -555,7 +555,7 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
 /// ```html
 /// <col></col>
 /// ```
-public struct Column: ContentNode, AnyElement {
+public struct Column: ContentElement {
 
     internal var name: String { "col" }
 
@@ -754,7 +754,7 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
 /// ```html
 /// <tbody></tbody>
 /// ```
-public struct TableBody: ContentNode, AnyElement {
+public struct TableBody: ContentElement {
 
     internal var name: String { "tbody" }
 
@@ -1033,7 +1033,7 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 /// ```html
 /// <thead></thead>
 /// ```
-public struct TableHead: ContentNode, AnyElement {
+public struct TableHead: ContentElement {
 
     internal var name: String { "thead" }
 
@@ -1312,7 +1312,7 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 /// ```html
 /// <tfoot></tfoot>
 /// ```
-public struct TableFoot: ContentNode, AnyElement {
+public struct TableFoot: ContentElement {
 
     internal var name: String { "tfoot" }
 
@@ -1583,7 +1583,7 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 /// ```html
 /// <tr></tr>
 /// ```
-public struct TableRow: ContentNode, AnyElement {
+public struct TableRow: ContentElement {
 
     internal var name: String { "tr" }
 
@@ -1862,7 +1862,7 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 /// ```html
 /// <td></td>
 /// ```
-public struct DataCell: ContentNode, AnyElement {
+public struct DataCell: ContentElement {
 
     internal var name: String { "td" }
 
@@ -2145,13 +2145,13 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 /// ```html
 /// <th></th>
 /// ```
-public struct HeaderCell: ContentNode, AnyElement {
+public struct HeaderCell: ContentElement {
 
     internal var name: String { "th" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [Content]
+    internal var content: [Content]
 
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()

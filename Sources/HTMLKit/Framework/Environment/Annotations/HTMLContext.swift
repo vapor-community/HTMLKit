@@ -4,7 +4,7 @@
  */
 
 /// The class is for
-@propertyWrapper @dynamicMemberLookup public class HTMLContext<Value> {
+@propertyWrapper @dynamicMemberLookup public class HTMLContext<Value>: Content {
     
     internal let pathId: String
     
@@ -107,23 +107,5 @@ extension HTMLContext: Conditionable where Value == Bool {
     
     public func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
         return try manager.value(for: self)
-    }
-}
-
-extension HTMLContext: Node {
-    
-    internal func prerender(with formula: Formula) {
-        formula.add(ingridient: self)
-    }
-    
-    internal func render<T>(with manager: ContextManager<T>) -> String {
-        
-        var result = ""
-        
-        if let node = try? manager.value(for: self) as? Node {
-            result += node.render(with: manager)
-        }
-        
-        return result
     }
 }

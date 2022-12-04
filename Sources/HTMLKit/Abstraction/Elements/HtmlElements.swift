@@ -13,7 +13,7 @@ import OrderedCollections
 /// ```html
 /// <head></head>
 /// ```
-public struct Head: ContentNode, AnyElement {
+public struct Head: ContentElement {
 
     internal var name: String { "head" }
 
@@ -208,7 +208,7 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
 /// ```html
 /// <body></body>
 /// ```
-public struct Body: ContentNode, AnyElement {
+public struct Body: ContentElement, Element {
 
     internal var name: String { "body" }
 

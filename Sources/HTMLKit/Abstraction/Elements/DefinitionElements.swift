@@ -31,7 +31,7 @@ public typealias Dd = TermDefinition
 /// ```html
 /// <dt>
 /// ```
-public struct TermName: ContentNode, AnyElement {
+public struct TermName: ContentElement {
 
     internal var name: String { "dt" }
 
@@ -302,7 +302,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 /// ```html
 /// <dd></dd>
 /// ```
-public struct TermDefinition: ContentNode, AnyElement {
+public struct TermDefinition: ContentElement {
 
     internal var name: String { "dd" }
 

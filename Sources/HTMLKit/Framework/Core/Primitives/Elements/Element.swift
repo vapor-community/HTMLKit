@@ -4,13 +4,13 @@
  */
 
 /// A type that represents any html-element.
-public protocol AnyElement: Content {
+public protocol Element: Content {
     
     /// The behavoir of the the element.
     var scripts: String { get }
 }
 
-extension AnyElement {
+extension Element {
     
     public var scripts: String { "" }
     

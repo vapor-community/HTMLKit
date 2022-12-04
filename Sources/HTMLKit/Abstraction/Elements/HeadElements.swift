@@ -13,7 +13,7 @@ import OrderedCollections
 /// ```html
 /// <title></title>
 /// ```
-public struct Title: ContentNode, AnyElement {
+public struct Title: ContentElement {
 
     internal var name: String { "title" }
 
@@ -208,7 +208,7 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
 /// ```html
 /// <base>
 /// ```
-public struct Base: EmptyNode, AnyElement {
+public struct Base: EmptyElement {
 
     internal var name: String { "base" }
 
@@ -410,7 +410,7 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
 /// ```html
 /// <meta></meta>
 /// ```
-public struct Meta: EmptyNode, AnyElement {
+public struct Meta: EmptyElement {
 
     internal var name: String { "meta" }
 
@@ -628,7 +628,7 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
 /// ```html
 /// <style></style>
 /// ```
-public struct Style: ContentNode, AnyElement {
+public struct Style: ContentElement {
 
     internal var name: String { "style" }
     
@@ -831,7 +831,7 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
 /// ```html
 /// <link>
 /// ```
-public struct Link: EmptyNode, AnyElement {
+public struct Link: EmptyElement {
 
     internal var name: String { "link" }
 

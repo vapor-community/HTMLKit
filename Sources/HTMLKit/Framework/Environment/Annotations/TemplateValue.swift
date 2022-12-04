@@ -6,7 +6,7 @@
 import Foundation
 
 /// The enum is for
-@propertyWrapper @dynamicMemberLookup public enum TemplateValue<Value> {
+@propertyWrapper @dynamicMemberLookup public enum TemplateValue<Value>: Content {
     
     case constant(Value)
     case dynamic(HTMLContext<Value>)
@@ -125,8 +125,6 @@ import Foundation
     }
 }
 
-extension TemplateValue: Content where Value: Content {}
-
 extension TemplateValue: ExpressibleByStringLiteral, ExpressibleByUnicodeScalarLiteral, ExpressibleByExtendedGraphemeClusterLiteral where Value == String {
 
     public init(stringLiteral value: String) {
@@ -238,41 +236,5 @@ extension TemplateValue where Value: Strideable {
     /// The operator for a range condition
     public static func ~=(lhs: TemplateValue<Value>, rhs: ClosedRange<Value>) -> Conditionable {
         return BetweenCondition(lhs: lhs, rhs: rhs)
-    }
-}
-
-extension TemplateValue: Node where Value: Content {
-    
-    func prerender(with formula: Formula) {
-        
-        switch self {
-        case .constant(let value):
-            
-            if let node = value as? Node {
-                node.prerender(with: formula)
-            }
-            
-        case .dynamic(let variable):
-            variable.prerender(with: formula)
-        }
-    }
-    
-    func render<T>(with manager: ContextManager<T>) -> String {
-        
-        var result = ""
-        
-        switch self {
-        case .constant(let value):
-            
-            if let node = value as? Node {
-                result += node.render(with: manager)
-            }
-            
-            
-        case .dynamic(let variable):
-            result += variable.render(with: manager)
-        }
-        
-        return result
     }
 }

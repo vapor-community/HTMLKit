@@ -13,7 +13,7 @@ import OrderedCollections
 /// ```html
 /// <area></area>
 /// ```
-public struct Area: ContentNode, AnyElement {
+public struct Area: ContentElement {
 
     internal var name: String { "area" }
 

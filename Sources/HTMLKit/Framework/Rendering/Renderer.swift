@@ -57,29 +57,6 @@ public class Renderer {
         
         let formula = Formula()
         
-        if let contents = view.body as? [Content] {
-            
-            for content in contents {
-                
-                if let node = content as? Node {
-                    node.prerender(with: formula)
-                }
-                
-                if let layout = content as? Layout {
-                        
-                    if let contents = layout.body as? [Content] {
-                        
-                        for content in contents {
-
-                            if let node = content as? Node {
-                                node.prerender(with: formula)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
         return formula
     }
     
@@ -89,10 +66,6 @@ public class Renderer {
         var result = ""
         
         for ingridient in formula.ingredients {
-            
-            if let node = ingridient as? Node {
-                result += node.render(with: manager)
-            }
         }
         
         return result
@@ -121,16 +94,6 @@ public class Renderer {
         
         var result = ""
         
-        if let contents = view.body as? [Content] {
-            
-            for content in contents {
-                
-                if let node = content as? Node {
-                    result += node.render(with: manager)
-                }
-            }
-        }
-        
         return result
     }
     
@@ -146,16 +109,6 @@ public class Renderer {
         }
         
         var result = ""
-        
-        if let contents = view.body as? [Content] {
-            
-            for content in contents {
-                
-                if let node = content as? Node {
-                    result += node.render(with: manager)
-                }
-            }
-        }
         
         return result
     }

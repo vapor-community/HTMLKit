@@ -7,7 +7,7 @@
  */
 
 /// The statement is for
-public struct ForEach<Values> where Values: Sequence {
+public struct ForEach<Values>: Content where Values: Sequence {
 
     internal var isEnumerated: Bool
     
@@ -102,77 +102,5 @@ public struct ForEach<Values> where Values: Sequence {
     
     public init(enumerated context: Values, @ContentBuilder<Content> content: ((element: TemplateValue<Values.Element>, index: TemplateValue<Int>)) -> Content) {
         self.init(enumerated: .constant(context), content: content)
-    }
-}
-
-extension ForEach: Node {
-    
-    internal func prerender(with formula: Formula) {
-        
-        if let nodes = self.content as? [Node] {
-            
-            for node in nodes {
-                node.prerender(with: formula)
-            }
-        }
-    }
-    
-    internal func render<T>(with manager: ContextManager<T>) -> String {
-        
-        var result = ""
-        
-        switch self.context {
-        case .constant(_):
-        
-            for ingriedient in self.formula.ingredients {
-                
-                if let node = ingriedient as? Node {
-                    result += node.render(with: manager)
-                }
-            }
-            
-        case .dynamic(let variable):
-            
-            do {
-                
-                let elements = try manager.value(for: variable)
-                
-                if isEnumerated {
-                    
-                    for (index, element) in elements.enumerated() {
-                        
-                        manager.set(index, for: HTMLContext(Int.self, rootId: variable.pathId + "-loop-index"))
-                        
-                        manager.set(element, for: HTMLContext(Values.Element.self, rootId: variable.pathId + "-loop"))
-                        
-                        for ingridient in formula.ingredients {
-                            
-                            if let node = ingridient as? Node {
-                                result += node.render(with: manager)
-                            }
-                        }
-                    }
-    
-                } else {
-                    
-                    for element in elements {
-                        
-                        manager.set(element, for: HTMLContext(Values.Element.self, rootId: variable.pathId + "-loop"))
-                        
-                        for ingridient in formula.ingredients {
-                            
-                            if let node = ingridient as? Node {
-                                result += node.render(with: manager)
-                            }
-                        }
-                    }
-                }
-                
-            } catch {
-                return result
-            }
-        }
-        
-        return result
     }
 }

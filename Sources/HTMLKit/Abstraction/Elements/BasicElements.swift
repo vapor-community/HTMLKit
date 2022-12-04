@@ -13,9 +13,9 @@ import OrderedCollections
 /// ```html
 /// <!-- -->
 /// ```
-public struct Comment: CommentNode, AnyElement {
+public struct Comment: CommentElement {
     
-    public var content: String
+    internal var content: String
     
     public init(_ content: String) {
         self.content = content
@@ -27,9 +27,9 @@ public struct Comment: CommentNode, AnyElement {
 /// ```html
 /// <!DOCTYPE html>
 /// ```
-public struct Document: DocumentNode, AnyElement {
+public struct Document: DocumentElement {
     
-    public var content: String
+    internal var content: String
     
     public init(_ value: Values.Doctype) {
         self.content = value.rawValue
@@ -51,7 +51,7 @@ extension Document {
 /// ```html
 /// <html></html>
 /// ```
-public struct Html: ContentNode, AnyElement {
+public struct Html: ContentElement {
 
     internal var name: String { "html" }
 

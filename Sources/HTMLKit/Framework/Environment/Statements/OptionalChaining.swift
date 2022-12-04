@@ -7,7 +7,7 @@
  */
 
 /// The function is for
-public struct Unwrap {
+public struct Unwrap: Content {
 
     internal let content: IF
     
@@ -44,16 +44,5 @@ public struct Unwrap {
 
     public func `else`(@ContentBuilder<Content> content: () -> Content) -> Content {
         self.content.else(content: content)
-    }
-}
-
-extension Unwrap: Node {
-    
-    func prerender(with formula: Formula) {
-        content.prerender(with: formula)
-    }
-    
-    func render<T>(with manager: ContextManager<T>) -> String {
-        return content.render(with: manager)
     }
 }
