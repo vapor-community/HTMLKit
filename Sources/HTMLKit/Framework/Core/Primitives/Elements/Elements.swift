@@ -52,24 +52,6 @@ extension ContentElement {
        
         return .init(attributes: attributes, content: self.content)
     }
-    
-    internal func prerender(with formula: Formula) {
-        
-        formula.add(ingridient: startTag)
-        
-        formula.add(ingridient: endTag)
-    }
-    
-    internal func render<T>(with manager: ContextManager<T>) -> String {
-        
-        var result = ""
-        
-        result += startTag
-        
-        result += endTag
-        
-        return result
-    }
 }
 
 /// A type that defines a node without any content.
@@ -109,14 +91,6 @@ extension EmptyElement {
         
         return .init(attributes: attributes)
     }
-    
-    internal func prerender(with formula: Formula) {
-        formula.add(ingridient: startTag)
-    }
-    
-    internal func render<T>(with manager: ContextManager<T>) -> String {
-        return startTag
-    }
 }
 
 /// A type that defines a comment node.
@@ -135,17 +109,6 @@ extension CommentElement {
     internal var endTag: String {
         return "-->"
     }
-    
-    internal func prerender(with formula: Formula) {
-        
-        formula.add(ingridient: startTag)
-        formula.add(ingridient: content)
-        formula.add(ingridient: endTag)
-    }
-    
-    internal func render<T>(with manager: ContextManager<T>) -> String {
-        return startTag
-    }
 }
 
 /// The protocol defines the document node.
@@ -159,13 +122,5 @@ extension DocumentElement {
     
     internal var startTag: String {
         return "<!DOCTYPE \(content)>"
-    }
-    
-    internal func prerender(with formula: Formula) {
-        formula.add(ingridient: startTag)
-    }
-    
-    internal func render<T>(with manager: ContextManager<T>) -> String {
-        return startTag
     }
 }
