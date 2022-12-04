@@ -6,21 +6,21 @@
 import Foundation
 
 /// A type that represents any html-content.
-public protocol AnyContent {
+public protocol Content {
 }
 
-public func +(lhs: AnyContent, rhs: AnyContent) -> AnyContent {
+public func +(lhs: Content, rhs: Content) -> Content {
     
-    var output: [AnyContent] = []
+    var output: [Content] = []
 
-    if let list = lhs as? [AnyContent] {
+    if let list = lhs as? [Content] {
         output.append(contentsOf: list)
         
     } else {
         output.append(lhs)
     }
 
-    if let list = rhs as? [AnyContent] {
+    if let list = rhs as? [Content] {
         output.append(list)
         
     } else {
@@ -30,6 +30,6 @@ public func +(lhs: AnyContent, rhs: AnyContent) -> AnyContent {
     return output
 }
 
-public func +=(lhs: inout AnyContent, rhs: AnyContent) {
+public func +=(lhs: inout Content, rhs: Content) {
     lhs = lhs + rhs
 }

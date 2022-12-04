@@ -4,7 +4,7 @@
  */
 
 /// A type that represents any html-element.
-public protocol AnyElement: AnyContent {
+public protocol AnyElement: Content {
     
     /// The behavoir of the the element.
     var scripts: String { get }

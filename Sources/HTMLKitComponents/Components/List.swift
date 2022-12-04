@@ -9,7 +9,7 @@ import HTMLKit
 public struct List: Component {
     
     /// The content of the list.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the list.
     internal var classes: [String]
@@ -18,21 +18,21 @@ public struct List: Component {
     internal var events: [String]?
     
     /// Creates a list.
-    public init(direction: Tokens.FlowDirection, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(direction: Tokens.FlowDirection, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["list", direction.rawValue]
     }
     
     /// Creates a list.
-    internal init(content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(content: [Content], classes: [String], events: [String]?) {
         
         self.content = content
         self.classes = classes
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         UnorderedList {
             content
         }
@@ -53,7 +53,7 @@ public struct List: Component {
 public struct ListRow: Component {
 
     /// The content of the row.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the row.
     internal var classes: [String]
@@ -62,21 +62,21 @@ public struct ListRow: Component {
     internal var events: [String]?
     
     /// Creates a list row.
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["list-row"]
     }
     
     /// Creates a list row.
-    internal init(content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(content: [Content], classes: [String], events: [String]?) {
         
         self.content = content
         self.classes = classes
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         ListItem {
             content
         }

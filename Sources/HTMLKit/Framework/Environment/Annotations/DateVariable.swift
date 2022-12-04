@@ -8,7 +8,7 @@ import Foundation
 /// A struct that renders a data in a specified format
 ///
 ///
-public struct DateVariable: AnyContent {
+public struct DateVariable: Content {
 
     public enum Errors: LocalizedError {
         

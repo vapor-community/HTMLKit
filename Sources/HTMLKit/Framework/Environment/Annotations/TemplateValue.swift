@@ -125,7 +125,7 @@ import Foundation
     }
 }
 
-extension TemplateValue: AnyContent where Value: AnyContent {}
+extension TemplateValue: Content where Value: Content {}
 
 extension TemplateValue: ExpressibleByStringLiteral, ExpressibleByUnicodeScalarLiteral, ExpressibleByExtendedGraphemeClusterLiteral where Value == String {
 
@@ -151,7 +151,7 @@ extension TemplateValue: ExpressibleByIntegerLiteral where Value == Int {
 
 extension TemplateValue where Value: Sequence {
 
-    func forEach(@ContentBuilder<AnyContent> content: (TemplateValue<Value.Element>) -> AnyContent) -> AnyContent {
+    func forEach(@ContentBuilder<Content> content: (TemplateValue<Value.Element>) -> Content) -> Content {
         ForEach(in: self, content: content)
     }
 }
@@ -172,22 +172,22 @@ extension TemplateValue: Conditionable where Value == Bool {
 
 extension TemplateValue where Value == Date {
     
-    public func style(date: DateFormatter.Style = .short, time: DateFormatter.Style = .short) -> AnyContent {
+    public func style(date: DateFormatter.Style = .short, time: DateFormatter.Style = .short) -> Content {
         return DateVariable(dateReference: .solid(self), format: .style(.init(dateStyle: date, timeStyle: time)))
     }
 
-    public func formatted(string format: String) -> AnyContent {
+    public func formatted(string format: String) -> Content {
         return DateVariable(dateReference: .solid(self), format: .literal(format))
     }
 }
 
 extension TemplateValue where Value == Date? {
 
-    public func style(date: DateFormatter.Style = .short, time: DateFormatter.Style = .short) -> AnyContent {
+    public func style(date: DateFormatter.Style = .short, time: DateFormatter.Style = .short) -> Content {
         return DateVariable(dateReference: .optional(self), format: .style(.init(dateStyle: date, timeStyle: time)))
     }
 
-    public func formatted(string format: String) -> AnyContent {
+    public func formatted(string format: String) -> Content {
         return DateVariable(dateReference: .optional(self), format: .literal(format))
     }
 }
@@ -241,7 +241,7 @@ extension TemplateValue where Value: Strideable {
     }
 }
 
-extension TemplateValue: Node where Value: AnyContent {
+extension TemplateValue: Node where Value: Content {
     
     func prerender(with formula: Formula) {
         

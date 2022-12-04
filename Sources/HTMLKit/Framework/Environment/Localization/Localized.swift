@@ -9,7 +9,7 @@ import Foundation
 public struct NoData: Encodable {}
 
 /// The struct ist for
-public struct Localized<B>: AnyContent where B: Encodable {
+public struct Localized<B>: Content where B: Encodable {
 
     public enum Errors: Error {
         case missingLingoConfig

@@ -19,7 +19,7 @@ final class ProviderTests: XCTestCase {
         
         struct IndexView: HTMLKit.View {
             
-            var body: AnyContent {
+            var body: HTMLKit.Content {
                 Document(.html5)
                 Html {
                     Head {
@@ -41,7 +41,7 @@ final class ProviderTests: XCTestCase {
             @TemplateValue(TestContext.self)
             var context
             
-            var body: AnyContent {
+            var body: HTMLKit.Content {
                 Document(.html5)
                 Html {
                     Head {
@@ -60,7 +60,7 @@ final class ProviderTests: XCTestCase {
         
         struct EditView: HTMLKit.View {
             
-            var body: AnyContent {
+            var body: HTMLKit.Content {
                 Document(.html5)
                 Html {
                     Head {

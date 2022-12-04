@@ -4,7 +4,7 @@
  */
 
 /// A type that represents any html-node.
-internal protocol Node: AnyContent {
+internal protocol Node: Content {
     
     ///  Prerenders the node.
     func prerender(with formula: Formula)

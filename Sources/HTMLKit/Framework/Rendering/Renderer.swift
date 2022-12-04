@@ -57,7 +57,7 @@ public class Renderer {
         
         let formula = Formula()
         
-        if let contents = view.body as? [AnyContent] {
+        if let contents = view.body as? [Content] {
             
             for content in contents {
                 
@@ -67,7 +67,7 @@ public class Renderer {
                 
                 if let layout = content as? Layout {
                         
-                    if let contents = layout.body as? [AnyContent] {
+                    if let contents = layout.body as? [Content] {
                         
                         for content in contents {
 
@@ -121,7 +121,7 @@ public class Renderer {
         
         var result = ""
         
-        if let contents = view.body as? [AnyContent] {
+        if let contents = view.body as? [Content] {
             
             for content in contents {
                 
@@ -147,7 +147,7 @@ public class Renderer {
         
         var result = ""
         
-        if let contents = view.body as? [AnyContent] {
+        if let contents = view.body as? [Content] {
             
             for content in contents {
                 

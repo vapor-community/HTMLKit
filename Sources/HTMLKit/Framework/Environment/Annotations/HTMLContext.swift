@@ -67,7 +67,7 @@
     }
 }
 
-extension HTMLContext where Value: AnyContent {
+extension HTMLContext where Value: Content {
 
     internal func applyEscaping(_ render: String) -> String {
         

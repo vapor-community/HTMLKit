@@ -21,7 +21,7 @@ public struct Divider: Component {
         self.classes = classes
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         HorizontalRule()
             .class(classes.joined(separator: " "))
     }

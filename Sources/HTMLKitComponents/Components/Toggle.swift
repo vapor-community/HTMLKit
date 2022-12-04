@@ -32,7 +32,7 @@ public struct Toggle: Component {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Label {
             Input()
                 .type(.checkbox)
@@ -47,7 +47,7 @@ public struct Toggle: Component {
     }
     
     /// The behaviour of the toggle.
-    public var scripts: AnyContent {
+    public var scripts: Content {
         
         if let events = self.events {
             return [Script { events }]

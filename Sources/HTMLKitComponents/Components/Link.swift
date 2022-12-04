@@ -13,7 +13,7 @@ public struct Link: Component {
     internal let destination: TemplateValue<String>
     
     /// The content of the link.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the link.
     internal var classes: [String]
@@ -22,7 +22,7 @@ public struct Link: Component {
     internal var events: [String]?
     
     /// Creates a link.
-    public init(destination: TemplateValue<String>, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(destination: TemplateValue<String>, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.destination = destination
         self.content = content()
@@ -30,7 +30,7 @@ public struct Link: Component {
     }
     
     /// Creates a link.
-    internal init(destination: TemplateValue<String>, content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(destination: TemplateValue<String>, content: [Content], classes: [String], events: [String]?) {
         
         self.destination = destination
         self.content = content
@@ -38,7 +38,7 @@ public struct Link: Component {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Anchor {
             content
         }

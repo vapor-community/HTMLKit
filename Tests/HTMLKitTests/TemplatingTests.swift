@@ -15,7 +15,7 @@ final class TemplatingTests: XCTestCase {
         
         struct MainView: View {
             
-            var body: AnyContent {
+            var body: Content {
                 Document(.html5)
                 Html {
                     Head {
@@ -35,7 +35,7 @@ final class TemplatingTests: XCTestCase {
             @TemplateValue(String.self)
             var context
             
-            var body: AnyContent {
+            var body: Content {
                 Heading1 {
                     context
                 }
@@ -67,13 +67,13 @@ final class TemplatingTests: XCTestCase {
         
         struct MainView: View {
             
-            var content: [AnyContent]
+            var content: [Content]
             
-            init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+            init(@ContentBuilder<Content> content: () -> [Content]) {
                 self.content = content()
             }
             
-            var body: AnyContent {
+            var body: Content {
                 Document(.html5)
                 Html {
                     Head {
@@ -93,7 +93,7 @@ final class TemplatingTests: XCTestCase {
             @TemplateValue(String.self)
             var context
             
-            var body: AnyContent {
+            var body: Content {
                 MainView {
                     Heading1 {
                         context

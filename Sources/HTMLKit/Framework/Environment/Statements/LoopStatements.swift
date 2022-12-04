@@ -17,9 +17,9 @@ public struct ForEach<Values> where Values: Sequence {
 
     internal let formula: Formula
     
-    internal let content: AnyContent
+    internal let content: Content
     
-    public init(in context: TemplateValue<Values>, @ContentBuilder<AnyContent> content: (TemplateValue<Values.Element>) -> AnyContent) {
+    public init(in context: TemplateValue<Values>, @ContentBuilder<Content> content: (TemplateValue<Values.Element>) -> Content) {
 
         self.isEnumerated = false
         self.condition = true
@@ -35,7 +35,7 @@ public struct ForEach<Values> where Values: Sequence {
                 
             }.map { value in
                 
-                if let array = value as? [AnyContent] {
+                if let array = value as? [Content] {
                     return array[0]
                     
                 } else {
@@ -48,11 +48,11 @@ public struct ForEach<Values> where Values: Sequence {
         }
     }
     
-    public init(in values: Values, @ContentBuilder<AnyContent> content: (TemplateValue<Values.Element>) -> AnyContent) {
+    public init(in values: Values, @ContentBuilder<Content> content: (TemplateValue<Values.Element>) -> Content) {
         self.init(in: .constant(values), content: content)
     }
     
-    public init(in context: TemplateValue<Values?>, @ContentBuilder<AnyContent> content: (TemplateValue<Values.Element>) -> AnyContent) {
+    public init(in context: TemplateValue<Values?>, @ContentBuilder<Content> content: (TemplateValue<Values.Element>) -> Content) {
 
         self.isEnumerated = false
         self.condition = context.isDefined
@@ -77,7 +77,7 @@ public struct ForEach<Values> where Values: Sequence {
         }
     }
 
-    public init(enumerated context: TemplateValue<Values>, @ContentBuilder<AnyContent> content: ((element: TemplateValue<Values.Element>, index: TemplateValue<Int>)) -> AnyContent) {
+    public init(enumerated context: TemplateValue<Values>, @ContentBuilder<Content> content: ((element: TemplateValue<Values.Element>, index: TemplateValue<Int>)) -> Content) {
 
         self.isEnumerated = true
         self.condition = true
@@ -100,7 +100,7 @@ public struct ForEach<Values> where Values: Sequence {
         }
     }
     
-    public init(enumerated context: Values, @ContentBuilder<AnyContent> content: ((element: TemplateValue<Values.Element>, index: TemplateValue<Int>)) -> AnyContent) {
+    public init(enumerated context: Values, @ContentBuilder<Content> content: ((element: TemplateValue<Values.Element>, index: TemplateValue<Int>)) -> Content) {
         self.init(enumerated: .constant(context), content: content)
     }
 }

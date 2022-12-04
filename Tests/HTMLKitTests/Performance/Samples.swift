@@ -12,13 +12,13 @@ struct SampleContext: Codable  {
 
 struct MainView: View {
 
-    var content: [AnyContent]
+    var content: [Content]
     
-    init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
 
-    var body: AnyContent {
+    var body: Content {
         Document(.html5)
         Html {
             Head {
@@ -53,7 +53,7 @@ struct ChildView: View {
     @TemplateValue(SampleContext.self)
     var context
     
-    var body: AnyContent {
+    var body: Content {
         MainView {
             Header {
                 Heading1 {
@@ -111,7 +111,7 @@ struct ChildView: View {
 
 struct ComponentView: Component {
  
-    var body: AnyContent {
+    var body: Content {
         Section {
             Heading1 {
                 "Heading1"

@@ -23,7 +23,7 @@ public struct MetaTitle: Component {
         self.useTwitter = useTwitter
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Title {
             self.title.rawValue
         }
@@ -49,7 +49,7 @@ public struct MetaDescription: Component {
     
     private let useTwitter: Conditionable
 
-    public var body: AnyContent {
+    public var body: Content {
         Meta()
             .name(.description)
             .content(self.description)
@@ -81,7 +81,7 @@ public struct Favicon: Component {
         self.url = url
     }
 
-    public var body: AnyContent {
+    public var body: Content {
         Link()
             .relationship(.shortcutIcon)
             .reference(self.url.rawValue)
@@ -97,7 +97,7 @@ public struct Stylesheet: Component {
         self.url = url
     }
 
-    public var body: AnyContent {
+    public var body: Content {
         Link()
             .relationship(.stylesheet)
             .reference(self.url)
@@ -128,7 +128,7 @@ public struct Viewport: Component {
         self.internalScale = internalScale
     }
 
-    public var body: AnyContent {
+    public var body: Content {
         Meta()
             .name(.viewport)
             .content("width=\(self.mode.width), initial-scale=\(self.internalScale)")
@@ -142,7 +142,7 @@ public struct Author: Component {
 
     private var handle: TemplateValue<String?>
 
-    public var body: AnyContent {
+    public var body: Content {
         Meta()
             .name(.author)
             .content(self.author)
@@ -260,7 +260,7 @@ public struct Robots: Component {
 
     private var indexingOptions: [IndexingOption]
 
-    public var body: AnyContent {
+    public var body: Content {
         Meta()
             .name(.robots)
             .content(self.indexingOptions.map(\.description).joined(separator: ", "))

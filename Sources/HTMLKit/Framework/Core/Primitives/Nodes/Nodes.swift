@@ -8,7 +8,7 @@ import OrderedCollections
 /// A type that defines a node with content.
 internal protocol ContentNode: Node {
 
-    associatedtype Content
+    associatedtype ContentType
     
     /// The name of the node.
     var name: String { get }
@@ -17,14 +17,14 @@ internal protocol ContentNode: Node {
     var attributes: OrderedDictionary<String, Any>? { get }
     
     /// The content of the node.
-    var content: [Content] { get }
+    var content: [ContentType] { get }
     
     /// Initiates a node.
     ///
     /// - Parameters:
     ///    - attributes:
     ///    - content:
-    init(attributes: OrderedDictionary<String, Any>?, content: [Content])
+    init(attributes: OrderedDictionary<String, Any>?, content: [ContentType])
 }
 
 extension ContentNode {
@@ -77,7 +77,7 @@ extension ContentNode {
             }
         }
         
-        if let contents = content as? [AnyContent] {
+        if let contents = content as? [Content] {
             
             for content in contents {
                 

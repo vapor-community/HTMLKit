@@ -9,7 +9,7 @@ import HTMLKit
 public struct Form: Component {
     
     /// The content of the container.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the container.
     internal var classes: [String]
@@ -18,21 +18,21 @@ public struct Form: Component {
     internal var events: [String]?
     
     /// Creates a form container.
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["form"]
     }
     
     /// Creates a form container.
-    internal init(content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(content: [Content], classes: [String], events: [String]?) {
         
         self.content = content
         self.classes = classes
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         HTMLKit.Form {
             content
         }
@@ -48,7 +48,7 @@ public struct FieldLabel: Component {
     internal let id: TemplateValue<String>
     
     /// The content of the label.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the label.
     internal var classes: [String]
@@ -57,7 +57,7 @@ public struct FieldLabel: Component {
     internal var events: [String]?
     
     /// Creates a field label.
-    public init(for id: TemplateValue<String>, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(for id: TemplateValue<String>, @ContentBuilder<Content> content: () -> [Content]) {
       
         self.id = id
         self.content = content()
@@ -65,7 +65,7 @@ public struct FieldLabel: Component {
     }
     
     /// Creates a field label.
-    internal init(for id: TemplateValue<String>, content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(for id: TemplateValue<String>, content: [Content], classes: [String], events: [String]?) {
       
         self.id = id
         self.content = content
@@ -73,7 +73,7 @@ public struct FieldLabel: Component {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Label {
             content
         }
@@ -114,7 +114,7 @@ public struct TextField: Component {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Input()
             .type(.text)
             .id(name)
@@ -126,7 +126,7 @@ public struct TextField: Component {
     }
     
     /// The behaviour of the text field.
-    public var scripts: AnyContent {
+    public var scripts: Content {
         
         if let events = self.events {
             return [Script { events }]
@@ -191,7 +191,7 @@ public struct TextEditor: Component {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         TextArea {
             content
         }
@@ -258,7 +258,7 @@ public struct CheckField: Component {
         self.classes = classes
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Input()
             .type(.checkbox)
             .id(name)
@@ -315,7 +315,7 @@ public struct RadioSelect: Component {
         self.classes = classes
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Input()
             .type(.radio)
             .id(name)
@@ -351,7 +351,7 @@ public struct SelectField: Component {
     internal let name: TemplateValue<String>
     
     /// The content of the field.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the field.
     internal var classes: [String]
@@ -360,7 +360,7 @@ public struct SelectField: Component {
     internal var events: [String]?
     
     /// Creates a select field.
-    public init(name: TemplateValue<String>, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(name: TemplateValue<String>, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.name = name
         self.content = content()
@@ -368,7 +368,7 @@ public struct SelectField: Component {
     }
     
     /// Creates a select field.
-    internal init(name: TemplateValue<String>, content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(name: TemplateValue<String>, content: [Content], classes: [String], events: [String]?) {
         
         self.name = name
         self.content = content
@@ -376,7 +376,7 @@ public struct SelectField: Component {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Select {
             content
         }
@@ -437,7 +437,7 @@ public struct SecureField: Component {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Input()
             .type(.password)
             .id(name)
@@ -449,7 +449,7 @@ public struct SecureField: Component {
     }
     
     /// The behaviour of the field.
-    public var scripts: AnyContent {
+    public var scripts: Content {
         
         if let events = self.events {
             return [Script { events }]
@@ -505,7 +505,7 @@ public struct Slider: Component {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Input()
             .type(.range)
             .id(name)
@@ -514,7 +514,7 @@ public struct Slider: Component {
     }
     
     /// The behaviour of the slider.
-    public var scripts: AnyContent {
+    public var scripts: Content {
         
         if let events = self.events {
             return [Script { events }]
@@ -556,7 +556,7 @@ public struct DatePicker: Component {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Input()
             .type(.date)
             .id(name)
@@ -568,7 +568,7 @@ public struct DatePicker: Component {
     }
     
     /// The behaviour of the picker.
-    public var scripts: AnyContent {
+    public var scripts: Content {
         
         if let events = self.events {
             return [Script { events }]
@@ -629,7 +629,7 @@ public struct SearchField: Component {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Input()
             .type(.search)
             .id(name)
@@ -641,7 +641,7 @@ public struct SearchField: Component {
     }
     
     /// The behaviour of the field.
-    public var scripts: AnyContent {
+    public var scripts: Content {
         
         if let events = self.events {
             return [Script { events }]
@@ -679,7 +679,7 @@ public struct ProgressView: Component {
     internal let value: TemplateValue<String?>
     
     /// The content of the view.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the view.
     internal var classes: [String]
@@ -688,7 +688,7 @@ public struct ProgressView: Component {
     internal var events: [String]?
     
     /// Creates a progress view.
-    public init(name: TemplateValue<String>, value: TemplateValue<String?> = .constant(nil), @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(name: TemplateValue<String>, value: TemplateValue<String?> = .constant(nil), @ContentBuilder<Content> content: () -> [Content]) {
         
         self.name = name
         self.value = value
@@ -697,7 +697,7 @@ public struct ProgressView: Component {
     }
     
     /// Creates a progress bar.
-    internal init(name: TemplateValue<String>, value: TemplateValue<String?>, content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(name: TemplateValue<String>, value: TemplateValue<String?>, content: [Content], classes: [String], events: [String]?) {
         
         self.name = name
         self.value = value
@@ -706,7 +706,7 @@ public struct ProgressView: Component {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Progress {
             content
         }
@@ -717,7 +717,7 @@ public struct ProgressView: Component {
     }
     
     /// The behaviour of the view.
-    public var scripts: AnyContent {
+    public var scripts: Content {
         
         if let events = self.events {
             return [Script { events }]

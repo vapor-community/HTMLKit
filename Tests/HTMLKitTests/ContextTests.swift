@@ -24,7 +24,7 @@ final class ContextTests: XCTestCase {
         @TemplateValue(MainContext.self)
         var context
         
-        var body: AnyContent {
+        var body: Content {
             Heading1 {
                 context.category
             }
@@ -37,7 +37,7 @@ final class ContextTests: XCTestCase {
         @TemplateValue(ChildContext.self)
         var context
         
-        var body: AnyContent {
+        var body: Content {
             Section{
                 Heading2 {
                     context.headline

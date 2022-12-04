@@ -15,9 +15,9 @@ public struct Unwrap {
         self.content = content
     }
 
-    public init<T>(_ value: TemplateValue<T?>, @ContentBuilder<AnyContent> content: (TemplateValue<T>) -> AnyContent) {
+    public init<T>(_ value: TemplateValue<T?>, @ContentBuilder<Content> content: (TemplateValue<T>) -> Content) {
         
-        var ifContent: AnyContent = ""
+        var ifContent: Content = ""
         
         if value.isMasqueradingOptional {
             
@@ -42,7 +42,7 @@ public struct Unwrap {
         }
     }
 
-    public func `else`(@ContentBuilder<AnyContent> content: () -> AnyContent) -> AnyContent {
+    public func `else`(@ContentBuilder<Content> content: () -> Content) -> Content {
         self.content.else(content: content)
     }
 }

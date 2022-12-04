@@ -5,10 +5,10 @@
 
 import Foundation
 
-extension Array: AnyContent {
+extension Array: Content {
 }
 
-extension String: AnyContent {}
+extension String: Content {}
 
 extension String: Node {
     
@@ -22,7 +22,7 @@ extension String: Node {
     }
 }
 
-extension Int: AnyContent {}
+extension Int: Content {}
 
 extension Int: Node {
     
@@ -35,7 +35,7 @@ extension Int: Node {
     }
 }
 
-extension Float: AnyContent {}
+extension Float: Content {}
 
 extension Float: Node {
 
@@ -48,7 +48,7 @@ extension Float: Node {
     }
 }
 
-extension Double: AnyContent {}
+extension Double: Content {}
 
 extension Double: Node {
 
@@ -61,7 +61,7 @@ extension Double: Node {
     }
 }
 
-extension Bool: AnyContent {}
+extension Bool: Content {}
 
 extension Bool: Node {
     
@@ -84,7 +84,7 @@ extension Bool: Conditionable {
 extension Sequence {
     
     @available(*, deprecated, message: "The method will be removed entirely.")
-    public func htmlForEach(@ContentBuilder<AnyContent> content: (TemplateValue<Element>) -> AnyContent) -> AnyContent {
+    public func htmlForEach(@ContentBuilder<Content> content: (TemplateValue<Element>) -> Content) -> Content {
         ForEach(in: .constant(self), content: content)
     }
 }

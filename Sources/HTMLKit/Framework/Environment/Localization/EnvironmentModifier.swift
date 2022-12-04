@@ -4,9 +4,9 @@
  */
 
 /// The modifier
-public struct EnvironmentModifier: AnyContent {
+public struct EnvironmentModifier: Content {
 
-    public let view: AnyContent
+    public let view: Content
     
     public let locale: TemplateValue<String>
 }

@@ -8,7 +8,7 @@ import Foundation
 internal class Formula {
 
     /// The different ingredients of the content.
-    internal var ingredients: [AnyContent]
+    internal var ingredients: [Content]
 
     /// The calender for localization.
     internal var calendar: Calendar
@@ -25,7 +25,7 @@ internal class Formula {
     }
 
     /// Appends the ingredients
-    internal func add(ingridient: some AnyContent) {
+    internal func add(ingridient: some Content) {
         self.ingredients.append(ingridient)
     }
 }

@@ -28,7 +28,7 @@ public struct Image: Component {
         self.classes = classes
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Division {
             HTMLKit.Image()
                 .source(source.rawValue)

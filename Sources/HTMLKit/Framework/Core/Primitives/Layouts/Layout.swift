@@ -5,8 +5,8 @@
 
 import Foundation
 
-public protocol Layout: AnyContent {
+public protocol Layout: Content {
     
     /// The content of the page.
-    @ContentBuilder<AnyContent> var body: AnyContent { get }
+    @ContentBuilder<Content> var body: Content { get }
 }

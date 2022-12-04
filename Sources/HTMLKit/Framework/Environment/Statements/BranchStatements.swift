@@ -13,7 +13,7 @@ public struct IF {
 
         internal let condition: Conditionable
         
-        internal var content: AnyContent?
+        internal var content: Content?
         
         internal init(condition: Conditionable) {
             
@@ -27,7 +27,7 @@ public struct IF {
         self.conditions = conditions
     }
     
-    public init(_ condition: Conditionable, @ContentBuilder<AnyContent> content: () -> AnyContent) {
+    public init(_ condition: Conditionable, @ContentBuilder<Content> content: () -> Content) {
         
         let condition = Condition(condition: condition)
         condition.content = content()
@@ -35,7 +35,7 @@ public struct IF {
         self.conditions = [condition]
     }
     
-    public func elseIf(_ condition: Conditionable, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
+    public func elseIf(_ condition: Conditionable, @ContentBuilder<Content> content: () -> Content) -> IF {
         
         let condition = Condition(condition: condition)
         condition.content = content()
@@ -43,7 +43,7 @@ public struct IF {
         return .init(conditions: conditions + [condition])
     }
 
-    public func elseIf<T>(isNil path: TemplateValue<T?>, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
+    public func elseIf<T>(isNil path: TemplateValue<T?>, @ContentBuilder<Content> content: () -> Content) -> IF {
         
         let condition = Condition(condition: IsNullCondition<T>(lhs: path))
         condition.content = content()
@@ -51,7 +51,7 @@ public struct IF {
         return .init(conditions: conditions + [condition])
     }
 
-    public func elseIf<T>(isNotNil path: TemplateValue<T?>, @ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
+    public func elseIf<T>(isNotNil path: TemplateValue<T?>, @ContentBuilder<Content> content: () -> Content) -> IF {
         
         let condition = Condition(condition: NotNullCondition<T>(lhs: path))
         condition.content = content()
@@ -59,7 +59,7 @@ public struct IF {
         return .init(conditions: conditions + [condition])
     }
 
-    public func `else`(@ContentBuilder<AnyContent> content: () -> AnyContent) -> IF {
+    public func `else`(@ContentBuilder<Content> content: () -> Content) -> IF {
         
         let condition = Condition(condition: AlwaysTrueCondition())
         condition.content = content()
@@ -84,7 +84,7 @@ extension IF: Node {
                 
                 if try condition.condition.evaluate(with: ContextManager<Void>(contexts: [:])) {
                     
-                    if let content = condition.content as? [AnyContent] {
+                    if let content = condition.content as? [Content] {
                         
                         if let nodes = content[0] as? [Node] {
                             
