@@ -4,13 +4,13 @@
  */
 
 /// A type that defines a page layout.
-public protocol Page: AnyLayout, GlobalElement {
+public protocol Page: AnyLayout {
 }
 
 /// A type that defines a view layout.
-public protocol View: AnyLayout, GlobalElement {
+public protocol View: AnyLayout {
 }
 
 /// A type that defines a component layout.
-public protocol Component: AnyLayout, GlobalElement {
+public protocol Component: AnyLayout {
 }

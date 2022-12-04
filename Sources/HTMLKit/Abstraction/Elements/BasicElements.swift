@@ -13,7 +13,7 @@ import OrderedCollections
 /// ```html
 /// <!-- -->
 /// ```
-public struct Comment: CommentNode, GlobalElement {
+public struct Comment: CommentNode, AnyElement {
     
     public var content: String
     
@@ -27,7 +27,7 @@ public struct Comment: CommentNode, GlobalElement {
 /// ```html
 /// <!DOCTYPE html>
 /// ```
-public struct Document: DocumentNode, BasicElement {
+public struct Document: DocumentNode, AnyElement {
     
     public var content: String
     
@@ -51,19 +51,19 @@ extension Document {
 /// ```html
 /// <html></html>
 /// ```
-public struct Html: ContentNode, BasicElement {
+public struct Html: ContentNode, AnyElement {
 
     internal var name: String { "html" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [HtmlElement]
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder<HtmlElement> content: () -> [HtmlElement]) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [HtmlElement]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }

@@ -7,7 +7,7 @@
  */
 
 /// The function is for
-public struct Unwrap: GlobalElement {
+public struct Unwrap {
 
     internal let content: IF
     

@@ -31,7 +31,7 @@ public typealias Rp = RubyPronunciation
 /// ```html
 /// <rt></rt>
 /// ```
-public struct RubyText: ContentNode, RubyElement {
+public struct RubyText: ContentNode, AnyElement {
 
     internal var name: String { "rt" }
 
@@ -302,7 +302,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 /// ```html
 /// <rp></rp>
 /// ```
-public struct RubyPronunciation: ContentNode, RubyElement {
+public struct RubyPronunciation: ContentNode, AnyElement {
 
     internal var name: String { "rp" }
 

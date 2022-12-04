@@ -9,7 +9,7 @@ import HTMLKit
 public struct Collection: Component {
     
     /// The content of the collection.
-    internal var content: [ListElement]
+    internal var content: [AnyContent]
     
     /// The classes of the collection.
     internal var classes: [String]
@@ -18,14 +18,14 @@ public struct Collection: Component {
     internal var events: [String]?
     
     /// Creates a collection.
-    public init(ratio: Tokens.ItemRatio = .half, @ContentBuilder<ListElement> content: () -> [ListElement]) {
+    public init(ratio: Tokens.ItemRatio = .half, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         
         self.content = content()
         self.classes = ["collection", ratio.rawValue]
     }
     
     /// Creates a collection.
-    internal init(content: [ListElement], classes: [String], events: [String]?) {
+    internal init(content: [AnyContent], classes: [String], events: [String]?) {
         
         self.content = content
         self.classes = classes

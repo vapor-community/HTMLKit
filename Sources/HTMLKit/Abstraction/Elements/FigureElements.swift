@@ -22,7 +22,7 @@ public typealias Figcaption = FigureCaption
 /// ```html
 /// <figcaption></figcaption>
 /// ```
-public struct FigureCaption: ContentNode, FigureElement {
+public struct FigureCaption: ContentNode, AnyElement {
 
     internal var name: String { "figcaption" }
 

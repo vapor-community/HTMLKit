@@ -9,7 +9,7 @@ import HTMLKit
 public struct List: Component {
     
     /// The content of the list.
-    internal var content: [ListElement]
+    internal var content: [AnyContent]
     
     /// The classes of the list.
     internal var classes: [String]
@@ -18,14 +18,14 @@ public struct List: Component {
     internal var events: [String]?
     
     /// Creates a list.
-    public init(direction: Tokens.FlowDirection, @ContentBuilder<ListElement> content: () -> [ListElement]) {
+    public init(direction: Tokens.FlowDirection, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         
         self.content = content()
         self.classes = ["list", direction.rawValue]
     }
     
     /// Creates a list.
-    internal init(content: [ListElement], classes: [String], events: [String]?) {
+    internal init(content: [AnyContent], classes: [String], events: [String]?) {
         
         self.content = content
         self.classes = classes

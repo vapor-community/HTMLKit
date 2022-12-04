@@ -13,7 +13,7 @@ import OrderedCollections
 /// ```html
 /// <input>
 /// ```
-public struct Input: EmptyNode, FormElement {
+public struct Input: EmptyNode, AnyElement {
 
     internal var name: String { "input" }
 
@@ -317,7 +317,7 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
 /// ```html
 /// <label></label>
 /// ```
-public struct Label: ContentNode, FormElement {
+public struct Label: ContentNode, AnyElement {
 
     internal var name: String { "label" }
 
@@ -603,7 +603,7 @@ extension Label: Localizable {
 /// ```html
 /// <select></select>
 /// ```
-public struct Select: ContentNode, FormElement {
+public struct Select: ContentNode, AnyElement {
 
     internal var name: String { "select" }
 
@@ -830,7 +830,7 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
 /// ```html
 /// <textarea></textarea>
 /// ```
-public struct TextArea: ContentNode, FormElement {
+public struct TextArea: ContentNode, AnyElement {
         
     internal var name: String { "textarea" }
 
@@ -1157,7 +1157,7 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 /// ```html
 /// <button></button>
 /// ```
-public struct Button: ContentNode, FormElement {
+public struct Button: ContentNode, AnyElement {
 
     internal var name: String { "button" }
 
@@ -1471,7 +1471,7 @@ extension Button: Localizable {
 /// ```html
 /// <fieldset></fieldset>
 /// ```
-public struct Fieldset: ContentNode, FormElement {
+public struct Fieldset: ContentNode, AnyElement {
     
     internal var name: String { "fieldset" }
 

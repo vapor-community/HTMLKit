@@ -22,7 +22,7 @@ public typealias Li = ListItem
 /// ```html
 /// <li></li>
 /// ```
-public struct ListItem: ContentNode, ListElement {
+public struct ListItem: ContentNode, AnyElement {
 
     internal var name: String { "li" }
 

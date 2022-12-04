@@ -22,7 +22,7 @@ public typealias Rect = Rectangle
 /// ```html
 /// <circle></circle>
 /// ```
-public struct Circle: ContentNode, VectorElement {    
+public struct Circle: ContentNode, AnyElement {
 
     internal var name: String { "circle" }
 
@@ -139,7 +139,7 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
 /// ```html
 /// <rect></rect>
 /// ```
-public struct Rectangle: ContentNode, VectorElement {
+public struct Rectangle: ContentNode, AnyElement {
 
     internal var name: String { "rect" }
 
@@ -260,7 +260,7 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
 /// ```html
 /// <ellipse></ellipse>
 /// ```
-public struct Ellipse: ContentNode, VectorElement {
+public struct Ellipse: ContentNode, AnyElement {
 
     internal var name: String { "ellipse" }
 
@@ -377,7 +377,7 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
 /// ```html
 /// <line></line>
 /// ```
-public struct Line: ContentNode, VectorElement {
+public struct Line: ContentNode, AnyElement {
 
     internal var name: String { "line" }
 
@@ -486,7 +486,7 @@ extension Line: GlobalVectorAttributes {
 /// ```html
 /// <polygon></polygon>
 /// ```
-public struct Polygon: ContentNode, VectorElement {
+public struct Polygon: ContentNode, AnyElement {
 
     internal var name: String { "polygon" }
 
@@ -595,7 +595,7 @@ extension Polygon: GlobalVectorAttributes {
 /// ```html
 /// <polyline></polyline>
 /// ```
-public struct Polyline: ContentNode, VectorElement {
+public struct Polyline: ContentNode, AnyElement {
 
     internal var name: String { "polyline" }
 
@@ -704,7 +704,7 @@ extension Polyline: GlobalVectorAttributes {
 /// ```html
 /// <path></path>
 /// ```
-public struct Path: ContentNode, VectorElement {
+public struct Path: ContentNode, AnyElement {
 
     internal var name: String { "path" }
 
@@ -817,7 +817,7 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
 /// ```html
 /// <g></g>
 /// ```
-public struct Group: ContentNode, VectorElement {
+public struct Group: ContentNode, AnyElement {
 
     internal var name: String { "g" }
 
@@ -926,7 +926,7 @@ extension Group: GlobalVectorAttributes {
 /// ```html
 /// <use></use>
 /// ```
-public struct Use: ContentNode, VectorElement {
+public struct Use: ContentNode, AnyElement {
 
     internal var name: String { "use" }
 

@@ -12,9 +12,9 @@ struct SampleContext: Codable  {
 
 struct SamplePage: Page {
 
-    var content: [BodyElement]
+    var content: [AnyContent]
     
-    init(@ContentBuilder<BodyElement> content: () -> [BodyElement]) {
+    init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
 

@@ -13,7 +13,7 @@ import OrderedCollections
 /// ```html
 /// <param>
 /// ```
-public struct Parameter: EmptyNode, ObjectElement {
+public struct Parameter: EmptyNode, AnyElement {
     
     internal var name: String { "param" }
 

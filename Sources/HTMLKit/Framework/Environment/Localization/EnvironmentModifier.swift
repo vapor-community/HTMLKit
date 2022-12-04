@@ -4,7 +4,7 @@
  */
 
 /// The modifier
-public struct EnvironmentModifier: GlobalElement {
+public struct EnvironmentModifier: AnyContent {
 
     public let view: AnyContent
     

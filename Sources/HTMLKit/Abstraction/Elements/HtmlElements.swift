@@ -13,19 +13,19 @@ import OrderedCollections
 /// ```html
 /// <head></head>
 /// ```
-public struct Head: ContentNode, HtmlElement {
+public struct Head: ContentNode, AnyElement {
 
     internal var name: String { "head" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [HeadElement]
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder<HeadElement> content: () -> [HeadElement]) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [HeadElement]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }
@@ -208,19 +208,19 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
 /// ```html
 /// <body></body>
 /// ```
-public struct Body: ContentNode, HtmlElement {
+public struct Body: ContentNode, AnyElement {
 
     internal var name: String { "body" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [BodyElement]
+    internal var content: [AnyContent]
 
-    public init(@ContentBuilder<BodyElement> content: () -> [BodyElement]) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [BodyElement]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
         self.attributes = attributes
         self.content = content
     }

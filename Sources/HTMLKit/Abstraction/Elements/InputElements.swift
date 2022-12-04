@@ -22,7 +22,7 @@ public typealias Optgroup = OptionGroup
 /// ```html
 /// <optgroup></optgroup>
 /// ```
-public struct OptionGroup: ContentNode, InputElement {
+public struct OptionGroup: ContentNode, AnyElement {
 
     internal var name: String { "optgroup" }
 
@@ -301,7 +301,7 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
 /// ```html
 /// <option></option>
 /// ```
-public struct Option: ContentNode, InputElement {
+public struct Option: ContentNode, AnyElement {
 
     internal var name: String { "option" }
 
@@ -592,7 +592,7 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 /// ```html
 /// <legend></legend>
 /// ```
-public struct Legend: ContentNode, InputElement {
+public struct Legend: ContentNode, AnyElement {
 
     internal var name: String { "legend" }
 
@@ -865,7 +865,7 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
 /// ```html
 /// <summary></summary>
 /// ```
-public struct Summary: ContentNode, InputElement {
+public struct Summary: ContentNode, AnyElement {
 
     internal var name: String { "summary" }
 

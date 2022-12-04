@@ -7,7 +7,7 @@
  */
 
 /// The statement is for
-public struct IF: GlobalElement {
+public struct IF {
     
     internal class Condition {
 

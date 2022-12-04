@@ -13,7 +13,7 @@ import OrderedCollections
 /// ```html
 /// <source>
 /// ```
-public struct Source: EmptyNode, MediaElement {
+public struct Source: EmptyNode, AnyElement {
 
     internal var name: String { "source" }
 
@@ -227,7 +227,7 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
 /// ```html
 /// <track>
 /// ```
-public struct Track: EmptyNode, MediaElement {
+public struct Track: EmptyNode, AnyElement {
 
     internal var name: String { "track" }
 

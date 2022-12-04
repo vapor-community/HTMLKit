@@ -9,7 +9,7 @@ import HTMLKit
 public struct Form: Component {
     
     /// The content of the container.
-    internal var content: [FormElement]
+    internal var content: [AnyContent]
     
     /// The classes of the container.
     internal var classes: [String]
@@ -18,14 +18,14 @@ public struct Form: Component {
     internal var events: [String]?
     
     /// Creates a form container.
-    public init(@ContentBuilder<FormElement> content: () -> [FormElement]) {
+    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         
         self.content = content()
         self.classes = ["form"]
     }
     
     /// Creates a form container.
-    internal init(content: [FormElement], classes: [String], events: [String]?) {
+    internal init(content: [AnyContent], classes: [String], events: [String]?) {
         
         self.content = content
         self.classes = classes
@@ -351,7 +351,7 @@ public struct SelectField: Component {
     internal let name: TemplateValue<String>
     
     /// The content of the field.
-    internal var content: [InputElement]
+    internal var content: [AnyContent]
     
     /// The classes of the field.
     internal var classes: [String]
@@ -360,7 +360,7 @@ public struct SelectField: Component {
     internal var events: [String]?
     
     /// Creates a select field.
-    public init(name: TemplateValue<String>, @ContentBuilder<InputElement> content: () -> [InputElement]) {
+    public init(name: TemplateValue<String>, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         
         self.name = name
         self.content = content()
@@ -368,7 +368,7 @@ public struct SelectField: Component {
     }
     
     /// Creates a select field.
-    internal init(name: TemplateValue<String>, content: [InputElement], classes: [String], events: [String]?) {
+    internal init(name: TemplateValue<String>, content: [AnyContent], classes: [String], events: [String]?) {
         
         self.name = name
         self.content = content

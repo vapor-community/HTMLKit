@@ -7,7 +7,7 @@
  */
 
 /// The statement is for
-public struct ForEach<Values>: GlobalElement where Values: Sequence {
+public struct ForEach<Values> where Values: Sequence {
 
     internal var isEnumerated: Bool
     
