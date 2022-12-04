@@ -8,7 +8,7 @@ import XCTest
 
 final class LocalizationTests: XCTestCase {
     
-    struct TestPage: Page {
+    struct TestView: View {
 
         @ContentBuilder<AnyContent> var body: AnyContent
     }
@@ -23,13 +23,13 @@ final class LocalizationTests: XCTestCase {
     
     func testLocalization() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Heading1("Hallo Welt")
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <h1>Hello World</h1>
                        """
@@ -38,14 +38,14 @@ final class LocalizationTests: XCTestCase {
     
     func testEnvironmentLocale() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Heading1("Hallo Welt")
                 .environment(locale: "fr")
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <h1>Bonjour le monde</h1>
                        """

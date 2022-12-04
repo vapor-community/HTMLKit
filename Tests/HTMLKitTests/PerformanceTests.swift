@@ -14,12 +14,12 @@ final class PerformanceTests: XCTestCase {
         
         let context = SampleContext(id: 0, title: "TestPage", excerpt: "Testpage", modified: Date(), posted: Date())
         
-        renderer.add(layout: SampleView())
+        renderer.add(view: ChildView())
         
         measure {
             
             for _ in 0...1000 {
-                _ = renderer.render(layout: SampleView(), with: context)
+                _ = renderer.render(view: ChildView(), with: context)
             }
         }
     }

@@ -12,37 +12,19 @@ final class ProviderTests: XCTestCase {
     struct TestContext: Vapor.Content {
         let greeting: String
     }
-    
-    enum Visitor {
-        
-        struct TestView: HTMLKit.View {
-            
-            var body: AnyContent {
-                Document(.html5)
-                Html {
-                    Head {
-                        Title {
-                            "Visitor.TestView"
-                        }
-                    }
-                    Body {
-                        Paragraph("Hallo Welt")
-                    }
-                }
-            }
-        }
-    }
 
-    enum User {
+    struct HomePage: HTMLKit.Page {
+       
+        var views: [HTMLKit.View] = [IndexView(), CreateView(), EditView()]
         
-        struct TestView: HTMLKit.View {
+        struct IndexView: HTMLKit.View {
             
             var body: AnyContent {
                 Document(.html5)
                 Html {
                     Head {
                         Title {
-                            "User.TestView"
+                            "HomePage.IndexView"
                         }
                     }
                     Body {
@@ -53,11 +35,8 @@ final class ProviderTests: XCTestCase {
                 }
             }
         }
-    }
-    
-    enum Admin {
         
-        struct TestView: HTMLKit.View {
+        struct CreateView: HTMLKit.View {
             
             @TemplateValue(TestContext.self)
             var context
@@ -67,13 +46,30 @@ final class ProviderTests: XCTestCase {
                 Html {
                     Head {
                         Title {
-                            "Admin.TestView"
+                            "HomePage.CreateView"
                         }
                     }
                     Body {
                         Paragraph {
                             context.greeting
                         }
+                    }
+                }
+            }
+        }
+        
+        struct EditView: HTMLKit.View {
+            
+            var body: AnyContent {
+                Document(.html5)
+                Html {
+                    Head {
+                        Title {
+                            "HomePage.EditView"
+                        }
+                    }
+                    Body {
+                        Paragraph("Hallo Welt")
                     }
                 }
             }
@@ -88,11 +84,10 @@ final class ProviderTests: XCTestCase {
         
         app.views.use(.htmlkit)
         
-        app.htmlkit.views.add(view: User.TestView())
-        app.htmlkit.views.add(view: Admin.TestView())
+        app.htmlkit.views.add(page: HomePage())
         
         app.get("test") { request -> EventLoopFuture<Vapor.View> in
-            return request.view.render("HTMLKitVaporTests.ProviderTests.User.TestView")
+            return request.view.render(HomePage.IndexView.name)
         }
         
         try app.test(.GET, "test") { response in
@@ -102,7 +97,7 @@ final class ProviderTests: XCTestCase {
                             <!DOCTYPE html>\
                             <html>\
                             <head>\
-                            <title>User.TestView</title>\
+                            <title>HomePage.IndexView</title>\
                             </head>\
                             <body>\
                             <p>Hello World</p>\
@@ -119,11 +114,10 @@ final class ProviderTests: XCTestCase {
         
         defer { app.shutdown() }
         
-        app.htmlkit.views.add(view: User.TestView())
-        app.htmlkit.views.add(view: Admin.TestView())
+        app.htmlkit.views.add(page: HomePage())
         
         app.get("test") { request -> EventLoopFuture<Vapor.View> in
-            return request.htmlkit.render("HTMLKitVaporTests.ProviderTests.Admin.TestView", TestContext(greeting: "Hello World"))
+            return request.htmlkit.render(HomePage.CreateView.name, TestContext(greeting: "Hello World"))
         }
         
         try app.test(.GET, "test") { response in
@@ -133,7 +127,7 @@ final class ProviderTests: XCTestCase {
                             <!DOCTYPE html>\
                             <html>\
                             <head>\
-                            <title>Admin.TestView</title>\
+                            <title>HomePage.CreateView</title>\
                             </head>\
                             <body>\
                             <p>Hello World</p>\
@@ -151,11 +145,10 @@ final class ProviderTests: XCTestCase {
         
         defer { app.shutdown() }
         
-        app.htmlkit.views.add(view: User.TestView())
-        app.htmlkit.views.add(view: Admin.TestView())
+        app.htmlkit.views.add(page: HomePage())
         
         app.get("test") { request async throws -> Vapor.View in
-            return try await request.htmlkit.render("HTMLKitVaporTests.ProviderTests.User.TestView")
+            return try await request.htmlkit.render(HomePage.IndexView.name)
         }
         
         try app.test(.GET, "test") { response in
@@ -165,7 +158,7 @@ final class ProviderTests: XCTestCase {
                             <!DOCTYPE html>\
                             <html>\
                             <head>\
-                            <title>User.TestView</title>\
+                            <title>HomePage.IndexView</title>\
                             </head>\
                             <body>\
                             <p>Hello World</p>\
@@ -189,15 +182,13 @@ final class ProviderTests: XCTestCase {
         
         app.views.use(.htmlkit)
         
-        app.htmlkit.views.add(view: Visitor.TestView())
-        app.htmlkit.views.add(view: User.TestView())
-        app.htmlkit.views.add(view: Admin.TestView())
+        app.htmlkit.views.add(page: HomePage())
         
         app.htmlkit.lingo.set(directory: currentDirectory)
         app.htmlkit.lingo.set(locale: .french)
         
         app.get("test") { request async throws -> Vapor.View in
-            return try await request.view.render("HTMLKitVaporTests.ProviderTests.Visitor.TestView")
+            return try await request.view.render(HomePage.EditView.name)
         }
         
         try app.test(.GET, "test") { response in
@@ -207,7 +198,7 @@ final class ProviderTests: XCTestCase {
                             <!DOCTYPE html>\
                             <html>\
                             <head>\
-                            <title>Visitor.TestView</title>\
+                            <title>HomePage.EditView</title>\
                             </head>\
                             <body>\
                             <p>Bonjour le monde</p>\
@@ -218,3 +209,4 @@ final class ProviderTests: XCTestCase {
         }
     }
 }
+

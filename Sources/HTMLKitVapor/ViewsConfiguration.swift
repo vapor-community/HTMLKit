@@ -11,8 +11,16 @@ final public class ViewsConfiguration {
     }
     
     /// Adds a view to the storage
-    public func add(view: some AnyLayout) {
-        self.renderer.add(layout: view)
+    public func add(view: some View) {
+        self.renderer.add(view: view)
+    }
+    
+    /// Adds the view of page to the storage
+    public func add(page: some Page) {
+        
+        for view in page.views {
+            self.renderer.add(view: view)
+        }
     }
     
     /// Sets the root path

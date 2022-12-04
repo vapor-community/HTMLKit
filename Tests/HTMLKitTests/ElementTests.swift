@@ -8,7 +8,7 @@ import XCTest
 
 final class ElementTests: XCTestCase {
     
-    struct TestPage: Page {
+    struct TestView: View {
         
         @ContentBuilder<AnyContent> var body: AnyContent
     }
@@ -17,14 +17,14 @@ final class ElementTests: XCTestCase {
     
     func testHeadElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Head {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <head></head>
                        """
@@ -33,14 +33,14 @@ final class ElementTests: XCTestCase {
     
     func testTitleElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Title {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <title></title>
                        """
@@ -49,13 +49,13 @@ final class ElementTests: XCTestCase {
     
     func testBaseElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Base()
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <base>
                        """
@@ -64,13 +64,13 @@ final class ElementTests: XCTestCase {
     
     func testLinkElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Link()
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <link>
                        """
@@ -79,13 +79,13 @@ final class ElementTests: XCTestCase {
     
     func testMetaElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Meta()
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <meta>
                        """
@@ -94,14 +94,14 @@ final class ElementTests: XCTestCase {
     
     func testStyleElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Style {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <style></style>
                        """
@@ -110,14 +110,14 @@ final class ElementTests: XCTestCase {
     
     func testHtmlElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Html {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <html></html>
                        """
@@ -126,14 +126,14 @@ final class ElementTests: XCTestCase {
     
     func testBodyElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Body {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <body></body>
                        """
@@ -142,14 +142,14 @@ final class ElementTests: XCTestCase {
     
     func testArticleElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Article {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <article></article>
                        """
@@ -158,14 +158,14 @@ final class ElementTests: XCTestCase {
     
     func testSectionElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Section {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <section></section>
                        """
@@ -174,14 +174,14 @@ final class ElementTests: XCTestCase {
     
     func testNavigationElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Navigation {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <nav></nav>
                        """
@@ -190,14 +190,14 @@ final class ElementTests: XCTestCase {
     
     func testAsideElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Aside {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <aside></aside>
                        """
@@ -206,14 +206,14 @@ final class ElementTests: XCTestCase {
     
     func testHeading1Element() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Heading1 {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <h1></h1>
                        """
@@ -222,14 +222,14 @@ final class ElementTests: XCTestCase {
     
     func testHeading2Element() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Heading2 {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <h2></h2>
                        """
@@ -238,14 +238,14 @@ final class ElementTests: XCTestCase {
     
     func testHeading3Element() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Heading3 {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <h3></h3>
                        """
@@ -254,14 +254,14 @@ final class ElementTests: XCTestCase {
     
     func testHeading4Element() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Heading4 {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <h4></h4>
                        """
@@ -270,14 +270,14 @@ final class ElementTests: XCTestCase {
     
     func testHeading5Element() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Heading5 {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <h5></h5>
                        """
@@ -286,14 +286,14 @@ final class ElementTests: XCTestCase {
     
     func testHeading6Element() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Heading6 {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <h6></h6>
                        """
@@ -302,14 +302,14 @@ final class ElementTests: XCTestCase {
     
     func testHeadingGroupElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             HeadingGroup {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <hgroup></hgroup>
                        """
@@ -318,14 +318,14 @@ final class ElementTests: XCTestCase {
     
     func testHeaderElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Header {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <header></header>
                        """
@@ -334,14 +334,14 @@ final class ElementTests: XCTestCase {
     
     func testFooterElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Footer {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <footer></footer>
                        """
@@ -350,14 +350,14 @@ final class ElementTests: XCTestCase {
     
     func testAdressElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Address {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <address></address>
                        """
@@ -366,14 +366,14 @@ final class ElementTests: XCTestCase {
     
     func testParagraphElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Paragraph {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p></p>
                        """
@@ -382,13 +382,13 @@ final class ElementTests: XCTestCase {
     
     func testHorizontalRuleElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             HorizontalRule()
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <hr>
                        """
@@ -397,14 +397,14 @@ final class ElementTests: XCTestCase {
     
     func testPreformattedTextElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             PreformattedText {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <pre></pre>
                        """
@@ -413,14 +413,14 @@ final class ElementTests: XCTestCase {
     
     func testBlockquoteElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Blockquote {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <blockquote></blockquote>
                        """
@@ -429,14 +429,14 @@ final class ElementTests: XCTestCase {
     
     func testOrderedListElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             OrderedList {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <ol></ol>
                        """
@@ -445,14 +445,14 @@ final class ElementTests: XCTestCase {
     
     func testUnorderedListElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             UnorderedList {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <ul></ul>
                        """
@@ -461,14 +461,14 @@ final class ElementTests: XCTestCase {
     
     func testListItemElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             ListItem {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <li></li>
                        """
@@ -477,14 +477,14 @@ final class ElementTests: XCTestCase {
     
     func testDescriptionListElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             DescriptionList {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <dl></dl>
                        """
@@ -493,14 +493,14 @@ final class ElementTests: XCTestCase {
     
     func testTermNameElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             TermName {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <dt></dt>
                        """
@@ -509,14 +509,14 @@ final class ElementTests: XCTestCase {
     
     func testTermDefinitionElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             TermDefinition {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <dd></dd>
                        """
@@ -525,14 +525,14 @@ final class ElementTests: XCTestCase {
     
     func testFigureElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Figure {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <figure></figure>
                        """
@@ -541,14 +541,14 @@ final class ElementTests: XCTestCase {
     
     func testFigureCaptionElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             FigureCaption {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <figcaption></figcaption>
                        """
@@ -557,14 +557,14 @@ final class ElementTests: XCTestCase {
     
     func testMainElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Main {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <main></main>
                        """
@@ -573,14 +573,14 @@ final class ElementTests: XCTestCase {
     
     func testDivisionElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Division {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <div></div>
                        """
@@ -589,14 +589,14 @@ final class ElementTests: XCTestCase {
     
     func testAnchorElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Anchor {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <a></a>
                        """
@@ -605,14 +605,14 @@ final class ElementTests: XCTestCase {
     
     func testEmphasizeElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Emphasize{
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <em></em>
                        """
@@ -621,14 +621,14 @@ final class ElementTests: XCTestCase {
     
     func testStrongElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Strong {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <strong></strong>
                        """
@@ -637,14 +637,14 @@ final class ElementTests: XCTestCase {
     
     func testSmallElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Small {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <small></small>
                        """
@@ -653,14 +653,14 @@ final class ElementTests: XCTestCase {
     
     func testStrikeThroughElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             StrikeThrough {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <s></s>
                        """
@@ -669,14 +669,14 @@ final class ElementTests: XCTestCase {
     
     func testCiteElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Cite {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <cite></cite>
                        """
@@ -685,14 +685,14 @@ final class ElementTests: XCTestCase {
     
     func testShortQuoteElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             ShortQuote {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <q></q>
                        """
@@ -701,14 +701,14 @@ final class ElementTests: XCTestCase {
     
     func testDefinitionElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Definition {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <dfn></dfn>
                        """
@@ -717,14 +717,14 @@ final class ElementTests: XCTestCase {
     
     func testAbbreviationElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Abbreviation {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <abbr></abbr>
                        """
@@ -733,14 +733,14 @@ final class ElementTests: XCTestCase {
     
     func testRubyElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Ruby {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <ruby></ruby>
                        """
@@ -749,14 +749,14 @@ final class ElementTests: XCTestCase {
     
     func testRubyTextElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             RubyText {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <rt></rt>
                        """
@@ -765,14 +765,14 @@ final class ElementTests: XCTestCase {
     
     func testRubyPronunciationElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             RubyPronunciation {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <rp></rp>
                        """
@@ -781,14 +781,14 @@ final class ElementTests: XCTestCase {
     
     func testDataElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             HTMLKit.Data {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <data></data>
                        """
@@ -797,14 +797,14 @@ final class ElementTests: XCTestCase {
     
     func testTimeElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Time {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <time></time>
                        """
@@ -813,14 +813,14 @@ final class ElementTests: XCTestCase {
     
     func testCodeElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Code {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <code></code>
                        """
@@ -829,14 +829,14 @@ final class ElementTests: XCTestCase {
     
     func testVariableElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Variable {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <v></v>
                        """
@@ -845,14 +845,14 @@ final class ElementTests: XCTestCase {
     
     func testSampleOutputElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             SampleOutput {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <samp></samp>
                        """
@@ -861,14 +861,14 @@ final class ElementTests: XCTestCase {
     
     func testKeyboardInputElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             KeyboardInput {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <kbd></kbd>
                        """
@@ -877,14 +877,14 @@ final class ElementTests: XCTestCase {
     
     func testSubscriptElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Subscript {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <sub></sub>
                        """
@@ -893,14 +893,14 @@ final class ElementTests: XCTestCase {
     
     func testSuperscriptElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Superscript {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <sup></sup>
                        """
@@ -909,14 +909,14 @@ final class ElementTests: XCTestCase {
     
     func testItalicElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Italic {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <i></i>
                        """
@@ -925,14 +925,14 @@ final class ElementTests: XCTestCase {
     
     func testBoldElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Bold {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <b></b>
                        """
@@ -941,14 +941,14 @@ final class ElementTests: XCTestCase {
     
     func testUnderlineElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Underline {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <u></u>
                        """
@@ -957,14 +957,14 @@ final class ElementTests: XCTestCase {
     
     func testMarkElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Mark {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <mark></mark>
                        """
@@ -973,14 +973,14 @@ final class ElementTests: XCTestCase {
     
     func testBdiElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Bdi {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <bdi></bdi>
                        """
@@ -989,13 +989,13 @@ final class ElementTests: XCTestCase {
     
     func testBdoElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Bdo()
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <bdo>
                        """
@@ -1004,14 +1004,14 @@ final class ElementTests: XCTestCase {
     
     func testSpanElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Span {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <span></span>
                        """
@@ -1020,13 +1020,13 @@ final class ElementTests: XCTestCase {
     
     func testLineBreakElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             LineBreak()
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <br>
                        """
@@ -1035,13 +1035,13 @@ final class ElementTests: XCTestCase {
     
     func testWordBreakElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             WordBreak()
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <wbr>
                        """
@@ -1050,14 +1050,14 @@ final class ElementTests: XCTestCase {
     
     func testInsertedTextElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             InsertedText {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <ins></ins>
                        """
@@ -1066,14 +1066,14 @@ final class ElementTests: XCTestCase {
     
     func testDeletedTextElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             DeletedText {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <del></del>
                        """
@@ -1082,14 +1082,14 @@ final class ElementTests: XCTestCase {
     
     func testPictureElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             HTMLKit.Picture{
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <picture></picture>
                        """
@@ -1098,13 +1098,13 @@ final class ElementTests: XCTestCase {
     
     func testSourceElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Source()
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <source>
                        """
@@ -1113,13 +1113,13 @@ final class ElementTests: XCTestCase {
     
     func testImageElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Image()
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <img>
                        """
@@ -1128,14 +1128,14 @@ final class ElementTests: XCTestCase {
     
     func testInlineFrameElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             InlineFrame {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <iframe></iframe>
                        """
@@ -1144,13 +1144,13 @@ final class ElementTests: XCTestCase {
     
     func testEmbedElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Embed()
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <embed>
                        """
@@ -1159,14 +1159,14 @@ final class ElementTests: XCTestCase {
     
     func testObjectElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Object {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <object></object>
                        """
@@ -1175,13 +1175,13 @@ final class ElementTests: XCTestCase {
     
     func testParameterElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Parameter()
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <param>
                        """
@@ -1190,14 +1190,14 @@ final class ElementTests: XCTestCase {
     
     func testVideoElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Video {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <video></video>
                        """
@@ -1206,14 +1206,14 @@ final class ElementTests: XCTestCase {
     
     func testAudioElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Audio {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <audio></audio>
                        """
@@ -1222,13 +1222,13 @@ final class ElementTests: XCTestCase {
     
     func testTrackElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Track()
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <track>
                        """
@@ -1237,14 +1237,14 @@ final class ElementTests: XCTestCase {
     
     func testMapElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Map {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <map></map>
                        """
@@ -1253,14 +1253,14 @@ final class ElementTests: XCTestCase {
     
     func testAreaElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Area {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <area></area>
                        """
@@ -1269,14 +1269,14 @@ final class ElementTests: XCTestCase {
     
     func testTableElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Table {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <table></table>
                        """
@@ -1285,14 +1285,14 @@ final class ElementTests: XCTestCase {
     
     func testCaptionElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Caption {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <caption></caption>
                        """
@@ -1301,14 +1301,14 @@ final class ElementTests: XCTestCase {
     
     func testColumnGroupElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             ColumnGroup {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <colgroup></colgroup>
                        """
@@ -1317,14 +1317,14 @@ final class ElementTests: XCTestCase {
     
     func testColumnElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Column {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <col></col>
                        """
@@ -1333,14 +1333,14 @@ final class ElementTests: XCTestCase {
     
     func testTableBodyElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             TableBody {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <tbody></tbody>
                        """
@@ -1349,14 +1349,14 @@ final class ElementTests: XCTestCase {
     
     func testTableHeadElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             TableHead {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <thead></thead>
                        """
@@ -1365,14 +1365,14 @@ final class ElementTests: XCTestCase {
     
     func testTableFootElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             TableFoot {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <tfoot></tfoot>
                        """
@@ -1381,14 +1381,14 @@ final class ElementTests: XCTestCase {
     
     func testTableRowElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             TableRow {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <tr></tr>
                        """
@@ -1397,14 +1397,14 @@ final class ElementTests: XCTestCase {
     
     func testDataCellElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             DataCell {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <td></td>
                        """
@@ -1413,14 +1413,14 @@ final class ElementTests: XCTestCase {
     
     func testHeaderCellElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             HeaderCell {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <th></th>
                        """
@@ -1429,14 +1429,14 @@ final class ElementTests: XCTestCase {
     
     func testFormElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Form {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <form></form>
                        """
@@ -1445,14 +1445,14 @@ final class ElementTests: XCTestCase {
     
     func testLabelElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Label{
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <label></label>
                        """
@@ -1461,13 +1461,13 @@ final class ElementTests: XCTestCase {
     
     func testInputElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Input()
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <input>
                        """
@@ -1476,14 +1476,14 @@ final class ElementTests: XCTestCase {
     
     func testButtonElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Button {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <button></button>
                        """
@@ -1492,14 +1492,14 @@ final class ElementTests: XCTestCase {
     
     func testDataListElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             DataList {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <datalist></datalist>
                        """
@@ -1508,14 +1508,14 @@ final class ElementTests: XCTestCase {
     
     func testOptionGroupElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             OptionGroup {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <optgroup></optgroup>
                        """
@@ -1524,14 +1524,14 @@ final class ElementTests: XCTestCase {
     
     func testOptionElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Option {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <option></option>
                        """
@@ -1540,14 +1540,14 @@ final class ElementTests: XCTestCase {
     
     func testTextAreaElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             TextArea {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <textarea></textarea>
                        """
@@ -1556,14 +1556,14 @@ final class ElementTests: XCTestCase {
     
     func testOutputElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Output {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <output></output>
                        """
@@ -1572,14 +1572,14 @@ final class ElementTests: XCTestCase {
     
     func testProgressElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             HTMLKit.Progress {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <progress></progress>
                        """
@@ -1588,14 +1588,14 @@ final class ElementTests: XCTestCase {
     
     func testMeterElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Meter {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <meter></meter>
                        """
@@ -1604,14 +1604,14 @@ final class ElementTests: XCTestCase {
     
     func testFieldsetElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Fieldset {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <fieldset></fieldset>
                        """
@@ -1620,14 +1620,14 @@ final class ElementTests: XCTestCase {
     
     func testLegendElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Legend {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <legend></legend>
                        """
@@ -1636,14 +1636,14 @@ final class ElementTests: XCTestCase {
     
     func testDetailsElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Details {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <details></details>
                        """
@@ -1652,14 +1652,14 @@ final class ElementTests: XCTestCase {
     
     func testSummaryElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Summary {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <summary></summary>
                        """
@@ -1668,14 +1668,14 @@ final class ElementTests: XCTestCase {
     
     func testDialogElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Dialog {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <dialog></dialog>
                        """
@@ -1684,14 +1684,14 @@ final class ElementTests: XCTestCase {
     
     func testScriptElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Script {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <script></script>
                        """
@@ -1700,14 +1700,14 @@ final class ElementTests: XCTestCase {
     
     func testNoScriptElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             NoScript {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <noscript></noscript>
                        """
@@ -1716,14 +1716,14 @@ final class ElementTests: XCTestCase {
     
     func testTemplateElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Template {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <template></template>
                        """
@@ -1732,14 +1732,14 @@ final class ElementTests: XCTestCase {
     
     func testCanvasElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Canvas {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <canvas></canvas>
                        """
@@ -1748,14 +1748,14 @@ final class ElementTests: XCTestCase {
     
     func testVectorElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Vector {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <svg></svg>
                        """
@@ -1764,14 +1764,14 @@ final class ElementTests: XCTestCase {
     
     func testCircleElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Circle {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <circle></circle>
                        """
@@ -1780,14 +1780,14 @@ final class ElementTests: XCTestCase {
     
     func testRectangleElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Rectangle {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <rect></rect>
                        """
@@ -1796,14 +1796,14 @@ final class ElementTests: XCTestCase {
     
     func testEllipseElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Ellipse {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <ellipse></ellipse>
                        """
@@ -1812,14 +1812,14 @@ final class ElementTests: XCTestCase {
     
     func testLineElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Line {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <line></line>
                        """
@@ -1828,14 +1828,14 @@ final class ElementTests: XCTestCase {
     
     func testPolygonElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Polygon {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <polygon></polygon>
                        """
@@ -1844,14 +1844,14 @@ final class ElementTests: XCTestCase {
     
     func testPolylineElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Polyline {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <polyline></polyline>
                        """
@@ -1860,14 +1860,14 @@ final class ElementTests: XCTestCase {
     
     func testPathElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Path {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <path></path>
                        """
@@ -1876,14 +1876,14 @@ final class ElementTests: XCTestCase {
     
     func testUseElement() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Use {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <use></use>
                        """

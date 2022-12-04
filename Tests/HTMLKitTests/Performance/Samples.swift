@@ -10,7 +10,7 @@ struct SampleContext: Codable  {
     var posted: Date
 }
 
-struct SamplePage: Page {
+struct MainView: View {
 
     var content: [AnyContent]
     
@@ -48,13 +48,13 @@ struct SamplePage: Page {
 
 }
 
-struct SampleView: View {
+struct ChildView: View {
     
     @TemplateValue(SampleContext.self)
     var context
     
     var body: AnyContent {
-        SamplePage {
+        MainView {
             Header {
                 Heading1 {
                     context.title
@@ -98,7 +98,7 @@ struct SampleView: View {
                 }
             }
             Main {
-                SampleComponent()
+                ComponentView()
             }
             Footer {
                 Paragraph {
@@ -109,7 +109,7 @@ struct SampleView: View {
     }
 }
 
-struct SampleComponent: Component {
+struct ComponentView: Component {
  
     var body: AnyContent {
         Section {

@@ -8,33 +8,33 @@ import XCTest
 
 final class ContextTests: XCTestCase {
     
-    struct PageContext: Codable {
+    struct MainContext: Codable {
         
         var category: String
-        var viewContext: ViewContext
+        var viewContext: ChildContext
     }
     
-    struct ViewContext: Codable {
+    struct ChildContext: Codable {
         
         var headline: String
     }
     
-    struct TestPage: Page {
+    struct MainView: View {
         
-        @TemplateValue(PageContext.self)
+        @TemplateValue(MainContext.self)
         var context
         
         var body: AnyContent {
             Heading1 {
                 context.category
             }
-            TestView(context: context.viewContext)
+            ChildView(context: context.viewContext)
         }
     }
     
-    struct TestView: View {
+    struct ChildView: View {
         
-        @TemplateValue(ViewContext.self)
+        @TemplateValue(ChildContext.self)
         var context
         
         var body: AnyContent {
@@ -50,11 +50,11 @@ final class ContextTests: XCTestCase {
     
     func testViewContext() throws {
         
-        let context = ViewContext(headline: "test")
+        let context = ChildContext(headline: "test")
         
-        renderer.add(layout: TestView())
+        renderer.add(view: ChildView())
         
-        XCTAssertEqual(renderer.render(layout: TestView(), with: context),
+        XCTAssertEqual(renderer.render(view: ChildView(), with: context),
                        """
                        <section>\
                        <h2>test</h2>\
@@ -63,13 +63,13 @@ final class ContextTests: XCTestCase {
         )
     }
     
-    func testPageContext() throws {
+    func testMainContext() throws {
         
-        let context = PageContext(category: "test", viewContext: .init(headline: "test"))
+        let context = MainContext(category: "test", viewContext: .init(headline: "test"))
         
-        renderer.add(layout: TestPage())
+        renderer.add(view: MainView())
         
-        XCTAssertEqual(renderer.render(layout: TestPage(), with: context),
+        XCTAssertEqual(renderer.render(view: MainView(), with: context),
                        """
                        <h1>test</h1>\
                        <section>\

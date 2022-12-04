@@ -8,7 +8,7 @@ import XCTest
 
 final class StatementsTests: XCTestCase {
     
-    struct TestPage: Page {
+    struct TestView: View {
         
         @ContentBuilder<AnyContent> var body: AnyContent
     }
@@ -19,7 +19,7 @@ final class StatementsTests: XCTestCase {
         
         let isValid: TemplateValue<Bool> = .constant(true)
         
-        let page = TestPage {
+        let view = TestView {
             IF(isValid) {
                 Paragraph {
                     "true"
@@ -31,9 +31,9 @@ final class StatementsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p>true</p>
                        """
@@ -49,7 +49,7 @@ final class StatementsTests: XCTestCase {
         @TemplateValue(TestContext.self)
         var item
         
-        let page = TestPage {
+        let view = TestView {
             IF(item.isValid) {
                 Paragraph {
                     "true"
@@ -61,9 +61,9 @@ final class StatementsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page, with: TestContext(isValid: true)),
+        XCTAssertEqual(renderer.render(view: view, with: TestContext(isValid: true)),
                        """
                        <p>true</p>
                        """
@@ -74,7 +74,7 @@ final class StatementsTests: XCTestCase {
         
         let isValid: TemplateValue<Bool> = .constant(false)
         
-        let page = TestPage {
+        let view = TestView {
             IF(isValid) {
                 Paragraph {
                     "true"
@@ -86,9 +86,9 @@ final class StatementsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p>false</p>
                        """
@@ -104,7 +104,7 @@ final class StatementsTests: XCTestCase {
         @TemplateValue(TestContext.self)
         var item
         
-        let page = TestPage {
+        let view = TestView {
             IF(item.isValid) {
                 Paragraph {
                     "true"
@@ -116,9 +116,9 @@ final class StatementsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page, with: TestContext(isValid: false)),
+        XCTAssertEqual(renderer.render(view: view, with: TestContext(isValid: false)),
                        """
                        <p>false</p>
                        """
@@ -129,7 +129,7 @@ final class StatementsTests: XCTestCase {
         
         let age: TemplateValue<Int> = .constant(16)
         
-        let page = TestPage {
+        let view = TestView {
             IF(age > 20) {
                 Paragraph {
                     "Adult"
@@ -145,9 +145,9 @@ final class StatementsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p>Teenager</p>
                        """
@@ -158,7 +158,7 @@ final class StatementsTests: XCTestCase {
         
         let items: TemplateValue<[String]> = .constant(["item1", "item2"])
         
-        let page = TestPage {
+        let view = TestView {
             ForEach(in: items) { item in
                 Paragraph {
                     item
@@ -166,9 +166,9 @@ final class StatementsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p>item1</p>\
                        <p>item2</p>
@@ -180,7 +180,7 @@ final class StatementsTests: XCTestCase {
         
         let item: TemplateValue<String?> = .constant("unwrapped")
         
-        let page = TestPage {
+        let view = TestView {
             Unwrap(item) { item in
                 Paragraph {
                     item
@@ -188,9 +188,9 @@ final class StatementsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p>unwrapped</p>
                        """

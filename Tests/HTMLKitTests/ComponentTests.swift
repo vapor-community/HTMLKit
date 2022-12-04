@@ -8,7 +8,7 @@ import XCTest
 
 final class ComponentTests: XCTestCase {
     
-    struct TestPage: Page {
+    struct TestView: View {
         
         @ContentBuilder<AnyContent> var body: AnyContent
     }
@@ -17,13 +17,13 @@ final class ComponentTests: XCTestCase {
 
     func testMetaTitleComponent() throws {
         
-        let page = TestPage {
+        let view = TestView {
             MetaTitle(title: "text")
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <title>text</title>\
                        <meta property="og:title" content="text">\
@@ -34,13 +34,13 @@ final class ComponentTests: XCTestCase {
     
     func testMetaDescriptionComponent() throws {
         
-        let page = TestPage {
+        let view = TestView {
             MetaDescription(description: "text")
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <meta name="description" content="text">\
                        <meta property="og:description" content="text">\
@@ -51,13 +51,13 @@ final class ComponentTests: XCTestCase {
     
     func testFaviconComponent() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Favicon(url: "url")
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <link rel="shortcut icon" href="url">
                        """
@@ -66,13 +66,13 @@ final class ComponentTests: XCTestCase {
     
     func testAuthorComponent() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Author(author: "text", handle: .constant("@handle"))
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <meta name="author" content="text">\
                        <meta name="twitter:creator" content="@handle">
@@ -82,13 +82,13 @@ final class ComponentTests: XCTestCase {
     
     func testStylesheetComponent() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Stylesheet(url: "url")
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <link rel="stylesheet" href="url" type="text/css">
                        """
@@ -97,13 +97,13 @@ final class ComponentTests: XCTestCase {
     
     func testViewportComponent() throws {
         
-        let page = TestPage {
+        let view = TestView {
             Viewport(.accordingToDevice)
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
                        """

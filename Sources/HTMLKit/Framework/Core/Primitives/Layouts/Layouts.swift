@@ -4,13 +4,23 @@
  */
 
 /// A type that defines a page layout.
-public protocol Page: AnyLayout {
+public protocol Page {
+    
+    var views: [View] { get }
 }
 
 /// A type that defines a view layout.
-public protocol View: AnyLayout {
+public protocol View: Layout {
+    
+    static var name: String { get }
 }
 
-/// A type that defines a component layout.
-public protocol Component: AnyLayout {
+extension View {
+    
+    public static var name: String {
+        return String(reflecting: type(of: Self.self))
+    }
+}
+
+public protocol Component: Layout {
 }

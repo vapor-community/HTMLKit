@@ -8,7 +8,7 @@ import XCTest
 
 final class ConditionsTests: XCTestCase {
     
-    struct TestPage: Page {
+    struct TestView: View {
         
         @ContentBuilder<AnyContent> var body: AnyContent
     }
@@ -19,7 +19,7 @@ final class ConditionsTests: XCTestCase {
         
         let condition: TemplateValue<String> = .constant("test")
         
-        let page = TestPage {
+        let view = TestView {
             IF(condition == "test") {
                 Paragraph {
                     "true"
@@ -32,9 +32,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p>true</p>
                        """
@@ -45,7 +45,7 @@ final class ConditionsTests: XCTestCase {
         
         let condition: TemplateValue<String> = .constant("test")
         
-        let page = TestPage {
+        let view = TestView {
             IF(condition != "test") {
                 Paragraph {
                     "false"
@@ -58,9 +58,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p>true</p>
                        """
@@ -71,7 +71,7 @@ final class ConditionsTests: XCTestCase {
         
         let condition: TemplateValue<Int> = .constant(10)
         
-        let page = TestPage {
+        let view = TestView {
             IF(condition < 15) {
                 Paragraph {
                     "true"
@@ -84,9 +84,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p>true</p>
                        """
@@ -97,7 +97,7 @@ final class ConditionsTests: XCTestCase {
         
         let condition: TemplateValue<Int> = .constant(10)
         
-        let page = TestPage {
+        let view = TestView {
             IF(condition <= 15) {
                 Paragraph {
                     "true"
@@ -115,9 +115,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p>true</p>\
                        <p>true</p>
@@ -129,7 +129,7 @@ final class ConditionsTests: XCTestCase {
         
         let condition: TemplateValue<Int> = .constant(10)
         
-        let page = TestPage {
+        let view = TestView {
             IF(condition > 10) {
                 Paragraph {
                     "false"
@@ -142,9 +142,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p>true</p>
                        """
@@ -155,7 +155,7 @@ final class ConditionsTests: XCTestCase {
         
         let condition: TemplateValue<Int> = .constant(10)
         
-        let page = TestPage {
+        let view = TestView {
             IF(condition >= 5) {
                 Paragraph {
                     "true"
@@ -173,9 +173,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p>true</p>\
                        <p>true</p>
@@ -187,7 +187,7 @@ final class ConditionsTests: XCTestCase {
         
         let condition: TemplateValue<Int> = .constant(10)
         
-        let page = TestPage {
+        let view = TestView {
             IF(condition ~= 1..<20) {
                 Paragraph {
                     "true"
@@ -200,9 +200,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p>true</p>
                        """
@@ -213,7 +213,7 @@ final class ConditionsTests: XCTestCase {
         
         let condition: TemplateValue<Int> = .constant(10)
         
-        let page = TestPage {
+        let view = TestView {
             IF(condition ~= 1...20) {
                 Paragraph {
                     "true"
@@ -226,9 +226,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p>true</p>
                        """
@@ -239,7 +239,7 @@ final class ConditionsTests: XCTestCase {
         
         let condition: TemplateValue<Int> = .constant(10)
         
-        let page = TestPage {
+        let view = TestView {
             IF(condition > 5 && condition < 15) {
                 Paragraph {
                     "true"
@@ -252,9 +252,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p>true</p>
                        """
@@ -265,7 +265,7 @@ final class ConditionsTests: XCTestCase {
         
         let condition: TemplateValue<Int> = .constant(10)
         
-        let page = TestPage {
+        let view = TestView {
             IF(condition > 5 || condition < 15) {
                 Paragraph {
                     "true"
@@ -278,9 +278,9 @@ final class ConditionsTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: page)
+        renderer.add(view: view)
         
-        XCTAssertEqual(renderer.render(layout: page),
+        XCTAssertEqual(renderer.render(view: view),
                        """
                        <p>true</p>
                        """

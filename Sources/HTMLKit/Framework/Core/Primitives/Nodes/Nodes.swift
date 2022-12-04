@@ -57,7 +57,7 @@ extension ContentNode {
         
         formula.add(ingridient: startTag)
         
-        if let layouts = content as? [AnyLayout] {
+        if let layouts = content as? [Layout] {
             
             for layout in layouts {
                 

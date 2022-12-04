@@ -13,7 +13,7 @@ final class TemplatingTests: XCTestCase {
     
     func testEmbeding() throws {
         
-        struct TestPage: Page {
+        struct MainView: View {
             
             var body: AnyContent {
                 Document(.html5)
@@ -24,13 +24,13 @@ final class TemplatingTests: XCTestCase {
                         }
                     }
                     Body {
-                        TestView()
+                        ChildView()
                     }
                 }
             }
         }
         
-        struct TestView: View {
+        struct ChildView: View {
             
             @TemplateValue(String.self)
             var context
@@ -45,9 +45,9 @@ final class TemplatingTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: TestPage())
+        renderer.add(view: MainView())
         
-        XCTAssertEqual(renderer.render(layout: TestPage(), with: "Hello World!"),
+        XCTAssertEqual(renderer.render(view: MainView(), with: "Hello World!"),
                        """
                        <!DOCTYPE html>\
                        <html>\
@@ -65,7 +65,7 @@ final class TemplatingTests: XCTestCase {
     
     func testExtending() throws {
         
-        struct TestPage: Page {
+        struct MainView: View {
             
             var content: [AnyContent]
             
@@ -88,13 +88,13 @@ final class TemplatingTests: XCTestCase {
             }
         }
         
-        struct TestView: View {
+        struct ChildView: View {
             
             @TemplateValue(String.self)
             var context
             
             var body: AnyContent {
-                TestPage {
+                MainView {
                     Heading1 {
                         context
                     }
@@ -105,9 +105,9 @@ final class TemplatingTests: XCTestCase {
             }
         }
         
-        renderer.add(layout: TestView())
+        renderer.add(view: ChildView())
         
-        XCTAssertEqual(renderer.render(layout: TestView(), with: "Hello World!"),
+        XCTAssertEqual(renderer.render(view: ChildView(), with: "Hello World!"),
                        """
                        <!DOCTYPE html>\
                        <html>\

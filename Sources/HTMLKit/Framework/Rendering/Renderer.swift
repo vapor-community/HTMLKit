@@ -30,13 +30,21 @@ public class Renderer {
     }
     
     /// Adds a formula to the cache.
-    public func add(layout: some AnyLayout) {
+    public func add(view: some View) {
         
-        let formula = prerender(layout: layout)
+        let formula = prerender(view: view)
         
-        let name = resolve(name: String(reflecting: layout.self))
+        let name = type(of: view).name
         
         self.cache.upsert(formula: formula, for: name)
+    }
+    
+    /// Adds the views of a page to the cache.
+    public func add(page: some Page) {
+        
+        for view in page.views {
+            self.add(view: view)
+        }
     }
     
     /// Registers a localization.
@@ -44,22 +52,12 @@ public class Renderer {
         self.lingo = try Lingo(rootPath: localization.source, defaultLocale: localization.locale.rawValue)
     }
     
-    /// Resolves the layout name
-    internal func resolve(name: String) -> String {
-        
-        let substring = name.prefix(while: { (character) -> Bool in
-            return character != "("
-        })
-        
-        return String(substring)
-    }
-    
     /// Prerenders the layout
-    internal func prerender(layout: some AnyLayout) -> Formula {
+    internal func prerender(view: some View) -> Formula {
         
         let formula = Formula()
         
-        if let contents = layout.body as? [AnyContent] {
+        if let contents = view.body as? [AnyContent] {
             
             for content in contents {
                 
@@ -67,7 +65,7 @@ public class Renderer {
                     node.prerender(with: formula)
                 }
                 
-                if let layout = content as? AnyLayout {
+                if let layout = content as? Layout {
                         
                     if let contents = layout.body as? [AnyContent] {
                         
@@ -111,11 +109,11 @@ public class Renderer {
     }
 
     /// Renders a layout
-    public func render(layout: some AnyLayout) -> String {
+    public func render(view: some View) -> String {
         
         let manager = ContextManager(context: (), lingo: self.lingo)
         
-        let name = resolve(name: String(reflecting: layout.self))
+        let name = type(of: view).name
         
         if let formula = self.cache.retrieve(key: name) {
             return rerender(formula: formula, manager: manager)
@@ -123,7 +121,7 @@ public class Renderer {
         
         var result = ""
         
-        if let contents = layout.body as? [AnyContent] {
+        if let contents = view.body as? [AnyContent] {
             
             for content in contents {
                 
@@ -137,11 +135,11 @@ public class Renderer {
     }
     
     /// Renders a layout.
-    public func render(layout: some AnyLayout, with context: some Codable) -> String {
+    public func render(view: some View, with context: some Codable) -> String {
         
         let manager = ContextManager(context: context, lingo: self.lingo)
-        
-        let name = resolve(name: String(reflecting: layout.self))
+    
+        let name = type(of: view).name
         
         if let formula = self.cache.retrieve(key: name) {
             return rerender(formula: formula, manager: manager)
@@ -149,7 +147,7 @@ public class Renderer {
         
         var result = ""
         
-        if let contents = layout.body as? [AnyContent] {
+        if let contents = view.body as? [AnyContent] {
             
             for content in contents {
                 
