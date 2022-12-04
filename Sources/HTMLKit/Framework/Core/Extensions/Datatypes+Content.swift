@@ -17,12 +17,7 @@ extension Double: Content {}
 
 extension Bool: Content {}
 
-extension Bool: Conditionable {
-    
-    public func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return self
-    }
-}
+extension Bool: Conditionable {}
 
 extension Sequence {
     

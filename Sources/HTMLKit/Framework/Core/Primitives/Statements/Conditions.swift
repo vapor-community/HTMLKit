@@ -26,10 +26,6 @@ internal struct EqualCondition<Value: Equatable>: Conditionable {
         self.lhs = lhs
         self.rhs = rhs
     }
-
-    internal func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return try lhs.value(from: manager) == rhs
-    }
 }
 
 /// A condition that evaluates an not equal expression between a variable and a constant value
@@ -43,10 +39,6 @@ internal struct NotEqualCondition<Value: Equatable>: Conditionable {
          
         self.lhs = lhs
         self.rhs = rhs
-    }
-
-    internal func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return try lhs.value(from: manager) != rhs
     }
 }
 
@@ -62,10 +54,6 @@ internal struct LessThanCondition<Value: Comparable>: Conditionable {
         self.lhs = lhs
         self.rhs = rhs
     }
-
-    internal func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return try lhs.value(from: manager) < rhs
-    }
 }
 
 /// A condition that evaluates a greater than expression between a variable and a constant value
@@ -79,10 +67,6 @@ internal struct GreaterThanCondition<Value: Comparable>: Conditionable {
          
         self.lhs = lhs
         self.rhs = rhs
-    }
-
-    internal func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return try lhs.value(from: manager) > rhs
     }
 }
 
@@ -104,20 +88,12 @@ internal struct BetweenCondition<Value: Strideable>: Conditionable {
         self.lhs = lhs
         self.rhs = rhs.lowerBound...rhs.upperBound
     }
-
-    internal func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return try rhs ~= lhs.value(from: manager)
-    }
 }
 
 /// A condition that is always true
 internal struct AlwaysTrueCondition: Conditionable {
     
     internal init() {}
-    
-    internal func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return true
-    }
 }
 
 /// A condition...
@@ -128,10 +104,6 @@ internal struct NotNullCondition<Value>: Conditionable {
     internal init(lhs: TemplateValue<Value?>) {
         
         self.lhs = lhs
-    }
-
-    internal func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return try lhs.value(from: manager) != nil
     }
 }
 
@@ -144,16 +116,6 @@ internal struct NotNullConditionGeneral<Value>: Conditionable {
         
         self.lhs = lhs
     }
-
-    internal func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        
-        if let value = try lhs.value(from: manager) as? Defineable {
-            return value.isDefinded
-            
-        } else {
-            return true
-        }
-    }
 }
 
 /// A condition...
@@ -164,10 +126,6 @@ internal struct IsNullCondition<Value>: Conditionable {
     internal init(lhs: TemplateValue<Value?>) {
         
         self.lhs = lhs
-    }
-
-    internal func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return try lhs.value(from: manager) == nil
     }
 }
 
@@ -180,16 +138,6 @@ internal struct IsNullConditionGeneral<Value>: Conditionable {
         
         self.lhs = lhs
     }
-
-    internal func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        
-        if let value = try lhs.value(from: manager) as? Defineable {
-            return value.isDefinded == false
-            
-        } else {
-            return false
-        }
-    }
 }
 
 /// A condition...
@@ -200,10 +148,6 @@ internal struct InvertCondition: Conditionable {
     internal init(lhs: Conditionable) {
         
         self.lhs = lhs
-    }
-
-    internal func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return try !lhs.evaluate(with: manager)
     }
 }
 
@@ -219,10 +163,6 @@ internal struct AndCondition: Conditionable {
         self.lhs = lhs
         self.rhs = rhs
     }
-
-    internal func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return try lhs.evaluate(with: manager) && rhs.evaluate(with: manager)
-    }
 }
 
 /// A condition...
@@ -236,10 +176,6 @@ internal struct OrCondition: Conditionable {
         
         self.lhs = lhs
         self.rhs = rhs
-    }
-
-    internal func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return try lhs.evaluate(with: manager) || rhs.evaluate(with: manager)
     }
 }
 

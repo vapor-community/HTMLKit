@@ -40,7 +40,7 @@
         
         self.keyPath = \Value.self
         self.pathId = pathId
-        self.rootId = rootId
+        self.rootId = String(reflecting: Value.self)
         self.escaping = escaping
         self.isMasqueradingOptional = isMasqueradingOptional
     }
@@ -103,9 +103,4 @@ extension HTMLContext where Value: Content {
     }
 }
 
-extension HTMLContext: Conditionable where Value == Bool {
-    
-    public func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return try manager.value(for: self)
-    }
-}
+extension HTMLContext: Conditionable where Value == Bool {}

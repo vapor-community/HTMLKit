@@ -68,9 +68,4 @@ public struct IF: Content {
     }
 }
 
-extension IF.Condition: Conditionable {
-
-    public func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return try condition.evaluate(with: manager)
-    }
-}
+extension IF.Condition: Conditionable {}

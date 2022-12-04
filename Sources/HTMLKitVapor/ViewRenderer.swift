@@ -44,11 +44,9 @@ public class ViewRenderer {
     /// Renders a layout and its context
     public func render(name: String, context: Encodable) -> EventLoopFuture<ByteBuffer> {
         
-        let manager = HTMLKit.ContextManager(context: context, lingo: self.lingo)
-        
         var buffer = ByteBufferAllocator().buffer(capacity: 4096)
         
-        if let content = self.renderer.rerender(name: name, manager: manager) {
+        if let content = self.renderer.rerender(name: name, with: context) {
             buffer.writeString(content)
             
         } else {

@@ -79,17 +79,6 @@ import Foundation
     public func value<T>(at keyPath: KeyPath<Value, T>) -> TemplateValue<T> {
         return self[dynamicMember: keyPath]
     }
-    
-    public func value<T>(from manager: ContextManager<T>) throws -> Value {
-        
-        switch self {
-        case .constant(let value):
-            return value
-            
-        case .dynamic(let variable):
-            return try manager.value(for: variable)
-        }
-    }
 
     public func makeOptional() -> TemplateValue<Value?> {
         
@@ -154,19 +143,7 @@ extension TemplateValue where Value: Sequence {
     }
 }
 
-extension TemplateValue: Conditionable where Value == Bool {
-    
-    public func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        
-        switch self {
-        case .constant(let value):
-            return value
-            
-        case .dynamic(let variable):
-            return try manager.value(for: variable)
-        }
-    }
-}
+extension TemplateValue: Conditionable where Value == Bool {}
 
 extension TemplateValue where Value == Date {
     

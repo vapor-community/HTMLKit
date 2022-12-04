@@ -4,7 +4,4 @@
  */
 
 /// The protocol defines
-public protocol Conditionable: Content {
-    
-    func evaluate<T>(with manager: ContextManager<T>) throws -> Bool
-}
+public protocol Conditionable: Content {}

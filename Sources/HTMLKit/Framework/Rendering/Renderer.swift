@@ -9,6 +9,9 @@ import Lingo
 /// A struct containing the different formulas for the different views.
 public class Renderer {
     
+    /// A manager that handles the contexts
+    private var manager: Manager
+    
     /// A cache that contains all the composed content.
     private var cache: Cache
     
@@ -24,7 +27,8 @@ public class Renderer {
     /// Initiates the renderer.
     public init(calendar: Calendar = .current, timeZone: TimeZone = .current) {
         
-        self.cache = .init()
+        self.manager = Manager()
+        self.cache = Cache()
         self.calendar = calendar
         self.timeZone = timeZone
     }
@@ -53,10 +57,12 @@ public class Renderer {
     }
     
     /// Rerenders the formula
-    public func rerender<T>(name: String, manager: ContextManager<T>) -> String? {
+    public func rerender(name: String, with context: Encodable) -> String? {
+        
+        manager.add(context: context)
         
         if let formula = self.cache.retrieve(key: name) {
-            return rerender(formula: formula, manager: manager)
+            return rerender(formula: formula)
         }
         
         return nil
@@ -65,29 +71,27 @@ public class Renderer {
     /// Renders a layout
     public func render(view: some View) -> String {
         
-        let manager = ContextManager(context: (), lingo: self.lingo)
-        
         let name = type(of: view).name
         
         if let formula = self.cache.retrieve(key: name) {
-            return rerender(formula: formula, manager: manager)
+            return rerender(formula: formula)
         }
         
-        return render(layout: view, manager: manager)
+        return render(layout: view)
     }
     
     /// Renders a layout.
-    public func render(view: some View, with context: some Codable) -> String {
+    public func render(view: some View, with context: some Encodable) -> String {
         
-        let manager = ContextManager(context: context, lingo: self.lingo)
+        manager.add(context: context)
     
         let name = type(of: view).name
         
         if let formula = self.cache.retrieve(key: name) {
-            return rerender(formula: formula, manager: manager)
+            return rerender(formula: formula)
         }
         
-        return  render(layout: view, manager: manager)
+        return render(layout: view)
     }
     
     /// Prerenders the layout
@@ -246,7 +250,7 @@ public class Renderer {
     }
     
     /// Rerenders the formula
-    internal func rerender<T>(formula: Formula, manager: ContextManager<T>) -> String {
+    internal func rerender(formula: Formula) -> String {
         
         var result = ""
         
@@ -258,11 +262,11 @@ public class Renderer {
             } else {
                 
                 if let layout = ingridient as? Layout {
-                    result += render(layout: layout, manager: manager)
+                    result += render(layout: layout)
                 }
                 
                 if let variable = ingridient as? HTMLContext<String> {
-                    result += render(variable: variable, manager: manager)
+                    result += render(variable: variable)
                 }
             }
         }
@@ -272,7 +276,7 @@ public class Renderer {
     
     
     /// Renders a layout
-    internal func render<T>(layout: some Layout, manager: ContextManager<T>) -> String {
+    internal func render(layout: some Layout) -> String {
         
         var result = ""
         
@@ -281,7 +285,7 @@ public class Renderer {
             for content in contents {
                 
                 if let element = content as? (any ContentElement) {
-                    result += render(element: element, manager: manager)
+                    result += render(element: element)
                 }
                 
                 if let element = content as? (any EmptyElement) {
@@ -306,7 +310,7 @@ public class Renderer {
     }
     
     /// Renders a content element
-    internal func render<T>(element: some ContentElement, manager: ContextManager<T>) -> String {
+    internal func render(element: some ContentElement) -> String {
         
         var result = ""
         
@@ -317,7 +321,7 @@ public class Renderer {
             for content in contents {
                 
                 if let element = content as? (any ContentElement) {
-                    result += render(element: element, manager: manager)
+                    result += render(element: element)
                 }
                 
                 if let element = content as? (any EmptyElement) {
@@ -359,7 +363,7 @@ public class Renderer {
     }
     
     /// Renders a template value
-    internal func render<T>(value: TemplateValue<String>, manager: ContextManager<T>) -> String {
+    internal func render(value: TemplateValue<String>) -> String {
         
         var result = ""
         
@@ -368,18 +372,18 @@ public class Renderer {
             result += value
             
         case .dynamic(let variable):
-            result += render(variable: variable, manager: manager)
+            result += render(variable: variable)
         }
         
         return result
     }
     
     /// Renders a template value
-    internal func render<T>(variable: HTMLContext<String>, manager: ContextManager<T>) -> String {
+    internal func render(variable: HTMLContext<String>) -> String {
         
         var result = ""
         
-        if let value = try? manager.value(for: variable) {
+        if let value = try? manager.retrieve(for: variable) {
             result += value
         }
         
