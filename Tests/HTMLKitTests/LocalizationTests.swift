@@ -24,7 +24,7 @@ final class LocalizationTests: XCTestCase {
     func testLocalization() throws {
         
         let view = TestView {
-            Heading1("Hallo Welt")
+            Heading1("greeting.world")
         }
         
         renderer.add(view: view)
@@ -36,10 +36,35 @@ final class LocalizationTests: XCTestCase {
         )
     }
     
+    func testLocalizationWithStringInterpolation() throws {
+        
+        struct TestContext: Codable {
+            var name: String
+        }
+        
+        struct TestView: View {
+            
+            @TemplateValue(TestContext.self)
+            var context
+            
+            var body: Content {
+                Heading1("greeting.person", with: context)
+            }
+        }
+        
+        renderer.add(view: TestView())
+        
+        XCTAssertEqual(renderer.render(view: TestView(), with: TestContext(name: "Stephen")),
+                       """
+                       <h1>Hello Stephen</h1>
+                       """
+        )
+    }
+    
     func testEnvironmentLocale() throws {
         
         let view = TestView {
-            Heading1("Hallo Welt")
+            Heading1("greeting.world")
                 .environment(locale: "fr")
         }
         

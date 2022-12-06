@@ -126,6 +126,10 @@ public class Renderer {
                 if let element = content as? String {
                     formula.add(ingridient: element)
                 }
+                
+                if let localized = content as? (any LocalizedContent) {
+                    prerender(localized: localized, on: formula)
+                }
             }
         }
         
@@ -212,6 +216,10 @@ public class Renderer {
                 if let value = content as? TemplateValue<String> {
                     prerender(value: value, on: formula)
                 }
+                
+                if let localized = content as? (any LocalizedContent) {
+                    prerender(localized: localized, on: formula)
+                }
             }
         }
         
@@ -249,6 +257,10 @@ public class Renderer {
         }
     }
     
+    internal func prerender(localized: some LocalizedContent, on formula: Formula) {
+        formula.add(ingridient: localized)
+    }
+    
     /// Rerenders the formula
     internal func rerender(formula: Formula) -> String {
         
@@ -267,6 +279,10 @@ public class Renderer {
                 
                 if let variable = ingridient as? HTMLContext<String> {
                     result += render(variable: variable)
+                }
+                
+                if let localized = ingridient as? (any LocalizedContent) {
+                    result += render(localized: localized)
                 }
             }
         }
@@ -339,6 +355,10 @@ public class Renderer {
                 if let element = content as? String {
                     result += element
                 }
+                
+                if let localized = content as? (any LocalizedContent) {
+                    result += render(localized: localized)
+                }
             }
         }
         
@@ -387,6 +407,49 @@ public class Renderer {
             result += value
         }
         
+        return result
+    }
+    
+    /// Renders a localized string
+    internal func render(localized: some LocalizedContent) -> String {
+        
+        var result = ""
+        
+        if let lingo = self.lingo {
+            
+            if let context = localized.context {
+                
+                switch context {
+                case .constant(let value):
+                    
+                    if let data = try? JSONEncoder().encode(value) {
+                        
+                        if let dictionary = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                            result += lingo.localize(localized.key, locale: lingo.defaultLocale, interpolations: dictionary)
+                        }
+                    }
+                    
+                case .dynamic(let variable):
+                    
+                    if let value = try? manager.retrieve(for: variable) {
+                        
+                        if let data = try? JSONEncoder().encode(value) {
+                            
+                            if let dictionary = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                                result += lingo.localize(localized.key, locale: lingo.defaultLocale, interpolations: dictionary)
+                            }
+                        }
+                    }
+                }
+                
+            } else {
+                result += lingo.localize(localized.key, locale: lingo.defaultLocale)
+            }
+            
+        } else {
+            fatalError("Lingo needs to be set up first.")
+        }
+
         return result
     }
 }

@@ -1,3 +1,4 @@
 {
-    "Hallo Welt": "Hello World",
+    "greeting.world": "Hello World",
+    "greeting.person": "Hello %{name}",
 }

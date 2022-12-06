@@ -1697,13 +1697,13 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 }
 
 extension Heading1: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
-    }
 
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    public init(_ localizedKey: String) {
+        self.content = [LocalizedStringKey(key: localizedKey)]
+    }
+    
+    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }
 
@@ -1979,13 +1979,13 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 }
 
 extension Heading2: Localizable {
-    
-    public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
-    }
 
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    public init(_ localizedKey: String) {
+        self.content = [LocalizedStringKey(key: localizedKey)]
+    }
+    
+    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }
 
@@ -2263,11 +2263,11 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 extension Heading3: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
+        self.content = [LocalizedStringKey(key: localizedKey)]
     }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    
+    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }
 
@@ -2545,11 +2545,11 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 extension Heading4: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
+        self.content = [LocalizedStringKey(key: localizedKey)]
     }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    
+    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }
 
@@ -2827,11 +2827,11 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 extension Heading5: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
+        self.content = [LocalizedStringKey(key: localizedKey)]
     }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    
+    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }
 
@@ -3109,11 +3109,11 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 extension Heading6: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
+        self.content = [LocalizedStringKey(key: localizedKey)]
     }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    
+    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }
 
@@ -4475,11 +4475,11 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 extension Paragraph: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
+        self.content = [LocalizedStringKey(key: localizedKey)]
     }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    
+    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }
 
@@ -5298,11 +5298,11 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 extension Blockquote: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
+        self.content = [LocalizedStringKey(key: localizedKey)]
     }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    
+    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }
 
@@ -6716,11 +6716,11 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 extension Anchor: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
+        self.content = [LocalizedStringKey(key: localizedKey)]
     }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    
+    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }
 
@@ -7540,11 +7540,11 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 extension Small: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
+        self.content = [LocalizedStringKey(key: localizedKey)]
     }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    
+    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }
 
@@ -7746,11 +7746,11 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
 extension StrikeThrough: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
+        self.content = [LocalizedStringKey(key: localizedKey)]
     }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    
+    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }
 
@@ -12109,11 +12109,11 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
 extension Italic: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
+        self.content = [LocalizedStringKey(key: localizedKey)]
     }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    
+    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }
 
@@ -12391,11 +12391,11 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 extension Bold: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
+        self.content = [LocalizedStringKey(key: localizedKey)]
     }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    
+    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }
 
@@ -12673,11 +12673,11 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 extension Underline: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
+        self.content = [LocalizedStringKey(key: localizedKey)]
     }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    
+    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }
 

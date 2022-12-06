@@ -2430,10 +2430,10 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 extension HeaderCell: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
+        self.content = [LocalizedStringKey(key: localizedKey)]
     }
-
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    
+    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }
