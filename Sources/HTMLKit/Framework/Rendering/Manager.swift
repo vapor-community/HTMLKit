@@ -6,29 +6,23 @@
 import Foundation
 import Lingo
 
-/// A struct managing the contexts
+/// A type, that manages the contexts
 internal class Manager {
     
-    /// The different contexts of the views
-    internal var contexts: [String: Any]
+    /// The storage of the contexts
+    internal var storage: [String: Encodable]
     
     /// Initiates a manager
     internal init() {
         
-        self.contexts = [:]
+        self.storage = [:]
     }
-
-    /// Retrieves a value for the variable
-    internal func retrieve<T>(for variable: HTMLContext<T>) throws -> T? {
+    
+    /// Retrieves a context by its name
+    internal func retrieve(for name: String) -> (any Encodable)? {
         
-        if let context = self.contexts[variable.rootId] {
-            
-            if let value = context[keyPath: variable.keyPath] as? T {
-                return value
-                
-            } else {
-                return nil
-            }
+        if let context = self.storage[name] {
+            return context
         }
         
         return nil
@@ -39,6 +33,6 @@ internal class Manager {
         
         let name = String(reflecting: type(of: context))
         
-        self.contexts[name] = context
+        self.storage[name] = context
     }
 }
