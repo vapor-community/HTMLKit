@@ -54,6 +54,22 @@ extension ContentElement {
     }
 }
 
+extension ContentElement {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: Property<T?>, element: (Self, Property<T>) -> Self) -> Self {
+        return self.modify(element(self, value.unsafeCast(to: T.self)))
+    }
+}
+
 /// A type that defines a node without any content.
 internal protocol EmptyElement: Element {
 
@@ -93,8 +109,24 @@ extension EmptyElement {
     }
 }
 
+extension EmptyElement {
+    
+    public func modify(if condition: Bool, element: (Self) -> Self) -> Self {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: Property<T?>, element: (Self, Property<T>) -> Self) -> Self {
+        return self.modify(element(self, value.unsafeCast(to: T.self)))
+    }
+}
+
 /// A type that defines a comment node.
-internal protocol CommentElement: Element {
+internal protocol CommentElement: Content {
     
     /// The content of the node.
     var content: String { get }
@@ -112,7 +144,7 @@ extension CommentElement {
 }
 
 /// The protocol defines the document node.
-internal protocol DocumentElement: Element {
+internal protocol DocumentElement: Content {
     
     /// The content of the node.
     var content: String { get }

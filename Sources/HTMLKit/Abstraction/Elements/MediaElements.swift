@@ -24,37 +24,6 @@ public struct Source: EmptyElement {
     internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
-    
-    public func modify(if condition: Bool, element: (Source) -> Source) -> Source {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Source, TemplateValue<T>) -> Source) -> Source {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute {
@@ -125,10 +94,6 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     
     public func id(_ value: String) -> Source {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Source {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> Source {
@@ -238,37 +203,6 @@ public struct Track: EmptyElement {
     internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
-    
-    public func modify(if condition: Bool, element: (Track) -> Track) -> Track {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Track, TemplateValue<T>) -> Track) -> Track {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute {
@@ -339,10 +273,6 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
 
     public func id(_ value: String) -> Track {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Track {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> Track {

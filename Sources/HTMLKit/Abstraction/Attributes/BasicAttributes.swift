@@ -398,9 +398,6 @@ public protocol ContentAttribute: Attribute {
     /// <tag content="" />
     /// ```
     func content(_ value: String) -> Self
-    
-    /// The func adds
-    func content(_ value: TemplateValue<String>) -> Self
 }
 
 extension ContentAttribute where Self: ContentElement {
@@ -971,8 +968,6 @@ public protocol ReferenceAttribute: Attribute {
     /// <tag href="" />
     /// ```
     func reference(_ value: String) -> Self
-    
-    func reference(_ value: TemplateValue<String>) -> Self
 }
 
 extension ReferenceAttribute where Self: ContentElement {
@@ -1027,8 +1022,6 @@ public protocol IdentifierAttribute: Attribute {
     /// <tag id="" />
     /// ```
     func id(_ value: String) -> Self
-    
-    func id(_ value: TemplateValue<String>) -> Self
 }
 
 extension IdentifierAttribute where Self: ContentElement {
@@ -1620,9 +1613,6 @@ public protocol NameAttribute: Attribute {
     /// <tag name="" />
     /// ```
     func name(_ value: NameValue) -> Self
-    
-    /// The func adds
-    func name(_ value: TemplateValue<NameValue>) -> Self
 }
 
 extension NameAttribute where Self: ContentElement {
@@ -1823,8 +1813,6 @@ public protocol PlaceholderAttribute: Attribute {
     /// <tag placeholder="" />
     /// ```
     func placeholder(_ value: String) -> Self
-    
-    func placeholder(_ value: TemplateValue<String>) -> Self
 }
 
 extension PlaceholderAttribute where Self: ContentElement {
@@ -2527,8 +2515,6 @@ public protocol ValueAttribute: Attribute {
     /// <tag value="" />
     /// ```
     func value(_ value: String) -> Self
-    
-    func value(_ value: TemplateValue<String>) -> Self
 }
 
 extension ValueAttribute where Self: ContentElement {

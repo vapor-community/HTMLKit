@@ -29,37 +29,6 @@ public struct Head: ContentElement {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (Head) -> Head) -> Head {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Head, TemplateValue<T>) -> Head) -> Head {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension Head: GlobalAttributes, GlobalEventAttributes {
@@ -130,10 +99,6 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
     
     public func id(_ value: String) -> Head {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Head {
-        return mutate(id: value.rawValue)
     }
     
     public func language(_ value: Values.Language) -> Head {
@@ -224,37 +189,6 @@ public struct Body: ContentElement, Element {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (Body) -> Body) -> Body {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Body, TemplateValue<T>) -> Body) -> Body {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WindowEventAttribute {
@@ -325,10 +259,6 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
 
     public func id(_ value: String) -> Body {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Body {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> Body {

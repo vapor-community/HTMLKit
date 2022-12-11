@@ -47,37 +47,6 @@ public struct TermName: ContentElement {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (TermName) -> TermName) -> TermName {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TermName, TemplateValue<T>) -> TermName) -> TermName {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
@@ -148,10 +117,6 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func id(_ value: String) -> TermName {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> TermName {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> TermName {
@@ -318,37 +283,6 @@ public struct TermDefinition: ContentElement {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (TermDefinition) -> TermDefinition) -> TermDefinition {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TermDefinition, TemplateValue<T>) -> TermDefinition) -> TermDefinition {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
@@ -419,10 +353,6 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
 
     public func id(_ value: String) -> TermDefinition {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> TermDefinition {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> TermDefinition {

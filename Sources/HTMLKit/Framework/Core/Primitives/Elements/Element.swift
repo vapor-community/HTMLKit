@@ -8,17 +8,13 @@ public protocol Element: Content {
     
     /// The behavoir of the the element.
     var scripts: String { get }
+    
+    func modify(if condition: Bool, element: (Self) -> Self) -> Self
+    
+    func modify<T>(unwrap value: Property<T?>, element: (Self, Property<T>) -> Self) -> Self
 }
 
 extension Element {
     
     public var scripts: String { "" }
-    
-    public func environment(locale: String) -> EnvironmentModifier {
-        return EnvironmentModifier(view: self, locale: .constant(locale))
-    }
-    
-    public func environment(locale: TemplateValue<String>) -> EnvironmentModifier {
-        return EnvironmentModifier(view: self, locale: locale)
-    }
 }

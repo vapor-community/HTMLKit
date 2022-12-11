@@ -73,10 +73,6 @@ final class AttributesTests: XCTestCase {
             return self.mutate(id: value)
         }
         
-        func id(_ value: TemplateValue<String>) -> Tag {
-            return self.mutate(id: value.rawValue)
-        }
-        
         func inputMode(_ value: String) -> Tag {
             return self.mutate(inputmode: value)
         }
@@ -185,10 +181,6 @@ final class AttributesTests: XCTestCase {
             return self.mutate(content: value)
         }
         
-        func content(_ value: TemplateValue<String>) -> Tag {
-            return self.mutate(content: value.rawValue)
-        }
-        
         func controls() -> Tag {
             return self.mutate(controls: "controls")
         }
@@ -257,10 +249,6 @@ final class AttributesTests: XCTestCase {
             return self.mutate(href: value)
         }
         
-        func reference(_ value: TemplateValue<String>) -> Tag {
-            return self.mutate(href: value.rawValue)
-        }
-        
         func referenceLanguage(_ value: Values.Language) -> Tag {
             return self.mutate(hreflang: value.rawValue)
         }
@@ -325,10 +313,6 @@ final class AttributesTests: XCTestCase {
             return self.mutate(name: value)
         }
         
-        func name(_ value: TemplateValue<String>) -> Tag {
-            return self.mutate(name: value.rawValue)
-        }
-        
         func novalidate() -> Tag {
             return self.mutate(novalidate: "novalidate")
         }
@@ -355,10 +339,6 @@ final class AttributesTests: XCTestCase {
         
         func placeholder(_ value: String) -> Tag {
             return self.mutate(placeholder: value)
-        }
-        
-        func placeholder(_ value: TemplateValue<String>) -> Tag {
-            return self.mutate(placeholder: value.rawValue)
         }
         
         func poster(_ value: String) -> Tag {
@@ -447,10 +427,6 @@ final class AttributesTests: XCTestCase {
         
         func value(_ value: String) -> Tag {
             return self.mutate(value: value)
-        }
-        
-        func value(_ value: TemplateValue<String>) -> Tag {
-            return self.mutate(value: value.rawValue)
         }
         
         func width(_ size: Int) -> Tag {

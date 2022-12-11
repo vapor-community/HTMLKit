@@ -101,37 +101,6 @@ public struct Caption: ContentElement {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (Caption) -> Caption) -> Caption {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Caption, TemplateValue<T>) -> Caption) -> Caption {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
@@ -202,10 +171,6 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
 
     public func id(_ value: String) -> Caption {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Caption {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> Caption {
@@ -372,37 +337,6 @@ public struct ColumnGroup: ContentElement {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (ColumnGroup) -> ColumnGroup) -> ColumnGroup {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (ColumnGroup, TemplateValue<T>) -> ColumnGroup) -> ColumnGroup {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
@@ -473,10 +407,6 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
 
     public func id(_ value: String) -> ColumnGroup {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> ColumnGroup {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> ColumnGroup {
@@ -571,37 +501,6 @@ public struct Column: ContentElement {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (Column) -> Column) -> Column {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Column, TemplateValue<T>) -> Column) -> Column {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
@@ -672,10 +571,6 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
 
     public func id(_ value: String) -> Column {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Column {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> Column {
@@ -770,37 +665,6 @@ public struct TableBody: ContentElement {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (TableBody) -> TableBody) -> TableBody {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TableBody, TemplateValue<T>) -> TableBody) -> TableBody {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute {
@@ -871,10 +735,6 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func id(_ value: String) -> TableBody {
         return mutate(id: value)
-    }
-
-    public func id(_ value: TemplateValue<String>) -> TableBody {
-        return mutate(id: value.rawValue)
     }
     
     public func language(_ value: Values.Language) -> TableBody {
@@ -1049,37 +909,6 @@ public struct TableHead: ContentElement {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (TableHead) -> TableHead) -> TableHead {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TableHead, TemplateValue<T>) -> TableHead) -> TableHead {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute {
@@ -1150,10 +979,6 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func id(_ value: String) -> TableHead {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> TableHead {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> TableHead {
@@ -1328,37 +1153,6 @@ public struct TableFoot: ContentElement {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (TableFoot) -> TableFoot) -> TableFoot {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TableFoot, TemplateValue<T>) -> TableFoot) -> TableFoot {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
@@ -1429,10 +1223,6 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func id(_ value: String) -> TableFoot {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> TableFoot {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> TableFoot {
@@ -1599,37 +1389,6 @@ public struct TableRow: ContentElement {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (TableRow) -> TableRow) -> TableRow {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TableRow, TemplateValue<T>) -> TableRow) -> TableRow {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute {
@@ -1700,10 +1459,6 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func id(_ value: String) -> TableRow {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> TableRow {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> TableRow {
@@ -1878,37 +1633,6 @@ public struct DataCell: ContentElement {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (DataCell) -> DataCell) -> DataCell {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (DataCell, TemplateValue<T>) -> DataCell) -> DataCell {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute {
@@ -1979,10 +1703,6 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func id(_ value: String) -> DataCell {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> DataCell {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> DataCell {
@@ -2161,37 +1881,6 @@ public struct HeaderCell: ContentElement {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (HeaderCell) -> HeaderCell) -> HeaderCell {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (HeaderCell, TemplateValue<T>) -> HeaderCell) -> HeaderCell {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute, ScopeAttribute {
@@ -2262,10 +1951,6 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     
     public func id(_ value: String) -> HeaderCell {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> HeaderCell {
-        return mutate(id: value.rawValue)
     }
     
     public func language(_ value: Values.Language) -> HeaderCell {
@@ -2433,7 +2118,7 @@ extension HeaderCell: Localizable {
         self.content = [LocalizedStringKey(key: localizedKey)]
     }
     
-    public init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>) {
+    public init<T: Encodable>(_ localizedKey: String, with context: Property<T>) {
         self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }

@@ -47,37 +47,6 @@ public struct RubyText: ContentElement {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (RubyText) -> RubyText) -> RubyText {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (RubyText, TemplateValue<T>) -> RubyText) -> RubyText {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
@@ -148,10 +117,6 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func id(_ value: String) -> RubyText {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> RubyText {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> RubyText {
@@ -318,37 +283,6 @@ public struct RubyPronunciation: ContentElement {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (RubyPronunciation) -> RubyPronunciation) -> RubyPronunciation {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (RubyPronunciation, TemplateValue<T>) -> RubyPronunciation) -> RubyPronunciation {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
@@ -419,10 +353,6 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
 
     public func id(_ value: String) -> RubyPronunciation {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> RubyPronunciation {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> RubyPronunciation {

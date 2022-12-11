@@ -67,37 +67,6 @@ public struct Html: ContentElement {
         self.attributes = attributes
         self.content = content
     }
-    
-    public func modify(if condition: Bool, element: (Html) -> Html) -> Html {
-        
-        if condition {
-            return self.modify(element(self))
-        }
-        
-        return self
-    }
-    
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Html, TemplateValue<T>) -> Html) -> Html {
-        
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
-        }
-    }
 }
 
 extension Html: GlobalAttributes, GlobalEventAttributes {
@@ -168,10 +137,6 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
 
     public func id(_ value: String) -> Html {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Html {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> Html {
