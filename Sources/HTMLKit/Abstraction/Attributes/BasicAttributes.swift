@@ -23,6 +23,16 @@ public protocol AccessKeyAttribute: Attribute {
     /// - Parameters:
     ///    - value:
     func accessKey(_ value: Character) -> Self
+    
+    /// The function represents the html-attribute 'accesskey'.
+    ///
+    /// ```html
+    /// <tag accesskey="" />
+    /// ```
+    ///
+    /// - Parameters:
+    ///    - value:
+    func accessKey(_ value: Property<Character>) -> Self
 }
 
 extension AccessKeyAttribute where Self: ContentElement {
@@ -30,11 +40,19 @@ extension AccessKeyAttribute where Self: ContentElement {
     internal func mutate(accesskey value: Character) -> Self {
         return self.mutate(key: "accesskey", value: value)
     }
+    
+    internal func mutate(accesskey value: Property<Character>) -> Self {
+        return self.mutate(key: "accesskey", value: value)
+    }
 }
 
 extension AccessKeyAttribute where Self: EmptyElement {
     
     internal func mutate(accesskey value: Character) -> Self {
+        return self.mutate(key: "accesskey", value: value)
+    }
+    
+    internal func mutate(accesskey value: Property<Character>) -> Self {
         return self.mutate(key: "accesskey", value: value)
     }
 }
@@ -48,6 +66,13 @@ public protocol AcceptAttribute: Attribute {
     /// <tag accept="" />
     /// ```
     func accept(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'accept'.
+    ///
+    /// ```html
+    /// <tag accept="" />
+    /// ```
+    func accept(_ value: Property<String>) -> Self
 }
 
 extension AcceptAttribute where Self: ContentElement {
@@ -55,11 +80,19 @@ extension AcceptAttribute where Self: ContentElement {
     internal func mutate(accept value: String) -> Self {
         return self.mutate(key: "accept", value: value)
     }
+    
+    internal func mutate(accept value: Property<String>) -> Self {
+        return self.mutate(key: "accept", value: value)
+    }
 }
 
 extension AcceptAttribute where Self: EmptyElement {
     
     internal func mutate(accept value: String) -> Self {
+        return self.mutate(key: "accept", value: value)
+    }
+    
+    internal func mutate(accept value: Property<String>) -> Self {
         return self.mutate(key: "accept", value: value)
     }
 }
@@ -73,6 +106,13 @@ public protocol ActionAttribute: Attribute {
     /// <tag action="" />
     /// ```
     func action(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'action'.
+    ///
+    /// ```html
+    /// <tag action="" />
+    /// ```
+    func action(_ value: Property<String>) -> Self
 }
 
 extension ActionAttribute where Self: ContentElement {
@@ -80,11 +120,19 @@ extension ActionAttribute where Self: ContentElement {
     internal func mutate(action value: String) -> Self {
         return self.mutate(key: "action", value: value)
     }
+    
+    internal func mutate(action value: Property<String>) -> Self {
+        return self.mutate(key: "action", value: value)
+    }
 }
 
 extension ActionAttribute where Self: EmptyElement {
     
     internal func mutate(action value: String) -> Self {
+        return self.mutate(key: "action", value: value)
+    }
+    
+    internal func mutate(action value: Property<String>) -> Self {
         return self.mutate(key: "action", value: value)
     }
 }
@@ -98,6 +146,13 @@ public protocol AlternateAttribute: Attribute {
     /// <tag alt="" />
     /// ```
     func alternate(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'alt'.
+    ///
+    /// ```html
+    /// <tag alt="" />
+    /// ```
+    func alternate(_ value: Property<String>) -> Self
 }
 
 extension AlternateAttribute where Self: ContentElement {
@@ -105,11 +160,19 @@ extension AlternateAttribute where Self: ContentElement {
     internal func mutate(alternate value: String) -> Self {
         return self.mutate(key: "alt", value: value)
     }
+    
+    internal func mutate(alternate value: Property<String>) -> Self {
+        return self.mutate(key: "alt", value: value)
+    }
 }
 
 extension AlternateAttribute where Self: EmptyElement {
     
     internal func mutate(alternate value: String) -> Self {
+        return self.mutate(key: "alt", value: value)
+    }
+    
+    internal func mutate(alternate value: Property<String>) -> Self {
         return self.mutate(key: "alt", value: value)
     }
 }
@@ -173,6 +236,13 @@ public protocol AutocompleteAttribute: Attribute {
     /// <tag autocomplete="" />
     /// ```
     func hasCompletion(_ value: Bool) -> Self
+    
+    /// The function represents the html-attribute 'autocomplete'.
+    ///
+    /// ```html
+    /// <tag autocomplete="" />
+    /// ```
+    func hasCompletion(_ value: Property<Bool>) -> Self
 }
 
 extension AutocompleteAttribute where Self: ContentElement {
@@ -180,11 +250,19 @@ extension AutocompleteAttribute where Self: ContentElement {
     internal func mutate(autocomplete value: Bool) -> Self {
         return self.mutate(key: "autocomplete", value: value)
     }
+    
+    internal func mutate(autocomplete value: Property<Bool>) -> Self {
+        return self.mutate(key: "autocomplete", value: value)
+    }
 }
 
 extension AutocompleteAttribute where Self: EmptyElement {
     
     internal func mutate(autocomplete value: Bool) -> Self {
+        return self.mutate(key: "autocomplete", value: value)
+    }
+    
+    internal func mutate(autocomplete value: Property<Bool>) -> Self {
         return self.mutate(key: "autocomplete", value: value)
     }
 }
@@ -298,6 +376,13 @@ public protocol CiteAttribute: Attribute {
     /// <tag cite="" />
     /// ```
     func cite(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'cite'.
+    ///
+    /// ```html
+    /// <tag cite="" />
+    /// ```
+    func cite(_ value: Property<String>) -> Self
 }
 
 extension CiteAttribute where Self: ContentElement {
@@ -305,11 +390,19 @@ extension CiteAttribute where Self: ContentElement {
     internal func mutate(cite value: String) -> Self {
         return self.mutate(key: "cite", value: value)
     }
+    
+    internal func mutate(cite value: Property<String>) -> Self {
+        return self.mutate(key: "cite", value: value)
+    }
 }
 
 extension CiteAttribute where Self: EmptyElement {
     
     internal func mutate(cite value: String) -> Self {
+        return self.mutate(key: "cite", value: value)
+    }
+    
+    internal func mutate(cite value: Property<String>) -> Self {
         return self.mutate(key: "cite", value: value)
     }
 }
@@ -323,6 +416,13 @@ public protocol ClassAttribute: Attribute{
     /// <tag class="" />
     /// ```
     func `class`(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'class'.
+    ///
+    /// ```html
+    /// <tag class="" />
+    /// ```
+    func `class`(_ value: Property<String>) -> Self
 }
 
 extension ClassAttribute where Self: ContentElement {
@@ -330,11 +430,19 @@ extension ClassAttribute where Self: ContentElement {
     internal func mutate(class value: String) -> Self {
         return self.mutate(key: "class", value: value)
     }
+    
+    internal func mutate(class value: Property<String>) -> Self {
+        return self.mutate(key: "class", value: value)
+    }
 }
 
 extension ClassAttribute where Self: EmptyElement {
     
     internal func mutate(class value: String) -> Self {
+        return self.mutate(key: "class", value: value)
+    }
+    
+    internal func mutate(class value: Property<String>) -> Self {
         return self.mutate(key: "class", value: value)
     }
 }
@@ -348,6 +456,13 @@ public protocol ColumnsAttribute: Attribute {
     /// <tag cols="" />
     /// ```
     func columns(_ size: Int) -> Self
+    
+    /// The function represents the html-attribute 'cols'.
+    ///
+    /// ```html
+    /// <tag cols="" />
+    /// ```
+    func columns(_ size: Property<Int>) -> Self
 }
 
 extension ColumnsAttribute where Self: ContentElement {
@@ -355,11 +470,19 @@ extension ColumnsAttribute where Self: ContentElement {
     internal func mutate(cols value: Int) -> Self {
         return self.mutate(key: "cols", value: value)
     }
+    
+    internal func mutate(cols value: Property<Int>) -> Self {
+        return self.mutate(key: "cols", value: value)
+    }
 }
 
 extension ColumnsAttribute where Self: EmptyElement {
     
     internal func mutate(cols value: Int) -> Self {
+        return self.mutate(key: "cols", value: value)
+    }
+    
+    internal func mutate(cols value: Property<Int>) -> Self {
         return self.mutate(key: "cols", value: value)
     }
 }
@@ -373,6 +496,13 @@ public protocol ColumnSpanAttribute: Attribute {
     /// <tag colspan="" />
     /// ```
     func columnSpan(_ size: Int) -> Self
+    
+    /// The function represents the html-attribute 'colspan'.
+    ///
+    /// ```html
+    /// <tag colspan="" />
+    /// ```
+    func columnSpan(_ size: Property<Int>) -> Self
 }
 
 extension ColumnSpanAttribute where Self: ContentElement {
@@ -380,11 +510,19 @@ extension ColumnSpanAttribute where Self: ContentElement {
     internal func mutate(colspan value: Int) -> Self {
         return self.mutate(key: "colspan", value: value)
     }
+    
+    internal func mutate(colspan value: Property<Int>) -> Self {
+        return self.mutate(key: "colspan", value: value)
+    }
 }
 
 extension ColumnSpanAttribute where Self: EmptyElement {
     
     internal func mutate(colspan value: Int) -> Self {
+        return self.mutate(key: "colspan", value: value)
+    }
+    
+    internal func mutate(colspan value: Property<Int>) -> Self {
         return self.mutate(key: "colspan", value: value)
     }
 }
@@ -398,6 +536,13 @@ public protocol ContentAttribute: Attribute {
     /// <tag content="" />
     /// ```
     func content(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'content'.
+    ///
+    /// ```html
+    /// <tag content="" />
+    /// ```
+    func content(_ value: Property<String>) -> Self
 }
 
 extension ContentAttribute where Self: ContentElement {
@@ -405,11 +550,19 @@ extension ContentAttribute where Self: ContentElement {
     internal func mutate(content value: String) -> Self {
         return self.mutate(key: "content", value: value)
     }
+    
+    internal func mutate(content value: Property<String>) -> Self {
+        return self.mutate(key: "content", value: value)
+    }
 }
 
 extension ContentAttribute where Self: EmptyElement {
     
     internal func mutate(content value: String) -> Self {
+        return self.mutate(key: "content", value: value)
+    }
+    
+    internal func mutate(content value: Property<String>) -> Self {
         return self.mutate(key: "content", value: value)
     }
 }
@@ -423,6 +576,13 @@ public protocol EditAttribute: Attribute {
     /// <tag contenteditable />
     /// ```
     func isEditable(_ value: Bool) -> Self
+    
+    /// The function represents the html-attribute 'contenteditable'.
+    ///
+    /// ```html
+    /// <tag contenteditable />
+    /// ```
+    func isEditable(_ value: Property<Bool>) -> Self
 }
 
 extension EditAttribute where Self: ContentElement {
@@ -430,11 +590,19 @@ extension EditAttribute where Self: ContentElement {
     internal func mutate(contenteditable value: Bool) -> Self {
         return self.mutate(key: "contenteditable", value: value)
     }
+    
+    internal func mutate(contenteditable value: Property<Bool>) -> Self {
+        return self.mutate(key: "contenteditable", value: value)
+    }
 }
 
 extension EditAttribute where Self: EmptyElement {
     
     internal func mutate(contenteditable value: Bool) -> Self {
+        return self.mutate(key: "contenteditable", value: value)
+    }
+    
+    internal func mutate(contenteditable value: Property<Bool>) -> Self {
         return self.mutate(key: "contenteditable", value: value)
     }
 }
@@ -473,6 +641,13 @@ public protocol CoordinatesAttribute: Attribute {
     /// <tag coordinates="" />
     /// ```
     func coordinates(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'coordinates'.
+    ///
+    /// ```html
+    /// <tag coordinates="" />
+    /// ```
+    func coordinates(_ value: Property<String>) -> Self
 }
 
 extension CoordinatesAttribute where Self: ContentElement {
@@ -480,11 +655,19 @@ extension CoordinatesAttribute where Self: ContentElement {
     internal func mutate(coords value: String) -> Self {
         return self.mutate(key: "coords", value: value)
     }
+    
+    internal func mutate(coords value: Property<String>) -> Self {
+        return self.mutate(key: "coords", value: value)
+    }
 }
 
 extension CoordinatesAttribute where Self: EmptyElement {
     
     internal func mutate(coords value: String) -> Self {
+        return self.mutate(key: "coords", value: value)
+    }
+    
+    internal func mutate(coords value: Property<String>) -> Self {
         return self.mutate(key: "coords", value: value)
     }
 }
@@ -498,6 +681,13 @@ public protocol DataAttribute: Attribute{
     /// <tag data="" />
     /// ```
     func data(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'data'.
+    ///
+    /// ```html
+    /// <tag data="" />
+    /// ```
+    func data(_ value: Property<String>) -> Self
 }
 
 extension DataAttribute where Self: ContentElement {
@@ -505,11 +695,19 @@ extension DataAttribute where Self: ContentElement {
     internal func mutate(data value: String) -> Self {
         return self.mutate(key: "data", value: value)
     }
+    
+    internal func mutate(data value: Property<String>) -> Self {
+        return self.mutate(key: "data", value: value)
+    }
 }
 
 extension DataAttribute where Self: EmptyElement {
     
     internal func mutate(data value: String) -> Self {
+        return self.mutate(key: "data", value: value)
+    }
+    
+    internal func mutate(data value: Property<String>) -> Self {
         return self.mutate(key: "data", value: value)
     }
 }
@@ -523,6 +721,13 @@ public protocol DateTimeAttribute: Attribute {
     /// <tag datetime="" />
     /// ```
     func dateTime(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'datetime'.
+    ///
+    /// ```html
+    /// <tag datetime="" />
+    /// ```
+    func dateTime(_ value: Property<String>) -> Self
 }
 
 extension DateTimeAttribute where Self: ContentElement {
@@ -530,11 +735,19 @@ extension DateTimeAttribute where Self: ContentElement {
     internal func mutate(datetime value: String) -> Self {
         return self.mutate(key: "datetime", value: value)
     }
+    
+    internal func mutate(datetime value: Property<String>) -> Self {
+        return self.mutate(key: "datetime", value: value)
+    }
 }
 
 extension DateTimeAttribute where Self: EmptyElement {
     
     internal func mutate(datetime value: String) -> Self {
+        return self.mutate(key: "datetime", value: value)
+    }
+    
+    internal func mutate(datetime value: Property<String>) -> Self {
         return self.mutate(key: "datetime", value: value)
     }
 }
@@ -675,6 +888,13 @@ public protocol DragAttribute: Attribute {
     /// <tag draggable />
     /// ```
     func isDraggable(_ value: Bool) -> Self
+    
+    /// The function represents the html-attribute 'draggable'.
+    ///
+    /// ```html
+    /// <tag draggable />
+    /// ```
+    func isDraggable(_ value: Property<String>) -> Self
 }
 
 extension DragAttribute where Self: ContentElement {
@@ -682,11 +902,19 @@ extension DragAttribute where Self: ContentElement {
     internal func mutate(draggable value: Bool) -> Self {
         return self.mutate(key: "draggable", value: value)
     }
+    
+    internal func mutate(draggable value: Property<String>) -> Self {
+        return self.mutate(key: "draggable", value: value)
+    }
 }
 
 extension DragAttribute where Self: EmptyElement {
     
     internal func mutate(draggable value: Bool) -> Self {
+        return self.mutate(key: "draggable", value: value)
+    }
+    
+    internal func mutate(draggable value: Property<String>) -> Self {
         return self.mutate(key: "draggable", value: value)
     }
 }
@@ -756,6 +984,15 @@ public protocol ForAttribute: Attribute {
     /// <tag for="" />
     /// ```
     func `for`(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'for'.
+    ///
+    /// It specifies the form control with wich the caption is be associated.
+    ///
+    /// ```html
+    /// <tag for="" />
+    /// ```
+    func `for`(_ value: Property<String>) -> Self
 }
 
 extension ForAttribute where Self: ContentElement {
@@ -763,11 +1000,19 @@ extension ForAttribute where Self: ContentElement {
     internal func mutate(for value: String) -> Self {
         return self.mutate(key: "for", value: value)
     }
+    
+    internal func mutate(for value: Property<String>) -> Self {
+        return self.mutate(key: "for", value: value)
+    }
 }
 
 extension ForAttribute where Self: EmptyElement {
     
     internal func mutate(for value: String) -> Self {
+        return self.mutate(key: "for", value: value)
+    }
+    
+    internal func mutate(for value: Property<String>) -> Self {
         return self.mutate(key: "for", value: value)
     }
 }
@@ -781,6 +1026,13 @@ public protocol FormAttribute: Attribute {
     /// <tag form="" />
     /// ```
     func form(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'form'.
+    ///
+    /// ```html
+    /// <tag form="" />
+    /// ```
+    func form(_ value: Property<String>) -> Self
 }
 
 extension FormAttribute where Self: ContentElement {
@@ -788,11 +1040,19 @@ extension FormAttribute where Self: ContentElement {
     internal func mutate(form value: String) -> Self {
         return self.mutate(key: "form", value: value)
     }
+    
+    internal func mutate(form value: Property<String>) -> Self {
+        return self.mutate(key: "form", value: value)
+    }
 }
 
 extension FormAttribute where Self: EmptyElement {
     
     internal func mutate(form value: String) -> Self {
+        return self.mutate(key: "form", value: value)
+    }
+    
+    internal func mutate(form value: Property<String>) -> Self {
         return self.mutate(key: "form", value: value)
     }
 }
@@ -808,6 +1068,15 @@ public protocol FormActionAttribute: Attribute {
     /// <tag formaction="" />
     /// ```
     func formAction(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'formaction'.
+    ///
+    /// It sets the url to use for form submissions
+    ///
+    /// ```html
+    /// <tag formaction="" />
+    /// ```
+    func formAction(_ value: Property<String>) -> Self
 }
 
 extension FormActionAttribute where Self: ContentElement {
@@ -815,11 +1084,19 @@ extension FormActionAttribute where Self: ContentElement {
     internal func mutate(formaction value: String) -> Self {
         return self.mutate(key: "formaction", value: value)
     }
+    
+    internal func mutate(formaction value: Property<String>) -> Self {
+        return self.mutate(key: "formaction", value: value)
+    }
 }
 
 extension FormActionAttribute where Self: EmptyElement {
     
     internal func mutate(formaction value: String) -> Self {
+        return self.mutate(key: "formaction", value: value)
+    }
+    
+    internal func mutate(formaction value: Property<String>) -> Self {
         return self.mutate(key: "formaction", value: value)
     }
 }
@@ -862,6 +1139,15 @@ public protocol HeaderAttribute: Attribute {
     /// <tag headers="" />
     /// ```
     func headers(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'headers'.
+    ///
+    /// It specifiies the header cells for the element.
+    ///
+    /// ```html
+    /// <tag headers="" />
+    /// ```
+    func headers(_ value: Property<String>) -> Self
 }
 
 extension HeaderAttribute where Self: ContentElement {
@@ -869,11 +1155,19 @@ extension HeaderAttribute where Self: ContentElement {
     internal func mutate(headers value: String) -> Self {
         return self.mutate(key: "headers", value: value)
     }
+    
+    internal func mutate(headers value: Property<String>) -> Self {
+        return self.mutate(key: "headers", value: value)
+    }
 }
 
 extension HeaderAttribute where Self: EmptyElement {
     
     internal func mutate(headers value: String) -> Self {
+        return self.mutate(key: "headers", value: value)
+    }
+    
+    internal func mutate(headers value: Property<String>) -> Self {
         return self.mutate(key: "headers", value: value)
     }
 }
@@ -889,6 +1183,15 @@ public protocol HeightAttribute: Attribute {
     /// <tag height="" />
     /// ```
     func height(_ size: Int) -> Self
+    
+    /// The function represents the html-attribute 'height'.
+    ///
+    /// It sets the height of the element.
+    ///
+    /// ```html
+    /// <tag height="" />
+    /// ```
+    func height(_ size: Property<Int>) -> Self
 }
 
 extension HeightAttribute where Self: ContentElement {
@@ -896,11 +1199,19 @@ extension HeightAttribute where Self: ContentElement {
     internal func mutate(height value: Int) -> Self {
         return self.mutate(key: "height", value: value)
     }
+    
+    internal func mutate(height value: Property<Int>) -> Self {
+        return self.mutate(key: "height", value: value)
+    }
 }
 
 extension HeightAttribute where Self: EmptyElement {
     
     internal func mutate(height value: Int) -> Self {
+        return self.mutate(key: "height", value: value)
+    }
+    
+    internal func mutate(height value: Property<Int>) -> Self {
         return self.mutate(key: "height", value: value)
     }
 }
@@ -941,6 +1252,15 @@ public protocol HighAttribute: Attribute {
     /// <tag high="" />
     /// ```
     func high(_ value: Float) -> Self
+    
+    /// The function represents the html-attribute 'high'.
+    ///
+    /// It sets the range of the value.
+    ///
+    /// ```html
+    /// <tag high="" />
+    /// ```
+    func high(_ value: Property<Float>) -> Self
 }
 
 extension HighAttribute where Self: ContentElement {
@@ -948,11 +1268,19 @@ extension HighAttribute where Self: ContentElement {
     internal func mutate(high value: Float) -> Self {
         return self.mutate(key: "high", value: value)
     }
+    
+    internal func mutate(high value: Property<Float>) -> Self {
+        return self.mutate(key: "high", value: value)
+    }
 }
 
 extension HighAttribute where Self: EmptyElement {
     
     internal func mutate(high value: Float) -> Self {
+        return self.mutate(key: "high", value: value)
+    }
+    
+    internal func mutate(high value: Property<Float>) -> Self {
         return self.mutate(key: "high", value: value)
     }
 }
@@ -968,6 +1296,15 @@ public protocol ReferenceAttribute: Attribute {
     /// <tag href="" />
     /// ```
     func reference(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'href'.
+    ///
+    /// It gives the adress of the link.
+    ///
+    /// ```html
+    /// <tag href="" />
+    /// ```
+    func reference(_ value: Property<String>) -> Self
 }
 
 extension ReferenceAttribute where Self: ContentElement {
@@ -975,11 +1312,19 @@ extension ReferenceAttribute where Self: ContentElement {
     internal func mutate(href value: String) -> Self {
         return self.mutate(key: "href", value: value)
     }
+    
+    internal func mutate(href value: Property<String>) -> Self {
+        return self.mutate(key: "href", value: value)
+    }
 }
 
 extension ReferenceAttribute where Self: EmptyElement {
     
     internal func mutate(href value: String) -> Self {
+        return self.mutate(key: "href", value: value)
+    }
+    
+    internal func mutate(href value: Property<String>) -> Self {
         return self.mutate(key: "href", value: value)
     }
 }
@@ -1022,6 +1367,15 @@ public protocol IdentifierAttribute: Attribute {
     /// <tag id="" />
     /// ```
     func id(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'id'.
+    ///
+    /// It specifies its element's unique identifier.
+    ///
+    /// ```html
+    /// <tag id="" />
+    /// ```
+    func id(_ value: Property<String>) -> Self
 }
 
 extension IdentifierAttribute where Self: ContentElement {
@@ -1029,11 +1383,19 @@ extension IdentifierAttribute where Self: ContentElement {
     internal func mutate(id value: String) -> Self {
         return self.mutate(key: "id", value: value)
     }
+    
+    internal func mutate(id value: Property<String>) -> Self {
+        return self.mutate(key: "id", value: value)
+    }
 }
 
 extension IdentifierAttribute where Self: EmptyElement {
     
     internal func mutate(id value: String) -> Self {
+        return self.mutate(key: "id", value: value)
+    }
+    
+    internal func mutate(id value: Property<String>) -> Self {
         return self.mutate(key: "id", value: value)
     }
 }
@@ -1072,6 +1434,13 @@ public protocol InputModeAttribute: Attribute {
     /// <tag inputmode="" />
     /// ```
     func inputMode(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'inputmode'.
+    ///
+    /// ```html
+    /// <tag inputmode="" />
+    /// ```
+    func inputMode(_ value: Property<String>) -> Self
 }
 
 extension InputModeAttribute where Self: ContentElement {
@@ -1079,11 +1448,19 @@ extension InputModeAttribute where Self: ContentElement {
     internal func mutate(inputmode value: String) -> Self {
         return self.mutate(key: "inputmode", value: value)
     }
+    
+    internal func mutate(inputmode value: Property<String>) -> Self {
+        return self.mutate(key: "inputmode", value: value)
+    }
 }
 
 extension InputModeAttribute where Self: EmptyElement {
     
     internal func mutate(inputmode value: String) -> Self {
+        return self.mutate(key: "inputmode", value: value)
+    }
+    
+    internal func mutate(inputmode value: Property<String>) -> Self {
         return self.mutate(key: "inputmode", value: value)
     }
 }
@@ -1097,6 +1474,13 @@ public protocol IsAttribute: Attribute {
     /// <tag is="" />
     /// ```
     func `is`(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'is'.
+    ///
+    /// ```html
+    /// <tag is="" />
+    /// ```
+    func `is`(_ value: Property<String>) -> Self
 }
 
 extension IsAttribute where Self: ContentElement {
@@ -1104,11 +1488,19 @@ extension IsAttribute where Self: ContentElement {
     internal func mutate(is value: String) -> Self {
         return self.mutate(key: "is", value: value)
     }
+    
+    internal func mutate(is value: Property<String>) -> Self {
+        return self.mutate(key: "is", value: value)
+    }
 }
 
 extension IsAttribute where Self: EmptyElement {
     
     internal func mutate(is value: String) -> Self {
+        return self.mutate(key: "is", value: value)
+    }
+    
+    internal func mutate(is value: Property<String>) -> Self {
         return self.mutate(key: "is", value: value)
     }
 }
@@ -1122,6 +1514,13 @@ public protocol ItemIdAttribute: Attribute {
     /// <tag itemid="" />
     /// ```
     func itemId(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'itemid'.
+    ///
+    /// ```html
+    /// <tag itemid="" />
+    /// ```
+    func itemId(_ value: Property<String>) -> Self
 }
 
 extension ItemIdAttribute where Self: ContentElement {
@@ -1129,11 +1528,19 @@ extension ItemIdAttribute where Self: ContentElement {
     internal func mutate(itemid value: String) -> Self {
         return self.mutate(key: "itemid", value: value)
     }
+    
+    internal func mutate(itemid value: Property<String>) -> Self {
+        return self.mutate(key: "itemid", value: value)
+    }
 }
 
 extension ItemIdAttribute where Self: EmptyElement {
     
     internal func mutate(itemid value: String) -> Self {
+        return self.mutate(key: "itemid", value: value)
+    }
+    
+    internal func mutate(itemid value: Property<String>) -> Self {
         return self.mutate(key: "itemid", value: value)
     }
 }
@@ -1147,6 +1554,13 @@ public protocol ItemPropertyAttribute: Attribute {
     /// <tag itemprop="" />
     /// ```
     func itemProperty(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'itemprop'.
+    ///
+    /// ```html
+    /// <tag itemprop="" />
+    /// ```
+    func itemProperty(_ value: Property<String>) -> Self
 }
 
 extension ItemPropertyAttribute where Self: ContentElement {
@@ -1154,11 +1568,19 @@ extension ItemPropertyAttribute where Self: ContentElement {
     internal func mutate(itemprop value: String) -> Self {
         return self.mutate(key: "itemprop", value: value)
     }
+    
+    internal func mutate(itemprop value: Property<String>) -> Self {
+        return self.mutate(key: "itemprop", value: value)
+    }
 }
 
 extension ItemPropertyAttribute where Self: EmptyElement {
     
     internal func mutate(itemprop value: String) -> Self {
+        return self.mutate(key: "itemprop", value: value)
+    }
+    
+    internal func mutate(itemprop value: Property<String>) -> Self {
         return self.mutate(key: "itemprop", value: value)
     }
 }
@@ -1172,6 +1594,13 @@ public protocol ItemReferenceAttribute: Attribute {
     /// <tag itemref="" />
     /// ```
     func itemReference(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'itemref'.
+    ///
+    /// ```html
+    /// <tag itemref="" />
+    /// ```
+    func itemReference(_ value: Property<String>) -> Self
 }
 
 extension ItemReferenceAttribute where Self: ContentElement {
@@ -1179,11 +1608,19 @@ extension ItemReferenceAttribute where Self: ContentElement {
     internal func mutate(itemref value: String) -> Self {
         return self.mutate(key: "itemref", value: value)
     }
+    
+    internal func mutate(itemref value: Property<String>) -> Self {
+        return self.mutate(key: "itemref", value: value)
+    }
 }
 
 extension ItemReferenceAttribute where Self: EmptyElement {
     
     internal func mutate(itemref value: String) -> Self {
+        return self.mutate(key: "itemref", value: value)
+    }
+    
+    internal func mutate(itemref value: Property<String>) -> Self {
         return self.mutate(key: "itemref", value: value)
     }
 }
@@ -1197,6 +1634,13 @@ public protocol ItemScopeAttribute: Attribute {
     /// <tag itemscope="" />
     /// ```
     func itemScope(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'itemscope'.
+    ///
+    /// ```html
+    /// <tag itemscope="" />
+    /// ```
+    func itemScope(_ value: Property<String>) -> Self
 }
 
 extension ItemScopeAttribute where Self: ContentElement {
@@ -1204,11 +1648,19 @@ extension ItemScopeAttribute where Self: ContentElement {
     internal func mutate(itemscope value: String) -> Self {
         return self.mutate(key: "itemscope", value: value)
     }
+    
+    internal func mutate(itemscope value: Property<String>) -> Self {
+        return self.mutate(key: "itemscope", value: value)
+    }
 }
 
 extension ItemScopeAttribute where Self: EmptyElement {
     
     internal func mutate(itemscope value: String) -> Self {
+        return self.mutate(key: "itemscope", value: value)
+    }
+    
+    internal func mutate(itemscope value: Property<String>) -> Self {
         return self.mutate(key: "itemscope", value: value)
     }
 }
@@ -1222,6 +1674,13 @@ public protocol ItemTypeAttribute: Attribute {
     /// <tag itemtype="" />
     /// ```
     func itemType(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'itemtype'.
+    ///
+    /// ```html
+    /// <tag itemtype="" />
+    /// ```
+    func itemType(_ value: Property<String>) -> Self
 }
 
 extension ItemTypeAttribute where Self: ContentElement {
@@ -1229,11 +1688,19 @@ extension ItemTypeAttribute where Self: ContentElement {
     internal func mutate(itemtype value: String) -> Self {
         return self.mutate(key: "itemtype", value: value)
     }
+    
+    internal func mutate(itemtype value: Property<String>) -> Self {
+        return self.mutate(key: "itemtype", value: value)
+    }
 }
 
 extension ItemTypeAttribute where Self: EmptyElement {
     
     internal func mutate(itemtype value: String) -> Self {
+        return self.mutate(key: "itemtype", value: value)
+    }
+    
+    internal func mutate(itemtype value: Property<String>) -> Self {
         return self.mutate(key: "itemtype", value: value)
     }
 }
@@ -1249,22 +1716,17 @@ public protocol KindAttribute: Attribute {
     func kind(_ value: Values.Kind) -> Self
 }
 
-extension KindAttribute {
-    
-    internal var key: String { "kind" }
-}
-
 extension KindAttribute where Self: ContentElement {
     
     internal func mutate(kind value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "kind", value: value)
     }
 }
 
 extension KindAttribute where Self: EmptyElement {
     
     internal func mutate(kind value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "kind", value: value)
     }
 }
 
@@ -1277,6 +1739,13 @@ public protocol LabelAttribute: Attribute {
     /// <tag label="" />
     /// ```
     func label(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'label'.
+    ///
+    /// ```html
+    /// <tag label="" />
+    /// ```
+    func label(_ value: Property<String>) -> Self
 }
 
 extension LabelAttribute where Self: ContentElement {
@@ -1284,11 +1753,19 @@ extension LabelAttribute where Self: ContentElement {
     internal func mutate(label value: String) -> Self {
         return self.mutate(key: "label", value: value)
     }
+    
+    internal func mutate(label value: Property<String>) -> Self {
+        return self.mutate(key: "label", value: value)
+    }
 }
 
 extension LabelAttribute where Self: EmptyElement {
     
     internal func mutate(label value: String) -> Self {
+        return self.mutate(key: "label", value: value)
+    }
+    
+    internal func mutate(label value: Property<String>) -> Self {
         return self.mutate(key: "label", value: value)
     }
 }
@@ -1327,6 +1804,13 @@ public protocol ListAttribute: Attribute {
     /// <tag list="" />
     /// ```
     func list(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'list'.
+    ///
+    /// ```html
+    /// <tag list="" />
+    /// ```
+    func list(_ value: Property<String>) -> Self
 }
 
 extension ListAttribute where Self: ContentElement {
@@ -1334,11 +1818,19 @@ extension ListAttribute where Self: ContentElement {
     internal func mutate(list value: String) -> Self {
         return self.mutate(key: "list", value: value)
     }
+    
+    internal func mutate(list value: Property<String>) -> Self {
+        return self.mutate(key: "list", value: value)
+    }
 }
 
 extension ListAttribute where Self: EmptyElement {
     
     internal func mutate(list value: String) -> Self {
+        return self.mutate(key: "list", value: value)
+    }
+    
+    internal func mutate(list value: Property<String>) -> Self {
         return self.mutate(key: "list", value: value)
     }
 }
@@ -1377,6 +1869,13 @@ public protocol LowAttribute: Attribute {
     /// <tag low="" />
     /// ```
     func low(_ value: Float) -> Self
+    
+    /// The function represents the html-attribute 'low'.
+    ///
+    /// ```html
+    /// <tag low="" />
+    /// ```
+    func low(_ value: Property<Float>) -> Self
 }
 
 extension LowAttribute where Self: ContentElement {
@@ -1384,11 +1883,19 @@ extension LowAttribute where Self: ContentElement {
     internal func mutate(low value: Float) -> Self {
         return self.mutate(key: "low", value: value)
     }
+    
+    internal func mutate(low value: Property<Float>) -> Self {
+        return self.mutate(key: "low", value: value)
+    }
 }
 
 extension LowAttribute where Self: EmptyElement {
     
     internal func mutate(low value: Float) -> Self {
+        return self.mutate(key: "low", value: value)
+    }
+    
+    internal func mutate(low value: Property<Float>) -> Self {
         return self.mutate(key: "low", value: value)
     }
 }
@@ -1429,6 +1936,13 @@ public protocol MaximumLengthAttribute: Attribute {
     /// <tag maxlength="" />
     /// ```
     func maximum(length value: Int) -> Self
+    
+    /// The function represents the html-attribute 'maxlength'.
+    ///
+    /// ```html
+    /// <tag maxlength="" />
+    /// ```
+    func maximum(length value: Property<Int>) -> Self
 }
 
 extension MaximumLengthAttribute where Self: ContentElement {
@@ -1436,11 +1950,19 @@ extension MaximumLengthAttribute where Self: ContentElement {
     internal func mutate(maxlength value: Int) -> Self {
         return self.mutate(key: "maxlength", value: value)
     }
+    
+    internal func mutate(maxlength value: Property<Int>) -> Self {
+        return self.mutate(key: "maxlength", value: value)
+    }
 }
 
 extension MaximumLengthAttribute where Self: EmptyElement {
     
     internal func mutate(maxlength value: Int) -> Self {
+        return self.mutate(key: "maxlength", value: value)
+    }
+    
+    internal func mutate(maxlength value: Property<Int>) -> Self {
         return self.mutate(key: "maxlength", value: value)
     }
 }
@@ -1454,6 +1976,13 @@ public protocol MediaAttribute: Attribute {
     /// <tag media="" />
     /// ```
     func media(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'media'.
+    ///
+    /// ```html
+    /// <tag media="" />
+    /// ```
+    func media(_ value: Property<String>) -> Self
 }
 
 extension MediaAttribute where Self: ContentElement {
@@ -1461,11 +1990,19 @@ extension MediaAttribute where Self: ContentElement {
     internal func mutate(media value: String) -> Self {
         return self.mutate(key: "media", value: value)
     }
+    
+    internal func mutate(media value: Property<String>) -> Self {
+        return self.mutate(key: "media", value: value)
+    }
 }
 
 extension MediaAttribute where Self: EmptyElement {
     
     internal func mutate(media value: String) -> Self {
+        return self.mutate(key: "media", value: value)
+    }
+    
+    internal func mutate(media value: Property<String>) -> Self {
         return self.mutate(key: "media", value: value)
     }
 }
@@ -1531,24 +2068,34 @@ public protocol MinimumLengthAttribute: Attribute {
     /// <tag minlength="" />
     /// ```
     func minimum(length value: Int) -> Self
-}
-
-extension MinimumLengthAttribute {
-
-    internal var key: String { "minlength" }
+    
+    /// The function represents the html-attribute 'minlength'.
+    ///
+    /// ```html
+    /// <tag minlength="" />
+    /// ```
+    func minimum(length value: Property<Int>) -> Self
 }
 
 extension MinimumLengthAttribute where Self: ContentElement {
     
     internal func mutate(minlength value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "minlength", value: value)
+    }
+    
+    internal func mutate(minlength value: Property<Int>) -> Self {
+        return self.mutate(key: "minlength", value: value)
     }
 }
 
 extension MinimumLengthAttribute where Self: EmptyElement {
     
     internal func mutate(minlength value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "minlength", value: value)
+    }
+    
+    internal func mutate(minlength value: Property<Int>) -> Self {
+        return self.mutate(key: "minlength", value: value)
     }
 }
 
@@ -1613,6 +2160,13 @@ public protocol NameAttribute: Attribute {
     /// <tag name="" />
     /// ```
     func name(_ value: NameValue) -> Self
+    
+    /// The function represents the html-attribute 'name'.
+    ///
+    /// ```html
+    /// <tag name="" />
+    /// ```
+    func name(_ value: Property<NameValue>) -> Self
 }
 
 extension NameAttribute where Self: ContentElement {
@@ -1620,11 +2174,19 @@ extension NameAttribute where Self: ContentElement {
     internal func mutate(name value: String) -> Self {
         return self.mutate(key: "name", value: value)
     }
+    
+    internal func mutate(name value: Property<NameValue>) -> Self {
+        return self.mutate(key: "name", value: value)
+    }
 }
 
 extension NameAttribute where Self: EmptyElement {
     
     internal func mutate(name value: String) -> Self {
+        return self.mutate(key: "name", value: value)
+    }
+    
+    internal func mutate(name value: Property<NameValue>) -> Self {
         return self.mutate(key: "name", value: value)
     }
 }
@@ -1638,6 +2200,13 @@ public protocol NonceAttribute: Attribute {
     /// <tag nonce="" />
     /// ```
     func nonce(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'nonce'.
+    ///
+    /// ```html
+    /// <tag nonce="" />
+    /// ```
+    func nonce(_ value: Property<String>) -> Self
 }
 
 extension NonceAttribute where Self: ContentElement {
@@ -1645,11 +2214,19 @@ extension NonceAttribute where Self: ContentElement {
     internal func mutate(nonce value: String) -> Self {
         return self.mutate(key: "nonce", value: value)
     }
+    
+    internal func mutate(nonce value: Property<String>) -> Self {
+        return self.mutate(key: "nonce", value: value)
+    }
 }
 
 extension NonceAttribute where Self: EmptyElement {
     
     internal func mutate(nonce value: String) -> Self {
+        return self.mutate(key: "nonce", value: value)
+    }
+    
+    internal func mutate(nonce value: Property<String>) -> Self {
         return self.mutate(key: "nonce", value: value)
     }
 }
@@ -1688,6 +2265,13 @@ public protocol OpenAttribute: Attribute {
     /// <tag open />
     /// ```
     func isOpen(_ value: Bool) -> Self
+    
+    /// The function represents the html-attribute 'open'.
+    ///
+    /// ```html
+    /// <tag open />
+    /// ```
+    func isOpen(_ value: Property<Bool>) -> Self
 }
 
 extension OpenAttribute where Self: ContentElement {
@@ -1695,11 +2279,19 @@ extension OpenAttribute where Self: ContentElement {
     internal func mutate(open value: Bool) -> Self {
         return self.mutate(key: "open", value: value)
     }
+    
+    internal func mutate(open value: Property<Bool>) -> Self {
+        return self.mutate(key: "open", value: value)
+    }
 }
 
 extension OpenAttribute where Self: EmptyElement {
     
     internal func mutate(open value: Bool) -> Self {
+        return self.mutate(key: "open", value: value)
+    }
+    
+    internal func mutate(open value: Property<Bool>) -> Self {
         return self.mutate(key: "open", value: value)
     }
 }
@@ -1713,6 +2305,13 @@ public protocol OptimumAttribute: Attribute {
     /// <tag optimum="" />
     /// ```
     func optimum(_ value: Float) -> Self
+    
+    /// The function represents the html-attribute 'optimum'.
+    ///
+    /// ```html
+    /// <tag optimum="" />
+    /// ```
+    func optimum(_ value: Property<Float>) -> Self
 }
 
 extension OptimumAttribute where Self: ContentElement {
@@ -1720,11 +2319,19 @@ extension OptimumAttribute where Self: ContentElement {
     internal func mutate(optimum value: Float) -> Self {
         return self.mutate(key: "optimum", value: value)
     }
+    
+    internal func mutate(optimum value: Property<Float>) -> Self {
+        return self.mutate(key: "optimum", value: value)
+    }
 }
 
 extension OptimumAttribute where Self: EmptyElement {
     
     internal func mutate(optimum value: Float) -> Self {
+        return self.mutate(key: "optimum", value: value)
+    }
+    
+    internal func mutate(optimum value: Property<Float>) -> Self {
         return self.mutate(key: "optimum", value: value)
     }
 }
@@ -1738,6 +2345,13 @@ public protocol PatternAttribute: Attribute {
     /// <tag pattern="" />
     /// ```
     func pattern(_ regex: String) -> Self
+    
+    /// The function represents the html-attribute 'pattern'.
+    ///
+    /// ```html
+    /// <tag pattern="" />
+    /// ```
+    func pattern(_ regex: Property<String>) -> Self
 }
 
 extension PatternAttribute where Self: ContentElement {
@@ -1745,11 +2359,19 @@ extension PatternAttribute where Self: ContentElement {
     internal func mutate(pattern value: String) -> Self {
         return self.mutate(key: "pattern", value: value)
     }
+    
+    internal func mutate(pattern value: Property<String>) -> Self {
+        return self.mutate(key: "pattern", value: value)
+    }
 }
 
 extension PatternAttribute where Self: EmptyElement {
     
     internal func mutate(pattern value: String) -> Self {
+        return self.mutate(key: "pattern", value: value)
+    }
+    
+    internal func mutate(pattern value: Property<String>) -> Self {
         return self.mutate(key: "pattern", value: value)
     }
 }
@@ -1763,6 +2385,13 @@ public protocol PartAttribute: Attribute {
     /// <tag part="" />
     /// ```
     func part(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'part'.
+    ///
+    /// ```html
+    /// <tag part="" />
+    /// ```
+    func part(_ value: Property<String>) -> Self
 }
 
 extension PartAttribute where Self: ContentElement {
@@ -1770,11 +2399,19 @@ extension PartAttribute where Self: ContentElement {
     internal func mutate(part value: String) -> Self {
         return self.mutate(key: "part", value: value)
     }
+    
+    internal func mutate(part value: Property<String>) -> Self {
+        return self.mutate(key: "part", value: value)
+    }
 }
 
 extension PartAttribute where Self: EmptyElement {
     
     internal func mutate(part value: String) -> Self {
+        return self.mutate(key: "part", value: value)
+    }
+    
+    internal func mutate(part value: Property<String>) -> Self {
         return self.mutate(key: "part", value: value)
     }
 }
@@ -1788,6 +2425,13 @@ public protocol PingAttribute: Attribute {
     /// <tag ping="" />
     /// ```
     func ping(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'ping'.
+    ///
+    /// ```html
+    /// <tag ping="" />
+    /// ```
+    func ping(_ value: Property<String>) -> Self
 }
 
 extension PingAttribute where Self: ContentElement {
@@ -1795,11 +2439,19 @@ extension PingAttribute where Self: ContentElement {
     internal func mutate(ping value: String) -> Self {
         return self.mutate(key: "ping", value: value)
     }
+    
+    internal func mutate(ping value: Property<String>) -> Self {
+        return self.mutate(key: "ping", value: value)
+    }
 }
 
 extension PingAttribute where Self: EmptyElement {
     
     internal func mutate(ping value: String) -> Self {
+        return self.mutate(key: "ping", value: value)
+    }
+    
+    internal func mutate(ping value: Property<String>) -> Self {
         return self.mutate(key: "ping", value: value)
     }
 }
@@ -1813,6 +2465,13 @@ public protocol PlaceholderAttribute: Attribute {
     /// <tag placeholder="" />
     /// ```
     func placeholder(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'placeholder'.
+    ///
+    /// ```html
+    /// <tag placeholder="" />
+    /// ```
+    func placeholder(_ value: Property<String>) -> Self
 }
 
 extension PlaceholderAttribute where Self: ContentElement {
@@ -1820,11 +2479,19 @@ extension PlaceholderAttribute where Self: ContentElement {
     internal func mutate(placeholder value: String) -> Self {
         return self.mutate(key: "placeholder", value: value)
     }
+    
+    internal func mutate(placeholder value: Property<String>) -> Self {
+        return self.mutate(key: "placeholder", value: value)
+    }
 }
 
 extension PlaceholderAttribute where Self: EmptyElement {
     
     internal func mutate(placeholder value: String) -> Self {
+        return self.mutate(key: "placeholder", value: value)
+    }
+    
+    internal func mutate(placeholder value: Property<String>) -> Self {
         return self.mutate(key: "placeholder", value: value)
     }
 }
@@ -1838,6 +2505,13 @@ public protocol PosterAttribute: Attribute {
     /// <tag poster="" />
     /// ```
     func poster(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'poster'.
+    ///
+    /// ```html
+    /// <tag poster="" />
+    /// ```
+    func poster(_ value: Property<String>) -> Self
 }
 
 extension PosterAttribute where Self: ContentElement {
@@ -1845,11 +2519,19 @@ extension PosterAttribute where Self: ContentElement {
     internal func mutate(poster value: String) -> Self {
         return self.mutate(key: "poster", value: value)
     }
+    
+    internal func mutate(poster value: Property<String>) -> Self {
+        return self.mutate(key: "poster", value: value)
+    }
 }
 
 extension PosterAttribute where Self: EmptyElement {
     
     internal func mutate(poster value: String) -> Self {
+        return self.mutate(key: "poster", value: value)
+    }
+    
+    internal func mutate(poster value: Property<String>) -> Self {
         return self.mutate(key: "poster", value: value)
     }
 }
@@ -2038,6 +2720,13 @@ public protocol RowsAttribute: Attribute {
     /// <tag rows="" />
     /// ```
     func rows(_ size: Int) -> Self
+    
+    /// The function represents the html-attribute 'rows'.
+    ///
+    /// ```html
+    /// <tag rows="" />
+    /// ```
+    func rows(_ size: Property<Int>) -> Self
 }
 
 extension RowsAttribute where Self: ContentElement {
@@ -2045,11 +2734,19 @@ extension RowsAttribute where Self: ContentElement {
     internal func mutate(rows value: Int) -> Self {
         return self.mutate(key: "rows", value: value)
     }
+    
+    internal func mutate(rows value: Property<Int>) -> Self {
+        return self.mutate(key: "rows", value: value)
+    }
 }
 
 extension RowsAttribute where Self: EmptyElement {
     
     internal func mutate(rows value: Int) -> Self {
+        return self.mutate(key: "rows", value: value)
+    }
+    
+    internal func mutate(rows value: Property<Int>) -> Self {
         return self.mutate(key: "rows", value: value)
     }
 }
@@ -2063,6 +2760,13 @@ public protocol RowSpanAttribute: Attribute {
     /// <tag rowspan="" />
     /// ```
     func rowSpan(_ size: Int) -> Self
+    
+    /// The function represents the html-attribute 'rowspan'.
+    ///
+    /// ```html
+    /// <tag rowspan="" />
+    /// ```
+    func rowSpan(_ size: Property<Int>) -> Self
 }
 
 extension RowSpanAttribute where Self: ContentElement {
@@ -2070,11 +2774,19 @@ extension RowSpanAttribute where Self: ContentElement {
     internal func mutate(rowspan value: Int) -> Self {
         return self.mutate(key: "rowspan", value: value)
     }
+    
+    internal func mutate(rowspan value: Property<Int>) -> Self {
+        return self.mutate(key: "rowspan", value: value)
+    }
 }
 
 extension RowSpanAttribute where Self: EmptyElement {
     
     internal func mutate(rowspan value: Int) -> Self {
+        return self.mutate(key: "rowspan", value: value)
+    }
+    
+    internal func mutate(rowspan value: Property<Int>) -> Self {
         return self.mutate(key: "rowspan", value: value)
     }
 }
@@ -2113,6 +2825,13 @@ public protocol ScopeAttribute: Attribute {
     /// <tag scope="" />
     /// ```
     func scope(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'scope'.
+    ///
+    /// ```html
+    /// <tag scope="" />
+    /// ```
+    func scope(_ value: Property<String>) -> Self
 }
 
 extension ScopeAttribute where Self: ContentElement {
@@ -2120,11 +2839,19 @@ extension ScopeAttribute where Self: ContentElement {
     internal func mutate(scope value: String) -> Self {
         return self.mutate(key: "scope", value: value)
     }
+    
+    internal func mutate(scope value: Property<String>) -> Self {
+        return self.mutate(key: "scope", value: value)
+    }
 }
 
 extension ScopeAttribute where Self: EmptyElement {
     
     internal func mutate(scope value: String) -> Self {
+        return self.mutate(key: "scope", value: value)
+    }
+    
+    internal func mutate(scope value: Property<String>) -> Self {
         return self.mutate(key: "scope", value: value)
     }
 }
@@ -2163,6 +2890,13 @@ public protocol SizeAttribute: Attribute {
     /// <tag size="" />
     /// ```
     func size(_ size: Int) -> Self
+    
+    /// The function represents the html-attribute 'size'.
+    ///
+    /// ```html
+    /// <tag size="" />
+    /// ```
+    func size(_ size: Property<Int>) -> Self
 }
 
 extension SizeAttribute where Self: ContentElement {
@@ -2170,11 +2904,19 @@ extension SizeAttribute where Self: ContentElement {
     internal func mutate(size value: Int) -> Self {
         return self.mutate(key: "size", value: value)
     }
+    
+    internal func mutate(size value: Property<Int>) -> Self {
+        return self.mutate(key: "size", value: value)
+    }
 }
 
 extension SizeAttribute where Self: EmptyElement {
     
     internal func mutate(size value: Int) -> Self {
+        return self.mutate(key: "size", value: value)
+    }
+    
+    internal func mutate(size value: Property<Int>) -> Self {
         return self.mutate(key: "size", value: value)
     }
 }
@@ -2188,6 +2930,13 @@ public protocol SizesAttribute: Attribute {
     /// <tag sizes="" />
     /// ```
     func sizes(_ size: Int) -> Self
+    
+    /// The function represents the html-attribute 'sizes'.
+    ///
+    /// ```html
+    /// <tag sizes="" />
+    /// ```
+    func sizes(_ size: Property<Int>) -> Self
 }
 
 extension SizesAttribute where Self: ContentElement {
@@ -2195,11 +2944,19 @@ extension SizesAttribute where Self: ContentElement {
     internal func mutate(sizes value: Int) -> Self {
         return self.mutate(key: "sizes", value: value)
     }
+    
+    internal func mutate(sizes value: Property<Int>) -> Self {
+        return self.mutate(key: "sizes", value: value)
+    }
 }
 
 extension SizesAttribute where Self: EmptyElement {
     
     internal func mutate(sizes value: Int) -> Self {
+        return self.mutate(key: "sizes", value: value)
+    }
+    
+    internal func mutate(sizes value: Property<Int>) -> Self {
         return self.mutate(key: "sizes", value: value)
     }
 }
@@ -2213,6 +2970,13 @@ public protocol SlotAttribute: Attribute {
     /// <tag slot="" />
     /// ```
     func slot(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'slot'.
+    ///
+    /// ```html
+    /// <tag slot="" />
+    /// ```
+    func slot(_ value: Property<String>) -> Self
 }
 
 extension SlotAttribute where Self: ContentElement {
@@ -2220,11 +2984,19 @@ extension SlotAttribute where Self: ContentElement {
     internal func mutate(slot value: String) -> Self {
         return self.mutate(key: "slot", value: value)
     }
+    
+    internal func mutate(slot value: Property<String>) -> Self {
+        return self.mutate(key: "slot", value: value)
+    }
 }
 
 extension SlotAttribute where Self: EmptyElement {
     
     internal func mutate(slot value: String) -> Self {
+        return self.mutate(key: "slot", value: value)
+    }
+    
+    internal func mutate(slot value: Property<String>) -> Self {
         return self.mutate(key: "slot", value: value)
     }
 }
@@ -2238,6 +3010,13 @@ public protocol SpanAttribute: Attribute {
     /// <tag span="" />
     /// ```
     func span(_ size: Int) -> Self
+    
+    /// The function represents the html-attribute 'span'.
+    ///
+    /// ```html
+    /// <tag span="" />
+    /// ```
+    func span(_ size: Property<Int>) -> Self
 }
 
 extension SpanAttribute where Self: ContentElement {
@@ -2245,11 +3024,19 @@ extension SpanAttribute where Self: ContentElement {
     internal func mutate(span value: Int) -> Self {
         return self.mutate(key: "span", value: value)
     }
+    
+    internal func mutate(span value: Property<Int>) -> Self {
+        return self.mutate(key: "span", value: value)
+    }
 }
 
 extension SpanAttribute where Self: EmptyElement {
     
     internal func mutate(span value: Int) -> Self {
+        return self.mutate(key: "span", value: value)
+    }
+    
+    internal func mutate(span value: Property<Int>) -> Self {
         return self.mutate(key: "span", value: value)
     }
 }
@@ -2263,6 +3050,13 @@ public protocol SpellCheckAttribute: Attribute {
     /// <tag spellcheck="" />
     /// ```
     func hasSpellCheck(_ value: Bool) -> Self
+    
+    /// The function represents the html-attribute 'spellcheck'.
+    ///
+    /// ```html
+    /// <tag spellcheck="" />
+    /// ```
+    func hasSpellCheck(_ value: Property<Bool>) -> Self
 }
 
 extension SpellCheckAttribute where Self: ContentElement {
@@ -2270,11 +3064,19 @@ extension SpellCheckAttribute where Self: ContentElement {
     internal func mutate(spellcheck value: Bool) -> Self {
         return self.mutate(key: "spellcheck", value: value)
     }
+    
+    internal func mutate(spellcheck value: Property<Bool>) -> Self {
+        return self.mutate(key: "spellcheck", value: value)
+    }
 }
 
 extension SpellCheckAttribute where Self: EmptyElement {
     
     internal func mutate(spellcheck value: Bool) -> Self {
+        return self.mutate(key: "spellcheck", value: value)
+    }
+    
+    internal func mutate(spellcheck value: Property<Bool>) -> Self {
         return self.mutate(key: "spellcheck", value: value)
     }
 }
@@ -2288,6 +3090,13 @@ public protocol SourceAttribute: Attribute {
     /// <tag src="" />
     /// ```
     func source(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'src'.
+    ///
+    /// ```html
+    /// <tag src="" />
+    /// ```
+    func source(_ value: Property<String>) -> Self
 }
 
 extension SourceAttribute where Self: ContentElement {
@@ -2295,11 +3104,19 @@ extension SourceAttribute where Self: ContentElement {
     internal func mutate(source value: String) -> Self {
         return self.mutate(key: "src", value: value)
     }
+    
+    internal func mutate(source value: Property<String>) -> Self {
+        return self.mutate(key: "src", value: value)
+    }
 }
 
 extension SourceAttribute where Self: EmptyElement {
     
     internal func mutate(source value: String) -> Self {
+        return self.mutate(key: "src", value: value)
+    }
+    
+    internal func mutate(source value: Property<String>) -> Self {
         return self.mutate(key: "src", value: value)
     }
 }
@@ -2313,6 +3130,13 @@ public protocol StartAttribute: Attribute {
     /// <tag start="" />
     /// ```
     func start(_ size: Int) -> Self
+    
+    /// The function represents the html-attribute 'start'.
+    ///
+    /// ```html
+    /// <tag start="" />
+    /// ```
+    func start(_ size: Property<Int>) -> Self
 }
 
 extension StartAttribute where Self: ContentElement {
@@ -2320,11 +3144,19 @@ extension StartAttribute where Self: ContentElement {
     internal func mutate(start value: Int) -> Self {
         return self.mutate(key: "start", value: value)
     }
+    
+    internal func mutate(start value: Property<Int>) -> Self {
+        return self.mutate(key: "start", value: value)
+    }
 }
 
 extension StartAttribute where Self: EmptyElement {
     
     internal func mutate(start value: Int) -> Self {
+        return self.mutate(key: "start", value: value)
+    }
+    
+    internal func mutate(start value: Property<Int>) -> Self {
         return self.mutate(key: "start", value: value)
     }
 }
@@ -2338,6 +3170,13 @@ public protocol StepAttribute: Attribute {
     /// <tag step="" />
     /// ```
     func step(_ size: Int) -> Self
+    
+    /// The function represents the html-attribute 'step'.
+    ///
+    /// ```html
+    /// <tag step="" />
+    /// ```
+    func step(_ size: Property<Int>) -> Self
 }
 
 extension StepAttribute where Self: ContentElement {
@@ -2345,11 +3184,19 @@ extension StepAttribute where Self: ContentElement {
     internal func mutate(step value: Int) -> Self {
         return self.mutate(key: "step", value: value)
     }
+    
+    internal func mutate(step value: Property<Int>) -> Self {
+        return self.mutate(key: "step", value: value)
+    }
 }
 
 extension StepAttribute where Self: EmptyElement {
     
     internal func mutate(step value: Int) -> Self {
+        return self.mutate(key: "step", value: value)
+    }
+    
+    internal func mutate(step value: Property<Int>) -> Self {
         return self.mutate(key: "step", value: value)
     }
 }
@@ -2363,6 +3210,13 @@ public protocol StyleAttribute: Attribute {
     /// <tag style="" />
     /// ```
     func style(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'style'.
+    ///
+    /// ```html
+    /// <tag style="" />
+    /// ```
+    func style(_ value: Property<String>) -> Self
 }
 
 extension StyleAttribute where Self: ContentElement {
@@ -2370,11 +3224,19 @@ extension StyleAttribute where Self: ContentElement {
     internal func mutate(style value: String) -> Self {
         return self.mutate(key: "style", value: value)
     }
+    
+    internal func mutate(style value: Property<String>) -> Self {
+        return self.mutate(key: "style", value: value)
+    }
 }
 
 extension StyleAttribute where Self: EmptyElement {
     
     internal func mutate(style value: String) -> Self {
+        return self.mutate(key: "style", value: value)
+    }
+    
+    internal func mutate(style value: Property<String>) -> Self {
         return self.mutate(key: "style", value: value)
     }
 }
@@ -2388,6 +3250,13 @@ public protocol TabulatorAttribute: Attribute {
     /// <tag tabindex="" />
     /// ```
     func tabIndex(_ value: Int) -> Self
+    
+    /// The function represents the html-attribute 'tabindex'.
+    ///
+    /// ```html
+    /// <tag tabindex="" />
+    /// ```
+    func tabIndex(_ value: Property<Int>) -> Self
 }
 
 extension TabulatorAttribute where Self: ContentElement {
@@ -2395,11 +3264,19 @@ extension TabulatorAttribute where Self: ContentElement {
     internal func mutate(tabindex value: Int) -> Self {
         return self.mutate(key: "tabindex", value: value)
     }
+    
+    internal func mutate(tabindex value: Property<Int>) -> Self {
+        return self.mutate(key: "tabindex", value: value)
+    }
 }
 
 extension TabulatorAttribute where Self: EmptyElement {
     
     internal func mutate(tabindex value: Int) -> Self {
+        return self.mutate(key: "tabindex", value: value)
+    }
+    
+    internal func mutate(tabindex value: Property<Int>) -> Self {
         return self.mutate(key: "tabindex", value: value)
     }
 }
@@ -2438,6 +3315,13 @@ public protocol TitleAttribute: Attribute {
     /// <tag title="" />
     /// ```
     func title(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'title'.
+    ///
+    /// ```html
+    /// <tag title="" />
+    /// ```
+    func title(_ value: Property<String>) -> Self
 }
 
 extension TitleAttribute where Self: ContentElement {
@@ -2445,11 +3329,19 @@ extension TitleAttribute where Self: ContentElement {
     internal func mutate(title value: String) -> Self {
         return self.mutate(key: "title", value: value)
     }
+    
+    internal func mutate(title value: Property<String>) -> Self {
+        return self.mutate(key: "title", value: value)
+    }
 }
 
 extension TitleAttribute where Self: EmptyElement {
     
     internal func mutate(title value: String) -> Self {
+        return self.mutate(key: "title", value: value)
+    }
+    
+    internal func mutate(title value: Property<String>) -> Self {
         return self.mutate(key: "title", value: value)
     }
 }
@@ -2515,6 +3407,13 @@ public protocol ValueAttribute: Attribute {
     /// <tag value="" />
     /// ```
     func value(_ value: String) -> Self
+    
+    /// The function represents the html-attribute 'value'.
+    ///
+    /// ```html
+    /// <tag value="" />
+    /// ```
+    func value(_ value: Property<String>) -> Self
 }
 
 extension ValueAttribute where Self: ContentElement {
@@ -2522,11 +3421,19 @@ extension ValueAttribute where Self: ContentElement {
     internal func mutate(value: String) -> Self {
         return self.mutate(key: "value", value: value)
     }
+    
+    internal func mutate(value: Property<String>) -> Self {
+        return self.mutate(key: "value", value: value)
+    }
 }
 
 extension ValueAttribute where Self: EmptyElement {
     
     internal func mutate(value: String) -> Self {
+        return self.mutate(key: "value", value: value)
+    }
+    
+    internal func mutate(value: Property<String>) -> Self {
         return self.mutate(key: "value", value: value)
     }
 }
@@ -2540,6 +3447,13 @@ public protocol WidthAttribute: Attribute {
     /// <tag width="" />
     /// ```
     func width(_ size: Int) -> Self
+    
+    /// The function represents the html-attribute 'width'.
+    ///
+    /// ```html
+    /// <tag width="" />
+    /// ```
+    func width(_ size: Property<Int>) -> Self
 }
 
 extension WidthAttribute where Self: ContentElement {
@@ -2547,11 +3461,19 @@ extension WidthAttribute where Self: ContentElement {
     internal func mutate(width value: Int) -> Self {
         return self.mutate(key: "width", value: value)
     }
+    
+    internal func mutate(width value: Property<Int>) -> Self {
+        return self.mutate(key: "width", value: value)
+    }
 }
 
 extension WidthAttribute where Self: EmptyElement {
     
     internal func mutate(width value: Int) -> Self {
+        return self.mutate(key: "width", value: value)
+    }
+    
+    internal func mutate(width value: Property<Int>) -> Self {
         return self.mutate(key: "width", value: value)
     }
 }
@@ -2589,8 +3511,6 @@ public protocol PropertyAttribute: Attribute {
     /// ```html
     /// <tag property="" />
     /// ```
-    ///
-    /// - Parameter type:
     func property(_ value: Values.Graph) -> Self
 }
 

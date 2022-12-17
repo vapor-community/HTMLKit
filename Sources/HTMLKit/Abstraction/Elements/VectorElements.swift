@@ -41,7 +41,7 @@ public struct Circle: ContentElement {
 }
 
 extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute {
-  
+
     public func id(_ value: String) -> Circle {
         return self.mutate(id: value)
     }
@@ -62,11 +62,23 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
         return self.mutate(fill: value)
     }
     
+    public func fill(_ value: Property<String>) -> Circle {
+        return self.mutate(fill: value)
+    }
+    
     public func stroke(_ value: String) -> Circle {
         return self.mutate(stroke: value)
     }
     
+    public func stroke(_ value: Property<String>) -> Circle {
+        return self.mutate(stroke: value)
+    }
+    
     public func strokeWidth(_ size: Int) -> Circle {
+        return self.mutate(strokewidth: size)
+    }
+    
+    public func strokeWidth(_ size: Property<Int>) -> Circle {
         return self.mutate(strokewidth: size)
     }
     
@@ -78,11 +90,23 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
         return self.mutate(radius: size)
     }
     
+    public func radius(_ size: Property<Int>) -> Circle {
+        return self.mutate(radius: size)
+    }
+    
     public func fillOpacity(_ value: Double) -> Circle {
         return self.mutate(fillopacity: value)
     }
     
+    public func fillOpacity(_ value: Property<Double>) -> Circle {
+        return self.mutate(fillopacity: value)
+    }
+    
     public func strokeOpacity(_ value: Double) -> Circle {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Property<Double>) -> Circle {
         return self.mutate(strokeopacity: value)
     }
     
@@ -144,11 +168,23 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return self.mutate(fill: value)
     }
     
+    public func fill(_ value: Property<String>) -> Rectangle {
+        return self.mutate(fill: value)
+    }
+    
     public func stroke(_ value: String) -> Rectangle {
         return self.mutate(stroke: value)
     }
     
+    public func stroke(_ value: Property<String>) -> Rectangle {
+        return self.mutate(stroke: value)
+    }
+    
     public func strokeWidth(_ size: Int) -> Rectangle {
+        return self.mutate(strokewidth: size)
+    }
+    
+    public func strokeWidth(_ size: Property<Int>) -> Rectangle {
         return self.mutate(strokewidth: size)
     }
     
@@ -160,7 +196,15 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return self.mutate(width: size)
     }
     
+    public func width(_ size: Property<Int>) -> Rectangle {
+        return self.mutate(width: size)
+    }
+    
     public func height(_ size: Int) -> Rectangle {
+        return self.mutate(height: size)
+    }
+    
+    public func height(_ size: Property<Int>) -> Rectangle {
         return self.mutate(height: size)
     }
     
@@ -168,7 +212,15 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return self.mutate(fillopacity: value)
     }
     
+    public func fillOpacity(_ value: Property<Double>) -> Rectangle {
+        return self.mutate(fillopacity: value)
+    }
+    
     public func strokeOpacity(_ value: Double) -> Rectangle {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Property<Double>) -> Rectangle {
         return self.mutate(strokeopacity: value)
     }
     
@@ -230,11 +282,23 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
         return self.mutate(fill: value)
     }
     
+    public func fill(_ value: Property<String>) -> Ellipse {
+        return self.mutate(fill: value)
+    }
+    
     public func stroke(_ value: String) -> Ellipse {
         return self.mutate(stroke: value)
     }
     
+    public func stroke(_ value: Property<String>) -> Ellipse {
+        return self.mutate(stroke: value)
+    }
+    
     public func strokeWidth(_ size: Int) -> Ellipse {
+        return self.mutate(strokewidth: size)
+    }
+    
+    public func strokeWidth(_ size: Property<Int>) -> Ellipse {
         return self.mutate(strokewidth: size)
     }
     
@@ -250,7 +314,15 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
         return self.mutate(fillopacity: value)
     }
     
+    public func fillOpacity(_ value: Property<Double>) -> Ellipse {
+        return self.mutate(fillopacity: value)
+    }
+    
     public func strokeOpacity(_ value: Double) -> Ellipse {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Property<Double>) -> Ellipse {
         return self.mutate(strokeopacity: value)
     }
     
@@ -312,7 +384,15 @@ extension Line: GlobalVectorAttributes {
         return self.mutate(fill: value)
     }
     
+    public func fill(_ value: Property<String>) -> Line {
+        return self.mutate(fill: value)
+    }
+    
     public func stroke(_ value: String) -> Line {
+        return self.mutate(stroke: value)
+    }
+    
+    public func stroke(_ value: Property<String>) -> Line {
         return self.mutate(stroke: value)
     }
     
@@ -320,11 +400,23 @@ extension Line: GlobalVectorAttributes {
         return self.mutate(strokewidth: size)
     }
     
+    public func strokeWidth(_ size: Property<Int>) -> Line {
+        return self.mutate(strokewidth: size)
+    }
+    
     public func fillOpacity(_ value: Double) -> Line {
         return self.mutate(fillopacity: value)
     }
     
+    public func fillOpacity(_ value: Property<Double>) -> Line {
+        return self.mutate(fillopacity: value)
+    }
+    
     public func strokeOpacity(_ value: Double) -> Line {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Property<Double>) -> Line {
         return self.mutate(strokeopacity: value)
     }
     
@@ -365,7 +457,7 @@ public struct Polygon: ContentElement {
 }
 
 extension Polygon: GlobalVectorAttributes {
-    
+
     public func id(_ value: String) -> Polygon {
         return self.mutate(id: value)
     }
@@ -386,7 +478,15 @@ extension Polygon: GlobalVectorAttributes {
         return self.mutate(fill: value)
     }
     
+    public func fill(_ value: Property<String>) -> Polygon {
+        return self.mutate(fill: value)
+    }
+    
     public func stroke(_ value: String) -> Polygon {
+        return self.mutate(stroke: value)
+    }
+    
+    public func stroke(_ value: Property<String>) -> Polygon {
         return self.mutate(stroke: value)
     }
     
@@ -394,11 +494,23 @@ extension Polygon: GlobalVectorAttributes {
         return self.mutate(strokewidth: size)
     }
     
+    public func strokeWidth(_ size: Property<Int>) -> Polygon {
+        return self.mutate(strokewidth: size)
+    }
+    
     public func fillOpacity(_ value: Double) -> Polygon {
         return self.mutate(fillopacity: value)
     }
     
+    public func fillOpacity(_ value: Property<Double>) -> Polygon {
+        return self.mutate(fillopacity: value)
+    }
+    
     public func strokeOpacity(_ value: Double) -> Polygon {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Property<Double>) -> Polygon {
         return self.mutate(strokeopacity: value)
     }
     
@@ -460,7 +572,15 @@ extension Polyline: GlobalVectorAttributes {
         return self.mutate(fill: value)
     }
     
+    public func fill(_ value: Property<String>) -> Polyline {
+        return self.mutate(fill: value)
+    }
+    
     public func stroke(_ value: String) -> Polyline {
+        return self.mutate(stroke: value)
+    }
+    
+    public func stroke(_ value: Property<String>) -> Polyline {
         return self.mutate(stroke: value)
     }
     
@@ -468,11 +588,23 @@ extension Polyline: GlobalVectorAttributes {
         return self.mutate(strokewidth: size)
     }
     
+    public func strokeWidth(_ size: Property<Int>) -> Polyline {
+        return self.mutate(strokewidth: size)
+    }
+    
     public func fillOpacity(_ value: Double) -> Polyline {
         return self.mutate(fillopacity: value)
     }
     
+    public func fillOpacity(_ value: Property<Double>) -> Polyline {
+        return self.mutate(fillopacity: value)
+    }
+    
     public func strokeOpacity(_ value: Double) -> Polyline {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Property<Double>) -> Polyline {
         return self.mutate(strokeopacity: value)
     }
     
@@ -534,7 +666,15 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
         return self.mutate(fill: value)
     }
     
+    public func fill(_ value: Property<String>) -> Path {
+        return self.mutate(fill: value)
+    }
+    
     public func stroke(_ value: String) -> Path {
+        return self.mutate(stroke: value)
+    }
+    
+    public func stroke(_ value: Property<String>) -> Path {
         return self.mutate(stroke: value)
     }
     
@@ -542,11 +682,23 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
         return self.mutate(strokewidth: size)
     }
     
+    public func strokeWidth(_ size: Property<Int>) -> Path {
+        return self.mutate(strokewidth: size)
+    }
+    
     public func fillOpacity(_ value: Double) -> Path {
         return self.mutate(fillopacity: value)
     }
     
+    public func fillOpacity(_ value: Property<Double>) -> Path {
+        return self.mutate(fillopacity: value)
+    }
+    
     public func strokeOpacity(_ value: Double) -> Path {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Property<Double>) -> Path {
         return self.mutate(strokeopacity: value)
     }
     
@@ -559,6 +711,10 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
     }
     
     public func draw(_ value: String) -> Path {
+        return self.mutate(draw: value)
+    }
+    
+    public func draw(_ value: Property<String>) -> Path {
         return self.mutate(draw: value)
     }
     
@@ -591,7 +747,7 @@ public struct Group: ContentElement {
 }
 
 extension Group: GlobalVectorAttributes {
-
+    
     public func id(_ value: String) -> Self {
         return self.mutate(id: value)
     }
@@ -611,16 +767,32 @@ extension Group: GlobalVectorAttributes {
     public func fill(_ value: String) -> Self {
         return self.mutate(fill: value)
     }
+    
+    public func fill(_ value: Property<String>) -> Group {
+        return self.mutate(fill: value)
+    }
 
     public func stroke(_ value: String) -> Self {
+        return self.mutate(stroke: value)
+    }
+    
+    public func stroke(_ value: Property<String>) -> Group {
         return self.mutate(stroke: value)
     }
 
     public func strokeWidth(_ size: Int) -> Self {
         return self.mutate(strokewidth: size)
     }
+    
+    public func strokeWidth(_ size: Property<Int>) -> Group {
+        return self.mutate(strokewidth: size)
+    }
 
     public func fillOpacity(_ value: Double) -> Self {
+        return self.mutate(fillopacity: value)
+    }
+    
+    public func fillOpacity(_ value: Property<Double>) -> Group {
         return self.mutate(fillopacity: value)
     }
 
@@ -628,6 +800,10 @@ extension Group: GlobalVectorAttributes {
         return self.mutate(strokeopacity: value)
     }
 
+    public func strokeOpacity(_ value: Property<Double>) -> Group {
+        return self.mutate(strokeopacity: value)
+    }
+    
     public func strokeLineCap(_ value: Values.Linecap) -> Self {
         return self.mutate(strokelinecap: value.rawValue)
     }
@@ -678,11 +854,23 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
         return self.mutate(href: value)
     }
     
+    public func reference(_ value: Property<String>) -> Use {
+        return self.mutate(href: value)
+    }
+    
     public func width(_ size: Int) -> Use {
         return self.mutate(width: size)
     }
     
+    public func width(_ size: Property<Int>) -> Use {
+        return self.mutate(width: size)
+    }
+    
     public func height(_ size: Int) -> Use {
+        return self.mutate(height: size)
+    }
+    
+    public func height(_ size: Property<Int>) -> Use {
         return self.mutate(height: size)
     }
     
@@ -698,7 +886,15 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
         return self.mutate(fill: value)
     }
     
+    public func fill(_ value: Property<String>) -> Use {
+        return self.mutate(fill: value)
+    }
+    
     public func stroke(_ value: String) -> Use {
+        return self.mutate(stroke: value)
+    }
+    
+    public func stroke(_ value: Property<String>) -> Use {
         return self.mutate(stroke: value)
     }
     
@@ -706,11 +902,23 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
         return self.mutate(strokewidth: size)
     }
     
+    public func strokeWidth(_ size: Property<Int>) -> Use {
+        return self.mutate(strokewidth: size)
+    }
+    
     public func fillOpacity(_ value: Double) -> Use {
         return self.mutate(fillopacity: value)
     }
     
+    public func fillOpacity(_ value: Property<Double>) -> Use {
+        return self.mutate(fillopacity: value)
+    }
+    
     public func strokeOpacity(_ value: Double) -> Use {
+        return self.mutate(strokeopacity: value)
+    }
+    
+    public func strokeOpacity(_ value: Property<Double>) -> Use {
         return self.mutate(strokeopacity: value)
     }
     
