@@ -17,12 +17,8 @@ extension Double: Content {}
 
 extension Bool: Content {}
 
-extension Bool: Conditionable {}
+extension Date: Content {}
 
-extension Sequence {
-    
-    @available(*, deprecated, message: "The method will be removed entirely.")
-    public func htmlForEach(@ContentBuilder<Content> content: (TemplateValue<Element>) -> Content) -> Content {
-        ForEach(in: .constant(self), content: content)
-    }
-}
+extension Character: Content {}
+
+extension Bool: Conditionable {}

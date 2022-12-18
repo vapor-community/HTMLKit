@@ -23,7 +23,7 @@ public protocol AriaActiveDescendantAttribute: Attribute {
     /// ```html
     /// <tag aria-activedescendant="" />
     /// ```
-    func aria(activeDescendant value: Property<String>) -> Self
+    func aria(activeDescendant property: Property<String>) -> Self
 }
 
 extension AriaActiveDescendantAttribute where Self: ContentElement {
@@ -32,8 +32,8 @@ extension AriaActiveDescendantAttribute where Self: ContentElement {
         return self.mutate(key: "aria-activedescendant", value: value)
     }
     
-    internal func mutate(ariaactivedescendant value: Property<String>) -> Self {
-        return self.mutate(key: "aria-activedescendant", value: value)
+    internal func mutate(ariaactivedescendant property: Property<String>) -> Self {
+        return self.mutate(key: "aria-activedescendant", value: property.value)
     }
 }
 
@@ -43,8 +43,8 @@ extension AriaActiveDescendantAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-activedescendant", value: value)
     }
     
-    internal func mutate(ariaactivedescendant value: Property<String>) -> Self {
-        return self.mutate(key: "aria-activedescendant", value: value)
+    internal func mutate(ariaactivedescendant property: Property<String>) -> Self {
+        return self.mutate(key: "aria-activedescendant", value: property.value)
     }
 }
 
@@ -64,7 +64,7 @@ public protocol AriaAtomicAttribute: Attribute {
     /// ```html
     /// <tag aria-atomic="" />
     /// ```
-    func aria(atomic value: Property<Bool>) -> Self
+    func aria(atomic property: Property<Bool>) -> Self
 }
 
 extension AriaAtomicAttribute where Self: ContentElement {
@@ -73,8 +73,8 @@ extension AriaAtomicAttribute where Self: ContentElement {
         return self.mutate(key: "aria-atomic", value: value)
     }
     
-    internal func mutate(ariaatomic value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-atomic", value: value)
+    internal func mutate(ariaatomic property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-atomic", value: property.value)
     }
 }
 
@@ -84,8 +84,8 @@ extension AriaAtomicAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-atomic", value: value)
     }
     
-    internal func mutate(ariaatomic value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-atomic", value: value)
+    internal func mutate(ariaatomic property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-atomic", value: property.value)
     }
 }
 
@@ -129,7 +129,7 @@ public protocol AriaBusyAttribute: Attribute {
     /// ```html
     /// <tag aria-busy="" />
     /// ```
-    func aria(busy value: Property<Bool>) -> Self
+    func aria(busy property: Property<Bool>) -> Self
 }
 
 extension AriaBusyAttribute where Self: ContentElement {
@@ -138,8 +138,8 @@ extension AriaBusyAttribute where Self: ContentElement {
         return self.mutate(key: "aria-busy", value: value)
     }
     
-    internal func mutate(ariabusy value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-busy", value: value)
+    internal func mutate(ariabusy property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-busy", value: property.value)
     }
 }
 
@@ -149,8 +149,8 @@ extension AriaBusyAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-busy", value: value)
     }
     
-    internal func mutate(ariabusy value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-busy", value: value)
+    internal func mutate(ariabusy property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-busy", value: property.value)
     }
 }
 
@@ -194,7 +194,7 @@ public protocol AriaColumnCountAttribute: Attribute {
     /// ```html
     /// <tag aria-colcount="" />
     /// ```
-    func aria(columnCount value: Property<Int>) -> Self
+    func aria(columnCount property: Property<Int>) -> Self
 }
 
 extension AriaColumnCountAttribute where Self: ContentElement {
@@ -203,8 +203,8 @@ extension AriaColumnCountAttribute where Self: ContentElement {
         return self.mutate(key: "aria-colcount", value: value)
     }
     
-    internal func mutate(ariacolcount value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-colcount", value: value)
+    internal func mutate(ariacolcount property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-colcount", value: property.value)
     }
 }
 
@@ -214,8 +214,8 @@ extension AriaColumnCountAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-colcount", value: value)
     }
     
-    internal func mutate(ariacolcount value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-colcount", value: value)
+    internal func mutate(ariacolcount property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-colcount", value: property.value)
     }
 }
 
@@ -234,7 +234,7 @@ public protocol AriaColumnIndexAttribute: Attribute {
     /// ```html
     /// <tag aria-colindex="" />
     /// ```
-    func aria(columnIndex value: Property<Int>) -> Self
+    func aria(columnIndex property: Property<Int>) -> Self
 }
 
 extension AriaColumnIndexAttribute where Self: ContentElement {
@@ -243,8 +243,8 @@ extension AriaColumnIndexAttribute where Self: ContentElement {
         return self.mutate(key: "aria-colindex", value: value)
     }
     
-    internal func mutate(ariacolindex value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-colindex", value: value)
+    internal func mutate(ariacolindex property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-colindex", value: property.value)
     }
 }
 
@@ -254,8 +254,8 @@ extension AriaColumnIndexAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-colindex", value: value)
     }
     
-    internal func mutate(ariacolindex value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-colindex", value: value)
+    internal func mutate(ariacolindex property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-colindex", value: property.value)
     }
 }
 
@@ -274,7 +274,7 @@ public protocol AriaColumnSpanAttribute: Attribute {
     /// ```html
     /// <tag aria-colspan="" />
     /// ```
-    func aria(columnSpan value: Property<Int>) -> Self
+    func aria(columnSpan property: Property<Int>) -> Self
 }
 
 extension AriaColumnSpanAttribute where Self: ContentElement {
@@ -283,8 +283,8 @@ extension AriaColumnSpanAttribute where Self: ContentElement {
         return self.mutate(key: "aria-colspan", value: value)
     }
     
-    internal func mutate(ariacolspan value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-colspan", value: value)
+    internal func mutate(ariacolspan property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-colspan", value: property.value)
     }
 }
 
@@ -294,8 +294,8 @@ extension AriaColumnSpanAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-colspan", value: value)
     }
     
-    internal func mutate(ariacolspan value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-colspan", value: value)
+    internal func mutate(ariacolspan property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-colspan", value: property.value)
     }
 }
 
@@ -314,7 +314,7 @@ public protocol AriaControlsAttribute: Attribute {
     /// ```html
     /// <tag aria-controls="" />
     /// ```
-    func aria(controls value: Property<String>) -> Self
+    func aria(controls property: Property<String>) -> Self
 }
 
 extension AriaControlsAttribute where Self: ContentElement {
@@ -323,8 +323,8 @@ extension AriaControlsAttribute where Self: ContentElement {
         return self.mutate(key: "aria-controls", value: value)
     }
     
-    internal func mutate(ariacontrols value: Property<String>) -> Self {
-        return self.mutate(key: "aria-controls", value: value)
+    internal func mutate(ariacontrols property: Property<String>) -> Self {
+        return self.mutate(key: "aria-controls", value: property.value)
     }
 }
 
@@ -334,8 +334,8 @@ extension AriaControlsAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-controls", value: value)
     }
     
-    internal func mutate(ariacontrols value: Property<String>) -> Self {
-        return self.mutate(key: "aria-controls", value: value)
+    internal func mutate(ariacontrols property: Property<String>) -> Self {
+        return self.mutate(key: "aria-controls", value: property.value)
     }
 }
 
@@ -379,7 +379,7 @@ public protocol AriaDescribedAttribute: Attribute {
     /// ```html
     /// <tag aria-describedby="" />
     /// ```
-    func aria(describedBy value: Property<String>) -> Self
+    func aria(describedBy property: Property<String>) -> Self
 }
 
 extension AriaDescribedAttribute where Self: ContentElement {
@@ -388,8 +388,8 @@ extension AriaDescribedAttribute where Self: ContentElement {
         return self.mutate(key: "aria-describedby", value: value)
     }
     
-    internal func mutate(ariadescribedby value: Property<String>) -> Self {
-        return self.mutate(key: "aria-describedby", value: value)
+    internal func mutate(ariadescribedby property: Property<String>) -> Self {
+        return self.mutate(key: "aria-describedby", value: property.value)
     }
 }
 
@@ -399,8 +399,8 @@ extension AriaDescribedAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-describedby", value: value)
     }
     
-    internal func mutate(ariadescribedby value: Property<String>) -> Self {
-        return self.mutate(key: "aria-describedby", value: value)
+    internal func mutate(ariadescribedby property: Property<String>) -> Self {
+        return self.mutate(key: "aria-describedby", value: property.value)
     }
 }
 
@@ -419,7 +419,7 @@ public protocol AriaDetailsAttribute: Attribute {
     /// ```html
     /// <tag aria-details="" />
     /// ```
-    func aria(details value: Property<String>) -> Self
+    func aria(details property: Property<String>) -> Self
 }
 
 extension AriaDetailsAttribute where Self: ContentElement {
@@ -428,8 +428,8 @@ extension AriaDetailsAttribute where Self: ContentElement {
         return self.mutate(key: "aria-details", value: value)
     }
     
-    internal func mutate(ariadetails value: Property<String>) -> Self {
-        return self.mutate(key: "aria-details", value: value)
+    internal func mutate(ariadetails property: Property<String>) -> Self {
+        return self.mutate(key: "aria-details", value: property.value)
     }
 }
 
@@ -439,8 +439,8 @@ extension AriaDetailsAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-details", value: value)
     }
     
-    internal func mutate(ariadetails value: Property<String>) -> Self {
-        return self.mutate(key: "aria-details", value: value)
+    internal func mutate(ariadetails property: Property<String>) -> Self {
+        return self.mutate(key: "aria-details", value: property.value)
     }
 }
 
@@ -459,7 +459,7 @@ public protocol AriaDisabledAttribute: Attribute {
     /// ```html
     /// <tag aria-disabled="" />
     /// ```
-    func aria(disabled value: Property<Bool>) -> Self
+    func aria(disabled property: Property<Bool>) -> Self
 }
 
 extension AriaDisabledAttribute where Self: ContentElement {
@@ -468,8 +468,8 @@ extension AriaDisabledAttribute where Self: ContentElement {
         return self.mutate(key: "aria-disabled", value: value)
     }
     
-    internal func mutate(ariadisabled value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-disabled", value: value)
+    internal func mutate(ariadisabled property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-disabled", value: property.value)
     }
 }
 
@@ -479,8 +479,8 @@ extension AriaDisabledAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-disabled", value: value)
     }
     
-    internal func mutate(ariadisabled value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-disabled", value: value)
+    internal func mutate(ariadisabled property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-disabled", value: property.value)
     }
 }
 
@@ -499,7 +499,7 @@ public protocol AriaErrorMessageAttribute: Attribute {
     /// ```html
     /// <tag aria-errormessage="" />
     /// ```
-    func aria(errorMessage value: Property<String>) -> Self
+    func aria(errorMessage property: Property<String>) -> Self
 }
 
 extension AriaErrorMessageAttribute where Self: ContentElement {
@@ -508,8 +508,8 @@ extension AriaErrorMessageAttribute where Self: ContentElement {
         return self.mutate(key: "aria-errormessage", value: value)
     }
     
-    internal func mutate(ariaerrormessage value: Property<String>) -> Self {
-        return self.mutate(key: "aria-errormessage", value: value)
+    internal func mutate(ariaerrormessage property: Property<String>) -> Self {
+        return self.mutate(key: "aria-errormessage", value: property.value)
     }
 }
 
@@ -519,8 +519,8 @@ extension AriaErrorMessageAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-errormessage", value: value)
     }
     
-    internal func mutate(ariaerrormessage value: Property<String>) -> Self {
-        return self.mutate(key: "aria-errormessage", value: value)
+    internal func mutate(ariaerrormessage property: Property<String>) -> Self {
+        return self.mutate(key: "aria-errormessage", value: property.value)
     }
 }
 
@@ -539,7 +539,7 @@ public protocol AriaExpandedAttribute: Attribute {
     /// ```html
     /// <tag aria-expanded="" />
     /// ```
-    func aria(expanded value: Property<Bool>) -> Self
+    func aria(expanded property: Property<Bool>) -> Self
 }
 
 extension AriaExpandedAttribute where Self: ContentElement {
@@ -548,8 +548,8 @@ extension AriaExpandedAttribute where Self: ContentElement {
         return self.mutate(key: "aria-expanded", value: value)
     }
     
-    internal func mutate(ariaexpanded value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-expanded", value: value)
+    internal func mutate(ariaexpanded property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-expanded", value: property.value)
     }
 }
 
@@ -559,8 +559,8 @@ extension AriaExpandedAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-expanded", value: value)
     }
     
-    internal func mutate(ariaexpanded value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-expanded", value: value)
+    internal func mutate(ariaexpanded property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-expanded", value: property.value)
     }
 }
 
@@ -579,7 +579,7 @@ public protocol AriaFlowToAttribute: Attribute {
     /// ```html
     /// <tag aria-flowto="" />
     /// ```
-    func aria(flowTo value: Property<String>) -> Self
+    func aria(flowTo property: Property<String>) -> Self
 }
 
 extension AriaFlowToAttribute where Self: ContentElement {
@@ -588,8 +588,8 @@ extension AriaFlowToAttribute where Self: ContentElement {
         return self.mutate(key: "aria-flowto", value: value)
     }
     
-    internal func mutate(ariaflowto value: Property<String>) -> Self {
-        return self.mutate(key: "aria-flowto", value: value)
+    internal func mutate(ariaflowto property: Property<String>) -> Self {
+        return self.mutate(key: "aria-flowto", value: property.value)
     }
 }
 
@@ -599,8 +599,8 @@ extension AriaFlowToAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-flowto", value: value)
     }
     
-    internal func mutate(ariaflowto value: Property<String>) -> Self {
-        return self.mutate(key: "aria-flowto", value: value)
+    internal func mutate(ariaflowto property: Property<String>) -> Self {
+        return self.mutate(key: "aria-flowto", value: property.value)
     }
 }
 
@@ -644,7 +644,7 @@ public protocol AriaHiddenAttribute: Attribute {
     /// ```html
     /// <tag aria-hidden="" />
     /// ```
-    func aria(hidden value: Property<Bool>) -> Self
+    func aria(hidden property: Property<Bool>) -> Self
 }
 
 extension AriaHiddenAttribute where Self: ContentElement {
@@ -653,8 +653,8 @@ extension AriaHiddenAttribute where Self: ContentElement {
         return self.mutate(key: "aria-hidden", value: value)
     }
     
-    internal func mutate(ariahidden value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-hidden", value: value)
+    internal func mutate(ariahidden property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-hidden", value: property.value)
     }
 }
 
@@ -664,8 +664,8 @@ extension AriaHiddenAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-hidden", value: value)
     }
     
-    internal func mutate(ariahidden value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-hidden", value: value)
+    internal func mutate(ariahidden property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-hidden", value: property.value)
     }
 }
 
@@ -709,7 +709,7 @@ public protocol AriaShortcutsAttribute: Attribute {
     /// ```html
     /// <tag aria-keyshortcuts="" />
     /// ```
-    func aria(keyShortcuts value: Property<String>) -> Self
+    func aria(keyShortcuts property: Property<String>) -> Self
 }
 
 extension AriaShortcutsAttribute where Self: ContentElement {
@@ -718,8 +718,8 @@ extension AriaShortcutsAttribute where Self: ContentElement {
         return self.mutate(key: "aria-keyshortcuts", value: value)
     }
     
-    internal func mutate(ariakeyshortcuts value: Property<String>) -> Self {
-        return self.mutate(key: "aria-keyshortcuts", value: value)
+    internal func mutate(ariakeyshortcuts property: Property<String>) -> Self {
+        return self.mutate(key: "aria-keyshortcuts", value: property.value)
     }
 }
 
@@ -729,8 +729,8 @@ extension AriaShortcutsAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-keyshortcuts", value: value)
     }
     
-    internal func mutate(ariakeyshortcuts value: Property<String>) -> Self {
-        return self.mutate(key: "aria-keyshortcuts", value: value)
+    internal func mutate(ariakeyshortcuts property: Property<String>) -> Self {
+        return self.mutate(key: "aria-keyshortcuts", value: property.value)
     }
 }
 
@@ -749,7 +749,7 @@ public protocol AriaLabelAttribute: Attribute {
     /// ```html
     /// <tag aria-label="" />
     /// ```
-    func aria(label value: Property<String>) -> Self
+    func aria(label property: Property<String>) -> Self
 }
 
 extension AriaLabelAttribute where Self: ContentElement {
@@ -758,8 +758,8 @@ extension AriaLabelAttribute where Self: ContentElement {
         return self.mutate(key: "aria-label", value: value)
     }
     
-    internal func mutate(arialabel value: Property<String>) -> Self {
-        return self.mutate(key: "aria-label", value: value)
+    internal func mutate(arialabel property: Property<String>) -> Self {
+        return self.mutate(key: "aria-label", value: property.value)
     }
 }
 
@@ -769,8 +769,8 @@ extension AriaLabelAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-label", value: value)
     }
     
-    internal func mutate(arialabel value: Property<String>) -> Self {
-        return self.mutate(key: "aria-label", value: value)
+    internal func mutate(arialabel property: Property<String>) -> Self {
+        return self.mutate(key: "aria-label", value: property.value)
     }
 }
 
@@ -789,7 +789,7 @@ public protocol AriaLabeledAttribute: Attribute {
     /// ```html
     /// <tag aria-labeledby="" />
     /// ```
-    func aria(labeledBy value: Property<String>) -> Self
+    func aria(labeledBy property: Property<String>) -> Self
 }
 
 extension AriaLabeledAttribute where Self: ContentElement {
@@ -798,8 +798,8 @@ extension AriaLabeledAttribute where Self: ContentElement {
         return self.mutate(key: "aria-labeledby", value: value)
     }
     
-    internal func mutate(arialabeledby value: Property<String>) -> Self {
-        return self.mutate(key: "aria-labeledby", value: value)
+    internal func mutate(arialabeledby property: Property<String>) -> Self {
+        return self.mutate(key: "aria-labeledby", value: property.value)
     }
 }
 
@@ -809,8 +809,8 @@ extension AriaLabeledAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-labeledby", value: value)
     }
     
-    internal func mutate(arialabeledby value: Property<String>) -> Self {
-        return self.mutate(key: "aria-labeledby", value: value)
+    internal func mutate(arialabeledby property: Property<String>) -> Self {
+        return self.mutate(key: "aria-labeledby", value: property.value)
     }
 }
 
@@ -829,7 +829,7 @@ public protocol AriaLevelAttribute: Attribute {
     /// ```html
     /// <tag aria-level="" />
     /// ```
-    func aria(level value: Property<Int>) -> Self
+    func aria(level property: Property<Int>) -> Self
 }
 
 extension AriaLevelAttribute where Self: ContentElement {
@@ -838,8 +838,8 @@ extension AriaLevelAttribute where Self: ContentElement {
         return self.mutate(key: "aria-level", value: value)
     }
     
-    internal func mutate(arialevel value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-level", value: value)
+    internal func mutate(arialevel property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-level", value: property.value)
     }
 }
 
@@ -849,8 +849,8 @@ extension AriaLevelAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-level", value: value)
     }
     
-    internal func mutate(arialevel value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-level", value: value)
+    internal func mutate(arialevel property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-level", value: property.value)
     }
 }
 
@@ -894,7 +894,7 @@ public protocol AriaModalAttribute: Attribute {
     /// ```html
     /// <tag aria-modal="" />
     /// ```
-    func aria(modal value: Property<Bool>) -> Self
+    func aria(modal property: Property<Bool>) -> Self
 }
 
 extension AriaModalAttribute where Self: ContentElement {
@@ -903,8 +903,8 @@ extension AriaModalAttribute where Self: ContentElement {
         return self.mutate(key: "aria-modal", value: value)
     }
     
-    internal func mutate(ariamodal value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-modal", value: value)
+    internal func mutate(ariamodal property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-modal", value: property.value)
     }
 }
 
@@ -914,8 +914,8 @@ extension AriaModalAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-modal", value: value)
     }
     
-    internal func mutate(ariamodal value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-modal", value: value)
+    internal func mutate(ariamodal property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-modal", value: property.value)
     }
 }
 
@@ -934,7 +934,7 @@ public protocol AriaMultilineAttribute: Attribute {
     /// ```html
     /// <tag aria-multiline="" />
     /// ```
-    func aria(multiline value: Property<Bool>) -> Self
+    func aria(multiline property: Property<Bool>) -> Self
 }
 
 extension AriaMultilineAttribute where Self: ContentElement {
@@ -943,8 +943,8 @@ extension AriaMultilineAttribute where Self: ContentElement {
         return self.mutate(key: "aria-multiline", value: value)
     }
     
-    internal func mutate(ariamultiline value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-multiline", value: value)
+    internal func mutate(ariamultiline property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-multiline", value: property.value)
     }
 }
 
@@ -954,8 +954,8 @@ extension AriaMultilineAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-multiline", value: value)
     }
     
-    internal func mutate(ariamultiline value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-multiline", value: value)
+    internal func mutate(ariamultiline property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-multiline", value: property.value)
     }
 }
 
@@ -974,7 +974,7 @@ public protocol AriaMultiselectAttribute: Attribute {
     /// ```html
     /// <tag aria-multiselectable="" />
     /// ```
-    func aria(multiselectable value: Property<Bool>) -> Self
+    func aria(multiselectable property: Property<Bool>) -> Self
 }
 
 extension AriaMultiselectAttribute where Self: ContentElement {
@@ -983,8 +983,8 @@ extension AriaMultiselectAttribute where Self: ContentElement {
         return self.mutate(key: "aria-multiselectable", value: value)
     }
     
-    internal func mutate(ariamultiselectable value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-multiselectable", value: value)
+    internal func mutate(ariamultiselectable property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-multiselectable", value: property.value)
     }
 }
 
@@ -994,8 +994,8 @@ extension AriaMultiselectAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-multiselectable", value: value)
     }
     
-    internal func mutate(ariamultiselectable value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-multiselectable", value: value)
+    internal func mutate(ariamultiselectable property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-multiselectable", value: property.value)
     }
 }
 
@@ -1039,7 +1039,7 @@ public protocol AriaOwnsAttribute: Attribute {
     /// ```html
     /// <tag aria-owns="" />
     /// ```
-    func aria(owns value: Property<String>) -> Self
+    func aria(owns property: Property<String>) -> Self
 }
 
 extension AriaOwnsAttribute where Self: ContentElement {
@@ -1048,8 +1048,8 @@ extension AriaOwnsAttribute where Self: ContentElement {
         return self.mutate(key: "aria-owns", value: value)
     }
     
-    internal func mutate(ariaowns value: Property<String>) -> Self {
-        return self.mutate(key: "aria-owns", value: value)
+    internal func mutate(ariaowns property: Property<String>) -> Self {
+        return self.mutate(key: "aria-owns", value: property.value)
     }
 }
 
@@ -1059,8 +1059,8 @@ extension AriaOwnsAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-owns", value: value)
     }
     
-    internal func mutate(ariaowns value: Property<String>) -> Self {
-        return self.mutate(key: "aria-owns", value: value)
+    internal func mutate(ariaowns property: Property<String>) -> Self {
+        return self.mutate(key: "aria-owns", value: property.value)
     }
 }
 
@@ -1079,7 +1079,7 @@ public protocol AriaPlaceholderAttribute: Attribute {
     /// ```html
     /// <tag aria-placeholder="" />
     /// ```
-    func aria(placeholder value: Property<String>) -> Self
+    func aria(placeholder property: Property<String>) -> Self
 }
 
 extension AriaPlaceholderAttribute where Self: ContentElement {
@@ -1088,8 +1088,8 @@ extension AriaPlaceholderAttribute where Self: ContentElement {
         return self.mutate(key: "aria-placeholder", value: value)
     }
     
-    internal func mutate(ariaplaceholder value: Property<String>) -> Self {
-        return self.mutate(key: "aria-placeholder", value: value)
+    internal func mutate(ariaplaceholder property: Property<String>) -> Self {
+        return self.mutate(key: "aria-placeholder", value: property.value)
     }
 }
 
@@ -1099,8 +1099,8 @@ extension AriaPlaceholderAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-placeholder", value: value)
     }
     
-    internal func mutate(ariaplaceholder value: Property<String>) -> Self {
-        return self.mutate(key: "aria-placeholder", value: value)
+    internal func mutate(ariaplaceholder property: Property<String>) -> Self {
+        return self.mutate(key: "aria-placeholder", value: property.value)
     }
 }
 
@@ -1119,7 +1119,7 @@ public protocol AriaPositionInsetAttribute: Attribute {
     /// ```html
     /// <tag aria-posinset="" />
     /// ```
-    func aria(positionInset_ value: Property<Int>) -> Self
+    func aria(positionInset_ property: Property<Int>) -> Self
 }
 
 extension AriaPositionInsetAttribute where Self: ContentElement {
@@ -1128,8 +1128,8 @@ extension AriaPositionInsetAttribute where Self: ContentElement {
         return self.mutate(key: "aria-posinset", value: value)
     }
     
-    internal func mutate(ariaposinset value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-posinset", value: value)
+    internal func mutate(ariaposinset property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-posinset", value: property.value)
     }
 }
 
@@ -1139,8 +1139,8 @@ extension AriaPositionInsetAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-posinset", value: value)
     }
     
-    internal func mutate(ariaposinset value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-posinset", value: value)
+    internal func mutate(ariaposinset property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-posinset", value: property.value)
     }
 }
 
@@ -1184,7 +1184,7 @@ public protocol AriaReadonlyAttribute: Attribute {
     /// ```html
     /// <tag aria-readonly="" />
     /// ```
-    func aria(readonly value: Property<Bool>) -> Self
+    func aria(readonly property: Property<Bool>) -> Self
 }
 
 extension AriaReadonlyAttribute where Self: ContentElement {
@@ -1193,8 +1193,8 @@ extension AriaReadonlyAttribute where Self: ContentElement {
         return self.mutate(key: "aria-readonly", value: value)
     }
     
-    internal func mutate(ariareadonly value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-readonly", value: value)
+    internal func mutate(ariareadonly property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-readonly", value: property.value)
     }
 }
 
@@ -1204,8 +1204,8 @@ extension AriaReadonlyAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-readonly", value: value)
     }
     
-    internal func mutate(ariareadonly value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-readonly", value: value)
+    internal func mutate(ariareadonly property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-readonly", value: property.value)
     }
 }
 
@@ -1249,7 +1249,7 @@ public protocol AriaRequiredAttribute: Attribute {
     /// ```html
     /// <tag aria-required="" />
     /// ```
-    func aria(required value: Property<Bool>) -> Self
+    func aria(required property: Property<Bool>) -> Self
 }
 
 extension AriaRequiredAttribute where Self: ContentElement {
@@ -1258,8 +1258,8 @@ extension AriaRequiredAttribute where Self: ContentElement {
         return self.mutate(key: "aria-required", value: value)
     }
     
-    internal func mutate(ariarequired value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-required", value: value)
+    internal func mutate(ariarequired property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-required", value: property.value)
     }
 }
 
@@ -1269,8 +1269,8 @@ extension AriaRequiredAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-required", value: value)
     }
     
-    internal func mutate(ariarequired value: Property<Bool>) -> Self {
-        return self.mutate(key: "aria-required", value: value)
+    internal func mutate(ariarequired property: Property<Bool>) -> Self {
+        return self.mutate(key: "aria-required", value: property.value)
     }
 }
 
@@ -1289,7 +1289,7 @@ public protocol AriaRoleDescriptionAttribute: Attribute {
     /// ```html
     /// <tag aria-roledescription="" />
     /// ```
-    func aria(roleDescription value: Property<String>) -> Self
+    func aria(roleDescription property: Property<String>) -> Self
 }
 
 extension AriaRoleDescriptionAttribute where Self: ContentElement {
@@ -1298,8 +1298,8 @@ extension AriaRoleDescriptionAttribute where Self: ContentElement {
         return self.mutate(key: "aria-roledescription", value: value)
     }
     
-    internal func mutate(ariaroledescription value: Property<String>) -> Self {
-        return self.mutate(key: "aria-roledescription", value: value)
+    internal func mutate(ariaroledescription property: Property<String>) -> Self {
+        return self.mutate(key: "aria-roledescription", value: property.value)
     }
 }
 
@@ -1309,8 +1309,8 @@ extension AriaRoleDescriptionAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-roledescription", value: value)
     }
     
-    internal func mutate(ariaroledescription value: Property<String>) -> Self {
-        return self.mutate(key: "aria-roledescription", value: value)
+    internal func mutate(ariaroledescription property: Property<String>) -> Self {
+        return self.mutate(key: "aria-roledescription", value: property.value)
     }
 }
 
@@ -1329,7 +1329,7 @@ public protocol AriaRowCountAttribute: Attribute {
     /// ```html
     /// <tag aria-rowcount="" />
     /// ```
-    func aria(rowCount value: Property<Int>) -> Self
+    func aria(rowCount property: Property<Int>) -> Self
 }
 
 extension AriaRowCountAttribute where Self: ContentElement {
@@ -1338,8 +1338,8 @@ extension AriaRowCountAttribute where Self: ContentElement {
         return self.mutate(key: "aria-rowcount", value: value)
     }
     
-    internal func mutate(ariarowcount value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-rowcount", value: value)
+    internal func mutate(ariarowcount property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-rowcount", value: property.value)
     }
 }
 
@@ -1349,8 +1349,8 @@ extension AriaRowCountAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-rowcount", value: value)
     }
     
-    internal func mutate(ariarowcount value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-rowcount", value: value)
+    internal func mutate(ariarowcount property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-rowcount", value: property.value)
     }
 }
 
@@ -1369,7 +1369,7 @@ public protocol AriaRowIndexAttribute: Attribute {
     /// ```html
     /// <tag aria-rowindex="" />
     /// ```
-    func aria(rowIndex value: Property<Int>) -> Self
+    func aria(rowIndex property: Property<Int>) -> Self
 }
 
 extension AriaRowIndexAttribute where Self: ContentElement {
@@ -1378,8 +1378,8 @@ extension AriaRowIndexAttribute where Self: ContentElement {
         return self.mutate(key: "aria-rowindex", value: value)
     }
     
-    internal func mutate(ariarowindex value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-rowindex", value: value)
+    internal func mutate(ariarowindex property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-rowindex", value: property.value)
     }
 }
 
@@ -1389,8 +1389,8 @@ extension AriaRowIndexAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-rowindex", value: value)
     }
     
-    internal func mutate(ariarowindex value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-rowindex", value: value)
+    internal func mutate(ariarowindex property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-rowindex", value: property.value)
     }
 }
 
@@ -1409,7 +1409,7 @@ public protocol AriaRowSpanAttribute: Attribute {
     /// ```html
     /// <tag aria-rowspan="" />
     /// ```
-    func aria(rowSpan value: Property<Int>) -> Self
+    func aria(rowSpan property: Property<Int>) -> Self
 }
 
 extension AriaRowSpanAttribute where Self: ContentElement {
@@ -1418,8 +1418,8 @@ extension AriaRowSpanAttribute where Self: ContentElement {
         return self.mutate(key: "aria-rowspan", value: value)
     }
     
-    internal func mutate(ariarowspan value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-rowspan", value: value)
+    internal func mutate(ariarowspan property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-rowspan", value: property.value)
     }
 }
 
@@ -1429,8 +1429,8 @@ extension AriaRowSpanAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-rowspan", value: value)
     }
     
-    internal func mutate(ariarowspan value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-rowspan", value: value)
+    internal func mutate(ariarowspan property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-rowspan", value: property.value)
     }
 }
 
@@ -1474,7 +1474,7 @@ public protocol AriaSetSizeAttribute: Attribute {
     /// ```html
     /// <tag aria-setsize="" />
     /// ```
-    func aria(setSize value: Property<Int>) -> Self
+    func aria(setSize property: Property<Int>) -> Self
 }
 
 extension AriaSetSizeAttribute where Self: ContentElement {
@@ -1483,8 +1483,8 @@ extension AriaSetSizeAttribute where Self: ContentElement {
         return self.mutate(key: "aria-setsize", value: value)
     }
     
-    internal func mutate(ariasetsize value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-setsize", value: value)
+    internal func mutate(ariasetsize property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-setsize", value: property.value)
     }
 }
 
@@ -1494,8 +1494,8 @@ extension AriaSetSizeAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-setsize", value: value)
     }
     
-    internal func mutate(ariasetsize value: Property<Int>) -> Self {
-        return self.mutate(key: "aria-setsize", value: value)
+    internal func mutate(ariasetsize property: Property<Int>) -> Self {
+        return self.mutate(key: "aria-setsize", value: property.value)
     }
 }
 
@@ -1539,7 +1539,7 @@ public protocol AriaValueMaximumAttribute: Attribute {
     /// ```html
     /// <tag aria-valuemax="" />
     /// ```
-    func aria(valueMaximum value: Property<Float>) -> Self
+    func aria(valueMaximum property: Property<Float>) -> Self
 }
 
 extension AriaValueMaximumAttribute where Self: ContentElement {
@@ -1548,8 +1548,8 @@ extension AriaValueMaximumAttribute where Self: ContentElement {
         return self.mutate(key: "aria-valuemax", value: value)
     }
     
-    internal func mutate(ariavaluemax value: Property<Float>) -> Self {
-        return self.mutate(key: "aria-valuemax", value: value)
+    internal func mutate(ariavaluemax property: Property<Float>) -> Self {
+        return self.mutate(key: "aria-valuemax", value: property.value)
     }
 }
 
@@ -1559,8 +1559,8 @@ extension AriaValueMaximumAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-valuemax", value: value)
     }
     
-    internal func mutate(ariavaluemax value: Property<Float>) -> Self {
-        return self.mutate(key: "aria-valuemax", value: value)
+    internal func mutate(ariavaluemax property: Property<Float>) -> Self {
+        return self.mutate(key: "aria-valuemax", value: property.value)
     }
 }
 
@@ -1579,7 +1579,7 @@ public protocol AriaValueMininumAttribute: Attribute {
     /// ```html
     /// <tag aria-valuemin="" />
     /// ```
-    func aria(valueMinimum value: Property<Float>) -> Self
+    func aria(valueMinimum property: Property<Float>) -> Self
 }
 
 extension AriaValueMininumAttribute where Self: ContentElement {
@@ -1588,8 +1588,8 @@ extension AriaValueMininumAttribute where Self: ContentElement {
         return self.mutate(key: "aria-valuemin", value: value)
     }
     
-    internal func mutate(ariavaluemin value: Property<Float>) -> Self {
-        return self.mutate(key: "aria-valuemin", value: value)
+    internal func mutate(ariavaluemin property: Property<Float>) -> Self {
+        return self.mutate(key: "aria-valuemin", value: property.value)
     }
 }
 
@@ -1599,8 +1599,8 @@ extension AriaValueMininumAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-valuemin", value: value)
     }
     
-    internal func mutate(ariavaluemin value: Property<Float>) -> Self {
-        return self.mutate(key: "aria-valuemin", value: value)
+    internal func mutate(ariavaluemin property: Property<Float>) -> Self {
+        return self.mutate(key: "aria-valuemin", value: property.value)
     }
 }
 
@@ -1619,7 +1619,7 @@ public protocol AriaValueNowAttribute: Attribute {
     /// ```html
     /// <tag aria-valuenow="" />
     /// ```
-    func aria(valueNow value: Property<Float>) -> Self
+    func aria(valueNow property: Property<Float>) -> Self
 }
 
 extension AriaValueNowAttribute where Self: ContentElement {
@@ -1628,8 +1628,8 @@ extension AriaValueNowAttribute where Self: ContentElement {
         return self.mutate(key: "aria-valuenow", value: value)
     }
     
-    internal func mutate(ariavaluenow value: Property<Float>) -> Self {
-        return self.mutate(key: "aria-valuenow", value: value)
+    internal func mutate(ariavaluenow property: Property<Float>) -> Self {
+        return self.mutate(key: "aria-valuenow", value: property.value)
     }
 }
 
@@ -1639,8 +1639,8 @@ extension AriaValueNowAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-valuenow", value: value)
     }
     
-    internal func mutate(ariavaluenow value: Property<Float>) -> Self {
-        return self.mutate(key: "aria-valuenow", value: value)
+    internal func mutate(ariavaluenow property: Property<Float>) -> Self {
+        return self.mutate(key: "aria-valuenow", value: property.value)
     }
 }
 
@@ -1659,7 +1659,7 @@ public protocol AriaValueTextAttribute: Attribute {
     /// ```html
     /// <tag aria-valuetext="" />
     /// ```
-    func aria(valueText value: Property<String>) -> Self
+    func aria(valueText property: Property<String>) -> Self
 }
 
 extension AriaValueTextAttribute where Self: ContentElement {
@@ -1668,8 +1668,8 @@ extension AriaValueTextAttribute where Self: ContentElement {
         return self.mutate(key: "aria-valuetext", value: value)
     }
     
-    internal func mutate(ariavaluetext value: Property<String>) -> Self {
-        return self.mutate(key: "aria-valuetext", value: value)
+    internal func mutate(ariavaluetext property: Property<String>) -> Self {
+        return self.mutate(key: "aria-valuetext", value: property.value)
     }
 }
 
@@ -1679,7 +1679,7 @@ extension AriaValueTextAttribute where Self: EmptyElement {
         return self.mutate(key: "aria-valuetext", value: value)
     }
     
-    internal func mutate(ariavaluetext value: Property<String>) -> Self {
-        return self.mutate(key: "aria-valuetext", value: value)
+    internal func mutate(ariavaluetext property: Property<String>) -> Self {
+        return self.mutate(key: "aria-valuetext", value: property.value)
     }
 }

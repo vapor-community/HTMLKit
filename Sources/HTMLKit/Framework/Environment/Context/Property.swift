@@ -1,20 +1,66 @@
 /// A type, that acts as a variable
-public struct Property<Value>: DynamicProperty {
+public enum Property<Value> {
     
-    /// The parents name
-    public var name: String
-    
-    /// The path of the property
-    public var path: AnyKeyPath
-    
-    /// The type of the value
-    public var type: Value.Type
-    
-    /// Initiates a property
-    public init(parent: String, path: AnyKeyPath) {
+    case constant(Value)
+    case variable(VariableProperty<Value>)
+}
 
-        self.name = parent
-        self.path = path
-        self.type = Value.self
+extension Property where Value: Content {
+
+    public var value: Content {
+        
+        switch self {
+        case .constant(let value):
+            return value
+            
+        case .variable(let variable):
+            return variable
+        }
+    }
+    
+    public func unsafeCast<T>(to type: T.Type) -> Property<T> {
+        
+        switch self {
+        case .constant(let value):
+            return .constant(value as! T)
+            
+        case .variable(let variable):
+            return .variable(variable.unsafeCast(to: T.self))
+        }
+    }
+}
+
+extension Property {
+    
+    public init(parent: String, path: AnyKeyPath) {
+        self = .variable(VariableProperty(parent: parent, path: path))
+    }
+}
+
+extension Property: ExpressibleByStringLiteral where Value == String {
+    
+    public init(stringLiteral value: String) {
+        self = .constant(value)
+    }
+}
+
+extension Property: ExpressibleByUnicodeScalarLiteral where Value == String {
+    
+    public init(unicodeScalarLiteral value: String) {
+        self = .constant(value)
+    }
+}
+
+extension Property: ExpressibleByExtendedGraphemeClusterLiteral where Value == String {
+    
+    public init(extendedGraphemeClusterLiteral value: String) {
+        self = .constant(value)
+    }
+}
+
+extension Property: ExpressibleByIntegerLiteral where Value == Int {
+
+    public init(integerLiteral value: Int) {
+        self = .constant(value)
     }
 }

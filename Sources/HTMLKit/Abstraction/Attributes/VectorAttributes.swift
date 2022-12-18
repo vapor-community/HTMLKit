@@ -26,7 +26,7 @@ public protocol DrawAttribute: Attribute {
     /// ```html
     /// <tag d="" />
     /// ```
-    func draw(_ value: Property<String>) -> Self
+    func draw(_ property: Property<String>) -> Self
 }
 
 extension DrawAttribute where Self: ContentElement {
@@ -35,8 +35,8 @@ extension DrawAttribute where Self: ContentElement {
         return self.mutate(key: "d", value: value)
     }
     
-    internal func mutate(draw value: Property<String>) -> Self {
-        return self.mutate(key: "d", value: value)
+    internal func mutate(draw property: Property<String>) -> Self {
+        return self.mutate(key: "d", value: property.value)
     }
 }
 
@@ -56,7 +56,7 @@ public protocol FillAttribute: Attribute {
     /// ```html
     /// <tag fill="" />
     /// ```
-    func fill(_ value: Property<String>) -> Self
+    func fill(_ property: Property<String>) -> Self
 }
 
 extension FillAttribute where Self: ContentElement {
@@ -65,8 +65,8 @@ extension FillAttribute where Self: ContentElement {
         return self.mutate(key: "fill", value: value)
     }
     
-    internal func mutate(fill value: Property<String>) -> Self {
-        return self.mutate(key: "fill", value: value)
+    internal func mutate(fill property: Property<String>) -> Self {
+        return self.mutate(key: "fill", value: property.value)
     }
 }
 
@@ -85,7 +85,7 @@ public protocol FillOpacityAttribute: Attribute {
     /// ```html
     /// <tag fill-opacity="" />
     /// ```
-    func fillOpacity(_ value: Property<Double>) -> Self
+    func fillOpacity(_ property: Property<Double>) -> Self
 }
 
 extension FillOpacityAttribute where Self: ContentElement {
@@ -94,8 +94,8 @@ extension FillOpacityAttribute where Self: ContentElement {
         return self.mutate(key: "fill-opacity", value: value)
     }
     
-    internal func mutate(fillopacity value: Property<Double>) -> Self {
-        return self.mutate(key: "fill-opacity", value: value)
+    internal func mutate(fillopacity property: Property<Double>) -> Self {
+        return self.mutate(key: "fill-opacity", value: property.value)
     }
 }
 
@@ -114,7 +114,7 @@ public protocol StrokeAttribute: Attribute {
     /// ```html
     /// <tag stroke="" />
     /// ```
-    func stroke(_ value: Property<String>) -> Self
+    func stroke(_ property: Property<String>) -> Self
 }
 
 extension StrokeAttribute where Self: ContentElement {
@@ -123,8 +123,8 @@ extension StrokeAttribute where Self: ContentElement {
         return self.mutate(key: "stroke", value: value)
     }
     
-    internal func mutate(stroke value: Property<String>) -> Self {
-        return self.mutate(key: "stroke", value: value)
+    internal func mutate(stroke property: Property<String>) -> Self {
+        return self.mutate(key: "stroke", value: property.value)
     }
 }
 
@@ -152,8 +152,8 @@ extension StrokeWidthAttribute where Self: ContentElement {
         return self.mutate(key: "stroke-width", value: value)
     }
     
-    internal func mutate(strokewidth value: Property<Int>) -> Self {
-        return self.mutate(key: "stroke-width", value: value)
+    internal func mutate(strokewidth property: Property<Int>) -> Self {
+        return self.mutate(key: "stroke-width", value: property.value)
     }
 }
 
@@ -172,7 +172,7 @@ public protocol StrokeOpacityAttribute: Attribute {
     /// ```html
     /// <tag stroke-opacity="" />
     /// ```
-    func strokeOpacity(_ value: Property<Double>) -> Self
+    func strokeOpacity(_ property: Property<Double>) -> Self
 }
 
 extension StrokeOpacityAttribute where Self: ContentElement {
@@ -181,8 +181,8 @@ extension StrokeOpacityAttribute where Self: ContentElement {
         return self.mutate(key: "stroke-opacity", value: value)
     }
     
-    internal func mutate(strokeopacity value: Property<Double>) -> Self {
-        return self.mutate(key: "stroke-opacity", value: value)
+    internal func mutate(strokeopacity property: Property<Double>) -> Self {
+        return self.mutate(key: "stroke-opacity", value: property.value)
     }
 }
 
@@ -246,8 +246,8 @@ extension RadiusAttribute where Self: ContentElement {
         return self.mutate(key: "r", value: value)
     }
     
-    internal func mutate(radius value: Property<Int>) -> Self {
-        return self.mutate(key: "r", value: value)
+    internal func mutate(radius property: Property<Int>) -> Self {
+        return self.mutate(key: "r", value: property.value)
     }
 }
 
@@ -359,7 +359,7 @@ public protocol ViewBoxAttribute: Attribute {
     /// ```html
     /// <tag viewbox="" />
     /// ```
-    func viewBox(_ value: Property<String>) -> Self
+    func viewBox(_ property: Property<String>) -> Self
 }
 
 extension ViewBoxAttribute where Self: ContentElement {
@@ -368,7 +368,7 @@ extension ViewBoxAttribute where Self: ContentElement {
         return self.mutate(key: "viewbox", value: value)
     }
     
-    internal func mutate(viewbox value: Property<String>) -> Self {
-        return self.mutate(key: "viewbox", value: value)
+    internal func mutate(viewbox property: Property<String>) -> Self {
+        return self.mutate(key: "viewbox", value: property.value)
     }
 }

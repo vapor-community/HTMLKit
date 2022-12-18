@@ -14,7 +14,7 @@ public enum Values {
     /// ```html
     /// <meta name="viewport">
     /// ```
-    public enum Name: String {
+    public enum Name: String, Content {
         
         case author = "author"
         case description = "description"

@@ -31,11 +31,11 @@ extension ContentElement {
     
     internal var startTag: String {
         
-        guard let attributes = attributes else {
-            return "<\(name)>"
+        if attributes != nil {
+            return "<\(name) %attributes%>"
         }
         
-        return "<\(name) \(attributes.map { "\($0.key)=\"\($0.value)\"" }.joined(separator: " "))>"
+        return "<\(name)>"
     }
     
     internal var endTag: String {
@@ -66,7 +66,19 @@ extension ContentElement {
     }
     
     public func modify<T>(unwrap value: Property<T?>, element: (Self, Property<T>) -> Self) -> Self {
-        return self.modify(element(self, value.unsafeCast(to: T.self)))
+        
+        switch value {
+        case .constant(let optional):
+            
+            guard let optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(optional)))
+            
+        case .variable(let variable):
+            return self.modify(element(self, .variable(variable.unsafeCast(to: T.self))))
+        }
     }
 }
 
@@ -417,11 +429,11 @@ extension EmptyElement {
     
     internal var startTag: String {
         
-        guard let attributes = attributes else {
-            return "<\(name)>"
+        if attributes != nil {
+            return "<\(name) %attributes%>"
         }
         
-        return "<\(name) \(attributes.map { "\($0.key)=\"\($0.value)\"" }.joined(separator: " "))>"
+        return "<\(name)>"
     }
     
     internal func modify(_ element: Self) -> Self {
@@ -448,7 +460,19 @@ extension EmptyElement {
     }
     
     public func modify<T>(unwrap value: Property<T?>, element: (Self, Property<T>) -> Self) -> Self {
-        return self.modify(element(self, value.unsafeCast(to: T.self)))
+
+        switch value {
+        case .constant(let optional):
+            
+            guard let optional else {
+                return self
+            }
+            
+            return self.modify(element(self, .constant(optional)))
+            
+        case .variable(let variable):
+            return self.modify(element(self, .variable(variable.unsafeCast(to: T.self))))
+        }
     }
 }
 
