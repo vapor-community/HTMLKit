@@ -9,20 +9,20 @@ import HTMLKit
 public struct Image: Component {
     
     /// The url path of the image.
-    internal let source: TemplateValue<String>
+    internal let source: Property<String>
     
     /// The classes of the image view.
     internal var classes: [String]
     
     /// Creates a image view.
-    public init(source: TemplateValue<String>) {
+    public init(source: Property<String>) {
         
         self.source = source
         self.classes = ["image"]
     }
     
     /// Creates a image view.
-    internal init(source: TemplateValue<String>, classes: [String]) {
+    internal init(source: Property<String>, classes: [String]) {
         
         self.source = source
         self.classes = classes
@@ -31,7 +31,7 @@ public struct Image: Component {
     public var body: Content {
         Division {
             HTMLKit.Image()
-                .source(source.rawValue)
+                .source(source)
                 .role(.img)
         }
         .class(classes.joined(separator: " "))

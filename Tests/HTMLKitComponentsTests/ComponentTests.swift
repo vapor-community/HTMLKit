@@ -112,7 +112,7 @@ final class ComponentTests: XCTestCase {
     func testTextField() throws {
         
         let view = TestView {
-            TextField(name: "name")
+            TextField(name: "name", value: .constant(nil))
         }
         
         renderer.add(view: view)
@@ -159,7 +159,7 @@ final class ComponentTests: XCTestCase {
     func testDatePicker() throws {
         
         let view = TestView {
-            DatePicker(name: "name")
+            DatePicker(name: "name", value: .constant(nil))
         }
         
         renderer.add(view: view)
@@ -174,7 +174,7 @@ final class ComponentTests: XCTestCase {
     func testSecureField() throws {
         
         let view = TestView {
-            SecureField(name: "password")
+            SecureField(name: "password", value: .constant(nil))
         }
         
         renderer.add(view: view)
@@ -370,7 +370,7 @@ final class ComponentTests: XCTestCase {
     func testProgressView() throws {
         
         let view = TestView {
-            ProgressView(name: "name") {
+            ProgressView(name: "name", value: .constant(nil)) {
             }
         }
         

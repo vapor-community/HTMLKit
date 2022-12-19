@@ -9,7 +9,7 @@ import HTMLKit
 public struct Toggle: Component {
     
     /// The identifier of the toggle.
-    internal let name: TemplateValue<String>
+    internal let name: Property<String>
     
     /// The classes of the toggle.
     internal var classes: [String]
@@ -18,14 +18,14 @@ public struct Toggle: Component {
     internal var events: [String]?
     
     /// Creates a toggle.
-    public init(name: TemplateValue<String>) {
+    public init(name: Property<String>) {
         
         self.name = name
         self.classes = ["toggle"]
     }
     
     /// Creates a toggle.
-    internal init(name: TemplateValue<String>, classes: [String], events: [String]?) {
+    internal init(name: Property<String>, classes: [String], events: [String]?) {
         
         self.name = name
         self.classes = classes
