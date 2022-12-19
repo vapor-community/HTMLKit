@@ -233,9 +233,9 @@ final class RenderingTests: XCTestCase {
     }
     
     func testModifiedAndUnwrapped() throws {
-        
-        let passcode: TemplateValue<String?> = .constant("test")
-        
+
+        let passcode: Property<String?> = .constant("test")
+
         let view = TestView {
             Input()
                 .modify(unwrap: passcode) {

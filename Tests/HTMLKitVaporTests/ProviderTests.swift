@@ -9,7 +9,8 @@ import HTMLKitVapor
 
 final class ProviderTests: XCTestCase {
     
-    struct TestContext: Vapor.Content {
+    struct TestContext: Vapor.Content, ViewModel {
+        
         let greeting: String
     }
 
@@ -38,7 +39,7 @@ final class ProviderTests: XCTestCase {
         
         struct CreateView: HTMLKit.View {
             
-            @TemplateValue(TestContext.self)
+            @Context(TestContext.self)
             var context
             
             var body: HTMLKit.Content {
@@ -51,7 +52,7 @@ final class ProviderTests: XCTestCase {
                     }
                     Body {
                         Paragraph {
-                            context.greeting
+                            $context.greeting.value
                         }
                     }
                 }

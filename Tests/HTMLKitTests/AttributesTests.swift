@@ -17,7 +17,7 @@ final class AttributesTests: XCTestCase {
     typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadyOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
     
     struct Tag: ContentElement, AllAttributes {
-        
+
         internal var name: String { "tag" }
 
         internal var attributes: OrderedDictionary<String, Any>?
@@ -137,11 +137,23 @@ final class AttributesTests: XCTestCase {
             return self.mutate(accept: value)
         }
         
+        func accept(_ value: Property<String>) -> Tag {
+            return self.mutate(accept: value)
+        }
+        
         func action(_ value: String) -> Tag {
             return self.mutate(action: value)
         }
         
+        func action(_ value: Property<String>) -> Tag {
+            return self.mutate(action: value)
+        }
+        
         func alternate(_ value: String) -> Tag {
+            return self.mutate(alternate: value)
+        }
+        
+        func alternate(_ value: Property<String>) -> Tag {
             return self.mutate(alternate: value)
         }
         
@@ -150,6 +162,10 @@ final class AttributesTests: XCTestCase {
         }
         
         func hasCompletion(_ value: Bool) -> Tag {
+            return self.mutate(autocomplete: value)
+        }
+        
+        func hasCompletion(_ value: Property<Bool>) -> Tag {
             return self.mutate(autocomplete: value)
         }
         
@@ -169,7 +185,15 @@ final class AttributesTests: XCTestCase {
             return self.mutate(cite: value)
         }
         
+        func cite(_ value: Property<String>) -> Tag {
+            return self.mutate(cite: value)
+        }
+        
         func columns(_ size: Int) -> Tag {
+            return self.mutate(cols: size)
+        }
+        
+        func columns(_ size: Property<Int>) -> Tag {
             return self.mutate(cols: size)
         }
         
@@ -177,7 +201,15 @@ final class AttributesTests: XCTestCase {
             return self.mutate(colspan: size)
         }
         
+        func columnSpan(_ size: Property<Int>) -> Tag {
+            return self.mutate(colspan: size)
+        }
+        
         func content(_ value: String) -> Tag {
+            return self.mutate(content: value)
+        }
+        
+        func content(_ value: Property<String>) -> Tag {
             return self.mutate(content: value)
         }
         
@@ -189,11 +221,23 @@ final class AttributesTests: XCTestCase {
             return self.mutate(coords: value)
         }
         
+        func coordinates(_ value: Property<String>) -> Tag {
+            return self.mutate(coords: value)
+        }
+        
         func data(_ value: String) -> Tag {
             return self.mutate(data: value)
         }
         
+        func data(_ value: Property<String>) -> Tag {
+            return self.mutate(data: value)
+        }
+        
         func dateTime(_ value: String) -> Tag {
+            return self.mutate(datetime: value)
+        }
+        
+        func dateTime(_ value: Property<String>) -> Tag {
             return self.mutate(datetime: value)
         }
         
@@ -221,11 +265,23 @@ final class AttributesTests: XCTestCase {
             return self.mutate(for: value)
         }
         
+        func `for`(_ value: Property<String>) -> Tag {
+            return self.mutate(for: value)
+        }
+        
         func form(_ value: String) -> Tag {
             return self.mutate(form: value)
         }
         
+        func form(_ value: Property<String>) -> Tag {
+            return self.mutate(form: value)
+        }
+        
         func formAction(_ value: String) -> Tag {
+            return self.mutate(formaction: value)
+        }
+        
+        func formAction(_ value: Property<String>) -> Tag {
             return self.mutate(formaction: value)
         }
         
@@ -237,7 +293,15 @@ final class AttributesTests: XCTestCase {
             return self.mutate(headers: value)
         }
         
+        func headers(_ value: Property<String>) -> Tag {
+            return self.mutate(headers: value)
+        }
+        
         func height(_ size: Int) -> Tag {
+            return self.mutate(height: size)
+        }
+        
+        func height(_ size: Property<Int>) -> Tag {
             return self.mutate(height: size)
         }
         
@@ -245,7 +309,15 @@ final class AttributesTests: XCTestCase {
             return self.mutate(high: size)
         }
         
+        func high(_ size: Property<Float>) -> Tag {
+            return self.mutate(high: size)
+        }
+        
         func reference(_ value: String) -> Tag {
+            return self.mutate(href: value)
+        }
+        
+        func reference(_ value: Property<String>) -> Tag {
             return self.mutate(href: value)
         }
         
@@ -265,7 +337,15 @@ final class AttributesTests: XCTestCase {
             return self.mutate(label: value)
         }
         
+        func label(_ value: Property<String>) -> Tag {
+            return self.mutate(label: value)
+        }
+        
         func list(_ value: String) -> Tag {
+            return self.mutate(list: value)
+        }
+        
+        func list(_ value: Property<String>) -> Tag {
             return self.mutate(list: value)
         }
         
@@ -277,6 +357,10 @@ final class AttributesTests: XCTestCase {
             return self.mutate(low: size)
         }
         
+        func low(_ size: Property<Float>) -> Tag {
+            return self.mutate(low: size)
+        }
+        
         func maximum(_ value: String) -> Tag {
             return self.mutate(max: value)
         }
@@ -285,7 +369,15 @@ final class AttributesTests: XCTestCase {
             return self.mutate(maxlength: value)
         }
         
+        func maximum(length value: Property<Int>) -> Tag {
+            return self.mutate(maxlength: value)
+        }
+        
         func media(_ value: String) -> Tag {
+            return self.mutate(media: value)
+        }
+        
+        func media(_ value: Property<String>) -> Tag {
             return self.mutate(media: value)
         }
         
@@ -301,6 +393,10 @@ final class AttributesTests: XCTestCase {
             return self.mutate(minlength: value)
         }
         
+        func minimum(length value: Property<Int>) -> Tag {
+            return self.mutate(minlength: value)
+        }
+        
         func multiple() -> Tag {
             return self.mutate(multiple: "multiple")
         }
@@ -313,6 +409,10 @@ final class AttributesTests: XCTestCase {
             return self.mutate(name: value)
         }
         
+        func name(_ value: Property<String>) -> Tag {
+            return self.mutate(name: value)
+        }
+        
         func novalidate() -> Tag {
             return self.mutate(novalidate: "novalidate")
         }
@@ -321,7 +421,15 @@ final class AttributesTests: XCTestCase {
             return self.mutate(open: value)
         }
         
+        func isOpen(_ value: Property<Bool>) -> Tag {
+            return self.mutate(open: value)
+        }
+        
         func optimum(_ value: Float) -> Tag {
+            return self.mutate(optimum: value)
+        }
+        
+        func optimum(_ value: Property<Float>) -> Tag {
             return self.mutate(optimum: value)
         }
         
@@ -329,7 +437,15 @@ final class AttributesTests: XCTestCase {
             return self.mutate(pattern: regex)
         }
         
+        func pattern(_ regex: Property<String>) -> Tag {
+            return self.mutate(pattern: regex)
+        }
+        
         func part(_ value: String) -> Tag {
+            return self.mutate(part: value)
+        }
+        
+        func part(_ value: Property<String>) -> Tag {
             return self.mutate(part: value)
         }
         
@@ -337,11 +453,23 @@ final class AttributesTests: XCTestCase {
             return self.mutate(ping: value)
         }
         
+        func ping(_ value: Property<String>) -> Tag {
+            return self.mutate(ping: value)
+        }
+        
         func placeholder(_ value: String) -> Tag {
             return self.mutate(placeholder: value)
         }
         
+        func placeholder(_ value: Property<String>) -> Tag {
+            return self.mutate(placeholder: value)
+        }
+        
         func poster(_ value: String) -> Tag {
+            return self.mutate(poster: value)
+        }
+        
+        func poster(_ value: Property<String>) -> Tag {
             return self.mutate(poster: value)
         }
         
@@ -373,7 +501,15 @@ final class AttributesTests: XCTestCase {
             return self.mutate(rows: size)
         }
         
+        func rows(_ size: Property<Int>) -> Tag {
+            return self.mutate(rows: size)
+        }
+        
         func rowSpan(_ size: Int) -> Tag {
+            return self.mutate(rowspan: size)
+        }
+        
+        func rowSpan(_ size: Property<Int>) -> Tag {
             return self.mutate(rowspan: size)
         }
         
@@ -385,6 +521,10 @@ final class AttributesTests: XCTestCase {
             return self.mutate(scope: value)
         }
         
+        func scope(_ value: Property<String>) -> Tag {
+            return self.mutate(scope: value)
+        }
+        
         func shape(_ value: Values.Shape) -> Tag {
             return self.mutate(shape: value.rawValue)
         }
@@ -393,7 +533,15 @@ final class AttributesTests: XCTestCase {
             return self.mutate(size: size)
         }
         
+        func size(_ size: Property<Int>) -> Tag {
+            return self.mutate(size: size)
+        }
+        
         func sizes(_ size: Int) -> Tag {
+            return self.mutate(sizes: size)
+        }
+        
+        func sizes(_ size: Property<Int>) -> Tag {
             return self.mutate(sizes: size)
         }
         
@@ -401,7 +549,15 @@ final class AttributesTests: XCTestCase {
             return self.mutate(slot: value)
         }
         
+        func slot(_ value: Property<String>) -> Tag {
+            return self.mutate(slot: value)
+        }
+        
         func span(_ size: Int) -> Tag {
+            return self.mutate(span: size)
+        }
+        
+        func span(_ size: Property<Int>) -> Tag {
             return self.mutate(span: size)
         }
         
@@ -409,11 +565,23 @@ final class AttributesTests: XCTestCase {
             return self.mutate(source: value)
         }
         
+        func source(_ value: Property<String>) -> Tag {
+            return self.mutate(source: value)
+        }
+        
         func start(_ size: Int) -> Tag {
             return self.mutate(start: size)
         }
         
+        func start(_ size: Property<Int>) -> Tag {
+            return self.mutate(start: size)
+        }
+        
         func step(_ size: Int) -> Tag {
+            return self.mutate(step: size)
+        }
+        
+        func step(_ size: Property<Int>) -> Tag {
             return self.mutate(step: size)
         }
         
@@ -429,7 +597,15 @@ final class AttributesTests: XCTestCase {
             return self.mutate(value: value)
         }
         
+        func value(_ value: Property<String>) -> Tag {
+            return self.mutate(value: value)
+        }
+        
         func width(_ size: Int) -> Tag {
+            return self.mutate(width: size)
+        }
+        
+        func width(_ size: Property<Int>) -> Tag {
             return self.mutate(width: size)
         }
         

@@ -1,7 +1,7 @@
 import HTMLKit
 import Foundation
 
-struct SampleContext: Codable  {
+struct SampleContext: ViewModel {
     
     var id: Int
     var title: String
@@ -50,17 +50,17 @@ struct MainView: View {
 
 struct ChildView: View {
     
-    @TemplateValue(SampleContext.self)
+    @Context(SampleContext.self)
     var context
     
     var body: Content {
         MainView {
             Header {
                 Heading1 {
-                    context.title
+                    $context.title.value
                 }
                 Heading3 {
-                    context.excerpt
+                    $context.excerpt.value
                 }
             }
             Navigation {
@@ -102,7 +102,7 @@ struct ChildView: View {
             }
             Footer {
                 Paragraph {
-                    context.modified.style(date: .full, time: .full)
+                    $context.modified.value
                 }
             }
         }

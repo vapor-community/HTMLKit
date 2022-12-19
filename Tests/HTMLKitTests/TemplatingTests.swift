@@ -13,6 +13,11 @@ final class TemplatingTests: XCTestCase {
     
     func testEmbeding() throws {
         
+        struct ChildContext: ViewModel {
+            
+            var greeting: String = "Hallo"
+        }
+        
         struct MainView: View {
             
             var body: Content {
@@ -32,22 +37,22 @@ final class TemplatingTests: XCTestCase {
         
         struct ChildView: View {
             
-            @TemplateValue(String.self)
+            @Context(ChildContext.self)
             var context
             
             var body: Content {
                 Heading1 {
-                    context
+                    $context.greeting.value
                 }
                 Heading2 {
-                    context
+                    $context.greeting.value
                 }
             }
         }
         
         renderer.add(view: MainView())
         
-        XCTAssertEqual(renderer.render(view: MainView(), with: "Hello World!"),
+        XCTAssertEqual(renderer.render(view: MainView(), with: ChildContext(greeting: "Hello World!")),
                        """
                        <!DOCTYPE html>\
                        <html>\
@@ -64,6 +69,11 @@ final class TemplatingTests: XCTestCase {
     }
     
     func testExtending() throws {
+        
+        struct ChildContext: ViewModel {
+            
+            var greeting: String
+        }
         
         struct MainView: View {
             
@@ -90,16 +100,16 @@ final class TemplatingTests: XCTestCase {
         
         struct ChildView: View {
             
-            @TemplateValue(String.self)
+            @Context(ChildContext.self)
             var context
             
             var body: Content {
                 MainView {
                     Heading1 {
-                        context
+                        $context.greeting.value
                     }
                     Heading2 {
-                        context
+                        $context.greeting.value
                     }
                 }
             }
@@ -107,7 +117,7 @@ final class TemplatingTests: XCTestCase {
         
         renderer.add(view: ChildView())
         
-        XCTAssertEqual(renderer.render(view: ChildView(), with: "Hello World!"),
+        XCTAssertEqual(renderer.render(view: ChildView(), with: ChildContext(greeting: "Hello World!")),
                        """
                        <!DOCTYPE html>\
                        <html>\

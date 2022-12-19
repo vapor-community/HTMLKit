@@ -8,39 +8,40 @@ import XCTest
 
 final class ContextTests: XCTestCase {
     
-    struct MainContext: Codable {
-        
+    struct MainContext: ViewModel {
+
         var category: String
-        var viewContext: ChildContext
+        
+        var child: ChildContext
     }
     
-    struct ChildContext: Codable {
-        
+    struct ChildContext: ViewModel {
+
         var headline: String
     }
     
     struct MainView: View {
         
-        @TemplateValue(MainContext.self)
+        @Context(MainContext.self)
         var context
         
         var body: Content {
             Heading1 {
-                context.category
+                $context.category.value
             }
-            ChildView(context: context.viewContext)
+            ChildView()
         }
     }
     
     struct ChildView: View {
         
-        @TemplateValue(ChildContext.self)
+        @Context(MainContext.self)
         var context
         
         var body: Content {
             Section{
                 Heading2 {
-                    context.headline
+                    $context.child.headline.value
                 }
             }
         }
@@ -50,14 +51,14 @@ final class ContextTests: XCTestCase {
     
     func testViewContext() throws {
         
-        let context = ChildContext(headline: "test")
+        let context = MainContext(category: "test1", child: .init(headline: "test2"))
         
         renderer.add(view: ChildView())
         
         XCTAssertEqual(renderer.render(view: ChildView(), with: context),
                        """
                        <section>\
-                       <h2>test</h2>\
+                       <h2>test2</h2>\
                        </section>
                        """
         )
@@ -65,15 +66,15 @@ final class ContextTests: XCTestCase {
     
     func testMainContext() throws {
         
-        let context = MainContext(category: "test", viewContext: .init(headline: "test"))
+        let context = MainContext(category: "test1", child: .init(headline: "test2"))
         
         renderer.add(view: MainView())
         
         XCTAssertEqual(renderer.render(view: MainView(), with: context),
                        """
-                       <h1>test</h1>\
+                       <h1>test1</h1>\
                        <section>\
-                       <h2>test</h2>\
+                       <h2>test2</h2>\
                        </section>
                        """
         )

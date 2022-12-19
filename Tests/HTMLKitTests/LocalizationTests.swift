@@ -37,18 +37,19 @@ final class LocalizationTests: XCTestCase {
     }
     
     func testLocalizationWithStringInterpolation() throws {
-        
-        struct TestContext: Codable {
+
+        struct TestContext: ViewModel {
+
             var name: String
         }
         
         struct TestView: View {
-            
-            @TemplateValue(TestContext.self)
+
+            @Context(TestContext.self)
             var context
             
             var body: Content {
-                Heading1("greeting.person", with: context)
+                Heading1("greeting.person", with: $context.name)
             }
         }
         
@@ -57,22 +58,6 @@ final class LocalizationTests: XCTestCase {
         XCTAssertEqual(renderer.render(view: TestView(), with: TestContext(name: "Stephen")),
                        """
                        <h1>Hello Stephen</h1>
-                       """
-        )
-    }
-    
-    func testEnvironmentLocale() throws {
-        
-        let view = TestView {
-            Heading1("greeting.world")
-                .environment(locale: "fr")
-        }
-        
-        renderer.add(view: view)
-        
-        XCTAssertEqual(renderer.render(view: view),
-                       """
-                       <h1>Bonjour le monde</h1>
                        """
         )
     }
@@ -85,7 +70,7 @@ extension LocalizationTests {
         let currentFile = URL(fileURLWithPath: #file).deletingLastPathComponent()
         
         let currentDirectory = currentFile.appendingPathComponent("Localization")
-        
-        try renderer.add(localization: .init(source: currentDirectory.path, locale: .english))
+
+        try renderer.add(lingo: .init(rootPath: currentDirectory.path, defaultLocale: "en"))
     }
 }
