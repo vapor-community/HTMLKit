@@ -5,6 +5,7 @@
 
 import Foundation
 import Lingo
+import OrderedCollections
 
 /// A struct containing the different formulas for the different views.
 public class Renderer {
@@ -52,8 +53,8 @@ public class Renderer {
     }
     
     /// Registers a localization.
-    public func add(localization: Localization) throws {
-        self.lingo = try Lingo(rootPath: localization.source, defaultLocale: localization.locale.rawValue)
+    public func add(lingo: Lingo) {
+        self.lingo = lingo
     }
     
     /// Rerenders the formula
@@ -82,7 +83,7 @@ public class Renderer {
     
     /// Renders a layout.
     public func render(view: some View, with context: some Encodable) -> String {
-        
+    
         manager.add(context: context)
     
         let name = type(of: view).name
@@ -123,12 +124,16 @@ public class Renderer {
                     prerender(element: element, on: formula)
                 }
                 
-                if let element = content as? String {
-                    formula.add(ingridient: element)
+                if let localized = content as? (any LocalizeContent) {
+                    prerender(localized: localized, on: formula)
                 }
                 
-                if let localized = content as? (any LocalizedContent) {
-                    prerender(localized: localized, on: formula)
+                if let variable = content as? (any DynamicContent) {
+                    prerender(variable: variable, on: formula)
+                }
+                
+                if let element = content as? String {
+                    formula.add(ingridient: element)
                 }
             }
         }
@@ -173,7 +178,26 @@ public class Renderer {
     /// Prerenders a content element
     internal func prerender(element: some ContentElement, on formula: Formula) {
         
-        formula.add(ingridient: element.startTag)
+        formula.add(ingridient: "<\(element.name)")
+        
+        if let attributes = element.attributes {
+            
+            for (key, value) in attributes {
+                
+                formula.add(ingridient: " \(key)=\"")
+                
+                if let variable = value as? (any DynamicContent) {
+                    prerender(variable: variable, on: formula)
+                    
+                } else {
+                    formula.add(ingridient: "\(value)")
+                }
+                
+                formula.add(ingridient: "\"")
+            }
+        }
+        
+        formula.add(ingridient: ">")
         
         if let contents = element.content as? [Content] {
             
@@ -189,6 +213,10 @@ public class Renderer {
                         
                         if let element = content as? (any ContentElement) {
                             prerender(element: element, on: formula)
+                        }
+                        
+                        if let string = content as? String {
+                            formula.add(ingridient: string)
                         }
                     }
                 }
@@ -209,56 +237,72 @@ public class Renderer {
                     prerender(element: element, on: formula)
                 }
                 
+                if let localized = content as? (any LocalizeContent) {
+                    prerender(localized: localized, on: formula)
+                }
+                
+                if let variable = content as? (any DynamicContent) {
+                    formula.add(ingridient: variable)
+                }
+                
                 if let string = content as? String {
                     formula.add(ingridient: string)
-                }
-                
-                if let value = content as? TemplateValue<String> {
-                    prerender(value: value, on: formula)
-                }
-                
-                if let localized = content as? (any LocalizedContent) {
-                    prerender(localized: localized, on: formula)
                 }
             }
         }
         
-        formula.add(ingridient: element.endTag)
+        formula.add(ingridient: "</\(element.name)>")
     }
     
     /// Prerenders a empty element
     internal func prerender(element: some EmptyElement, on formula: Formula) {
         
-        formula.add(ingridient: element.startTag)
+        formula.add(ingridient: "<\(element.name)")
+        
+        if let attributes = element.attributes {
+            
+            for (key, value) in attributes {
+                
+                formula.add(ingridient: " \(key)=\"")
+                
+                if let variable = value as? (any DynamicContent) {
+                    prerender(variable: variable, on: formula)
+                    
+                } else {
+                    formula.add(ingridient: "\(value)")
+                }
+                
+                formula.add(ingridient: "\"")
+            }
+        }
+        
+        formula.add(ingridient: ">")
     }
     
     /// Prerenders a comment element
     internal func prerender(element: some CommentElement, on formula: Formula) {
         
-        formula.add(ingridient: element.startTag)
+        formula.add(ingridient: "<!--")
         formula.add(ingridient: element.content)
-        formula.add(ingridient: element.endTag)
+        formula.add(ingridient: "-->")
     }
     
     /// Prerenders a document element
     internal func prerender(element: some DocumentElement, on formula: Formula) {
         
-        formula.add(ingridient: element.startTag)
+        formula.add(ingridient: "<!DOCTYPE ")
+        formula.add(ingridient: element.content)
+        formula.add(ingridient: ">")
     }
     
-    internal func prerender(value: TemplateValue<String>, on formula: Formula) {
+    internal func prerender(localized: some LocalizeContent, on formula: Formula) {
         
-        switch value {
-        case .constant(let value):
-            formula.add(ingridient: value)
-            
-        case .dynamic(let variable):
-            formula.add(ingridient: variable)
-        }
+        formula.add(ingridient: localized)
     }
     
-    internal func prerender(localized: some LocalizedContent, on formula: Formula) {
-        formula.add(ingridient: localized)
+    internal func prerender(variable: some DynamicContent, on formula: Formula) {
+        
+        formula.add(ingridient: variable)
     }
     
     /// Rerenders the formula
@@ -277,12 +321,12 @@ public class Renderer {
                     result += render(layout: layout)
                 }
                 
-                if let variable = ingridient as? HTMLContext<String> {
-                    result += render(variable: variable)
+                if let localized = ingridient as? (any LocalizeContent) {
+                    result += render(localized: localized)
                 }
                 
-                if let localized = ingridient as? (any LocalizedContent) {
-                    result += render(localized: localized)
+                if let variable = ingridient as? (any DynamicContent) {
+                    result += render(variable: variable)
                 }
             }
         }
@@ -330,7 +374,26 @@ public class Renderer {
         
         var result = ""
         
-        result += element.startTag
+        result += "<\(element.name)"
+        
+        if let attributes = element.attributes {
+            
+            for (key, value) in attributes {
+                
+                result += " \(key)=\""
+                
+                if let variable = value as? (any DynamicContent) {
+                    result += render(variable: variable)
+                    
+                } else {
+                    result += "\(value)"
+                }
+                
+                result += "\""
+            }
+        }
+        
+        result += ">"
         
         if let contents = element.content as? [Content] {
             
@@ -352,90 +415,76 @@ public class Renderer {
                     result += render(element: element)
                 }
                 
-                if let element = content as? String {
-                    result += element
+                if let localized = content as? (any LocalizeContent) {
+                    result += render(localized: localized)
                 }
                 
-                if let localized = content as? (any LocalizedContent) {
-                    result += render(localized: localized)
+                if let element = content as? String {
+                    result += element
                 }
             }
         }
         
-        result += element.endTag
+        result += "</\(element.name)>"
         
         return result
     }
     
     /// Renders a empty element
     internal func render(element: some EmptyElement) -> String {
-        return element.startTag
+        
+        var result = ""
+        
+        result += "<\(element.name)"
+        
+        if let attributes = element.attributes {
+            
+            for (key, value) in attributes {
+                
+                result += " \(key)=\""
+                
+                if let variable = value as? (any DynamicContent) {
+                    result += render(variable: variable)
+                    
+                } else {
+                    result += "\(value)"
+                }
+                
+                result += "\""
+            }
+        }
+        
+        result += ">"
+        
+        return result
     }
     
     /// Renders a comment element
     internal func render(element: some CommentElement) -> String {
-        return element.startTag
+        return "<!--\(element.content)-->"
     }
     
     /// Renders a document element
     internal func render(element: some DocumentElement) -> String {
-        return element.startTag
-    }
-    
-    /// Renders a template value
-    internal func render(value: TemplateValue<String>) -> String {
-        
-        var result = ""
-        
-        switch value {
-        case .constant(let value):
-            result += value
-            
-        case .dynamic(let variable):
-            result += render(variable: variable)
-        }
-        
-        return result
-    }
-    
-    /// Renders a template value
-    internal func render(variable: HTMLContext<String>) -> String {
-        
-        var result = ""
-        
-        if let value = try? manager.retrieve(for: variable) {
-            result += value
-        }
-        
-        return result
+        return "<!DOCTYPE \(element.content)>"
     }
     
     /// Renders a localized string
-    internal func render(localized: some LocalizedContent) -> String {
+    internal func render(localized: some LocalizeContent) -> String {
         
         var result = ""
         
-        if let lingo = self.lingo {
+        if let lingo = lingo {
             
-            if let context = localized.context {
+            if let variable = localized.variable {
                 
-                switch context {
-                case .constant(let value):
+                if case .variable(let variable) = variable {
                     
-                    if let data = try? JSONEncoder().encode(value) {
+                    if let context = manager.retrieve(for: variable.name) {
                         
-                        if let dictionary = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
-                            result += lingo.localize(localized.key, locale: lingo.defaultLocale, interpolations: dictionary)
-                        }
-                    }
-                    
-                case .dynamic(let variable):
-                    
-                    if let value = try? manager.retrieve(for: variable) {
-                        
-                        if let data = try? JSONEncoder().encode(value) {
+                        if let data = try? JSONEncoder().encode(context) {
                             
-                            if let dictionary = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                            if let dictionary = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any] {
                                 result += lingo.localize(localized.key, locale: lingo.defaultLocale, interpolations: dictionary)
                             }
                         }
@@ -445,11 +494,34 @@ public class Renderer {
             } else {
                 result += lingo.localize(localized.key, locale: lingo.defaultLocale)
             }
-            
-        } else {
-            fatalError("Lingo needs to be set up first.")
         }
-
+        
+        return result
+    }
+    
+    internal func render(variable: some DynamicContent) -> String {
+        
+        var result = ""
+    
+        if let context = manager.retrieve(for: variable.name) {
+            
+            if let value = context[keyPath: variable.path] as? String {
+                result += value
+            }
+            
+            if let value = context[keyPath: variable.path] as? Int {
+                result += String(value)
+            }
+            
+            if let value = context[keyPath: variable.path] as? Double {
+                result += String(value)
+            }
+            
+            if let value = context[keyPath: variable.path] as? Bool {
+                result += String(value)
+            }
+        }
+        
         return result
     }
 }

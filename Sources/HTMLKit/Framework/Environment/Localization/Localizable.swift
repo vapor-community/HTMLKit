@@ -8,5 +8,5 @@ public protocol Localizable {
     
     init(_ localizedKey: String)
     
-    init<T: Encodable>(_ localizedKey: String, with context: TemplateValue<T>)
+    init<T: Encodable>(_ localizedKey: String, with context: Property<T>)
 }

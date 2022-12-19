@@ -2,7 +2,7 @@
 public enum Property<Value> {
     
     case constant(Value)
-    case variable(VariableProperty<Value>)
+    case variable(Placeholder<Value>)
 }
 
 extension Property where Value: Content {
@@ -33,7 +33,7 @@ extension Property where Value: Content {
 extension Property {
     
     public init(parent: String, path: AnyKeyPath) {
-        self = .variable(VariableProperty(parent: parent, path: path))
+        self = .variable(Placeholder(parent: parent, path: path))
     }
 }
 

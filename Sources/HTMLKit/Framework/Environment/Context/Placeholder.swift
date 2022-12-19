@@ -1,5 +1,5 @@
 /// A type, that acts as a variable
-public struct VariableProperty<Value>: DynamicProperty {
+public struct Placeholder<Value>: DynamicContent {
     
     /// The parents name
     public var name: String
@@ -18,7 +18,7 @@ public struct VariableProperty<Value>: DynamicProperty {
         self.type = Value.self
     }
     
-    public func unsafeCast<T>(to type: T.Type) -> VariableProperty<T> {
+    public func unsafeCast<T>(to type: T.Type) -> Placeholder<T> {
         return .init(parent: name, path: path)
     }
 }

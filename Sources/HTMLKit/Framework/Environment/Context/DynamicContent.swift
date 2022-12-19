@@ -1,5 +1,5 @@
 /// A type, that defines a property
-public protocol DynamicProperty: Content {
+public protocol DynamicContent: Content {
     
     associatedtype ValueType
     

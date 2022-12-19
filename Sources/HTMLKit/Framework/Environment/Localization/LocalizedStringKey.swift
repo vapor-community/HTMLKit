@@ -4,17 +4,17 @@
  */
 
 /// The struct thats contains the information for the localization
-public struct LocalizedStringKey<T: Encodable>: LocalizedContent {
+public struct LocalizedStringKey<T: Encodable>: LocalizeContent {
 
     public let key: String
     
-    public let context: TemplateValue<T>?
+    public let variable: Property<T>?
     
     /// Initiates a localized string key with a context
-    public init(key: String, context: TemplateValue<T>) {
+    public init(key: String, context: Property<T>) {
         
         self.key = key
-        self.context = context
+        self.variable = context
     }
 }
 
@@ -24,6 +24,6 @@ extension LocalizedStringKey where T == Empty {
     public init(key: String) {
         
         self.key = key
-        self.context = nil
+        self.variable = nil
     }
 }

@@ -3,7 +3,7 @@
  The file contains the environment modifier.
  */
 
-public protocol LocalizedContent: Content {
+public protocol LocalizeContent: Content {
     
     associatedtype ValueType: Encodable
     
@@ -11,5 +11,5 @@ public protocol LocalizedContent: Content {
     var key: String { get }
     
     /// The context for string interpolation
-    var context: TemplateValue<ValueType>? { get }
+    var variable: Property<ValueType>? { get }
 }

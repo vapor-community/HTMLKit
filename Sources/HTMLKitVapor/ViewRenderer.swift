@@ -38,7 +38,10 @@ public class ViewRenderer {
         
         self.eventLoop = eventLoop
         self.renderer = views.renderer
-        self.lingo = lingo.lingo
+        
+        if let lingo = lingo.lingo {
+            self.renderer.add(lingo: lingo)
+        }
     }
     
     /// Renders a layout and its context

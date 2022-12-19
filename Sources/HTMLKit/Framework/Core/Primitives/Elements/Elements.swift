@@ -29,19 +29,6 @@ internal protocol ContentElement: Element, GlobalAttributes, GlobalAriaAttribute
 
 extension ContentElement {
     
-    internal var startTag: String {
-        
-        if attributes != nil {
-            return "<\(name) %attributes%>"
-        }
-        
-        return "<\(name)>"
-    }
-    
-    internal var endTag: String {
-        return "</\(name)>"
-    }
-    
     internal func modify(_ element: Self) -> Self {
         
         guard var attributes = self.attributes else {
@@ -427,15 +414,6 @@ internal protocol EmptyElement: Element, GlobalAttributes, GlobalAriaAttributes,
 
 extension EmptyElement {
     
-    internal var startTag: String {
-        
-        if attributes != nil {
-            return "<\(name) %attributes%>"
-        }
-        
-        return "<\(name)>"
-    }
-    
     internal func modify(_ element: Self) -> Self {
         
         guard var attributes = self.attributes else {
@@ -810,27 +788,9 @@ internal protocol CommentElement: Content {
     var content: String { get }
 }
 
-extension CommentElement {
-    
-    internal var startTag: String {
-        return "<!--"
-    }
-    
-    internal var endTag: String {
-        return "-->"
-    }
-}
-
 /// The protocol defines the document node.
 internal protocol DocumentElement: Content {
     
     /// The content of the node.
     var content: String { get }
-}
-
-extension DocumentElement {
-    
-    internal var startTag: String {
-        return "<!DOCTYPE \(content)>"
-    }
 }
