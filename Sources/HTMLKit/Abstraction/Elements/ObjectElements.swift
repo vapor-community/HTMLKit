@@ -139,11 +139,6 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Parameter {
-        return mutate(role: value)
-    }
-    
     public func role(_ value: Values.Role) -> Parameter {
         return mutate(role: value.rawValue)
     }
@@ -162,11 +157,6 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
 
     public func title(_ value: String) -> Parameter {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Parameter {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Parameter {

@@ -152,11 +152,6 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     public func nonce(_ value: String) -> FigureCaption {
         return mutate(nonce: value)
     }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> FigureCaption {
-        return mutate(role: value)
-    }
     
     public func role(_ value: Values.Role) -> FigureCaption {
         return mutate(role: value.rawValue)
@@ -176,11 +171,6 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
 
     public func title(_ value: String) -> FigureCaption {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> FigureCaption {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> FigureCaption {

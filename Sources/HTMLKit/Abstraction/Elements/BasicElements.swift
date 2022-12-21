@@ -58,16 +58,6 @@ extension Document: AnyContent {
     }
 }
 
-extension Document {
-    
-    // MARK: Deprecations
-    
-    @available(*, deprecated, message: "Use Document(_ value: Values.Doctype) instead.")
-    public init(type: Values.Doctype) {
-        self.content = type.rawValue
-    }
-}
-
 /// The element represents the document's root element.
 ///
 /// ```html
@@ -204,11 +194,6 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Html {
-        return mutate(role: value)
-    }
-    
     public func role(_ value: Values.Role) -> Html {
         return mutate(role: value.rawValue)
     }
@@ -227,11 +212,6 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
 
     public func title(_ value: String) -> Html {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Html {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Html {

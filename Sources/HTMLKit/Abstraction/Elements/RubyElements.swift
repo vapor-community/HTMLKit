@@ -161,11 +161,6 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func nonce(_ value: String) -> RubyText {
         return mutate(nonce: value)
     }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> RubyText {
-        return mutate(role: value)
-    }
     
     public func role(_ value: Values.Role) -> RubyText {
         return mutate(role: value.rawValue)
@@ -185,11 +180,6 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func title(_ value: String) -> RubyText {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> RubyText {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> RubyText {
@@ -443,11 +433,6 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
     public func nonce(_ value: String) -> RubyPronunciation {
         return mutate(nonce: value)
     }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> RubyPronunciation {
-        return mutate(role: value)
-    }
     
     public func role(_ value: Values.Role) -> RubyPronunciation {
         return mutate(role: value.rawValue)
@@ -467,11 +452,6 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
 
     public func title(_ value: String) -> RubyPronunciation {
         return mutate(title: value)
-    }
-    
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> RubyPronunciation {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> RubyPronunciation {

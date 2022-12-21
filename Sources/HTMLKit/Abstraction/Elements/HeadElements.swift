@@ -144,11 +144,6 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Title {
-        return mutate(role: value)
-    }
-    
     public func role(_ value: Values.Role) -> Title {
         return mutate(role: value.rawValue)
     }
@@ -167,11 +162,6 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
     
     public func title(_ value: String) -> Title {
         return mutate(title: value)
-    }
-    
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Title {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Title {
@@ -345,11 +335,6 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Base {
-        return mutate(role: value)
-    }
-    
     public func role(_ value: Values.Role) -> Base {
         return mutate(role: value.rawValue)
     }
@@ -368,11 +353,6 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
     
     public func title(_ value: String) -> Base {
         return mutate(title: value)
-    }
-    
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Base {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Base {
@@ -558,11 +538,6 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Meta {
-        return mutate(role: value)
-    }
-    
     public func role(_ value: Values.Role) -> Meta {
         return mutate(role: value.rawValue)
     }
@@ -581,11 +556,6 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
 
     public func title(_ value: String) -> Meta {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Meta {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Meta {
@@ -792,11 +762,6 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Style {
-        return mutate(role: value)
-    }
-    
     public func role(_ value: Values.Role) -> Style {
         return mutate(role: value.rawValue)
     }
@@ -815,11 +780,6 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
 
     public func title(_ value: String) -> Style {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Style {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Style {
@@ -1001,11 +961,6 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Link {
-        return mutate(role: value)
-    }
-    
     public func role(_ value: Values.Role) -> Link {
         return mutate(role: value.rawValue)
     }
@@ -1024,11 +979,6 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
 
     public func title(_ value: String) -> Link {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Link {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Link {

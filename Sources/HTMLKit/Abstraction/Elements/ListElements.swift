@@ -153,11 +153,6 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> ListItem {
-        return mutate(role: value)
-    }
-
     public func role(_ value: Values.Role) -> ListItem {
         return mutate(role: value.rawValue)
     }
@@ -176,11 +171,6 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func title(_ value: String) -> ListItem {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> ListItem {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> ListItem {

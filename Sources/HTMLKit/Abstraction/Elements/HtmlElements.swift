@@ -144,11 +144,6 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Head {
-        return mutate(role: value)
-    }
-    
     public func role(_ value: Values.Role) -> Head {
         return mutate(role: value.rawValue)
     }
@@ -167,11 +162,6 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
     
     public func title(_ value: String) -> Head {
         return mutate(title: value)
-    }
-    
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Head {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Head {
@@ -350,11 +340,6 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Body {
-        return mutate(role: value)
-    }
-    
     public func role(_ value: Values.Role) -> Body {
         return mutate(role: value.rawValue)
     }
@@ -373,11 +358,6 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
 
     public func title(_ value: String) -> Body {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Body {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Body {

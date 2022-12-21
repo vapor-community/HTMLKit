@@ -139,11 +139,6 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Source {
-        return mutate(role: value)
-    }
-    
     public func role(_ value: Values.Role) -> Source {
         return mutate(role: value.rawValue)
     }
@@ -162,11 +157,6 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
 
     public func title(_ value: String) -> Source {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Source {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Source {
@@ -364,11 +354,6 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(nonce: value)
     }
     
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Track {
-        return mutate(role: value)
-    }
-    
     public func role(_ value: Values.Role) -> Track {
         return mutate(role: value.rawValue)
     }
@@ -388,19 +373,9 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
     public func title(_ value: String) -> Track {
         return  mutate(title: value)
     }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Track {
-        return mutate(translate: value)
-    }
     
     public func translate(_ value: Values.Decision) -> Track {
         return mutate(translate: value.rawValue)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Kinds) instead")
-    public func kind(_ value: String) -> Track {
-        return mutate(kind: value)
     }
     
     public func kind(_ value: Values.Kind) -> Track {

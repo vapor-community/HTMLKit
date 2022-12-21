@@ -162,11 +162,6 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(nonce: value)
     }
 
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> TermName {
-        return mutate(role: value)
-    }
-
     public func role(_ value: Values.Role) -> TermName {
         return mutate(role: value.rawValue)
     }
@@ -185,11 +180,6 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func title(_ value: String) -> TermName {
         return mutate(title: value)
-    }
-    
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> TermName {
-        return mutate(translate: value)
     }
 
     public func translate(_ value: Values.Decision) -> TermName {
@@ -443,11 +433,6 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
     public func nonce(_ value: String) -> TermDefinition {
         return mutate(nonce: value)
     }
-    
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> TermDefinition {
-        return mutate(role: value)
-    }
 
     public func role(_ value: Values.Role) -> TermDefinition {
         return mutate(role: value.rawValue)
@@ -467,11 +452,6 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
 
     public func title(_ value: String) -> TermDefinition {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> TermDefinition {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> TermDefinition {

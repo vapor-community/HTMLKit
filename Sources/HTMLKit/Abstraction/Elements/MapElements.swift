@@ -143,11 +143,6 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
     public func nonce(_ value: String) -> Area {
         return mutate(nonce: value)
     }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Area {
-        return mutate(role: value)
-    }
     
     public func role(_ value: Values.Role) -> Area {
         return mutate(role: value.rawValue)
@@ -167,11 +162,6 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
 
     public func title(_ value: String) -> Area {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Area {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Area {

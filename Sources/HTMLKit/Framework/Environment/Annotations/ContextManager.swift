@@ -41,14 +41,6 @@ public class ContextManager<Context> {
     public var locale: String?
     public var contexts: [String: Any]
     
-    @available(*, deprecated, message: "Use init(context:, lingo:) instead.")
-    public init(rootContext: Context, lingo: Lingo? = nil) {
-        
-        self.contexts = ["": rootContext]
-        self.lingo = lingo
-        self.locale = nil
-    }
-    
     public init(context: Context, lingo: Lingo? = nil) {
         
         self.contexts = ["": context]

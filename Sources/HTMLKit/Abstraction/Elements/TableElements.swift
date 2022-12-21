@@ -215,11 +215,6 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func nonce(_ value: String) -> Caption {
         return mutate(nonce: value)
     }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Caption {
-        return mutate(role: value)
-    }
     
     public func role(_ value: Values.Role) -> Caption {
         return mutate(role: value.rawValue)
@@ -239,11 +234,6 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
 
     public func title(_ value: String) -> Caption {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Caption {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Caption {
@@ -497,11 +487,6 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     public func nonce(_ value: String) -> ColumnGroup {
         return mutate(nonce: value)
     }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> ColumnGroup {
-        return mutate(role: value)
-    }
     
     public func role(_ value: Values.Role) -> ColumnGroup {
         return mutate(role: value.rawValue)
@@ -521,11 +506,6 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
 
     public func title(_ value: String) -> ColumnGroup {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> ColumnGroup {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> ColumnGroup {
@@ -707,11 +687,6 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     public func nonce(_ value: String) -> Column {
         return mutate(nonce: value)
     }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Column {
-        return mutate(role: value)
-    }
     
     public func role(_ value: Values.Role) -> Column {
         return mutate(role: value.rawValue)
@@ -731,11 +706,6 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
 
     public func title(_ value: String) -> Column {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Column {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Column {
@@ -917,11 +887,6 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func nonce(_ value: String) -> TableBody {
         return mutate(nonce: value)
     }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> TableBody {
-        return mutate(role: value)
-    }
     
     public func role(_ value: Values.Role) -> TableBody {
         return mutate(role: value.rawValue)
@@ -941,11 +906,6 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func title(_ value: String) -> TableBody {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> TableBody {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> TableBody {
@@ -1207,11 +1167,6 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func nonce(_ value: String) -> TableHead {
         return mutate(nonce: value)
     }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> TableHead {
-        return mutate(role: value)
-    }
     
     public func role(_ value: Values.Role) -> TableHead {
         return mutate(role: value.rawValue)
@@ -1231,11 +1186,6 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func title(_ value: String) -> TableHead {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> TableHead {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> TableHead {
@@ -1497,11 +1447,6 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func nonce(_ value: String) -> TableFoot {
         return mutate(nonce: value)
     }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> TableFoot {
-        return mutate(role: value)
-    }
     
     public func role(_ value: Values.Role) -> TableFoot {
         return mutate(role: value.rawValue)
@@ -1521,11 +1466,6 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func title(_ value: String) -> TableFoot {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> TableFoot {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> TableFoot {
@@ -1779,11 +1719,6 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func nonce(_ value: String) -> TableRow {
         return mutate(nonce: value)
     }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> TableRow {
-        return mutate(role: value)
-    }
     
     public func role(_ value: Values.Role) -> TableRow {
         return mutate(role: value.rawValue)
@@ -1803,11 +1738,6 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func title(_ value: String) -> TableRow {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> TableRow {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> TableRow {
@@ -2069,11 +1999,6 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func nonce(_ value: String) -> DataCell {
         return mutate(nonce: value)
     }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> DataCell {
-        return mutate(role: value)
-    }
     
     public func role(_ value: Values.Role) -> DataCell {
         return mutate(role: value.rawValue)
@@ -2093,11 +2018,6 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func title(_ value: String) -> DataCell {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> DataCell {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> DataCell {
@@ -2363,11 +2283,6 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func nonce(_ value: String) -> HeaderCell {
         return mutate(nonce: value)
     }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> HeaderCell {
-        return mutate(role: value)
-    }
     
     public func role(_ value: Values.Role) -> HeaderCell {
         return mutate(role: value.rawValue)
@@ -2387,11 +2302,6 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 
     public func title(_ value: String) -> HeaderCell {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> HeaderCell {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> HeaderCell {
