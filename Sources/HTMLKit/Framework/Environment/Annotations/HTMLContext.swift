@@ -112,10 +112,3 @@ extension HTMLContext: AnyContent where Value: AnyContent {
         }
     }
 }
-
-extension HTMLContext: Conditionable where Value == Bool {
-    
-    public func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return try manager.value(for: self)
-    }
-}

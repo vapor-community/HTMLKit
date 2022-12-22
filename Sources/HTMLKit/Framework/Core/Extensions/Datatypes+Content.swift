@@ -273,12 +273,6 @@ extension Bool: AnyContent {
     public var renderWhenLocalizing: Bool { return false }
 }
 
-extension Bool: Conditionable {
-    public func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        return self
-    }
-}
-
 extension Double: AnyContent {
 
     public func render<T>(with manager: ContextManager<T>) throws -> String {
@@ -371,12 +365,5 @@ extension UUID: AnyContent {
 
     public func prerender(_ formula: Formula) throws {
         formula.add(content: self.uuidString)
-    }
-}
-
-extension Sequence {
-    
-    public func htmlForEach(@ContentBuilder<AnyContent> content: (TemplateValue<Element>) -> AnyContent) -> AnyContent {
-        ForEach(in: .constant(self), content: content)
     }
 }

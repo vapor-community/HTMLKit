@@ -41,26 +41,6 @@ import Foundation
         }
     }
     
-    public var isDefined: Conditionable {
-        
-        if isMasqueradingOptional {
-            return true
-            
-        } else {
-            return NotNullConditionGeneral(lhs: self)
-        }
-    }
-    
-    public var isNotDefined: Conditionable {
-        
-        if isMasqueradingOptional {
-            return false
-            
-        } else {
-            return IsNullConditionGeneral(lhs: self)
-        }
-    }
-    
     public init(_ value: Value.Type) {
         self = .dynamic(HTMLContext(value.self))
     }
@@ -172,27 +152,6 @@ extension TemplateValue: ExpressibleByIntegerLiteral where Value == Int {
     }
 }
 
-extension TemplateValue where Value: Sequence {
-
-    func forEach(@ContentBuilder<AnyContent> content: (TemplateValue<Value.Element>) -> AnyContent) -> AnyContent {
-        ForEach(in: self, content: content)
-    }
-}
-
-extension TemplateValue: Conditionable where Value == Bool {
-    
-    public func evaluate<T>(with manager: ContextManager<T>) throws -> Bool {
-        
-        switch self {
-        case .constant(let value):
-            return value
-            
-        case .dynamic(let variable):
-            return try manager.value(for: variable)
-        }
-    }
-}
-
 extension TemplateValue where Value == Date {
     
     public func style(date: DateFormatter.Style = .short, time: DateFormatter.Style = .short) -> AnyContent {
@@ -212,54 +171,5 @@ extension TemplateValue where Value == Date? {
 
     public func formatted(string format: String) -> AnyContent {
         return DateVariable(dateReference: .optional(self), format: .literal(format))
-    }
-}
-
-extension TemplateValue where Value: Equatable {
-    
-    /// The operator for a equal condition
-    public static func ==(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable {
-        return EqualCondition(lhs: lhs, rhs: rhs)
-    }
-
-    /// The operator for a not-equal condition
-    public static func !=(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable {
-        return NotEqualCondition(lhs: lhs, rhs: rhs)
-    }
-}
-
-extension TemplateValue where Value: Comparable {
-    
-    /// The operator for a less-than condition
-    public static func <(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable {
-        return LessThanCondition(lhs: lhs, rhs: rhs)
-    }
-
-    /// The operator for a less-than-or-equal condition
-    public static func <=(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable {
-        return InvertCondition(lhs: GreaterThanCondition(lhs: lhs, rhs: rhs))
-    }
-    
-    /// The operator for a greater-than condition
-    public static func >(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable {
-        return GreaterThanCondition(lhs: lhs, rhs: rhs)
-    }
-
-    /// The operator for a greater-than-or-equal condition
-    public static func >=(lhs: TemplateValue<Value>, rhs: Value) -> Conditionable {
-        return InvertCondition(lhs: LessThanCondition(lhs: lhs, rhs: rhs))
-    }
-}
-
-extension TemplateValue where Value: Strideable {
-    
-    /// The operator for a range condition
-    public static func ~=(lhs: TemplateValue<Value>, rhs: Range<Value>) -> Conditionable {
-        return BetweenCondition(lhs: lhs, rhs: rhs)
-    }
-
-    /// The operator for a range condition
-    public static func ~=(lhs: TemplateValue<Value>, rhs: ClosedRange<Value>) -> Conditionable {
-        return BetweenCondition(lhs: lhs, rhs: rhs)
     }
 }
