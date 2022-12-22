@@ -5,20 +5,20 @@
 
 import Foundation
 
-extension Array: AnyContent {}
+extension Array: Content {}
 
-extension Bool: AnyContent {}
+extension Bool: Content {}
 
-extension Double: AnyContent {}
+extension Double: Content {}
 
-extension Float: AnyContent {}
+extension Float: Content {}
 
-extension Int: AnyContent {}
+extension Int: Content {}
 
-extension Optional: AnyContent{}
+extension Optional: Content{}
 
-extension String: AnyContent {}
+extension String: Content {}
 
-extension UUID: AnyContent {}
+extension UUID: Content {}
 
-extension Date: AnyContent {}
+extension Date: Content {}

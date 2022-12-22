@@ -13,7 +13,7 @@ public struct ActionButton: View {
     internal let destination: String
     
     /// The  content of the button.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the button.
     internal var classes: [String]
@@ -22,7 +22,7 @@ public struct ActionButton: View {
     internal var events: [String]?
     
     /// Creates a action button.
-    public init(destination: String, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(destination: String, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.destination = destination
         self.content = content()
@@ -30,7 +30,7 @@ public struct ActionButton: View {
     }
     
     /// Creates a action button.
-    internal init(destination: String, content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(destination: String, content: [Content], classes: [String], events: [String]?) {
         
         self.destination = destination
         self.content = content
@@ -38,7 +38,7 @@ public struct ActionButton: View {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Anchor {
             self.content
         }
@@ -87,19 +87,19 @@ extension ActionButton: ButtonModifier {
 public struct SubmitButton: View {
     
     /// The  content of the button.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the button.
     internal var classes: [String]
     
     /// Creates a submit button.
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["button"]
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Button {
             self.content
         }
@@ -147,26 +147,26 @@ extension SubmitButton: ButtonModifier {
 public struct ResetButton: View {
     
     /// The  content of the button.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the button.
     internal var classes: [String]
     
     /// Creates a reset button.
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["button"]
     }
     
     /// Creates a sbumit button.
-    internal init(content: [AnyContent], classes: [String]) {
+    internal init(content: [Content], classes: [String]) {
         
         self.content = content
         self.classes = classes
     }
 
-    public var body: AnyContent {
+    public var body: Content {
         Button {
             self.content
         }

@@ -6,7 +6,7 @@
 import Foundation
 
 /// The struct thats contains the information for the localization
-public struct LocalizedStringKey: AnyContent {
+public struct LocalizedStringKey: Content {
 
     public let key: String
     

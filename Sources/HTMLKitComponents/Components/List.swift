@@ -32,7 +32,7 @@ public struct List: View {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         UnorderedList {
             content
         }
@@ -53,7 +53,7 @@ public struct List: View {
 public struct ListRow: View {
 
     /// The content of the row.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the row.
     internal var classes: [String]
@@ -62,21 +62,21 @@ public struct ListRow: View {
     internal var events: [String]?
     
     /// Creates a list row.
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["list-row"]
     }
     
     /// Creates a list row.
-    internal init(content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(content: [Content], classes: [String], events: [String]?) {
         
         self.content = content
         self.classes = classes
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         ListItem {
             content
         }

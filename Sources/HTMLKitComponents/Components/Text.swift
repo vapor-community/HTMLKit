@@ -12,7 +12,7 @@ public struct Text: View {
     internal var id: String?
     
     /// The content of the text.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the text.
     internal var classes: [String]
@@ -21,7 +21,7 @@ public struct Text: View {
     internal var events: [String]?
     
     /// Creates a text.
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["text"]
@@ -29,7 +29,7 @@ public struct Text: View {
     }
     
     /// Creates a text.
-    internal init(content: [AnyContent], classes: [String], events: [String]?, id: String?) {
+    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
         
         self.content = content
         self.classes = classes
@@ -37,7 +37,7 @@ public struct Text: View {
         self.id = id
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Paragraph {
             content
         }

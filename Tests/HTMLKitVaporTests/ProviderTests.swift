@@ -17,7 +17,7 @@ final class ProviderTests: XCTestCase {
         
         struct TestView: HTMLKit.View {
             
-            var body: AnyContent {
+            var body: HTMLKit.Content {
                 Document(.html5)
                 Html {
                     Head {
@@ -37,7 +37,7 @@ final class ProviderTests: XCTestCase {
         
         struct TestView: HTMLKit.View {
             
-            var body: AnyContent {
+            var body: HTMLKit.Content {
                 Document(.html5)
                 Html {
                     Head {
@@ -61,7 +61,7 @@ final class ProviderTests: XCTestCase {
             
             var context: TestContext
             
-            var body: AnyContent {
+            var body: HTMLKit.Content {
                 Document(.html5)
                 Html {
                     Head {

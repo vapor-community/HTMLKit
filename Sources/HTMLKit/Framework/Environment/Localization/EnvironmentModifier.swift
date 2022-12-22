@@ -8,7 +8,7 @@
 ///
 public struct EnvironmentModifier: GlobalElement {
 
-    public let view: AnyContent
+    public let view: Content
     
-    public let locale: AnyContent
+    public let locale: Content
 }

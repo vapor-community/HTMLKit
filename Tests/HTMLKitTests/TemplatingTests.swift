@@ -17,7 +17,7 @@ final class TemplatingTests: XCTestCase {
             
             var context: String
             
-            var body: AnyContent {
+            var body: Content {
                 Document(.html5)
                 Html {
                     Head {
@@ -36,7 +36,7 @@ final class TemplatingTests: XCTestCase {
             
             var context: String
             
-            var body: AnyContent {
+            var body: Content {
                 Heading1 {
                     context
                 }
@@ -72,7 +72,7 @@ final class TemplatingTests: XCTestCase {
                 self.content = content()
             }
             
-            var body: AnyContent {
+            var body: Content {
                 Document(.html5)
                 Html {
                     Head {
@@ -91,7 +91,7 @@ final class TemplatingTests: XCTestCase {
             
             var context: String
             
-            var body: AnyContent {
+            var body: Content {
                 ParentView {
                     Heading1 {
                         context
@@ -129,7 +129,7 @@ final class TemplatingTests: XCTestCase {
                 self.content = content()
             }
             
-            var body: AnyContent {
+            var body: Content {
                 Document(.html5)
                 Html {
                     Head {
@@ -152,7 +152,7 @@ final class TemplatingTests: XCTestCase {
             
             var context: String
             
-            var body: AnyContent {
+            var body: Content {
                 ParentView {
                     Heading1 {
                         context

@@ -32,7 +32,7 @@ public struct Form: View {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         HTMLKit.Form {
             content
         }
@@ -48,7 +48,7 @@ public struct FieldLabel: View {
     internal let id: String
     
     /// The content of the label.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the label.
     internal var classes: [String]
@@ -57,7 +57,7 @@ public struct FieldLabel: View {
     internal var events: [String]?
     
     /// Creates a field label.
-    public init(for id: String, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(for id: String, @ContentBuilder<Content> content: () -> [Content]) {
       
         self.id = id
         self.content = content()
@@ -65,7 +65,7 @@ public struct FieldLabel: View {
     }
     
     /// Creates a field label.
-    internal init(for id: String, content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(for id: String, content: [Content], classes: [String], events: [String]?) {
       
         self.id = id
         self.content = content
@@ -73,7 +73,7 @@ public struct FieldLabel: View {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Label {
             content
         }
@@ -114,7 +114,7 @@ public struct TextField: View {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Input()
             .type(.text)
             .id(name)
@@ -181,7 +181,7 @@ public struct TextEditor: View {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         TextArea {
             content
         }
@@ -248,7 +248,7 @@ public struct CheckField: View {
         self.classes = classes
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Input()
             .type(.checkbox)
             .id(name)
@@ -305,7 +305,7 @@ public struct RadioSelect: View {
         self.classes = classes
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Input()
             .type(.radio)
             .id(name)
@@ -366,7 +366,7 @@ public struct SelectField: View {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Select {
             content
         }
@@ -427,7 +427,7 @@ public struct SecureField: View {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Input()
             .type(.password)
             .id(name)
@@ -485,7 +485,7 @@ public struct Slider: View {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Input()
             .type(.range)
             .id(name)
@@ -526,7 +526,7 @@ public struct DatePicker: View {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Input()
             .type(.date)
             .id(name)
@@ -589,7 +589,7 @@ public struct SearchField: View {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Input()
             .type(.search)
             .id(name)
@@ -629,7 +629,7 @@ public struct ProgressView: View {
     internal let value: String?
     
     /// The content of the view.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the view.
     internal var classes: [String]
@@ -638,7 +638,7 @@ public struct ProgressView: View {
     internal var events: [String]?
     
     /// Creates a progress view.
-    public init(name: String, value: String? = nil, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(name: String, value: String? = nil, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.name = name
         self.value = value
@@ -647,7 +647,7 @@ public struct ProgressView: View {
     }
     
     /// Creates a progress bar.
-    internal init(name: String, value: String?, content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(name: String, value: String?, content: [Content], classes: [String], events: [String]?) {
         
         self.name = name
         self.value = value
@@ -656,7 +656,7 @@ public struct ProgressView: View {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Progress {
             content
         }

@@ -18,7 +18,7 @@ struct SamplePage: View {
         self.content = content()
     }
 
-    var body: AnyContent {
+    var body: Content {
         Document(.html5)
         Html {
             Head {
@@ -52,7 +52,7 @@ struct SampleView: View {
     
     var context: SampleContext
     
-    var body: AnyContent {
+    var body: Content {
         SamplePage {
             Header {
                 Heading1 {
@@ -110,7 +110,7 @@ struct SampleView: View {
 
 struct SampleComponent: View {
  
-    var body: AnyContent {
+    var body: Content {
         Section {
             Heading1 {
                 "Heading1"

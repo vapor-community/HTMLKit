@@ -23,7 +23,7 @@ final class ContextTests: XCTestCase {
         
         var context: ParentContext
         
-        var body: AnyContent {
+        var body: Content {
             Heading1 {
                 context.category
             }
@@ -35,7 +35,7 @@ final class ContextTests: XCTestCase {
         
         var context: ChildContext
         
-        var body: AnyContent {
+        var body: Content {
             Section{
                 Heading2 {
                     context.headline

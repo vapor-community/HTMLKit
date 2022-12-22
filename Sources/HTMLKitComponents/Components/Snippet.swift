@@ -9,7 +9,7 @@ import HTMLKit
 public struct Snippet: View {
     
     /// The content of the snippet.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the snippet.
     internal var classes: [String]
@@ -30,13 +30,13 @@ public struct Snippet: View {
     }
     
     /// Creates a snippet.
-    internal init(content: [AnyContent], classes: [String]) {
+    internal init(content: [Content], classes: [String]) {
         
         self.content = content
         self.classes = classes
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         PreformattedText {
             content
         }

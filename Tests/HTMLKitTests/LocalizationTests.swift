@@ -11,7 +11,7 @@ final class LocalizationTests: XCTestCase {
     
     struct TestView: View {
 
-        @ContentBuilder<AnyContent> var body: AnyContent
+        @ContentBuilder<Content> var body: Content
     }
     
     var renderer: Renderer?

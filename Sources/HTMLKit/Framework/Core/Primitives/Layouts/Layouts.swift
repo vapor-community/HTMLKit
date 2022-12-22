@@ -7,5 +7,5 @@
 public protocol View: GlobalElement {
     
     /// The content of the page.
-    @ContentBuilder<AnyContent> var body: AnyContent { get }
+    @ContentBuilder<Content> var body: Content { get }
 }

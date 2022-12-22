@@ -36,7 +36,7 @@ public class Renderer {
         
         var result = ""
         
-        if let contents = view.body as? [AnyContent] {
+        if let contents = view.body as? [Content] {
             
             for content in contents {
                 
@@ -76,7 +76,7 @@ public class Renderer {
         
         result += element.startTag
         
-        if let contents = element.content as? [AnyContent] {
+        if let contents = element.content as? [Content] {
             
             for content in contents {
                 

@@ -32,7 +32,7 @@ public struct Toggle: View {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Label {
             Input()
                 .type(.checkbox)
