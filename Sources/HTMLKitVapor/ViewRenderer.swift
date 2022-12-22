@@ -26,16 +26,34 @@ public class ViewRenderer {
     /// Renders a layout and its context
     public func render(_ view: some HTMLKit.View) -> EventLoopFuture<Vapor.View> {
         
-        let content = renderer.render(view: view)
-        
-        var buffer = ByteBufferAllocator().buffer(capacity: 4096)
-        buffer.writeString(content)
-        
-        return self.eventLoop.makeSucceededFuture(View(data: buffer))
+        do  {
+            
+            var buffer = ByteBufferAllocator().buffer(capacity: 4096)
+            buffer.writeString(try renderer.render(view: view))
+            
+            return self.eventLoop.makeSucceededFuture(View(data: buffer))
+            
+        } catch(let error) {
+            return self.eventLoop.makeFailedFuture(error)
+        }
     }
     
     /// Renders a layout and its context
     public func render(_ view: some HTMLKit.View) async throws -> Vapor.View {
         return try await render(view).get()
     }
+}
+
+extension HTMLKit.Renderer.Errors: AbortError {
+ 
+    @_implements(AbortError, reason)
+    public var abortReason: String { self.description }
+    
+    public var status: HTTPResponseStatus { .internalServerError }
+}
+
+extension HTMLKit.Renderer.Errors: DebuggableError {
+
+    @_implements(DebuggableError, reason)
+    public var debuggableReason: String {  self.description }
 }

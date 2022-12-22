@@ -28,22 +28,9 @@ final class LocalizationTests: XCTestCase {
             Heading1("Hallo Welt")
         }
         
-        XCTAssertEqual(renderer!.render(view: view),
+        XCTAssertEqual(try renderer!.render(view: view),
                        """
                        <h1>Hello World</h1>
-                       """
-        )
-    }
-    
-    func testEnvironmentLocale() throws {
-        
-        let view = TestView {
-            Heading1("Hallo Welt")
-        }
-        
-        XCTAssertEqual(renderer!.render(view: view),
-                       """
-                       <h1>Bonjour le monde</h1>
                        """
         )
     }

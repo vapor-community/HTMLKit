@@ -17,7 +17,7 @@ final class PerformanceTests: XCTestCase {
         measure {
             
             for _ in 0...1000 {
-                _ = renderer.render(view: SampleView(context: context))
+                _ = try! renderer.render(view: SampleView(context: context))
             }
         }
     }

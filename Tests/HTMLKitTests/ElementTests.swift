@@ -22,7 +22,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <head></head>
                        """
@@ -36,7 +36,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <title></title>
                        """
@@ -49,7 +49,7 @@ final class ElementTests: XCTestCase {
             Base()
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <base>
                        """
@@ -62,7 +62,7 @@ final class ElementTests: XCTestCase {
             Link()
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <link>
                        """
@@ -75,7 +75,7 @@ final class ElementTests: XCTestCase {
             Meta()
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <meta>
                        """
@@ -89,7 +89,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <style></style>
                        """
@@ -103,7 +103,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <html></html>
                        """
@@ -117,7 +117,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <body></body>
                        """
@@ -131,7 +131,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <article></article>
                        """
@@ -145,7 +145,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <section></section>
                        """
@@ -159,7 +159,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <nav></nav>
                        """
@@ -173,7 +173,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <aside></aside>
                        """
@@ -187,7 +187,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <h1></h1>
                        """
@@ -201,7 +201,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <h2></h2>
                        """
@@ -215,7 +215,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <h3></h3>
                        """
@@ -229,7 +229,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <h4></h4>
                        """
@@ -243,7 +243,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <h5></h5>
                        """
@@ -257,7 +257,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <h6></h6>
                        """
@@ -271,7 +271,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <hgroup></hgroup>
                        """
@@ -285,7 +285,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <header></header>
                        """
@@ -299,7 +299,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <footer></footer>
                        """
@@ -313,7 +313,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <address></address>
                        """
@@ -327,7 +327,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <p></p>
                        """
@@ -340,7 +340,7 @@ final class ElementTests: XCTestCase {
             HorizontalRule()
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <hr>
                        """
@@ -354,7 +354,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <pre></pre>
                        """
@@ -368,7 +368,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <blockquote></blockquote>
                        """
@@ -382,7 +382,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <ol></ol>
                        """
@@ -396,7 +396,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <ul></ul>
                        """
@@ -410,7 +410,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <li></li>
                        """
@@ -424,7 +424,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <dl></dl>
                        """
@@ -438,7 +438,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <dt></dt>
                        """
@@ -452,7 +452,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <dd></dd>
                        """
@@ -466,7 +466,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <figure></figure>
                        """
@@ -480,7 +480,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <figcaption></figcaption>
                        """
@@ -494,7 +494,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <main></main>
                        """
@@ -508,7 +508,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div></div>
                        """
@@ -522,7 +522,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <a></a>
                        """
@@ -536,7 +536,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <em></em>
                        """
@@ -550,7 +550,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <strong></strong>
                        """
@@ -564,7 +564,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <small></small>
                        """
@@ -578,7 +578,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <s></s>
                        """
@@ -592,7 +592,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <cite></cite>
                        """
@@ -606,7 +606,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <q></q>
                        """
@@ -620,7 +620,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <dfn></dfn>
                        """
@@ -634,7 +634,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <abbr></abbr>
                        """
@@ -648,7 +648,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <ruby></ruby>
                        """
@@ -662,7 +662,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <rt></rt>
                        """
@@ -676,7 +676,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <rp></rp>
                        """
@@ -690,7 +690,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <data></data>
                        """
@@ -704,7 +704,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <time></time>
                        """
@@ -718,7 +718,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <code></code>
                        """
@@ -732,7 +732,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <v></v>
                        """
@@ -746,7 +746,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <samp></samp>
                        """
@@ -760,7 +760,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <kbd></kbd>
                        """
@@ -774,7 +774,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <sub></sub>
                        """
@@ -788,7 +788,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <sup></sup>
                        """
@@ -802,7 +802,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <i></i>
                        """
@@ -816,7 +816,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <b></b>
                        """
@@ -830,7 +830,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <u></u>
                        """
@@ -844,7 +844,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <mark></mark>
                        """
@@ -858,7 +858,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <bdi></bdi>
                        """
@@ -871,7 +871,7 @@ final class ElementTests: XCTestCase {
             Bdo()
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <bdo>
                        """
@@ -885,7 +885,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <span></span>
                        """
@@ -898,7 +898,7 @@ final class ElementTests: XCTestCase {
             LineBreak()
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <br>
                        """
@@ -911,7 +911,7 @@ final class ElementTests: XCTestCase {
             WordBreak()
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <wbr>
                        """
@@ -925,7 +925,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <ins></ins>
                        """
@@ -939,7 +939,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <del></del>
                        """
@@ -953,7 +953,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <picture></picture>
                        """
@@ -966,7 +966,7 @@ final class ElementTests: XCTestCase {
             Source()
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <source>
                        """
@@ -979,7 +979,7 @@ final class ElementTests: XCTestCase {
             Image()
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <img>
                        """
@@ -993,7 +993,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <iframe></iframe>
                        """
@@ -1006,7 +1006,7 @@ final class ElementTests: XCTestCase {
             Embed()
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <embed>
                        """
@@ -1020,7 +1020,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <object></object>
                        """
@@ -1033,7 +1033,7 @@ final class ElementTests: XCTestCase {
             Parameter()
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <param>
                        """
@@ -1047,7 +1047,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <video></video>
                        """
@@ -1061,7 +1061,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <audio></audio>
                        """
@@ -1074,7 +1074,7 @@ final class ElementTests: XCTestCase {
             Track()
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <track>
                        """
@@ -1088,7 +1088,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <map></map>
                        """
@@ -1102,7 +1102,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <area></area>
                        """
@@ -1116,7 +1116,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <table></table>
                        """
@@ -1130,7 +1130,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <caption></caption>
                        """
@@ -1144,7 +1144,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <colgroup></colgroup>
                        """
@@ -1158,7 +1158,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <col></col>
                        """
@@ -1172,7 +1172,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tbody></tbody>
                        """
@@ -1186,7 +1186,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <thead></thead>
                        """
@@ -1200,7 +1200,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tfoot></tfoot>
                        """
@@ -1214,7 +1214,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tr></tr>
                        """
@@ -1228,7 +1228,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <td></td>
                        """
@@ -1242,7 +1242,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <th></th>
                        """
@@ -1256,7 +1256,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <form></form>
                        """
@@ -1270,7 +1270,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <label></label>
                        """
@@ -1283,7 +1283,7 @@ final class ElementTests: XCTestCase {
             Input()
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <input>
                        """
@@ -1297,7 +1297,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <button></button>
                        """
@@ -1311,7 +1311,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <datalist></datalist>
                        """
@@ -1325,7 +1325,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <optgroup></optgroup>
                        """
@@ -1339,7 +1339,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <option></option>
                        """
@@ -1353,7 +1353,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <textarea></textarea>
                        """
@@ -1367,7 +1367,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <output></output>
                        """
@@ -1381,7 +1381,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <progress></progress>
                        """
@@ -1395,7 +1395,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <meter></meter>
                        """
@@ -1409,7 +1409,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <fieldset></fieldset>
                        """
@@ -1423,7 +1423,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <legend></legend>
                        """
@@ -1437,7 +1437,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <details></details>
                        """
@@ -1451,7 +1451,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <summary></summary>
                        """
@@ -1465,7 +1465,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <dialog></dialog>
                        """
@@ -1479,7 +1479,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <script></script>
                        """
@@ -1493,7 +1493,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <noscript></noscript>
                        """
@@ -1507,7 +1507,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <template></template>
                        """
@@ -1521,7 +1521,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <canvas></canvas>
                        """
@@ -1535,7 +1535,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <svg></svg>
                        """
@@ -1549,7 +1549,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <circle></circle>
                        """
@@ -1563,7 +1563,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <rect></rect>
                        """
@@ -1577,7 +1577,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <ellipse></ellipse>
                        """
@@ -1591,7 +1591,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <line></line>
                        """
@@ -1605,7 +1605,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <polygon></polygon>
                        """
@@ -1619,7 +1619,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <polyline></polyline>
                        """
@@ -1633,7 +1633,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <path></path>
                        """
@@ -1647,7 +1647,7 @@ final class ElementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <use></use>
                        """

@@ -19,7 +19,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <a href="uri" class="button" role="button">Button</a>
                        """
@@ -33,7 +33,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div class="group"></div>
                        """
@@ -47,7 +47,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <ul class="collection ratio:50"></ul>
                        """
@@ -61,7 +61,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <li class="collection-item"></li>
                        """
@@ -75,7 +75,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <form method="post" class="form"></form>
                        """
@@ -90,7 +90,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <label for="name" class="label">Name</label>
                        """
@@ -103,7 +103,7 @@ final class ComponentTests: XCTestCase {
             TextField(name: "name")
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <input type="text" id="name" name="name" class="input type:textfield">
                        """
@@ -118,7 +118,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <textarea id="name" name="name" class="input type:texteditor" rows="1">value</textarea>
                        """
@@ -131,7 +131,7 @@ final class ComponentTests: XCTestCase {
             Slider(name: "name")
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <input type="range" id="name" name="name" class="input type:slider">
                        """
@@ -144,7 +144,7 @@ final class ComponentTests: XCTestCase {
             DatePicker(name: "name")
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <input type="date" id="name" name="name" class="input type:datepicker">
                        """
@@ -157,7 +157,7 @@ final class ComponentTests: XCTestCase {
             SecureField(name: "password")
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <input type="password" id="password" name="password" class="input type:securefield">
                        """
@@ -170,7 +170,7 @@ final class ComponentTests: XCTestCase {
             CheckField(name: "name", value: "value")
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <input type="checkbox" id="name" name="name" value="value" class="input type:checkfield">
                        """
@@ -183,7 +183,7 @@ final class ComponentTests: XCTestCase {
             RadioSelect(name: "name", value: "value")
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <input type="radio" id="name" name="name" value="value" class="input type:radioselect">
                        """
@@ -196,7 +196,7 @@ final class ComponentTests: XCTestCase {
             Image(source: "source")
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div class="image">\
                        <img src="source" role="img">\
@@ -212,7 +212,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <ul class="list direction:vertical"></ul>
                        """
@@ -226,7 +226,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <li class="list-row"></li>
                        """
@@ -241,7 +241,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <a href="uri" class="link">link</a>
                        """
@@ -255,7 +255,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div class="vstack alignment:leading"></div>
                        """
@@ -269,7 +269,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div class="hstack alignment:center"></div>
                        """
@@ -283,7 +283,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div class="zstack"></div>
                        """
@@ -298,7 +298,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div class="stack-column size:12"></div>
                        """
@@ -316,7 +316,7 @@ final class ComponentTests: XCTestCase {
             .bold()
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <p class="text size:large transformation:uppercase color:blue weight:bold"></p>
                        """
@@ -330,7 +330,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <progress class="progress"></progress>
                        """
@@ -349,7 +349,7 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <pre class="snippet hightlight:html">\
                        <p>&lt;div&gt;</p>\
@@ -366,7 +366,7 @@ final class ComponentTests: XCTestCase {
             Toggle(name: "name")
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <label tabindex="0" class="toggle">\
                        <input type="checkbox" id="name" name="name">\

@@ -50,7 +50,7 @@ final class ContextTests: XCTestCase {
         
         let context = ChildContext(headline: "test")
         
-        XCTAssertEqual(renderer.render(view: ChildView(context: context)),
+        XCTAssertEqual(try renderer.render(view: ChildView(context: context)),
                        """
                        <section>\
                        <h2>test</h2>\
@@ -63,7 +63,7 @@ final class ContextTests: XCTestCase {
         
         let context = ParentContext(category: "test", viewContext: .init(headline: "test"))
         
-        XCTAssertEqual(renderer.render(view: ParentView(context: context)),
+        XCTAssertEqual(try renderer.render(view: ParentView(context: context)),
                        """
                        <h1>test</h1>\
                        <section>\

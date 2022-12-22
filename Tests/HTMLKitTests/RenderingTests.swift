@@ -28,7 +28,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <!DOCTYPE html>\
                        <html>\
@@ -50,7 +50,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div>\
                        <p>text</p>\
@@ -65,7 +65,7 @@ final class RenderingTests: XCTestCase {
             Input()
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <input>
                        """
@@ -78,7 +78,7 @@ final class RenderingTests: XCTestCase {
             Comment("text")
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <!--text-->
                        """
@@ -95,7 +95,7 @@ final class RenderingTests: XCTestCase {
             .class("class")
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <p class="class">text</p>
                        """
@@ -112,7 +112,7 @@ final class RenderingTests: XCTestCase {
             .class("cl_ass")
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <p class="cl_ass">text</p>
                        """
@@ -128,7 +128,7 @@ final class RenderingTests: XCTestCase {
             .class("cl-ass")
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <p class="cl-ass">text</p>
                        """
@@ -145,7 +145,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div>\
                        <p>text</p>\
@@ -163,7 +163,7 @@ final class RenderingTests: XCTestCase {
             .class("cl'ass")
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <p class="cl'ass">text</p>
                        """
@@ -183,7 +183,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div class="modified"></div>
                        """
@@ -203,7 +203,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div class="unmodified"></div>
                        """
@@ -221,7 +221,7 @@ final class RenderingTests: XCTestCase {
                 }
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <input placeholder="test">
                        """
@@ -239,7 +239,7 @@ final class RenderingTests: XCTestCase {
             .custom(key: "key", value: "value")
         }
         
-        XCTAssertEqual(renderer.render(view: view),
+        XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div key="value">\
                        <p>text</p>\

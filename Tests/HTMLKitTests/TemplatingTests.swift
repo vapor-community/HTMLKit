@@ -46,7 +46,7 @@ final class TemplatingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: ParentView(context: "Hello World!")),
+        XCTAssertEqual(try renderer.render(view: ParentView(context: "Hello World!")),
                        """
                        <!DOCTYPE html>\
                        <html>\
@@ -103,7 +103,7 @@ final class TemplatingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: ChildView(context: "Hello World!")),
+        XCTAssertEqual(try renderer.render(view: ChildView(context: "Hello World!")),
                        """
                        <!DOCTYPE html>\
                        <html>\
@@ -164,7 +164,7 @@ final class TemplatingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(renderer.render(view: ChildView(context: "Hello World!")),
+        XCTAssertEqual(try renderer.render(view: ChildView(context: "Hello World!")),
                        """
                        <!DOCTYPE html>\
                        <html>\
