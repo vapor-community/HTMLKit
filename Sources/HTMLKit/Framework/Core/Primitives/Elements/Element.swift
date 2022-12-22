@@ -4,5 +4,5 @@
  */
 
 /// A type that represents any html-element.
-public protocol AnyElement: Content {
+public protocol Element: Content {
 }
