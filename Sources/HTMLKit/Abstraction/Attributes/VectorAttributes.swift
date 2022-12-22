@@ -12,7 +12,7 @@ import OrderedCollections
 public typealias GlobalVectorAttributes = IdentifierAttribute & TabulatorAttribute & ClassAttribute & StyleAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute
 
 /// The protocol provides the element with the draw handler.
-public protocol DrawAttribute: AnyAttribute {
+public protocol DrawAttribute: Attribute {
 
     /// The function represents the html-attribute 'd'.
     ///
@@ -36,7 +36,7 @@ extension DrawAttribute where Self: ContentNode {
 
 
 /// The protocol provides the element with the fill handler.
-public protocol FillAttribute: AnyAttribute {
+public protocol FillAttribute: Attribute {
     
     /// The function represents the html-attribute 'fill'.
     ///
@@ -59,7 +59,7 @@ extension FillAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the fill-opacity handler.
-public protocol FillOpacityAttribute: AnyAttribute {
+public protocol FillOpacityAttribute: Attribute {
     
     /// The function represents the html-attribute 'fill-opacity"'.
     ///
@@ -82,7 +82,7 @@ extension FillOpacityAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the stroke handler.
-public protocol StrokeAttribute: AnyAttribute {
+public protocol StrokeAttribute: Attribute {
     
     /// The function represents the html-attribute 'stroke'.
     ///
@@ -105,7 +105,7 @@ extension StrokeAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the stroke-width handler.
-public protocol StrokeWidthAttribute: AnyAttribute {
+public protocol StrokeWidthAttribute: Attribute {
     
     /// The function represents the html-attribute 'stroke-width'.
     ///
@@ -128,7 +128,7 @@ extension StrokeWidthAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the stroke-opacity handler.
-public protocol StrokeOpacityAttribute: AnyAttribute {
+public protocol StrokeOpacityAttribute: Attribute {
     
     /// The function represents the html-attribute 'stroke-opacity'.
     ///
@@ -151,7 +151,7 @@ extension StrokeOpacityAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the stroke-linecap handler.
-public protocol StrokeLineCapAttribute: AnyAttribute {
+public protocol StrokeLineCapAttribute: Attribute {
     
     /// The function represents the html-attribute 'stroke-linecap'.
     ///
@@ -174,7 +174,7 @@ extension StrokeLineCapAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the stroke-linejoin handler.
-public protocol StrokeLineJoinAttribute: AnyAttribute {
+public protocol StrokeLineJoinAttribute: Attribute {
     
     /// The function represents the html-attribute 'stroke-linejoin'.
     ///
@@ -197,7 +197,7 @@ extension StrokeLineJoinAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the radius handler.
-public protocol RadiusAttribute: AnyAttribute {
+public protocol RadiusAttribute: Attribute {
     
     /// The function represents the html-attribute 'r'.
     ///
@@ -220,7 +220,7 @@ extension RadiusAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the radius handler.
-public protocol PositionPointAttribute: AnyAttribute {
+public protocol PositionPointAttribute: Attribute {
     
     /// The function represents the html-attribute 'x' and 'y'.
     ///
@@ -251,7 +251,7 @@ extension PositionPointAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the radius handler.
-public protocol RadiusPointAttribute: AnyAttribute {
+public protocol RadiusPointAttribute: Attribute {
     
     /// The function represents the html-attribute 'rx' and 'ry'.
     ///
@@ -282,7 +282,7 @@ extension RadiusPointAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the radius handler.
-public protocol CenterPointAttribute: AnyAttribute {
+public protocol CenterPointAttribute: Attribute {
     
     /// The function represents the html-attribute 'cx' and 'cy'.
     ///
@@ -313,7 +313,7 @@ extension CenterPointAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the viewbox handler.
-public protocol ViewBoxAttribute: AnyAttribute {
+public protocol ViewBoxAttribute: Attribute {
     
     /// The function represents the html-attribute 'viewbox'.
     ///

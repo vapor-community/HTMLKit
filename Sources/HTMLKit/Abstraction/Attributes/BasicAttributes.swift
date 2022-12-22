@@ -12,7 +12,7 @@ import OrderedCollections
 public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute
 
 /// The protocol provides the element with the accesskey handler.
-public protocol AccessKeyAttribute: AnyAttribute {
+public protocol AccessKeyAttribute: Attribute {
     
     /// The function represents the html-attribute 'accesskey'.
     ///
@@ -45,7 +45,7 @@ extension AccessKeyAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the accept handler.
-public protocol AcceptAttribute: AnyAttribute {
+public protocol AcceptAttribute: Attribute {
     
     /// The function represents the html-attribute 'accept'.
     ///
@@ -75,7 +75,7 @@ extension AcceptAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the action handler.
-public protocol ActionAttribute: AnyAttribute {
+public protocol ActionAttribute: Attribute {
     
     /// The function represents the html-attribute 'action'.
     ///
@@ -105,7 +105,7 @@ extension ActionAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the alternate handler.
-public protocol AlternateAttribute: AnyAttribute {
+public protocol AlternateAttribute: Attribute {
     
     /// The function represents the html-attribute 'alt'.
     ///
@@ -135,7 +135,7 @@ extension AlternateAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the asynchronously handler.
-public protocol AsynchronouslyAttribute: AnyAttribute {
+public protocol AsynchronouslyAttribute: Attribute {
     
     /// The function represents the html-attribute 'async'.
     ///
@@ -165,7 +165,7 @@ extension AsynchronouslyAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the autocapitalize handler.
-public protocol AutocapitalizeAttribute: AnyAttribute {
+public protocol AutocapitalizeAttribute: Attribute {
     
     /// The function represents the html-attribute 'autocapitalize'.
     ///
@@ -195,7 +195,7 @@ extension AutocapitalizeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the autocomplete handler.
-public protocol AutocompleteAttribute: AnyAttribute {
+public protocol AutocompleteAttribute: Attribute {
     
     /// The function represents the html-attribute 'autocomplete'.
     ///
@@ -225,7 +225,7 @@ extension AutocompleteAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the autofocus handler.
-public protocol AutofocusAttribute: AnyAttribute {
+public protocol AutofocusAttribute: Attribute {
     
     /// The function represents the html-attribute 'autofocus'.
     ///
@@ -255,7 +255,7 @@ extension AutofocusAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the autoplay handler.
-public protocol AutoplayAttribute: AnyAttribute {
+public protocol AutoplayAttribute: Attribute {
     
     /// The function represents the html-attribute 'autoplay'.
     ///
@@ -285,7 +285,7 @@ extension AutoplayAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the charset handler.
-public protocol CharsetAttribute: AnyAttribute {
+public protocol CharsetAttribute: Attribute {
     
     /// The function represents the html-attribute 'charset'.
     ///
@@ -315,7 +315,7 @@ extension CharsetAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the checked handler.
-public protocol CheckedAttribute: AnyAttribute {
+public protocol CheckedAttribute: Attribute {
     
     /// The function represents the html-attribute 'checked'.
     ///
@@ -345,7 +345,7 @@ extension CheckedAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the cite handler.
-public protocol CiteAttribute: AnyAttribute {
+public protocol CiteAttribute: Attribute {
     
     /// The function represents the html-attribute 'cite'.
     ///
@@ -375,7 +375,7 @@ extension CiteAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the class handler.
-public protocol ClassAttribute: AnyAttribute{
+public protocol ClassAttribute: Attribute{
     
     /// The function represents the html-attribute 'class'.
     ///
@@ -405,7 +405,7 @@ extension ClassAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the columns handler.
-public protocol ColumnsAttribute: AnyAttribute {
+public protocol ColumnsAttribute: Attribute {
     
     /// The function represents the html-attribute 'cols'.
     ///
@@ -435,7 +435,7 @@ extension ColumnsAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the columnspan handler.
-public protocol ColumnSpanAttribute: AnyAttribute {
+public protocol ColumnSpanAttribute: Attribute {
     
     /// The function represents the html-attribute 'colspan'.
     ///
@@ -465,7 +465,7 @@ extension ColumnSpanAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the content handler.
-public protocol ContentAttribute: AnyAttribute {
+public protocol ContentAttribute: Attribute {
     
     /// The function represents the html-attribute 'content'.
     ///
@@ -495,7 +495,7 @@ extension ContentAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the iseditable handler.
-public protocol EditAttribute: AnyAttribute {
+public protocol EditAttribute: Attribute {
     
     /// The function represents the html-attribute 'contenteditable'.
     ///
@@ -525,7 +525,7 @@ extension EditAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the controls handler.
-public protocol ControlsAttribute: AnyAttribute {
+public protocol ControlsAttribute: Attribute {
     
     /// The function represents the html-attribute 'controls'.
     ///
@@ -555,7 +555,7 @@ extension ControlsAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the coordinates handler.
-public protocol CoordinatesAttribute: AnyAttribute {
+public protocol CoordinatesAttribute: Attribute {
     
     /// The function represents the html-attribute 'coordinates'.
     ///
@@ -585,7 +585,7 @@ extension CoordinatesAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the date handler.
-public protocol DataAttribute: AnyAttribute{
+public protocol DataAttribute: Attribute{
     
     /// The function represents the html-attribute 'data'.
     ///
@@ -615,7 +615,7 @@ extension DataAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the datetime handler.
-public protocol DateTimeAttribute: AnyAttribute {
+public protocol DateTimeAttribute: Attribute {
     
     /// The function represents the html-attribute 'datetime'.
     ///
@@ -645,7 +645,7 @@ extension DateTimeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the default handler.
-public protocol DefaultAttribute: AnyAttribute {
+public protocol DefaultAttribute: Attribute {
     
     /// The function represents the html-attribute 'default'.
     ///
@@ -675,7 +675,7 @@ extension DefaultAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the defer handler.
-public protocol DeferAttribute: AnyAttribute {
+public protocol DeferAttribute: Attribute {
     
     /// The function represents the html-attribute 'defer'.
     ///
@@ -705,7 +705,7 @@ extension DeferAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the direction handler.
-public protocol DirectionAttribute: AnyAttribute {
+public protocol DirectionAttribute: Attribute {
 
     /// The function represents the html-attribute 'dir'.
     ///
@@ -737,7 +737,7 @@ extension DirectionAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the disabled handler
-public protocol DisabledAttribute: AnyAttribute {
+public protocol DisabledAttribute: Attribute {
     
     /// The function represents the html-attribute 'disabled'.
     ///
@@ -767,7 +767,7 @@ extension DisabledAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the download handler.
-public protocol DownloadAttribute: AnyAttribute {
+public protocol DownloadAttribute: Attribute {
     
     /// The function represents the html-attribute 'download'.
     ///
@@ -797,7 +797,7 @@ extension DownloadAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the isdraggable handler.
-public protocol DragAttribute: AnyAttribute {
+public protocol DragAttribute: Attribute {
  
     /// The function represents the html-attribute 'draggable'.
     ///
@@ -827,7 +827,7 @@ extension DragAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the encoding handler.
-public protocol EncodingAttribute: AnyAttribute {
+public protocol EncodingAttribute: Attribute {
     
     /// The function represents the html-attribute 'enctype'.
     ///
@@ -859,7 +859,7 @@ extension EncodingAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the enterkeyhint handler.
-public protocol EnterKeyHintAttribute: AnyAttribute {
+public protocol EnterKeyHintAttribute: Attribute {
     
     /// The function represents the html-attribute 'enterkeyhint'.
     ///
@@ -891,7 +891,7 @@ extension EnterKeyHintAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the for handler.
-public protocol ForAttribute: AnyAttribute {
+public protocol ForAttribute: Attribute {
     
     /// The function represents the html-attribute 'for'.
     ///
@@ -923,7 +923,7 @@ extension ForAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the form handler.
-public protocol FormAttribute: AnyAttribute {
+public protocol FormAttribute: Attribute {
     
     /// The function represents the html-attribute 'form'.
     ///
@@ -953,7 +953,7 @@ extension FormAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the formaction handler.
-public protocol FormActionAttribute: AnyAttribute {
+public protocol FormActionAttribute: Attribute {
     
     /// The function represents the html-attribute 'formaction'.
     ///
@@ -985,7 +985,7 @@ extension FormActionAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the http-equiv handler.
-public protocol EquivalentAttribute: AnyAttribute {
+public protocol EquivalentAttribute: Attribute {
     
     /// The function represents the html-attribute 'http-equiv'.
     ///
@@ -1017,7 +1017,7 @@ extension EquivalentAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the headers handler.
-public protocol HeaderAttribute: AnyAttribute {
+public protocol HeaderAttribute: Attribute {
     
     /// The function represents the html-attribute 'headers'.
     ///
@@ -1049,7 +1049,7 @@ extension HeaderAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the height handler.
-public protocol HeightAttribute: AnyAttribute {
+public protocol HeightAttribute: Attribute {
     
     /// The function represents the html-attribute 'height'.
     ///
@@ -1081,7 +1081,7 @@ extension HeightAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with hidden handler.
-public protocol HiddenAttribute: AnyAttribute {
+public protocol HiddenAttribute: Attribute {
  
     /// The function represents the html-attribute 'hidden'.
     ///
@@ -1111,7 +1111,7 @@ extension HiddenAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with high handler.
-public protocol HighAttribute: AnyAttribute {
+public protocol HighAttribute: Attribute {
     
     /// The function represents the html-attribute 'high'.
     ///
@@ -1143,7 +1143,7 @@ extension HighAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with reference handler.
-public protocol ReferenceAttribute: AnyAttribute {
+public protocol ReferenceAttribute: Attribute {
     
     /// The function represents the html-attribute 'href'.
     ///
@@ -1175,7 +1175,7 @@ extension ReferenceAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the language reference handler.
-public protocol ReferenceLanguageAttribute: AnyAttribute {
+public protocol ReferenceLanguageAttribute: Attribute {
     
     /// The function represents the html-attribute 'hreflang'.
     ///
@@ -1207,7 +1207,7 @@ extension ReferenceLanguageAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the id handler.
-public protocol IdentifierAttribute: AnyAttribute {
+public protocol IdentifierAttribute: Attribute {
  
     /// The function represents the html-attribute 'id'.
     ///
@@ -1239,7 +1239,7 @@ extension IdentifierAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the ismap handler.
-public protocol IsMapAttribute: AnyAttribute {
+public protocol IsMapAttribute: Attribute {
  
     /// The function represents the html-attribute 'ismap'.
     ///
@@ -1269,7 +1269,7 @@ extension IsMapAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the inputmode handler.
-public protocol InputModeAttribute: AnyAttribute {
+public protocol InputModeAttribute: Attribute {
  
     /// The function represents the html-attribute 'inputmode'.
     ///
@@ -1299,7 +1299,7 @@ extension InputModeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the inputmode handler.
-public protocol IsAttribute: AnyAttribute {
+public protocol IsAttribute: Attribute {
  
     /// The function represents the html-attribute 'is'.
     ///
@@ -1329,7 +1329,7 @@ extension IsAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the itemid handler.
-public protocol ItemIdAttribute: AnyAttribute {
+public protocol ItemIdAttribute: Attribute {
  
     /// The function represents the html-attribute 'itemid'.
     ///
@@ -1359,7 +1359,7 @@ extension ItemIdAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the itemproperty handler.
-public protocol ItemPropertyAttribute: AnyAttribute {
+public protocol ItemPropertyAttribute: Attribute {
  
     /// The function represents the html-attribute 'itemprop'.
     ///
@@ -1389,7 +1389,7 @@ extension ItemPropertyAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the itemreference handler.
-public protocol ItemReferenceAttribute: AnyAttribute {
+public protocol ItemReferenceAttribute: Attribute {
  
     /// The function represents the html-attribute 'itemref'.
     ///
@@ -1419,7 +1419,7 @@ extension ItemReferenceAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the itemscope handler.
-public protocol ItemScopeAttribute: AnyAttribute {
+public protocol ItemScopeAttribute: Attribute {
  
     /// The function represents the html-attribute 'itemscope'.
     ///
@@ -1449,7 +1449,7 @@ extension ItemScopeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the itemtype handler
-public protocol ItemTypeAttribute: AnyAttribute {
+public protocol ItemTypeAttribute: Attribute {
  
     /// The function represents the html-attribute 'itemtype'.
     ///
@@ -1479,7 +1479,7 @@ extension ItemTypeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the kind handler.
-public protocol KindAttribute: AnyAttribute {
+public protocol KindAttribute: Attribute {
     
     /// The function represents the html-attribute 'kind'.
     ///
@@ -1509,7 +1509,7 @@ extension KindAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the label handler.
-public protocol LabelAttribute: AnyAttribute {
+public protocol LabelAttribute: Attribute {
     
     /// The function represents the html-attribute 'label'.
     ///
@@ -1539,7 +1539,7 @@ extension LabelAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the language handler.
-public protocol LanguageAttribute: AnyAttribute {
+public protocol LanguageAttribute: Attribute {
     
     /// The function represents the html-attribute 'lang'.
     ///
@@ -1569,7 +1569,7 @@ extension LanguageAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the list handler.
-public protocol ListAttribute: AnyAttribute {
+public protocol ListAttribute: Attribute {
     
     /// The function represents the html-attribute 'list'.
     ///
@@ -1599,7 +1599,7 @@ extension ListAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the loop handler.
-public protocol LoopAttribute: AnyAttribute {
+public protocol LoopAttribute: Attribute {
     
     /// The function represents the html-attribute 'loop'.
     ///
@@ -1629,7 +1629,7 @@ extension LoopAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the low handler.
-public protocol LowAttribute: AnyAttribute {
+public protocol LowAttribute: Attribute {
     
     /// The function represents the html-attribute 'low'.
     ///
@@ -1659,7 +1659,7 @@ extension LowAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the maximumvalue handler.
-public protocol MaximumValueAttribute: AnyAttribute {
+public protocol MaximumValueAttribute: Attribute {
     
     associatedtype MaximumValueType
     
@@ -1691,7 +1691,7 @@ extension MaximumValueAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the maximumlength handler.
-public protocol MaximumLengthAttribute: AnyAttribute {
+public protocol MaximumLengthAttribute: Attribute {
     
     /// The function represents the html-attribute 'maxlength'.
     ///
@@ -1721,7 +1721,7 @@ extension MaximumLengthAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the media handler.
-public protocol MediaAttribute: AnyAttribute {
+public protocol MediaAttribute: Attribute {
     
     /// The function represents the html-attribute 'media'.
     ///
@@ -1751,7 +1751,7 @@ extension MediaAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the method handler.
-public protocol MethodAttribute: AnyAttribute {
+public protocol MethodAttribute: Attribute {
     
     /// The function represents the html-attribute 'method'.
     ///
@@ -1781,7 +1781,7 @@ extension MethodAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the minimumvalue handler.
-public protocol MinimumValueAttribute: AnyAttribute {
+public protocol MinimumValueAttribute: Attribute {
     
     associatedtype MinimumValueType
     
@@ -1813,7 +1813,7 @@ extension MinimumValueAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the minimumlength handler.
-public protocol MinimumLengthAttribute: AnyAttribute {
+public protocol MinimumLengthAttribute: Attribute {
     
     /// The function represents the html-attribute 'minlength'.
     ///
@@ -1843,7 +1843,7 @@ extension MinimumLengthAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the multiple handler.
-public protocol MultipleAttribute: AnyAttribute {
+public protocol MultipleAttribute: Attribute {
     
     /// The function represents the html-attribute 'multiple'.
     ///
@@ -1873,7 +1873,7 @@ extension MultipleAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the muted handler.
-public protocol MutedAttribute: AnyAttribute {
+public protocol MutedAttribute: Attribute {
     
     /// The function represents the html-attribute 'muted'.
     ///
@@ -1903,7 +1903,7 @@ extension MutedAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the name handler.
-public protocol NameAttribute: AnyAttribute {
+public protocol NameAttribute: Attribute {
 
     associatedtype NameValue
     
@@ -1935,7 +1935,7 @@ extension NameAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the nonce handler.
-public protocol NonceAttribute: AnyAttribute {
+public protocol NonceAttribute: Attribute {
     
     /// The function represents the html-attribute 'nonce'.
     ///
@@ -1965,7 +1965,7 @@ extension NonceAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the novalidate handler.
-public protocol NoValidateAttribute: AnyAttribute {
+public protocol NoValidateAttribute: Attribute {
 
     /// The function represents the html-attribute 'novalidate'.
     ///
@@ -1995,7 +1995,7 @@ extension NoValidateAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the open handler.
-public protocol OpenAttribute: AnyAttribute {
+public protocol OpenAttribute: Attribute {
     
     /// The function represents the html-attribute 'open'.
     ///
@@ -2025,7 +2025,7 @@ extension OpenAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the optimum handler.
-public protocol OptimumAttribute: AnyAttribute {
+public protocol OptimumAttribute: Attribute {
     
     /// The function represents the html-attribute 'optimum'.
     ///
@@ -2055,7 +2055,7 @@ extension OptimumAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the pattern handler.
-public protocol PatternAttribute: AnyAttribute {
+public protocol PatternAttribute: Attribute {
     
     /// The function represents the html-attribute 'pattern'.
     ///
@@ -2085,7 +2085,7 @@ extension PatternAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the part handler.
-public protocol PartAttribute: AnyAttribute {
+public protocol PartAttribute: Attribute {
     
     /// The function represents the html-attribute 'part'.
     ///
@@ -2115,7 +2115,7 @@ extension PartAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the ping handler.
-public protocol PingAttribute: AnyAttribute {
+public protocol PingAttribute: Attribute {
     
     /// The function represents the html-attribute 'ping'.
     ///
@@ -2145,7 +2145,7 @@ extension PingAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the placeholder handler.
-public protocol PlaceholderAttribute: AnyAttribute {
+public protocol PlaceholderAttribute: Attribute {
     
     /// The function represents the html-attribute 'placeholder'.
     ///
@@ -2175,7 +2175,7 @@ extension PlaceholderAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the poster handler.
-public protocol PosterAttribute: AnyAttribute {
+public protocol PosterAttribute: Attribute {
     
     /// The function represents the html-attribute 'poster'.
     ///
@@ -2205,7 +2205,7 @@ extension PosterAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the preload handler.
-public protocol PreloadAttribute: AnyAttribute {
+public protocol PreloadAttribute: Attribute {
     
     /// The function represents the html-attribute 'preload'.
     ///
@@ -2235,7 +2235,7 @@ extension PreloadAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the readonly handler.
-public protocol ReadyOnlyAttribute: AnyAttribute {
+public protocol ReadyOnlyAttribute: Attribute {
     
     /// The function represents the html-attribute 'readonly'.
     ///
@@ -2265,7 +2265,7 @@ extension ReadyOnlyAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the referrerpolicy handler.
-public protocol ReferrerPolicyAttribute: AnyAttribute {
+public protocol ReferrerPolicyAttribute: Attribute {
     
     /// The function represents the html-attribute 'referrerpolicy'.
     ///
@@ -2295,7 +2295,7 @@ extension ReferrerPolicyAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the relationship handler.
-public protocol RelationshipAttribute: AnyAttribute {
+public protocol RelationshipAttribute: Attribute {
     
     /// The function represents the html-attribute 'rel'.
     ///
@@ -2325,7 +2325,7 @@ extension RelationshipAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the required handler.
-public protocol RequiredAttribute: AnyAttribute {
+public protocol RequiredAttribute: Attribute {
     
     /// The function represents the html-attribute 'required'.
     ///
@@ -2355,7 +2355,7 @@ extension RequiredAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the reversed handler.
-public protocol ReversedAttribute: AnyAttribute {
+public protocol ReversedAttribute: Attribute {
     
     /// The function represents the html-attribute 'reversed'.
     ///
@@ -2385,7 +2385,7 @@ extension ReversedAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the role handler.
-public protocol RoleAttribute: AnyAttribute {
+public protocol RoleAttribute: Attribute {
     
     /// The function represents the html-attribute 'role'.
     ///
@@ -2415,7 +2415,7 @@ extension RoleAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the rows handler.
-public protocol RowsAttribute: AnyAttribute {
+public protocol RowsAttribute: Attribute {
     
     /// The function represents the html-attribute 'rows'.
     ///
@@ -2445,7 +2445,7 @@ extension RowsAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the rowspan handler.
-public protocol RowSpanAttribute: AnyAttribute {
+public protocol RowSpanAttribute: Attribute {
     
     /// The function represents the html-attribute 'rowspan'.
     ///
@@ -2475,7 +2475,7 @@ extension RowSpanAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the sandbox handler.
-public protocol SandboxAttribute: AnyAttribute {
+public protocol SandboxAttribute: Attribute {
     
     /// The function represents the html-attribute 'sandbox'.
     ///
@@ -2505,7 +2505,7 @@ extension SandboxAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the scope handler.
-public protocol ScopeAttribute: AnyAttribute {
+public protocol ScopeAttribute: Attribute {
     
     /// The function represents the html-attribute 'scope'.
     ///
@@ -2535,7 +2535,7 @@ extension ScopeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the shape handler.
-public protocol ShapeAttribute: AnyAttribute {
+public protocol ShapeAttribute: Attribute {
     
     /// The function represents the html-attribute 'shape'.
     ///
@@ -2565,7 +2565,7 @@ extension ShapeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the size handler.
-public protocol SizeAttribute: AnyAttribute {
+public protocol SizeAttribute: Attribute {
     
     /// The function represents the html-attribute 'size'.
     ///
@@ -2595,7 +2595,7 @@ extension SizeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the sizes handler.
-public protocol SizesAttribute: AnyAttribute {
+public protocol SizesAttribute: Attribute {
     
     /// The function represents the html-attribute 'sizes'.
     ///
@@ -2625,7 +2625,7 @@ extension SizesAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the slot handler.
-public protocol SlotAttribute: AnyAttribute {
+public protocol SlotAttribute: Attribute {
     
     /// The function represents the html-attribute 'slot'.
     ///
@@ -2655,7 +2655,7 @@ extension SlotAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the span handler.
-public protocol SpanAttribute: AnyAttribute {
+public protocol SpanAttribute: Attribute {
     
     /// The function represents the html-attribute 'span'.
     ///
@@ -2685,7 +2685,7 @@ extension SpanAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the hasspellcheck handler.
-public protocol SpellCheckAttribute: AnyAttribute {
+public protocol SpellCheckAttribute: Attribute {
  
     /// The function represents the html-attribute 'spellcheck'.
     ///
@@ -2715,7 +2715,7 @@ extension SpellCheckAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the source handler.
-public protocol SourceAttribute: AnyAttribute {
+public protocol SourceAttribute: Attribute {
     
     /// The function represents the html-attribute 'src'.
     ///
@@ -2745,7 +2745,7 @@ extension SourceAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the start handler.
-public protocol StartAttribute: AnyAttribute {
+public protocol StartAttribute: Attribute {
     
     /// The function represents the html-attribute 'start'.
     ///
@@ -2775,7 +2775,7 @@ extension StartAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the step handler.
-public protocol StepAttribute: AnyAttribute {
+public protocol StepAttribute: Attribute {
     
     /// The function represents the html-attribute 'step'.
     ///
@@ -2805,7 +2805,7 @@ extension StepAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the style handler.
-public protocol StyleAttribute: AnyAttribute {
+public protocol StyleAttribute: Attribute {
     
     /// The function represents the html-attribute 'style'.
     ///
@@ -2835,7 +2835,7 @@ extension StyleAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the tabindex handler.
-public protocol TabulatorAttribute: AnyAttribute {
+public protocol TabulatorAttribute: Attribute {
  
     /// The function represents the html-attribute 'tabindex'.
     ///
@@ -2865,7 +2865,7 @@ extension TabulatorAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the target handler.
-public protocol TargetAttribute: AnyAttribute {
+public protocol TargetAttribute: Attribute {
     
     /// The function represents the html-attribute 'target'.
     ///
@@ -2895,7 +2895,7 @@ extension TargetAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the title handler.
-public protocol TitleAttribute: AnyAttribute {
+public protocol TitleAttribute: Attribute {
  
     /// The function represents the html-attribute 'title'.
     ///
@@ -2925,7 +2925,7 @@ extension TitleAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the translate handler.
-public protocol TranslateAttribute: AnyAttribute {
+public protocol TranslateAttribute: Attribute {
  
     /// The function represents the html-attribute 'translate'.
     ///
@@ -2955,7 +2955,7 @@ extension TranslateAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the type handler.
-public protocol TypeAttribute: AnyAttribute {
+public protocol TypeAttribute: Attribute {
 
     associatedtype TypeValue
     
@@ -2987,7 +2987,7 @@ extension TypeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the value handler.
-public protocol ValueAttribute: AnyAttribute {
+public protocol ValueAttribute: Attribute {
     
     /// The function represents the html-attribute 'value'.
     ///
@@ -3017,7 +3017,7 @@ extension ValueAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the width handler.
-public protocol WidthAttribute: AnyAttribute {
+public protocol WidthAttribute: Attribute {
     
     /// The function represents the html-attribute 'width'.
     ///
@@ -3047,7 +3047,7 @@ extension WidthAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the wrap handler.
-public protocol WrapAttribute: AnyAttribute {
+public protocol WrapAttribute: Attribute {
     
     /// The function represents the html-attribute 'wrap'.
     ///
@@ -3077,7 +3077,7 @@ extension WrapAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the property handler.
-public protocol PropertyAttribute: AnyAttribute {
+public protocol PropertyAttribute: Attribute {
     
     /// The function represents the html-attribute 'property'.
     ///
@@ -3109,7 +3109,7 @@ extension PropertyAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the selected handler.
-public protocol SelectedAttribute: AnyAttribute {
+public protocol SelectedAttribute: Attribute {
     
     /// The function represents the html-attribute 'selected'.
     ///

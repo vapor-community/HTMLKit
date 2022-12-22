@@ -12,7 +12,7 @@ import OrderedCollections
 public typealias GlobalEventAttributes = ClipboardEventAttribute & DragEventAttribute & WheelEventAttribute & KeyboardEventAttribute & MouseEventAttribute
 
 /// The protocol provides the element with event handler.
-public protocol WindowEventAttribute: AnyAttribute {
+public protocol WindowEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
     ///
@@ -23,7 +23,7 @@ public protocol WindowEventAttribute: AnyAttribute {
 }
 
 /// The protocol provides the element with event handler.
-public protocol FocusEventAttribute: AnyAttribute {
+public protocol FocusEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
     ///
@@ -34,7 +34,7 @@ public protocol FocusEventAttribute: AnyAttribute {
 }
 
 /// The protocol provides the element with event handler.
-public protocol PointerEventAttribute: AnyAttribute {
+public protocol PointerEventAttribute: Attribute {
 
     /// The function represents the html-attribute 'on'.
     ///
@@ -45,7 +45,7 @@ public protocol PointerEventAttribute: AnyAttribute {
 }
 
 /// The protocol provides the element with event handler.
-public protocol MouseEventAttribute: AnyAttribute {
+public protocol MouseEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
     ///
@@ -56,7 +56,7 @@ public protocol MouseEventAttribute: AnyAttribute {
 }
 
 /// The protocol provides the element with event handler.
-public protocol WheelEventAttribute: AnyAttribute {
+public protocol WheelEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
     ///
@@ -67,7 +67,7 @@ public protocol WheelEventAttribute: AnyAttribute {
 }
 
 /// The protocol provides the element with event handler.
-public protocol InputEventAttribute: AnyAttribute {
+public protocol InputEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
     ///
@@ -78,7 +78,7 @@ public protocol InputEventAttribute: AnyAttribute {
 }
 
 /// The protocol provides the element with event handler.
-public protocol KeyboardEventAttribute: AnyAttribute {
+public protocol KeyboardEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
     ///
@@ -89,7 +89,7 @@ public protocol KeyboardEventAttribute: AnyAttribute {
 }
 
 /// The protocol provides the element with event handler.
-public protocol DragEventAttribute: AnyAttribute {
+public protocol DragEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
     ///
@@ -100,7 +100,7 @@ public protocol DragEventAttribute: AnyAttribute {
 }
 
 /// The protocol provides the element with event handler.
-public protocol ClipboardEventAttribute: AnyAttribute {
+public protocol ClipboardEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
     ///
@@ -111,7 +111,7 @@ public protocol ClipboardEventAttribute: AnyAttribute {
 }
 
 /// The protocol provides the element with event handler.
-public protocol SelectionEventAttribute: AnyAttribute {
+public protocol SelectionEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
     ///
@@ -122,7 +122,7 @@ public protocol SelectionEventAttribute: AnyAttribute {
 }
 
 /// The protocol provides the element with event handler.r.
-public protocol MediaEventAttribute: AnyAttribute {
+public protocol MediaEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
     ///
@@ -133,7 +133,7 @@ public protocol MediaEventAttribute: AnyAttribute {
 }
 
 /// The protocol provides the element with event handler.
-public protocol FormEventAttribute: AnyAttribute {
+public protocol FormEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
     ///
@@ -144,7 +144,7 @@ public protocol FormEventAttribute: AnyAttribute {
 }
 
 /// The protocol provides the element with event handler.
-public protocol DetailEventAttribute: AnyAttribute {
+public protocol DetailEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
     ///

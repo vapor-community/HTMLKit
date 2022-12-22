@@ -9,7 +9,7 @@
 public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaActiveDescendantAttribute: AnyAttribute {
+public protocol AriaActiveDescendantAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-activedescendant'.
     ///
@@ -40,7 +40,7 @@ extension AriaActiveDescendantAttribute where Self: EmptyNode {
 
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaAtomicAttribute: AnyAttribute {
+public protocol AriaAtomicAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-atomic'.
     ///
@@ -70,7 +70,7 @@ extension AriaAtomicAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaAutoCompleteAttribute: AnyAttribute {
+public protocol AriaAutoCompleteAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-autocomplete'.
     ///
@@ -100,7 +100,7 @@ extension AriaAutoCompleteAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaBusyAttribute: AnyAttribute {
+public protocol AriaBusyAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-busy'.
     ///
@@ -130,7 +130,7 @@ extension AriaBusyAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaCheckedAttribute: AnyAttribute {
+public protocol AriaCheckedAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-checked'.
     ///
@@ -160,7 +160,7 @@ extension AriaCheckedAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaColumnCountAttribute: AnyAttribute {
+public protocol AriaColumnCountAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-colcount'.
     ///
@@ -190,7 +190,7 @@ extension AriaColumnCountAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaColumnIndexAttribute: AnyAttribute {
+public protocol AriaColumnIndexAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-colindex'.
     ///
@@ -220,7 +220,7 @@ extension AriaColumnIndexAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaColumnSpanAttribute: AnyAttribute {
+public protocol AriaColumnSpanAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-colspan'.
     ///
@@ -250,7 +250,7 @@ extension AriaColumnSpanAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaControlsAttribute: AnyAttribute {
+public protocol AriaControlsAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-controls'.
     ///
@@ -280,7 +280,7 @@ extension AriaControlsAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaCurrentAttribute: AnyAttribute {
+public protocol AriaCurrentAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-current'.
     ///
@@ -310,7 +310,7 @@ extension AriaCurrentAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaDescribedAttribute: AnyAttribute {
+public protocol AriaDescribedAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-describedby'.
     ///
@@ -340,7 +340,7 @@ extension AriaDescribedAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaDetailsAttribute: AnyAttribute {
+public protocol AriaDetailsAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-details'.
     ///
@@ -370,7 +370,7 @@ extension AriaDetailsAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaDisabledAttribute: AnyAttribute {
+public protocol AriaDisabledAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-disabled'.
     ///
@@ -400,7 +400,7 @@ extension AriaDisabledAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaErrorMessageAttribute: AnyAttribute {
+public protocol AriaErrorMessageAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-errormessage'.
     ///
@@ -430,7 +430,7 @@ extension AriaErrorMessageAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaExpandedAttribute: AnyAttribute {
+public protocol AriaExpandedAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-expanded'.
     ///
@@ -460,7 +460,7 @@ extension AriaExpandedAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaFlowToAttribute: AnyAttribute {
+public protocol AriaFlowToAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-flowto'.
     ///
@@ -490,7 +490,7 @@ extension AriaFlowToAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaPopupAttribute: AnyAttribute {
+public protocol AriaPopupAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-haspopup'.
     ///
@@ -520,7 +520,7 @@ extension AriaPopupAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaHiddenAttribute: AnyAttribute {
+public protocol AriaHiddenAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-hidden'.
     ///
@@ -550,7 +550,7 @@ extension AriaHiddenAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaInvalidAttribute: AnyAttribute {
+public protocol AriaInvalidAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-invalid'.
     ///
@@ -580,7 +580,7 @@ extension AriaInvalidAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaShortcutsAttribute: AnyAttribute {
+public protocol AriaShortcutsAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-keyshortcuts'.
     ///
@@ -610,7 +610,7 @@ extension AriaShortcutsAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaLabelAttribute: AnyAttribute {
+public protocol AriaLabelAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-label'.
     ///
@@ -640,7 +640,7 @@ extension AriaLabelAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaLabeledAttribute: AnyAttribute {
+public protocol AriaLabeledAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-labeledby'.
     ///
@@ -670,7 +670,7 @@ extension AriaLabeledAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaLevelAttribute: AnyAttribute {
+public protocol AriaLevelAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-level'.
     ///
@@ -700,7 +700,7 @@ extension AriaLevelAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaLiveAttribute: AnyAttribute {
+public protocol AriaLiveAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-live'.
     ///
@@ -730,7 +730,7 @@ extension AriaLiveAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaModalAttribute: AnyAttribute {
+public protocol AriaModalAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-modal'.
     ///
@@ -760,7 +760,7 @@ extension AriaModalAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaMultilineAttribute: AnyAttribute {
+public protocol AriaMultilineAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-multiline'.
     ///
@@ -790,7 +790,7 @@ extension AriaMultilineAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaMultiselectAttribute: AnyAttribute {
+public protocol AriaMultiselectAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-multiselectable'.
     ///
@@ -820,7 +820,7 @@ extension AriaMultiselectAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaOrientationAttribute: AnyAttribute {
+public protocol AriaOrientationAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-orientation'.
     ///
@@ -850,7 +850,7 @@ extension AriaOrientationAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaOwnsAttribute: AnyAttribute {
+public protocol AriaOwnsAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-owns'.
     ///
@@ -880,7 +880,7 @@ extension AriaOwnsAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaPlaceholderAttribute: AnyAttribute {
+public protocol AriaPlaceholderAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-placeholder'.
     ///
@@ -910,7 +910,7 @@ extension AriaPlaceholderAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaPositionInsetAttribute: AnyAttribute {
+public protocol AriaPositionInsetAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-posinset'.
     ///
@@ -940,7 +940,7 @@ extension AriaPositionInsetAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaPressedAttribute: AnyAttribute {
+public protocol AriaPressedAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-pressed'.
     ///
@@ -970,7 +970,7 @@ extension AriaPressedAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaReadonlyAttribute: AnyAttribute {
+public protocol AriaReadonlyAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-readonly'.
     ///
@@ -1000,7 +1000,7 @@ extension AriaReadonlyAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaRelevantAttribute: AnyAttribute {
+public protocol AriaRelevantAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-relevant'.
     ///
@@ -1030,7 +1030,7 @@ extension AriaRelevantAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaRequiredAttribute: AnyAttribute {
+public protocol AriaRequiredAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-required'.
     ///
@@ -1060,7 +1060,7 @@ extension AriaRequiredAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaRoleDescriptionAttribute: AnyAttribute {
+public protocol AriaRoleDescriptionAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-roledescription'.
     ///
@@ -1090,7 +1090,7 @@ extension AriaRoleDescriptionAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaRowCountAttribute: AnyAttribute {
+public protocol AriaRowCountAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-rowcount'.
     ///
@@ -1120,7 +1120,7 @@ extension AriaRowCountAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaRowIndexAttribute: AnyAttribute {
+public protocol AriaRowIndexAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-rowindex'.
     ///
@@ -1150,7 +1150,7 @@ extension AriaRowIndexAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaRowSpanAttribute: AnyAttribute {
+public protocol AriaRowSpanAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-rowspan'.
     ///
@@ -1180,7 +1180,7 @@ extension AriaRowSpanAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaSelectedAttribute: AnyAttribute {
+public protocol AriaSelectedAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-selected'.
     ///
@@ -1210,7 +1210,7 @@ extension AriaSelectedAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaSetSizeAttribute: AnyAttribute {
+public protocol AriaSetSizeAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-setsize'.
     ///
@@ -1240,7 +1240,7 @@ extension AriaSetSizeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaSortAttribute: AnyAttribute {
+public protocol AriaSortAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-sort'.
     ///
@@ -1270,7 +1270,7 @@ extension AriaSortAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaValueMaximumAttribute: AnyAttribute {
+public protocol AriaValueMaximumAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-valuemax'.
     ///
@@ -1300,7 +1300,7 @@ extension AriaValueMaximumAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaValueMininumAttribute: AnyAttribute {
+public protocol AriaValueMininumAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-valuemin'.
     ///
@@ -1330,7 +1330,7 @@ extension AriaValueMininumAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaValueNowAttribute: AnyAttribute {
+public protocol AriaValueNowAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-valuenow"'.
     ///
@@ -1360,7 +1360,7 @@ extension AriaValueNowAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with accessibility handler.
-public protocol AriaValueTextAttribute: AnyAttribute {
+public protocol AriaValueTextAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-valuetext'.
     ///
