@@ -59,8 +59,7 @@ final class ProviderTests: XCTestCase {
         
         struct TestView: HTMLKit.View {
             
-            @TemplateValue(TestContext.self)
-            var context
+            var context: TestContext
             
             var body: AnyContent {
                 Document(.html5)
@@ -86,13 +85,8 @@ final class ProviderTests: XCTestCase {
         
         defer { app.shutdown() }
         
-        app.views.use(.htmlkit)
-        
-        app.htmlkit.views.add(view: User.TestView())
-        app.htmlkit.views.add(view: Admin.TestView())
-        
         app.get("test") { request -> EventLoopFuture<Vapor.View> in
-            return request.view.render("HTMLKitVaporTests.ProviderTests.User.TestView")
+            return request.htmlkit.render(User.TestView())
         }
         
         try app.test(.GET, "test") { response in
@@ -119,11 +113,11 @@ final class ProviderTests: XCTestCase {
         
         defer { app.shutdown() }
         
-        app.htmlkit.views.add(view: User.TestView())
-        app.htmlkit.views.add(view: Admin.TestView())
-        
         app.get("test") { request -> EventLoopFuture<Vapor.View> in
-            return request.htmlkit.render("HTMLKitVaporTests.ProviderTests.Admin.TestView", TestContext(greeting: "Hello World"))
+            
+            let context = TestContext(greeting: "Hello World")
+            
+            return request.htmlkit.render(Admin.TestView(context: context))
         }
         
         try app.test(.GET, "test") { response in
@@ -151,11 +145,8 @@ final class ProviderTests: XCTestCase {
         
         defer { app.shutdown() }
         
-        app.htmlkit.views.add(view: User.TestView())
-        app.htmlkit.views.add(view: Admin.TestView())
-        
         app.get("test") { request async throws -> Vapor.View in
-            return try await request.htmlkit.render("HTMLKitVaporTests.ProviderTests.User.TestView")
+            return try await request.htmlkit.render(User.TestView())
         }
         
         try app.test(.GET, "test") { response in
@@ -187,17 +178,11 @@ final class ProviderTests: XCTestCase {
         
         defer { app.shutdown() }
         
-        app.views.use(.htmlkit)
-        
-        app.htmlkit.views.add(view: Visitor.TestView())
-        app.htmlkit.views.add(view: User.TestView())
-        app.htmlkit.views.add(view: Admin.TestView())
-        
         app.htmlkit.lingo.set(directory: currentDirectory)
         app.htmlkit.lingo.set(locale: .french)
         
         app.get("test") { request async throws -> Vapor.View in
-            return try await request.view.render("HTMLKitVaporTests.ProviderTests.Visitor.TestView")
+            return try await request.htmlkit.render(Visitor.TestView())
         }
         
         try app.test(.GET, "test") { response in

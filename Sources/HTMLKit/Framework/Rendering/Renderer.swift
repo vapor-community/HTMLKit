@@ -13,11 +13,8 @@ public class Renderer {
     private var lingo: Lingo?
 
     /// Initiates the renderer.
-    public init() {}
-    
-    /// Registers a localization.
-    public func add(localization: Localization) throws {
-        self.lingo = try Lingo(rootPath: localization.source, defaultLocale: localization.locale.rawValue)
+    public init(lingo: Lingo? = nil) {
+        self.lingo = lingo
     }
     
     /// Renders a view
