@@ -9,59 +9,97 @@ import Lingo
 /// A struct containing the different formulas for the different views.
 public class Renderer {
 
-    public enum Errors: LocalizedError {
-        
-        case unableToFindFormula
-
-        public var errorDescription: String? {
-            
-            switch self {
-            case .unableToFindFormula:
-                return "Unable to find a formula for the given view type"
-            }
-        }
-        
-        public var failureReason: String? {
-            return self.errorDescription ?? ""
-        }
-
-        public var recoverySuggestion: String? {
-            
-            switch self {
-            case .unableToFindFormula:
-                return "Remember to add the template to the renderer with .add(template: ) or .add(view: )"
-            }
-        }
-    }
-
     /// The localization to use when rendering.
     private var lingo: Lingo?
-    
-    /// The calendar to use when rendering dates.
-    public var calendar: Calendar
-    
-    /// The time zone to use when rendering dates.
-    public var timeZone: TimeZone
 
     /// Initiates the renderer.
-    public init(calendar: Calendar = .current, timeZone: TimeZone = .current) {
-        
-        self.calendar = calendar
-        self.timeZone = timeZone
-    }
+    public init() {}
     
     /// Registers a localization.
     public func add(localization: Localization) throws {
         self.lingo = try Lingo(rootPath: localization.source, defaultLocale: localization.locale.rawValue)
     }
-
-    /// Renders a formula.
-    public func render<T: AnyLayout>(layout: T.Type) throws -> String {
-        return ""
+    
+    /// Renders a view
+    public func render(view: some View) -> String {
+        
+        var result = ""
+        
+        if let contents = view.body as? [AnyContent] {
+            
+            for content in contents {
+                
+                if let element = content as? (any ContentNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? (any EmptyNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? (any DocumentNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? (any CommentNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? String {
+                    result += element
+                }
+            }
+        }
+        
+        return result
     }
     
-    /// Renders a formula.
-    public func render<T: AnyLayout, C>(layout: T.Type, with context: C) throws -> String {
-        return ""
+    /// Renders a content element
+    internal func render(element: some ContentNode) -> String {
+        
+        var result = ""
+        
+        if let contents = element.content as? [AnyContent] {
+            
+            for content in contents {
+                
+                if let element = content as? (any ContentNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? (any EmptyNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? (any DocumentNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? (any CommentNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? String {
+                    result += element
+                }
+            }
+        }
+        
+        return result
+    }
+    
+    /// Renders a empty element
+    internal func render(element: some EmptyNode) -> String {
+        return element.startTag
+    }
+    
+    /// Renders a document element
+    internal func render(element: some DocumentNode) -> String {
+        return element.startTag
+    }
+    
+    /// Renders a comment element
+    internal func render(element: some CommentNode) -> String {
+        return element.startTag + element.content + element.endTag
     }
 }
