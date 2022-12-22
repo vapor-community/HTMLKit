@@ -600,14 +600,6 @@ final class AttributesTests: XCTestCase {
         public func aria(roleDescription value: String) -> Tag {
             return mutate(ariaroledescription: value)
         }
-        
-        func prerender(_ formula: Formula) throws {
-            try self.build(formula)
-        }
-        
-        func render<T>(with manager: ContextManager<T>) throws -> String {
-            try self.build(with: manager)
-        }
     }
     
     var renderer = Renderer()

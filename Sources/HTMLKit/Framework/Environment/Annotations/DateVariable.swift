@@ -77,8 +77,4 @@ public struct DateVariable: AnyContent {
         
         return formatter.string(from: date)
     }
-
-    public func prerender(_ formula: Formula) throws {
-        formula.add(content: self)
-    }
 }

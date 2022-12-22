@@ -59,8 +59,6 @@ public class Renderer {
         
         let formula = Formula()
         
-        try layout.prerender(formula)
-        
         self.cache.upsert(formula: formula, for: ObjectIdentifier(T.self))
     }
     
@@ -71,21 +69,11 @@ public class Renderer {
 
     /// Renders a formula.
     public func render<T: AnyLayout>(layout: T.Type) throws -> String {
-        
-        guard let formula = self.cache.retrieve(identifier: ObjectIdentifier(layout)) else {
-            throw Errors.unableToFindFormula
-        }
-        
-        return try formula.render(with: (), lingo: lingo)
+        return ""
     }
     
     /// Renders a formula.
     public func render<T: AnyLayout, C>(layout: T.Type, with context: C) throws -> String {
-        
-        guard let formula = self.cache.retrieve(identifier: ObjectIdentifier(layout)) else {
-            throw Errors.unableToFindFormula
-        }
-        
-        return try formula.render(with: context, lingo: lingo)
+        return ""
     }
 }

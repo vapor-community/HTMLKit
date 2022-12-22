@@ -23,37 +23,6 @@ public struct Localized<B>: AnyContent where B: Encodable {
         self.key = key
         self.context = context
     }
-
-    public func prerender(_ formula: Formula) throws {
-        formula.add(content: self)
-    }
-
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        
-        guard let lingo = manager.lingo else {
-            throw Errors.missingLingoConfig
-        }
-        
-        let locale = manager.locale ?? lingo.defaultLocale
-        
-        if let value = try context?.value(from: manager) {
-            
-            guard let data = try? JSONEncoder().encode(value) else {
-                
-                print("-- ERROR: Not able to encode content when localizing \(key), in \(locale), with content: \(String(describing: context)).")
-                
-                return ""
-            }
-            
-            let dict = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
-            
-            return lingo.localize(key, locale: locale, interpolations: dict)
-            
-        } else {
-            
-            return lingo.localize(key, locale: locale)
-        }
-    }
 }
 
 extension Localized where B == NoData {

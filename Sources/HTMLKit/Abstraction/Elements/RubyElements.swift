@@ -287,17 +287,6 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-extension RubyText: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents nothing.
 ///
 /// ```html
@@ -556,16 +545,5 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
     
     public func aria(roleDescription value: String) -> RubyPronunciation {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension RubyPronunciation: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }

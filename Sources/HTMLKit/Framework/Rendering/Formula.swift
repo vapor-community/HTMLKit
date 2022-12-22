@@ -29,15 +29,4 @@ public class Formula {
     public func add<T: AnyContent>(content: T) {
         self.ingredients.append(content)
     }
-
-    public func render<T>(with context: T, lingo: Lingo?) throws -> String {
-        return try render(with: ContextManager(context: context, lingo: lingo))
-    }
-
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        
-        return try ingredients.reduce(into: "") { (result, ingridient) in
-            return result += try ingridient.render(with: manager)
-        }
-    }
 }

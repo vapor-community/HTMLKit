@@ -602,17 +602,6 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     }
 }
 
-extension Article: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a generic section of the document.
 ///
 /// ```html
@@ -672,59 +661,59 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func accessKey(_ value: Character) -> Section {
         return mutate(accesskey: value)
     }
-
+    
     public func autocapitalize(_ value: Values.Capitalization) -> Section {
         return mutate(autocapitalize: value.rawValue)
     }
-
+    
     public func autofocus() -> Section {
         return mutate(autofocus: "autofocus")
     }
-
+    
     public func `class`(_ value: String) -> Section {
         return mutate(class: value)
     }
-
+    
     public func isEditable(_ value: Bool) -> Section {
         return mutate(contenteditable: value)
     }
-
+    
     public func direction(_ value: Values.Direction) -> Section {
         return mutate(dir: value.rawValue)
     }
-
+    
     public func isDraggable(_ value: Bool) -> Section {
         return mutate(draggable: value)
     }
-
+    
     public func enterKeyHint(_ value: Values.Hint) -> Section {
         return mutate(enterkeyhint: value.rawValue)
     }
-
+    
     public func hidden() -> Section {
         return mutate(hidden: "hidden")
     }
-
+    
     public func inputMode(_ value: String) -> Section {
         return mutate(inputmode: value)
     }
-
+    
     public func `is`(_ value: String) -> Section {
         return mutate(is: value)
     }
-
+    
     public func itemId(_ value: String) -> Section {
         return mutate(itemid: value)
     }
-
+    
     public func itemProperty(_ value: String) -> Section {
         return mutate(itemprop: value)
     }
-
+    
     public func itemReference(_ value: String) -> Section {
         return mutate(itemref: value)
     }
-
+    
     public func itemScope(_ value: String) -> Section {
         return mutate(itemscope: value)
     }
@@ -732,7 +721,7 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func itemType(_ value: String) -> Section {
         return mutate(itemtype: value)
     }
-
+    
     public func id(_ value: String) -> Section {
         return mutate(id: value)
     }
@@ -740,11 +729,11 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func id(_ value: TemplateValue<String>) -> Section {
         return mutate(id: value.rawValue)
     }
-
+    
     public func language(_ value: Values.Language) -> Section {
         return mutate(lang: value.rawValue)
     }
-
+    
     public func nonce(_ value: String) -> Section {
         return mutate(nonce: value)
     }
@@ -752,23 +741,23 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func role(_ value: Values.Role) -> Section {
         return mutate(role: value.rawValue)
     }
-
+    
     public func hasSpellCheck(_ value: Bool) -> Section {
         return mutate(spellcheck: value)
     }
-
+    
     public func style(_ value: String) -> Section {
         return mutate(style: value)
     }
-
+    
     public func tabIndex(_ value: Int) -> Section {
         return mutate(tabindex: value)
     }
-
+    
     public func title(_ value: String) -> Section {
         return mutate(title: value)
     }
-
+    
     public func translate(_ value: Values.Decision) -> Section {
         return mutate(translate: value.rawValue)
     }
@@ -871,17 +860,6 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     
     public func aria(roleDescription value: String) -> Section {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Section: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -1146,17 +1124,6 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     }
 }
 
-extension Navigation: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element defines some content aside from the content it is placed in.
 ///
 /// ```html
@@ -1418,17 +1385,6 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-extension Aside: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a heading.
 ///
 /// ```html
@@ -1687,17 +1643,6 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func aria(roleDescription value: String) -> Heading1 {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Heading1: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -1973,17 +1918,6 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-extension Heading2: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 extension Heading2: Localizable {
     
     public init(_ localizedKey: String) {
@@ -2253,17 +2187,6 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func aria(roleDescription value: String) -> Heading3 {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Heading3: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -2539,17 +2462,6 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-extension Heading4: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 extension Heading4: Localizable {
     
     public init(_ localizedKey: String) {
@@ -2819,17 +2731,6 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func aria(roleDescription value: String) -> Heading5 {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Heading5: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -3105,17 +3006,6 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-extension Heading6: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 extension Heading6: Localizable {
     
     public init(_ localizedKey: String) {
@@ -3388,17 +3278,6 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     }
 }
 
-extension HeadingGroup: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a header.
 ///
 /// ```html
@@ -3657,17 +3536,6 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     
     public func aria(roleDescription value: String) -> Header {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Header: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -3932,17 +3800,6 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     }
 }
 
-extension Footer: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents the contact information.
 ///
 /// ```html
@@ -4204,17 +4061,6 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     }
 }
 
-extension Address: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element is used to define a paragraph.
 ///
 /// ```html
@@ -4473,17 +4319,6 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     
     public func aria(roleDescription value: String) -> Paragraph {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Paragraph: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -4754,17 +4589,6 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
     }
 }
 
-extension HorizontalRule: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a block of preformatted text.
 ///
 /// ```html
@@ -5023,17 +4847,6 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
     
     public func aria(roleDescription value: String) -> PreformattedText {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension PreformattedText: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -5299,17 +5112,6 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     
     public func aria(roleDescription value: String) -> Blockquote {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Blockquote: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -5597,17 +5399,6 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     }
 }
 
-extension OrderedList: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a list of items, where the order of the items is not important.
 ///
 /// ```html
@@ -5866,17 +5657,6 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     
     public func aria(roleDescription value: String) -> UnorderedList {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension UnorderedList: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -6141,17 +5921,6 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
     }
 }
 
-extension DescriptionList: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element can thus be used to annotate illustrations, diagrams, photos, code listings.
 ///
 /// ```html
@@ -6410,17 +6179,6 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     
     public func aria(roleDescription value: String) -> Figure {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Figure: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -6725,17 +6483,6 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     }
 }
 
-extension Anchor: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 extension Anchor: Localizable {
     
     public init(_ localizedKey: String) {
@@ -7008,17 +6755,6 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-extension Emphasize: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element provides strong typographic emphasis.
 ///
 /// ```html
@@ -7277,17 +7013,6 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     
     public func aria(roleDescription value: String) -> Strong {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Strong: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -7552,17 +7277,6 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-extension Small: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 extension Small: Localizable {
     
     public init(_ localizedKey: String) {
@@ -7633,59 +7347,59 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
     public func accessKey(_ value: Character) -> StrikeThrough {
         return mutate(accesskey: value)
     }
-
+    
     public func autocapitalize(_ value: Values.Capitalization) -> StrikeThrough {
         return mutate(autocapitalize: value.rawValue)
     }
-
+    
     public func autofocus() -> StrikeThrough {
         return mutate(autofocus: "autofocus")
     }
-
+    
     public func `class`(_ value: String) -> StrikeThrough {
         return mutate(class: value)
     }
-
+    
     public func isEditable(_ value: Bool) -> StrikeThrough {
         return mutate(contenteditable: value)
     }
-
+    
     public func direction(_ value: Values.Direction) -> StrikeThrough {
         return mutate(dir: value.rawValue)
     }
-
+    
     public func isDraggable(_ value: Bool) -> StrikeThrough {
         return mutate(draggable: value)
     }
-
+    
     public func enterKeyHint(_ value: Values.Hint) -> StrikeThrough {
         return mutate(enterkeyhint: value.rawValue)
     }
-
+    
     public func hidden() -> StrikeThrough {
         return mutate(hidden: "hidden")
     }
-
+    
     public func inputMode(_ value: String) -> StrikeThrough {
         return mutate(inputmode: value)
     }
-
+    
     public func `is`(_ value: String) -> StrikeThrough {
         return mutate(is: value)
     }
-
+    
     public func itemId(_ value: String) -> StrikeThrough {
         return mutate(itemid: value)
     }
-
+    
     public func itemProperty(_ value: String) -> StrikeThrough {
         return mutate(itemprop: value)
     }
-
+    
     public func itemReference(_ value: String) -> StrikeThrough {
         return mutate(itemref: value)
     }
-
+    
     public func itemScope(_ value: String) -> StrikeThrough {
         return mutate(itemscope: value)
     }
@@ -7693,7 +7407,7 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
     public func itemType(_ value: String) -> StrikeThrough {
         return mutate(itemtype: value)
     }
-
+    
     public func id(_ value: String) -> StrikeThrough {
         return mutate(id: value)
     }
@@ -7701,11 +7415,11 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
     public func id(_ value: TemplateValue<String>) -> StrikeThrough {
         return mutate(id: value.rawValue)
     }
-
+    
     public func language(_ value: Values.Language) -> StrikeThrough {
         return mutate(lang: value.rawValue)
     }
-
+    
     public func nonce(_ value: String) -> StrikeThrough {
         return mutate(nonce: value)
     }
@@ -7713,19 +7427,19 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
     public func role(_ value: Values.Role) -> StrikeThrough {
         return mutate(role: value.rawValue)
     }
-
+    
     public func hasSpellCheck(_ value: Bool) -> StrikeThrough {
         return mutate(spellcheck: value)
     }
-
+    
     public func style(_ value: String) -> StrikeThrough {
         return mutate(style: value)
     }
-
+    
     public func tabIndex(_ value: Int) -> StrikeThrough {
         return mutate(tabindex: value)
     }
-
+    
     public func title(_ value: String) -> StrikeThrough {
         return mutate(title: value)
     }
@@ -7756,17 +7470,6 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
     
     public func on(event: Events.Wheel, _ value: String) -> StrikeThrough {
         return mutate(key: event.rawValue, value: value)
-    }
-}
-
-extension StrikeThrough: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -8042,17 +7745,6 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-extension Main: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element is used to represent different kinds of containers.
 ///
 /// ```html
@@ -8311,17 +8003,6 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func aria(roleDescription value: String) -> Division {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Division: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -8586,17 +8267,6 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     }
 }
 
-extension Definition: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element specifies a citation.
 ///
 /// ```html
@@ -8855,17 +8525,6 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func aria(roleDescription value: String) -> Cite {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Cite: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -9134,17 +8793,6 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     }
 }
 
-extension ShortQuote: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents an abbreviation or acronym.
 ///
 /// ```html
@@ -9406,17 +9054,6 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     }
 }
 
-extension Abbreviation: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element allows one or more spans of phrasing content to be marked with ruby annotations.
 ///
 /// ```html
@@ -9675,17 +9312,6 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func aria(roleDescription value: String) -> Ruby {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Ruby: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -9958,17 +9584,6 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
     }
 }
 
-extension Data: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents its contents, along with a machine-readable form of those contents in the datetime attribute.
 ///
 /// ```html
@@ -10234,17 +9849,6 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
     }
 }
 
-extension Time: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents an example of code.
 ///
 /// ```html
@@ -10503,17 +10107,6 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func aria(roleDescription value: String) -> Code {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Code: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -10778,17 +10371,6 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-extension Variable: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents sample or quoted output from another program or computing system.
 ///
 /// ```html
@@ -11047,17 +10629,6 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     
     public func aria(roleDescription value: String) -> SampleOutput {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension SampleOutput: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -11322,17 +10893,6 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     }
 }
 
-extension KeyboardInput: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a subscript.
 ///
 /// ```html
@@ -11594,17 +11154,6 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-extension Subscript: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a superscript.
 ///
 /// ```html
@@ -11863,17 +11412,6 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     
     public func aria(roleDescription value: String) -> Superscript {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Superscript: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -12149,17 +11687,6 @@ extension Italic: Localizable {
     }
 }
 
-extension Italic: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents an bold font text.
 ///
 /// ```html
@@ -12429,17 +11956,6 @@ extension Bold: Localizable {
 
     public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
         self.content = [Localized(key: localizedKey, context: context)]
-    }
-}
-
-extension Bold: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -12715,17 +12231,6 @@ extension Underline: Localizable {
     }
 }
 
-extension Underline: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a run of text in the document marked or highlighted for reference purposes.
 ///
 /// ```html
@@ -12984,17 +12489,6 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func aria(roleDescription value: String) -> Mark {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Mark: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -13259,17 +12753,6 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-extension Bdi: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents explicit text directionality formatting control.
 ///
 /// ```html
@@ -13523,17 +13006,6 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func aria(roleDescription value: String) -> Bdo {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Bdo: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -13798,17 +13270,6 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-extension Span: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a line break.
 ///
 /// ```html
@@ -14065,17 +13526,6 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-extension LineBreak: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a line break opportunity.
 ///
 /// ```html
@@ -14329,17 +13779,6 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     
     public func aria(roleDescription value: String) -> WordBreak {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension WordBreak: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -14612,17 +14051,6 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     }
 }
 
-extension InsertedText: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a removal from the document.
 ///
 /// ```html
@@ -14892,17 +14320,6 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     }
 }
 
-extension DeletedText: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element is a container which provides multiple sources to its contained image element.
 ///
 /// ```html
@@ -15085,17 +14502,6 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
     
     public func on(event: Events.Wheel, _ value: String) -> Picture {
         return mutate(key: event.rawValue, value: value)
-    }
-}
-
-extension Picture: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -15376,17 +14782,6 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func aria(roleDescription value: String) -> Image {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Image: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -15675,17 +15070,6 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     }
 }
 
-extension InlineFrame: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element provides an integration point for an external application or interactive content.
 ///
 /// ```html
@@ -15955,17 +15339,6 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func aria(roleDescription value: String) -> Embed {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Embed: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -16255,17 +15628,6 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func aria(roleDescription value: String) -> Object {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Object: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -16562,17 +15924,6 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     }
 }
 
-extension Video: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element is used to embed audio content in a document.
 ///
 /// ```html
@@ -16858,17 +16209,6 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     }
 }
 
-extension Audio: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element is used to define a image map.
 ///
 /// ```html
@@ -17059,17 +16399,6 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
     
     public func on(event: Events.Wheel, _ value: String) -> Map {
         return mutate(key: event.rawValue, value: value)
-    }
-}
-
-extension Map: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -17366,17 +16695,6 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
     }
 }
 
-extension Form: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a set of options.
 ///
 /// ```html
@@ -17635,17 +16953,6 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func aria(roleDescription value: String) -> DataList {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension DataList: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -17926,17 +17233,6 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     }
 }
 
-extension Output: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents the completion progress of a task.
 ///
 /// ```html
@@ -18207,17 +17503,6 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func aria(roleDescription value: String) -> Progress {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Progress: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -18510,17 +17795,6 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     }
 }
 
-extension Meter: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a disclosure widget from which the user can obtain additional information or controls.
 ///
 /// ```html
@@ -18790,17 +18064,6 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     }
 }
 
-extension Details: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element defines a dialog box or window.
 public struct Dialog: ContentNode, BodyElement {
 
@@ -19062,17 +18325,6 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     }
 }
 
-extension Dialog: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element allows to include dynamic script and data blocks in a document.
 ///
 /// ```html
@@ -19274,17 +18526,6 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
     }
 }
 
-extension Script: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a caption for the rest of the contents of a fieldset.
 ///
 /// ```html
@@ -19470,17 +18711,6 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
     }
 }
 
-extension NoScript: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element is used to declare fragments of HTML that can be cloned and inserted in the document by script.
 ///
 /// ```html
@@ -19663,17 +18893,6 @@ extension Template: GlobalAttributes, GlobalEventAttributes {
     
     public func on(event: Events.Wheel, _ value: String) -> Template {
         return mutate(key: event.rawValue, value: value)
-    }
-}
-
-extension Template: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -19946,17 +19165,6 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     }
 }
 
-extension Canvas: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a comment output.
 ///
 /// ```html
@@ -20226,17 +19434,6 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     }
 }
 
-extension Table: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a vector.
 ///
 /// ```html
@@ -20288,17 +19485,6 @@ public struct Vector: ContentNode, HtmlElement, BodyElement, FormElement, Figure
                 return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
             }
         }
-    }
-}
-
-extension Vector: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        return try self.build(with: manager)
     }
 }
 

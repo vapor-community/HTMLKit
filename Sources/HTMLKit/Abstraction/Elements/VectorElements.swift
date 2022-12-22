@@ -134,17 +134,6 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
     }
 }
 
-extension Circle: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents ...
 ///
 /// ```html
@@ -266,17 +255,6 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
     }
 }
 
-extension Rectangle: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a comment output.
 ///
 /// ```html
@@ -394,17 +372,6 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
     }
 }
 
-extension Ellipse: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents ...
 ///
 /// ```html
@@ -511,17 +478,6 @@ extension Line: GlobalVectorAttributes {
     
     public func custom(key: String, value: Any) -> Line {
         return self.mutate(key: key, value: value)
-    }
-}
-
-extension Line: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -634,17 +590,6 @@ extension Polygon: GlobalVectorAttributes {
     }
 }
 
-extension Polygon: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents ...
 ///
 /// ```html
@@ -751,17 +696,6 @@ extension Polyline: GlobalVectorAttributes {
     
     public func custom(key: String, value: Any) -> Polyline {
         return self.mutate(key: key, value: value)
-    }
-}
-
-extension Polyline: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -878,17 +812,6 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
     }
 }
 
-extension Path: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents ...
 ///
 /// ```html
@@ -995,17 +918,6 @@ extension Group: GlobalVectorAttributes {
 
     public func custom(key: String, value: Any) -> Self {
         return self.mutate(key: key, value: value)
-    }
-}
-
-extension Group: AnyContent {
-
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -1131,16 +1043,5 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
     
     public func custom(key: String, value: Any) -> Use {
         return self.mutate(key: key, value: value)
-    }
-}
-
-extension Use: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }

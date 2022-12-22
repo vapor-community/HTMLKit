@@ -43,8 +43,6 @@ public class ViewCache {
         
         let formula = HTMLKit.Formula()
         
-        try? view.prerender(formula)
-        
         self.storage.updateValue(formula, forKey: String(reflecting: T.self))
     }
 }

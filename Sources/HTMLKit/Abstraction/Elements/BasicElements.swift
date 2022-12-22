@@ -22,17 +22,6 @@ public struct Comment: CommentNode, GlobalElement {
     }
 }
 
-extension Comment: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents the document type.
 ///
 /// ```html
@@ -44,17 +33,6 @@ public struct Document: DocumentNode, BasicElement {
     
     public init(_ value: Values.Doctype) {
         self.content = value.rawValue
-    }
-}
-
-extension Document: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -240,16 +218,5 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
     
     public func on(event: Events.Wheel, _ value: String) -> Html {
         return mutate(key: event.rawValue, value: value)
-    }
-}
-
-extension Html: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }

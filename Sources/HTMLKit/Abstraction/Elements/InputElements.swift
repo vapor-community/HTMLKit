@@ -72,63 +72,63 @@ public struct OptionGroup: ContentNode, InputElement {
 }
 
 extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, DisabledAttribute, LabelAttribute {
-
+    
     public func accessKey(_ value: Character) -> OptionGroup {
         return mutate(accesskey: value)
     }
-
+    
     public func autocapitalize(_ value: Values.Capitalization) -> OptionGroup {
         return mutate(autocapitalize: value.rawValue)
     }
-
+    
     public func autofocus() -> OptionGroup {
         return mutate(autofocus: "autofocus")
     }
-
+    
     public func `class`(_ value: String) -> OptionGroup {
         return mutate(class: value)
     }
-
+    
     public func isEditable(_ value: Bool) -> OptionGroup {
         return mutate(contenteditable: value)
     }
-
+    
     public func direction(_ value: Values.Direction) -> OptionGroup {
         return mutate(dir: value.rawValue)
     }
-
+    
     public func isDraggable(_ value: Bool) -> OptionGroup {
         return mutate(draggable: value)
     }
-
+    
     public func enterKeyHint(_ value: Values.Hint) -> OptionGroup {
         return mutate(enterkeyhint: value.rawValue)
     }
-
+    
     public func hidden() -> OptionGroup {
         return mutate(hidden: "hidden")
     }
-
+    
     public func inputMode(_ value: String) -> OptionGroup {
         return mutate(inputmode: value)
     }
-
+    
     public func `is`(_ value: String) -> OptionGroup {
         return mutate(is: value)
     }
-
+    
     public func itemId(_ value: String) -> OptionGroup {
         return mutate(itemid: value)
     }
-
+    
     public func itemProperty(_ value: String) -> OptionGroup {
         return mutate(itemprop: value)
     }
-
+    
     public func itemReference(_ value: String) -> OptionGroup {
         return mutate(itemref: value)
     }
-
+    
     public func itemScope(_ value: String) -> OptionGroup {
         return mutate(itemscope: value)
     }
@@ -136,7 +136,7 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func itemType(_ value: String) -> OptionGroup {
         return mutate(itemtype: value)
     }
-
+    
     public func id(_ value: String) -> OptionGroup {
         return mutate(id: value)
     }
@@ -144,11 +144,11 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func id(_ value: TemplateValue<String>) -> OptionGroup {
         return mutate(id: value.rawValue)
     }
-
+    
     public func language(_ value: Values.Language) -> OptionGroup {
         return mutate(lang: value.rawValue)
     }
-
+    
     public func nonce(_ value: String) -> OptionGroup {
         return mutate(nonce: value)
     }
@@ -156,19 +156,19 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func role(_ value: Values.Role) -> OptionGroup {
         return mutate(role: value.rawValue)
     }
-
+    
     public func hasSpellCheck(_ value: Bool) -> OptionGroup {
         return mutate(spellcheck: value)
     }
-
+    
     public func style(_ value: String) -> OptionGroup {
         return mutate(style: value)
     }
-
+    
     public func tabIndex(_ value: Int) -> OptionGroup {
         return mutate(tabindex: value)
     }
-
+    
     public func title(_ value: String) -> OptionGroup {
         return mutate(title: value)
     }
@@ -176,7 +176,7 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func translate(_ value: Values.Decision) -> OptionGroup {
         return mutate(translate: value.rawValue)
     }
-
+    
     public func disabled() -> OptionGroup {
         return mutate(disabled: "disabled")
     }
@@ -283,17 +283,6 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     
     public func aria(roleDescription value: String) -> OptionGroup {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension OptionGroup: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -578,17 +567,6 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     }
 }
 
-extension Option: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a caption for the rest of the contents of a fieldset.
 ///
 /// ```html
@@ -852,17 +830,6 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     }
 }
 
-extension Legend: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a summary, caption, or legend for the rest of the content.
 ///
 /// ```html
@@ -1121,16 +1088,5 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     
     public func aria(roleDescription value: String) -> Summary {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Summary: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }

@@ -193,17 +193,6 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
     }
 }
 
-extension Head: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element contains the document's content.
 ///
 /// ```html
@@ -466,16 +455,5 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
     
     public func aria(roleDescription value: String) -> Body {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Body: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
