@@ -17,16 +17,6 @@ extension Int: AnyContent {}
 
 extension Optional: AnyContent{}
 
-extension Optional: Defineable {
-    
-    var isDefinded: Bool {
-        switch self {
-        case .none: return false
-        default: return true
-        }
-    }
-}
-
 extension String: AnyContent {}
 
 extension UUID: AnyContent {}
