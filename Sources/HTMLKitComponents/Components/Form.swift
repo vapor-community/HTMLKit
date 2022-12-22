@@ -124,16 +124,6 @@ public struct TextField: Component {
                 $0.value($1)
             }
     }
-    
-    /// The behaviour of the text field.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [Script { events }]
-        }
-        
-        return []
-    }
 }
 
 extension TextField: InputModifier {
@@ -447,16 +437,6 @@ public struct SecureField: Component {
                 $0.value($1)
             }
     }
-    
-    /// The behaviour of the field.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [Script { events }]
-        }
-        
-        return []
-    }
 }
 
 extension SecureField: InputModifier {
@@ -512,16 +492,6 @@ public struct Slider: Component {
             .name(name)
             .class(classes.joined(separator: " "))
     }
-    
-    /// The behaviour of the slider.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [Script { events }]
-        }
-        
-        return []
-    }
 }
 
 /// A component that displays
@@ -565,16 +535,6 @@ public struct DatePicker: Component {
             .modify(unwrap: value) {
                 $0.value($1)
             }
-    }
-    
-    /// The behaviour of the picker.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [Script { events }]
-        }
-        
-        return []
     }
 }
 
@@ -638,16 +598,6 @@ public struct SearchField: Component {
             .modify(unwrap: value) {
                 $0.value($1)
             }
-    }
-    
-    /// The behaviour of the field.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [Script { events }]
-        }
-        
-        return []
     }
 }
 
@@ -714,15 +664,5 @@ public struct ProgressView: Component {
         .modify(unwrap: value) {
             $0.value($1)
         }
-    }
-    
-    /// The behaviour of the view.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [Script { events }]
-        }
-        
-        return []
     }
 }

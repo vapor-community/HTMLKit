@@ -20,3 +20,5 @@ extension Optional: AnyContent{}
 extension String: AnyContent {}
 
 extension UUID: AnyContent {}
+
+extension Date: AnyContent {}

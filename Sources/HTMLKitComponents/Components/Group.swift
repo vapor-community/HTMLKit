@@ -33,11 +33,6 @@ public struct Group: Component {
         }
         .class(classes.joined(separator: " "))
     }
-    
-    /// The behaviour of the group.
-    public var scripts: AnyContent {
-        return [content.scripts]
-    }
 }
 
 extension Group: TextModifier {

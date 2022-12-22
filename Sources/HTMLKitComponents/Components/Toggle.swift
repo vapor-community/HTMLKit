@@ -45,14 +45,4 @@ public struct Toggle: Component {
         .tabIndex(0)
         .class(classes.joined(separator: " "))
     }
-    
-    /// The behaviour of the toggle.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [Script { events }]
-        }
-        
-        return []
-    }
 }

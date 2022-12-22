@@ -35,11 +35,6 @@ public struct HStack: Component {
         .class(classes.joined(separator: " "))
     }
     
-    /// The behaviour of the stack.
-    public var scripts: AnyContent {
-        return [content.scripts]
-    }
-    
     /// Sets the space of the content.
     public func contentSpace(_ value: Tokens.ContentSpace) -> HStack {
         
@@ -106,11 +101,6 @@ public struct VStack: Component {
         }
         .class(classes.joined(separator: " "))
     }
-    
-    /// The behaviour of the stack.
-    public var scripts: AnyContent {
-        return [content.scripts]
-    }
 }
 
 extension VStack: ViewModifier {
@@ -168,11 +158,6 @@ public struct ZStack: Component {
             content
         }
         .class(classes.joined(separator: " "))
-    }
-    
-    /// The behaviour of the stack.
-    public var scripts: AnyContent {
-        return [content.scripts]
     }
 }
 
@@ -252,10 +237,5 @@ public struct StackColumn: Component {
             content
         }
         .class(classes.joined(separator: " "))
-    }
-    
-    /// The behaviour of the column.
-    public var scripts: AnyContent {
-        return [content.scripts]
     }
 }
