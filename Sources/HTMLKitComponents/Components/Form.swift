@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that collects form controls.
-public struct Form: Component {
+public struct Form: View {
     
     /// The content of the container.
     internal var content: [FormElement]
@@ -42,7 +42,7 @@ public struct Form: Component {
 }
 
 /// A component that displays the name of the form control.
-public struct FieldLabel: Component {
+public struct FieldLabel: View {
     
     /// The identifier of the element the label is related to.
     internal let id: String
@@ -83,7 +83,7 @@ public struct FieldLabel: Component {
 }
 
 /// A component that displays an editable form control.
-public struct TextField: Component {
+public struct TextField: View {
     
     /// The identifier of the field.
     internal let name: String
@@ -146,7 +146,7 @@ extension TextField: InputModifier {
 }
 
 /// A component that displays a editable and expandable form control.
-public struct TextEditor: Component {
+public struct TextEditor: View {
     
     /// The identifier of the editor.
     internal let name: String
@@ -221,7 +221,7 @@ extension TextEditor: InputModifier {
 }
 
 /// A component that displays a form control
-public struct CheckField: Component {
+public struct CheckField: View {
     
     /// The identifier of the field.
     internal let name: String
@@ -278,7 +278,7 @@ extension CheckField: InputModifier {
 }
 
 /// A component that displays
-public struct RadioSelect: Component {
+public struct RadioSelect: View {
     
     /// The identifier of the select.
     internal let name: String
@@ -335,7 +335,7 @@ extension RadioSelect: InputModifier {
 }
 
 /// A component that displays
-public struct SelectField: Component {
+public struct SelectField: View {
     
     /// The identifier of the field.
     internal let name: String
@@ -396,7 +396,7 @@ extension SelectField: InputModifier {
 }
 
 /// A component that displays
-public struct SecureField: Component {
+public struct SecureField: View {
     
     /// The identifier of the field.
     internal let name: String
@@ -459,7 +459,7 @@ extension SecureField: InputModifier {
 }
 
 /// A component that displays
-public struct Slider: Component {
+public struct Slider: View {
     
     /// The identifier of the slider.
     internal let name: String
@@ -495,7 +495,7 @@ public struct Slider: Component {
 }
 
 /// A component that displays
-public struct DatePicker: Component {
+public struct DatePicker: View {
     
     /// The identifier of the picker.
     internal let name: String
@@ -558,7 +558,7 @@ extension DatePicker: InputModifier {
 }
 
 /// A component that displays
-public struct SearchField: Component {
+public struct SearchField: View {
     
     /// The identifier of the search field.
     internal let name: String
@@ -621,7 +621,7 @@ extension SearchField: InputModifier {
 }
 
 /// A component that displays the progress of a task.
-public struct ProgressView: Component {
+public struct ProgressView: View {
     
     /// The identifier of the progress view.
     internal let name: String

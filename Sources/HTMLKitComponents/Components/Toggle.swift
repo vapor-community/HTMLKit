@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that shows an on or off state.
-public struct Toggle: Component {
+public struct Toggle: View {
     
     /// The identifier of the toggle.
     internal let name: String

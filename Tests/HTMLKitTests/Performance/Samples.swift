@@ -10,7 +10,7 @@ struct SampleContext {
     var posted: Date
 }
 
-struct SamplePage: Page {
+struct SamplePage: View {
 
     var content: [BodyElement]
     
@@ -108,7 +108,7 @@ struct SampleView: View {
     }
 }
 
-struct SampleComponent: Component {
+struct SampleComponent: View {
  
     var body: AnyContent {
         Section {

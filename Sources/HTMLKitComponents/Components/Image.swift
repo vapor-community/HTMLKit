@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that displays an image.
-public struct Image: Component {
+public struct Image: View {
     
     /// The url path of the image.
     internal let source: String

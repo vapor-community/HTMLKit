@@ -7,7 +7,7 @@ import HTMLKit
 import Foundation
 
 /// A component that navigates to an target.
-public struct Link: Component {
+public struct Link: View {
 
     /// The url path of the target.
     internal let destination: String

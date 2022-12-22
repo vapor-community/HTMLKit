@@ -5,7 +5,7 @@
 import HTMLKit
 
 /// A component that collects content.
-public struct Group: Component {
+public struct Group: View {
     
     /// The content of the group.
     internal var content: [AnyContent]

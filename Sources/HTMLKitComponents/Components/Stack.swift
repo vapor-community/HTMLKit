@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that arranges content horizontally.
-public struct HStack: Component {
+public struct HStack: View {
     
     /// The content of the stack.
     internal var content: [AnyContent]
@@ -73,7 +73,7 @@ extension HStack: ViewModifier {
 }
 
 /// A component that arranges content vertically.
-public struct VStack: Component {
+public struct VStack: View {
     
     /// The content of the stack.
     internal var content: [AnyContent]
@@ -131,7 +131,7 @@ extension VStack: ViewModifier {
 }
 
 /// A component that overlays content.
-public struct ZStack: Component {
+public struct ZStack: View {
     
     /// The content of the stack.
     internal var content: [AnyContent]
@@ -189,7 +189,7 @@ extension ZStack: ViewModifier {
 }
 
 /// A component that represents a stack column.
-public struct StackColumn: Component {
+public struct StackColumn: View {
     
     /// The content of the column.
     internal var content: [AnyContent]

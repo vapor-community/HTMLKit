@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that displays code content.
-public struct Snippet: Component {
+public struct Snippet: View {
     
     /// The content of the snippet.
     internal var content: [AnyContent]

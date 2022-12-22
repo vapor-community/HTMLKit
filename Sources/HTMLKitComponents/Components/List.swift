@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that collects and arranges list items vertically.
-public struct List: Component {
+public struct List: View {
     
     /// The content of the list.
     internal var content: [ListElement]
@@ -50,7 +50,7 @@ public struct List: Component {
 }
 
 /// A component that represents a list item.
-public struct ListRow: Component {
+public struct ListRow: View {
 
     /// The content of the row.
     internal var content: [AnyContent]

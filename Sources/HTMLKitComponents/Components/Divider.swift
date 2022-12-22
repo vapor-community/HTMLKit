@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that seperates content visually.
-public struct Divider: Component {
+public struct Divider: View {
     
     /// The classes of the divider.
     internal  var classes: [String]

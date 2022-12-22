@@ -7,7 +7,7 @@ import HTMLKit
 import Foundation
 
 /// A component that initiates an action.
-public struct ActionButton: Component {
+public struct ActionButton: View {
     
     /// The url path of the target.
     internal let destination: String
@@ -84,7 +84,7 @@ extension ActionButton: ButtonModifier {
 }
 
 /// A component that initiates a form submit.
-public struct SubmitButton: Component {
+public struct SubmitButton: View {
     
     /// The  content of the button.
     internal var content: [AnyContent]
@@ -144,7 +144,7 @@ extension SubmitButton: ButtonModifier {
 }
 
 /// A component that initiates a form reset.
-public struct ResetButton: Component {
+public struct ResetButton: View {
     
     /// The  content of the button.
     internal var content: [AnyContent]

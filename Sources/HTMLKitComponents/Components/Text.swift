@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that displays text.
-public struct Text: Component {
+public struct Text: View {
 
     /// The identifier of the text.
     internal var id: String?
