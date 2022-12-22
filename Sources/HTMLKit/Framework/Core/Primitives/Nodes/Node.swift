@@ -4,5 +4,5 @@
  */
 
 /// A type that represents any html-node.
-public protocol AnyNode {
+public protocol Node {
 }

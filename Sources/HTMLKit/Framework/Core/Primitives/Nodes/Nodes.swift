@@ -6,7 +6,7 @@
 import OrderedCollections
 
 /// A type that defines a node with content.
-internal protocol ContentNode: AnyNode {
+internal protocol ContentNode: Node {
 
     associatedtype Content
     
@@ -55,7 +55,7 @@ extension ContentNode {
 }
 
 /// A type that defines a node without any content.
-internal protocol EmptyNode: AnyNode {
+internal protocol EmptyNode: Node {
 
     /// The name of the node.
     var name: String { get }
@@ -94,7 +94,7 @@ extension EmptyNode {
 }
 
 /// A type that defines a comment node.
-internal protocol CommentNode: AnyNode {
+internal protocol CommentNode: Node {
     
     /// The content of the node.
     var content: String { get }
@@ -112,7 +112,7 @@ extension CommentNode {
 }
 
 /// The protocol defines the document node.
-internal protocol DocumentNode: AnyNode {
+internal protocol DocumentNode: Node {
     
     /// The content of the node.
     var content: String { get }
