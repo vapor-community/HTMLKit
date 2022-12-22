@@ -22,15 +22,10 @@ public protocol DrawAttribute: Attribute {
     func draw(_ value: String) -> Self
 }
 
-extension DrawAttribute {
-
-    internal var key: String { "d" }
-}
-
 extension DrawAttribute where Self: ContentNode {
 
     internal func mutate(draw value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "d", value: value)
     }
 }
 
@@ -46,15 +41,10 @@ public protocol FillAttribute: Attribute {
     func fill(_ value: String) -> Self
 }
 
-extension FillAttribute {
-    
-    internal var key: String { "fill" }
-}
-
 extension FillAttribute where Self: ContentNode {
     
     internal func mutate(fill value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "fill", value: value)
     }
 }
 
@@ -69,15 +59,10 @@ public protocol FillOpacityAttribute: Attribute {
     func fillOpacity(_ value: Double) -> Self
 }
 
-extension FillOpacityAttribute {
-    
-    internal var key: String { "fill-opacity" }
-}
-
 extension FillOpacityAttribute where Self: ContentNode {
     
     internal func mutate(fillopacity value: Double) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "fill-opacity", value: value)
     }
 }
 
@@ -92,15 +77,10 @@ public protocol StrokeAttribute: Attribute {
     func stroke(_ value: String) -> Self
 }
 
-extension StrokeAttribute {
-    
-    internal var key: String { "stroke" }
-}
-
 extension StrokeAttribute where Self: ContentNode {
     
     internal func mutate(stroke value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "stroke", value: value)
     }
 }
 
@@ -115,15 +95,10 @@ public protocol StrokeWidthAttribute: Attribute {
     func strokeWidth(_ size: Int) -> Self
 }
 
-extension StrokeWidthAttribute {
-    
-    internal var key: String { "stroke-width" }
-}
-
 extension StrokeWidthAttribute where Self: ContentNode {
     
     internal func mutate(strokewidth value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "stroke-width", value: value)
     }
 }
 
@@ -138,15 +113,10 @@ public protocol StrokeOpacityAttribute: Attribute {
     func strokeOpacity(_ value: Double) -> Self
 }
 
-extension StrokeOpacityAttribute {
-    
-    internal var key: String { "stroke-opacity" }
-}
-
 extension StrokeOpacityAttribute where Self: ContentNode {
     
     internal func mutate(strokeopacity value: Double) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "stroke-opacity", value: value)
     }
 }
 
@@ -161,15 +131,10 @@ public protocol StrokeLineCapAttribute: Attribute {
     func strokeLineCap(_ value: Values.Linecap) -> Self
 }
 
-extension StrokeLineCapAttribute {
-    
-    internal var key: String { "stroke-linecap" }
-}
-
 extension StrokeLineCapAttribute where Self: ContentNode {
     
     internal func mutate(strokelinecap value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "stroke-linecap", value: value)
     }
 }
 
@@ -184,15 +149,10 @@ public protocol StrokeLineJoinAttribute: Attribute {
     func strokeLineJoin(_ value: Values.Linejoin) -> Self
 }
 
-extension StrokeLineJoinAttribute {
-    
-    internal var key: String { "stroke-linejoin" }
-}
-
 extension StrokeLineJoinAttribute where Self: ContentNode {
     
     internal func mutate(strokelinejoin value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "stroke-linejoin", value: value)
     }
 }
 
@@ -207,15 +167,10 @@ public protocol RadiusAttribute: Attribute {
     func radius(_ size: Int) -> Self
 }
 
-extension RadiusAttribute {
-    
-    internal var key: String { "r" }
-}
-
 extension RadiusAttribute where Self: ContentNode {
     
     internal func mutate(radius value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "r", value: value)
     }
 }
 
@@ -323,14 +278,9 @@ public protocol ViewBoxAttribute: Attribute {
     func viewBox(_ value: String) -> Self
 }
 
-extension ViewBoxAttribute {
-    
-    internal var key: String { "viewbox" }
-}
-
 extension ViewBoxAttribute where Self: ContentNode {
     
     internal func mutate(viewbox value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "viewbox", value: value)
     }
 }

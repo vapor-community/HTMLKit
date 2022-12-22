@@ -49,107 +49,7 @@ public struct Area: ContentNode, MapElement {
     }
 }
 
-extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
-    
-    public func accessKey(_ value: Character) -> Area {
-        return mutate(accesskey: value)
-    }
-
-    public func autocapitalize(_ value: Values.Capitalization) -> Area {
-        return mutate(autocapitalize: value.rawValue)
-    }
-
-    public func autofocus() -> Area {
-        return mutate(autofocus: "autofocus")
-    }
-
-    public func `class`(_ value: String) -> Area {
-        return mutate(class: value)
-    }
-
-    public func isEditable(_ value: Bool) -> Area {
-        return mutate(contenteditable: value)
-    }
-
-    public func direction(_ value: Values.Direction) -> Area {
-        return mutate(dir: value.rawValue)
-    }
-
-    public func isDraggable(_ value: Bool) -> Area {
-        return mutate(draggable: value)
-    }
-
-    public func enterKeyHint(_ value: Values.Hint) -> Area {
-        return mutate(enterkeyhint: value.rawValue)
-    }
-
-    public func hidden() -> Area {
-        return mutate(hidden: "hidden")
-    }
-
-    public func inputMode(_ value: String) -> Area {
-        return mutate(inputmode: value)
-    }
-
-    public func `is`(_ value: String) -> Area {
-        return mutate(is: value)
-    }
-
-    public func itemId(_ value: String) -> Area {
-        return mutate(itemid: value)
-    }
-
-    public func itemProperty(_ value: String) -> Area {
-        return mutate(itemprop: value)
-    }
-
-    public func itemReference(_ value: String) -> Area {
-        return mutate(itemref: value)
-    }
-
-    public func itemScope(_ value: String) -> Area {
-        return mutate(itemscope: value)
-    }
-    
-    public func itemType(_ value: String) -> Area {
-        return mutate(itemtype: value)
-    }
-
-    public func id(_ value: String) -> Area {
-        return mutate(id: value)
-    }
-
-    public func language(_ value: Values.Language) -> Area {
-        return mutate(lang: value.rawValue)
-    }
-
-    public func nonce(_ value: String) -> Area {
-        return mutate(nonce: value)
-    }
-    
-    public func role(_ value: Values.Role) -> Area {
-        return mutate(role: value.rawValue)
-    }
-
-    public func hasSpellCheck(_ value: Bool) -> Area {
-        return mutate(spellcheck: value)
-    }
-
-    public func style(_ value: String) -> Area {
-        return mutate(style: value)
-    }
-
-    public func tabIndex(_ value: Int) -> Area {
-        return mutate(tabindex: value)
-    }
-
-    public func title(_ value: String) -> Area {
-        return mutate(title: value)
-    }
-    
-    public func translate(_ value: Values.Decision) -> Area {
-        return mutate(translate: value.rawValue)
-    }
+extension Area: GlobalAriaAttributes, AlternateAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
     
     public func alternate(_ value: String) -> Area {
         return mutate(alternate: value)
@@ -185,30 +85,6 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
     
     public func referrerPolicy(_ value: Values.Policy) -> Area {
         return mutate(referrerpolicy: value.rawValue)
-    }
-    
-    public func custom(key: String, value: Any) -> Area {
-        return mutate(key: key, value: value)
-    }
-    
-    public func on(event: Events.Drag, _ value: String) -> Area {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Clipboard, _ value: String) -> Area {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Wheel, _ value: String) -> Area {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Keyboard, _ value: String) -> Area {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Mouse, _ value: String) -> Area {
-        return mutate(key: event.rawValue, value: value)
     }
     
     public func aria(atomic value: Bool) -> Area {

@@ -44,108 +44,8 @@ public struct Input: EmptyNode, FormElement {
     }
 }
 
-extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, AlternateAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute {
+extension Input: AcceptAttribute, AlternateAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute {
     
-    public func accessKey(_ value: Character) -> Input {
-        return mutate(accesskey: value)
-    }
-
-    public func autocapitalize(_ value: Values.Capitalization) -> Input {
-        return mutate(autocapitalize: value.rawValue)
-    }
-
-    public func autofocus() -> Input {
-        return mutate(autofocus: "autofocus")
-    }
-
-    public func `class`(_ value: String) -> Input {
-        return mutate(class: value)
-    }
-
-    public func isEditable(_ value: Bool) -> Input {
-        return mutate(contenteditable: value)
-    }
-
-    public func direction(_ value: Values.Direction) -> Input {
-        return mutate(dir: value.rawValue)
-    }
-
-    public func isDraggable(_ value: Bool) -> Input {
-        return mutate(draggable: value)
-    }
-
-    public func enterKeyHint(_ value: Values.Hint) -> Input {
-        return mutate(enterkeyhint: value.rawValue)
-    }
-
-    public func hidden() -> Input {
-        return mutate(hidden: "hidden")
-    }
-
-    public func inputMode(_ value: String) -> Input {
-        return mutate(inputmode: value)
-    }
-
-    public func `is`(_ value: String) -> Input {
-        return mutate(is: value)
-    }
-
-    public func itemId(_ value: String) -> Input {
-        return mutate(itemid: value)
-    }
-
-    public func itemProperty(_ value: String) -> Input {
-        return mutate(itemprop: value)
-    }
-
-    public func itemReference(_ value: String) -> Input {
-        return mutate(itemref: value)
-    }
-
-    public func itemScope(_ value: String) -> Input {
-        return mutate(itemscope: value)
-    }
-    
-    public func itemType(_ value: String) -> Input {
-        return mutate(itemtype: value)
-    }
-
-    public func id(_ value: String) -> Input {
-        return mutate(id: value)
-    }
-    
-    public func language(_ value: Values.Language) -> Input {
-        return mutate(lang: value.rawValue)
-    }
-
-    public func nonce(_ value: String) -> Input {
-        return mutate(nonce: value)
-    }
-    
-    public func role(_ value: Values.Role) -> Input {
-        return mutate(role: value.rawValue)
-    }
-
-    public func hasSpellCheck(_ value: Bool) -> Input {
-        return mutate(spellcheck: value)
-    }
-
-    public func style(_ value: String) -> Input {
-        return mutate(style: value)
-    }
-
-    public func tabIndex(_ value: Int) -> Input {
-        return mutate(tabindex: value)
-    }
-
-    public func title(_ value: String) -> Input {
-        return mutate(title: value)
-    }
-    
-    public func translate(_ value: Values.Decision) -> Input {
-        return mutate(translate: value.rawValue)
-    }
-
     public func accept(_ value: String) -> Input {
         return mutate(accept: value)
     }
@@ -245,30 +145,6 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     public func width(_ size: Int) -> Input {
         return mutate(width: size)
     }
-    
-    public func custom(key: String, value: Any) -> Input {
-        return mutate(key: key, value: value)
-    }
-    
-    public func on(event: Events.Drag, _ value: String) -> Input {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Clipboard, _ value: String) -> Input {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Keyboard, _ value: String) -> Input {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Mouse, _ value: String) -> Input {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Wheel, _ value: String) -> Input {
-        return mutate(key: event.rawValue, value: value)
-    }
 }
 
 /// The element represents a caption for a form control.
@@ -312,134 +188,10 @@ public struct Label: ContentNode, FormElement {
     }
 }
 
-extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ForAttribute {
-    
-    public func accessKey(_ value: Character) -> Label {
-        return mutate(accesskey: value)
-    }
-
-    public func autocapitalize(_ value: Values.Capitalization) -> Label {
-        return mutate(autocapitalize: value.rawValue)
-    }
-
-    public func autofocus() -> Label {
-        return mutate(autofocus: "autofocus")
-    }
-
-    public func `class`(_ value: String) -> Label {
-        return mutate(class: value)
-    }
-
-    public func isEditable(_ value: Bool) -> Label {
-        return mutate(contenteditable: value)
-    }
-
-    public func direction(_ value: Values.Direction) -> Label {
-        return mutate(dir: value.rawValue)
-    }
-
-    public func isDraggable(_ value: Bool) -> Label {
-        return mutate(draggable: value)
-    }
-
-    public func enterKeyHint(_ value: Values.Hint) -> Label {
-        return mutate(enterkeyhint: value.rawValue)
-    }
-
-    public func hidden() -> Label {
-        return mutate(hidden: "hidden")
-    }
-
-    public func inputMode(_ value: String) -> Label {
-        return mutate(inputmode: value)
-    }
-
-    public func `is`(_ value: String) -> Label {
-        return mutate(is: value)
-    }
-
-    public func itemId(_ value: String) -> Label {
-        return mutate(itemid: value)
-    }
-
-    public func itemProperty(_ value: String) -> Label {
-        return mutate(itemprop: value)
-    }
-
-    public func itemReference(_ value: String) -> Label {
-        return mutate(itemref: value)
-    }
-
-    public func itemScope(_ value: String) -> Label {
-        return mutate(itemscope: value)
-    }
-    
-    public func itemType(_ value: String) -> Label {
-        return mutate(itemtype: value)
-    }
-
-    public func id(_ value: String) -> Label {
-        return mutate(id: value)
-    }
-
-    public func language(_ value: Values.Language) -> Label {
-        return mutate(lang: value.rawValue)
-    }
-
-    public func nonce(_ value: String) -> Label {
-        return mutate(nonce: value)
-    }
-    
-    public func role(_ value: Values.Role) -> Label {
-        return mutate(role: value.rawValue)
-    }
-
-    public func hasSpellCheck(_ value: Bool) -> Label {
-        return mutate(spellcheck: value)
-    }
-
-    public func style(_ value: String) -> Label {
-        return mutate(style: value)
-    }
-
-    public func tabIndex(_ value: Int) -> Label {
-        return mutate(tabindex: value)
-    }
-
-    public func title(_ value: String) -> Label {
-        return mutate(title: value)
-    }
-    
-    public func translate(_ value: Values.Decision) -> Label {
-        return mutate(translate: value.rawValue)
-    }
+extension Label: GlobalAriaAttributes, ForAttribute {
     
     public func `for`(_ value: String) -> Label {
         return mutate(for: value)
-    }
-    
-    public func custom(key: String, value: Any) -> Label {
-        return mutate(key: key, value: value)
-    }
-    
-    public func on(event: Events.Drag, _ value: String) -> Label {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Clipboard, _ value: String) -> Label {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Keyboard, _ value: String) -> Label {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Mouse, _ value: String) -> Label {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Wheel, _ value: String) -> Label {
-        return mutate(key: event.rawValue, value: value)
     }
     
     public func aria(atomic value: Bool) -> Label {
@@ -571,107 +323,7 @@ public struct Select: ContentNode, FormElement {
     }
 }
 
-extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute, DisabledAttribute, FormAttribute, MultipleAttribute, NameAttribute, RequiredAttribute, SizeAttribute {
-
-    public func accessKey(_ value: Character) -> Select {
-        return mutate(accesskey: value)
-    }
-
-    public func autocapitalize(_ value: Values.Capitalization) -> Select {
-        return mutate(autocapitalize: value.rawValue)
-    }
-
-    public func autofocus() -> Select {
-        return mutate(autofocus: "autofocus")
-    }
-
-    public func `class`(_ value: String) -> Select {
-        return mutate(class: value)
-    }
-
-    public func isEditable(_ value: Bool) -> Select {
-        return mutate(contenteditable: value)
-    }
-
-    public func direction(_ value: Values.Direction) -> Select {
-        return mutate(dir: value.rawValue)
-    }
-
-    public func isDraggable(_ value: Bool) -> Select {
-        return mutate(draggable: value)
-    }
-
-    public func enterKeyHint(_ value: Values.Hint) -> Select {
-        return mutate(enterkeyhint: value.rawValue)
-    }
-
-    public func hidden() -> Select {
-        return mutate(hidden: "hidden")
-    }
-
-    public func inputMode(_ value: String) -> Select {
-        return mutate(inputmode: value)
-    }
-
-    public func `is`(_ value: String) -> Select {
-        return mutate(is: value)
-    }
-
-    public func itemId(_ value: String) -> Select {
-        return mutate(itemid: value)
-    }
-
-    public func itemProperty(_ value: String) -> Select {
-        return mutate(itemprop: value)
-    }
-
-    public func itemReference(_ value: String) -> Select {
-        return mutate(itemref: value)
-    }
-
-    public func itemScope(_ value: String) -> Select {
-        return mutate(itemscope: value)
-    }
-    
-    public func itemType(_ value: String) -> Select {
-        return mutate(itemtype: value)
-    }
-
-    public func id(_ value: String) -> Select {
-        return mutate(id: value)
-    }
-
-    public func language(_ value: Values.Language) -> Select {
-        return mutate(lang: value.rawValue)
-    }
-
-    public func nonce(_ value: String) -> Select {
-        return mutate(nonce: value)
-    }
-    
-    public func role(_ value: Values.Role) -> Select {
-        return mutate(role: value.rawValue)
-    }
-
-    public func hasSpellCheck(_ value: Bool) -> Select {
-        return mutate(spellcheck: value)
-    }
-
-    public func style(_ value: String) -> Select {
-        return mutate(style: value)
-    }
-
-    public func tabIndex(_ value: Int) -> Select {
-        return mutate(tabindex: value)
-    }
-
-    public func title(_ value: String) -> Select {
-        return mutate(title: value)
-    }
-    
-    public func translate(_ value: Values.Decision) -> Select {
-        return mutate(translate: value.rawValue)
-    }
+extension Select: AutocompleteAttribute, DisabledAttribute, FormAttribute, MultipleAttribute, NameAttribute, RequiredAttribute, SizeAttribute {
 
     public func hasCompletion(_ value: Bool) -> Select {
         return mutate(autocomplete: value)
@@ -699,30 +351,6 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
     
     public func size(_ size: Int) -> Select {
         return mutate(size: size)
-    }
-    
-    public func custom(key: String, value: Any) -> Select {
-        return mutate(key: key, value: value)
-    }
-    
-    public func on(event: Events.Drag, _ value: String) -> Select {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Clipboard, _ value: String) -> Select {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Keyboard, _ value: String) -> Select {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Mouse, _ value: String) -> Select {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Wheel, _ value: String) -> Select {
-        return mutate(key: event.rawValue, value: value)
     }
 }
 
@@ -767,107 +395,7 @@ public struct TextArea: ContentNode, FormElement {
     }
 }
 
-extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AutocompleteAttribute, ColumnsAttribute, DisabledAttribute, FormAttribute, MaximumLengthAttribute, MinimumLengthAttribute, NameAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, RowsAttribute, WrapAttribute {
-    
-    public func accessKey(_ value: Character) -> TextArea {
-        return mutate(accesskey: value)
-    }
-
-    public func autocapitalize(_ value: Values.Capitalization) -> TextArea {
-        return mutate(autocapitalize: value.rawValue)
-    }
-
-    public func autofocus() -> TextArea {
-        return mutate(autofocus: "autofocus")
-    }
-
-    public func `class`(_ value: String) -> TextArea {
-        return mutate(class: value)
-    }
-
-    public func isEditable(_ value: Bool) -> TextArea {
-        return mutate(contenteditable: value)
-    }
-
-    public func direction(_ value: Values.Direction) -> TextArea {
-        return mutate(dir: value.rawValue)
-    }
-
-    public func isDraggable(_ value: Bool) -> TextArea {
-        return mutate(draggable: value)
-    }
-
-    public func enterKeyHint(_ value: Values.Hint) -> TextArea {
-        return mutate(enterkeyhint: value.rawValue)
-    }
-
-    public func hidden() -> TextArea {
-        return mutate(hidden: "hidden")
-    }
-
-    public func inputMode(_ value: String) -> TextArea {
-        return mutate(inputmode: value)
-    }
-
-    public func `is`(_ value: String) -> TextArea {
-        return mutate(is: value)
-    }
-
-    public func itemId(_ value: String) -> TextArea {
-        return mutate(itemid: value)
-    }
-
-    public func itemProperty(_ value: String) -> TextArea {
-        return mutate(itemprop: value)
-    }
-
-    public func itemReference(_ value: String) -> TextArea {
-        return mutate(itemref: value)
-    }
-
-    public func itemScope(_ value: String) -> TextArea {
-        return mutate(itemscope: value)
-    }
-    
-    public func itemType(_ value: String) -> TextArea {
-        return mutate(itemtype: value)
-    }
-
-    public func id(_ value: String) -> TextArea {
-        return mutate(id: value)
-    }
-
-    public func language(_ value: Values.Language) -> TextArea {
-        return mutate(lang: value.rawValue)
-    }
-
-    public func nonce(_ value: String) -> TextArea {
-        return mutate(nonce: value)
-    }
-    
-    public func role(_ value: Values.Role) -> TextArea {
-        return mutate(role: value.rawValue)
-    }
-
-    public func hasSpellCheck(_ value: Bool) -> TextArea {
-        return mutate(spellcheck: value)
-    }
-
-    public func style(_ value: String) -> TextArea {
-        return mutate(style: value)
-    }
-
-    public func tabIndex(_ value: Int) -> TextArea {
-        return mutate(tabindex: value)
-    }
-
-    public func title(_ value: String) -> TextArea {
-        return mutate(title: value)
-    }
-    
-    public func translate(_ value: Values.Decision) -> TextArea {
-        return mutate(translate: value.rawValue)
-    }
+extension TextArea: GlobalAriaAttributes, AutocompleteAttribute, ColumnsAttribute, DisabledAttribute, FormAttribute, MaximumLengthAttribute, MinimumLengthAttribute, NameAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, RowsAttribute, WrapAttribute {
 
     public func hasCompletion(_ value: Bool) -> TextArea {
         return mutate(autocomplete: value)
@@ -915,30 +443,6 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func wrap(_ value: Values.Wrapping) -> TextArea {
         return mutate(wrap: value.rawValue)
-    }
-    
-    public func custom(key: String, value: Any) -> TextArea {
-        return mutate(key: key, value: value)
-    }
-    
-    public func on(event: Events.Drag, _ value: String) -> TextArea {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Clipboard, _ value: String) -> TextArea {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Keyboard, _ value: String) -> TextArea {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Mouse, _ value: String) -> TextArea {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Wheel, _ value: String) -> TextArea {
-        return mutate(key: event.rawValue, value: value)
     }
     
     public func aria(atomic value: Bool) -> TextArea {
@@ -1059,107 +563,7 @@ public struct Button: ContentNode, FormElement {
     }
 }
 
-extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute {
-    
-    public func accessKey(_ value: Character) -> Button {
-        return mutate(accesskey: value)
-    }
-
-    public func autocapitalize(_ value: Values.Capitalization) -> Button {
-        return mutate(autocapitalize: value.rawValue)
-    }
-
-    public func autofocus() -> Button {
-        return mutate(autofocus: "autofocus")
-    }
-
-    public func `class`(_ value: String) -> Button {
-        return mutate(class: value)
-    }
-
-    public func isEditable(_ value: Bool) -> Button {
-        return mutate(contenteditable: value)
-    }
-
-    public func direction(_ value: Values.Direction) -> Button {
-        return mutate(dir: value.rawValue)
-    }
-
-    public func isDraggable(_ value: Bool) -> Button {
-        return mutate(draggable: value)
-    }
-
-    public func enterKeyHint(_ value: Values.Hint) -> Button {
-        return mutate(enterkeyhint: value.rawValue)
-    }
-
-    public func hidden() -> Button {
-        return mutate(hidden: "hidden")
-    }
-
-    public func inputMode(_ value: String) -> Button {
-        return mutate(inputmode: value)
-    }
-
-    public func `is`(_ value: String) -> Button {
-        return mutate(is: value)
-    }
-
-    public func itemId(_ value: String) -> Button {
-        return mutate(itemid: value)
-    }
-
-    public func itemProperty(_ value: String) -> Button {
-        return mutate(itemprop: value)
-    }
-
-    public func itemReference(_ value: String) -> Button {
-        return mutate(itemref: value)
-    }
-
-    public func itemScope(_ value: String) -> Button {
-        return mutate(itemscope: value)
-    }
-    
-    public func itemType(_ value: String) -> Button {
-        return mutate(itemtype: value)
-    }
-
-    public func id(_ value: String) -> Button {
-        return mutate(id: value)
-    }
-    
-    public func language(_ value: Values.Language) -> Button {
-        return mutate(lang: value.rawValue)
-    }
-
-    public func nonce(_ value: String) -> Button {
-        return mutate(nonce: value)
-    }
-    
-    public func role(_ value: Values.Role) -> Button {
-        return mutate(role: value.rawValue)
-    }
-
-    public func hasSpellCheck(_ value: Bool) -> Button {
-        return mutate(spellcheck: value)
-    }
-
-    public func style(_ value: String) -> Button {
-        return mutate(style: value)
-    }
-
-    public func tabIndex(_ value: Int) -> Button {
-        return mutate(tabindex: value)
-    }
-
-    public func title(_ value: String) -> Button {
-        return mutate(title: value)
-    }
-    
-    public func translate(_ value: Values.Decision) -> Button {
-        return  mutate(translate: value.rawValue)
-    }
+extension Button: GlobalAriaAttributes, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute {
     
     public func disabled() -> Button {
         return mutate(disabled: "disabled")
@@ -1183,30 +587,6 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func value(_ value: String) -> Button {
         return mutate(value: value)
-    }
-    
-    public func custom(key: String, value: Any) -> Button {
-        return mutate(key: key, value: value)
-    }
-    
-    public func on(event: Events.Drag, _ value: String) -> Button {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Clipboard, _ value: String) -> Button {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Keyboard, _ value: String) -> Button {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Mouse, _ value: String) -> Button {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Wheel, _ value: String) -> Button {
-        return mutate(key: event.rawValue, value: value)
     }
     
     public func aria(atomic value: Bool) -> Button {
@@ -1338,107 +718,7 @@ public struct Fieldset: ContentNode, FormElement {
     }
 }
 
-extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, DisabledAttribute, FormAttribute, NameAttribute {
-    
-    public func accessKey(_ value: Character) -> Fieldset {
-        return mutate(accesskey: value)
-    }
-
-    public func autocapitalize(_ value: Values.Capitalization) -> Fieldset {
-        return mutate(autocapitalize: value.rawValue)
-    }
-
-    public func autofocus() -> Fieldset {
-        return mutate(autofocus: "autofocus")
-    }
-
-    public func `class`(_ value: String) -> Fieldset {
-        return mutate(class: value)
-    }
-
-    public func isEditable(_ value: Bool) -> Fieldset {
-        return mutate(contenteditable: value)
-    }
-
-    public func direction(_ value: Values.Direction) -> Fieldset {
-        return mutate(dir: value.rawValue)
-    }
-
-    public func isDraggable(_ value: Bool) -> Fieldset {
-        return mutate(draggable: value)
-    }
-
-    public func enterKeyHint(_ value: Values.Hint) -> Fieldset {
-        return mutate(enterkeyhint: value.rawValue)
-    }
-
-    public func hidden() -> Fieldset {
-        return mutate(hidden: "hidden")
-    }
-
-    public func inputMode(_ value: String) -> Fieldset {
-        return mutate(inputmode: value)
-    }
-
-    public func `is`(_ value: String) -> Fieldset {
-        return mutate(is: value)
-    }
-
-    public func itemId(_ value: String) -> Fieldset {
-        return mutate(itemid: value)
-    }
-
-    public func itemProperty(_ value: String) -> Fieldset {
-        return mutate(itemprop: value)
-    }
-
-    public func itemReference(_ value: String) -> Fieldset {
-        return mutate(itemref: value)
-    }
-
-    public func itemScope(_ value: String) -> Fieldset {
-        return mutate(itemscope: value)
-    }
-    
-    public func itemType(_ value: String) -> Fieldset {
-        return mutate(itemtype: value)
-    }
-
-    public func id(_ value: String) -> Fieldset {
-        return mutate(id: value)
-    }
-
-    public func language(_ value: Values.Language) -> Fieldset {
-        return mutate(lang: value.rawValue)
-    }
-
-    public func nonce(_ value: String) -> Fieldset {
-        return mutate(nonce: value)
-    }
-    
-    public func role(_ value: Values.Role) -> Fieldset {
-        return mutate(role: value.rawValue)
-    }
-
-    public func hasSpellCheck(_ value: Bool) -> Fieldset {
-        return mutate(spellcheck: value)
-    }
-
-    public func style(_ value: String) -> Fieldset {
-        return mutate(style: value)
-    }
-
-    public func tabIndex(_ value: Int) -> Fieldset {
-        return mutate(tabindex: value)
-    }
-
-    public func title(_ value: String) -> Fieldset {
-        return mutate(title: value)
-    }
-    
-    public func translate(_ value: Values.Decision) -> Fieldset {
-        return mutate(translate: value.rawValue)
-    }
+extension Fieldset: GlobalAriaAttributes, DisabledAttribute, FormAttribute, NameAttribute {
 
     public func disabled() -> Fieldset {
         return mutate(disabled: "disabled")
@@ -1450,30 +730,6 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func name(_ value: String) -> Fieldset {
         return mutate(name: value)
-    }
-    
-    public func custom(key: String, value: Any) -> Fieldset {
-        return mutate(key: key, value: value)
-    }
-    
-    public func on(event: Events.Drag, _ value: String) -> Fieldset {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Clipboard, _ value: String) -> Fieldset {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Keyboard, _ value: String) -> Fieldset {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Mouse, _ value: String) -> Fieldset {
-        return mutate(key: event.rawValue, value: value)
-    }
-    
-    public func on(event: Events.Wheel, _ value: String) -> Fieldset {
-        return mutate(key: event.rawValue, value: value)
     }
     
     public func aria(atomic value: Bool) -> Fieldset {
