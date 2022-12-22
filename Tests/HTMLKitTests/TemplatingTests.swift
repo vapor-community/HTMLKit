@@ -44,8 +44,6 @@ final class TemplatingTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: TestPage())
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self, with: "Hello World!"),
                        """
                        <!DOCTYPE html>\
@@ -102,8 +100,6 @@ final class TemplatingTests: XCTestCase {
                 }
             }
         }
-        
-        try renderer.add(layout: TestView())
         
         XCTAssertEqual(try renderer.render(layout: TestView.self, with: "Hello World!"),
                        """
@@ -165,8 +161,6 @@ final class TemplatingTests: XCTestCase {
                 }
             }
         }
-
-        try renderer.add(layout: TestView())
         
         XCTAssertEqual(try renderer.render(layout: TestView.self, with: "Hello World!"),
                        """

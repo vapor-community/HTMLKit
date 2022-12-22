@@ -50,8 +50,6 @@ final class ContextTests: XCTestCase {
         
         let context = ViewContext(headline: "test")
         
-        try renderer.add(layout: TestView())
-        
         XCTAssertEqual(try renderer.render(layout: TestView.self, with: context),
                        """
                        <section>\
@@ -64,8 +62,6 @@ final class ContextTests: XCTestCase {
     func testPageContext() throws {
         
         let context = PageContext(category: "test", viewContext: .init(headline: "test"))
-        
-        try renderer.add(layout: TestPage())
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self, with: context),
                        """

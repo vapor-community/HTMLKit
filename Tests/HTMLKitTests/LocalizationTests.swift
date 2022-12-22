@@ -27,8 +27,6 @@ final class LocalizationTests: XCTestCase {
             Heading1("Hallo Welt")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <h1>Hello World</h1>
@@ -40,10 +38,7 @@ final class LocalizationTests: XCTestCase {
         
         let page = TestPage {
             Heading1("Hallo Welt")
-                .environment(locale: "fr")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """

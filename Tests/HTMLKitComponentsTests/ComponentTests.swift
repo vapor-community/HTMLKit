@@ -19,8 +19,6 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <a href="uri" class="button" role="button">Button</a>
@@ -34,8 +32,6 @@ final class ComponentTests: XCTestCase {
             HTMLKitComponents.Group {
             }
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -51,8 +47,6 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <ul class="collection ratio:50"></ul>
@@ -67,8 +61,6 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <li class="collection-item"></li>
@@ -82,8 +74,6 @@ final class ComponentTests: XCTestCase {
             HTMLKitComponents.Form {
             }
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -100,8 +90,6 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <label for="name" class="label">Name</label>
@@ -114,8 +102,6 @@ final class ComponentTests: XCTestCase {
         let page = TestPage {
             TextField(name: "name")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -132,8 +118,6 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <textarea id="name" name="name" class="input type:texteditor" rows="1">value</textarea>
@@ -146,8 +130,6 @@ final class ComponentTests: XCTestCase {
         let page = TestPage {
             Slider(name: "name")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -162,8 +144,6 @@ final class ComponentTests: XCTestCase {
             DatePicker(name: "name")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <input type="date" id="name" name="name" class="input type:datepicker">
@@ -176,8 +156,6 @@ final class ComponentTests: XCTestCase {
         let page = TestPage {
             SecureField(name: "password")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -192,8 +170,6 @@ final class ComponentTests: XCTestCase {
             CheckField(name: "name", value: "value")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <input type="checkbox" id="name" name="name" value="value" class="input type:checkfield">
@@ -207,8 +183,6 @@ final class ComponentTests: XCTestCase {
             RadioSelect(name: "name", value: "value")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <input type="radio" id="name" name="name" value="value" class="input type:radioselect">
@@ -221,8 +195,6 @@ final class ComponentTests: XCTestCase {
         let page = TestPage {
             Image(source: "source")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -240,8 +212,6 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <ul class="list direction:vertical"></ul>
@@ -255,8 +225,6 @@ final class ComponentTests: XCTestCase {
             ListRow {
             }
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -273,8 +241,6 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <a href="uri" class="link">link</a>
@@ -288,8 +254,6 @@ final class ComponentTests: XCTestCase {
             VStack {
             }
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -305,8 +269,6 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div class="hstack alignment:center"></div>
@@ -320,8 +282,6 @@ final class ComponentTests: XCTestCase {
             ZStack {
             }
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -337,8 +297,6 @@ final class ComponentTests: XCTestCase {
             StackColumn(size: .twelve) {
             }
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -358,8 +316,6 @@ final class ComponentTests: XCTestCase {
             .bold()
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <p class="text size:large transformation:uppercase color:blue weight:bold"></p>
@@ -373,8 +329,6 @@ final class ComponentTests: XCTestCase {
             ProgressView(name: "name") {
             }
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -395,8 +349,6 @@ final class ComponentTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <pre class="snippet hightlight:html">\
@@ -413,8 +365,6 @@ final class ComponentTests: XCTestCase {
         let page = TestPage {
             Toggle(name: "name")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """

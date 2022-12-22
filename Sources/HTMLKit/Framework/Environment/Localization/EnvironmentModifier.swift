@@ -11,6 +11,4 @@ public struct EnvironmentModifier: GlobalElement {
     public let view: AnyContent
     
     public let locale: AnyContent
-    
-    public let localFormula = Formula()
 }

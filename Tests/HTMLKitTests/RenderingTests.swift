@@ -28,8 +28,6 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <!DOCTYPE html>\
@@ -52,8 +50,6 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div>\
@@ -69,8 +65,6 @@ final class RenderingTests: XCTestCase {
             Input()
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <input>
@@ -83,8 +77,6 @@ final class RenderingTests: XCTestCase {
         let page = TestPage {
             Comment("text")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -101,9 +93,7 @@ final class RenderingTests: XCTestCase {
                 "text"
             }
             .class("class")
-        } 
-        
-        try renderer.add(layout: page)
+        }
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -122,8 +112,6 @@ final class RenderingTests: XCTestCase {
             .class("cl_ass")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <p class="cl_ass">text</p>
@@ -139,8 +127,6 @@ final class RenderingTests: XCTestCase {
             }
             .class("cl-ass")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -159,8 +145,6 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div>\
@@ -178,8 +162,6 @@ final class RenderingTests: XCTestCase {
             }
             .class("cl'ass")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -201,8 +183,6 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div class="modified"></div>
@@ -223,8 +203,6 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <div class="unmodified"></div>
@@ -234,7 +212,7 @@ final class RenderingTests: XCTestCase {
     
     func testModifiedAndUnwrapped() throws {
         
-        let passcode: TemplateValue<String?> = .constant("test")
+        let passcode: String? = "test"
         
         let page = TestPage {
             Input()
@@ -242,8 +220,6 @@ final class RenderingTests: XCTestCase {
                     $0.placeholder($1)
                 }
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -262,8 +238,6 @@ final class RenderingTests: XCTestCase {
             }
             .custom(key: "key", value: "value")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """

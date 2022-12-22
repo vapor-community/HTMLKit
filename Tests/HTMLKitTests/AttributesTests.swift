@@ -588,8 +588,6 @@ final class AttributesTests: XCTestCase {
             .accessKey("s")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag accesskey="s"></tag>
@@ -604,8 +602,6 @@ final class AttributesTests: XCTestCase {
             }
             .autocapitalize(.words)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -622,8 +618,6 @@ final class AttributesTests: XCTestCase {
             .autofocus()
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag autofocus="autofocus"></tag>
@@ -638,8 +632,6 @@ final class AttributesTests: XCTestCase {
             }
             .class("container")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -656,8 +648,6 @@ final class AttributesTests: XCTestCase {
             .direction(.leftToRight)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag dir="ltr"></tag>
@@ -672,8 +662,6 @@ final class AttributesTests: XCTestCase {
             }
             .isDraggable(true)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -690,8 +678,6 @@ final class AttributesTests: XCTestCase {
             .isEditable(true)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag contenteditable="true"></tag>
@@ -706,8 +692,6 @@ final class AttributesTests: XCTestCase {
             }
             .enterKeyHint(.enter)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -724,8 +708,6 @@ final class AttributesTests: XCTestCase {
             .hidden()
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag hidden="hidden"></tag>
@@ -740,8 +722,6 @@ final class AttributesTests: XCTestCase {
             }
             .id("navigation")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -758,8 +738,6 @@ final class AttributesTests: XCTestCase {
             .language(.german)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag lang="de"></tag>
@@ -774,8 +752,6 @@ final class AttributesTests: XCTestCase {
             }
             .nonce("84a97f593e589c45")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -792,8 +768,6 @@ final class AttributesTests: XCTestCase {
             .role(.range)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag role="range"></tag>
@@ -808,8 +782,6 @@ final class AttributesTests: XCTestCase {
             }
             .hasSpellCheck(true)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -826,8 +798,6 @@ final class AttributesTests: XCTestCase {
             .style("background-color:powderblue;")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag style="background-color:powderblue;"></tag>
@@ -842,8 +812,6 @@ final class AttributesTests: XCTestCase {
             }
             .tabIndex(3)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -860,8 +828,6 @@ final class AttributesTests: XCTestCase {
             .title("homepage")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag title="homepage"></tag>
@@ -876,8 +842,6 @@ final class AttributesTests: XCTestCase {
             }
             .translate(.yes)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -894,8 +858,6 @@ final class AttributesTests: XCTestCase {
             .accept("accept")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag accept="accept"></tag>
@@ -910,8 +872,6 @@ final class AttributesTests: XCTestCase {
             }
             .action("action")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -928,8 +888,6 @@ final class AttributesTests: XCTestCase {
             .alternate("a tag and a attribute")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag alt="a tag and a attribute"></tag>
@@ -944,8 +902,6 @@ final class AttributesTests: XCTestCase {
             }
             .asynchronously()
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -962,8 +918,6 @@ final class AttributesTests: XCTestCase {
             .hasCompletion(true)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag autocomplete="true"></tag>
@@ -978,8 +932,6 @@ final class AttributesTests: XCTestCase {
             }
             .autoplay()
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -996,8 +948,6 @@ final class AttributesTests: XCTestCase {
             .charset(.utf8)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag charset="utf-8"></tag>
@@ -1012,8 +962,6 @@ final class AttributesTests: XCTestCase {
             }
             .checked()
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1030,8 +978,6 @@ final class AttributesTests: XCTestCase {
             .cite("cite")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag cite="cite"></tag>
@@ -1046,8 +992,6 @@ final class AttributesTests: XCTestCase {
             }
             .columns(2)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1064,8 +1008,6 @@ final class AttributesTests: XCTestCase {
             .columnSpan(2)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag colspan="2"></tag>
@@ -1080,8 +1022,6 @@ final class AttributesTests: XCTestCase {
             }
             .content("content")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1098,8 +1038,6 @@ final class AttributesTests: XCTestCase {
             .controls()
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag controls="controls"></tag>
@@ -1114,8 +1052,6 @@ final class AttributesTests: XCTestCase {
             }
             .coordinates("255,132,316,150")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1132,8 +1068,6 @@ final class AttributesTests: XCTestCase {
             .data("https://www.github.com")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag data="https://www.github.com"></tag>
@@ -1148,8 +1082,6 @@ final class AttributesTests: XCTestCase {
             }
             .dateTime("YYYY-MM-DDThh:mm:ssTZD")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1166,8 +1098,6 @@ final class AttributesTests: XCTestCase {
             .default()
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag default="default"></tag>
@@ -1182,8 +1112,6 @@ final class AttributesTests: XCTestCase {
             }
             .defer()
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1200,8 +1128,6 @@ final class AttributesTests: XCTestCase {
             .disabled()
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag disabled="disabled"></tag>
@@ -1216,8 +1142,6 @@ final class AttributesTests: XCTestCase {
             }
             .download()
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1234,8 +1158,6 @@ final class AttributesTests: XCTestCase {
             .encoding(.plainText)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag enctype="text/plain"></tag>
@@ -1250,8 +1172,6 @@ final class AttributesTests: XCTestCase {
             }
             .for("for")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1268,8 +1188,6 @@ final class AttributesTests: XCTestCase {
             .form("/action.php")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag form="/action.php"></tag>
@@ -1284,8 +1202,6 @@ final class AttributesTests: XCTestCase {
             }
             .formAction("/action.php")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1302,8 +1218,6 @@ final class AttributesTests: XCTestCase {
             .equivalent(.refresh)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag headers="refresh"></tag>
@@ -1318,8 +1232,6 @@ final class AttributesTests: XCTestCase {
             }
             .headers("name")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1336,8 +1248,6 @@ final class AttributesTests: XCTestCase {
             .height(2)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag height="2"></tag>
@@ -1352,8 +1262,6 @@ final class AttributesTests: XCTestCase {
             }
             .high(2.0)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1370,8 +1278,6 @@ final class AttributesTests: XCTestCase {
             .reference("/index.html")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag href="/index.html"></tag>
@@ -1386,8 +1292,6 @@ final class AttributesTests: XCTestCase {
             }
             .referenceLanguage(.german)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1404,8 +1308,6 @@ final class AttributesTests: XCTestCase {
             .isMap()
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag ismap="ismap"></tag>
@@ -1420,8 +1322,6 @@ final class AttributesTests: XCTestCase {
             }
             .kind(.subtitles)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1438,8 +1338,6 @@ final class AttributesTests: XCTestCase {
             .label("Soccer")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag label="Soccer"></tag>
@@ -1454,8 +1352,6 @@ final class AttributesTests: XCTestCase {
             }
             .list("browsers")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1472,8 +1368,6 @@ final class AttributesTests: XCTestCase {
             .loop()
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag loop="loop"></tag>
@@ -1488,8 +1382,6 @@ final class AttributesTests: XCTestCase {
             }
             .low(2.0)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1506,8 +1398,6 @@ final class AttributesTests: XCTestCase {
             .maximum("1948-01-01")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag max="1948-01-01"></tag>
@@ -1522,8 +1412,6 @@ final class AttributesTests: XCTestCase {
             }
             .maximum(length: 2)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1540,8 +1428,6 @@ final class AttributesTests: XCTestCase {
             .media("print and (resolution:300dpi)")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag media="print and (resolution:300dpi)"></tag>
@@ -1556,8 +1442,6 @@ final class AttributesTests: XCTestCase {
             }
             .method(.get)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1574,8 +1458,6 @@ final class AttributesTests: XCTestCase {
             .minimum(2.0)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag min="2.0"></tag>
@@ -1590,8 +1472,6 @@ final class AttributesTests: XCTestCase {
             }
             .minimum(length: 2)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1608,8 +1488,6 @@ final class AttributesTests: XCTestCase {
             .multiple()
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag multiple="multiple"></tag>
@@ -1624,8 +1502,6 @@ final class AttributesTests: XCTestCase {
             }
             .muted()
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1642,8 +1518,6 @@ final class AttributesTests: XCTestCase {
             .name("name")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag name="name"></tag>
@@ -1658,8 +1532,6 @@ final class AttributesTests: XCTestCase {
             }
             .novalidate()
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1676,8 +1548,6 @@ final class AttributesTests: XCTestCase {
             .isOpen(true)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag open="true"></tag>
@@ -1692,8 +1562,6 @@ final class AttributesTests: XCTestCase {
             }
             .optimum(2.0)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1710,8 +1578,6 @@ final class AttributesTests: XCTestCase {
             .pattern("[A-Za-z]{3}")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag pattern="[A-Za-z]{3}"></tag>
@@ -1726,8 +1592,6 @@ final class AttributesTests: XCTestCase {
             }
             .part("part")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1744,8 +1608,6 @@ final class AttributesTests: XCTestCase {
             .ping("https://www.github.com")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag ping="https://www.github.com"></tag>
@@ -1760,8 +1622,6 @@ final class AttributesTests: XCTestCase {
             }
             .placeholder("123-45-678")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1778,8 +1638,6 @@ final class AttributesTests: XCTestCase {
             .poster("https://www.github.com")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag poster="https://www.github.com"></tag>
@@ -1794,8 +1652,6 @@ final class AttributesTests: XCTestCase {
             }
             .preload(.metadata)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1812,8 +1668,6 @@ final class AttributesTests: XCTestCase {
             .readonly()
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag readonly="readonly"></tag>
@@ -1828,8 +1682,6 @@ final class AttributesTests: XCTestCase {
             }
             .referrerPolicy(.origin)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1846,8 +1698,6 @@ final class AttributesTests: XCTestCase {
             .relationship(.author)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag rel="author"></tag>
@@ -1862,8 +1712,6 @@ final class AttributesTests: XCTestCase {
             }
             .required()
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1880,8 +1728,6 @@ final class AttributesTests: XCTestCase {
             .reversed()
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag reversed="reversed"></tag>
@@ -1896,8 +1742,6 @@ final class AttributesTests: XCTestCase {
             }
             .rows(2)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1914,8 +1758,6 @@ final class AttributesTests: XCTestCase {
             .rowSpan(2)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag rowspan="2"></tag>
@@ -1930,8 +1772,6 @@ final class AttributesTests: XCTestCase {
             }
             .sandbox()
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1948,8 +1788,6 @@ final class AttributesTests: XCTestCase {
             .scope("scope")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag scope="scope"></tag>
@@ -1964,8 +1802,6 @@ final class AttributesTests: XCTestCase {
             }
             .shape(.circle)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -1982,8 +1818,6 @@ final class AttributesTests: XCTestCase {
             .size(2)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag size="2"></tag>
@@ -1998,8 +1832,6 @@ final class AttributesTests: XCTestCase {
             }
             .sizes(2)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2016,8 +1848,6 @@ final class AttributesTests: XCTestCase {
             .slot("slot")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag slot="slot"></tag>
@@ -2032,8 +1862,6 @@ final class AttributesTests: XCTestCase {
             }
             .span(2)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2050,8 +1878,6 @@ final class AttributesTests: XCTestCase {
             .source("source")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag src="source"></tag>
@@ -2066,8 +1892,6 @@ final class AttributesTests: XCTestCase {
             }
             .start(2)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2084,8 +1908,6 @@ final class AttributesTests: XCTestCase {
             .step(2)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag step="2"></tag>
@@ -2100,8 +1922,6 @@ final class AttributesTests: XCTestCase {
             }
             .target(.blank)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2118,8 +1938,6 @@ final class AttributesTests: XCTestCase {
             .type("type")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag type="type"></tag>
@@ -2134,8 +1952,6 @@ final class AttributesTests: XCTestCase {
             }
             .selected()
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2152,8 +1968,6 @@ final class AttributesTests: XCTestCase {
             .custom(key: "data-animal-type", value: "bird")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag data-animal-type="bird"></tag>
@@ -2168,8 +1982,6 @@ final class AttributesTests: XCTestCase {
             }
             .on(event: .afterprint, "script")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2186,8 +1998,6 @@ final class AttributesTests: XCTestCase {
             .on(event: .focus, "script")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag onfocus="script"></tag>
@@ -2202,8 +2012,6 @@ final class AttributesTests: XCTestCase {
             }
             .on(event: .pointerup, "script")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2220,8 +2028,6 @@ final class AttributesTests: XCTestCase {
             .on(event: .mouseup, "script")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag onmouseup="script"></tag>
@@ -2236,8 +2042,6 @@ final class AttributesTests: XCTestCase {
             }
             .on(event: .wheel, "script")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2254,8 +2058,6 @@ final class AttributesTests: XCTestCase {
             .on(event: .input, "script")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag oninput="script"></tag>
@@ -2270,8 +2072,6 @@ final class AttributesTests: XCTestCase {
             }
             .on(event: .keyup, "script")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2288,8 +2088,6 @@ final class AttributesTests: XCTestCase {
             .on(event: .drag, "script")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag ondrag="script"></tag>
@@ -2304,8 +2102,6 @@ final class AttributesTests: XCTestCase {
             }
             .on(event: .paste, "script")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2322,8 +2118,6 @@ final class AttributesTests: XCTestCase {
             .on(event: .selectstart, "script")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag onselectstart="script"></tag>
@@ -2338,8 +2132,6 @@ final class AttributesTests: XCTestCase {
             }
             .on(event: .play, "script")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2356,8 +2148,6 @@ final class AttributesTests: XCTestCase {
             .on(event: .submit, "script")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag onsubmit="script"></tag>
@@ -2372,8 +2162,6 @@ final class AttributesTests: XCTestCase {
             }
             .on(event: .toggle, "script")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2390,8 +2178,6 @@ final class AttributesTests: XCTestCase {
             .aria(atomic: true)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-atomic="true"></tag>
@@ -2406,8 +2192,6 @@ final class AttributesTests: XCTestCase {
             }
             .aria(busy: true)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2424,8 +2208,6 @@ final class AttributesTests: XCTestCase {
             .aria(controls: "name")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-controls="name"></tag>
@@ -2440,8 +2222,6 @@ final class AttributesTests: XCTestCase {
             }
             .aria(current: .page)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2458,8 +2238,6 @@ final class AttributesTests: XCTestCase {
             .aria(describedBy: "description")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-describedby="description"></tag>
@@ -2474,8 +2252,6 @@ final class AttributesTests: XCTestCase {
             }
             .aria(details: "details")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2492,8 +2268,6 @@ final class AttributesTests: XCTestCase {
             .aria(disabled: true)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-disabled="true"></tag>
@@ -2508,8 +2282,6 @@ final class AttributesTests: XCTestCase {
             }
             .aria(errorMessage: "error")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2526,8 +2298,6 @@ final class AttributesTests: XCTestCase {
             .aria(flowTo: "flow")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-flowto="flow"></tag>
@@ -2542,8 +2312,6 @@ final class AttributesTests: XCTestCase {
             }
             .aria(hasPopup: .grid)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2560,8 +2328,6 @@ final class AttributesTests: XCTestCase {
             .aria(hidden: true)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-hidden="true"></tag>
@@ -2576,8 +2342,6 @@ final class AttributesTests: XCTestCase {
             }
             .aria(invalid: .grammar)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2594,8 +2358,6 @@ final class AttributesTests: XCTestCase {
             .aria(keyShortcuts: "shortcut")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-keyshortcuts="shortcut"></tag>
@@ -2610,8 +2372,6 @@ final class AttributesTests: XCTestCase {
             }
             .aria(label: "label")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2628,8 +2388,6 @@ final class AttributesTests: XCTestCase {
             .aria(labeledBy: "label")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-labeledby="label"></tag>
@@ -2644,8 +2402,6 @@ final class AttributesTests: XCTestCase {
             }
             .aria(live: .polite)
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
@@ -2662,8 +2418,6 @@ final class AttributesTests: XCTestCase {
             .aria(owns: "live")
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-owns="live"></tag>
@@ -2679,8 +2433,6 @@ final class AttributesTests: XCTestCase {
             .aria(relevant: .additions)
         }
         
-        try renderer.add(layout: page)
-        
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """
                        <tag aria-relevant="additions"></tag>
@@ -2695,8 +2447,6 @@ final class AttributesTests: XCTestCase {
             }
             .aria(roleDescription: "description")
         }
-        
-        try renderer.add(layout: page)
         
         XCTAssertEqual(try renderer.render(layout: TestPage.self),
                        """

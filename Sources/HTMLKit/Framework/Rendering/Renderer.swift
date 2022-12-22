@@ -34,9 +34,6 @@ public class Renderer {
         }
     }
 
-    /// A cache that contains all the composed content.
-    private var cache: Cache
-
     /// The localization to use when rendering.
     private var lingo: Lingo?
     
@@ -49,17 +46,8 @@ public class Renderer {
     /// Initiates the renderer.
     public init(calendar: Calendar = .current, timeZone: TimeZone = .current) {
         
-        self.cache = .init()
         self.calendar = calendar
         self.timeZone = timeZone
-    }
-    
-    /// Adds a formula to the cache.
-    public func add<T: AnyLayout>(layout: T) throws {
-        
-        let formula = Formula()
-        
-        self.cache.upsert(formula: formula, for: ObjectIdentifier(T.self))
     }
     
     /// Registers a localization.
