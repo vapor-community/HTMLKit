@@ -9,7 +9,7 @@ import HTMLKit
 public struct Text: Component {
 
     /// The identifier of the text.
-    internal var id: TemplateValue<String?>
+    internal var id: String?
     
     /// The content of the text.
     internal var content: [AnyContent]
@@ -25,11 +25,11 @@ public struct Text: Component {
         
         self.content = content()
         self.classes = ["text"]
-        self.id = .constant(nil)
+        self.id = nil
     }
     
     /// Creates a text.
-    internal init(content: [AnyContent], classes: [String], events: [String]?, id: TemplateValue<String?>) {
+    internal init(content: [AnyContent], classes: [String], events: [String]?, id: String?) {
         
         self.content = content
         self.classes = classes
@@ -47,56 +47,10 @@ public struct Text: Component {
         }
     }
     
-    /// The behaviour of the text.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
-    }
-    
     public func id(_ value: String) -> Text {
         
         var newSelf = self
-        newSelf.id = .constant(value)
-        
-        return newSelf
-    }
-    
-    public func onHover(perfom action: Actions) -> Text {
-        
-        var newSelf = self
-        
-        let id: TemplateValue<String>
-        
-        switch newSelf.id {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            id = .constant(value)
-            
-        default:
-            
-            id = .constant("")
-        }
-        
-        let event = Events.hover(selector: id.rawValue, action: action.script)
-        
-        if var events = newSelf.events {
-            
-            events.append(event)
-            
-            newSelf.events = events
-            
-        } else {
-            
-            newSelf.events = [event]
-        }
+        newSelf.id = value
         
         return newSelf
     }

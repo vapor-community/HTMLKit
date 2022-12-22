@@ -34,26 +34,13 @@ public struct Parameter: EmptyNode, ObjectElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Parameter, TemplateValue<T>) -> Parameter) -> Parameter {
+    public func modify<T>(unwrap value: T?, element: (Parameter, T) -> Parameter) -> Parameter {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -126,10 +113,6 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
     public func id(_ value: String) -> Parameter {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> Parameter {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> Parameter {
         return mutate(lang: value.rawValue)
@@ -167,16 +150,8 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(name: value)
     }
     
-    public func name(_ value: TemplateValue<String>) -> Parameter {
-        return mutate(name: value.rawValue)
-    }
-    
     public func value(_ value: String) -> Parameter {
         return mutate(value: value)
-    }
-    
-    public func value(_ value: TemplateValue<String>) -> Parameter {
-        return mutate(value: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Parameter {

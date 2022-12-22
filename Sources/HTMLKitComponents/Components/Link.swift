@@ -10,7 +10,7 @@ import Foundation
 public struct Link: Component {
 
     /// The url path of the target.
-    internal let destination: TemplateValue<String>
+    internal let destination: String
     
     /// The content of the link.
     internal var content: [AnyContent]
@@ -22,7 +22,7 @@ public struct Link: Component {
     internal var events: [String]?
     
     /// Creates a link.
-    public init(destination: TemplateValue<String>, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(destination: String, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         
         self.destination = destination
         self.content = content()
@@ -30,7 +30,7 @@ public struct Link: Component {
     }
     
     /// Creates a link.
-    internal init(destination: TemplateValue<String>, content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(destination: String, content: [AnyContent], classes: [String], events: [String]?) {
         
         self.destination = destination
         self.content = content
@@ -42,18 +42,8 @@ public struct Link: Component {
         Anchor {
             content
         }
-        .reference(destination.rawValue)
+        .reference(destination)
         .class(classes.joined(separator: " "))
-    }
-    
-    /// The behaviour of the link.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
     }
 }
 

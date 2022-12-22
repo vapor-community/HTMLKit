@@ -48,26 +48,13 @@ public struct ListItem: ContentNode, ListElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (ListItem, TemplateValue<T>) -> ListItem) -> ListItem {
+    public func modify<T>(unwrap value: T?, element: (ListItem, T) -> ListItem) -> ListItem {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -140,10 +127,6 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func id(_ value: String) -> ListItem {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> ListItem {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> ListItem {
         return mutate(lang: value.rawValue)
@@ -179,10 +162,6 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func value(_ value: String) -> ListItem {
         return mutate(value: value)
-    }
-    
-    public func value(_ value: TemplateValue<String>) -> ListItem {
-        return mutate(value: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> ListItem {

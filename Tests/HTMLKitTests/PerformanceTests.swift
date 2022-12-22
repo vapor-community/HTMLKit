@@ -14,7 +14,7 @@ final class PerformanceTests: XCTestCase {
         
         let context = SampleContext(id: 0, title: "TestPage", excerpt: "Testpage", modified: Date(), posted: Date())
         
-        try renderer.add(layout: SampleView())
+        try renderer.add(layout: SampleView(context: context))
         
         measure {
             

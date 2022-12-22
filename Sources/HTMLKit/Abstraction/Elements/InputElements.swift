@@ -48,26 +48,13 @@ public struct OptionGroup: ContentNode, InputElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (OptionGroup, TemplateValue<T>) -> OptionGroup) -> OptionGroup {
+    public func modify<T>(unwrap value: T?, element: (OptionGroup, T) -> OptionGroup) -> OptionGroup {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -139,10 +126,6 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     
     public func id(_ value: String) -> OptionGroup {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> OptionGroup {
-        return mutate(id: value.rawValue)
     }
     
     public func language(_ value: Values.Language) -> OptionGroup {
@@ -317,26 +300,13 @@ public struct Option: ContentNode, InputElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Option, TemplateValue<T>) -> Option) -> Option {
+    public func modify<T>(unwrap value: T?, element: (Option, T) -> Option) -> Option {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -409,10 +379,6 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     public func id(_ value: String) -> Option {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> Option {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> Option {
         return mutate(lang: value.rawValue)
@@ -456,10 +422,6 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func value(_ value: String) -> Option {
         return mutate(value: value)
-    }
-    
-    public func value(_ value: TemplateValue<String>) -> Option {
-        return mutate(value: value.rawValue)
     }
     
     public func selected() -> Option {
@@ -600,26 +562,13 @@ public struct Legend: ContentNode, InputElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Legend, TemplateValue<T>) -> Legend) -> Legend {
+    public func modify<T>(unwrap value: T?, element: (Legend, T) -> Legend) -> Legend {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -691,10 +640,6 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
 
     public func id(_ value: String) -> Legend {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Legend {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> Legend {
@@ -861,26 +806,13 @@ public struct Summary: ContentNode, InputElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Summary, TemplateValue<T>) -> Summary) -> Summary {
+    public func modify<T>(unwrap value: T?, element: (Summary, T) -> Summary) -> Summary {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -952,10 +884,6 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
 
     public func id(_ value: String) -> Summary {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Summary {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> Summary {

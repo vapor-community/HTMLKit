@@ -17,9 +17,10 @@ public struct Localized<B>: AnyContent where B: Encodable {
 
     public let key: String
 
-    public let context: TemplateValue<B>?
+    public let context: B?
 
-    public init(key: String, context: TemplateValue<B>) {
+    public init(key: String, context: B) {
+        
         self.key = key
         self.context = context
     }
@@ -28,6 +29,7 @@ public struct Localized<B>: AnyContent where B: Encodable {
 extension Localized where B == NoData {
     
     public init(key: String) {
+        
         self.key = key
         self.context = nil
     }

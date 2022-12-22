@@ -39,23 +39,13 @@ public struct Form: Component {
         .method(.post)
         .class(classes.joined(separator: " "))
     }
-    
-    /// The behaviour of the container.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
-    }
 }
 
 /// A component that displays the name of the form control.
 public struct FieldLabel: Component {
     
     /// The identifier of the element the label is related to.
-    internal let id: TemplateValue<String>
+    internal let id: String
     
     /// The content of the label.
     internal var content: [AnyContent]
@@ -67,7 +57,7 @@ public struct FieldLabel: Component {
     internal var events: [String]?
     
     /// Creates a field label.
-    public init(for id: TemplateValue<String>, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(for id: String, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
       
         self.id = id
         self.content = content()
@@ -75,7 +65,7 @@ public struct FieldLabel: Component {
     }
     
     /// Creates a field label.
-    internal init(for id: TemplateValue<String>, content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(for id: String, content: [AnyContent], classes: [String], events: [String]?) {
       
         self.id = id
         self.content = content
@@ -87,7 +77,7 @@ public struct FieldLabel: Component {
         Label {
             content
         }
-        .for(id.rawValue)
+        .for(id)
         .class(classes.joined(separator: " "))
     }
 }
@@ -96,10 +86,10 @@ public struct FieldLabel: Component {
 public struct TextField: Component {
     
     /// The identifier of the field.
-    internal let name: TemplateValue<String>
+    internal let name: String
     
     /// The content of the field.
-    internal let value: TemplateValue<String?>
+    internal let value: String?
     
     /// The classes of the field.
     internal var classes: [String]
@@ -108,7 +98,7 @@ public struct TextField: Component {
     internal var events: [String]?
     
     /// Creates a text field.
-    public init(name: TemplateValue<String>, value: TemplateValue<String?> = .constant(nil)) {
+    public init(name: String, value: String? = nil) {
         
         self.name = name
         self.value = value
@@ -116,7 +106,7 @@ public struct TextField: Component {
     }
     
     /// Creates a text field.
-    internal init(name: TemplateValue<String>, value: TemplateValue<String?>, classes: [String], events: [String]?) {
+    internal init(name: String, value: String?, classes: [String], events: [String]?) {
         
         self.name = name
         self.value = value
@@ -169,7 +159,7 @@ extension TextField: InputModifier {
 public struct TextEditor: Component {
     
     /// The identifier of the editor.
-    internal let name: TemplateValue<String>
+    internal let name: String
     
     /// The number of lines.
     internal var rows: Int = 1
@@ -184,7 +174,7 @@ public struct TextEditor: Component {
     internal var events: [String]?
     
     /// Creates a text editor.
-    public init(name: TemplateValue<String>, @ContentBuilder<String> content: () -> [String]) {
+    public init(name: String, @ContentBuilder<String> content: () -> [String]) {
         
         self.name = name
         self.content = content()
@@ -192,7 +182,7 @@ public struct TextEditor: Component {
     }
     
     /// Creates a text editor.
-    internal init(name: TemplateValue<String>, rows: Int, content: [String], classes: [String], events: [String]?) {
+    internal init(name: String, rows: Int, content: [String], classes: [String], events: [String]?) {
         
         self.name = name
         self.rows = rows
@@ -209,16 +199,6 @@ public struct TextEditor: Component {
         .name(name)
         .class(classes.joined(separator: " "))
         .rows(rows)
-    }
-    
-    /// The behaviour of the editor.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
     }
     
     /// Sets the limit of the maximum lines.
@@ -254,16 +234,16 @@ extension TextEditor: InputModifier {
 public struct CheckField: Component {
     
     /// The identifier of the field.
-    internal let name: TemplateValue<String>
+    internal let name: String
     
     /// The content of the field.
-    internal let value: TemplateValue<String>
+    internal let value: String
     
     /// The classes of the field.
     internal var classes: [String]
     
     /// Creates a check field.
-    public init(name: TemplateValue<String>, value: TemplateValue<String>) {
+    public init(name: String, value: String) {
         
         self.name = name
         self.value = value
@@ -271,7 +251,7 @@ public struct CheckField: Component {
     }
     
     /// Creates a check field.
-    internal init(name: TemplateValue<String>, value: TemplateValue<String>, classes: [String]) {
+    internal init(name: String, value: String, classes: [String]) {
         
         self.name = name
         self.value = value
@@ -311,16 +291,16 @@ extension CheckField: InputModifier {
 public struct RadioSelect: Component {
     
     /// The identifier of the select.
-    internal let name: TemplateValue<String>
+    internal let name: String
     
     /// The content of the select.
-    internal let value: TemplateValue<String>
+    internal let value: String
     
     /// The classes of the select.
     internal var classes: [String]
     
     /// Creates a radio select.
-    public init(name: TemplateValue<String>, value: TemplateValue<String>) {
+    public init(name: String, value: String) {
         
         self.name = name
         self.value = value
@@ -328,7 +308,7 @@ public struct RadioSelect: Component {
     }
     
     /// Creates a radio select.
-    internal init(name: TemplateValue<String>, value: TemplateValue<String>, classes: [String]) {
+    internal init(name: String, value: String, classes: [String]) {
         
         self.name = name
         self.value = value
@@ -368,7 +348,7 @@ extension RadioSelect: InputModifier {
 public struct SelectField: Component {
     
     /// The identifier of the field.
-    internal let name: TemplateValue<String>
+    internal let name: String
     
     /// The content of the field.
     internal var content: [InputElement]
@@ -380,7 +360,7 @@ public struct SelectField: Component {
     internal var events: [String]?
     
     /// Creates a select field.
-    public init(name: TemplateValue<String>, @ContentBuilder<InputElement> content: () -> [InputElement]) {
+    public init(name: String, @ContentBuilder<InputElement> content: () -> [InputElement]) {
         
         self.name = name
         self.content = content()
@@ -388,7 +368,7 @@ public struct SelectField: Component {
     }
     
     /// Creates a select field.
-    internal init(name: TemplateValue<String>, content: [InputElement], classes: [String], events: [String]?) {
+    internal init(name: String, content: [InputElement], classes: [String], events: [String]?) {
         
         self.name = name
         self.content = content
@@ -403,16 +383,6 @@ public struct SelectField: Component {
         .id(name)
         .name(name)
         .class(classes.joined(separator: " "))
-    }
-    
-    /// The behaviour of the field.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
     }
 }
 
@@ -439,10 +409,10 @@ extension SelectField: InputModifier {
 public struct SecureField: Component {
     
     /// The identifier of the field.
-    internal let name: TemplateValue<String>
+    internal let name: String
     
     /// The content of the field.
-    internal let value: TemplateValue<String?>
+    internal let value: String?
     
     /// The classes of the field.
     internal var classes: [String]
@@ -451,7 +421,7 @@ public struct SecureField: Component {
     internal var events: [String]?
     
     /// Creates a password field.
-    public init(name: TemplateValue<String>, value: TemplateValue<String?> = .constant(nil)) {
+    public init(name: String, value: String? = nil) {
         
         self.name = name
         self.value = value
@@ -459,7 +429,7 @@ public struct SecureField: Component {
     }
     
     /// Creates a password field.
-    internal init(name: TemplateValue<String>, value: TemplateValue<String?>, classes: [String], events: [String]?) {
+    internal init(name: String, value: String?, classes: [String], events: [String]?) {
         
         self.name = name
         self.value = value
@@ -512,7 +482,7 @@ extension SecureField: InputModifier {
 public struct Slider: Component {
     
     /// The identifier of the slider.
-    internal let name: TemplateValue<String>
+    internal let name: String
     
     /// The classes of the slider.
     internal var classes: [String]
@@ -521,14 +491,14 @@ public struct Slider: Component {
     internal var events: [String]?
     
     /// Creates a slider.
-    public init(name: TemplateValue<String>) {
+    public init(name: String) {
         
         self.name = name
         self.classes = ["input", "type:slider"]
     }
     
     /// Creates a slider.
-    internal init(name: TemplateValue<String>, classes: [String], events: [String]?) {
+    internal init(name: String, classes: [String], events: [String]?) {
         
         self.name = name
         self.classes = classes
@@ -558,10 +528,10 @@ public struct Slider: Component {
 public struct DatePicker: Component {
     
     /// The identifier of the picker.
-    internal let name: TemplateValue<String>
+    internal let name: String
     
     /// The content of the picker.
-    internal let value: TemplateValue<String?>
+    internal let value: String?
     
     /// The classes of the picker.
     internal var classes: [String]
@@ -570,7 +540,7 @@ public struct DatePicker: Component {
     internal var events: [String]?
     
     /// Creates a date picker.
-    public init(name: TemplateValue<String>, value: TemplateValue<String?> = .constant(nil)) {
+    public init(name: String, value: String? = nil) {
         
         self.name = name
         self.value = value
@@ -578,7 +548,7 @@ public struct DatePicker: Component {
     }
     
     /// Creates a date picker.
-    internal init(name: TemplateValue<String>, value: TemplateValue<String?>, classes: [String], events: [String]?) {
+    internal init(name: String, value: String?, classes: [String], events: [String]?) {
         
         self.name = name
         self.value = value
@@ -631,10 +601,10 @@ extension DatePicker: InputModifier {
 public struct SearchField: Component {
     
     /// The identifier of the search field.
-    internal let name: TemplateValue<String>
+    internal let name: String
     
     /// The content of the field.
-    internal let value: TemplateValue<String?>
+    internal let value: String?
     
     /// The classes of the field.
     internal var classes: [String]
@@ -643,7 +613,7 @@ public struct SearchField: Component {
     internal var events: [String]?
     
     /// Creates a search field.
-    public init(name: TemplateValue<String>, value: TemplateValue<String?> = .constant(nil)) {
+    public init(name: String, value: String? = nil) {
         
         self.name = name
         self.value = value
@@ -651,7 +621,7 @@ public struct SearchField: Component {
     }
     
     /// Creates a search field.
-    internal init(name: TemplateValue<String>, value: TemplateValue<String?>, classes: [String], events: [String]?) {
+    internal init(name: String, value: String?, classes: [String], events: [String]?) {
         
         self.name = name
         self.value = value
@@ -704,9 +674,9 @@ extension SearchField: InputModifier {
 public struct ProgressView: Component {
     
     /// The identifier of the progress view.
-    internal let name: TemplateValue<String>
+    internal let name: String
     
-    internal let value: TemplateValue<String?>
+    internal let value: String?
     
     /// The content of the view.
     internal var content: [AnyContent]
@@ -718,7 +688,7 @@ public struct ProgressView: Component {
     internal var events: [String]?
     
     /// Creates a progress view.
-    public init(name: TemplateValue<String>, value: TemplateValue<String?> = .constant(nil), @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(name: String, value: String? = nil, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         
         self.name = name
         self.value = value
@@ -727,7 +697,7 @@ public struct ProgressView: Component {
     }
     
     /// Creates a progress bar.
-    internal init(name: TemplateValue<String>, value: TemplateValue<String?>, content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(name: String, value: String?, content: [AnyContent], classes: [String], events: [String]?) {
         
         self.name = name
         self.value = value

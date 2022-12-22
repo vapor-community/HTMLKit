@@ -21,8 +21,7 @@ final class ContextTests: XCTestCase {
     
     struct TestPage: Page {
         
-        @TemplateValue(PageContext.self)
-        var context
+        var context: PageContext
         
         var body: AnyContent {
             Heading1 {
@@ -34,8 +33,7 @@ final class ContextTests: XCTestCase {
     
     struct TestView: View {
         
-        @TemplateValue(ViewContext.self)
-        var context
+        var context: ViewContext
         
         var body: AnyContent {
             Section{

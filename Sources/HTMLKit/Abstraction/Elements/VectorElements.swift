@@ -48,26 +48,13 @@ public struct Circle: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Circle, TemplateValue<T>) -> Circle) -> Circle {
+    public func modify<T>(unwrap value: T?, element: (Circle, T) -> Circle) -> Circle {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -75,10 +62,6 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
   
     public func id(_ value: String) -> Circle {
         return self.mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Circle {
-        return self.mutate(id: value.rawValue)
     }
     
     public func tabIndex(_ value: Int) -> Circle {
@@ -165,26 +148,13 @@ public struct Rectangle: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Rectangle, TemplateValue<T>) -> Rectangle) -> Rectangle {
+    public func modify<T>(unwrap value: T?, element: (Rectangle, T) -> Rectangle) -> Rectangle {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -192,10 +162,6 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
     
     public func id(_ value: String) -> Rectangle {
         return self.mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Rectangle {
-        return self.mutate(id: value.rawValue)
     }
     
     public func tabIndex(_ value: Int) -> Rectangle {
@@ -286,26 +252,13 @@ public struct Ellipse: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Ellipse, TemplateValue<T>) -> Ellipse) -> Ellipse {
+    public func modify<T>(unwrap value: T?, element: (Ellipse, T) -> Ellipse) -> Ellipse {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -313,10 +266,6 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
     
     public func id(_ value: String) -> Ellipse {
         return self.mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Ellipse {
-        return self.mutate(id: value.rawValue)
     }
     
     public func tabIndex(_ value: Int) -> Ellipse {
@@ -403,26 +352,13 @@ public struct Line: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Line, TemplateValue<T>) -> Line) -> Line {
+    public func modify<T>(unwrap value: T?, element: (Line, T) -> Line) -> Line {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -430,10 +366,6 @@ extension Line: GlobalVectorAttributes {
     
     public func id(_ value: String) -> Line {
         return self.mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Line {
-        return self.mutate(id: value.rawValue)
     }
     
     public func tabIndex(_ value: Int) -> Line {
@@ -512,26 +444,13 @@ public struct Polygon: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Polygon, TemplateValue<T>) -> Polygon) -> Polygon {
+    public func modify<T>(unwrap value: T?, element: (Polygon, T) -> Polygon) -> Polygon {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -539,10 +458,6 @@ extension Polygon: GlobalVectorAttributes {
     
     public func id(_ value: String) -> Polygon {
         return self.mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Polygon {
-        return self.mutate(id: value.rawValue)
     }
     
     public func tabIndex(_ value: Int) -> Polygon {
@@ -621,26 +536,13 @@ public struct Polyline: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Polyline, TemplateValue<T>) -> Polyline) -> Polyline {
+    public func modify<T>(unwrap value: T?, element: (Polyline, T) -> Polyline) -> Polyline {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -648,10 +550,6 @@ extension Polyline: GlobalVectorAttributes {
     
     public func id(_ value: String) -> Polyline {
         return self.mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Polyline {
-        return self.mutate(id: value.rawValue)
     }
     
     public func tabIndex(_ value: Int) -> Polyline {
@@ -730,26 +628,13 @@ public struct Path: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Path, TemplateValue<T>) -> Path) -> Path {
+    public func modify<T>(unwrap value: T?, element: (Path, T) -> Path) -> Path {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -757,10 +642,6 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
     
     public func id(_ value: String) -> Path {
         return self.mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Path {
-        return self.mutate(id: value.rawValue)
     }
     
     public func tabIndex(_ value: Int) -> Path {
@@ -843,26 +724,13 @@ public struct Group: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Group, TemplateValue<T>) -> Group) -> Group {
+    public func modify<T>(unwrap value: T?, element: (Group, T) -> Group) -> Group {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -870,10 +738,6 @@ extension Group: GlobalVectorAttributes {
 
     public func id(_ value: String) -> Self {
         return self.mutate(id: value)
-    }
-
-    public func id(_ value: TemplateValue<String>) -> Self {
-        return self.mutate(id: value.rawValue)
     }
 
     public func tabIndex(_ value: Int) -> Self {
@@ -952,26 +816,13 @@ public struct Use: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Use, TemplateValue<T>) -> Use) -> Use {
+    public func modify<T>(unwrap value: T?, element: (Use, T) -> Use) -> Use {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -981,20 +832,12 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
         return self.mutate(id: value)
     }
     
-    public func id(_ value: TemplateValue<String>) -> Use {
-        return self.mutate(id: value.rawValue)
-    }
-    
     public func tabIndex(_ value: Int) -> Use {
         return self.mutate(tabindex: value)
     }
     
     public func reference(_ value: String) -> Use {
         return self.mutate(href: value)
-    }
-    
-    public func reference(_ value: TemplateValue<String>) -> Use {
-        return self.mutate(href: value.rawValue)
     }
     
     public func width(_ size: Int) -> Use {

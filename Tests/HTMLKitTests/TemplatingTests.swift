@@ -32,8 +32,7 @@ final class TemplatingTests: XCTestCase {
         
         struct TestView: View {
             
-            @TemplateValue(String.self)
-            var context
+            var context: String
             
             var body: AnyContent {
                 Heading1 {
@@ -90,8 +89,7 @@ final class TemplatingTests: XCTestCase {
         
         struct TestView: View {
             
-            @TemplateValue(String.self)
-            var context
+            var context: String
             
             var body: AnyContent {
                 TestPage {
@@ -154,8 +152,7 @@ final class TemplatingTests: XCTestCase {
         
         struct TestView: View {
             
-            @TemplateValue(String.self)
-            var context
+            var context: String
             
             var body: AnyContent {
                 TestPage {

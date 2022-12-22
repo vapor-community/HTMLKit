@@ -10,7 +10,7 @@ import Foundation
 public struct ActionButton: Component {
     
     /// The url path of the target.
-    internal let destination: TemplateValue<String>
+    internal let destination: String
     
     /// The  content of the button.
     internal var content: [AnyContent]
@@ -22,7 +22,7 @@ public struct ActionButton: Component {
     internal var events: [String]?
     
     /// Creates a action button.
-    public init(destination: TemplateValue<String>, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(destination: String, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
         
         self.destination = destination
         self.content = content()
@@ -30,7 +30,7 @@ public struct ActionButton: Component {
     }
     
     /// Creates a action button.
-    internal init(destination: TemplateValue<String>, content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(destination: String, content: [AnyContent], classes: [String], events: [String]?) {
         
         self.destination = destination
         self.content = content
@@ -42,19 +42,9 @@ public struct ActionButton: Component {
         Anchor {
             self.content
         }
-        .reference(self.destination.rawValue)
+        .reference(self.destination)
         .class(self.classes.joined(separator: " "))
         .role(.button)
-    }
-    
-    /// The behaviour of the button.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [self.content.scripts, Script { events }]
-        }
-        
-        return [self.content.scripts]
     }
 }
 

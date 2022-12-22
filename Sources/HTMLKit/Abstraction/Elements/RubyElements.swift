@@ -57,26 +57,13 @@ public struct RubyText: ContentNode, RubyElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (RubyText, TemplateValue<T>) -> RubyText) -> RubyText {
+    public func modify<T>(unwrap value: T?, element: (RubyText, T) -> RubyText) -> RubyText {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -148,10 +135,6 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func id(_ value: String) -> RubyText {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> RubyText {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> RubyText {
@@ -318,26 +301,13 @@ public struct RubyPronunciation: ContentNode, RubyElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (RubyPronunciation, TemplateValue<T>) -> RubyPronunciation) -> RubyPronunciation {
+    public func modify<T>(unwrap value: T?, element: (RubyPronunciation, T) -> RubyPronunciation) -> RubyPronunciation {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -409,10 +379,6 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
 
     public func id(_ value: String) -> RubyPronunciation {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> RubyPronunciation {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> RubyPronunciation {

@@ -50,8 +50,7 @@ struct SamplePage: Page {
 
 struct SampleView: View {
     
-    @TemplateValue(SampleContext.self)
-    var context
+    var context: SampleContext
     
     var body: AnyContent {
         SamplePage {
@@ -102,7 +101,7 @@ struct SampleView: View {
             }
             Footer {
                 Paragraph {
-                    context.modified.style(date: .full, time: .full)
+                    context.modified
                 }
             }
         }

@@ -39,26 +39,13 @@ public struct Title: ContentNode, HeadElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Title, TemplateValue<T>) -> Title) -> Title {
+    public func modify<T>(unwrap value: T?, element: (Title, T) -> Title) -> Title {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -130,10 +117,6 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
     
     public func id(_ value: String) -> Title {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Title {
-        return mutate(id: value.rawValue)
     }
     
     public func language(_ value: Values.Language) -> Title {
@@ -219,26 +202,13 @@ public struct Base: EmptyNode, HeadElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Base, TemplateValue<T>) -> Base) -> Base {
+    public func modify<T>(unwrap value: T?, element: (Base, T) -> Base) -> Base {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -312,10 +282,6 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(id: value)
     }
     
-    public func id(_ value: TemplateValue<String>) -> Base {
-        return mutate(id: value.rawValue)
-    }
-    
     public func language(_ value: Values.Language) -> Base {
         return mutate(lang: value.rawValue)
     }
@@ -350,10 +316,6 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
     
     public func reference(_ value: String) -> Base {
         return mutate(href: value)
-    }
-    
-    public func reference(_ value: TemplateValue<String>) -> Base {
-        return mutate(href: value.rawValue)
     }
     
     public func target(_ value: Values.Target) -> Base {
@@ -411,26 +373,13 @@ public struct Meta: EmptyNode, HeadElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Meta, TemplateValue<T>) -> Meta) -> Meta {
+    public func modify<T>(unwrap value: T?, element: (Meta, T) -> Meta) -> Meta {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -503,10 +452,6 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
     public func id(_ value: String) -> Meta {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> Meta {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> Meta {
         return mutate(lang: value.rawValue)
@@ -544,15 +489,7 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(content: value)
     }
     
-    public func content(_ value: TemplateValue<String>) -> Meta {
-        return mutate(content: value.rawValue)
-    }
-    
     public func name(_ value: Values.Name) -> Meta {
-        return mutate(name: value.rawValue)
-    }
-    
-    public func name(_ value: TemplateValue<Values.Name>) -> Meta {
         return mutate(name: value.rawValue)
     }
     
@@ -624,26 +561,13 @@ public struct Style: ContentNode, HeadElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Style, TemplateValue<T>) -> Style) -> Style {
+    public func modify<T>(unwrap value: T?, element: (Style, T) -> Style) -> Style {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -715,10 +639,6 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
 
     public func id(_ value: String) -> Style {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Style {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> Style {
@@ -812,26 +732,13 @@ public struct Link: EmptyNode, HeadElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Link, TemplateValue<T>) -> Link) -> Link {
+    public func modify<T>(unwrap value: T?, element: (Link, T) -> Link) -> Link {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -904,10 +811,6 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     public func id(_ value: String) -> Link {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> Link {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> Link {
         return mutate(lang: value.rawValue)
@@ -943,10 +846,6 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     
     public func reference(_ value: String) -> Link {
         return mutate(href: value)
-    }
-    
-    public func reference(_ value: TemplateValue<String>) -> Link {
-        return mutate(href: value.rawValue)
     }
     
     public func referenceLanguage(_ value: Values.Language) -> Link {

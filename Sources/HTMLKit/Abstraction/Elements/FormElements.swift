@@ -34,28 +34,13 @@ public struct Input: EmptyNode, FormElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Input, TemplateValue<T>) -> Input) -> Input {
+    public func modify<T>(unwrap value: T?, element: (Input, T) -> Input) -> Input {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -127,10 +112,6 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
 
     public func id(_ value: String) -> Input {
         return mutate(id: value)
-    }
-
-    public func id(_ value: TemplateValue<String>) -> Input {
-        return mutate(id: value.rawValue)
     }
     
     public func language(_ value: Values.Language) -> Input {
@@ -225,20 +206,12 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(name: value)
     }
     
-    public func name(_ value: TemplateValue<String>) -> Input {
-        return mutate(name: value.rawValue)
-    }
-    
     public func pattern(_ regex: String) -> Input {
         return mutate(pattern: regex)
     }
     
     public func placeholder(_ value: String) -> Input {
         return mutate(placeholder: value)
-    }
-    
-    public func placeholder(_ value: TemplateValue<String>) -> Input {
-        return mutate(placeholder: value.rawValue)
     }
     
     public func readonly() -> Input {
@@ -267,10 +240,6 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     
     public func value(_ value: String) -> Input {
         return mutate(value: value)
-    }
-    
-    public func value(_ value: TemplateValue<String>) -> Input {
-        return mutate(value: value.rawValue)
     }
     
     public func width(_ size: Int) -> Input {
@@ -333,26 +302,13 @@ public struct Label: ContentNode, FormElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Label, TemplateValue<T>) -> Label) -> Label {
+    public func modify<T>(unwrap value: T?, element: (Label, T) -> Label) -> Label {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -424,10 +380,6 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 
     public func id(_ value: String) -> Label {
         return mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Label {
-        return mutate(id: value.rawValue)
     }
 
     public func language(_ value: Values.Language) -> Label {
@@ -573,7 +525,7 @@ extension Label: Localizable {
         self.content = [Localized(key: localizedKey)]
     }
 
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: B) where B : Encodable {
         self.content = [Localized(key: localizedKey, context: context)]
     }
 }
@@ -609,26 +561,13 @@ public struct Select: ContentNode, FormElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Select, TemplateValue<T>) -> Select) -> Select {
+    public func modify<T>(unwrap value: T?, element: (Select, T) -> Select) -> Select {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -701,10 +640,6 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
     public func id(_ value: String) -> Select {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> Select {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> Select {
         return mutate(lang: value.rawValue)
@@ -756,10 +691,6 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
     
     public func name(_ value: String) -> Select {
         return mutate(name: value)
-    }
-    
-    public func name(_ value: TemplateValue<String>) -> Select {
-        return mutate(name: value.rawValue)
     }
     
     public func required() -> Select {
@@ -826,26 +757,13 @@ public struct TextArea: ContentNode, FormElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TextArea, TemplateValue<T>) -> TextArea) -> TextArea {
+    public func modify<T>(unwrap value: T?, element: (TextArea, T) -> TextArea) -> TextArea {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -918,10 +836,6 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func id(_ value: String) -> TextArea {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> TextArea {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> TextArea {
         return mutate(lang: value.rawValue)
@@ -983,16 +897,8 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(name: value)
     }
     
-    public func name(_ value: TemplateValue<String>) -> TextArea {
-        return mutate(name: value.rawValue)
-    }
-    
     public func placeholder(_ value: String) -> TextArea {
         return mutate(placeholder: value)
-    }
-    
-    public func placeholder(_ value: TemplateValue<String>) -> TextArea {
-        return mutate(placeholder: value.rawValue)
     }
     
     public func readonly() -> TextArea {
@@ -1143,26 +1049,13 @@ public struct Button: ContentNode, FormElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Button, TemplateValue<T>) -> Button) -> Button {
+    public func modify<T>(unwrap value: T?, element: (Button, T) -> Button) -> Button {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -1235,10 +1128,6 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     public func id(_ value: String) -> Button {
         return mutate(id: value)
     }
-
-    public func id(_ value: TemplateValue<String>) -> Button {
-        return mutate(id: value.rawValue)
-    }
     
     public func language(_ value: Values.Language) -> Button {
         return mutate(lang: value.rawValue)
@@ -1288,20 +1177,12 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(name: value)
     }
     
-    public func name(_ value: TemplateValue<String>) -> Button {
-        return mutate(name: value.rawValue)
-    }
-    
     public func type(_ value: Values.Button) -> Button {
         return mutate(type: value.rawValue)
     }
     
     public func value(_ value: String) -> Button {
         return mutate(value: value)
-    }
-    
-    public func value(_ value: TemplateValue<String>) -> Button {
-        return mutate(value: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Button {
@@ -1411,7 +1292,7 @@ extension Button: Localizable {
         self.content = [Localized(key: localizedKey)]
     }
 
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
+    public init<B>(_ localizedKey: String, with context: B) where B : Encodable {
         self.content = [Localized(key: localizedKey, context: context)]
     }
 }
@@ -1447,26 +1328,13 @@ public struct Fieldset: ContentNode, FormElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Fieldset, TemplateValue<T>) -> Fieldset) -> Fieldset {
+    public func modify<T>(unwrap value: T?, element: (Fieldset, T) -> Fieldset) -> Fieldset {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -1539,10 +1407,6 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func id(_ value: String) -> Fieldset {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> Fieldset {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> Fieldset {
         return mutate(lang: value.rawValue)
@@ -1586,10 +1450,6 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func name(_ value: String) -> Fieldset {
         return mutate(name: value)
-    }
-    
-    public func name(_ value: TemplateValue<String>) -> Fieldset {
-        return mutate(name: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Fieldset {

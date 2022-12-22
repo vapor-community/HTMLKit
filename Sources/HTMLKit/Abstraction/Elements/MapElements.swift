@@ -39,26 +39,13 @@ public struct Area: ContentNode, MapElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Area, TemplateValue<T>) -> Area) -> Area {
+    public func modify<T>(unwrap value: T?, element: (Area, T) -> Area) -> Area {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -131,10 +118,6 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
     public func id(_ value: String) -> Area {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> Area {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> Area {
         return mutate(lang: value.rawValue)
@@ -182,10 +165,6 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
     
     public func reference(_ value: String) -> Area {
         return mutate(href: value)
-    }
-    
-    public func reference(_ value: TemplateValue<String>) -> Area {
-        return mutate(href: value.rawValue)
     }
     
     public func target(_ value: Values.Target) -> Area {
