@@ -37,32 +37,44 @@ public class Renderer {
         var result = ""
         
         if let contents = view.body as? [Content] {
+            result += try render(contents: contents)
+        }
+        
+        return result
+    }
+    
+    internal func render(contents: [Content]) throws -> String {
+        
+        var result = ""
+        
+        for content in contents {
             
-            for content in contents {
-                
-                if let element = content as? (any View) {
-                    result += try render(view: element)
-                }
-                
-                if let element = content as? (any ContentNode) {
-                    result += try render(element: element)
-                }
-                
-                if let element = content as? (any EmptyNode) {
-                    result += render(element: element)
-                }
-                
-                if let element = content as? (any DocumentNode) {
-                    result += render(element: element)
-                }
-                
-                if let element = content as? (any CommentNode) {
-                    result += render(element: element)
-                }
-                
-                if let element = content as? String {
-                    result += element
-                }
+            if let contents = content as? [Content] {
+                result += try render(contents: contents)
+            }
+            
+            if let element = content as? (any View) {
+                result += try render(view: element)
+            }
+            
+            if let element = content as? (any ContentNode) {
+                result += try render(element: element)
+            }
+            
+            if let element = content as? (any EmptyNode) {
+                result += render(element: element)
+            }
+            
+            if let element = content as? (any DocumentNode) {
+                result += render(element: element)
+            }
+            
+            if let element = content as? (any CommentNode) {
+                result += render(element: element)
+            }
+            
+            if let element = content as? String {
+                result += element
             }
         }
         

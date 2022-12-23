@@ -18,6 +18,22 @@
         return components
     }
     
+    public static func buildOptional(_ component: [T]?) -> [T] {
+        return component ?? []
+    }
+
+    public static func buildEither(first component: [T]) -> [T] {
+        return component
+    }
+
+    public static func buildEither(second component: [T]) -> [T] {
+        return component
+    }
+    
+    public static func buildArray(_ components: [[T]]) -> [T] {
+        return components.flatMap { $0 }
+    }
+    
     public static func buildBlock(_ components: [T], _ trailing: T...) -> [T] {
         return components + trailing
     }
