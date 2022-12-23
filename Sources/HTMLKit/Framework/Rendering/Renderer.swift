@@ -92,6 +92,10 @@ public class Renderer {
             
             for content in contents {
                 
+                if let contents = content as? [Content] {
+                    result += try render(contents: contents)
+                }
+                
                 if let element = content as? (any View) {
                     result += try render(view: element)
                 }
