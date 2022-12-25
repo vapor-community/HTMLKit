@@ -3,58 +3,122 @@
  The file contains the builder to build up the result from a sequence of elements.
  */
 
-/// The builder builds up a result value from a sequence of any content.
+/// The builder builds up a result value from a sequence of elements.
 @resultBuilder public class ContentBuilder<T> {
     
+    /// Builds an empty block
+    ///
+    /// ```swift
+    /// Tag {
+    /// }
+    /// ```
     public static func buildBlock() -> [T] {
         return []
     }
     
+    /// Builds a block with one element.
+    ///
+    /// ```swift
+    /// Tag {
+    ///    Tag {
+    ///    }
+    /// }
+    /// ```
     public static func buildBlock(_ component: T) -> [T] {
         return [component]
     }
 
+    /// Builds a block with more than one element.
+    ///
+    /// ```swift
+    /// Tag {
+    ///    Tag {
+    ///    }
+    ///    Tag {
+    ///    }
+    /// }
+    /// ```
     public static func buildBlock(_ components: T...) -> [T] {
-        return components
+        return components.compactMap { $0 }
     }
     
-    public static func buildOptional(_ component: [T]?) -> [T] {
-        return component ?? []
+    /// Builds a block with one element.
+    ///
+    /// ```swift
+    /// Tag {
+    ///    if let unwrapped = optional {
+    ///       Tag {
+    ///          unwrapped
+    ///       }
+    ///    }
+    /// }
+    /// ```
+    public static func buildOptional(_ component: T?) -> [T] {
+        
+        if let component = component {
+            return [component]
+        }
+        
+        return []
     }
 
-    public static func buildEither(first component: [T]) -> [T] {
-        return component
+    /// Builds a block, if the condition is true.
+    ///
+    /// ```swift
+    /// Tag {
+    ///    if(true) {
+    ///       Tag {
+    ///       }
+    ///    }
+    /// }
+    /// ```
+    public static func buildEither(first component: T) -> [T] {
+        return [component]
     }
 
-    public static func buildEither(second component: [T]) -> [T] {
-        return component
+    /// Builds a block, if the condition is false.
+    ///
+    /// ```swift
+    /// Tag {
+    ///    if(false) {
+    ///       Tag {
+    ///       }
+    ///    }
+    ///    else {
+    ///       Tag {
+    ///       }
+    ///    }
+    /// }
+    /// ```
+    public static func buildEither(second component: T) -> [T] {
+        return [component]
     }
     
+    /// Builds blocks by running through a sequence of elements.
+    ///
+    /// ```swift
+    /// Tag {
+    ///    for element in sequence {
+    ///       Tag {
+    ///          element
+    ///       }
+    ///    }
+    /// }
+    /// ```
     public static func buildArray(_ components: [[T]]) -> [T] {
         return components.flatMap { $0 }
     }
     
-    public static func buildBlock(_ components: [T], _ trailing: T...) -> [T] {
-        return components + trailing
-    }
-    
-    public static func buildBlock(_ c1: T, _ components: [T], _ trailing: T...) -> [T] {
-        return [c1] + components + trailing
-    }
-    
-    public static func buildBlock(_ c1: T, _ c2: T, _ components: [T], _ trailing: T...) -> [T] {
-        return [c1, c2] + components + trailing
-    }
-    
-    public static func buildBlock(_ c1: T, _ c2: T, _ c3: T, _ components: [T], _ trailing: T...) -> [T] {
-        return [c1, c2, c3] + components + trailing
-    }
-    
-    public static func buildBlock(_ cs1: [T], _ components: [T], _ trailing: T...) -> [T] {
-        return cs1 + components + trailing
-    }
-    
-    public static func buildBlock(_ cs1: [T], _ cs2: [T], _ components: [T], _ trailing: T...) -> [T] {
-        return cs1 + cs2 + components + trailing
+    /// Builds a block with embeded content.
+    ///
+    /// ```swift
+    /// Tag {
+    ///    content
+    ///    Tag {
+    ///    }
+    /// }
+    /// ```
+    public static func buildBlock(_ content: [T], _ components: T...) -> [T] {
+        return content + components.compactMap { $0 }
     }
 }
