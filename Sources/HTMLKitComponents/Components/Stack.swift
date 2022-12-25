@@ -6,13 +6,19 @@
 import HTMLKit
 
 /// A component that arranges content horizontally.
-public struct HStack: View {
+public struct HStack: View, Hoverable {
+    
+    /// The identifier of the text.
+    internal var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
     
     /// The classes of the stack.
     internal var classes: [String]
+    
+    /// The events of the text.
+    internal var events: [String]?
     
     /// Creates a horizontal stack.
     public init(alignment: Tokens.VerticalAlignment = .center, @ContentBuilder<Content> content: () -> [Content]) {
@@ -22,10 +28,12 @@ public struct HStack: View {
     }
     
     /// Creates a horizontal stack.
-    internal init(content: [Content], classes: [String]) {
+    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
         
         self.content = content
         self.classes = classes
+        self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -33,6 +41,14 @@ public struct HStack: View {
             content
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+        if let events = self.events {
+            Script {
+                events
+            }
+        }
     }
     
     /// Sets the space of the content.
@@ -73,13 +89,17 @@ extension HStack: ViewModifier {
 }
 
 /// A component that arranges content vertically.
-public struct VStack: View {
+public struct VStack: View, Hoverable {
+    
+    var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
     
     /// The classes of the stack.
     internal var classes: [String]
+    
+    var events: [String]?
     
     /// Creates a vertical stack.
     public init(alignment: Tokens.HorizontalAlignment = .leading, @ContentBuilder<Content> content: () -> [Content]) {
@@ -89,10 +109,12 @@ public struct VStack: View {
     }
     
     /// Creates a vertical stack.
-    internal init(content: [Content], classes: [String]) {
+    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
         
         self.content = content
         self.classes = classes
+        self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -100,6 +122,14 @@ public struct VStack: View {
             content
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+        if let events = self.events {
+            Script {
+                events
+            }
+        }
     }
 }
 
@@ -131,13 +161,17 @@ extension VStack: ViewModifier {
 }
 
 /// A component that overlays content.
-public struct ZStack: View {
+public struct ZStack: View, Hoverable {
+    
+    var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
     
     /// The classes of the stack.
     internal var classes: [String]
+    
+    var events: [String]?
     
     /// Creates a stack.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
@@ -147,10 +181,12 @@ public struct ZStack: View {
     }
     
     /// Creates a stack.
-    internal init(content: [Content], classes: [String]) {
+    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
         
         self.content = content
         self.classes = classes
+        self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -158,6 +194,14 @@ public struct ZStack: View {
             content
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+        if let events = self.events {
+            Script {
+                events
+            }
+        }
     }
 }
 

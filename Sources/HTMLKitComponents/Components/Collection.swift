@@ -6,7 +6,9 @@
 import HTMLKit
 
 /// A component that collects and arranges collection items horizontally.
-public struct Collection: View {
+public struct Collection: View, Hoverable {
+    
+    internal var id: String?
     
     /// The content of the collection.
     internal var content: [ListElement]
@@ -14,7 +16,6 @@ public struct Collection: View {
     /// The classes of the collection.
     internal var classes: [String]
     
-    /// The events of the collection.
     internal var events: [String]?
     
     /// Creates a collection.
@@ -25,11 +26,12 @@ public struct Collection: View {
     }
     
     /// Creates a collection.
-    internal init(content: [ListElement], classes: [String], events: [String]?) {
+    internal init(content: [ListElement], classes: [String], events: [String]?, id: String?) {
         
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -37,6 +39,14 @@ public struct Collection: View {
             content
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+        if let events = self.events {
+            Script {
+                events
+            }
+        }
     }
     
     /// Sets the style for the collection.
@@ -50,7 +60,9 @@ public struct Collection: View {
 }
 
 /// A component that represents a collection item.
-public struct CollectionItem: View {
+public struct CollectionItem: View, Hoverable {
+    
+    internal var id: String?
     
     /// The content of the item.
     internal var content: [Content]
@@ -58,7 +70,6 @@ public struct CollectionItem: View {
     /// The classes for the item.
     internal var classes: [String]
     
-    /// The events of the item.
     internal var events: [String]?
     
     /// Creates a collection item.
@@ -69,11 +80,12 @@ public struct CollectionItem: View {
     }
     
     /// Creates a collection item.
-    internal init(content: [Content], classes: [String], events: [String]?) {
+    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
         
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -81,5 +93,13 @@ public struct CollectionItem: View {
             content
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+        if let events = self.events {
+            Script {
+                events
+            }
+        }
     }
 }

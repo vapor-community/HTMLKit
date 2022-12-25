@@ -6,7 +6,9 @@
 import HTMLKit
 
 /// A component that collects and arranges list items vertically.
-public struct List: View {
+public struct List: View, Hoverable {
+    
+    var id: String?
     
     /// The content of the list.
     internal var content: [ListElement]
@@ -14,7 +16,6 @@ public struct List: View {
     /// The classes of the list.
     internal var classes: [String]
     
-    /// The events of the list.
     internal var events: [String]?
     
     /// Creates a list.
@@ -25,11 +26,12 @@ public struct List: View {
     }
     
     /// Creates a list.
-    internal init(content: [ListElement], classes: [String], events: [String]?) {
+    internal init(content: [ListElement], classes: [String], events: [String]?, id: String?) {
         
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -37,6 +39,14 @@ public struct List: View {
             content
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+        if let events = self.events {
+            Script {
+                events
+            }
+        }
     }
     
     /// Sets the style for the list.
@@ -50,15 +60,16 @@ public struct List: View {
 }
 
 /// A component that represents a list item.
-public struct ListRow: View {
-
+public struct ListRow: View, Hoverable {
+    
+    var id: String?
+    
     /// The content of the row.
     internal var content: [Content]
     
     /// The classes of the row.
     internal var classes: [String]
     
-    /// The events of the row.
     internal var events: [String]?
     
     /// Creates a list row.
@@ -69,11 +80,12 @@ public struct ListRow: View {
     }
     
     /// Creates a list row.
-    internal init(content: [Content], classes: [String], events: [String]?) {
+    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
         
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -81,6 +93,14 @@ public struct ListRow: View {
             content
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+        if let events = self.events {
+            Script {
+                events
+            }
+        }
     }
 }
 

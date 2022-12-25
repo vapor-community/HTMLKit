@@ -14,6 +14,15 @@ public enum Events {
                 """
     }
     
+    static func leave(selector: String, action: String) -> String {
+        
+        return  """
+                $('#\(selector)').onLeave(function() {
+                    \(action)
+                });
+                """
+    }
+    
     static func change(selector: String, action: String) -> String {
         
         return  """

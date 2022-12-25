@@ -6,9 +6,8 @@
 import HTMLKit
 
 /// A component that displays text.
-public struct Text: View {
+public struct Text: View, Hoverable {
 
-    /// The identifier of the text.
     internal var id: String?
     
     /// The content of the text.
@@ -17,7 +16,6 @@ public struct Text: View {
     /// The classes of the text.
     internal var classes: [String]
     
-    /// The events of the text.
     internal var events: [String]?
     
     /// Creates a text.
@@ -25,7 +23,6 @@ public struct Text: View {
         
         self.content = content()
         self.classes = ["text"]
-        self.id = nil
     }
     
     /// Creates a text.
@@ -50,36 +47,6 @@ public struct Text: View {
                 events
             }
         }
-    }
-    
-    public func id(_ value: String) -> Text {
-        
-        var newSelf = self
-        newSelf.id = value
-        
-        return newSelf
-    }
-    
-    public func onHover(perfom action: Actions) -> Text {
-        
-        var newSelf = self
-        
-        if let identifier = self.id {
-            
-            let event = Events.hover(selector: identifier, action: action.script)
-            
-            if var events = newSelf.events {
-
-                events.append(event)
-                
-                newSelf.events = events
-                
-            } else {
-                newSelf.events = [event]
-            }
-        }
-        
-        return newSelf
     }
 }
 
