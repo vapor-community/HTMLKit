@@ -45,12 +45,39 @@ public struct Text: View {
         .modify(unwrap: id) {
             $0.id($1)
         }
+        if let events = self.events {
+            Script {
+                events
+            }
+        }
     }
     
     public func id(_ value: String) -> Text {
         
         var newSelf = self
         newSelf.id = value
+        
+        return newSelf
+    }
+    
+    public func onHover(perfom action: Actions) -> Text {
+        
+        var newSelf = self
+        
+        if let identifier = self.id {
+            
+            let event = Events.hover(selector: identifier, action: action.script)
+            
+            if var events = newSelf.events {
+
+                events.append(event)
+                
+                newSelf.events = events
+                
+            } else {
+                newSelf.events = [event]
+            }
+        }
         
         return newSelf
     }
