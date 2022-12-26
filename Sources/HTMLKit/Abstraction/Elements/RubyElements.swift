@@ -67,7 +67,131 @@ public struct RubyText: ContentNode, RubyElement {
     }
 }
 
-extension RubyText: GlobalAriaAttributes {
+extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+    
+    public func accessKey(_ value: Character) -> RubyText {
+        return mutate(accesskey: value)
+    }
+
+    public func autocapitalize(_ value: Values.Capitalization) -> RubyText {
+        return mutate(autocapitalize: value.rawValue)
+    }
+
+    public func autofocus() -> RubyText {
+        return mutate(autofocus: "autofocus")
+    }
+
+    public func `class`(_ value: String) -> RubyText {
+        return mutate(class: value)
+    }
+
+    public func isEditable(_ value: Bool) -> RubyText {
+        return mutate(contenteditable: value)
+    }
+
+    public func direction(_ value: Values.Direction) -> RubyText {
+        return mutate(dir: value.rawValue)
+    }
+
+    public func isDraggable(_ value: Bool) -> RubyText {
+        return mutate(draggable: value)
+    }
+
+    public func enterKeyHint(_ value: Values.Hint) -> RubyText {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+
+    public func hidden() -> RubyText {
+        return mutate(hidden: "hidden")
+    }
+
+    public func inputMode(_ value: String) -> RubyText {
+        return mutate(inputmode: value)
+    }
+
+    public func `is`(_ value: String) -> RubyText {
+        return mutate(is: value)
+    }
+
+    public func itemId(_ value: String) -> RubyText {
+        return mutate(itemid: value)
+    }
+
+    public func itemProperty(_ value: String) -> RubyText {
+        return mutate(itemprop: value)
+    }
+
+    public func itemReference(_ value: String) -> RubyText {
+        return mutate(itemref: value)
+    }
+
+    public func itemScope(_ value: String) -> RubyText {
+        return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> RubyText {
+        return mutate(itemtype: value)
+    }
+
+    public func id(_ value: String) -> RubyText {
+        return mutate(id: value)
+    }
+
+    public func language(_ value: Values.Language) -> RubyText {
+        return mutate(lang: value.rawValue)
+    }
+
+    public func nonce(_ value: String) -> RubyText {
+        return mutate(nonce: value)
+    }
+    
+    public func role(_ value: Values.Role) -> RubyText {
+        return mutate(role: value.rawValue)
+    }
+
+    public func hasSpellCheck(_ value: Bool) -> RubyText {
+        return mutate(spellcheck: value)
+    }
+
+    public func style(_ value: String) -> RubyText {
+        return mutate(style: value)
+    }
+
+    public func tabIndex(_ value: Int) -> RubyText {
+        return mutate(tabindex: value)
+    }
+
+    public func title(_ value: String) -> RubyText {
+        return mutate(title: value)
+    }
+    
+    public func translate(_ value: Values.Decision) -> RubyText {
+        return mutate(translate: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> RubyText {
+        return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> RubyText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> RubyText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> RubyText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> RubyText {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> RubyText {
+        return mutate(key: event.rawValue, value: value)
+    }
     
     public func aria(atomic value: Bool) -> RubyText {
         return mutate(ariaatomic: value)
@@ -187,7 +311,131 @@ public struct RubyPronunciation: ContentNode, RubyElement {
     }
 }
 
-extension RubyPronunciation: GlobalAriaAttributes {
+extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+    
+    public func accessKey(_ value: Character) -> RubyPronunciation {
+        return mutate(accesskey: value)
+    }
+
+    public func autocapitalize(_ value: Values.Capitalization) -> RubyPronunciation {
+        return mutate(autocapitalize: value.rawValue)
+    }
+
+    public func autofocus() -> RubyPronunciation {
+        return mutate(autofocus: "autofocus")
+    }
+
+    public func `class`(_ value: String) -> RubyPronunciation {
+        return mutate(class: value)
+    }
+
+    public func isEditable(_ value: Bool) -> RubyPronunciation {
+        return mutate(contenteditable: value)
+    }
+
+    public func direction(_ value: Values.Direction) -> RubyPronunciation {
+        return mutate(dir: value.rawValue)
+    }
+
+    public func isDraggable(_ value: Bool) -> RubyPronunciation {
+        return mutate(draggable: value)
+    }
+
+    public func enterKeyHint(_ value: Values.Hint) -> RubyPronunciation {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+
+    public func hidden() -> RubyPronunciation {
+        return mutate(hidden: "hidden")
+    }
+
+    public func inputMode(_ value: String) -> RubyPronunciation {
+        return mutate(inputmode: value)
+    }
+
+    public func `is`(_ value: String) -> RubyPronunciation {
+        return mutate(is: value)
+    }
+
+    public func itemId(_ value: String) -> RubyPronunciation {
+        return mutate(itemid: value)
+    }
+
+    public func itemProperty(_ value: String) -> RubyPronunciation {
+        return mutate(itemprop: value)
+    }
+
+    public func itemReference(_ value: String) -> RubyPronunciation {
+        return mutate(itemref: value)
+    }
+
+    public func itemScope(_ value: String) -> RubyPronunciation {
+        return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> RubyPronunciation {
+        return mutate(itemtype: value)
+    }
+
+    public func id(_ value: String) -> RubyPronunciation {
+        return mutate(id: value)
+    }
+
+    public func language(_ value: Values.Language) -> RubyPronunciation {
+        return mutate(lang: value.rawValue)
+    }
+
+    public func nonce(_ value: String) -> RubyPronunciation {
+        return mutate(nonce: value)
+    }
+    
+    public func role(_ value: Values.Role) -> RubyPronunciation {
+        return mutate(role: value.rawValue)
+    }
+
+    public func hasSpellCheck(_ value: Bool) -> RubyPronunciation {
+        return mutate(spellcheck: value)
+    }
+
+    public func style(_ value: String) -> RubyPronunciation {
+        return mutate(style: value)
+    }
+
+    public func tabIndex(_ value: Int) -> RubyPronunciation {
+        return mutate(tabindex: value)
+    }
+
+    public func title(_ value: String) -> RubyPronunciation {
+        return mutate(title: value)
+    }
+    
+    public func translate(_ value: Values.Decision) -> RubyPronunciation {
+        return mutate(translate: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> RubyPronunciation {
+        return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> RubyPronunciation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> RubyPronunciation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> RubyPronunciation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> RubyPronunciation {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> RubyPronunciation {
+        return mutate(key: event.rawValue, value: value)
+    }
 
     public func aria(atomic value: Bool) -> RubyPronunciation {
         return mutate(ariaatomic: value)

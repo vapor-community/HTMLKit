@@ -111,6 +111,10 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
     public func strokeLineJoin(_ value: Values.Linejoin) -> Circle {
         return self.mutate(strokelinejoin: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Circle {
+        return self.mutate(key: key, value: value)
+    }
 }
 
 /// The element represents ...
@@ -211,6 +215,10 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
     public func strokeLineJoin(_ value: Values.Linejoin) -> Rectangle {
         return self.mutate(strokelinejoin: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Rectangle {
+        return self.mutate(key: key, value: value)
+    }
 }
 
 /// The element represents a comment output.
@@ -307,6 +315,10 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
     public func strokeLineJoin(_ value: Values.Linejoin) -> Ellipse {
         return self.mutate(strokelinejoin: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Ellipse {
+        return self.mutate(key: key, value: value)
+    }
 }
 
 /// The element represents ...
@@ -394,6 +406,10 @@ extension Line: GlobalVectorAttributes {
     
     public func strokeLineJoin(_ value: Values.Linejoin) -> Line {
         return self.mutate(strokelinejoin: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Line {
+        return self.mutate(key: key, value: value)
     }
 }
 
@@ -483,6 +499,10 @@ extension Polygon: GlobalVectorAttributes {
     public func strokeLineJoin(_ value: Values.Linejoin) -> Polygon {
         return self.mutate(strokelinejoin: value.rawValue)
     }
+    
+    public func custom(key: String, value: Any) -> Polygon {
+        return self.mutate(key: key, value: value)
+    }
 }
 
 /// The element represents ...
@@ -570,6 +590,10 @@ extension Polyline: GlobalVectorAttributes {
     
     public func strokeLineJoin(_ value: Values.Linejoin) -> Polyline {
         return self.mutate(strokelinejoin: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Polyline {
+        return self.mutate(key: key, value: value)
     }
 }
 
@@ -663,6 +687,10 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
     public func draw(_ value: String) -> Path {
         return self.mutate(draw: value)
     }
+    
+    public func custom(key: String, value: Any) -> Path {
+        return self.mutate(key: key, value: value)
+    }
 }
 
 /// The element represents ...
@@ -708,48 +736,52 @@ public struct Group: ContentNode, VectorElement {
 
 extension Group: GlobalVectorAttributes {
 
-    public func id(_ value: String) -> Self {
+    public func id(_ value: String) -> Group {
         return self.mutate(id: value)
     }
 
-    public func tabIndex(_ value: Int) -> Self {
+    public func tabIndex(_ value: Int) -> Group {
         return self.mutate(tabindex: value)
     }
 
-    public func `class`(_ value: String) -> Self {
+    public func `class`(_ value: String) -> Group {
         return self.mutate(class: value)
     }
 
-    public func style(_ value: String) -> Self {
+    public func style(_ value: String) -> Group {
         return self.mutate(style: value)
     }
 
-    public func fill(_ value: String) -> Self {
+    public func fill(_ value: String) -> Group {
         return self.mutate(fill: value)
     }
 
-    public func stroke(_ value: String) -> Self {
+    public func stroke(_ value: String) -> Group {
         return self.mutate(stroke: value)
     }
 
-    public func strokeWidth(_ size: Int) -> Self {
+    public func strokeWidth(_ size: Int) -> Group {
         return self.mutate(strokewidth: size)
     }
 
-    public func fillOpacity(_ value: Double) -> Self {
+    public func fillOpacity(_ value: Double) -> Group {
         return self.mutate(fillopacity: value)
     }
 
-    public func strokeOpacity(_ value: Double) -> Self {
+    public func strokeOpacity(_ value: Double) -> Group {
         return self.mutate(strokeopacity: value)
     }
 
-    public func strokeLineCap(_ value: Values.Linecap) -> Self {
+    public func strokeLineCap(_ value: Values.Linecap) -> Group {
         return self.mutate(strokelinecap: value.rawValue)
     }
 
-    public func strokeLineJoin(_ value: Values.Linejoin) -> Self {
+    public func strokeLineJoin(_ value: Values.Linejoin) -> Group {
         return self.mutate(strokelinejoin: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Group {
+        return self.mutate(key: key, value: value)
     }
 }
 
@@ -850,5 +882,9 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
     
     public func strokeLineJoin(_ value: Values.Linejoin) -> Use {
         return self.mutate(strokelinejoin: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Use {
+        return self.mutate(key: key, value: value)
     }
 }

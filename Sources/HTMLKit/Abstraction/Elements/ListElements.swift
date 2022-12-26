@@ -58,10 +58,134 @@ public struct ListItem: ContentNode, ListElement {
     }
 }
 
-extension ListItem: GlobalAriaAttributes, ValueAttribute {
+extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ValueAttribute {
+    
+    public func accessKey(_ value: Character) -> ListItem {
+        return mutate(accesskey: value)
+    }
+
+    public func autocapitalize(_ value: Values.Capitalization) -> ListItem {
+        return mutate(autocapitalize: value.rawValue)
+    }
+
+    public func autofocus() -> ListItem {
+        return mutate(autofocus: "autofocus")
+    }
+
+    public func `class`(_ value: String) -> ListItem {
+        return mutate(class: value)
+    }
+
+    public func isEditable(_ value: Bool) -> ListItem {
+        return mutate(contenteditable: value)
+    }
+
+    public func direction(_ value: Values.Direction) -> ListItem {
+        return mutate(dir: value.rawValue)
+    }
+
+    public func isDraggable(_ value: Bool) -> ListItem {
+        return mutate(draggable: value)
+    }
+
+    public func enterKeyHint(_ value: Values.Hint) -> ListItem {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+
+    public func hidden() -> ListItem {
+        return mutate(hidden: "hidden")
+    }
+
+    public func inputMode(_ value: String) -> ListItem {
+        return mutate(inputmode: value)
+    }
+
+    public func `is`(_ value: String) -> ListItem {
+        return mutate(is: value)
+    }
+
+    public func itemId(_ value: String) -> ListItem {
+        return mutate(itemid: value)
+    }
+
+    public func itemProperty(_ value: String) -> ListItem {
+        return mutate(itemprop: value)
+    }
+
+    public func itemReference(_ value: String) -> ListItem {
+        return mutate(itemref: value)
+    }
+
+    public func itemScope(_ value: String) -> ListItem {
+        return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> ListItem {
+        return mutate(itemtype: value)
+    }
+
+    public func id(_ value: String) -> ListItem {
+        return mutate(id: value)
+    }
+
+    public func language(_ value: Values.Language) -> ListItem {
+        return mutate(lang: value.rawValue)
+    }
+
+    public func nonce(_ value: String) -> ListItem {
+        return mutate(nonce: value)
+    }
+
+    public func role(_ value: Values.Role) -> ListItem {
+        return mutate(role: value.rawValue)
+    }
+    
+    public func hasSpellCheck(_ value: Bool) -> ListItem {
+        return mutate(spellcheck: value)
+    }
+
+    public func style(_ value: String) -> ListItem {
+        return mutate(style: value)
+    }
+
+    public func tabIndex(_ value: Int) -> ListItem {
+        return mutate(tabindex: value)
+    }
+
+    public func title(_ value: String) -> ListItem {
+        return mutate(title: value)
+    }
+    
+    public func translate(_ value: Values.Decision) -> ListItem {
+        return mutate(translate: value.rawValue)
+    }
     
     public func value(_ value: String) -> ListItem {
         return mutate(value: value)
+    }
+    
+    public func custom(key: String, value: Any) -> ListItem {
+        return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> ListItem {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> ListItem {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> ListItem {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> ListItem {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> ListItem {
+        return mutate(key: event.rawValue, value: value)
     }
     
     public func aria(atomic value: Bool) -> ListItem {

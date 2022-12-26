@@ -49,6 +49,133 @@ public struct Head: ContentNode, HtmlElement {
     }
 }
 
+extension Head: GlobalAttributes, GlobalEventAttributes {
+    
+    public func accessKey(_ value: Character) -> Head {
+        return mutate(accesskey: value)
+    }
+    
+    public func autocapitalize(_ value: Values.Capitalization) -> Head {
+        return mutate(autocapitalize: value.rawValue)
+    }
+    
+    public func autofocus() -> Head {
+        return mutate(autofocus: "autofocus")
+    }
+    
+    public func `class`(_ value: String) -> Head {
+        return mutate(class: value)
+    }
+    
+    public func isEditable(_ value: Bool) -> Head {
+        return mutate(contenteditable: value)
+    }
+    
+    public func direction(_ value: Values.Direction) -> Head {
+        return mutate(dir: value.rawValue)
+    }
+    
+    public func isDraggable(_ value: Bool) -> Head {
+        return mutate(draggable: value)
+    }
+    
+    public func enterKeyHint(_ value: Values.Hint) -> Head {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func hidden() -> Head {
+        return mutate(hidden: "hidden")
+    }
+    
+    public func inputMode(_ value: String) -> Head {
+        return mutate(inputmode: value)
+    }
+    
+    public func `is`(_ value: String) -> Head {
+        return mutate(is: value)
+    }
+    
+    public func itemId(_ value: String) -> Head {
+        return mutate(itemid: value)
+    }
+    
+    public func itemProperty(_ value: String) -> Head {
+        return mutate(itemprop: value)
+    }
+    
+    public func itemReference(_ value: String) -> Head {
+        return mutate(itemref: value)
+    }
+    
+    public func itemScope(_ value: String) -> Head {
+        return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Head {
+        return mutate(itemtype: value)
+    }
+    
+    public func id(_ value: String) -> Head {
+        return mutate(id: value)
+    }
+    
+    public func language(_ value: Values.Language) -> Head {
+        return mutate(lang: value.rawValue)
+    }
+    
+    public func nonce(_ value: String) -> Head {
+        return mutate(nonce: value)
+    }
+    
+    public func role(_ value: Values.Role) -> Head {
+        return mutate(role: value.rawValue)
+    }
+    
+    public func hasSpellCheck(_ value: Bool) -> Head {
+        return mutate(spellcheck: value)
+    }
+    
+    public func style(_ value: String) -> Head {
+        return mutate(style: value)
+    }
+    
+    public func tabIndex(_ value: Int) -> Head {
+        return mutate(tabindex: value)
+    }
+    
+    public func title(_ value: String) -> Head {
+        return mutate(title: value)
+    }
+    
+    public func translate(_ value: Values.Decision) -> Head {
+        return mutate(translate: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Head {
+        return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> Head {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Head {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Wheel, _ value: String) -> Head {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Head {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Head {
+        return mutate(key: event.rawValue, value: value)
+    }
+}
+
 /// The element contains the document's content.
 ///
 /// ```html
@@ -90,9 +217,133 @@ public struct Body: ContentNode, HtmlElement {
     }
 }
 
-extension Body: GlobalAriaAttributes, WindowEventAttribute {
+extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WindowEventAttribute {
+
+    public func accessKey(_ value: Character) -> Body {
+        return mutate(accesskey: value)
+    }
+
+    public func autocapitalize(_ value: Values.Capitalization) -> Body {
+        return mutate(autocapitalize: value.rawValue)
+    }
+
+    public func autofocus() -> Body {
+        return mutate(autofocus: "autofocus")
+    }
+
+    public func `class`(_ value: String) -> Body {
+        return mutate(class: value)
+    }
+
+    public func isEditable(_ value: Bool) -> Body {
+        return mutate(contenteditable: value)
+    }
+
+    public func direction(_ value: Values.Direction) -> Body {
+        return mutate(dir: value.rawValue)
+    }
+
+    public func isDraggable(_ value: Bool) -> Body {
+        return mutate(draggable: value)
+    }
+
+    public func enterKeyHint(_ value: Values.Hint) -> Body {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+
+    public func hidden() -> Body {
+        return mutate(hidden: "hidden")
+    }
+
+    public func inputMode(_ value: String) -> Body {
+        return mutate(inputmode: value)
+    }
+
+    public func `is`(_ value: String) -> Body {
+        return mutate(is: value)
+    }
+
+    public func itemId(_ value: String) -> Body {
+        return mutate(itemid: value)
+    }
+
+    public func itemProperty(_ value: String) -> Body {
+        return mutate(itemprop: value)
+    }
+
+    public func itemReference(_ value: String) -> Body {
+        return mutate(itemref: value)
+    }
+
+    public func itemScope(_ value: String) -> Body {
+        return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Body {
+        return mutate(itemtype: value)
+    }
+
+    public func id(_ value: String) -> Body {
+        return mutate(id: value)
+    }
+
+    public func language(_ value: Values.Language) -> Body {
+        return mutate(lang: value.rawValue)
+    }
+
+    public func nonce(_ value: String) -> Body {
+        return mutate(nonce: value)
+    }
+    
+    public func role(_ value: Values.Role) -> Body {
+        return mutate(role: value.rawValue)
+    }
+
+    public func hasSpellCheck(_ value: Bool) -> Body {
+        return mutate(spellcheck: value)
+    }
+
+    public func style(_ value: String) -> Body {
+        return mutate(style: value)
+    }
+
+    public func tabIndex(_ value: Int) -> Body {
+        return mutate(tabindex: value)
+    }
+
+    public func title(_ value: String) -> Body {
+        return mutate(title: value)
+    }
+    
+    public func translate(_ value: Values.Decision) -> Body {
+        return mutate(translate: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Body {
+        return mutate(key: key, value: value)
+    }
+    
+    public func on(event: Events.Drag, _ value: String) -> Body {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Clipboard, _ value: String) -> Body {
+        return mutate(key: event.rawValue, value: value)
+    }
     
     public func on(event: Events.Window, _ value: String) -> Body {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Keyboard, _ value: String) -> Body {
+        return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func on(event: Events.Mouse, _ value: String) -> Body {
+        return mutate(key: event.rawValue, value: value)
+    }
+
+    public func on(event: Events.Wheel, _ value: String) -> Body {
         return mutate(key: event.rawValue, value: value)
     }
     
