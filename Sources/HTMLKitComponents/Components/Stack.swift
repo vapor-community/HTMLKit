@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that arranges content horizontally.
-public struct HStack: View, Actionable {
+public struct HStack: View, Actionable, Modifiable {
     
     /// The identifier of the text.
     internal var id: String?
@@ -79,32 +79,20 @@ extension HStack: Hoverable {
 extension HStack: ViewModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> HStack {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 
     public func opacity(_ value: Tokens.OpacityValue) -> HStack {
-        
-        var newSelf = self
-        newSelf.classes.append(value.rawValue)
-        
-        return newSelf
+        return self.mutate(opacity: value.rawValue)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> HStack {
-        
-        var newSelf = self
-        newSelf.classes.append(index.rawValue)
-        
-        return newSelf
+        return self.mutate(zindex: index.rawValue)
     }
 }
 
 /// A component that arranges content vertically.
-public struct VStack: View, Actionable {
+public struct VStack: View, Actionable, Modifiable {
     
     var id: String?
     
@@ -166,32 +154,20 @@ extension VStack: Hoverable {
 extension VStack: ViewModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> VStack {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 
     public func opacity(_ value: Tokens.OpacityValue) -> VStack {
-        
-        var newSelf = self
-        newSelf.classes.append(value.rawValue)
-        
-        return newSelf
+        return self.mutate(opacity: value.rawValue)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> VStack {
-        
-        var newSelf = self
-        newSelf.classes.append(index.rawValue)
-        
-        return newSelf
+        return self.mutate(zindex: index.rawValue)
     }
 }
 
 /// A component that overlays content.
-public struct ZStack: View, Actionable {
+public struct ZStack: View, Actionable, Modifiable {
     
     var id: String?
     
@@ -253,27 +229,15 @@ extension ZStack: Hoverable {
 extension ZStack: ViewModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> ZStack {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 
     public func opacity(_ value: Tokens.OpacityValue) -> ZStack {
-        
-        var newSelf = self
-        newSelf.classes.append(value.rawValue)
-        
-        return newSelf
+        return self.mutate(opacity: value.rawValue)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> ZStack {
-        
-        var newSelf = self
-        newSelf.classes.append(index.rawValue)
-        
-        return newSelf
+        return self.mutate(zindex: index.rawValue)
     }
 }
 

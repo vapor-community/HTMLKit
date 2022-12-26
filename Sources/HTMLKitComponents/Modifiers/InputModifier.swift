@@ -21,3 +21,15 @@ public protocol InputModifier {
     /// - Returns: A component
     func backgroundColor(_ color: Tokens.BackgroundColor) -> Self
 }
+
+extension InputModifier where Self: Modifiable {
+    
+    internal func mutate(bordershape class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(backgroundcolor class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+}
+

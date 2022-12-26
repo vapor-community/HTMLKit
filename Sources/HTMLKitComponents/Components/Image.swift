@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that displays an image.
-public struct Image: View {
+public struct Image: View, Modifiable {
     
     /// The url path of the image.
     internal let source: String
@@ -41,53 +41,29 @@ public struct Image: View {
 extension Image: ImageModifier {
     
     public func objectFit(_ fit: Tokens.ObjectFit) -> Image {
-        
-        var newSelf = self
-        newSelf.classes.append(fit.rawValue)
-        
-        return newSelf
+        return self.mutate(objectfit: fit.rawValue)
     }
     
     public func imageScale(_ scale: Tokens.ImageScale) -> Image {
-        
-        var newSelf = self
-        newSelf.classes.append(scale.rawValue)
-        
-        return newSelf
+        return self.mutate(imagescale: scale.rawValue)
     }
     
     public func clipShape(_ shape: Tokens.ClipShape) -> Image {
-        
-        var newSelf = self
-        newSelf.classes.append(shape.rawValue)
-        
-        return newSelf
+        return self.mutate(clipshape: shape.rawValue)
     }
 }
 
 extension Image: ViewModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Image {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> Image {
-        
-        var newSelf = self
-        newSelf.classes.append(index.rawValue)
-        
-        return newSelf
+        return self.mutate(zindex: index.rawValue)
     }
     
     public func opacity(_ value: Tokens.OpacityValue) -> Image {
-        
-        var newSelf = self
-        newSelf.classes.append(value.rawValue)
-        
-        return newSelf
+        return self.mutate(opacity: value.rawValue)
     }
 }

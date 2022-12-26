@@ -7,7 +7,7 @@ import HTMLKit
 import Foundation
 
 /// A component that navigates to an target.
-public struct Link: View {
+public struct Link: View, Modifiable {
 
     /// The url path of the target.
     internal let destination: String
@@ -50,74 +50,38 @@ public struct Link: View {
 extension Link: TextModifier {
     
     public func font(_ style: Tokens.TextStyle) -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(style.rawValue)
-        
-        return newSelf
+        return self.mutate(font: style.rawValue)
     }
     
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(foregroundcolor: color.rawValue)
     }
     
     public func fontSize(_ size: Tokens.FontSize) -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(size.rawValue)
-        
-        return newSelf
+        return self.mutate(fontsize: size.rawValue)
     }
     
     public func fontWeight(_ weight: Tokens.FontWeight) -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(weight.rawValue)
-        
-        return newSelf
+        return self.mutate(fontweight: weight.rawValue)
     }
     
     public func fontTransformation(_ transformation: Tokens.TextTransformation) -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(transformation.rawValue)
-        
-        return newSelf
+        return self.mutate(fonttransformation: transformation.rawValue)
     }
     
     public func fontStyle(_ style: Tokens.FontStyle) -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(style.rawValue)
-        
-        return newSelf
+        return self.mutate(fontstyle: style.rawValue)
     }
     
     public func bold() -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(Tokens.FontWeight.bold.rawValue)
-        
-        return newSelf
+        return self.mutate(bold: Tokens.FontWeight.bold.rawValue)
     }
     
     public func italic() -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(Tokens.FontStyle.italic.rawValue)
-        
-        return newSelf
+        return self.mutate(italic: Tokens.FontStyle.italic.rawValue)
     }
     
     public func underline() -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(Tokens.TextDecoration.underline.rawValue)
-        
-        return newSelf
+        return self.mutate(underline: Tokens.TextDecoration.underline.rawValue)
     }
 }

@@ -83,7 +83,7 @@ public struct FieldLabel: View {
 }
 
 /// A component that displays an editable form control.
-public struct TextField: View {
+public struct TextField: View, Modifiable {
     
     /// The identifier of the field.
     internal let name: String
@@ -129,24 +129,16 @@ public struct TextField: View {
 extension TextField: InputModifier {
     
     public func borderShape(_ shape: Tokens.BorderShape) -> TextField {
-        
-        var newSelf = self
-        newSelf.classes.append(shape.rawValue)
-        
-        return newSelf
+        return self.mutate(bordershape: shape.rawValue)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> TextField {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 }
 
 /// A component that displays a editable and expandable form control.
-public struct TextEditor: View {
+public struct TextEditor: View, Modifiable {
     
     /// The identifier of the editor.
     internal let name: String
@@ -204,24 +196,16 @@ public struct TextEditor: View {
 extension TextEditor: InputModifier {
     
     public func borderShape(_ shape: Tokens.BorderShape) -> TextEditor {
-        
-        var newSelf = self
-        newSelf.classes.append(shape.rawValue)
-        
-        return newSelf
+        return self.mutate(bordershape: shape.rawValue)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> TextEditor {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 }
 
 /// A component that displays a form control
-public struct CheckField: View {
+public struct CheckField: View, Modifiable {
     
     /// The identifier of the field.
     internal let name: String
@@ -261,24 +245,16 @@ public struct CheckField: View {
 extension CheckField: InputModifier {
     
     public func borderShape(_ shape: Tokens.BorderShape) -> CheckField {
-        
-        var newSelf = self
-        newSelf.classes.append(shape.rawValue)
-        
-        return newSelf
+        return self.mutate(bordershape: shape.rawValue)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> CheckField {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 }
 
 /// A component that displays
-public struct RadioSelect: View {
+public struct RadioSelect: View, Modifiable {
     
     /// The identifier of the select.
     internal let name: String
@@ -318,24 +294,16 @@ public struct RadioSelect: View {
 extension RadioSelect: InputModifier {
     
     public func borderShape(_ shape: Tokens.BorderShape) -> RadioSelect {
-        
-        var newSelf = self
-        newSelf.classes.append(shape.rawValue)
-        
-        return newSelf
+        return self.mutate(bordershape: shape.rawValue)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> RadioSelect {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 }
 
 /// A component that displays
-public struct SelectField: View {
+public struct SelectField: View, Modifiable {
     
     /// The identifier of the field.
     internal let name: String
@@ -379,24 +347,16 @@ public struct SelectField: View {
 extension SelectField: InputModifier {
     
     public func borderShape(_ shape: Tokens.BorderShape) -> SelectField {
-        
-        var newSelf = self
-        newSelf.classes.append(shape.rawValue)
-        
-        return newSelf
+        return self.mutate(bordershape: shape.rawValue)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SelectField {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 }
 
 /// A component that displays
-public struct SecureField: View {
+public struct SecureField: View, Modifiable {
     
     /// The identifier of the field.
     internal let name: String
@@ -442,19 +402,11 @@ public struct SecureField: View {
 extension SecureField: InputModifier {
     
     public func borderShape(_ shape: Tokens.BorderShape) -> SecureField {
-        
-        var newSelf = self
-        newSelf.classes.append(shape.rawValue)
-        
-        return newSelf
+        return self.mutate(bordershape: shape.rawValue)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SecureField {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 }
 
@@ -495,7 +447,7 @@ public struct Slider: View {
 }
 
 /// A component that displays
-public struct DatePicker: View {
+public struct DatePicker: View, Modifiable {
     
     /// The identifier of the picker.
     internal let name: String
@@ -541,24 +493,16 @@ public struct DatePicker: View {
 extension DatePicker: InputModifier {
     
     public func borderShape(_ shape: Tokens.BorderShape) -> DatePicker {
-        
-        var newSelf = self
-        newSelf.classes.append(shape.rawValue)
-        
-        return newSelf
+        return self.mutate(bordershape: shape.rawValue)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> DatePicker {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 }
 
 /// A component that displays
-public struct SearchField: View {
+public struct SearchField: View, Modifiable {
     
     /// The identifier of the search field.
     internal let name: String
@@ -604,19 +548,11 @@ public struct SearchField: View {
 extension SearchField: InputModifier {
     
     public func borderShape(_ shape: Tokens.BorderShape) -> SearchField {
-        
-        var newSelf = self
-        newSelf.classes.append(shape.rawValue)
-        
-        return newSelf
+        return self.mutate(bordershape: shape.rawValue)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SearchField {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 }
 

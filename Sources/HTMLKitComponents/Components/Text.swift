@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that displays text.
-public struct Text: View, Actionable {
+public struct Text: View, Actionable, Modifiable {
 
     internal var id: String?
     
@@ -68,74 +68,38 @@ extension Text: Hoverable {
 extension Text: TextModifier {
     
     public func font(_ style: Tokens.TextStyle) -> Text {
-        
-        var newSelf = self
-        newSelf.classes.append(style.rawValue)
-        
-        return newSelf
+        return self.mutate(font: style.rawValue)
     }
     
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Text {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(foregroundcolor: color.rawValue)
     }
     
     public func fontSize(_ size: Tokens.FontSize) -> Text {
-        
-        var newSelf = self
-        newSelf.classes.append(size.rawValue)
-        
-        return newSelf
+        return self.mutate(fontsize: size.rawValue)
     }
     
     public func fontWeight(_ weight: Tokens.FontWeight) -> Text {
-        
-        var newSelf = self
-        newSelf.classes.append(weight.rawValue)
-        
-        return newSelf
+        return self.mutate(fontweight: weight.rawValue)
     }
     
     public func fontTransformation(_ transformation: Tokens.TextTransformation) -> Text {
-        
-        var newSelf = self
-        newSelf.classes.append(transformation.rawValue)
-        
-        return newSelf
+        return self.mutate(fonttransformation: transformation.rawValue)
     }
     
     public func fontStyle(_ style: Tokens.FontStyle) -> Text {
-        
-        var newSelf = self
-        newSelf.classes.append(style.rawValue)
-        
-        return newSelf
+        return self.mutate(fontstyle: style.rawValue)
     }
     
     public func bold() -> Text {
-        
-        var newSelf = self
-        newSelf.classes.append(Tokens.FontWeight.bold.rawValue)
-        
-        return newSelf
+        return self.mutate(bold: Tokens.FontWeight.bold.rawValue)
     }
     
     public func italic() -> Text {
-        
-        var newSelf = self
-        newSelf.classes.append(Tokens.FontStyle.italic.rawValue)
-        
-        return newSelf
+        return self.mutate(italic: Tokens.FontStyle.italic.rawValue)
     }
     
     public func underline() -> Text {
-        
-        var newSelf = self
-        newSelf.classes.append(Tokens.TextDecoration.underline.rawValue)
-        
-        return newSelf
+        return self.mutate(underline: Tokens.TextDecoration.underline.rawValue)
     }
 }

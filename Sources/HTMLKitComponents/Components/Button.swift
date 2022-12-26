@@ -7,7 +7,7 @@ import HTMLKit
 import Foundation
 
 /// A component that initiates an action.
-public struct ActionButton: View {
+public struct ActionButton: View, Modifiable {
     
     /// The url path of the target.
     internal let destination: String
@@ -51,40 +51,24 @@ public struct ActionButton: View {
 extension ActionButton: ButtonModifier {
     
     public func buttonSize(_ size: Tokens.ButtonSize) -> ActionButton {
-        
-        var newSelf = self
-        newSelf.classes.append(size.rawValue)
-        
-        return newSelf
+        return self.mutate(buttonsize: size.rawValue)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> ActionButton {
-        
-        var newSelf = self
-        newSelf.classes.append(shape.rawValue)
-        
-        return newSelf
+        return self.mutate(bordershape: shape.rawValue)
     }
     
     public func buttonStyle(_ style: Tokens.ButtonStyle) -> ActionButton {
-        
-        var newSelf = self
-        newSelf.classes.append(style.rawValue)
-        
-        return newSelf
+        return self.mutate(buttonstyle: style.rawValue)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> ActionButton {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 }
 
 /// A component that initiates a form submit.
-public struct SubmitButton: View {
+public struct SubmitButton: View, Modifiable {
     
     /// The  content of the button.
     internal var content: [Content]
@@ -111,40 +95,24 @@ public struct SubmitButton: View {
 extension SubmitButton: ButtonModifier {
     
     public func buttonSize(_ size: Tokens.ButtonSize) -> SubmitButton {
-        
-        var newSelf = self
-        newSelf.classes.append(size.rawValue)
-        
-        return newSelf
+        return self.mutate(buttonsize: size.rawValue)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> SubmitButton {
-        
-        var newSelf = self
-        newSelf.classes.append(shape.rawValue)
-        
-        return newSelf
+        return self.mutate(bordershape: shape.rawValue)
     }
     
     public func buttonStyle(_ style: Tokens.ButtonStyle) -> SubmitButton {
-        
-        var newSelf = self
-        newSelf.classes.append(style.rawValue)
-        
-        return newSelf
+        return self.mutate(buttonstyle: style.rawValue)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SubmitButton {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 }
 
 /// A component that initiates a form reset.
-public struct ResetButton: View {
+public struct ResetButton: View, Modifiable {
     
     /// The  content of the button.
     internal var content: [Content]
@@ -178,34 +146,18 @@ public struct ResetButton: View {
 extension ResetButton: ButtonModifier {
     
     public func buttonSize(_ size: Tokens.ButtonSize) -> ResetButton {
-        
-        var newSelf = self
-        newSelf.classes.append(size.rawValue)
-        
-        return newSelf
+        return self.mutate(buttonsize: size.rawValue)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> ResetButton {
-        
-        var newSelf = self
-        newSelf.classes.append(shape.rawValue)
-        
-        return newSelf
+        return self.mutate(bordershape: shape.rawValue)
     }
     
     public func buttonStyle(_ style: Tokens.ButtonStyle) -> ResetButton {
-        
-        var newSelf = self
-        newSelf.classes.append(style.rawValue)
-        
-        return newSelf
+        return self.mutate(buttonstyle: style.rawValue)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> ResetButton {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 }

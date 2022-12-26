@@ -5,7 +5,7 @@
 import HTMLKit
 
 /// A component that collects content.
-public struct Group: View {
+public struct Group: View, Modifiable {
     
     /// The content of the group.
     internal var content: [Content]
@@ -38,74 +38,38 @@ public struct Group: View {
 extension Group: TextModifier {
     
     public func font(_ style: Tokens.TextStyle) -> Group {
-        
-        var newSelf = self
-        newSelf.classes.append(style.rawValue)
-        
-        return newSelf
+        return self.mutate(font: style.rawValue)
     }
     
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Group {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(foregroundcolor: color.rawValue)
     }
     
     public func fontSize(_ size: Tokens.FontSize) -> Group {
-        
-        var newSelf = self
-        newSelf.classes.append(size.rawValue)
-        
-        return newSelf
+        return self.mutate(fontsize: size.rawValue)
     }
     
     public func fontWeight(_ weight: Tokens.FontWeight) -> Group {
-        
-        var newSelf = self
-        newSelf.classes.append(weight.rawValue)
-        
-        return newSelf
+        return self.mutate(fontweight: weight.rawValue)
     }
     
     public func fontTransformation(_ transformation: Tokens.TextTransformation) -> Group {
-        
-        var newSelf = self
-        newSelf.classes.append(transformation.rawValue)
-        
-        return newSelf
+        return self.mutate(fonttransformation: transformation.rawValue)
     }
     
     public func fontStyle(_ style: Tokens.FontStyle) -> Group {
-        
-        var newSelf = self
-        newSelf.classes.append(style.rawValue)
-        
-        return newSelf
+        return self.mutate(fontstyle: style.rawValue)
     }
     
     public func bold() -> Group {
-        
-        var newSelf = self
-        newSelf.classes.append(Tokens.FontWeight.bold.rawValue)
-        
-        return newSelf
+        return self.mutate(bold: Tokens.FontWeight.bold.rawValue)
     }
     
     public func italic() -> Group {
-        
-        var newSelf = self
-        newSelf.classes.append(Tokens.FontStyle.italic.rawValue)
-        
-        return newSelf
+        return self.mutate(italic: Tokens.FontStyle.italic.rawValue)
     }
     
     public func underline() -> Group {
-        
-        var newSelf = self
-        newSelf.classes.append(Tokens.TextDecoration.underline.rawValue)
-        
-        return newSelf
+        return self.mutate(underline: Tokens.TextDecoration.underline.rawValue)
     }
 }
