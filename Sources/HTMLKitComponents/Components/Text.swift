@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that displays text.
-public struct Text: View, Hoverable {
+public struct Text: View, Actionable {
 
     internal var id: String?
     
@@ -47,6 +47,21 @@ public struct Text: View, Hoverable {
                 events
             }
         }
+    }
+    
+    public func id(_ value: String) -> Text {
+        return self.mutate(id: value)
+    }
+}
+
+extension Text: Hoverable {
+    
+    public func onHover(perfom action: Actions) -> Text {
+        return self.mutate(hoverevent: action.script)
+    }
+    
+    public func onLeave(perfom action: Actions) -> Text {
+        return self.mutate(leaveevent: action.script)
     }
 }
 

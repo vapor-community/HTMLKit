@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that collects and arranges list items vertically.
-public struct List: View, Hoverable {
+public struct List: View, Actionable {
     
     var id: String?
     
@@ -59,8 +59,23 @@ public struct List: View, Hoverable {
     }
 }
 
+extension List: Hoverable {
+    
+    public func id(_ value: String) -> List {
+        return self.mutate(id: value)
+    }
+
+    public func onHover(perfom action: Actions) -> List {
+        return self.mutate(hoverevent: action.script)
+    }
+    
+    public func onLeave(perfom action: Actions) -> List {
+        return self.mutate(leaveevent: action.script)
+    }
+}
+
 /// A component that represents a list item.
-public struct ListRow: View, Hoverable {
+public struct ListRow: View, Actionable {
     
     var id: String?
     
@@ -102,5 +117,19 @@ public struct ListRow: View, Hoverable {
             }
         }
     }
+    
+    public func id(_ value: String) -> ListRow {
+        return self.mutate(id: value)
+    }
 }
 
+extension ListRow: Hoverable {
+    
+    public func onHover(perfom action: Actions) -> ListRow {
+        return self.mutate(hoverevent: action.script)
+    }
+    
+    public func onLeave(perfom action: Actions) -> ListRow {
+        return self.mutate(leaveevent: action.script)
+    }
+}

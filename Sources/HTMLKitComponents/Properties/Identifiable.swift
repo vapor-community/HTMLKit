@@ -13,10 +13,10 @@ internal protocol Identifiable {
 
 extension Identifiable {
     
-    public func id(_ value: String) -> Self {
+    internal func mutate(id: String) -> Self {
         
         var newSelf = self
-        newSelf.id = value
+        newSelf.id = id
         
         return newSelf
     }

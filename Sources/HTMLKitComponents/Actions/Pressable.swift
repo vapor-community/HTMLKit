@@ -1,84 +1,40 @@
-//
-//  File.swift
-//  
-//
-//  Created by Mattes Mohr on 25.12.22.
-//
-
-internal protocol Pressable: Identifiable {
+public protocol Pressable {
     
-    /// The events of the component.
-    var events: [String]? { get set }
+    func id(_ value: String) -> Self
+    
+    func onClick(perfom action: Actions) -> Self
+    
+    func onTap(perfom action: Actions) -> Self
+    
+    func onPress(perfom action: Actions) -> Self
 }
 
-extension Pressable {
+extension Pressable where Self: Actionable {
     
-    public func onClick(perfom action: Actions) -> Self {
+    internal func mutate(clickevent script: String) -> Self {
         
         guard let identifier = self.id else {
             fatalError("Initiative identifier unkown.")
         }
         
-        var newSelf = self
-        
-        let event = Events.click(selector: identifier, action: action.script)
-        
-        if var events = newSelf.events {
-
-            events.append(event)
-            
-            newSelf.events = events
-            
-        } else {
-            newSelf.events = [event]
-        }
-        
-        return newSelf
+        return self.mutate(event: Events.click(selector: identifier, script: script))
     }
     
-    public func onTap(perfom action: Actions) -> Self {
+    internal func mutate(tapevent script: String) -> Self {
         
         guard let identifier = self.id else {
             fatalError("Initiative identifier unkown.")
         }
         
-        var newSelf = self
-        
-        let event = Events.tap(selector: identifier, action: action.script)
-        
-        if var events = newSelf.events {
-
-            events.append(event)
-            
-            newSelf.events = events
-            
-        } else {
-            newSelf.events = [event]
-        }
-        
-        return newSelf
+        return self.mutate(event: Events.tap(selector: identifier, script: script))
     }
     
-    public func onPress(perfom action: Actions) -> Self {
+    internal func mutate(pressevent script: String) -> Self {
         
         guard let identifier = self.id else {
             fatalError("Initiative identifier unkown.")
         }
         
-        var newSelf = self
-        
-        let event = Events.press(selector: identifier, action: action.script)
-        
-        if var events = newSelf.events {
-
-            events.append(event)
-            
-            newSelf.events = events
-            
-        } else {
-            newSelf.events = [event]
-        }
-        
-        return newSelf
+        return self.mutate(event: Events.press(selector: identifier, script: script))
     }
 }

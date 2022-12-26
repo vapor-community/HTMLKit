@@ -1,61 +1,29 @@
-//
-//  File.swift
-//  
-//
-//  Created by Mattes Mohr on 25.12.22.
-//
-
-internal protocol Draggable: Identifiable {
+public protocol Draggable {
     
-    /// The events of the component.
-    var events: [String]? { get set }
+    func id(_ value: String) -> Self
+    
+    func onDrag(perfom action: Actions) -> Self
+    
+    func onDrop(perfom action: Actions) -> Self
 }
 
-extension Draggable {
+extension Draggable where Self: Actionable {
     
-    public func onDrag(perfom action: Actions) -> Self {
+    internal func mutate(dragevent script: String) -> Self {
         
         guard let identifier = self.id else {
             fatalError("Initiative identifier unkown.")
         }
         
-        var newSelf = self
-        
-        let event = Events.drag(selector: identifier, action: action.script)
-        
-        if var events = newSelf.events {
-
-            events.append(event)
-            
-            newSelf.events = events
-            
-        } else {
-            newSelf.events = [event]
-        }
-        
-        return newSelf
+        return self.mutate(event: Events.drag(selector: identifier, script: script))
     }
     
-    public func onDrop(perfom action: Actions) -> Self {
+    internal func mutate(dropevent script: String) -> Self {
         
         guard let identifier = self.id else {
             fatalError("Initiative identifier unkown.")
         }
         
-        var newSelf = self
-        
-        let event = Events.drop(selector: identifier, action: action.script)
-        
-        if var events = newSelf.events {
-
-            events.append(event)
-            
-            newSelf.events = events
-            
-        } else {
-            newSelf.events = [event]
-        }
-        
-        return newSelf
+        return self.mutate(event: Events.drop(selector: identifier, script: script))
     }
 }

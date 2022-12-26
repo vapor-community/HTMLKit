@@ -5,92 +5,92 @@
 
 public enum Events {
     
-    static func hover(selector: String, action: String) -> String {
+    static func hover(selector: String, script: String) -> String {
         
         return  """
                 $('#\(selector)').onHover(function() {
-                    \(action)
+                    \(script)
                 });
                 """
     }
     
-    static func leave(selector: String, action: String) -> String {
+    static func leave(selector: String, script: String) -> String {
         
         return  """
                 $('#\(selector)').onLeave(function() {
-                    \(action)
+                    \(script)
                 });
                 """
     }
     
-    static func change(selector: String, action: String) -> String {
+    static func change(selector: String, script: String) -> String {
         
         return  """
                 $('#\(selector)').onChange(function() {
-                    \(action)
+                    \(script)
                 });
                 """
     }
     
-    static func click(selector: String, action: String) -> String {
+    static func click(selector: String, script: String) -> String {
         
         return  """
                 $('#\(selector)').onClick(function() {
-                    \(action)
+                    \(script)
                 });
                 """
     }
     
-    static func tap(selector: String, action: String) -> String {
+    static func tap(selector: String, script: String) -> String {
         
         return  """
                 $('#\(selector)').onTapGesture(function() {
-                    \(action)
+                    \(script)
                 });
                 """
     }
     
-    static func press(selector: String, action: String) -> String {
+    static func press(selector: String, script: String) -> String {
         
         return  """
                 $('#\(selector)').onLongPressGesture(function() {
-                    \(action)
+                    \(script)
                 });
                 """
     }
     
-    static func drag(selector: String, action: String) -> String {
+    static func drag(selector: String, script: String) -> String {
         
         return  """
                 $('#\(selector)').onDrag(function() {
-                    \(action)
+                    \(script)
                 });
                 """
     }
     
-    static func drop(selector: String, action: String) -> String {
+    static func drop(selector: String, script: String) -> String {
         
         return  """
                 $('#\(selector)').onDrop(function() {
-                    \(action)
+                    \(script)
                 });
                 """
     }
     
-    static func focus(selector: String, action: String) -> String {
+    static func focus(selector: String, script: String) -> String {
         
         return  """
                 $('#\(selector)').onFocus(function() {
-                    \(action)
+                    \(script)
                 });
                 """
     }
     
-    static func submit(selector: String, action: String) -> String {
+    static func submit(selector: String, script: String) -> String {
         
         return  """
                 $('#\(selector)').onSubmit(function() {
-                    \(action)
+                    \(script)
                 })
                 """
     }

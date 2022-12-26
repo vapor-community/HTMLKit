@@ -1,6 +1,6 @@
 import XCTest
 import HTMLKit
-@testable import HTMLKitComponents
+import HTMLKitComponents
 
 final class ComponentTests: XCTestCase {
     

@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that collects and arranges collection items horizontally.
-public struct Collection: View, Hoverable {
+public struct Collection: View, Actionable {
     
     internal var id: String?
     
@@ -49,6 +49,10 @@ public struct Collection: View, Hoverable {
         }
     }
     
+    public func id(_ value: String) -> Collection {
+        return self.mutate(id: value)
+    }
+    
     /// Sets the style for the collection.
     public func collectionStyle(_ style: Tokens.CollectionStyle) -> Collection {
         
@@ -59,8 +63,19 @@ public struct Collection: View, Hoverable {
     }
 }
 
+extension Collection: Hoverable {
+    
+    public func onHover(perfom action: Actions) -> Collection {
+        return self.mutate(hoverevent: action.script)
+    }
+    
+    public func onLeave(perfom action: Actions) -> Collection {
+        return self.mutate(leaveevent: action.script)
+    }
+}
+
 /// A component that represents a collection item.
-public struct CollectionItem: View, Hoverable {
+public struct CollectionItem: View, Actionable {
     
     internal var id: String?
     
@@ -101,5 +116,20 @@ public struct CollectionItem: View, Hoverable {
                 events
             }
         }
+    }
+    
+    public func id(_ value: String) -> CollectionItem {
+        return self.mutate(id: value)
+    }
+}
+
+extension CollectionItem: Hoverable {
+    
+    public func onHover(perfom action: Actions) -> CollectionItem {
+        return self.mutate(hoverevent: action.script)
+    }
+    
+    public func onLeave(perfom action: Actions) -> CollectionItem {
+        return self.mutate(leaveevent: action.script)
     }
 }

@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that arranges content horizontally.
-public struct HStack: View, Hoverable {
+public struct HStack: View, Actionable {
     
     /// The identifier of the text.
     internal var id: String?
@@ -51,6 +51,10 @@ public struct HStack: View, Hoverable {
         }
     }
     
+    public func id(_ value: String) -> HStack {
+        return self.mutate(id: value)
+    }
+    
     /// Sets the space of the content.
     public func contentSpace(_ value: Tokens.ContentSpace) -> HStack {
         
@@ -58,6 +62,17 @@ public struct HStack: View, Hoverable {
         newSelf.classes.append(value.rawValue)
         
         return newSelf
+    }
+}
+
+extension HStack: Hoverable {
+    
+    public func onHover(perfom action: Actions) -> HStack {
+        return self.mutate(hoverevent: action.script)
+    }
+    
+    public func onLeave(perfom action: Actions) -> HStack {
+        return self.mutate(leaveevent: action.script)
     }
 }
 
@@ -89,7 +104,7 @@ extension HStack: ViewModifier {
 }
 
 /// A component that arranges content vertically.
-public struct VStack: View, Hoverable {
+public struct VStack: View, Actionable {
     
     var id: String?
     
@@ -131,6 +146,21 @@ public struct VStack: View, Hoverable {
             }
         }
     }
+    
+    public func id(_ value: String) -> VStack {
+        return self.mutate(id: value)
+    }
+}
+
+extension VStack: Hoverable {
+    
+    public func onHover(perfom action: Actions) -> VStack {
+        return self.mutate(hoverevent: action.script)
+    }
+    
+    public func onLeave(perfom action: Actions) -> VStack {
+        return self.mutate(leaveevent: action.script)
+    }
 }
 
 extension VStack: ViewModifier {
@@ -161,7 +191,7 @@ extension VStack: ViewModifier {
 }
 
 /// A component that overlays content.
-public struct ZStack: View, Hoverable {
+public struct ZStack: View, Actionable {
     
     var id: String?
     
@@ -202,6 +232,21 @@ public struct ZStack: View, Hoverable {
                 events
             }
         }
+    }
+    
+    public func id(_ value: String) -> ZStack {
+        return self.mutate(id: value)
+    }
+}
+
+extension ZStack: Hoverable {
+    
+    public func onHover(perfom action: Actions) -> ZStack {
+        return self.mutate(hoverevent: action.script)
+    }
+    
+    public func onLeave(perfom action: Actions) -> ZStack {
+        return self.mutate(leaveevent: action.script)
     }
 }
 

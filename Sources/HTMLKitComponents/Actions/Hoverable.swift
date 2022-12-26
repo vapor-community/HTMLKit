@@ -1,54 +1,29 @@
-internal protocol Hoverable: Identifiable {
+public protocol Hoverable {
     
-    /// The events of the component.
-    var events: [String]? { get set }
+    func id(_ value: String) -> Self
+    
+    func onHover(perfom action: Actions) -> Self
+    
+    func onLeave(perfom action: Actions) -> Self
 }
 
-extension Hoverable {
+extension Hoverable where Self: Actionable {
     
-    public func onHover(perfom action: Actions) -> Self {
+    internal func mutate(hoverevent script: String) -> Self {
         
         guard let identifier = self.id else {
             fatalError("Initiative identifier unkown.")
         }
         
-        var newSelf = self
-        
-        let event = Events.hover(selector: identifier, action: action.script)
-        
-        if var events = newSelf.events {
-
-            events.append(event)
-            
-            newSelf.events = events
-            
-        } else {
-            newSelf.events = [event]
-        }
-        
-        return newSelf
+        return self.mutate(event: Events.hover(selector: identifier, script: script))
     }
     
-    public func onLeave(perfom action: Actions) -> Self {
+    internal func mutate(leaveevent script: String) -> Self {
         
         guard let identifier = self.id else {
             fatalError("Initiative identifier unkown.")
         }
         
-        var newSelf = self
-        
-        let event = Events.leave(selector: identifier, action: action.script)
-        
-        if var events = newSelf.events {
-
-            events.append(event)
-            
-            newSelf.events = events
-            
-        } else {
-            newSelf.events = [event]
-        }
-        
-        return newSelf
+        return self.mutate(event: Events.leave(selector: identifier, script: script))
     }
 }
