@@ -59,7 +59,7 @@ public struct List: View, Actionable {
     }
 }
 
-extension List: Hoverable {
+extension List: HoverModifier {
     
     public func id(_ value: String) -> List {
         return self.mutate(id: value)
@@ -123,7 +123,7 @@ public struct ListRow: View, Actionable {
     }
 }
 
-extension ListRow: Hoverable {
+extension ListRow: HoverModifier {
     
     public func onHover(perfom action: Actions) -> ListRow {
         return self.mutate(hoverevent: action.script)

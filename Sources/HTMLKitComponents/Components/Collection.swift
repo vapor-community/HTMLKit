@@ -63,7 +63,7 @@ public struct Collection: View, Actionable {
     }
 }
 
-extension Collection: Hoverable {
+extension Collection: HoverModifier {
     
     public func onHover(perfom action: Actions) -> Collection {
         return self.mutate(hoverevent: action.script)
@@ -123,7 +123,7 @@ public struct CollectionItem: View, Actionable {
     }
 }
 
-extension CollectionItem: Hoverable {
+extension CollectionItem: HoverModifier {
     
     public func onHover(perfom action: Actions) -> CollectionItem {
         return self.mutate(hoverevent: action.script)

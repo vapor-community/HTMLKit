@@ -1,4 +1,4 @@
-public protocol Draggable {
+public protocol DragModifier {
     
     func id(_ value: String) -> Self
     
@@ -7,7 +7,7 @@ public protocol Draggable {
     func onDrop(perfom action: Actions) -> Self
 }
 
-extension Draggable where Self: Actionable {
+extension DragModifier where Self: Actionable {
     
     internal func mutate(dragevent script: String) -> Self {
         

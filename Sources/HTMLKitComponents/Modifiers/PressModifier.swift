@@ -1,4 +1,4 @@
-public protocol Pressable {
+public protocol PressModifier {
     
     func id(_ value: String) -> Self
     
@@ -9,7 +9,7 @@ public protocol Pressable {
     func onPress(perfom action: Actions) -> Self
 }
 
-extension Pressable where Self: Actionable {
+extension PressModifier where Self: Actionable {
     
     internal func mutate(clickevent script: String) -> Self {
         

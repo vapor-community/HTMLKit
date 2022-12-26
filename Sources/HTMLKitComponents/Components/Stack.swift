@@ -65,7 +65,7 @@ public struct HStack: View, Actionable, Modifiable {
     }
 }
 
-extension HStack: Hoverable {
+extension HStack: HoverModifier {
     
     public func onHover(perfom action: Actions) -> HStack {
         return self.mutate(hoverevent: action.script)
@@ -140,7 +140,7 @@ public struct VStack: View, Actionable, Modifiable {
     }
 }
 
-extension VStack: Hoverable {
+extension VStack: HoverModifier {
     
     public func onHover(perfom action: Actions) -> VStack {
         return self.mutate(hoverevent: action.script)
@@ -215,7 +215,7 @@ public struct ZStack: View, Actionable, Modifiable {
     }
 }
 
-extension ZStack: Hoverable {
+extension ZStack: HoverModifier {
     
     public func onHover(perfom action: Actions) -> ZStack {
         return self.mutate(hoverevent: action.script)

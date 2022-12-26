@@ -1,4 +1,4 @@
-public protocol Hoverable {
+public protocol HoverModifier {
     
     func id(_ value: String) -> Self
     
@@ -7,7 +7,7 @@ public protocol Hoverable {
     func onLeave(perfom action: Actions) -> Self
 }
 
-extension Hoverable where Self: Actionable {
+extension HoverModifier where Self: Actionable {
     
     internal func mutate(hoverevent script: String) -> Self {
         

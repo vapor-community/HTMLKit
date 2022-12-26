@@ -54,7 +54,7 @@ public struct Text: View, Actionable, Modifiable {
     }
 }
 
-extension Text: Hoverable {
+extension Text: HoverModifier {
     
     public func onHover(perfom action: Actions) -> Text {
         return self.mutate(hoverevent: action.script)
