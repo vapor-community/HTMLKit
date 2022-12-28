@@ -124,3 +124,51 @@ extension DocumentNode {
         return "<!DOCTYPE \(content)>"
     }
 }
+
+public protocol CustomNode: Node {
+
+    associatedtype Content
+    
+    /// The name of the node.
+    var name: String { get set }
+    
+    /// The attributes of the node.
+    var attributes: OrderedDictionary<String, Any>? { get }
+    
+    /// The content of the node.
+    var content: [Content] { get }
+    
+    /// Initiates a node.
+    ///
+    /// - Parameters:
+    ///    - attributes:
+    ///    - content:
+    init(name: String, attributes: OrderedDictionary<String, Any>?, content: [Content])
+}
+
+extension CustomNode {
+    
+    internal var startTag: String {
+        
+        guard let attributes = attributes else {
+            return "<\(name)>"
+        }
+        
+        return "<\(name) \(attributes.map { "\($0.key)=\"\($0.value)\"" }.joined(separator: " "))>"
+    }
+    
+    internal var endTag: String {
+        return "</\(name)>"
+    }
+    
+    internal func modify(_ element: Self) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(name: element.name, attributes: element.attributes, content: self.content)
+        }
+        
+        attributes.merge(element.attributes!) { (_, new) in new }
+       
+        return .init(name: element.name, attributes: attributes, content: self.content)
+    }
+}

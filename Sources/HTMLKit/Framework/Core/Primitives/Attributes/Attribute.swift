@@ -41,3 +41,17 @@ extension Attribute where Self: EmptyNode {
         return .init(attributes: attributes)
     }
 }
+
+extension Attribute where Self: CustomNode {
+    
+    internal func mutate(key: String, value: Any) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(name: name, attributes:  [key: value], content: content)
+        }
+        
+        attributes[key] = value
+        
+        return .init(name: name, attributes: attributes, content: content)
+    }
+}

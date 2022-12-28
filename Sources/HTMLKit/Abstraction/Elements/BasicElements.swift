@@ -203,3 +203,50 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(key: event.rawValue, value: value)
     }
 }
+
+public struct Custom: CustomNode, GlobalElement {
+
+    public var name: String
+
+    public var attributes: OrderedDictionary<String, Any>?
+
+    public var content: [Content]
+
+    public init(name: String, @ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.name = name
+        self.content = content()
+    }
+    
+    public init(name: String, attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+        
+        self.name = name
+        self.attributes = attributes
+        self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (Custom) -> Custom) -> Custom {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: T?, element: (Custom, T) -> Custom) -> Custom {
+        
+        guard let value = value else {
+            return self
+        }
+        
+        return self.modify(element(self, value as T))
+    }
+}
+
+extension Custom: Attribute {
+    
+    public func custom(key: String, value: Any) -> Custom {
+        return mutate(key: key, value: value)
+    }
+}

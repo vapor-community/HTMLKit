@@ -1653,4 +1653,18 @@ final class ElementTests: XCTestCase {
                        """
         )
     }
+    
+    func testCustomElement() throws {
+        
+        let view = TestView {
+            Custom(name: "custom") {
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <custom></custom>
+                       """
+        )
+    }
 }

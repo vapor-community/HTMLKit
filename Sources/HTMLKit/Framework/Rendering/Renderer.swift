@@ -73,6 +73,10 @@ public class Renderer {
                 result += render(element: element)
             }
             
+            if let element = content as? (any CustomNode) {
+                result += try render(element: element)
+            }
+            
             if let element = content as? String {
                 result += element
             }
@@ -116,6 +120,10 @@ public class Renderer {
                     result += render(element: element)
                 }
                 
+                if let element = content as? (any CustomNode) {
+                    result += try render(element: element)
+                }
+                
                 if let localize = content as? LocalizedStringKey {
                     result += try render(localize: localize)
                 }
@@ -144,6 +152,60 @@ public class Renderer {
     /// Renders a comment element
     internal func render(element: some CommentNode) -> String {
         return element.startTag + element.content + element.endTag
+    }
+    
+    /// Renders a content element
+    internal func render(element: some CustomNode) throws -> String {
+        
+        var result = ""
+        
+        result += element.startTag
+        
+        if let contents = element.content as? [Content] {
+            
+            for content in contents {
+                
+                if let contents = content as? [Content] {
+                    result += try render(contents: contents)
+                }
+                
+                if let element = content as? (any View) {
+                    result += try render(view: element)
+                }
+                
+                if let element = content as? (any ContentNode) {
+                    result += try render(element: element)
+                }
+                
+                if let element = content as? (any EmptyNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? (any DocumentNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? (any CommentNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? (any CustomNode) {
+                    result += try render(element: element)
+                }
+                
+                if let localize = content as? LocalizedStringKey {
+                    result += try render(localize: localize)
+                }
+                
+                if let element = content as? String {
+                    result += element
+                }
+            }
+        }
+        
+        result += element.endTag
+        
+        return result
     }
     
     /// Renders a localized string
