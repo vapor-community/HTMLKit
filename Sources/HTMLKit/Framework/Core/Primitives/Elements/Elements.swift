@@ -3,7 +3,7 @@
  The file contains the default definition of different elements.
  */
 
-public typealias GlobalElement = BodyElement & DescriptionElement & FigureElement & FormElement & BasicElement & HeadElement & ListElement & MapElement & MediaElement & ObjectElement & RubyElement & TableElement & HtmlElement & InputElement
+public typealias GlobalElement = BodyElement & DescriptionElement & FigureElement & FormElement & BasicElement & HeadElement & ListElement & MapElement & MediaElement & ObjectElement & RubyElement & TableElement & HtmlElement & InputElement & VectorElement
 
 /// The protocol defines a body element.
 public protocol BodyElement: Element {
