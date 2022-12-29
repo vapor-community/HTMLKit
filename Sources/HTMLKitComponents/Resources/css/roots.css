@@ -108,6 +108,9 @@
     --listRowPaddingY: 0px;
     --listRowPaddingX: 15px;
     --listGapSize: 15px;
+    --listBorderColor: hsla(210, 14%, 89%, 100%);
+    --listBorderWidth: 1px;
+    --listBorderRadius: 5px;
     
     /**
      link variables
@@ -157,11 +160,15 @@
     --buttonFontWeight: normal;
     --buttonLineHeight: 1.2rem;
     
+    
     /**
-     list variables
+     modal variables
      */
     
-    --listBorderColor: hsla(210, 14%, 89%, 100%);
-    --listBorderWidth: 1px;
-    --listBorderRadius: 5px;
+    --modalPaddingY: 12px;
+    --modalPaddingX: 16px;
+    --modalBorderWidth: 1px;
+    --modalBorderRadius: 5px;
+    --modalBorderColor: var(--grayColor);
+    --modalBackgroundColor: var(--whiteColor);
 }

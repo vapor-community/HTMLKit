@@ -82,7 +82,7 @@ var $ = (function () {
      * This function is for
      */
     constructor.prototype.onSubmit = function (callback) {
-        
+
         this.elems[0].addEventListener("submit", callback);
     };
     
@@ -111,8 +111,21 @@ var $ = (function () {
      * This function is for
      */
     constructor.prototype.animate = function({params}, speed) {
-        
         this.elems[0].animate({params}, speed);
+    };
+    
+    /**
+     * This function is for
+     */
+    constructor.prototype.open = function() {
+        this.elems[0].showModal()
+    };
+    
+    /**
+     * This function is for
+     */
+    constructor.prototype.close = function() {
+        this.elems[0].close()
     };
     
     var instantiate = function (selector) {
