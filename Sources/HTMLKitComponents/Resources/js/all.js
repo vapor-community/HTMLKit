@@ -91,15 +91,20 @@ var $ = (function () {
      */
     constructor.prototype.show = function() {
         
-        this.elems[0].style.display = 'block';
+        const elements = document.getElementsByClassName("display:block");
+        
+        for (let element of elements){
+            element.classList.remove("display:block")
+        }
+        
+        this.elems[0].classList.add("display:block")
     };
     
     /**
      * This function is for
      */
     constructor.prototype.hide = function() {
-        
-        this.elems[0].style.display = 'none';
+        this.elems[0].classList.remove("display:block")
     };
     
     /**
