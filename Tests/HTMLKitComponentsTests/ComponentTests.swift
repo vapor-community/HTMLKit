@@ -26,10 +26,10 @@ final class ComponentTests: XCTestCase {
         )
     }
     
-    func testActionButton() throws {
+    func testButton() throws {
         
         let view = TestView {
-            ActionButton {
+            Button(role: .button) {
                 "Button"
             }
         }
