@@ -58,13 +58,13 @@ final class ComponentTests: XCTestCase {
     func testCollection() throws {
         
         let view = TestView {
-            Collection {
+            Grid {
             }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <ul class="collection ratio:50"></ul>
+                       <ul class="grid ratio:50"></ul>
                        """
         )
     }
@@ -72,13 +72,13 @@ final class ComponentTests: XCTestCase {
     func testCollectionItem() throws {
         
         let view = TestView {
-            CollectionItem {
+            GridItem {
             }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <li class="collection-item"></li>
+                       <li class="grid-item"></li>
                        """
         )
     }

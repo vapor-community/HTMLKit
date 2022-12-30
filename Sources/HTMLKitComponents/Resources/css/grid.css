@@ -1,0 +1,43 @@
+/**
+ grid component
+ */
+
+.grid {
+    display: grid;
+    gap: var(--gridGapSize);
+    list-style-type: none;
+}
+
+.grid-item {
+    
+    padding-top: var(--gridItemPaddingY);
+    padding-right: var(--gridItemPaddingX);
+    padding-bottom: var(--gridItemPaddingY);
+    padding-left: var(--gridItemPaddingX);
+    border-width: var(--gridItemBorderWidth);
+    border-style: solid;
+    border-color: var(--gridItemBorderColor);
+    border-radius: var(--gridItemBorderRadius);
+    
+    overflow: hidden;
+}
+
+.grid.ratio\:50 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid.ratio\:33 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid.ratio\:25 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.grid.ratio\:20 {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.grid.ratio\:15 {
+    grid-template-columns: repeat(6, 1fr);
+}

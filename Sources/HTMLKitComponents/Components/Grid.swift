@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that collects and arranges collection items horizontally.
-public struct Collection: View, Actionable {
+public struct Grid: View, Actionable {
     
     internal var id: String?
     
@@ -22,7 +22,7 @@ public struct Collection: View, Actionable {
     public init(ratio: Tokens.ItemRatio = .half, @ContentBuilder<ListElement> content: () -> [ListElement]) {
         
         self.content = content()
-        self.classes = ["collection", ratio.rawValue]
+        self.classes = ["grid", ratio.rawValue]
     }
     
     /// Creates a collection.
@@ -49,33 +49,13 @@ public struct Collection: View, Actionable {
         }
     }
     
-    public func id(_ value: String) -> Collection {
+    public func id(_ value: String) -> Grid {
         return self.mutate(id: value)
-    }
-    
-    /// Sets the style for the collection.
-    public func collectionStyle(_ style: Tokens.CollectionStyle) -> Collection {
-        
-        var newSelf = self
-        newSelf.classes.append(style.rawValue)
-        
-        return newSelf
-    }
-}
-
-extension Collection: HoverModifier {
-    
-    public func onHover(perfom action: Actions) -> Collection {
-        return self.mutate(hoverevent: action.script)
-    }
-    
-    public func onLeave(perfom action: Actions) -> Collection {
-        return self.mutate(leaveevent: action.script)
     }
 }
 
 /// A component that represents a collection item.
-public struct CollectionItem: View, Actionable {
+public struct GridItem: View, Actionable {
     
     internal var id: String?
     
@@ -91,7 +71,7 @@ public struct CollectionItem: View, Actionable {
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
-        self.classes = ["collection-item"]
+        self.classes = ["grid-item"]
     }
     
     /// Creates a collection item.
@@ -118,18 +98,18 @@ public struct CollectionItem: View, Actionable {
         }
     }
     
-    public func id(_ value: String) -> CollectionItem {
+    public func id(_ value: String) -> GridItem {
         return self.mutate(id: value)
     }
 }
 
-extension CollectionItem: HoverModifier {
+extension GridItem: HoverModifier {
     
-    public func onHover(perfom action: Actions) -> CollectionItem {
+    public func onHover(perfom action: Actions) -> GridItem {
         return self.mutate(hoverevent: action.script)
     }
     
-    public func onLeave(perfom action: Actions) -> CollectionItem {
+    public func onLeave(perfom action: Actions) -> GridItem {
         return self.mutate(leaveevent: action.script)
     }
 }

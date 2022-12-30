@@ -113,10 +113,6 @@
     --listBorderRadius: 5px;
     
     /**
-     link variables
-     */
-    
-    /**
      input variables
      */
     
@@ -145,10 +141,6 @@
     --dividerColor: #FFFFFF;
     
     /**
-     collection variables
-     */
-    
-    /**
      button variables
      */
     
@@ -171,4 +163,16 @@
     --modalBorderRadius: 5px;
     --modalBorderColor: var(--grayColor);
     --modalBackgroundColor: var(--whiteColor);
+    
+    /**
+     grid variables
+     */
+    
+    --gridGapSize: 15px;
+    --gridItemPaddingY: 12px;
+    --gridItemPaddingX: 16px;
+    --gridItemBorderWidth: 1px;
+    --gridItemBorderColor var(--grayColor);
+    --gridItemBorderRadius: 5px;
+    --gridItemBackgroundColor: var(--whiteColor);
 }
