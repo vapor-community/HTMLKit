@@ -55,7 +55,7 @@ final class ComponentTests: XCTestCase {
         )
     }
     
-    func testCollection() throws {
+    func testGrid() throws {
         
         let view = TestView {
             Grid {
@@ -69,7 +69,7 @@ final class ComponentTests: XCTestCase {
         )
     }
     
-    func testCollectionItem() throws {
+    func testGridItem() throws {
         
         let view = TestView {
             GridItem {
@@ -338,16 +338,16 @@ final class ComponentTests: XCTestCase {
         )
     }
     
-    func testProgressView() throws {
+    func testProgress() throws {
         
         let view = TestView {
-            ProgressView(name: "name") {
+            Progress(maximum: 100, value: 10) {
             }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <progress class="progress"></progress>
+                       <progress value="10.0" max="100.0" class="progress"></progress>
                        """
         )
     }

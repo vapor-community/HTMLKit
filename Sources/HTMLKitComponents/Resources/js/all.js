@@ -104,6 +104,7 @@ var $ = (function () {
      * This function is for
      */
     constructor.prototype.hide = function() {
+        
         this.elems[0].classList.remove("display:block")
     };
     
@@ -111,6 +112,7 @@ var $ = (function () {
      * This function is for
      */
     constructor.prototype.animate = function({params}, speed) {
+        
         this.elems[0].animate({params}, speed);
     };
     
@@ -118,6 +120,7 @@ var $ = (function () {
      * This function is for
      */
     constructor.prototype.open = function() {
+        
         this.elems[0].showModal()
     };
     
@@ -125,6 +128,7 @@ var $ = (function () {
      * This function is for
      */
     constructor.prototype.close = function() {
+        
         this.elems[0].close()
     };
     

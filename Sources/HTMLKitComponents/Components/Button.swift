@@ -23,7 +23,7 @@ public struct Button: View, Modifiable, Actionable {
     internal var events: [String]?
     
     /// Creates a action button.
-    public init(role: HTMLKit.Values.Button = .button, @ContentBuilder<Content> content: () -> [Content]) {
+    public init(role: HTMLKit.Values.Button, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.role = role
         self.content = content()

@@ -561,12 +561,11 @@ extension SearchField: InputModifier {
 }
 
 /// A component that displays the progress of a task.
-public struct ProgressView: View {
+public struct Progress: View {
     
-    /// The identifier of the progress view.
-    internal let name: String
+    internal let maximum: Float
     
-    internal let value: String?
+    internal let value: String
     
     /// The content of the view.
     internal var content: [Content]
@@ -578,18 +577,18 @@ public struct ProgressView: View {
     internal var events: [String]?
     
     /// Creates a progress view.
-    public init(name: String, value: String? = nil, @ContentBuilder<Content> content: () -> [Content]) {
+    public init(maximum: Float, value: Float, @ContentBuilder<Content> content: () -> [Content]) {
         
-        self.name = name
-        self.value = value
+        self.maximum = maximum
+        self.value = String(value)
         self.content = content()
         self.classes = ["progress"]
     }
     
     /// Creates a progress bar.
-    internal init(name: String, value: String?, content: [Content], classes: [String], events: [String]?) {
+    internal init(maximum: Float, value: String, content: [Content], classes: [String], events: [String]?) {
         
-        self.name = name
+        self.maximum = maximum
         self.value = value
         self.content = content
         self.classes = classes
@@ -597,12 +596,11 @@ public struct ProgressView: View {
     }
     
     public var body: Content {
-        Progress {
+        HTMLKit.Progress {
             content
         }
+        .value(value)
+        .maximum(maximum)
         .class(classes.joined(separator: " "))
-        .modify(unwrap: value) {
-            $0.value($1)
-        }
     }
 }
