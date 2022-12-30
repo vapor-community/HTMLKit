@@ -11,10 +11,10 @@ final class ComponentTests: XCTestCase {
     
     let renderer = Renderer()
     
-    func testActionButton() throws {
+    func testLinkButton() throws {
         
         let view = TestView {
-            ActionButton(destination: "uri") {
+            LinkButton(destination: "uri") {
                 "Button"
             }
         }
@@ -22,6 +22,21 @@ final class ComponentTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <a href="uri" class="button" role="button">Button</a>
+                       """
+        )
+    }
+    
+    func testActionButton() throws {
+        
+        let view = TestView {
+            ActionButton {
+                "Button"
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <button type="button" class="button">Button</button>
                        """
         )
     }
