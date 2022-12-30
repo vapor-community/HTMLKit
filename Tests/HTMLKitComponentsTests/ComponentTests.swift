@@ -86,7 +86,7 @@ final class ComponentTests: XCTestCase {
     func testFormContainer() throws {
         
         let view = TestView {
-            HTMLKitComponents.Form {
+            HTMLKitComponents.Form(method: .post) {
             }
         }
         

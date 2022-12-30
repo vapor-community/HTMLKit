@@ -8,6 +8,8 @@ import HTMLKit
 /// A component that collects form controls.
 public struct Form: View {
     
+    internal var method: HTMLKit.Values.Method
+    
     /// The content of the container.
     internal var content: [FormElement]
     
@@ -18,15 +20,17 @@ public struct Form: View {
     internal var events: [String]?
     
     /// Creates a form container.
-    public init(@ContentBuilder<FormElement> content: () -> [FormElement]) {
+    public init(method: Values.Method, @ContentBuilder<FormElement> content: () -> [FormElement]) {
         
+        self.method = method
         self.content = content()
         self.classes = ["form"]
     }
     
     /// Creates a form container.
-    internal init(content: [FormElement], classes: [String], events: [String]?) {
+    internal init(method: Values.Method, content: [FormElement], classes: [String], events: [String]?) {
         
+        self.method = method
         self.content = content
         self.classes = classes
         self.events = events
@@ -36,7 +40,7 @@ public struct Form: View {
         HTMLKit.Form {
             content
         }
-        .method(.post)
+        .method(method)
         .class(classes.joined(separator: " "))
     }
 }
