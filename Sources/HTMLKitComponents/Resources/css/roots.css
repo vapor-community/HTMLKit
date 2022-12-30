@@ -172,7 +172,19 @@
     --gridItemPaddingY: 12px;
     --gridItemPaddingX: 16px;
     --gridItemBorderWidth: 1px;
-    --gridItemBorderColor var(--grayColor);
+    --gridItemBorderColor: var(--grayColor);
     --gridItemBorderRadius: 5px;
     --gridItemBackgroundColor: var(--whiteColor);
+    
+    
+    /**
+     grid variables
+     */
+    
+    --cardPaddingY: 12px;
+    --cardPaddingX: 16px;
+    --cardBorderWidth: 1px;
+    --cardBorderRadius: 15px;
+    --cardBorderColor: var(--grayColor);
+    --cardBackgroundColor: var(--whiteColor);
 }

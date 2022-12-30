@@ -390,4 +390,18 @@ final class ComponentTests: XCTestCase {
                        """
         )
     }
+    
+    func testCard() throws {
+        
+        let view = TestView {
+            Card {
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <div class="card"></div>
+                       """
+        )
+    }
 }
