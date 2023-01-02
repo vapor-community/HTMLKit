@@ -9,11 +9,6 @@ import XCTest
 
 final class LocalizationTests: XCTestCase {
     
-    struct TestView: View {
-
-        @ContentBuilder<Content> var body: Content
-    }
-    
     var renderer: Renderer?
     
     override func setUp() {
@@ -24,13 +19,53 @@ final class LocalizationTests: XCTestCase {
     
     func testLocalization() throws {
         
-        let view = TestView {
-            Heading1("Hallo Welt")
+        struct MainView: View {
+            
+            var body: Content {
+                Heading1("Hallo Welt")
+            }
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        XCTAssertEqual(try renderer!.render(view: MainView()),
                        """
                        <h1>Hello World</h1>
+                       """
+        )
+    }
+    
+    func testEnvironmentLocalization() throws {
+        
+        struct MainView: View {
+            
+            var content: [Content]
+            
+            init(@ContentBuilder<Content> content: () -> [Content]) {
+                self.content = content()
+            }
+            
+            var body: Content {
+                Division {
+                    content
+                }
+                .environment(key: \.locale, value: "fr")
+            }
+        }
+        
+        struct ChildView: View {
+            
+            var body: Content {
+                MainView {
+                    Heading1("Hallo Welt")
+                        .environment(key: \.locale)
+                }
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: ChildView()),
+                       """
+                       <div>\
+                       <h1>Bonjour le monde</h1>\
+                       </div>
                        """
         )
     }

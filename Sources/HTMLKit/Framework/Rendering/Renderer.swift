@@ -12,23 +12,50 @@ public class Renderer {
     /// A enumeration  of possible render errors
     public enum Errors: Error {
         
+        case unableToCastEnvironmentValue
+        case unindendedEnvironmentKey
+        case environmentObjectNotFound
+        case environmentValueNotFound
         case missingLingoConfiguration
 
         public var description: String {
             
             switch self {
+            case .unableToCastEnvironmentValue:
+                return "Unable to cast the environment value."
+                
+            case .unindendedEnvironmentKey:
+                return "The environment key is not indended."
+                
+            case .environmentValueNotFound:
+                return "Unable to retrieve environment value."
+                
+            case .environmentObjectNotFound:
+                return "Unable to retrieve environment object."
+                
             case .missingLingoConfiguration:
                 return "The lingo configuration seem to missing."
             }
         }
     }
     
+    private var environment: Environment
+    
+    private var manager: Manager
+    
     /// The localization to use when rendering.
     private var lingo: Lingo?
 
     /// Initiates the renderer.
     public init(lingo: Lingo? = nil) {
+        
+        self.environment = Environment()
+        self.manager = Manager()
         self.lingo = lingo
+    }
+    
+    public func add<T>(model: T) where T: Encodable {
+        manager.upsert(model, for: \T.self)
     }
     
     /// Renders a view
@@ -75,6 +102,14 @@ public class Renderer {
             
             if let element = content as? (any CustomNode) {
                 result += try render(element: element)
+            }
+            
+            if let stringkey = content as? LocalizedStringKey {
+                result += try render(stringkey: stringkey)
+            }
+            
+            if let modifier = content as? EnvironmentModifier {
+                result += try render(modifier: modifier)
             }
             
             if let element = content as? String {
@@ -124,8 +159,16 @@ public class Renderer {
                     result += try render(element: element)
                 }
                 
-                if let localize = content as? LocalizedStringKey {
-                    result += try render(localize: localize)
+                if let stringkey = content as? LocalizedStringKey {
+                    result += try render(stringkey: stringkey)
+                }
+                
+                if let modifier = content as? EnvironmentModifier {
+                    result += try render(modifier: modifier)
+                }
+                
+                if let value = content as? EnvironmentValue {
+                    result += try render(value: value)
                 }
                 
                 if let element = content as? String {
@@ -193,8 +236,8 @@ public class Renderer {
                     result += try render(element: element)
                 }
                 
-                if let localize = content as? LocalizedStringKey {
-                    result += try render(localize: localize)
+                if let stringkey = content as? LocalizedStringKey {
+                    result += try render(stringkey: stringkey)
                 }
                 
                 if let element = content as? String {
@@ -208,23 +251,96 @@ public class Renderer {
         return result
     }
     
-    /// Renders a localized string
-    internal func render(localize: LocalizedStringKey) throws -> String {
+    /// Renders a localized string key
+    internal func render(stringkey: LocalizedStringKey) throws -> String {
         
         guard let lingo = self.lingo else {
             throw Errors.missingLingoConfiguration
         }
         
-        if let context = localize.context {
+        if let context = stringkey.context {
             
             if let data = try? JSONEncoder().encode(context) {
                 
                 if let dictionary = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any] {
-                    return lingo.localize(localize.key, locale: lingo.defaultLocale, interpolations: dictionary)
+                    return lingo.localize(stringkey.key, locale: lingo.defaultLocale, interpolations: dictionary)
                 }
             }
         }
         
-        return lingo.localize(localize.key, locale: lingo.defaultLocale)
+        return lingo.localize(stringkey.key, locale: environment.locale ?? lingo.defaultLocale)
+    }
+    
+    /// Renders a environment modifier
+    internal func render(modifier: EnvironmentModifier) throws -> String {
+        
+        if let value = modifier.value {
+            self.manager.upsert(value, for: modifier.key)
+            
+        } else {
+            
+            if let value = manager.retrieve(for: modifier.key) {
+                
+                if let key = modifier.key as? PartialKeyPath<EnvironmentKeys> {
+                    
+                    switch key {
+                    case \.locale:
+                        self.environment.locale = value as? String
+                        
+                    case \.calender:
+                        self.environment.calendar = value as? Calendar
+                        
+                    case \.timeZone:
+                        self.environment.timeZone = value as? TimeZone
+                        
+                    case \.colorScheme:
+                        self.environment.colorScheme = value as? String
+                        
+                    default:
+                        throw Errors.unindendedEnvironmentKey
+                    }
+                }
+            }
+        }
+        
+        return try render(contents: modifier.content)
+    }
+    
+    /// Renders a environment value
+    internal func render(value: EnvironmentValue) throws -> String {
+        
+        guard let parent = manager.retrieve(for: value.parentPath) else {
+            throw Errors.environmentObjectNotFound
+        }
+
+        guard let value = parent[keyPath: value.valuePath] else {
+            throw Errors.environmentValueNotFound
+        }
+        
+        switch value {
+        case let floatValue as Float:
+            return String(floatValue)
+            
+        case let intValue as Int:
+            return String(intValue)
+            
+        case let doubleValue as Double:
+            return String(doubleValue)
+            
+        case let stringValue as String:
+            return String(stringValue)
+            
+        case let dateValue as Date:
+            
+            let formatter = DateFormatter()
+            formatter.timeZone = self.environment.timeZone ?? TimeZone.current
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .short
+            
+            return formatter.string(from: dateValue)
+            
+        default:
+            throw Errors.unableToCastEnvironmentValue
+        }
     }
 }
