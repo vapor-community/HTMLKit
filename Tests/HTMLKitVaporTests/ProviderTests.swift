@@ -46,13 +46,24 @@ final class ProviderTests: XCTestCase {
             }
         }
         
-        struct ChildView: HTMLKit.View {
+        struct NephewView: HTMLKit.View {
             
             var context: TestContext
             
             var body: HTMLKit.Content {
                 MainView {
-                    Paragraph(context.greeting)
+                    Paragraph {
+                        context.greeting
+                    }
+                }
+            }
+        }
+        
+        struct ChildView: HTMLKit.View {
+            
+            var body: HTMLKit.Content {
+                MainView {
+                    Paragraph("Hallo Welt")
                 }
             }
         }
@@ -82,7 +93,7 @@ final class ProviderTests: XCTestCase {
             
             let context = TestContext(greeting: "Hello World")
             
-            return request.htmlkit.render(TestPage.ChildView(context: context))
+            return request.htmlkit.render(TestPage.NephewView(context: context))
         }
         
         try app.test(.GET, "test") { response in
@@ -114,7 +125,7 @@ final class ProviderTests: XCTestCase {
             
             let context = TestContext(greeting: "Hello World")
             
-            return try await request.htmlkit.render(TestPage.ChildView(context: context))
+            return try await request.htmlkit.render(TestPage.NephewView(context: context))
         }
         
         try app.test(.GET, "test") { response in
@@ -151,9 +162,7 @@ final class ProviderTests: XCTestCase {
         
         app.get("test") { request async throws -> Vapor.View in
             
-            let context = TestContext(greeting: "Hallo Welt")
-            
-            return try await request.htmlkit.render(TestPage.ChildView(context: context))
+            return try await request.htmlkit.render(TestPage.ChildView())
         }
         
         try app.test(.GET, "test") { response in
