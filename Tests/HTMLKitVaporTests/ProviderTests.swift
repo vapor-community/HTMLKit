@@ -9,101 +9,66 @@ import HTMLKitVapor
 
 final class ProviderTests: XCTestCase {
     
-    struct TestContext: Vapor.Content {
-        let greeting: String
+    struct TestObject: Vapor.Content {
+        
+        var greeting: String = "Hello World"
     }
     
-    enum Visitor {
+    struct TestContext: Vapor.Content {
         
-        struct TestView: HTMLKit.View {
-            
-            var body: HTMLKit.Content {
-                Document(.html5)
-                Html {
-                    Head {
-                        Title {
-                            "Visitor.TestView"
-                        }
-                    }
-                    Body {
-                        Paragraph("Hallo Welt")
-                    }
-                }
-            }
-        }
+        var greeting: String
     }
 
-    enum User {
+    enum TestPage {
         
-        struct TestView: HTMLKit.View {
+        struct MainView: HTMLKit.View {
+            
+            var content: [BodyElement]
+            
+            init(@ContentBuilder<BodyElement> content: () -> [BodyElement]) {
+                
+                self.content = content()
+            }
             
             var body: HTMLKit.Content {
                 Document(.html5)
                 Html {
                     Head {
                         Title {
-                            "User.TestView"
+                            "TestPage"
                         }
                     }
                     Body {
-                        Paragraph {
-                            "Hello World"
-                        }
+                        content
                     }
                 }
+                .environment(object: TestObject())
             }
         }
-    }
-    
-    enum Admin {
         
-        struct TestView: HTMLKit.View {
+        struct ChildView: HTMLKit.View {
             
             var context: TestContext
             
             var body: HTMLKit.Content {
-                Document(.html5)
-                Html {
-                    Head {
-                        Title {
-                            "Admin.TestView"
-                        }
-                    }
-                    Body {
-                        Paragraph {
-                            context.greeting
-                        }
-                    }
+                MainView {
+                    Paragraph(context.greeting)
                 }
             }
         }
-    }
-    
-    func testEventLoopIntegrationWithViewRenderer() throws {
         
-        let app = Application(.testing)
-        
-        defer { app.shutdown() }
-        
-        app.get("test") { request -> EventLoopFuture<Vapor.View> in
-            return request.htmlkit.render(User.TestView())
-        }
-        
-        try app.test(.GET, "test") { response in
-            XCTAssertEqual(response.status, .ok)
-            XCTAssertEqual(response.body.string,
-                            """
-                            <!DOCTYPE html>\
-                            <html>\
-                            <head>\
-                            <title>User.TestView</title>\
-                            </head>\
-                            <body>\
-                            <p>Hello World</p>\
-                            </body>\
-                            </html>
-                            """
-            )
+        struct SipplingView: HTMLKit.View {
+            
+            @EnvironmentObject(TestObject.self)
+            var object
+            
+            var body: HTMLKit.Content {
+                MainView {
+                    Paragraph {
+                        object.greeting
+                    }
+                }
+            }
         }
     }
     
@@ -117,7 +82,7 @@ final class ProviderTests: XCTestCase {
             
             let context = TestContext(greeting: "Hello World")
             
-            return request.htmlkit.render(Admin.TestView(context: context))
+            return request.htmlkit.render(TestPage.ChildView(context: context))
         }
         
         try app.test(.GET, "test") { response in
@@ -127,7 +92,7 @@ final class ProviderTests: XCTestCase {
                             <!DOCTYPE html>\
                             <html>\
                             <head>\
-                            <title>Admin.TestView</title>\
+                            <title>TestPage</title>\
                             </head>\
                             <body>\
                             <p>Hello World</p>\
@@ -146,7 +111,10 @@ final class ProviderTests: XCTestCase {
         defer { app.shutdown() }
         
         app.get("test") { request async throws -> Vapor.View in
-            return try await request.htmlkit.render(User.TestView())
+            
+            let context = TestContext(greeting: "Hello World")
+            
+            return try await request.htmlkit.render(TestPage.ChildView(context: context))
         }
         
         try app.test(.GET, "test") { response in
@@ -156,7 +124,7 @@ final class ProviderTests: XCTestCase {
                             <!DOCTYPE html>\
                             <html>\
                             <head>\
-                            <title>User.TestView</title>\
+                            <title>TestPage</title>\
                             </head>\
                             <body>\
                             <p>Hello World</p>\
@@ -168,7 +136,7 @@ final class ProviderTests: XCTestCase {
     }
     
     @available(macOS 12, *)
-    func testConcurrencyIntegrationWithLocalization() throws {
+    func testLocalizationIntegration() throws {
         
         let currentFile = URL(fileURLWithPath: #file).deletingLastPathComponent()
         
@@ -182,7 +150,10 @@ final class ProviderTests: XCTestCase {
         app.htmlkit.lingo.set(locale: .french)
         
         app.get("test") { request async throws -> Vapor.View in
-            return try await request.htmlkit.render(Visitor.TestView())
+            
+            let context = TestContext(greeting: "Hallo Welt")
+            
+            return try await request.htmlkit.render(TestPage.ChildView(context: context))
         }
         
         try app.test(.GET, "test") { response in
@@ -192,10 +163,39 @@ final class ProviderTests: XCTestCase {
                             <!DOCTYPE html>\
                             <html>\
                             <head>\
-                            <title>Visitor.TestView</title>\
+                            <title>TestPage</title>\
                             </head>\
                             <body>\
                             <p>Bonjour le monde</p>\
+                            </body>\
+                            </html>
+                            """
+            )
+        }
+    }
+    
+    @available(macOS 12, *)
+    func testEnvironmentIntegration() throws {
+        
+        let app = Application(.testing)
+        
+        defer { app.shutdown() }
+        
+        app.get("test") { request async throws -> Vapor.View in
+            return try await request.htmlkit.render(TestPage.SipplingView())
+        }
+        
+        try app.test(.GET, "test") { response in
+            XCTAssertEqual(response.status, .ok)
+            XCTAssertEqual(response.body.string,
+                            """
+                            <!DOCTYPE html>\
+                            <html>\
+                            <head>\
+                            <title>TestPage</title>\
+                            </head>\
+                            <body>\
+                            <p>Hello World</p>\
                             </body>\
                             </html>
                             """
