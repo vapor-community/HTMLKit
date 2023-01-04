@@ -6,10 +6,10 @@
 import HTMLKit
 
 /// A component that shows an on or off state.
-public struct Toggle: Component {
+public struct Toggle: View {
     
     /// The identifier of the toggle.
-    internal let name: TemplateValue<String>
+    internal let name: String
     
     /// The classes of the toggle.
     internal var classes: [String]
@@ -18,21 +18,21 @@ public struct Toggle: Component {
     internal var events: [String]?
     
     /// Creates a toggle.
-    public init(name: TemplateValue<String>) {
+    public init(name: String) {
         
         self.name = name
         self.classes = ["toggle"]
     }
     
     /// Creates a toggle.
-    internal init(name: TemplateValue<String>, classes: [String], events: [String]?) {
+    internal init(name: String, classes: [String], events: [String]?) {
         
         self.name = name
         self.classes = classes
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Label {
             Input()
                 .type(.checkbox)
@@ -44,15 +44,5 @@ public struct Toggle: Component {
         }
         .tabIndex(0)
         .class(classes.joined(separator: " "))
-    }
-    
-    /// The behaviour of the toggle.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [Script { events }]
-        }
-        
-        return []
     }
 }

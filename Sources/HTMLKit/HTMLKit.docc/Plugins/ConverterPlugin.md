@@ -8,7 +8,7 @@ The framework comes with a plugin, wich converts HTML markup into the HTMLKit sy
 
 ### Command
 
-Use the following command in your terminal:
+Use the following command in your terminal to start the conversion.
 
 ```sh
 swift package --allow-writing-to-package-directory convert --source-path [source-path] --target-path [target-path] --output-option debug

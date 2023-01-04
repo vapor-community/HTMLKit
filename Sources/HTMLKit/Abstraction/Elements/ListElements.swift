@@ -28,13 +28,13 @@ public struct ListItem: ContentNode, ListElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [AnyContent]
+    internal var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -48,26 +48,13 @@ public struct ListItem: ContentNode, ListElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (ListItem, TemplateValue<T>) -> ListItem) -> ListItem {
+    public func modify<T>(unwrap value: T?, element: (ListItem, T) -> ListItem) -> ListItem {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -140,10 +127,6 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func id(_ value: String) -> ListItem {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> ListItem {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> ListItem {
         return mutate(lang: value.rawValue)
@@ -151,11 +134,6 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func nonce(_ value: String) -> ListItem {
         return mutate(nonce: value)
-    }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> ListItem {
-        return mutate(role: value)
     }
 
     public func role(_ value: Values.Role) -> ListItem {
@@ -177,11 +155,6 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func title(_ value: String) -> ListItem {
         return mutate(title: value)
     }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> ListItem {
-        return mutate(translate: value)
-    }
     
     public func translate(_ value: Values.Decision) -> ListItem {
         return mutate(translate: value.rawValue)
@@ -189,10 +162,6 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func value(_ value: String) -> ListItem {
         return mutate(value: value)
-    }
-    
-    public func value(_ value: TemplateValue<String>) -> ListItem {
-        return mutate(value: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> ListItem {
@@ -293,16 +262,5 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func aria(roleDescription value: String) -> ListItem {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension ListItem: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }

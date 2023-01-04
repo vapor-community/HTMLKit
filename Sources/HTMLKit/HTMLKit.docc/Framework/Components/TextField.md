@@ -5,7 +5,7 @@ A component that displays an editable form control.
 ## Declaration
 
 ```swift
-struct TextField : Component
+struct TextField : View
 ```
 
 ## Overview

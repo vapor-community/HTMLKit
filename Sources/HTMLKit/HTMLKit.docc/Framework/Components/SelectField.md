@@ -5,7 +5,7 @@ A component for selecting one or multiple options.
 ## Declaration
 
 ```swift
-struct SelectField : Component
+struct SelectField : View
 ```
 
 ## Overview

@@ -6,7 +6,9 @@
 import HTMLKit
 
 /// A component that collects and arranges list items vertically.
-public struct List: Component {
+public struct List: View, Actionable {
+    
+    var id: String?
     
     /// The content of the list.
     internal var content: [ListElement]
@@ -14,7 +16,6 @@ public struct List: Component {
     /// The classes of the list.
     internal var classes: [String]
     
-    /// The events of the list.
     internal var events: [String]?
     
     /// Creates a list.
@@ -25,28 +26,27 @@ public struct List: Component {
     }
     
     /// Creates a list.
-    internal init(content: [ListElement], classes: [String], events: [String]?) {
+    internal init(content: [ListElement], classes: [String], events: [String]?, id: String?) {
         
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         UnorderedList {
             content
         }
         .class(classes.joined(separator: " "))
-    }
-    
-    /// The behaviour of the list.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
+        .modify(unwrap: id) {
+            $0.id($1)
         }
-        
-        return [content.scripts]
+        if let events = self.events {
+            Script {
+                events
+            }
+        }
     }
     
     /// Sets the style for the list.
@@ -59,48 +59,77 @@ public struct List: Component {
     }
 }
 
-/// A component that represents a list item.
-public struct ListRow: Component {
+extension List: HoverModifier {
+    
+    public func id(_ value: String) -> List {
+        return self.mutate(id: value)
+    }
 
+    public func onHover(perfom action: Actions) -> List {
+        return self.mutate(hoverevent: action.script)
+    }
+    
+    public func onLeave(perfom action: Actions) -> List {
+        return self.mutate(leaveevent: action.script)
+    }
+}
+
+/// A component that represents a list item.
+public struct ListRow: View, Actionable {
+    
+    var id: String?
+    
     /// The content of the row.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the row.
     internal var classes: [String]
     
-    /// The events of the row.
     internal var events: [String]?
     
     /// Creates a list row.
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["list-row"]
     }
     
     /// Creates a list row.
-    internal init(content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
         
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         ListItem {
             content
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+        if let events = self.events {
+            Script {
+                events
+            }
+        }
     }
     
-    /// The behaviour of the row.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
+    public func id(_ value: String) -> ListRow {
+        return self.mutate(id: value)
     }
 }
 
+extension ListRow: HoverModifier {
+    
+    public func onHover(perfom action: Actions) -> ListRow {
+        return self.mutate(hoverevent: action.script)
+    }
+    
+    public func onLeave(perfom action: Actions) -> ListRow {
+        return self.mutate(leaveevent: action.script)
+    }
+}

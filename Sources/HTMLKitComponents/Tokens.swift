@@ -470,13 +470,6 @@ public enum Tokens {
         case half = "ratio:50"
     }
 
-    /// A style for a collection.
-    public enum CollectionStyle: String {
-        
-        case grid = "style:grid"
-        case carousel = "style:carousel"
-    }
-
     /// A style for a list.
     public enum ListStyle: String {
 

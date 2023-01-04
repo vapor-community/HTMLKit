@@ -9,138 +9,338 @@ import Lingo
 /// A struct containing the different formulas for the different views.
 public class Renderer {
 
-    public enum Errors: LocalizedError {
+    /// A enumeration  of possible render errors
+    public enum Errors: Error {
         
-        case unableToFindFormula
+        case unableToCastEnvironmentValue
+        case unindendedEnvironmentKey
+        case environmentObjectNotFound
+        case environmentValueNotFound
+        case missingLingoConfiguration
 
-        public var errorDescription: String? {
+        public var description: String {
             
             switch self {
-            case .unableToFindFormula:
-                return "Unable to find a formula for the given view type"
-            }
-        }
-        
-        public var failureReason: String? {
-            return self.errorDescription ?? ""
-        }
-
-        public var recoverySuggestion: String? {
-            
-            switch self {
-            case .unableToFindFormula:
-                return "Remember to add the template to the renderer with .add(template: ) or .add(view: )"
+            case .unableToCastEnvironmentValue:
+                return "Unable to cast the environment value."
+                
+            case .unindendedEnvironmentKey:
+                return "The environment key is not indended."
+                
+            case .environmentValueNotFound:
+                return "Unable to retrieve environment value."
+                
+            case .environmentObjectNotFound:
+                return "Unable to retrieve environment object."
+                
+            case .missingLingoConfiguration:
+                return "The lingo configuration seem to missing."
             }
         }
     }
-
-    /// A cache that contains all the composed content.
-    private var cache: Cache
-
+    
+    private var environment: Environment
+    
+    private var manager: Manager
+    
     /// The localization to use when rendering.
     private var lingo: Lingo?
-    
-    /// The calendar to use when rendering dates.
-    public var calendar: Calendar
-    
-    /// The time zone to use when rendering dates.
-    public var timeZone: TimeZone
 
     /// Initiates the renderer.
-    public init(calendar: Calendar = .current, timeZone: TimeZone = .current) {
+    public init(lingo: Lingo? = nil) {
         
-        self.cache = .init()
-        self.calendar = calendar
-        self.timeZone = timeZone
+        self.environment = Environment()
+        self.manager = Manager()
+        self.lingo = lingo
     }
     
-    /// Adds a formula to the cache.
-    public func add<T: AnyLayout>(layout: T) throws {
-        
-        let formula = Formula()
-        
-        try layout.prerender(formula)
-        
-        self.cache.upsert(formula: formula, for: ObjectIdentifier(T.self))
+    public func add<T>(model: T) where T: Encodable {
+        manager.upsert(model, for: \T.self)
     }
     
-    /// Registers a localization.
-    public func add(localization: Localization) throws {
-        self.lingo = try Lingo(rootPath: localization.source, defaultLocale: localization.locale.rawValue)
-    }
-
-    /// Renders a formula.
-    public func render<T: AnyLayout>(layout: T.Type) throws -> String {
+    /// Renders a view
+    public func render(view: some View) throws -> String {
         
-        guard let formula = self.cache.retrieve(identifier: ObjectIdentifier(layout)) else {
-            throw Errors.unableToFindFormula
+        var result = ""
+        
+        if let contents = view.body as? [Content] {
+            result += try render(contents: contents)
         }
         
-        return try formula.render(with: (), lingo: lingo)
+        return result
     }
     
-    /// Renders a formula.
-    public func render<T: AnyLayout, C>(layout: T.Type, with context: C) throws -> String {
+    internal func render(contents: [Content]) throws -> String {
         
-        guard let formula = self.cache.retrieve(identifier: ObjectIdentifier(layout)) else {
-            throw Errors.unableToFindFormula
+        var result = ""
+        
+        for content in contents {
+            
+            if let contents = content as? [Content] {
+                result += try render(contents: contents)
+            }
+            
+            if let element = content as? (any View) {
+                result += try render(view: element)
+            }
+            
+            if let element = content as? (any ContentNode) {
+                result += try render(element: element)
+            }
+            
+            if let element = content as? (any EmptyNode) {
+                result += render(element: element)
+            }
+            
+            if let element = content as? (any DocumentNode) {
+                result += render(element: element)
+            }
+            
+            if let element = content as? (any CommentNode) {
+                result += render(element: element)
+            }
+            
+            if let element = content as? (any CustomNode) {
+                result += try render(element: element)
+            }
+            
+            if let stringkey = content as? LocalizedStringKey {
+                result += try render(stringkey: stringkey)
+            }
+            
+            if let modifier = content as? EnvironmentModifier {
+                result += try render(modifier: modifier)
+            }
+            
+            if let element = content as? String {
+                result += element
+            }
         }
         
-        return try formula.render(with: context, lingo: lingo)
-    }
-}
-
-extension Renderer {
-    
-    // MARK: Deprecations
-    
-    /// Adds a formula to the cache.
-    @available(*, deprecated, message: "Use add(layout:) instead.")
-    public func add<T: Page>(view: T) throws {
-        
-        let formula = Formula()
-
-        try view.prerender(formula)
-        
-        self.cache.upsert(formula: formula, for: ObjectIdentifier(T.self))
+        return result
     }
     
-    /// Adds a formula to the cache.
-    @available(*, deprecated, message: "Use add(layout:) instead.")
-    public func add<T: View>(view: T) throws {
-
-        let formula = Formula()
-
-        try view.prerender(formula)
-
-        self.cache.upsert(formula: formula, for: ObjectIdentifier(T.self))
+    /// Renders a content element
+    internal func render(element: some ContentNode) throws -> String {
+        
+        var result = ""
+        
+        result += element.startTag
+        
+        if let contents = element.content as? [Content] {
+            
+            for content in contents {
+                
+                if let contents = content as? [Content] {
+                    result += try render(contents: contents)
+                }
+                
+                if let element = content as? (any View) {
+                    result += try render(view: element)
+                }
+                
+                if let element = content as? (any ContentNode) {
+                    result += try render(element: element)
+                }
+                
+                if let element = content as? (any EmptyNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? (any DocumentNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? (any CommentNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? (any CustomNode) {
+                    result += try render(element: element)
+                }
+                
+                if let stringkey = content as? LocalizedStringKey {
+                    result += try render(stringkey: stringkey)
+                }
+                
+                if let modifier = content as? EnvironmentModifier {
+                    result += try render(modifier: modifier)
+                }
+                
+                if let value = content as? EnvironmentValue {
+                    result += try render(value: value)
+                }
+                
+                if let element = content as? String {
+                    result += element
+                }
+            }
+        }
+        
+        result += element.endTag
+        
+        return result
     }
     
-    /// Renders a formula.
-    @available(*, deprecated, message: "Use render(layout:) instead.")
-    public func render<T: Page>(raw type: T.Type) throws -> String {
+    /// Renders a empty element
+    internal func render(element: some EmptyNode) -> String {
+        return element.startTag
+    }
+    
+    /// Renders a document element
+    internal func render(element: some DocumentNode) -> String {
+        return element.startTag
+    }
+    
+    /// Renders a comment element
+    internal func render(element: some CommentNode) -> String {
+        return element.startTag + element.content + element.endTag
+    }
+    
+    /// Renders a content element
+    internal func render(element: some CustomNode) throws -> String {
         
-        guard let formula = self.cache.retrieve(identifier: ObjectIdentifier(type)) else {
-            throw Errors.unableToFindFormula
+        var result = ""
+        
+        result += element.startTag
+        
+        if let contents = element.content as? [Content] {
+            
+            for content in contents {
+                
+                if let contents = content as? [Content] {
+                    result += try render(contents: contents)
+                }
+                
+                if let element = content as? (any View) {
+                    result += try render(view: element)
+                }
+                
+                if let element = content as? (any ContentNode) {
+                    result += try render(element: element)
+                }
+                
+                if let element = content as? (any EmptyNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? (any DocumentNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? (any CommentNode) {
+                    result += render(element: element)
+                }
+                
+                if let element = content as? (any CustomNode) {
+                    result += try render(element: element)
+                }
+                
+                if let stringkey = content as? LocalizedStringKey {
+                    result += try render(stringkey: stringkey)
+                }
+                
+                if let element = content as? String {
+                    result += element
+                }
+            }
+        }
+        
+        result += element.endTag
+        
+        return result
+    }
+    
+    /// Renders a localized string key
+    internal func render(stringkey: LocalizedStringKey) throws -> String {
+        
+        guard let lingo = self.lingo else {
+            throw Errors.missingLingoConfiguration
+        }
+        
+        if let context = stringkey.context {
+            
+            if let data = try? JSONEncoder().encode(context) {
+                
+                if let dictionary = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any] {
+                    return lingo.localize(stringkey.key, locale: lingo.defaultLocale, interpolations: dictionary)
+                }
+            }
+        }
+        
+        return lingo.localize(stringkey.key, locale: environment.locale ?? lingo.defaultLocale)
+    }
+    
+    /// Renders a environment modifier
+    internal func render(modifier: EnvironmentModifier) throws -> String {
+        
+        if let value = modifier.value {
+            self.manager.upsert(value, for: modifier.key)
+            
+        } else {
+            
+            if let value = manager.retrieve(for: modifier.key) {
+                
+                if let key = modifier.key as? PartialKeyPath<EnvironmentKeys> {
+                    
+                    switch key {
+                    case \.locale:
+                        self.environment.locale = value as? String
+                        
+                    case \.calender:
+                        self.environment.calendar = value as? Calendar
+                        
+                    case \.timeZone:
+                        self.environment.timeZone = value as? TimeZone
+                        
+                    case \.colorScheme:
+                        self.environment.colorScheme = value as? String
+                        
+                    default:
+                        throw Errors.unindendedEnvironmentKey
+                    }
+                }
+            }
+        }
+        
+        return try render(contents: modifier.content)
+    }
+    
+    /// Renders a environment value
+    internal func render(value: EnvironmentValue) throws -> String {
+        
+        guard let parent = manager.retrieve(for: value.parentPath) else {
+            throw Errors.environmentObjectNotFound
         }
 
-        return try formula.render(with: (), lingo: lingo)
-    }
-    
-    /// Renders a formula.
-    @available(*, deprecated, message: "Use render(layout:, with:) instead.")
-    public func render<T: View>(raw type: T.Type, with context: Any) throws -> String {
-        
-        guard let formula = self.cache.retrieve(identifier: ObjectIdentifier(type)) else {
-            throw Errors.unableToFindFormula
+        guard let value = parent[keyPath: value.valuePath] else {
+            throw Errors.environmentValueNotFound
         }
-
-        return try formula.render(with: context, lingo: lingo)
-    }
-    
-    /// Registers a localization directory for the renderer.
-    @available(*, deprecated, message: "Use add(localization:) instead.")
-    public func registerLocalization(atPath path: String = "Resources/Localization", defaultLocale: String = "en") throws {
-        self.lingo = try Lingo(rootPath: path, defaultLocale: defaultLocale)
+        
+        switch value {
+        case let floatValue as Float:
+            return String(floatValue)
+            
+        case let intValue as Int:
+            return String(intValue)
+            
+        case let doubleValue as Double:
+            return String(doubleValue)
+            
+        case let stringValue as String:
+            return String(stringValue)
+            
+        case let dateValue as Date:
+            
+            let formatter = DateFormatter()
+            formatter.timeZone = self.environment.timeZone ?? TimeZone.current
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .short
+            
+            return formatter.string(from: dateValue)
+            
+        default:
+            throw Errors.unableToCastEnvironmentValue
+        }
     }
 }

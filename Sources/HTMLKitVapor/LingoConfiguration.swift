@@ -4,6 +4,7 @@
  */
 
 import Foundation
+import Lingo
 
 /// The localization
 public class LingoConfiguration {
@@ -27,6 +28,10 @@ public class LingoConfiguration {
     
     /// The locale indentifier
     internal var defaultLocale: String
+    
+    internal var lingo: Lingo? {
+        return try? Lingo(rootPath: defaultDirectory, defaultLocale: defaultLocale)
+    }
     
     /// Creates a configuration
     internal init() {

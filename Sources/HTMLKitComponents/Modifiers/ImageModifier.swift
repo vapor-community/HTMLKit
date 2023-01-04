@@ -29,3 +29,18 @@ public protocol ImageModifier {
     /// - Returns: A component
     func clipShape(_ shape: Tokens.ClipShape) -> Self
 }
+
+extension ImageModifier where Self: Modifiable {
+    
+    internal func mutate(objectfit class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(imagescale class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(clipshape class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+}

@@ -4,16 +4,12 @@
  */
 
 import HTMLKit
+import Lingo
 import XCTest
 
 final class LocalizationTests: XCTestCase {
     
-    struct TestPage: Page {
-
-        @ContentBuilder<AnyContent> var body: AnyContent
-    }
-    
-    var renderer = Renderer()
+    var renderer: Renderer?
     
     override func setUp() {
         super.setUp()
@@ -23,31 +19,53 @@ final class LocalizationTests: XCTestCase {
     
     func testLocalization() throws {
         
-        let page = TestPage {
-            Heading1("Hallo Welt")
+        struct MainView: View {
+            
+            var body: Content {
+                Heading1("Hallo Welt")
+            }
         }
         
-        try renderer.add(layout: page)
-        
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(try renderer!.render(view: MainView()),
                        """
                        <h1>Hello World</h1>
                        """
         )
     }
     
-    func testEnvironmentLocale() throws {
+    func testEnvironmentLocalization() throws {
         
-        let page = TestPage {
-            Heading1("Hallo Welt")
-                .environment(locale: "fr")
+        struct MainView: View {
+            
+            var content: [Content]
+            
+            init(@ContentBuilder<Content> content: () -> [Content]) {
+                self.content = content()
+            }
+            
+            var body: Content {
+                Division {
+                    content
+                }
+                .environment(key: \.locale, value: "fr")
+            }
         }
         
-        try renderer.add(layout: page)
+        struct ChildView: View {
+            
+            var body: Content {
+                MainView {
+                    Heading1("Hallo Welt")
+                        .environment(key: \.locale)
+                }
+            }
+        }
         
-        XCTAssertEqual(try renderer.render(layout: TestPage.self),
+        XCTAssertEqual(try renderer!.render(view: ChildView()),
                        """
-                       <h1>Bonjour le monde</h1>
+                       <div>\
+                       <h1>Bonjour le monde</h1>\
+                       </div>
                        """
         )
     }
@@ -61,6 +79,8 @@ extension LocalizationTests {
         
         let currentDirectory = currentFile.appendingPathComponent("Localization")
         
-        try renderer.add(localization: .init(source: currentDirectory.path, locale: .english))
+        let lingo = try! Lingo(rootPath: currentDirectory.path, defaultLocale: "en")
+        
+        self.renderer = Renderer(lingo: lingo)
     }
 }

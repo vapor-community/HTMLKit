@@ -5,7 +5,7 @@ A component that displays a editable and expandable form control.
 ## Declaration
 
 ```swift
-struct TextEditor : Component
+struct TextEditor : View
 ```
 
 ## Overview

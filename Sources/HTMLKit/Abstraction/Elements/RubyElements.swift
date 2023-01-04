@@ -37,13 +37,13 @@ public struct RubyText: ContentNode, RubyElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [AnyContent]
+    internal var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -57,26 +57,13 @@ public struct RubyText: ContentNode, RubyElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (RubyText, TemplateValue<T>) -> RubyText) -> RubyText {
+    public func modify<T>(unwrap value: T?, element: (RubyText, T) -> RubyText) -> RubyText {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -149,10 +136,6 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func id(_ value: String) -> RubyText {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> RubyText {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> RubyText {
         return mutate(lang: value.rawValue)
@@ -160,11 +143,6 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func nonce(_ value: String) -> RubyText {
         return mutate(nonce: value)
-    }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> RubyText {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> RubyText {
@@ -185,11 +163,6 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func title(_ value: String) -> RubyText {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> RubyText {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> RubyText {
@@ -297,17 +270,6 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-extension RubyText: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents nothing.
 ///
 /// ```html
@@ -319,13 +281,13 @@ public struct RubyPronunciation: ContentNode, RubyElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [AnyContent]
+    internal var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -339,26 +301,13 @@ public struct RubyPronunciation: ContentNode, RubyElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (RubyPronunciation, TemplateValue<T>) -> RubyPronunciation) -> RubyPronunciation {
+    public func modify<T>(unwrap value: T?, element: (RubyPronunciation, T) -> RubyPronunciation) -> RubyPronunciation {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -431,10 +380,6 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
     public func id(_ value: String) -> RubyPronunciation {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> RubyPronunciation {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> RubyPronunciation {
         return mutate(lang: value.rawValue)
@@ -442,11 +387,6 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
 
     public func nonce(_ value: String) -> RubyPronunciation {
         return mutate(nonce: value)
-    }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> RubyPronunciation {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> RubyPronunciation {
@@ -467,11 +407,6 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
 
     public func title(_ value: String) -> RubyPronunciation {
         return mutate(title: value)
-    }
-    
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> RubyPronunciation {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> RubyPronunciation {
@@ -576,16 +511,5 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
     
     public func aria(roleDescription value: String) -> RubyPronunciation {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension RubyPronunciation: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }

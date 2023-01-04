@@ -10,7 +10,7 @@ struct SampleContext {
     var posted: Date
 }
 
-struct SamplePage: Page {
+struct SamplePage: View {
 
     var content: [BodyElement]
     
@@ -18,7 +18,7 @@ struct SamplePage: Page {
         self.content = content()
     }
 
-    var body: AnyContent {
+    var body: Content {
         Document(.html5)
         Html {
             Head {
@@ -50,10 +50,9 @@ struct SamplePage: Page {
 
 struct SampleView: View {
     
-    @TemplateValue(SampleContext.self)
-    var context
+    var context: SampleContext
     
-    var body: AnyContent {
+    var body: Content {
         SamplePage {
             Header {
                 Heading1 {
@@ -102,16 +101,16 @@ struct SampleView: View {
             }
             Footer {
                 Paragraph {
-                    context.modified.style(date: .full, time: .full)
+                    context.modified
                 }
             }
         }
     }
 }
 
-struct SampleComponent: Component {
+struct SampleComponent: View {
  
-    var body: AnyContent {
+    var body: Content {
         Section {
             Heading1 {
                 "Heading1"

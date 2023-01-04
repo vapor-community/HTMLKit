@@ -68,3 +68,42 @@ public protocol TextModifier {
     /// - Returns: A component
     func underline() -> Self
 }
+
+extension TextModifier where Self: Modifiable {
+    
+    internal func mutate(font class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(foregroundcolor class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(fontsize class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(fontweight class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(fonttransformation class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(fontstyle class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(bold class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(italic class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(underline class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+}

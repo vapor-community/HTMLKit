@@ -2,7 +2,7 @@
 
 Learn how to use the framework.
 
-> Important: The framework requires Swift 5.6 or higher. 
+> Important: The framework requires Swift 5.7 or higher. 
 
 ### Manifest
 
@@ -13,7 +13,7 @@ let package = Package(
     ...
     dependencies: [
         // 1. Add the package
-        .package(url: "https://github.com/vapor-community/HTMLKit.git", from: "2.8.0"),
+        .package(url: "https://github.com/vapor-community/HTMLKit.git", from: "3.0.0"),
     ],
     targets: [
         .target(
@@ -28,4 +28,17 @@ let package = Package(
 )
 ```
 
-Import the module in one of your files next.
+### Imports
+
+Import one of the modules, by using the import declaration in one of your files next.
+
+```swift
+/// Loads the html abstraction
+import HTMLKit
+
+/// Loads the component library
+import HTMLKitComponents
+
+/// Loads the vapor intergration
+import HTMLKitVapor
+```

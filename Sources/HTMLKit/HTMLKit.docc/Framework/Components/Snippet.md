@@ -5,7 +5,7 @@ A component to display code content.
 ## Declaration
 
 ```swift
-struct Snippet : Component
+struct Snippet : View
 ```
 
 ## Overview

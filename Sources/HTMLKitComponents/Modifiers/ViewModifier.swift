@@ -29,3 +29,18 @@ public protocol ViewModifier {
     /// - Returns: A component
     func backgroundColor(_ color: Tokens.BackgroundColor) -> Self
 }
+
+extension ViewModifier where Self: Modifiable {
+    
+    internal func mutate(opacity class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(zindex class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(backgroundcolor class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+}

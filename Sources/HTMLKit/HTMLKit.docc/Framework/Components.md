@@ -4,27 +4,25 @@ Construct UI interfaces using the components.
 
 ## Overview
 
-The components library follows the idea of a complete design system. It offers you standardized, reusable components imitating the syntax and semantic of SwiftUI. The library also comes with CSS (Cascading Style Sheet) to help you constructing your vision, without the need to completely rebuild it or furthermore any knowledge in CSS.
+The components library follows the idea of a design system. It offers you standardized, reusable components imitating the syntax and semantic of SwiftUI. The library also comes with CSS (Cascading Style Sheet) and JS (JavaScript) to help you constructing your vision, without the need to completely rebuild it or furthermore any knowledge in one of these languages.
 
 ```swift
 HStack {
     StackColumn(size: .twelve) {
-        Paragraph {
+        Text {
             "Lorem ipsum..."
         }
     }
 }
 ```
 
-```css
-.hstack {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+### Interactions
+
+```swift
+Text {
+    "Lorem ipsum..."
 }
+.onHover(perfom: .show("navigation"))
 ```
 
 ## Topics
@@ -41,15 +39,9 @@ HStack {
 - <doc:SearchField>
 - <doc:SecureField>
 - <doc:SelectField>
-- <doc:SubmitButton>
-- <doc:ResetButton>
+- <doc:Button>
 - <doc:Toggle>
 - <doc:Slider>
-
-### List components
-
-- <doc:List>
-- <doc:Collection>
 
 ### Section components
 
@@ -58,17 +50,28 @@ HStack {
 - <doc:ZStack>
 - <doc:Divider>
 
+### Group components
+
+- <doc:Card>
+- <doc:List>
+- <doc:Grid>
+
 ### Text components
 
 - <doc:Text>
+- <doc:Symbol>
 
 ### Link components
 
 - <doc:Link>
-- <doc:ActionButton>
+- <doc:LinkButton>
 
 ### Media components
 
 - <doc:Snippet>
-- <doc:ProgressView>
+- <doc:Progress>
 - <doc:Image>
+
+### Active components
+
+- <doc:Modal>

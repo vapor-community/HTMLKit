@@ -7,13 +7,13 @@ import HTMLKit
 import Foundation
 
 /// A component that navigates to an target.
-public struct Link: Component {
+public struct Link: View, Modifiable {
 
     /// The url path of the target.
-    internal let destination: TemplateValue<String>
+    internal let destination: String
     
     /// The content of the link.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the link.
     internal var classes: [String]
@@ -22,7 +22,7 @@ public struct Link: Component {
     internal var events: [String]?
     
     /// Creates a link.
-    public init(destination: TemplateValue<String>, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(destination: String, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.destination = destination
         self.content = content()
@@ -30,7 +30,7 @@ public struct Link: Component {
     }
     
     /// Creates a link.
-    internal init(destination: TemplateValue<String>, content: [AnyContent], classes: [String], events: [String]?) {
+    internal init(destination: String, content: [Content], classes: [String], events: [String]?) {
         
         self.destination = destination
         self.content = content
@@ -38,96 +38,50 @@ public struct Link: Component {
         self.events = events
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Anchor {
             content
         }
-        .reference(destination.rawValue)
+        .reference(destination)
         .class(classes.joined(separator: " "))
-    }
-    
-    /// The behaviour of the link.
-    public var scripts: AnyContent {
-        
-        if let events = self.events {
-            return [content.scripts, Script { events }]
-        }
-        
-        return [content.scripts]
     }
 }
 
 extension Link: TextModifier {
     
     public func font(_ style: Tokens.TextStyle) -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(style.rawValue)
-        
-        return newSelf
+        return self.mutate(font: style.rawValue)
     }
     
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(foregroundcolor: color.rawValue)
     }
     
     public func fontSize(_ size: Tokens.FontSize) -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(size.rawValue)
-        
-        return newSelf
+        return self.mutate(fontsize: size.rawValue)
     }
     
     public func fontWeight(_ weight: Tokens.FontWeight) -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(weight.rawValue)
-        
-        return newSelf
+        return self.mutate(fontweight: weight.rawValue)
     }
     
     public func fontTransformation(_ transformation: Tokens.TextTransformation) -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(transformation.rawValue)
-        
-        return newSelf
+        return self.mutate(fonttransformation: transformation.rawValue)
     }
     
     public func fontStyle(_ style: Tokens.FontStyle) -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(style.rawValue)
-        
-        return newSelf
+        return self.mutate(fontstyle: style.rawValue)
     }
     
     public func bold() -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(Tokens.FontWeight.bold.rawValue)
-        
-        return newSelf
+        return self.mutate(bold: Tokens.FontWeight.bold.rawValue)
     }
     
     public func italic() -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(Tokens.FontStyle.italic.rawValue)
-        
-        return newSelf
+        return self.mutate(italic: Tokens.FontStyle.italic.rawValue)
     }
     
     public func underline() -> Link {
-        
-        var newSelf = self
-        newSelf.classes.append(Tokens.TextDecoration.underline.rawValue)
-        
-        return newSelf
+        return self.mutate(underline: Tokens.TextDecoration.underline.rawValue)
     }
 }

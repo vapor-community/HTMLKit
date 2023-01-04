@@ -28,13 +28,13 @@ public struct Circle: ContentNode, VectorElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [AnyContent]
+    internal var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -48,26 +48,13 @@ public struct Circle: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Circle, TemplateValue<T>) -> Circle) -> Circle {
+    public func modify<T>(unwrap value: T?, element: (Circle, T) -> Circle) -> Circle {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -75,10 +62,6 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
   
     public func id(_ value: String) -> Circle {
         return self.mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Circle {
-        return self.mutate(id: value.rawValue)
     }
     
     public func tabIndex(_ value: Int) -> Circle {
@@ -134,17 +117,6 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
     }
 }
 
-extension Circle: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents ...
 ///
 /// ```html
@@ -156,13 +128,13 @@ public struct Rectangle: ContentNode, VectorElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [AnyContent]
+    internal var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -176,26 +148,13 @@ public struct Rectangle: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Rectangle, TemplateValue<T>) -> Rectangle) -> Rectangle {
+    public func modify<T>(unwrap value: T?, element: (Rectangle, T) -> Rectangle) -> Rectangle {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -203,10 +162,6 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
     
     public func id(_ value: String) -> Rectangle {
         return self.mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Rectangle {
-        return self.mutate(id: value.rawValue)
     }
     
     public func tabIndex(_ value: Int) -> Rectangle {
@@ -266,17 +221,6 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
     }
 }
 
-extension Rectangle: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a comment output.
 ///
 /// ```html
@@ -288,13 +232,13 @@ public struct Ellipse: ContentNode, VectorElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [AnyContent]
+    internal var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -308,26 +252,13 @@ public struct Ellipse: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Ellipse, TemplateValue<T>) -> Ellipse) -> Ellipse {
+    public func modify<T>(unwrap value: T?, element: (Ellipse, T) -> Ellipse) -> Ellipse {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -335,10 +266,6 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
     
     public func id(_ value: String) -> Ellipse {
         return self.mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Ellipse {
-        return self.mutate(id: value.rawValue)
     }
     
     public func tabIndex(_ value: Int) -> Ellipse {
@@ -394,17 +321,6 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
     }
 }
 
-extension Ellipse: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents ...
 ///
 /// ```html
@@ -416,13 +332,13 @@ public struct Line: ContentNode, VectorElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [AnyContent]
+    internal var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -436,26 +352,13 @@ public struct Line: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Line, TemplateValue<T>) -> Line) -> Line {
+    public func modify<T>(unwrap value: T?, element: (Line, T) -> Line) -> Line {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -463,10 +366,6 @@ extension Line: GlobalVectorAttributes {
     
     public func id(_ value: String) -> Line {
         return self.mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Line {
-        return self.mutate(id: value.rawValue)
     }
     
     public func tabIndex(_ value: Int) -> Line {
@@ -514,17 +413,6 @@ extension Line: GlobalVectorAttributes {
     }
 }
 
-extension Line: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a comment output.
 ///
 /// ```html
@@ -536,13 +424,13 @@ public struct Polygon: ContentNode, VectorElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [AnyContent]
+    internal var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -556,26 +444,13 @@ public struct Polygon: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Polygon, TemplateValue<T>) -> Polygon) -> Polygon {
+    public func modify<T>(unwrap value: T?, element: (Polygon, T) -> Polygon) -> Polygon {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -583,10 +458,6 @@ extension Polygon: GlobalVectorAttributes {
     
     public func id(_ value: String) -> Polygon {
         return self.mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Polygon {
-        return self.mutate(id: value.rawValue)
     }
     
     public func tabIndex(_ value: Int) -> Polygon {
@@ -634,17 +505,6 @@ extension Polygon: GlobalVectorAttributes {
     }
 }
 
-extension Polygon: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents ...
 ///
 /// ```html
@@ -656,13 +516,13 @@ public struct Polyline: ContentNode, VectorElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [AnyContent]
+    internal var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -676,26 +536,13 @@ public struct Polyline: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Polyline, TemplateValue<T>) -> Polyline) -> Polyline {
+    public func modify<T>(unwrap value: T?, element: (Polyline, T) -> Polyline) -> Polyline {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -703,10 +550,6 @@ extension Polyline: GlobalVectorAttributes {
     
     public func id(_ value: String) -> Polyline {
         return self.mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Polyline {
-        return self.mutate(id: value.rawValue)
     }
     
     public func tabIndex(_ value: Int) -> Polyline {
@@ -754,17 +597,6 @@ extension Polyline: GlobalVectorAttributes {
     }
 }
 
-extension Polyline: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents ...
 ///
 /// ```html
@@ -776,13 +608,13 @@ public struct Path: ContentNode, VectorElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [AnyContent]
+    internal var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -796,26 +628,13 @@ public struct Path: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Path, TemplateValue<T>) -> Path) -> Path {
+    public func modify<T>(unwrap value: T?, element: (Path, T) -> Path) -> Path {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -823,10 +642,6 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
     
     public func id(_ value: String) -> Path {
         return self.mutate(id: value)
-    }
-    
-    public func id(_ value: TemplateValue<String>) -> Path {
-        return self.mutate(id: value.rawValue)
     }
     
     public func tabIndex(_ value: Int) -> Path {
@@ -878,17 +693,6 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
     }
 }
 
-extension Path: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents ...
 ///
 /// ```html
@@ -900,13 +704,13 @@ public struct Group: ContentNode, VectorElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [AnyContent]
+    internal var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
 
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -920,92 +724,64 @@ public struct Group: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Group, TemplateValue<T>) -> Group) -> Group {
+    public func modify<T>(unwrap value: T?, element: (Group, T) -> Group) -> Group {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
 extension Group: GlobalVectorAttributes {
 
-    public func id(_ value: String) -> Self {
+    public func id(_ value: String) -> Group {
         return self.mutate(id: value)
     }
 
-    public func id(_ value: TemplateValue<String>) -> Self {
-        return self.mutate(id: value.rawValue)
-    }
-
-    public func tabIndex(_ value: Int) -> Self {
+    public func tabIndex(_ value: Int) -> Group {
         return self.mutate(tabindex: value)
     }
 
-    public func `class`(_ value: String) -> Self {
+    public func `class`(_ value: String) -> Group {
         return self.mutate(class: value)
     }
 
-    public func style(_ value: String) -> Self {
+    public func style(_ value: String) -> Group {
         return self.mutate(style: value)
     }
 
-    public func fill(_ value: String) -> Self {
+    public func fill(_ value: String) -> Group {
         return self.mutate(fill: value)
     }
 
-    public func stroke(_ value: String) -> Self {
+    public func stroke(_ value: String) -> Group {
         return self.mutate(stroke: value)
     }
 
-    public func strokeWidth(_ size: Int) -> Self {
+    public func strokeWidth(_ size: Int) -> Group {
         return self.mutate(strokewidth: size)
     }
 
-    public func fillOpacity(_ value: Double) -> Self {
+    public func fillOpacity(_ value: Double) -> Group {
         return self.mutate(fillopacity: value)
     }
 
-    public func strokeOpacity(_ value: Double) -> Self {
+    public func strokeOpacity(_ value: Double) -> Group {
         return self.mutate(strokeopacity: value)
     }
 
-    public func strokeLineCap(_ value: Values.Linecap) -> Self {
+    public func strokeLineCap(_ value: Values.Linecap) -> Group {
         return self.mutate(strokelinecap: value.rawValue)
     }
 
-    public func strokeLineJoin(_ value: Values.Linejoin) -> Self {
+    public func strokeLineJoin(_ value: Values.Linejoin) -> Group {
         return self.mutate(strokelinejoin: value.rawValue)
     }
-
-    public func custom(key: String, value: Any) -> Self {
+    
+    public func custom(key: String, value: Any) -> Group {
         return self.mutate(key: key, value: value)
-    }
-}
-
-extension Group: AnyContent {
-
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -1020,13 +796,13 @@ public struct Use: ContentNode, VectorElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [AnyContent]
+    internal var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -1040,26 +816,13 @@ public struct Use: ContentNode, VectorElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Use, TemplateValue<T>) -> Use) -> Use {
+    public func modify<T>(unwrap value: T?, element: (Use, T) -> Use) -> Use {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -1069,20 +832,12 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
         return self.mutate(id: value)
     }
     
-    public func id(_ value: TemplateValue<String>) -> Use {
-        return self.mutate(id: value.rawValue)
-    }
-    
     public func tabIndex(_ value: Int) -> Use {
         return self.mutate(tabindex: value)
     }
     
     public func reference(_ value: String) -> Use {
         return self.mutate(href: value)
-    }
-    
-    public func reference(_ value: TemplateValue<String>) -> Use {
-        return self.mutate(href: value.rawValue)
     }
     
     public func width(_ size: Int) -> Use {
@@ -1131,16 +886,5 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
     
     public func custom(key: String, value: Any) -> Use {
         return self.mutate(key: key, value: value)
-    }
-}
-
-extension Use: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }

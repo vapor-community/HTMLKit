@@ -5,13 +5,13 @@ A component that collects form controls.
 ## Declaration
 
 ```swift
-struct Form : Component
+struct Form : View
 ```
 
 ## Overview
 
 ```swift
-Form {
+Form(method: .post) {
     FieldLabel(name: "firstname") {
         "Firstname"
     }

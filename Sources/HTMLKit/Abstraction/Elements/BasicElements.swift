@@ -22,17 +22,6 @@ public struct Comment: CommentNode, GlobalElement {
     }
 }
 
-extension Comment: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents the document type.
 ///
 /// ```html
@@ -44,27 +33,6 @@ public struct Document: DocumentNode, BasicElement {
     
     public init(_ value: Values.Doctype) {
         self.content = value.rawValue
-    }
-}
-
-extension Document: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
-extension Document {
-    
-    // MARK: Deprecations
-    
-    @available(*, deprecated, message: "Use Document(_ value: Values.Doctype) instead.")
-    public init(type: Values.Doctype) {
-        self.content = type.rawValue
     }
 }
 
@@ -99,26 +67,13 @@ public struct Html: ContentNode, BasicElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Html, TemplateValue<T>) -> Html) -> Html {
+    public func modify<T>(unwrap value: T?, element: (Html, T) -> Html) -> Html {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -191,10 +146,6 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
     public func id(_ value: String) -> Html {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> Html {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> Html {
         return mutate(lang: value.rawValue)
@@ -202,11 +153,6 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
 
     public func nonce(_ value: String) -> Html {
         return mutate(nonce: value)
-    }
-    
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Html {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> Html {
@@ -227,11 +173,6 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
 
     public func title(_ value: String) -> Html {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Html {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Html {
@@ -263,13 +204,49 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
     }
 }
 
-extension Html: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
+public struct Custom: CustomNode, GlobalElement {
+
+    public var name: String
+
+    public var attributes: OrderedDictionary<String, Any>?
+
+    public var content: [Content]
+
+    public init(name: String, @ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.name = name
+        self.content = content()
     }
     
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
+    public init(name: String, attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+        
+        self.name = name
+        self.attributes = attributes
+        self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (Custom) -> Custom) -> Custom {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: T?, element: (Custom, T) -> Custom) -> Custom {
+        
+        guard let value = value else {
+            return self
+        }
+        
+        return self.modify(element(self, value as T))
+    }
+}
+
+extension Custom: Attribute {
+    
+    public func custom(key: String, value: Any) -> Custom {
+        return mutate(key: key, value: value)
     }
 }

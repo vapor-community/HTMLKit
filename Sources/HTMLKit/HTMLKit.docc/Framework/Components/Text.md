@@ -5,7 +5,7 @@ A component that displays text.
 ## Declaration
 
 ```swift
-struct Text : Component
+struct Text : View
 ```
 
 ## Overview

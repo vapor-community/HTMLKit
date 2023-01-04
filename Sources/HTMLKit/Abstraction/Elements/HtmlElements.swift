@@ -39,26 +39,13 @@ public struct Head: ContentNode, HtmlElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Head, TemplateValue<T>) -> Head) -> Head {
+    public func modify<T>(unwrap value: T?, element: (Head, T) -> Head) -> Head {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -132,21 +119,12 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(id: value)
     }
     
-    public func id(_ value: TemplateValue<String>) -> Head {
-        return mutate(id: value.rawValue)
-    }
-    
     public func language(_ value: Values.Language) -> Head {
         return mutate(lang: value.rawValue)
     }
     
     public func nonce(_ value: String) -> Head {
         return mutate(nonce: value)
-    }
-    
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Head {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> Head {
@@ -167,11 +145,6 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
     
     public func title(_ value: String) -> Head {
         return mutate(title: value)
-    }
-    
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Head {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Head {
@@ -200,17 +173,6 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
     
     public func on(event: Events.Mouse, _ value: String) -> Head {
         return mutate(key: event.rawValue, value: value)
-    }
-}
-
-extension Head: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }
 
@@ -245,26 +207,13 @@ public struct Body: ContentNode, HtmlElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Body, TemplateValue<T>) -> Body) -> Body {
+    public func modify<T>(unwrap value: T?, element: (Body, T) -> Body) -> Body {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -337,10 +286,6 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
     public func id(_ value: String) -> Body {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> Body {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> Body {
         return mutate(lang: value.rawValue)
@@ -348,11 +293,6 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
 
     public func nonce(_ value: String) -> Body {
         return mutate(nonce: value)
-    }
-    
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Body {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> Body {
@@ -373,11 +313,6 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
 
     public func title(_ value: String) -> Body {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Body {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Body {
@@ -486,16 +421,5 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
     
     public func aria(roleDescription value: String) -> Body {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension Body: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }

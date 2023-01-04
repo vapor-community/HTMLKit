@@ -5,7 +5,7 @@ A component to enter sensitive information.
 ## Declaration
 
 ```swift
-struct SecureField : Component
+struct SecureField : View
 ```
 
 ## Overview

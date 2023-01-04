@@ -91,13 +91,13 @@ public struct Caption: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [AnyContent]
+    internal  var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -111,26 +111,13 @@ public struct Caption: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Caption, TemplateValue<T>) -> Caption) -> Caption {
+    public func modify<T>(unwrap value: T?, element: (Caption, T) -> Caption) -> Caption {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -203,10 +190,6 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func id(_ value: String) -> Caption {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> Caption {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> Caption {
         return mutate(lang: value.rawValue)
@@ -214,11 +197,6 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
 
     public func nonce(_ value: String) -> Caption {
         return mutate(nonce: value)
-    }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Caption {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> Caption {
@@ -239,11 +217,6 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
 
     public func title(_ value: String) -> Caption {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Caption {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Caption {
@@ -351,17 +324,6 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     }
 }
 
-extension Caption: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element specifies a group of one or more columns.
 ///
 /// ```html
@@ -373,13 +335,13 @@ public struct ColumnGroup: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [AnyContent]
+    internal  var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -393,26 +355,13 @@ public struct ColumnGroup: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (ColumnGroup, TemplateValue<T>) -> ColumnGroup) -> ColumnGroup {
+    public func modify<T>(unwrap value: T?, element: (ColumnGroup, T) -> ColumnGroup) -> ColumnGroup {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -485,10 +434,6 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     public func id(_ value: String) -> ColumnGroup {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> ColumnGroup {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> ColumnGroup {
         return mutate(lang: value.rawValue)
@@ -496,11 +441,6 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
 
     public func nonce(_ value: String) -> ColumnGroup {
         return mutate(nonce: value)
-    }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> ColumnGroup {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> ColumnGroup {
@@ -521,11 +461,6 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
 
     public func title(_ value: String) -> ColumnGroup {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> ColumnGroup {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> ColumnGroup {
@@ -561,17 +496,6 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     }
 }
 
-extension ColumnGroup: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a column in a table.
 ///
 /// ```html
@@ -583,13 +507,13 @@ public struct Column: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [AnyContent]
+    internal  var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -603,26 +527,13 @@ public struct Column: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Column, TemplateValue<T>) -> Column) -> Column {
+    public func modify<T>(unwrap value: T?, element: (Column, T) -> Column) -> Column {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -695,10 +606,6 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     public func id(_ value: String) -> Column {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> Column {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> Column {
         return mutate(lang: value.rawValue)
@@ -706,11 +613,6 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
 
     public func nonce(_ value: String) -> Column {
         return mutate(nonce: value)
-    }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Column {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> Column {
@@ -731,11 +633,6 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
 
     public func title(_ value: String) -> Column {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Column {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Column {
@@ -771,17 +668,6 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     }
 }
 
-extension Column: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a block of rows in a table.
 ///
 /// ```html
@@ -793,13 +679,13 @@ public struct TableBody: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [AnyContent]
+    internal  var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -813,26 +699,13 @@ public struct TableBody: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TableBody, TemplateValue<T>) -> TableBody) -> TableBody {
+    public func modify<T>(unwrap value: T?, element: (TableBody, T) -> TableBody) -> TableBody {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -905,10 +778,6 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func id(_ value: String) -> TableBody {
         return mutate(id: value)
     }
-
-    public func id(_ value: TemplateValue<String>) -> TableBody {
-        return mutate(id: value.rawValue)
-    }
     
     public func language(_ value: Values.Language) -> TableBody {
         return mutate(lang: value.rawValue)
@@ -916,11 +785,6 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func nonce(_ value: String) -> TableBody {
         return mutate(nonce: value)
-    }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> TableBody {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> TableBody {
@@ -941,11 +805,6 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func title(_ value: String) -> TableBody {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> TableBody {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> TableBody {
@@ -1061,17 +920,6 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-extension TableBody: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents the block of rows that consist of the column labels.
 ///
 /// ```html
@@ -1083,13 +931,13 @@ public struct TableHead: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [AnyContent]
+    internal  var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -1103,26 +951,13 @@ public struct TableHead: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TableHead, TemplateValue<T>) -> TableHead) -> TableHead {
+    public func modify<T>(unwrap value: T?, element: (TableHead, T) -> TableHead) -> TableHead {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -1195,10 +1030,6 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func id(_ value: String) -> TableHead {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> TableHead {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> TableHead {
         return mutate(lang: value.rawValue)
@@ -1206,11 +1037,6 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func nonce(_ value: String) -> TableHead {
         return mutate(nonce: value)
-    }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> TableHead {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> TableHead {
@@ -1231,11 +1057,6 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func title(_ value: String) -> TableHead {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> TableHead {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> TableHead {
@@ -1351,17 +1172,6 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-extension TableHead: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents the block of rows that consist of the column summaries.
 ///
 /// ```html
@@ -1373,13 +1183,13 @@ public struct TableFoot: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [AnyContent]
+    internal  var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -1393,26 +1203,13 @@ public struct TableFoot: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TableFoot, TemplateValue<T>) -> TableFoot) -> TableFoot {
+    public func modify<T>(unwrap value: T?, element: (TableFoot, T) -> TableFoot) -> TableFoot {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -1485,10 +1282,6 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func id(_ value: String) -> TableFoot {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> TableFoot {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> TableFoot {
         return mutate(lang: value.rawValue)
@@ -1496,11 +1289,6 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func nonce(_ value: String) -> TableFoot {
         return mutate(nonce: value)
-    }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> TableFoot {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> TableFoot {
@@ -1521,11 +1309,6 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func title(_ value: String) -> TableFoot {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> TableFoot {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> TableFoot {
@@ -1633,17 +1416,6 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-extension TableFoot: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a row of cells in a table.
 ///
 /// ```html
@@ -1655,13 +1427,13 @@ public struct TableRow: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [AnyContent]
+    internal  var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -1675,26 +1447,13 @@ public struct TableRow: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TableRow, TemplateValue<T>) -> TableRow) -> TableRow {
+    public func modify<T>(unwrap value: T?, element: (TableRow, T) -> TableRow) -> TableRow {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -1767,10 +1526,6 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func id(_ value: String) -> TableRow {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> TableRow {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> TableRow {
         return mutate(lang: value.rawValue)
@@ -1778,11 +1533,6 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func nonce(_ value: String) -> TableRow {
         return mutate(nonce: value)
-    }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> TableRow {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> TableRow {
@@ -1803,11 +1553,6 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func title(_ value: String) -> TableRow {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> TableRow {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> TableRow {
@@ -1923,17 +1668,6 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-extension TableRow: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a data cell in a table.
 ///
 /// ```html
@@ -1945,13 +1679,13 @@ public struct DataCell: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [AnyContent]
+    internal  var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -1965,26 +1699,13 @@ public struct DataCell: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (DataCell, TemplateValue<T>) -> DataCell) -> DataCell {
+    public func modify<T>(unwrap value: T?, element: (DataCell, T) -> DataCell) -> DataCell {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -2057,10 +1778,6 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func id(_ value: String) -> DataCell {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> DataCell {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> DataCell {
         return mutate(lang: value.rawValue)
@@ -2068,11 +1785,6 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func nonce(_ value: String) -> DataCell {
         return mutate(nonce: value)
-    }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> DataCell {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> DataCell {
@@ -2093,11 +1805,6 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func title(_ value: String) -> DataCell {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> DataCell {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> DataCell {
@@ -2217,17 +1924,6 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-extension DataCell: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element represents a header cell in a table.
 ///
 /// ```html
@@ -2239,13 +1935,13 @@ public struct HeaderCell: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [AnyContent]
+    internal  var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -2259,26 +1955,13 @@ public struct HeaderCell: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (HeaderCell, TemplateValue<T>) -> HeaderCell) -> HeaderCell {
+    public func modify<T>(unwrap value: T?, element: (HeaderCell, T) -> HeaderCell) -> HeaderCell {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -2351,10 +2034,6 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func id(_ value: String) -> HeaderCell {
         return mutate(id: value)
     }
-
-    public func id(_ value: TemplateValue<String>) -> HeaderCell {
-        return mutate(id: value.rawValue)
-    }
     
     public func language(_ value: Values.Language) -> HeaderCell {
         return mutate(lang: value.rawValue)
@@ -2362,11 +2041,6 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 
     public func nonce(_ value: String) -> HeaderCell {
         return mutate(nonce: value)
-    }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> HeaderCell {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> HeaderCell {
@@ -2387,11 +2061,6 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 
     public func title(_ value: String) -> HeaderCell {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> HeaderCell {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> HeaderCell {
@@ -2515,24 +2184,13 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     }
 }
 
-extension HeaderCell: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 extension HeaderCell: Localizable {
     
     public init(_ localizedKey: String) {
-        self.content = [Localized(key: localizedKey)]
+        self.content = [LocalizedStringKey(key: localizedKey)]
     }
 
-    public init<B>(_ localizedKey: String, with context: TemplateValue<B>) where B : Encodable {
-        self.content = [Localized(key: localizedKey, context: context)]
+    public init(_ localizedKey: String, with context: some Encodable) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
 }

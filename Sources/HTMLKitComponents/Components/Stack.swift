@@ -6,38 +6,53 @@
 import HTMLKit
 
 /// A component that arranges content horizontally.
-public struct HStack: Component {
+public struct HStack: View, Actionable, Modifiable {
+    
+    /// The identifier of the text.
+    internal var id: String?
     
     /// The content of the stack.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the stack.
     internal var classes: [String]
     
+    /// The events of the text.
+    internal var events: [String]?
+    
     /// Creates a horizontal stack.
-    public init(alignment: Tokens.VerticalAlignment = .center, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(alignment: Tokens.VerticalAlignment = .center, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["hstack", alignment.rawValue]
     }
     
     /// Creates a horizontal stack.
-    internal init(content: [AnyContent], classes: [String]) {
+    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
         
         self.content = content
         self.classes = classes
+        self.events = events
+        self.id = id
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Division {
             content
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+        if let events = self.events {
+            Script {
+                events
+            }
+        }
     }
     
-    /// The behaviour of the stack.
-    public var scripts: AnyContent {
-        return [content.scripts]
+    public func id(_ value: String) -> HStack {
+        return self.mutate(id: value)
     }
     
     /// Sets the space of the content.
@@ -50,212 +65,230 @@ public struct HStack: Component {
     }
 }
 
+extension HStack: HoverModifier {
+    
+    public func onHover(perfom action: Actions) -> HStack {
+        return self.mutate(hoverevent: action.script)
+    }
+    
+    public func onLeave(perfom action: Actions) -> HStack {
+        return self.mutate(leaveevent: action.script)
+    }
+}
+
 extension HStack: ViewModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> HStack {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 
     public func opacity(_ value: Tokens.OpacityValue) -> HStack {
-        
-        var newSelf = self
-        newSelf.classes.append(value.rawValue)
-        
-        return newSelf
+        return self.mutate(opacity: value.rawValue)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> HStack {
-        
-        var newSelf = self
-        newSelf.classes.append(index.rawValue)
-        
-        return newSelf
+        return self.mutate(zindex: index.rawValue)
     }
 }
 
 /// A component that arranges content vertically.
-public struct VStack: Component {
+public struct VStack: View, Actionable, Modifiable {
+    
+    var id: String?
     
     /// The content of the stack.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the stack.
     internal var classes: [String]
     
+    var events: [String]?
+    
     /// Creates a vertical stack.
-    public init(alignment: Tokens.HorizontalAlignment = .leading, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(alignment: Tokens.HorizontalAlignment = .leading, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["vstack", alignment.rawValue]
     }
     
     /// Creates a vertical stack.
-    internal init(content: [AnyContent], classes: [String]) {
+    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
         
         self.content = content
         self.classes = classes
+        self.events = events
+        self.id = id
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Division {
             content
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+        if let events = self.events {
+            Script {
+                events
+            }
+        }
     }
     
-    /// The behaviour of the stack.
-    public var scripts: AnyContent {
-        return [content.scripts]
+    public func id(_ value: String) -> VStack {
+        return self.mutate(id: value)
+    }
+}
+
+extension VStack: HoverModifier {
+    
+    public func onHover(perfom action: Actions) -> VStack {
+        return self.mutate(hoverevent: action.script)
+    }
+    
+    public func onLeave(perfom action: Actions) -> VStack {
+        return self.mutate(leaveevent: action.script)
     }
 }
 
 extension VStack: ViewModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> VStack {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 
     public func opacity(_ value: Tokens.OpacityValue) -> VStack {
-        
-        var newSelf = self
-        newSelf.classes.append(value.rawValue)
-        
-        return newSelf
+        return self.mutate(opacity: value.rawValue)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> VStack {
-        
-        var newSelf = self
-        newSelf.classes.append(index.rawValue)
-        
-        return newSelf
+        return self.mutate(zindex: index.rawValue)
     }
 }
 
 /// A component that overlays content.
-public struct ZStack: Component {
+public struct ZStack: View, Actionable, Modifiable {
+    
+    var id: String?
     
     /// The content of the stack.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The classes of the stack.
     internal var classes: [String]
     
+    var events: [String]?
+    
     /// Creates a stack.
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["zstack"]
     }
     
     /// Creates a stack.
-    internal init(content: [AnyContent], classes: [String]) {
+    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
         
         self.content = content
         self.classes = classes
+        self.events = events
+        self.id = id
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Division {
             content
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+        if let events = self.events {
+            Script {
+                events
+            }
+        }
     }
     
-    /// The behaviour of the stack.
-    public var scripts: AnyContent {
-        return [content.scripts]
+    public func id(_ value: String) -> ZStack {
+        return self.mutate(id: value)
+    }
+}
+
+extension ZStack: HoverModifier {
+    
+    public func onHover(perfom action: Actions) -> ZStack {
+        return self.mutate(hoverevent: action.script)
+    }
+    
+    public func onLeave(perfom action: Actions) -> ZStack {
+        return self.mutate(leaveevent: action.script)
     }
 }
 
 extension ZStack: ViewModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> ZStack {
-        
-        var newSelf = self
-        newSelf.classes.append(color.rawValue)
-        
-        return newSelf
+        return self.mutate(backgroundcolor: color.rawValue)
     }
 
     public func opacity(_ value: Tokens.OpacityValue) -> ZStack {
-        
-        var newSelf = self
-        newSelf.classes.append(value.rawValue)
-        
-        return newSelf
+        return self.mutate(opacity: value.rawValue)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> ZStack {
-        
-        var newSelf = self
-        newSelf.classes.append(index.rawValue)
-        
-        return newSelf
+        return self.mutate(zindex: index.rawValue)
     }
 }
 
 /// A component that represents a stack column.
-public struct StackColumn: Component {
+public struct StackColumn: View {
     
     /// The content of the column.
-    internal var content: [AnyContent]
+    internal var content: [Content]
     
     /// The content of the column.
     internal var classes: [String]
     
     /// Creates a stack column.
-    public init(size: Tokens.ColumnSize, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(size: Tokens.ColumnSize, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["stack-column", size.rawValue]
     }
     
     /// Creates a stack column.
-    public init(size: Tokens.ColumnSize, alignment: Tokens.TextAlignment, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(size: Tokens.ColumnSize, alignment: Tokens.TextAlignment, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["stack-column", size.rawValue, alignment.rawValue]
     }
     
     /// Creates a stack column.
-    public init(size: Tokens.ColumnSize, offset: Tokens.ColumnOffset, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(size: Tokens.ColumnSize, offset: Tokens.ColumnOffset, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["stack-column", size.rawValue, offset.rawValue]
     }
     
     /// Creates a stack column.
-    public init(size: Tokens.ColumnSize, alignment: Tokens.TextAlignment, offset: Tokens.ColumnOffset, @ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(size: Tokens.ColumnSize, alignment: Tokens.TextAlignment, offset: Tokens.ColumnOffset, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["stack-column", size.rawValue, alignment.rawValue, offset.rawValue]
     }
     
     /// Creates a stack column.
-    internal init(content: [AnyContent], classes: [String]) {
+    internal init(content: [Content], classes: [String]) {
         
         self.content = content
         self.classes = classes
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         Division {
             content
         }
         .class(classes.joined(separator: " "))
-    }
-    
-    /// The behaviour of the column.
-    public var scripts: AnyContent {
-        return [content.scripts]
     }
 }

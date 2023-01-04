@@ -38,3 +38,21 @@ public protocol ButtonModifier {
     func backgroundColor(_ color: Tokens.BackgroundColor) -> Self
 }
 
+extension ButtonModifier where Self: Modifiable {
+    
+    internal func mutate(buttonsize class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(buttonstyle class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(bordershape class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(backgroundcolor class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+}

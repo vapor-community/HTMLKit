@@ -5,7 +5,7 @@ A component that navigates to an target.
 ## Declaration
 
 ```swift
-struct Link : Component
+struct Link : View
 ```
 
 ## Overview

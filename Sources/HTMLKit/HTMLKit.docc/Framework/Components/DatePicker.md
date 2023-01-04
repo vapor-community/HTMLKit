@@ -5,7 +5,7 @@ A component for selecting a specific date and year.
 ## Declaration
 
 ```swift
-struct DatePicker : Component
+struct DatePicker : View
 ```
 
 ## Overview

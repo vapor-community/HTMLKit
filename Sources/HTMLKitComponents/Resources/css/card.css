@@ -1,0 +1,15 @@
+/**
+ card component
+ */
+
+.card {
+    padding-top: var(--cardPaddingY);
+    padding-right: var(--cardPaddingX);
+    padding-bottom: var(--cardPaddingY);
+    padding-left: var(--cardPaddingX);
+    border-width: var(--cardBorderWidth);
+    border-style: solid;
+    border-radius: var(--cardBorderRadius);
+    border-color: var(--cardBorderColor);
+    background-color: var(--cardBackgroundColor);
+}

@@ -37,13 +37,13 @@ public struct TermName: ContentNode, DescriptionElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [AnyContent]
+    internal var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -57,26 +57,13 @@ public struct TermName: ContentNode, DescriptionElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TermName, TemplateValue<T>) -> TermName) -> TermName {
+    public func modify<T>(unwrap value: T?, element: (TermName, T) -> TermName) -> TermName {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -149,10 +136,6 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func id(_ value: String) -> TermName {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> TermName {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> TermName {
         return mutate(lang: value.rawValue)
@@ -160,11 +143,6 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func nonce(_ value: String) -> TermName {
         return mutate(nonce: value)
-    }
-
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> TermName {
-        return mutate(role: value)
     }
 
     public func role(_ value: Values.Role) -> TermName {
@@ -185,11 +163,6 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func title(_ value: String) -> TermName {
         return mutate(title: value)
-    }
-    
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> TermName {
-        return mutate(translate: value)
     }
 
     public func translate(_ value: Values.Decision) -> TermName {
@@ -297,17 +270,6 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-extension TermName: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element specifies a term definition.
 ///
 /// ```html
@@ -319,13 +281,13 @@ public struct TermDefinition: ContentNode, DescriptionElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [AnyContent]
+    internal var content: [Content]
 
-    public init(@ContentBuilder<AnyContent> content: () -> [AnyContent]) {
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [AnyContent]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -339,26 +301,13 @@ public struct TermDefinition: ContentNode, DescriptionElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (TermDefinition, TemplateValue<T>) -> TermDefinition) -> TermDefinition {
+    public func modify<T>(unwrap value: T?, element: (TermDefinition, T) -> TermDefinition) -> TermDefinition {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -431,10 +380,6 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
     public func id(_ value: String) -> TermDefinition {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> TermDefinition {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> TermDefinition {
         return mutate(lang: value.rawValue)
@@ -442,11 +387,6 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
 
     public func nonce(_ value: String) -> TermDefinition {
         return mutate(nonce: value)
-    }
-    
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> TermDefinition {
-        return mutate(role: value)
     }
 
     public func role(_ value: Values.Role) -> TermDefinition {
@@ -467,11 +407,6 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
 
     public func title(_ value: String) -> TermDefinition {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> TermDefinition {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> TermDefinition {
@@ -576,16 +511,5 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
     
     public func aria(roleDescription value: String) -> TermDefinition {
         return mutate(ariaroledescription: value)
-    }
-}
-
-extension TermDefinition: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }

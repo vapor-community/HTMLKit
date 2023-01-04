@@ -5,7 +5,7 @@ A component to arrange content horizontally.
 ## Declaration
 
 ```swift
-struct HStack : Component
+struct HStack : View
 ```
 
 ## Overview

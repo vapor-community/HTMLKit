@@ -34,26 +34,13 @@ public struct Source: EmptyNode, MediaElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Source, TemplateValue<T>) -> Source) -> Source {
+    public func modify<T>(unwrap value: T?, element: (Source, T) -> Source) -> Source {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -126,10 +113,6 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     public func id(_ value: String) -> Source {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> Source {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> Source {
         return mutate(lang: value.rawValue)
@@ -137,11 +120,6 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
 
     public func nonce(_ value: String) -> Source {
         return mutate(nonce: value)
-    }
-    
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Source {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> Source {
@@ -162,11 +140,6 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
 
     public func title(_ value: String) -> Source {
         return mutate(title: value)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Source {
-        return mutate(translate: value)
     }
     
     public func translate(_ value: Values.Decision) -> Source {
@@ -222,17 +195,6 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     }
 }
 
-extension Source: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
-    }
-}
-
 /// The element allows to specify explicit external timed text tracks for media elements.
 ///
 /// ```html
@@ -259,26 +221,13 @@ public struct Track: EmptyNode, MediaElement {
         return self
     }
     
-    public func modify<T>(unwrap value: TemplateValue<T?>, element: (Track, TemplateValue<T>) -> Track) -> Track {
+    public func modify<T>(unwrap value: T?, element: (Track, T) -> Track) -> Track {
         
-        switch value {
-        case .constant(let optional):
-            
-            guard let value = optional else {
-                return self
-            }
-            
-            return self.modify(element(self, .constant(value)))
-            
-        case .dynamic(let context):
-            
-            if context.isMasqueradingOptional {
-                return self.modify(element(self, .dynamic(context.unsafeCast(to: T.self))))
-            
-            } else {
-                return self.modify(element(self, .dynamic(context.unsafelyUnwrapped)))
-            }
+        guard let value = value else {
+            return self
         }
+        
+        return self.modify(element(self, value as T))
     }
 }
 
@@ -351,10 +300,6 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
     public func id(_ value: String) -> Track {
         return mutate(id: value)
     }
-    
-    public func id(_ value: TemplateValue<String>) -> Track {
-        return mutate(id: value.rawValue)
-    }
 
     public func language(_ value: Values.Language) -> Track {
         return mutate(lang: value.rawValue)
@@ -362,11 +307,6 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
 
     public func nonce(_ value: String) -> Track {
         return mutate(nonce: value)
-    }
-    
-    @available(*, deprecated, message: "use role(_ value: Values.Roles) instead")
-    public func role(_ value: String) -> Track {
-        return mutate(role: value)
     }
     
     public func role(_ value: Values.Role) -> Track {
@@ -388,19 +328,9 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
     public func title(_ value: String) -> Track {
         return  mutate(title: value)
     }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Decision) instead")
-    public func translate(_ value: String) -> Track {
-        return mutate(translate: value)
-    }
     
     public func translate(_ value: Values.Decision) -> Track {
         return mutate(translate: value.rawValue)
-    }
-
-    @available(*, deprecated, message: "use translate(_ value: Values.Kinds) instead")
-    public func kind(_ value: String) -> Track {
-        return mutate(kind: value)
     }
     
     public func kind(_ value: Values.Kind) -> Track {
@@ -441,16 +371,5 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
     
     public func on(event: Events.Mouse, _ value: String) -> Track {
         return mutate(key: event.rawValue, value: value)
-    }
-}
-
-extension Track: AnyContent {
-    
-    public func prerender(_ formula: Formula) throws {
-        try self.build(formula)
-    }
-    
-    public func render<T>(with manager: ContextManager<T>) throws -> String {
-        try self.build(with: manager)
     }
 }

@@ -12,7 +12,7 @@ import OrderedCollections
 public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute
 
 /// The protocol provides the element with the accesskey handler.
-public protocol AccessKeyAttribute: AnyAttribute {
+public protocol AccessKeyAttribute: Attribute {
     
     /// The function represents the html-attribute 'accesskey'.
     ///
@@ -25,27 +25,22 @@ public protocol AccessKeyAttribute: AnyAttribute {
     func accessKey(_ value: Character) -> Self
 }
 
-extension AccessKeyAttribute {
-    
-    internal var key: String { "accesskey" }
-}
-
 extension AccessKeyAttribute where Self: ContentNode {
     
     internal func mutate(accesskey value: Character) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "accesskey", value: value)
     }
 }
 
 extension AccessKeyAttribute where Self: EmptyNode {
     
     internal func mutate(accesskey value: Character) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "accesskey", value: value)
     }
 }
 
 /// The protocol provides the element with the accept handler.
-public protocol AcceptAttribute: AnyAttribute {
+public protocol AcceptAttribute: Attribute {
     
     /// The function represents the html-attribute 'accept'.
     ///
@@ -55,27 +50,22 @@ public protocol AcceptAttribute: AnyAttribute {
     func accept(_ value: String) -> Self
 }
 
-extension AcceptAttribute {
-    
-    internal var key: String { "accept" }
-}
-
 extension AcceptAttribute where Self: ContentNode {
     
     internal func mutate(accept value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "accept", value: value)
     }
 }
 
 extension AcceptAttribute where Self: EmptyNode {
     
     internal func mutate(accept value: String) -> Self {
-        return self.mutate(key: key, value: value)
+        return self.mutate(key: "accept", value: value)
     }
 }
 
 /// The protocol provides the element with the action handler.
-public protocol ActionAttribute: AnyAttribute {
+public protocol ActionAttribute: Attribute {
     
     /// The function represents the html-attribute 'action'.
     ///
@@ -85,27 +75,22 @@ public protocol ActionAttribute: AnyAttribute {
     func action(_ value: String) -> Self
 }
 
-extension ActionAttribute {
-    
-    internal var key: String { "action" }
-}
-
 extension ActionAttribute where Self: ContentNode {
     
     internal func mutate(action value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "action", value: value)
     }
 }
 
 extension ActionAttribute where Self: EmptyNode {
     
     internal func mutate(action value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "action", value: value)
     }
 }
 
 /// The protocol provides the element with the alternate handler.
-public protocol AlternateAttribute: AnyAttribute {
+public protocol AlternateAttribute: Attribute {
     
     /// The function represents the html-attribute 'alt'.
     ///
@@ -115,27 +100,22 @@ public protocol AlternateAttribute: AnyAttribute {
     func alternate(_ value: String) -> Self
 }
 
-extension AlternateAttribute {
-    
-    internal var key: String { "alt" }
-}
-
 extension AlternateAttribute where Self: ContentNode {
     
     internal func mutate(alternate value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "alt", value: value)
     }
 }
 
 extension AlternateAttribute where Self: EmptyNode {
     
     internal func mutate(alternate value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "alt", value: value)
     }
 }
 
 /// The protocol provides the element with the asynchronously handler.
-public protocol AsynchronouslyAttribute: AnyAttribute {
+public protocol AsynchronouslyAttribute: Attribute {
     
     /// The function represents the html-attribute 'async'.
     ///
@@ -145,27 +125,22 @@ public protocol AsynchronouslyAttribute: AnyAttribute {
     func asynchronously() -> Self
 }
 
-extension AsynchronouslyAttribute {
-    
-    internal var key: String { "async" }
-}
-
 extension AsynchronouslyAttribute where Self: ContentNode {
     
     internal func mutate(async value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "async", value: value)
     }
 }
 
 extension AsynchronouslyAttribute where Self: EmptyNode {
     
     internal func mutate(async value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "async", value: value)
     }
 }
 
 /// The protocol provides the element with the autocapitalize handler.
-public protocol AutocapitalizeAttribute: AnyAttribute {
+public protocol AutocapitalizeAttribute: Attribute {
     
     /// The function represents the html-attribute 'autocapitalize'.
     ///
@@ -175,27 +150,22 @@ public protocol AutocapitalizeAttribute: AnyAttribute {
     func autocapitalize(_ value: Values.Capitalization) -> Self
 }
 
-extension AutocapitalizeAttribute {
-    
-    internal var key: String { "autocapitalize" }
-}
-
 extension AutocapitalizeAttribute where Self: ContentNode {
     
     internal func mutate(autocapitalize value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "autocapitalize", value: value)
     }
 }
 
 extension AutocapitalizeAttribute where Self: EmptyNode {
     
     internal func mutate(autocapitalize value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "autocapitalize", value: value)
     }
 }
 
 /// The protocol provides the element with the autocomplete handler.
-public protocol AutocompleteAttribute: AnyAttribute {
+public protocol AutocompleteAttribute: Attribute {
     
     /// The function represents the html-attribute 'autocomplete'.
     ///
@@ -205,27 +175,22 @@ public protocol AutocompleteAttribute: AnyAttribute {
     func hasCompletion(_ value: Bool) -> Self
 }
 
-extension AutocompleteAttribute {
-    
-    internal var key: String { "autocomplete" }
-}
-
 extension AutocompleteAttribute where Self: ContentNode {
     
     internal func mutate(autocomplete value: Bool) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "autocomplete", value: value)
     }
 }
 
 extension AutocompleteAttribute where Self: EmptyNode {
     
     internal func mutate(autocomplete value: Bool) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "autocomplete", value: value)
     }
 }
 
 /// The protocol provides the element with the autofocus handler.
-public protocol AutofocusAttribute: AnyAttribute {
+public protocol AutofocusAttribute: Attribute {
     
     /// The function represents the html-attribute 'autofocus'.
     ///
@@ -235,27 +200,22 @@ public protocol AutofocusAttribute: AnyAttribute {
     func autofocus() -> Self
 }
 
-extension AutofocusAttribute {
-    
-    internal var key: String { "autofocus" }
-}
-
 extension AutofocusAttribute where Self: ContentNode {
     
     internal func mutate(autofocus value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "autofocus", value: value)
     }
 }
 
 extension AutofocusAttribute where Self: EmptyNode {
     
     internal func mutate(autofocus value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "autofocus", value: value)
     }
 }
 
 /// The protocol provides the element with the autoplay handler.
-public protocol AutoplayAttribute: AnyAttribute {
+public protocol AutoplayAttribute: Attribute {
     
     /// The function represents the html-attribute 'autoplay'.
     ///
@@ -265,27 +225,22 @@ public protocol AutoplayAttribute: AnyAttribute {
     func autoplay() -> Self
 }
 
-extension AutoplayAttribute {
-    
-    internal var key: String { "autoplay" }
-}
-
 extension AutoplayAttribute where Self: ContentNode {
     
     internal func mutate(autoplay value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "autoplay", value: value)
     }
 }
 
 extension AutoplayAttribute where Self: EmptyNode {
     
     internal func mutate(autoplay value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "autoplay", value: value)
     }
 }
 
 /// The protocol provides the element with the charset handler.
-public protocol CharsetAttribute: AnyAttribute {
+public protocol CharsetAttribute: Attribute {
     
     /// The function represents the html-attribute 'charset'.
     ///
@@ -295,27 +250,22 @@ public protocol CharsetAttribute: AnyAttribute {
     func charset(_ value: Values.Charset) -> Self
 }
 
-extension CharsetAttribute {
-    
-    internal var key: String { "charset" }
-}
-
 extension CharsetAttribute where Self: ContentNode {
     
     internal func mutate(charset value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "charset", value: value)
     }
 }
 
 extension CharsetAttribute where Self: EmptyNode {
     
     internal func mutate(charset value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "charset", value: value)
     }
 }
 
 /// The protocol provides the element with the checked handler.
-public protocol CheckedAttribute: AnyAttribute {
+public protocol CheckedAttribute: Attribute {
     
     /// The function represents the html-attribute 'checked'.
     ///
@@ -325,27 +275,22 @@ public protocol CheckedAttribute: AnyAttribute {
     func checked() -> Self
 }
 
-extension CheckedAttribute {
-    
-    internal var key: String { "checked" }
-}
-
 extension CheckedAttribute where Self: ContentNode {
     
     internal func mutate(checked value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "checked", value: value)
     }
 }
 
 extension CheckedAttribute where Self: EmptyNode {
     
     internal func mutate(checked value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "checked", value: value)
     }
 }
 
 /// The protocol provides the element with the cite handler.
-public protocol CiteAttribute: AnyAttribute {
+public protocol CiteAttribute: Attribute {
     
     /// The function represents the html-attribute 'cite'.
     ///
@@ -355,27 +300,22 @@ public protocol CiteAttribute: AnyAttribute {
     func cite(_ value: String) -> Self
 }
 
-extension CiteAttribute {
-    
-    internal var key: String { "cite" }
-}
-
 extension CiteAttribute where Self: ContentNode {
     
     internal func mutate(cite value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "cite", value: value)
     }
 }
 
 extension CiteAttribute where Self: EmptyNode {
     
     internal func mutate(cite value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "cite", value: value)
     }
 }
 
 /// The protocol provides the element with the class handler.
-public protocol ClassAttribute: AnyAttribute{
+public protocol ClassAttribute: Attribute{
     
     /// The function represents the html-attribute 'class'.
     ///
@@ -385,27 +325,22 @@ public protocol ClassAttribute: AnyAttribute{
     func `class`(_ value: String) -> Self
 }
 
-extension ClassAttribute {
-    
-    internal var key: String { "class" }
-}
-
 extension ClassAttribute where Self: ContentNode {
     
     internal func mutate(class value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "class", value: value)
     }
 }
 
 extension ClassAttribute where Self: EmptyNode {
     
     internal func mutate(class value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "class", value: value)
     }
 }
 
 /// The protocol provides the element with the columns handler.
-public protocol ColumnsAttribute: AnyAttribute {
+public protocol ColumnsAttribute: Attribute {
     
     /// The function represents the html-attribute 'cols'.
     ///
@@ -415,27 +350,22 @@ public protocol ColumnsAttribute: AnyAttribute {
     func columns(_ size: Int) -> Self
 }
 
-extension ColumnsAttribute {
-    
-    internal var key: String { "cols" }
-}
-
 extension ColumnsAttribute where Self: ContentNode {
     
     internal func mutate(cols value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "cols", value: value)
     }
 }
 
 extension ColumnsAttribute where Self: EmptyNode {
     
     internal func mutate(cols value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "cols", value: value)
     }
 }
 
 /// The protocol provides the element with the columnspan handler.
-public protocol ColumnSpanAttribute: AnyAttribute {
+public protocol ColumnSpanAttribute: Attribute {
     
     /// The function represents the html-attribute 'colspan'.
     ///
@@ -445,27 +375,22 @@ public protocol ColumnSpanAttribute: AnyAttribute {
     func columnSpan(_ size: Int) -> Self
 }
 
-extension ColumnSpanAttribute {
-    
-    internal var key: String { "colspan" }
-}
-
 extension ColumnSpanAttribute where Self: ContentNode {
     
     internal func mutate(colspan value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "colspan", value: value)
     }
 }
 
 extension ColumnSpanAttribute where Self: EmptyNode {
     
     internal func mutate(colspan value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "colspan", value: value)
     }
 }
 
 /// The protocol provides the element with the content handler.
-public protocol ContentAttribute: AnyAttribute {
+public protocol ContentAttribute: Attribute {
     
     /// The function represents the html-attribute 'content'.
     ///
@@ -473,32 +398,24 @@ public protocol ContentAttribute: AnyAttribute {
     /// <tag content="" />
     /// ```
     func content(_ value: String) -> Self
-    
-    /// The func adds
-    func content(_ value: TemplateValue<String>) -> Self
-}
-
-extension ContentAttribute {
-    
-    internal var key: String { "content" }
 }
 
 extension ContentAttribute where Self: ContentNode {
     
     internal func mutate(content value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "content", value: value)
     }
 }
 
 extension ContentAttribute where Self: EmptyNode {
     
     internal func mutate(content value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "content", value: value)
     }
 }
 
 /// The protocol provides the element with the iseditable handler.
-public protocol EditAttribute: AnyAttribute {
+public protocol EditAttribute: Attribute {
     
     /// The function represents the html-attribute 'contenteditable'.
     ///
@@ -508,27 +425,22 @@ public protocol EditAttribute: AnyAttribute {
     func isEditable(_ value: Bool) -> Self
 }
 
-extension EditAttribute {
-    
-    internal var key: String { "contenteditable" }
-}
-
 extension EditAttribute where Self: ContentNode {
     
     internal func mutate(contenteditable value: Bool) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "contenteditable", value: value)
     }
 }
 
 extension EditAttribute where Self: EmptyNode {
     
     internal func mutate(contenteditable value: Bool) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "contenteditable", value: value)
     }
 }
 
 /// The protocol provides the element with the controls handler.
-public protocol ControlsAttribute: AnyAttribute {
+public protocol ControlsAttribute: Attribute {
     
     /// The function represents the html-attribute 'controls'.
     ///
@@ -538,27 +450,22 @@ public protocol ControlsAttribute: AnyAttribute {
     func controls() -> Self
 }
 
-extension ControlsAttribute {
-    
-    internal var key: String { "controls" }
-}
-
 extension ControlsAttribute where Self: ContentNode {
     
     internal func mutate(controls value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "controls", value: value)
     }
 }
 
 extension ControlsAttribute where Self: EmptyNode {
     
     internal func mutate(controls value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "controls", value: value)
     }
 }
 
 /// The protocol provides the element with the coordinates handler.
-public protocol CoordinatesAttribute: AnyAttribute {
+public protocol CoordinatesAttribute: Attribute {
     
     /// The function represents the html-attribute 'coordinates'.
     ///
@@ -568,27 +475,22 @@ public protocol CoordinatesAttribute: AnyAttribute {
     func coordinates(_ value: String) -> Self
 }
 
-extension CoordinatesAttribute {
-    
-    internal var key: String { "coords" }
-}
-
 extension CoordinatesAttribute where Self: ContentNode {
     
     internal func mutate(coords value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "coords", value: value)
     }
 }
 
 extension CoordinatesAttribute where Self: EmptyNode {
     
     internal func mutate(coords value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "coords", value: value)
     }
 }
 
 /// The protocol provides the element with the date handler.
-public protocol DataAttribute: AnyAttribute{
+public protocol DataAttribute: Attribute{
     
     /// The function represents the html-attribute 'data'.
     ///
@@ -598,27 +500,22 @@ public protocol DataAttribute: AnyAttribute{
     func data(_ value: String) -> Self
 }
 
-extension DataAttribute {
-    
-    internal var key: String { "data" }
-}
-
 extension DataAttribute where Self: ContentNode {
     
     internal func mutate(data value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "data", value: value)
     }
 }
 
 extension DataAttribute where Self: EmptyNode {
     
     internal func mutate(data value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "data", value: value)
     }
 }
 
 /// The protocol provides the element with the datetime handler.
-public protocol DateTimeAttribute: AnyAttribute {
+public protocol DateTimeAttribute: Attribute {
     
     /// The function represents the html-attribute 'datetime'.
     ///
@@ -628,27 +525,22 @@ public protocol DateTimeAttribute: AnyAttribute {
     func dateTime(_ value: String) -> Self
 }
 
-extension DateTimeAttribute {
-    
-    internal var key: String { "datetime" }
-}
-
 extension DateTimeAttribute where Self: ContentNode {
     
     internal func mutate(datetime value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "datetime", value: value)
     }
 }
 
 extension DateTimeAttribute where Self: EmptyNode {
     
     internal func mutate(datetime value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "datetime", value: value)
     }
 }
 
 /// The protocol provides the element with the default handler.
-public protocol DefaultAttribute: AnyAttribute {
+public protocol DefaultAttribute: Attribute {
     
     /// The function represents the html-attribute 'default'.
     ///
@@ -658,27 +550,22 @@ public protocol DefaultAttribute: AnyAttribute {
     func `default`() -> Self
 }
 
-extension DefaultAttribute {
-    
-    internal var key: String { "default" }
-}
-
 extension DefaultAttribute where Self: ContentNode {
     
     internal func mutate(default value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "default", value: value)
     }
 }
 
 extension DefaultAttribute where Self: EmptyNode {
     
     internal func mutate(default value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "default", value: value)
     }
 }
 
 /// The protocol provides the element with the defer handler.
-public protocol DeferAttribute: AnyAttribute {
+public protocol DeferAttribute: Attribute {
     
     /// The function represents the html-attribute 'defer'.
     ///
@@ -688,27 +575,22 @@ public protocol DeferAttribute: AnyAttribute {
     func `defer`() -> Self
 }
 
-extension DeferAttribute {
-    
-    internal var key: String { "defer" }
-}
-
 extension DeferAttribute where Self: ContentNode {
     
     internal func mutate(defer value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "defer", value: value)
     }
 }
 
 extension DeferAttribute where Self: EmptyNode {
     
     internal func mutate(defer value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "defer", value: value)
     }
 }
 
 /// The protocol provides the element with the direction handler.
-public protocol DirectionAttribute: AnyAttribute {
+public protocol DirectionAttribute: Attribute {
 
     /// The function represents the html-attribute 'dir'.
     ///
@@ -720,27 +602,22 @@ public protocol DirectionAttribute: AnyAttribute {
     func direction(_ value: Values.Direction) -> Self
 }
 
-extension DirectionAttribute {
-
-    internal var key: String { "dir" }
-}
-
 extension DirectionAttribute where Self: ContentNode {
     
     internal func mutate(dir value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "dir", value: value)
     }
 }
 
 extension DirectionAttribute where Self: EmptyNode {
     
     internal func mutate(dir value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "dir", value: value)
     }
 }
 
 /// The protocol provides the element with the disabled handler
-public protocol DisabledAttribute: AnyAttribute {
+public protocol DisabledAttribute: Attribute {
     
     /// The function represents the html-attribute 'disabled'.
     ///
@@ -750,27 +627,22 @@ public protocol DisabledAttribute: AnyAttribute {
     func disabled() -> Self
 }
 
-extension DisabledAttribute {
-    
-    internal var key: String { "disabled" }
-}
-
 extension DisabledAttribute where Self: ContentNode {
     
     internal func mutate(disabled value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "disabled", value: value)
     }
 }
 
 extension DisabledAttribute where Self: EmptyNode {
     
     internal func mutate(disabled value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "disabled", value: value)
     }
 }
 
 /// The protocol provides the element with the download handler.
-public protocol DownloadAttribute: AnyAttribute {
+public protocol DownloadAttribute: Attribute {
     
     /// The function represents the html-attribute 'download'.
     ///
@@ -780,27 +652,22 @@ public protocol DownloadAttribute: AnyAttribute {
     func download() -> Self
 }
 
-extension DownloadAttribute {
-    
-    internal var key: String { "download" }
-}
-
 extension DownloadAttribute where Self: ContentNode {
     
     internal func mutate(download value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "download", value: value)
     }
 }
 
 extension DownloadAttribute where Self: EmptyNode {
     
     internal func mutate(download value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "download", value: value)
     }
 }
 
 /// The protocol provides the element with the isdraggable handler.
-public protocol DragAttribute: AnyAttribute {
+public protocol DragAttribute: Attribute {
  
     /// The function represents the html-attribute 'draggable'.
     ///
@@ -810,27 +677,22 @@ public protocol DragAttribute: AnyAttribute {
     func isDraggable(_ value: Bool) -> Self
 }
 
-extension DragAttribute {
-    
-    internal var key: String { "draggable" }
-}
-
 extension DragAttribute where Self: ContentNode {
     
     internal func mutate(draggable value: Bool) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "draggable", value: value)
     }
 }
 
 extension DragAttribute where Self: EmptyNode {
     
     internal func mutate(draggable value: Bool) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "draggable", value: value)
     }
 }
 
 /// The protocol provides the element with the encoding handler.
-public protocol EncodingAttribute: AnyAttribute {
+public protocol EncodingAttribute: Attribute {
     
     /// The function represents the html-attribute 'enctype'.
     ///
@@ -842,27 +704,22 @@ public protocol EncodingAttribute: AnyAttribute {
     func encoding(_ value: Values.Encoding) -> Self
 }
 
-extension EncodingAttribute {
-    
-    internal var key: String { "enctype" }
-}
-
 extension EncodingAttribute where Self: ContentNode {
     
     internal func mutate(enctype value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "enctype", value: value)
     }
 }
 
 extension EncodingAttribute where Self: EmptyNode {
     
     internal func mutate(enctype value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "enctype", value: value)
     }
 }
 
 /// The protocol provides the element with the enterkeyhint handler.
-public protocol EnterKeyHintAttribute: AnyAttribute {
+public protocol EnterKeyHintAttribute: Attribute {
     
     /// The function represents the html-attribute 'enterkeyhint'.
     ///
@@ -874,27 +731,22 @@ public protocol EnterKeyHintAttribute: AnyAttribute {
     func enterKeyHint(_ value: Values.Hint) -> Self
 }
 
-extension EnterKeyHintAttribute {
-    
-    internal var key: String { "enterkeyhint" }
-}
-
 extension EnterKeyHintAttribute where Self: ContentNode {
     
     internal func mutate(enterkeyhint value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "enterkeyhint", value: value)
     }
 }
 
 extension EnterKeyHintAttribute where Self: EmptyNode {
     
     internal func mutate(enterkeyhint value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "enterkeyhint", value: value)
     }
 }
 
 /// The protocol provides the element with the for handler.
-public protocol ForAttribute: AnyAttribute {
+public protocol ForAttribute: Attribute {
     
     /// The function represents the html-attribute 'for'.
     ///
@@ -906,27 +758,22 @@ public protocol ForAttribute: AnyAttribute {
     func `for`(_ value: String) -> Self
 }
 
-extension ForAttribute {
-    
-    internal var key: String { "for" }
-}
-
 extension ForAttribute where Self: ContentNode {
     
     internal func mutate(for value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "for", value: value)
     }
 }
 
 extension ForAttribute where Self: EmptyNode {
     
     internal func mutate(for value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "for", value: value)
     }
 }
 
 /// The protocol provides the element with the form handler.
-public protocol FormAttribute: AnyAttribute {
+public protocol FormAttribute: Attribute {
     
     /// The function represents the html-attribute 'form'.
     ///
@@ -936,27 +783,22 @@ public protocol FormAttribute: AnyAttribute {
     func form(_ value: String) -> Self
 }
 
-extension FormAttribute {
-    
-    internal var key: String { "form" }
-}
-
 extension FormAttribute where Self: ContentNode {
     
     internal func mutate(form value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "form", value: value)
     }
 }
 
 extension FormAttribute where Self: EmptyNode {
     
     internal func mutate(form value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "form", value: value)
     }
 }
 
 /// The protocol provides the element with the formaction handler.
-public protocol FormActionAttribute: AnyAttribute {
+public protocol FormActionAttribute: Attribute {
     
     /// The function represents the html-attribute 'formaction'.
     ///
@@ -968,27 +810,22 @@ public protocol FormActionAttribute: AnyAttribute {
     func formAction(_ value: String) -> Self
 }
 
-extension FormActionAttribute {
-    
-    internal var key: String { "formaction" }
-}
-
 extension FormActionAttribute where Self: ContentNode {
     
     internal func mutate(formaction value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "formaction", value: value)
     }
 }
 
 extension FormActionAttribute where Self: EmptyNode {
     
     internal func mutate(formaction value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "formaction", value: value)
     }
 }
 
 /// The protocol provides the element with the http-equiv handler.
-public protocol EquivalentAttribute: AnyAttribute {
+public protocol EquivalentAttribute: Attribute {
     
     /// The function represents the html-attribute 'http-equiv'.
     ///
@@ -1000,27 +837,22 @@ public protocol EquivalentAttribute: AnyAttribute {
     func equivalent(_ value: Values.Equivalent) -> Self
 }
 
-extension EquivalentAttribute {
-    
-    internal var key: String { "http-equiv" }
-}
-
 extension HeaderAttribute where Self: ContentNode {
     
     internal func mutate(httpequiv value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "http-equiv", value: value)
     }
 }
 
 extension EquivalentAttribute where Self: EmptyNode {
     
     internal func mutate(httpequiv value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "http-equiv", value: value)
     }
 }
 
 /// The protocol provides the element with the headers handler.
-public protocol HeaderAttribute: AnyAttribute {
+public protocol HeaderAttribute: Attribute {
     
     /// The function represents the html-attribute 'headers'.
     ///
@@ -1032,27 +864,22 @@ public protocol HeaderAttribute: AnyAttribute {
     func headers(_ value: String) -> Self
 }
 
-extension HeaderAttribute {
-    
-    internal var key: String { "headers" }
-}
-
 extension HeaderAttribute where Self: ContentNode {
     
     internal func mutate(headers value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "headers", value: value)
     }
 }
 
 extension HeaderAttribute where Self: EmptyNode {
     
     internal func mutate(headers value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "headers", value: value)
     }
 }
 
 /// The protocol provides the element with the height handler.
-public protocol HeightAttribute: AnyAttribute {
+public protocol HeightAttribute: Attribute {
     
     /// The function represents the html-attribute 'height'.
     ///
@@ -1064,27 +891,22 @@ public protocol HeightAttribute: AnyAttribute {
     func height(_ size: Int) -> Self
 }
 
-extension HeightAttribute {
-    
-    internal var key: String { "height" }
-}
-
 extension HeightAttribute where Self: ContentNode {
     
     internal func mutate(height value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "height", value: value)
     }
 }
 
 extension HeightAttribute where Self: EmptyNode {
     
     internal func mutate(height value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "height", value: value)
     }
 }
 
 /// The protocol provides the element with hidden handler.
-public protocol HiddenAttribute: AnyAttribute {
+public protocol HiddenAttribute: Attribute {
  
     /// The function represents the html-attribute 'hidden'.
     ///
@@ -1094,27 +916,22 @@ public protocol HiddenAttribute: AnyAttribute {
     func hidden() -> Self
 }
 
-extension HiddenAttribute {
-
-    internal var key: String { "hidden" }
-}
-
 extension HiddenAttribute where Self: ContentNode {
     
     internal func mutate(hidden value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "hidden", value: value)
     }
 }
 
 extension HiddenAttribute where Self: EmptyNode {
     
     internal func mutate(hidden value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "hidden", value: value)
     }
 }
 
 /// The protocol provides the element with high handler.
-public protocol HighAttribute: AnyAttribute {
+public protocol HighAttribute: Attribute {
     
     /// The function represents the html-attribute 'high'.
     ///
@@ -1126,27 +943,22 @@ public protocol HighAttribute: AnyAttribute {
     func high(_ value: Float) -> Self
 }
 
-extension HighAttribute {
-    
-    internal var key: String { "high" }
-}
-
 extension HighAttribute where Self: ContentNode {
     
     internal func mutate(high value: Float) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "high", value: value)
     }
 }
 
 extension HighAttribute where Self: EmptyNode {
     
     internal func mutate(high value: Float) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "high", value: value)
     }
 }
 
 /// The protocol provides the element with reference handler.
-public protocol ReferenceAttribute: AnyAttribute {
+public protocol ReferenceAttribute: Attribute {
     
     /// The function represents the html-attribute 'href'.
     ///
@@ -1156,31 +968,24 @@ public protocol ReferenceAttribute: AnyAttribute {
     /// <tag href="" />
     /// ```
     func reference(_ value: String) -> Self
-    
-    func reference(_ value: TemplateValue<String>) -> Self
-}
-
-extension ReferenceAttribute {
-    
-    internal var key: String { "href" }
 }
 
 extension ReferenceAttribute where Self: ContentNode {
     
     internal func mutate(href value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "href", value: value)
     }
 }
 
 extension ReferenceAttribute where Self: EmptyNode {
     
     internal func mutate(href value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "href", value: value)
     }
 }
 
 /// The protocol provides the element with the language reference handler.
-public protocol ReferenceLanguageAttribute: AnyAttribute {
+public protocol ReferenceLanguageAttribute: Attribute {
     
     /// The function represents the html-attribute 'hreflang'.
     ///
@@ -1192,27 +997,22 @@ public protocol ReferenceLanguageAttribute: AnyAttribute {
     func referenceLanguage(_ value: Values.Language) -> Self
 }
 
-extension ReferenceLanguageAttribute {
-
-    internal var key: String { "hreflang" }
-}
-
 extension ReferenceLanguageAttribute where Self: ContentNode {
     
     internal func mutate(hreflang value: String) -> Self {
-        self.mutate(key: key, value: value)
+        return self.mutate(key: "hreflang", value: value)
     }
 }
 
 extension ReferenceLanguageAttribute where Self: EmptyNode {
     
     internal func mutate(hreflang value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "hreflang", value: value)
     }
 }
 
 /// The protocol provides the element with the id handler.
-public protocol IdentifierAttribute: AnyAttribute {
+public protocol IdentifierAttribute: Attribute {
  
     /// The function represents the html-attribute 'id'.
     ///
@@ -1222,31 +1022,24 @@ public protocol IdentifierAttribute: AnyAttribute {
     /// <tag id="" />
     /// ```
     func id(_ value: String) -> Self
-    
-    func id(_ value: TemplateValue<String>) -> Self
-}
-
-extension IdentifierAttribute {
-    
-    internal var key: String { "id" }
 }
 
 extension IdentifierAttribute where Self: ContentNode {
     
     internal func mutate(id value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "id", value: value)
     }
 }
 
 extension IdentifierAttribute where Self: EmptyNode {
     
     internal func mutate(id value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "id", value: value)
     }
 }
 
 /// The protocol provides the element with the ismap handler.
-public protocol IsMapAttribute: AnyAttribute {
+public protocol IsMapAttribute: Attribute {
  
     /// The function represents the html-attribute 'ismap'.
     ///
@@ -1256,27 +1049,22 @@ public protocol IsMapAttribute: AnyAttribute {
     func isMap() -> Self
 }
 
-extension IsMapAttribute {
-    
-    internal var key: String { "ismap" }
-}
-
 extension IsMapAttribute where Self: ContentNode {
     
     internal func mutate(ismap value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "ismap", value: value)
     }
 }
 
 extension IsMapAttribute where Self: EmptyNode {
     
     internal func mutate(ismap value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "ismap", value: value)
     }
 }
 
 /// The protocol provides the element with the inputmode handler.
-public protocol InputModeAttribute: AnyAttribute {
+public protocol InputModeAttribute: Attribute {
  
     /// The function represents the html-attribute 'inputmode'.
     ///
@@ -1286,27 +1074,22 @@ public protocol InputModeAttribute: AnyAttribute {
     func inputMode(_ value: String) -> Self
 }
 
-extension InputModeAttribute {
-    
-    internal var key: String { "inputmode" }
-}
-
 extension InputModeAttribute where Self: ContentNode {
     
     internal func mutate(inputmode value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "inputmode", value: value)
     }
 }
 
 extension InputModeAttribute where Self: EmptyNode {
     
     internal func mutate(inputmode value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "inputmode", value: value)
     }
 }
 
 /// The protocol provides the element with the inputmode handler.
-public protocol IsAttribute: AnyAttribute {
+public protocol IsAttribute: Attribute {
  
     /// The function represents the html-attribute 'is'.
     ///
@@ -1316,27 +1099,22 @@ public protocol IsAttribute: AnyAttribute {
     func `is`(_ value: String) -> Self
 }
 
-extension IsAttribute {
-    
-    internal var key: String { "is" }
-}
-
 extension IsAttribute where Self: ContentNode {
     
     internal func mutate(is value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "is", value: value)
     }
 }
 
 extension IsAttribute where Self: EmptyNode {
     
     internal func mutate(is value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "is", value: value)
     }
 }
 
 /// The protocol provides the element with the itemid handler.
-public protocol ItemIdAttribute: AnyAttribute {
+public protocol ItemIdAttribute: Attribute {
  
     /// The function represents the html-attribute 'itemid'.
     ///
@@ -1346,27 +1124,22 @@ public protocol ItemIdAttribute: AnyAttribute {
     func itemId(_ value: String) -> Self
 }
 
-extension ItemIdAttribute {
-    
-    internal var key: String { "itemid" }
-}
-
 extension ItemIdAttribute where Self: ContentNode {
     
     internal func mutate(itemid value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "itemid", value: value)
     }
 }
 
 extension ItemIdAttribute where Self: EmptyNode {
     
     internal func mutate(itemid value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "itemid", value: value)
     }
 }
 
 /// The protocol provides the element with the itemproperty handler.
-public protocol ItemPropertyAttribute: AnyAttribute {
+public protocol ItemPropertyAttribute: Attribute {
  
     /// The function represents the html-attribute 'itemprop'.
     ///
@@ -1376,27 +1149,22 @@ public protocol ItemPropertyAttribute: AnyAttribute {
     func itemProperty(_ value: String) -> Self
 }
 
-extension ItemPropertyAttribute {
-    
-    internal var key: String { "itemprop" }
-}
-
 extension ItemPropertyAttribute where Self: ContentNode {
     
     internal func mutate(itemprop value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "itemprop", value: value)
     }
 }
 
 extension ItemPropertyAttribute where Self: EmptyNode {
     
     internal func mutate(itemprop value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "itemprop", value: value)
     }
 }
 
 /// The protocol provides the element with the itemreference handler.
-public protocol ItemReferenceAttribute: AnyAttribute {
+public protocol ItemReferenceAttribute: Attribute {
  
     /// The function represents the html-attribute 'itemref'.
     ///
@@ -1406,27 +1174,22 @@ public protocol ItemReferenceAttribute: AnyAttribute {
     func itemReference(_ value: String) -> Self
 }
 
-extension ItemReferenceAttribute {
-    
-    internal var key: String { "itemref" }
-}
-
 extension ItemReferenceAttribute where Self: ContentNode {
     
     internal func mutate(itemref value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "itemref", value: value)
     }
 }
 
 extension ItemReferenceAttribute where Self: EmptyNode {
     
     internal func mutate(itemref value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "itemref", value: value)
     }
 }
 
 /// The protocol provides the element with the itemscope handler.
-public protocol ItemScopeAttribute: AnyAttribute {
+public protocol ItemScopeAttribute: Attribute {
  
     /// The function represents the html-attribute 'itemscope'.
     ///
@@ -1436,27 +1199,22 @@ public protocol ItemScopeAttribute: AnyAttribute {
     func itemScope(_ value: String) -> Self
 }
 
-extension ItemScopeAttribute {
-    
-    internal var key: String { "itemscope" }
-}
-
 extension ItemScopeAttribute where Self: ContentNode {
     
     internal func mutate(itemscope value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "itemscope", value: value)
     }
 }
 
 extension ItemScopeAttribute where Self: EmptyNode {
     
     internal func mutate(itemscope value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "itemscope", value: value)
     }
 }
 
 /// The protocol provides the element with the itemtype handler
-public protocol ItemTypeAttribute: AnyAttribute {
+public protocol ItemTypeAttribute: Attribute {
  
     /// The function represents the html-attribute 'itemtype'.
     ///
@@ -1466,27 +1224,22 @@ public protocol ItemTypeAttribute: AnyAttribute {
     func itemType(_ value: String) -> Self
 }
 
-extension ItemTypeAttribute {
-    
-    internal var key: String { "itemtype" }
-}
-
 extension ItemTypeAttribute where Self: ContentNode {
     
     internal func mutate(itemtype value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "itemtype", value: value)
     }
 }
 
 extension ItemTypeAttribute where Self: EmptyNode {
     
     internal func mutate(itemtype value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "itemtype", value: value)
     }
 }
 
 /// The protocol provides the element with the kind handler.
-public protocol KindAttribute: AnyAttribute {
+public protocol KindAttribute: Attribute {
     
     /// The function represents the html-attribute 'kind'.
     ///
@@ -1496,27 +1249,22 @@ public protocol KindAttribute: AnyAttribute {
     func kind(_ value: Values.Kind) -> Self
 }
 
-extension KindAttribute {
-    
-    internal var key: String { "kind" }
-}
-
 extension KindAttribute where Self: ContentNode {
     
     internal func mutate(kind value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "kind", value: value)
     }
 }
 
 extension KindAttribute where Self: EmptyNode {
     
     internal func mutate(kind value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "kind", value: value)
     }
 }
 
 /// The protocol provides the element with the label handler.
-public protocol LabelAttribute: AnyAttribute {
+public protocol LabelAttribute: Attribute {
     
     /// The function represents the html-attribute 'label'.
     ///
@@ -1526,27 +1274,22 @@ public protocol LabelAttribute: AnyAttribute {
     func label(_ value: String) -> Self
 }
 
-extension LabelAttribute {
-    
-    internal var key: String { "label" }
-}
-
 extension LabelAttribute where Self: ContentNode {
     
     internal func mutate(label value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "label", value: value)
     }
 }
 
 extension LabelAttribute where Self: EmptyNode {
     
     internal func mutate(label value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "label", value: value)
     }
 }
 
 /// The protocol provides the element with the language handler.
-public protocol LanguageAttribute: AnyAttribute {
+public protocol LanguageAttribute: Attribute {
     
     /// The function represents the html-attribute 'lang'.
     ///
@@ -1556,27 +1299,22 @@ public protocol LanguageAttribute: AnyAttribute {
     func language(_ value: Values.Language) -> Self
 }
 
-extension LanguageAttribute {
-    
-    internal var key: String { "lang" }
-}
-
 extension LanguageAttribute where Self: ContentNode {
     
     internal func mutate(lang value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "lang", value: value)
     }
 }
 
 extension LanguageAttribute where Self: EmptyNode {
     
     internal func mutate(lang value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "lang", value: value)
     }
 }
 
 /// The protocol provides the element with the list handler.
-public protocol ListAttribute: AnyAttribute {
+public protocol ListAttribute: Attribute {
     
     /// The function represents the html-attribute 'list'.
     ///
@@ -1586,27 +1324,22 @@ public protocol ListAttribute: AnyAttribute {
     func list(_ value: String) -> Self
 }
 
-extension ListAttribute {
-    
-    internal var key: String { "list" }
-}
-
 extension ListAttribute where Self: ContentNode {
     
     internal func mutate(list value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "list", value: value)
     }
 }
 
 extension ListAttribute where Self: EmptyNode {
     
     internal func mutate(list value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "list", value: value)
     }
 }
 
 /// The protocol provides the element with the loop handler.
-public protocol LoopAttribute: AnyAttribute {
+public protocol LoopAttribute: Attribute {
     
     /// The function represents the html-attribute 'loop'.
     ///
@@ -1616,27 +1349,22 @@ public protocol LoopAttribute: AnyAttribute {
     func loop() -> Self
 }
 
-extension LoopAttribute {
-    
-    internal var key: String { "loop" }
-}
-
 extension LoopAttribute where Self: ContentNode {
     
     internal func mutate(loop value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "loop", value: value)
     }
 }
 
 extension LoopAttribute where Self: EmptyNode {
     
     internal func mutate(loop value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "loop", value: value)
     }
 }
 
 /// The protocol provides the element with the low handler.
-public protocol LowAttribute: AnyAttribute {
+public protocol LowAttribute: Attribute {
     
     /// The function represents the html-attribute 'low'.
     ///
@@ -1646,27 +1374,22 @@ public protocol LowAttribute: AnyAttribute {
     func low(_ value: Float) -> Self
 }
 
-extension LowAttribute {
-    
-    internal var key: String { "low" }
-}
-
 extension LowAttribute where Self: ContentNode {
     
     internal func mutate(low value: Float) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "low", value: value)
     }
 }
 
 extension LowAttribute where Self: EmptyNode {
     
     internal func mutate(low value: Float) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "low", value: value)
     }
 }
 
 /// The protocol provides the element with the maximumvalue handler.
-public protocol MaximumValueAttribute: AnyAttribute {
+public protocol MaximumValueAttribute: Attribute {
     
     associatedtype MaximumValueType
     
@@ -1678,27 +1401,22 @@ public protocol MaximumValueAttribute: AnyAttribute {
     func maximum(_ value: MaximumValueType) -> Self
 }
 
-extension MaximumValueAttribute {
-
-    internal var key: String { "max" }
-}
-
 extension MaximumValueAttribute where Self: ContentNode {
     
     internal func mutate(max value: MaximumValueType) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "max", value: value)
     }
 }
 
 extension MaximumValueAttribute where Self: EmptyNode {
     
     internal func mutate(max value: MaximumValueType) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "max", value: value)
     }
 }
 
 /// The protocol provides the element with the maximumlength handler.
-public protocol MaximumLengthAttribute: AnyAttribute {
+public protocol MaximumLengthAttribute: Attribute {
     
     /// The function represents the html-attribute 'maxlength'.
     ///
@@ -1708,27 +1426,22 @@ public protocol MaximumLengthAttribute: AnyAttribute {
     func maximum(length value: Int) -> Self
 }
 
-extension MaximumLengthAttribute {
-
-    internal var key: String { "maxlength" }
-}
-
 extension MaximumLengthAttribute where Self: ContentNode {
     
     internal func mutate(maxlength value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "maxlength", value: value)
     }
 }
 
 extension MaximumLengthAttribute where Self: EmptyNode {
     
     internal func mutate(maxlength value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "maxlength", value: value)
     }
 }
 
 /// The protocol provides the element with the media handler.
-public protocol MediaAttribute: AnyAttribute {
+public protocol MediaAttribute: Attribute {
     
     /// The function represents the html-attribute 'media'.
     ///
@@ -1738,27 +1451,22 @@ public protocol MediaAttribute: AnyAttribute {
     func media(_ value: String) -> Self
 }
 
-extension MediaAttribute {
-
-    internal var key: String { "media" }
-}
-
 extension MediaAttribute where Self: ContentNode {
     
     internal func mutate(media value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "media", value: value)
     }
 }
 
 extension MediaAttribute where Self: EmptyNode {
     
     internal func mutate(media value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "media", value: value)
     }
 }
 
 /// The protocol provides the element with the method handler.
-public protocol MethodAttribute: AnyAttribute {
+public protocol MethodAttribute: Attribute {
     
     /// The function represents the html-attribute 'method'.
     ///
@@ -1768,27 +1476,22 @@ public protocol MethodAttribute: AnyAttribute {
     func method(_ value: Values.Method) -> Self
 }
 
-extension MethodAttribute {
-
-    internal var key: String { "method" }
-}
-
 extension MethodAttribute where Self: ContentNode {
     
     internal func mutate(method value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "method", value: value)
     }
 }
 
 extension MethodAttribute where Self: EmptyNode {
     
     internal func mutate(method value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "method", value: value)
     }
 }
 
 /// The protocol provides the element with the minimumvalue handler.
-public protocol MinimumValueAttribute: AnyAttribute {
+public protocol MinimumValueAttribute: Attribute {
     
     associatedtype MinimumValueType
     
@@ -1800,27 +1503,22 @@ public protocol MinimumValueAttribute: AnyAttribute {
     func minimum(_ value: MinimumValueType) -> Self
 }
 
-extension MinimumValueAttribute {
-
-    internal var key: String { "min" }
-}
-
 extension MinimumValueAttribute where Self: ContentNode {
     
     internal func mutate(min value: MinimumValueType) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "min", value: value)
     }
 }
 
 extension MinimumValueAttribute where Self: EmptyNode {
     
     internal func mutate(min value: MinimumValueType) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "min", value: value)
     }
 }
 
 /// The protocol provides the element with the minimumlength handler.
-public protocol MinimumLengthAttribute: AnyAttribute {
+public protocol MinimumLengthAttribute: Attribute {
     
     /// The function represents the html-attribute 'minlength'.
     ///
@@ -1830,27 +1528,22 @@ public protocol MinimumLengthAttribute: AnyAttribute {
     func minimum(length value: Int) -> Self
 }
 
-extension MinimumLengthAttribute {
-
-    internal var key: String { "minlength" }
-}
-
 extension MinimumLengthAttribute where Self: ContentNode {
     
     internal func mutate(minlength value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "minlength", value: value)
     }
 }
 
 extension MinimumLengthAttribute where Self: EmptyNode {
     
     internal func mutate(minlength value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "minlength", value: value)
     }
 }
 
 /// The protocol provides the element with the multiple handler.
-public protocol MultipleAttribute: AnyAttribute {
+public protocol MultipleAttribute: Attribute {
     
     /// The function represents the html-attribute 'multiple'.
     ///
@@ -1860,27 +1553,22 @@ public protocol MultipleAttribute: AnyAttribute {
     func multiple() -> Self
 }
 
-extension MultipleAttribute {
-    
-    internal var key: String { "multiple" }
-}
-
 extension MultipleAttribute where Self: ContentNode {
     
     internal func mutate(multiple value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "multiple", value: value)
     }
 }
 
 extension MultipleAttribute where Self: EmptyNode {
     
     internal func mutate(multiple value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "multiple", value: value)
     }
 }
 
 /// The protocol provides the element with the muted handler.
-public protocol MutedAttribute: AnyAttribute {
+public protocol MutedAttribute: Attribute {
     
     /// The function represents the html-attribute 'muted'.
     ///
@@ -1890,27 +1578,22 @@ public protocol MutedAttribute: AnyAttribute {
     func muted() -> Self
 }
 
-extension MutedAttribute {
-    
-    internal var key: String { "muted" }
-}
-
 extension MutedAttribute where Self: ContentNode {
     
     internal func mutate(muted value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "muted", value: value)
     }
 }
 
 extension MutedAttribute where Self: EmptyNode {
     
     internal func mutate(muted value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "muted", value: value)
     }
 }
 
 /// The protocol provides the element with the name handler.
-public protocol NameAttribute: AnyAttribute {
+public protocol NameAttribute: Attribute {
 
     associatedtype NameValue
     
@@ -1920,32 +1603,24 @@ public protocol NameAttribute: AnyAttribute {
     /// <tag name="" />
     /// ```
     func name(_ value: NameValue) -> Self
-    
-    /// The func adds
-    func name(_ value: TemplateValue<NameValue>) -> Self
-}
-
-extension NameAttribute {
-    
-    internal var key: String { "name" }
 }
 
 extension NameAttribute where Self: ContentNode {
     
     internal func mutate(name value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "name", value: value)
     }
 }
 
 extension NameAttribute where Self: EmptyNode {
     
     internal func mutate(name value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "name", value: value)
     }
 }
 
 /// The protocol provides the element with the nonce handler.
-public protocol NonceAttribute: AnyAttribute {
+public protocol NonceAttribute: Attribute {
     
     /// The function represents the html-attribute 'nonce'.
     ///
@@ -1955,27 +1630,22 @@ public protocol NonceAttribute: AnyAttribute {
     func nonce(_ value: String) -> Self
 }
 
-extension NonceAttribute {
-    
-    internal var key: String { "nonce" }
-}
-
 extension NonceAttribute where Self: ContentNode {
     
     internal func mutate(nonce value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "nonce" , value: value)
     }
 }
 
 extension NonceAttribute where Self: EmptyNode {
     
     internal func mutate(nonce value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "nonce" , value: value)
     }
 }
 
 /// The protocol provides the element with the novalidate handler.
-public protocol NoValidateAttribute: AnyAttribute {
+public protocol NoValidateAttribute: Attribute {
 
     /// The function represents the html-attribute 'novalidate'.
     ///
@@ -1985,27 +1655,22 @@ public protocol NoValidateAttribute: AnyAttribute {
     func novalidate() -> Self
 }
 
-extension NoValidateAttribute {
-    
-    internal var key: String { "novalidate" }
-}
-
 extension NoValidateAttribute where Self: ContentNode {
     
     internal func mutate(novalidate value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "novalidate", value: value)
     }
 }
 
 extension NoValidateAttribute where Self: EmptyNode {
     
     internal func mutate(novalidate value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "novalidate", value: value)
     }
 }
 
 /// The protocol provides the element with the open handler.
-public protocol OpenAttribute: AnyAttribute {
+public protocol OpenAttribute: Attribute {
     
     /// The function represents the html-attribute 'open'.
     ///
@@ -2015,27 +1680,22 @@ public protocol OpenAttribute: AnyAttribute {
     func isOpen(_ value: Bool) -> Self
 }
 
-extension OpenAttribute {
-    
-    internal var key: String { "open" }
-}
-
 extension OpenAttribute where Self: ContentNode {
     
     internal func mutate(open value: Bool) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "open", value: value)
     }
 }
 
 extension OpenAttribute where Self: EmptyNode {
     
     internal func mutate(open value: Bool) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "open", value: value)
     }
 }
 
 /// The protocol provides the element with the optimum handler.
-public protocol OptimumAttribute: AnyAttribute {
+public protocol OptimumAttribute: Attribute {
     
     /// The function represents the html-attribute 'optimum'.
     ///
@@ -2045,27 +1705,22 @@ public protocol OptimumAttribute: AnyAttribute {
     func optimum(_ value: Float) -> Self
 }
 
-extension OptimumAttribute {
-    
-    internal var key: String { "optimum" }
-}
-
 extension OptimumAttribute where Self: ContentNode {
     
     internal func mutate(optimum value: Float) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "optimum", value: value)
     }
 }
 
 extension OptimumAttribute where Self: EmptyNode {
     
     internal func mutate(optimum value: Float) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "optimum", value: value)
     }
 }
 
 /// The protocol provides the element with the pattern handler.
-public protocol PatternAttribute: AnyAttribute {
+public protocol PatternAttribute: Attribute {
     
     /// The function represents the html-attribute 'pattern'.
     ///
@@ -2075,27 +1730,22 @@ public protocol PatternAttribute: AnyAttribute {
     func pattern(_ regex: String) -> Self
 }
 
-extension PatternAttribute {
-    
-    internal var key: String { "pattern" }
-}
-
 extension PatternAttribute where Self: ContentNode {
     
     internal func mutate(pattern value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "pattern", value: value)
     }
 }
 
 extension PatternAttribute where Self: EmptyNode {
     
     internal func mutate(pattern value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "pattern", value: value)
     }
 }
 
 /// The protocol provides the element with the part handler.
-public protocol PartAttribute: AnyAttribute {
+public protocol PartAttribute: Attribute {
     
     /// The function represents the html-attribute 'part'.
     ///
@@ -2105,27 +1755,22 @@ public protocol PartAttribute: AnyAttribute {
     func part(_ value: String) -> Self
 }
 
-extension PartAttribute {
-    
-    internal var key: String { "part" }
-}
-
 extension PartAttribute where Self: ContentNode {
     
     internal func mutate(part value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "part", value: value)
     }
 }
 
 extension PartAttribute where Self: EmptyNode {
     
     internal func mutate(part value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "part", value: value)
     }
 }
 
 /// The protocol provides the element with the ping handler.
-public protocol PingAttribute: AnyAttribute {
+public protocol PingAttribute: Attribute {
     
     /// The function represents the html-attribute 'ping'.
     ///
@@ -2135,27 +1780,22 @@ public protocol PingAttribute: AnyAttribute {
     func ping(_ value: String) -> Self
 }
 
-extension PingAttribute {
-
-    internal var key: String { "ping" }
-}
-
 extension PingAttribute where Self: ContentNode {
     
     internal func mutate(ping value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "ping", value: value)
     }
 }
 
 extension PingAttribute where Self: EmptyNode {
     
     internal func mutate(ping value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "ping", value: value)
     }
 }
 
 /// The protocol provides the element with the placeholder handler.
-public protocol PlaceholderAttribute: AnyAttribute {
+public protocol PlaceholderAttribute: Attribute {
     
     /// The function represents the html-attribute 'placeholder'.
     ///
@@ -2163,31 +1803,24 @@ public protocol PlaceholderAttribute: AnyAttribute {
     /// <tag placeholder="" />
     /// ```
     func placeholder(_ value: String) -> Self
-    
-    func placeholder(_ value: TemplateValue<String>) -> Self
-}
-
-extension PlaceholderAttribute {
-    
-    internal var key: String { "placeholder" }
 }
 
 extension PlaceholderAttribute where Self: ContentNode {
     
     internal func mutate(placeholder value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "placeholder", value: value)
     }
 }
 
 extension PlaceholderAttribute where Self: EmptyNode {
     
     internal func mutate(placeholder value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "placeholder", value: value)
     }
 }
 
 /// The protocol provides the element with the poster handler.
-public protocol PosterAttribute: AnyAttribute {
+public protocol PosterAttribute: Attribute {
     
     /// The function represents the html-attribute 'poster'.
     ///
@@ -2197,27 +1830,22 @@ public protocol PosterAttribute: AnyAttribute {
     func poster(_ value: String) -> Self
 }
 
-extension PosterAttribute {
-
-    internal var key: String { "poster" }
-}
-
 extension PosterAttribute where Self: ContentNode {
     
     internal func mutate(poster value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "poster", value: value)
     }
 }
 
 extension PosterAttribute where Self: EmptyNode {
     
     internal func mutate(poster value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "poster", value: value)
     }
 }
 
 /// The protocol provides the element with the preload handler.
-public protocol PreloadAttribute: AnyAttribute {
+public protocol PreloadAttribute: Attribute {
     
     /// The function represents the html-attribute 'preload'.
     ///
@@ -2227,27 +1855,22 @@ public protocol PreloadAttribute: AnyAttribute {
     func preload(_ value: Values.Preload) -> Self
 }
 
-extension PreloadAttribute {
-    
-    internal var key: String { "preload" }
-}
-
 extension PreloadAttribute where Self: ContentNode {
     
     internal func mutate(preload value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "preload", value: value)
     }
 }
 
 extension PreloadAttribute where Self: EmptyNode {
     
     internal func mutate(preload value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "preload", value: value)
     }
 }
 
 /// The protocol provides the element with the readonly handler.
-public protocol ReadyOnlyAttribute: AnyAttribute {
+public protocol ReadyOnlyAttribute: Attribute {
     
     /// The function represents the html-attribute 'readonly'.
     ///
@@ -2257,27 +1880,22 @@ public protocol ReadyOnlyAttribute: AnyAttribute {
     func readonly() -> Self
 }
 
-extension ReadyOnlyAttribute {
-    
-    internal var key: String { "readonly" }
-}
-
 extension ReadyOnlyAttribute where Self: ContentNode {
     
     internal func mutate(readonly value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "readonly", value: value)
     }
 }
 
 extension ReadyOnlyAttribute where Self: EmptyNode {
     
     internal func mutate(readonly value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "readonly", value: value)
     }
 }
 
 /// The protocol provides the element with the referrerpolicy handler.
-public protocol ReferrerPolicyAttribute: AnyAttribute {
+public protocol ReferrerPolicyAttribute: Attribute {
     
     /// The function represents the html-attribute 'referrerpolicy'.
     ///
@@ -2287,27 +1905,22 @@ public protocol ReferrerPolicyAttribute: AnyAttribute {
     func referrerPolicy(_ value: Values.Policy) -> Self
 }
 
-extension ReferrerPolicyAttribute {
-
-    internal var key: String { "referrerpolicy" }
-}
-
 extension ReferrerPolicyAttribute where Self: ContentNode {
     
     internal func mutate(referrerpolicy value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "referrerpolicy", value: value)
     }
 }
 
 extension ReferrerPolicyAttribute where Self: EmptyNode {
     
     internal func mutate(referrerpolicy value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "referrerpolicy", value: value)
     }
 }
 
 /// The protocol provides the element with the relationship handler.
-public protocol RelationshipAttribute: AnyAttribute {
+public protocol RelationshipAttribute: Attribute {
     
     /// The function represents the html-attribute 'rel'.
     ///
@@ -2317,27 +1930,22 @@ public protocol RelationshipAttribute: AnyAttribute {
     func relationship(_ value: Values.Relation) -> Self
 }
 
-extension RelationshipAttribute {
-    
-    internal var key: String { "rel" }
-}
-
 extension RelationshipAttribute where Self: ContentNode {
     
     internal func mutate(rel value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "rel", value: value)
     }
 }
 
 extension RelationshipAttribute where Self: EmptyNode {
     
     internal func mutate(rel value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "rel", value: value)
     }
 }
 
 /// The protocol provides the element with the required handler.
-public protocol RequiredAttribute: AnyAttribute {
+public protocol RequiredAttribute: Attribute {
     
     /// The function represents the html-attribute 'required'.
     ///
@@ -2347,27 +1955,22 @@ public protocol RequiredAttribute: AnyAttribute {
     func required() -> Self
 }
 
-extension RequiredAttribute {
-    
-    internal var key: String { "required" }
-}
-
 extension RequiredAttribute where Self: ContentNode {
     
     internal func mutate(required value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "required", value: value)
     }
 }
 
 extension RequiredAttribute where Self: EmptyNode {
     
     internal func mutate(required value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "required", value: value)
     }
 }
 
 /// The protocol provides the element with the reversed handler.
-public protocol ReversedAttribute: AnyAttribute {
+public protocol ReversedAttribute: Attribute {
     
     /// The function represents the html-attribute 'reversed'.
     ///
@@ -2377,27 +1980,22 @@ public protocol ReversedAttribute: AnyAttribute {
     func reversed() -> Self
 }
 
-extension ReversedAttribute {
-    
-    internal var key: String { "reversed" }
-}
-
 extension ReversedAttribute where Self: ContentNode {
     
     internal func mutate(reversed value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "reversed", value: value)
     }
 }
 
 extension ReversedAttribute where Self: EmptyNode {
     
     internal func mutate(reversed value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "reversed", value: value)
     }
 }
 
 /// The protocol provides the element with the role handler.
-public protocol RoleAttribute: AnyAttribute {
+public protocol RoleAttribute: Attribute {
     
     /// The function represents the html-attribute 'role'.
     ///
@@ -2407,27 +2005,22 @@ public protocol RoleAttribute: AnyAttribute {
     func role(_ value: Values.Role) -> Self
 }
 
-extension RoleAttribute {
-    
-    internal var key: String { "role" }
-}
-
 extension RoleAttribute where Self: ContentNode {
     
     internal func mutate(role value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "role", value: value)
     }
 }
 
 extension RoleAttribute where Self: EmptyNode {
     
     internal func mutate(role value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "role", value: value)
     }
 }
 
 /// The protocol provides the element with the rows handler.
-public protocol RowsAttribute: AnyAttribute {
+public protocol RowsAttribute: Attribute {
     
     /// The function represents the html-attribute 'rows'.
     ///
@@ -2437,27 +2030,22 @@ public protocol RowsAttribute: AnyAttribute {
     func rows(_ size: Int) -> Self
 }
 
-extension RowsAttribute {
-
-    internal var key: String { "rows" }
-}
-
 extension RowsAttribute where Self: ContentNode {
     
     internal func mutate(rows value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "rows", value: value)
     }
 }
 
 extension RowsAttribute where Self: EmptyNode {
     
     internal func mutate(rows value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "rows", value: value)
     }
 }
 
 /// The protocol provides the element with the rowspan handler.
-public protocol RowSpanAttribute: AnyAttribute {
+public protocol RowSpanAttribute: Attribute {
     
     /// The function represents the html-attribute 'rowspan'.
     ///
@@ -2467,27 +2055,22 @@ public protocol RowSpanAttribute: AnyAttribute {
     func rowSpan(_ size: Int) -> Self
 }
 
-extension RowSpanAttribute {
-
-    internal var key: String { "rowspan" }
-}
-
 extension RowSpanAttribute where Self: ContentNode {
     
     internal func mutate(rowspan value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "rowspan", value: value)
     }
 }
 
 extension RowSpanAttribute where Self: EmptyNode {
     
     internal func mutate(rowspan value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "rowspan", value: value)
     }
 }
 
 /// The protocol provides the element with the sandbox handler.
-public protocol SandboxAttribute: AnyAttribute {
+public protocol SandboxAttribute: Attribute {
     
     /// The function represents the html-attribute 'sandbox'.
     ///
@@ -2497,27 +2080,22 @@ public protocol SandboxAttribute: AnyAttribute {
     func sandbox() -> Self
 }
 
-extension SandboxAttribute {
-    
-    internal var key: String { "sandbox" }
-}
-
 extension SandboxAttribute where Self: ContentNode {
     
     internal func mutate(sandbox value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "sandbox", value: value)
     }
 }
 
 extension SandboxAttribute where Self: EmptyNode {
     
     internal func mutate(sandbox value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "sandbox", value: value)
     }
 }
 
 /// The protocol provides the element with the scope handler.
-public protocol ScopeAttribute: AnyAttribute {
+public protocol ScopeAttribute: Attribute {
     
     /// The function represents the html-attribute 'scope'.
     ///
@@ -2527,27 +2105,22 @@ public protocol ScopeAttribute: AnyAttribute {
     func scope(_ value: String) -> Self
 }
 
-extension ScopeAttribute {
-
-    internal var key: String { "scope" }
-}
-
 extension ScopeAttribute where Self: ContentNode {
     
     internal func mutate(scope value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "scope", value: value)
     }
 }
 
 extension ScopeAttribute where Self: EmptyNode {
     
     internal func mutate(scope value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "scope", value: value)
     }
 }
 
 /// The protocol provides the element with the shape handler.
-public protocol ShapeAttribute: AnyAttribute {
+public protocol ShapeAttribute: Attribute {
     
     /// The function represents the html-attribute 'shape'.
     ///
@@ -2557,27 +2130,22 @@ public protocol ShapeAttribute: AnyAttribute {
     func shape(_ value: Values.Shape) -> Self
 }
 
-extension ShapeAttribute {
-
-    internal var key: String { "shape" }
-}
-
 extension ShapeAttribute where Self: ContentNode {
     
     internal func mutate(shape value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "shape", value: value)
     }
 }
 
 extension ShapeAttribute where Self: EmptyNode {
     
     internal func mutate(shape value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "shape", value: value)
     }
 }
 
 /// The protocol provides the element with the size handler.
-public protocol SizeAttribute: AnyAttribute {
+public protocol SizeAttribute: Attribute {
     
     /// The function represents the html-attribute 'size'.
     ///
@@ -2587,27 +2155,22 @@ public protocol SizeAttribute: AnyAttribute {
     func size(_ size: Int) -> Self
 }
 
-extension SizeAttribute {
-
-    internal var key: String { "size" }
-}
-
 extension SizeAttribute where Self: ContentNode {
     
     internal func mutate(size value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "size", value: value)
     }
 }
 
 extension SizeAttribute where Self: EmptyNode {
     
     internal func mutate(size value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "size", value: value)
     }
 }
 
 /// The protocol provides the element with the sizes handler.
-public protocol SizesAttribute: AnyAttribute {
+public protocol SizesAttribute: Attribute {
     
     /// The function represents the html-attribute 'sizes'.
     ///
@@ -2617,27 +2180,22 @@ public protocol SizesAttribute: AnyAttribute {
     func sizes(_ size: Int) -> Self
 }
 
-extension SizesAttribute {
-
-    internal var key: String { "sizes" }
-}
-
 extension SizesAttribute where Self: ContentNode {
     
     internal func mutate(sizes value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "sizes", value: value)
     }
 }
 
 extension SizesAttribute where Self: EmptyNode {
     
     internal func mutate(sizes value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "sizes", value: value)
     }
 }
 
 /// The protocol provides the element with the slot handler.
-public protocol SlotAttribute: AnyAttribute {
+public protocol SlotAttribute: Attribute {
     
     /// The function represents the html-attribute 'slot'.
     ///
@@ -2647,27 +2205,22 @@ public protocol SlotAttribute: AnyAttribute {
     func slot(_ value: String) -> Self
 }
 
-extension SlotAttribute {
-    
-    internal var key: String { "slot" }
-}
-
 extension SlotAttribute where Self: ContentNode {
     
     internal func mutate(slot value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "slot", value: value)
     }
 }
 
 extension SlotAttribute where Self: EmptyNode {
     
     internal func mutate(slot value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "slot", value: value)
     }
 }
 
 /// The protocol provides the element with the span handler.
-public protocol SpanAttribute: AnyAttribute {
+public protocol SpanAttribute: Attribute {
     
     /// The function represents the html-attribute 'span'.
     ///
@@ -2677,27 +2230,22 @@ public protocol SpanAttribute: AnyAttribute {
     func span(_ size: Int) -> Self
 }
 
-extension SpanAttribute {
-
-    internal var key: String { "span" }
-}
-
 extension SpanAttribute where Self: ContentNode {
     
     internal func mutate(span value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "span", value: value)
     }
 }
 
 extension SpanAttribute where Self: EmptyNode {
     
     internal func mutate(span value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "span", value: value)
     }
 }
 
 /// The protocol provides the element with the hasspellcheck handler.
-public protocol SpellCheckAttribute: AnyAttribute {
+public protocol SpellCheckAttribute: Attribute {
  
     /// The function represents the html-attribute 'spellcheck'.
     ///
@@ -2707,27 +2255,22 @@ public protocol SpellCheckAttribute: AnyAttribute {
     func hasSpellCheck(_ value: Bool) -> Self
 }
 
-extension SpellCheckAttribute {
-    
-    internal var key: String { "spellcheck" }
-}
-
 extension SpellCheckAttribute where Self: ContentNode {
     
     internal func mutate(spellcheck value: Bool) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "spellcheck", value: value)
     }
 }
 
 extension SpellCheckAttribute where Self: EmptyNode {
     
     internal func mutate(spellcheck value: Bool) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "spellcheck", value: value)
     }
 }
 
 /// The protocol provides the element with the source handler.
-public protocol SourceAttribute: AnyAttribute {
+public protocol SourceAttribute: Attribute {
     
     /// The function represents the html-attribute 'src'.
     ///
@@ -2737,27 +2280,22 @@ public protocol SourceAttribute: AnyAttribute {
     func source(_ value: String) -> Self
 }
 
-extension SourceAttribute {
-    
-    internal var key: String { "src" }
-}
-
 extension SourceAttribute where Self: ContentNode {
     
     internal func mutate(source value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "src", value: value)
     }
 }
 
 extension SourceAttribute where Self: EmptyNode {
     
     internal func mutate(source value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "src", value: value)
     }
 }
 
 /// The protocol provides the element with the start handler.
-public protocol StartAttribute: AnyAttribute {
+public protocol StartAttribute: Attribute {
     
     /// The function represents the html-attribute 'start'.
     ///
@@ -2767,27 +2305,22 @@ public protocol StartAttribute: AnyAttribute {
     func start(_ size: Int) -> Self
 }
 
-extension StartAttribute {
-    
-    internal var key: String { "start" }
-}
-
 extension StartAttribute where Self: ContentNode {
     
     internal func mutate(start value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "start", value: value)
     }
 }
 
 extension StartAttribute where Self: EmptyNode {
     
     internal func mutate(start value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "start", value: value)
     }
 }
 
 /// The protocol provides the element with the step handler.
-public protocol StepAttribute: AnyAttribute {
+public protocol StepAttribute: Attribute {
     
     /// The function represents the html-attribute 'step'.
     ///
@@ -2797,27 +2330,22 @@ public protocol StepAttribute: AnyAttribute {
     func step(_ size: Int) -> Self
 }
 
-extension StepAttribute {
-
-    internal var key: String { "step" }
-}
-
 extension StepAttribute where Self: ContentNode {
     
     internal func mutate(step value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "step", value: value)
     }
 }
 
 extension StepAttribute where Self: EmptyNode {
     
     internal func mutate(step value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "step", value: value)
     }
 }
 
 /// The protocol provides the element with the style handler.
-public protocol StyleAttribute: AnyAttribute {
+public protocol StyleAttribute: Attribute {
     
     /// The function represents the html-attribute 'style'.
     ///
@@ -2827,27 +2355,22 @@ public protocol StyleAttribute: AnyAttribute {
     func style(_ value: String) -> Self
 }
 
-extension StyleAttribute {
-    
-    internal var key: String { "style" }
-}
-
 extension StyleAttribute where Self: ContentNode {
     
     internal func mutate(style value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "style", value: value)
     }
 }
 
 extension StyleAttribute where Self: EmptyNode {
     
     internal func mutate(style value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "style", value: value)
     }
 }
 
 /// The protocol provides the element with the tabindex handler.
-public protocol TabulatorAttribute: AnyAttribute {
+public protocol TabulatorAttribute: Attribute {
  
     /// The function represents the html-attribute 'tabindex'.
     ///
@@ -2857,27 +2380,22 @@ public protocol TabulatorAttribute: AnyAttribute {
     func tabIndex(_ value: Int) -> Self
 }
 
-extension TabulatorAttribute {
-    
-    internal var key: String { "tabindex" }
-}
-
 extension TabulatorAttribute where Self: ContentNode {
     
     internal func mutate(tabindex value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "tabindex", value: value)
     }
 }
 
 extension TabulatorAttribute where Self: EmptyNode {
     
     internal func mutate(tabindex value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "tabindex", value: value)
     }
 }
 
 /// The protocol provides the element with the target handler.
-public protocol TargetAttribute: AnyAttribute {
+public protocol TargetAttribute: Attribute {
     
     /// The function represents the html-attribute 'target'.
     ///
@@ -2887,27 +2405,22 @@ public protocol TargetAttribute: AnyAttribute {
     func target(_ value: Values.Target) -> Self
 }
 
-extension TargetAttribute {
-    
-    internal var key: String { "target" }
-}
-
 extension TargetAttribute where Self: ContentNode {
     
     internal func mutate(target value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "target", value: value)
     }
 }
 
 extension TargetAttribute where Self: EmptyNode {
     
     internal func mutate(target value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "target", value: value)
     }
 }
 
 /// The protocol provides the element with the title handler.
-public protocol TitleAttribute: AnyAttribute {
+public protocol TitleAttribute: Attribute {
  
     /// The function represents the html-attribute 'title'.
     ///
@@ -2917,27 +2430,22 @@ public protocol TitleAttribute: AnyAttribute {
     func title(_ value: String) -> Self
 }
 
-extension TitleAttribute {
-    
-    internal var key: String { "title" }
-}
-
 extension TitleAttribute where Self: ContentNode {
     
     internal func mutate(title value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "title", value: value)
     }
 }
 
 extension TitleAttribute where Self: EmptyNode {
     
     internal func mutate(title value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "title", value: value)
     }
 }
 
 /// The protocol provides the element with the translate handler.
-public protocol TranslateAttribute: AnyAttribute {
+public protocol TranslateAttribute: Attribute {
  
     /// The function represents the html-attribute 'translate'.
     ///
@@ -2947,27 +2455,22 @@ public protocol TranslateAttribute: AnyAttribute {
     func translate(_ value: Values.Decision) -> Self
 }
 
-extension TranslateAttribute {
-    
-    internal var key: String { "translate" }
-}
-
 extension TranslateAttribute where Self: ContentNode {
     
     internal func mutate(translate value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "translate", value: value)
     }
 }
 
 extension TranslateAttribute where Self: EmptyNode {
     
     internal func mutate(translate value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "translate", value: value)
     }
 }
 
 /// The protocol provides the element with the type handler.
-public protocol TypeAttribute: AnyAttribute {
+public protocol TypeAttribute: Attribute {
 
     associatedtype TypeValue
     
@@ -2979,27 +2482,22 @@ public protocol TypeAttribute: AnyAttribute {
     func type(_ value: TypeValue) -> Self
 }
 
-extension TypeAttribute {
-    
-    internal var key: String { "type" }
-}
-
 extension TypeAttribute where Self: ContentNode {
     
     internal func mutate(type value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "type", value: value)
     }
 }
 
 extension TypeAttribute where Self: EmptyNode {
     
     internal func mutate(type value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "type", value: value)
     }
 }
 
 /// The protocol provides the element with the value handler.
-public protocol ValueAttribute: AnyAttribute {
+public protocol ValueAttribute: Attribute {
     
     /// The function represents the html-attribute 'value'.
     ///
@@ -3007,31 +2505,24 @@ public protocol ValueAttribute: AnyAttribute {
     /// <tag value="" />
     /// ```
     func value(_ value: String) -> Self
-    
-    func value(_ value: TemplateValue<String>) -> Self
-}
-
-extension ValueAttribute {
-
-    internal var key: String { "value" }
 }
 
 extension ValueAttribute where Self: ContentNode {
     
     internal func mutate(value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "value", value: value)
     }
 }
 
 extension ValueAttribute where Self: EmptyNode {
     
     internal func mutate(value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "value", value: value)
     }
 }
 
 /// The protocol provides the element with the width handler.
-public protocol WidthAttribute: AnyAttribute {
+public protocol WidthAttribute: Attribute {
     
     /// The function represents the html-attribute 'width'.
     ///
@@ -3041,27 +2532,22 @@ public protocol WidthAttribute: AnyAttribute {
     func width(_ size: Int) -> Self
 }
 
-extension WidthAttribute {
-
-    internal var key: String { "width" }
-}
-
 extension WidthAttribute where Self: ContentNode {
     
     internal func mutate(width value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "width", value: value)
     }
 }
 
 extension WidthAttribute where Self: EmptyNode {
     
     internal func mutate(width value: Int) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "width", value: value)
     }
 }
 
 /// The protocol provides the element with the wrap handler.
-public protocol WrapAttribute: AnyAttribute {
+public protocol WrapAttribute: Attribute {
     
     /// The function represents the html-attribute 'wrap'.
     ///
@@ -3071,27 +2557,22 @@ public protocol WrapAttribute: AnyAttribute {
     func wrap(_ value: Values.Wrapping) -> Self
 }
 
-extension WrapAttribute {
-
-    internal var key: String { "wrap" }
-}
-
 extension WrapAttribute where Self: ContentNode {
     
     internal func mutate(wrap value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "wrap", value: value)
     }
 }
 
 extension WrapAttribute where Self: EmptyNode {
     
     internal func mutate(wrap value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "wrap", value: value)
     }
 }
 
 /// The protocol provides the element with the property handler.
-public protocol PropertyAttribute: AnyAttribute {
+public protocol PropertyAttribute: Attribute {
     
     /// The function represents the html-attribute 'property'.
     ///
@@ -3103,27 +2584,22 @@ public protocol PropertyAttribute: AnyAttribute {
     func property(_ value: Values.Graph) -> Self
 }
 
-extension PropertyAttribute {
-    
-    internal var key: String { "property" }
-}
-
 extension PropertyAttribute where Self: ContentNode {
     
     internal func mutate(property value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "property", value: value)
     }
 }
 
 extension PropertyAttribute where Self: EmptyNode {
     
     internal func mutate(property value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "property", value: value)
     }
 }
 
 /// The protocol provides the element with the selected handler.
-public protocol SelectedAttribute: AnyAttribute {
+public protocol SelectedAttribute: Attribute {
     
     /// The function represents the html-attribute 'selected'.
     ///
@@ -3133,21 +2609,16 @@ public protocol SelectedAttribute: AnyAttribute {
     func selected() -> Self
 }
 
-extension SelectedAttribute {
-    
-    internal var key: String { "selected" }
-}
-
 extension SelectedAttribute where Self: ContentNode {
     
     internal func mutate(selected value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "selected", value: value)
     }
 }
 
 extension SelectedAttribute where Self: EmptyNode {
     
     internal func mutate(selected value: String) -> Self {
-        return self.mutate(key: self.key, value: value)
+        return self.mutate(key: "selected", value: value)
     }
 }

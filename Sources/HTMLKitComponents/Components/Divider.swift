@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that seperates content visually.
-public struct Divider: Component {
+public struct Divider: View {
     
     /// The classes of the divider.
     internal  var classes: [String]
@@ -21,7 +21,7 @@ public struct Divider: Component {
         self.classes = classes
     }
     
-    public var body: AnyContent {
+    public var body: Content {
         HorizontalRule()
             .class(classes.joined(separator: " "))
     }

@@ -5,7 +5,7 @@ A component that displays the name of the form control.
 ## Declaration
 
 ```swift
-struct FieldLabel : Component
+struct FieldLabel : View
 ```
 
 ## Overview
