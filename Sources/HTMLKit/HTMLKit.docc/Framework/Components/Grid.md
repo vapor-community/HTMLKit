@@ -1,23 +1,19 @@
-# Collection
+# Grid
 
 A component to collect and arrange collection items horizontally.
 
 ## Declaration
 
 ```swift
-struct Collection : Component
+struct Grid : View
 ```
 
 ## Overview
 
 ```swift
-Collection(ratio: .half) {
-    CollectionItem {
+Grid(ratio: .half) {
+    GridItem {
         Image(source: "../assets/thumbnail.png")
     }
 }
 ```
-
-### Modifiers
-
-- collectionStyle(_ style: Token.CollectionStyle)

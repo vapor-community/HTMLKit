@@ -1,18 +1,18 @@
-# ResetButton
+# LinkButton
 
-A component that initiates a form reset.
+A component that initiates an action.
 
 ## Declaration
 
 ```swift
-struct ResetButton : Component
+struct LinkButton : View
 ```
 
 ## Overview
 
 ```swift
-ResetButton {
-    "Reset"
+LinkButton(destination: "/home") {
+    "Home"
 }
 ```
 

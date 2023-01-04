@@ -5,7 +5,7 @@ A component that overlays content.
 ## Declaration
 
 ```swift
-struct ZStack : Component
+struct ZStack : View
 ```
 
 ## Overview

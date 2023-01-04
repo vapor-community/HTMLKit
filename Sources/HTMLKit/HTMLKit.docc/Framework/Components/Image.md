@@ -5,7 +5,7 @@ A component that displays a image.
 ## Declaration
 
 ```swift
-struct Image : Component
+struct Image : View
 ```
 
 ## Overview

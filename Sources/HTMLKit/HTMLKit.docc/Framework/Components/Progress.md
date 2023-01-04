@@ -1,16 +1,16 @@
-# ProgressView
+# Progress
 
 A component to display the progress of a task.
 
 ## Declaration
 
 ```swift
-struct ProgressView : Component
+struct Progress : View
 ```
 
 ## Overview
 
 ```swift
-ProgressView(name: "delivery") {
+Progress(max: 100, value: 10) {
 }
 ```

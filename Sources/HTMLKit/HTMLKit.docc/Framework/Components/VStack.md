@@ -5,7 +5,7 @@ A component to arrange content vertically.
 ## Declaration
 
 ```swift
-struct VStack : Component
+struct VStack : View
 ```
 
 ## Overview

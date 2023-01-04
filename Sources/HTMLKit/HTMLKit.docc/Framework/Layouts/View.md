@@ -9,7 +9,7 @@ A view is a single part of a page. You create a view by declaring a type that co
 ```swift
 struct ExampleView: View {
 
-    var body: AnyContent {
+    var body: Content {
         Heading1 {
             "Lorem ipsum..."
         }

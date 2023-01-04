@@ -4,9 +4,9 @@ Write HTML markup using the abstraction.
 
 ## Overview
 
-The elements in HTMLKit are an abstraction of the elements in HTML (Hyper Text Markup Language). If you have written HTML before, then you know, there are elements with or without an endtag. An Element with an end tag, will be represented in HTMLKit as an element with curly brackets, while an element without will be represented with the round brackets.
+The elements in HTMLKit are an abstraction of the elements in HTML (Hyper Text Markup Language). If you have written HTML before, then you know, there are elements with or without an endtag. 
 
-If you would like to add attributes, use the offered methods on the element. In most cases the method name matches the attribute name in HTML.
+An element with an endtag, will be represented in HTMLKit as an element with curly brackets, while an element without, will be represented with the round brackets.
 
 ```swift
 /// element with content
@@ -14,15 +14,20 @@ Body {
     Paragraph {
         "Lorem ipsum..."
     }
-    .class("value")
 }
 
 /// element without content
 Input()
-    .required()
 ```
 
-To prevent writing invalid code, each element in HTMLKit owns an element limitation. For example the element *Heading1* is a type of *BodyElement*, so it is only valid as content of a body element.
+If you would like to add attributes, use the methods on the element. In most cases the method name matches the attribute name in HTML.
+
+```swift
+Input()
+    .class("input")
+```
+
+To prevent writing invalid code, each element in HTMLKit owns an element limitation. For example the element *Heading1* is a type of *BodyElement*, so it is only valid as descendant of a body element.
 
 ```swift
 public struct Heading1: ContentNode, BodyElement {
@@ -53,11 +58,15 @@ extension FormContainer: GlobalElement {
 
 ### Basic elements
 
+- ``HTMLKit/Document``
+
 - ``HTMLKit/Html``
 
 - ``HTMLKit/Head``
 
 - ``HTMLKit/Body``
+
+- ``HTMLKit/Comment``
 
 ### Head elements
 
@@ -87,7 +96,29 @@ extension FormContainer: GlobalElement {
 
 - ``HTMLKit/Footer``
 
+- ``HTMLKit/Article``
+
+- ``HTMLKit/Span``
+
+- ``HTMLKit/Dialog``
+
+- ``HTMLKit/Details``
+
+- ``HTMLKit/Summary``
+
+- ``HTMLKit/DescriptionList``
+
+- ``HTMLKit/TermName``
+
+- ``HTMLKit/TermDefinition``
+
+- ``HTMLKit/Address``
+
+- ``HTMLKit/Template``
+
 ### Paragraph elements
+
+- ``HTMLKit/HeadingGroup``
 
 - ``HTMLKit/Heading1``
 
@@ -115,6 +146,50 @@ extension FormContainer: GlobalElement {
 
 - ``HTMLKit/Strong``
 
+- ``HTMLKit/StrikeThrough``
+
+- ``HTMLKit/ShortQuote``
+
+- ``HTMLKit/DeletedText``
+
+- ``HTMLKit/InsertedText``
+
+- ``HTMLKit/Code``
+
+- ``HTMLKit/SampleOutput``
+
+- ``HTMLKit/KeyboardInput``
+
+- ``HTMLKit/Cite``
+
+- ``HTMLKit/Blockquote``
+
+- ``HTMLKit/PreformattedText``
+
+- ``HTMLKit/Subscript``
+
+- ``HTMLKit/Superscript``
+
+- ``HTMLKit/Ruby``
+
+- ``HTMLKit/RubyPronunciation``
+
+- ``HTMLKit/RubyText``
+
+- ``HTMLKit/Mark``
+
+- ``HTMLKit/Abbreviation``
+
+- ``HTMLKit/Time``
+
+- ``HTMLKit/Definition``
+
+- ``HTMLKit/Bdi``
+
+- ``HTMLKit/Bdo``
+
+- ``HTMLKit/Variable``
+
 ### List elements
 
 - ``HTMLKit/UnorderedList``
@@ -122,6 +197,8 @@ extension FormContainer: GlobalElement {
 - ``HTMLKit/OrderedList``
 
 - ``HTMLKit/ListItem``
+
+- ``HTMLKit/Data``
 
 ### Table elements
 
@@ -139,6 +216,12 @@ extension FormContainer: GlobalElement {
 
 - ``HTMLKit/DataCell``
 
+- ``HTMLKit/ColumnGroup``
+
+- ``HTMLKit/Column``
+
+- ``HTMLKit/Caption``
+
 ### Form elements
 
 - ``HTMLKit/Form``
@@ -147,13 +230,31 @@ extension FormContainer: GlobalElement {
 
 - ``HTMLKit/Input``
 
+- ``HTMLKit/DataList``
+
 - ``HTMLKit/TextArea``
 
 - ``HTMLKit/Select``
 
+- ``HTMLKit/OptionGroup``
+
+- ``HTMLKit/Option``
+
 - ``HTMLKit/Button``
 
 - ``HTMLKit/Fieldset``
+
+- ``HTMLKit/Legend``
+
+- ``HTMLKit/Progress``
+
+- ``HTMLKit/Meter``
+
+- ``HTMLKit/Output``
+
+### Link elements
+
+- ``HTMLKit/Anchor``
 
 ### Media elements
 
@@ -161,7 +262,29 @@ extension FormContainer: GlobalElement {
 
 - ``HTMLKit/Video``
 
+- ``HTMLKit/Source``
+
+- ``HTMLKit/Track``
+
+- ``HTMLKit/Image``
+
+- ``HTMLKit/Map``
+
+- ``HTMLKit/Area``
+
+- ``HTMLKit/Picture``
+
+- ``HTMLKit/Figure``
+
+- ``HTMLKit/FigureCaption``
+
+- ``HTMLKit/Object``
+
+- ``HTMLKit/Parameter``
+
 ### Vector elements
+
+- ``HTMLKit/Vector``
 
 - ``HTMLKit/Circle``
 
@@ -180,3 +303,31 @@ extension FormContainer: GlobalElement {
 - ``HTMLKit/Group``
 
 - ``HTMLKit/Use``
+
+### Break elements
+
+- ``HTMLKit/LineBreak``
+
+- ``HTMLKit/WordBreak``
+
+- ``HTMLKit/HorizontalRule``
+
+### Embed elements
+
+- ``HTMLKit/Embed``
+
+- ``HTMLKit/InlineFrame``
+
+- ``HTMLKit/Canvas``
+
+### Script elements
+
+- ``HTMLKit/Script``
+
+- ``HTMLKit/NoScript``
+
+- ``HTMLKit/Template``
+
+### Custom elements
+
+- ``HTMLKit/Custom``

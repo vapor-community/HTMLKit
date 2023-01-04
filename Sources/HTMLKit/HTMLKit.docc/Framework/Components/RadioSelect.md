@@ -5,7 +5,7 @@ A component for selecting only one of multiple options.
 ## Declaration
 
 ```swift
-struct RadioSelect : Component
+struct RadioSelect : View
 ```
 
 ## Overview

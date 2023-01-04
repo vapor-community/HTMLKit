@@ -5,7 +5,7 @@ A component to collect and arrange list items vertically.
 ## Declaration
 
 ```swift
-struct List : Component
+struct List : View
 ```
 
 ## Overview

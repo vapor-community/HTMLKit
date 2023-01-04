@@ -1,17 +1,17 @@
-# SubmitButton
+# Button
 
-A component that initiates a form submit.
+A component that initiates a form reset.
 
 ## Declaration
 
 ```swift
-struct SubmitButton : Component
+struct Button : View
 ```
 
 ## Overview
 
 ```swift
-SubmitButton {
+Button(role: .submit) {
     "Submit"
 }
 ```

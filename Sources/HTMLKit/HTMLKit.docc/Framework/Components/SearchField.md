@@ -5,7 +5,7 @@ A component to initiate a search or filter.
 ## Declaration
 
 ```swift
-struct SearchField : Component
+struct SearchField : View
 ```
 
 ## Overview
