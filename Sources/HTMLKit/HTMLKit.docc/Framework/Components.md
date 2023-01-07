@@ -25,6 +25,9 @@ Text {
 .onHover(perfom: .show("navigation"))
 ```
 
+See the article <doc:ComponentsPlugin> before you get started.
+
+
 ## Topics
 
 ### Form components

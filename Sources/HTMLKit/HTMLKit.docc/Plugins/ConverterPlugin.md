@@ -1,6 +1,6 @@
-# Use conversion
+# Converter plugin
 
-Converts HTML markup
+Converts HTML markup into HTMLKit syntax.
 
 ## Overview
 

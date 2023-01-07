@@ -11,55 +11,58 @@ internal struct DeployCommand {
         return CommandLine.arguments[2]
     }
     
+    private static let manager = FileManager.default
+    
     internal static func main() throws {
         
-        if !FileManager.default.fileExists(atPath: sourcePath) {
+        if !manager.fileExists(atPath: sourcePath) {
             print("No valid source path.")
             
             exit(1)
             
         } else {
             
-            let resourcesDirectory = URL(fileURLWithPath: sourcePath)
-                .appendingPathComponent("Resources", isDirectory: true)
+            try compose(source: sourcePath + "/Resources/css/", to: targetPath + "/htmlkit/", with: "all.css")
             
-            let distributionFile = URL(fileURLWithPath: targetPath)
-                .appendingPathComponent("Public", isDirectory: true)
-                .appendingPathComponent("HtmlKit", isDirectory: true)
-                .appendingPathComponent("css")
-                .appendingPathComponent("all")
-                .appendingPathExtension("css")
+            try compose(source: sourcePath + "/Resources/js/", to: targetPath + "/htmlkit/", with: "all.js")
             
-            if let enumerator = FileManager.default.enumerator(at: resourcesDirectory, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) {
+            exit(0)
+        }
+    }
+    
+    /// Iterates through the directory and collects data to create a single file
+    private static func compose(source: String, to target: String, with filename: String) throws {
+        
+        if !manager.fileExists(atPath: target) {
+            try manager.createDirectory(atPath: target, withIntermediateDirectories: true)
+        }
+        
+        if !manager.fileExists(atPath: target + filename) {
+            manager.createFile(atPath: target + filename, contents: nil)
+        }
+        
+        if let enumerator = manager.enumerator(at: URL(fileURLWithPath: source), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) {
+            
+            for case let path as URL in enumerator {
                 
-                for case let path as URL in enumerator {
+                if !path.hasDirectoryPath {
                     
-                    if !path.hasDirectoryPath {
+                    if !path.isFileURL {
+                        enumerator.skipDescendants()
                         
-                        if !path.isFileURL {
-                            enumerator.skipDescendants()
-                            
-                        } else {
-                            
-                            let data = try Data(contentsOf: path)
-                            
-                            if let handle = try? FileHandle(forWritingTo: distributionFile) {
-                                
-                                handle.seekToEndOfFile()
-                                
-                                handle.write(data)
-                                
-                                handle.closeFile()
-                                
-                            } else {
-                                try data.write(to: distributionFile)
-                            }
+                    } else {
+                        
+                        if let handle = FileHandle(forWritingAtPath: target + filename) {
+                         
+                            handle.seekToEndOfFile()
+                                    
+                            handle.write(try Data(contentsOf: path))
+                                  
+                            handle.closeFile()
                         }
                     }
                 }
             }
-            
-            exit(0)
         }
     }
 }
