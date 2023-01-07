@@ -15,15 +15,18 @@ struct ComponentsPlugin: CommandPlugin {
         if usageArgument > 0 {
             
             let explanation = """
-            USAGE: deploy
+            USAGE: deploy --target-path <path>
             
             ARGUMENTS:
+            <target path> - The path, where the converted files should be saved into.
             """
             
             print(explanation)
             
         } else {
 
+            let targetArgument = extractor.extractOption(named: "target-path")
+            
             var processArguments = [String]()
             
             if let dependency = try context.dependency(named: "HTMLKit") {
@@ -32,14 +35,19 @@ struct ComponentsPlugin: CommandPlugin {
                     processArguments.insert(target.directory.string, at: 0)
                     
                 } else {
-                    Diagnostics.error("Missing package.")
+                    Diagnostics.error("The target 'HTMLKitComponents' could not be found.")
                 }
                 
             } else {
-                Diagnostics.error("Missing package.")
+                Diagnostics.error("The target 'HTMLKit' could not be found.")
             }
             
-            processArguments.insert(context.package.directory.string, at: 1)
+            if let target = targetArgument.first {
+                processArguments.insert(target, at: 1)
+                
+            } else {
+                Diagnostics.error("Missing argument --target-path.")
+            }
             
             print("The deploy starts...")
             
