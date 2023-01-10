@@ -1,13 +1,13 @@
 /*
  Abstract:
- The file contains the configuration for Lingo.
+ The file contains the configuration for the localization.
  */
 
 import Foundation
 import Lingo
 
 /// The localization
-public class LingoConfiguration {
+public class Localization {
     
     /// A enumeration of possible locale identifier
     public enum Locale: String {
@@ -23,10 +23,10 @@ public class LingoConfiguration {
         case indonesian = "id"
     }
     
-    /// The root path
+    /// The  path of the source directory
     internal var defaultDirectory: String
     
-    /// The locale indentifier
+    /// The default locale indentifier
     internal var defaultLocale: String
     
     internal var lingo: Lingo? {
@@ -41,8 +41,8 @@ public class LingoConfiguration {
     }
     
     /// Sets the root path
-    public func set(directory: URL) {
-        self.defaultDirectory = directory.path
+    public func set(source: URL) {
+        self.defaultDirectory = source.path
     }
     
     /// Sets the default locale indentifier

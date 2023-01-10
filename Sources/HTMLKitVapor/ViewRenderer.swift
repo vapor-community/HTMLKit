@@ -17,10 +17,10 @@ public class ViewRenderer {
     internal var renderer: Renderer
     
     /// Creates the view renderer
-    public init(eventLoop: EventLoop, lingo: LingoConfiguration) {
+    public init(eventLoop: EventLoop, localization: Localization, environment: Environment) {
         
         self.eventLoop = eventLoop
-        self.renderer = Renderer(lingo: lingo.lingo)
+        self.renderer = Renderer(lingo: localization.lingo, manager: environment.manager)
     }
     
     /// Renders a layout and its context

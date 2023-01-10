@@ -54,8 +54,12 @@ public class Renderer {
         self.lingo = lingo
     }
     
-    public func add<T>(model: T) where T: Encodable {
-        manager.upsert(model, for: \T.self)
+    /// Initiates the renderer.
+    public init(lingo: Lingo? = nil, manager: Manager) {
+        
+        self.environment = Environment()
+        self.manager = manager
+        self.lingo = lingo
     }
     
     /// Renders a view

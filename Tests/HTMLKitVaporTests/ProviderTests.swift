@@ -157,8 +157,8 @@ final class ProviderTests: XCTestCase {
         
         defer { app.shutdown() }
         
-        app.htmlkit.lingo.set(directory: currentDirectory)
-        app.htmlkit.lingo.set(locale: .french)
+        app.htmlkit.localization.set(source: currentDirectory)
+        app.htmlkit.localization.set(locale: .french)
         
         app.get("test") { request async throws -> Vapor.View in
             
