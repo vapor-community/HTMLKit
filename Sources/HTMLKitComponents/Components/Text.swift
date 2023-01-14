@@ -65,6 +65,21 @@ extension Text: HoverModifier {
     }
 }
 
+extension Text: PressModifier {
+    
+    public func onClick(perfom action: Actions) -> Text {
+        return self.mutate(clickevent: action.script)
+    }
+    
+    public func onTap(perfom action: Actions) -> Text {
+        return self.mutate(tapevent: action.script)
+    }
+    
+    public func onPress(perfom action: Actions) -> Text {
+        return self.mutate(pressevent: action.script)
+    }
+}
+
 extension Text: TextModifier {
     
     public func font(_ style: Tokens.TextStyle) -> Text {
