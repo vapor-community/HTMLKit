@@ -116,6 +116,10 @@ public class Renderer {
                 result += try render(modifier: modifier)
             }
             
+            if let value = content as? EnvironmentValue {
+                result += try render(value: value)
+            }
+            
             if let element = content as? String {
                 result += element
             }
