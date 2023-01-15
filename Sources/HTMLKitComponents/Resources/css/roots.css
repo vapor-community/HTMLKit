@@ -138,7 +138,7 @@
      divider variables
      */
     
-    --dividerColor: #FFFFFF;
+    --dividerColor: var(--grayColor);
     
     /**
      button variables
@@ -178,13 +178,22 @@
     
     
     /**
-     grid variables
+     card variables
      */
     
     --cardPaddingY: 12px;
     --cardPaddingX: 16px;
     --cardBorderWidth: 1px;
-    --cardBorderRadius: 15px;
+    --cardBorderRadius: 5px;
     --cardBorderColor: var(--grayColor);
     --cardBackgroundColor: var(--whiteColor);
+    
+    /**
+     dropdown variables
+     */
+    
+    --dropdownBorderRadius: 5px;
+    --dropdownBorderColor: var(--grayColor);
+    --dropdownHoverColor: var(--silverColor);
+    --dropdownBackgroundColor: var(--whiteColor);
 }
