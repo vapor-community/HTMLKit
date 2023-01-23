@@ -468,6 +468,8 @@ public enum Tokens {
         case quarter = "ratio:25"
         case third = "ratio:33"
         case half = "ratio:50"
+        case fifth = "ratio:20"
+        case sixth = "ratio:15"
     }
 
     /// A style for a list.

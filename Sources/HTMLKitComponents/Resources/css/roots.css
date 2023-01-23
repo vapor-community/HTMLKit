@@ -169,13 +169,6 @@
      */
     
     --gridGapSize: 15px;
-    --gridItemPaddingY: 12px;
-    --gridItemPaddingX: 16px;
-    --gridItemBorderWidth: 1px;
-    --gridItemBorderColor: var(--grayColor);
-    --gridItemBorderRadius: 5px;
-    --gridItemBackgroundColor: var(--whiteColor);
-    
     
     /**
      card variables

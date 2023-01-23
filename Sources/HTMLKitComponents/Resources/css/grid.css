@@ -10,15 +10,6 @@
 
 .grid-item {
     
-    padding-top: var(--gridItemPaddingY);
-    padding-right: var(--gridItemPaddingX);
-    padding-bottom: var(--gridItemPaddingY);
-    padding-left: var(--gridItemPaddingX);
-    border-width: var(--gridItemBorderWidth);
-    border-style: solid;
-    border-color: var(--gridItemBorderColor);
-    border-radius: var(--gridItemBorderRadius);
-    
     overflow: hidden;
 }
 
