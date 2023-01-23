@@ -1,8 +1,9 @@
 import HTMLKit
 
-public struct Card: View, Modifiable {
+public class Card: View {
     
-    internal var content: [Content]
+    public var header: [Content]?
+    public var content: [Content]
     
     internal var classes: [String]
     
@@ -12,10 +13,25 @@ public struct Card: View, Modifiable {
         self.classes = ["card"]
     }
     
+    public init(@ContentBuilder<Content> content: () -> [Content],
+                @ContentBuilder<Content> header: () -> [Content]) {
+        
+        self.content = content()
+        self.header = header()
+        self.classes = ["card"]
+    }
+    
     public var body: Content {
         Division {
-           content
+            Division {
+                header
+            }
+            .class("card-header")
+            Division {
+                content
+            }
+            .class("card-body")
         }
-        .class(self.classes.joined(separator: " "))
+        .class(classes.joined(separator: " "))
     }
 }

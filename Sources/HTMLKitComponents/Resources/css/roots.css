@@ -187,6 +187,8 @@
     --cardBorderRadius: 5px;
     --cardBorderColor: var(--grayColor);
     --cardBackgroundColor: var(--whiteColor);
+    --cardHeaderHight: 200px;
+    --cardHeaderBackgroundColor: var(--whiteColor);
     
     /**
      dropdown variables
