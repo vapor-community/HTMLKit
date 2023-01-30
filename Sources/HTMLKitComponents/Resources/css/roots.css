@@ -191,4 +191,11 @@
     --dropdownBorderColor: var(--grayColor);
     --dropdownHoverColor: var(--silverColor);
     --dropdownBackgroundColor: var(--whiteColor);
+    
+    /**
+     scrollview variables
+     */
+    
+    --scrollViewGapSize: 25px;
+    --scrollViewBackgroundColor: transparent;
 }
