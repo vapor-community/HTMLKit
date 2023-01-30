@@ -1,0 +1,53 @@
+/**
+ carousel component
+ */
+
+.carousel {
+    
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 400px;
+}
+
+.carousel-content {
+    
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    height: 350px;
+    border: var(--carouselBorderWidth) solid var(--carouselBorderColor);
+    border-radius: var(--carourselBorderRadius);
+    background-color: var(--carouselBackgroundColor);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-inline: contain;
+}
+
+.carousel-content::-webkit-scrollbar{
+    display: none;
+}
+
+.carousel-content .image {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+}
+
+.carousel-indication {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 50px;
+}
+
+.indicator {
+    
+    width: 40px;
+    height: 6px;
+    border: 1px solid var(--indicatorBorderColor);
+    border-radius: var(--indicatorBorderRadius);
+    background-color: var(--indicatorBackgroundColor);
+}

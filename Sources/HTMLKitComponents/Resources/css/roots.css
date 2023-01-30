@@ -198,4 +198,15 @@
     
     --scrollViewGapSize: 25px;
     --scrollViewBackgroundColor: transparent;
+    
+    /**
+     carousel variables
+     */
+    --carouselBorderWidth: 1px;
+    --carouselBorderColor: #000000;
+    --carouselBorderRadius: 10px;
+    --carouselBackgroundColor: transparent;
+    --indicatorBorderRadius: 5px;
+    --indicatorBackgroundColor: transparent;
+    --indicatorBorderColor: #000000;
 }
