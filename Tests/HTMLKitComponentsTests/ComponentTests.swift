@@ -345,7 +345,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text size:large transformation:uppercase color:blue weight:bold">Text</p>
+                       <p class="text">Text</p>
                        """
         )
     }
