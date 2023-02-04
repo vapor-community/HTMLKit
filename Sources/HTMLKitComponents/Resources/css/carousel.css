@@ -3,7 +3,6 @@
  */
 
 .carousel {
-    
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -11,13 +10,14 @@
 }
 
 .carousel-content {
-    
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: 100%;
     height: 350px;
-    border: var(--carouselBorderWidth) solid var(--carouselBorderColor);
-    border-radius: var(--carourselBorderRadius);
+    border-width: var(--carouselBorderWidth);
+    border-style: solid;
+    border-color: var(--carouselBorderColor);
+    border-radius: var(--carouselBorderRadius);
     background-color: var(--carouselBackgroundColor);
     overflow-x: auto;
     scroll-behavior: smooth;
@@ -29,13 +29,31 @@
     display: none;
 }
 
-.carousel-content .image {
+.slide {
+    display: flex;
+    height: auto;
     scroll-snap-align: start;
     scroll-snap-stop: normal;
+    overflow: hidden;
+}
+
+.slide-thumbnail {
+    width: 60%;
+}
+
+.slide-thumbnail > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-caption {
+    width: 40%;
+    padding-block: 24px;
+    padding-inline: 24px;
 }
 
 .carousel-indication {
-    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,10 +62,21 @@
 }
 
 .indicator {
-    
     width: 40px;
     height: 6px;
-    border: 1px solid var(--indicatorBorderColor);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--indicatorBorderColor);
     border-radius: var(--indicatorBorderRadius);
     background-color: var(--indicatorBackgroundColor);
+}
+
+.indicator.active {
+    border-color: var(--primaryColor);
+    background-color: var(--primaryColor);
+}
+
+.indicator:hover {
+    border-color: var(--primaryColor);
+    background-color: var(--primaryColor);
 }
