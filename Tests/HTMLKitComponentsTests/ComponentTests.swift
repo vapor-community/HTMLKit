@@ -83,10 +83,10 @@ final class ComponentTests: XCTestCase {
         )
     }
     
-    func testFormContainer() throws {
+    func testForm() throws {
         
         let view = TestView {
-            HTMLKitComponents.Form(method: .post) {
+            Form(method: .post) {
             }
         }
         
@@ -205,6 +205,21 @@ final class ComponentTests: XCTestCase {
         )
     }
     
+    func testSelectField() throws {
+        
+        let view = TestView {
+            SelectField(name: "name") {
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <select id="name" name="name" class="input type:selectfield">\
+                       </select>
+                       """
+        )
+    }
+    
     func testImage() throws {
         
         let view = TestView {
@@ -252,13 +267,13 @@ final class ComponentTests: XCTestCase {
         
         let view = TestView {
             Link(destination: "uri") {
-                "link"
+                "Link"
             }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <a href="uri" class="link">link</a>
+                       <a href="uri" class="link">Link</a>
                        """
         )
     }
@@ -324,16 +339,13 @@ final class ComponentTests: XCTestCase {
        
         let view = TestView {
             Text {
+                "Text"
             }
-            .fontSize(.large)
-            .fontTransformation(.uppercase)
-            .foregroundColor(.blue)
-            .bold()
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text size:large transformation:uppercase color:blue weight:bold"></p>
+                       <p class="text size:large transformation:uppercase color:blue weight:bold">Text</p>
                        """
         )
     }
@@ -400,7 +412,108 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="card"></div>
+                       <div class="card">\
+                       <div class="card-header"></div>\
+                       <div class="card-body"></div>\
+                       </div>
+                       """
+        )
+    }
+    
+    func testCarousel() throws {
+        
+        let view = TestView {
+            Carousel {
+            } indication: {
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <div class="carousel">\
+                       <div class="carousel-content"></div>\
+                       <div class="carousel-indication"></div>\
+                       </div>
+                       """
+        )
+    }
+    
+    func testSlide() throws {
+        
+        let view = TestView {
+            Slide(source: "#") {
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <div class="slide">\
+                       <div class="slide-thumbnail">\
+                       <img src="#">\
+                       </div>\
+                       <div class="slide-caption"></div>\
+                       </div>
+                       """
+        )
+    }
+    
+    func testIndicator() throws {
+        
+        let view = TestView {
+            Indicator(for: "example")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <a href="#example" class="indicator"></a>
+                       """
+        )
+    }
+    
+    func testDropdown() throws {
+        
+        let view = TestView {
+            Dropdown {
+            } label: {
+            }
+
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <div class="dropdown" tabindex="1">\
+                       <div class="dropdown-label">\
+                       </div>\
+                       <div class="dropdown-content"></div>\
+                       </div>
+                       """
+        )
+    }
+    
+    func testModal() throws {
+        
+        let view = TestView {
+            Modal {
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <dialog class="modal"></dialog>
+                       """
+        )
+    }
+    
+    func testScrollView() throws {
+        
+        let view = TestView {
+            ScrollView(direction: .horizontal) {
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <div class="scrollview direction:horizontal"></div>
                        """
         )
     }
