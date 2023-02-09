@@ -433,7 +433,10 @@ final class ComponentTests: XCTestCase {
                        <div class="carousel">\
                        <div class="carousel-content"></div>\
                        <div class="carousel-indication"></div>\
-                       </div>
+                       </div>\
+                       <script>\
+                       new Carousel();\
+                       </script>
                        """
         )
     }
@@ -465,7 +468,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <a href="#example" class="indicator"></a>
+                       <a class="indicator" href="#example"></a>
                        """
         )
     }

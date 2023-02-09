@@ -25,7 +25,7 @@ var Carousel = (function () {
                 
                 event.preventDefault();
                 
-                self.slideTo(self.getPosition(event.target.getAttribute('href')));
+                self.slideTo(self.getPosition(event.target.getAttribute('href').replace('#', '')));
             });
         }
     };

@@ -98,8 +98,8 @@ public struct Indicator: View {
     
     internal var tag: String
     
-    public init(tag: String) {
-        self.tag = tag
+    public init(for tag: String) {
+        self.tag = "#" + tag
     }
     
     public var body: Content {
