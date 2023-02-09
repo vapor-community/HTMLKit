@@ -10,6 +10,8 @@ var Carousel = (function () {
         
         this.toggleState(0);
         
+        this.initiateAutoplay(1);
+        
         this.initiateListener();
     }
     
@@ -27,6 +29,25 @@ var Carousel = (function () {
             });
         }
     };
+    
+    Self.prototype.initiateAutoplay = function (position) {
+        
+        var self = this;
+        
+        setInterval(function() {
+            
+            if (position < self.slides.length) {
+                
+                self.slideTo(position);
+                
+                position += 1;
+                
+            } else {
+                position = 0;
+            }
+            
+        }, 7000);
+    }
     
     Self.prototype.getPosition = function (name) {
 

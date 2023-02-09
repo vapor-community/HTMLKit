@@ -19,10 +19,7 @@
     border-color: var(--carouselBorderColor);
     border-radius: var(--carouselBorderRadius);
     background-color: var(--carouselBackgroundColor);
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    overscroll-behavior-inline: contain;
+    overflow: hidden;
 }
 
 .carousel-content::-webkit-scrollbar{
@@ -32,8 +29,6 @@
 .slide {
     display: flex;
     height: auto;
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
     overflow: hidden;
 }
 
@@ -69,6 +64,7 @@
     border-color: var(--indicatorBorderColor);
     border-radius: var(--indicatorBorderRadius);
     background-color: var(--indicatorBackgroundColor);
+    cursor: pointer;
 }
 
 .indicator.state\:active {
