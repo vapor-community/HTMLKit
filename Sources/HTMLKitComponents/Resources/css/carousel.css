@@ -71,7 +71,7 @@
     background-color: var(--indicatorBackgroundColor);
 }
 
-.indicator.active {
+.indicator.state\:active {
     border-color: var(--primaryColor);
     background-color: var(--primaryColor);
 }

@@ -40,6 +40,9 @@ public struct Carousel: View {
             .class("carousel-indication")
         }
         .class(classes.joined(separator: " "))
+        Script {
+            "new Carousel();"
+        }
     }
 }
 
@@ -95,19 +98,14 @@ public struct Indicator: View {
     
     internal var tag: String
     
-    public init(for tag: String) {
-        self.tag = "#" + tag
-    }
-    
-    internal init(tag: String) {
+    public init(tag: String) {
         self.tag = tag
     }
     
     public var body: Content {
         Anchor {
         }
-        .reference(tag)
         .class("indicator")
+        .reference(tag)
     }
 }
-
