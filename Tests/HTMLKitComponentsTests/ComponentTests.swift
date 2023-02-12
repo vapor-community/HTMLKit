@@ -520,4 +520,26 @@ final class ComponentTests: XCTestCase {
                        """
         )
     }
+    
+    func testSymbol() throws {
+        
+        let view = TestView {
+            Symbol(system: "folder")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <svg width="16" height="16" viewbox="0 0 16 16" fill="currentColor" class="symbol">\
+                       <rect id="Folder_16x16" x="0" y="0" width="16" height="16" style="fill:none;"></rect>\
+                       <clipPath id="_clip1">\
+                       <rect id="Folder_16x16" x="0" y="0" width="16" height="16"></rect>\
+                       </clipPath>\
+                       <g clip-path="url(#_clip1)">\
+                       <path d="M16,5L16,13C16,13.552 15.552,14 15,14L1,14C0.448,14 0,13.552 0,13L0,3C0,2.448 0.448,2 1,2L6.586,2C6.851,2 7.105,2.105 7.293,2.293L9,4L15,4C15.265,4 15.52,4.105 15.707,4.293C15.895,4.48 16,4.735 16,5ZM1.5,3.5L1.5,12.5L14.5,12.5L14.5,5.5L9,5.5C8.602,5.5 8.221,5.342 7.939,5.061L6.379,3.5L1.5,3.5Z">\
+                       </path>\
+                       </g>\
+                       </svg>
+                       """
+        )
+    }
 }
