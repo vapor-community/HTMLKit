@@ -6,27 +6,27 @@
     display: block !important;
 }
 
-zindex\:1 {
+.zindex\:1 {
     position: relative;
     z-index: 1;
 }
 
-zindex\:2 {
+.zindex\:2 {
     position: relative;
     z-index: 2;
 }
 
-zindex\:3 {
+.zindex\:3 {
     position: relative;
     z-index: 3;
 }
 
-zindex\:4 {
+.zindex\:4 {
     position: relative;
     z-index: 4;
 }
 
-zindex\:5 {
+.zindex\:5 {
     position: relative;
     z-index: 5;
 }
