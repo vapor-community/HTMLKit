@@ -67,11 +67,6 @@
     cursor: pointer;
 }
 
-.indicator.state\:active {
-    border-color: var(--primaryColor);
-    background-color: var(--primaryColor);
-}
-
 .indicator:hover {
     border-color: var(--primaryColor);
     background-color: var(--primaryColor);

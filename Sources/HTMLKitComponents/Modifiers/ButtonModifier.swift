@@ -36,6 +36,9 @@ public protocol ButtonModifier {
     ///
     /// - Returns: A component
     func backgroundColor(_ color: Tokens.BackgroundColor) -> Self
+    
+    /// Sets the state of the view.
+    func disabled(_ condition: Bool) -> Self
 }
 
 extension ButtonModifier where Self: Modifiable {
@@ -53,6 +56,10 @@ extension ButtonModifier where Self: Modifiable {
     }
     
     internal func mutate(backgroundcolor class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(state class: String) -> Self {
         return self.mutate(class: `class`)
     }
 }

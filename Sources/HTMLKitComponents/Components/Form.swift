@@ -139,6 +139,15 @@ extension TextField: InputModifier {
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> TextField {
         return self.mutate(backgroundcolor: color.rawValue)
     }
+    
+    public func disabled(_ condition: Bool) -> TextField {
+        
+        if condition {
+            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
 }
 
 /// A component that displays a editable and expandable form control.
@@ -206,6 +215,15 @@ extension TextEditor: InputModifier {
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> TextEditor {
         return self.mutate(backgroundcolor: color.rawValue)
     }
+    
+    public func disabled(_ condition: Bool) -> TextEditor {
+        
+        if condition {
+            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
 }
 
 /// A component that displays a form control
@@ -255,6 +273,15 @@ extension CheckField: InputModifier {
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> CheckField {
         return self.mutate(backgroundcolor: color.rawValue)
     }
+    
+    public func disabled(_ condition: Bool) -> CheckField {
+        
+        if condition {
+            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
 }
 
 /// A component that displays
@@ -303,6 +330,15 @@ extension RadioSelect: InputModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> RadioSelect {
         return self.mutate(backgroundcolor: color.rawValue)
+    }
+    
+    public func disabled(_ condition: Bool) -> RadioSelect {
+        
+        if condition {
+            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
     }
 }
 
@@ -356,6 +392,15 @@ extension SelectField: InputModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SelectField {
         return self.mutate(backgroundcolor: color.rawValue)
+    }
+    
+    public func disabled(_ condition: Bool) -> SelectField {
+        
+        if condition {
+            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
     }
 }
 
@@ -411,6 +456,15 @@ extension SecureField: InputModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SecureField {
         return self.mutate(backgroundcolor: color.rawValue)
+    }
+    
+    public func disabled(_ condition: Bool) -> SecureField {
+        
+        if condition {
+            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
     }
 }
 
@@ -503,6 +557,15 @@ extension DatePicker: InputModifier {
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> DatePicker {
         return self.mutate(backgroundcolor: color.rawValue)
     }
+    
+    public func disabled(_ condition: Bool) -> DatePicker {
+        
+        if condition {
+            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
 }
 
 /// A component that displays
@@ -557,6 +620,15 @@ extension SearchField: InputModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SearchField {
         return self.mutate(backgroundcolor: color.rawValue)
+    }
+    
+    public func disabled(_ condition: Bool) -> SearchField {
+        
+        if condition {
+            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
     }
 }
 

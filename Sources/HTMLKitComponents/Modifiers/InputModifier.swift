@@ -20,6 +20,9 @@ public protocol InputModifier {
     ///
     /// - Returns: A component
     func backgroundColor(_ color: Tokens.BackgroundColor) -> Self
+    
+    /// Sets the state of the view.
+    func disabled(_ condition: Bool) -> Self
 }
 
 extension InputModifier where Self: Modifiable {
@@ -29,6 +32,10 @@ extension InputModifier where Self: Modifiable {
     }
     
     internal func mutate(backgroundcolor class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(state class: String) -> Self {
         return self.mutate(class: `class`)
     }
 }

@@ -30,3 +30,12 @@ zindex\:5 {
     position: relative;
     z-index: 5;
 }
+
+.state\:active {
+    border-color: var(--primaryColor);
+    background-color: var(--primaryColor);
+}
+
+.state\:disabled {
+    pointer-events: none;
+}

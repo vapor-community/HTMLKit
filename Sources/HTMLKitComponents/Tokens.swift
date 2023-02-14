@@ -479,4 +479,11 @@ public enum Tokens {
         case accordion = "style:accordion"
         case tab = "style:tab"
     }
+    
+    /// A state to the view.
+    public enum ViewState: String {
+        
+        case active = "state:active"
+        case disabled = "state:disabled"
+    }
 }
