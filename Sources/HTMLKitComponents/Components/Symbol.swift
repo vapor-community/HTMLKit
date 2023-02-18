@@ -49,9 +49,7 @@ public struct Symbol: View, Modifiable {
         Vector {
             content
         }
-        .width(16)
-        .height(16)
-        .viewBox("0 0 16 16")
+        .viewBox("0 0 20 16")
         .fill("currentColor")
         .class(classes.joined(separator: " "))
     }
