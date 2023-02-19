@@ -2,10 +2,6 @@
  utils classes
  */
 
-.display\:block {
-    display: block !important;
-}
-
 .zindex\:1 {
     position: relative;
     z-index: 1;
@@ -32,10 +28,18 @@
 }
 
 .state\:active {
-    border-color: var(--primaryColor);
-    background-color: var(--primaryColor);
+    border-color: var(--primaryColor) !important;
+    background-color: var(--primaryColor) !important;
 }
 
 .state\:disabled {
-    pointer-events: none;
+    pointer-events: none !important;
+}
+
+.state\:hidden {
+    display: none !important;
+}
+
+.state\:visible {
+    display: block !important;
 }

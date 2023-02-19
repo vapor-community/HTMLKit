@@ -485,5 +485,7 @@ public enum Tokens {
         
         case active = "state:active"
         case disabled = "state:disabled"
+        case hidden = "state:hidden"
+        case visible = "state:visible"
     }
 }

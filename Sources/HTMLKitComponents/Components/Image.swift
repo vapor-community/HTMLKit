@@ -66,4 +66,8 @@ extension Image: ViewModifier {
     public func opacity(_ value: Tokens.OpacityValue) -> Image {
         return self.mutate(opacity: value.rawValue)
     }
+    
+    public func hidden() -> Image {
+        return self.mutate(state: Tokens.ViewState.hidden.rawValue)
+    }
 }

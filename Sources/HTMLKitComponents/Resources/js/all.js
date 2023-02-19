@@ -91,21 +91,21 @@ var $ = (function () {
      */
     constructor.prototype.show = function() {
         
-        const elements = document.getElementsByClassName("display:block");
+        const elements = document.getElementsByClassName("state:visible");
         
         for (let element of elements){
-            element.classList.remove("display:block")
+            element.classList.remove("state:visible")
         }
         
-        this.elems[0].classList.add("display:block")
+        this.elems[0].classList.add("state:visible")
     };
     
     /**
      * This function is for
      */
     constructor.prototype.hide = function() {
-        
-        this.elems[0].classList.remove("display:block")
+    
+        this.elems[0].classList.add("state:hidden")
     };
     
     /**

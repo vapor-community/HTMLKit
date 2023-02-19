@@ -77,7 +77,7 @@ extension HStack: HoverModifier {
 }
 
 extension HStack: ViewModifier {
-    
+
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> HStack {
         return self.mutate(backgroundcolor: color.rawValue)
     }
@@ -88,6 +88,10 @@ extension HStack: ViewModifier {
     
     public func zIndex(_ index: Tokens.PositionIndex) -> HStack {
         return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> HStack {
+        return self.mutate(state: Tokens.ViewState.hidden.rawValue)
     }
 }
 
@@ -164,6 +168,10 @@ extension VStack: ViewModifier {
     public func zIndex(_ index: Tokens.PositionIndex) -> VStack {
         return self.mutate(zindex: index.rawValue)
     }
+    
+    public func hidden() -> VStack {
+        return self.mutate(state: Tokens.ViewState.hidden.rawValue)
+    }
 }
 
 /// A component that overlays content.
@@ -238,6 +246,10 @@ extension ZStack: ViewModifier {
     
     public func zIndex(_ index: Tokens.PositionIndex) -> ZStack {
         return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> ZStack {
+        return self.mutate(state: Tokens.ViewState.hidden.rawValue)
     }
 }
 
