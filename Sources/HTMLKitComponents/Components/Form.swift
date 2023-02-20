@@ -92,6 +92,9 @@ public struct TextField: View, Modifiable {
     /// The identifier of the field.
     internal let name: String
     
+    /// The placeholder for the field value.
+    internal let prompt: String?
+    
     /// The content of the field.
     internal let value: String?
     
@@ -102,17 +105,19 @@ public struct TextField: View, Modifiable {
     internal var events: [String]?
     
     /// Creates a text field.
-    public init(name: String, value: String? = nil) {
+    public init(name: String, prompt: String? = nil, value: String? = nil) {
         
         self.name = name
+        self.prompt = prompt
         self.value = value
         self.classes = ["input", "type:textfield"]
     }
     
     /// Creates a text field.
-    internal init(name: String, value: String?, classes: [String], events: [String]?) {
+    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?) {
         
         self.name = name
+        self.prompt = prompt
         self.value = value
         self.classes = classes
         self.events = events
@@ -126,6 +131,9 @@ public struct TextField: View, Modifiable {
             .class(classes.joined(separator: " "))
             .modify(unwrap: value) {
                 $0.value($1)
+            }
+            .modify(unwrap: prompt) {
+                $0.placeholder($1)
             }
     }
 }
@@ -156,6 +164,9 @@ public struct TextEditor: View, Modifiable {
     /// The identifier of the editor.
     internal let name: String
     
+    /// The placeholder for the field value.
+    internal let prompt: String?
+    
     /// The number of lines.
     internal var rows: Int = 1
     
@@ -169,17 +180,19 @@ public struct TextEditor: View, Modifiable {
     internal var events: [String]?
     
     /// Creates a text editor.
-    public init(name: String, @ContentBuilder<String> content: () -> [String]) {
+    public init(name: String, prompt: String? = nil, @ContentBuilder<String> content: () -> [String]) {
         
         self.name = name
+        self.prompt = prompt
         self.content = content()
         self.classes = ["input", "type:texteditor"]
     }
     
     /// Creates a text editor.
-    internal init(name: String, rows: Int, content: [String], classes: [String], events: [String]?) {
+    internal init(name: String, prompt: String?, rows: Int, content: [String], classes: [String], events: [String]?) {
         
         self.name = name
+        self.prompt = prompt
         self.rows = rows
         self.content = content
         self.classes = classes
@@ -194,6 +207,9 @@ public struct TextEditor: View, Modifiable {
         .name(name)
         .class(classes.joined(separator: " "))
         .rows(rows)
+        .modify(unwrap: prompt) {
+            $0.placeholder($1)
+        }
     }
     
     /// Sets the limit of the maximum lines.
@@ -410,6 +426,9 @@ public struct SecureField: View, Modifiable {
     /// The identifier of the field.
     internal let name: String
     
+    /// The placeholder for the field value.
+    internal let prompt: String?
+    
     /// The content of the field.
     internal let value: String?
     
@@ -420,17 +439,19 @@ public struct SecureField: View, Modifiable {
     internal var events: [String]?
     
     /// Creates a password field.
-    public init(name: String, value: String? = nil) {
+    public init(name: String, prompt: String? = nil, value: String? = nil) {
         
         self.name = name
+        self.prompt = prompt
         self.value = value
         self.classes = ["input", "type:securefield"]
     }
     
     /// Creates a password field.
-    internal init(name: String, value: String?, classes: [String], events: [String]?) {
+    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?) {
         
         self.name = name
+        self.prompt = prompt
         self.value = value
         self.classes = classes
         self.events = events
@@ -444,6 +465,9 @@ public struct SecureField: View, Modifiable {
             .class(classes.joined(separator: " "))
             .modify(unwrap: value) {
                 $0.value($1)
+            }
+            .modify(unwrap: prompt) {
+                $0.placeholder($1)
             }
     }
 }
@@ -574,6 +598,9 @@ public struct SearchField: View, Modifiable {
     /// The identifier of the search field.
     internal let name: String
     
+    /// The placeholder for the field value.
+    internal let prompt: String?
+    
     /// The content of the field.
     internal let value: String?
     
@@ -584,17 +611,19 @@ public struct SearchField: View, Modifiable {
     internal var events: [String]?
     
     /// Creates a search field.
-    public init(name: String, value: String? = nil) {
+    public init(name: String, prompt: String? = nil, value: String? = nil) {
         
         self.name = name
+        self.prompt = prompt
         self.value = value
         self.classes = ["input", "type:searchfield"]
     }
     
     /// Creates a search field.
-    internal init(name: String, value: String?, classes: [String], events: [String]?) {
+    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?) {
         
         self.name = name
+        self.prompt = prompt
         self.value = value
         self.classes = classes
         self.events = events
@@ -608,6 +637,9 @@ public struct SearchField: View, Modifiable {
             .class(classes.joined(separator: " "))
             .modify(unwrap: value) {
                 $0.value($1)
+            }
+            .modify(unwrap: prompt) {
+                $0.placeholder($1)
             }
     }
 }
