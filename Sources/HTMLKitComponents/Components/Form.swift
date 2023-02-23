@@ -6,7 +6,10 @@
 import HTMLKit
 
 /// A component that collects form controls.
-public struct Form: View {
+public struct Form: View, Actionable {
+    
+    /// The identifier of the form.
+    internal var id: String?
     
     internal var method: HTMLKit.Values.Method
     
@@ -28,12 +31,13 @@ public struct Form: View {
     }
     
     /// Creates a form container.
-    internal init(method: Values.Method, content: [FormElement], classes: [String], events: [String]?) {
+    internal init(method: Values.Method, content: [FormElement], classes: [String], events: [String]?, id: String?) {
         
         self.method = method
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -42,6 +46,25 @@ public struct Form: View {
         }
         .method(method)
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+        if let events = self.events {
+            Script {
+                events
+            }
+        }
+    }
+    
+    public func id(_ value: String) -> Form {
+        return self.mutate(id: value)
+    }
+}
+
+extension Form: FormModifier {
+
+    public func onSubmit(perfom action: Actions) -> Form {        
+        return self.mutate(submitevent: action.script)
     }
 }
 
