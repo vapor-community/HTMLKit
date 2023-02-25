@@ -33,6 +33,14 @@ public class Card: View {
         self.classes = ["card"]
     }
     
+    /// Creates a card.
+    internal init(header: [Content]?, content: [Content], classes: [String]) {
+        
+        self.header = header
+        self.content = content
+        self.classes = classes
+    }
+    
     public var body: Content {
         Division {
             Division {

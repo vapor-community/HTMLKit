@@ -21,6 +21,13 @@ public struct ScrollView: View {
         self.classes = ["scrollview", direction.rawValue]
     }
     
+    /// Creates a scrollview
+    internal init(content: [Content], classes: [String]) {
+        
+        self.content = content
+        self.classes = classes
+    }
+    
     public var body: Content {
         Division {
             content

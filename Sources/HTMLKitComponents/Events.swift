@@ -102,7 +102,7 @@ public enum Events {
         return  """
                 $('#\(selector)').onSubmit(function() {
                     \(script)
-                })
+                });
                 """
     }
 }

@@ -25,6 +25,14 @@ public struct Dropdown: View {
         self.classes = ["dropdown"]
     }
     
+    /// Creates a dropdown.
+    internal init(label: [Content], content: [Content], classes: [String]) {
+        
+        self.label = label
+        self.content = content
+        self.classes = classes
+    }
+    
     public var body: Content {
         Division {
             Division {
