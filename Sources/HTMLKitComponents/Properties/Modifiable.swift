@@ -1,5 +1,8 @@
+
+/// A type that describes a component with classes.
 internal protocol Modifiable {
     
+    /// The classes of the component.
     var classes: [String] { get set }
 }
 

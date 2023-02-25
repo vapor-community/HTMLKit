@@ -1,6 +1,6 @@
 /*
  Abstract:
- The file contains everything related to the collection.
+ The file contains everything related to the grid component.
  */
 
 import HTMLKit

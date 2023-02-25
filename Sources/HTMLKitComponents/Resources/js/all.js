@@ -7,7 +7,7 @@ var $ = (function () {
     };
     
     /**
-     * This function is for
+     * Peforms when the pointer enters the target area.
      */
     constructor.prototype.onHover = function (callback) {
         
@@ -15,7 +15,7 @@ var $ = (function () {
     };
     
     /**
-     * This function is for
+     * Peforms when the pointer leaves the target area.
      */
     constructor.prototype.onLeave = function (callback) {
         
@@ -23,7 +23,7 @@ var $ = (function () {
     };
     
     /**
-     * This function is for
+     * Performs when the target value changes.
      */
     constructor.prototype.onChange = function (callback) {
         
@@ -31,7 +31,7 @@ var $ = (function () {
     };
     
     /**
-     * This function is for
+     * Performs when the target is clicked.
      */
     constructor.prototype.onClick = function (callback) {
         
@@ -39,7 +39,7 @@ var $ = (function () {
     };
     
     /**
-     * This function is for
+     * Performs when the target is touched.
      */
     constructor.prototype.onTapGesture = function (callback) {
         
@@ -47,7 +47,7 @@ var $ = (function () {
     };
     
     /**
-     * This function is for
+     * Performs when the target is touched.
      */
     constructor.prototype.onLongPressGesture = function (callback) {
         
@@ -55,7 +55,7 @@ var $ = (function () {
     };
     
     /**
-     * This function is for
+     * Performs when the target is dragged.
      */
     constructor.prototype.onDrag = function (callback) {
         
@@ -63,7 +63,7 @@ var $ = (function () {
     };
     
     /**
-     * This function is for
+     * Performs when the target is dropped.
      */
     constructor.prototype.onDrop = function (callback) {
         
@@ -71,7 +71,7 @@ var $ = (function () {
     };
     
     /**
-     * This function is for
+     * Performs when the target is focused.
      */
     constructor.prototype.onFocus = function (callback) {
         
@@ -79,7 +79,7 @@ var $ = (function () {
     };
     
     /**
-     * This function is for
+     * Performs when the target is submitted.
      */
     constructor.prototype.onSubmit = function (callback) {
 
@@ -87,7 +87,7 @@ var $ = (function () {
     };
     
     /**
-     * This function is for
+     * Shows the target.
      */
     constructor.prototype.show = function() {
         
@@ -101,7 +101,7 @@ var $ = (function () {
     };
     
     /**
-     * This function is for
+     * Hides the target.
      */
     constructor.prototype.hide = function() {
     
@@ -109,7 +109,7 @@ var $ = (function () {
     };
     
     /**
-     * This function is for
+     * Animates the target.
      */
     constructor.prototype.animate = function({params}, speed) {
         
@@ -117,7 +117,7 @@ var $ = (function () {
     };
     
     /**
-     * This function is for
+     * Opens the dialog.
      */
     constructor.prototype.open = function() {
         
@@ -125,7 +125,7 @@ var $ = (function () {
     };
     
     /**
-     * This function is for
+     * Closes the dialog.
      */
     constructor.prototype.close = function() {
         

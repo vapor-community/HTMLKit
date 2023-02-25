@@ -3,6 +3,7 @@
  The file contains the modifiers for view components.
  */
 
+/// A type that describes the modifier of a view.
 public protocol ViewModifier {
 
     /// Sets the opacity of the view.

@@ -1,18 +1,23 @@
 /*
  Abstract:
- The file contains everything related to the carousel component.
+ The file contains a carousel component.
  */
 
 import HTMLKit
 
+/// A compnonent that cycles through an amount of views.
 public struct Carousel: View {
     
+    /// The indication for the carousel.
     internal var indication: [Content]
     
+    /// The content of the carousel.
     internal var content: [Content]
     
+    /// The classes of the carousel.
     internal var classes: [String]
     
+    /// Creates a carousel.
     public init(@ContentBuilder<Content> content: () -> [Content],
                 @ContentBuilder<Content> indication: () -> [Content]) {
         
@@ -21,6 +26,7 @@ public struct Carousel: View {
         self.classes = ["carousel"]
     }
     
+    /// Creates a carousel.
     internal init(indication: [Content], content: [Content], classes: [String]) {
         
         self.indication = indication

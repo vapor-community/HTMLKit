@@ -1,18 +1,30 @@
+/*
+ Abstract:
+ The file contains a card component.
+ */
+
 import HTMLKit
 
+/// A component that distinguish content.
 public class Card: View {
     
+    /// The header of the card.
     public var header: [Content]?
+    
+    /// The content of the card.
     public var content: [Content]
     
+    /// The classes of the content.
     internal var classes: [String]
     
+    /// Creates a card.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["card"]
     }
     
+    /// Creates a card.
     public init(@ContentBuilder<Content> content: () -> [Content],
                 @ContentBuilder<Content> header: () -> [Content]) {
         

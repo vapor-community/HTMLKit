@@ -1,10 +1,5 @@
-//
-//  File.swift
-//  
-//
-//  Created by Mattes Mohr on 25.12.22.
-//
 
+/// A type that describes a component with an identifier.
 internal protocol Identifiable {
     
     /// The identifier of the component.

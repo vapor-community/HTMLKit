@@ -11,6 +11,7 @@ import OrderedCollections
 import FoundationXML
 #endif
 
+/// A component that displays symbols.
 public struct Symbol: View, Modifiable {
     
     /// The content of the symbol.

@@ -1,10 +1,12 @@
 /*
  Abstract:
- The file contains the script stencils for the js.
+ The file contains the event stencils for the components.
  */
 
+/// A collection of events, that can occur on components.
 public enum Events {
     
+    /// Returns a hover event stencil.
     static func hover(selector: String, script: String) -> String {
         
         return  """
@@ -14,6 +16,7 @@ public enum Events {
                 """
     }
     
+    /// Returns a leave event stencil.
     static func leave(selector: String, script: String) -> String {
         
         return  """
@@ -23,6 +26,7 @@ public enum Events {
                 """
     }
     
+    /// Returns a change event stencil.
     static func change(selector: String, script: String) -> String {
         
         return  """
@@ -32,6 +36,7 @@ public enum Events {
                 """
     }
     
+    /// Returns a click event stencil.
     static func click(selector: String, script: String) -> String {
         
         return  """
@@ -41,6 +46,7 @@ public enum Events {
                 """
     }
     
+    /// Returns a tap gesture stencil.
     static func tap(selector: String, script: String) -> String {
         
         return  """
@@ -50,6 +56,7 @@ public enum Events {
                 """
     }
     
+    /// Returns a long press gesture stencil.
     static func press(selector: String, script: String) -> String {
         
         return  """
@@ -59,6 +66,7 @@ public enum Events {
                 """
     }
     
+    /// Returns a drag event stencil.
     static func drag(selector: String, script: String) -> String {
         
         return  """
@@ -68,6 +76,7 @@ public enum Events {
                 """
     }
     
+    /// Returns a drop event stencil.
     static func drop(selector: String, script: String) -> String {
         
         return  """
@@ -77,6 +86,7 @@ public enum Events {
                 """
     }
     
+    /// Returns a focus event stencil.
     static func focus(selector: String, script: String) -> String {
         
         return  """
@@ -86,6 +96,7 @@ public enum Events {
                 """
     }
     
+    /// Returns a submit event stencil.
     static func submit(selector: String, script: String) -> String {
         
         return  """

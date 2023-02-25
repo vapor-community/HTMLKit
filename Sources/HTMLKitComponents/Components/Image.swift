@@ -1,6 +1,6 @@
 /*
  Abstract:
- The file contains everything related to images.
+ The file contains everything related to image component.
  */
 
 import HTMLKit

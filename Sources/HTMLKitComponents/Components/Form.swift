@@ -1,6 +1,6 @@
 /*
  Abstract:
- The file contains everything related to form.
+ The file contains everything related to form component.
  */
 
 import HTMLKit
@@ -22,7 +22,7 @@ public struct Form: View, Actionable {
     /// The events of the container.
     internal var events: [String]?
     
-    /// Creates a form container.
+    /// Creates a form.
     public init(method: Values.Method, @ContentBuilder<FormElement> content: () -> [FormElement]) {
         
         self.method = method
@@ -30,7 +30,7 @@ public struct Form: View, Actionable {
         self.classes = ["form"]
     }
     
-    /// Creates a form container.
+    /// Creates a form.
     internal init(method: Values.Method, content: [FormElement], classes: [String], events: [String]?, id: String?) {
         
         self.method = method

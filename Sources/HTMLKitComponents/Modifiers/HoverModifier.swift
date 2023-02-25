@@ -1,9 +1,18 @@
+/*
+ Abstract:
+ The file contains the modifiers for components with hover interaction.
+ */
+
+/// A type that describes the modifier of a hoverable component.
 public protocol HoverModifier {
     
+    /// The identifier of the component.
     func id(_ value: String) -> Self
     
+    /// Acts on a hover event.
     func onHover(perfom action: Actions) -> Self
     
+    /// Acts on a leave event.
     func onLeave(perfom action: Actions) -> Self
 }
 
