@@ -2,7 +2,7 @@ var Carousel = (function () {
     
     'use strict';
     
-    function Self(element) {
+    function Self() {
         
         this.element = document.getElementsByClassName('carousel-content')[0];
         this.slides = document.getElementsByClassName('slide');

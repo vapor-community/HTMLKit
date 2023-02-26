@@ -34,7 +34,7 @@ public class Localization {
     }
     
     /// Creates a configuration
-    internal init() {
+    public init() {
         
         self.defaultDirectory = "Resources/Localization"
         self.defaultLocale = "en"

@@ -2,14 +2,14 @@ var $ = (function () {
 
     'use strict';
 
-    var constructor = function (selector) {
+    var Self = function (selector) {
         this.elems = document.querySelectorAll(selector);
     };
     
     /**
      * Peforms when the pointer enters the target area.
      */
-    constructor.prototype.onHover = function (callback) {
+    Self.prototype.onHover = function (callback) {
         
         this.elems[0].addEventListener("mouseenter", callback);
     };
@@ -17,7 +17,7 @@ var $ = (function () {
     /**
      * Peforms when the pointer leaves the target area.
      */
-    constructor.prototype.onLeave = function (callback) {
+    Self.prototype.onLeave = function (callback) {
         
         this.elems[0].addEventListener("mouseleave", callback);
     };
@@ -25,7 +25,7 @@ var $ = (function () {
     /**
      * Performs when the target value changes.
      */
-    constructor.prototype.onChange = function (callback) {
+    Self.prototype.onChange = function (callback) {
         
         this.elems[0].addEventListener("change", callback);
     };
@@ -33,7 +33,7 @@ var $ = (function () {
     /**
      * Performs when the target is clicked.
      */
-    constructor.prototype.onClick = function (callback) {
+    Self.prototype.onClick = function (callback) {
         
         this.elems[0].addEventListener("click", callback);
     };
@@ -41,7 +41,7 @@ var $ = (function () {
     /**
      * Performs when the target is touched.
      */
-    constructor.prototype.onTapGesture = function (callback) {
+    Self.prototype.onTapGesture = function (callback) {
         
         this.elems[0].addEventListener("touchend", callback);
     };
@@ -49,7 +49,7 @@ var $ = (function () {
     /**
      * Performs when the target is touched.
      */
-    constructor.prototype.onLongPressGesture = function (callback) {
+    Self.prototype.onLongPressGesture = function (callback) {
         
         this.elems[0].addEventListener("touchstart", callback);
     };
@@ -57,7 +57,7 @@ var $ = (function () {
     /**
      * Performs when the target is dragged.
      */
-    constructor.prototype.onDrag = function (callback) {
+    Self.prototype.onDrag = function (callback) {
         
         this.elems[0].addEventListener("drag", callback);
     };
@@ -65,7 +65,7 @@ var $ = (function () {
     /**
      * Performs when the target is dropped.
      */
-    constructor.prototype.onDrop = function (callback) {
+    Self.prototype.onDrop = function (callback) {
         
         this.elems[0].addEventListener("drop", callback);
     };
@@ -73,7 +73,7 @@ var $ = (function () {
     /**
      * Performs when the target is focused.
      */
-    constructor.prototype.onFocus = function (callback) {
+    Self.prototype.onFocus = function (callback) {
         
         this.elems[0].addEventListener("focus", callback);
     };
@@ -81,7 +81,7 @@ var $ = (function () {
     /**
      * Performs when the target is submitted.
      */
-    constructor.prototype.onSubmit = function (callback) {
+    Self.prototype.onSubmit = function (callback) {
         
         if (validate) {
             this.elems[0].setAttribute("novalidate", "novalidate");
@@ -93,7 +93,7 @@ var $ = (function () {
     /**
      * Shows the target.
      */
-    constructor.prototype.show = function() {
+    Self.prototype.show = function() {
         
         const elements = document.getElementsByClassName("state:visible");
         
@@ -107,7 +107,7 @@ var $ = (function () {
     /**
      * Hides the target.
      */
-    constructor.prototype.hide = function() {
+    Self.prototype.hide = function() {
     
         this.elems[0].classList.add("state:hidden")
     };
@@ -115,7 +115,7 @@ var $ = (function () {
     /**
      * Animates the target.
      */
-    constructor.prototype.animate = function({params}, speed) {
+    Self.prototype.animate = function({params}, speed) {
         
         this.elems[0].animate({params}, speed);
     };
@@ -123,7 +123,7 @@ var $ = (function () {
     /**
      * Opens the dialog.
      */
-    constructor.prototype.open = function() {
+    Self.prototype.open = function() {
         
         this.elems[0].showModal()
     };
@@ -131,7 +131,7 @@ var $ = (function () {
     /**
      * Closes the dialog.
      */
-    constructor.prototype.close = function() {
+    Self.prototype.close = function() {
         
         this.elems[0].close()
     };
@@ -139,7 +139,7 @@ var $ = (function () {
     /**
      * Validates a form.
      */
-    constructor.prototype.validate = function(validators) {
+    Self.prototype.validate = function(validators) {
         
         const form = this.elems[0];
         
@@ -191,7 +191,7 @@ var $ = (function () {
     };
     
     var instantiate = function (selector) {
-        return new constructor(selector);
+        return new Self(selector);
     };
 
     return instantiate;

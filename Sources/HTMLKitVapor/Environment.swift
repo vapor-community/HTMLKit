@@ -13,7 +13,7 @@ final public class Environment {
     internal var manager: Manager
     
     /// Initiates a environment
-    internal init() {
+    public init() {
         
         self.manager = Manager()
     }

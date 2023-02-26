@@ -141,7 +141,6 @@
     -webkit-appearance: none;
 }
 
-.required\:true:after {
-    content: " *";
-    color: var(--redColor);
+.input:invalid {
+    border: 1px solid red !important;
 }

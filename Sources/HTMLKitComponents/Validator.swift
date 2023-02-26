@@ -1,3 +1,8 @@
+/*
+ Abstract:
+ The file contains the validator for the form validation.
+ */
+
 import Foundation
 
 /// The validator for the form validation.
@@ -18,7 +23,7 @@ public struct Validator: Encodable {
         case date = "date"
         
         /// The field must have a valid url format.
-        case ulr = "url"
+        case url = "url"
     }
     
     /// The name of the field.
