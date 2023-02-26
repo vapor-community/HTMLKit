@@ -12,12 +12,12 @@ public protocol FormModifier {
 
 extension FormModifier where Self: Actionable {
     
-    internal func mutate(submitevent script: String) -> Self {
+    internal func mutate(submitevent script: String, validation: Bool) -> Self {
         
         guard let identifier = self.id else {
             fatalError("Initiative identifier unkown.")
         }
         
-        return self.mutate(event: Events.submit(selector: identifier, script: script))
+        return self.mutate(event: Events.submit(selector: identifier, script: script, validation: validation))
     }
 }

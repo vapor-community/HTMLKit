@@ -63,8 +63,13 @@ public struct Form: View, Actionable {
 
 extension Form: FormModifier {
 
-    public func onSubmit(perfom action: Actions) -> Form {        
-        return self.mutate(submitevent: action.script)
+    public func onSubmit(perfom action: Actions) -> Form {
+        
+        if action.description == "validate" {
+            return self.mutate(submitevent: action.script, validation: true)
+        }
+        
+        return self.mutate(submitevent: action.script, validation: false)
     }
 }
 

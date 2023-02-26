@@ -3,6 +3,8 @@
  The file contains the action stencils for the components.
  */
 
+import Foundation
+
 /// A collection of actions, that can be triggered by events.
 public enum Actions {
     
@@ -20,6 +22,19 @@ public enum Actions {
     
     /// Closes the target.
     case close(_ target: String)
+    
+    /// Validates the form.
+    case valdiate(_ target: String, _ rules: [Validator])
+    
+    public var description: String {
+        
+        switch self {
+        case .valdiate(_, _):
+            return "validate"
+        default:
+            return "default"
+        }
+    }
     
     /// The script for the action.
     public var script: String {
@@ -39,6 +54,9 @@ public enum Actions {
             
         case .close(let target):
             return close(target)
+            
+        case .valdiate(let target, let rules):
+            return validate(target, rules)
         }
     }
     
@@ -65,5 +83,18 @@ public enum Actions {
     /// Returns a close action stencil.
     private func close(_ target: String) -> String {
         return "$('#\(target)').close();"
+    }
+    
+    /// Returns a close action stencil.
+    private func validate(_ target: String, _ validators: [Validator]) -> String {
+        
+        if let data = try? JSONEncoder().encode(validators) {
+            
+            if let result = String(data: data, encoding: .utf8) {
+                return "$('#\(target)').validate('\(result)');"
+            }
+        }
+        
+        return "$('#\(target)').validate('[]');"
     }
 }

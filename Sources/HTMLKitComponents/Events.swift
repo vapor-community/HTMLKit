@@ -3,6 +3,8 @@
  The file contains the event stencils for the components.
  */
 
+import Foundation
+
 /// A collection of events, that can occur on components.
 public enum Events {
     
@@ -97,12 +99,16 @@ public enum Events {
     }
     
     /// Returns a submit event stencil.
-    static func submit(selector: String, script: String) -> String {
+    static func submit(selector: String, script: String, validation: Bool) -> String {
         
         return  """
                 $('#\(selector)').onSubmit(function() {
+                    
+                    event.preventDefault();
+                
                     \(script)
-                });
+                
+                }, \(validation));
                 """
     }
 }

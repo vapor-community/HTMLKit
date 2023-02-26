@@ -82,6 +82,10 @@ var $ = (function () {
      * Performs when the target is submitted.
      */
     constructor.prototype.onSubmit = function (callback) {
+        
+        if (validate) {
+            this.elems[0].setAttribute("novalidate", "novalidate");
+        }
 
         this.elems[0].addEventListener("submit", callback);
     };
@@ -130,6 +134,60 @@ var $ = (function () {
     constructor.prototype.close = function() {
         
         this.elems[0].close()
+    };
+    
+    /**
+     * Validates a form.
+     */
+    constructor.prototype.validate = function(validators) {
+        
+        const form = this.elems[0];
+        
+        for (let validator of JSON.parse(validators)) {
+            
+            const element = form.elements[validator.field];
+            
+            switch (validator.rule) {
+                    
+                case "value":
+                    
+                    if (!element.value) {
+                        element.setCustomValidity('The field must have a value.');
+                        
+                    } else {
+                        element.setCustomValidity('');
+                    }
+                    
+                    break;
+                    
+                case "email":
+                    
+                    if (!element.value.includes("@")) {
+                        element.setCustomValidity('The field must have a valid email format.');
+                        
+                    } else {
+                        element.setCustomValidity('');
+                    }
+                    
+                    break;
+                    
+                case "url":
+                    
+                    if (!element.value.includes(":")) {
+                        element.setCustomValidity('The field must have a valid url format.');
+                        
+                    } else {
+                        element.setCustomValidity('');
+                    }
+            }
+        }
+        
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            
+        } else {
+            form.submit();
+        }
     };
     
     var instantiate = function (selector) {
