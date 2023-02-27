@@ -736,3 +736,72 @@ public struct Progress: View {
         .class(classes.joined(separator: " "))
     }
 }
+
+/// A component to edit and format text content.
+public struct TextPad: View {
+    
+    /// The identifier of the textpad.
+    internal let name: String
+    
+    /// The content of the textpad.
+    internal var content: [String]
+    
+    /// The classes of the textpad.
+    internal var classes: [String]
+    
+    /// Creates a textpad
+    public init(name: String, @ContentBuilder<String> content: () -> [String]) {
+        
+        self.name = name
+        self.content = content()
+        self.classes = ["textpad"]
+    }
+    
+    /// Creates a textpad.
+    internal init(name: String, content: [String], classes: [String]) {
+        
+        self.name = name
+        self.content = content
+        self.classes = classes
+    }
+    
+    public var body: Content {
+        Division {
+            UnorderedList {
+                ListItem {
+                    Paragraph {
+                        "B"
+                    }
+                }
+                .class("toolbar-tool command:bold")
+                ListItem {
+                    Paragraph {
+                        "I"
+                    }
+                }
+                .class("toolbar-tool command:italic")
+                ListItem {
+                    Paragraph {
+                        "U"
+                    }
+                }
+                .class("toolbar-tool command:underline")
+                ListItem {
+                    Paragraph {
+                        "S"
+                    }
+                }
+                .class("toolbar-tool command:strikethrough")
+            }
+            .class("textpad-toolbar")
+            TextArea {
+                content
+            }
+            .id(name)
+            .name(name)
+            .rows(5)
+            .class("textpad-content")
+        }
+        .class(classes.joined(separator: " "))
+    }
+}
