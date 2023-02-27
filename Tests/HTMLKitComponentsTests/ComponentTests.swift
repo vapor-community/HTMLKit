@@ -433,10 +433,7 @@ final class ComponentTests: XCTestCase {
                        <div class="carousel">\
                        <div class="carousel-content"></div>\
                        <div class="carousel-indication"></div>\
-                       </div>\
-                       <script>\
-                       new Carousel();\
-                       </script>
+                       </div>
                        """
         )
     }

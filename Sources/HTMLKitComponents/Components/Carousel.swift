@@ -46,9 +46,6 @@ public struct Carousel: View {
             .class("carousel-indication")
         }
         .class(classes.joined(separator: " "))
-        Script {
-            "new Carousel();"
-        }
     }
 }
 
