@@ -1,9 +1,18 @@
+/*
+ Abstract:
+ The file contains the modifiers for components with drag interaction.
+ */
+
+/// A type that describes the modifier of a draggable component.
 public protocol DragModifier {
     
+    /// The identifier of the component.
     func id(_ value: String) -> Self
     
+    /// Acts on a drag event.
     func onDrag(perfom action: Actions) -> Self
     
+    /// Acts on a drop event
     func onDrop(perfom action: Actions) -> Self
 }
 

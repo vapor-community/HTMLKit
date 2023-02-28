@@ -1,5 +1,6 @@
 /*
  Abstract:
+ The file contains everything related to the group component.
  */
 
 import HTMLKit

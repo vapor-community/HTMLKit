@@ -1,6 +1,6 @@
 /*
  Abstract:
- The file contains everything related to images.
+ The file contains everything related to image component.
  */
 
 import HTMLKit
@@ -65,5 +65,9 @@ extension Image: ViewModifier {
     
     public func opacity(_ value: Tokens.OpacityValue) -> Image {
         return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func hidden() -> Image {
+        return self.mutate(state: Tokens.ViewState.hidden.rawValue)
     }
 }

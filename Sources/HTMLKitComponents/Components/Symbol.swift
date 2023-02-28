@@ -11,6 +11,7 @@ import OrderedCollections
 import FoundationXML
 #endif
 
+/// A component that displays symbols.
 public struct Symbol: View, Modifiable {
     
     /// The content of the symbol.
@@ -49,9 +50,7 @@ public struct Symbol: View, Modifiable {
         Vector {
             content
         }
-        .width(16)
-        .height(16)
-        .viewBox("0 0 16 16")
+        .viewBox("0 0 20 16")
         .fill("currentColor")
         .class(classes.joined(separator: " "))
     }

@@ -2,138 +2,196 @@ var $ = (function () {
 
     'use strict';
 
-    var constructor = function (selector) {
+    var Self = function (selector) {
         this.elems = document.querySelectorAll(selector);
     };
     
     /**
-     * This function is for
+     * Peforms when the pointer enters the target area.
      */
-    constructor.prototype.onHover = function (callback) {
+    Self.prototype.onHover = function (callback) {
         
         this.elems[0].addEventListener("mouseenter", callback);
     };
     
     /**
-     * This function is for
+     * Peforms when the pointer leaves the target area.
      */
-    constructor.prototype.onLeave = function (callback) {
+    Self.prototype.onLeave = function (callback) {
         
         this.elems[0].addEventListener("mouseleave", callback);
     };
     
     /**
-     * This function is for
+     * Performs when the target value changes.
      */
-    constructor.prototype.onChange = function (callback) {
+    Self.prototype.onChange = function (callback) {
         
         this.elems[0].addEventListener("change", callback);
     };
     
     /**
-     * This function is for
+     * Performs when the target is clicked.
      */
-    constructor.prototype.onClick = function (callback) {
+    Self.prototype.onClick = function (callback) {
         
         this.elems[0].addEventListener("click", callback);
     };
     
     /**
-     * This function is for
+     * Performs when the target is touched.
      */
-    constructor.prototype.onTapGesture = function (callback) {
+    Self.prototype.onTapGesture = function (callback) {
         
         this.elems[0].addEventListener("touchend", callback);
     };
     
     /**
-     * This function is for
+     * Performs when the target is touched.
      */
-    constructor.prototype.onLongPressGesture = function (callback) {
+    Self.prototype.onLongPressGesture = function (callback) {
         
         this.elems[0].addEventListener("touchstart", callback);
     };
     
     /**
-     * This function is for
+     * Performs when the target is dragged.
      */
-    constructor.prototype.onDrag = function (callback) {
+    Self.prototype.onDrag = function (callback) {
         
         this.elems[0].addEventListener("drag", callback);
     };
     
     /**
-     * This function is for
+     * Performs when the target is dropped.
      */
-    constructor.prototype.onDrop = function (callback) {
+    Self.prototype.onDrop = function (callback) {
         
         this.elems[0].addEventListener("drop", callback);
     };
     
     /**
-     * This function is for
+     * Performs when the target is focused.
      */
-    constructor.prototype.onFocus = function (callback) {
+    Self.prototype.onFocus = function (callback) {
         
         this.elems[0].addEventListener("focus", callback);
     };
     
     /**
-     * This function is for
+     * Performs when the target is submitted.
      */
-    constructor.prototype.onSubmit = function (callback) {
+    Self.prototype.onSubmit = function (callback) {
+        
+        if (validate) {
+            this.elems[0].setAttribute("novalidate", "novalidate");
+        }
 
         this.elems[0].addEventListener("submit", callback);
     };
     
     /**
-     * This function is for
+     * Shows the target.
      */
-    constructor.prototype.show = function() {
+    Self.prototype.show = function() {
         
-        const elements = document.getElementsByClassName("display:block");
+        const elements = document.getElementsByClassName("state:visible");
         
         for (let element of elements){
-            element.classList.remove("display:block")
+            element.classList.remove("state:visible")
         }
         
-        this.elems[0].classList.add("display:block")
+        this.elems[0].classList.add("state:visible")
     };
     
     /**
-     * This function is for
+     * Hides the target.
      */
-    constructor.prototype.hide = function() {
-        
-        this.elems[0].classList.remove("display:block")
+    Self.prototype.hide = function() {
+    
+        this.elems[0].classList.add("state:hidden")
     };
     
     /**
-     * This function is for
+     * Animates the target.
      */
-    constructor.prototype.animate = function({params}, speed) {
+    Self.prototype.animate = function({params}, speed) {
         
         this.elems[0].animate({params}, speed);
     };
     
     /**
-     * This function is for
+     * Opens the dialog.
      */
-    constructor.prototype.open = function() {
+    Self.prototype.open = function() {
         
         this.elems[0].showModal()
     };
     
     /**
-     * This function is for
+     * Closes the dialog.
      */
-    constructor.prototype.close = function() {
+    Self.prototype.close = function() {
         
         this.elems[0].close()
     };
     
+    /**
+     * Validates a form.
+     */
+    Self.prototype.validate = function(validators) {
+        
+        const form = this.elems[0];
+        
+        for (let validator of JSON.parse(validators)) {
+            
+            const element = form.elements[validator.field];
+            
+            switch (validator.rule) {
+                    
+                case "value":
+                    
+                    if (!element.value) {
+                        element.setCustomValidity('The field must have a value.');
+                        
+                    } else {
+                        element.setCustomValidity('');
+                    }
+                    
+                    break;
+                    
+                case "email":
+                    
+                    if (!element.value.includes("@")) {
+                        element.setCustomValidity('The field must have a valid email format.');
+                        
+                    } else {
+                        element.setCustomValidity('');
+                    }
+                    
+                    break;
+                    
+                case "url":
+                    
+                    if (!element.value.includes(":")) {
+                        element.setCustomValidity('The field must have a valid url format.');
+                        
+                    } else {
+                        element.setCustomValidity('');
+                    }
+            }
+        }
+        
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            
+        } else {
+            form.submit();
+        }
+    };
+    
     var instantiate = function (selector) {
-        return new constructor(selector);
+        return new Self(selector);
     };
 
     return instantiate;

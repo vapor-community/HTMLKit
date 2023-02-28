@@ -77,6 +77,15 @@ extension Button: ButtonModifier {
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Button {
         return self.mutate(backgroundcolor: color.rawValue)
     }
+    
+    public func disabled(_ condition: Bool) -> Button {
+        
+        if condition {
+            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
 }
 
 extension Button: PressModifier {
@@ -152,5 +161,14 @@ extension LinkButton: ButtonModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> LinkButton {
         return self.mutate(backgroundcolor: color.rawValue)
+    }
+    
+    public func disabled(_ condition: Bool) -> LinkButton {
+        
+        if condition {
+            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
     }
 }

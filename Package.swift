@@ -33,7 +33,8 @@ let package = Package(
             dependencies: [
                 .product(name: "Lingo", package: "Lingo"),
                 .product(name: "Collections", package: "swift-collections")
-            ]
+            ],
+            exclude: ["Abstraction/README.md", "Framework/README.md"]
         ),
         .target(
             name: "HTMLKitConverter",

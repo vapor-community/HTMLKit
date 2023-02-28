@@ -1,6 +1,6 @@
 /*
  Abstract:
- The file contains everything related to the text component.
+ The file contains everything related to the toggle component.
  */
 
 import HTMLKit

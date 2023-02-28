@@ -54,8 +54,12 @@ public class Renderer {
         self.lingo = lingo
     }
     
-    public func add<T>(model: T) where T: Encodable {
-        manager.upsert(model, for: \T.self)
+    /// Initiates the renderer.
+    public init(lingo: Lingo? = nil, manager: Manager) {
+        
+        self.environment = Environment()
+        self.manager = manager
+        self.lingo = lingo
     }
     
     /// Renders a view
@@ -110,6 +114,10 @@ public class Renderer {
             
             if let modifier = content as? EnvironmentModifier {
                 result += try render(modifier: modifier)
+            }
+            
+            if let value = content as? EnvironmentValue {
+                result += try render(value: value)
             }
             
             if let element = content as? String {

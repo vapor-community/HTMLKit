@@ -1,8 +1,9 @@
 /*
  Abstract:
- The file contains the class tokens for the css.
+ The file contains the class tokens for the components.
  */
 
+/// A collection of class tokens for the components.
 public enum Tokens {
     
     /// A direction for elements.
@@ -439,6 +440,7 @@ public enum Tokens {
         case outline = "style:outline"
     }
 
+    /// A shape of the button.
     public enum BorderShape: String {
         
         case smallrounded = "shape:smallrounded"
@@ -456,17 +458,29 @@ public enum Tokens {
         /// Sets the size to 75 %.
         case large = "size:large"
         
-        /// Sets the size to 50%.
+        /// Sets the size to 50 %.
         case medium = "size:medium"
         
         /// Sets the size to 25 %.
         case small = "size:small"
     }
 
+    /// A ratio for the grid.
     public enum ItemRatio: String {
         
+        ///  Sets the ratio to 15%.
+        case sixth = "ratio:15"
+        
+        /// Sets  the ratio to 20 %.
+        case fifth = "ratio:20"
+        
+        /// Sets the ratio to 25 %.
         case quarter = "ratio:25"
+        
+        /// Sets the ratio to 33 %.
         case third = "ratio:33"
+        
+        /// Sets the ratio to 50 %.
         case half = "ratio:50"
     }
 
@@ -476,5 +490,21 @@ public enum Tokens {
         case grouped = "style:grouped"
         case accordion = "style:accordion"
         case tab = "style:tab"
+    }
+    
+    /// A state for the view.
+    public enum ViewState: String {
+        
+        /// Sets the state to active.
+        case active = "state:active"
+        
+        /// Sets the state to disabled.
+        case disabled = "state:disabled"
+        
+        /// Sets the state to hidden.
+        case hidden = "state:hidden"
+        
+        /// Sets the state to visible.
+        case visible = "state:visible"
     }
 }

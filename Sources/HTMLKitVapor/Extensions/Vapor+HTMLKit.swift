@@ -16,36 +16,57 @@ extension Application {
     /// The vapor provider
     public struct HtmlKit {
         
-        internal struct LingoStorageKey: StorageKey {
+        internal struct LocalizationStorageKey: StorageKey {
             
-            public typealias Value = LingoConfiguration
+            public typealias Value = Localization
+        }
+        
+        internal struct EnvironmentStorageKey: StorageKey {
+            
+            public typealias Value = Environment
         }
         
         /// The view localization
-        public var lingo: LingoConfiguration {
+        public var localization: Localization {
             
-            if let configuration = self.application.storage[LingoStorageKey.self] {
+            if let configuration = self.application.storage[LocalizationStorageKey.self] {
                 return configuration
             }
             
-            let configuration = LingoConfiguration()
+            let configuration = Localization()
             
-            self.application.storage[LingoStorageKey.self] = configuration
+            self.application.storage[LocalizationStorageKey.self] = configuration
+            
+            return configuration
+        }
+        
+        /// The view environment
+        public var environment: Environment {
+            
+            if let configuration = self.application.storage[EnvironmentStorageKey.self] {
+                return configuration
+            }
+            
+            let configuration = Environment()
+            
+            self.application.storage[EnvironmentStorageKey.self] = configuration
             
             return configuration
         }
         
         /// The view renderer
         internal var renderer: ViewRenderer {
-            return .init(eventLoop: self.application.eventLoopGroup.next(), lingo: lingo)
+            return .init(eventLoop: application.eventLoopGroup.next(),
+                         localization: localization,
+                         environment: environment)
         }
         
         /// The application dependency
-        public let application: Application
+        internal let application: Application
         
         /// Creates the provider
         public init(application: Application) {
-            
+
             self.application = application
         }
     }
@@ -55,6 +76,8 @@ extension Request {
     
     /// Access to the view renderer
     public var htmlkit: ViewRenderer {
-        return .init(eventLoop: self.eventLoop, lingo: self.application.htmlkit.lingo)
+        return .init(eventLoop: self.eventLoop,
+                     localization: self.application.htmlkit.localization,
+                     environment: self.application.htmlkit.environment)
     }
 }
