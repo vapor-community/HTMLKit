@@ -12,6 +12,14 @@
     box-shadow: 0 0 0 4px var(--inputFocusColor);
 }
 
+.textpad:has(textarea:invalid) .textpad-toolbar {
+    border-color: var(--redColor);
+}
+
+.textpad:has(textarea:invalid) .textpad-content {
+    border-color: var(--redColor);
+}
+
 .textpad-toolbar {
     display: flex;
     flex-direction: row;
