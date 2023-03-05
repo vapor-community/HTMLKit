@@ -743,6 +743,12 @@ public struct TextPad: View {
     /// The identifier of the textpad.
     internal let name: String
     
+    /// The placeholder for the field value.
+    internal let prompt: String?
+    
+    /// The number of lines.
+    internal var rows: Int = 1
+    
     /// The content of the textpad.
     internal var content: [String]
     
@@ -750,17 +756,20 @@ public struct TextPad: View {
     internal var classes: [String]
     
     /// Creates a textpad
-    public init(name: String, @ContentBuilder<String> content: () -> [String]) {
+    public init(name: String, prompt: String? = nil, @ContentBuilder<String> content: () -> [String]) {
         
         self.name = name
+        self.prompt = prompt
         self.content = content()
         self.classes = ["textpad"]
     }
     
     /// Creates a textpad.
-    internal init(name: String, content: [String], classes: [String]) {
+    internal init(name: String, prompt: String?, rows: Int, content: [String], classes: [String]) {
         
         self.name = name
+        self.prompt = prompt
+        self.rows = rows
         self.content = content
         self.classes = classes
     }
@@ -799,9 +808,18 @@ public struct TextPad: View {
             }
             .id(name)
             .name(name)
-            .rows(5)
+            .rows(rows)
             .class("textpad-content")
         }
         .class(classes.joined(separator: " "))
+    }
+    
+    /// Sets the limit of the maximum lines.
+    public func lineLimit(_ value: Int) -> TextPad {
+
+        var newSelf = self
+        newSelf.rows = value
+        
+        return newSelf
     }
 }
