@@ -63,7 +63,7 @@ final class ProviderTests: XCTestCase {
             
             var body: HTMLKit.Content {
                 MainView {
-                    Paragraph("Hallo Welt")
+                    Paragraph("greeting.world")
                 }
             }
         }

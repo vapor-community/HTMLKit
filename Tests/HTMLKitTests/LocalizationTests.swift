@@ -22,7 +22,7 @@ final class LocalizationTests: XCTestCase {
         struct MainView: View {
             
             var body: Content {
-                Heading1("Hallo Welt")
+                Heading1("greeting.world")
             }
         }
         
@@ -32,6 +32,35 @@ final class LocalizationTests: XCTestCase {
                        """
         )
     }
+    
+    func testLocalizationWithStringInterpolation() throws {
+        
+        struct TestContext: Encodable {
+
+            var person: Person
+        }
+        
+        struct Person: Encodable {
+            
+            var name: String
+        }
+        
+        struct TestView: View {
+            
+            var context: TestContext
+            
+            var body: Content {
+                Heading1("greeting.person", with: context.person)
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: TestView(context: TestContext(person: Person(name: "John Doe")))),
+                       """
+                       <h1>Hello John Doe</h1>
+                       """
+        )
+    }
+    
     
     func testEnvironmentLocalization() throws {
         
@@ -55,7 +84,7 @@ final class LocalizationTests: XCTestCase {
             
             var body: Content {
                 MainView {
-                    Heading1("Hallo Welt")
+                    Heading1("greeting.world")
                         .environment(key: \.locale)
                 }
             }
