@@ -25,8 +25,7 @@ let package = Package(
         .package(url: "https://github.com/miroslavkovac/Lingo.git", from: "3.1.0"),
         .package(url: "https://github.com/apple/swift-collections.git", from: "1.0.1"),
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.65.2"),
-        .package(url: "https://github.com/vapor-community/eagerbeaver.git", branch: "0.0.0-alpha.2")
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.65.2")
     ],
     targets: [
         .target(
@@ -40,8 +39,7 @@ let package = Package(
         .target(
             name: "HTMLKitConverter",
             dependencies: [
-                .target(name: "HTMLKit"),
-                .product(name: "EagerBeaver", package: "eagerbeaver")
+                .target(name: "HTMLKit")
             ]
         ),
         .target(
