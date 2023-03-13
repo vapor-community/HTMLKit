@@ -18,7 +18,7 @@ extension Application {
         
         internal struct LocalizationStorageKey: StorageKey {
             
-            public typealias Value = Localization
+            public typealias Value = LocalizationConfiguration
         }
         
         internal struct EnvironmentStorageKey: StorageKey {
@@ -27,13 +27,13 @@ extension Application {
         }
         
         /// The view localization
-        public var localization: Localization {
+        public var localization: LocalizationConfiguration {
             
             if let configuration = self.application.storage[LocalizationStorageKey.self] {
                 return configuration
             }
             
-            let configuration = Localization()
+            let configuration = LocalizationConfiguration()
             
             self.application.storage[LocalizationStorageKey.self] = configuration
             
@@ -56,6 +56,7 @@ extension Application {
         
         /// The view renderer
         internal var renderer: ViewRenderer {
+            
             return .init(eventLoop: application.eventLoopGroup.next(),
                          localization: localization,
                          environment: environment)
@@ -74,8 +75,23 @@ extension Application {
 
 extension Request {
     
+    /// The accept language header of the request
+    private var acceptLanguage: String? {
+        
+        if let languageHeader = self.headers.first(name: .acceptLanguage) {
+            return languageHeader.components(separatedBy: ",").first
+        }
+        
+        return nil
+    }
+    
     /// Access to the view renderer
     public var htmlkit: ViewRenderer {
+        
+        if let acceptLanguage = self.acceptLanguage {
+            self.application.htmlkit.localization.set(locale: acceptLanguage)
+        }
+        
         return .init(eventLoop: self.eventLoop,
                      localization: self.application.htmlkit.localization,
                      environment: self.application.htmlkit.environment)

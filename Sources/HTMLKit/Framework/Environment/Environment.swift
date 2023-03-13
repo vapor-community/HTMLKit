@@ -10,7 +10,7 @@ public struct Environment {
     public var calendar: Calendar?
     
     /// The current local of the environment
-    public var locale: String?
+    public var locale: Locale?
     
     /// The current color scheme of the environment
     public var colorScheme: String?

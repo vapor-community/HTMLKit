@@ -4,7 +4,6 @@
  */
 
 import HTMLKit
-import Lingo
 import XCTest
 
 final class LocalizationTests: XCTestCase {
@@ -35,26 +34,14 @@ final class LocalizationTests: XCTestCase {
     
     func testLocalizationWithStringInterpolation() throws {
         
-        struct TestContext: Encodable {
-
-            var person: Person
-        }
-        
-        struct Person: Encodable {
-            
-            var name: String
-        }
-        
         struct TestView: View {
             
-            var context: TestContext
-            
             var body: Content {
-                Heading1("greeting.person", with: context.person)
+                Heading1("greeting.person", with: "John Doe")
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: TestView(context: TestContext(person: Person(name: "John Doe")))),
+        XCTAssertEqual(try renderer!.render(view: TestView()),
                        """
                        <h1>Hello John Doe</h1>
                        """
@@ -76,7 +63,7 @@ final class LocalizationTests: XCTestCase {
                 Division {
                     content
                 }
-                .environment(key: \.locale, value: "fr")
+                .environment(key: \.locale, value: Locale(tag: .french))
             }
         }
         
@@ -108,8 +95,8 @@ extension LocalizationTests {
         
         let currentDirectory = currentFile.appendingPathComponent("Localization")
         
-        let lingo = try! Lingo(rootPath: currentDirectory.path, defaultLocale: "en")
+        let localization = Localization(source: currentDirectory, locale: Locale(tag: "en-GB"))
         
-        self.renderer = Renderer(lingo: lingo)
+        self.renderer = Renderer(localization: localization)
     }
 }

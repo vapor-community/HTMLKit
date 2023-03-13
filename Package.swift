@@ -22,7 +22,6 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/miroslavkovac/Lingo.git", from: "3.1.0"),
         .package(url: "https://github.com/apple/swift-collections.git", from: "1.0.1"),
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
         .package(url: "https://github.com/vapor/vapor.git", from: "4.65.2")
@@ -31,7 +30,6 @@ let package = Package(
         .target(
             name: "HTMLKit",
             dependencies: [
-                .product(name: "Lingo", package: "Lingo"),
                 .product(name: "Collections", package: "swift-collections")
             ],
             exclude: ["Abstraction/README.md", "Framework/README.md"]
@@ -56,7 +54,6 @@ let package = Package(
             dependencies: [
                 .target(name: "HTMLKit"),
                 .product(name: "Vapor", package: "vapor"),
-                .product(name: "Lingo", package: "lingo")
             ]
         ),
         .testTarget(
@@ -65,7 +62,7 @@ let package = Package(
                 .target(name: "HTMLKit")
             ],
             resources: [
-                .process("Localization")
+                .copy("Localization")
             ]
         ),
         .testTarget(
@@ -92,7 +89,7 @@ let package = Package(
                 .product(name: "XCTVapor", package: "vapor")
             ],
             resources: [
-                .process("Localization")
+                .copy("Localization")
             ]
         ),
         .executableTarget(

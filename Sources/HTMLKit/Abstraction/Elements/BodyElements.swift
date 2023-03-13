@@ -1570,6 +1570,10 @@ extension Heading1: Localizable {
     public init(_ localizedKey: String, with context: some Encodable) {
         self.content = [LocalizedStringKey(key: localizedKey, context: context)]
     }
+    
+    public init(_ localizedKey: String, with arguments: Any...) {
+        self.content = [LocalizedStringKey(key: localizedKey, context: arguments)]
+    }
 }
 
 /// The element represents a heading.

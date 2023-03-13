@@ -10,10 +10,10 @@ public struct LocalizedStringKey: Content {
 
     public let key: String
     
-    public let context: Encodable?
+    public let context: [Any]?
     
     /// Initiates a localized string key with a context
-    public init(key: String, context: Encodable? = nil) {
+    public init(key: String, context: Any...) {
         
         self.key = key
         self.context = context

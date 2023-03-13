@@ -1,0 +1,5 @@
+/* A friendly greeting. */
+"greeting.world" = "Hello World";
+
+/* A friendly greeting. */
+"greeting.person" = "Hello %st";
