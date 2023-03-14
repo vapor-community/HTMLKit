@@ -23,7 +23,7 @@ extension Application {
         
         internal struct EnvironmentStorageKey: StorageKey {
             
-            public typealias Value = Environment
+            public typealias Value = HTMLKit.Environment
         }
         
         /// The view localization
@@ -41,7 +41,7 @@ extension Application {
         }
         
         /// The view environment
-        public var environment: Environment {
+        public var environment: HTMLKit.Environment {
             
             if let configuration = self.application.storage[EnvironmentStorageKey.self] {
                 return configuration

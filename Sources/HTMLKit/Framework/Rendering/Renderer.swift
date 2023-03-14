@@ -40,23 +40,19 @@ public class Renderer {
     
     private var environment: Environment
     
-    private var manager: Manager
-    
     private var localization: Localization?
 
     /// Initiates the renderer.
     public init(localization: Localization? = nil) {
         
         self.environment = Environment()
-        self.manager = Manager()
         self.localization = localization
     }
     
     /// Initiates the renderer.
-    public init(localization: Localization? = nil, manager: Manager) {
+    public init(localization: Localization? = nil, environment: Environment) {
         
-        self.environment = Environment()
-        self.manager = manager
+        self.environment = environment
         self.localization = localization
     }
     
@@ -275,11 +271,11 @@ public class Renderer {
     internal func render(modifier: EnvironmentModifier) throws -> String {
         
         if let value = modifier.value {
-            self.manager.upsert(value, for: modifier.key)
+            self.environment.upsert(value, for: modifier.key)
             
         } else {
             
-            if let value = manager.retrieve(for: modifier.key) {
+            if let value = self.environment.retrieve(for: modifier.key) {
                 
                 if let key = modifier.key as? PartialKeyPath<EnvironmentKeys> {
                     
@@ -309,7 +305,7 @@ public class Renderer {
     /// Renders a environment value
     internal func render(value: EnvironmentValue) throws -> String {
         
-        guard let parent = manager.retrieve(for: value.parentPath) else {
+        guard let parent = self.environment.retrieve(for: value.parentPath) else {
             throw Errors.environmentObjectNotFound
         }
 
