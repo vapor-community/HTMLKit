@@ -37,13 +37,45 @@ final class LocalizationTests: XCTestCase {
         struct TestView: View {
             
             var body: Content {
-                Heading1("greeting.person", with: "John Doe")
+                Heading1("greeting.person", interpolation: "John Doe")
             }
         }
         
         XCTAssertEqual(try renderer!.render(view: TestView()),
                        """
                        <h1>Hello John Doe</h1>
+                       """
+        )
+    }
+    
+    func testStringInterpolationWithMultipleArguments() throws {
+        
+        struct TestView: View {
+            
+            var body: Content {
+                Heading1("personal.introduction", interpolation: "John Doe", 31)
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: TestView()),
+                       """
+                       <h1>Hello, I am John Doe and 31 years old.</h1>
+                       """
+        )
+    }
+    
+    func testLocaliationWithTable() throws {
+        
+        struct TestView: View {
+            
+            var body: Content {
+                Heading1("personal.introduction", tableName: "web", interpolation: "John Doe", 31)
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: TestView()),
+                       """
+                       <h1>Hello, I am John Doe and 31 years old.</h1>
                        """
         )
     }

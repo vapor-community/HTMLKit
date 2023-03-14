@@ -6,7 +6,7 @@ public class TranslationTable {
     /// The name of the table
     public let name: String
     
-    /// The translations strings
+    /// The translations in the table
     private var translations: [String: String]
     
     /// Initiates a translation table
@@ -16,18 +16,18 @@ public class TranslationTable {
         self.translations = translations
     }
     
-    /// Retrieves a translation string
+    /// Retrieves a translation
     public func retrieve(for key: String) -> String? {
         
-        if let value = self.translations[key] {
-            return value
+        if let translation = self.translations[key] {
+            return translation
         }
         
         return nil
     }
     
-    /// Adds und updates an translation string
-    public func upsert(_ value: String, for key: String) {
-        self.translations[key] = value
+    /// Adds und updates a translation
+    public func upsert(_ translation: String, for key: String) {
+        self.translations[key] = translation
     }
 }

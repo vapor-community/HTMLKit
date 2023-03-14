@@ -6,34 +6,34 @@ public struct Localization {
     /// A enumeration of various errors
     public enum Errors: Error {
         
-        case missingValue
+        case missingKey
         case missingTable
         case missingTables
-        case localizationFailed
+        case unkownTable
         
         public var description: String {
             
             switch self {
-            case .missingValue:
-                return "Unable to find a value for the key."
+            case .missingKey:
+                return "Unable to find a translation for the key."
                 
             case .missingTable:
                 return "Unable to find a translation table for the locale."
                 
             case .missingTables:
-                return "Unable to find any translations tables."
+                return "Unable to find any localization tables."
                 
-            case .localizationFailed:
-                return "Localization failed."
+            case .unkownTable:
+                return "Unkown table name."
             }
         }
     }
     
-    /// The translation tables
+    /// The localization tables
     internal var tables: [Locale: [TranslationTable]]?
     
     /// The default locale
-    internal var locale: Locale
+    internal let locale: Locale
     
     /// Initiates a localization
     public init(source: URL, locale: Locale) {
@@ -45,7 +45,7 @@ public struct Localization {
     /// Loads the tables from a specific path
     internal func load(source: URL) -> [Locale: [TranslationTable]] {
         
-        var localTable = [Locale: [TranslationTable]]()
+        var localizationTables = [Locale: [TranslationTable]]()
         
         if let enumerator = FileManager.default.enumerator(at: source, includingPropertiesForKeys: nil) {
             
@@ -60,57 +60,60 @@ public struct Localization {
                         
                         let locale = Locale(tag: path.deletingPathExtension().deletingLastPathComponent().lastPathComponent)
                         
-                        if var tables = localTable[locale] {
+                        if var translationTables = localizationTables[locale] {
                             
-                            if let strings = NSDictionary(contentsOf: path) as? [String: String] {
-                                tables.append(TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: strings))
+                            if let translations = NSDictionary(contentsOf: path) as? [String: String] {
+                                translationTables.append(TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: translations))
                             }
                             
-                            localTable[locale] = tables
+                            localizationTables[locale] = translationTables
                         }
                     }
                     
                 } else {
-                    localTable[Locale(tag: path.lastPathComponent)] = [TranslationTable]()
+                    localizationTables[Locale(tag: path.lastPathComponent)] = [TranslationTable]()
                 }
             }
         }
         
-        return localTable
+        return localizationTables
     }
     
     /// Retrieves a value for a specific key from the tables
-    public func localize(key: String, locale: Locale? = nil, arguments: [Any]? = nil) throws -> String {
+    public func localize(key: String, locale: Locale? = nil, interpolation: [Any]? = nil) throws -> String {
         
-        guard let tables = self.tables else {
+        guard let localizationTables = self.tables else {
             throw Errors.missingTables
         }
         
         let currentLocale = locale ?? self.locale
         
-        if let translations = tables[currentLocale] {
+        if let translationTables = localizationTables[currentLocale] {
             
-            for translation in translations {
+            for translationTable in translationTables {
                 
-                if var value = translation.retrieve(for: key) {
+                if var translation = translationTable.retrieve(for: key) {
                     
-                    if let arguments = arguments {
+                    if let interpolation = interpolation {
                         
-                        for argument in arguments {
+                        for argument in interpolation {
 
                             switch argument {
                             case let stringValue as String:
-                                value = value.replacingOccurrences(of: "%st", with: stringValue)
+                                translation = translation.replacingOccurrences(of: "%st", with: stringValue)
                                 
                             case let dateValue as Date:
                                 
                                 let formatter = DateFormatter()
                                 formatter.dateFormat = currentLocale.date
                                 
-                                value = value.replacingOccurrences(of: "%dt", with: formatter.string(from: dateValue))
+                                translation = translation.replacingOccurrences(of: "%dt", with: formatter.string(from: dateValue))
                                 
                             case let doubleValue as Double:
-                                value = value.replacingOccurrences(of: "%do", with: String(doubleValue))
+                                translation = translation.replacingOccurrences(of: "%do", with: String(doubleValue))
+                                
+                            case let intValue as Int:
+                                translation = translation.replacingOccurrences(of: "%in", with: String(intValue))
                                 
                             default:
                                 break
@@ -118,10 +121,10 @@ public struct Localization {
                         }
                     }
                     
-                    return value
+                    return translation
                     
                 } else {
-                    throw Errors.missingValue
+                    continue
                 }
             }
             
@@ -129,7 +132,66 @@ public struct Localization {
             throw Errors.missingTable
         }
         
-        throw Errors.localizationFailed
+        throw Errors.missingKey
+    }
+    
+    /// Retrieves a value for a specific key from a specific table
+    public func localize(key: String, table: String, locale: Locale? = nil, interpolation: [Any]? = nil) throws -> String {
+        
+        guard let localizationTables = self.tables else {
+            throw Errors.missingTables
+        }
+        
+        let currentLocale = locale ?? self.locale
+        
+        if let translationTables = localizationTables[currentLocale] {
+            
+            for translationTable in translationTables {
+                
+                if translationTable.name == table {
+                    
+                    if var translation = translationTable.retrieve(for: key) {
+                        
+                        if let interpolation = interpolation {
+                            
+                            for argument in interpolation {
+
+                                switch argument {
+                                case let stringValue as String:
+                                    translation = translation.replacingOccurrences(of: "%st", with: stringValue)
+                                    
+                                case let dateValue as Date:
+                                    
+                                    let formatter = DateFormatter()
+                                    formatter.dateFormat = currentLocale.date
+                                    
+                                    translation = translation.replacingOccurrences(of: "%dt", with: formatter.string(from: dateValue))
+                                    
+                                case let doubleValue as Double:
+                                    translation = translation.replacingOccurrences(of: "%do", with: String(doubleValue))
+                                    
+                                case let intValue as Int:
+                                    translation = translation.replacingOccurrences(of: "%in", with: String(intValue))
+                                    
+                                default:
+                                    break
+                                }
+                            }
+                        }
+                        
+                        return translation
+                        
+                    } else {
+                        throw Errors.missingKey
+                    }
+                }
+            }
+            
+        } else {
+            throw Errors.missingTable
+        }
+        
+        throw Errors.unkownTable
     }
 }
 

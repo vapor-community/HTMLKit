@@ -264,11 +264,11 @@ public class Renderer {
             throw Errors.missingLocalization
         }
         
-        if let context = stringkey.context {
-            return try localization.localize(key: stringkey.key, locale: environment.locale ?? nil, arguments: context)
+        if let table = stringkey.table {
+            return try localization.localize(key: stringkey.key, table: table, locale: environment.locale, interpolation: stringkey.interpolation)
         }
         
-        return try localization.localize(key: stringkey.key, locale: environment.locale ?? nil)
+        return try localization.localize(key: stringkey.key, locale: environment.locale, interpolation: stringkey.interpolation)
     }
     
     /// Renders a environment modifier
