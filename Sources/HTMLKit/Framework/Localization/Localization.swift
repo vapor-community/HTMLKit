@@ -1,7 +1,7 @@
 import Foundation
 
 /// A type that represents the localization
-public struct Localization {
+public class Localization {
     
     /// A enumeration of various errors
     public enum Errors: Error {
@@ -10,6 +10,7 @@ public struct Localization {
         case missingTable
         case missingTables
         case unkownTable
+        case noFallback
         
         public var description: String {
             
@@ -25,6 +26,9 @@ public struct Localization {
                 
             case .unkownTable:
                 return "Unkown table name."
+                
+            case .noFallback:
+                return "The fallback needs to be set up first."
             }
         }
     }
@@ -33,13 +37,27 @@ public struct Localization {
     internal var tables: [Locale: [TranslationTable]]?
     
     /// The default locale
-    internal let locale: Locale
+    internal var locale: Locale?
+    
+    /// Initiates a localization
+    public init() {
+    }
     
     /// Initiates a localization
     public init(source: URL, locale: Locale) {
         
         self.locale = locale
         self.tables = load(source: source)
+    }
+    
+    /// Sets the root path
+    public func set(source: URL) {
+        self.tables = load(source: source)
+    }
+    
+    /// Sets the default locale indentifier
+    public func set(locale: String) {
+        self.locale = Locale(tag: locale)
     }
     
     /// Loads the tables from a specific path
@@ -82,11 +100,15 @@ public struct Localization {
     /// Retrieves a value for a specific key from the tables
     public func localize(key: String, locale: Locale? = nil, interpolation: [Any]? = nil) throws -> String {
         
+        guard let fallback = self.locale else {
+            throw Errors.noFallback
+        }
+        
         guard let localizationTables = self.tables else {
             throw Errors.missingTables
         }
         
-        let currentLocale = locale ?? self.locale
+        let currentLocale = locale ?? fallback
         
         if let translationTables = localizationTables[currentLocale] {
             
@@ -138,11 +160,15 @@ public struct Localization {
     /// Retrieves a value for a specific key from a specific table
     public func localize(key: String, table: String, locale: Locale? = nil, interpolation: [Any]? = nil) throws -> String {
         
+        guard let fallback = self.locale else {
+            throw Errors.noFallback
+        }
+        
         guard let localizationTables = self.tables else {
             throw Errors.missingTables
         }
         
-        let currentLocale = locale ?? self.locale
+        let currentLocale = locale ?? fallback
         
         if let translationTables = localizationTables[currentLocale] {
             
