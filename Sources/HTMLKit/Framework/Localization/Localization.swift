@@ -127,7 +127,7 @@ public class Localization {
                             case let dateValue as Date:
                                 
                                 let formatter = DateFormatter()
-                                formatter.dateFormat = currentLocale.date
+                                formatter.dateFormat = currentLocale.dateFormat
                                 
                                 translation = translation.replacingOccurrences(of: "%dt", with: formatter.string(from: dateValue))
                                 
@@ -189,7 +189,7 @@ public class Localization {
                                 case let dateValue as Date:
                                     
                                     let formatter = DateFormatter()
-                                    formatter.dateFormat = currentLocale.date
+                                    formatter.dateFormat = currentLocale.dateFormat
                                     
                                     translation = translation.replacingOccurrences(of: "%dt", with: formatter.string(from: dateValue))
                                     
