@@ -6,7 +6,7 @@ public struct EnvironmentKeys: Hashable {
     
     public var timeZone: TimeZone
     
-    public var locale: String
+    public var locale: Locale
     
     public var colorScheme: String
 }

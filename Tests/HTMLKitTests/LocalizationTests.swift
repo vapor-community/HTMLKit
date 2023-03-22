@@ -4,7 +4,6 @@
  */
 
 import HTMLKit
-import Lingo
 import XCTest
 
 final class LocalizationTests: XCTestCase {
@@ -22,7 +21,7 @@ final class LocalizationTests: XCTestCase {
         struct MainView: View {
             
             var body: Content {
-                Heading1("Hallo Welt")
+                Heading1("greeting.world")
             }
         }
         
@@ -32,6 +31,55 @@ final class LocalizationTests: XCTestCase {
                        """
         )
     }
+    
+    func testLocalizationWithStringInterpolation() throws {
+        
+        struct TestView: View {
+            
+            var body: Content {
+                Heading1("greeting.person", interpolation: "John Doe")
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: TestView()),
+                       """
+                       <h1>Hello John Doe</h1>
+                       """
+        )
+    }
+    
+    func testStringInterpolationWithMultipleArguments() throws {
+        
+        struct TestView: View {
+            
+            var body: Content {
+                Heading1("personal.introduction", interpolation: "John Doe", 31)
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: TestView()),
+                       """
+                       <h1>Hello, I am John Doe and 31 years old.</h1>
+                       """
+        )
+    }
+    
+    func testLocaliationWithTable() throws {
+        
+        struct TestView: View {
+            
+            var body: Content {
+                Heading1("personal.introduction", tableName: "web", interpolation: "John Doe", 31)
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: TestView()),
+                       """
+                       <h1>Hello, I am John Doe and 31 years old.</h1>
+                       """
+        )
+    }
+    
     
     func testEnvironmentLocalization() throws {
         
@@ -47,7 +95,7 @@ final class LocalizationTests: XCTestCase {
                 Division {
                     content
                 }
-                .environment(key: \.locale, value: "fr")
+                .environment(key: \.locale, value: Locale(tag: .french))
             }
         }
         
@@ -55,7 +103,7 @@ final class LocalizationTests: XCTestCase {
             
             var body: Content {
                 MainView {
-                    Heading1("Hallo Welt")
+                    Heading1("greeting.world")
                         .environment(key: \.locale)
                 }
             }
@@ -79,8 +127,8 @@ extension LocalizationTests {
         
         let currentDirectory = currentFile.appendingPathComponent("Localization")
         
-        let lingo = try! Lingo(rootPath: currentDirectory.path, defaultLocale: "en")
+        let localization = Localization(source: currentDirectory, locale: Locale(tag: "en-GB"))
         
-        self.renderer = Renderer(lingo: lingo)
+        self.renderer = Renderer(localization: localization)
     }
 }

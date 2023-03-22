@@ -6,14 +6,5 @@
 /// The protocol defines
 public protocol Localizable {
     
-    init(_ localizedKey: String)
-    
-    init(_ localizedKey: String, with context: some Encodable)
-}
-
-extension Localizable {
-    
-    public init(_ localizedKey: String, with context: some Encodable) {
-        self.init(localizedKey, with: context)
-    }
+    init(_ localizedKey: String, tableName: String?, interpolation: Any...)
 }

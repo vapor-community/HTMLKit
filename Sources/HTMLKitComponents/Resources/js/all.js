@@ -81,7 +81,7 @@ var $ = (function () {
     /**
      * Performs when the target is submitted.
      */
-    Self.prototype.onSubmit = function (callback) {
+    Self.prototype.onSubmit = function (callback, validate) {
         
         if (validate) {
             this.elems[0].setAttribute("novalidate", "novalidate");

@@ -5,7 +5,6 @@
 
 import HTMLKit
 import Vapor
-import Lingo
 
 /// The view renderer
 public class ViewRenderer {
@@ -17,10 +16,10 @@ public class ViewRenderer {
     internal var renderer: Renderer
     
     /// Creates the view renderer
-    public init(eventLoop: EventLoop, localization: Localization, environment: Environment) {
+    public init(eventLoop: EventLoop, localization: HTMLKit.Localization, environment: HTMLKit.Environment) {
         
         self.eventLoop = eventLoop
-        self.renderer = Renderer(lingo: localization.lingo, manager: environment.manager)
+        self.renderer = Renderer(localization: localization, environment: environment)
     }
     
     /// Renders a layout and its context

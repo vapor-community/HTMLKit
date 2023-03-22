@@ -52,6 +52,10 @@
     box-shadow: 0 0 0 4px var(--inputFocusColor);
 }
 
+.input:invalid {
+    border-color: var(--redColor);
+}
+
 .input.type\:textfield {
     display: block;
     width: 100%;
@@ -139,8 +143,4 @@
     display: block;
     width: 100%;
     -webkit-appearance: none;
-}
-
-.input:invalid {
-    border: 1px solid red !important;
 }

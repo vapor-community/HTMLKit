@@ -4,7 +4,6 @@
  */
 
 import Foundation
-import Lingo
 
 /// A struct containing the different formulas for the different views.
 public class Renderer {
@@ -16,7 +15,7 @@ public class Renderer {
         case unindendedEnvironmentKey
         case environmentObjectNotFound
         case environmentValueNotFound
-        case missingLingoConfiguration
+        case missingLocalization
 
         public var description: String {
             
@@ -33,33 +32,28 @@ public class Renderer {
             case .environmentObjectNotFound:
                 return "Unable to retrieve environment object."
                 
-            case .missingLingoConfiguration:
-                return "The lingo configuration seem to missing."
+            case .missingLocalization:
+                return "The localization seem to missing."
             }
         }
     }
     
     private var environment: Environment
     
-    private var manager: Manager
-    
-    /// The localization to use when rendering.
-    private var lingo: Lingo?
+    private var localization: Localization?
 
     /// Initiates the renderer.
-    public init(lingo: Lingo? = nil) {
+    public init(localization: Localization? = nil) {
         
         self.environment = Environment()
-        self.manager = Manager()
-        self.lingo = lingo
+        self.localization = localization
     }
     
     /// Initiates the renderer.
-    public init(lingo: Lingo? = nil, manager: Manager) {
+    public init(localization: Localization? = nil, environment: Environment) {
         
-        self.environment = Environment()
-        self.manager = manager
-        self.lingo = lingo
+        self.environment = environment
+        self.localization = localization
     }
     
     /// Renders a view
@@ -262,38 +256,32 @@ public class Renderer {
     /// Renders a localized string key
     internal func render(stringkey: LocalizedStringKey) throws -> String {
         
-        guard let lingo = self.lingo else {
-            throw Errors.missingLingoConfiguration
+        guard let localization = self.localization else {
+            throw Errors.missingLocalization
         }
         
-        if let context = stringkey.context {
-            
-            if let data = try? JSONEncoder().encode(context) {
-                
-                if let dictionary = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any] {
-                    return lingo.localize(stringkey.key, locale: lingo.defaultLocale, interpolations: dictionary)
-                }
-            }
+        if let table = stringkey.table {
+            return try localization.localize(key: stringkey.key, table: table, locale: environment.locale, interpolation: stringkey.interpolation)
         }
         
-        return lingo.localize(stringkey.key, locale: environment.locale ?? lingo.defaultLocale)
+        return try localization.localize(key: stringkey.key, locale: environment.locale, interpolation: stringkey.interpolation)
     }
     
     /// Renders a environment modifier
     internal func render(modifier: EnvironmentModifier) throws -> String {
         
         if let value = modifier.value {
-            self.manager.upsert(value, for: modifier.key)
+            self.environment.upsert(value, for: modifier.key)
             
         } else {
             
-            if let value = manager.retrieve(for: modifier.key) {
+            if let value = self.environment.retrieve(for: modifier.key) {
                 
                 if let key = modifier.key as? PartialKeyPath<EnvironmentKeys> {
                     
                     switch key {
                     case \.locale:
-                        self.environment.locale = value as? String
+                        self.environment.locale = value as? Locale
                         
                     case \.calender:
                         self.environment.calendar = value as? Calendar
@@ -317,7 +305,7 @@ public class Renderer {
     /// Renders a environment value
     internal func render(value: EnvironmentValue) throws -> String {
         
-        guard let parent = manager.retrieve(for: value.parentPath) else {
+        guard let parent = self.environment.retrieve(for: value.parentPath) else {
             throw Errors.environmentObjectNotFound
         }
 

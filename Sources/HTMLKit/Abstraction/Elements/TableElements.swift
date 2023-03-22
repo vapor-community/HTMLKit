@@ -2184,13 +2184,9 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     }
 }
 
-extension HeaderCell: Localizable {
+extension HeaderCell: Localizable {   
     
-    public init(_ localizedKey: String) {
-        self.content = [LocalizedStringKey(key: localizedKey)]
-    }
-
-    public init(_ localizedKey: String, with context: some Encodable) {
-        self.content = [LocalizedStringKey(key: localizedKey, context: context)]
+    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
+        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
     }
 }

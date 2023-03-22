@@ -63,7 +63,7 @@ final class ProviderTests: XCTestCase {
             
             var body: HTMLKit.Content {
                 MainView {
-                    Paragraph("Hallo Welt")
+                    Paragraph("greeting.world")
                 }
             }
         }
@@ -158,7 +158,7 @@ final class ProviderTests: XCTestCase {
         defer { app.shutdown() }
         
         app.htmlkit.localization.set(source: currentDirectory)
-        app.htmlkit.localization.set(locale: .french)
+        app.htmlkit.localization.set(locale: "fr")
         
         app.get("test") { request async throws -> Vapor.View in
             
