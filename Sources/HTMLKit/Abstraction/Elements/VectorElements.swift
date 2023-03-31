@@ -59,7 +59,7 @@ public struct Circle: ContentNode, VectorElement {
 }
 
 extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute {
-  
+    
     public func id(_ value: String) -> Circle {
         return self.mutate(id: value)
     }
@@ -88,7 +88,7 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
         return self.mutate(strokewidth: size)
     }
     
-    public func centerPoint(_ point: Geometrics.Point) -> Circle {
+    public func centerPoint(_ point: (Int, Int)) -> Circle {
         return self.mutate(centerpoint: point)
     }
     
@@ -188,8 +188,8 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return self.mutate(strokewidth: size)
     }
     
-    public func radiusPoint(_ point: Geometrics.Point) -> Rectangle {
-        return self.mutate(radius: point)
+    public func radiusPoint(_ point: (Int, Int)) -> Rectangle {
+        return self.mutate(radiuspoint: point)
     }
     
     public func width(_ size: Int) -> Rectangle {
@@ -292,12 +292,12 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
         return self.mutate(strokewidth: size)
     }
     
-    public func centerPoint(_ point: Geometrics.Point) -> Ellipse {
+    public func centerPoint(_ point: (Int, Int)) -> Ellipse {
         return self.mutate(centerpoint: point)
     }
     
-    public func radiusPoint(_ point: Geometrics.Point) -> Ellipse {
-            return self.mutate(radius: point)
+    public func radiusPoint(_ point: (Int, Int)) -> Ellipse {
+        return self.mutate(radiuspoint: point)
     }
     
     public func fillOpacity(_ value: Double) -> Ellipse {
