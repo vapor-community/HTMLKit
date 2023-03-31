@@ -284,3 +284,21 @@ extension ViewBoxAttribute where Self: ContentNode {
         return self.mutate(key: "viewbox", value: value)
     }
 }
+
+/// The protocol provides the element with the viewbox handler.
+public protocol NamespaceAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'viewbox'.
+    ///
+    /// ```html
+    /// <tag viewbox="" />
+    /// ```
+    func namespace(_ value: String) -> Self
+}
+
+extension NamespaceAttribute where Self: ContentNode {
+    
+    internal func mutate(namespace value: String) -> Self {
+        return self.mutate(key: "xmlns", value: value)
+    }
+}

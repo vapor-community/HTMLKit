@@ -18141,8 +18141,8 @@ public struct Vector: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewBoxAttribute {
-    
+extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewBoxAttribute, NamespaceAttribute {
+
     public func id(_ value: String) -> Vector {
         return self.mutate(id: value)
     }
@@ -18197,6 +18197,10 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
     
     public func strokeLineJoin(_ value: Values.Linejoin) -> Vector {
         return self.mutate(strokelinejoin: value.rawValue)
+    }
+    
+    public func namespace(_ value: String) -> Vector {
+        return self.mutate(namespace: value)
     }
     
     public func custom(key: String, value: Any) -> Vector {
