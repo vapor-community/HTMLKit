@@ -21,7 +21,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <a href="uri" class="button" role="button">Button</a>
+                       <a href="uri" target="_self" class="button" role="button">Button</a>
                        """
         )
     }
@@ -273,7 +273,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <a href="uri" class="link">Link</a>
+                       <a href="uri" target="_self" class="link">Link</a>
                        """
         )
     }

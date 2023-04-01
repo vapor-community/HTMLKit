@@ -350,6 +350,9 @@ public enum Values {
     /// ```
     public enum Target: String {
         
+        /// Opens the target in the current tab.
+        case current = "_self"
+        
         /// Opens the target in a separate tab or window.
         case blank = "_blank"
         

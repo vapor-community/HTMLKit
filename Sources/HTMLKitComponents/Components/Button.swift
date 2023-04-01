@@ -106,6 +106,8 @@ extension Button: PressModifier {
 /// A component that initiates an action.
 public struct LinkButton: View, Modifiable {
     
+    internal let target: HTMLKit.Values.Target
+    
     /// The url path of the target.
     internal let destination: String
     
@@ -119,17 +121,28 @@ public struct LinkButton: View, Modifiable {
     internal var events: [String]?
     
     /// Creates a action button.
-    public init(destination: String, @ContentBuilder<Content> content: () -> [Content]) {
+    public init(destination: String, target: HTMLKit.Values.Target = .current, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.destination = destination
+        self.target = target
         self.content = content()
         self.classes = ["button"]
     }
     
     /// Creates a action button.
-    internal init(destination: String, content: [Content], classes: [String], events: [String]?) {
+    public init(destination: URL, target: HTMLKit.Values.Target = .current, @ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.destination = destination.absoluteString
+        self.target = target
+        self.content = content()
+        self.classes = ["button"]
+    }
+    
+    /// Creates a action button.
+    internal init(destination: String, target: HTMLKit.Values.Target, content: [Content], classes: [String], events: [String]?) {
         
         self.destination = destination
+        self.target = target
         self.content = content
         self.classes = classes
         self.events = events
@@ -140,6 +153,7 @@ public struct LinkButton: View, Modifiable {
             self.content
         }
         .reference(self.destination)
+        .target(target)
         .class(self.classes.joined(separator: " "))
         .role(.button)
     }

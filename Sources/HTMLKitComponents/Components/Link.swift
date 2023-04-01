@@ -8,6 +8,9 @@ import Foundation
 
 /// A component that navigates to an target.
 public struct Link: View, Modifiable {
+    
+    /// The target for the destination
+    internal let target: HTMLKit.Values.Target
 
     /// The url path of the target.
     internal let destination: String
@@ -22,17 +25,28 @@ public struct Link: View, Modifiable {
     internal var events: [String]?
     
     /// Creates a link.
-    public init(destination: String, @ContentBuilder<Content> content: () -> [Content]) {
+    public init(destination: String, target: HTMLKit.Values.Target = .current, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.destination = destination
+        self.target = target
         self.content = content()
         self.classes = ["link"]
     }
     
     /// Creates a link.
-    internal init(destination: String, content: [Content], classes: [String], events: [String]?) {
+    public init(destination: URL, target: HTMLKit.Values.Target = .current, @ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.destination = destination.absoluteString
+        self.target = target
+        self.content = content()
+        self.classes = ["link"]
+    }
+    
+    /// Creates a link.
+    internal init(destination: String, target: HTMLKit.Values.Target, content: [Content], classes: [String], events: [String]?) {
         
         self.destination = destination
+        self.target = target
         self.content = content
         self.classes = classes
         self.events = events
@@ -43,6 +57,7 @@ public struct Link: View, Modifiable {
             content
         }
         .reference(destination)
+        .target(target)
         .class(classes.joined(separator: " "))
     }
 }
