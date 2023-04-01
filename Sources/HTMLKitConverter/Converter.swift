@@ -16,15 +16,11 @@ public class Converter {
 
     private init() {}
     
-    private func convert(content: String) throws -> String {
+    private func convert(content: String, with name: String) throws -> String {
         
         let document = try XMLDocument(xmlString: content, options: [.documentIncludeContentTypeDeclaration])
         
-        guard let root = document.rootElement() else {
-            throw ConverterError.rootNotFound
-        }
-        
-        return try Parser.shared.parse(node: root)
+        return try Parser.shared.parse(name: name, document: document)
     }
     
     public func convert(source path: URL) throws {
@@ -34,7 +30,7 @@ public class Converter {
             let content = try String(contentsOf: path)
             
             if content.count > 1 {
-                print(try convert(content: content))
+                print(try convert(content: content, with: path.deletingPathExtension().lastPathComponent))
                 
             } else {
                 throw ConverterError.emptyFile
@@ -56,7 +52,7 @@ public class Converter {
                             let content = try String(contentsOf: path)
                             
                             if content.count > 1 {
-                                print(try convert(content: content))
+                                print(try convert(content: content, with: path.deletingPathExtension().lastPathComponent))
                                 
                             } else {
                                 throw ConverterError.emptyFile
@@ -76,7 +72,7 @@ public class Converter {
             
             if content.count > 1 {
                 
-                let result = try convert(content: content)
+                let result = try convert(content: content, with: path.deletingPathExtension().lastPathComponent)
                 
                 try result.write(to: target, atomically: true, encoding: .utf8)
                 
@@ -101,7 +97,7 @@ public class Converter {
                             
                             if content.count > 1 {
                                 
-                                let result = try convert(content: content)
+                                let result = try convert(content: content, with: path.deletingPathExtension().lastPathComponent)
                                 
                                 try result.write(to: target, atomically: true, encoding: .utf8)
                                 
