@@ -54,23 +54,6 @@
     --secondaryColor: hsla(211, 60%, 19%, 100%);
     
     /**
-     toggle variables
-     - background #E6E6E6
-     - active background: #77BF40
-     - toggle border: #DFE3E7
-     - toggle focus: #DFE3E7
-     - slider background: #FFFFFF
-     - slider border: #FFFFFF
-     */
-    
-    --toggleBackgroundColor: hsla(0, 0%, 90%, 100%);
-    --toggleActiveBackgroundColor: hsla(94, 50%, 50%, 100%);
-    --toggleBorderColor: hsla(210, 14%, 89%, 100%);
-    --toggleFocusColor: hsla(210, 14%, 89%, 40%);
-    --sliderBackgroundColor: hsla(0, 0%, 100%, 100%);
-    --sliderBorderColor: hsla(0, 0%, 100%, 100%);
-    
-    /**
      text variables
      */
     

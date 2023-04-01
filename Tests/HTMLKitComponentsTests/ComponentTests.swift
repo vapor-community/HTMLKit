@@ -387,22 +387,6 @@ final class ComponentTests: XCTestCase {
         )
     }
     
-    func testToggle() throws {
-        
-        let view = TestView {
-            Toggle(name: "name")
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <label tabindex="0" class="toggle">\
-                       <input type="checkbox" id="name" name="name">\
-                       <div class="toggle-slider"></div>\
-                       </label>
-                       """
-        )
-    }
-    
     func testCard() throws {
         
         let view = TestView {
