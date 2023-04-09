@@ -138,7 +138,7 @@ public struct TextField: View, Modifiable {
         self.name = name
         self.prompt = prompt
         self.value = value
-        self.classes = ["input", "type:textfield"]
+        self.classes = ["textfield"]
     }
     
     /// Creates a text field.
@@ -167,6 +167,10 @@ public struct TextField: View, Modifiable {
 }
 
 extension TextField: InputModifier {
+    
+    public func borderColor(_ color: Tokens.BorderdColor) -> TextField {
+        return self.mutate(bordercolor: color.rawValue)
+    }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> TextField {
         return self.mutate(bordershape: shape.rawValue)
@@ -213,7 +217,7 @@ public struct TextEditor: View, Modifiable {
         self.name = name
         self.prompt = prompt
         self.content = content()
-        self.classes = ["input", "type:texteditor"]
+        self.classes = ["texteditor"]
     }
     
     /// Creates a text editor.
@@ -252,6 +256,10 @@ public struct TextEditor: View, Modifiable {
 
 extension TextEditor: InputModifier {
     
+    public func borderColor(_ color: Tokens.BorderdColor) -> TextEditor {
+        return self.mutate(bordercolor: color.rawValue)
+    }
+    
     public func borderShape(_ shape: Tokens.BorderShape) -> TextEditor {
         return self.mutate(bordershape: shape.rawValue)
     }
@@ -287,7 +295,7 @@ public struct CheckField: View, Modifiable {
         
         self.name = name
         self.value = value
-        self.classes = ["input", "type:checkfield"]
+        self.classes = ["checkfield"]
     }
     
     /// Creates a check field.
@@ -309,6 +317,10 @@ public struct CheckField: View, Modifiable {
 }
 
 extension CheckField: InputModifier {
+    
+    public func borderColor(_ color: Tokens.BorderdColor) -> CheckField {
+        return self.mutate(bordercolor: color.rawValue)
+    }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> CheckField {
         return self.mutate(bordershape: shape.rawValue)
@@ -345,7 +357,7 @@ public struct RadioSelect: View, Modifiable {
         
         self.name = name
         self.value = value
-        self.classes = ["input", "type:radioselect"]
+        self.classes = ["radioselect"]
     }
     
     /// Creates a radio select.
@@ -367,6 +379,10 @@ public struct RadioSelect: View, Modifiable {
 }
 
 extension RadioSelect: InputModifier {
+    
+    public func borderColor(_ color: Tokens.BorderdColor) -> RadioSelect {
+        return self.mutate(bordercolor: color.rawValue)
+    }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> RadioSelect {
         return self.mutate(bordershape: shape.rawValue)
@@ -406,7 +422,7 @@ public struct SelectField: View, Modifiable {
         
         self.name = name
         self.content = content()
-        self.classes = ["input", "type:selectfield"]
+        self.classes = ["selectfield"]
     }
     
     /// Creates a select field.
@@ -429,6 +445,10 @@ public struct SelectField: View, Modifiable {
 }
 
 extension SelectField: InputModifier {
+    
+    public func borderColor(_ color: Tokens.BorderdColor) -> SelectField {
+        return self.mutate(bordercolor: color.rawValue)
+    }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> SelectField {
         return self.mutate(bordershape: shape.rawValue)
@@ -472,7 +492,7 @@ public struct SecureField: View, Modifiable {
         self.name = name
         self.prompt = prompt
         self.value = value
-        self.classes = ["input", "type:securefield"]
+        self.classes = ["securefield"]
     }
     
     /// Creates a password field.
@@ -501,6 +521,10 @@ public struct SecureField: View, Modifiable {
 }
 
 extension SecureField: InputModifier {
+    
+    public func borderColor(_ color: Tokens.BorderdColor) -> SecureField {
+        return self.mutate(bordercolor: color.rawValue)
+    }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> SecureField {
         return self.mutate(bordershape: shape.rawValue)
@@ -536,7 +560,7 @@ public struct Slider: View {
     public init(name: String) {
         
         self.name = name
-        self.classes = ["input", "type:slider"]
+        self.classes = ["slider"]
     }
     
     /// Creates a slider.
@@ -576,7 +600,7 @@ public struct DatePicker: View, Modifiable {
         
         self.name = name
         self.value = value
-        self.classes = ["input", "type:datepicker"]
+        self.classes = ["datepicker"]
     }
     
     /// Creates a date picker.
@@ -601,6 +625,10 @@ public struct DatePicker: View, Modifiable {
 }
 
 extension DatePicker: InputModifier {
+    
+    public func borderColor(_ color: Tokens.BorderdColor) -> DatePicker {
+        return self.mutate(bordercolor: color.rawValue)
+    }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> DatePicker {
         return self.mutate(bordershape: shape.rawValue)
@@ -644,7 +672,7 @@ public struct SearchField: View, Modifiable {
         self.name = name
         self.prompt = prompt
         self.value = value
-        self.classes = ["input", "type:searchfield"]
+        self.classes = ["searchfield"]
     }
     
     /// Creates a search field.
@@ -673,6 +701,10 @@ public struct SearchField: View, Modifiable {
 }
 
 extension SearchField: InputModifier {
+    
+    public func borderColor(_ color: Tokens.BorderdColor) -> SearchField {
+        return self.mutate(bordercolor: color.rawValue)
+    }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> SearchField {
         return self.mutate(bordershape: shape.rawValue)

@@ -1,5 +1,5 @@
 /**
- group component
+ grouping component
  */
 
 .group {
@@ -92,10 +92,6 @@
 
 .group.color\:silver {
     color: var(--silverColor);
-}
-
-.group.color\:highlight {
-    color: var(--highlightColor);
 }
 
 .group.color\:primary {

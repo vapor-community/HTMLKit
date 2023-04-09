@@ -4,13 +4,7 @@
 
 .grid {
     display: grid;
-    gap: var(--gridGapSize);
     list-style-type: none;
-}
-
-.grid-item {
-    
-    overflow: hidden;
 }
 
 .grid.ratio\:50 {
@@ -31,4 +25,8 @@
 
 .grid.ratio\:15 {
     grid-template-columns: repeat(6, 1fr);
+}
+
+.grid-item {
+    overflow: hidden;
 }

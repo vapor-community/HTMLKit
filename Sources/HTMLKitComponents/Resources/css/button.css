@@ -1,23 +1,74 @@
 /**
  button component
+ 
+variables:
+ --buttonPaddingBlock: 0.5rem; (8px)
+ --buttonPaddingInline: 1.0rem; (16px)
+ --buttonFontSize: 1.0rem; (16px)
+ --buttonFontWeight: normal; (400)
+ --buttonLineHeight: 1.5;
+ --buttonBorderWidth: 1px;
+ 
+ lightmode:
+ --buttonForegroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
+ --buttonBorderColor: hsla(210, 9%, 31%, 1.0); (#)
+ --buttonBackgroundColor: hsla(210, 11%, 15%, 1.0); (#)
+ 
+ darkmode:
+ --buttonForegroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
+ --buttonBorderColor: hsla(210, 9%, 31%, 1.0); (#)
+ --buttonBackgroundColor: hsla(210, 11%, 15%, 1.0); (#)
  */
 
+:root {
+    --buttonPaddingBlock: 0.5rem;
+    --buttonPaddingInline: 1.0rem;
+    --buttonFontSize: 1.0rem;
+    --buttonFontWeight: normal;
+    --buttonLineHeight: 1.5;
+    --buttonBorderWidth: 1px;
+}
+
+@media (prefers-color-scheme: light) {
+    
+    :root {
+        --buttonForegroundColor: hsla(0, 0%, 100%, 1.0);
+        --buttonBorderColor: hsla(210, 9%, 31%, 1.0);
+        --buttonBackgroundColor: hsla(210, 11%, 15%, 1.0);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    
+    :root {
+        --buttonForegroundColor: hsla(0, 0%, 100%, 1.0);
+        --buttonBorderColor: hsla(210, 9%, 31%, 1.0);
+        --buttonBackgroundColor: hsla(210, 11%, 15%, 1.0);
+    }
+}
+
 .button {
+    position: relative;
     display: inline-flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding-top: var(--buttonPaddingY);
-    padding-right: var(--buttonPaddingX);
-    padding-bottom: var(--buttonPaddingY);
-    padding-left: var(--buttonPaddingX);
+    padding-block: var(--buttonPaddingBlock);
+    padding-inline: var(--buttonPaddingInline);
     font-family: var(--textFontFamily);
-    font-size: 16px;
+    font-size: var(--buttonFontSize);
+    font-weight: var(--buttonFontWeight);
+    line-height: var(--buttonLineHeight);
+    color: var(--buttonForegroundColor);
     text-decoration: none;
+    white-space: nowrap;
     border-width: var(--buttonBorderWidth);
     border-style: solid;
+    border-color: var(--buttonBorderColor);
+    background-color: var(--buttonBackgroundColor);
     cursor: pointer;
     -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
 .button:hover {
@@ -58,26 +109,26 @@
     width: 25%;
 }
 
-.button.shape\:smallrounded {
-    border-radius: 5px;
+.button.shape\:fullrounded {
+    border-radius: 1.563rem;
 }
 
 .button.shape\:largerounded {
-    border-radius: 10px;
+    border-radius: 0.625rem;
 }
 
-.button.shape\:fullrounded {
-    border-radius: 25px;
+.button.shape\:smallrounded {
+    border-radius: 0.313rem;
 }
 
 .button.shape\:circle {
     border-radius: 50%;
 }
 
-.button > .symbol + * {
-    margin-left: 15px;
+.button > .symbol + .text {
+    margin-inline-start: 0.938em;
 }
 
-.button > * + .symbol {
-    margin-left: 15px;
+.button > .text + .symbol {
+    margin-inline-start: 0.938em;
 }

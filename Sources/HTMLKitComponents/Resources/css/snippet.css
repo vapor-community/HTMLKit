@@ -1,6 +1,39 @@
 /**
  snippet component
+ 
+ variables:
+ --snippetPaddingInline: 1.0em; (16px)
+ --snippetFontSize: 1.0rem; (16px)
+ --snippetFontWeight: normal; (400)
+ --snippetLineHeight: 1.5;
+
+ lightmode:
+ --snippetForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
+ 
+ darkmode:
+ --snippetForegroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
  */
+
+:root {
+    --snippetPaddingInline: 1em;
+    --snippetFontSize: 1.0rem;
+    --snippetFontWeight: normal;
+    --snippetLineHeight: 1.5;
+}
+
+@media (prefers-color-scheme: light) {
+    
+    :root {
+        --snippetForegroundColor: hsla(0, 0%, 100%, 100%);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    
+    :root {
+        --snippetForegroundColor: hsla(0, 0%, 100%, 1.0);
+    }
+}
 
 .snippet {
     position: relative;
@@ -9,7 +42,7 @@
     display: block;
     counter-reset: line;
     background-color: var(--snippetBackgroundColor);
-    overflow-x: auto;
+    overflow-inline: auto;
 }
 
 .snippet > p {

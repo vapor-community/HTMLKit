@@ -8,139 +8,644 @@
     height: auto;
 }
 
+/**
+ label component
+ 
+ variables:
+ --labelMarginBlockStart: 1.25rem (20px)
+ --labelMarginBlockEnd: 0.625rem (10px)
+ */
+
 .label {
     display: inline-block;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-family: var(--textFontFamily);
+    margin-block-start: 1.25rem;
+    margin-block-end: 0.625rem;
     font-size: var(--textFontSize);
     font-weight: var(--textFontHeight);
     line-height: var(--textLineHeight);
     color: var(--textBaseColor);
 }
 
-.input {
-    padding-top: var(--inputPaddingY);
-    padding-right: var(--inputPaddingX);
-    padding-bottom: var(--inputPaddingY);
-    padding-left: var(--inputPaddingX);
+/**
+ textfield component
+ 
+ variables:
+ --inputPaddingBlock: 0.5rem; (8px)
+ --inputPaddingInline: 1.0rem; (16px)
+ --inputFontSize: 1.0rem;
+ --inputFontWeight: normal; (400)
+ --inputLineHeight: 1.5;
+ --inputBorderWidth: 1px;
+ 
+ lightmode:
+ --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
+ --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
+ --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
+ --inputBackgroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
+ 
+ darkmode:
+ --inputForegroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
+ --inputBorderColor: hsla(210, 9%, 31%, 1.0); (#484F56)
+ --inputFocusColor: hsla(210, 9%, 31%, 0.4); (#484F56)
+ --inputBackgroundColor: hsla(210, 11%, 15%, 1.0); (#22262A)
+ */
+
+:root {
+    --inputPaddingBlock: 0.5rem;
+    --inputPaddingInline: 1.0rem;
+    --inputFontSize: 1.0rem;
+    --inputFontWeight: normal;
+    --inputLineHeight: 1.5;
+    --inputBorderWidth: 1px;
+}
+
+@media (prefers-color-scheme: light) {
+    
+    :root {
+        --inputForegroundColor: hsla(0, 0%, 0%, 1.0);
+        --inputBorderColor: hsla(210, 14%, 89%, 1.0);
+        --inputFocusColor: hsla(210, 14%, 89%, 0.4);
+        --inputBackgroundColor: hsla(0, 0%, 100%, 1.0);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    
+    :root {
+        --inputForegroundColor: hsla(0, 0%, 100%, 1.0);
+        --inputBorderColor: hsla(210, 9%, 31%, 1.0);
+        --inputFocusColor: hsla(210, 9%, 31%, 0.4);
+        --inputBackgroundColor: hsla(210, 11%, 15%, 1.0);
+    }
+}
+
+.textfield {
+    display: block;
+    width: 100%;
+    padding-block: var(--inputPaddingBlock);
+    padding-inline: var(--inputPaddingInline);
+    font-size: var(--inputFontSize);
+    font-weight: var(--inputFontWeight);
+    line-height: var(--inputLineHeight);
+    color: var(--inputForegroundColor);
     border-width: var(--inputBorderWidth);
     border-style: solid;
     border-color: var(--inputBorderColor);
-    border-radius: var(--inputBorderRadius);
-    font-size: 1.0rem;
-    font-weight: 400;
-    color: var(--inputTextColor);
     background-color: var(--inputBackgroundColor);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     box-sizing: border-box;
 }
 
-.input.shape\:smallrounded {
-    border-radius: 5px;
+.textfield.shape\:smallrounded {
+    border-radius: 0.313rem;
 }
 
-.input.shape\:largerounded {
-    border-radius: 10px;
+.textfield.shape\:largerounded {
+    border-radius: 0.625rem;
 }
 
-.input.shape\:fullrounded {
-    border-radius: 25px;
+.textfield.shape\:fullrounded {
+    border-radius: 1.563rem;
 }
 
-.input:focus {
+.textfield:focus {
     outline: 0;
-    box-shadow: 0 0 0 4px var(--inputFocusColor);
+    box-shadow: 0 0 0 0.25rem var(--inputFocusColor);
 }
 
-.input:invalid {
+.textfield:invalid {
     border-color: var(--redColor);
 }
 
-.input.type\:textfield {
-    display: block;
-    width: 100%;
-}
+/**
+ texteditor component
+ 
+ variables:
+ --inputPaddingBlock: 0.5rem; (8px)
+ --inputPaddingInline: 1.0rem; (16px)
+ --inputFontSize: 1.0rem;
+ --inputFontWeight: normal; (400)
+ --inputLineHeight: 1.5;
+ --inputBorderWidth: 1px;
+ 
+ lightmode:
+ --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
+ --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
+ --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
+ --inputBackgroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
+ 
+ darkmode:
+ --inputForegroundColor: ; (#)
+ --inputBorderColor: ; (#)
+ --inputFocusColor: ; (#)
+ --inputBackgroundColor: ; (#)
+ */
 
-.input.type\:texteditor {
+.texteditor {
     display: block;
     width: 100%;
-    min-height: 35px;
+    padding-block: var(--inputPaddingBlock);
+    padding-inline: var(--inputPaddingInline);
+    font-size: var(--inputFontSize);
+    font-weight: var(--inputFontWeight);
+    line-height: var(--inputLineHeight);
+    color: var(--inputForegroundColor);
+    border-width: var(--inputBorderWidth);
+    border-style: solid;
+    border-color: var(--inputBorderColor);
+    background-color: var(--inputBackgroundColor);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     resize: none;
+    box-sizing: border-box;
 }
 
-.input.type\:checkbox {
+.texteditor.shape\:smallrounded {
+    border-radius: 0.313rem;
+}
+
+.texteditor.shape\:largerounded {
+    border-radius: 0.625rem;
+}
+
+.texteditor.shape\:fullrounded {
+    border-radius: 1.563rem;
+}
+
+.texteditor:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem var(--inputFocusColor);
+}
+
+.texteditor:invalid {
+    border-color: var(--redColor);
+}
+
+/**
+ checkfield component
+ 
+ variables:
+ --inputPaddingBlock: 0.5rem; (12px)
+ --inputPaddingInline: 1rem; (16px)
+ --inputFontSize: 1.0rem;
+ --inputFontWeight: normal; (400)
+ --inputLineHeight: 1.5;
+ --inputBorderWidth: 1px;
+ 
+ lightmode:
+ --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
+ --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
+ --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
+ --inputBackgroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
+ 
+ darkmode:
+ --inputForegroundColor: ; (#)
+ --inputBorderColor: ; (#)
+ --inputFocusColor: ; (#)
+ --inputBackgroundColor: ; (#)
+ */
+
+.checkfield {
     display: inline-block;
-    height: 35px;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-width: var(--inputBorderWidth);
+    border-style: solid;
+    border-color: var(--inputBorderColor);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: var(--inputBackgroundColor);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
-.input.type\:checkfield {
-    display: inline-block;
-    width: 35px;
+.checkfield:checked {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
 }
 
-.input.type\:radioselect {
-    display: inline-block;
-    width: 35px;
-}
+/**
+ radioselect component
+ 
+ variables:
+ --inputPaddingBlock: 0.75rem; (12px)
+ --inputPaddingInline: 1.0rem; (16px)
+ --inputFontSize: 1.0rem;
+ --inputFontWeight: normal; (400)
+ --inputLineHeight: 1.5;
+ --inputBorderWidth: 1px;
+ 
+ lightmode:
+ --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
+ --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
+ --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
+ --inputBackgroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
+ 
+ darkmode:
+ --inputForegroundColor: ; (#)
+ --inputBorderColor: ; (#)
+ --inputFocusColor: ; (#)
+ --inputBackgroundColor: ; (#)
+ */
 
-.input.type\:slider {
+.radioselect {
     display: block;
-    width: 100% !important;
-    height: 3px;
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    background-color: var(--sliderBackgroundColor);
-    border-width: 1px;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-width: var(--inputBorderWidth);
     border-style: solid;
-    border-color: var(--sliderBorderColor);
-    border-radius: 5px;
-    appearance: none;
+    border-color: var(--inputBorderColor);
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: var(--inputBackgroundColor);
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
-.input.type\:slider::-webkit-slider-thumb {
-    width: 20px;
-    height: 20px;
-    border-width: 1px;
+.radioselect:checked {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+/**
+ slider component
+ 
+ variables:
+ --inputPaddingBlock: 0.75rem; (12px)
+ --inputPaddingInline: 1.0rem; (16px)
+ --inputFontSize: 1.0rem;
+ --inputFontWeight: normal; (400)
+ --inputLineHeight: 1.5;
+ --inputBorderWidth: 1px;
+ 
+ lightmode:
+ --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
+ --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
+ --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
+ --inputBackgroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
+ 
+ darkmode:
+ --inputForegroundColor: ; (#)
+ --inputBorderColor: ; (#)
+ --inputFocusColor: ; (#)
+ --inputBackgroundColor: ; (#)
+ */
+
+.slider {
+    display: block;
+    width: 100%;
+    border-width: var(--inputBorderWidth);
     border-style: solid;
-    border-color: var(--thumbBorderColor);
-    border-radius: 50%;
-    background-color: var(--thumbBackgroundColor);
-    appearance: none;
+    border-color: var(--inputBorderColor);
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+    width: 1em;
+    height: 1em;
+    background-color: var(--thumbBackgroundColor);
     cursor: pointer;
 }
 
-.input.type\:slider::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: var(--thumbBorderColor);
-    border-radius: 50%;
+.slider::-moz-range-thumb {
+    width: 1em;
+    height: 1em;
     background-color: var(--thumbBackgroundColor);
     cursor: pointer;
 }
 
-.input.type\:datepicker {
-    display: block;
-    width: 100%;
-    height: 35px;
-}
+/**
+ datepicker component
+ 
+ variables:
+ --inputPaddingBlock: 0.75rem; (12px)
+ --inputPaddingInline: 1rem; (16px)
+ --inputFontSize: 1rem;
+ --inputFontWeight: normal; (400)
+ --inputLineHeight: 1.5;
+ --inputBorderWidth: 1px;
+ 
+ lightmode:
+ --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
+ --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
+ --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
+ --inputBackgroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
+ 
+ darkmode:
+ --inputForegroundColor: ; (#)
+ --inputBorderColor: ; (#)
+ --inputFocusColor: ; (#)
+ --inputBackgroundColor: ; (#)
+ */
 
-.input.type\:securefield {
+.datepicker {
     display: block;
     width: 100%;
-}
-
-.input.type\:searchfield {
-    display: block;
-    width: 100%;
-}
-
-.input.type\:selectfield {
-    display: block;
-    width: 100%;
+    padding-block: var(--inputPaddingBlock);
+    padding-inline: var(--inputPaddingInline);
+    font-size: var(--inputFontSize);
+    font-weight: var(--inputFontWeight);
+    line-height: var(--inputLineHeight);
+    color: var(--inputForegroundColor);
+    border-width: var(--inputBorderWidth);
+    border-style: solid;
+    border-color: var(--inputBorderColor);
+    background-color: var(--inputBackgroundColor);
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+}
+
+.datepicker.shape\:smallrounded {
+    border-radius: 0.313rem;
+}
+
+.datepicker.shape\:largerounded {
+    border-radius: 0.625rem;
+}
+
+.datepicker.shape\:fullrounded {
+    border-radius: 1.563rem;
+}
+
+.datepicker:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem var(--inputFocusColor);
+}
+
+.datepicker:invalid {
+    border-color: var(--redColor);
+}
+
+/**
+ securefield component
+ 
+ variables:
+ --inputPaddingBlock: 0.75rem; (12px)
+ --inputPaddingInline: 1rem; (16px)
+ --inputFontSize: 1rem;
+ --inputFontWeight: normal; (400)
+ --inputLineHeight: 1.5;
+ --inputBorderWidth: 1px;
+ 
+ lightmode:
+ --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
+ --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
+ --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
+ --inputBackgroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
+ 
+ darkmode:
+ --inputForegroundColor: ; (#)
+ --inputBorderColor: ; (#)
+ --inputFocusColor: ; (#)
+ --inputBackgroundColor: ; (#)
+ */
+
+.securefield {
+    display: block;
+    width: 100%;
+    padding-block: var(--inputPaddingBlock);
+    padding-inline: var(--inputPaddingInline);
+    font-size: var(--inputFontSize);
+    font-weight: var(--inputFontWeight);
+    line-height: var(--inputLineHeight);
+    color: var(--inputForegroundColor);
+    border-width: var(--inputBorderWidth);
+    border-style: solid;
+    border-color: var(--inputBorderColor);
+    background-color: var(--inputBackgroundColor);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+}
+
+.securefield.shape\:smallrounded {
+    border-radius: 0.313rem;
+}
+
+.securefield.shape\:largerounded {
+    border-radius: 0.625rem;
+}
+
+.securefield.shape\:fullrounded {
+    border-radius: 1.563rem;
+}
+
+.securefield:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem var(--inputFocusColor);
+}
+
+.securefield:invalid {
+    border-color: var(--redColor);
+}
+
+/**
+ searchfield component
+ 
+ variables:
+ --inputPaddingBlock: 0.75rem; (12px)
+ --inputPaddingInline: 1rem; (16px)
+ --inputFontSize: 1rem;
+ --inputFontWeight: normal; (400)
+ --inputLineHeight: 1.5;
+ --inputBorderWidth: 1px;
+ 
+ lightmode:
+ --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
+ --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
+ --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
+ --inputBackgroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
+ 
+ darkmode:
+ --inputForegroundColor: ; (#)
+ --inputBorderColor: ; (#)
+ --inputFocusColor: ; (#)
+ --inputBackgroundColor: ; (#)
+ */
+
+.searchfield {
+    display: block;
+    width: 100%;
+    padding-block: var(--inputPaddingBlock);
+    padding-inline: var(--inputPaddingInline);
+    font-size: var(--inputFontSize);
+    font-weight: var(--inputFontWeight);
+    line-height: var(--inputLineHeight);
+    color: var(--inputForegroundColor);
+    border-width: var(--inputBorderWidth);
+    border-style: solid;
+    border-color: var(--inputBorderColor);
+    background-color: var(--inputBackgroundColor);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+}
+
+.searchfield.shape\:smallrounded {
+    border-radius: 0.313rem;
+}
+
+.searchfield.shape\:largerounded {
+    border-radius: 0.625rem;
+}
+
+.searchfield.shape\:fullrounded {
+    border-radius: 1.563rem;
+}
+
+.searchfield:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem var(--inputFocusColor);
+}
+
+.searchfield:invalid {
+    border-color: var(--redColor);
+}
+
+/**
+ selectfield component
+ 
+ variables:
+ --inputPaddingBlock: 0.75rem; (12px)
+ --inputPaddingInline: 1rem; (16px)
+ --inputFontSize: 1rem;
+ --inputFontWeight: normal; (400)
+ --inputLineHeight: 1.5;
+ --inputBorderWidth: 1px;
+ 
+ lightmode:
+ --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
+ --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
+ --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
+ --inputBackgroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
+ 
+ darkmode:
+ --inputForegroundColor: ; (#)
+ --inputBorderColor: ; (#)
+ --inputFocusColor: ; (#)
+ --inputBackgroundColor: ; (#)
+ */
+
+.selectfield {
+    display: block;
+    width: 100%;
+    padding-block: var(--inputPaddingBlock);
+    padding-inline: var(--inputPaddingInline);
+    font-size: var(--inputFontSize);
+    font-weight: var(--inputFontWeight);
+    line-height: var(--inputLineHeight);
+    color: var(--inputForegroundColor);
+    border-width: var(--inputBorderWidth);
+    border-style: solid;
+    border-color: var(--inputBorderColor);
+    background-color: var(--inputBackgroundColor);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+}
+
+.selectfield.shape\:smallrounded {
+    border-radius: 0.313rem;
+}
+
+.selectfield.shape\:largerounded {
+    border-radius: 0.625rem;
+}
+
+.selectfield.shape\:fullrounded {
+    border-radius: 1.563rem;
+}
+
+.selectfield:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem var(--inputFocusColor);
+}
+
+.selectfield:invalid {
+    border-color: var(--redColor);
+}
+
+/**
+ textpad component
+ 
+ variables:
+ --inputPaddingBlock: 0.75rem; (12px)
+ --inputPaddingInline: 1rem; (16px;
+ --inputFontSize: 1rem;
+ --inputFontWeight: normal; (400)
+ --inputLineHeight: 1.5;
+ --inputBorderWidth: 1px;
+ 
+ lightmode:
+ --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
+ --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
+ --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
+ --inputBackgroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
+ 
+ darkmode:
+ --inputForegroundColor: ; (#)
+ --inputBorderColor: ; (#)
+ --inputFocusColor: ; (#)
+ --inputBackgroundColor: ; (#)
+ */
+ 
+.textpad {
+    display: flex;
+    flex-direction: column;
+    border-width: var(--inputBorderWidth);
+    border-style: solid;
+    border-color: var(--inputBorderColor);
+    background-color: var(--inputBackgroundColor);
+}
+
+.textpad:focus-within {
+    box-shadow: 0 0 0 0.25rem var(--inputFocusColor);
+}
+
+.textpad-toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--inputPaddingBlock);
+    padding-inline: var(--inputPaddingInline);
+    list-style: none;
+}
+
+.textpad-toolbar > .toolbar-tool {
+    width: 1.25rem;
+    height: 1.25rem;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.textpad-content {
+    display: block;
+    width: 100%;
+    padding-block: var(--inputPaddingBlock);
+    padding-inline: var(--inputPaddingInline);
+    font-size: var(--inputFontSize);
+    font-weight: var(--inputFontWeight);
+    line-height: var(--inputLineHeight);
+    color: var(--inputForegroundColor);
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    resize: none;
 }

@@ -1,21 +1,84 @@
+/**
+ dropdown component
+ 
+ variables:
+ --dropdownPaddingBlock: 0.5rem; (12px)
+ --dropdownPaddingInline: 1.0rem; (16px)
+ --dropdownFontSize: 1.0rem; (16px)
+ --dropdownFontWeight: normal; (400)
+ --dropdownLineHeight: 1.5;
+ --dropdownBorderWidth: 1px;
+ 
+ lightmode:
+ --dropdownBorderColor: hsla(210, 9%, 31%, 1.0);
+ --dropdownBackgroundColor: hsla(210, 11%, 15%, 1.0);
+ 
+ darkmode:
+ --dropdownBorderColor: hsla(210, 9%, 31%, 1.0);
+ --dropdownBackgroundColor: hsla(210, 11%, 15%, 1.0);
+ */
+
+:root {
+    --dropdownPaddingBlock: 0.5rem;
+    --dropdownPaddingInline: 1.0rem;
+    --dropdownFontSize: 1.0rem;
+    --dropdownFontWeight: normal;
+    --dropdownLineHeight: 1.5;
+    --dropdownBorderWidth: 1px;
+}
+
+@media (prefers-color-scheme: light) {
+    
+    :root {
+        --dropdownBorderColor: hsla(210, 9%, 31%, 1.0);
+        --dropdownBackgroundColor: hsla(210, 11%, 15%, 1.0);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    
+    :root {
+        --dropdownBorderColor: hsla(210, 9%, 31%, 1.0);
+        --dropdownBackgroundColor: hsla(210, 11%, 15%, 1.0);
+    }
+}
+
 .dropdown {
-    display: inline-block;
     position: relative;
+    display: inline-block;
+    border-width: var(--dropdownBorderWidth);
+    border-style: solid;
+    border-color: var(--dropdownBorderColor);
+    background-color: var(--dropdownBackgroundColor);
     cursor: pointer;
     outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
 .dropdown-label {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: var(--dropdownPaddingBlock);
+    padding-inline: var(--dropdownPaddingInline);
+    font-family: var(--textFontFamily);
+    font-size: var(--dropdownFontSize);
+    font-weight: var(--dropdownFontWeight);
+    line-height: var(--dropdownLineHeight);
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 .dropdown .dropdown-content {
     display: none;
     position: absolute;
-    padding: 6px 0px;
-    width: 200px;
-    border: 1px solid var(--dropdownBorderColor);
-    border-radius: var(--dropdownBorderRadius);
+    padding-inline: var(--dropdownPaddingInline);
+    min-width: 200px;
+    border-width: var(--dropdownBorderWidth);
+    border-style: solid;
+    border-color: var(--dropdownBorderColor);
     background-color: var(--dropdownBackgroundColor);
     z-index: 1;
 }

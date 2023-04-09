@@ -4,8 +4,13 @@
 
 .symbol {
     display: inline-block;
-    width: 1.25em;
-    height: 1em;
+    width: 1.25rem;
+    height: 1.0rem;
+}
+
+.symbol.size\:tiny {
+    font-size: var(--tinyFontSize);
+    line-height: var(--tinyLineHeight);
 }
 
 .symbol.size\:small {
@@ -21,6 +26,11 @@
 .symbol.size\:large {
     font-size: var(--largeFontSize);
     line-height: var(--largeLineHeight);
+}
+
+.symbol.size\:extralarge {
+    font-size: var(--extraLargeFontSize);
+    line-height: var(--extraLargeLineHeight);
 }
 
 .symbol.color\:black {
@@ -85,10 +95,6 @@
 
 .symbol.color\:silver {
     color: var(--silverColor);
-}
-
-.symbol.color\:highlight {
-    color: var(--highlightColor);
 }
 
 .symbol.color\:primary {

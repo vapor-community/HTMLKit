@@ -2,30 +2,38 @@
  utils classes
  */
 
+/**
+ z-index
+ */
+
 .zindex\:1 {
     position: relative;
-    z-index: 1;
+    z-index: 1 !important;
 }
 
 .zindex\:2 {
     position: relative;
-    z-index: 2;
+    z-index: 2 !important;
 }
 
 .zindex\:3 {
     position: relative;
-    z-index: 3;
+    z-index: 3 !important;
 }
 
 .zindex\:4 {
     position: relative;
-    z-index: 4;
+    z-index: 4 !important;
 }
 
 .zindex\:5 {
     position: relative;
-    z-index: 5;
+    z-index: 5 !important;
 }
+
+/**
+ states
+ */
 
 .state\:active {
     border-color: var(--primaryColor) !important;
@@ -42,4 +50,184 @@
 
 .state\:visible {
     display: block !important;
+}
+
+/**
+ borders
+ 
+defaults:
+ --blackColor: hsla(0, 0%, 0%, 100%); (#000000)
+ --whiteColor: hsla(0, 0%, 100%, 100%); (#FFFFFF)
+ --blueColor: hsla(205, 65%, 55%, 100%); (#4098D7)
+ --brownColor: hsla(23, 50%, 50%, 100%); (#BF7140)
+ --cyanColor: hsla(185, 57%, 50%, 100%); (#38BEC9)
+ --greenColor: hsla(123, 35%, 51%, 100%); (#57AE5B)
+ --indigoColor: hsla(227, 50%, 59%, 100%); (#647ACB)
+ --mintColor: hsla(124, 63%, 74%, 100%); (#91E697)
+ --pinkColor: hsla(330, 66%, 57%, 100%); (#DA4A91)
+ --purpleColor: hsla(262, 43%, 51%, 100%); (#724BB7)
+ --redColor: hsla(0, 64%, 55%, 100%); (#D64545)
+ --tealColor: hsla(160, 51%, 49%, 100%); (#3EBD93)
+ --orangeColor: hsla(22, 78%, 55%, 100%); (#E67635)
+ --yellowColor: hsla(43, 89%, 70%, 100%); (#F7D070)
+ --grayColor: hsla(0, 0%, 62%, 100%); (#9E9E9E)
+ --silverColor: hsla(0, 0%, 97%, 100%); (#F7F7F7)
+ --primaryColor: hsla(210, 100%, 50%, 100%); (#007FFF)
+ --secondaryColor: hsla(211, 60%, 19%, 100%); (#132F4E)
+ */
+
+.border\:black {
+    border-color: var(--blackColor) !important;
+}
+
+.border\:blue {
+    border-color: var(--blueColor) !important;
+}
+
+.border\:brown {
+    border-color: var(--brownColor) !important;
+}
+
+.border\:transparent {
+    border-color: transparent !important;
+}
+
+.border\:cyan {
+    border-color: var(--cyanColor) !important;
+}
+
+.border\:gray {
+    border-color: var(--grayColor) !important;
+}
+
+.border\:green {
+    border-color: var(--greenColor) !important;
+}
+
+.border\:indigo {
+    border-color: var(--indigoColor) !important;
+}
+
+.border\:mint {
+    border-color: var(--mintColor) !important;
+}
+
+.border\:orange {
+    border-color: var(--orangeColor) !important;
+}
+
+.border\:pink {
+    border-color: var(--pinkColor) !important;
+}
+
+.border\:purple {
+    border-color: var(--purpleColor) !important;
+}
+
+.border\:red {
+    border-color: var(--redColor) !important;
+}
+
+.border\:teal {
+    border-color: var(--tealColor) !important;
+}
+
+.border\:white {
+    border-color: var(--whiteColor) !important;
+}
+
+.border\:yellow {
+    border-color: var(--yellowColor) !important;
+}
+
+.border\:silver {
+    border-color: var(--silverColor) !important;
+}
+
+.border\:primary {
+    border-color: var(--primaryColor) !important;
+}
+
+.border\:secondary {
+    border-color: var(--secondaryColor) !important;
+}
+
+/**
+ backgrounds
+ */
+
+.background\:black {
+    background-color: var(--blackColor) !important;
+}
+
+.background\:blue {
+    background-color: var(--blueColor) !important;
+}
+
+.background\:brown {
+    background-color: var(--brownColor) !important;
+}
+
+.background\:transparent {
+    background-color: transparent !important;
+}
+
+.background\:cyan {
+    background-color: var(--cyanColor) !important;
+}
+
+.background\:gray {
+    background-color: var(--grayColor) !important;
+}
+
+.background\:green {
+    background-color: var(--greenColor) !important;
+}
+
+.background\:indigo {
+    background-color: var(--indigoColor) !important;
+}
+
+.background\:mint {
+    background-color: var(--mintColor) !important;
+}
+
+.background\:orange {
+    background-color: var(--orangeColor) !important;
+}
+
+.background\:pink {
+    background-color: var(--pinkColor) !important;
+}
+
+.background\:purple {
+    background-color: var(--purpleColor) !important;
+}
+
+.background\:red {
+    background-color: var(--redColor) !important;
+}
+
+.background\:teal {
+    background-color: var(--tealColor) !important;
+}
+
+.background\:white {
+    background-color: var(--whiteColor) !important;
+}
+
+.background\:yellow {
+    background-color: var(--yellowColor) !important;
+}
+
+.background\:silver {
+    background-color: var(--silverColor) !important;
+}
+
+.background\:primary {
+    background-color: var(--primaryColor) !important;
+}
+
+.background\:secondary {
+    background-color: var(--secondaryColor) !important;
 }

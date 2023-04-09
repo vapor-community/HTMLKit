@@ -134,6 +134,9 @@ public enum Tokens {
     public enum FontSize: String {
         
         /// Changes the size to small.
+        case tiny = "size:tiny"
+        
+        /// Changes the size to small.
         case small = "size:small"
         
         /// Changes the size to medium.
@@ -141,6 +144,9 @@ public enum Tokens {
         
         /// Changes the size to large.
         case large = "size:large"
+        
+        /// Changes the size to extra large.
+        case extralarge = "size:extralarge"
     }
 
     /// A transformation for the text.
@@ -446,7 +452,7 @@ public enum Tokens {
         case smallrounded = "shape:smallrounded"
         case largerounded = "shape:largerounded"
         case fullrounded = "shape:fullrounded"
-        case circle = "shape:cirlce"
+        case circle = "shape:circle"
     }
 
     /// A size of a button.
@@ -506,5 +512,64 @@ public enum Tokens {
         
         /// Sets the state to visible.
         case visible = "state:visible"
+    }
+    
+    public enum BorderdColor: String {
+        
+        /// Changes the border color to black.
+        case black = "border:black"
+        
+        /// Changes the border color to white.
+        case white = "border:white"
+        
+        /// Changes the border color to blue.
+        case blue = "border:blue"
+        
+        /// Changes the border color to brown.
+        case brown = "border:brown"
+        
+        /// Changes the border color to cyan.
+        case cyan = "border:cyan"
+        
+        /// Changes the border color to green.
+        case green = "border:green"
+        
+        /// Changes the border color to indigo.
+        case indigo = "border:indigo"
+        
+        /// Changes the border color to mint.
+        case mint = "border:mint"
+        
+        /// Changes the border color to pink.
+        case pink = "border:pink"
+        
+        /// Changes the border color to purple.
+        case purple = "border:purple"
+        
+        /// Changes the border color to red.
+        case red = "border:red"
+        
+        /// Changes the border color to teal.
+        case teal = "border:teal"
+        
+        /// Changes the border color to ornage.
+        case orange = "border:orange"
+        
+        /// Changes the border color to yellow.
+        case yellow = "border:yellow"
+        
+        /// Changes the border color to gray.
+        case gray = "border:gray"
+        
+        /// Changes the border color to silver.
+        case silver = "border:silver"
+        
+        case highlight = "border:highlight"
+        
+        case primary = "border:primary"
+        
+        case secondary = "border:secondary"
+        
+        case transparent = "border:transparent"
     }
 }

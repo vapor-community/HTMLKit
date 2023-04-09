@@ -120,7 +120,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="text" id="name" name="name" class="input type:textfield">
+                       <input type="text" id="name" name="name" class="textfield">
                        """
         )
     }
@@ -135,7 +135,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <textarea id="name" name="name" class="input type:texteditor" rows="1">value</textarea>
+                       <textarea id="name" name="name" class="texteditor" rows="1">value</textarea>
                        """
         )
     }
@@ -148,7 +148,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="range" id="name" name="name" class="input type:slider">
+                       <input type="range" id="name" name="name" class="slider">
                        """
         )
     }
@@ -161,7 +161,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="date" id="name" name="name" class="input type:datepicker">
+                       <input type="date" id="name" name="name" class="datepicker">
                        """
         )
     }
@@ -174,7 +174,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="password" id="password" name="password" class="input type:securefield">
+                       <input type="password" id="password" name="password" class="securefield">
                        """
         )
     }
@@ -187,7 +187,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="checkbox" id="name" name="name" value="value" class="input type:checkfield">
+                       <input type="checkbox" id="name" name="name" value="value" class="checkfield">
                        """
         )
     }
@@ -200,7 +200,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="radio" id="name" name="name" value="value" class="input type:radioselect">
+                       <input type="radio" id="name" name="name" value="value" class="radioselect">
                        """
         )
     }
@@ -214,7 +214,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <select id="name" name="name" class="input type:selectfield">\
+                       <select id="name" name="name" class="selectfield">\
                        </select>
                        """
         )
@@ -228,9 +228,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="image">\
-                       <img src="source" role="img">\
-                       </div>
+                       <img src="source" role="img" class="image">
                        """
         )
     }

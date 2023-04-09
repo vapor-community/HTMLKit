@@ -6,6 +6,9 @@
 /// A type that describes the modifier of a input component.
 public protocol InputModifier {
     
+    /// Sets the border color of the input
+    func borderColor(_ color: Tokens.BorderdColor) -> Self
+    
     /// Sets the border shape of the input.
     func borderShape(_ shape: Tokens.BorderShape) -> Self
     
@@ -17,6 +20,10 @@ public protocol InputModifier {
 }
 
 extension InputModifier where Self: Modifiable {
+    
+    internal func mutate(bordercolor class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
     
     internal func mutate(bordershape class: String) -> Self {
         return self.mutate(class: `class`)

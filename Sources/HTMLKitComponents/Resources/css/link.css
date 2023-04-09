@@ -1,5 +1,11 @@
 /**
  link component
+ 
+ variables:
+ --textFontFamily: system-ui...; (font-stack)
+ --textFontSize: 1.0rem; (16px)
+ --textFontWeight: normal; (400)
+ --textLineHeihgt: 1.5;
  */
 
 .link {
@@ -7,8 +13,12 @@
     font-size: var(--textFontSize);
     font-weight: var(--textFontHeight);
     line-height: var(--textLineHeight);
-    color: var(--textBaseColor);
     text-decoration: none;
+}
+
+.link.size\:tiny {
+    font-size: var(--tinyFontSize);
+    line-height: var(--tinyLineHeight);
 }
 
 .link.size\:small {
@@ -24,6 +34,11 @@
 .link.size\:large {
     font-size: var(--largeFontSize);
     line-height: var(--largeLineHeight);
+}
+
+.link.size\:extralarge {
+    font-size: var(--extraLargeFontSize);
+    line-height: var(--extraLargeLineHeight);
 }
 
 .link.weight\:thin {
@@ -171,15 +186,15 @@
 }
 
 .link.style\:title {
-    font-size: 2.441rem;
+    font-size: 2rem;
     font-weight: 400;
-    line-height: 1.75;
+    line-height: 2.25;
 }
 
 .link.style\:headline {
-    font-size: 1.953rem;
-    font-weight: 400;
-    line-height: 1.75;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 2.0;
 }
 
 .link.style\:subheadline {
@@ -191,25 +206,25 @@
 .link.style\:body {
     font-size: 1rem;
     font-weight: 400;
-    line-height: 1.75;
+    line-height: 1.5;
 }
 
 .link.style\:callout {
     font-size: 1rem;
     font-weight: 400;
-    line-height: 1.75;
+    line-height: 1.5;
 }
 
 .link.style\:caption {
     font-size: 0.8rem;
     font-weight: 400;
-    line-height: 1.75;
+    line-height: 1.5;
 }
 
 .link.style\:footnote {
     font-size: 0.8rem;
     font-weight: 400;
-    line-height: 1.75
+    line-height: 1.75;
     color: var(--grayColor);
 }
 
@@ -217,5 +232,5 @@
     font-family: monospace;
     font-size: 1rem;
     font-weight: 400;
-    line-height: 1.75;
+    line-height: 1.5;
 }

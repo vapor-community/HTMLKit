@@ -1,13 +1,35 @@
 /**
  divider component
+ 
+ variables:
+ 
+ lightmode:
+ --dividerBackgroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
+ 
+ darkmode:
+ --dividerBackgroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
  */
 
+@media (prefers-color-scheme: light) {
+    
+    :root {
+        --dividerColor: hsla(0, 0%, 0%, 1.0);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    
+    :root {
+        --dividerColor: hsla(0, 0%, 100%, 1.0);
+    }
+}
+
 .divider {
+    position: relative;
     display: block;
-    margin-top: 5px;
-    margin-bottom: 5px;
     width: 100%;
     height: 1px;
+    margin-block: var(--dividerMarginBlock);
     border: 0;
     background-color: var(--dividerColor);
 }

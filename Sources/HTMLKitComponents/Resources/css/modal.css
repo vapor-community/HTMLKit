@@ -1,18 +1,56 @@
 /**
  modal component
+ 
+ dimensions:
+ --modalPaddingBlock: 0.75rem; (12px)
+ --modalPaddingInline: 1.0rem; (16px)
+ --modalBorderWidth: 1px;
+ 
+ lightmode:
+ --modalBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
+ --modalBackgroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
+ 
+ darkmode:
+ --modalBorderColor: hsla(210, 9%, 31%, 1.0); (#484F56)
+ --modalBackgroundColor: hsla(210, 11%, 15%, 1.0); (#22262A)
  */
 
-.modal {
+:root {
+    --modalPaddingBlock: 0.75rem;
+    --modalPaddingInline: 1.0rem;
+    --modalBorderWidth: 1px;
+}
+
+@media (prefers-color-scheme: light) {
     
-    width: 45%;
-    margin: auto;
-    padding-top: var(--modalPaddingY);
-    padding-right: var(--modalPaddingX);
-    padding-bottom: var(--modalPaddingY);
-    padding-left: var(--modalPaddingX);
+    :root {
+        --modalBorderColor: hsla(210, 14%, 89%, 1.0);
+        --modalBackgroundColor: hsla(0, 0%, 100%, 1.0);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    
+    :root {
+        --modalBorderColor: hsla(210, 9%, 31%, 1.0);
+        --modalBackgroundColor: hsla(210, 11%, 15%, 1.0);
+    }
+}
+
+.modal {
+    padding-block: var(--modalPaddingBlock);
+    padding-inline: var(--modalPaddingInline);
     border-width: var(--modalBorderWidth);
     border-style: solid;
-    border-radius: var(--modalBorderRadius);
     border-color: var(--modalBorderColor);
     background-color: var(--modalBackgroundColor);
+    box-shadow: 0 15px 35px hsla(0,0%, 0%, 0.2);
+}
+
+.modal.shape\:smallrounded {
+    border-radius: 0.313rem;
+}
+
+..modal.shape\:largerounded {
+    border-radius: 0.625rem;
 }

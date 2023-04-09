@@ -1,12 +1,46 @@
 /**
  carousel component
+ 
+ variables:
+ --carouselContainerHeight: 400px;
+ --carouselBorderWidth: 1px;
+ 
+ lightmode:
+ --carouselBorderColor:;
+ --carouselBackgroundColor:;
+ 
+ darkmode:
+ --carouselBorderColor:;
+ --carouselBackgroundColor:;
+
  */
+
+:root {
+    --carouselBorderWidth: 1px;
+    --carouselBorderRadius: 10px;
+}
+
+@media (prefers-color-scheme: light) {
+    
+    :root {
+        --carouselBorderColor: #000000;
+        --carouselBackgroundColor: transparent;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    
+    :root {
+        --carouselBorderColor: #000000;
+        --carouselBackgroundColor: transparent;
+    }
+}
 
 .carousel {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 400px;
+    height: var(--carouselContainerHeight);
 }
 
 .carousel-content {
@@ -17,7 +51,6 @@
     border-width: var(--carouselBorderWidth);
     border-style: solid;
     border-color: var(--carouselBorderColor);
-    border-radius: var(--carouselBorderRadius);
     background-color: var(--carouselBackgroundColor);
     overflow: hidden;
 }
@@ -54,6 +87,42 @@
     justify-content: center;
     gap: 10px;
     height: 50px;
+}
+
+/**
+ indicator component
+ 
+ variables:
+ --indicatorBorderWidth:;
+ --indicatorBorderRadius:;
+ 
+ lightmode:
+ --indicatorBorderColor:;
+ --indicatorBackgroundColor:;
+ 
+ darkmode:
+ --indicatorBorderColor:;
+ --indicatorBackgroundColor:;
+ */
+
+:root {
+    --indicatorBorderRadius: 5px;
+}
+
+@media (prefers-color-scheme: light) {
+    
+    :root {
+        --indicatorBackgroundColor: transparent;
+        --indicatorBorderColor: #000000;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    
+    :root {
+        --indicatorBackgroundColor: transparent;
+        --indicatorBorderColor: #000000;
+    }
 }
 
 .indicator {

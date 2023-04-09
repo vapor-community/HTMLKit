@@ -29,12 +29,10 @@ public struct Image: View, Modifiable {
     }
     
     public var body: Content {
-        Division {
-            HTMLKit.Image()
-                .source(source)
-                .role(.img)
-        }
-        .class(classes.joined(separator: " "))
+        HTMLKit.Image()
+            .source(source)
+            .role(.img)
+            .class(classes.joined(separator: " "))
     }
 }
 

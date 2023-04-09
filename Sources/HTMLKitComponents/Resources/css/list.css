@@ -4,7 +4,6 @@
 
 .list {
     display: flex;
-    gap: var(--listGapSize);
     list-style-type: none;
 }
 
@@ -12,35 +11,12 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-right: 15px;
-    margin-left: 15px;
 }
 
 .list.direction\:vertical {
     flex-direction: column;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.list.style\:grouped {
-    border-width: var(--listBorderWidth);
-    border-style: solid;
-    border-radius: var(--listBorderRadius);
-    border-color: var(--listBorderColor);
-    gap: normal;
-}
-
-.list.style\:grouped > .list-row {
-    border-bottom: 1px solid var(--listBorderColor);
-}
-
-.list.style\:grouped > .list-row:last-child {
-    border-bottom: none;
 }
 
 .list-row {
-    padding-top: var(--listRowPaddingY);
-    padding-right: var(--listRowPaddingX);
-    padding-bottom: var(--listRowPaddingY);
-    padding-left: var(--listRowPaddingX);
+    overflow: hidden;
 }
