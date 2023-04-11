@@ -532,13 +532,17 @@
  --inputBackgroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
  
  darkmode:
- --inputForegroundColor: ; (#)
- --inputBorderColor: ; (#)
- --inputFocusColor: ; (#)
- --inputBackgroundColor: ; (#)
+ --inputForegroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
+ --inputBorderColor: hsla(210, 9%, 31%, 1.0); (#484F56)
+ --inputFocusColor: hsla(210, 9%, 31%, 0.4); (#484F56)
+ --inputBackgroundColor: hsla(210, 11%, 15%, 1.0); (#22262A)
  */
 
 .selectfield {
+    position: relative;
+}
+
+.selectfield-textfield {
     display: block;
     width: 100%;
     padding-block: var(--inputPaddingBlock);
@@ -557,26 +561,57 @@
     box-sizing: border-box;
 }
 
-.selectfield.shape\:smallrounded {
-    border-radius: 0.313rem;
-}
-
-.selectfield.shape\:largerounded {
-    border-radius: 0.625rem;
-}
-
-.selectfield.shape\:fullrounded {
+.selectfield.shape\:fullrounded > .selectfield-textfield {
     border-radius: 1.563rem;
 }
 
-.selectfield:focus {
+.selectfield.shape\:largerounded > .selectfield-textfield {
+    border-radius: 0.625rem;
+}
+
+.selectfield.shape\:smallrounded > .selectfield-textfield {
+    border-radius: 0.313rem;
+}
+
+.selectfield-textfield:focus {
     outline: 0;
     box-shadow: 0 0 0 0.25rem var(--inputFocusColor);
 }
 
-.selectfield:invalid {
+.selectfield-textfield:invalid {
     border-color: var(--redColor);
 }
+
+.selectfield-optionlist {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    width: 100%;
+    margin-block: 0.75rem;
+    border-width: var(--inputBorderWidth);
+    border-style: solid;
+    border-color: var(--inputBorderColor);
+    background-color: var(--inputBackgroundColor);
+    list-style-type: none;
+}
+
+.option {
+    display: block;
+    padding-block: var(--inputPaddingBlock);
+    padding-inline: var(--inputPaddingInline);
+    font-family: system-ui;
+    font-size: var(--inputFontSize);
+    font-weight: var(--inputFontWeight);
+    line-height: var(--inputLineHeight);
+    color: var(--inputForegroundColor);
+    cursor: pointer;
+}
+
+.option:hover {
+    color: var(--whiteColor);
+    background-color: var(--primaryColor);
+}
+
 
 /**
  textpad component

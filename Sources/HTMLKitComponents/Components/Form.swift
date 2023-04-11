@@ -435,11 +435,17 @@ public struct SelectField: View, Modifiable {
     }
     
     public var body: Content {
-        Select {
-            content
+        Division {
+            Input()
+                .type(.text)
+                .id(name)
+                .name(name)
+                .class("selectfield-textfield")
+            Division {
+                content
+            }
+            .class("selectfield-optionlist")
         }
-        .id(name)
-        .name(name)
         .class(classes.joined(separator: " "))
     }
 }
@@ -465,6 +471,41 @@ extension SelectField: InputModifier {
         }
         
         return self
+    }
+}
+
+/// A component that displays
+public struct Option: View, Modifiable {
+    
+    /// The identifier of the field.
+    internal let value: String
+    
+    internal let content: String
+    
+    /// The classes of the field.
+    internal var classes: [String]
+    
+    /// Creates a select field.
+    public init(value: String, content: () -> String) {
+        
+        self.value = value
+        self.content = content()
+        self.classes = ["option"]
+    }
+    
+    /// Creates a select field.
+    internal init(value: String, content: String, classes: [String]) {
+        
+        self.value = value
+        self.content = content
+        self.classes = classes
+    }
+    
+    public var body: Content {
+        ListItem {
+            content
+        }
+        .class(classes.joined(separator: " "))
     }
 }
 

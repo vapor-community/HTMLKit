@@ -214,8 +214,10 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <select id="name" name="name" class="selectfield">\
-                       </select>
+                       <div class="selectfield">\
+                       <input type="text" id="name" name="name" class="selectfield-textfield">\
+                       <div class="selectfield-optionlist"></div>\
+                       </div>
                        """
         )
     }
