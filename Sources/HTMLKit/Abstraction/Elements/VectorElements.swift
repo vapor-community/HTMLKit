@@ -454,7 +454,7 @@ public struct Polygon: ContentNode, VectorElement {
     }
 }
 
-extension Polygon: GlobalVectorAttributes {
+extension Polygon: GlobalVectorAttributes, PointsAttribute {
     
     public func id(_ value: String) -> Polygon {
         return self.mutate(id: value)
@@ -498,6 +498,10 @@ extension Polygon: GlobalVectorAttributes {
     
     public func strokeLineJoin(_ value: Values.Linejoin) -> Polygon {
         return self.mutate(strokelinejoin: value.rawValue)
+    }
+    
+    public func points(_ value: String) -> Polygon {
+        return self.mutate(points: value)
     }
     
     public func custom(key: String, value: Any) -> Polygon {
@@ -546,7 +550,7 @@ public struct Polyline: ContentNode, VectorElement {
     }
 }
 
-extension Polyline: GlobalVectorAttributes {
+extension Polyline: GlobalVectorAttributes, PointsAttribute {
     
     public func id(_ value: String) -> Polyline {
         return self.mutate(id: value)
@@ -590,6 +594,10 @@ extension Polyline: GlobalVectorAttributes {
     
     public func strokeLineJoin(_ value: Values.Linejoin) -> Polyline {
         return self.mutate(strokelinejoin: value.rawValue)
+    }
+    
+    public func points(_ value: String) -> Polyline {
+        return self.mutate(points: value)
     }
     
     public func custom(key: String, value: Any) -> Polyline {
