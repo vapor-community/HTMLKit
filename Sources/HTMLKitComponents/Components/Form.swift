@@ -654,14 +654,89 @@ public struct DatePicker: View, Modifiable {
     }
     
     public var body: Content {
-        Input()
-            .type(.date)
-            .id(name)
-            .name(name)
-            .class(classes.joined(separator: " "))
-            .modify(unwrap: value) {
-                $0.value($1)
+        Division {
+            Input()
+                .type(.text)
+                .class("datepicker-datefield")
+                .id(name)
+                .name(name)
+                .modify(unwrap: value) {
+                    $0.value($1)
+                }
+            Division {
+                UnorderedList {
+                    ListItem {
+                        HTMLKit.Button {
+                            Vector {
+                                Polyline {
+                                }
+                                .points("10 2 4 8 10 14")
+                            }
+                            .viewBox("0 0 16 16")
+                            .namespace("http://www.w3.org/2000/svg")
+                            .fill("currentColor")
+                            .strokeWidth(2)
+                            .strokeLineCap(.round)
+                            .strokeLineJoin(.round)
+                        }
+                        .type(.button)
+                        .value("previous")
+                    }
+                    ListItem {
+                        Bold {
+                        }
+                        .class("calendar-detail")
+                    }
+                    ListItem {
+                        HTMLKit.Button {
+                            Vector {
+                                Polyline {
+                                }
+                                .points("6 2 12 8 6 14")
+                            }
+                            .viewBox("0 0 16 16")
+                            .namespace("http://www.w3.org/2000/svg")
+                            .fill("currentColor")
+                            .strokeWidth(2)
+                            .strokeLineCap(.round)
+                            .strokeLineJoin(.round)
+                        }
+                        .type(.button)
+                        .value("next")
+                    }
+                }
+                .class("calendar-navigation")
+                UnorderedList {
+                    ListItem {
+                        "Sun"
+                    }
+                    ListItem {
+                        "Mon"
+                    }
+                    ListItem {
+                        "Tue"
+                    }
+                    ListItem {
+                        "Wed"
+                    }
+                    ListItem {
+                        "Thu"
+                    }
+                    ListItem {
+                        "Fri"
+                    }
+                    ListItem {
+                        "Sat"
+                    }
+                }
+                .class("calendar-week")
+                UnorderedList {
+                }
+                .class("picker-calendar")
             }
+            .class("datepicker-picker")
+        }
+        .class(classes.joined(separator: " "))
     }
 }
 

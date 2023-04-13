@@ -347,6 +347,10 @@
  */
 
 .datepicker {
+    position: relative;
+}
+
+.datepicker-datefield {
     display: block;
     width: 100%;
     padding-block: var(--inputPaddingBlock);
@@ -365,25 +369,114 @@
     box-sizing: border-box;
 }
 
-.datepicker.shape\:smallrounded {
+.datepicker.shape\:smallrounded > .datepicker-datefield {
     border-radius: 0.313rem;
 }
 
-.datepicker.shape\:largerounded {
+.datepicker.shape\:largerounded > .datepicker-datefield {
     border-radius: 0.625rem;
 }
 
-.datepicker.shape\:fullrounded {
+.datepicker.shape\:fullrounded > .datepicker-datefield {
     border-radius: 1.563rem;
 }
 
-.datepicker:focus {
+.datepicker-datefield:focus {
     outline: 0;
     box-shadow: 0 0 0 0.25rem var(--inputFocusColor);
 }
 
-.datepicker:invalid {
+.datepicker-datefield:focus .datepicker-picker {
+    display: inline-block;
+}
+
+.datepicker-datefield:invalid {
     border-color: var(--redColor);
+}
+
+.datepicker-picker {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    width: 100%;
+    margin-block: 0.75rem;
+    font-family: system-ui;
+    font-size: var(--inputFontSize);
+    font-weight: var(--inputFontWeight);
+    line-height: var(--inputLineHeight);
+    color: var(--inputForegroundColor);
+    border-width: var(--inputBorderWidth);
+    border-style: solid;
+    border-color: var(--inputBorderColor);
+    background-color: var(--inputBackgroundColor);
+}
+
+.calendar-navigation {
+    display: flex;
+    align-items : center;
+    justify-content: space-between;
+    padding-block: var(--inputPaddingBlock);
+    padding-inline: var(--inputPaddingInline);
+    list-style-type: none;
+    
+}
+
+.calendar-navigation button {
+    display: inline-block;
+    padding: 0.5rem;
+    font-family: system-ui;
+    font-size: var(--inputFontSize);
+    font-weight: var(--inputFontWeight);
+    line-height: var(--inputLineHeight);
+    color: var(--inputForegroundColor);
+    border: none;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.calendar-navigation button > svg {
+    
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+}
+
+.calendar-week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    list-style-type: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.calendar-week > li {
+    padding: 0.5rem;
+    color: var(--primaryColor);
+    text-align: center;
+    text-decoration: uppercase;
+}
+
+.picker-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    list-style-type: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.picker-calendar > li:has(time) {
+    padding: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.picker-calendar > li:hover:has(time) {
+    color: var(--whiteColor);
+    background-color: var(--primaryColor);
 }
 
 /**

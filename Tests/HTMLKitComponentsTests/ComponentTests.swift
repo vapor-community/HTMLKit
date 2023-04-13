@@ -161,7 +161,40 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="date" id="name" name="name" class="datepicker">
+                       <div class="datepicker">\
+                       <input type="text" class="datepicker-datefield" id="name" name="name">\
+                       <div class="datepicker-picker">\
+                       <ul class="calendar-navigation">\
+                       <li>\
+                       <button type="button" value="previous">\
+                       <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\
+                       <polyline points="10 2 4 8 10 14"></polyline>\
+                       </svg>\
+                       </button>\
+                       </li>\
+                       <li>\
+                       <b class="calendar-detail"></b>\
+                       </li>\
+                       <li>\
+                       <button type="button" value="next">\
+                       <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\
+                       <polyline points="6 2 12 8 6 14"></polyline>\
+                       </svg>\
+                       </button>\
+                       </li>\
+                       </ul>\
+                       <ul class="calendar-week">\
+                       <li>Sun</li>\
+                       <li>Mon</li>\
+                       <li>Tue</li>\
+                       <li>Wed</li>\
+                       <li>Thu</li>\
+                       <li>Fri</li>\
+                       <li>Sat</li>\
+                       </ul>\
+                       <ul class="picker-calendar"></ul>\
+                       </div>\
+                       </div>
                        """
         )
     }
