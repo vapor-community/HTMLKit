@@ -35,9 +35,10 @@ public struct Dropdown: View {
     
     public var body: Content {
         Division {
-            Division {
+            HTMLKit.Button {
                 label
             }
+            .type(.button)
             .class("dropdown-label")
             Division {
                 content
@@ -45,6 +46,5 @@ public struct Dropdown: View {
             .class("dropdown-content")
         }
         .class(classes.joined(separator: " "))
-        .tabIndex(1)
     }
 }

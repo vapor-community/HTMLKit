@@ -498,9 +498,8 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="dropdown" tabindex="1">\
-                       <div class="dropdown-label">\
-                       </div>\
+                       <div class="dropdown">\
+                       <button type="button" class="dropdown-label"></button>\
                        <div class="dropdown-content"></div>\
                        </div>
                        """
