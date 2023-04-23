@@ -1654,6 +1654,20 @@ final class ElementTests: XCTestCase {
         )
     }
     
+    func testSlotElement() throws {
+        
+        let view = TestView {
+            Slot {
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <slot></slot>
+                       """
+        )
+    }
+    
     func testCustomElement() throws {
         
         let view = TestView {

@@ -18207,3 +18207,155 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
         return self.mutate(key: key, value: value)
     }
 }
+
+/// The element is typically used in a shadow tree. Its tend to be a placeholder that you can fill with another markup.
+///
+/// ```html
+/// <slot></slot>
+/// ```
+public struct Slot: ContentNode, BodyElement, FormElement, FigureElement, ObjectElement {
+
+    internal var name: String { "slot" }
+
+    internal var attributes: OrderedDictionary<String, Any>?
+
+    internal var content: [Content]
+
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
+        self.content = content()
+    }
+    
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+        self.attributes = attributes
+        self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (Slot) -> Slot) -> Slot {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: T?, element: (Slot, T) -> Slot) -> Slot {
+        
+        guard let value = value else {
+            return self
+        }
+        
+        return self.modify(element(self, value as T))
+    }
+}
+
+extension Slot: GlobalAttributes, NameAttribute {
+    
+    public func accessKey(_ value: Character) -> Slot {
+        return self.mutate(accesskey: value)
+    }
+    
+    public func autocapitalize(_ value: Values.Capitalization) -> Slot {
+        return mutate(autocapitalize: value.rawValue)
+    }
+    
+    public func autofocus() -> Slot {
+        return mutate(autofocus: "autofocus")
+    }
+    
+    public func `class`(_ value: String) -> Slot {
+        return mutate(class: value)
+    }
+    
+    public func isEditable(_ value: Bool) -> Slot {
+        return mutate(contenteditable: value)
+    }
+    
+    public func direction(_ value: Values.Direction) -> Slot {
+        return mutate(dir: value.rawValue)
+    }
+    
+    public func isDraggable(_ value: Bool) -> Slot {
+        return mutate(draggable: value)
+    }
+    
+    public func enterKeyHint(_ value: Values.Hint) -> Slot {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func hidden() -> Slot {
+        return mutate(hidden: "hidden")
+    }
+    
+    public func inputMode(_ value: String) -> Slot {
+        return mutate(inputmode: value)
+    }
+    
+    public func `is`(_ value: String) -> Slot {
+        return mutate(is: value)
+    }
+    
+    public func itemId(_ value: String) -> Slot {
+        return mutate(itemid: value)
+    }
+    
+    public func itemProperty(_ value: String) -> Slot {
+        return mutate(itemprop: value)
+    }
+    
+    public func itemReference(_ value: String) -> Slot {
+        return mutate(itemref: value)
+    }
+    
+    public func itemScope(_ value: String) -> Slot {
+        return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Slot {
+        return mutate(itemtype: value)
+    }
+    
+    public func id(_ value: String) -> Slot {
+        return mutate(id: value)
+    }
+    
+    public func language(_ value: Values.Language) -> Slot {
+        return mutate(lang: value.rawValue)
+    }
+    
+    public func nonce(_ value: String) -> Slot {
+        return mutate(nonce: value)
+    }
+    
+    public func role(_ value: Values.Role) -> Slot {
+        return mutate(role: value.rawValue)
+    }
+    
+    public func hasSpellCheck(_ value: Bool) -> Slot {
+        return mutate(spellcheck: value)
+    }
+    
+    public func style(_ value: String) -> Slot {
+        return mutate(style: value)
+    }
+    
+    public func tabIndex(_ value: Int) -> Slot {
+        return mutate(tabindex: value)
+    }
+    
+    public func title(_ value: String) -> Slot {
+        return mutate(title: value)
+    }
+    
+    public func translate(_ value: Values.Decision) -> Slot {
+        return mutate(translate: value.rawValue)
+    }
+    
+    public func name(_ value: String) -> Slot {
+        return mutate(name: value)
+    }
+    
+    public func custom(key: String, value: Any) -> Slot {
+        return mutate(key: key, value: value)
+    }
+}
