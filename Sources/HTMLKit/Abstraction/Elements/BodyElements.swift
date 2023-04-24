@@ -17469,8 +17469,8 @@ public struct Template: ContentNode, BodyElement, FormElement, FigureElement, Ob
     }
 }
 
-extension Template: GlobalAttributes, GlobalEventAttributes {
-    
+extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttribute {
+
     public func accessKey(_ value: Character) -> Template {
         return mutate(accesskey: value)
     }
@@ -17593,6 +17593,10 @@ extension Template: GlobalAttributes, GlobalEventAttributes {
     
     public func on(event: Events.Wheel, _ value: String) -> Template {
         return mutate(key: event.rawValue, value: value)
+    }
+    
+    public func shadowRootMode(_ value: Values.Shadow.Mode) -> Template {
+        return mutate(shadowrootmode: value.rawValue)
     }
 }
 

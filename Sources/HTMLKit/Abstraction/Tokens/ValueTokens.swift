@@ -883,5 +883,21 @@ public enum Values {
             case descending
         }
     }
-
+    
+    public enum Shadow {
+        
+        /// An access mode for the shadow root.
+        ///
+        /// ```html
+        /// <template shadowrootmode="open"></template>
+        /// ```
+        public enum Mode: String {
+            
+            /// Opens the shadow root. It can be reached via javascript.
+            case open
+            
+            /// Closes the shadow root. It cannot be reached from the ouside.
+            case closed
+        }
+    }
 }
