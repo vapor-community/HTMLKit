@@ -129,6 +129,18 @@ let package = Package(
             dependencies: [
                 .target(name: "DeployCommand")
             ]
-        )
+        ),
+        .target(
+            name: "CSSMinifier",
+            dependencies: [
+            ],
+            path: "Sources/Utilities"
+        ),
+        .testTarget(
+            name: "UtilitiesTests",
+            dependencies: [
+                .target(name: "CSSMinifier"),
+            ]
+        ),
     ]
 )

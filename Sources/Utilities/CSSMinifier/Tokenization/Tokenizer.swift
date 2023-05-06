@@ -1,6 +1,4 @@
-import Foundation
-
-internal class CSSMinifier {
+internal class Tokenizer {
     
     /// A enumeration of different states of the minifier
     ///
@@ -28,13 +26,10 @@ internal class CSSMinifier {
     }
     
     /// The tree with nodes
-    internal var tree: [Ruleset]
+    private var tokens: [Token]
     
-    /// An indicator for a closure
-    internal var sets: [Ruleset]
-    
-    /// A declaration in the closure of a selector
-    private var declaration: Declaration?
+    /// The temporary slot for a token
+    private var token: Token?
     
     /// The  state of the minifier
     private var mode: InsertionMode
@@ -45,12 +40,11 @@ internal class CSSMinifier {
     /// Creates a minifier
     internal init(mode: InsertionMode = .code, log level: LogLevel = .none) {
         
-        self.tree = []
-        self.sets = []
+        self.tokens = []
         self.mode = mode
         self.level = level
     }
-    
+
     /// Logs the steps of the minifier depending on the log level
     private func log(function: String, character: Character) {
         
@@ -73,38 +67,40 @@ internal class CSSMinifier {
         }
     }
     
-    /// Pops the last node
-    private func pop() {
+    /// Assigns a temporary token
+    private func assign(token: Token) {
         
         print(#function)
         
-        let last = self.sets.removeLast()
-        
-        if let penultimate = self.sets.last {
-            penultimate.add(ruleset: last)
-            
-        } else {
-            self.tree.append(last)
+        if self.token != nil {
+            fatalError("Cannot assign the token. The previous token needs to be emitted first.")
         }
+        
+        self.token = token
     }
     
-    /// Emits the last declaration
+    /// Emits a token into the token collection
+    private func emit(token: Token) {
+        
+        print(#function)
+        
+        self.tokens.append(token)
+    }
+    
+    /// Emits the temporary token into the token collection
     private func emit() {
         
         print(#function)
         
-        if let declaration = self.declaration {
-            
-            if let last = self.sets.last {
-                last.add(declaration: declaration)
-            }
+        if let token = self.token {
+            self.tokens.append(token)
         }
         
-        self.declaration = nil
+        self.token = nil
     }
     
     /// Consumes the content by the state the minifier is currently in
-    internal func consume(content: String) {
+    public func consume(_ content: String) -> [Token] {
         
         for character in content.enumerated() {
             
@@ -138,11 +134,8 @@ internal class CSSMinifier {
                 self.mode = consumeCode(character.element)
             }
         }
-    }
-    
-    /// Minifies the selector sets in the tree
-    internal func minify() -> String {
-        return self.tree.map { $0.minify() }.joined()
+        
+        return tokens
     }
     
     /// Consumes the character
@@ -150,64 +143,60 @@ internal class CSSMinifier {
         
         self.log(function: #function, character: character)
         
-        if character == "/" {
+        if character.isNewline {
+            
+            self.emit(token: WhitespaceToken(type: .return ,value: String(character)))
+            
+            return .code
+        }
+        
+        if character.isWhitespace {
+            
+            self.emit(token: WhitespaceToken(type: .whitespace, value: String(character)))
+            
+            return .code
+        }
+        
+        if character.isSolidus {
             // ignore character
             return .beforecomment
         }
         
-        if character == "." {
+        if character.isPeriod {
             
-            let set = Ruleset(type: .class, selector: String(character))
-            
-            self.sets.append(set)
+            self.assign(token: SelectorToken(type: .class, value: ""))
             
             return .selector
         }
         
-        if character == ":" {
+        if character.isColon {
             
-            let set = Ruleset(type: .root, selector: String(character))
-            
-            self.sets.append(set)
+            self.assign(token: SelectorToken(type: .root, value: ""))
             
             return .selector
         }
         
-        if character == "#" {
+        if character.isNumberSign {
             
-            let set = Ruleset(type: .id, selector: String(character))
-            
-            self.sets.append(set)
+            self.assign(token: SelectorToken(type: .id, value: ""))
             
             return .selector
         }
         
         if character.isLetter {
             
-            let set = Ruleset(type: .element, selector: String(character))
-            
-            self.sets.append(set)
+            self.assign(token: SelectorToken(type: .element, value: ""))
             
             return .selector
         }
         
-        if character == "@" {
+        if character.isBracket {
             
-            let set = Ruleset(type: .query, selector: String(character))
+            self.emit(token: FormatToken(type: .punctuator, value: String(character)))
             
-            self.sets.append(set)
-            
-            return .mediaquery
+            return .declaration
         }
         
-        if character == "}" {
-            
-            self.pop()
-            
-            return .code
-        }
-        
-        // ignore character
         return .code
     }
     
@@ -216,7 +205,18 @@ internal class CSSMinifier {
         
         self.log(function: #function, character: character)
         
-        if character == "*" {
+        if character.isSolidus {
+            
+            self.assign(token: CommentToken(type: .line, value: ""))
+        
+            // ignore character
+            return .comment
+        }
+        
+        if character.isAsterisk {
+            
+            self.assign(token: CommentToken(type: .block, value: ""))
+        
             // ignore character
             return .comment
         }
@@ -234,12 +234,17 @@ internal class CSSMinifier {
         
         self.log(function: #function, character: character)
         
-        if character == "*" {
-            // ignore character
+        if character.isAsterisk {
+            
+            self.emit()
+            
             return .aftercomment
         }
         
-        // ignore character
+        if var token = self.token {
+            token.value.append(character)
+        }
+        
         return .comment
     }
     
@@ -248,12 +253,7 @@ internal class CSSMinifier {
         
         self.log(function: #function, character: character)
         
-        if character == "/" {
-            // ignore character
-            
-            if !self.sets.isEmpty {
-                return .declaration
-            }
+        if character.isSolidus {
             
             return .code
         }
@@ -272,13 +272,16 @@ internal class CSSMinifier {
         
         self.log(function: #function, character: character)
         
-        if character == "{" {
+        if character.isWhitespace {
             
-            return .declaration
+            self.emit()
+            
+            // ignore character
+            return .code
         }
         
-        if let last = self.sets.last {
-            last.selector.append(String(character))
+        if var token = self.token {
+            token.value.append(character)
         }
         
         return .selector
@@ -294,32 +297,16 @@ internal class CSSMinifier {
         
         self.log(function: #function, character: character)
         
-        if character == "}" {
+        if character.isBracket {
             
-            self.pop()
+            self.emit(token: FormatToken(type: .punctuator, value: String(character)))
             
             return .code
         }
         
-        if character == "/" {
-            // ignore character
-            return .beforecomment
-        }
-        
-        if character.isWhitespace || character.isNewline {
-            // ignore character
-            return .declaration
-        }
-        
         if character.isLetter {
-            
-            self.declaration = Declaration(type: .property, property: String(character))
-            
-            return .property
-        }
         
-        if character == "-" {
-            self.declaration = Declaration(type: .variable, property: String(character))
+            self.assign(token: PropertyToken(type: .standard, value: String(character)))
             
             return .property
         }
@@ -336,12 +323,22 @@ internal class CSSMinifier {
         
         self.log(function: #function, character: character)
         
-        if character == ":" {
+        if character.isWhitespace {
+            // ignore character
+            return .property
+        }
+        
+        if character.isColon {
+            
+            self.emit()
+            
+            self.emit(token: FormatToken(type: .punctuator, value: String(character)))
+            
             return .value
         }
         
-        if let declaration = self.declaration {
-            declaration.property.append(character)
+        if var token = self.token {
+            token.value.append(character)
         }
         
         return .property
@@ -356,20 +353,25 @@ internal class CSSMinifier {
         
         self.log(function: #function, character: character)
         
-        if character == ";" {
-            
-            self.emit()
-            
-            return .declaration
-        }
-        
-        if character.isNewline  {
+        if character.isWhitespace {
             // ignore character
             return .value
         }
         
-        if let declaration = self.declaration {
-            declaration.value.append(character)
+        if character.isSemicolon {
+            
+            self.emit()
+            
+            self.emit(token: FormatToken(type: .terminator, value: String(character)))
+            
+            return .declaration
+        }
+        
+        if var token = self.token {
+            token.value.append(character)
+            
+        } else {
+            self.assign(token: ValueToken(type: .keyword, value: String(character)))
         }
         
         return .value
@@ -383,15 +385,6 @@ internal class CSSMinifier {
     internal func consumeMediaQuery(_ character: Character) -> InsertionMode {
         
         self.log(function: #function, character: character)
-        
-        if character == "{" {
-            
-            return .code
-        }
-        
-        if let last = self.sets.last {
-            last.selector.append(String(character))
-        }
         
         return .mediaquery
     }
