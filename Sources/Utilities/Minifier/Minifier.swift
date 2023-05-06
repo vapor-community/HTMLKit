@@ -1,19 +1,79 @@
+import Foundation
+
 public struct Minifier {
     
-    public init() {
+    public struct Compression: OptionSet {
+        
+        public var rawValue: Int
+        
+        public static let stripComments = Compression(rawValue: 1 << 0)
+        public static let removeWhitespaces = Compression(rawValue: 1 << 1)
+        public static let mangleVariables = Compression(rawValue: 1 << 2)
+        public static let omitUnits = Compression(rawValue: 2 << 3)
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
     }
     
+    /// The level of compression
+    private var compression: [Compression]
+    
+    /// Initiates a minifier
+    public init(compression: [Compression]) {
+        
+        self.compression = compression
+    }
+    
+    /// Minifies a stylesheet string
     public func minify(css content: String) -> String {
         
-        let tokens = Stylesheet().consume(content)
+        var tokens = Stylesheet().consume(content)
         
-        return tokens.drop(while: { $0 is Stylesheet.CommentToken || $0 is Stylesheet.WhitespaceToken }).map( { $0.present() } ).joined()
+        if compression.contains(.stripComments) {
+            tokens.removeAll(where:  { $0 is Stylesheet.CommentToken })
+        }
+        
+        var yield = [Token]()
+        
+        if compression.contains(.removeWhitespaces) {
+            
+            for (index, token) in tokens.enumerated() {
+                
+                if token is Stylesheet.WhitespaceToken {
+                    
+                    let previous = tokens.index(before: index)
+                    let next = tokens.index(after: index)
+                    
+                    if previous >= tokens.startIndex && next < tokens.endIndex {
+                        
+                        // keep the whitespace if its between two selector
+                        if tokens[previous] is Stylesheet.SelectorToken && tokens[next] is Stylesheet.SelectorToken {
+                            yield.append(token)
+                        }
+                    }
+                    
+                } else {
+                    yield.append(token)
+                }
+            }
+        }
+        
+        return yield.map({ $0.present() }).joined()
     }
     
+    /// Minifies a javascript string
     public func minify(js content: String) -> String {
         
-        let tokens = Javascript().consume(content)
+        var tokens = Javascript().consume(content)
         
-        return tokens.drop(while: { $0 is Javascript.CommentToken || $0 is Javascript.WhitespaceToken }).map( { $0.present() } ).joined()
+        if compression.contains(.stripComments) {
+            tokens.removeAll(where:  { $0 is Javascript.CommentToken })
+        }
+        
+        if compression.contains(.removeWhitespaces) {
+        }
+        
+        return tokens.map({ $0.present() }).joined()
     }
 }

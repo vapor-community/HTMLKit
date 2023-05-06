@@ -37,7 +37,7 @@ internal class Javascript {
     private var level: LogLevel
     
     /// Initiates a the javascript minifier
-    internal init(mode: InsertionMode = .code, level: LogLevel = .none) {
+    internal init(mode: InsertionMode = .code, log level: LogLevel = .none) {
         
         self.tokens = []
         self.mode = mode

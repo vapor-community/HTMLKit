@@ -12,6 +12,8 @@ internal class Stylesheet {
         case selector
         case declaration
         case property
+        case beforecustomproperty
+        case customproperty
         case value
         case mediaquery
     }
@@ -124,6 +126,12 @@ internal class Stylesheet {
             case .property:
                 self.mode = consumeProperty(character.element)
                 
+            case .beforecustomproperty:
+                self.mode = consumeBeforeCustomProperty(character.element)
+                
+            case .customproperty:
+                self.mode = consumeCustomProperty(character.element)
+                
             case .value:
                 self.mode = consumeValue(character.element)
                 
@@ -185,7 +193,7 @@ internal class Stylesheet {
         
         if character.isLetter {
             
-            self.assign(token: Stylesheet.SelectorToken(type: .element, value: ""))
+            self.assign(token: Stylesheet.SelectorToken(type: .element, value: String(character)))
             
             return .selector
         }
@@ -195,6 +203,13 @@ internal class Stylesheet {
             self.emit(token: Stylesheet.FormatToken(type: .punctuator, value: String(character)))
             
             return .declaration
+        }
+        
+        if character.isOperator {
+            
+            self.emit(token: FormatToken(type: .operator, value: String(character)))
+            
+            return .code
         }
         
         return .code
@@ -276,7 +291,8 @@ internal class Stylesheet {
             
             self.emit()
             
-            // ignore character
+            self.emit(token: WhitespaceToken(type: .whitespace, value: ""))
+            
             return .code
         }
         
@@ -311,6 +327,11 @@ internal class Stylesheet {
             return .property
         }
         
+        if character.isHyphenMinus {
+            // ignore character
+            return .beforecustomproperty
+        }
+        
         return .declaration
     }
     
@@ -324,7 +345,9 @@ internal class Stylesheet {
         self.log(function: #function, character: character)
         
         if character.isWhitespace {
-            // ignore character
+           
+            self.emit(token: WhitespaceToken(type: .whitespace, value: ""))
+            
             return .property
         }
         
@@ -344,6 +367,47 @@ internal class Stylesheet {
         return .property
     }
     
+    internal func consumeBeforeCustomProperty(_ character: Character) -> InsertionMode {
+        
+        self.log(function: #function, character: character)
+        
+        if character.isHyphenMinus {
+            
+            self.assign(token: PropertyToken(type: .custom, value: ""))
+            
+            return .customproperty
+        }
+        
+        return .beforecustomproperty
+    }
+    
+    internal func consumeCustomProperty(_ character: Character) -> InsertionMode {
+        
+        self.log(function: #function, character: character)
+        
+        if character.isWhitespace {
+           
+            self.emit(token: WhitespaceToken(type: .whitespace, value: ""))
+            
+            return .customproperty
+        }
+        
+        if character.isColon {
+            
+            self.emit()
+            
+            self.emit(token: Stylesheet.FormatToken(type: .punctuator, value: String(character)))
+            
+            return .value
+        }
+        
+        if var token = self.token {
+            token.value.append(character)
+        }
+        
+        return .customproperty
+    }
+    
     /// Consumes the character of a value
     ///
     /// ```css
@@ -354,7 +418,9 @@ internal class Stylesheet {
         self.log(function: #function, character: character)
         
         if character.isWhitespace {
-            // ignore character
+
+            self.emit(token: WhitespaceToken(type: .whitespace, value: ""))
+            
             return .value
         }
         
