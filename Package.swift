@@ -56,6 +56,10 @@ let package = Package(
                 .product(name: "Vapor", package: "vapor"),
             ]
         ),
+        .target(
+            name: "Minifier",
+            path: "Sources/Utilities"
+        ),
         .testTarget(
             name: "HTMLKitTests",
             dependencies: [
@@ -90,6 +94,12 @@ let package = Package(
             ],
             resources: [
                 .copy("Localization")
+            ]
+        ),
+        .testTarget(
+            name: "UtilitiesTests",
+            dependencies: [
+                .target(name: "Minifier"),
             ]
         ),
         .executableTarget(
@@ -129,18 +139,6 @@ let package = Package(
             dependencies: [
                 .target(name: "DeployCommand")
             ]
-        ),
-        .target(
-            name: "CSSMinifier",
-            dependencies: [
-            ],
-            path: "Sources/Utilities"
-        ),
-        .testTarget(
-            name: "UtilitiesTests",
-            dependencies: [
-                .target(name: "CSSMinifier"),
-            ]
-        ),
+        )
     ]
 )
