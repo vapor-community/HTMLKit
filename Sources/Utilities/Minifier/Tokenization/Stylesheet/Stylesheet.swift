@@ -10,12 +10,13 @@ internal class Stylesheet {
         case comment
         case aftercomment
         case selector
-        case declaration
         case property
         case beforecustomproperty
         case customproperty
+        case beforevalue
         case value
-        case mediaquery
+        case unidentified
+        case string
     }
     
     /// A enumeration of different level of the logging
@@ -32,6 +33,8 @@ internal class Stylesheet {
     
     /// The temporary slot for a token
     private var token: Token?
+    
+    private var cache: String?
     
     /// The  state of the minifier
     private var mode: InsertionMode
@@ -67,6 +70,30 @@ internal class Stylesheet {
         default:
             break
         }
+    }
+    
+    private func cache(character: Character) {
+        
+        if var cache = self.cache {
+            
+            cache.append(character)
+            
+            self.cache = cache
+            
+        } else {
+            self.cache = String(character)
+        }
+    }
+    
+    private func clear() -> String {
+        
+        guard let value = self.cache else {
+            fatalError("Wait, there is nothing to clear")
+        }
+        
+        self.cache = nil
+        
+        return value
     }
     
     /// Assigns a temporary token
@@ -120,9 +147,6 @@ internal class Stylesheet {
             case .selector:
                 self.mode = consumeSelector(character.element)
                 
-            case .declaration:
-                self.mode = consumeDeclaration(character.element)
-                
             case .property:
                 self.mode = consumeProperty(character.element)
                 
@@ -132,11 +156,17 @@ internal class Stylesheet {
             case .customproperty:
                 self.mode = consumeCustomProperty(character.element)
                 
+            case .beforevalue:
+                self.mode = consumeBeforeValue(character.element)
+                
             case .value:
                 self.mode = consumeValue(character.element)
                 
-            case .mediaquery:
-                self.mode = consumeMediaQuery(character.element)
+            case .unidentified:
+                self.mode = consumeUnkown(character.element)
+                
+            case .string:
+                self.mode = consumeStringLiteral(character.element)
                 
             default:
                 self.mode = consumeCode(character.element)
@@ -153,14 +183,14 @@ internal class Stylesheet {
         
         if character.isNewline {
             
-            self.emit(token: Stylesheet.WhitespaceToken(type: .return ,value: String(character)))
+            self.emit(token: WhitespaceToken(type: .return ,value: String(character)))
             
             return .code
         }
         
         if character.isWhitespace {
             
-            self.emit(token: Stylesheet.WhitespaceToken(type: .whitespace, value: String(character)))
+            self.emit(token: WhitespaceToken(type: .whitespace, value: String(character)))
             
             return .code
         }
@@ -172,37 +202,56 @@ internal class Stylesheet {
         
         if character.isPeriod {
             
-            self.assign(token: Stylesheet.SelectorToken(type: .class, value: ""))
+            self.assign(token: SelectorToken(type: .class, value: ""))
             
             return .selector
         }
         
         if character.isColon {
             
-            self.assign(token: Stylesheet.SelectorToken(type: .root, value: ""))
+            self.assign(token: SelectorToken(type: .root, value: ""))
             
             return .selector
         }
         
         if character.isNumberSign {
             
-            self.assign(token: Stylesheet.SelectorToken(type: .id, value: ""))
+            self.assign(token: SelectorToken(type: .id, value: ""))
             
             return .selector
         }
         
         if character.isLetter {
             
-            self.assign(token: Stylesheet.SelectorToken(type: .element, value: String(character)))
+            self.cache(character: character)
+            
+            return .unidentified
+        }
+        
+        if character.isQuotationMark {
+            
+            self.assign(token: LiteralToken(value: ""))
+            
+            return .string
+        }
+        
+        if character.isCommercialAt {
+            
+            self.assign(token: SelectorToken(type: .rule, value: ""))
             
             return .selector
         }
         
+        if character.isHyphenMinus {
+            // ignore character
+            return .beforecustomproperty
+        }
+        
         if character.isBracket {
             
-            self.emit(token: Stylesheet.FormatToken(type: .punctuator, value: String(character)))
+            self.emit(token: FormatToken(type: .punctuator, value: String(character)))
             
-            return .declaration
+            return .code
         }
         
         if character.isOperator {
@@ -222,7 +271,7 @@ internal class Stylesheet {
         
         if character.isSolidus {
             
-            self.assign(token: Stylesheet.CommentToken(type: .line, value: ""))
+            self.assign(token: CommentToken(type: .line, value: ""))
         
             // ignore character
             return .comment
@@ -230,7 +279,7 @@ internal class Stylesheet {
         
         if character.isAsterisk {
             
-            self.assign(token: Stylesheet.CommentToken(type: .block, value: ""))
+            self.assign(token: CommentToken(type: .block, value: ""))
         
             // ignore character
             return .comment
@@ -303,38 +352,6 @@ internal class Stylesheet {
         return .selector
     }
     
-    /// Consumes the character of a declaration
-    ///
-    /// ```css
-    /// {
-    /// }
-    /// ```
-    internal func consumeDeclaration(_ character: Character) -> InsertionMode {
-        
-        self.log(function: #function, character: character)
-        
-        if character.isBracket {
-            
-            self.emit(token: Stylesheet.FormatToken(type: .punctuator, value: String(character)))
-            
-            return .code
-        }
-        
-        if character.isLetter {
-        
-            self.assign(token: Stylesheet.PropertyToken(type: .standard, value: String(character)))
-            
-            return .property
-        }
-        
-        if character.isHyphenMinus {
-            // ignore character
-            return .beforecustomproperty
-        }
-        
-        return .declaration
-    }
-    
     /// Consumes the character of a property
     ///
     /// ```css
@@ -355,9 +372,9 @@ internal class Stylesheet {
             
             self.emit()
             
-            self.emit(token: Stylesheet.FormatToken(type: .punctuator, value: String(character)))
+            self.emit(token: FormatToken(type: .punctuator, value: String(character)))
             
-            return .value
+            return .beforevalue
         }
         
         if var token = self.token {
@@ -378,6 +395,13 @@ internal class Stylesheet {
             return .customproperty
         }
         
+        if character.isLetter {
+            
+            self.assign(token: PropertyToken(type: .browser, value: String(character)))
+            
+            return .property
+        }
+        
         return .beforecustomproperty
     }
     
@@ -396,9 +420,9 @@ internal class Stylesheet {
             
             self.emit()
             
-            self.emit(token: Stylesheet.FormatToken(type: .punctuator, value: String(character)))
+            self.emit(token: FormatToken(type: .punctuator, value: String(character)))
             
-            return .value
+            return .beforevalue
         }
         
         if var token = self.token {
@@ -406,6 +430,34 @@ internal class Stylesheet {
         }
         
         return .customproperty
+    }
+    
+    internal func consumeBeforeValue(_ character: Character) -> InsertionMode {
+        
+        self.log(function: #function, character: character)
+        
+        if character.isQuotationMark {
+            
+            self.assign(token: ValueToken(type: .string, value: ""))
+            
+            return .value
+        }
+        
+        if character.isNumber {
+            
+            self.assign(token: ValueToken(type: .numeric, value: String(character)))
+            
+            return .value
+        }
+        
+        if character.isLetter {
+            
+            self.assign(token: ValueToken(type: .keyword, value: String(character)))
+            
+            return .value
+        }
+        
+        return .beforevalue
     }
     
     /// Consumes the character of a value
@@ -417,42 +469,72 @@ internal class Stylesheet {
         
         self.log(function: #function, character: character)
         
-        if character.isWhitespace {
-
-            self.emit(token: WhitespaceToken(type: .whitespace, value: ""))
-            
-            return .value
-        }
-        
         if character.isSemicolon {
             
             self.emit()
             
-            self.emit(token: Stylesheet.FormatToken(type: .terminator, value: String(character)))
+            self.emit(token: FormatToken(type: .terminator, value: String(character)))
             
-            return .declaration
+            return .code
+        }
+        
+        if character.isQuotationMark {
+            
+            self.emit()
+            
+            return .value
         }
         
         if var token = self.token {
             token.value.append(character)
-            
-        } else {
-            self.assign(token: Stylesheet.ValueToken(type: .keyword, value: String(character)))
         }
         
         return .value
     }
     
-    /// Consumes a character of a media query
-    ///
-    /// ```css
-    /// @media ()
-    /// ```
-    internal func consumeMediaQuery(_ character: Character) -> InsertionMode {
+    internal func consumeUnkown(_ character: Character) -> InsertionMode {
         
         self.log(function: #function, character: character)
         
-        return .mediaquery
+        if character.isColon {
+            
+            self.emit(token: PropertyToken(type: .regular, value: clear()))
+            
+            self.emit(token: FormatToken(type: .terminator, value: String(character)))
+            
+            return .beforevalue
+        }
+        
+        if character.isWhitespace {
+            
+            self.emit(token: SelectorToken(type: .type, value: clear()))
+            
+            self.emit(token: WhitespaceToken(type: .whitespace, value: ""))
+            
+            return .code
+        }
+        
+        self.cache(character: character)
+        
+        return .unidentified
+    }
+    
+    internal func consumeStringLiteral(_ character: Character) -> InsertionMode {
+        
+        self.log(function: #function, character: character)
+        
+        if character.isQuotationMark {
+            
+            self.emit()
+            
+            return .code
+        }
+        
+        if var token = self.token {
+            token.value.append(character)
+        }
+        
+        return .string
     }
 }
 
@@ -540,8 +622,8 @@ extension Stylesheet {
         /// A enumeration of the variations of comment tokens
         internal enum TokenType {
             
-            /// Indicates the set is about an element
-            case element
+            /// Indicates the set is about an type
+            case type
             
             /// Indicates the set is about a class
             case `class`
@@ -551,6 +633,15 @@ extension Stylesheet {
             
             /// Indicates the set is about a root
             case root
+            
+            /// Indicates a universal selector
+            case universal
+            
+            /// Indicates a attribute selector
+            case attribute
+            
+            /// Indicates a rule selector
+            case rule
         }
         
         /// The type of the token
@@ -570,7 +661,7 @@ extension Stylesheet {
         internal func present() -> String {
             
             switch type {
-            case .element:
+            case .type:
                 return "\(value)"
                 
             case .class:
@@ -581,6 +672,15 @@ extension Stylesheet {
                 
             case .root:
                 return ":\(value)"
+                
+            case .universal:
+                return value
+                
+            case .attribute:
+                return value
+                
+            case .rule:
+                return "@\(value)"
             }
         }
     }
@@ -626,11 +726,14 @@ extension Stylesheet {
         /// A enumeration of the variation of format tokens
         internal enum TokenType {
             
-            /// Indicates a punctiation
-            case standard
+            /// Indicates a regular property
+            case regular
             
-            /// Indicates a line terminator character
+            /// Indicates a custom property
             case custom
+            
+            /// Indicates a browser property
+            case browser
         }
         
         /// The type of the token
@@ -650,8 +753,11 @@ extension Stylesheet {
         internal func present() -> String {
             
             switch type {
-            case .standard:
+            case .regular:
                 return "\(value)"
+                
+            case .browser:
+                return "-\(value)"
                 
             case .custom:
                 return "--\(value)"
@@ -671,7 +777,11 @@ extension Stylesheet {
             /// Indicates a line terminator character
             case numeric
             
+            /// Indicates a function
             case function
+            
+            /// Indicates a string
+            case string
         }
         
         /// The type of the token
@@ -689,7 +799,27 @@ extension Stylesheet {
         
         /// Minifies a format token
         internal func present() -> String {
-            return value
+            
+            switch type {
+            case .string:
+                return "\"\(value)\""
+                
+            default:
+                return value
+            }
+        }
+    }
+    
+    internal class LiteralToken: Token {
+        
+        internal var value: String
+        
+        internal init(value: String) {
+            self.value = value
+        }
+        
+        internal func present() -> String {
+            return "\"\(value)\""
         }
     }
 }

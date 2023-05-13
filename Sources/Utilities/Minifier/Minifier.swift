@@ -47,8 +47,13 @@ public struct Minifier {
                     
                     if previous >= tokens.startIndex && next < tokens.endIndex {
                         
-                        // keep the whitespace if its between two selector
+                        // keep the whitespace if its between two selectors
                         if tokens[previous] is Stylesheet.SelectorToken && tokens[next] is Stylesheet.SelectorToken {
+                            yield.append(token)
+                        }
+                        
+                        // keep the whitespace if its between one selector and value token
+                        if tokens[previous] is Stylesheet.SelectorToken && tokens[next] is Stylesheet.LiteralToken {
                             yield.append(token)
                         }
                     }
