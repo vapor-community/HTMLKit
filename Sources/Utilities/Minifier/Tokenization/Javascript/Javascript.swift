@@ -7,7 +7,9 @@ internal class Javascript {
         
         case code
         case beforecomment
-        case comment
+        case linecomment
+        case blockcomment
+        case hashbang
         case aftercomment
         case word
         case string
@@ -107,8 +109,11 @@ internal class Javascript {
             case .beforecomment:
                 self.mode = consumeBeforeComment(character.element)
                 
-            case .comment:
-                self.mode = consumeComment(character.element)
+            case .blockcomment:
+                self.mode = consumeBlockComment(character.element)
+                
+            case .linecomment:
+                self.mode = consumeLineComment(character.element)
                 
             case .aftercomment:
                 self.mode = consumeAfterComment(character.element)
@@ -138,6 +143,20 @@ internal class Javascript {
         
         self.log(function: #function, character: character)
         
+        if character.isNewline {
+            
+            self.emit(token: Javascript.WhitespaceToken(type: .return ,value: String(character)))
+            
+            return .code
+        }
+        
+        if character.isWhitespace {
+            
+            self.emit(token: Javascript.WhitespaceToken(type: .whitespace, value: String(character)))
+            
+            return .code
+        }
+        
         if character.isSemicolon {
             
             self.emit(token: Javascript.FormatToken(type: .terminator, value: String(character)))
@@ -157,7 +176,7 @@ internal class Javascript {
             return .code
         }
         
-        if character.isQuotationMark || character.isApostrophe  {
+        if character.isApostrophe  {
             
             self.assign(token: Javascript.LiteralToken(type: .string, value: ""))
             
@@ -205,7 +224,7 @@ internal class Javascript {
             self.assign(token: Javascript.CommentToken(type: .block, value: ""))
             
             // ignore character
-            return .comment
+            return .blockcomment
         }
         
         if character.isSolidus  {
@@ -213,7 +232,7 @@ internal class Javascript {
             self.assign(token: Javascript.CommentToken(type: .line, value: ""))
             
             // ignore character
-            return .comment
+            return .linecomment
         }
         
         if character.isExclamationMark  {
@@ -221,7 +240,7 @@ internal class Javascript {
             self.assign(token: Javascript.CommentToken(type: .hashbang, value: ""))
             
             // ignore character
-            return .comment
+            return .hashbang
         }
         
         // ignore character
@@ -229,11 +248,31 @@ internal class Javascript {
     }
     
     /// Consumes the character of a comment
-    internal func consumeComment(_ character: Character) -> InsertionMode {
+    internal func consumeLineComment(_ character: Character) -> InsertionMode {
         
         self.log(function: #function, character: character)
         
-        if character.isAsterisk || character.isNewline {
+        if character.isNewline {
+            
+            self.emit()
+            
+            // ignore character
+            return .code
+        }
+        
+        if var token = self.token {
+            token.value.append(character)
+        }
+        
+        return .linecomment
+    }
+    
+    /// Consumes the character of a comment
+    internal func consumeBlockComment(_ character: Character) -> InsertionMode {
+        
+        self.log(function: #function, character: character)
+        
+        if character.isAsterisk {
             
             self.emit()
             
@@ -243,10 +282,9 @@ internal class Javascript {
         
         if var token = self.token {
             token.value.append(character)
-            
         }
         
-        return .comment
+        return .blockcomment
     }
     
     /// Consumes the character after a comment
@@ -257,10 +295,6 @@ internal class Javascript {
         if character.isSolidus {
             // ignore character
             return .code
-        }
-        
-        if character.isLetter {
-            return .word
         }
         
         // ignore character
@@ -275,11 +309,21 @@ internal class Javascript {
             
             self.emit()
             
-            // ignore character
+            self.emit(token: WhitespaceToken(type: .whitespace, value: ""))
+            
             return .code
         }
         
         if character.isPeriod {
+            
+            self.emit()
+            
+            self.emit(token: Javascript.FormatToken(type: .punctuator, value: String(character)))
+            
+            return .code
+        }
+        
+        if character.isColon {
             
             self.emit()
             
@@ -321,7 +365,7 @@ internal class Javascript {
         
         self.log(function: #function, character: character)
         
-        if character.isQuotationMark || character.isApostrophe {
+        if character.isApostrophe {
             
             self.emit()
             
@@ -592,43 +636,7 @@ extension Javascript {
         
         /// Minifies a word token
         internal func present() -> String {
-            
-            switch type {
-            case .keyword:
-                
-                // append whitespace
-                if declarations.contains(value) {
-                    return "\(value) "
-                }
-                
-                // prepend and append whitespace
-                if operators.contains(value) {
-                    return " \(value) "
-                }
-                
-                return value
-                
-            default:
-                return value
-            }
-        }
-        
-        /// A set of keywords that need one whitespace before and after its declaration
-        private var operators: Set<String> {
-            return [
-                "of",
-            ]
-        }
-        
-        /// A set of keywords that need one whitespace after its declaration
-        private var declarations: Set<String> {
-            return [
-                "let",
-                "const",
-                "var",
-                "return",
-                "new"
-            ]
+            return value
         }
         
         /// A set of keywords
@@ -680,6 +688,7 @@ extension Javascript {
                 "while",
                 "with",
                 "yield",
+                "of"
             ]
         }
     }

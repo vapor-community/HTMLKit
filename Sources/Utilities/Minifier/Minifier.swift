@@ -71,9 +71,30 @@ public struct Minifier {
             tokens.removeAll(where:  { $0 is Javascript.CommentToken })
         }
         
+        var yield = [Token]()
+        
         if compression.contains(.removeWhitespaces) {
+            
+            for (index, token) in tokens.enumerated() {
+                
+                if token is Javascript.WhitespaceToken {
+                    
+                    let previous = tokens.index(before: index)
+                    let next = tokens.index(after: index)
+                    
+                    if previous >= tokens.startIndex && next < tokens.endIndex {
+                        
+                        if tokens[previous] is Javascript.WordToken && tokens[next] is Javascript.WordToken {
+                            yield.append(token)
+                        }
+                    }
+                    
+                } else {
+                    yield.append(token)
+                }
+            }
         }
         
-        return tokens.map({ $0.present() }).joined()
+        return yield.map({ $0.present() }).joined()
     }
 }
