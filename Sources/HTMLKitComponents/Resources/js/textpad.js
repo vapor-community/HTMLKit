@@ -2,7 +2,7 @@
     
     var Textpad = function (element) {
         
-        this.element = element
+        this.element = element;
         this.content = element.getElementsByClassName('textpad-content')[0];
         this.toolbar = element.getElementsByClassName('textpad-toolbar')[0];
         
@@ -53,15 +53,11 @@
     
     if(textpad.length > 0) {
         
-      for(var i = 0; i < textpad.length; i++) {
-          
-        (function(i) {
-    
-            new Textpad(textpad[i]);
+        for(var i = 0; i < textpad.length; i++) {
             
-        })(i);
-          
-      }
+            (function(i) {
+                new Textpad(textpad[i]);
+            })(i);
+        }
     }
-    
 }());

@@ -55,6 +55,22 @@ final class JavascriptTests: XCTestCase {
         """
         
         XCTAssertEqual(minifier.minify(js: letkeyword), "let name='value';")
+        
+        // ...with a dollar sign first
+        
+        let dollarsigned = """
+        var $keyword = 'value';
+        """
+        
+        XCTAssertEqual(minifier.minify(js: dollarsigned), "var $keyword='value';")
+        
+        // ...with a underscore sign first
+        
+        let underscored = """
+        var _keyword = 'value';
+        """
+        
+        XCTAssertEqual(minifier.minify(js: underscored), "var _keyword='value';")
     }
     
     // Tests minifing a
@@ -85,10 +101,10 @@ final class JavascriptTests: XCTestCase {
         XCTAssertEqual(minifier.minify(js: numericliteral), "var literal=100;")
     }
     
-    // Tests minifing a
-    func testMinifyStringConcatenate() throws {
+    // Tests minifing string concatenation
+    func testMinifyStringConcatenation() throws {
         
-        // ...by operator
+        // ...with single quotes
         
         let singlequoted = """
         var literal = 'firstname' + ' ' + 'lastname';
@@ -96,7 +112,7 @@ final class JavascriptTests: XCTestCase {
         
         XCTAssertEqual(minifier.minify(js: singlequoted), "var literal='firstname'+' '+'lastname';")
         
-        // ...by operator
+        // ...with double quotes
         
         let doublequoted = """
         var literal = 'attribute="' + value + '"';
@@ -105,21 +121,10 @@ final class JavascriptTests: XCTestCase {
         XCTAssertEqual(minifier.minify(js: doublequoted), "var literal='attribute=\"'+value+'\"';")
     }
     
-    func testMinfiyFunctionPattern() {
-        
-        // ...property with a variable as value
-        
-        let document = """
-        function greeting(parameter) {
-        }
-        """
-        
-        XCTAssertEqual(minifier.minify(js: document), "function greeting(parameter){}")
-    }
-    
+    // Tests minifing a
     func testMinifyStatements() {
         
-        // ...property with a variable as value
+        // ...foreach statement
         
         let foreach = """
         for (var child of children) {
@@ -127,6 +132,8 @@ final class JavascriptTests: XCTestCase {
         """
         
         XCTAssertEqual(minifier.minify(js: foreach), "for(var child of children){}")
+        
+        // ...if elseif else statement
         
         let elseif = """
         if (condition) {
@@ -136,6 +143,8 @@ final class JavascriptTests: XCTestCase {
         """
         
         XCTAssertEqual(minifier.minify(js: elseif), "if(condition){}else if(condition){}else{}")
+        
+        // ...switch case statement
         
         let switchcase = """
         switch(condition) {
@@ -149,10 +158,17 @@ final class JavascriptTests: XCTestCase {
         )
     }
     
+    func testMinfiyFunctionPattern() {
+        
+        let document = """
+        function greeting(parameter) {
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(js: document), "function greeting(parameter){}")
+    }
     
     func testMinfifyConstructorPattern() {
-        
-        // ...property with a variable as value
         
         let document = """
         Constructor.prototype.function = function (callback) {
@@ -163,8 +179,6 @@ final class JavascriptTests: XCTestCase {
     }
     
     func testMinifyClassPattern() {
-        
-        // ...property with a variable as value
         
         let document = """
         class ClassName {
@@ -197,7 +211,6 @@ final class JavascriptTests: XCTestCase {
         };
         """
         
-        // ...property with a variable as value
         XCTAssertEqual(minifier.minify(js: document), "function(){var property='value';};")
     }
 }

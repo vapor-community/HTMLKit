@@ -17,6 +17,7 @@ internal class Stylesheet {
         case value
         case unidentified
         case string
+        case rule
     }
     
     /// A enumeration of different level of the logging
@@ -168,6 +169,9 @@ internal class Stylesheet {
             case .string:
                 self.mode = consumeStringLiteral(character.element)
                 
+            case .rule:
+                self.mode = consumeRule(character.element)
+                
             default:
                 self.mode = consumeCode(character.element)
             }
@@ -247,7 +251,16 @@ internal class Stylesheet {
             return .beforecustomproperty
         }
         
-        if character.isBracket {
+        if character.isLeftParenthesis {
+            
+            self.emit(token: FormatToken(type: .punctuator, value: String(character)))
+            
+            self.assign(token: RuleToken(value: ""))
+            
+            return .rule
+        }
+        
+        if character.isLeftCurlyBracket || character.isRightCurlyBracket {
             
             self.emit(token: FormatToken(type: .punctuator, value: String(character)))
             
@@ -536,6 +549,26 @@ internal class Stylesheet {
         
         return .string
     }
+    
+    internal func consumeRule(_ character: Character) -> InsertionMode {
+        
+        self.log(function: #function, character: character)
+        
+        if character.isRightParenthesis {
+            
+            self.emit()
+            
+            self.emit(token: FormatToken(type: .punctuator, value: String(character)))
+            
+            return .code
+        }
+        
+        if var token = self.token {
+            token.value.append(character)
+        }
+        
+        return .rule
+    }
 }
 
 extension Stylesheet {
@@ -820,6 +853,19 @@ extension Stylesheet {
         
         internal func present() -> String {
             return "\"\(value)\""
+        }
+    }
+    
+    internal class RuleToken: Token {
+        
+        internal var value: String
+        
+        internal init(value: String) {
+            self.value = value
+        }
+        
+        internal func present() -> String {
+            return value
         }
     }
 }

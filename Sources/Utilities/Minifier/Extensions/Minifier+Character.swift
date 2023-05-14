@@ -182,6 +182,66 @@ extension Character {
         return false
     }
     
+    /// A boolean value indicating whether this character represents a comma (U+0024)
+    public var isDollarSign: Bool {
+        
+        if self == "\u{0024}" {
+            return true
+        }
+        
+        return false
+    }
+    
+    /// A boolean value indicating whether this character represents a comma (U+005F)
+    public var isUnderscore: Bool {
+        
+        if self == "\u{005F}" {
+            return true
+        }
+        
+        return false
+    }
+    
+    /// A boolean value indicating whether this character represents a comma (U+0028)
+    public var isLeftParenthesis: Bool {
+        
+        if self == "\u{0028}" {
+            return true
+        }
+        
+        return false
+    }
+    
+    /// A boolean value indicating whether this character represents a comma (U+0029)
+    public var isRightParenthesis: Bool {
+        
+        if self == "\u{0029}" {
+            return true
+        }
+        
+        return false
+    }
+    
+    /// A boolean value indicating whether this character represents a comma (U+007B)
+    public var isLeftCurlyBracket: Bool {
+        
+        if self == "\u{007B}" {
+            return true
+        }
+        
+        return false
+    }
+    
+    /// A boolean value indicating whether this character represents a comma (U+007D)
+    public var isRightCurlyBracket: Bool {
+        
+        if self == "\u{007D}" {
+            return true
+        }
+        
+        return false
+    }
+    
     /// A boolean value indicating whether this character represents a bracket.
     ///
     /// For example, the following characters all represent brackets:

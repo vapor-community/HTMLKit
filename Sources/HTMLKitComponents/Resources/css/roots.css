@@ -1,6 +1,6 @@
 :root {
     
-    /**
+    /*
      sizes
      
      --extraLargeFontSize: 2rem; (32px)
@@ -31,7 +31,7 @@
     --tinyLineHeight: 1.25;
 }
 
-/**
+/*
  light version
  */
 
@@ -39,7 +39,7 @@
     
     :root {
         
-        /**
+        /*
          colors
          
          --blackColor: hsla(0, 0%, 0%, 100%); (#000000)
@@ -83,7 +83,7 @@
     }
 }
 
-/**
+/*
  dark version
  */
 
@@ -91,7 +91,7 @@
     
     :root {
         
-        /**
+        /*
          colors
          
          --blackColor: hsla(0, 0%, 0%, 100%); (#000000)

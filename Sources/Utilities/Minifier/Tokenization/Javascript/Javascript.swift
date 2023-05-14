@@ -145,21 +145,21 @@ internal class Javascript {
         
         if character.isNewline {
             
-            self.emit(token: Javascript.WhitespaceToken(type: .return ,value: String(character)))
+            self.emit(token: WhitespaceToken(type: .return ,value: String(character)))
             
             return .code
         }
         
         if character.isWhitespace {
             
-            self.emit(token: Javascript.WhitespaceToken(type: .whitespace, value: String(character)))
+            self.emit(token: WhitespaceToken(type: .whitespace, value: String(character)))
             
             return .code
         }
         
         if character.isSemicolon {
             
-            self.emit(token: Javascript.FormatToken(type: .terminator, value: String(character)))
+            self.emit(token: FormatToken(type: .terminator, value: String(character)))
             
             return .code
         }
@@ -171,42 +171,42 @@ internal class Javascript {
         
         if character.isBracket || character.isEqualSign || character.isComma || character.isPeriod {
             
-            self.emit(token: Javascript.FormatToken(type: .punctuator, value: String(character)))
+            self.emit(token: FormatToken(type: .punctuator, value: String(character)))
             
             return .code
         }
         
         if character.isApostrophe  {
             
-            self.assign(token: Javascript.LiteralToken(type: .string, value: ""))
+            self.assign(token: LiteralToken(type: .string, value: ""))
             
             return .string
         }
         
         if character.isBackTick {
             
-            self.assign(token: Javascript.LiteralToken(type: .template, value: ""))
+            self.assign(token: LiteralToken(type: .template, value: ""))
             
             return .template
         }
         
         if character.isNumber {
             
-            self.assign(token: Javascript.LiteralToken(type: .numeric, value: String(character)))
+            self.assign(token: LiteralToken(type: .numeric, value: String(character)))
             
             return .numeric
         }
         
         if character.isOperator {
             
-            self.emit(token: Javascript.FormatToken(type: .operator, value: String(character)))
+            self.emit(token: FormatToken(type: .operator, value: String(character)))
             
             return .code
         }
         
-        if character.isLetter {
+        if character.isLetter || character.isDollarSign || character.isUnderscore  {
             
-            self.assign(token: Javascript.WordToken(value: String(character)))
+            self.assign(token: WordToken(value: String(character)))
             
             return .word
         }
@@ -221,7 +221,7 @@ internal class Javascript {
         
         if character.isAsterisk  {
             
-            self.assign(token: Javascript.CommentToken(type: .block, value: ""))
+            self.assign(token: CommentToken(type: .block, value: ""))
             
             // ignore character
             return .blockcomment
@@ -229,7 +229,7 @@ internal class Javascript {
         
         if character.isSolidus  {
             
-            self.assign(token: Javascript.CommentToken(type: .line, value: ""))
+            self.assign(token: CommentToken(type: .line, value: ""))
             
             // ignore character
             return .linecomment
@@ -237,7 +237,7 @@ internal class Javascript {
         
         if character.isExclamationMark  {
             
-            self.assign(token: Javascript.CommentToken(type: .hashbang, value: ""))
+            self.assign(token: CommentToken(type: .hashbang, value: ""))
             
             // ignore character
             return .hashbang
@@ -318,7 +318,7 @@ internal class Javascript {
             
             self.emit()
             
-            self.emit(token: Javascript.FormatToken(type: .punctuator, value: String(character)))
+            self.emit(token: FormatToken(type: .punctuator, value: String(character)))
             
             return .code
         }
@@ -327,7 +327,7 @@ internal class Javascript {
             
             self.emit()
             
-            self.emit(token: Javascript.FormatToken(type: .punctuator, value: String(character)))
+            self.emit(token: FormatToken(type: .punctuator, value: String(character)))
             
             return .code
         }
@@ -336,7 +336,7 @@ internal class Javascript {
             
             self.emit()
             
-            self.emit(token: Javascript.FormatToken(type: .terminator, value: String(character)))
+            self.emit(token: FormatToken(type: .terminator, value: String(character)))
             
             return .code
         }
@@ -345,7 +345,7 @@ internal class Javascript {
             
             self.emit()
             
-            self.emit(token: Javascript.FormatToken(type: .punctuator, value: String(character)))
+            self.emit(token: FormatToken(type: .punctuator, value: String(character)))
             
             return .code
         }
@@ -354,7 +354,7 @@ internal class Javascript {
             token.value.append(character)
             
         } else {
-            self.assign(token: Javascript.WordToken(value: String(character)))
+            self.assign(token: WordToken(value: String(character)))
         }
 
         return .word
@@ -407,7 +407,7 @@ internal class Javascript {
             
             self.emit()
             
-            self.emit(token: Javascript.FormatToken(type: .terminator, value: String(character)))
+            self.emit(token: FormatToken(type: .terminator, value: String(character)))
             
             return .code
         }
@@ -416,7 +416,7 @@ internal class Javascript {
             
             self.emit()
             
-            self.emit(token: Javascript.FormatToken(type: .punctuator, value: String(character)))
+            self.emit(token: FormatToken(type: .punctuator, value: String(character)))
             
             return .code
         }

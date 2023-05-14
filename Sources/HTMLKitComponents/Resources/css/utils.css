@@ -1,8 +1,8 @@
-/**
+/*
  utils classes
  */
 
-/**
+/*
  z-index
  */
 
@@ -31,7 +31,7 @@
     z-index: 5 !important;
 }
 
-/**
+/*
  states
  */
 
@@ -52,7 +52,7 @@
     display: block !important;
 }
 
-/**
+/*
  borders
  
 defaults:
@@ -152,7 +152,7 @@ defaults:
     border-color: var(--secondaryColor) !important;
 }
 
-/**
+/*
  backgrounds
  */
 
