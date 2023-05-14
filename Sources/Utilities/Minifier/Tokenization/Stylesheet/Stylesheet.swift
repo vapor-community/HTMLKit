@@ -52,7 +52,7 @@ internal class Stylesheet {
     }
 
     /// Logs the steps of the minifier depending on the log level
-    private func log(function: String, character: Character) {
+    private func verbose(function: String, character: Character) {
         
         switch self.level {
             
@@ -75,6 +75,8 @@ internal class Stylesheet {
     
     private func cache(character: Character) {
         
+        self.verbose(function: #function, character: " ")
+        
         if var cache = self.cache {
             
             cache.append(character)
@@ -88,6 +90,8 @@ internal class Stylesheet {
     
     private func clear() -> String {
         
+        self.verbose(function: #function, character: " ")
+        
         guard let value = self.cache else {
             fatalError("Wait, there is nothing to clear")
         }
@@ -100,7 +104,7 @@ internal class Stylesheet {
     /// Assigns a temporary token
     private func assign(token: Token) {
         
-        print(#function)
+        self.verbose(function: #function, character: " ")
         
         if self.token != nil {
             fatalError("Cannot assign the token. The previous token needs to be emitted first.")
@@ -112,7 +116,7 @@ internal class Stylesheet {
     /// Emits a token into the token collection
     private func emit(token: Token) {
         
-        print(#function)
+        self.verbose(function: #function, character: " ")
         
         self.tokens.append(token)
     }
@@ -120,7 +124,7 @@ internal class Stylesheet {
     /// Emits the temporary token into the token collection
     private func emit() {
         
-        print(#function)
+        self.verbose(function: #function, character: " ")
         
         if let token = self.token {
             self.tokens.append(token)
@@ -183,7 +187,7 @@ internal class Stylesheet {
     /// Consumes the character
     internal func consumeCode(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isNewline {
             
@@ -280,7 +284,7 @@ internal class Stylesheet {
     /// Consumes the character before the comment
     internal func consumeBeforeComment(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isSolidus {
             
@@ -309,7 +313,7 @@ internal class Stylesheet {
     /// ```
     internal func consumeComment(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isAsterisk {
             
@@ -328,7 +332,7 @@ internal class Stylesheet {
     /// Consumes the character after a comment
     internal func consumeAfterComment(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isSolidus {
             
@@ -347,7 +351,7 @@ internal class Stylesheet {
     /// ```
     internal func consumeSelector(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isWhitespace {
             
@@ -372,7 +376,7 @@ internal class Stylesheet {
     /// ```
     internal func consumeProperty(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isWhitespace {
            
@@ -399,7 +403,7 @@ internal class Stylesheet {
     
     internal func consumeBeforeCustomProperty(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isHyphenMinus {
             
@@ -420,7 +424,7 @@ internal class Stylesheet {
     
     internal func consumeCustomProperty(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isWhitespace {
            
@@ -447,7 +451,7 @@ internal class Stylesheet {
     
     internal func consumeBeforeValue(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isQuotationMark {
             
@@ -480,7 +484,7 @@ internal class Stylesheet {
     /// ```
     internal func consumeValue(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isSemicolon {
             
@@ -507,7 +511,7 @@ internal class Stylesheet {
     
     internal func consumeUnkown(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isColon {
             
@@ -534,7 +538,7 @@ internal class Stylesheet {
     
     internal func consumeStringLiteral(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isQuotationMark {
             
@@ -552,7 +556,7 @@ internal class Stylesheet {
     
     internal func consumeRule(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isRightParenthesis {
             

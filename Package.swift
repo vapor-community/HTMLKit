@@ -112,7 +112,8 @@ let package = Package(
         .executableTarget(
             name: "DeployCommand",
             dependencies: [
-                .target(name: "HTMLKitComponents")
+                .target(name: "HTMLKitComponents"),
+                .target(name: "Minifier")
             ],
             path: "Sources/Commands/Components"
         ),

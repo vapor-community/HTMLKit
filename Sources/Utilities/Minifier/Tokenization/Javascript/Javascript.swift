@@ -47,7 +47,7 @@ internal class Javascript {
     }
     
     /// Logs the steps of the minifier depending on the log level
-    private func log(function: String, character: Character) {
+    private func verbose(function: String, character: Character) {
         
         switch self.level {
             
@@ -71,7 +71,7 @@ internal class Javascript {
     /// Assigns a temporary token
     private func assign(token: Token) {
         
-        print(#function)
+        self.verbose(function: #function, character: " ")
         
         if self.token != nil {
             fatalError("Cannot assign the token. The previous token needs to be emitted first.")
@@ -83,7 +83,7 @@ internal class Javascript {
     /// Emits a token into the token collection
     private func emit(token: Token) {
         
-        print(#function)
+        self.verbose(function: #function, character: " ")
         
         self.tokens.append(token)
     }
@@ -91,7 +91,7 @@ internal class Javascript {
     /// Emits the temporary token into the token collection
     private func emit() {
         
-        print(#function)
+        self.verbose(function: #function, character: " ")
         
         if let token = self.token {
             self.tokens.append(token)
@@ -141,7 +141,7 @@ internal class Javascript {
     /// Consumes the character
     internal func consumeCode(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isNewline {
             
@@ -217,7 +217,7 @@ internal class Javascript {
     /// Consumes the character before the comment
     internal func consumeBeforeComment(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isAsterisk  {
             
@@ -250,7 +250,7 @@ internal class Javascript {
     /// Consumes the character of a comment
     internal func consumeLineComment(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isNewline {
             
@@ -270,7 +270,7 @@ internal class Javascript {
     /// Consumes the character of a comment
     internal func consumeBlockComment(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isAsterisk {
             
@@ -290,7 +290,7 @@ internal class Javascript {
     /// Consumes the character after a comment
     internal func consumeAfterComment(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isSolidus {
             // ignore character
@@ -303,7 +303,7 @@ internal class Javascript {
     
     internal func consumeWord(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isWhitespace {
             
@@ -363,7 +363,7 @@ internal class Javascript {
     /// Consumes the character of a string literal
     internal func consumeStringLiteral(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isApostrophe {
             
@@ -382,7 +382,7 @@ internal class Javascript {
     /// Consumes the character of a template literal
     internal func consumeTemplateLiteral(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isBackTick {
             
@@ -401,7 +401,7 @@ internal class Javascript {
     /// Consumes the character of a numeric literal
     internal func consumeNumericLiteral(_ character: Character) -> InsertionMode {
         
-        self.log(function: #function, character: character)
+        self.verbose(function: #function, character: character)
         
         if character.isSemicolon {
             
