@@ -11,13 +11,13 @@
         this.autoPlay(1);
         
         this.initiateListener();
-    }
+    };
     
     Carousel.prototype.initiateListener = function () {
         
         var self = this;
         
-        for (let indicator of this.indication.children) {
+        for (var indicator of this.indication.children) {
             
             indicator.addEventListener('click', function (event) {
                 

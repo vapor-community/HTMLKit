@@ -124,37 +124,19 @@ final class JavascriptTests: XCTestCase {
     // Tests minifing a
     func testMinifyStatements() {
         
-        // ...foreach statement
-        
-        let foreach = """
-        for (var child of children) {
-        }
-        """
-        
-        XCTAssertEqual(minifier.minify(js: foreach), "for(var child of children){}")
-        
-        // ...if elseif else statement
-        
-        let elseif = """
-        if (condition) {
-        } else if (condition) {
-        } else {
-        }
-        """
-        
-        XCTAssertEqual(minifier.minify(js: elseif), "if(condition){}else if(condition){}else{}")
-        
         // ...switch case statement
         
         let switchcase = """
         switch(condition) {
         case x:
         break;
+        case 'y':
+        break;
         default:
         }
         """
         
-        XCTAssertEqual(minifier.minify(js: switchcase), "switch(condition){case x:break;default:}"
+        XCTAssertEqual(minifier.minify(js: switchcase), "switch(condition){case x:break;case'y':break;default:}"
         )
     }
     

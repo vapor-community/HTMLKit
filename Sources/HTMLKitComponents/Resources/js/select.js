@@ -42,7 +42,7 @@
      */
     Selectfield.prototype.setInputValue = function (value) {
         
-        this.textfield.value = value
+        this.textfield.value = value;
     };
     
     /*
@@ -50,7 +50,7 @@
      */
     Selectfield.prototype.showOptionList = function () {
         
-        this.optionlist.classList.add('state:visible')
+        this.optionlist.classList.add('state:visible');
     };
     
     /*
@@ -58,7 +58,7 @@
      */
     Selectfield.prototype.hideOptionList = function () {
         
-        this.optionlist.classList.remove('state:visible')
+        this.optionlist.classList.remove('state:visible');
     };
     
     var selectfield = document.getElementsByClassName('selectfield');

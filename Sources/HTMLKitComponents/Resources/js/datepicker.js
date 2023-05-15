@@ -25,11 +25,11 @@
         
         var self = this;
          
-        this.datefield.addEventListener('focus', function (event) {
+        this.datefield.addEventListener('focus', function () {
             self.showPicker();
         });
          
-        this.datefield.addEventListener('focusout', function (event) {
+        this.datefield.addEventListener('focusout', function () {
             self.hidePicker();
         });
          
@@ -37,7 +37,7 @@
             
             event.preventDefault();
             
-            if(event.target.tagName = 'BUTTON') {
+            if(event.target.tagName == 'BUTTON') {
                 
                 switch(event.target.value) {
                     

@@ -157,7 +157,7 @@ internal class Javascript {
             return .code
         }
         
-        if character.isSemicolon {
+        if character.isSemicolon || character.isColon  {
             
             self.emit(token: FormatToken(type: .terminator, value: String(character)))
             

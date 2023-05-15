@@ -16,7 +16,7 @@
         
         var self = this;
         
-        this.label.addEventListener('mousedown', function (event) {
+        this.label.addEventListener('mousedown', function () {
             self.showDropdownList();
         });
         

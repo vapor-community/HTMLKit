@@ -163,7 +163,7 @@ var $ = (function () {
                     
                 case 'email':
                     
-                    if (!element.value.includes("@")) {
+                    if (!element.value.includes('@')) {
                         element.setCustomValidity('The field must have a valid email format.');
                         
                     } else {
@@ -174,7 +174,7 @@ var $ = (function () {
                     
                 case 'url':
                     
-                    if (!element.value.includes(":")) {
+                    if (!element.value.includes(':')) {
                         element.setCustomValidity('The field must have a valid url format.');
                         
                     } else {
