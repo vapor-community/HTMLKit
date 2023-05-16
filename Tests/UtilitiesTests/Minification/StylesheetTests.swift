@@ -62,7 +62,7 @@ final class StylesheetTests: XCTestCase {
         XCTAssertEqual(minifier.minify(css: ":selector {}"), ":selector{}")
         
         // ...attribute selector
-        XCTAssertEqual(minifier.minify(css: "selector[attribute] {}"), "selector[attribute]{}")
+        XCTAssertEqual(minifier.minify(css: "[attribute] {}"), "[attribute]{}")
         
         // ...universal selector
         XCTAssertEqual(minifier.minify(css: "* {}"), "*{}")

@@ -271,6 +271,13 @@ internal class Stylesheet {
             return .code
         }
         
+        if character.isLeftSquareBracket {
+            
+            self.assign(token: SelectorToken(type: .attribute, value: String(character)))
+            
+            return .selector
+        }
+        
         if character.isOperator {
             
             self.emit(token: FormatToken(type: .operator, value: String(character)))

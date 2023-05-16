@@ -242,6 +242,24 @@ extension Character {
         return false
     }
     
+    public var isLeftSquareBracket: Bool {
+        
+        if self == "\u{005B}" {
+            return true
+        }
+        
+        return false
+    }
+    
+    public var isRightSquareBracket: Bool {
+        
+        if self == "\u{005D}" {
+            return true
+        }
+        
+        return false
+    }
+    
     /// A boolean value indicating whether this character represents a bracket.
     ///
     /// For example, the following characters all represent brackets:
