@@ -123,3 +123,57 @@
     --primaryColor: hsla(210, 100%, 50%, 1.0);
     --secondaryColor: hsla(211, 60%, 19%, 1.0);
 }
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre,
+body {
+    margin: 0;
+}
+
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+    display: block;
+    vertical-align: middle;
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    
+    html:focus-within {
+        scroll-behavior: smooth;
+    }
+}
