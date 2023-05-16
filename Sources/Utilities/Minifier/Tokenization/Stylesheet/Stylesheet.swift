@@ -264,7 +264,7 @@ internal class Stylesheet {
             return .rule
         }
         
-        if character.isLeftCurlyBracket || character.isRightCurlyBracket {
+        if character.isLeftCurlyBracket || character.isRightCurlyBracket || character.isComma {
             
             self.emit(token: FormatToken(type: .punctuator, value: String(character)))
             
