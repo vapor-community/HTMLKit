@@ -68,4 +68,8 @@ extension Image: ViewModifier {
     public func hidden() -> Image {
         return self.mutate(state: Tokens.ViewState.hidden.rawValue)
     }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> Image {
+        return self.mutate(scheme: scheme.rawValue)
+    }
 }

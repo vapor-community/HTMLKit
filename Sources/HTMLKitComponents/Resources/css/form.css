@@ -10,8 +10,7 @@
 
 /*
  label component
- 
- variables:
+
  --labelMarginBlockStart: 1.25rem (20px)
  --labelMarginBlockEnd: 0.625rem (10px)
  */
@@ -29,15 +28,12 @@
 /*
  textfield component
  
- variables:
  --inputPaddingBlock: 0.5rem; (8px)
  --inputPaddingInline: 1.0rem; (16px)
  --inputFontSize: 1.0rem;
  --inputFontWeight: normal; (400)
  --inputLineHeight: 1.5;
  --inputBorderWidth: 1px;
- 
- lightmode:
  --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
  --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
  --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
@@ -57,26 +53,17 @@
     --inputFontWeight: normal;
     --inputLineHeight: 1.5;
     --inputBorderWidth: 1px;
+    --inputForegroundColor: hsla(0, 0%, 0%, 1.0);
+    --inputBorderColor: hsla(210, 14%, 89%, 1.0);
+    --inputFocusColor: hsla(210, 14%, 89%, 0.4);
+    --inputBackgroundColor: hsla(0, 0%, 100%, 1.0);
 }
 
-@media (prefers-color-scheme: light) {
-    
-    :root {
-        --inputForegroundColor: hsla(0, 0%, 0%, 1.0);
-        --inputBorderColor: hsla(210, 14%, 89%, 1.0);
-        --inputFocusColor: hsla(210, 14%, 89%, 0.4);
-        --inputBackgroundColor: hsla(0, 0%, 100%, 1.0);
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    
-    :root {
-        --inputForegroundColor: hsla(0, 0%, 100%, 1.0);
-        --inputBorderColor: hsla(210, 9%, 31%, 1.0);
-        --inputFocusColor: hsla(210, 9%, 31%, 0.4);
-        --inputBackgroundColor: hsla(210, 11%, 15%, 1.0);
-    }
+.color-scheme\:dark {
+    --inputForegroundColor: hsla(0, 0%, 100%, 1.0);
+    --inputBorderColor: hsla(210, 9%, 31%, 1.0);
+    --inputFocusColor: hsla(210, 9%, 31%, 0.4);
+    --inputBackgroundColor: hsla(210, 11%, 15%, 1.0);
 }
 
 .textfield {
@@ -122,15 +109,12 @@
 /*
  texteditor component
  
- variables:
  --inputPaddingBlock: 0.5rem; (8px)
  --inputPaddingInline: 1.0rem; (16px)
  --inputFontSize: 1.0rem;
  --inputFontWeight: normal; (400)
  --inputLineHeight: 1.5;
  --inputBorderWidth: 1px;
- 
- lightmode:
  --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
  --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
  --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
@@ -187,15 +171,12 @@
 /*
  checkfield component
  
- variables:
  --inputPaddingBlock: 0.5rem; (12px)
  --inputPaddingInline: 1rem; (16px)
  --inputFontSize: 1.0rem;
  --inputFontWeight: normal; (400)
  --inputLineHeight: 1.5;
  --inputBorderWidth: 1px;
- 
- lightmode:
  --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
  --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
  --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
@@ -231,15 +212,12 @@
 /*
  radioselect component
  
- variables:
  --inputPaddingBlock: 0.75rem; (12px)
  --inputPaddingInline: 1.0rem; (16px)
  --inputFontSize: 1.0rem;
  --inputFontWeight: normal; (400)
  --inputLineHeight: 1.5;
  --inputBorderWidth: 1px;
- 
- lightmode:
  --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
  --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
  --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
@@ -276,15 +254,12 @@
 /*
  slider component
  
- variables:
  --inputPaddingBlock: 0.75rem; (12px)
  --inputPaddingInline: 1.0rem; (16px)
  --inputFontSize: 1.0rem;
  --inputFontWeight: normal; (400)
  --inputLineHeight: 1.5;
  --inputBorderWidth: 1px;
- 
- lightmode:
  --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
  --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
  --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
@@ -325,15 +300,12 @@
 /*
  datepicker component
  
- variables:
  --inputPaddingBlock: 0.75rem; (12px)
  --inputPaddingInline: 1rem; (16px)
  --inputFontSize: 1rem;
  --inputFontWeight: normal; (400)
  --inputLineHeight: 1.5;
  --inputBorderWidth: 1px;
- 
- lightmode:
  --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
  --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
  --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
@@ -482,15 +454,12 @@
 /*
  securefield component
  
- variables:
  --inputPaddingBlock: 0.75rem; (12px)
  --inputPaddingInline: 1rem; (16px)
  --inputFontSize: 1rem;
  --inputFontWeight: normal; (400)
  --inputLineHeight: 1.5;
  --inputBorderWidth: 1px;
- 
- lightmode:
  --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
  --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
  --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
@@ -546,15 +515,12 @@
 /*
  searchfield component
  
- variables:
  --inputPaddingBlock: 0.75rem; (12px)
  --inputPaddingInline: 1rem; (16px)
  --inputFontSize: 1rem;
  --inputFontWeight: normal; (400)
  --inputLineHeight: 1.5;
  --inputBorderWidth: 1px;
- 
- lightmode:
  --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
  --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
  --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
@@ -610,15 +576,12 @@
 /*
  selectfield component
  
- variables:
  --inputPaddingBlock: 0.75rem; (12px)
  --inputPaddingInline: 1rem; (16px)
  --inputFontSize: 1rem;
  --inputFontWeight: normal; (400)
  --inputLineHeight: 1.5;
  --inputBorderWidth: 1px;
- 
- lightmode:
  --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
  --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
  --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)
@@ -709,15 +672,12 @@
 /*
  textpad component
  
- variables:
  --inputPaddingBlock: 0.75rem; (12px)
  --inputPaddingInline: 1rem; (16px;
  --inputFontSize: 1rem;
  --inputFontWeight: normal; (400)
  --inputLineHeight: 1.5;
  --inputBorderWidth: 1px;
- 
- lightmode:
  --inputForegroundColor: hsla(0, 0%, 0%, 1.0); (#000000)
  --inputBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
  --inputFocusColor: hsla(210, 14%, 89%, 0.4); (#DFE3E7)

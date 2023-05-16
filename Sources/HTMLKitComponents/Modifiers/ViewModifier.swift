@@ -17,6 +17,9 @@ public protocol ViewModifier {
     
     /// Hides the view
     func hidden() -> Self
+    
+    /// Sets the color appearence
+    func colorScheme(_ scheme: Tokens.ColorScheme) -> Self
 }
 
 extension ViewModifier where Self: Modifiable {
@@ -34,6 +37,10 @@ extension ViewModifier where Self: Modifiable {
     }
     
     internal func mutate(state class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(scheme class: String) -> Self {
         return self.mutate(class: `class`)
     }
 }

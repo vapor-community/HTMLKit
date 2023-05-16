@@ -572,4 +572,13 @@ public enum Tokens {
         
         case transparent = "border:transparent"
     }
+    
+    public enum ColorScheme: String {
+        
+        /// Changes the color scheme to dark.
+        case dark = "color-scheme:dark"
+        
+        /// Changes the color scheme to light.
+        case light = "color-scheme:light"
+    }
 }

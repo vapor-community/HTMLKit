@@ -188,6 +188,10 @@ extension TextField: InputModifier {
         
         return self
     }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> TextField {
+        return self.mutate(scheme: scheme.rawValue)
+    }
 }
 
 /// A component that displays a editable and expandable form control.
@@ -276,6 +280,10 @@ extension TextEditor: InputModifier {
         
         return self
     }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> TextEditor {
+        return self.mutate(scheme: scheme.rawValue)
+    }
 }
 
 /// A component that displays a form control
@@ -338,6 +346,10 @@ extension CheckField: InputModifier {
         
         return self
     }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> CheckField {
+        return self.mutate(scheme: scheme.rawValue)
+    }
 }
 
 /// A component that displays
@@ -399,6 +411,10 @@ extension RadioSelect: InputModifier {
         }
         
         return self
+    }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> RadioSelect {
+        return self.mutate(scheme: scheme.rawValue)
     }
 }
 
@@ -471,6 +487,10 @@ extension SelectField: InputModifier {
         }
         
         return self
+    }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> SelectField {
+        return self.mutate(scheme: scheme.rawValue)
     }
 }
 
@@ -583,10 +603,14 @@ extension SecureField: InputModifier {
         
         return self
     }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> SecureField {
+        return self.mutate(scheme: scheme.rawValue)
+    }
 }
 
 /// A component that displays
-public struct Slider: View {
+public struct Slider: View, Modifiable {
     
     /// The identifier of the slider.
     internal let name: String
@@ -618,6 +642,34 @@ public struct Slider: View {
             .id(name)
             .name(name)
             .class(classes.joined(separator: " "))
+    }
+}
+
+extension Slider: InputModifier {
+    
+    public func borderColor(_ color: Tokens.BorderdColor) -> Slider {
+        return self.mutate(bordercolor: color.rawValue)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> Slider {
+        return self.mutate(bordershape: shape.rawValue)
+    }
+    
+    public func backgroundColor(_ color: Tokens.BackgroundColor) -> Slider {
+        return self.mutate(backgroundcolor: color.rawValue)
+    }
+    
+    public func disabled(_ condition: Bool) -> Slider {
+        
+        if condition {
+            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> Slider {
+        return self.mutate(scheme: scheme.rawValue)
     }
 }
 
@@ -762,6 +814,10 @@ extension DatePicker: InputModifier {
         
         return self
     }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> DatePicker {
+        return self.mutate(scheme: scheme.rawValue)
+    }
 }
 
 /// A component that displays
@@ -838,6 +894,10 @@ extension SearchField: InputModifier {
         
         return self
     }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> SearchField {
+        return self.mutate(scheme: scheme.rawValue)
+    }
 }
 
 /// A component that displays the progress of a task.
@@ -886,7 +946,7 @@ public struct Progress: View {
 }
 
 /// A component to edit and format text content.
-public struct TextPad: View {
+public struct TextPad: View, Modifiable {
     
     /// The identifier of the textpad.
     internal let name: String
@@ -970,4 +1030,34 @@ public struct TextPad: View {
         
         return newSelf
     }
+}
+
+extension TextPad: InputModifier {
+    
+    public func borderColor(_ color: Tokens.BorderdColor) -> TextPad {
+        return self.mutate(bordercolor: color.rawValue)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> TextPad {
+        return self.mutate(bordershape: shape.rawValue)
+    }
+    
+    public func backgroundColor(_ color: Tokens.BackgroundColor) -> TextPad {
+        return self.mutate(backgroundcolor: color.rawValue)
+    }
+    
+    public func disabled(_ condition: Bool) -> TextPad {
+        
+        if condition {
+            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> TextPad {
+        return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    
 }

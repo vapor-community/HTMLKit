@@ -1,14 +1,11 @@
 /*
  card component
  
- variables:
  --cardHeaderHeight: 200px;
  --cardHeaderBackgroundColor: var(--silverColor);
  --cardPaddingBlock: 0.5rem; (12px)
  --cardPaddingInline: 1.0rem; (16px)
  --cardBorderWidth: 1px;
-
- lightmode:
  --cardBorderColor: hsla(210, 14%, 89%, 1.0);
  --cardBackgroundcolor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
  
@@ -23,22 +20,13 @@
     --cardPaddingBlock: 0.5rem;
     --cardPaddingInline: 1.0rem;
     --cardBorderWidth: 1px;
+    --cardBorderColor: hsla(210, 14%, 89%, 1.0);
+    --cardBackgroundColor: hsla(0, 0%, 100%, 1.0);
 }
 
-@media (prefers-color-scheme: light) {
-    
-    :root {
-        --cardBorderColor: hsla(210, 14%, 89%, 1.0);
-        --cardBackgroundColor: hsla(0, 0%, 100%, 1.0);
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    
-    :root {
-        --cardBorderColor: hsla(210, 9%, 31%, 1.0);
-        --cardBackgroundColor: hsla(210, 11%, 15%, 1.0);
-    }
+.color-scheme\:dark {
+    --cardBorderColor: hsla(210, 9%, 31%, 1.0);
+    --cardBackgroundColor: hsla(210, 11%, 15%, 1.0);
 }
 
 .card {

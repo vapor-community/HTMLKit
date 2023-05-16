@@ -1,15 +1,12 @@
 /*
  button component
  
-variables:
  --buttonPaddingBlock: 0.5rem; (8px)
  --buttonPaddingInline: 1.0rem; (16px)
  --buttonFontSize: 1.0rem; (16px)
  --buttonFontWeight: normal; (400)
  --buttonLineHeight: 1.5;
  --buttonBorderWidth: 1px;
- 
- lightmode:
  --buttonForegroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
  --buttonBorderColor: hsla(210, 9%, 31%, 1.0); (#)
  --buttonBackgroundColor: hsla(210, 11%, 15%, 1.0); (#)
@@ -27,24 +24,15 @@ variables:
     --buttonFontWeight: normal;
     --buttonLineHeight: 1.5;
     --buttonBorderWidth: 1px;
+    --buttonForegroundColor: hsla(0, 0%, 100%, 1.0);
+    --buttonBorderColor: hsla(210, 9%, 31%, 1.0);
+    --buttonBackgroundColor: hsla(210, 11%, 15%, 1.0);
 }
 
-@media (prefers-color-scheme: light) {
-    
-    :root {
-        --buttonForegroundColor: hsla(0, 0%, 100%, 1.0);
-        --buttonBorderColor: hsla(210, 9%, 31%, 1.0);
-        --buttonBackgroundColor: hsla(210, 11%, 15%, 1.0);
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    
-    :root {
-        --buttonForegroundColor: hsla(0, 0%, 100%, 1.0);
-        --buttonBorderColor: hsla(210, 9%, 31%, 1.0);
-        --buttonBackgroundColor: hsla(210, 11%, 15%, 1.0);
-    }
+.color-scheme\:dark {
+    --buttonForegroundColor: hsla(0, 0%, 100%, 1.0);
+    --buttonBorderColor: hsla(210, 9%, 31%, 1.0);
+    --buttonBackgroundColor: hsla(210, 11%, 15%, 1.0);
 }
 
 .button {

@@ -93,6 +93,10 @@ extension HStack: ViewModifier {
     public func hidden() -> HStack {
         return self.mutate(state: Tokens.ViewState.hidden.rawValue)
     }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> HStack {
+        return self.mutate(scheme: scheme.rawValue)
+    }
 }
 
 /// A component that arranges content vertically.
@@ -172,6 +176,10 @@ extension VStack: ViewModifier {
     public func hidden() -> VStack {
         return self.mutate(state: Tokens.ViewState.hidden.rawValue)
     }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> VStack {
+        return self.mutate(scheme: scheme.rawValue)
+    }
 }
 
 /// A component that overlays content.
@@ -250,6 +258,10 @@ extension ZStack: ViewModifier {
     
     public func hidden() -> ZStack {
         return self.mutate(state: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> ZStack {
+        return self.mutate(scheme: scheme.rawValue)
     }
 }
 

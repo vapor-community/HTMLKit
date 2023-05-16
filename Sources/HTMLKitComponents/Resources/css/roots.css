@@ -29,108 +29,97 @@
     --smallLineHeight: 1.25;
     --tinyFontSize: 0.67rem;
     --tinyLineHeight: 1.25;
-}
-
-/*
- light version
- */
-
-@media (prefers-color-scheme: light) {
     
-    :root {
-        
-        /*
-         colors
-         
-         --blackColor: hsla(0, 0%, 0%, 100%); (#000000)
-         --whiteColor: hsla(0, 0%, 100%, 100%); (#FFFFFF)
-         --blueColor: hsla(205, 65%, 55%, 100%); (#4098D7)
-         --brownColor: hsla(23, 50%, 50%, 100%); (#BF7140)
-         --cyanColor: hsla(185, 57%, 50%, 100%); (#38BEC9)
-         --greenColor: hsla(123, 35%, 51%, 100%); (#57AE5B)
-         --indigoColor: hsla(227, 50%, 59%, 100%); (#647ACB)
-         --mintColor: hsla(124, 63%, 74%, 100%); (#91E697)
-         --pinkColor: hsla(330, 66%, 57%, 100%); (#DA4A91)
-         --purpleColor: hsla(262, 43%, 51%, 100%); (#724BB7)
-         --redColor: hsla(0, 64%, 55%, 100%); (#D64545)
-         --tealColor: hsla(160, 51%, 49%, 100%); (#3EBD93)
-         --orangeColor: hsla(22, 78%, 55%, 100%); (#E67635)
-         --yellowColor: hsla(43, 89%, 70%, 100%); (#F7D070)
-         --grayColor: hsla(0, 0%, 62%, 100%); (#9E9E9E)
-         --silverColor: hsla(0, 0%, 97%, 100%); (#F7F7F7)
-         --primaryColor: hsla(210, 100%, 50%, 100%); (#007FFF)
-         --secondaryColor: hsla(211, 60%, 19%, 100%); (#132F4E)
-         */
-        
-        --redColor: hsla(0, 64%, 55%, 1.0);
-        --orangeColor: hsla(22, 78%, 55%, 1.0);
-        --yellowColor: hsla(43, 89%, 70%, 1.0);
-        --greenColor: hsla(123, 35%, 51%, 1.0);
-        --mintColor: hsla(124, 63%, 74%, 1.0);
-        --tealColor: hsla(160, 51%, 49%, 1.0);
-        --cyanColor: hsla(185, 57%, 50%, 1.0);
-        --blueColor: hsla(205, 65%, 55%, 1.0);
-        --indigoColor: hsla(227, 50%, 59%, 1.0);
-        --purpleColor: hsla(262, 43%, 51%, 1.0);
-        --pinkColor: hsla(330, 66%, 57%, 1.0);
-        --brownColor: hsla(23, 50%, 50%, 1.0);
-        --silverColor: hsla(0, 0%, 97%, 1.0);
-        --grayColor: hsla(0, 0%, 62%, 1.0);
-        --blackColor: hsla(0, 0%, 0%, 1.0);
-        --whiteColor: hsla(0, 0%, 100%, 1.0);
-        --primaryColor: hsla(210, 100%, 50%, 1.0);
-        --secondaryColor: hsla(211, 60%, 19%, 1.0);
-    }
+    /*
+     colors
+     
+     --blackColor: hsla(0, 0%, 0%, 100%); (#000000)
+     --whiteColor: hsla(0, 0%, 100%, 100%); (#FFFFFF)
+     --blueColor: hsla(205, 65%, 55%, 100%); (#4098D7)
+     --brownColor: hsla(23, 50%, 50%, 100%); (#BF7140)
+     --cyanColor: hsla(185, 57%, 50%, 100%); (#38BEC9)
+     --greenColor: hsla(123, 35%, 51%, 100%); (#57AE5B)
+     --indigoColor: hsla(227, 50%, 59%, 100%); (#647ACB)
+     --mintColor: hsla(124, 63%, 74%, 100%); (#91E697)
+     --pinkColor: hsla(330, 66%, 57%, 100%); (#DA4A91)
+     --purpleColor: hsla(262, 43%, 51%, 100%); (#724BB7)
+     --redColor: hsla(0, 64%, 55%, 100%); (#D64545)
+     --tealColor: hsla(160, 51%, 49%, 100%); (#3EBD93)
+     --orangeColor: hsla(22, 78%, 55%, 100%); (#E67635)
+     --yellowColor: hsla(43, 89%, 70%, 100%); (#F7D070)
+     --grayColor: hsla(0, 0%, 62%, 100%); (#9E9E9E)
+     --silverColor: hsla(0, 0%, 97%, 100%); (#F7F7F7)
+     --primaryColor: hsla(210, 100%, 50%, 100%); (#007FFF)
+     --secondaryColor: hsla(211, 60%, 19%, 100%); (#132F4E)
+     */
+    
+    --redColor: hsla(0, 64%, 55%, 1.0);
+    --orangeColor: hsla(22, 78%, 55%, 1.0);
+    --yellowColor: hsla(43, 89%, 70%, 1.0);
+    --greenColor: hsla(123, 35%, 51%, 1.0);
+    --mintColor: hsla(124, 63%, 74%, 1.0);
+    --tealColor: hsla(160, 51%, 49%, 1.0);
+    --cyanColor: hsla(185, 57%, 50%, 1.0);
+    --blueColor: hsla(205, 65%, 55%, 1.0);
+    --indigoColor: hsla(227, 50%, 59%, 1.0);
+    --purpleColor: hsla(262, 43%, 51%, 1.0);
+    --pinkColor: hsla(330, 66%, 57%, 1.0);
+    --brownColor: hsla(23, 50%, 50%, 1.0);
+    --silverColor: hsla(0, 0%, 97%, 1.0);
+    --grayColor: hsla(0, 0%, 62%, 1.0);
+    --blackColor: hsla(0, 0%, 0%, 1.0);
+    --whiteColor: hsla(0, 0%, 100%, 1.0);
+    --primaryColor: hsla(210, 100%, 50%, 1.0);
+    --secondaryColor: hsla(211, 60%, 19%, 1.0);
 }
 
 /*
  dark version
  */
 
-@media (prefers-color-scheme: dark) {
+.color-scheme\:dark {
     
-    :root {
-        
-        /*
-         colors
-         
-         --blackColor: hsla(0, 0%, 0%, 100%); (#000000)
-         --whiteColor: hsla(0, 0%, 100%, 100%); (#FFFFFF)
-         --blueColor: hsla(205, 65%, 55%, 100%); (#4098D7)
-         --brownColor: hsla(23, 50%, 50%, 100%); (#BF7140)
-         --cyanColor: hsla(185, 57%, 50%, 100%); (#38BEC9)
-         --greenColor: hsla(123, 35%, 51%, 100%); (#57AE5B)
-         --indigoColor: hsla(227, 50%, 59%, 100%); (#647ACB)
-         --mintColor: hsla(124, 63%, 74%, 100%); (#91E697)
-         --pinkColor: hsla(330, 66%, 57%, 100%); (#DA4A91)
-         --purpleColor: hsla(262, 43%, 51%, 100%); (#724BB7)
-         --redColor: hsla(0, 64%, 55%, 100%); (#D64545)
-         --tealColor: hsla(160, 51%, 49%, 100%); (#3EBD93)
-         --orangeColor: hsla(22, 78%, 55%, 100%); (#E67635)
-         --yellowColor: hsla(43, 89%, 70%, 100%); (#F7D070)
-         --grayColor: hsla(0, 0%, 62%, 100%); (#9E9E9E)
-         --silverColor: hsla(0, 0%, 97%, 100%); (#F7F7F7)
-         --primaryColor: hsla(210, 100%, 50%, 100%); (#007FFF)
-         --secondaryColor: hsla(211, 60%, 19%, 100%); (#132F4E)
-         */
-        
-        --redColor: hsla(0, 74%, 45%, 1.0);
-        --orangeColor: hsla(22, 88%, 45%, 1.0);
-        --yellowColor: hsla(43, 99%, 60%, 1.0);
-        --greenColor: hsla(123, 45%, 41%, 1.0);
-        --mintColor: hsla(124, 73%, 64%, 1.0);
-        --tealColor: hsla(160, 61%, 39%, 1.0);
-        --cyanColor: hsla(185, 67%, 40%, 1.0);
-        --blueColor: hsla(205, 75%, 45%, 1.0);
-        --indigoColor: hsla(227, 60%, 49%, 1.0);
-        --purpleColor: hsla(262, 53%, 41%, 1.0);
-        --pinkColor: hsla(330, 76%, 47%, 1.0);
-        --brownColor: hsla(23, 60%, 40%, 1.0);
-        --silverColor: hsla(240, 4%, 85%, 1.0);
-        --grayColor: hsla(225, 4%, 47%, 1.0);
-        --blackColor: hsla(230, 7%, 23%, 1.0);
-        --whiteColor: hsla(0, 0%, 100%, 1.0);
-        --primaryColor: hsla(210, 100%, 50%, 1.0);
-        --secondaryColor: hsla(211, 60%, 19%, 1.0);
-    }
+    color-scheme: dark;
+    
+    /*
+     colors
+     
+     --blackColor: hsla(0, 0%, 0%, 100%); (#000000)
+     --whiteColor: hsla(0, 0%, 100%, 100%); (#FFFFFF)
+     --blueColor: hsla(205, 65%, 55%, 100%); (#4098D7)
+     --brownColor: hsla(23, 50%, 50%, 100%); (#BF7140)
+     --cyanColor: hsla(185, 57%, 50%, 100%); (#38BEC9)
+     --greenColor: hsla(123, 35%, 51%, 100%); (#57AE5B)
+     --indigoColor: hsla(227, 50%, 59%, 100%); (#647ACB)
+     --mintColor: hsla(124, 63%, 74%, 100%); (#91E697)
+     --pinkColor: hsla(330, 66%, 57%, 100%); (#DA4A91)
+     --purpleColor: hsla(262, 43%, 51%, 100%); (#724BB7)
+     --redColor: hsla(0, 64%, 55%, 100%); (#D64545)
+     --tealColor: hsla(160, 51%, 49%, 100%); (#3EBD93)
+     --orangeColor: hsla(22, 78%, 55%, 100%); (#E67635)
+     --yellowColor: hsla(43, 89%, 70%, 100%); (#F7D070)
+     --grayColor: hsla(0, 0%, 62%, 100%); (#9E9E9E)
+     --silverColor: hsla(0, 0%, 97%, 100%); (#F7F7F7)
+     --primaryColor: hsla(210, 100%, 50%, 100%); (#007FFF)
+     --secondaryColor: hsla(211, 60%, 19%, 100%); (#132F4E)
+     */
+    
+    --redColor: hsla(0, 74%, 45%, 1.0);
+    --orangeColor: hsla(22, 88%, 45%, 1.0);
+    --yellowColor: hsla(43, 99%, 60%, 1.0);
+    --greenColor: hsla(123, 45%, 41%, 1.0);
+    --mintColor: hsla(124, 73%, 64%, 1.0);
+    --tealColor: hsla(160, 61%, 39%, 1.0);
+    --cyanColor: hsla(185, 67%, 40%, 1.0);
+    --blueColor: hsla(205, 75%, 45%, 1.0);
+    --indigoColor: hsla(227, 60%, 49%, 1.0);
+    --purpleColor: hsla(262, 53%, 41%, 1.0);
+    --pinkColor: hsla(330, 76%, 47%, 1.0);
+    --brownColor: hsla(23, 60%, 40%, 1.0);
+    --silverColor: hsla(240, 4%, 85%, 1.0);
+    --grayColor: hsla(225, 4%, 47%, 1.0);
+    --blackColor: hsla(230, 7%, 23%, 1.0);
+    --whiteColor: hsla(0, 0%, 100%, 1.0);
+    --primaryColor: hsla(210, 100%, 50%, 1.0);
+    --secondaryColor: hsla(211, 60%, 19%, 1.0);
 }

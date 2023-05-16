@@ -86,6 +86,10 @@ extension Button: ButtonModifier {
         
         return self
     }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> Button {
+        return self.mutate(scheme: scheme.rawValue)
+    }
 }
 
 extension Button: PressModifier {
@@ -184,5 +188,9 @@ extension LinkButton: ButtonModifier {
         }
         
         return self
+    }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> LinkButton {
+        return self.mutate(scheme: scheme.rawValue)
     }
 }

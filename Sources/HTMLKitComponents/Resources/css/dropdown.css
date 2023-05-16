@@ -1,15 +1,12 @@
 /*
  dropdown component
  
- variables:
  --dropdownPaddingBlock: 0.5rem; (12px)
  --dropdownPaddingInline: 1.0rem; (16px)
  --dropdownFontSize: 1.0rem; (16px)
  --dropdownFontWeight: normal; (400)
  --dropdownLineHeight: 1.5;
  --dropdownBorderWidth: 1px;
- 
- lightmode:
  --dropdownForegroundColor: hsla(0, 0%, 100%, 1.0);
  --dropdownBorderColor: hsla(210, 9%, 31%, 1.0);
  --dropdownBackgroundColor: hsla(210, 11%, 15%, 1.0);
@@ -29,24 +26,15 @@
     --dropdownBorderWidth: 1px;
     --dropdownListMargin: 0.75rem;
     --dropdownMininumWidth: 15.625rem;
+    --dropdownForegroundColor: hsla(0, 0%, 100%, 1.0);
+    --dropdownBorderColor: hsla(210, 9%, 31%, 1.0);
+    --dropdownBackgroundColor: hsla(210, 11%, 15%, 1.0);
 }
 
-@media (prefers-color-scheme: light) {
-    
-    :root {
-        --dropdownForegroundColor: hsla(0, 0%, 100%, 1.0);
-        --dropdownBorderColor: hsla(210, 9%, 31%, 1.0);
-        --dropdownBackgroundColor: hsla(210, 11%, 15%, 1.0);
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    
-    :root {
-        --dropdownForegroundColor: hsla(0, 0%, 100%, 1.0);
-        --dropdownBorderColor: hsla(210, 9%, 31%, 1.0);
-        --dropdownBackgroundColor: hsla(210, 11%, 15%, 1.0);
-    }
+.color-scheme\:dark {
+    --dropdownForegroundColor: hsla(0, 0%, 100%, 1.0);
+    --dropdownBorderColor: hsla(210, 9%, 31%, 1.0);
+    --dropdownBackgroundColor: hsla(210, 11%, 15%, 1.0);
 }
 
 .dropdown {

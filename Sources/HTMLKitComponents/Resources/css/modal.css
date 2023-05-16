@@ -1,12 +1,9 @@
 /*
  modal component
  
- dimensions:
  --modalPaddingBlock: 0.75rem; (12px)
  --modalPaddingInline: 1.0rem; (16px)
  --modalBorderWidth: 1px;
- 
- lightmode:
  --modalBorderColor: hsla(210, 14%, 89%, 1.0); (#DFE3E7)
  --modalBackgroundColor: hsla(0, 0%, 100%, 1.0); (#FFFFFF)
  
@@ -19,22 +16,13 @@
     --modalPaddingBlock: 0.75rem;
     --modalPaddingInline: 1.0rem;
     --modalBorderWidth: 1px;
+    --modalBorderColor: hsla(210, 14%, 89%, 1.0);
+    --modalBackgroundColor: hsla(0, 0%, 100%, 1.0);
 }
 
-@media (prefers-color-scheme: light) {
-    
-    :root {
-        --modalBorderColor: hsla(210, 14%, 89%, 1.0);
-        --modalBackgroundColor: hsla(0, 0%, 100%, 1.0);
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    
-    :root {
-        --modalBorderColor: hsla(210, 9%, 31%, 1.0);
-        --modalBackgroundColor: hsla(210, 11%, 15%, 1.0);
-    }
+.color-scheme\:dark {
+    --modalBorderColor: hsla(210, 9%, 31%, 1.0);
+    --modalBackgroundColor: hsla(210, 11%, 15%, 1.0);
 }
 
 .modal {

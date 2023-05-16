@@ -1,39 +1,26 @@
 /*
  carousel component
  
- variables:
  --carouselContainerHeight: 400px;
  --carouselBorderWidth: 1px;
- 
- lightmode:
  --carouselBorderColor:;
  --carouselBackgroundColor:;
  
  darkmode:
  --carouselBorderColor:;
  --carouselBackgroundColor:;
-
  */
 
 :root {
     --carouselBorderWidth: 1px;
     --carouselBorderRadius: 10px;
+    --carouselBorderColor: #000000;
+    --carouselBackgroundColor: transparent;
 }
 
-@media (prefers-color-scheme: light) {
-    
-    :root {
-        --carouselBorderColor: #000000;
-        --carouselBackgroundColor: transparent;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    
-    :root {
-        --carouselBorderColor: #000000;
-        --carouselBackgroundColor: transparent;
-    }
+.color-scheme\:dark {
+    --carouselBorderColor: #000000;
+    --carouselBackgroundColor: transparent;
 }
 
 .carousel {
@@ -95,8 +82,6 @@
  variables:
  --indicatorBorderWidth:;
  --indicatorBorderRadius:;
- 
- lightmode:
  --indicatorBorderColor:;
  --indicatorBackgroundColor:;
  
@@ -107,22 +92,14 @@
 
 :root {
     --indicatorBorderRadius: 5px;
+    --indicatorBackgroundColor: transparent;
+    --indicatorBorderColor: #000000;
 }
 
-@media (prefers-color-scheme: light) {
+.color-scheme\:dark {
     
-    :root {
-        --indicatorBackgroundColor: transparent;
-        --indicatorBorderColor: #000000;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    
-    :root {
-        --indicatorBackgroundColor: transparent;
-        --indicatorBorderColor: #000000;
-    }
+    --indicatorBackgroundColor: transparent;
+    --indicatorBorderColor: #000000;
 }
 
 .indicator {
