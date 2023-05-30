@@ -1,0 +1,164 @@
+/*
+ The rulesets for the datepicker component.
+ 
+ default:
+ block padding: 8px
+ inline padding: 16px
+ font size:
+ font weigth: normal
+ line height: 1.5
+ foreground color: #000000
+ border width: 1px
+ border color: #DFE3E7
+ border radius: 0
+ focus color: #0080FF
+ background color: #FFFFFF
+ 
+ darkmode:
+ foreground color: #FFFFFF
+ border color: #484F56
+ focus color: #0080FF
+ background color: #22262A
+ */
+
+.datepicker {
+    --paddingBlock: 0.5rem;
+    --paddingInline: 1.0rem;
+    --fontSize: 1.0rem;
+    --fontWeight: normal;
+    --lineHeight: 1.5;
+    --foregroundColor: 0, 0%, 0%;
+    --borderWidth: 1px;
+    --borderColor: 210, 14%, 89%;
+    --borderRadius: 0;
+    --focusColor: 210, 100%, 50%;
+    --backgroundColor: 0, 0%, 100%;
+    
+    position: relative;
+}
+
+.datepicker-datefield {
+    display: block;
+    inline-size: 100%;
+    padding-block: var(--paddingBlock);
+    padding-inline: var(--paddingInline);
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
+    line-height: var(--lineHeight);
+    color: hsla(var(--foregroundColor), 1.0);
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--borderColor), 1.0);
+    border-radius: var(--borderRadius);
+    background-color: hsla(var(--backgroundColor), 1.0);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.datepicker-datefield:focus {
+    border-color: hsla(var(--focusColor), 1.0);
+    outline: 0;
+    box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
+}
+
+.datepicker-datefield:focus .datepicker-picker {
+    display: inline-block;
+}
+
+.datepicker-datefield:invalid {
+    border-color: var(--redColor);
+}
+
+.datepicker-calendar {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    width: 100%;
+    margin-block: 0.75rem;
+    font-family: system-ui;
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
+    line-height: var(--lineHeight);
+    color: hsla(var(--foregroundColor), 1.0);
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--borderColor), 1.0);
+    background-color: hsla(var(--backgroundColor), 1.0);
+}
+
+.calendar-navigation {
+    display: flex;
+    align-items : center;
+    justify-content: space-between;
+    padding-block: var(--paddingBlock);
+    padding-inline: var(--paddingInline);
+    list-style-type: none;
+    
+}
+
+.calendar-navigation button {
+    display: inline-block;
+    padding: 0.5rem;
+    font-family: system-ui;
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
+    line-height: var(--lineHeight);
+    color: var(--foregroundColor);
+    border: none;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.calendar-navigation button > svg {
+    
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+}
+
+.calendar-week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    list-style-type: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.calendar-week > li {
+    padding: 0.5rem;
+    color: var(--primaryColor);
+    text-align: center;
+    text-decoration: uppercase;
+}
+
+.calender-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    list-style-type: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.calender-days > li:has(time) {
+    padding: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.calender-days > li:hover:has(time) {
+    color: var(--whiteColor);
+    background-color: var(--primaryColor);
+}
+
+
+.scheme\:dark .datepicker, .datepicker.scheme\:dark {
+    --foregroundColor: 0, 0%, 100%;
+    --borderColor: 210, 9%, 31%;
+    --focusColor: 210, 100%, 50%;
+    --backgroundColor: 210, 11%, 15%;
+}

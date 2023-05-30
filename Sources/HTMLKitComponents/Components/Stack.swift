@@ -91,11 +91,23 @@ extension HStack: ViewModifier {
     }
     
     public func hidden() -> HStack {
-        return self.mutate(state: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> HStack {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func padding(_ value: Tokens.BoxPadding) -> HStack {
+        return self.mutate(padding: value.rawValue)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> HStack {
+        return self.mutate(bordershape: shape.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> HStack {
+        return self.mutate(bordercolor: color.rawValue)
     }
 }
 
@@ -174,11 +186,23 @@ extension VStack: ViewModifier {
     }
     
     public func hidden() -> VStack {
-        return self.mutate(state: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> VStack {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> VStack {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> VStack {
+        return self.mutate(bordershape: shape.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> VStack {
+        return self.mutate(bordercolor: color.rawValue)
     }
 }
 
@@ -257,11 +281,23 @@ extension ZStack: ViewModifier {
     }
     
     public func hidden() -> ZStack {
-        return self.mutate(state: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> ZStack {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> ZStack {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> ZStack {
+        return self.mutate(bordershape: shape.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> ZStack {
+        return self.mutate(bordercolor: color.rawValue)
     }
 }
 

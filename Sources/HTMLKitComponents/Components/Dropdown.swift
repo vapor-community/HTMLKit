@@ -50,7 +50,7 @@ public struct Dropdown: View, Modifiable {
 }
 
 extension Dropdown: ButtonModifier {
-    
+
     public func buttonSize(_ size: Tokens.ButtonSize) -> Dropdown {
         return self.mutate(buttonsize: size.rawValue)
     }
@@ -59,26 +59,47 @@ extension Dropdown: ButtonModifier {
         return self.mutate(buttonstyle: style.rawValue)
     }
     
+    public func disabled(_ condition: Bool) -> Dropdown {
+        
+        if condition {
+            return self.mutate(buttonstate: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
+}
+
+extension Dropdown: ViewModifier {
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> Dropdown {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> Dropdown {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> Dropdown {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> Dropdown {
+        return self.mutate(padding: length.rawValue)
+    }
+    
     public func borderShape(_ shape: Tokens.BorderShape) -> Dropdown {
         return self.mutate(bordershape: shape.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> Dropdown {
+        return self.mutate(bordercolor: color.rawValue)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Dropdown {
         return self.mutate(backgroundcolor: color.rawValue)
     }
     
-    public func disabled(_ condition: Bool) -> Dropdown {
-        
-        if condition {
-            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
-        }
-        
-        return self
-    }
-    
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Dropdown {
         return self.mutate(scheme: scheme.rawValue)
     }
-    
-    
 }

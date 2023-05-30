@@ -1,0 +1,38 @@
+/*
+ The stylesheet for the modal component.
+ 
+ default:
+ block padding: 12px
+ inline padding: 16px
+ border width: 1px;
+ border color: #DFE3E7
+ border radius: 0
+ background color: #FFFFFF
+ 
+ darkmode:
+ border color: #484F56
+ background color: #22262A
+ */
+
+.modal {
+    --paddingBlock: 0.75rem;
+    --paddingInline: 1.0rem;
+    --borderWidth: 1px;
+    --borderColor: 10, 14%, 89%;
+    --borderRadius: 0;
+    --backgroundColor: 0, 0%, 100%;
+    
+    padding-block: var(--paddingBlock);
+    padding-inline: var(--paddingInline);
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--borderColor), 1.0);
+    border-radius: var(--borderRadius);
+    background-color: hsla(var(--backgroundColor), 1.0);
+    box-shadow: 0 15px 35px hsla(0,0%, 0%, 0.2);
+}
+
+.scheme\:dark .modal, .modal.scheme\:dark {
+    --borderColor: 210, 9%, 31%;
+    --backgroundColor: 210, 11%, 15%;
+}

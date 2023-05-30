@@ -66,10 +66,22 @@ extension Image: ViewModifier {
     }
     
     public func hidden() -> Image {
-        return self.mutate(state: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Image {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> Image {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> Image {
+        return self.mutate(bordershape: shape.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> Image {
+        return self.mutate(bordercolor: color.rawValue)
     }
 }

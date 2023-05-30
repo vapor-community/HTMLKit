@@ -342,8 +342,6 @@ public enum Tokens {
 
     public enum ClipShape: String {
         
-        case smallrounded = "shape:smallrounded"
-        case largerounded = "shape:largerounded"
         case circle = "shape:circle"
     }
 
@@ -452,7 +450,6 @@ public enum Tokens {
         case smallrounded = "shape:smallrounded"
         case largerounded = "shape:largerounded"
         case fullrounded = "shape:fullrounded"
-        case circle = "shape:circle"
     }
 
     /// A size of a button.
@@ -514,7 +511,7 @@ public enum Tokens {
         case visible = "state:visible"
     }
     
-    public enum BorderdColor: String {
+    public enum BorderColor: String {
         
         /// Changes the border color to black.
         case black = "border:black"
@@ -564,8 +561,6 @@ public enum Tokens {
         /// Changes the border color to silver.
         case silver = "border:silver"
         
-        case highlight = "border:highlight"
-        
         case primary = "border:primary"
         
         case secondary = "border:secondary"
@@ -573,12 +568,78 @@ public enum Tokens {
         case transparent = "border:transparent"
     }
     
+    public enum FocusColor: String {
+        
+        /// Changes the border color to black.
+        case black = "focus:black"
+        
+        /// Changes the border color to white.
+        case white = "focus:white"
+        
+        /// Changes the border color to blue.
+        case blue = "focus:blue"
+        
+        /// Changes the border color to brown.
+        case brown = "focus:brown"
+        
+        /// Changes the border color to cyan.
+        case cyan = "focus:cyan"
+        
+        /// Changes the border color to green.
+        case green = "focus:green"
+        
+        /// Changes the border color to indigo.
+        case indigo = "focus:indigo"
+        
+        /// Changes the border color to mint.
+        case mint = "focus:mint"
+        
+        /// Changes the border color to pink.
+        case pink = "focus:pink"
+        
+        /// Changes the border color to purple.
+        case purple = "focus:purple"
+        
+        /// Changes the border color to red.
+        case red = "focus:red"
+        
+        /// Changes the border color to teal.
+        case teal = "focus:teal"
+        
+        /// Changes the border color to ornage.
+        case orange = "focus:orange"
+        
+        /// Changes the border color to yellow.
+        case yellow = "focus:yellow"
+        
+        /// Changes the border color to gray.
+        case gray = "focus:gray"
+        
+        /// Changes the border color to silver.
+        case silver = "focus:silver"
+        
+        case primary = "focus:primary"
+        
+        case secondary = "focus:secondary"
+        
+        case transparent = "focus:transparent"
+    }
+    
     public enum ColorScheme: String {
         
         /// Changes the color scheme to dark.
-        case dark = "color-scheme:dark"
+        case dark = "scheme:dark"
         
         /// Changes the color scheme to light.
-        case light = "color-scheme:light"
+        case light = "scheme:light"
+    }
+    
+    public enum BoxPadding: String {
+        
+        case large = "padding:large"
+        
+        case medium = "padding:medium"
+        
+        case small = "padding:small"
     }
 }

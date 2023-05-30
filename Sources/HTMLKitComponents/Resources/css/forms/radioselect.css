@@ -1,0 +1,52 @@
+/*
+ The rulesets for the radioselect component.
+ 
+ defaults:
+ border width: 1px;
+ border color: #DFE3E7
+ focus color: #0080FF
+ background color: #FFFFFF
+ 
+ darkmode:
+ border color: #484F56
+ focus color: #0080FF
+ background color: #FFFFFF
+ */
+
+.radioselect {
+    --borderWidth: 1px;
+    --borderColor: 210, 14%, 89%;
+    --focusColor: 210, 100%, 50%;
+    --backgroundColor: 0, 0%, 100%;
+    
+    display: inline-block;
+    block-size: 1.5rem;
+    inline-size: 1.5rem;
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--borderColor), 1.0);
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: hsla(var(--backgroundColor), 1.0);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.radioselect:focus {
+    border-color: hsla(var(--focusColor), 1.0);
+    outline: 0;
+    box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
+}
+
+.radioselect:checked {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.scheme\:dark .radioselect, .radioselect.scheme\:dark {
+    --borderColor: 210, 9%, 31%;
+    --focusColor: 210, 100%, 50%;
+    --backgroundColor: 210, 11%, 15%;
+}

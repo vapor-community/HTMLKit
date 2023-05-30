@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that collects and arranges list items vertically.
-public struct List: View, Actionable {
+public struct List: View, Modifiable, Actionable {
     
     var id: String?
     

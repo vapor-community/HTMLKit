@@ -168,7 +168,39 @@ public struct TextField: View, Modifiable {
 
 extension TextField: InputModifier {
     
-    public func borderColor(_ color: Tokens.BorderdColor) -> TextField {
+    public func disabled(_ condition: Bool) -> TextField {
+        
+        if condition {
+            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func focusColor(_ color: Tokens.FocusColor) -> TextField {
+        return self.mutate(focuscolor: color.rawValue)
+    }
+}
+
+extension TextField: ViewModifier {
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> TextField {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> TextField {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> TextField {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> TextField {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> TextField {
         return self.mutate(bordercolor: color.rawValue)
     }
     
@@ -178,15 +210,6 @@ extension TextField: InputModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> TextField {
         return self.mutate(backgroundcolor: color.rawValue)
-    }
-    
-    public func disabled(_ condition: Bool) -> TextField {
-        
-        if condition {
-            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
-        }
-        
-        return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> TextField {
@@ -204,7 +227,7 @@ public struct TextEditor: View, Modifiable {
     internal let prompt: String?
     
     /// The number of lines.
-    internal var rows: Int = 1
+    internal var rows: Int = 3
     
     /// The content of the editor.
     internal var content: [String]
@@ -260,7 +283,39 @@ public struct TextEditor: View, Modifiable {
 
 extension TextEditor: InputModifier {
     
-    public func borderColor(_ color: Tokens.BorderdColor) -> TextEditor {
+    public func disabled(_ condition: Bool) -> TextEditor {
+        
+        if condition {
+            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func focusColor(_ color: Tokens.FocusColor) -> TextEditor {
+        return self.mutate(focuscolor: color.rawValue)
+    }
+}
+
+extension TextEditor: ViewModifier {
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> TextEditor {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> TextEditor {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> TextEditor {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> TextEditor {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> TextEditor {
         return self.mutate(bordercolor: color.rawValue)
     }
     
@@ -270,15 +325,6 @@ extension TextEditor: InputModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> TextEditor {
         return self.mutate(backgroundcolor: color.rawValue)
-    }
-    
-    public func disabled(_ condition: Bool) -> TextEditor {
-        
-        if condition {
-            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
-        }
-        
-        return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> TextEditor {
@@ -326,7 +372,39 @@ public struct CheckField: View, Modifiable {
 
 extension CheckField: InputModifier {
     
-    public func borderColor(_ color: Tokens.BorderdColor) -> CheckField {
+    public func disabled(_ condition: Bool) -> CheckField {
+        
+        if condition {
+            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func focusColor(_ color: Tokens.FocusColor) -> CheckField {
+        return self.mutate(focuscolor: color.rawValue)
+    }
+}
+
+extension CheckField: ViewModifier {
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> CheckField {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> CheckField {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> CheckField {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> CheckField {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> CheckField {
         return self.mutate(bordercolor: color.rawValue)
     }
     
@@ -336,15 +414,6 @@ extension CheckField: InputModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> CheckField {
         return self.mutate(backgroundcolor: color.rawValue)
-    }
-    
-    public func disabled(_ condition: Bool) -> CheckField {
-        
-        if condition {
-            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
-        }
-        
-        return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> CheckField {
@@ -392,7 +461,39 @@ public struct RadioSelect: View, Modifiable {
 
 extension RadioSelect: InputModifier {
     
-    public func borderColor(_ color: Tokens.BorderdColor) -> RadioSelect {
+    public func disabled(_ condition: Bool) -> RadioSelect {
+        
+        if condition {
+            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func focusColor(_ color: Tokens.FocusColor) -> RadioSelect {
+        return self.mutate(focuscolor: color.rawValue)
+    }
+}
+
+extension RadioSelect: ViewModifier {
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> RadioSelect {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> RadioSelect {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> RadioSelect {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> RadioSelect {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> RadioSelect {
         return self.mutate(bordercolor: color.rawValue)
     }
     
@@ -402,15 +503,6 @@ extension RadioSelect: InputModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> RadioSelect {
         return self.mutate(backgroundcolor: color.rawValue)
-    }
-    
-    public func disabled(_ condition: Bool) -> RadioSelect {
-        
-        if condition {
-            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
-        }
-        
-        return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> RadioSelect {
@@ -468,7 +560,39 @@ public struct SelectField: View, Modifiable {
 
 extension SelectField: InputModifier {
     
-    public func borderColor(_ color: Tokens.BorderdColor) -> SelectField {
+    public func disabled(_ condition: Bool) -> SelectField {
+        
+        if condition {
+            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
+
+    public func focusColor(_ color: Tokens.FocusColor) -> SelectField {
+        return self.mutate(focuscolor: color.rawValue)
+    }
+}
+
+extension SelectField: ViewModifier {
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> SelectField {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> SelectField {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> SelectField {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> SelectField {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> SelectField {
         return self.mutate(bordercolor: color.rawValue)
     }
     
@@ -478,15 +602,6 @@ extension SelectField: InputModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SelectField {
         return self.mutate(backgroundcolor: color.rawValue)
-    }
-    
-    public func disabled(_ condition: Bool) -> SelectField {
-        
-        if condition {
-            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
-        }
-        
-        return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> SelectField {
@@ -583,7 +698,39 @@ public struct SecureField: View, Modifiable {
 
 extension SecureField: InputModifier {
     
-    public func borderColor(_ color: Tokens.BorderdColor) -> SecureField {
+    public func disabled(_ condition: Bool) -> SecureField {
+        
+        if condition {
+            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func focusColor(_ color: Tokens.FocusColor) -> SecureField {
+        return self.mutate(focuscolor: color.rawValue)
+    }
+}
+
+extension SecureField: ViewModifier {
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> SecureField {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> SecureField {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> SecureField {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> SecureField {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> SecureField {
         return self.mutate(bordercolor: color.rawValue)
     }
     
@@ -593,15 +740,6 @@ extension SecureField: InputModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SecureField {
         return self.mutate(backgroundcolor: color.rawValue)
-    }
-    
-    public func disabled(_ condition: Bool) -> SecureField {
-        
-        if condition {
-            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
-        }
-        
-        return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> SecureField {
@@ -647,7 +785,39 @@ public struct Slider: View, Modifiable {
 
 extension Slider: InputModifier {
     
-    public func borderColor(_ color: Tokens.BorderdColor) -> Slider {
+    public func disabled(_ condition: Bool) -> Slider {
+        
+        if condition {
+            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func focusColor(_ color: Tokens.FocusColor) -> Slider {
+        return self.mutate(focuscolor: color.rawValue)
+    }
+}
+
+extension Slider: ViewModifier {
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> Slider {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> Slider {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> Slider {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> Slider {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> Slider {
         return self.mutate(bordercolor: color.rawValue)
     }
     
@@ -657,15 +827,6 @@ extension Slider: InputModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Slider {
         return self.mutate(backgroundcolor: color.rawValue)
-    }
-    
-    public func disabled(_ condition: Bool) -> Slider {
-        
-        if condition {
-            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
-        }
-        
-        return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Slider {
@@ -794,7 +955,39 @@ public struct DatePicker: View, Modifiable {
 
 extension DatePicker: InputModifier {
     
-    public func borderColor(_ color: Tokens.BorderdColor) -> DatePicker {
+    public func disabled(_ condition: Bool) -> DatePicker {
+        
+        if condition {
+            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func focusColor(_ color: Tokens.FocusColor) -> DatePicker {
+        return self.mutate(focuscolor: color.rawValue)
+    }
+}
+
+extension DatePicker: ViewModifier {
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> DatePicker {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> DatePicker {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> DatePicker {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> DatePicker {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> DatePicker {
         return self.mutate(bordercolor: color.rawValue)
     }
     
@@ -804,15 +997,6 @@ extension DatePicker: InputModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> DatePicker {
         return self.mutate(backgroundcolor: color.rawValue)
-    }
-    
-    public func disabled(_ condition: Bool) -> DatePicker {
-        
-        if condition {
-            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
-        }
-        
-        return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> DatePicker {
@@ -874,7 +1058,39 @@ public struct SearchField: View, Modifiable {
 
 extension SearchField: InputModifier {
     
-    public func borderColor(_ color: Tokens.BorderdColor) -> SearchField {
+    public func disabled(_ condition: Bool) -> SearchField {
+        
+        if condition {
+            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func focusColor(_ color: Tokens.FocusColor) -> SearchField {
+        return self.mutate(focuscolor: color.rawValue)
+    }
+}
+
+extension SearchField: ViewModifier {
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> SearchField {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> SearchField {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> SearchField {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> SearchField {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> SearchField {
         return self.mutate(bordercolor: color.rawValue)
     }
     
@@ -884,15 +1100,6 @@ extension SearchField: InputModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SearchField {
         return self.mutate(backgroundcolor: color.rawValue)
-    }
-    
-    public func disabled(_ condition: Bool) -> SearchField {
-        
-        if condition {
-            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
-        }
-        
-        return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> SearchField {
@@ -955,7 +1162,7 @@ public struct TextPad: View, Modifiable {
     internal let prompt: String?
     
     /// The number of lines.
-    internal var rows: Int = 1
+    internal var rows: Int = 3
     
     /// The content of the textpad.
     internal var content: [String]
@@ -1009,6 +1216,22 @@ public struct TextPad: View, Modifiable {
                     }
                 }
                 .class("toolbar-tool command:strikethrough")
+                ListItem {
+                    Symbol(system: "text.alignleft")
+                }
+                .class("toolbar-tool")
+                ListItem {
+                    Symbol(system: "text.aligncenter")
+                }
+                .class("toolbar-tool")
+                ListItem {
+                    Symbol(system: "text.alignright")
+                }
+                .class("toolbar-tool")
+                ListItem {
+                    Symbol(system: "text.alignjustify")
+                }
+                .class("toolbar-tool")
             }
             .class("textpad-toolbar")
             TextArea {
@@ -1034,7 +1257,39 @@ public struct TextPad: View, Modifiable {
 
 extension TextPad: InputModifier {
     
-    public func borderColor(_ color: Tokens.BorderdColor) -> TextPad {
+    public func disabled(_ condition: Bool) -> TextPad {
+        
+        if condition {
+            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func focusColor(_ color: Tokens.FocusColor) -> TextPad {
+        return self.mutate(focuscolor: color.rawValue)
+    }
+}
+
+extension TextPad: ViewModifier {
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> TextPad {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> TextPad {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> TextPad {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> TextPad {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> TextPad {
         return self.mutate(bordercolor: color.rawValue)
     }
     
@@ -1046,18 +1301,7 @@ extension TextPad: InputModifier {
         return self.mutate(backgroundcolor: color.rawValue)
     }
     
-    public func disabled(_ condition: Bool) -> TextPad {
-        
-        if condition {
-            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
-        }
-        
-        return self
-    }
-    
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> TextPad {
         return self.mutate(scheme: scheme.rawValue)
     }
-    
-    
 }

@@ -66,29 +66,17 @@ extension Button: ButtonModifier {
         return self.mutate(buttonsize: size.rawValue)
     }
     
-    public func borderShape(_ shape: Tokens.BorderShape) -> Button {
-        return self.mutate(bordershape: shape.rawValue)
-    }
-    
     public func buttonStyle(_ style: Tokens.ButtonStyle) -> Button {
         return self.mutate(buttonstyle: style.rawValue)
-    }
-    
-    public func backgroundColor(_ color: Tokens.BackgroundColor) -> Button {
-        return self.mutate(backgroundcolor: color.rawValue)
     }
     
     public func disabled(_ condition: Bool) -> Button {
         
         if condition {
-            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
+            return self.mutate(buttonstate: Tokens.ViewState.disabled.rawValue)
         }
         
         return self
-    }
-    
-    public func colorScheme(_ scheme: Tokens.ColorScheme) -> Button {
-        return self.mutate(scheme: scheme.rawValue)
     }
 }
 
@@ -104,6 +92,41 @@ extension Button: PressModifier {
     
     public func onPress(perfom action: Actions) -> Button {
         return self.mutate(pressevent: action.script)
+    }
+}
+
+extension Button: ViewModifier {
+    
+    public func backgroundColor(_ color: Tokens.BackgroundColor) -> Button {
+        return self.mutate(backgroundcolor: color.rawValue)
+    }
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> Button {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> Button {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> Button {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> Button {
+        return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> Button {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> Button {
+        return self.mutate(bordershape: shape.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> Button {
+        return self.mutate(bordercolor: color.rawValue)
     }
 }
 
@@ -169,28 +192,51 @@ extension LinkButton: ButtonModifier {
         return self.mutate(buttonsize: size.rawValue)
     }
     
-    public func borderShape(_ shape: Tokens.BorderShape) -> LinkButton {
-        return self.mutate(bordershape: shape.rawValue)
-    }
-    
     public func buttonStyle(_ style: Tokens.ButtonStyle) -> LinkButton {
         return self.mutate(buttonstyle: style.rawValue)
-    }
-    
-    public func backgroundColor(_ color: Tokens.BackgroundColor) -> LinkButton {
-        return self.mutate(backgroundcolor: color.rawValue)
     }
     
     public func disabled(_ condition: Bool) -> LinkButton {
         
         if condition {
-            return self.mutate(state: Tokens.ViewState.disabled.rawValue)
+            return self.mutate(buttonstate: Tokens.ViewState.disabled.rawValue)
         }
         
         return self
     }
+}
+
+extension LinkButton: ViewModifier {
+    
+    public func backgroundColor(_ color: Tokens.BackgroundColor) -> LinkButton {
+        return self.mutate(backgroundcolor: color.rawValue)
+    }
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> LinkButton {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> LinkButton {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> LinkButton {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> LinkButton {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> LinkButton {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> LinkButton {
+        return self.mutate(bordershape: shape.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> LinkButton {
+        return self.mutate(bordercolor: color.rawValue)
     }
 }

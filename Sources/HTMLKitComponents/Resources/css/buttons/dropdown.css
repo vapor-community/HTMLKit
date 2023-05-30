@@ -1,0 +1,108 @@
+/*
+ The stylesheet for the dropdown component.
+ 
+ default:
+ block padding: 8px
+ inline padding: 16px
+ font size: 16px
+ font weight: normal
+ line height: 1.5
+ foreground color: #000000
+ border width: 1px
+ border color: #DFE3E7
+ border radius: 0
+ background color: #FFFFFF
+ 
+ darkmode:
+ foreground color: #FFFFFF
+ border color: #484F56
+ background color: #22262a
+ */
+
+.dropdown {
+    --paddingBlock: 0.5rem;
+    --paddingInline: 1.0rem;
+    --inlineSize: fit-content();
+    --fontSize: 1.0rem;
+    --fontWeight: 400;
+    --lineHeight: 1.5;
+    --borderWidth: 1px;
+    --borderColor: 210, 9%, 31%;
+    --borderRadius: 0;
+    --foregroundColor: 0, 0%, 100%;
+    --backgroundColor: 210, 11%, 15%;
+    
+    position: relative;
+}
+
+.dropdown-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: var(--paddingBlock);
+    padding-inline: var(--paddingInline);
+    inline-size: var(--inlineSize);
+    font-family: var(--fontFamily);
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
+    line-height: var(--lineHeight);
+    color: hsla(var(--foregroundColor), 1.0);
+    text-decoration: none;
+    white-space: nowrap;
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--borderColor), 1.0);
+    border-radius: var(--borderRadius);
+    background-color: hsla(var(--backgroundColor), 1.0);
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.dropdown-label:hover {
+    filter: brightness(90%) saturate(90%);
+}
+
+.dropdown .dropdown-content {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    margin-block: 0.75rem;
+    inline-size: calc(var(--inlineSize) * 1.5);
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--borderColor), 1.0);
+    border-radius: var(--borderRadius);
+    background-color: hsla(var(--backgroundColor), 1.0);
+    overflow: hidden;
+}
+
+.dropdown .list .list-row:hover {
+    color: hsla(var(--whiteColor), 1.0);
+    background-color: hsla(var(--primaryColor), 1.0);
+}
+
+.dropdown .list .list-row .link {
+    display: block;
+}
+
+.dropdown.size\:full {
+    --inlineSize: 100%;
+}
+
+.dropdown.size\:large {
+    --inlineSize: 75%;
+}
+
+.dropdown.size\:medium {
+    --inlineSize: 50%;
+}
+
+.scheme\:dark .dropdown, .dropdown.scheme\:dark {
+    --foregroundColor: 0, 0%, 100%;
+    --borderColor: 210, 9%, 31%;
+    --backgroundColor: 210, 11%, 15%;
+}
+
+

@@ -1,0 +1,50 @@
+/*
+ The rulesets for the slider component.
+ 
+ defaults:
+ border width: 1px;
+ border color: #DFE3E7
+ focus color: #0080FF
+ background color: #FFFFFF
+ 
+ darkmode:
+ border color: #484F56
+ focus color: #0080FF
+ background color: #FFFFFF
+ */
+
+.slider {
+    --borderWidth: 1px;
+    --borderColor: 210, 14%, 89%;
+    --focusColor: 210, 100%, 50%;
+    --backgroundColor: 0, 0%, 100%;
+    
+    display: block;
+    inline-size: 100%;
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: var(--borderColor);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+    width: 1em;
+    height: 1em;
+    background-color: var(--backgroundColor);
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 1em;
+    height: 1em;
+    background-color: var(--backgroundColor);
+    cursor: pointer;
+}
+
+.scheme\:dark .slider, .slider.scheme\:dark {
+    --borderColor: 210, 9%, 31%;
+    --focusColor: 210, 100%, 50%;
+    --backgroundColor: 210, 11%, 15%;
+}

@@ -51,7 +51,6 @@ public struct Symbol: View, Modifiable {
             content
         }
         .viewBox("0 0 20 16")
-        .fill("currentColor")
         .class(classes.joined(separator: " "))
     }
     

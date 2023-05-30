@@ -1,0 +1,51 @@
+/*
+ The stylesheet for the card component.
+ 
+ default:
+ block padding: 12px
+ inline padding: 16px
+ border width: 1px;
+ border color: #DFE3E7
+ border radius: 0
+ background color: #FFFFFF
+ 
+ darkmode:
+ border color: #484F56
+ background color: #22262A
+ */
+
+.card {
+    --paddingInline: 1.0rem;
+    --paddingBlock: 0.5rem;
+    --borderWidth: 1px;
+    --borderColor: 210, 14%, 89%;
+    --borderRadius: 0;
+    --backgroundColor: 0, 0%, 100%;
+    
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--borderColor), 1.0);
+    border-radius: var(--borderRadius);
+    background-color: hsla(var(--backgroundColor), 1.0);
+}
+
+.card .card-header {
+    border-start-start-radius: var(--borderRadius);
+    border-start-end-radius: var(--borderRadius);
+    overflow: hidden;
+}
+
+.card .card-body {
+    padding-block: var(--paddingBlock);
+    padding-inline: var(--paddingInline);
+    border-end-start-radius: var(--borderRadius);
+    border-end-end-radius: var(--borderRadius);
+}
+
+.scheme\:dark .card, .card.scheme\:dark {
+    --borderColor: 210, 9%, 31%;
+    --backgroundColor: 210, 11%, 15%;
+}

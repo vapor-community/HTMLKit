@@ -1,10 +1,10 @@
 /*
- stack component
+ The rulsets for the horizontal stack component.
  */
 
 .hstack {
     position: relative;
-    width: 100%;
+    inline-size: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -38,9 +38,13 @@
     justify-content: space-evenly;
 }
 
+/*
+ The rulesets for the vertical stack component.
+ */
+
 .vstack {
     position: relative;
-    width: 100%;
+    inline-size: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -57,12 +61,21 @@
     justify-content: flex-end;
 }
 
+/*
+ The rulesets for the vertical stack component.
+ */
+
 .zstack {
-    position: relative;
-    width: 100%;
-    display: flex;
+    position: absolute;
+    inset: 0;
     z-index: 1;
+    display: flex;
+    inline-size: 100%;
 }
+
+/*
+ The rulesets for the stack column component.
+ */
 
 .stack-column {
     position: relative;
@@ -70,62 +83,62 @@
 
 .stack-column.size\:1 {
     flex: 0 0 auto;
-    width: 8.3333333333%;
+    inline-size: 8.3333333333%;
 }
 
 .stack-column.size\:2 {
     flex: 0 0 auto;
-    width: 16.6666666667%;
+    inline-size: 16.6666666667%;
 }
 
 .stack-column.size\:3 {
     flex: 0 0 auto;
-    width: 25%;
+    inline-size: 25%;
 }
 
 .stack-column.size\:4 {
     flex: 0 0 auto;
-    width: 33.3333333333%;
+    inline-size: 33.3333333333%;
 }
 
 .stack-column.size\:5 {
     flex: 0 0 auto;
-    width: 41.6666666667%;
+    inline-size: 41.6666666667%;
 }
 
 .stack-column.size\:6 {
     flex: 0 0 auto;
-    width: 50%;
+    inline-size: 50%;
 }
 
 .stack-column.size\:7 {
     flex: 0 0 auto;
-    width: 58.3333333333%;
+    inline-size: 58.3333333333%;
 }
 
 .stack-column.size\:8 {
     flex: 0 0 auto;
-    width: 66.6666666667%;
+    inline-size: 66.6666666667%;
 }
 
 .stack-column.size\:9 {
     flex: 0 0 auto;
-    width: 75%;
+    inline-size: 75%;
 }
 
 .stack-column.size\:10 {
     flex: 0 0 auto;
-    width: 83.3333333333%;
+    inline-size: 83.3333333333%;
 }
 
 .stack-column.size\:11 {
     flex: 0 0 auto;
-    width: 91.6666666667%;
+    inline-size: 91.6666666667%;
 }
 
 .stack-column.size\:12 {
     flex: 0 0 auto;
-    width: 100%;
+    inline-size: 100%;
 }
 
 .stack-column.alignment\:center {
@@ -141,45 +154,45 @@
 }
 
 .stack-column.offset\:1 {
-    margin-left: 8.3333333333%;
+    margin-inline-start: 8.3333333333%;
 }
 
 .stack-column.offset\:2 {
-    margin-left: 16.6666666667%;
+    margin-inline-start: 16.6666666667%;
 }
 
 .stack-column.offset\:3 {
-    margin-left: 25%;
+    margin-inline-start: 25%;
 }
 
 .stack-column.offset\:4 {
-    margin-left: 33.3333333333%;
+    margin-inline-start: 33.3333333333%;
 }
 
 .stack-column.offset\:5 {
-    margin-left: 41.6666666667%;
+    margin-inline-start: 41.6666666667%;
 }
 
 .stack-column.offset\:6 {
-    margin-left: 50%;
+    margin-inline-start: 50%;
 }
 
 .stack-column.offset\:7 {
-    margin-left: 58.3333333333%;
+    margin-inline-start: 58.3333333333%;
 }
 
 .stack-column.offset\:8 {
-    margin-left: 66.6666666667%;
+    margin-inline-start: 66.6666666667%;
 }
 
 .stack-column.offset\:9 {
-    margin-left: 75%;
+    margin-inline-start: 75%;
 }
 
 .stack-column.offset\:10 {
-    margin-left: 83.3333333333%;
+    margin-inline-start: 83.3333333333%;
 }
 
 .stack-column.offset\:11 {
-    margin-left: 91.6666666667%;
+    margin-inline-start: 91.6666666667%;
 }

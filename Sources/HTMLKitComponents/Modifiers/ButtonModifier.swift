@@ -12,17 +12,8 @@ public protocol ButtonModifier {
     /// Sets the style of the button.
     func buttonStyle(_ style: Tokens.ButtonStyle) -> Self
     
-    /// Sets the shape of the button.
-    func borderShape(_ shape: Tokens.BorderShape) -> Self
-    
-    /// Sets the background color.
-    func backgroundColor(_ color: Tokens.BackgroundColor) -> Self
-    
     /// Sets the state of the view.
     func disabled(_ condition: Bool) -> Self
-    
-    /// Sets the color appearence
-    func colorScheme(_ scheme: Tokens.ColorScheme) -> Self
 }
 
 extension ButtonModifier where Self: Modifiable {
@@ -35,19 +26,7 @@ extension ButtonModifier where Self: Modifiable {
         return self.mutate(class: `class`)
     }
     
-    internal func mutate(bordershape class: String) -> Self {
-        return self.mutate(class: `class`)
-    }
-    
-    internal func mutate(backgroundcolor class: String) -> Self {
-        return self.mutate(class: `class`)
-    }
-    
-    internal func mutate(state class: String) -> Self {
-        return self.mutate(class: `class`)
-    }
-    
-    internal func mutate(scheme class: String) -> Self {
+    internal func mutate(buttonstate class: String) -> Self {
         return self.mutate(class: `class`)
     }
 }

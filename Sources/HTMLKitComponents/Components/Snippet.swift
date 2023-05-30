@@ -45,7 +45,7 @@ public struct Snippet: View, Modifiable {
 }
 
 extension Snippet: ViewModifier {
-    
+
     public func opacity(_ value: Tokens.OpacityValue) -> Snippet {
         return self.mutate(opacity: value.rawValue)
     }
@@ -59,10 +59,22 @@ extension Snippet: ViewModifier {
     }
     
     public func hidden() -> Snippet {
-        return self.mutate(state: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Snippet {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> Snippet {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> Snippet {
+        return self.mutate(bordershape: shape.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> Snippet {
+        return self.mutate(bordercolor: color.rawValue)
     }
 }

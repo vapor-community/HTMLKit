@@ -1,0 +1,26 @@
+/*
+ The rulsets for the form component.
+ */
+
+.form {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/*
+ The rulesets for the label component.
+
+ --labelMarginBlockStart: 1.25rem (20px)
+ --labelMarginBlockEnd: 0.625rem (10px)
+ */
+
+.label {
+    display: inline-block;
+    margin-block-start: 1.25rem;
+    margin-block-end: 0.625rem;
+    font-size: var(--textFontSize);
+    font-weight: var(--textFontHeight);
+    line-height: var(--textLineHeight);
+    color: var(--textBaseColor);
+}
