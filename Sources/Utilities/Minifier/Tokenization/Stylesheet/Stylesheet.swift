@@ -15,6 +15,7 @@ internal class Stylesheet {
         case customproperty
         case beforevalue
         case value
+        case stringvalue
         case unidentified
         case string
         case rule
@@ -177,6 +178,9 @@ internal class Stylesheet {
                 
             case .value:
                 self.mode = consumeValue(character.element)
+                
+            case .stringvalue:
+                self.mode = consumeStringValue(character.element)
                 
             case .unidentified:
                 self.mode = consumeUnkown(character.element)
@@ -496,7 +500,7 @@ internal class Stylesheet {
             
             self.assign(token: ValueToken(type: .string, value: ""))
             
-            return .value
+            return .stringvalue
         }
         
         if character.isNumber {
@@ -561,13 +565,6 @@ internal class Stylesheet {
             return .beforevalue
         }
         
-        if character.isQuotationMark {
-            
-            self.emit()
-            
-            return .beforevalue
-        }
-        
         if character.isComma {
             
             self.emit()
@@ -582,7 +579,22 @@ internal class Stylesheet {
         return .value
     }
     
-    /// Consumes a uncertain character sequence
+    /// Consumes a character of a string value
+    internal func consumeStringValue(_ character: Character) -> InsertionMode {
+        
+        if character.isQuotationMark {
+            
+            self.emit()
+            
+            return .value
+        }
+        
+        self.collect(character)
+        
+        return .stringvalue
+    }
+    
+    /// Consumes a unidentified character sequence
     internal func consumeUnkown(_ character: Character) -> InsertionMode {
         
         self.verbose(function: #function, character: character)

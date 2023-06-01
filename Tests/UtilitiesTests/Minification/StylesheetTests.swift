@@ -292,11 +292,11 @@ final class StylesheetTests: XCTestCase {
         
         let multiplevalues = """
         .selector {
-            property: value, value, value;
+            property: value, value, "string string", value;
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: multiplevalues), ".selector{property:value,value,value;}")
+        XCTAssertEqual(minifier.minify(css: multiplevalues), ".selector{property:value,value,\"string string\",value;}")
         
         // ...function value
         
