@@ -209,10 +209,10 @@ final class StylesheetTests: XCTestCase {
         XCTAssertEqual(minifier.minify(css: document), ".selector{property:value;}")
     }
     
-    // Tests minifing the differentation between a property and a type selector
-    func testMinifyDifferentiation() throws {
+    // Tests the destinction between a property, a type selector, and type selector with a pseudeo-element
+    func testElementDestinction() throws {
         
-        let differentiation = """
+        let destinction = """
         .selector {
         
             property: value;
@@ -220,9 +220,13 @@ final class StylesheetTests: XCTestCase {
             selector {
             }
         }
+        
+        selector::pseudo-element {
+        
+        }
         """
         
-        XCTAssertEqual(minifier.minify(css: differentiation), ".selector{property:value;selector{}}")
+        XCTAssertEqual(minifier.minify(css: destinction), ".selector{property:value;selector{}}selector::pseudo-element{}")
     }
     
     

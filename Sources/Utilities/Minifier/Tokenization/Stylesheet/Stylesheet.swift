@@ -245,9 +245,19 @@ internal class Stylesheet {
         
         if character.isLetter {
             
-            self.cache(character: character)
+            let leftCurlyBrackets = self.tokens.filter({ $0.value == "{" })
+            let rightCurlyBrackets = self.tokens.filter({ $0.value == "}" })
             
-            return .unidentified
+            if leftCurlyBrackets.count != rightCurlyBrackets.count {
+                
+                self.cache(character: character)
+                
+                return .unidentified
+            }
+            
+            self.assign(token: SelectorToken(type: .type, value: String(character)))
+
+            return .selector
         }
         
         if character.isQuotationMark {
