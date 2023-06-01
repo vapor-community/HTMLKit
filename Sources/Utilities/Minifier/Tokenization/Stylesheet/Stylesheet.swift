@@ -386,6 +386,15 @@ internal class Stylesheet {
         
         self.verbose(function: #function, character: character)
         
+        if character.isLeftCurlyBracket {
+            
+            self.emit()
+            
+            self.emit(token: FormatToken(type: .punctuator, value: String(character)))
+            
+            return .code
+        }
+        
         if character.isWhitespace {
             
             self.emit()
