@@ -18,6 +18,7 @@ internal class Stylesheet {
         case unidentified
         case string
         case rule
+        case argument
     }
     
     /// A enumeration of different level of the logging
@@ -73,6 +74,7 @@ internal class Stylesheet {
         }
     }
     
+    /// Caches the character for later
     private func cache(character: Character) {
         
         self.verbose(function: #function, character: " ")
@@ -88,6 +90,7 @@ internal class Stylesheet {
         }
     }
     
+    /// Clears the cache
     private func clear() -> String {
         
         self.verbose(function: #function, character: " ")
@@ -133,6 +136,14 @@ internal class Stylesheet {
         self.token = nil
     }
     
+    /// Collects the character for the token value
+    private func collect(_ character: Character) {
+        
+        if var token = self.token {
+            token.value.append(character)
+        }
+    }
+    
     /// Consumes the content by the state the minifier is currently in
     public func consume(_ content: String) -> [Token] {
         
@@ -175,6 +186,9 @@ internal class Stylesheet {
                 
             case .rule:
                 self.mode = consumeRule(character.element)
+                
+            case .argument:
+                self.mode = consumeArgument(character.element)
                 
             default:
                 self.mode = consumeCode(character.element)
@@ -329,9 +343,7 @@ internal class Stylesheet {
             return .aftercomment
         }
         
-        if var token = self.token {
-            token.value.append(character)
-        }
+        self.collect(character)
         
         return .comment
     }
@@ -350,10 +362,10 @@ internal class Stylesheet {
         return .aftercomment
     }
     
-    /// Consumes a css selector
+    /// Consumes a selector
     ///
     /// ```css
-    /// selector {
+    /// .selector {
     /// }
     /// ```
     internal func consumeSelector(_ character: Character) -> InsertionMode {
@@ -369,9 +381,7 @@ internal class Stylesheet {
             return .code
         }
         
-        if var token = self.token {
-            token.value.append(character)
-        }
+        self.collect(character)
         
         return .selector
     }
@@ -379,7 +389,7 @@ internal class Stylesheet {
     /// Consumes the character of a property
     ///
     /// ```css
-    /// property:value;
+    /// property: value;
     /// ```
     internal func consumeProperty(_ character: Character) -> InsertionMode {
         
@@ -401,13 +411,12 @@ internal class Stylesheet {
             return .beforevalue
         }
         
-        if var token = self.token {
-            token.value.append(character)
-        }
+        self.collect(character)
         
         return .property
     }
     
+    /// Consumes a character before a custom property
     internal func consumeBeforeCustomProperty(_ character: Character) -> InsertionMode {
         
         self.verbose(function: #function, character: character)
@@ -429,6 +438,11 @@ internal class Stylesheet {
         return .beforecustomproperty
     }
     
+    /// Consumes a character of a custom property
+    ///
+    /// ```css
+    /// --customproperty; value;
+    /// ```
     internal func consumeCustomProperty(_ character: Character) -> InsertionMode {
         
         self.verbose(function: #function, character: character)
@@ -449,16 +463,24 @@ internal class Stylesheet {
             return .beforevalue
         }
         
-        if var token = self.token {
-            token.value.append(character)
-        }
+        self.collect(character)
         
         return .customproperty
     }
     
+    /// Consumes the character in front of a value
     internal func consumeBeforeValue(_ character: Character) -> InsertionMode {
         
         self.verbose(function: #function, character: character)
+        
+        if character.isSemicolon {
+            
+            self.emit()
+            
+            self.emit(token: FormatToken(type: .terminator, value: String(character)))
+            
+            return .code
+        }
         
         if character.isQuotationMark {
             
@@ -481,13 +503,20 @@ internal class Stylesheet {
             return .value
         }
         
+        if character.isExclamationMark {
+            
+            self.assign(token: ValueToken(type: .rule, value: String(character)))
+            
+            return .value
+        }
+        
         return .beforevalue
     }
     
     /// Consumes the character of a value
     ///
     /// ```css
-    /// property:value;
+    /// property: value;
     /// ```
     internal func consumeValue(_ character: Character) -> InsertionMode {
         
@@ -502,20 +531,48 @@ internal class Stylesheet {
             return .code
         }
         
+        if character.isLeftParenthesis {
+            
+            self.emit()
+            
+            self.emit(token: FormatToken(type: .parenthesis, value: String(character)))
+            
+            self.assign(token: ValueToken(type: .function, value: ""))
+
+            return .argument
+        }
+        
+        if character.isWhitespace {
+           
+            self.emit()
+            
+            self.emit(token: WhitespaceToken(type: .whitespace, value: String(character)))
+            
+            return .beforevalue
+        }
+        
         if character.isQuotationMark {
             
             self.emit()
             
-            return .value
+            return .beforevalue
         }
         
-        if var token = self.token {
-            token.value.append(character)
+        if character.isComma {
+            
+            self.emit()
+            
+            self.emit(token: FormatToken(type: .terminator, value: String(character)))
+            
+            return .beforevalue
         }
+        
+        self.collect(character)
         
         return .value
     }
     
+    /// Consumes a uncertain character sequence
     internal func consumeUnkown(_ character: Character) -> InsertionMode {
         
         self.verbose(function: #function, character: character)
@@ -529,7 +586,7 @@ internal class Stylesheet {
             return .beforevalue
         }
         
-        if character.isWhitespace {
+        if character.isWhitespace || character.isLeftCurlyBracket {
             
             self.emit(token: SelectorToken(type: .type, value: clear()))
             
@@ -543,6 +600,12 @@ internal class Stylesheet {
         return .unidentified
     }
     
+    /// Consumes a chracter for a string literal
+    ///
+    /// ```css
+    /// "string"
+    /// ```
+    ///
     internal func consumeStringLiteral(_ character: Character) -> InsertionMode {
         
         self.verbose(function: #function, character: character)
@@ -554,13 +617,17 @@ internal class Stylesheet {
             return .code
         }
         
-        if var token = self.token {
-            token.value.append(character)
-        }
+        self.collect(character)
         
         return .string
     }
     
+    /// Consumes a character for a rule selector
+    ///
+    /// ```css
+    /// @rule {
+    /// }
+    /// ```
     internal func consumeRule(_ character: Character) -> InsertionMode {
         
         self.verbose(function: #function, character: character)
@@ -574,11 +641,57 @@ internal class Stylesheet {
             return .code
         }
         
-        if var token = self.token {
-            token.value.append(character)
-        }
+        self.collect(character)
         
         return .rule
+    }
+    
+    /// Consumes a character of an function argument
+    ///
+    /// ```css
+    /// function(argument);
+    /// ```
+    internal func consumeArgument(_ character: Character) -> InsertionMode {
+        
+        self.verbose(function: #function, character: character)
+        
+        if character.isRightParenthesis {
+            
+            let leftParenthesis = self.tokens.filter({ $0.value == "(" })
+            let rightParenthesis = self.tokens.filter({ $0.value == ")" })
+
+            if (rightParenthesis.count + 1) != leftParenthesis.count {
+                
+                self.emit()
+                
+                self.emit(token: FormatToken(type: .parenthesis, value: String(character)))
+                
+                self.assign(token: ValueToken(type: .function, value: ""))
+                
+                return .argument
+            }
+            
+            self.emit()
+            
+            self.emit(token: FormatToken(type: .parenthesis, value: String(character)))
+            
+            return .beforevalue
+        }
+        
+        if character.isLeftParenthesis {
+            
+            self.emit()
+            
+            self.emit(token: FormatToken(type: .parenthesis, value: String(character)))
+            
+            self.assign(token: ValueToken(type: .function, value: ""))
+            
+            return .argument
+        }
+        
+        self.collect(character)
+        
+        return .argument
     }
 }
 
@@ -743,6 +856,9 @@ extension Stylesheet {
             
             /// Indicates a line operator character
             case `operator`
+            
+            /// Indicates a parenthesis
+            case parenthesis
         }
         
         /// The type of the token
@@ -826,6 +942,9 @@ extension Stylesheet {
             
             /// Indicates a string
             case string
+            
+            /// indicates a rule
+            case rule
         }
         
         /// The type of the token

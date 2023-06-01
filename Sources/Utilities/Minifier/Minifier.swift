@@ -56,6 +56,11 @@ public struct Minifier {
                         if tokens[previous] is Stylesheet.SelectorToken && tokens[next] is Stylesheet.LiteralToken {
                             yield.append(token)
                         }
+                        
+                        // keep the whitespace if its between two value tokens
+                        if tokens[previous] is Stylesheet.ValueToken && tokens[next] is Stylesheet.ValueToken {
+                            yield.append(token)
+                        }
                     }
                     
                 } else {

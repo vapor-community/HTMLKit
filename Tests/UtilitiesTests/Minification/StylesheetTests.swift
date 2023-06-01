@@ -229,27 +229,16 @@ final class StylesheetTests: XCTestCase {
     // Tests minifing a
     func testMinfiyValues() throws {
         
-        // ...function value
-        
-        let functionvalue = """
-        .selector {
-        
-            property: function();
-        }
-        """
-        
-        XCTAssertEqual(minifier.minify(css: functionvalue), ".selector{property:function();}")
-        
         // ...dimension value
         
         let dimensionvalue = """
         .selector {
         
-            property: 0px 0px 0px 0px;
+            property: 0px;
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: dimensionvalue), ".selector{property:0px 0px 0px 0px;}")
+        XCTAssertEqual(minifier.minify(css: dimensionvalue), ".selector{property:0px;}")
         
         // ...numeric value
         
@@ -283,5 +272,107 @@ final class StylesheetTests: XCTestCase {
         """
         
         XCTAssertEqual(minifier.minify(css: stringvalue), ".selector{property:\"content\";}")
+        
+        // ...shorthand value
+        
+        let shorthandvalue = """
+        .selector {
+        
+            property: 0px 0px 0px 0px;
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(css: shorthandvalue), ".selector{property:0px 0px 0px 0px;}")
+        
+        // ...multiple values seperated by commas
+        
+        let multiplevalues = """
+        .selector {
+            property: value, value, value;
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(css: multiplevalues), ".selector{property:value,value,value;}")
+        
+        // ...function value
+        
+        let functionvalue = """
+        .selector {
+            property: function();
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(css: functionvalue), ".selector{property:function();}")
+        
+        // ....rule mark
+        
+        let rulevalue = """
+        .selector {
+            property: function() !important;
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(css: rulevalue), ".selector{property:function()!important;}")
+    }
+    
+    // Tests minifing a funtion
+    func testMinfiyFunctions() throws {
+        
+        // ...with a string value
+        
+        let stringargument = """
+        .selector {
+        
+            property: function("argument");
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(css: stringargument), ".selector{property:function(\"argument\");}")
+        
+        
+        // ...with a custom property
+        
+        let propertyargument = """
+        .selector {
+        
+            property: function(--customProperty);
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(css: propertyargument), ".selector{property:function(--customProperty);}")
+        
+        // ...with arimethical operation
+        
+        let arimethicargument = """
+        .selector {
+        
+            property: function(0px + 0px);
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(css: arimethicargument), ".selector{property:function(0px + 0px);}")
+        
+        // ...with a numeric value
+        
+        let numericargument = """
+        .selector {
+        
+            property: function(25deg);
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(css: numericargument), ".selector{property:function(25deg);}")
+        
+        
+        // ...with a function within
+        
+        let functionargument = """
+        .selector {
+        
+            property: function(function(argument), argument);
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(css: functionargument), ".selector{property:function(function(argument), argument);}")
     }
 }
