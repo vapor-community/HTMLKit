@@ -28,7 +28,7 @@ public struct Minifier {
     /// Minifies a stylesheet string
     public func minify(css content: String) -> String {
         
-        var tokens = Stylesheet().consume(content)
+        var tokens = Stylesheet(log: .debug).consume(content)
         
         if compression.contains(.stripComments) {
             tokens.removeAll(where:  { $0 is Stylesheet.CommentToken })

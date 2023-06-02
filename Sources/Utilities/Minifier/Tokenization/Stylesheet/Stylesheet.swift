@@ -17,6 +17,7 @@ internal class Stylesheet {
         case value
         case stringvalue
         case unidentified
+        case afterunidentified
         case string
         case rule
         case argument
@@ -184,6 +185,9 @@ internal class Stylesheet {
                 
             case .unidentified:
                 self.mode = consumeUnkown(character.element)
+                
+            case .afterunidentified:
+                self.mode = consumeAfterUnkown(character.element)
                 
             case .string:
                 self.mode = consumeStringLiteral(character.element)
@@ -610,11 +614,9 @@ internal class Stylesheet {
         
         if character.isColon {
             
-            self.emit(token: PropertyToken(type: .regular, value: clear()))
+            self.cache(character: character)
             
-            self.emit(token: FormatToken(type: .terminator, value: String(character)))
-            
-            return .beforevalue
+            return .afterunidentified
         }
         
         if character.isWhitespace || character.isLeftCurlyBracket {
@@ -629,6 +631,44 @@ internal class Stylesheet {
         self.cache(character: character)
         
         return .unidentified
+    }
+    
+    func consumeAfterUnkown(_ character: Character) -> InsertionMode {
+        
+        self.verbose(function: #function, character: character)
+        
+        // its a property
+        if character.isWhitespace {
+
+            var cache = clear()
+            
+            // since we know its property now, take the colon
+            let colon: Character = cache.removeLast()
+            
+            self.emit(token: PropertyToken(type: .regular, value: cache))
+            
+            self.emit(token: FormatToken(type: .terminator, value: String(colon)))
+            
+            return .beforevalue
+        }
+        
+        // its a pseudo element
+        if character.isColon {
+            
+            self.cache(character: character)
+            
+            return .unidentified
+        }
+        
+        // its a pseudo selector
+        if character.isLetter {
+
+            self.cache(character: character)
+            
+            return .unidentified
+        }
+        
+        return .afterunidentified
     }
     
     /// Consumes a chracter for a string literal

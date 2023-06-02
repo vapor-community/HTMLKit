@@ -219,6 +219,12 @@ final class StylesheetTests: XCTestCase {
         
             selector {
             }
+        
+            selector::pseudo-element {
+            }
+        
+            selector:pseudo-selector {
+            }
         }
         
         selector::pseudo-element {
@@ -226,7 +232,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: destinction), ".selector{property:value;selector{}}selector::pseudo-element{}")
+        XCTAssertEqual(minifier.minify(css: destinction), ".selector{property:value;selector{}selector::pseudo-element{}selector:pseudo-selector{}}selector::pseudo-element{}")
     }
     
     
