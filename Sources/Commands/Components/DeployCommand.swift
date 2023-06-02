@@ -31,7 +31,9 @@ internal struct DeployCommand {
             
             try bundle(css: sourcePath + "/Resources/css/", to: targetPath + "/htmlkit/", with: "all.css")
             
-            try bundle(js: sourcePath + "/Resources/js/", to: targetPath + "/htmlkit/", with: "all.js")
+            try bundle(js: sourcePath + "/Resources/js/components/", to: targetPath + "/htmlkit/", with: "all.js")
+            
+            try bundle(js: sourcePath + "/Resources/js/interactions/", to: targetPath + "/htmlkit/", with: "query.js")
             
             exit(0)
         }

@@ -4,8 +4,8 @@
         
         this.element = element;
         this.datefield = element.getElementsByClassName('datepicker-datefield')[0];
-        this.picker = element.getElementsByClassName('datepicker-picker')[0];
-        this.calendar = element.getElementsByClassName('picker-calendar')[0];
+        this.picker = element.getElementsByClassName('datepicker-calendar')[0];
+        this.calendar = element.getElementsByClassName('calendar-days')[0];
         this.detail = element.getElementsByClassName('calendar-detail')[0];
         this.navigation = element.getElementsByClassName('calendar-navigation')[0];
         this.date = new Date().getDate();
