@@ -135,7 +135,7 @@
     text-decoration: uppercase;
 }
 
-.calender-days {
+.calendar-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     list-style-type: none;
@@ -144,13 +144,13 @@
     user-select: none;
 }
 
-.calender-days > li:has(time) {
+.calendar-days > li:has(time) {
     padding: 0.5rem;
     text-align: center;
     cursor: pointer;
 }
 
-.calender-days > li:hover:has(time) {
+.calendar-days > li:hover:has(time) {
     color: var(--whiteColor);
     background-color: var(--primaryColor);
 }

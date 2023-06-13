@@ -6,22 +6,22 @@
     display: grid;
 }
 
-.scrollview::-webkit-scrollbar{
+.scrollview::-webkit-scrollbar {
     display: none;
 }
 
 .scrollview.direction\:horizontal {
     grid-auto-flow: column;
     grid-auto-columns: min-content;
-    height: inherit;
-    overflow-inline: auto;
+    max-width: 100%;
+    overflow-x: auto;
     overscroll-behavior-inline: contain;
 }
 
 .scrollview.direction\:vertical {
     grid-auto-flow: row;
     grid-auto-rows: min-content;
-    height: inherit;
-    overflow-block: auto;
+    max-height: 100%;
+    overflow-y: auto;
     overscroll-behavior-y: contain;
 }

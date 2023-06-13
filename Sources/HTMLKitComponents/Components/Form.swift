@@ -341,22 +341,27 @@ public struct CheckField: View, Modifiable {
     /// The content of the field.
     internal let value: String
     
+    /// The content of the field.
+    internal var content: String
+    
     /// The classes of the field.
     internal var classes: [String]
     
     /// Creates a check field.
-    public init(name: String, value: String) {
+    public init(name: String, value: String, content: () -> String) {
         
         self.name = name
         self.value = value
+        self.content = content()
         self.classes = ["checkfield"]
     }
     
     /// Creates a check field.
-    internal init(name: String, value: String, classes: [String]) {
+    internal init(name: String, value: String, content: String, classes: [String]) {
         
         self.name = name
         self.value = value
+        self.content = content
         self.classes = classes
     }
     
@@ -367,6 +372,11 @@ public struct CheckField: View, Modifiable {
             .name(name)
             .value(value)
             .class(classes.joined(separator: " "))
+        Label {
+            content
+        }
+        .class("label")
+        .for(name)
     }
 }
 
@@ -430,22 +440,27 @@ public struct RadioSelect: View, Modifiable {
     /// The content of the select.
     internal let value: String
     
+    /// The content of the select.
+    internal var content: String
+    
     /// The classes of the select.
     internal var classes: [String]
     
     /// Creates a radio select.
-    public init(name: String, value: String) {
+    public init(name: String, value: String, content: () -> String) {
         
         self.name = name
         self.value = value
+        self.content = content()
         self.classes = ["radioselect"]
     }
     
     /// Creates a radio select.
-    internal init(name: String, value: String, classes: [String]) {
+    internal init(name: String, value: String, content: String, classes: [String]) {
         
         self.name = name
         self.value = value
+        self.content = content
         self.classes = classes
     }
     
@@ -456,6 +471,11 @@ public struct RadioSelect: View, Modifiable {
             .name(name)
             .value(value)
             .class(classes.joined(separator: " "))
+        Label {
+            content
+        }
+        .class("label")
+        .for(name)
     }
 }
 
@@ -876,80 +896,84 @@ public struct DatePicker: View, Modifiable {
                 .modify(unwrap: value) {
                     $0.value($1)
                 }
-            Division {
-                UnorderedList {
-                    ListItem {
-                        HTMLKit.Button {
-                            Vector {
-                                Polyline {
-                                }
-                                .points("10 2 4 8 10 14")
-                            }
-                            .viewBox("0 0 16 16")
-                            .namespace("http://www.w3.org/2000/svg")
-                            .fill("currentColor")
-                            .strokeWidth(2)
-                            .strokeLineCap(.round)
-                            .strokeLineJoin(.round)
-                        }
-                        .type(.button)
-                        .value("previous")
-                    }
-                    ListItem {
-                        Bold {
-                        }
-                        .class("calendar-detail")
-                    }
-                    ListItem {
-                        HTMLKit.Button {
-                            Vector {
-                                Polyline {
-                                }
-                                .points("6 2 12 8 6 14")
-                            }
-                            .viewBox("0 0 16 16")
-                            .namespace("http://www.w3.org/2000/svg")
-                            .fill("currentColor")
-                            .strokeWidth(2)
-                            .strokeLineCap(.round)
-                            .strokeLineJoin(.round)
-                        }
-                        .type(.button)
-                        .value("next")
-                    }
-                }
-                .class("calendar-navigation")
-                UnorderedList {
-                    ListItem {
-                        "Sun"
-                    }
-                    ListItem {
-                        "Mon"
-                    }
-                    ListItem {
-                        "Tue"
-                    }
-                    ListItem {
-                        "Wed"
-                    }
-                    ListItem {
-                        "Thu"
-                    }
-                    ListItem {
-                        "Fri"
-                    }
-                    ListItem {
-                        "Sat"
-                    }
-                }
-                .class("calendar-week")
-                UnorderedList {
-                }
-                .class("picker-calendar")
-            }
-            .class("datepicker-picker")
+            self.calendar
         }
         .class(classes.joined(separator: " "))
+    }
+    
+    public var calendar: Content {
+        Division {
+            UnorderedList {
+                ListItem {
+                    HTMLKit.Button {
+                        Vector {
+                            Polyline {
+                            }
+                            .points("10 2 4 8 10 14")
+                        }
+                        .viewBox("0 0 16 16")
+                        .namespace("http://www.w3.org/2000/svg")
+                        .fill("currentColor")
+                        .strokeWidth(2)
+                        .strokeLineCap(.round)
+                        .strokeLineJoin(.round)
+                    }
+                    .type(.button)
+                    .value("previous")
+                }
+                ListItem {
+                    Bold {
+                    }
+                    .class("calendar-detail")
+                }
+                ListItem {
+                    HTMLKit.Button {
+                        Vector {
+                            Polyline {
+                            }
+                            .points("6 2 12 8 6 14")
+                        }
+                        .viewBox("0 0 16 16")
+                        .namespace("http://www.w3.org/2000/svg")
+                        .fill("currentColor")
+                        .strokeWidth(2)
+                        .strokeLineCap(.round)
+                        .strokeLineJoin(.round)
+                    }
+                    .type(.button)
+                    .value("next")
+                }
+            }
+            .class("calendar-navigation")
+            UnorderedList {
+                ListItem {
+                    "Sun"
+                }
+                ListItem {
+                    "Mon"
+                }
+                ListItem {
+                    "Tue"
+                }
+                ListItem {
+                    "Wed"
+                }
+                ListItem {
+                    "Thu"
+                }
+                ListItem {
+                    "Fri"
+                }
+                ListItem {
+                    "Sat"
+                }
+            }
+            .class("calendar-week")
+            UnorderedList {
+            }
+            .class("calendar-days")
+        }
+        .class("datepicker-calendar")
     }
 }
 

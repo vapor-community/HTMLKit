@@ -163,7 +163,7 @@ final class ComponentTests: XCTestCase {
                        """
                        <div class="datepicker">\
                        <input type="text" class="datepicker-datefield" id="name" name="name">\
-                       <div class="datepicker-picker">\
+                       <div class="datepicker-calendar">\
                        <ul class="calendar-navigation">\
                        <li>\
                        <button type="button" value="previous">\
@@ -192,7 +192,7 @@ final class ComponentTests: XCTestCase {
                        <li>Fri</li>\
                        <li>Sat</li>\
                        </ul>\
-                       <ul class="picker-calendar"></ul>\
+                       <ul class="calendar-days"></ul>\
                        </div>\
                        </div>
                        """
@@ -215,12 +215,15 @@ final class ComponentTests: XCTestCase {
     func testCheckField() throws {
         
         let view = TestView {
-            CheckField(name: "name", value: "value")
+            CheckField(name: "name", value: "value") {
+                "Label"
+            }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="checkbox" id="name" name="name" value="value" class="checkfield">
+                       <input type="checkbox" id="name" name="name" value="value" class="checkfield">\
+                       <label class="label" for="name">Label</label>
                        """
         )
     }
@@ -228,12 +231,15 @@ final class ComponentTests: XCTestCase {
     func testRadioSelect() throws {
         
         let view = TestView {
-            RadioSelect(name: "name", value: "value")
+            RadioSelect(name: "name", value: "value") {
+                "Label"
+            }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="radio" id="name" name="name" value="value" class="radioselect">
+                       <input type="radio" id="name" name="name" value="value" class="radioselect">\
+                       <label class="label" for="name">Label</label>
                        """
         )
     }

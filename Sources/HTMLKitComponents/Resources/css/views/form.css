@@ -16,11 +16,19 @@
  */
 
 .label {
+    --foregroundColor: 0, 0%, 0%;
+    
     display: inline-block;
     margin-block-start: 1.25rem;
     margin-block-end: 0.625rem;
-    font-size: var(--textFontSize);
-    font-weight: var(--textFontHeight);
-    line-height: var(--textLineHeight);
-    color: var(--textBaseColor);
+    font-family: system-ui;
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
+    line-height: var(--lineHeight);
+    color: hsla(var(--foregroundColor), 1.0);
 }
+
+.scheme\:dark .label, .label.scheme\:dark {
+    --foregroundColor: 0, 0%, 100%;
+}
+

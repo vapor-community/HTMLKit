@@ -16,35 +16,52 @@
 .slider {
     --borderWidth: 1px;
     --borderColor: 210, 14%, 89%;
+    --controlColor: 0, 0%, 0%;
     --focusColor: 210, 100%, 50%;
     --backgroundColor: 0, 0%, 100%;
     
     display: block;
+    margin: 0;
+    padding: 0;
     inline-size: 100%;
     border-width: var(--borderWidth);
     border-style: solid;
-    border-color: var(--borderColor);
+    border-color: hsla(var(--borderColor), 1.0);
+    background-color: hsla(var(--backgroundColor), 1.0);
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
 }
 
+.slider:focus {
+    border-color: hsla(var(--focusColor), 1.0);
+    outline: 0;
+    box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
+}
+
 .slider::-webkit-slider-thumb {
     width: 1em;
     height: 1em;
-    background-color: var(--backgroundColor);
+    background-color: hsla(var(--controlColor), 1.0);
     cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .slider::-moz-range-thumb {
     width: 1em;
     height: 1em;
-    background-color: var(--backgroundColor);
+    background-color: hsla(var(--controlColor), 1.0);
     cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .scheme\:dark .slider, .slider.scheme\:dark {
     --borderColor: 210, 9%, 31%;
+    --controlColor: 0, 0%, 100%;
     --focusColor: 210, 100%, 50%;
     --backgroundColor: 210, 11%, 15%;
 }

@@ -19,7 +19,7 @@
                 
                 event.preventDefault();
                 
-                var replacement = "";
+                var replacement = '';
                 
                 var selection = self.getSelection();
                 
