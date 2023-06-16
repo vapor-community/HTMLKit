@@ -1,0 +1,70 @@
+/*
+ The rulesets for the textfield component.
+ 
+ default:
+ block padding: 8px
+ inline padding: 16px
+ font size:
+ font weigth: normal
+ line height: 1.5
+ foreground color: #000000
+ border width: 1px
+ border color: #DFE3E7
+ border radius: 0
+ focus color: #0080FF
+ background color: #FFFFFF
+ 
+ darkmode:
+ foreground color: #FFFFFF
+ border color: #484F56
+ focus color: #0080FF
+ background color: #22262A
+ */
+
+.textfield {
+    --paddingBlock: 0.5rem;
+    --paddingInline: 1.0rem;
+    --fontSize: 1.0rem;
+    --fontWeight: 400;
+    --lineHeight: 1.5;
+    --foregroundColor: 0, 0%, 0%;
+    --borderWidth: 1px;
+    --borderColor: 210, 14%, 89%;
+    --borderRadius: 0;
+    --focusColor: 210, 100%, 50%;
+    --backgroundColor: 0, 0%, 100%;
+    
+    display: block;
+    inline-size: 100%;
+    padding-block: var(--paddingBlock);
+    padding-inline: var(--paddingInline);
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
+    line-height: var(--lineHeight);
+    color: hsla(var(--foregroundColor), 1.0);
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--borderColor), 1.0);
+    border-radius: var(--borderRadius);
+    background-color: hsla(var(--backgroundColor), 1.0);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.textfield:focus {
+    border-color: hsla(var(--focusColor), 1.0);
+    outline: 0;
+    box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
+}
+
+.textfield:invalid {
+    border-color: var(--redColor);
+}
+
+.scheme\:dark .textfield, .textfield.scheme\:dark {
+    --foregroundColor: 0, 0%, 100%;
+    --borderColor: 210, 9%, 31%;
+    --focusColor: 210, 9%, 31%;
+    --backgroundColor: 210, 11%, 15%;
+}

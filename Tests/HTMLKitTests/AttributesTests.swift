@@ -14,10 +14,10 @@ final class AttributesTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadyOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
+    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadyOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute
     
     struct Tag: ContentNode, GlobalElement, AllAttributes {
-        
+
         internal var name: String { "tag" }
 
         internal var attributes: OrderedDictionary<String, Any>?
@@ -445,6 +445,66 @@ final class AttributesTests: XCTestCase {
             return self.mutate(selected: "selected")
         }
         
+        func draw(_ value: String) -> Tag {
+            return self.mutate(draw: value)
+        }
+        
+        func fill(_ value: String) -> Tag {
+            return self.mutate(fill: value)
+        }
+        
+        func fillOpacity(_ value: Double) -> Tag {
+            return self.mutate(fillopacity: value)
+        }
+        
+        func stroke(_ value: String) -> Tag {
+            return self.mutate(stroke: value)
+        }
+        
+        func strokeWidth(_ size: Int) -> Tag {
+            return self.mutate(strokewidth: size)
+        }
+        
+        func strokeOpacity(_ value: Double) -> Tag {
+            return self.mutate(strokeopacity: value)
+        }
+        
+        func strokeLineCap(_ value: HTMLKit.Values.Linecap) -> Tag {
+            return self.mutate(strokelinecap: value.rawValue)
+        }
+        
+        func strokeLineJoin(_ value: HTMLKit.Values.Linejoin) -> Tag {
+            return self.mutate(strokelinejoin: value.rawValue)
+        }
+        
+        func radius(_ size: Int) -> Tag {
+            return self.mutate(radius: size)
+        }
+        
+        func positionPoint(_ point: (Int, Int)) -> Tag {
+            return self.mutate(positionpoint: point)
+        }
+        
+        func radiusPoint(_ point: (Int, Int)) -> Tag {
+            return self.mutate(radiuspoint: point)
+        }
+        
+        func centerPoint(_ point: (Int, Int)) -> Tag {
+            return self.mutate(centerpoint: point)
+        }
+        
+        func viewBox(_ value: String) -> Tag {
+            return self.mutate(viewbox: value)
+        }
+        
+        func namespace(_ value: String) -> Tag {
+            return self.mutate(namespace: value)
+        }
+        
+        func points(_ value: String) -> Tag {
+            return self.mutate(points: value)
+        }
+        
         func custom(key: String, value: Any) -> Tag {
             return self.mutate(key: key, value: value)
         }
@@ -575,6 +635,10 @@ final class AttributesTests: XCTestCase {
         
         public func aria(roleDescription value: String) -> Tag {
             return mutate(ariaroledescription: value)
+        }
+        
+        func shadowRootMode(_ value: Values.Shadow.Mode) -> Tag {
+            return mutate(shadowrootmode: value.rawValue)
         }
     }
     
@@ -2451,6 +2515,246 @@ final class AttributesTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tag aria-roledescription="description"></tag>
+                       """
+        )
+    }
+    
+    func testDrawAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .draw("M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag d="M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z"></tag>
+                       """
+        )
+    }
+    
+    func testFillAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .fill("black")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag fill="black"></tag>
+                       """
+        )
+    }
+    
+    func testFillOpacityAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .fillOpacity(0.5)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag fill-opacity="0.5"></tag>
+                       """
+        )
+    }
+    
+    func testStrokeAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .stroke("black")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag stroke="black"></tag>
+                       """
+        )
+    }
+    
+    func testStrokeWidthAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .strokeWidth(5)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag stroke-width="5"></tag>
+                       """
+        )
+    }
+    
+    func testStrokeOpacityAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .strokeOpacity(1.0)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag stroke-opacity="1.0"></tag>
+                       """
+        )
+    }
+    
+    func testStrokeLineCapAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .strokeLineCap(.round)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag stroke-linecap="round"></tag>
+                       """
+        )
+    }
+    
+    func testStrokeLineJoinAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .strokeLineJoin(.miter)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag stroke-linejoin="miter"></tag>
+                       """
+        )
+    }
+    
+    func testRadiusAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .radius(25)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag r="25"></tag>
+                       """
+        )
+    }
+    
+    func testPositionPointAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .positionPoint((10,10))
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag x="10" y="10"></tag>
+                       """
+        )
+    }
+    
+    func testRadiusPointAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .radiusPoint((10,10))
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag rx="10" ry="10"></tag>
+                       """
+        )
+    }
+    
+    func testCenterPointAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .centerPoint((10,10))
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag cx="10" cy="10"></tag>
+                       """
+        )
+    }
+    
+    func testViewBoxAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .viewBox("0 0 100 100")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag viewbox="0 0 100 100"></tag>
+                       """
+        )
+    }
+    
+    func testNamespaceAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .namespace("http://www.w3.org/2000/svg")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag xmlns="http://www.w3.org/2000/svg"></tag>
+                       """
+        )
+    }
+    
+    func testPointsAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .points("50,0 21,90 98,35 2,35 79,90")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag points="50,0 21,90 98,35 2,35 79,90"></tag>
+                       """
+        )
+    }
+    
+    func testShadowRootModeAttribute() throws {
+        
+        let view = TestView {
+            Tag {
+            }
+            .shadowRootMode(.open)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag shadowrootmode="open"></tag>
                        """
         )
     }

@@ -59,7 +59,7 @@ public struct Circle: ContentNode, VectorElement {
 }
 
 extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute {
-  
+    
     public func id(_ value: String) -> Circle {
         return self.mutate(id: value)
     }
@@ -88,7 +88,7 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
         return self.mutate(strokewidth: size)
     }
     
-    public func centerPoint(_ point: Geometrics.Point) -> Circle {
+    public func centerPoint(_ point: (Int, Int)) -> Circle {
         return self.mutate(centerpoint: point)
     }
     
@@ -188,8 +188,8 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return self.mutate(strokewidth: size)
     }
     
-    public func radiusPoint(_ point: Geometrics.Point) -> Rectangle {
-        return self.mutate(radius: point)
+    public func radiusPoint(_ point: (Int, Int)) -> Rectangle {
+        return self.mutate(radiuspoint: point)
     }
     
     public func width(_ size: Int) -> Rectangle {
@@ -292,12 +292,12 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
         return self.mutate(strokewidth: size)
     }
     
-    public func centerPoint(_ point: Geometrics.Point) -> Ellipse {
+    public func centerPoint(_ point: (Int, Int)) -> Ellipse {
         return self.mutate(centerpoint: point)
     }
     
-    public func radiusPoint(_ point: Geometrics.Point) -> Ellipse {
-            return self.mutate(radius: point)
+    public func radiusPoint(_ point: (Int, Int)) -> Ellipse {
+        return self.mutate(radiuspoint: point)
     }
     
     public func fillOpacity(_ value: Double) -> Ellipse {
@@ -454,7 +454,7 @@ public struct Polygon: ContentNode, VectorElement {
     }
 }
 
-extension Polygon: GlobalVectorAttributes {
+extension Polygon: GlobalVectorAttributes, PointsAttribute {
     
     public func id(_ value: String) -> Polygon {
         return self.mutate(id: value)
@@ -498,6 +498,10 @@ extension Polygon: GlobalVectorAttributes {
     
     public func strokeLineJoin(_ value: Values.Linejoin) -> Polygon {
         return self.mutate(strokelinejoin: value.rawValue)
+    }
+    
+    public func points(_ value: String) -> Polygon {
+        return self.mutate(points: value)
     }
     
     public func custom(key: String, value: Any) -> Polygon {
@@ -546,7 +550,7 @@ public struct Polyline: ContentNode, VectorElement {
     }
 }
 
-extension Polyline: GlobalVectorAttributes {
+extension Polyline: GlobalVectorAttributes, PointsAttribute {
     
     public func id(_ value: String) -> Polyline {
         return self.mutate(id: value)
@@ -590,6 +594,10 @@ extension Polyline: GlobalVectorAttributes {
     
     public func strokeLineJoin(_ value: Values.Linejoin) -> Polyline {
         return self.mutate(strokelinejoin: value.rawValue)
+    }
+    
+    public func points(_ value: String) -> Polyline {
+        return self.mutate(points: value)
     }
     
     public func custom(key: String, value: Any) -> Polyline {

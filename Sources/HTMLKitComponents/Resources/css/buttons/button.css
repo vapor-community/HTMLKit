@@ -1,0 +1,109 @@
+/*
+ The stylesheet for the button component.
+ 
+ default:
+ block padding: 8px
+ inline padding: 16px
+ font size: 16px
+ font weight: normal
+ line height: 1.5
+ foreground color: #FFFFFF
+ border width: 1px
+ border color: #DFE3E7
+ border radius: 0
+ background color: #FFFFFF
+ 
+ darkmode:
+ foreground color: #FFFFFF
+ border color: #484F56
+ background color: #22262a
+ */
+
+.button {
+    --paddingBlock: 0.5rem;
+    --paddingInline: 1.0rem;
+    --inlineSize: fit-content();
+    --fontSize: 1.0rem;
+    --fontWeight: 400;
+    --lineHeight: 1.5;
+    --borderWidth: 1px;
+    --borderColor: 210, 9%, 31%;
+    --borderRadius: 0;
+    --foregroundColor: 0, 0%, 100%;
+    --backgroundColor: 210, 11%, 15%;
+    
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: var(--paddingBlock);
+    padding-inline: var(--paddingInline);
+    inline-size: var(--inlineSize);
+    font-family: var(--fontFamily);
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
+    line-height: var(--lineHeight);
+    color: hsla(var(--foregroundColor), 1.0);
+    text-decoration: none;
+    white-space: nowrap;
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--borderColor), 1.0);
+    background-color: hsla(var(--backgroundColor), 1.0);
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.button:hover {
+    filter: brightness(90%) saturate(90%);
+}
+
+.button.style\:primary {
+    --foregroundColor: var(--whiteColor);
+    --backgroundColor: var(--primaryColor);
+    --borderColor: var(--primaryColor);
+}
+
+.button.style\:secondary {
+    --foregroundColor: var(--whiteColor);
+    --backgroundColor: var(--secondaryColor);
+    --borderColor: var(--secondaryColor);
+}
+
+.button.style\:outline {
+    --foregroundColor: var(--secondaryColor);
+    --backgroundColor: transparent;
+    --borderColor: var(--secondaryColor);
+}
+
+.button.size\:full {
+    --inlineSize: 100%;
+}
+
+.button.size\:large {
+    --inlineSize: 75%;
+}
+
+.button.size\:medium {
+    --inlineSize: 50%;
+}
+
+.button.size\:small {
+    --inlineSize: 25%;
+}
+
+.button > .symbol + .text {
+    margin-inline-start: 0.938em;
+}
+
+.button > .text + .symbol {
+    margin-inline-start: 0.938em;
+}
+
+.scheme\:dark .button, .button.scheme\:dark  {
+    --foregroundColor: 0, 0%, 100%;
+    --borderColor: 210, 9%, 31%;
+    --backgroundColor: 210, 11%, 15%;
+}

@@ -1,0 +1,163 @@
+/*
+ The rulsets for the link component.
+ */
+
+.link {
+    --fontSize: 1.0rem;
+    --lineHeight: 1.5;
+    --fontWeight: 400;
+    
+    font-family: var(--fontFamily);
+    font-size: var(--fontSize);
+    font-weight: var(--fontHeight);
+    line-height: var(--lineHeight);
+    color: hsla(var(--foregroundColor), 1.0);
+    text-decoration: none;
+}
+
+.link.size\:tiny {
+    --fontSize: 0.67rem;
+    --lineHeight: 1.25;
+}
+
+.link.size\:small {
+    --fontSize: 0.83rem;
+    --lineHeight: 1.25;
+}
+
+.link.size\:medium {
+    --fontSize: 1.17rem;
+    --lineHeight: 1.75;
+}
+
+.link.size\:large {
+    --fontSize: 1.5rem;
+    --lineHeight: 2.0;
+}
+
+.link.size\:extralarge {
+    --fontSize: 2rem;
+    --lineHeight: 2.25;
+}
+
+.link.weight\:thin {
+    --fontWeight: 100;
+}
+
+.link.weight\:ultralight {
+    --fontWeight: 200;
+}
+
+.link.weight\:light {
+    --fontWeight: 300;
+}
+
+.link.weight\:semibold {
+    --fontWeight: 500;
+}
+
+.link.weight\:semibold {
+    --fontWeight: 600;
+}
+
+.link.weight\:bold {
+    --fontWeight: 700;
+}
+
+.link.weight\:heavy {
+    --fontWeight: 900;
+}
+
+.link.weight\:black {
+    --fontWeight: 950;
+}
+
+.link.transformation\:uppercase {
+    text-transform: uppercase;
+}
+
+.link.transformation\:lowercase {
+    text-transform: lowercase;
+}
+
+.link.transformation\:capitalize {
+    text-transform: capitalize;
+}
+
+.link.transformation\:underline {
+    text-decoration: underline;
+}
+
+.link.transformation\:overline {
+    text-decoration: overline;
+}
+
+.link.transformation\:strikethrough {
+    text-decoration: line-through;
+}
+
+.link.transformation\:none {
+    text-decoration: none;
+}
+
+.link.style\:italic {
+    font-style: italic;
+}
+
+.link.style\:oblique {
+    font-style: oblique;
+}
+
+.link.style\:title {
+    --fontSize: 2.0rem;
+    --fontWeight: 400;
+    --lineHeight: 2.25;
+}
+
+.link.style\:headline {
+    --fontSize: 1.5rem;
+    --fontWeight: 600;
+    --lineHeight: 2.0;
+}
+
+.link.style\:subheadline {
+    --fontSize: 1.25rem;
+    --fontWeight: 400;
+    --lineHeight: 1.75;
+}
+
+.link.style\:body {
+    --fontSize: 1rem;
+    --fontWeight: 400;
+    --lineHeight: 1.5;
+}
+
+.link.style\:callout {
+    --fontSize: 1rem;
+    --fontWeight: 400;
+    --lineHeight: 1.5;
+}
+
+.link.style\:caption {
+    --fontSize: 0.8rem;
+    --fontWeight: 400;
+    --lineHeight: 1.5;
+}
+
+.link.style\:footnote {
+    --fontSize: 0.8rem;
+    --fontWeight: 400;
+    --lineHeight: 1.75;
+    --foregroundColor: var(--grayColor) !important;
+}
+
+.link.style\:code {
+    --fontFamily: monospace;
+    --fontSize: 1.0rem;
+    --fontWeight: 400;
+    --lineHeight: 1.5;
+}
+
+.scheme\:dark .link, .link.scheme\:dark {
+    --foregroundColor: 0, 0%, 100%;
+}

@@ -1,0 +1,32 @@
+/*
+ The stylesheet for the grid component.
+ */
+
+.grid {
+    display: grid;
+    list-style-type: none;
+}
+
+.grid.ratio\:50 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid.ratio\:33 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid.ratio\:25 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.grid.ratio\:20 {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.grid.ratio\:15 {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.grid-item {
+    overflow: hidden;
+}

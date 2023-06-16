@@ -1,0 +1,166 @@
+/*
+ The rulesets for the text component.
+ 
+ font size: 16px
+ line height: 1.5
+ font weight: normal
+ */
+
+.text {
+    --fontSize: 1.0rem;
+    --lineHeight: 1.5;
+    --fontWeight: 400;
+    
+    font-family: var(--fontFamily);
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
+    line-height: var(--lineHeight);
+    color: hsla(var(--foregroundColor), 1.0);
+}
+
+.text.size\:tiny {
+    --fontSize: 0.67rem;
+    --lineHeight: 1.25;
+}
+
+.text.size\:small {
+    --fontSize: 0.83rem;
+    --lineHeight: 1.25;
+}
+
+.text.size\:medium {
+    --fontSize: 1.17rem;
+    --lineHeight: 1.75;
+}
+
+.text.size\:large {
+    --fontSize: 1.5rem;
+    --lineHeight: 2.0;
+}
+
+.text.size\:extralarge {
+    --fontSize: 2rem;
+    --lineHeight: 2.25;
+}
+
+.text.weight\:thin {
+    --fontWeight: 100;
+}
+
+.text.weight\:ultralight {
+    --fontWeight: 200;
+}
+
+.text.weight\:light {
+    --fontWeight: 300;
+}
+
+.text.weight\:medium {
+    --fontWeight: 500;
+}
+
+.text.weight\:semibold {
+    --fontWeight: 600;
+}
+
+.text.weight\:bold {
+    --fontWeight: 700;
+}
+
+.text.weight\:heavy {
+    --fontWeight: 900;
+}
+
+.text.weight\:black {
+    --fontWeight: 950;
+}
+
+.text.transformation\:uppercase {
+    text-transform: uppercase;
+}
+
+.text.transformation\:lowercase {
+    text-transform: lowercase;
+}
+
+.text.transformation\:capitalize {
+    text-transform: capitalize;
+}
+
+.text.transformation\:underline {
+    text-decoration: underline;
+}
+
+.text.transformation\:overline {
+    text-decoration: overline;
+}
+
+.text.transformation\:strikethrough {
+    text-decoration: line-through;
+}
+
+.text.transformation\:none {
+    text-decoration: none;
+}
+
+.text.style\:italic {
+    font-style: italic;
+}
+
+.text.style\:oblique {
+    font-style: oblique;
+}
+
+.text.style\:title {
+    --fontSize: 2.0rem;
+    --fontWeight: 400;
+    --lineHeight: 2.25;
+}
+
+.text.style\:headline {
+    --fontSize: 1.5rem;
+    --fontWeight: 600;
+    --lineHeight: 2.0;
+}
+
+.text.style\:subheadline {
+    --fontSize: 1.25rem;
+    --fontWeight: 400;
+    --lineHeight: 1.75;
+}
+
+.text.style\:body {
+    --fontSize: 1rem;
+    --fontWeight: 400;
+    --lineHeight: 1.5;
+}
+
+.text.style\:callout {
+    --fontSize: 1rem;
+    --fontWeight: 400;
+    --lineHeight: 1.5;
+}
+
+.text.style\:caption {
+    --fontSize: 0.8rem;
+    --fontWeight: 400;
+    --lineHeight: 1.5;
+}
+
+.text.style\:footnote {
+    --fontSize: 0.8rem;
+    --fontWeight: 400;
+    --lineHeight: 1.75;
+    --foregroundColor: var(--grayColor) !important;
+}
+
+.text.style\:code {
+    --fontFamily: monospace;
+    --fontSize: 1.0rem;
+    --fontWeight: 400;
+    --lineHeight: 1.5;
+}
+
+.scheme\:dark .text, .text.scheme\:dark {
+    --foregroundColor: 0, 0%, 100%;
+}

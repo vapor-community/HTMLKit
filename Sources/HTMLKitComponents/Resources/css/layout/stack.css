@@ -1,0 +1,198 @@
+/*
+ The rulsets for the horizontal stack component.
+ */
+
+.hstack {
+    position: relative;
+    inline-size: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.hstack.alignment\:top {
+    align-items: flex-start;
+}
+
+.hstack.alignment\:center {
+    align-items: center;
+}
+
+.hstack.alignment\:bottom {
+    align-items: flex-end;
+}
+
+.hstack.alignment\:baseline {
+    align-items: baseline;
+}
+
+.hstack.space\:around {
+    justify-content: space-around;
+}
+
+.hstack.space\:between {
+    justify-content: space-between;
+}
+
+.hstack.space\:evenly {
+    justify-content: space-evenly;
+}
+
+/*
+ The rulesets for the vertical stack component.
+ */
+
+.vstack {
+    position: relative;
+    inline-size: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.vstack.alignment\:leading {
+    justify-content: flex-start;
+}
+
+.vstack.alignment\:center {
+    justify-content: center;
+}
+
+.vstack.alignment\:trailing {
+    justify-content: flex-end;
+}
+
+/*
+ The rulesets for the vertical stack component.
+ */
+
+.zstack {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    inline-size: 100%;
+}
+
+/*
+ The rulesets for the stack column component.
+ */
+
+.stack-column {
+    position: relative;
+}
+
+.stack-column.size\:1 {
+    flex: 0 0 auto;
+    inline-size: 8.3333333333%;
+}
+
+.stack-column.size\:2 {
+    flex: 0 0 auto;
+    inline-size: 16.6666666667%;
+}
+
+.stack-column.size\:3 {
+    flex: 0 0 auto;
+    inline-size: 25%;
+}
+
+.stack-column.size\:4 {
+    flex: 0 0 auto;
+    inline-size: 33.3333333333%;
+}
+
+.stack-column.size\:5 {
+    flex: 0 0 auto;
+    inline-size: 41.6666666667%;
+}
+
+.stack-column.size\:6 {
+    flex: 0 0 auto;
+    inline-size: 50%;
+}
+
+.stack-column.size\:7 {
+    flex: 0 0 auto;
+    inline-size: 58.3333333333%;
+}
+
+.stack-column.size\:8 {
+    flex: 0 0 auto;
+    inline-size: 66.6666666667%;
+}
+
+.stack-column.size\:9 {
+    flex: 0 0 auto;
+    inline-size: 75%;
+}
+
+.stack-column.size\:10 {
+    flex: 0 0 auto;
+    inline-size: 83.3333333333%;
+}
+
+.stack-column.size\:11 {
+    flex: 0 0 auto;
+    inline-size: 91.6666666667%;
+}
+
+.stack-column.size\:12 {
+    flex: 0 0 auto;
+    inline-size: 100%;
+}
+
+.stack-column.alignment\:center {
+    text-align: center;
+}
+
+.stack-column.alignment\:left {
+    text-align: left;
+}
+
+.stack-column.alignment\:right {
+    text-align: right;
+}
+
+.stack-column.offset\:1 {
+    margin-inline-start: 8.3333333333%;
+}
+
+.stack-column.offset\:2 {
+    margin-inline-start: 16.6666666667%;
+}
+
+.stack-column.offset\:3 {
+    margin-inline-start: 25%;
+}
+
+.stack-column.offset\:4 {
+    margin-inline-start: 33.3333333333%;
+}
+
+.stack-column.offset\:5 {
+    margin-inline-start: 41.6666666667%;
+}
+
+.stack-column.offset\:6 {
+    margin-inline-start: 50%;
+}
+
+.stack-column.offset\:7 {
+    margin-inline-start: 58.3333333333%;
+}
+
+.stack-column.offset\:8 {
+    margin-inline-start: 66.6666666667%;
+}
+
+.stack-column.offset\:9 {
+    margin-inline-start: 75%;
+}
+
+.stack-column.offset\:10 {
+    margin-inline-start: 83.3333333333%;
+}
+
+.stack-column.offset\:11 {
+    margin-inline-start: 91.6666666667%;
+}

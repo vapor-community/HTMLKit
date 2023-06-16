@@ -1,0 +1,22 @@
+/*
+ The rulesets for the list component.
+ */
+
+.list {
+    display: flex;
+    list-style-type: none;
+}
+
+.list.direction\:horizontal {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.list.direction\:vertical {
+    flex-direction: column;
+}
+
+.list-row {
+    overflow: hidden;
+}

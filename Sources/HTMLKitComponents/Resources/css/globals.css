@@ -1,0 +1,567 @@
+:root {
+    
+    /*
+     The variables for the typography.
+     
+     font family: system-ui...; (font-stack)
+     */
+    
+    --fontFamily: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    
+    /*
+     The variables for the colors.
+     
+     black color: #000000
+     white color: #FFFFFF
+     blue color: #4098D7
+     brown color: #BF7140
+     cyan color: #38BEC9
+     green color: #57AE5B
+     indigo color: #647ACB
+     mint color: #91E697
+     pink color: #DA4A91
+     purple color: #724BB7
+     red color: #D64545
+     teal color: #3EBD93
+     orange color: #E67635
+     yellow color: #F7D070
+     gray color: #9E9E9E
+     silver color: #F7F7F7
+     primary color: #007FFF
+     secondary color: #132F4E
+     */
+    
+    --redColor: 0, 64%, 55%;
+    --orangeColor: 22, 78%, 55%;
+    --yellowColor: 43, 89%, 70%;
+    --greenColor: 123, 35%, 51%;
+    --mintColor: 124, 63%, 74%;
+    --tealColor: 160, 51%, 49%;
+    --cyanColor: 185, 57%, 50%;
+    --blueColor: 205, 65%, 55%;
+    --indigoColor: 227, 50%, 59%;
+    --purpleColor: 262, 43%, 51%;
+    --pinkColor: 330, 66%, 57%;
+    --brownColor: 23, 50%, 50%;
+    --silverColor: 0, 0%, 97%;
+    --grayColor: 0, 0%, 62%;
+    --blackColor: 0, 0%, 0%;
+    --whiteColor: 0, 0%, 100%;
+    --primaryColor: 210, 100%, 50%;
+    --secondaryColor: 211, 60%, 19%;
+}
+
+/*
+ dark version
+ */
+
+.scheme\:dark {
+    
+    color-scheme: dark;
+    
+    /*
+     The variables for the colors.
+     
+     black color: #000000
+     white color: #FFFFFF
+     blue color: #4098D7
+     brown color: #BF7140
+     cyan color: #38BEC9
+     green color: #57AE5B
+     indigo color: #647ACB
+     mint color: #91E697
+     pink color: #DA4A91
+     purple color: #724BB7
+     red color: #D64545
+     teal color: #3EBD93
+     orange color: #E67635
+     yellow color: #F7D070
+     gray color: #9E9E9E
+     silver color: #F7F7F7
+     primary color: #007FFF
+     secondary color: #132F4E
+     */
+    
+    --redColor: 0, 74%, 45%;
+    --orangeColor: 22, 88%, 45%;
+    --yellowColor: 3, 99%, 60%;
+    --greenColor: 123, 45%, 41%;
+    --mintColor: 124, 73%, 64%;
+    --tealColor: 160, 61%, 39%,;
+    --cyanColor: 185, 67%, 40%;
+    --blueColor: 205, 75%, 45%;
+    --indigoColor: 227, 60%, 49%;
+    --purpleColor: 262, 53%, 41%;
+    --pinkColor: 330, 76%, 47%;
+    --brownColor: 23, 60%, 40%,;
+    --silverColor: 240, 4%, 85%;
+    --grayColor: 25, 4%, 47%;
+    --blackColor: 30, 7%, 23%;
+    --whiteColor: 0, 0%, 100%;
+    --primaryColor: 210, 100%, 50%;
+    --secondaryColor: 211, 60%, 19%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre,
+body {
+    margin: 0;
+}
+
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+    display: block;
+    vertical-align: middle;
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    
+    html:focus-within {
+        scroll-behavior: smooth;
+    }
+}
+
+/*
+ z-index
+ */
+
+.zindex\:1 {
+    position: relative;
+    z-index: 1 !important;
+}
+
+.zindex\:2 {
+    position: relative;
+    z-index: 2 !important;
+}
+
+.zindex\:3 {
+    position: relative;
+    z-index: 3 !important;
+}
+
+.zindex\:4 {
+    position: relative;
+    z-index: 4 !important;
+}
+
+.zindex\:5 {
+    position: relative;
+    z-index: 5 !important;
+}
+
+/*
+ states
+ */
+
+.state\:active {
+    --borderColor: var(--primaryColor) !important;
+    --backgroundColor: var(--primaryColor) !important;
+}
+
+.state\:disabled {
+    pointer-events: none !important;
+}
+
+.state\:hidden {
+    display: none !important;
+}
+
+.state\:visible {
+    display: block !important;
+}
+
+/*
+ foreground
+ */
+
+.color\:black {
+    --foregroundColor: var(--blackColor) !important;
+}
+
+.color\:blue {
+    --foregroundColor: var(--blueColor) !important;
+}
+
+.color\:brown {
+    --foregroundColor: var(--brownColor) !important;
+}
+
+.color\:transparent {
+    --foregroundColor: transparent !important;
+}
+
+.color\:cyan {
+    --foregroundColor: var(--cyanColor) !important;
+}
+
+.color\:gray {
+    --foregroundColor: var(--grayColor) !important;
+}
+
+.color\:green {
+    --foregroundColor: var(--greenColor) !important;
+}
+
+.color\:indigo {
+    --foregroundColor: var(--indigoColor) !important;
+}
+
+.color\:mint {
+    --foregroundColor: var(--mintColor) !important;
+}
+
+.color\:orange {
+    --foregroundColor: var(--orangeColor) !important;
+}
+
+.color\:pink {
+    --foregroundColor: var(--pinkColor) !important;
+}
+
+.color\:purple {
+    --foregroundColor: var(--purpleColor) !important;
+}
+
+.color\:red {
+    --foregroundColor: var(--redColor) !important;
+}
+
+.color\:teal {
+    --foregroundColor: var(--tealColor) !important;
+}
+
+.color\:white {
+    --foregroundColor: var(--whiteColor) !important;
+}
+
+.color\:yellow {
+    --foregroundColor: var(--yellowColor) !important;
+}
+
+.color\:silver {
+    --foregroundColor: var(--silverColor) !important;
+}
+
+.color\:primary {
+    --foregroundColor: var(--primaryColor) !important;
+}
+
+.color\:secondary {
+    --foregroundColor: var(--secondaryColor) !important;
+}
+
+
+/*
+ borders
+ */
+
+.border\:black {
+    --borderColor: var(--blackColor) !important;
+}
+
+.border\:blue {
+    --borderColor: var(--blueColor) !important;
+}
+
+.border\:brown {
+    --borderWidth: 1px !important;
+    --borderColor: var(--brownColor) !important;
+}
+
+.border\:cyan {
+    --borderWidth: 1px !important;
+    --borderColor: var(--cyanColor) !important;
+}
+
+.border\:gray {
+    --borderWidth: 1px !important;
+    --borderColor: var(--grayColor) !important;
+}
+
+.border\:green {
+    --borderWidth: 1px !important;
+    --borderColor: var(--greenColor) !important;
+}
+
+.border\:indigo {
+    --borderWidth: 1px !important;
+    --borderColor: var(--indigoColor) !important;
+}
+
+.border\:mint {
+    --borderWidth: 1px !important;
+    --borderColor: var(--mintColor) !important;
+}
+
+.border\:orange {
+    --borderWidth: 1px !important;
+    --borderColor: var(--orangeColor) !important;
+}
+
+.border\:pink {
+    --borderWidth: 1px !important;
+    --borderColor: var(--pinkColor) !important;
+}
+
+.border\:purple {
+    --borderWidth: 1px !important;
+    --borderColor: var(--purpleColor) !important;
+}
+
+.border\:red {
+    --borderWidth: 1px !important;
+    --borderColor: var(--redColor) !important;
+}
+
+.border\:teal {
+    --borderWidth: 1px !important;
+    --borderColor: var(--tealColor) !important;
+}
+
+.border\:white {
+    --borderWidth: 1px !important;
+    --borderColor: var(--whiteColor) !important;
+}
+
+.border\:yellow {
+    --borderWidth: 1px !important;
+    --borderColor: var(--yellowColor) !important;
+}
+
+.border\:silver {
+    --borderWidth: 1px !important;
+    --borderColor: var(--silverColor) !important;
+}
+
+.border\:primary {
+    --borderWidth: 1px !important;
+    --borderColor: var(--primaryColor) !important;
+}
+
+.border\:secondary {
+    --borderWidth: 1px !important;
+    --borderColor: var(--secondaryColor) !important;
+}
+
+/*
+ backgrounds
+ */
+
+.background\:black {
+    --backgroundColor: var(--blackColor) !important;
+}
+
+.background\:blue {
+    --backgroundColor: var(--blueColor) !important;
+}
+
+.background\:brown {
+    --backgroundColor: var(--brownColor) !important;
+}
+
+.background\:cyan {
+    --backgroundColor: var(--cyanColor) !important;
+}
+
+.background\:gray {
+    --backgroundColor: var(--grayColor) !important;
+}
+
+.background\:green {
+    --backgroundColor: var(--greenColor) !important;
+}
+
+.background\:indigo {
+    --backgroundColor: var(--indigoColor) !important;
+}
+
+.background\:mint {
+    --backgroundColor: var(--mintColor) !important;
+}
+
+.background\:orange {
+    --backgroundColor: var(--orangeColor) !important;
+}
+
+.background\:pink {
+    --backgroundColor: var(--pinkColor) !important;
+}
+
+.background\:purple {
+    --backgroundColor: var(--purpleColor) !important;
+}
+
+.background\:red {
+    --backgroundColor: var(--redColor) !important;
+}
+
+.background\:teal {
+    --backgroundColor: var(--tealColor) !important;
+}
+
+.background\:white {
+    --backgroundColor: var(--whiteColor) !important;
+}
+
+.background\:yellow {
+    --backgroundColor: var(--yellowColor) !important;
+}
+
+.background\:silver {
+    --backgroundColor: var(--silverColor) !important;
+}
+
+.background\:primary {
+    --backgroundColor: var(--primaryColor) !important;
+}
+
+.background\:secondary {
+    --backgroundColor: var(--secondaryColor) !important;
+}
+
+/*
+ focus
+ */
+
+.focus\:black {
+    --focusColor: var(--blackColor) !important;
+}
+
+.focus\:blue {
+    --focusColor: var(--blueColor) !important;
+}
+
+.focus\:brown {
+    --focusColor: var(--brownColor) !important;
+}
+
+.focus\:cyan {
+    --focusColor: var(--cyanColor) !important;
+}
+
+.focus\:gray {
+    --focusColor: var(--grayColor) !important;
+}
+
+.focus\:green {
+    --focusColor: var(--greenColor) !important;
+}
+
+.focus\:indigo {
+    --focusColor: var(--indigoColor) !important;
+}
+
+.focus\:mint {
+    --focusColor: var(--mintColor) !important;
+}
+
+.focus\:orange {
+    --focusColor: var(--orangeColor) !important;
+}
+
+.focus\:pink {
+    --focusColor: var(--pinkColor) !important;
+}
+
+.focus\:purple {
+    --focusColor: var(--purpleColor) !important;
+}
+
+.focus\:red {
+    --focusColor: var(--redColor) !important;
+}
+
+.focus\:teal {
+    --focusColor: var(--tealColor) !important;
+}
+
+.focus\:white {
+    --focusColor: var(--whiteColor) !important;
+}
+
+.focus\:yellow {
+    --focusColor: var(--yellowColor) !important;
+}
+
+.focus\:silver {
+    --focusColor: var(--silverColor) !important;
+}
+
+.focus\:primary {
+    --focusColor: var(--primaryColor) !important;
+}
+
+.focus\:secondary {
+    --focusColor: var(--secondaryColor) !important;
+}
+
+/*
+ padding
+ */
+
+.padding\:large {
+    --paddingInline: 2.25rem !important;
+    --paddingBlock: 2.25rem !important;
+}
+
+.padding\:medium {
+    --paddingInline: 1.5rem !important;
+    --paddingBlock: 1.5rem !important;
+}
+
+.padding\:small {
+    --paddingInline: 1rem !important;
+    --paddingBlock: 1rem !important;
+}
+
+/*
+ shape
+ */
+
+.shape\:smallrounded {
+    --borderRadius: 0.313rem !important;
+}
+
+.shape\:largerounded {
+    --borderRadius: 0.625rem !important;
+}
+
+.shape\:fullrounded {
+    --borderRadius: 1.563rem !important;
+}

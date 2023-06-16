@@ -182,24 +182,24 @@ public protocol PositionPointAttribute: Attribute {
     /// ```html
     /// <tag x="" y="" />
     /// ```
-    func positionPoint(_ point: Geometrics.Point) -> Self
+    func positionPoint(_ point: (Int, Int)) -> Self
 }
 
 extension PositionPointAttribute where Self: ContentNode {
     
-    internal func mutate(radius: Geometrics.Point) -> Self {
+    internal func mutate(positionpoint: (Int, Int)) -> Self {
         
         guard var attributes = self.attributes else {
             
             var attributes = OrderedDictionary<String, Any>()
-            attributes["x"] = radius.x
-            attributes["y"] = radius.y
+            attributes["x"] = positionpoint.0
+            attributes["y"] = positionpoint.1
             
             return .init(attributes: attributes, content: content)
         }
         
-        attributes["x"] = radius.x
-        attributes["y"] = radius.y
+        attributes["x"] = positionpoint.0
+        attributes["y"] = positionpoint.1
         
         return .init(attributes: attributes, content: content)
     }
@@ -213,24 +213,24 @@ public protocol RadiusPointAttribute: Attribute {
     /// ```html
     /// <tag rx="" ry="" />
     /// ```
-    func radiusPoint(_ point: Geometrics.Point) -> Self
+    func radiusPoint(_ point: (Int, Int)) -> Self
 }
 
 extension RadiusPointAttribute where Self: ContentNode {
     
-    internal func mutate(radius: Geometrics.Point) -> Self {
+    internal func mutate(radiuspoint: (Int, Int)) -> Self {
         
         guard var attributes = self.attributes else {
             
             var attributes = OrderedDictionary<String, Any>()
-            attributes["rx"] = radius.x
-            attributes["ry"] = radius.y
+            attributes["rx"] = radiuspoint.0
+            attributes["ry"] = radiuspoint.1
             
             return .init(attributes: attributes, content: content)
         }
         
-        attributes["rx"] = radius.x
-        attributes["ry"] = radius.y
+        attributes["rx"] = radiuspoint.0
+        attributes["ry"] = radiuspoint.1
         
         return .init(attributes: attributes, content: content)
     }
@@ -244,24 +244,24 @@ public protocol CenterPointAttribute: Attribute {
     /// ```html
     /// <tag cx="" cy="" />
     /// ```
-    func centerPoint(_ point: Geometrics.Point) -> Self
+    func centerPoint(_ point: (Int, Int)) -> Self
 }
 
 extension CenterPointAttribute where Self: ContentNode {
     
-    internal func mutate(centerpoint: Geometrics.Point) -> Self {
+    internal func mutate(centerpoint: (Int, Int)) -> Self {
         
         guard var attributes = self.attributes else {
             
             var attributes = OrderedDictionary<String, Any>()
-            attributes["cx"] = centerpoint.x
-            attributes["cy"] = centerpoint.y
+            attributes["cx"] = centerpoint.0
+            attributes["cy"] = centerpoint.1
             
             return .init(attributes: attributes, content: content)
         }
         
-        attributes["cx"] = centerpoint.x
-        attributes["cy"] = centerpoint.y
+        attributes["cx"] = centerpoint.0
+        attributes["cy"] = centerpoint.1
         
         return .init(attributes: attributes, content: content)
     }
@@ -282,5 +282,41 @@ extension ViewBoxAttribute where Self: ContentNode {
     
     internal func mutate(viewbox value: String) -> Self {
         return self.mutate(key: "viewbox", value: value)
+    }
+}
+
+/// The protocol provides the element with the viewbox handler.
+public protocol NamespaceAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'viewbox'.
+    ///
+    /// ```html
+    /// <tag viewbox="" />
+    /// ```
+    func namespace(_ value: String) -> Self
+}
+
+extension NamespaceAttribute where Self: ContentNode {
+    
+    internal func mutate(namespace value: String) -> Self {
+        return self.mutate(key: "xmlns", value: value)
+    }
+}
+
+/// The protocol provides the element with the viewbox handler.
+public protocol PointsAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'viewbox'.
+    ///
+    /// ```html
+    /// <tag viewbox="" />
+    /// ```
+    func points(_ value: String) -> Self
+}
+
+extension PointsAttribute where Self: ContentNode {
+    
+    internal func mutate(points value: String) -> Self {
+        return self.mutate(key: "points", value: value)
     }
 }

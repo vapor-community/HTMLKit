@@ -17,6 +17,18 @@ public protocol ViewModifier {
     
     /// Hides the view
     func hidden() -> Self
+    
+    /// Sets the color appearence
+    func colorScheme(_ scheme: Tokens.ColorScheme) -> Self
+    
+    /// Sets the box padding
+    func padding(_ length: Tokens.BoxPadding) -> Self
+    
+    /// Sets the shape of the button.
+    func borderShape(_ shape: Tokens.BorderShape) -> Self
+    
+    /// Sets the border color of the input
+    func borderColor(_ color: Tokens.BorderColor) -> Self
 }
 
 extension ViewModifier where Self: Modifiable {
@@ -33,7 +45,23 @@ extension ViewModifier where Self: Modifiable {
         return self.mutate(class: `class`)
     }
     
-    internal func mutate(state class: String) -> Self {
+    internal func mutate(viewstate class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(scheme class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(padding class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(bordershape class: String) -> Self {
+        return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(bordercolor class: String) -> Self {
         return self.mutate(class: `class`)
     }
 }

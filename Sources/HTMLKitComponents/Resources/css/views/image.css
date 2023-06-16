@@ -1,0 +1,72 @@
+/*
+ The rulesets for the image component.
+ 
+ default:
+ inline size: 100%
+ border width: 0
+ border-radius: 0
+ 
+ darkmode:
+ */
+
+.image {
+    --inlineSize: 100%;
+    --borderWidth: 0;
+    --borderRadius: 0;
+    
+    position: relative;
+    max-inline-size: var(--inlineSize);
+    height: auto;
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--borderColor), 1.0);
+    border-radius: var(--borderRadius);
+}
+
+.image.fit\:contain {
+    object-fit:contain;
+}
+
+.image.fit\:cover {
+    object-fit:cover;
+}
+
+.image.fit\:fill {
+    object-fit:fill;
+}
+
+.image.fit\:scaledown {
+    object-fit:scale-down;
+}
+
+.image.fit\:none {
+    object-fit:none;
+}
+
+.image.opacity\:transparent {
+    opacity: 0;
+}
+
+.image.opacity\:intransparent {
+    opacity: 1;
+}
+
+.image.scale\:small {
+    --inlineSize: 25%;
+}
+
+.image.scale\:medium {
+    --inlineSize: 50%;
+}
+
+.image.scale\:large {
+    --inlineSize: 75%;
+}
+
+.image.shape\:circle {
+    --borderRadius: 50%;
+}
+
+.scheme\:dark .image, .image.scheme\:dark {
+    filter: brightness(.8) contrast(1.2);
+}

@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that distinguish content.
-public class Card: View {
+public struct Card: View, Modifiable {
     
     /// The header of the card.
     public var header: [Content]?
@@ -55,3 +55,39 @@ public class Card: View {
         .class(classes.joined(separator: " "))
     }
 }
+
+extension Card: ViewModifier {
+
+    public func opacity(_ value: Tokens.OpacityValue) -> Card {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> Card {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func backgroundColor(_ color: Tokens.BackgroundColor) -> Card {
+        return self.mutate(backgroundcolor: color.rawValue)
+    }
+    
+    public func hidden() -> Card {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> Card {
+        return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func padding(_ length: Tokens.BoxPadding) -> Card {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> Card {
+        return self.mutate(class: shape.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> Card {
+        return self.mutate(class: color.rawValue)
+    }
+}
+

@@ -36,14 +36,20 @@ internal class Parser {
     
     private init() {}
     
+    internal func parse(name: String, document: XMLDocument) throws -> String {
+        return try ViewLayout<Values.Doctype>(name: name, document: document).build()
+    }
+    
     internal func parse(node: XMLNode, indent: Int? = nil) throws -> String {
         
         switch node.kind {
         case .text:
-            return TextElement(node: node).build()
+            
+            return TextElement(node: node, indent: indent).build()
             
         case .comment:
-            return CommentElement(node: node).build()
+            
+            return CommentElement(node: node, indent: indent).build()
             
         case .element:
             
@@ -55,346 +61,349 @@ internal class Parser {
                 
                 switch localName {
                 case "html":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "head":
-                    return try ContentElement(element: element).build(verbatim: "Head")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Head")
                     
                 case "body":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "nav":
-                    return try ContentElement(element: element).build(verbatim: "Navigation")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Navigation")
                     
                 case "link":
-                    return try EmptyElement(element: element).build()
+                    return try EmptyElement(element: element, indent: indent).build()
                     
                 case "aside":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "section":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "h1":
-                    return try ContentElement(element: element).build(verbatim: "Heading1")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Heading1")
                     
                 case "h2":
-                    return try ContentElement(element: element).build(verbatim: "Heading2")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Heading2")
                     
                 case "h3":
-                    return try ContentElement(element: element).build(verbatim: "Heading3")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Heading3")
                     
                 case "h4":
-                    return try ContentElement(element: element).build(verbatim: "Heading4")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Heading4")
                     
                 case "h5":
-                    return try ContentElement(element: element).build(verbatim: "Heading5")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Heading5")
                     
                 case "h6":
-                    return try ContentElement(element: element).build(verbatim: "Heading6")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Heading6")
                     
                 case "hgroup":
-                    return try ContentElement(element: element).build(verbatim: "HeadingGroup")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "HeadingGroup")
                     
                 case "header":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "footer":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "address":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "p":
-                    return try ContentElement(element: element).build(verbatim: "Paragraph")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Paragraph")
                     
                 case "hr":
-                    return try EmptyElement(element: element).build(verbatim: "HorizontalRule")
+                    return try EmptyElement(element: element, indent: indent).build(verbatim: "HorizontalRule")
                     
                 case "pre":
-                    return try ContentElement(element: element).build(verbatim: "PreformattedText")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "PreformattedText")
                     
                 case "blockquote":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "ol":
-                    return try ContentElement(element: element).build(verbatim: "OrderedList")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "OrderedList")
                     
                 case "ul":
-                    return try ContentElement(element: element).build(verbatim: "UnorderedList")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "UnorderedList")
                     
                 case "dl":
-                    return try ContentElement(element: element).build(verbatim: "DescriptionList")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "DescriptionList")
                     
                 case "figure":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "a":
-                    return try ContentElement(element: element).build(verbatim: "Anchor")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Anchor")
                     
                 case "em":
-                    return try ContentElement(element: element).build(verbatim: "Emphasize")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Emphasize")
                     
                 case "small":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "s":
-                    return try ContentElement(element: element).build(verbatim: "StrikeThrough")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "StrikeThrough")
                     
                 case "main":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "div":
-                    return try ContentElement(element: element).build(verbatim: "Division")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Division")
                     
                 case "dfn":
-                    return try ContentElement(element: element).build(verbatim: "Definition")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Definition")
                     
                 case "cite":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "q":
-                    return try ContentElement(element: element).build(verbatim: "ShortQuote")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "ShortQuote")
                     
                 case "rt":
-                    return try ContentElement(element: element).build(verbatim: "RubyText")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "RubyText")
                     
                 case "rp":
-                    return try ContentElement(element: element).build(verbatim: "RubyPronunciation")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "RubyPronunciation")
                     
                 case "abbr":
-                    return try ContentElement(element: element).build(verbatim: "Abbreviation")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Abbreviation")
                     
                 case "data":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "time":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "code":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "v":
-                    return try ContentElement(element: element).build(verbatim: "Variable")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Variable")
                     
                 case "samp":
-                    return try ContentElement(element: element).build(verbatim: "SampleOutput")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "SampleOutput")
                     
                 case "kbd":
-                    return try ContentElement(element: element).build(verbatim: "KeyboardOutput")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "KeyboardOutput")
                     
                 case "sub":
-                    return try ContentElement(element: element).build(verbatim: "Subscript")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Subscript")
                     
                 case "sup":
-                    return try ContentElement(element: element).build(verbatim: "Superscript")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Superscript")
                     
                 case "i":
-                    return try ContentElement(element: element).build(verbatim: "Italic")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Italic")
                     
                 case "b":
-                    return try ContentElement(element: element).build(verbatim: "Bold")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Bold")
                     
                 case "strong":
-                    return try ContentElement(element: element).build(verbatim: "Strong")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Strong")
                     
                 case "u":
-                    return try ContentElement(element: element).build(verbatim: "SampleOutput")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "SampleOutput")
                     
                 case "mark":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "bdi":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "bdo":
-                    return try EmptyElement(element: element).build()
+                    return try EmptyElement(element: element, indent: indent).build()
                     
                 case "span":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "br":
-                    return try EmptyElement(element: element).build(verbatim: "LineBreak")
+                    return try EmptyElement(element: element, indent: indent).build(verbatim: "LineBreak")
                     
                 case "wbr":
-                    return try EmptyElement(element: element).build(verbatim: "WordBreak")
+                    return try EmptyElement(element: element, indent: indent).build(verbatim: "WordBreak")
                     
                 case "ins":
-                    return try ContentElement(element: element).build(verbatim: "InsertedText")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "InsertedText")
                     
                 case "del":
-                    return try ContentElement(element: element).build(verbatim: "DeletedText")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "DeletedText")
                     
                 case "img":
-                    return try EmptyElement(element: element).build(verbatim: "Image")
+                    return try EmptyElement(element: element, indent: indent).build(verbatim: "Image")
                     
                 case "embed":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "iframe":
-                    return try ContentElement(element: element).build(verbatim: "InlineFrame")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "InlineFrame")
                     
                 case "param":
-                    return try EmptyElement(element: element).build(verbatim: "Parameter")
+                    return try EmptyElement(element: element, indent: indent).build(verbatim: "Parameter")
                     
                 case "dt":
-                    return try ContentElement(element: element).build(verbatim: "TermName")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "TermName")
                     
                 case "dd":
-                    return try ContentElement(element: element).build(verbatim: "TermDefinition")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "TermDefinition")
                     
                 case "figcaption":
-                    return try ContentElement(element: element).build(verbatim: "FigureCaption")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "FigureCaption")
                     
                 case "optgroup":
-                    return try ContentElement(element: element).build(verbatim: "OptionGroup")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "OptionGroup")
                     
                 case "option":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "legend":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "summary":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "li":
-                    return try ContentElement(element: element).build(verbatim: "ListItem")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "ListItem")
                     
                 case "colgroup":
-                    return try ContentElement(element: element).build(verbatim: "ColumnGroup")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "ColumnGroup")
                     
                 case "col":
-                    return try ContentElement(element: element).build(verbatim: "Column")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Column")
                     
                 case "tbody":
-                    return try ContentElement(element: element).build(verbatim: "TableBody")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "TableBody")
                     
                 case "thead":
-                    return try ContentElement(element: element).build(verbatim: "TableHead")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "TableHead")
                     
                 case "tfoot":
-                    return try ContentElement(element: element).build(verbatim: "TableFoot")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "TableFoot")
                     
                 case "tr":
-                    return try ContentElement(element: element).build(verbatim: "TableRow")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "TableRow")
                     
                 case "td":
-                    return try ContentElement(element: element).build(verbatim: "DataCell")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "DataCell")
                     
                 case "th":
-                    return try ContentElement(element: element).build(verbatim: "HeaderCell")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "HeaderCell")
                     
                 case "textarea":
-                    return try ContentElement(element: element).build(verbatim: "TextArea")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "TextArea")
                     
                 case "input":
-                    return try EmptyElement(element: element).build()
+                    return try EmptyElement(element: element, indent: indent).build()
                     
                 case "video":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "audio":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "map":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "area":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "form":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "datalist":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "output":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "meter":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "details":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "dialog":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "script":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "noscript":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "template":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "canvas":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "table":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "fieldset":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "button":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "select":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "label":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "title":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "base":
-                    return try EmptyElement(element: element).build()
+                    return try EmptyElement(element: element, indent: indent).build()
                     
                 case "meta":
-                    return try EmptyElement(element: element).build()
+                    return try EmptyElement(element: element, indent: indent).build()
                     
                 case "style":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "source":
-                    return try EmptyElement(element: element).build()
+                    return try EmptyElement(element: element, indent: indent).build()
                     
                 case "track":
-                    return try EmptyElement(element: element).build()
+                    return try EmptyElement(element: element, indent: indent).build()
                     
                 case "article":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "progress":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "circle":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "rect":
-                    return try ContentElement(element: element).build(verbatim: "Rectangle")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Rectangle")
                     
                 case "ellipse":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "line":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "polygon":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "path":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "use":
-                    return try ContentElement(element: element).build()
+                    return try ContentElement(element: element, indent: indent).build()
                     
                 case "g":
-                    return try ContentElement(element: element).build(verbatim: "Group")
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Group")
+                    
+                case "svg":
+                    return try ContentElement(element: element, indent: indent).build(verbatim: "Vector")
                     
                 default:
                     throw ParserError.unkownElement(localName)
@@ -784,6 +793,9 @@ internal class Parser {
             case "viewbox":
                 return try ValueAttribute<String>(node: node).build(verbatim: "viewBox")
                 
+            case "xmlns":
+                return try ValueAttribute<String>(node: node).build(verbatim: "namespace")
+                
             case "onafterprint":
                 return try EventAttribute<Events.Window>(node: node).build()
                 
@@ -1161,20 +1173,29 @@ internal class Parser {
         return ""
     }
     
-    internal struct PageLayout<T: RawRepresentable> {
+    internal struct ViewLayout<T: RawRepresentable> {
         
         private let name: String
         
-        private var content: String {
+        private var content: String? {
             
             get throws {
-                return try Parser.shared.parse(node: element)
+                
+                guard let root = document.rootElement() else {
+                    return nil
+                }
+                
+                return try Parser.shared.parse(node: root, indent: level)
             }
         }
         
-        private var type: String {
+        private var doctype: String? {
             
-            if let name = doctype.name, let publicId = doctype.publicID, let systemId = doctype.systemID {
+            guard let dtd = document.dtd else {
+                return nil
+            }
+            
+            if let name = dtd.name, let publicId = dtd.publicID, let systemId = dtd.systemID {
                 
                 if let type = T(rawValue: "\(name) PUBLIC \"\(publicId)\" \"\(systemId)\"" as! T.RawValue) {
                     return ".\(type)"
@@ -1184,61 +1205,46 @@ internal class Parser {
             return ".html5"
         }
         
-        private let doctype: XMLDTD
+        private var level: Int {
+            
+            if document.dtd != nil {
+                return 2
+            }
+            
+            return 1
+        }
         
-        private let element: XMLElement
+        private let document: XMLDocument
         
-        internal init(name: String, doctype: XMLDTD, element: XMLElement) {
+        internal init(name: String, document: XMLDocument) {
             self.name = name.capitalized
-            self.doctype = doctype
-            self.element = element
+            self.document = document
         }
         
         internal func build() throws -> String {
             
-            return """
-            import HTMLKit
-            
-            struct \(name)Page: Page {
-            
-                public var body: AnyContent {
-                    Document(type: \(type))
-            \(try content)
+            if let doctype = doctype {
+             
+                return """
+                import HTMLKit
+                
+                struct \(name)View: View {
+                
+                    var body: Content {
+                        Document(\(doctype))
+                \(try content ?? "")
+                    }
                 }
+                """
             }
-            """
-        }
-    }
-
-    internal struct ViewLayout {
-        
-        private let name: String
-        
-        private var content: String {
-
-            get throws {
-                return try Parser.shared.parse(node: element)
-            }
-        }
-        
-        private let element: XMLElement
-        
-        internal init(name: String, element: XMLElement) {
-            self.name = name.capitalized
-            self.element = element
-        }
-        
-        internal func build() throws -> String {
             
             return """
             import HTMLKit
             
             struct \(name)View: View {
             
-                @TemplateValue(String.self) var context
-            
-                public var body: AnyContent {
-            \(try content)
+                var body: Content {
+            \(try content ?? "")
                 }
             }
             """
@@ -1256,19 +1262,22 @@ internal class Parser {
             return value
         }
         
+        private var indent: Int?
+        
         private var level: Int {
-            return node.level - 1
+            return node.level + (indent ?? 0)
         }
         
         private let node: XMLNode
         
-        internal init(node: XMLNode) {
+        internal init(node: XMLNode, indent: Int? = nil) {
+            self.indent = indent
             self.node = node
         }
         
-        internal func build(preindent: Int = 0) -> String {
+        internal func build() -> String {
             
-            let indent = String(repeating: "\t", count: (level + preindent))
+            let indent = String(repeating: "\t", count: level)
             
             if let value = value {
                 return "\(indent)Comment(\"\(value)\")\n"
@@ -1289,19 +1298,22 @@ internal class Parser {
             return value
         }
         
+        private var indent: Int?
+        
         private var level: Int {
-            return node.level - 1
+            return node.level + (indent ?? 0)
         }
         
         private let node: XMLNode
         
-        internal init(node: XMLNode) {
+        internal init(node: XMLNode, indent: Int? = nil) {
+            self.indent = indent
             self.node = node
         }
         
-        internal func build(preindent: Int = 0) -> String {
+        internal func build(preindent: Int? = nil) -> String {
             
-            let indent = String(repeating: "\t", count: (level + preindent))
+            let indent = String(repeating: "\t", count: level)
             
             if let value = value {
                 return "\(indent)\"\(value)\"\n"
@@ -1348,24 +1360,27 @@ internal class Parser {
                 }
                 
                 return try children.compactMap { child in
-                    return try Parser.shared.parse(node: child)
+                    return try Parser.shared.parse(node: child, indent: indent)
                 }
             }
         }
         
+        private var indent: Int?
+        
         private var level: Int {
-            return element.level - 1
+            return element.level + (indent ?? 0)
         }
         
         private let element: XMLElement
         
-        internal init(element: XMLElement) {
+        internal init(element: XMLElement, indent: Int? = nil) {
+            self.indent = indent
             self.element = element
         }
         
-        internal func build(preindent: Int = 0) throws -> String {
+        internal func build() throws -> String {
             
-            let indent = String(repeating: "\t", count: (level + preindent))
+            let indent = String(repeating: "\t", count: level)
             
             var yield: String = ""
             
@@ -1384,9 +1399,9 @@ internal class Parser {
             return yield
         }
         
-        internal func build(verbatim: String, preindent: Int = 0) throws -> String {
+        internal func build(verbatim: String) throws -> String {
             
-            let indent = String(repeating: "\t", count: (level + preindent))
+            let indent = String(repeating: "\t", count: level)
             
             var yield: String = ""
             
@@ -1434,19 +1449,22 @@ internal class Parser {
             }
         }
         
+        private var indent: Int?
+        
         private var level: Int {
-            return element.level - 1
+            return element.level + (indent ?? 0)
         }
         
         private let element: XMLElement
         
-        internal init(element: XMLElement) {
+        internal init(element: XMLElement, indent: Int? = nil) {
+            self.indent = indent
             self.element = element
         }
         
-        internal func build(preindent: Int = 0) throws -> String {
+        internal func build() throws -> String {
 
-            let indent = String(repeating: "\t", count: (level + preindent))
+            let indent = String(repeating: "\t", count: level)
             
             var yield: String = ""
             
@@ -1459,9 +1477,9 @@ internal class Parser {
             return yield
         }
         
-        internal func build(verbatim: String, preindent: Int = 0) throws -> String {
+        internal func build(verbatim: String) throws -> String {
 
-            let indent = String(repeating: "\t", count: (level + preindent))
+            let indent = String(repeating: "\t", count: level)
 
             var yield: String = ""
             

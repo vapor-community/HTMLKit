@@ -21,7 +21,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <a href="uri" class="button" role="button">Button</a>
+                       <a href="uri" target="_self" class="button" role="button">Button</a>
                        """
         )
     }
@@ -120,7 +120,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="text" id="name" name="name" class="input type:textfield">
+                       <input type="text" id="name" name="name" class="textfield">
                        """
         )
     }
@@ -135,7 +135,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <textarea id="name" name="name" class="input type:texteditor" rows="1">value</textarea>
+                       <textarea id="name" name="name" class="texteditor" rows="3">value</textarea>
                        """
         )
     }
@@ -148,7 +148,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="range" id="name" name="name" class="input type:slider">
+                       <input type="range" id="name" name="name" class="slider">
                        """
         )
     }
@@ -161,7 +161,40 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="date" id="name" name="name" class="input type:datepicker">
+                       <div class="datepicker">\
+                       <input type="text" class="datepicker-datefield" id="name" name="name">\
+                       <div class="datepicker-calendar">\
+                       <ul class="calendar-navigation">\
+                       <li>\
+                       <button type="button" value="previous">\
+                       <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\
+                       <polyline points="10 2 4 8 10 14"></polyline>\
+                       </svg>\
+                       </button>\
+                       </li>\
+                       <li>\
+                       <b class="calendar-detail"></b>\
+                       </li>\
+                       <li>\
+                       <button type="button" value="next">\
+                       <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\
+                       <polyline points="6 2 12 8 6 14"></polyline>\
+                       </svg>\
+                       </button>\
+                       </li>\
+                       </ul>\
+                       <ul class="calendar-week">\
+                       <li>Sun</li>\
+                       <li>Mon</li>\
+                       <li>Tue</li>\
+                       <li>Wed</li>\
+                       <li>Thu</li>\
+                       <li>Fri</li>\
+                       <li>Sat</li>\
+                       </ul>\
+                       <ul class="calendar-days"></ul>\
+                       </div>\
+                       </div>
                        """
         )
     }
@@ -174,7 +207,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="password" id="password" name="password" class="input type:securefield">
+                       <input type="password" id="password" name="password" class="securefield">
                        """
         )
     }
@@ -182,12 +215,15 @@ final class ComponentTests: XCTestCase {
     func testCheckField() throws {
         
         let view = TestView {
-            CheckField(name: "name", value: "value")
+            CheckField(name: "name", value: "value") {
+                "Label"
+            }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="checkbox" id="name" name="name" value="value" class="input type:checkfield">
+                       <input type="checkbox" id="name" name="name" value="value" class="checkfield">\
+                       <label class="label" for="name">Label</label>
                        """
         )
     }
@@ -195,12 +231,15 @@ final class ComponentTests: XCTestCase {
     func testRadioSelect() throws {
         
         let view = TestView {
-            RadioSelect(name: "name", value: "value")
+            RadioSelect(name: "name", value: "value") {
+                "Label"
+            }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="radio" id="name" name="name" value="value" class="input type:radioselect">
+                       <input type="radio" id="name" name="name" value="value" class="radioselect">\
+                       <label class="label" for="name">Label</label>
                        """
         )
     }
@@ -214,8 +253,10 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <select id="name" name="name" class="input type:selectfield">\
-                       </select>
+                       <div class="selectfield">\
+                       <input type="text" id="name" name="name" class="selectfield-textfield">\
+                       <div class="selectfield-optionlist"></div>\
+                       </div>
                        """
         )
     }
@@ -228,9 +269,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="image">\
-                       <img src="source" role="img">\
-                       </div>
+                       <img src="source" role="img" class="image">
                        """
         )
     }
@@ -273,7 +312,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <a href="uri" class="link">Link</a>
+                       <a href="uri" target="_self" class="link">Link</a>
                        """
         )
     }
@@ -387,22 +426,6 @@ final class ComponentTests: XCTestCase {
         )
     }
     
-    func testToggle() throws {
-        
-        let view = TestView {
-            Toggle(name: "name")
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <label tabindex="0" class="toggle">\
-                       <input type="checkbox" id="name" name="name">\
-                       <div class="toggle-slider"></div>\
-                       </label>
-                       """
-        )
-    }
-    
     func testCard() throws {
         
         let view = TestView {
@@ -481,9 +504,8 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="dropdown" tabindex="1">\
-                       <div class="dropdown-label">\
-                       </div>\
+                       <div class="dropdown">\
+                       <button type="button" class="dropdown-label"></button>\
                        <div class="dropdown-content"></div>\
                        </div>
                        """
@@ -526,7 +548,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <svg viewbox="0 0 20 16" fill="currentColor" class="symbol">\
+                       <svg viewbox="0 0 20 16" class="symbol">\
                        <path d="M2,12L2,4C2,2.896 2.896,2 4,2L6.923,2C6.966,2 7.009,2.006 7.05,2.017C7.062,2.021 7.074,2.025 7.086,2.031C7.255,2.117 9,3 9,3L16,3C17.104,3 18,3.896 18,5L18,12C18,13.104 17.104,14 16,14L4,14C2.896,14 2,13.104 2,12ZM16.5,6L16.5,5C16.5,4.724 16.276,4.5 16,4.5L9.084,4.5C9.039,4.5 8.75,4.512 8.616,4.506C8.566,4.495 8.518,4.478 8.473,4.454C8.106,4.267 6.644,3.505 6.644,3.505L4,3.5C3.724,3.5 3.5,3.724 3.5,4L3.5,6L16.5,6ZM3.5,7.5L3.5,12C3.5,12.276 3.724,12.5 4,12.5L16,12.5C16.276,12.5 16.5,12.276 16.5,12L16.5,7.5L3.5,7.5Z"></path>\
                        </svg>
                        """

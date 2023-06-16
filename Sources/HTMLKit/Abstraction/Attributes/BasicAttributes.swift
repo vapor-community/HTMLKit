@@ -2622,3 +2622,21 @@ extension SelectedAttribute where Self: EmptyNode {
         return self.mutate(key: "selected", value: value)
     }
 }
+
+/// The protocol provides the element with the shadowrootmode handler.
+public protocol ShadowRootModeAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'shadowrootmode'.
+    ///
+    /// ```html
+    /// <tag shadowrootmode="" />
+    /// ```
+    func shadowRootMode(_ value: Values.Shadow.Mode) -> Self
+}
+
+extension ShadowRootModeAttribute where Self: ContentNode {
+    
+    internal func mutate(shadowrootmode value: String) -> Self {
+        return self.mutate(key: "shadowrootmode", value: value)
+    }
+}

@@ -1,0 +1,64 @@
+/*
+ The rulesets for the checkfield component.
+ 
+ defaults:
+ border width: 1px;
+ border color: #DFE3E7
+ background color: #FFFFFF
+ 
+ darkmode:
+ border color: #484F56
+ background color: #FFFFFF
+ */
+
+.checkfield {
+    --borderWidth: 1px;
+    --borderColor: 210, 14%, 89%;
+    --controlColor: 0, 0%, 0%;
+    --focusColor: 210, 100%, 50%;
+    --backgroundColor: 0, 0%, 100%;
+    
+    position: relative;
+    display: inline-grid;
+    place-content: center;
+    margin: 0;
+    padding: 0;
+    block-size: 1.5rem;
+    inline-size: 1.5rem;
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--borderColor), 1.0);
+    background-color: hsla(var(--backgroundColor), 1.0);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.checkfield:focus {
+    border-color: hsla(var(--focusColor), 1.0);
+    outline: 0;
+    box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
+}
+
+.checkfield:before {
+    content: "";
+    block-size: 0.625rem;
+    inline-size: 0.625rem;
+    background-color: hsla(var(--controlColor), 1.0);
+    transform: scale(0);
+}
+
+.checkfield:checked:before {
+    transform: scale(1);
+}
+
+.checkfield + .label {
+    margin-inline-start: 1.0rem;
+}
+
+.scheme\:dark .checkfield, .checkfield.scheme\:dark {
+    --borderColor: 210, 9%, 31%;
+    --backgroundColor: 210, 11%, 15%;
+    --controlColor: 0, 0%, 100%;
+    --focusColor: 210, 100%, 50%;
+}
