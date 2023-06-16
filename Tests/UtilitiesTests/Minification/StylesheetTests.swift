@@ -314,15 +314,25 @@ final class StylesheetTests: XCTestCase {
         
         XCTAssertEqual(minifier.minify(css: functionvalue), ".selector{property:function();}")
         
-        // ....rule mark
+        // ...rule mark
         
-        let rulevalue = """
+        let rulemark = """
         .selector {
             property: function() !important;
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: rulevalue), ".selector{property:function()!important;}")
+        XCTAssertEqual(minifier.minify(css: rulemark), ".selector{property:function()!important;}")
+        
+        // ...negative margin
+        
+        let negativevalue = """
+        .selector {
+            property: -0.0px;
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(css: negativevalue), ".selector{property:-0.0px;}")
     }
     
     // Tests minifing a funtion
