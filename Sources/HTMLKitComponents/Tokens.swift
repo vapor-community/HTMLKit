@@ -621,8 +621,6 @@ public enum Tokens {
         case primary = "focus:primary"
         
         case secondary = "focus:secondary"
-        
-        case transparent = "focus:transparent"
     }
     
     public enum ColorScheme: String {

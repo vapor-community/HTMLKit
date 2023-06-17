@@ -31,8 +31,10 @@
     --borderWidth: 1px;
     --borderColor: 210, 14%, 89%;
     --borderRadius: 0;
+    --borderOpacity: 1.0;
     --focusColor: 210, 100%, 50%;
     --backgroundColor: 0, 0%, 100%;
+    --backgroundOpacity: 1.0;
     
     display: block;
     inline-size: 100%;
@@ -44,9 +46,9 @@
     color: hsla(var(--foregroundColor), 1.0);
     border-width: var(--borderWidth);
     border-style: solid;
-    border-color: hsla(var(--borderColor), 1.0);
+    border-color: hsla(var(--borderColor), var(--borderOpacity));
     border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), 1.0);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;

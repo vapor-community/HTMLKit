@@ -20,15 +20,17 @@
     --borderWidth: 1px;
     --borderColor: 10, 14%, 89%;
     --borderRadius: 0;
+    --borderOpacity: 1.0;
     --backgroundColor: 0, 0%, 100%;
+    --backgroundOpacity: 1.0;
     
     padding-block: var(--paddingBlock);
     padding-inline: var(--paddingInline);
     border-width: var(--borderWidth);
     border-style: solid;
-    border-color: hsla(var(--borderColor), 1.0);
+    border-color: hsla(var(--borderColor), var(--borderOpacity));
     border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), 1.0);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     box-shadow: 0 15px 35px hsla(0,0%, 0%, 0.2);
 }
 

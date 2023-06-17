@@ -20,16 +20,18 @@
     --borderWidth: 1px;
     --borderColor: 210, 14%, 89%;
     --borderRadius: 0;
+    --borderOpacity: 1.0;
     --backgroundColor: 0, 0%, 100%;
+    --backgroundOpacity: 1.0;
     
     position: relative;
     display: flex;
     flex-direction: column;
     border-width: var(--borderWidth);
     border-style: solid;
-    border-color: hsla(var(--borderColor), 1.0);
+    border-color: hsla(var(--borderColor), var(--borderOpacity));
     border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), 1.0);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }
 
 .card .card-header {

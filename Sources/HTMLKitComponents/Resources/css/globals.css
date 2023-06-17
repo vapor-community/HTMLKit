@@ -222,10 +222,6 @@ video {
     --foregroundColor: var(--brownColor) !important;
 }
 
-.color\:transparent {
-    --foregroundColor: transparent !important;
-}
-
 .color\:cyan {
     --foregroundColor: var(--cyanColor) !important;
 }
@@ -379,6 +375,10 @@ video {
     --borderColor: var(--secondaryColor) !important;
 }
 
+.border\:transparent {
+    --borderOpacity: 0.0;
+}
+
 /*
  backgrounds
  */
@@ -453,6 +453,10 @@ video {
 
 .background\:secondary {
     --backgroundColor: var(--secondaryColor) !important;
+}
+
+.background\:transparent {
+    --backgroundOpacity: 0.0;
 }
 
 /*
