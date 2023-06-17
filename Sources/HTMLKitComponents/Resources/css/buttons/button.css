@@ -49,6 +49,7 @@
     border-width: var(--borderWidth);
     border-style: solid;
     border-color: hsla(var(--borderColor), 1.0);
+    border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), 1.0);
     cursor: pointer;
     -webkit-user-select: none;
