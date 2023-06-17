@@ -57,7 +57,8 @@
 }
 
 .datepicker-datefield:focus {
-    border-color: hsla(var(--focusColor), 1.0);
+    --borderColor: var(--focusColor) !important;
+    
     outline: 0;
     box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
 }
@@ -67,7 +68,7 @@
 }
 
 .datepicker-datefield:invalid {
-    border-color: var(--redColor);
+    --borderColor: var(--redColor);
 }
 
 .datepicker-calendar {

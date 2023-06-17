@@ -38,7 +38,8 @@
 }
 
 .radioselect:focus {
-    border-color: hsla(var(--focusColor), 1.0);
+    --borderColor: var(--focusColor) !important;
+    
     outline: 0;
     box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
 }
