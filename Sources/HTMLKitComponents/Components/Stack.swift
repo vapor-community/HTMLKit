@@ -98,8 +98,16 @@ extension HStack: ViewModifier {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ value: Tokens.BoxPadding) -> HStack {
-        return self.mutate(padding: value.rawValue)
+    public func padding(_ length: Tokens.BoxPadding) -> HStack {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(block length: Tokens.BlockBoxPadding) -> HStack {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> HStack {
+        return self.mutate(padding: length.rawValue)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> HStack {
@@ -215,6 +223,14 @@ extension VStack: ViewModifier {
         return self.mutate(padding: length.rawValue)
     }
     
+    public func padding(block length: Tokens.BlockBoxPadding) -> VStack {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> VStack {
+        return self.mutate(padding: length.rawValue)
+    }
+    
     public func borderShape(_ shape: Tokens.BorderShape) -> VStack {
         return self.mutate(bordershape: shape.rawValue)
     }
@@ -316,6 +332,14 @@ extension ZStack: ViewModifier {
     }
     
     public func padding(_ length: Tokens.BoxPadding) -> ZStack {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(block length: Tokens.BlockBoxPadding) -> ZStack {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> ZStack {
         return self.mutate(padding: length.rawValue)
     }
     

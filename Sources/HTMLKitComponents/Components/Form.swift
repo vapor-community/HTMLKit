@@ -200,6 +200,14 @@ extension TextField: ViewModifier {
         return self.mutate(padding: length.rawValue)
     }
     
+    public func padding(block length: Tokens.BlockBoxPadding) -> TextField {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> TextField {
+        return self.mutate(padding: length.rawValue)
+    }
+    
     public func borderColor(_ color: Tokens.BorderColor) -> TextField {
         return self.mutate(bordercolor: color.rawValue)
     }
@@ -324,6 +332,14 @@ extension TextEditor: ViewModifier {
         return self.mutate(padding: length.rawValue)
     }
     
+    public func padding(block length: Tokens.BlockBoxPadding) -> TextEditor {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> TextEditor {
+        return self.mutate(padding: length.rawValue)
+    }
+    
     public func borderColor(_ color: Tokens.BorderColor) -> TextEditor {
         return self.mutate(bordercolor: color.rawValue)
     }
@@ -429,6 +445,14 @@ extension CheckField: ViewModifier {
     }
     
     public func padding(_ length: Tokens.BoxPadding) -> CheckField {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(block length: Tokens.BlockBoxPadding) -> CheckField {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> CheckField {
         return self.mutate(padding: length.rawValue)
     }
     
@@ -540,6 +564,14 @@ extension RadioSelect: ViewModifier {
         return self.mutate(padding: length.rawValue)
     }
     
+    public func padding(block length: Tokens.BlockBoxPadding) -> RadioSelect {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> RadioSelect {
+        return self.mutate(padding: length.rawValue)
+    }
+    
     public func borderColor(_ color: Tokens.BorderColor) -> RadioSelect {
         return self.mutate(bordercolor: color.rawValue)
     }
@@ -645,6 +677,14 @@ extension SelectField: ViewModifier {
     }
     
     public func padding(_ length: Tokens.BoxPadding) -> SelectField {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(block length: Tokens.BlockBoxPadding) -> SelectField {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> SelectField {
         return self.mutate(padding: length.rawValue)
     }
     
@@ -795,6 +835,14 @@ extension SecureField: ViewModifier {
         return self.mutate(padding: length.rawValue)
     }
     
+    public func padding(block length: Tokens.BlockBoxPadding) -> SecureField {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> SecureField {
+        return self.mutate(padding: length.rawValue)
+    }
+    
     public func borderColor(_ color: Tokens.BorderColor) -> SecureField {
         return self.mutate(bordercolor: color.rawValue)
     }
@@ -888,6 +936,14 @@ extension Slider: ViewModifier {
     }
     
     public func padding(_ length: Tokens.BoxPadding) -> Slider {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(block length: Tokens.BlockBoxPadding) -> Slider {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> Slider {
         return self.mutate(padding: length.rawValue)
     }
     
@@ -1074,6 +1130,14 @@ extension DatePicker: ViewModifier {
         return self.mutate(padding: length.rawValue)
     }
     
+    public func padding(block length: Tokens.BlockBoxPadding) -> DatePicker {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> DatePicker {
+        return self.mutate(padding: length.rawValue)
+    }
+    
     public func borderColor(_ color: Tokens.BorderColor) -> DatePicker {
         return self.mutate(bordercolor: color.rawValue)
     }
@@ -1183,6 +1247,14 @@ extension SearchField: ViewModifier {
     }
     
     public func padding(_ length: Tokens.BoxPadding) -> SearchField {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(block length: Tokens.BlockBoxPadding) -> SearchField {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> SearchField {
         return self.mutate(padding: length.rawValue)
     }
     
@@ -1391,6 +1463,14 @@ extension TextPad: ViewModifier {
     }
     
     public func padding(_ length: Tokens.BoxPadding) -> TextPad {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(block length: Tokens.BlockBoxPadding) -> TextPad {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> TextPad {
         return self.mutate(padding: length.rawValue)
     }
     

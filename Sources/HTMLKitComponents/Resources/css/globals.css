@@ -554,6 +554,30 @@ video {
     --paddingBlock: 1rem !important;
 }
 
+.padding-inline\:large {
+    --paddingInline: 2.25rem !important;
+}
+
+.padding-inline\:medium {
+    --paddingInline: 1.5rem !important;
+}
+
+.padding-inline\:small {
+    --paddingInline: 1rem !important;
+}
+
+.padding-block\:large {
+    --paddingBlock: 2.25rem !important;
+}
+
+.padding-block\:medium {
+    --paddingBlock: 1.5rem !important;
+}
+
+.padding-block\:small {
+    --paddingBlock: 1rem !important;
+}
+
 /*
  shape
  */

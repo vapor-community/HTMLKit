@@ -24,6 +24,12 @@ public protocol ViewModifier {
     /// Sets the box padding
     func padding(_ length: Tokens.BoxPadding) -> Self
     
+    /// Sets the padding for the vertical box.
+    func padding(block length: Tokens.BlockBoxPadding) -> Self
+    
+    /// Sets the padding for the horizontal box.
+    func padding(inline length: Tokens.InlineBoxPadding) -> Self
+    
     /// Sets the shape of the button.
     func borderShape(_ shape: Tokens.BorderShape) -> Self
     

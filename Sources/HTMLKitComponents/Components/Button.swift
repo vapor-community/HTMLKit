@@ -121,6 +121,14 @@ extension Button: ViewModifier {
         return self.mutate(padding: length.rawValue)
     }
     
+    public func padding(block length: Tokens.BlockBoxPadding) -> Button {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> Button {
+        return self.mutate(padding: length.rawValue)
+    }
+    
     public func borderShape(_ shape: Tokens.BorderShape) -> Button {
         return self.mutate(bordershape: shape.rawValue)
     }
@@ -238,6 +246,14 @@ extension LinkButton: ViewModifier {
     }
     
     public func padding(_ length: Tokens.BoxPadding) -> LinkButton {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(block length: Tokens.BlockBoxPadding) -> LinkButton {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> LinkButton {
         return self.mutate(padding: length.rawValue)
     }
     

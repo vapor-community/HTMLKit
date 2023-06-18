@@ -77,6 +77,14 @@ extension Image: ViewModifier {
         return self.mutate(padding: length.rawValue)
     }
     
+    public func padding(block length: Tokens.BlockBoxPadding) -> Image {
+        return self.mutate(padding: length.rawValue)
+    }
+    
+    public func padding(inline length: Tokens.InlineBoxPadding) -> Image {
+        return self.mutate(padding: length.rawValue)
+    }
+    
     public func borderShape(_ shape: Tokens.BorderShape) -> Image {
         return self.mutate(bordershape: shape.rawValue)
     }

@@ -643,4 +643,22 @@ public enum Tokens {
         
         case small = "padding:small"
     }
+    
+    public enum BlockBoxPadding: String {
+        
+        case large = "padding-block:large"
+        
+        case medium = "padding-block:medium"
+        
+        case small = "padding-block:small"
+    }
+    
+    public enum InlineBoxPadding: String {
+        
+        case large = "padding-inline:large"
+        
+        case medium = "padding-inline:medium"
+        
+        case small = "padding-inline:small"
+    }
 }
