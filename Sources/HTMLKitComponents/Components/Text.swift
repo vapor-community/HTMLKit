@@ -52,6 +52,19 @@ public struct Text: View, Actionable, Modifiable {
     public func id(_ value: String) -> Text {
         return self.mutate(id: value)
     }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Text {
+        
+        var newSelf = self
+        
+        if let offset {
+            newSelf.classes.append(offset.rawValue)
+        }
+        
+        newSelf.classes.append(width.rawValue)
+        
+        return newSelf
+    }
 }
 
 extension Text: HoverModifier {

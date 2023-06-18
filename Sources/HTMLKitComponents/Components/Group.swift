@@ -34,6 +34,19 @@ public struct Group: View, Modifiable {
         }
         .class(classes.joined(separator: " "))
     }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Group {
+        
+        var newSelf = self
+        
+        if let offset {
+            newSelf.classes.append(offset.rawValue)
+        }
+        
+        newSelf.classes.append(width.rawValue)
+        
+        return newSelf
+    }
 }
 
 extension Group: TextModifier {

@@ -109,6 +109,15 @@ extension HStack: ViewModifier {
     public func borderColor(_ color: Tokens.BorderColor) -> HStack {
         return self.mutate(bordercolor: color.rawValue)
     }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> HStack {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
+    }
 }
 
 /// A component that arranges content vertically.
@@ -158,6 +167,15 @@ public struct VStack: View, Actionable, Modifiable {
     public func id(_ value: String) -> VStack {
         return self.mutate(id: value)
     }
+    
+    /// Sets the space of the content.
+    public func contentSpace(_ value: Tokens.ContentSpace) -> VStack {
+        
+        var newSelf = self
+        newSelf.classes.append(value.rawValue)
+        
+        return newSelf
+    }
 }
 
 extension VStack: HoverModifier {
@@ -203,6 +221,15 @@ extension VStack: ViewModifier {
     
     public func borderColor(_ color: Tokens.BorderColor) -> VStack {
         return self.mutate(bordercolor: color.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> VStack {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
     }
 }
 
@@ -299,56 +326,13 @@ extension ZStack: ViewModifier {
     public func borderColor(_ color: Tokens.BorderColor) -> ZStack {
         return self.mutate(bordercolor: color.rawValue)
     }
-}
-
-/// A component that represents a stack column.
-public struct StackColumn: View {
     
-    /// The content of the column.
-    internal var content: [Content]
-    
-    /// The content of the column.
-    internal var classes: [String]
-    
-    /// Creates a stack column.
-    public init(size: Tokens.ColumnSize, @ContentBuilder<Content> content: () -> [Content]) {
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> ZStack {
         
-        self.content = content()
-        self.classes = ["stack-column", size.rawValue]
-    }
-    
-    /// Creates a stack column.
-    public init(size: Tokens.ColumnSize, alignment: Tokens.TextAlignment, @ContentBuilder<Content> content: () -> [Content]) {
-        
-        self.content = content()
-        self.classes = ["stack-column", size.rawValue, alignment.rawValue]
-    }
-    
-    /// Creates a stack column.
-    public init(size: Tokens.ColumnSize, offset: Tokens.ColumnOffset, @ContentBuilder<Content> content: () -> [Content]) {
-        
-        self.content = content()
-        self.classes = ["stack-column", size.rawValue, offset.rawValue]
-    }
-    
-    /// Creates a stack column.
-    public init(size: Tokens.ColumnSize, alignment: Tokens.TextAlignment, offset: Tokens.ColumnOffset, @ContentBuilder<Content> content: () -> [Content]) {
-        
-        self.content = content()
-        self.classes = ["stack-column", size.rawValue, alignment.rawValue, offset.rawValue]
-    }
-    
-    /// Creates a stack column.
-    internal init(content: [Content], classes: [String]) {
-        
-        self.content = content
-        self.classes = classes
-    }
-    
-    public var body: Content {
-        Division {
-            content
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
         }
-        .class(classes.joined(separator: " "))
+        
+        return self.mutate(class: width.rawValue)
     }
 }

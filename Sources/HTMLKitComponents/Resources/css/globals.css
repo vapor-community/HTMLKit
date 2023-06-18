@@ -569,3 +569,139 @@ video {
 .shape\:fullrounded {
     --borderRadius: 1.563rem !important;
 }
+
+/*
+ sizes
+ */
+
+.size\:1 {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    inline-size: 8.3333333333%;
+}
+
+.size\:2 {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    inline-size: 16.6666666667%;
+}
+
+.size\:3 {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    inline-size: 25%;
+}
+
+.size\:4 {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    inline-size: 33.3333333333%;
+}
+
+.size\:5 {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    inline-size: 41.6666666667%;
+}
+
+.size\:6 {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    inline-size: 50%;
+}
+
+.size\:7 {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    inline-size: 58.3333333333%;
+}
+
+.size\:8 {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    inline-size: 66.6666666667%;
+}
+
+.size\:9 {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    inline-size: 75%;
+}
+
+.size\:10 {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    inline-size: 83.3333333333%;
+}
+
+.size\:11 {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    inline-size: 91.6666666667%;
+}
+
+.size\:12 {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    inline-size: 100%;
+}
+
+/*
+ offset
+ */
+
+.offset\:1 {
+    margin-inline-start: 8.3333333333%;
+}
+
+.offset\:2 {
+    margin-inline-start: 16.6666666667%;
+}
+
+.offset\:3 {
+    margin-inline-start: 25%;
+}
+
+.offset\:4 {
+    margin-inline-start: 33.3333333333%;
+}
+
+.offset\:5 {
+    margin-inline-start: 41.6666666667%;
+}
+
+.offset\:6 {
+    margin-inline-start: 50%;
+}
+
+.offset\:7 {
+    margin-inline-start: 58.3333333333%;
+}
+
+.offset\:8 {
+    margin-inline-start: 66.6666666667%;
+}
+
+.offset\:9 {
+    margin-inline-start: 75%;
+}
+
+.offset\:10 {
+    margin-inline-start: 83.3333333333%;
+}
+
+.offset\:11 {
+    margin-inline-start: 91.6666666667%;
+}

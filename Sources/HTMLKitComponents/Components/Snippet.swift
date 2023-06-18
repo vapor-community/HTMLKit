@@ -77,4 +77,13 @@ extension Snippet: ViewModifier {
     public func borderColor(_ color: Tokens.BorderColor) -> Snippet {
         return self.mutate(bordercolor: color.rawValue)
     }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Snippet {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
+    }
 }

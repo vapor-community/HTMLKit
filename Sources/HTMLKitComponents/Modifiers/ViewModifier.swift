@@ -29,6 +29,8 @@ public protocol ViewModifier {
     
     /// Sets the border color of the input
     func borderColor(_ color: Tokens.BorderColor) -> Self
+    
+    func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset?) -> Self
 }
 
 extension ViewModifier where Self: Modifiable {
@@ -63,5 +65,9 @@ extension ViewModifier where Self: Modifiable {
     
     internal func mutate(bordercolor class: String) -> Self {
         return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(frame classes: [String]) -> Self {
+        return self.mutate(classes: classes)
     }
 }

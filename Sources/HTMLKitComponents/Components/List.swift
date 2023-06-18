@@ -57,6 +57,19 @@ public struct List: View, Modifiable, Actionable {
         
         return newSelf
     }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> List {
+        
+        var newSelf = self
+        
+        if let offset {
+            newSelf.classes.append(offset.rawValue)
+        }
+        
+        newSelf.classes.append(width.rawValue)
+        
+        return newSelf
+    }
 }
 
 extension List: HoverModifier {

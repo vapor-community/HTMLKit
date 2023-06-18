@@ -89,5 +89,14 @@ extension Card: ViewModifier {
     public func borderColor(_ color: Tokens.BorderColor) -> Card {
         return self.mutate(class: color.rawValue)
     }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Card {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
+    }
 }
 

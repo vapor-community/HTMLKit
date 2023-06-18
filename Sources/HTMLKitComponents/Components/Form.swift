@@ -215,6 +215,15 @@ extension TextField: ViewModifier {
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> TextField {
         return self.mutate(scheme: scheme.rawValue)
     }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> TextField {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
+    }
 }
 
 /// A component that displays a editable and expandable form control.
@@ -330,6 +339,15 @@ extension TextEditor: ViewModifier {
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> TextEditor {
         return self.mutate(scheme: scheme.rawValue)
     }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> TextEditor {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
+    }
 }
 
 /// A component that displays a form control
@@ -428,6 +446,15 @@ extension CheckField: ViewModifier {
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> CheckField {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> CheckField {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
     }
 }
 
@@ -528,6 +555,15 @@ extension RadioSelect: ViewModifier {
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> RadioSelect {
         return self.mutate(scheme: scheme.rawValue)
     }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> RadioSelect {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
+    }
 }
 
 /// A component that displays
@@ -626,6 +662,15 @@ extension SelectField: ViewModifier {
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> SelectField {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> SelectField {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
     }
 }
 
@@ -765,6 +810,15 @@ extension SecureField: ViewModifier {
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> SecureField {
         return self.mutate(scheme: scheme.rawValue)
     }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> SecureField {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
+    }
 }
 
 /// A component that displays
@@ -851,6 +905,15 @@ extension Slider: ViewModifier {
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Slider {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Slider {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
     }
 }
 
@@ -1026,6 +1089,15 @@ extension DatePicker: ViewModifier {
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> DatePicker {
         return self.mutate(scheme: scheme.rawValue)
     }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> DatePicker {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
+    }
 }
 
 /// A component that displays
@@ -1128,6 +1200,15 @@ extension SearchField: ViewModifier {
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> SearchField {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> SearchField {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
     }
 }
 
@@ -1327,5 +1408,14 @@ extension TextPad: ViewModifier {
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> TextPad {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> TextPad {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
     }
 }

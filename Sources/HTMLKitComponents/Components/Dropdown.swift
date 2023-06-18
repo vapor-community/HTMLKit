@@ -102,4 +102,13 @@ extension Dropdown: ViewModifier {
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Dropdown {
         return self.mutate(scheme: scheme.rawValue)
     }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Dropdown {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
+    }
 }

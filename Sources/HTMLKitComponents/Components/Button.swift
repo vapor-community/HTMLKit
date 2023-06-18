@@ -128,6 +128,15 @@ extension Button: ViewModifier {
     public func borderColor(_ color: Tokens.BorderColor) -> Button {
         return self.mutate(bordercolor: color.rawValue)
     }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Button {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
+    }
 }
 
 /// A component that initiates an action.
@@ -238,5 +247,14 @@ extension LinkButton: ViewModifier {
     
     public func borderColor(_ color: Tokens.BorderColor) -> LinkButton {
         return self.mutate(bordercolor: color.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> LinkButton {
+        
+        if let offset {
+            return self.mutate(frame: [width.rawValue, offset.rawValue])
+        }
+        
+        return self.mutate(class: width.rawValue)
     }
 }

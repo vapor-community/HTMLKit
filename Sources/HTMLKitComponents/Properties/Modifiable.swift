@@ -15,4 +15,12 @@ extension Modifiable {
         
         return newSelf
     }
+    
+    internal func mutate(classes: [String]) -> Self {
+        
+        var newSelf = self
+        newSelf.classes.append(contentsOf: classes)
+        
+        return newSelf
+    }
 }

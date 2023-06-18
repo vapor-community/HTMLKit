@@ -426,6 +426,9 @@ public enum Tokens {
         case around = "space:around"
         case between = "space:between"
         case evenly = "space:evenly"
+        case large = "space:large"
+        case medium = "space:medium"
+        case small = "space:small"
     }
 
     public enum SyntaxHighlight: String {

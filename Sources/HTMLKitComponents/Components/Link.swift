@@ -60,6 +60,19 @@ public struct Link: View, Modifiable {
         .target(target)
         .class(classes.joined(separator: " "))
     }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Link {
+        
+        var newSelf = self
+        
+        if let offset {
+            newSelf.classes.append(offset.rawValue)
+        }
+        
+        newSelf.classes.append(width.rawValue)
+        
+        return newSelf
+    }
 }
 
 extension Link: TextModifier {
