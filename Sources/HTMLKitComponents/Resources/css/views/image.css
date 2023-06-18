@@ -21,6 +21,7 @@
     border-style: solid;
     border-color: hsla(var(--borderColor), 1.0);
     border-radius: var(--borderRadius);
+    aspect-ratio: 1.0;
 }
 
 .image.fit\:contain {
