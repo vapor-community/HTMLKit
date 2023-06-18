@@ -22,8 +22,10 @@
  */
 
 .texteditor {
-    --paddingBlock: 0.5rem;
-    --paddingInline: 1.0rem;
+    --paddingBlockStart: 0.5rem;
+    --paddingBlockEnd: 0.5rem;
+    --paddingInlineStart: 1.0rem;
+    --paddingInlineEnd: 1.0rem;
     --fontSize: 1.0rem;
     --fontWeight: 400;
     --lineHeight: 1.5;
@@ -38,8 +40,10 @@
     
     display: block;
     inline-size: 100%;
-    padding-block: var(--paddingBlock);
-    padding-inline: var(--paddingInline);
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
     font-size: var(--fontSize);
     font-weight: var(--fontWeight);
     line-height: var(--lineHeight);

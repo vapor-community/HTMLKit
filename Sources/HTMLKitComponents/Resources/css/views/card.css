@@ -15,8 +15,10 @@
  */
 
 .card {
-    --paddingInline: 1.0rem;
-    --paddingBlock: 0.5rem;
+    --paddingInlineStart: 1.0rem;
+    --paddingInlineEnd: 1.0rem;
+    --paddingBlockStart: 0.5rem;
+    --paddingBlockEnd: 0.5rem;
     --borderWidth: 1px;
     --borderColor: 210, 14%, 89%;
     --borderRadius: 0;
@@ -41,8 +43,10 @@
 }
 
 .card .card-body {
-    padding-block: var(--paddingBlock);
-    padding-inline: var(--paddingInline);
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
     border-end-start-radius: var(--borderRadius);
     border-end-end-radius: var(--borderRadius);
 }

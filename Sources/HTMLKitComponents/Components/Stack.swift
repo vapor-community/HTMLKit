@@ -98,16 +98,12 @@ extension HStack: ViewModifier {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> HStack {
+    public func padding(_ length: Tokens.PaddingLength) -> HStack {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> HStack {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> HStack {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> HStack {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> HStack {
@@ -219,16 +215,12 @@ extension VStack: ViewModifier {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> VStack {
+    public func padding(_ length: Tokens.PaddingLength) -> VStack {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> VStack {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> VStack {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> VStack {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> VStack {
@@ -331,16 +323,12 @@ extension ZStack: ViewModifier {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> ZStack {
+    public func padding(_ length: Tokens.PaddingLength) -> ZStack {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> ZStack {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> ZStack {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> ZStack {        
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> ZStack {

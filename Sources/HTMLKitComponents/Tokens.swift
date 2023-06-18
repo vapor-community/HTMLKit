@@ -635,30 +635,26 @@ public enum Tokens {
         case light = "scheme:light"
     }
     
-    public enum BoxPadding: String {
+    public enum PaddingLength: String {
         
-        case large = "padding:large"
-        
-        case medium = "padding:medium"
-        
-        case small = "padding:small"
+        case large
+        case medium
+        case small
     }
+}
+
+public struct EdgeSet: OptionSet {
     
-    public enum BlockBoxPadding: String {
-        
-        case large = "padding-block:large"
-        
-        case medium = "padding-block:medium"
-        
-        case small = "padding-block:small"
-    }
+    public var rawValue: Int
     
-    public enum InlineBoxPadding: String {
-        
-        case large = "padding-inline:large"
-        
-        case medium = "padding-inline:medium"
-        
-        case small = "padding-inline:small"
+    public static let top = EdgeSet(rawValue: 1 << 0)
+    public static let bottom = EdgeSet(rawValue: 1 << 1)
+    public static let leading = EdgeSet(rawValue: 1 << 2)
+    public static let trailing = EdgeSet(rawValue: 2 << 3)
+    public static let horizontal = EdgeSet(rawValue: 3 << 4)
+    public static let vertical = EdgeSet(rawValue: 4 << 5)
+    
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
     }
 }

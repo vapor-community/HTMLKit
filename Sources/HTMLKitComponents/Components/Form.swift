@@ -196,16 +196,12 @@ extension TextField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> TextField {
+    public func padding(_ length: Tokens.PaddingLength) -> TextField {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> TextField {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> TextField {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> TextField {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> TextField {
@@ -328,16 +324,12 @@ extension TextEditor: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> TextEditor {
+    public func padding(_ length: Tokens.PaddingLength) -> TextEditor {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> TextEditor {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> TextEditor {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> TextEditor {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> TextEditor {
@@ -444,16 +436,12 @@ extension CheckField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> CheckField {
+    public func padding(_ length: Tokens.PaddingLength) -> CheckField {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> CheckField {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> CheckField {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> CheckField {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> CheckField {
@@ -560,16 +548,12 @@ extension RadioSelect: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> RadioSelect {
+    public func padding(_ length: Tokens.PaddingLength) -> RadioSelect {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> RadioSelect {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> RadioSelect {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> RadioSelect {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> RadioSelect {
@@ -676,16 +660,12 @@ extension SelectField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> SelectField {
+    public func padding(_ length: Tokens.PaddingLength) -> SelectField {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> SelectField {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> SelectField {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> SelectField {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> SelectField {
@@ -831,16 +811,12 @@ extension SecureField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> SecureField {
+    public func padding(_ length: Tokens.PaddingLength) -> SecureField {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> SecureField {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> SecureField {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> SecureField {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> SecureField {
@@ -935,16 +911,12 @@ extension Slider: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> Slider {
+    public func padding(_ length: Tokens.PaddingLength) -> Slider {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> Slider {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> Slider {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> Slider {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> Slider {
@@ -1126,16 +1098,12 @@ extension DatePicker: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> DatePicker {
+    public func padding(_ length: Tokens.PaddingLength) -> DatePicker {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> DatePicker {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> DatePicker {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> DatePicker {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> DatePicker {
@@ -1246,16 +1214,12 @@ extension SearchField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> SearchField {
+    public func padding(_ length: Tokens.PaddingLength) -> SearchField {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> SearchField {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> SearchField {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> SearchField {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> SearchField {
@@ -1462,16 +1426,12 @@ extension TextPad: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> TextPad {
+    public func padding(_ length: Tokens.PaddingLength) -> TextPad {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> TextPad {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> TextPad {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> TextPad {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> TextPad {

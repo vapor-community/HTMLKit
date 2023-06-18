@@ -20,8 +20,10 @@
  */
 
 .dropdown {
-    --paddingBlock: 0.5rem;
-    --paddingInline: 1.0rem;
+    --paddingBlockStart: 0.5rem;
+    --paddingBlockEnd: 0.5rem;
+    --paddingInlineStart: 1.0rem;
+    --paddingInlineEnd: 1.0rem;
     --inlineSize: fit-content();
     --fontSize: 1.0rem;
     --fontWeight: 400;
@@ -41,8 +43,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-block: var(--paddingBlock);
-    padding-inline: var(--paddingInline);
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
     inline-size: var(--inlineSize);
     font-family: var(--fontFamily);
     font-size: var(--fontSize);

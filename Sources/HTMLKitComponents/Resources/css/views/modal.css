@@ -15,8 +15,10 @@
  */
 
 .modal {
-    --paddingBlock: 0.75rem;
-    --paddingInline: 1.0rem;
+    --paddingBlockStart: 0.75rem;
+    --paddingBlockEnd: 0.75rem;
+    --paddingInlineStart: 1.0rem;
+    --paddingInlineEnd: 1.0rem;
     --borderWidth: 1px;
     --borderColor: 10, 14%, 89%;
     --borderRadius: 0;
@@ -24,8 +26,10 @@
     --backgroundColor: 0, 0%, 100%;
     --backgroundOpacity: 1.0;
     
-    padding-block: var(--paddingBlock);
-    padding-inline: var(--paddingInline);
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
     border-width: var(--borderWidth);
     border-style: solid;
     border-color: hsla(var(--borderColor), var(--borderOpacity));

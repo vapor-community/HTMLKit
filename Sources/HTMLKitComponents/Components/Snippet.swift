@@ -66,16 +66,12 @@ extension Snippet: ViewModifier {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> Snippet {
+    public func padding(_ length: Tokens.PaddingLength) -> Snippet {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> Snippet {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> Snippet {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> Snippet {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Snippet {

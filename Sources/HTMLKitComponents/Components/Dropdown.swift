@@ -83,16 +83,12 @@ extension Dropdown: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> Dropdown {
+    public func padding(_ length: Tokens.PaddingLength) -> Dropdown {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> Dropdown {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> Dropdown {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> Dropdown {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Dropdown {

@@ -22,13 +22,10 @@ public protocol ViewModifier {
     func colorScheme(_ scheme: Tokens.ColorScheme) -> Self
     
     /// Sets the box padding
-    func padding(_ length: Tokens.BoxPadding) -> Self
+    func padding(_ length: Tokens.PaddingLength) -> Self
     
     /// Sets the padding for the vertical box.
-    func padding(block length: Tokens.BlockBoxPadding) -> Self
-    
-    /// Sets the padding for the horizontal box.
-    func padding(inline length: Tokens.InlineBoxPadding) -> Self
+    func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> Self
     
     /// Sets the shape of the button.
     func borderShape(_ shape: Tokens.BorderShape) -> Self
@@ -61,8 +58,39 @@ extension ViewModifier where Self: Modifiable {
         return self.mutate(class: `class`)
     }
     
-    internal func mutate(padding class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(padding value: String) -> Self {
+        return self.mutate(class: "padding:\(value)")
+    }
+    
+    internal func mutate(padding value: String, insets: EdgeSet) -> Self {
+     
+        var classes: [String] = []
+        
+        if insets.contains(.top) {
+            classes.append("padding-top:\(value)")
+        }
+        
+        if insets.contains(.bottom) {
+            classes.append("padding-bottom:\(value)")
+        }
+        
+        if insets.contains(.leading) {
+            classes.append("padding-leading:\(value)")
+        }
+        
+        if insets.contains(.trailing) {
+            classes.append("padding-trailing:\(value)")
+        }
+        
+        if insets.contains(.horizontal) {
+            classes.append("padding-inline:\(value)")
+        }
+        
+        if insets.contains(.vertical) {
+            classes.append("padding-block:\(value)")
+        }
+        
+        return self.mutate(classes: classes)
     }
     
     internal func mutate(bordershape class: String) -> Self {

@@ -78,16 +78,12 @@ extension Card: ViewModifier {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> Card {
+    public func padding(_ length: Tokens.PaddingLength) -> Card {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> Card {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> Card {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> Card {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Card {

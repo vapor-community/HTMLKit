@@ -73,16 +73,12 @@ extension Image: ViewModifier {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> Image {
+    public func padding(_ length: Tokens.PaddingLength) -> Image {
         return self.mutate(padding: length.rawValue)
     }
     
-    public func padding(block length: Tokens.BlockBoxPadding) -> Image {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(inline length: Tokens.InlineBoxPadding) -> Image {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> Image {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Image {

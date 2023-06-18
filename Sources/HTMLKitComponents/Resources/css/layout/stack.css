@@ -3,16 +3,20 @@
  */
 
 .hstack {
-    --paddingInline: 0;
-    --paddingBlock: 0;
+    --paddingInlineStart: 0;
+    --paddingInlineEnd: 0;
+    --paddingBlockStart: 0;
+    --paddingBlockEnd: 0;
     
     position: relative;
     inline-size: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    padding-block: var(--paddingBlock);
-    padding-inline: var(--paddingInline);
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
 }
 
 .hstack.alignment\:top {
@@ -60,15 +64,19 @@
  */
 
 .vstack {
-    --paddingInline: 0;
-    --paddingBlock: 0;
+    --paddingInlineStart: 0;
+    --paddingInlineEnd: 0;
+    --paddingBlockStart: 0;
+    --paddingBlockEnd: 0;
     
     position: relative;
     inline-size: 100%;
     display: flex;
     flex-direction: column;
-    padding-block: var(--paddingBlock);
-    padding-inline: var(--paddingInline);
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
 }
 
 .vstack.alignment\:leading {
@@ -112,13 +120,17 @@
  */
 
 .zstack {
-    --paddingInline: 0;
-    --paddingBlock: 0;
+    --paddingInlineStart: 0;
+    --paddingInlineEnd: 0;
+    --paddingBlockStart: 0;
+    --paddingBlockEnd: 0;
     
     position: absolute;
     inset: 0;
     z-index: 1;
     display: flex;
-    padding-block: var(--paddingBlock);
-    padding-inline: var(--paddingInline);
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
 }
