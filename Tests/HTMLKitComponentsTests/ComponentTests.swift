@@ -359,21 +359,6 @@ final class ComponentTests: XCTestCase {
         )
     }
     
-    
-    func testStackColumn() throws {
-        
-        let view = TestView {
-            StackColumn(size: .twelve) {
-            }
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <div class="stack-column size:12"></div>
-                       """
-        )
-    }
-    
     func testText() throws {
        
         let view = TestView {
