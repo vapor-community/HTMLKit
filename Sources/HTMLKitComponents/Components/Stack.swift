@@ -98,11 +98,7 @@ extension HStack: ViewModifier {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> HStack {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> HStack {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> HStack {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -121,6 +117,10 @@ extension HStack: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> HStack {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -215,11 +215,7 @@ extension VStack: ViewModifier {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> VStack {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> VStack {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> VStack {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -238,6 +234,10 @@ extension VStack: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> VStack {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -323,11 +323,7 @@ extension ZStack: ViewModifier {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> ZStack {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> ZStack {        
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> ZStack {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -347,4 +343,9 @@ extension ZStack: ViewModifier {
         
         return self.mutate(class: width.rawValue)
     }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> ZStack {
+        return self.mutate(margin: length.rawValue, insets: insets)
+    }
 }
+

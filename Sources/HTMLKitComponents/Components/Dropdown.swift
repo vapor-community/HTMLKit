@@ -83,11 +83,7 @@ extension Dropdown: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> Dropdown {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> Dropdown {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Dropdown {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -114,5 +110,9 @@ extension Dropdown: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Dropdown {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }

@@ -73,11 +73,7 @@ extension Image: ViewModifier {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> Image {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> Image {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Image {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -96,5 +92,9 @@ extension Image: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Image {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }

@@ -117,11 +117,7 @@ extension Button: ViewModifier {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> Button {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> Button {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Button {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -140,6 +136,10 @@ extension Button: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet, length: Tokens.MarginLength = .small) -> Button {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -241,11 +241,7 @@ extension LinkButton: ViewModifier {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> LinkButton {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> LinkButton {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> LinkButton {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -264,5 +260,9 @@ extension LinkButton: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> LinkButton {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }

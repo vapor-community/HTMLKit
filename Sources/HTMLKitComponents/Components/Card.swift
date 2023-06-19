@@ -78,11 +78,7 @@ extension Card: ViewModifier {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> Card {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> Card {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Card {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -101,6 +97,10 @@ extension Card: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Card {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 

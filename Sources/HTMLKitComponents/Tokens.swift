@@ -641,6 +641,13 @@ public enum Tokens {
         case medium
         case small
     }
+    
+    public enum MarginLength: String {
+        
+        case large
+        case medium
+        case small
+    }
 }
 
 public struct EdgeSet: OptionSet {
@@ -653,6 +660,8 @@ public struct EdgeSet: OptionSet {
     public static let trailing = EdgeSet(rawValue: 2 << 3)
     public static let horizontal = EdgeSet(rawValue: 3 << 4)
     public static let vertical = EdgeSet(rawValue: 4 << 5)
+    
+    public static let all: EdgeSet = [.top, .bottom, .leading, .trailing]
     
     public init(rawValue: Int) {
         self.rawValue = rawValue

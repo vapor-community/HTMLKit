@@ -196,11 +196,7 @@ extension TextField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> TextField {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> TextField {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> TextField {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -227,6 +223,10 @@ extension TextField: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextField {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -324,11 +324,7 @@ extension TextEditor: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> TextEditor {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> TextEditor {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> TextEditor {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -355,6 +351,10 @@ extension TextEditor: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextEditor {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -436,11 +436,7 @@ extension CheckField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> CheckField {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> CheckField {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> CheckField {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -467,6 +463,10 @@ extension CheckField: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> CheckField {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -548,11 +548,7 @@ extension RadioSelect: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> RadioSelect {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> RadioSelect {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> RadioSelect {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -579,6 +575,10 @@ extension RadioSelect: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> RadioSelect {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -660,11 +660,7 @@ extension SelectField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> SelectField {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> SelectField {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> SelectField {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -691,6 +687,10 @@ extension SelectField: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SelectField {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -811,11 +811,7 @@ extension SecureField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> SecureField {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> SecureField {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> SecureField {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -842,6 +838,10 @@ extension SecureField: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SecureField {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -911,11 +911,7 @@ extension Slider: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> Slider {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> Slider {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Slider {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -942,6 +938,10 @@ extension Slider: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Slider {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -1098,11 +1098,7 @@ extension DatePicker: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> DatePicker {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> DatePicker {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> DatePicker {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -1129,6 +1125,10 @@ extension DatePicker: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> DatePicker {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -1214,11 +1214,7 @@ extension SearchField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> SearchField {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> SearchField {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> SearchField {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -1245,6 +1241,10 @@ extension SearchField: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SearchField {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -1426,11 +1426,7 @@ extension TextPad: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.PaddingLength) -> TextPad {
-        return self.mutate(padding: length.rawValue)
-    }
-    
-    public func padding(insets: EdgeSet, _ length: Tokens.PaddingLength) -> TextPad {
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> TextPad {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
     
@@ -1457,5 +1453,9 @@ extension TextPad: ViewModifier {
         }
         
         return self.mutate(class: width.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextPad {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
