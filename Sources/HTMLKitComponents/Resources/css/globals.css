@@ -540,18 +540,24 @@ video {
  */
 
 .padding\:large {
-    --paddingInline: 2.25rem !important;
-    --paddingBlock: 2.25rem !important;
+    --paddingInlineStart: 2.25rem !important;
+    --paddingInlineEnd: 2.25rem !important;
+    --paddingBlockStart: 2.25rem !important;
+    --paddingBlockEnd: 2.25rem !important;
 }
 
 .padding\:medium {
-    --paddingInline: 1.5rem !important;
-    --paddingBlock: 1.5rem !important;
+    --paddingInlineStart: 1.5rem !important;
+    --paddingInlineEnd: 1.5rem !important;
+    --paddingBlockStart: 1.5rem !important;
+    --paddingBlockEnd: 1.5rem !important;
 }
 
 .padding\:small {
-    --paddingInline: 1rem !important;
-    --paddingBlock: 1rem !important;
+    --paddingInlineStart: 1rem !important;
+    --paddingInlineEnd: 1rem !important;
+    --paddingBlockStart: 1rem !important;
+    --paddingBlockEnd: 1rem !important;
 }
 
 .padding-inline\:large {
