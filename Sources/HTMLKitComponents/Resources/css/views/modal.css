@@ -26,6 +26,7 @@
     --backgroundColor: 0, 0%, 100%;
     --backgroundOpacity: 1.0;
     
+    margin: auto;
     padding-block-start: var(--paddingBlockStart);
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
