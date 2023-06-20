@@ -44,7 +44,7 @@ final class ComponentTests: XCTestCase {
     func testGroup() throws {
         
         let view = TestView {
-            HTMLKitComponents.Group {
+            Grouping {
             }
         }
         
