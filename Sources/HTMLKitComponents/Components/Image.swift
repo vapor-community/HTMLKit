@@ -38,8 +38,8 @@ public struct Image: View, Modifiable {
 
 extension Image: ImageModifier {
     
-    public func objectFit(_ fit: Tokens.ObjectFit) -> Image {
-        return self.mutate(objectfit: fit.rawValue)
+    public func aspectRatio(_ ratio: Tokens.AspectRatio ,fit: Tokens.ObjectFit) -> Image {
+        return self.mutate(aspectratio: [ratio.rawValue, fit.rawValue])
     }
     
     public func imageScale(_ scale: Tokens.ImageScale) -> Image {
@@ -48,6 +48,14 @@ extension Image: ImageModifier {
     
     public func clipShape(_ shape: Tokens.ClipShape) -> Image {
         return self.mutate(clipshape: shape.rawValue)
+    }
+    
+    public func scaleToFit() -> Image {
+        return self.mutate(objectfit: Tokens.ObjectFit.contain.rawValue)
+    }
+    
+    public func scaleToFill() -> Image {
+        return self.mutate(objectfit: Tokens.ObjectFit.cover.rawValue)
     }
 }
 

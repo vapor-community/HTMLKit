@@ -648,6 +648,12 @@ public enum Tokens {
         case medium
         case small
     }
+    
+    public enum AspectRatio: String {
+        
+        case equal = "aspect:equal"
+        case unequal = "aspect:unequal"
+    }
 }
 
 public struct EdgeSet: OptionSet {

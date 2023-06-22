@@ -7,13 +7,17 @@
 public protocol ImageModifier {
     
     /// Sets how the content should be resized to fit its parent.
-    func objectFit(_ fit: Tokens.ObjectFit) -> Self
+    func aspectRatio(_ ratio: Tokens.AspectRatio, fit: Tokens.ObjectFit) -> Self
     
     /// Sets the scale of the image.
     func imageScale(_ scale: Tokens.ImageScale) -> Self
     
     /// Sets the fill style to use.
     func clipShape(_ shape: Tokens.ClipShape) -> Self
+    
+    func scaleToFit() -> Self
+    
+    func scaleToFill() -> Self
 }
 
 extension ImageModifier where Self: Modifiable {
@@ -28,5 +32,9 @@ extension ImageModifier where Self: Modifiable {
     
     internal func mutate(clipshape class: String) -> Self {
         return self.mutate(class: `class`)
+    }
+    
+    internal func mutate(aspectratio classes: [String]) -> Self {
+        return self.mutate(classes: classes)
     }
 }
