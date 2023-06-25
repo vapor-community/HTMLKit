@@ -493,9 +493,7 @@ public enum Tokens {
     /// A style for a list.
     public enum ListStyle: String {
 
-        case grouped = "style:grouped"
-        case accordion = "style:accordion"
-        case tab = "style:tab"
+        case listgroup = "style:listgroup"
     }
     
     /// A state for the view.

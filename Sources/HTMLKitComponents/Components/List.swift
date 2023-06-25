@@ -70,6 +70,43 @@ public struct List: View, Modifiable, Actionable {
         
         return newSelf
     }
+    
+    public  func padding(insets: EdgeSet, length: Tokens.PaddingLength) -> List {
+        
+        var classes: [String] = []
+        
+        if !insets.contains(.all) {
+            
+            if insets.contains(.top) {
+                classes.append("padding-top:\(length.rawValue)")
+            }
+            
+            if insets.contains(.bottom) {
+                classes.append("padding-bottom:\(length.rawValue)")
+            }
+            
+            if insets.contains(.leading) {
+                classes.append("padding-leading:\(length.rawValue)")
+            }
+            
+            if insets.contains(.trailing) {
+                classes.append("padding-trailing:\(length.rawValue)")
+            }
+            
+            if insets.contains(.horizontal) {
+                classes.append("padding-inline:\(length.rawValue)")
+            }
+            
+            if insets.contains(.vertical) {
+                classes.append("padding-block:\(length.rawValue)")
+            }
+            
+        } else {
+            classes.append("padding:\(length.rawValue)")
+        }
+        
+        return self.mutate(classes: classes)
+    }
 }
 
 extension List: HoverModifier {
@@ -88,7 +125,7 @@ extension List: HoverModifier {
 }
 
 /// A component that represents a list item.
-public struct ListRow: View, Actionable {
+public struct ListRow: View, Modifiable, Actionable {
     
     var id: String?
     
@@ -133,6 +170,43 @@ public struct ListRow: View, Actionable {
     
     public func id(_ value: String) -> ListRow {
         return self.mutate(id: value)
+    }
+    
+    public  func padding(insets: EdgeSet, length: Tokens.PaddingLength) -> ListRow {
+        
+        var classes: [String] = []
+        
+        if !insets.contains(.all) {
+            
+            if insets.contains(.top) {
+                classes.append("padding-top:\(length.rawValue)")
+            }
+            
+            if insets.contains(.bottom) {
+                classes.append("padding-bottom:\(length.rawValue)")
+            }
+            
+            if insets.contains(.leading) {
+                classes.append("padding-leading:\(length.rawValue)")
+            }
+            
+            if insets.contains(.trailing) {
+                classes.append("padding-trailing:\(length.rawValue)")
+            }
+            
+            if insets.contains(.horizontal) {
+                classes.append("padding-inline:\(length.rawValue)")
+            }
+            
+            if insets.contains(.vertical) {
+                classes.append("padding-block:\(length.rawValue)")
+            }
+            
+        } else {
+            classes.append("padding:\(length.rawValue)")
+        }
+        
+        return self.mutate(classes: classes)
     }
 }
 
