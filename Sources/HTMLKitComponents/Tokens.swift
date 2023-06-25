@@ -654,6 +654,11 @@ public enum Tokens {
         case equal = "aspect:equal"
         case unequal = "aspect:unequal"
     }
+    
+    public enum NavigationStyle: String {
+        
+        case plain = "style:plain"
+    }
 }
 
 public struct EdgeSet: OptionSet {

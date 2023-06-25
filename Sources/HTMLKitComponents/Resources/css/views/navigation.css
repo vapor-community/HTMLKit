@@ -1,0 +1,24 @@
+/*
+ The stylesheet for the navigation component.
+ */
+
+.navigation {
+    position: relative;
+}
+
+.navigation > .list > .list-row > .link {
+    display: flex;
+    align-items: center;
+    padding-block: 0.5rem;
+    padding-inline: 1.0rem;
+}
+
+.navigation > .list > .list-row > .link:hover {
+    border-radius: 5px;
+    background-color: hsla(0, 0%, 100%, 0.1);
+}
+
+.navigation > .list .list-row .link.state\:active {
+    border-radius: 5px;
+    background-color: hsla(var(--primaryColor), 1.0) !important;
+}

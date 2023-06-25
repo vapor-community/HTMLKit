@@ -539,4 +539,19 @@ final class ComponentTests: XCTestCase {
                        """
         )
     }
+    
+    
+    func testNavigation() throws {
+        
+        let view = TestView {
+            HTMLKitComponents.Navigation {
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <nav class="navigation"></nav>
+                       """
+        )
+    }
 }
