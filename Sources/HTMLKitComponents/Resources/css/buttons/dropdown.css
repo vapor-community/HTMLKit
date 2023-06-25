@@ -74,7 +74,8 @@
     position: absolute;
     z-index: 1;
     display: none;
-    margin-block: 0.75rem;
+    margin-block: 0.5rem;
+    padding-block: 0.5rem;
     inline-size: calc(var(--inlineSize) * 1.5);
     border-width: var(--borderWidth);
     border-style: solid;
@@ -89,8 +90,11 @@
     background-color: hsla(var(--primaryColor), 1.0);
 }
 
-.dropdown .list .list-row .link {
-    display: block;
+.dropdown-content > .list > .list-row > .link {
+    display: flex;
+    align-items: center;
+    padding-block: 0.5rem;
+    padding-inline: 1.0rem;
 }
 
 .dropdown.size\:full {

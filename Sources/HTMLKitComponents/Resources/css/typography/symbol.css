@@ -46,3 +46,10 @@
     --fontSize: 2rem;
     --lineHeight: 2.25;
 }
+
+.scheme\:dark .symbol, .symbol.scheme\:dark {
+}
+
+.symbol + .text {
+    margin-inline-start: 0.75rem;
+}
