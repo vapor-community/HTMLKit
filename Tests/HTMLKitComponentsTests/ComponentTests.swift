@@ -50,7 +50,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="group"></div>
+                       <div class="grouping"></div>
                        """
         )
     }
