@@ -711,7 +711,7 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
 /// ```html
 /// <link>
 /// ```
-public struct Link: EmptyNode, HeadElement {
+public struct Link: EmptyNode, HeadElement, BodyElement {
 
     internal var name: String { "link" }
 
