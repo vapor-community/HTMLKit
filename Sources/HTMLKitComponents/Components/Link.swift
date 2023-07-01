@@ -99,6 +99,18 @@ extension Link: TextModifier {
     public func underline() -> Link {
         return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
     }
+    
+    public func strikethrough() -> Link {
+        return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.rawValue)
+    }
+    
+    public func lineSpacing(_ height: Tokens.LineHeight) -> Link {
+        return self.mutate(lineheight: height.rawValue)
+    }
+    
+    public func lineLimit(_ limit: Tokens.LineLimit) -> Link {
+        return self.mutate(linelimit: limit.rawValue)
+    }
 }
 
 extension Link: ViewModifier {

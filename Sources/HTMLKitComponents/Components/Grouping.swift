@@ -86,4 +86,16 @@ extension Grouping: TextModifier {
     public func underline() -> Grouping {
         return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
     }
+    
+    public func strikethrough() -> Grouping {
+        return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.rawValue)
+    }
+    
+    public func lineSpacing(_ height: Tokens.LineHeight) -> Grouping {
+        return self.mutate(lineheight: height.rawValue)
+    }
+    
+    public func lineLimit(_ limit: Tokens.LineLimit) -> Grouping {
+        return self.mutate(linelimit: limit.rawValue)
+    }
 }

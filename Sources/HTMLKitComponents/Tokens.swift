@@ -657,4 +657,18 @@ public enum Tokens {
         
         case plain = "plain"
     }
+    
+    public enum LineHeight: String {
+        
+        case small = "small"
+        case medium = "medium"
+        case large = "large"
+    }
+    
+    public enum LineLimit: String {
+        
+        case one = "one"
+        case two = "two"
+        case three = "three"
+     }
 }

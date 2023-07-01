@@ -32,6 +32,15 @@ public protocol TextModifier {
     
     /// Applies an underline to the text.
     func underline() -> Self
+    
+    /// Applies an strikethrough to the text.
+    func strikethrough() -> Self
+    
+    /// Sets the line height for the text.
+    func lineSpacing(_ height: Tokens.LineHeight) -> Self
+    
+    /// Sets the limit of the lines for the text.
+    func lineLimit(_ limit: Tokens.LineLimit) -> Self
 }
 
 extension TextModifier where Self: Modifiable {
@@ -62,5 +71,13 @@ extension TextModifier where Self: Modifiable {
     
     internal func mutate(fontdecoration value: String) -> Self {
         return self.mutate(class: "decoration:\(value)")
+    }
+    
+    internal func mutate(lineheight value: String) -> Self {
+        return self.mutate(class: "height:\(value)")
+    }
+    
+    internal func mutate(linelimit value: String) -> Self {
+        return self.mutate(class: "limit:\(value)")
     }
 }

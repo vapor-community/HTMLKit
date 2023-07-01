@@ -161,5 +161,38 @@
     --lineHeight: 1.5;
 }
 
+.text.height\:small {
+    --lineHeight: 1.0;
+}
+
+.text.height\:medium {
+    --lineHeight: 1.75;
+}
+
+.text.height\:large {
+    --lineHeight: 2.25;
+}
+
+.text.limit\:one {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.text.limit\:two {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.text.limit\:three {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 .scheme\:dark .text, .text.scheme\:dark {
 }

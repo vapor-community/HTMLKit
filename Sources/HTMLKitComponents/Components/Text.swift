@@ -117,6 +117,18 @@ extension Text: TextModifier {
     public func underline() -> Text {
         return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
     }
+    
+    public func strikethrough() -> Text {
+        return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.rawValue)
+    }
+    
+    public func lineSpacing(_ height: Tokens.LineHeight) -> Text {
+        return self.mutate(lineheight: height.rawValue)
+    }
+    
+    public func lineLimit(_ limit: Tokens.LineLimit) -> Text {
+        return self.mutate(linelimit: limit.rawValue)
+    }
 }
 
 extension Text: ViewModifier {
