@@ -26,7 +26,7 @@ public struct Snippet: View, Modifiable {
                 return Paragraph { line }
             }
         
-        self.classes = ["snippet", highlight.rawValue]
+        self.classes = ["snippet", "highlight:\(highlight.rawValue)"]
     }
     
     /// Creates a snippet.
@@ -62,12 +62,21 @@ extension Snippet: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
+    public func hidden(_ condition: Bool) -> Snippet {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Snippet {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> Snippet {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Snippet {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Snippet {
@@ -76,5 +85,13 @@ extension Snippet: ViewModifier {
     
     public func borderColor(_ color: Tokens.BorderColor) -> Snippet {
         return self.mutate(bordercolor: color.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Snippet {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Snippet {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }

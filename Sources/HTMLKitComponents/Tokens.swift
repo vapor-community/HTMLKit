@@ -10,636 +10,665 @@ public enum Tokens {
     public enum FlowDirection: String {
         
         /// Aligns the elements vertically.
-        case vertical = "direction:vertical"
+        case vertical = "vertical"
         
         /// Aligns the elements horizontally.
-        case horizontal = "direction:horizontal"
+        case horizontal = "horizontal"
     }
 
     /// A alignment for text along the horizontal axis.
     public enum TextAlignment: String {
         
         /// Aligns the text left.
-        case left = "alignment:left"
+        case left = "left"
         
         /// Aligns the text in the middle.
-        case center = "alignment:center"
+        case center = "center"
         
         /// Aligns the text right.
-        case right = "alignment:right"
+        case right = "right"
     }
 
     /// A size for column.
     public enum ColumnSize: String {
         
         /// Sets the size to 8.3 %.
-        case one = "size:1"
+        case one = "one"
         
         /// Sets the size to 16.67 %.
-        case two = "size:2"
+        case two = "two"
         
         /// Sets the size to 25 %.
-        case three = "size:3"
+        case three = "three"
         
         /// Sets the size to 33.3 %.
-        case four = "size:4"
+        case four = "four"
         
         /// Sets the size to 41.67 %.
-        case five = "size:5"
+        case five = "five"
         
         /// Sets the size to 50 %.
-        case six = "size:6"
+        case six = "six"
         
         /// Sets the size to 58.3 %.
-        case seven = "size:7"
+        case seven = "seven"
         
         /// Sets the size to 66.67 %.
-        case eight = "size:8"
+        case eight = "eight"
         
         /// Sets the size to 75 %.
-        case nine = "size:9"
+        case nine = "nine"
         
         /// Sets the size to 83.3%.
-        case ten = "size:10"
+        case ten = "ten"
         
         /// Sets the size to 91.67 %.
-        case eleven = "size:11"
+        case eleven = "eleven"
         
         /// Sets the size to 100 %.
-        case twelve = "size:12"
+        case twelve = "twelve"
     }
 
     /// A color for text.
     public enum ForegroundColor: String {
         
         /// Changes the foreground color to black.
-        case black = "color:black"
+        case black = "black"
         
         /// Changes the foreground color to white.
-        case white = "color:white"
+        case white = "white"
         
         /// Changes the foreground color to blue.
-        case blue = "color:blue"
+        case blue = "blue"
         
         /// Changes the foreground color to brown.
-        case brown = "color:brown"
+        case brown = "brown"
         
         /// Changes the foreground color to cyan.
-        case cyan = "color:cyan"
+        case cyan = "cyan"
         
         /// Changes the foreground color to green.
-        case green = "color:green"
+        case green = "green"
         
         /// Changes the foreground color to indigo.
-        case indigo = "color:indigo"
+        case indigo = "indigo"
         
         /// Changes the foreground color to mint.
-        case mint = "color:mint"
+        case mint = "mint"
         
         /// Changes the foreground color to pink.
-        case pink = "color:pink"
+        case pink = "pink"
         
         /// Changes the foreground color to purple.
-        case purple = "color:purple"
+        case purple = "purple"
         
         /// Changes the foreground color to red.
-        case red = "color:red"
+        case red = "red"
         
         /// Changes the foreground color to teal.
-        case teal = "color:teal"
+        case teal = "teal"
         
         /// Changes the foreground color to orange.
-        case orange = "color:orange"
+        case orange = "orange"
         
         /// Changes the foreground color to yellow.
-        case yellow = "color:yellow"
+        case yellow = "yellow"
         
         /// Changes the foreground color to gray.
-        case gray = "color:gray"
+        case gray = "gray"
         
         /// Changes the foreground color to silver.
-        case silver = "color:silver"
+        case silver = "silver"
         
         /// Changes the foreground color to black.
-        case highlight = "color:highlight"
+        case highlight = "highlight"
         
         /// Changes the foreground color to black.
-        case primary = "color:primary"
+        case primary = "primary"
         
         /// Changes the foreground color to black.
-        case secondary = "color:secondary"
+        case secondary = "secondary"
     }
 
     /// A size for text.
     public enum FontSize: String {
         
         /// Changes the size to small.
-        case tiny = "size:tiny"
+        case tiny = "tiny"
         
         /// Changes the size to small.
-        case small = "size:small"
+        case small = "small"
         
         /// Changes the size to medium.
-        case medium = "size:medium"
+        case medium = "medium"
         
         /// Changes the size to large.
-        case large = "size:large"
+        case large = "large"
         
         /// Changes the size to extra large.
-        case extralarge = "size:extralarge"
+        case extralarge = "extralarge"
     }
 
     /// A transformation for the text.
     public enum TextTransformation: String {
         
         /// Converts all characters to uppercase.
-        case uppercase = "transformation:uppercase"
+        case uppercase = "uppercase"
         
         /// Converts all characters to lowercase.
-        case lowercase = "transformation:lowercase"
+        case lowercase = "lowercase"
         
         /// Capitalizes the first letter of each word.
-        case capitalize = "transformation:capitalize"
+        case capitalize = "capitalize"
     }
 
     /// A weight for text.
     public enum FontWeight: String {
         
         /// Sets the weight to 100.
-        case thin = "weight:thin"
+        case thin = "thin"
         
         /// Sets the weight to 200.
-        case ultraLight = "weight:ultralight"
+        case ultraLight = "ultralight"
         
         /// Sets the weight to 300.
-        case light = "weight:light"
+        case light = "light"
         
         /// Sets the weight to 400.
-        case regular = "weight:regular"
+        case regular = "regular"
         
         /// Sets the weight to 500.
-        case medium = "weight:medium"
+        case medium = "medium"
         
         /// Sets the weight to 600.
-        case semibold = "weight:semibold"
+        case semibold = "semibold"
         
         /// Sets the weight to 700.
-        case bold = "weight:bold"
+        case bold = "bold"
 
         /// Sets the weight to 900.
-        case heavy = "weight:heavy"
+        case heavy = "heavy"
         
         /// Sets the weight to 950.
-        case black = "weight:black"
+        case black = "black"
     }
 
     /// A decoration for text.
     public enum TextDecoration: String {
         
-        case underline = "decoration:underline"
+        case underline = "underline"
         
-        case overline = "decoration:overline"
+        case overline = "overline"
         
-        case strikeThrough = "decoration:strikethrough"
+        case strikeThrough = "strikethrough"
         
-        case none = "decoration:none"
+        case none = "none"
     }
 
     public enum FontStyle: String {
         
-        case italic = "style:italic"
+        case italic = "italic"
         
-        case oblique = "style:oblique"
+        case oblique = "oblique"
     }
 
     public enum BackgroundColor: String {
         
         /// Changes the background color to black.
-        case black = "background:black"
+        case black = "black"
         
         /// Changes the background color to white.
-        case white = "background:white"
+        case white = "white"
         
         /// Changes the background color to blue.
-        case blue = "background:blue"
+        case blue = "blue"
         
         /// Changes the background color to brown.
-        case brown = "background:brown"
+        case brown = "brown"
         
         /// Changes the background color to cyan.
-        case cyan = "background:cyan"
+        case cyan = "cyan"
         
         /// Changes the background color to green.
-        case green = "background:green"
+        case green = "green"
         
         /// Changes the background color to indigo.
-        case indigo = "background:indigo"
+        case indigo = "indigo"
         
         /// Changes the background color to mint.
-        case mint = "background:mint"
+        case mint = "mint"
         
         /// Changes the background color to pink.
-        case pink = "background:pink"
+        case pink = "pink"
         
         /// Changes the background color to purple.
-        case purple = "background:purple"
+        case purple = "purple"
         
         /// Changes the background color to red.
-        case red = "background:red"
+        case red = "red"
         
         /// Changes the background color to teal.
-        case teal = "background:teal"
+        case teal = "teal"
         
         /// Changes the background color to ornage.
-        case orange = "background:orange"
+        case orange = "orange"
         
         /// Changes the background color to yellow.
-        case yellow = "background:yellow"
+        case yellow = "yellow"
         
         /// Changes the background color to gray.
-        case gray = "background:gray"
+        case gray = "gray"
         
         /// Changes the background color to silver.
-        case silver = "background:silver"
+        case silver = "silver"
         
-        case highlight = "background:highlight"
+        case highlight = "highlight"
         
-        case primary = "background:primary"
+        case primary = "primary"
         
-        case secondary = "background:secondary"
+        case secondary = "secondary"
         
-        case transparent = "background:transparent"
+        case transparent = "transparent"
     }
 
     /// A resize for an element.
     public enum ObjectFit: String {
-        
+
         /// Resizes the content to fit within the parent.
-        case contain = "fit:contain"
+        case contain = "contain"
         
         /// Resizes the content to fill the parent. The overflow will be clipped.
-        case cover = "fit:cover"
+        case cover = "cover"
         
         /// Resizes the content to fill the parent. If necessary it will be streched or squished.
-        case fill = "fit:fill"
+        case fill = "fill"
         
-        case scaleDown = "fit:scaledown"
+        case scaleDown = "scaledown"
         
         /// Does not resize.
-        case none = "fit:none"
+        case none = "none"
     }
 
     public enum OpacityValue: String {
         
-        case intransparent = "opacity:intransparent"
+        case intransparent = "intransparent"
         
-        case transparent = "opacity:transparent"
+        case transparent = "transparent"
     }
 
     /// A offset for a column.
     public enum ColumnOffset: String {
         
         /// Sets the offset to 8.3 %.
-        case one = "offset:1"
+        case one = "one"
         
         /// Sets the offset to 16.67 %.
-        case two = "offset:2"
+        case two = "two"
         
         /// Sets the offset to 25 %.
-        case three = "offset:3"
+        case three = "three"
         
         /// Sets the offset to 33.33 %.
-        case four = "offset:4"
+        case four = "four"
         
         /// Sets the offset to 41.67 %.
-        case five = "offset:5"
+        case five = "five"
         
         /// Sets the offset to 50 %.
-        case six = "offset:6"
+        case six = "six"
         
         /// Sets the offset to  58.3 %.
-        case seven = "offset:7"
+        case seven = "seven"
         
         /// Sets the offset to  66.7 %.
-        case eight = "offset:8"
+        case eight = "eight"
         
         /// Sets the offset to 75 %.
-        case nine = "offset:9"
+        case nine = "nine"
         
         /// Sets the offset to 83.3 %.
-        case ten = "offset:10"
+        case ten = "ten"
         
         /// Sets the offset to 91.67 %.
-        case eleven = "offset:11"
+        case eleven = "eleven"
     }
 
     public enum ImageScale: String {
         
-        case small = "scale:small"
-        case medium = "scale:medium"
-        case large = "scale:large"
+        case small = "small"
+        case medium = "medium"
+        case large = "large"
     }
 
     public enum ClipShape: String {
         
-        case circle = "shape:circle"
+        case circle = "circle"
     }
 
     /// Position along the z-axis.
     public enum PositionIndex: String {
         
         /// Sets the stack order to 1.
-        case one = "zindex:1"
+        case one = "1"
         
         /// Sets the stack order to 2.
-        case two = "zindex:2"
+        case two = "2"
         
         /// Sets the stack order to 3.
-        case three = "zindex:3"
+        case three = "3"
         
         /// Sets the stack order to 4.
-        case four = "zindex:4"
+        case four = "4"
         
         /// Sets the stack order to 5.
-        case five = "zindex:5"
+        case five = "5"
     }
 
     /// A style for text.
     public enum TextStyle: String {
         
         /// Formats the text as title.
-        case title = "style:title"
+        case title = "title"
         
         /// Formats the text as headline.
-        case headline = "style:headline"
+        case headline = "headline"
         
         /// Formats the text as subheadline.
-        case subheadline = "style:subheadline"
+        case subheadline = "subheadline"
         
         /// Formats the text as body.
-        case body = "style:body"
+        case body = "body"
         
         /// Formats the text as callout.
-        case callout = "style:callout"
+        case callout = "callout"
         
         /// Formats the text as caption.
-        case caption = "style:caption"
+        case caption = "caption"
         
         /// Formats the text as footnote.
-        case footnote = "style:footnote"
+        case footnote = "footnote"
         
         /// Formats the text as code.
-        case code = "style:code"
+        case code = "code"
     }
 
     /// A alignment along the vertically axis.
     public enum VerticalAlignment: String {
         
         /// Aligns at the top.
-        case top = "alignment:top"
+        case top = "top"
         
         /// Aligns in the middle.
-        case center = "alignment:center"
+        case center = "center"
         
         /// Aligns at the bottom.
-        case bottom = "alignment:bottom"
+        case bottom = "bottom"
         
         /// Aligns with the parent's baseline.
-        case baseline = "alignment:baseline"
+        case baseline = "baseline"
     }
 
     /// A alignment along the horizontal axis.
     public enum HorizontalAlignment: String {
         
         /// Aligns left.
-        case leading = "alignment:leading"
+        case leading = "leading"
         
         /// Aligns center.
-        case center = "alignment:center"
+        case center = "center"
         
         /// Aligns right.
-        case trailing = "alignment:trailing"
+        case trailing = "trailing"
     }
 
     public enum ContentSpace: String {
         
-        case around = "space:around"
-        case between = "space:between"
-        case evenly = "space:evenly"
+        case around = "around"
+        case between = "between"
+        case evenly = "evenly"
+        case large = "large"
+        case medium = "medium"
+        case small = "small"
     }
 
     public enum SyntaxHighlight: String {
         
-        case plaintext = "hightlight:plaintext"
-        case html = "hightlight:html"
-        case css = "hightlight:css"
-        case javascript = "hightlight:javascript"
+        case plaintext = "plaintext"
+        case html = "html"
+        case css = "css"
+        case javascript = "javascript"
     }
 
     /// A style for button.
     public enum ButtonStyle: String {
         
-        case primary = "style:primary"
-        case secondary = "style:secondary"
-        case outline = "style:outline"
+        case primary = "primary"
+        case secondary = "secondary"
+        case outline = "outline"
     }
 
     /// A shape of the button.
     public enum BorderShape: String {
         
-        case smallrounded = "shape:smallrounded"
-        case largerounded = "shape:largerounded"
-        case fullrounded = "shape:fullrounded"
+        case smallrounded = "smallrounded"
+        case largerounded = "largerounded"
+        case fullrounded = "fullrounded"
     }
 
     /// A size of a button.
     public enum ButtonSize: String {
         
         /// Sets the size to 100 %.
-        case full = "size:full"
+        case full = "full"
         
         /// Sets the size to 75 %.
-        case large = "size:large"
+        case large = "large"
         
         /// Sets the size to 50 %.
-        case medium = "size:medium"
+        case medium = "medium"
         
         /// Sets the size to 25 %.
-        case small = "size:small"
+        case small = "small"
     }
 
     /// A ratio for the grid.
     public enum ItemRatio: String {
         
         ///  Sets the ratio to 15%.
-        case sixth = "ratio:15"
+        case sixth = "15"
         
         /// Sets  the ratio to 20 %.
-        case fifth = "ratio:20"
+        case fifth = "20"
         
         /// Sets the ratio to 25 %.
-        case quarter = "ratio:25"
+        case quarter = "25"
         
         /// Sets the ratio to 33 %.
-        case third = "ratio:33"
+        case third = "33"
         
         /// Sets the ratio to 50 %.
-        case half = "ratio:50"
+        case half = "50"
     }
 
     /// A style for a list.
     public enum ListStyle: String {
 
-        case grouped = "style:grouped"
-        case accordion = "style:accordion"
-        case tab = "style:tab"
+        case listgroup = "listgroup"
     }
     
     /// A state for the view.
     public enum ViewState: String {
         
         /// Sets the state to active.
-        case active = "state:active"
+        case active = "active"
         
         /// Sets the state to disabled.
-        case disabled = "state:disabled"
+        case disabled = "disabled"
         
         /// Sets the state to hidden.
-        case hidden = "state:hidden"
+        case hidden = "hidden"
         
         /// Sets the state to visible.
-        case visible = "state:visible"
+        case visible = "visible"
     }
     
     public enum BorderColor: String {
         
         /// Changes the border color to black.
-        case black = "border:black"
+        case black = "black"
         
         /// Changes the border color to white.
-        case white = "border:white"
+        case white = "white"
         
         /// Changes the border color to blue.
-        case blue = "border:blue"
+        case blue = "blue"
         
         /// Changes the border color to brown.
-        case brown = "border:brown"
+        case brown = "brown"
         
         /// Changes the border color to cyan.
-        case cyan = "border:cyan"
+        case cyan = "cyan"
         
         /// Changes the border color to green.
-        case green = "border:green"
+        case green = "green"
         
         /// Changes the border color to indigo.
-        case indigo = "border:indigo"
+        case indigo = "indigo"
         
         /// Changes the border color to mint.
-        case mint = "border:mint"
+        case mint = "mint"
         
         /// Changes the border color to pink.
-        case pink = "border:pink"
+        case pink = "pink"
         
         /// Changes the border color to purple.
-        case purple = "border:purple"
+        case purple = "purple"
         
         /// Changes the border color to red.
-        case red = "border:red"
+        case red = "red"
         
         /// Changes the border color to teal.
-        case teal = "border:teal"
+        case teal = "teal"
         
         /// Changes the border color to ornage.
-        case orange = "border:orange"
+        case orange = "orange"
         
         /// Changes the border color to yellow.
-        case yellow = "border:yellow"
+        case yellow = "yellow"
         
         /// Changes the border color to gray.
-        case gray = "border:gray"
+        case gray = "gray"
         
         /// Changes the border color to silver.
-        case silver = "border:silver"
+        case silver = "silver"
         
-        case primary = "border:primary"
+        case primary = "primary"
         
-        case secondary = "border:secondary"
+        case secondary = "secondary"
         
-        case transparent = "border:transparent"
+        case transparent = "transparent"
     }
     
     public enum FocusColor: String {
         
         /// Changes the border color to black.
-        case black = "focus:black"
+        case black = "black"
         
         /// Changes the border color to white.
-        case white = "focus:white"
+        case white = "white"
         
         /// Changes the border color to blue.
-        case blue = "focus:blue"
+        case blue = "blue"
         
         /// Changes the border color to brown.
-        case brown = "focus:brown"
+        case brown = "brown"
         
         /// Changes the border color to cyan.
-        case cyan = "focus:cyan"
+        case cyan = "cyan"
         
         /// Changes the border color to green.
-        case green = "focus:green"
+        case green = "green"
         
         /// Changes the border color to indigo.
-        case indigo = "focus:indigo"
+        case indigo = "indigo"
         
         /// Changes the border color to mint.
-        case mint = "focus:mint"
+        case mint = "mint"
         
         /// Changes the border color to pink.
-        case pink = "focus:pink"
+        case pink = "pink"
         
         /// Changes the border color to purple.
-        case purple = "focus:purple"
+        case purple = "purple"
         
         /// Changes the border color to red.
-        case red = "focus:red"
+        case red = "red"
         
         /// Changes the border color to teal.
-        case teal = "focus:teal"
+        case teal = "teal"
         
         /// Changes the border color to ornage.
-        case orange = "focus:orange"
+        case orange = "orange"
         
         /// Changes the border color to yellow.
-        case yellow = "focus:yellow"
+        case yellow = "yellow"
         
         /// Changes the border color to gray.
-        case gray = "focus:gray"
+        case gray = "gray"
         
         /// Changes the border color to silver.
-        case silver = "focus:silver"
+        case silver = "silver"
         
-        case primary = "focus:primary"
+        case primary = "primary"
         
-        case secondary = "focus:secondary"
-        
-        case transparent = "focus:transparent"
+        case secondary = "secondary"
     }
     
     public enum ColorScheme: String {
         
         /// Changes the color scheme to dark.
-        case dark = "scheme:dark"
+        case dark = "dark"
         
         /// Changes the color scheme to light.
-        case light = "scheme:light"
+        case light = "light"
     }
     
-    public enum BoxPadding: String {
+    public enum PaddingLength: String {
         
-        case large = "padding:large"
-        
-        case medium = "padding:medium"
-        
-        case small = "padding:small"
+        case large = "large"
+        case medium = "medium"
+        case small = "small"
     }
+    
+    public enum MarginLength: String {
+        
+        case large = "large"
+        case medium = "medium"
+        case small = "small"
+    }
+    
+    public enum AspectRatio: String {
+        
+        case equal = "equal"
+        case unequal = "unequal"
+    }
+    
+    public enum NavigationStyle: String {
+        
+        case plain = "plain"
+    }
+    
+    public enum LineHeight: String {
+        
+        case small = "small"
+        case medium = "medium"
+        case large = "large"
+    }
+    
+    public enum LineLimit: String {
+        
+        case one = "one"
+        case two = "two"
+        case three = "three"
+     }
 }

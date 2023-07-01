@@ -516,7 +516,7 @@ internal class Stylesheet {
             return .stringvalue
         }
         
-        if character.isNumber {
+        if character.isNumber || character.isHyphenMinus {
             
             self.assign(token: ValueToken(type: .numeric, value: String(character)))
             

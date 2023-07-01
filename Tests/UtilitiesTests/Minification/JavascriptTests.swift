@@ -136,8 +136,59 @@ final class JavascriptTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(js: switchcase), "switch(condition){case x:break;case'y':break;default:}"
-        )
+        XCTAssertEqual(minifier.minify(js: switchcase), "switch(condition){case x:break;case'y':break;default:}")
+        
+        // ...if else statement
+        
+        let ifelse = """
+        if(condition) {
+            console.log('true');
+        } else {
+            console.log('false');
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(js: ifelse), "if(condition){console.log('true');}else{console.log('false');}")
+    }
+    
+    func testConditions() {
+        
+        // ...greater than condition
+        
+        let greatherthan = """
+        if(variable < 10) {
+            console.log('true');
+        } else {
+            console.log('false');
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(js: greatherthan), "if(variable<10){console.log('true');}else{console.log('false');}")
+        
+        // ...equal condition
+        
+        let equalto = """
+        if(variable == 'variable') {
+            console.log('true');
+        } else {
+            console.log('false');
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(js: equalto), "if(variable=='variable'){console.log('true');}else{console.log('false');}")
+        
+        
+        // ...not operator condition
+        
+        let negationperator = """
+        if(!variable) {
+            console.log('true');
+        } else {
+            console.log('false');
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(js: negationperator), "if(!variable){console.log('true');}else{console.log('false');}")
     }
     
     func testMinfiyFunctionPattern() {

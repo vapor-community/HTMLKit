@@ -23,6 +23,14 @@
     border-radius: var(--borderRadius);
 }
 
+.image.aspect\:equal {
+    aspect-ratio: 1/1;
+}
+
+.image.aspect\:unequal {
+    aspect-ratio: 2/1;
+}
+
 .image.fit\:contain {
     object-fit:contain;
 }
@@ -52,15 +60,15 @@
 }
 
 .image.scale\:small {
-    --inlineSize: 25%;
+    --inlineSize: 3.125rem;
 }
 
 .image.scale\:medium {
-    --inlineSize: 50%;
+    --inlineSize: 12.5rem;
 }
 
 .image.scale\:large {
-    --inlineSize: 75%;
+    --inlineSize: 25rem;
 }
 
 .image.shape\:circle {

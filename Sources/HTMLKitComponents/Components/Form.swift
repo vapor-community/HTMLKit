@@ -196,8 +196,17 @@ extension TextField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> TextField {
-        return self.mutate(padding: length.rawValue)
+    public func hidden(_ condition: Bool) -> TextField {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> TextField {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> TextField {
@@ -214,6 +223,14 @@ extension TextField: ViewModifier {
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> TextField {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> TextField {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextField {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -311,8 +328,17 @@ extension TextEditor: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> TextEditor {
-        return self.mutate(padding: length.rawValue)
+    public func hidden(_ condition: Bool) -> TextEditor {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> TextEditor {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> TextEditor {
@@ -329,6 +355,14 @@ extension TextEditor: ViewModifier {
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> TextEditor {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> TextEditor {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextEditor {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -410,8 +444,17 @@ extension CheckField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> CheckField {
-        return self.mutate(padding: length.rawValue)
+    public func hidden(_ condition: Bool) -> CheckField {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> CheckField {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> CheckField {
@@ -428,6 +471,14 @@ extension CheckField: ViewModifier {
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> CheckField {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> CheckField {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> CheckField {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -509,8 +560,17 @@ extension RadioSelect: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> RadioSelect {
-        return self.mutate(padding: length.rawValue)
+    public func hidden(_ condition: Bool) -> RadioSelect {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> RadioSelect {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> RadioSelect {
@@ -527,6 +587,14 @@ extension RadioSelect: ViewModifier {
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> RadioSelect {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> RadioSelect {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> RadioSelect {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -608,8 +676,17 @@ extension SelectField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> SelectField {
-        return self.mutate(padding: length.rawValue)
+    public func hidden(_ condition: Bool) -> SelectField {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> SelectField {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> SelectField {
@@ -626,6 +703,14 @@ extension SelectField: ViewModifier {
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> SelectField {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> SelectField {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SelectField {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -746,8 +831,17 @@ extension SecureField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> SecureField {
-        return self.mutate(padding: length.rawValue)
+    public func hidden(_ condition: Bool) -> SecureField {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> SecureField {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> SecureField {
@@ -764,6 +858,14 @@ extension SecureField: ViewModifier {
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> SecureField {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> SecureField {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SecureField {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -833,8 +935,17 @@ extension Slider: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> Slider {
-        return self.mutate(padding: length.rawValue)
+    public func hidden(_ condition: Bool) -> Slider {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Slider {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> Slider {
@@ -851,6 +962,14 @@ extension Slider: ViewModifier {
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Slider {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Slider {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Slider {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -1007,8 +1126,17 @@ extension DatePicker: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> DatePicker {
-        return self.mutate(padding: length.rawValue)
+    public func hidden(_ condition: Bool) -> DatePicker {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> DatePicker {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> DatePicker {
@@ -1025,6 +1153,14 @@ extension DatePicker: ViewModifier {
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> DatePicker {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> DatePicker {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> DatePicker {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -1110,8 +1246,17 @@ extension SearchField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> SearchField {
-        return self.mutate(padding: length.rawValue)
+    public func hidden(_ condition: Bool) -> SearchField {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> SearchField {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> SearchField {
@@ -1128,6 +1273,14 @@ extension SearchField: ViewModifier {
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> SearchField {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> SearchField {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SearchField {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -1309,8 +1462,17 @@ extension TextPad: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> TextPad {
-        return self.mutate(padding: length.rawValue)
+    public func hidden(_ condition: Bool) -> TextPad {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> TextPad {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> TextPad {
@@ -1327,5 +1489,13 @@ extension TextPad: ViewModifier {
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> TextPad {
         return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> TextPad {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextPad {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }

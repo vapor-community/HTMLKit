@@ -22,8 +22,8 @@
         
         window.addEventListener('click', function (event) {
             
-            if(!event.target.matches('.dropdown-label')) {
-                 self.hideDropdownList();
+            if(!self.element.contains(event.target)) {
+                self.hideDropdownList();
             }
         });
     };

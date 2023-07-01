@@ -20,8 +20,10 @@
  */
 
 .button {
-    --paddingBlock: 0.5rem;
-    --paddingInline: 1.0rem;
+    --paddingBlockStart: 0.5rem;
+    --paddingBlockEnd: 0.5rem;
+    --paddingInlineStart: 1.0rem;
+    --paddingInlineEnd: 1.0rem;
     --inlineSize: fit-content();
     --fontSize: 1.0rem;
     --fontWeight: 400;
@@ -29,15 +31,19 @@
     --borderWidth: 1px;
     --borderColor: 210, 9%, 31%;
     --borderRadius: 0;
+    --borderOpacity: 1.0;
     --foregroundColor: 0, 0%, 100%;
     --backgroundColor: 210, 11%, 15%;
+    --backgroundOpacity: 1.0;
     
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding-block: var(--paddingBlock);
-    padding-inline: var(--paddingInline);
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
     inline-size: var(--inlineSize);
     font-family: var(--fontFamily);
     font-size: var(--fontSize);
@@ -48,8 +54,9 @@
     white-space: nowrap;
     border-width: var(--borderWidth);
     border-style: solid;
-    border-color: hsla(var(--borderColor), 1.0);
-    background-color: hsla(var(--backgroundColor), 1.0);
+    border-color: hsla(var(--borderColor), var(--borderOpacity));
+    border-radius: var(--borderRadius);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -74,7 +81,7 @@
 
 .button.style\:outline {
     --foregroundColor: var(--secondaryColor);
-    --backgroundColor: transparent;
+    --backgroundOpacity: 0.0;
     --borderColor: var(--secondaryColor);
 }
 

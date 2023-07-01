@@ -24,7 +24,7 @@ public struct HStack: View, Actionable, Modifiable {
     public init(alignment: Tokens.VerticalAlignment = .center, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
-        self.classes = ["hstack", alignment.rawValue]
+        self.classes = ["hstack", "alignment:\(alignment.rawValue)"]
     }
     
     /// Creates a horizontal stack.
@@ -59,7 +59,7 @@ public struct HStack: View, Actionable, Modifiable {
     public func contentSpace(_ value: Tokens.ContentSpace) -> HStack {
         
         var newSelf = self
-        newSelf.classes.append(value.rawValue)
+        newSelf.classes.append("space:\(value.rawValue)")
         
         return newSelf
     }
@@ -94,12 +94,21 @@ extension HStack: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
+    public func hidden(_ condition: Bool) -> HStack {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> HStack {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ value: Tokens.BoxPadding) -> HStack {
-        return self.mutate(padding: value.rawValue)
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> HStack {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> HStack {
@@ -108,6 +117,14 @@ extension HStack: ViewModifier {
     
     public func borderColor(_ color: Tokens.BorderColor) -> HStack {
         return self.mutate(bordercolor: color.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> HStack {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> HStack {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -128,7 +145,7 @@ public struct VStack: View, Actionable, Modifiable {
     public init(alignment: Tokens.HorizontalAlignment = .leading, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
-        self.classes = ["vstack", alignment.rawValue]
+        self.classes = ["vstack", "alignment:\(alignment.rawValue)"]
     }
     
     /// Creates a vertical stack.
@@ -157,6 +174,15 @@ public struct VStack: View, Actionable, Modifiable {
     
     public func id(_ value: String) -> VStack {
         return self.mutate(id: value)
+    }
+    
+    /// Sets the space of the content.
+    public func contentSpace(_ value: Tokens.ContentSpace) -> VStack {
+        
+        var newSelf = self
+        newSelf.classes.append("space:\(value.rawValue)")
+        
+        return newSelf
     }
 }
 
@@ -189,12 +215,21 @@ extension VStack: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
+    public func hidden(_ condition: Bool) -> VStack {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> VStack {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> VStack {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> VStack {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> VStack {
@@ -203,6 +238,14 @@ extension VStack: ViewModifier {
     
     public func borderColor(_ color: Tokens.BorderColor) -> VStack {
         return self.mutate(bordercolor: color.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> VStack {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> VStack {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -284,12 +327,21 @@ extension ZStack: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
+    public func hidden(_ condition: Bool) -> ZStack {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> ZStack {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> ZStack {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> ZStack {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> ZStack {
@@ -299,56 +351,13 @@ extension ZStack: ViewModifier {
     public func borderColor(_ color: Tokens.BorderColor) -> ZStack {
         return self.mutate(bordercolor: color.rawValue)
     }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> ZStack {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> ZStack {
+        return self.mutate(margin: length.rawValue, insets: insets)
+    }
 }
 
-/// A component that represents a stack column.
-public struct StackColumn: View {
-    
-    /// The content of the column.
-    internal var content: [Content]
-    
-    /// The content of the column.
-    internal var classes: [String]
-    
-    /// Creates a stack column.
-    public init(size: Tokens.ColumnSize, @ContentBuilder<Content> content: () -> [Content]) {
-        
-        self.content = content()
-        self.classes = ["stack-column", size.rawValue]
-    }
-    
-    /// Creates a stack column.
-    public init(size: Tokens.ColumnSize, alignment: Tokens.TextAlignment, @ContentBuilder<Content> content: () -> [Content]) {
-        
-        self.content = content()
-        self.classes = ["stack-column", size.rawValue, alignment.rawValue]
-    }
-    
-    /// Creates a stack column.
-    public init(size: Tokens.ColumnSize, offset: Tokens.ColumnOffset, @ContentBuilder<Content> content: () -> [Content]) {
-        
-        self.content = content()
-        self.classes = ["stack-column", size.rawValue, offset.rawValue]
-    }
-    
-    /// Creates a stack column.
-    public init(size: Tokens.ColumnSize, alignment: Tokens.TextAlignment, offset: Tokens.ColumnOffset, @ContentBuilder<Content> content: () -> [Content]) {
-        
-        self.content = content()
-        self.classes = ["stack-column", size.rawValue, alignment.rawValue, offset.rawValue]
-    }
-    
-    /// Creates a stack column.
-    internal init(content: [Content], classes: [String]) {
-        
-        self.content = content
-        self.classes = classes
-    }
-    
-    public var body: Content {
-        Division {
-            content
-        }
-        .class(classes.joined(separator: " "))
-    }
-}

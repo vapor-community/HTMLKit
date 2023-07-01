@@ -158,6 +158,38 @@
     --lineHeight: 1.5;
 }
 
+.link.height\:small {
+    --lineHeight: 1.0;
+}
+
+.link.height\:medium {
+    --lineHeight: 1.75;
+}
+
+.link.height\:large {
+    --lineHeight: 2.25;
+}
+
+.link.limit\:one {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.link.limit\:two {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.link.limit\:three {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 .scheme\:dark .link, .link.scheme\:dark {
-    --foregroundColor: 0, 0%, 100%;
 }

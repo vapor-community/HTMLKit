@@ -22,7 +22,7 @@ public struct List: View, Modifiable, Actionable {
     public init(direction: Tokens.FlowDirection, @ContentBuilder<ListElement> content: () -> [ListElement]) {
         
         self.content = content()
-        self.classes = ["list", direction.rawValue]
+        self.classes = ["list", "direction:\(direction.rawValue)"]
     }
     
     /// Creates a list.
@@ -53,7 +53,7 @@ public struct List: View, Modifiable, Actionable {
     public func listStyle(_ style: Tokens.ListStyle) -> List {
         
         var newSelf = self
-        newSelf.classes.append(style.rawValue)
+        newSelf.classes.append("style:\(style.rawValue)")
         
         return newSelf
     }
@@ -74,8 +74,60 @@ extension List: HoverModifier {
     }
 }
 
+extension List: ViewModifier {
+    
+    public func backgroundColor(_ color: Tokens.BackgroundColor) -> List {
+        return self.mutate(backgroundcolor: color.rawValue)
+    }
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> List {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> List {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> List {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func hidden(_ condition: Bool) -> List {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> List {
+        return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> List {
+        return self.mutate(padding: length.rawValue, insets: insets)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> List {
+        return self.mutate(bordershape: shape.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> List {
+        return self.mutate(bordercolor: color.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> List {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> List {
+        return self.mutate(margin: length.rawValue, insets: insets)
+    }
+}
+
 /// A component that represents a list item.
-public struct ListRow: View, Actionable {
+public struct ListRow: View, Modifiable, Actionable {
     
     var id: String?
     
@@ -120,6 +172,43 @@ public struct ListRow: View, Actionable {
     
     public func id(_ value: String) -> ListRow {
         return self.mutate(id: value)
+    }
+    
+    public  func padding(insets: EdgeSet, length: Tokens.PaddingLength) -> ListRow {
+        
+        var classes: [String] = []
+        
+        if !insets.contains(.all) {
+            
+            if insets.contains(.top) {
+                classes.append("padding-top:\(length)")
+            }
+            
+            if insets.contains(.bottom) {
+                classes.append("padding-bottom:\(length)")
+            }
+            
+            if insets.contains(.leading) {
+                classes.append("padding-leading:\(length)")
+            }
+            
+            if insets.contains(.trailing) {
+                classes.append("padding-trailing:\(length)")
+            }
+            
+            if insets.contains(.horizontal) {
+                classes.append("padding-inline:\(length)")
+            }
+            
+            if insets.contains(.vertical) {
+                classes.append("padding-block:\(length)")
+            }
+            
+        } else {
+            classes.append("padding:\(length)")
+        }
+        
+        return self.mutate(classes: classes)
     }
 }
 

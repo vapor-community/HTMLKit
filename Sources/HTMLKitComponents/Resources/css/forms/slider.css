@@ -16,9 +16,11 @@
 .slider {
     --borderWidth: 1px;
     --borderColor: 210, 14%, 89%;
+    --borderOpacity: 1.0;
     --controlColor: 0, 0%, 0%;
     --focusColor: 210, 100%, 50%;
     --backgroundColor: 0, 0%, 100%;
+    --backgroundOpacity: 1.0;
     
     display: block;
     margin: 0;
@@ -26,15 +28,16 @@
     inline-size: 100%;
     border-width: var(--borderWidth);
     border-style: solid;
-    border-color: hsla(var(--borderColor), 1.0);
-    background-color: hsla(var(--backgroundColor), 1.0);
+    border-color: hsla(var(--borderColor), var(--borderOpacity));
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
 }
 
 .slider:focus {
-    border-color: hsla(var(--focusColor), 1.0);
+    --borderColor: var(--focusColor) !important;
+    
     outline: 0;
     box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
 }

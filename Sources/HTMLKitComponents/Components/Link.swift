@@ -89,14 +89,114 @@ extension Link: TextModifier {
     }
     
     public func bold() -> Link {
-        return self.mutate(bold: Tokens.FontWeight.bold.rawValue)
+        return self.mutate(fontweight: Tokens.FontWeight.bold.rawValue)
+    }
+    
+    public func bold(_ condition: Bool) -> Link {
+        
+        if condition {
+            return self.mutate(fontweight: Tokens.FontWeight.bold.rawValue)
+        }
+        
+        return self
     }
     
     public func italic() -> Link {
-        return self.mutate(italic: Tokens.FontStyle.italic.rawValue)
+        return self.mutate(fontstyle: Tokens.FontStyle.italic.rawValue)
+    }
+    
+    public func italic(_ condition: Bool) -> Link {
+    
+        if condition {
+            return self.mutate(fontstyle: Tokens.FontStyle.italic.rawValue)
+        }
+        
+        return self
     }
     
     public func underline() -> Link {
-        return self.mutate(underline: Tokens.TextDecoration.underline.rawValue)
+        return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
+    }
+    
+    public func underline(_ condition: Bool) -> Link {
+        
+        if condition {
+            return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func strikethrough() -> Link {
+        return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.rawValue)
+    }
+    
+    public func strikethrough(_ condition: Bool) -> Link {
+        
+        if condition {
+            return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func lineSpacing(_ height: Tokens.LineHeight) -> Link {
+        return self.mutate(lineheight: height.rawValue)
+    }
+    
+    public func lineLimit(_ limit: Tokens.LineLimit) -> Link {
+        return self.mutate(linelimit: limit.rawValue)
+    }
+}
+
+extension Link: ViewModifier {
+    
+    public func backgroundColor(_ color: Tokens.BackgroundColor) -> Link {
+        return self.mutate(backgroundcolor: color.rawValue)
+    }
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> Link {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> Link {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> Link {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func hidden(_ condition: Bool) -> Link {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> Link {
+        return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Link {
+        return self.mutate(padding: length.rawValue, insets: insets)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> Link {
+        return self.mutate(bordershape: shape.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> Link {
+        return self.mutate(bordercolor: color.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Link {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Link {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }

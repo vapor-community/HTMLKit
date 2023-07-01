@@ -27,48 +27,65 @@ public protocol TextModifier {
     /// Applies a bold font weight to the text.
     func bold() -> Self
     
+    func bold(_ condition: Bool) -> Self
+    
     /// Applies italics to the text.
     func italic() -> Self
     
+    func italic(_ condition: Bool) -> Self
+    
     /// Applies an underline to the text.
     func underline() -> Self
+    
+    func underline(_ condition: Bool) -> Self
+    
+    /// Applies an strikethrough to the text.
+    func strikethrough() -> Self
+    
+    func strikethrough(_ condition: Bool) -> Self
+    
+    /// Sets the line height for the text.
+    func lineSpacing(_ height: Tokens.LineHeight) -> Self
+    
+    /// Sets the limit of the lines for the text.
+    func lineLimit(_ limit: Tokens.LineLimit) -> Self
 }
 
 extension TextModifier where Self: Modifiable {
     
-    internal func mutate(font class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(font value: String) -> Self {
+        return self.mutate(class: "style:\(value)")
     }
     
-    internal func mutate(foregroundcolor class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(foregroundcolor value: String) -> Self {
+        return self.mutate(class: "color:\(value)")
     }
     
-    internal func mutate(fontsize class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(fontsize value: String) -> Self {
+        return self.mutate(class: "size:\(value)")
     }
     
-    internal func mutate(fontweight class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(fontweight value: String) -> Self {
+        return self.mutate(class: "weight:\(value)")
     }
     
-    internal func mutate(fonttransformation class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(fonttransformation value: String) -> Self {
+        return self.mutate(class: "transformation:\(value)")
     }
     
-    internal func mutate(fontstyle class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(fontstyle value: String) -> Self {
+        return self.mutate(class: "style:\(value)")
     }
     
-    internal func mutate(bold class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(fontdecoration value: String) -> Self {
+        return self.mutate(class: "decoration:\(value)")
     }
     
-    internal func mutate(italic class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(lineheight value: String) -> Self {
+        return self.mutate(class: "height:\(value)")
     }
     
-    internal func mutate(underline class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(linelimit value: String) -> Self {
+        return self.mutate(class: "limit:\(value)")
     }
 }

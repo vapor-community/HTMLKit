@@ -13,20 +13,23 @@ public protocol ButtonModifier {
     func buttonStyle(_ style: Tokens.ButtonStyle) -> Self
     
     /// Sets the state of the view.
+    func disabled() -> Self
+    
+    /// Sets the state of the view.
     func disabled(_ condition: Bool) -> Self
 }
 
 extension ButtonModifier where Self: Modifiable {
     
-    internal func mutate(buttonsize class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(buttonsize value: String) -> Self {
+        return self.mutate(class: "size:\(value)")
     }
     
-    internal func mutate(buttonstyle class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(buttonstyle value: String) -> Self {
+        return self.mutate(class: "style:\(value)")
     }
     
-    internal func mutate(buttonstate class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(buttonstate value: String) -> Self {
+        return self.mutate(class: "state:\(value)")
     }
 }

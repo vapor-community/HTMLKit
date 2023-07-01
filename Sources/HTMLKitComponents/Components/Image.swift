@@ -38,8 +38,8 @@ public struct Image: View, Modifiable {
 
 extension Image: ImageModifier {
     
-    public func objectFit(_ fit: Tokens.ObjectFit) -> Image {
-        return self.mutate(objectfit: fit.rawValue)
+    public func aspectRatio(_ ratio: Tokens.AspectRatio ,fit: Tokens.ObjectFit) -> Image {
+        return self.mutate(aspectratio: ratio.rawValue, fit: fit.rawValue)
     }
     
     public func imageScale(_ scale: Tokens.ImageScale) -> Image {
@@ -48,6 +48,14 @@ extension Image: ImageModifier {
     
     public func clipShape(_ shape: Tokens.ClipShape) -> Image {
         return self.mutate(clipshape: shape.rawValue)
+    }
+    
+    public func scaleToFit() -> Image {
+        return self.mutate(objectfit: Tokens.ObjectFit.contain.rawValue)
+    }
+    
+    public func scaleToFill() -> Image {
+        return self.mutate(objectfit: Tokens.ObjectFit.cover.rawValue)
     }
 }
 
@@ -69,12 +77,21 @@ extension Image: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
+    public func hidden(_ condition: Bool) -> Image {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Image {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> Image {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Image {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Image {
@@ -83,5 +100,13 @@ extension Image: ViewModifier {
     
     public func borderColor(_ color: Tokens.BorderColor) -> Image {
         return self.mutate(bordercolor: color.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Image {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Image {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }

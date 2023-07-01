@@ -70,6 +70,10 @@ extension Button: ButtonModifier {
         return self.mutate(buttonstyle: style.rawValue)
     }
     
+    public func disabled() -> Button {
+        return self.mutate(buttonstate: Tokens.ViewState.disabled.rawValue)
+    }
+    
     public func disabled(_ condition: Bool) -> Button {
         
         if condition {
@@ -113,12 +117,21 @@ extension Button: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
+    public func hidden(_ condition: Bool) -> Button {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Button {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> Button {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Button {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Button {
@@ -127,6 +140,14 @@ extension Button: ViewModifier {
     
     public func borderColor(_ color: Tokens.BorderColor) -> Button {
         return self.mutate(bordercolor: color.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Button {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet, length: Tokens.MarginLength = .small) -> Button {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }
 
@@ -196,6 +217,10 @@ extension LinkButton: ButtonModifier {
         return self.mutate(buttonstyle: style.rawValue)
     }
     
+    public func disabled() -> LinkButton {
+        return self.mutate(buttonstate: Tokens.ViewState.disabled.rawValue)
+    }
+    
     public func disabled(_ condition: Bool) -> LinkButton {
         
         if condition {
@@ -224,12 +249,21 @@ extension LinkButton: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
+    public func hidden(_ condition: Bool) -> LinkButton {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> LinkButton {
         return self.mutate(scheme: scheme.rawValue)
     }
     
-    public func padding(_ length: Tokens.BoxPadding) -> LinkButton {
-        return self.mutate(padding: length.rawValue)
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> LinkButton {
+        return self.mutate(padding: length.rawValue, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> LinkButton {
@@ -238,5 +272,13 @@ extension LinkButton: ViewModifier {
     
     public func borderColor(_ color: Tokens.BorderColor) -> LinkButton {
         return self.mutate(bordercolor: color.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> LinkButton {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> LinkButton {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }

@@ -2,7 +2,7 @@
  The stylesheet for the grouping component.
  */
 
-.group {
+.grouping {
     display: inline-flex;
     flex-direction: row;
     align-items: center;

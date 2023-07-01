@@ -28,7 +28,7 @@ public struct Minifier {
     /// Minifies a stylesheet string
     public func minify(css content: String) -> String {
         
-        var tokens = Stylesheet(log: .debug).consume(content)
+        var tokens = Stylesheet().consume(content)
         
         if compression.contains(.stripComments) {
             tokens.removeAll(where:  { $0 is Stylesheet.CommentToken })
@@ -94,6 +94,7 @@ public struct Minifier {
                     
                     if previous >= tokens.startIndex && next < tokens.endIndex {
                         
+                        // keep the whitespace if its between two word tokens
                         if tokens[previous] is Javascript.WordToken && tokens[next] is Javascript.WordToken {
                             yield.append(token)
                         }

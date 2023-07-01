@@ -22,8 +22,10 @@
  */
  
 .textpad {
-    --paddingBlock: 0.5rem;
-    --paddingInline: 1.0rem;
+    --paddingBlockStart: 0.5rem;
+    --paddingBlockEnd: 0.5rem;
+    --paddingInlineStart: 1.0rem;
+    --paddingInlineEnd: 1.0rem;
     --fontSize: 1.0rem;
     --fontWeight: 400;
     --lineHeight: 1.5;
@@ -31,22 +33,29 @@
     --borderWidth: 1px;
     --borderColor: 210, 14%, 89%;
     --borderRadius: 0;
+    --borderOpacity: 1.0;
     --focusColor: 210, 100%, 50%;
     --backgroundColor: 0, 0%, 100%;
+    --backgroundOpacity: 1.0;
     
     display: flex;
     flex-direction: column;
     border-width: var(--borderWidth);
     border-style: solid;
-    border-color: hsla(var(--borderColor), 1.0);
+    border-color: hsla(var(--borderColor), var(--borderOpacity));
     border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), 1.0);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }
 
 .textpad:focus-within {
-    border-color: hsla(var(--focusColor), 1.0);
+    --borderColor: var(--focusColor) !important;
+    
     outline: 0;
     box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
+}
+
+.textpad:has(.textpad-content:invalid) {
+    --borderColor: var(--redColor);
 }
 
 .textpad-toolbar {
@@ -54,8 +63,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    padding-block: var(--paddingBlock);
-    padding-inline: var(--paddingInline);
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
     list-style: none;
 }
 
@@ -73,8 +84,10 @@
 .textpad-content {
     display: block;
     inline-size: 100%;
-    padding-block: var(--paddingBlock);
-    padding-inline: var(--paddingInline);
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
     font-size: var(--fontSize);
     font-weight: var(--fontWeight);
     line-height: var(--lineHeight);
