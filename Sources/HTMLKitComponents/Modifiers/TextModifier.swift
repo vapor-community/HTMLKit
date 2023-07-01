@@ -36,39 +36,31 @@ public protocol TextModifier {
 
 extension TextModifier where Self: Modifiable {
     
-    internal func mutate(font class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(font value: String) -> Self {
+        return self.mutate(class: "style:\(value)")
     }
     
-    internal func mutate(foregroundcolor class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(foregroundcolor value: String) -> Self {
+        return self.mutate(class: "color:\(value)")
     }
     
-    internal func mutate(fontsize class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(fontsize value: String) -> Self {
+        return self.mutate(class: "size:\(value)")
     }
     
-    internal func mutate(fontweight class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(fontweight value: String) -> Self {
+        return self.mutate(class: "weight:\(value)")
     }
     
-    internal func mutate(fonttransformation class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(fonttransformation value: String) -> Self {
+        return self.mutate(class: "transformation:\(value)")
     }
     
-    internal func mutate(fontstyle class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(fontstyle value: String) -> Self {
+        return self.mutate(class: "style:\(value)")
     }
     
-    internal func mutate(bold class: String) -> Self {
-        return self.mutate(class: `class`)
-    }
-    
-    internal func mutate(italic class: String) -> Self {
-        return self.mutate(class: `class`)
-    }
-    
-    internal func mutate(underline class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(fontdecoration value: String) -> Self {
+        return self.mutate(class: "decoration:\(value)")
     }
 }

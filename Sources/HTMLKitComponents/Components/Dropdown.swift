@@ -104,12 +104,7 @@ extension Dropdown: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Dropdown {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Dropdown {

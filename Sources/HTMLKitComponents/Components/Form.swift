@@ -217,12 +217,7 @@ extension TextField: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> TextField {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextField {
@@ -345,12 +340,7 @@ extension TextEditor: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> TextEditor {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextEditor {
@@ -457,12 +447,7 @@ extension CheckField: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> CheckField {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> CheckField {
@@ -569,12 +554,7 @@ extension RadioSelect: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> RadioSelect {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> RadioSelect {
@@ -681,12 +661,7 @@ extension SelectField: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> SelectField {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SelectField {
@@ -832,12 +807,7 @@ extension SecureField: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> SecureField {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SecureField {
@@ -932,12 +902,7 @@ extension Slider: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Slider {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Slider {
@@ -1119,12 +1084,7 @@ extension DatePicker: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> DatePicker {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> DatePicker {
@@ -1235,12 +1195,7 @@ extension SearchField: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> SearchField {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SearchField {
@@ -1447,12 +1402,7 @@ extension TextPad: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> TextPad {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextPad {

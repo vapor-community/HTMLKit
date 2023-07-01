@@ -18,15 +18,15 @@ public protocol ButtonModifier {
 
 extension ButtonModifier where Self: Modifiable {
     
-    internal func mutate(buttonsize class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(buttonsize value: String) -> Self {
+        return self.mutate(class: "size:\(value)")
     }
     
-    internal func mutate(buttonstyle class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(buttonstyle value: String) -> Self {
+        return self.mutate(class: "style:\(value)")
     }
     
-    internal func mutate(buttonstate class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(buttonstate value: String) -> Self {
+        return self.mutate(class: "state:\(value)")
     }
 }

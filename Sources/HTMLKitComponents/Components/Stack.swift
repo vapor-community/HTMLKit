@@ -24,7 +24,7 @@ public struct HStack: View, Actionable, Modifiable {
     public init(alignment: Tokens.VerticalAlignment = .center, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
-        self.classes = ["hstack", alignment.rawValue]
+        self.classes = ["hstack", "alignment:\(alignment.rawValue)"]
     }
     
     /// Creates a horizontal stack.
@@ -59,7 +59,7 @@ public struct HStack: View, Actionable, Modifiable {
     public func contentSpace(_ value: Tokens.ContentSpace) -> HStack {
         
         var newSelf = self
-        newSelf.classes.append(value.rawValue)
+        newSelf.classes.append("space:\(value.rawValue)")
         
         return newSelf
     }
@@ -111,12 +111,7 @@ extension HStack: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> HStack {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> HStack {
@@ -141,7 +136,7 @@ public struct VStack: View, Actionable, Modifiable {
     public init(alignment: Tokens.HorizontalAlignment = .leading, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
-        self.classes = ["vstack", alignment.rawValue]
+        self.classes = ["vstack", "alignment:\(alignment.rawValue)"]
     }
     
     /// Creates a vertical stack.
@@ -176,7 +171,7 @@ public struct VStack: View, Actionable, Modifiable {
     public func contentSpace(_ value: Tokens.ContentSpace) -> VStack {
         
         var newSelf = self
-        newSelf.classes.append(value.rawValue)
+        newSelf.classes.append("space:\(value.rawValue)")
         
         return newSelf
     }
@@ -228,12 +223,7 @@ extension VStack: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> VStack {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> VStack {
@@ -336,12 +326,7 @@ extension ZStack: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> ZStack {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> ZStack {

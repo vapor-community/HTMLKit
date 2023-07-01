@@ -83,20 +83,15 @@ extension Card: ViewModifier {
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Card {
-        return self.mutate(class: shape.rawValue)
+        return self.mutate(bordershape: shape.rawValue)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> Card {
-        return self.mutate(class: color.rawValue)
+        return self.mutate(bordercolor: color.rawValue)
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Card {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Card {

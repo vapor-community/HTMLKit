@@ -52,19 +52,6 @@ public struct Text: View, Actionable, Modifiable {
     public func id(_ value: String) -> Text {
         return self.mutate(id: value)
     }
-    
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Text {
-        
-        var newSelf = self
-        
-        if let offset {
-            newSelf.classes.append(offset.rawValue)
-        }
-        
-        newSelf.classes.append(width.rawValue)
-        
-        return newSelf
-    }
 }
 
 extension Text: HoverModifier {
@@ -120,14 +107,57 @@ extension Text: TextModifier {
     }
     
     public func bold() -> Text {
-        return self.mutate(bold: Tokens.FontWeight.bold.rawValue)
+        return self.mutate(fontweight: Tokens.FontWeight.bold.rawValue)
     }
     
     public func italic() -> Text {
-        return self.mutate(italic: Tokens.FontStyle.italic.rawValue)
+        return self.mutate(fontstyle: Tokens.FontStyle.italic.rawValue)
     }
     
     public func underline() -> Text {
-        return self.mutate(underline: Tokens.TextDecoration.underline.rawValue)
+        return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
+    }
+}
+
+extension Text: ViewModifier {
+    
+    public func backgroundColor(_ color: Tokens.BackgroundColor) -> Text {
+        return self.mutate(backgroundcolor: color.rawValue)
+    }
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> Text {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> Text {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> Text {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> Text {
+        return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Text {
+        return self.mutate(padding: length.rawValue, insets: insets)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> Text {
+        return self.mutate(bordershape: shape.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> Text {
+        return self.mutate(bordercolor: color.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Text {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Text {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }

@@ -755,84 +755,84 @@ video {
  sizes
  */
 
-.size\:1 {
+.size\:one {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 8.3333333333%;
 }
 
-.size\:2 {
+.size\:two {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 16.6666666667%;
 }
 
-.size\:3 {
+.size\:three {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 25%;
 }
 
-.size\:4 {
+.size\:four {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 33.3333333333%;
 }
 
-.size\:5 {
+.size\:five {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 41.6666666667%;
 }
 
-.size\:6 {
+.size\:six {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 50%;
 }
 
-.size\:7 {
+.size\:seven {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 58.3333333333%;
 }
 
-.size\:8 {
+.size\:eight {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 66.6666666667%;
 }
 
-.size\:9 {
+.size\:nine {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 75%;
 }
 
-.size\:10 {
+.size\:ten {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 83.3333333333%;
 }
 
-.size\:11 {
+.size\:eleven {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 91.6666666667%;
 }
 
-.size\:12 {
+.size\:twelve {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
@@ -843,46 +843,46 @@ video {
  offset
  */
 
-.offset\:1 {
+.offset\:one {
     margin-inline-start: 8.3333333333%;
 }
 
-.offset\:2 {
+.offset\:two {
     margin-inline-start: 16.6666666667%;
 }
 
-.offset\:3 {
+.offset\:three {
     margin-inline-start: 25%;
 }
 
-.offset\:4 {
+.offset\:four {
     margin-inline-start: 33.3333333333%;
 }
 
-.offset\:5 {
+.offset\:five {
     margin-inline-start: 41.6666666667%;
 }
 
-.offset\:6 {
+.offset\:six {
     margin-inline-start: 50%;
 }
 
-.offset\:7 {
+.offset\:seven {
     margin-inline-start: 58.3333333333%;
 }
 
-.offset\:8 {
+.offset\:eight {
     margin-inline-start: 66.6666666667%;
 }
 
-.offset\:9 {
+.offset\:nine {
     margin-inline-start: 75%;
 }
 
-.offset\:10 {
+.offset\:ten {
     margin-inline-start: 83.3333333333%;
 }
 
-.offset\:11 {
+.offset\:eleven {
     margin-inline-start: 91.6666666667%;
 }

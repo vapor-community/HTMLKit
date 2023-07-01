@@ -39,7 +39,7 @@ public struct Image: View, Modifiable {
 extension Image: ImageModifier {
     
     public func aspectRatio(_ ratio: Tokens.AspectRatio ,fit: Tokens.ObjectFit) -> Image {
-        return self.mutate(aspectratio: [ratio.rawValue, fit.rawValue])
+        return self.mutate(aspectratio: ratio.rawValue, fit: fit.rawValue)
     }
     
     public func imageScale(_ scale: Tokens.ImageScale) -> Image {
@@ -94,12 +94,7 @@ extension Image: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Image {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Image {

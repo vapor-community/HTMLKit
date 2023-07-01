@@ -38,24 +38,24 @@ public protocol ViewModifier {
 
 extension ViewModifier where Self: Modifiable {
     
-    internal func mutate(opacity class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(opacity value: String) -> Self {
+        return self.mutate(class: "opacity\(value)")
     }
     
-    internal func mutate(zindex class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(zindex value: String) -> Self {
+        return self.mutate(class: "zindex:\(value)")
     }
     
-    internal func mutate(backgroundcolor class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(backgroundcolor value: String) -> Self {
+        return self.mutate(class: "background:\(value)")
     }
     
-    internal func mutate(viewstate class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(viewstate value: String) -> Self {
+        return self.mutate(class: "state:\(value)")
     }
     
-    internal func mutate(scheme class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(scheme value: String) -> Self {
+        return self.mutate(class: "scheme:\(value)")
     }
     
     internal func mutate(padding value: String) -> Self {
@@ -99,15 +99,24 @@ extension ViewModifier where Self: Modifiable {
         return self.mutate(classes: classes)
     }
     
-    internal func mutate(bordershape class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(bordershape value: String) -> Self {
+        return self.mutate(class: "shape:\(value)")
     }
     
-    internal func mutate(bordercolor class: String) -> Self {
-        return self.mutate(class: `class`)
+    internal func mutate(bordercolor value: String) -> Self {
+        return self.mutate(class: "border:\(value)")
     }
     
-    internal func mutate(frame classes: [String]) -> Self {
+    internal func mutate(frame width: String, offset: String? = nil) -> Self {
+        
+        var classes: [String] = []
+        
+        if let offset {
+            classes.append("offset:\(offset)")
+        }
+        
+        classes.append("size:\(width)")
+        
         return self.mutate(classes: classes)
     }
     

@@ -26,7 +26,7 @@ public struct Snippet: View, Modifiable {
                 return Paragraph { line }
             }
         
-        self.classes = ["snippet", highlight.rawValue]
+        self.classes = ["snippet", "highlight:\(highlight.rawValue)"]
     }
     
     /// Creates a snippet.
@@ -79,12 +79,7 @@ extension Snippet: ViewModifier {
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Snippet {
-        
-        if let offset {
-            return self.mutate(frame: [width.rawValue, offset.rawValue])
-        }
-        
-        return self.mutate(class: width.rawValue)
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Snippet {

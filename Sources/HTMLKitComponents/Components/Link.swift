@@ -60,19 +60,6 @@ public struct Link: View, Modifiable {
         .target(target)
         .class(classes.joined(separator: " "))
     }
-    
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Link {
-        
-        var newSelf = self
-        
-        if let offset {
-            newSelf.classes.append(offset.rawValue)
-        }
-        
-        newSelf.classes.append(width.rawValue)
-        
-        return newSelf
-    }
 }
 
 extension Link: TextModifier {
@@ -102,14 +89,57 @@ extension Link: TextModifier {
     }
     
     public func bold() -> Link {
-        return self.mutate(bold: Tokens.FontWeight.bold.rawValue)
+        return self.mutate(fontweight: Tokens.FontWeight.bold.rawValue)
     }
     
     public func italic() -> Link {
-        return self.mutate(italic: Tokens.FontStyle.italic.rawValue)
+        return self.mutate(fontstyle: Tokens.FontStyle.italic.rawValue)
     }
     
     public func underline() -> Link {
-        return self.mutate(underline: Tokens.TextDecoration.underline.rawValue)
+        return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
+    }
+}
+
+extension Link: ViewModifier {
+    
+    public func backgroundColor(_ color: Tokens.BackgroundColor) -> Link {
+        return self.mutate(backgroundcolor: color.rawValue)
+    }
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> Link {
+        return self.mutate(opacity: value.rawValue)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> Link {
+        return self.mutate(zindex: index.rawValue)
+    }
+    
+    public func hidden() -> Link {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> Link {
+        return self.mutate(scheme: scheme.rawValue)
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Link {
+        return self.mutate(padding: length.rawValue, insets: insets)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> Link {
+        return self.mutate(bordershape: shape.rawValue)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> Link {
+        return self.mutate(bordercolor: color.rawValue)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Link {
+        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Link {
+        return self.mutate(margin: length.rawValue, insets: insets)
     }
 }

@@ -40,10 +40,10 @@ public struct Grouping: View, Modifiable {
         var newSelf = self
         
         if let offset {
-            newSelf.classes.append(offset.rawValue)
+            newSelf.classes.append("offset:\(offset.rawValue)")
         }
         
-        newSelf.classes.append(width.rawValue)
+        newSelf.classes.append("size:\(width.rawValue)")
         
         return newSelf
     }
@@ -76,14 +76,14 @@ extension Grouping: TextModifier {
     }
     
     public func bold() -> Grouping {
-        return self.mutate(bold: Tokens.FontWeight.bold.rawValue)
+        return self.mutate(fontweight: Tokens.FontWeight.bold.rawValue)
     }
     
     public func italic() -> Grouping {
-        return self.mutate(italic: Tokens.FontStyle.italic.rawValue)
+        return self.mutate(fontstyle: Tokens.FontStyle.italic.rawValue)
     }
     
     public func underline() -> Grouping {
-        return self.mutate(underline: Tokens.TextDecoration.underline.rawValue)
+        return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
     }
 }
