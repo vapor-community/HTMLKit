@@ -27,14 +27,22 @@ public protocol TextModifier {
     /// Applies a bold font weight to the text.
     func bold() -> Self
     
+    func bold(_ condition: Bool) -> Self
+    
     /// Applies italics to the text.
     func italic() -> Self
+    
+    func italic(_ condition: Bool) -> Self
     
     /// Applies an underline to the text.
     func underline() -> Self
     
+    func underline(_ condition: Bool) -> Self
+    
     /// Applies an strikethrough to the text.
     func strikethrough() -> Self
+    
+    func strikethrough(_ condition: Bool) -> Self
     
     /// Sets the line height for the text.
     func lineSpacing(_ height: Tokens.LineHeight) -> Self

@@ -18,6 +18,8 @@ public protocol ViewModifier {
     /// Hides the view
     func hidden() -> Self
     
+    func hidden(_ condition: Bool) -> Self
+    
     /// Sets the color appearence
     func colorScheme(_ scheme: Tokens.ColorScheme) -> Self
     

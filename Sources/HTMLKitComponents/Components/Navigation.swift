@@ -53,6 +53,15 @@ extension Navigation: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
+    public func hidden(_ condition: Bool) -> Navigation {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Navigation {
         return self.mutate(scheme: scheme.rawValue)
     }

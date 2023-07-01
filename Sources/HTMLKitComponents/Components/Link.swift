@@ -92,16 +92,52 @@ extension Link: TextModifier {
         return self.mutate(fontweight: Tokens.FontWeight.bold.rawValue)
     }
     
+    public func bold(_ condition: Bool) -> Link {
+        
+        if condition {
+            return self.mutate(fontweight: Tokens.FontWeight.bold.rawValue)
+        }
+        
+        return self
+    }
+    
     public func italic() -> Link {
         return self.mutate(fontstyle: Tokens.FontStyle.italic.rawValue)
+    }
+    
+    public func italic(_ condition: Bool) -> Link {
+    
+        if condition {
+            return self.mutate(fontstyle: Tokens.FontStyle.italic.rawValue)
+        }
+        
+        return self
     }
     
     public func underline() -> Link {
         return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
     }
     
+    public func underline(_ condition: Bool) -> Link {
+        
+        if condition {
+            return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
+        }
+        
+        return self
+    }
+    
     public func strikethrough() -> Link {
         return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.rawValue)
+    }
+    
+    public func strikethrough(_ condition: Bool) -> Link {
+        
+        if condition {
+            return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.rawValue)
+        }
+        
+        return self
     }
     
     public func lineSpacing(_ height: Tokens.LineHeight) -> Link {
@@ -129,6 +165,15 @@ extension Link: ViewModifier {
     
     public func hidden() -> Link {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func hidden(_ condition: Bool) -> Link {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Link {

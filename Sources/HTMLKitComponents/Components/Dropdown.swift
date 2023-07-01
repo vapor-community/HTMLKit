@@ -59,6 +59,10 @@ extension Dropdown: ButtonModifier {
         return self.mutate(buttonstyle: style.rawValue)
     }
     
+    public func disabled() -> Dropdown {
+        return self.mutate(buttonstate: Tokens.ViewState.disabled.rawValue)
+    }
+    
     public func disabled(_ condition: Bool) -> Dropdown {
         
         if condition {
@@ -81,6 +85,15 @@ extension Dropdown: ViewModifier {
     
     public func hidden() -> Dropdown {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func hidden(_ condition: Bool) -> Dropdown {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Dropdown {

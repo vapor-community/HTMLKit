@@ -196,6 +196,15 @@ extension TextField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
+    public func hidden(_ condition: Bool) -> TextField {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> TextField {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
@@ -319,6 +328,15 @@ extension TextEditor: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
+    public func hidden(_ condition: Bool) -> TextEditor {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> TextEditor {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
@@ -424,6 +442,15 @@ extension CheckField: ViewModifier {
     
     public func hidden() -> CheckField {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func hidden(_ condition: Bool) -> CheckField {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> CheckField {
@@ -533,6 +560,15 @@ extension RadioSelect: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
+    public func hidden(_ condition: Bool) -> RadioSelect {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> RadioSelect {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
@@ -638,6 +674,15 @@ extension SelectField: ViewModifier {
     
     public func hidden() -> SelectField {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func hidden(_ condition: Bool) -> SelectField {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> SelectField {
@@ -786,6 +831,15 @@ extension SecureField: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
+    public func hidden(_ condition: Bool) -> SecureField {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> SecureField {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
@@ -879,6 +933,15 @@ extension Slider: ViewModifier {
     
     public func hidden() -> Slider {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func hidden(_ condition: Bool) -> Slider {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Slider {
@@ -1063,6 +1126,15 @@ extension DatePicker: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
+    public func hidden(_ condition: Bool) -> DatePicker {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> DatePicker {
         return self.mutate(padding: length.rawValue, insets: insets)
     }
@@ -1172,6 +1244,15 @@ extension SearchField: ViewModifier {
     
     public func hidden() -> SearchField {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func hidden(_ condition: Bool) -> SearchField {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> SearchField {
@@ -1379,6 +1460,15 @@ extension TextPad: ViewModifier {
     
     public func hidden() -> TextPad {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func hidden(_ condition: Bool) -> TextPad {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> TextPad {

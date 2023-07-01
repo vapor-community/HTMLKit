@@ -49,7 +49,7 @@ public struct Grouping: View, Modifiable {
     }
 }
 
-extension Grouping: TextModifier {
+extension Grouping: TextModifier {    
     
     public func font(_ style: Tokens.TextStyle) -> Grouping {
         return self.mutate(font: style.rawValue)
@@ -79,16 +79,52 @@ extension Grouping: TextModifier {
         return self.mutate(fontweight: Tokens.FontWeight.bold.rawValue)
     }
     
+    public func bold(_ condition: Bool) -> Grouping {
+        
+        if condition {
+            return self.mutate(fontweight: Tokens.FontWeight.bold.rawValue)
+        }
+        
+        return self
+    }
+    
     public func italic() -> Grouping {
         return self.mutate(fontstyle: Tokens.FontStyle.italic.rawValue)
+    }
+    
+    public func italic(_ condition: Bool) -> Grouping {
+    
+        if condition {
+            return self.mutate(fontstyle: Tokens.FontStyle.italic.rawValue)
+        }
+        
+        return self
     }
     
     public func underline() -> Grouping {
         return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
     }
     
+    public func underline(_ condition: Bool) -> Grouping {
+        
+        if condition {
+            return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
+        }
+        
+        return self
+    }
+    
     public func strikethrough() -> Grouping {
         return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.rawValue)
+    }
+    
+    public func strikethrough(_ condition: Bool) -> Grouping {
+        
+        if condition {
+            return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.rawValue)
+        }
+        
+        return self
     }
     
     public func lineSpacing(_ height: Tokens.LineHeight) -> Grouping {

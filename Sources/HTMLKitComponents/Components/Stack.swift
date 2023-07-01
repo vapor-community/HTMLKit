@@ -94,6 +94,15 @@ extension HStack: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
+    public func hidden(_ condition: Bool) -> HStack {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> HStack {
         return self.mutate(scheme: scheme.rawValue)
     }
@@ -206,6 +215,15 @@ extension VStack: ViewModifier {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
     }
     
+    public func hidden(_ condition: Bool) -> VStack {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
+    }
+    
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> VStack {
         return self.mutate(scheme: scheme.rawValue)
     }
@@ -307,6 +325,15 @@ extension ZStack: ViewModifier {
     
     public func hidden() -> ZStack {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func hidden(_ condition: Bool) -> ZStack {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> ZStack {

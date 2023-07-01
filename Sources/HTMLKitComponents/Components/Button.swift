@@ -70,6 +70,10 @@ extension Button: ButtonModifier {
         return self.mutate(buttonstyle: style.rawValue)
     }
     
+    public func disabled() -> Button {
+        return self.mutate(buttonstate: Tokens.ViewState.disabled.rawValue)
+    }
+    
     public func disabled(_ condition: Bool) -> Button {
         
         if condition {
@@ -111,6 +115,15 @@ extension Button: ViewModifier {
     
     public func hidden() -> Button {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func hidden(_ condition: Bool) -> Button {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Button {
@@ -204,6 +217,10 @@ extension LinkButton: ButtonModifier {
         return self.mutate(buttonstyle: style.rawValue)
     }
     
+    public func disabled() -> LinkButton {
+        return self.mutate(buttonstate: Tokens.ViewState.disabled.rawValue)
+    }
+    
     public func disabled(_ condition: Bool) -> LinkButton {
         
         if condition {
@@ -230,6 +247,15 @@ extension LinkButton: ViewModifier {
     
     public func hidden() -> LinkButton {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func hidden(_ condition: Bool) -> LinkButton {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> LinkButton {

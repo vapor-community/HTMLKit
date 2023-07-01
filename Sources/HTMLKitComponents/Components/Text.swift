@@ -110,16 +110,52 @@ extension Text: TextModifier {
         return self.mutate(fontweight: Tokens.FontWeight.bold.rawValue)
     }
     
+    public func bold(_ condition: Bool) -> Text {
+        
+        if condition {
+            return self.mutate(fontweight: Tokens.FontWeight.bold.rawValue)
+        }
+        
+        return self
+    }
+    
     public func italic() -> Text {
         return self.mutate(fontstyle: Tokens.FontStyle.italic.rawValue)
+    }
+    
+    public func italic(_ condition: Bool) -> Text {
+    
+        if condition {
+            return self.mutate(fontstyle: Tokens.FontStyle.italic.rawValue)
+        }
+        
+        return self
     }
     
     public func underline() -> Text {
         return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
     }
     
+    public func underline(_ condition: Bool) -> Text {
+        
+        if condition {
+            return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
+        }
+        
+        return self
+    }
+    
     public func strikethrough() -> Text {
         return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.rawValue)
+    }
+    
+    public func strikethrough(_ condition: Bool) -> Text {
+        
+        if condition {
+            return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.rawValue)
+        }
+        
+        return self
     }
     
     public func lineSpacing(_ height: Tokens.LineHeight) -> Text {
@@ -147,6 +183,15 @@ extension Text: ViewModifier {
     
     public func hidden() -> Text {
         return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+    }
+    
+    public func hidden(_ condition: Bool) -> Text {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        }
+        
+        return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Text {
