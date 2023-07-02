@@ -1,124 +1,70 @@
-/*
- Abstract:
- The file contains the builder to build up the result from a sequence of elements.
- */
+// Abstract:
+// The file contains the builder to build up the result from a sequence of elements.
 
 /// The builder builds up a result value from a sequence of elements.
-@resultBuilder public class ContentBuilder<T> {
-    
-    /// Builds an empty block
-    ///
-    /// ```swift
-    /// Tag {
-    /// }
-    /// ```
-    public static func buildBlock() -> [T] {
+@resultBuilder public enum ContentBuilder<T> {
+    public typealias Component = [T]
+    public typealias Expression = T
+
+    public static func buildBlock() -> Component {
         return []
     }
-    
-    /// Builds a block with one element.
-    ///
-    /// ```swift
-    /// Tag {
-    ///    Tag {
-    ///    }
-    /// }
-    /// ```
-    public static func buildBlock(_ component: T) -> [T] {
-        return [component]
+
+    public static func buildExpression( _ statement: Void) -> Component {
+        return []
     }
 
-    /// Builds a block with more than one element.
-    ///
-    /// ```swift
-    /// Tag {
-    ///    Tag {
-    ///    }
-    ///    Tag {
-    ///    }
-    /// }
-    /// ```
-    public static func buildBlock(_ components: T...) -> [T] {
-        return components.compactMap { $0 }
-    }
-    
-    /// Builds a block with one element.
-    ///
-    /// ```swift
-    /// Tag {
-    ///    if let unwrapped = optional {
-    ///       Tag {
-    ///          unwrapped
-    ///       }
-    ///    }
-    /// }
-    /// ```
-    public static func buildOptional(_ component: T?) -> [T] {
-        
-        if let component = component {
-            return [component]
+    public static func buildExpression(_ element: Expression?) -> Component {
+        guard let element else {
+            return []
         }
-        
-        return []
+        return [element]
     }
 
-    /// Builds a block, if the condition is true.
-    ///
-    /// ```swift
-    /// Tag {
-    ///    if(true) {
-    ///       Tag {
-    ///       }
-    ///    }
-    /// }
-    /// ```
-    public static func buildEither(first component: T) -> [T] {
-        return [component]
+    public static func buildExpression( _ statement: Component) -> Component {
+        return statement
     }
 
-    /// Builds a block, if the condition is false.
-    ///
-    /// ```swift
-    /// Tag {
-    ///    if(false) {
-    ///       Tag {
-    ///       }
-    ///    }
-    ///    else {
-    ///       Tag {
-    ///       }
-    ///    }
-    /// }
-    /// ```
-    public static func buildEither(second component: T) -> [T] {
-        return [component]
+    public static func buildOptional(_ component: Component?) -> Component {
+        component ?? []
     }
-    
-    /// Builds blocks by running through a sequence of elements.
-    ///
-    /// ```swift
-    /// Tag {
-    ///    for element in sequence {
-    ///       Tag {
-    ///          element
-    ///       }
-    ///    }
-    /// }
-    /// ```
-    public static func buildArray(_ components: [[T]]) -> [T] {
+
+    public static func buildEither(first component: Component) -> Component {
+        return component
+    }
+
+    public static func buildEither(second component: Component) -> Component {
+        return component
+    }
+
+    public static func buildArray(_ components: [Component]) -> Component {
         return components.flatMap { $0 }
     }
-    
-    /// Builds a block with embeded content.
-    ///
-    /// ```swift
-    /// Tag {
-    ///    content
-    ///    Tag {
-    ///    }
-    /// }
-    /// ```
-    public static func buildBlock(_ content: [T], _ components: T...) -> [T] {
-        return content + components.compactMap { $0 }
+
+    public static func buildBlock(_ components: Component...) -> Component {
+        return components.flatMap { $0 }
+    }
+
+    public static func buildPartialBlock(first: Component) -> Component {
+        return first
+    }
+
+    public static func buildPartialBlock(first: [Component]) -> Component {
+        return first.flatMap { $0 }
+    }
+
+    public static func buildPartialBlock(accumulated: Component, next: Expression?) -> Component {
+        guard let next else {
+            return accumulated
+        }
+        return accumulated + [next]
+    }
+
+    public static func buildPartialBlock(accumulated: Component, next: Component) -> Component {
+        return accumulated + next
+    }
+
+    public static func buildPartialBlock(accumulated: Component, next: [Component]) -> Component {
+        return accumulated + next.flatMap { $0 }
     }
 }
