@@ -87,6 +87,15 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(hidden: "hidden")
     }
     
+    public func hidden(_ condition: Bool) -> Head {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
+    
     public func inputMode(_ value: String) -> Head {
         return mutate(inputmode: value)
     }
@@ -253,6 +262,15 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
 
     public func hidden() -> Body {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Body {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Body {

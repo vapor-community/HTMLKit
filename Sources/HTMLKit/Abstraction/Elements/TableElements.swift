@@ -158,6 +158,15 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func hidden() -> Caption {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Caption {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Caption {
         return mutate(inputmode: value)
@@ -402,6 +411,15 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     public func hidden() -> ColumnGroup {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> ColumnGroup {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> ColumnGroup {
         return mutate(inputmode: value)
@@ -574,6 +592,15 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     public func hidden() -> Column {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Column {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Column {
         return mutate(inputmode: value)
@@ -745,6 +772,15 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func hidden() -> TableBody {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> TableBody {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> TableBody {
@@ -998,6 +1034,15 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func hidden() -> TableHead {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> TableHead {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> TableHead {
         return mutate(inputmode: value)
@@ -1250,6 +1295,15 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func hidden() -> TableFoot {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> TableFoot {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> TableFoot {
         return mutate(inputmode: value)
@@ -1493,6 +1547,15 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func hidden() -> TableRow {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> TableRow {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> TableRow {
@@ -1745,6 +1808,15 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func hidden() -> DataCell {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> DataCell {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> DataCell {
@@ -2001,6 +2073,15 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 
     public func hidden() -> HeaderCell {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> HeaderCell {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> HeaderCell {

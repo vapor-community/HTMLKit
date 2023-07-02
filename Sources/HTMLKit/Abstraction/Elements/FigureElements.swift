@@ -95,6 +95,15 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     public func hidden() -> FigureCaption {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> FigureCaption {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> FigureCaption {
         return mutate(inputmode: value)

@@ -223,6 +223,8 @@ public protocol AutoplayAttribute: Attribute {
     /// <tag autoplay />
     /// ```
     func autoplay() -> Self
+    
+    func autoplay(_ condition: Bool) -> Self
 }
 
 extension AutoplayAttribute where Self: ContentNode {
@@ -273,6 +275,8 @@ public protocol CheckedAttribute: Attribute {
     /// <tag checked />
     /// ```
     func checked() -> Self
+    
+    func checked(_ condition: Bool) -> Self
 }
 
 extension CheckedAttribute where Self: ContentNode {
@@ -625,6 +629,8 @@ public protocol DisabledAttribute: Attribute {
     /// <tag disabled />
     /// ```
     func disabled() -> Self
+    
+    func disabled(_ condition: Bool) -> Self
 }
 
 extension DisabledAttribute where Self: ContentNode {
@@ -914,6 +920,8 @@ public protocol HiddenAttribute: Attribute {
     /// <tag hidden />
     /// ```
     func hidden() -> Self
+    
+    func hidden(_ condition: Bool) -> Self
 }
 
 extension HiddenAttribute where Self: ContentNode {
@@ -1878,6 +1886,8 @@ public protocol ReadyOnlyAttribute: Attribute {
     /// <tag readonly />
     /// ```
     func readonly() -> Self
+    
+    func readonly(_ condition: Bool) -> Self
 }
 
 extension ReadyOnlyAttribute where Self: ContentNode {
@@ -1953,6 +1963,8 @@ public protocol RequiredAttribute: Attribute {
     /// <tag required />
     /// ```
     func required() -> Self
+    
+    func required(_ condition: Bool) -> Self
 }
 
 extension RequiredAttribute where Self: ContentNode {

@@ -95,6 +95,15 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func hidden() -> ListItem {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> ListItem {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> ListItem {
         return mutate(inputmode: value)

@@ -81,6 +81,15 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     public func hidden() -> Input {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Input {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Input {
         return mutate(inputmode: value)
@@ -162,8 +171,26 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(checked: "checked")
     }
     
+    public func checked(_ condition: Bool) -> Input {
+        
+        if condition {
+            return mutate(checked: "checked")
+        }
+        
+        return self
+    }
+    
     public func disabled() -> Input {
         return mutate(disabled: "disabled")
+    }
+    
+    public func disabled(_ condition: Bool) -> Input {
+        
+        if condition {
+            return mutate(disabled: "disabled")
+        }
+        
+        return self
     }
     
     public func form(_ value: String) -> Input {
@@ -218,8 +245,26 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(readonly: "readonly")
     }
     
+    public func readonly(_ condition: Bool) -> Input {
+        
+        if condition {
+            return mutate(readonly: "readonly")
+        }
+        
+        return self
+    }
+    
     public func required() -> Input {
         return mutate(required: "required")
+    }
+    
+    public func required(_ condition: Bool) -> Input {
+        
+        if condition {
+            return mutate(required: "required")
+        }
+        
+        return self
     }
     
     public func size(_ size: Int) -> Input {
@@ -348,6 +393,15 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 
     public func hidden() -> Label {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Label {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Label {
@@ -604,6 +658,15 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
     public func hidden() -> Select {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Select {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Select {
         return mutate(inputmode: value)
@@ -677,6 +740,15 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return mutate(disabled: "disabled")
     }
     
+    public func disabled(_ condition: Bool) -> Select {
+        
+        if condition {
+            return mutate(disabled: "disabled")
+        }
+        
+        return self
+    }
+    
     public func form(_ value: String) -> Select {
         return mutate(form: value)
     }
@@ -691,6 +763,15 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
     
     public func required() -> Select {
         return mutate(required: "required")
+    }
+    
+    public func required(_ condition: Bool) -> Select {
+        
+        if condition {
+            return mutate(required: "required")
+        }
+        
+        return self
     }
     
     public func size(_ size: Int) -> Select {
@@ -800,6 +881,15 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func hidden() -> TextArea {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> TextArea {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> TextArea {
         return mutate(inputmode: value)
@@ -877,6 +967,15 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(disabled: "disabled")
     }
     
+    public func disabled(_ condition: Bool) -> TextArea {
+        
+        if condition {
+            return mutate(disabled: "disabled")
+        }
+        
+        return self
+    }
+    
     public func form(_ value: String) -> TextArea {
         return mutate(form: value)
     }
@@ -901,8 +1000,26 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(readonly: "readonly")
     }
     
+    public func readonly(_ condition: Bool) -> TextArea {
+        
+        if condition {
+            return mutate(readonly: "readonly")
+        }
+        
+        return self
+    }
+    
     public func required() -> TextArea {
         return mutate(required: "required")
+    }
+    
+    public func required(_ condition: Bool) -> TextArea {
+        
+        if condition {
+            return mutate(required: "required")
+        }
+        
+        return self
     }
     
     public func rows(_ size: Int) -> TextArea {
@@ -1092,6 +1209,15 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     public func hidden() -> Button {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Button {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Button {
         return mutate(inputmode: value)
@@ -1159,6 +1285,15 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func disabled() -> Button {
         return mutate(disabled: "disabled")
+    }
+    
+    public func disabled(_ condition: Bool) -> Button {
+        
+        if condition {
+            return mutate(disabled: "disabled")
+        }
+        
+        return self
     }
     
     public func form(_ value: String) -> Button {
@@ -1367,6 +1502,15 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func hidden() -> Fieldset {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Fieldset {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Fieldset {
         return mutate(inputmode: value)
@@ -1434,6 +1578,15 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func disabled() -> Fieldset {
         return mutate(disabled: "disabled")
+    }
+    
+    public func disabled(_ condition: Bool) -> Fieldset {
+        
+        if condition {
+            return mutate(disabled: "disabled")
+        }
+        
+        return self
     }
     
     public func form(_ value: String) -> Fieldset {

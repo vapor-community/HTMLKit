@@ -95,6 +95,15 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func hidden() -> OptionGroup {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> OptionGroup {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> OptionGroup {
         return mutate(inputmode: value)
@@ -162,6 +171,15 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
 
     public func disabled() -> OptionGroup {
         return mutate(disabled: "disabled")
+    }
+    
+    public func disabled(_ condition: Bool) -> OptionGroup {
+        
+        if condition {
+            return mutate(disabled: "disabled")
+        }
+        
+        return self
     }
     
     public func label(_ value: String) -> OptionGroup {
@@ -347,6 +365,15 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     public func hidden() -> Option {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Option {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Option {
         return mutate(inputmode: value)
@@ -414,6 +441,15 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
     public func disabled() -> Option {
         return mutate(disabled: "disabled")
+    }
+    
+    public func disabled(_ condition: Bool) -> Option {
+        
+        if condition {
+            return mutate(disabled: "disabled")
+        }
+        
+        return self
     }
     
     public func label(_ value: String) -> Option {
@@ -608,6 +644,15 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
 
     public func hidden() -> Legend {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Legend {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Legend {
@@ -852,6 +897,15 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
 
     public func hidden() -> Summary {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Summary {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Summary {

@@ -81,6 +81,15 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     public func hidden() -> Source {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Source {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Source {
         return mutate(inputmode: value)
@@ -267,6 +276,15 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
 
     public func hidden() -> Track {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Track {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Track {

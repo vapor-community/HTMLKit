@@ -114,6 +114,15 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
     public func hidden() -> Html {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Html {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Html {
         return mutate(inputmode: value)
