@@ -14163,6 +14163,10 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(source: value)
     }
     
+    public func source(_ value: EnvironmentValue) -> Image {
+        return mutate(source: value)
+    }
+    
     public func sizes(_ size: Int) -> Image {
         return mutate(sizes: size)
     }
@@ -14435,6 +14439,10 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func source(_ value: String) -> InlineFrame {
         return mutate(source: value)
     }
+
+    public func source(_ value: EnvironmentValue) -> InlineFrame {
+        return mutate(source: value)
+    }
     
     public func name(_ value: String) -> InlineFrame {
         return mutate(name: value)
@@ -14701,6 +14709,10 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     }
 
     public func source(_ value: String) -> Embed {
+        return mutate(source: value)
+    }
+    
+    public func source(_ value: EnvironmentValue) -> Embed {
         return mutate(source: value)
     }
     
@@ -15250,6 +15262,10 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(source: value)
     }
     
+    public func source(_ value: EnvironmentValue) -> Video {
+        return mutate(source: value)
+    }
+    
     public func autoplay() -> Video {
         return mutate(autoplay: "autoplay")
     }
@@ -15541,6 +15557,10 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     }
 
     public func source(_ value: String) -> Audio {
+        return mutate(source: value)
+    }
+    
+    public func source(_ value: EnvironmentValue) -> Audio {
         return mutate(source: value)
     }
     
@@ -17867,6 +17887,10 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
     }
     
     public func source(_ value: String) -> Script {
+        return mutate(source: value)
+    }
+    
+    public func source(_ value: EnvironmentValue) -> Script {
         return mutate(source: value)
     }
     

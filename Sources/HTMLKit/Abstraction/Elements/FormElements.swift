@@ -275,6 +275,10 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(source: value)
     }
     
+    public func source(_ value: EnvironmentValue) -> Input {
+        return mutate(source: value)
+    }
+    
     public func step(_ size: Int) -> Input {
         return mutate(step: size)
     }

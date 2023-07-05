@@ -4,6 +4,7 @@
  */
 
 import Foundation
+import OrderedCollections
 
 /// A struct containing the different formulas for the different views.
 public class Renderer {
@@ -87,7 +88,7 @@ public class Renderer {
             }
             
             if let element = content as? (any EmptyNode) {
-                result += render(element: element)
+                result += try render(element: element)
             }
             
             if let element = content as? (any DocumentNode) {
@@ -127,7 +128,13 @@ public class Renderer {
         
         var result = ""
         
-        result += element.startTag
+        result += "<\(element.name)"
+        
+        if let attributes = element.attributes {
+            result += try render(attributes: attributes)
+        }
+        
+        result += ">"
         
         if let contents = element.content as? [Content] {
             
@@ -146,7 +153,7 @@ public class Renderer {
                 }
                 
                 if let element = content as? (any EmptyNode) {
-                    result += render(element: element)
+                    result += try render(element: element)
                 }
                 
                 if let element = content as? (any DocumentNode) {
@@ -179,24 +186,35 @@ public class Renderer {
             }
         }
         
-        result += element.endTag
+        result += "</\(element.name)>"
         
         return result
     }
     
     /// Renders a empty element
-    internal func render(element: some EmptyNode) -> String {
-        return element.startTag
+    internal func render(element: some EmptyNode) throws -> String {
+        
+        var result = ""
+        
+        result += "<\(element.name)"
+        
+        if let attributes = element.attributes {
+            result += try render(attributes: attributes)
+        }
+        
+        result += ">"
+        
+        return result
     }
     
     /// Renders a document element
     internal func render(element: some DocumentNode) -> String {
-        return element.startTag
+        return "<!DOCTYPE \(element.content)>"
     }
     
     /// Renders a comment element
     internal func render(element: some CommentNode) -> String {
-        return element.startTag + element.content + element.endTag
+        return "<!--\(element.content)-->"
     }
     
     /// Renders a content element
@@ -204,7 +222,13 @@ public class Renderer {
         
         var result = ""
         
-        result += element.startTag
+        result += "<\(element.name)"
+        
+        if let attributes = element.attributes {
+            result += try render(attributes: attributes)
+        }
+        
+        result += ">"
         
         if let contents = element.content as? [Content] {
             
@@ -223,7 +247,7 @@ public class Renderer {
                 }
                 
                 if let element = content as? (any EmptyNode) {
-                    result += render(element: element)
+                    result += try render(element: element)
                 }
                 
                 if let element = content as? (any DocumentNode) {
@@ -248,7 +272,7 @@ public class Renderer {
             }
         }
         
-        result += element.endTag
+        result += "</\(element.name)>"
         
         return result
     }
@@ -338,5 +362,25 @@ public class Renderer {
         default:
             throw Errors.unableToCastEnvironmentValue
         }
+    }
+    
+    /// Renders the node attributes
+    internal func render(attributes: OrderedDictionary<String, Any>) throws -> String {
+        
+        var result = ""
+        
+        for attribute in attributes {
+            
+            result += " \(attribute.key)=\""
+            
+            if let value = attribute.value as? EnvironmentValue {
+                result += "\(try render(value: value))\""
+                
+            } else {
+                result += "\(attribute.value)\""
+            }
+        }
+        
+        return result
     }
 }

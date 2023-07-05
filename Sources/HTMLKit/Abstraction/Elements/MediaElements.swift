@@ -163,6 +163,10 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(source: value)
     }
     
+    public func source(_ value: EnvironmentValue) -> Source {
+        return mutate(source: value)
+    }
+    
     public func sizes(_ size: Int) -> Source {
         return mutate(sizes: size)
     }
@@ -356,6 +360,10 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
     }
     
     public func source(_ value: String) -> Track {
+        return mutate(source: value)
+    }
+    
+    public func source(_ value: EnvironmentValue) -> Track {
         return mutate(source: value)
     }
     

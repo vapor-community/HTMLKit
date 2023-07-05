@@ -2290,6 +2290,8 @@ public protocol SourceAttribute: Attribute {
     /// <tag src="" />
     /// ```
     func source(_ value: String) -> Self
+    
+    func source(_ value: EnvironmentValue) -> Self
 }
 
 extension SourceAttribute where Self: ContentNode {
@@ -2297,11 +2299,19 @@ extension SourceAttribute where Self: ContentNode {
     internal func mutate(source value: String) -> Self {
         return self.mutate(key: "src", value: value)
     }
+    
+    internal func mutate(source value: EnvironmentValue) -> Self {
+        return self.mutate(key: "src", value: value)
+    }
 }
 
 extension SourceAttribute where Self: EmptyNode {
     
     internal func mutate(source value: String) -> Self {
+        return self.mutate(key: "src", value: value)
+    }
+    
+    internal func mutate(source value: EnvironmentValue) -> Self {
         return self.mutate(key: "src", value: value)
     }
 }

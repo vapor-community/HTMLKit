@@ -463,6 +463,10 @@ final class AttributesTests: XCTestCase {
             return self.mutate(source: value)
         }
         
+        public func source(_ value: EnvironmentValue) -> Tag {
+            return mutate(source: value)
+        }
+        
         func start(_ size: Int) -> Tag {
             return self.mutate(start: size)
         }

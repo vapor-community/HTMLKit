@@ -29,19 +29,6 @@ internal protocol ContentNode: Node {
 
 extension ContentNode {
     
-    internal var startTag: String {
-        
-        guard let attributes = attributes else {
-            return "<\(name)>"
-        }
-        
-        return "<\(name) \(attributes.map { "\($0.key)=\"\($0.value)\"" }.joined(separator: " "))>"
-    }
-    
-    internal var endTag: String {
-        return "</\(name)>"
-    }
-    
     internal func modify(_ element: Self) -> Self {
         
         guard var attributes = self.attributes else {
@@ -72,15 +59,6 @@ internal protocol EmptyNode: Node {
 
 extension EmptyNode {
     
-    internal var startTag: String {
-        
-        guard let attributes = attributes else {
-            return "<\(name)>"
-        }
-        
-        return "<\(name) \(attributes.map { "\($0.key)=\"\($0.value)\"" }.joined(separator: " "))>"
-    }
-    
     internal func modify(_ element: Self) -> Self {
         
         guard var attributes = self.attributes else {
@@ -100,29 +78,11 @@ internal protocol CommentNode: Node {
     var content: String { get }
 }
 
-extension CommentNode {
-    
-    internal var startTag: String {
-        return "<!--"
-    }
-    
-    internal var endTag: String {
-        return "-->"
-    }
-}
-
 /// The protocol defines the document node.
 internal protocol DocumentNode: Node {
     
     /// The content of the node.
     var content: String { get }
-}
-
-extension DocumentNode {
-    
-    internal var startTag: String {
-        return "<!DOCTYPE \(content)>"
-    }
 }
 
 public protocol CustomNode: Node {
@@ -147,19 +107,6 @@ public protocol CustomNode: Node {
 }
 
 extension CustomNode {
-    
-    internal var startTag: String {
-        
-        guard let attributes = attributes else {
-            return "<\(name)>"
-        }
-        
-        return "<\(name) \(attributes.map { "\($0.key)=\"\($0.value)\"" }.joined(separator: " "))>"
-    }
-    
-    internal var endTag: String {
-        return "</\(name)>"
-    }
     
     internal func modify(_ element: Self) -> Self {
         
