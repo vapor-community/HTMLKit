@@ -10,7 +10,8 @@ final class EnvironmentTests: XCTestCase {
     
     struct Object: Encodable {
         
-        var content: String = "Welcome to WWDC 2023!"
+        var title: String = "Welcome to WWDC"
+        var name: String = "Mattes!"
         var image: String = "wwdc.jpeg"
     }
     
@@ -41,7 +42,7 @@ final class EnvironmentTests: XCTestCase {
                     Image()
                         .source(object.image)
                     Heading2 {
-                        object.content
+                        object.title + " " + object.name
                     }
                 }
             }
@@ -57,7 +58,7 @@ final class EnvironmentTests: XCTestCase {
                        <div>\
                        <section>\
                        <img src="wwdc.jpeg">\
-                       <h2>Welcome to WWDC 2023!</h2>\
+                       <h2>Welcome to WWDC Mattes!</h2>\
                        </section>\
                        </div>
                        """

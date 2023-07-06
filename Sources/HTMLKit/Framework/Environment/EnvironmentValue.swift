@@ -16,3 +16,10 @@ public struct EnvironmentValue: Content {
         self.valuePath = valuePath
     }
 }
+
+extension EnvironmentValue {
+    
+    static public func + (lhs: Content, rhs: Self) -> Content {
+        return [lhs, rhs]
+    }
+}
