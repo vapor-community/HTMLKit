@@ -18,6 +18,18 @@
         return []
     }
     
+    /// Builds a block with one element.
+    ///
+    /// ```swift
+    /// Tag {
+    ///    Tag {
+    ///    }
+    /// }
+    /// ```
+    public static func buildPartialBlock(first: Component) -> Component {
+        return first
+    }
+
     /// Builds a block with more than one element.
     ///
     /// ```swift
@@ -28,40 +40,21 @@
     ///    }
     /// }
     /// ```
-    public static func buildBlock(_ components: Component...) -> Component {
-        return components.flatMap { $0 }
-    }
-    
-    /// Builds a block
-    public static func buildPartialBlock(first: Component) -> Component {
-        return first
-    }
-
-    /// Builds a block
-    public static func buildPartialBlock(first: [Component]) -> Component {
-        return first.flatMap { $0 }
-    }
-
-    /// Builds a block
-    public static func buildPartialBlock(accumulated: Component, next: Expression?) -> Component {
-        guard let next else {
-            return accumulated
-        }
-        return accumulated + [next]
-    }
-
-    /// Builds a block
     public static func buildPartialBlock(accumulated: Component, next: Component) -> Component {
         return accumulated + next
     }
 
     /// Builds a block
-    public static func buildPartialBlock(accumulated: Component, next: [Component]) -> Component {
-        return accumulated + next.flatMap { $0 }
-    }
-
-    /// Builds a block
+    ///
+    /// ```swift
+    /// let content = "Content"
+    ///
+    /// Tag {
+    ///    content
+    /// }
+    /// ```
     public static func buildExpression(_ element: Expression?) -> Component {
+        
         guard let element else {
             return []
         }
@@ -69,13 +62,16 @@
     }
     
     /// Builds a block
-    public static func buildExpression(_ statement: Void) -> Component {
-        return []
-    }
-
-    /// Builds a block
-    public static func buildExpression(_ statement: Component) -> Component {
-        return statement
+    ///
+    /// ```swift
+    /// let content: [Type]
+    ///
+    /// Tag {
+    ///    content
+    /// }
+    /// ```
+    public static func buildExpression(_ element: Component) -> Component {
+        return element
     }
 
     /// Builds a block with one element.
@@ -90,7 +86,11 @@
     /// }
     /// ```
     public static func buildOptional(_ component: Component?) -> Component {
-        component ?? []
+
+        guard let component else {
+            return []
+        }
+        return component
     }
 
     /// Builds a block, if the condition is true.
@@ -103,8 +103,8 @@
     ///    }
     /// }
     /// ```
-    public static func buildEither(first component: Component) -> Component {
-        return component
+    public static func buildEither(first: Component) -> Component {
+        return first
     }
 
     /// Builds a block, if the condition is false.
@@ -121,8 +121,8 @@
     ///    }
     /// }
     /// ```
-    public static func buildEither(second component: Component) -> Component {
-        return component
+    public static func buildEither(second: Component) -> Component {
+        return second
     }
 
     /// Builds blocks by running through a sequence of elements.
