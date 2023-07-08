@@ -96,4 +96,71 @@ final class StatementTests: XCTestCase {
                        """
         )
     }
+    
+    func testOptionalBeforeElement() throws {
+        
+        let name: String? = "Tony"
+        
+        let view = TestView {
+            if let name = name {
+                Paragraph {
+                    name
+                }
+            }
+            Division {
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p>Tony</p>\
+                       <div></div>
+                       """
+        )
+    }
+    
+    func testOptionalAfterElement() throws {
+        
+        let name: String? = "Tony"
+        
+        let view = TestView {
+            Division {
+            }
+            if let name = name {
+                Paragraph {
+                    name
+                }
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <div></div>\
+                       <p>Tony</p>
+                       """
+        )
+    }
+    
+    func testOptionalWithExpectedResult() throws {
+        
+        let name: String? = "Tony"
+        
+        let view = TestView {
+            Body {
+                if let name = name {
+                    Paragraph {
+                        name
+                    }
+                }
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <body>\
+                       <p>Tony</p>\
+                       </body>
+                       """
+        )
+    }
 }
