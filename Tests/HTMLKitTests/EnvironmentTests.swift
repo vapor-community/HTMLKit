@@ -10,7 +10,9 @@ final class EnvironmentTests: XCTestCase {
     
     struct Object: Encodable {
         
-        var content: String = "GlobalObject"
+        var title: String = "Welcome to WWDC"
+        var name: String = "Mattes!"
+        var image: String = "wwdc.jpeg"
     }
     
     struct ParentView: View {
@@ -31,13 +33,16 @@ final class EnvironmentTests: XCTestCase {
     
     struct ChildView: View {
         
-        @EnvironmentObject(Object.self) var object
+        @EnvironmentObject(Object.self)
+        var object
         
         var body: Content {
             ParentView {
                 Section{
+                    Image()
+                        .source(object.image)
                     Heading2 {
-                        object.content
+                        object.title + " " + object.name
                     }
                 }
             }
@@ -52,7 +57,8 @@ final class EnvironmentTests: XCTestCase {
                        """
                        <div>\
                        <section>\
-                       <h2>GlobalObject</h2>\
+                       <img src="wwdc.jpeg">\
+                       <h2>Welcome to WWDC Mattes!</h2>\
                        </section>\
                        </div>
                        """

@@ -104,6 +104,15 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func hidden() -> RubyText {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> RubyText {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> RubyText {
         return mutate(inputmode: value)
@@ -347,6 +356,15 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
 
     public func hidden() -> RubyPronunciation {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> RubyPronunciation {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> RubyPronunciation {

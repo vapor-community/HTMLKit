@@ -87,6 +87,15 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(hidden: "hidden")
     }
 
+    public func hidden(_ condition: Bool) -> Area {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
+    
     public func inputMode(_ value: String) -> Area {
         return mutate(inputmode: value)
     }

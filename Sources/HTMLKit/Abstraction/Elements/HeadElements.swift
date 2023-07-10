@@ -87,6 +87,15 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(hidden: "hidden")
     }
     
+    public func hidden(_ condition: Bool) -> Title {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
+    
     public func inputMode(_ value: String) -> Title {
         return mutate(inputmode: value)
     }
@@ -248,6 +257,15 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
     
     public func hidden() -> Base {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Base {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
     
     public func inputMode(_ value: String) -> Base {
@@ -419,6 +437,15 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
 
     public func hidden() -> Meta {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Meta {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Meta {
@@ -608,6 +635,15 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     public func hidden() -> Style {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Style {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Style {
         return mutate(inputmode: value)
@@ -778,6 +814,15 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
 
     public func hidden() -> Link {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Link {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Link {

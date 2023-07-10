@@ -104,6 +104,15 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func hidden() -> TermName {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> TermName{
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> TermName {
         return mutate(inputmode: value)
@@ -347,6 +356,15 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
 
     public func hidden() -> TermDefinition {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> TermDefinition {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> TermDefinition {

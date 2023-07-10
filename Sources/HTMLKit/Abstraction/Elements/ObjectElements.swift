@@ -81,6 +81,15 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
     public func hidden() -> Parameter {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Parameter {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Parameter {
         return mutate(inputmode: value)

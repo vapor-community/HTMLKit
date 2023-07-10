@@ -419,6 +419,15 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func hidden() -> Article {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Article {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Article {
         return mutate(inputmode: value)
@@ -662,6 +671,15 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
 
     public func hidden() -> Section {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Section {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Section {
@@ -907,6 +925,15 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func hidden() -> Navigation {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Navigation {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Navigation {
         return mutate(inputmode: value)
@@ -1151,6 +1178,15 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func hidden() -> Aside {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Aside {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Aside {
         return mutate(inputmode: value)
@@ -1394,6 +1430,15 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func hidden() -> Heading1 {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Heading1 {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
     
     public func inputMode(_ value: String) -> Heading1 {
@@ -1647,6 +1692,15 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(hidden: "hidden")
     }
     
+    public func hidden(_ condition: Bool) -> Heading2 {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
+    
     public func inputMode(_ value: String) -> Heading2 {
         return mutate(inputmode: value)
     }
@@ -1896,6 +1950,15 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func hidden() -> Heading3 {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Heading3 {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Heading3 {
@@ -2148,6 +2211,15 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func hidden() -> Heading4 {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Heading4 {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Heading4 {
         return mutate(inputmode: value)
@@ -2398,6 +2470,15 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func hidden() -> Heading5 {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Heading5 {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Heading5 {
@@ -2650,6 +2731,15 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func hidden() -> Heading6 {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Heading6 {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Heading6 {
         return mutate(inputmode: value)
@@ -2901,6 +2991,15 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     public func hidden() -> HeadingGroup {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> HeadingGroup {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> HeadingGroup {
         return mutate(inputmode: value)
@@ -3144,6 +3243,15 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
 
     public func hidden() -> Header {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Header {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Header {
@@ -3389,6 +3497,15 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     public func hidden() -> Footer {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Footer {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Footer {
         return mutate(inputmode: value)
@@ -3633,6 +3750,15 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func hidden() -> Address {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Address {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Address {
         return mutate(inputmode: value)
@@ -3876,6 +4002,15 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func hidden() -> Paragraph {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Paragraph {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Paragraph {
@@ -4123,6 +4258,15 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
     public func hidden() -> HorizontalRule {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> HorizontalRule {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> HorizontalRule {
         return mutate(inputmode: value)
@@ -4367,6 +4511,15 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
     public func hidden() -> PreformattedText {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> PreformattedText {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> PreformattedText {
         return mutate(inputmode: value)
@@ -4610,6 +4763,15 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 
     public func hidden() -> Blockquote {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Blockquote {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Blockquote {
@@ -4865,6 +5027,15 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
 
     public func hidden() -> OrderedList {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> OrderedList {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> OrderedList {
@@ -5122,6 +5293,15 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     public func hidden() -> UnorderedList {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> UnorderedList {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> UnorderedList {
         return mutate(inputmode: value)
@@ -5365,6 +5545,15 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
 
     public func hidden() -> DescriptionList {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> DescriptionList {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> DescriptionList {
@@ -5610,6 +5799,15 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     public func hidden() -> Figure {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Figure {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Figure {
         return mutate(inputmode: value)
@@ -5853,6 +6051,15 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
     public func hidden() -> Anchor {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Anchor {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Anchor {
@@ -6141,6 +6348,15 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func hidden() -> Emphasize {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Emphasize {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Emphasize {
         return mutate(inputmode: value)
@@ -6385,6 +6601,15 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     public func hidden() -> Strong {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Strong {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Strong {
         return mutate(inputmode: value)
@@ -6628,6 +6853,15 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 
     public func hidden() -> Small {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Small {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Small {
@@ -6880,6 +7114,15 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
     public func hidden() -> StrikeThrough {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> StrikeThrough {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> StrikeThrough {
         return mutate(inputmode: value)
@@ -7054,6 +7297,15 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 
     public func hidden() -> Main {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Main {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Main {
@@ -7299,6 +7551,15 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func hidden() -> Division {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Division {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Division {
         return mutate(inputmode: value)
@@ -7543,6 +7804,15 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func hidden() -> Definition {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Definition {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Definition {
         return mutate(inputmode: value)
@@ -7786,6 +8056,15 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 
     public func hidden() -> Cite {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Cite {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Cite {
@@ -8032,6 +8311,15 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(hidden: "hidden")
     }
 
+    public func hidden(_ condition: Bool) -> ShortQuote {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
+    
     public func inputMode(_ value: String) -> ShortQuote {
         return mutate(inputmode: value)
     }
@@ -8279,6 +8567,15 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     public func hidden() -> Abbreviation {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Abbreviation {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Abbreviation {
         return mutate(inputmode: value)
@@ -8524,6 +8821,15 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(hidden: "hidden")
     }
     
+    public func hidden(_ condition: Bool) -> Ruby {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
+    
     public func inputMode(_ value: String) -> Ruby {
         return mutate(inputmode: value)
     }
@@ -8766,6 +9072,15 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
 
     public func hidden() -> Data {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Data {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Data {
@@ -9015,6 +9330,15 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
     public func hidden() -> Time {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Time {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Time {
         return mutate(inputmode: value)
@@ -9263,6 +9587,15 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func hidden() -> Code {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Code {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Code {
         return mutate(inputmode: value)
@@ -9506,6 +9839,15 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func hidden() -> Variable {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Variable {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Variable {
@@ -9751,6 +10093,15 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     public func hidden() -> SampleOutput {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> SampleOutput {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> SampleOutput {
         return mutate(inputmode: value)
@@ -9994,6 +10345,15 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
 
     public func hidden() -> KeyboardInput {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> KeyboardInput {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> KeyboardInput {
@@ -10239,6 +10599,15 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func hidden() -> Subscript {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Subscript {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Subscript {
         return mutate(inputmode: value)
@@ -10481,6 +10850,15 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
 
     public func hidden() -> Superscript {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Superscript {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Superscript {
@@ -10725,6 +11103,15 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
 
     public func hidden() -> Italic {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Italic {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Italic {
@@ -10977,6 +11364,15 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func hidden() -> Bold {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Bold {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Bold {
         return mutate(inputmode: value)
@@ -11227,6 +11623,15 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func hidden() -> Underline {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Underline {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Underline {
@@ -11479,6 +11884,15 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func hidden() -> Mark {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Mark {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Mark {
         return mutate(inputmode: value)
@@ -11723,6 +12137,15 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func hidden() -> Bdi {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Bdi {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Bdi {
         return mutate(inputmode: value)
@@ -11961,6 +12384,15 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 
     public func hidden() -> Bdo {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Bdo {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Bdo {
@@ -12206,6 +12638,15 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func hidden() -> Span {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Span {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Span {
         return mutate(inputmode: value)
@@ -12445,6 +12886,15 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func hidden() -> LineBreak {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> LineBreak {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> LineBreak {
         return mutate(inputmode: value)
@@ -12683,6 +13133,15 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func hidden() -> WordBreak {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> WordBreak {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> WordBreak {
@@ -12927,6 +13386,15 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
 
     public func hidden() -> InsertedText {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> InsertedText {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> InsertedText {
@@ -13180,6 +13648,15 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func hidden() -> DeletedText {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> DeletedText {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> DeletedText {
         return mutate(inputmode: value)
@@ -13432,6 +13909,15 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
     public func hidden() -> Picture {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Picture {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Picture {
         return mutate(inputmode: value)
@@ -13595,6 +14081,15 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func hidden() -> Image {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Image {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Image {
         return mutate(inputmode: value)
@@ -13665,6 +14160,10 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     }
     
     public func source(_ value: String) -> Image {
+        return mutate(source: value)
+    }
+    
+    public func source(_ value: EnvironmentValue) -> Image {
         return mutate(source: value)
     }
     
@@ -13863,6 +14362,15 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func hidden() -> InlineFrame {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> InlineFrame {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> InlineFrame {
         return mutate(inputmode: value)
@@ -13929,6 +14437,10 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     }
 
     public func source(_ value: String) -> InlineFrame {
+        return mutate(source: value)
+    }
+
+    public func source(_ value: EnvironmentValue) -> InlineFrame {
         return mutate(source: value)
     }
     
@@ -14122,6 +14634,15 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func hidden() -> Embed {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Embed {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Embed {
         return mutate(inputmode: value)
@@ -14188,6 +14709,10 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     }
 
     public func source(_ value: String) -> Embed {
+        return mutate(source: value)
+    }
+    
+    public func source(_ value: EnvironmentValue) -> Embed {
         return mutate(source: value)
     }
     
@@ -14381,6 +14906,15 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
     public func hidden() -> Object {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Object {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Object {
@@ -14650,6 +15184,15 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func hidden() -> Video {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Video {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Video {
         return mutate(inputmode: value)
@@ -14719,8 +15262,21 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(source: value)
     }
     
+    public func source(_ value: EnvironmentValue) -> Video {
+        return mutate(source: value)
+    }
+    
     public func autoplay() -> Video {
         return mutate(autoplay: "autoplay")
+    }
+    
+    public func autoplay(_ condition: Bool) -> Video {
+        
+        if condition {
+            return mutate(autoplay: "autoplay")
+        }
+        
+        return self
     }
     
     public func loop() -> Video {
@@ -14926,6 +15482,15 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func hidden() -> Audio {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Audio {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Audio {
         return mutate(inputmode: value)
@@ -14995,8 +15560,21 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(source: value)
     }
     
+    public func source(_ value: EnvironmentValue) -> Audio {
+        return mutate(source: value)
+    }
+    
     public func autoplay() -> Audio {
         return mutate(autoplay: "autoplay")
+    }
+    
+    public func autoplay(_ condition: Bool) -> Audio {
+        
+        if condition {
+            return mutate(autoplay: "autoplay")
+        }
+        
+        return self
     }
     
     public func loop() -> Audio {
@@ -15194,6 +15772,15 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
     public func hidden() -> Map {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Map {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Map {
         return mutate(inputmode: value)
@@ -15365,6 +15952,15 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
 
     public func hidden() -> Form {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Form {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Form {
@@ -15638,6 +16234,15 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func hidden() -> DataList {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> DataList {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> DataList {
         return mutate(inputmode: value)
@@ -15881,6 +16486,15 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
     public func hidden() -> Output {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Output {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Output {
@@ -16138,6 +16752,15 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func hidden() -> Progress {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Progress {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Progress {
         return mutate(inputmode: value)
@@ -16389,6 +17012,15 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 
     public func hidden() -> Meter {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Meter {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Meter {
@@ -16658,6 +17290,15 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func hidden() -> Details {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Details {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Details {
         return mutate(inputmode: value)
@@ -16905,6 +17546,15 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
     public func hidden() -> Dialog {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Dialog {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Dialog {
@@ -17154,6 +17804,15 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
     public func hidden() -> Script {
         return mutate(hidden: "hidden")
     }
+    
+    public func hidden(_ condition: Bool) -> Script {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
 
     public func inputMode(_ value: String) -> Script {
         return mutate(inputmode: value)
@@ -17228,6 +17887,10 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
     }
     
     public func source(_ value: String) -> Script {
+        return mutate(source: value)
+    }
+    
+    public func source(_ value: EnvironmentValue) -> Script {
         return mutate(source: value)
     }
     
@@ -17337,6 +18000,15 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
 
     public func hidden() -> NoScript {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> NoScript {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> NoScript {
@@ -17505,6 +18177,15 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
 
     public func hidden() -> Template {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Template {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Template {
@@ -17677,6 +18358,15 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
     public func hidden() -> Canvas {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Canvas {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Canvas {
@@ -17929,6 +18619,15 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 
     public func hidden() -> Table {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Table {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
 
     public func inputMode(_ value: String) -> Table {
@@ -18289,6 +18988,15 @@ extension Slot: GlobalAttributes, NameAttribute {
     
     public func hidden() -> Slot {
         return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Slot {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
     }
     
     public func inputMode(_ value: String) -> Slot {

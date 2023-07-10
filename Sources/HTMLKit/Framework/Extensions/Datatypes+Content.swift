@@ -17,7 +17,12 @@ extension Int: Content {}
 
 extension Optional: Content{}
 
-extension String: Content {}
+extension String: Content {
+    
+    static public func + (lhs: Content, rhs: Self) -> Content {
+        return [lhs, rhs]
+    }
+}
 
 extension UUID: Content {}
 
