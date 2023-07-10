@@ -38,51 +38,51 @@ public struct Navigation: View, Modifiable {
 extension Navigation: ViewModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Navigation {
-        return self.mutate(backgroundcolor: color.rawValue)
+        return self.mutate(backgroundcolor: color.value)
     }
     
     public func opacity(_ value: Tokens.OpacityValue) -> Navigation {
-        return self.mutate(opacity: value.rawValue)
+        return self.mutate(opacity: value.value)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> Navigation {
-        return self.mutate(zindex: index.rawValue)
+        return self.mutate(zindex: index.value)
     }
     
     public func hidden() -> Navigation {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
     }
     
     public func hidden(_ condition: Bool) -> Navigation {
         
         if condition {
-            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+            return self.mutate(viewstate: Tokens.ViewState.hidden.value)
         }
         
         return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Navigation {
-        return self.mutate(scheme: scheme.rawValue)
+        return self.mutate(scheme: scheme.value)
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Navigation {
-        return self.mutate(padding: length.rawValue, insets: insets)
+        return self.mutate(padding: length.value, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Navigation {
-        return self.mutate(bordershape: shape.rawValue)
+        return self.mutate(bordershape: shape.value)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> Navigation {
-        return self.mutate(bordercolor: color.rawValue)
+        return self.mutate(bordercolor: color.value)
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Navigation {
-        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+        return mutate(frame: width.value, offset: offset?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Navigation {
-        return self.mutate(margin: length.rawValue, insets: insets)
+        return self.mutate(margin: length.value, insets: insets)
     }
 }

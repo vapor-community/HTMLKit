@@ -40,10 +40,10 @@ public struct Grouping: View, Modifiable {
         var newSelf = self
         
         if let offset {
-            newSelf.classes.append("offset:\(offset.rawValue)")
+            newSelf.classes.append("offset:\(offset.value)")
         }
         
-        newSelf.classes.append("size:\(width.rawValue)")
+        newSelf.classes.append("size:\(width.value)")
         
         return newSelf
     }
@@ -52,86 +52,86 @@ public struct Grouping: View, Modifiable {
 extension Grouping: TextModifier {    
     
     public func font(_ style: Tokens.TextStyle) -> Grouping {
-        return self.mutate(font: style.rawValue)
+        return self.mutate(font: style.value)
     }
     
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Grouping {
-        return self.mutate(foregroundcolor: color.rawValue)
+        return self.mutate(foregroundcolor: color.value)
     }
     
     public func fontSize(_ size: Tokens.FontSize) -> Grouping {
-        return self.mutate(fontsize: size.rawValue)
+        return self.mutate(fontsize: size.value)
     }
     
     public func fontWeight(_ weight: Tokens.FontWeight) -> Grouping {
-        return self.mutate(fontweight: weight.rawValue)
+        return self.mutate(fontweight: weight.value)
     }
     
     public func fontTransformation(_ transformation: Tokens.TextTransformation) -> Grouping {
-        return self.mutate(fonttransformation: transformation.rawValue)
+        return self.mutate(fonttransformation: transformation.value)
     }
     
     public func fontStyle(_ style: Tokens.FontStyle) -> Grouping {
-        return self.mutate(fontstyle: style.rawValue)
+        return self.mutate(fontstyle: style.value)
     }
     
     public func bold() -> Grouping {
-        return self.mutate(fontweight: Tokens.FontWeight.bold.rawValue)
+        return self.mutate(fontweight: Tokens.FontWeight.bold.value)
     }
     
     public func bold(_ condition: Bool) -> Grouping {
         
         if condition {
-            return self.mutate(fontweight: Tokens.FontWeight.bold.rawValue)
+            return self.mutate(fontweight: Tokens.FontWeight.bold.value)
         }
         
         return self
     }
     
     public func italic() -> Grouping {
-        return self.mutate(fontstyle: Tokens.FontStyle.italic.rawValue)
+        return self.mutate(fontstyle: Tokens.FontStyle.italic.value)
     }
     
     public func italic(_ condition: Bool) -> Grouping {
     
         if condition {
-            return self.mutate(fontstyle: Tokens.FontStyle.italic.rawValue)
+            return self.mutate(fontstyle: Tokens.FontStyle.italic.value)
         }
         
         return self
     }
     
     public func underline() -> Grouping {
-        return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
+        return self.mutate(fontdecoration: Tokens.TextDecoration.underline.value)
     }
     
     public func underline(_ condition: Bool) -> Grouping {
         
         if condition {
-            return self.mutate(fontdecoration: Tokens.TextDecoration.underline.rawValue)
+            return self.mutate(fontdecoration: Tokens.TextDecoration.underline.value)
         }
         
         return self
     }
     
     public func strikethrough() -> Grouping {
-        return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.rawValue)
+        return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.value)
     }
     
     public func strikethrough(_ condition: Bool) -> Grouping {
         
         if condition {
-            return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.rawValue)
+            return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.value)
         }
         
         return self
     }
     
     public func lineSpacing(_ height: Tokens.LineHeight) -> Grouping {
-        return self.mutate(lineheight: height.rawValue)
+        return self.mutate(lineheight: height.value)
     }
     
     public func lineLimit(_ limit: Tokens.LineLimit) -> Grouping {
-        return self.mutate(linelimit: limit.rawValue)
+        return self.mutate(linelimit: limit.value)
     }
 }

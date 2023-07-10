@@ -18,7 +18,7 @@ public struct ScrollView: View {
     public init(direction: Tokens.FlowDirection, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
-        self.classes = ["scrollview", "direction:\(direction.rawValue)"]
+        self.classes = ["scrollview", "direction:\(direction.value)"]
     }
     
     /// Creates a scrollview

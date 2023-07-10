@@ -52,21 +52,21 @@ public struct Dropdown: View, Modifiable {
 extension Dropdown: ButtonModifier {
 
     public func buttonSize(_ size: Tokens.ButtonSize) -> Dropdown {
-        return self.mutate(buttonsize: size.rawValue)
+        return self.mutate(buttonsize: size.value)
     }
     
     public func buttonStyle(_ style: Tokens.ButtonStyle) -> Dropdown {
-        return self.mutate(buttonstyle: style.rawValue)
+        return self.mutate(buttonstyle: style.value)
     }
     
     public func disabled() -> Dropdown {
-        return self.mutate(buttonstate: Tokens.ViewState.disabled.rawValue)
+        return self.mutate(buttonstate: Tokens.ViewState.disabled.value)
     }
     
     public func disabled(_ condition: Bool) -> Dropdown {
         
         if condition {
-            return self.mutate(buttonstate: Tokens.ViewState.disabled.rawValue)
+            return self.mutate(buttonstate: Tokens.ViewState.disabled.value)
         }
         
         return self
@@ -76,51 +76,51 @@ extension Dropdown: ButtonModifier {
 extension Dropdown: ViewModifier {
     
     public func opacity(_ value: Tokens.OpacityValue) -> Dropdown {
-        return self.mutate(opacity: value.rawValue)
+        return self.mutate(opacity: value.value)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> Dropdown {
-        return self.mutate(zindex: index.rawValue)
+        return self.mutate(zindex: index.value)
     }
     
     public func hidden() -> Dropdown {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
     }
     
     public func hidden(_ condition: Bool) -> Dropdown {
         
         if condition {
-            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+            return self.mutate(viewstate: Tokens.ViewState.hidden.value)
         }
         
         return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Dropdown {
-        return self.mutate(padding: length.rawValue, insets: insets)
+        return self.mutate(padding: length.value, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Dropdown {
-        return self.mutate(bordershape: shape.rawValue)
+        return self.mutate(bordershape: shape.value)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> Dropdown {
-        return self.mutate(bordercolor: color.rawValue)
+        return self.mutate(bordercolor: color.value)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Dropdown {
-        return self.mutate(backgroundcolor: color.rawValue)
+        return self.mutate(backgroundcolor: color.value)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Dropdown {
-        return self.mutate(scheme: scheme.rawValue)
+        return self.mutate(scheme: scheme.value)
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Dropdown {
-        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+        return mutate(frame: width.value, offset: offset?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Dropdown {
-        return self.mutate(margin: length.rawValue, insets: insets)
+        return self.mutate(margin: length.value, insets: insets)
     }
 }

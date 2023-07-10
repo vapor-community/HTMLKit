@@ -22,7 +22,7 @@ public struct Grid: View, Actionable {
     public init(ratio: Tokens.ItemRatio = .half, @ContentBuilder<ListElement> content: () -> [ListElement]) {
         
         self.content = content()
-        self.classes = ["grid", "ratio:\(ratio.rawValue)"]
+        self.classes = ["grid", "ratio:\(ratio.value)"]
     }
     
     /// Creates a collection.
