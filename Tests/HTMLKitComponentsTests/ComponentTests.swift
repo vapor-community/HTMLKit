@@ -64,7 +64,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <ul class="grid ratio:50"></ul>
+                       <ul class="grid ratio:half"></ul>
                        """
         )
     }

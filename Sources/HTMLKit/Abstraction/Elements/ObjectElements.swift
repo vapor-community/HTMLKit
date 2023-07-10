@@ -8,6 +8,15 @@
 
 import OrderedCollections
 
+/// The alias for the element Parameter.
+///
+/// Param is the official tag and can be used instead of Parameter.
+///
+/// ```html
+/// <param>
+/// ```
+public typealias Param = Parameter
+
 /// The element defines parameters for plugins invoked by an object element.
 ///
 /// ```html

@@ -7,23 +7,23 @@
     list-style-type: none;
 }
 
-.grid.ratio\:50 {
+.grid.ratio\:half {
     grid-template-columns: repeat(2, 1fr);
 }
 
-.grid.ratio\:33 {
+.grid.ratio\:third {
     grid-template-columns: repeat(3, 1fr);
 }
 
-.grid.ratio\:25 {
+.grid.ratio\:quarter {
     grid-template-columns: repeat(4, 1fr);
 }
 
-.grid.ratio\:20 {
+.grid.ratio\:fifth {
     grid-template-columns: repeat(5, 1fr);
 }
 
-.grid.ratio\:15 {
+.grid.ratio\:six {
     grid-template-columns: repeat(6, 1fr);
 }
 
