@@ -215,15 +215,22 @@ final class ComponentTests: XCTestCase {
     func testCheckField() throws {
         
         let view = TestView {
-            CheckField(name: "name", value: "value") {
-                "Label"
+            Picker(name: "name", selection: "value") {
+                CheckField(value: "value") {
+                    "Label"
+                }
+                .tag("name")
             }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="checkbox" id="name" name="name" value="value" class="checkfield">\
-                       <label class="label" for="name">Label</label>
+                       <div class="picker">\
+                       <div class="checkfield">\
+                       <input type="checkbox" value="value" checked="checked" class="checkinput" name="name" id="name">\
+                       <label for="name">Label</label>\
+                       </div>\
+                       </div>
                        """
         )
     }
@@ -231,15 +238,22 @@ final class ComponentTests: XCTestCase {
     func testRadioSelect() throws {
         
         let view = TestView {
-            RadioSelect(name: "name", value: "value") {
-                "Label"
+            Picker(name: "name", selection: "value") {
+                RadioSelect(value: "value") {
+                    "Label"
+                }
+                .tag("name")
             }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="radio" id="name" name="name" value="value" class="radioselect">\
-                       <label class="label" for="name">Label</label>
+                       <div class="picker">\
+                       <div class="radioselect">\
+                       <input type="radio" value="value" checked="checked" class="radioinput" name="name" id="name">\
+                       <label for="name">Label</label>\
+                       </div>\
+                       </div>
                        """
         )
     }

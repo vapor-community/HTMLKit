@@ -366,15 +366,50 @@ extension TextEditor: ViewModifier {
     }
 }
 
-/// A component that displays a form control
-public struct CheckField: View, Modifiable {
-    
-    /// The identifier of the field.
+public struct Picker: View, Modifiable {
+
     internal let name: String
     
-    /// The content of the field.
-    internal let value: String
+    internal let selection: String?
     
+    internal let content: [Selectable]
+    
+    internal var classes: [String]
+    
+    public init(name: String, selection: String? = nil, @ContentBuilder<Selectable> content: () -> [Selectable]) {
+        
+        self.name = name
+        self.selection = selection
+        self.content = content()
+        self.classes = ["picker"]
+    }
+    
+    public var body: Content {
+        Division {
+            for item in content {
+                item.selected(item.value == selection)
+                    .tag(name)
+            }
+        }
+        .class(classes.joined(separator: " "))
+    }
+}
+
+/// A component that displays a form control
+public struct CheckField: View, Modifiable, Selectable, Identifiable {
+    
+    /// The identifer for the label.
+    internal var id: String?
+    
+    /// The identifier for the field.
+    public var name: String?
+    
+    /// The content of the field.
+    public var value: String
+    
+    /// The selection status of the field.
+    public var isSelected: Bool
+
     /// The content of the field.
     internal var content: String
     
@@ -382,35 +417,50 @@ public struct CheckField: View, Modifiable {
     internal var classes: [String]
     
     /// Creates a check field.
-    public init(name: String, value: String, content: () -> String) {
-        
-        self.name = name
+    public init(value: String, content: () -> String) {
+    
         self.value = value
+        self.isSelected = false
         self.content = content()
-        self.classes = ["checkfield"]
+        self.classes = ["checkinput"]
     }
     
     /// Creates a check field.
-    internal init(name: String, value: String, content: String, classes: [String]) {
+    internal init(id: String?, name: String?, value: String, isSelected: Bool, content: String, classes: [String]) {
         
+        self.id = id
         self.name = name
         self.value = value
+        self.isSelected = isSelected
         self.content = content
         self.classes = classes
     }
     
     public var body: Content {
-        Input()
-            .type(.checkbox)
-            .id(name)
-            .name(name)
-            .value(value)
-            .class(classes.joined(separator: " "))
-        Label {
-            content
+        Division {
+            Input()
+                .type(.checkbox)
+                .value(value)
+                .checked(isSelected)
+                .class(classes.joined(separator: " "))
+                .modify(unwrap: name) {
+                    $0.name($1)
+                }
+                .modify(unwrap: id)  {
+                    $0.id($1)
+                }
+            Label {
+                content
+            }
+            .modify(unwrap: id)  {
+                $0.for($1)
+            }
         }
-        .class("label")
-        .for(name)
+        .class("checkfield")
+    }
+    
+    public func tag(_ identifier: String) -> CheckField {
+        self.mutate(id: identifier)
     }
 }
 
@@ -483,13 +533,19 @@ extension CheckField: ViewModifier {
 }
 
 /// A component that displays
-public struct RadioSelect: View, Modifiable {
+public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
+    
+    /// The identifier for the label.
+    internal var id: String?
     
     /// The identifier of the select.
-    internal let name: String
+    public var name: String?
     
     /// The content of the select.
-    internal let value: String
+    public var value: String
+    
+    /// The selection status of the select.
+    public var isSelected: Bool
     
     /// The content of the select.
     internal var content: String
@@ -498,35 +554,50 @@ public struct RadioSelect: View, Modifiable {
     internal var classes: [String]
     
     /// Creates a radio select.
-    public init(name: String, value: String, content: () -> String) {
+    public init(value: String, content: () -> String) {
         
-        self.name = name
         self.value = value
+        self.isSelected = false
         self.content = content()
-        self.classes = ["radioselect"]
+        self.classes = ["radioinput"]
     }
     
     /// Creates a radio select.
-    internal init(name: String, value: String, content: String, classes: [String]) {
+    internal init(id: String?, name: String?, value: String, isSelected: Bool, content: String, classes: [String]) {
         
+        self.id = id
         self.name = name
         self.value = value
+        self.isSelected = isSelected
         self.content = content
         self.classes = classes
     }
     
     public var body: Content {
-        Input()
-            .type(.radio)
-            .id(name)
-            .name(name)
-            .value(value)
-            .class(classes.joined(separator: " "))
-        Label {
-            content
+        Division {
+            Input()
+                .type(.radio)
+                .value(value)
+                .checked(isSelected)
+                .class(classes.joined(separator: " "))
+                .modify(unwrap: name) {
+                    $0.name($1)
+                }
+                .modify(unwrap: id) {
+                    $0.id($1)
+                }
+            Label {
+                content
+            }
+            .modify(unwrap: id) {
+                $0.for($1)
+            }
         }
-        .class("label")
-        .for(name)
+        .class("radioselect")
+    }
+    
+    public func tag(_ identifier: String) -> RadioSelect {
+        self.mutate(id: identifier)
     }
 }
 

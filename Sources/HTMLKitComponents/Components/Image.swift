@@ -5,31 +5,10 @@
 
 import HTMLKit
 
-public enum Unkown {
-    
-    case value(EnvironmentValue)
-    case string(String)
-}
-
-extension HTMLKit.Image {
-    
-    public func source(_ value: Unkown) -> HTMLKit.Image {
-        
-        switch value {
-        case .string(let string):
-            return self.source(string)
-            
-        case .value(let value):
-            return self.source(value)
-        }
-    }
-}
-
-/// A component that displays an image.
 public struct Image: View, Modifiable {
     
     /// The url path of the image.
-    internal let source: Unkown
+    internal let source: String
     
     /// The classes of the image view.
     internal var classes: [String]
@@ -37,20 +16,14 @@ public struct Image: View, Modifiable {
     /// Creates a image view.
     public init(source: String) {
         
-        self.source = .string(source)
-        self.classes = ["image"]
-    }
-    
-    public init(source: EnvironmentValue) {
-        
-        self.source = .value(source)
+        self.source = source
         self.classes = ["image"]
     }
     
     /// Creates a image view.
     internal init(source: String, classes: [String]) {
         
-        self.source = .string(source)
+        self.source = source
         self.classes = classes
     }
     
