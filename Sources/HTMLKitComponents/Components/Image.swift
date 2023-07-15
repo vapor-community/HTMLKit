@@ -8,22 +8,29 @@ import HTMLKit
 public struct Image: View, Modifiable {
     
     /// The url path of the image.
-    internal let source: String
+    internal let source: DynamicType
     
     /// The classes of the image view.
     internal var classes: [String]
     
-    /// Creates a image view.
+    /// Creates an image.
     public init(source: String) {
         
-        self.source = source
+        self.source = .string(source)
         self.classes = ["image"]
     }
+    
+    /// Creates an image.
+    public init(source: EnvironmentValue) {
+
+         self.source = .value(source)
+         self.classes = ["image"]
+     }
     
     /// Creates a image view.
     internal init(source: String, classes: [String]) {
         
-        self.source = source
+        self.source = .string(source)
         self.classes = classes
     }
     
