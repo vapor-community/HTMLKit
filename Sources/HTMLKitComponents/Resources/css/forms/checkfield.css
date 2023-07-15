@@ -76,7 +76,7 @@
     margin-inline-start: 1.25rem;
 }
 
-.scheme\:dark .checkinput, .checkinput.scheme\:dark {
+.scheme\:dark .checkfield, .checkfield.scheme\:dark {
     --borderColor: 210, 9%, 31%;
     --backgroundColor: 210, 11%, 15%;
     --controlColor: 0, 0%, 100%;

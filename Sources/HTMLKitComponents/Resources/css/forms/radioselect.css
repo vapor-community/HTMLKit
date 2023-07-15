@@ -80,7 +80,7 @@
     margin-inline-start: 1.25rem;
 }
 
-.scheme\:dark .radioinput, .radioinput.scheme\:dark {
+.scheme\:dark .radioselect, .radioselect.scheme\:dark {
     --borderColor: 210, 9%, 31%;
     --controlColor: 0, 0%, 100%;
     --focusColor: 210, 100%, 50%;

@@ -422,7 +422,7 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
         self.value = value
         self.isSelected = false
         self.content = content()
-        self.classes = ["checkinput"]
+        self.classes = ["checkfield"]
     }
     
     /// Creates a check field.
@@ -442,7 +442,7 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
                 .type(.checkbox)
                 .value(value)
                 .checked(isSelected)
-                .class(classes.joined(separator: " "))
+                .class("checkinput")
                 .modify(unwrap: name) {
                     $0.name($1)
                 }
@@ -456,7 +456,7 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
                 $0.for($1)
             }
         }
-        .class("checkfield")
+        .class(classes.joined(separator: " "))
     }
     
     public func tag(_ identifier: String) -> CheckField {
@@ -559,7 +559,7 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
         self.value = value
         self.isSelected = false
         self.content = content()
-        self.classes = ["radioinput"]
+        self.classes = ["radioselect"]
     }
     
     /// Creates a radio select.
@@ -579,7 +579,7 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
                 .type(.radio)
                 .value(value)
                 .checked(isSelected)
-                .class(classes.joined(separator: " "))
+                .class("radioinput")
                 .modify(unwrap: name) {
                     $0.name($1)
                 }
@@ -593,7 +593,7 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
                 $0.for($1)
             }
         }
-        .class("radioselect")
+        .class(classes.joined(separator: " "))
     }
     
     public func tag(_ identifier: String) -> RadioSelect {
