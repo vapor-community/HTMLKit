@@ -675,8 +675,10 @@ public struct SelectField: View, Modifiable {
     /// The identifier of the field.
     internal let name: String
     
+    internal let selection: String?
+    
     /// The content of the field.
-    internal var content: [InputElement]
+    internal var content: [Selectable]
     
     /// The classes of the field.
     internal var classes: [String]
@@ -685,17 +687,19 @@ public struct SelectField: View, Modifiable {
     internal var events: [String]?
     
     /// Creates a select field.
-    public init(name: String, @ContentBuilder<InputElement> content: () -> [InputElement]) {
+    public init(name: String, selection: String? = nil, @ContentBuilder<Selectable> content: () -> [Selectable]) {
         
         self.name = name
+        self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]
     }
     
     /// Creates a select field.
-    internal init(name: String, content: [InputElement], classes: [String], events: [String]?) {
+    internal init(name: String, selection: String?, content: [Selectable], classes: [String], events: [String]?) {
         
         self.name = name
+        self.selection = selection
         self.content = content
         self.classes = classes
         self.events = events
@@ -705,11 +709,12 @@ public struct SelectField: View, Modifiable {
         Division {
             Input()
                 .type(.text)
-                .id(name)
-                .name(name)
                 .class("selectfield-textfield")
             Division {
-                content
+                for item in content {
+                    item.selected(item.value == selection)
+                        .tag(name)
+                }
             }
             .class("selectfield-optionlist")
         }
@@ -782,41 +787,6 @@ extension SelectField: ViewModifier {
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SelectField {
         return self.mutate(margin: length.value, insets: insets)
-    }
-}
-
-/// A component that displays
-public struct Option: View, Modifiable {
-    
-    /// The identifier of the field.
-    internal let value: String
-    
-    internal let content: String
-    
-    /// The classes of the field.
-    internal var classes: [String]
-    
-    /// Creates a select field.
-    public init(value: String, content: () -> String) {
-        
-        self.value = value
-        self.content = content()
-        self.classes = ["option"]
-    }
-    
-    /// Creates a select field.
-    internal init(value: String, content: String, classes: [String]) {
-        
-        self.value = value
-        self.content = content
-        self.classes = classes
-    }
-    
-    public var body: Content {
-        ListItem {
-            content
-        }
-        .class(classes.joined(separator: " "))
     }
 }
 

@@ -5,6 +5,7 @@
         this.element = element;
         this.textfield = element.getElementsByClassName('selectfield-textfield')[0];
         this.optionlist = element.getElementsByClassName('selectfield-optionlist')[0];
+        this.options = element.querySelectorAll('input[type="radio"]');
         
         this.initiateListener();
     };
@@ -20,21 +21,30 @@
             self.showOptionList();
         });
         
-        this.textfield.addEventListener('focusout', function () {
-            self.hideOptionList();
-        });
-        
-        this.optionlist.addEventListener('mousedown', function (event) {
+        window.addEventListener('click', function (event) {
             
-            event.preventDefault();
-            
-            if (event.target.tagName == 'LI') {
-                
-                self.setInputValue(event.target.innerHTML);
-                
+            if(!self.element.contains(event.target)) {
                 self.hideOptionList();
             }
         });
+        
+        for (let option of this.options) {
+            
+            if (option.checked == true) {
+                self.setInputValue(option.nextSibling.innerHTML);
+            }
+         
+            option.addEventListener('change', function (event) {
+                
+                event.preventDefault();
+                
+                if (event.target.checked == true) {
+                    
+                    self.setInputValue(event.target.nextSibling.innerHTML);
+                }
+            });
+            
+        }
     };
     
     /*

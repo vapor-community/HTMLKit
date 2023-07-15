@@ -261,15 +261,24 @@ final class ComponentTests: XCTestCase {
     func testSelectField() throws {
         
         let view = TestView {
-            SelectField(name: "name") {
+            SelectField(name: "name", selection: "value") {
+                RadioSelect(value: "value") {
+                    "Label"
+                }
+                .tag("name")
             }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div class="selectfield">\
-                       <input type="text" id="name" name="name" class="selectfield-textfield">\
-                       <div class="selectfield-optionlist"></div>\
+                       <input type="text" class="selectfield-textfield">\
+                       <div class="selectfield-optionlist">\
+                       <div class="radioselect">\
+                       <input type="radio" value="value" checked="checked" class="radioinput" name="name" id="name">\
+                       <label for="name">Label</label>\
+                       </div>\
+                       </div>\
                        </div>
                        """
         )
