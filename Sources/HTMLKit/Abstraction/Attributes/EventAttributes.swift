@@ -9,9 +9,11 @@
 import OrderedCollections
 
 /// The alias combines the global attributes of the event attributes.
+@_documentation(visibility: internal)
 public typealias GlobalEventAttributes = ClipboardEventAttribute & DragEventAttribute & WheelEventAttribute & KeyboardEventAttribute & MouseEventAttribute
 
 /// The protocol provides the element with event handler.
+@_documentation(visibility: internal)
 public protocol WindowEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
@@ -23,6 +25,7 @@ public protocol WindowEventAttribute: Attribute {
 }
 
 /// The protocol provides the element with event handler.
+@_documentation(visibility: internal)
 public protocol FocusEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
@@ -34,6 +37,7 @@ public protocol FocusEventAttribute: Attribute {
 }
 
 /// The protocol provides the element with event handler.
+@_documentation(visibility: internal)
 public protocol PointerEventAttribute: Attribute {
 
     /// The function represents the html-attribute 'on'.
@@ -45,6 +49,7 @@ public protocol PointerEventAttribute: Attribute {
 }
 
 /// The protocol provides the element with event handler.
+@_documentation(visibility: internal)
 public protocol MouseEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
@@ -56,6 +61,7 @@ public protocol MouseEventAttribute: Attribute {
 }
 
 /// The protocol provides the element with event handler.
+@_documentation(visibility: internal)
 public protocol WheelEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
@@ -67,6 +73,7 @@ public protocol WheelEventAttribute: Attribute {
 }
 
 /// The protocol provides the element with event handler.
+@_documentation(visibility: internal)
 public protocol InputEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
@@ -78,6 +85,7 @@ public protocol InputEventAttribute: Attribute {
 }
 
 /// The protocol provides the element with event handler.
+@_documentation(visibility: internal)
 public protocol KeyboardEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
@@ -89,6 +97,7 @@ public protocol KeyboardEventAttribute: Attribute {
 }
 
 /// The protocol provides the element with event handler.
+@_documentation(visibility: internal)
 public protocol DragEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
@@ -100,6 +109,7 @@ public protocol DragEventAttribute: Attribute {
 }
 
 /// The protocol provides the element with event handler.
+@_documentation(visibility: internal)
 public protocol ClipboardEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
@@ -111,6 +121,7 @@ public protocol ClipboardEventAttribute: Attribute {
 }
 
 /// The protocol provides the element with event handler.
+@_documentation(visibility: internal)
 public protocol SelectionEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
@@ -122,6 +133,7 @@ public protocol SelectionEventAttribute: Attribute {
 }
 
 /// The protocol provides the element with event handler.r.
+@_documentation(visibility: internal)
 public protocol MediaEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
@@ -133,6 +145,7 @@ public protocol MediaEventAttribute: Attribute {
 }
 
 /// The protocol provides the element with event handler.
+@_documentation(visibility: internal)
 public protocol FormEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.
@@ -144,6 +157,7 @@ public protocol FormEventAttribute: Attribute {
 }
 
 /// The protocol provides the element with event handler.
+@_documentation(visibility: internal)
 public protocol DetailEventAttribute: Attribute {
     
     /// The function represents the html-attribute 'on'.

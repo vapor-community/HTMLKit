@@ -9,9 +9,11 @@
 import OrderedCollections
 
 /// The alias combines the global attributes of the basic attributes.
+@_documentation(visibility: internal)
 public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute
 
 /// The protocol provides the element with the accesskey handler.
+@_documentation(visibility: internal)
 public protocol AccessKeyAttribute: Attribute {
     
     /// The function represents the html-attribute 'accesskey'.
@@ -40,6 +42,7 @@ extension AccessKeyAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the accept handler.
+@_documentation(visibility: internal)
 public protocol AcceptAttribute: Attribute {
     
     /// The function represents the html-attribute 'accept'.
@@ -65,6 +68,7 @@ extension AcceptAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the action handler.
+@_documentation(visibility: internal)
 public protocol ActionAttribute: Attribute {
     
     /// The function represents the html-attribute 'action'.
@@ -90,6 +94,7 @@ extension ActionAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the alternate handler.
+@_documentation(visibility: internal)
 public protocol AlternateAttribute: Attribute {
     
     /// The function represents the html-attribute 'alt'.
@@ -115,6 +120,7 @@ extension AlternateAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the asynchronously handler.
+@_documentation(visibility: internal)
 public protocol AsynchronouslyAttribute: Attribute {
     
     /// The function represents the html-attribute 'async'.
@@ -140,6 +146,7 @@ extension AsynchronouslyAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the autocapitalize handler.
+@_documentation(visibility: internal)
 public protocol AutocapitalizeAttribute: Attribute {
     
     /// The function represents the html-attribute 'autocapitalize'.
@@ -165,6 +172,7 @@ extension AutocapitalizeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the autocomplete handler.
+@_documentation(visibility: internal)
 public protocol AutocompleteAttribute: Attribute {
     
     /// The function represents the html-attribute 'autocomplete'.
@@ -190,6 +198,7 @@ extension AutocompleteAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the autofocus handler.
+@_documentation(visibility: internal)
 public protocol AutofocusAttribute: Attribute {
     
     /// The function represents the html-attribute 'autofocus'.
@@ -215,6 +224,7 @@ extension AutofocusAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the autoplay handler.
+@_documentation(visibility: internal)
 public protocol AutoplayAttribute: Attribute {
     
     /// The function represents the html-attribute 'autoplay'.
@@ -242,6 +252,7 @@ extension AutoplayAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the charset handler.
+@_documentation(visibility: internal)
 public protocol CharsetAttribute: Attribute {
     
     /// The function represents the html-attribute 'charset'.
@@ -267,6 +278,7 @@ extension CharsetAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the checked handler.
+@_documentation(visibility: internal)
 public protocol CheckedAttribute: Attribute {
     
     /// The function represents the html-attribute 'checked'.
@@ -294,6 +306,7 @@ extension CheckedAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the cite handler.
+@_documentation(visibility: internal)
 public protocol CiteAttribute: Attribute {
     
     /// The function represents the html-attribute 'cite'.
@@ -319,6 +332,7 @@ extension CiteAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the class handler.
+@_documentation(visibility: internal)
 public protocol ClassAttribute: Attribute{
     
     /// The function represents the html-attribute 'class'.
@@ -344,6 +358,7 @@ extension ClassAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the columns handler.
+@_documentation(visibility: internal)
 public protocol ColumnsAttribute: Attribute {
     
     /// The function represents the html-attribute 'cols'.
@@ -369,6 +384,7 @@ extension ColumnsAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the columnspan handler.
+@_documentation(visibility: internal)
 public protocol ColumnSpanAttribute: Attribute {
     
     /// The function represents the html-attribute 'colspan'.
@@ -394,6 +410,7 @@ extension ColumnSpanAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the content handler.
+@_documentation(visibility: internal)
 public protocol ContentAttribute: Attribute {
     
     /// The function represents the html-attribute 'content'.
@@ -419,6 +436,7 @@ extension ContentAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the iseditable handler.
+@_documentation(visibility: internal)
 public protocol EditAttribute: Attribute {
     
     /// The function represents the html-attribute 'contenteditable'.
@@ -444,6 +462,7 @@ extension EditAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the controls handler.
+@_documentation(visibility: internal)
 public protocol ControlsAttribute: Attribute {
     
     /// The function represents the html-attribute 'controls'.
@@ -469,6 +488,7 @@ extension ControlsAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the coordinates handler.
+@_documentation(visibility: internal)
 public protocol CoordinatesAttribute: Attribute {
     
     /// The function represents the html-attribute 'coordinates'.
@@ -494,6 +514,7 @@ extension CoordinatesAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the date handler.
+@_documentation(visibility: internal)
 public protocol DataAttribute: Attribute{
     
     /// The function represents the html-attribute 'data'.
@@ -519,6 +540,7 @@ extension DataAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the datetime handler.
+@_documentation(visibility: internal)
 public protocol DateTimeAttribute: Attribute {
     
     /// The function represents the html-attribute 'datetime'.
@@ -544,6 +566,7 @@ extension DateTimeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the default handler.
+@_documentation(visibility: internal)
 public protocol DefaultAttribute: Attribute {
     
     /// The function represents the html-attribute 'default'.
@@ -569,6 +592,7 @@ extension DefaultAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the defer handler.
+@_documentation(visibility: internal)
 public protocol DeferAttribute: Attribute {
     
     /// The function represents the html-attribute 'defer'.
@@ -594,6 +618,7 @@ extension DeferAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the direction handler.
+@_documentation(visibility: internal)
 public protocol DirectionAttribute: Attribute {
 
     /// The function represents the html-attribute 'dir'.
@@ -621,6 +646,7 @@ extension DirectionAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the disabled handler
+@_documentation(visibility: internal)
 public protocol DisabledAttribute: Attribute {
     
     /// The function represents the html-attribute 'disabled'.
@@ -648,6 +674,7 @@ extension DisabledAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the download handler.
+@_documentation(visibility: internal)
 public protocol DownloadAttribute: Attribute {
     
     /// The function represents the html-attribute 'download'.
@@ -673,6 +700,7 @@ extension DownloadAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the isdraggable handler.
+@_documentation(visibility: internal)
 public protocol DragAttribute: Attribute {
  
     /// The function represents the html-attribute 'draggable'.
@@ -698,6 +726,7 @@ extension DragAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the encoding handler.
+@_documentation(visibility: internal)
 public protocol EncodingAttribute: Attribute {
     
     /// The function represents the html-attribute 'enctype'.
@@ -725,6 +754,7 @@ extension EncodingAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the enterkeyhint handler.
+@_documentation(visibility: internal)
 public protocol EnterKeyHintAttribute: Attribute {
     
     /// The function represents the html-attribute 'enterkeyhint'.
@@ -752,6 +782,7 @@ extension EnterKeyHintAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the for handler.
+@_documentation(visibility: internal)
 public protocol ForAttribute: Attribute {
     
     /// The function represents the html-attribute 'for'.
@@ -779,6 +810,7 @@ extension ForAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the form handler.
+@_documentation(visibility: internal)
 public protocol FormAttribute: Attribute {
     
     /// The function represents the html-attribute 'form'.
@@ -804,6 +836,7 @@ extension FormAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the formaction handler.
+@_documentation(visibility: internal)
 public protocol FormActionAttribute: Attribute {
     
     /// The function represents the html-attribute 'formaction'.
@@ -831,6 +864,7 @@ extension FormActionAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the http-equiv handler.
+@_documentation(visibility: internal)
 public protocol EquivalentAttribute: Attribute {
     
     /// The function represents the html-attribute 'http-equiv'.
@@ -858,6 +892,7 @@ extension EquivalentAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the headers handler.
+@_documentation(visibility: internal)
 public protocol HeaderAttribute: Attribute {
     
     /// The function represents the html-attribute 'headers'.
@@ -885,6 +920,7 @@ extension HeaderAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the height handler.
+@_documentation(visibility: internal)
 public protocol HeightAttribute: Attribute {
     
     /// The function represents the html-attribute 'height'.
@@ -912,6 +948,7 @@ extension HeightAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with hidden handler.
+@_documentation(visibility: internal)
 public protocol HiddenAttribute: Attribute {
  
     /// The function represents the html-attribute 'hidden'.
@@ -939,6 +976,7 @@ extension HiddenAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with high handler.
+@_documentation(visibility: internal)
 public protocol HighAttribute: Attribute {
     
     /// The function represents the html-attribute 'high'.
@@ -966,6 +1004,7 @@ extension HighAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with reference handler.
+@_documentation(visibility: internal)
 public protocol ReferenceAttribute: Attribute {
     
     /// The function represents the html-attribute 'href'.
@@ -993,6 +1032,7 @@ extension ReferenceAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the language reference handler.
+@_documentation(visibility: internal)
 public protocol ReferenceLanguageAttribute: Attribute {
     
     /// The function represents the html-attribute 'hreflang'.
@@ -1020,6 +1060,7 @@ extension ReferenceLanguageAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the id handler.
+@_documentation(visibility: internal)
 public protocol IdentifierAttribute: Attribute {
  
     /// The function represents the html-attribute 'id'.
@@ -1047,6 +1088,7 @@ extension IdentifierAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the ismap handler.
+@_documentation(visibility: internal)
 public protocol IsMapAttribute: Attribute {
  
     /// The function represents the html-attribute 'ismap'.
@@ -1072,6 +1114,7 @@ extension IsMapAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the inputmode handler.
+@_documentation(visibility: internal)
 public protocol InputModeAttribute: Attribute {
  
     /// The function represents the html-attribute 'inputmode'.
@@ -1097,6 +1140,7 @@ extension InputModeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the inputmode handler.
+@_documentation(visibility: internal)
 public protocol IsAttribute: Attribute {
  
     /// The function represents the html-attribute 'is'.
@@ -1122,6 +1166,7 @@ extension IsAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the itemid handler.
+@_documentation(visibility: internal)
 public protocol ItemIdAttribute: Attribute {
  
     /// The function represents the html-attribute 'itemid'.
@@ -1147,6 +1192,7 @@ extension ItemIdAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the itemproperty handler.
+@_documentation(visibility: internal)
 public protocol ItemPropertyAttribute: Attribute {
  
     /// The function represents the html-attribute 'itemprop'.
@@ -1172,6 +1218,7 @@ extension ItemPropertyAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the itemreference handler.
+@_documentation(visibility: internal)
 public protocol ItemReferenceAttribute: Attribute {
  
     /// The function represents the html-attribute 'itemref'.
@@ -1197,6 +1244,7 @@ extension ItemReferenceAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the itemscope handler.
+@_documentation(visibility: internal)
 public protocol ItemScopeAttribute: Attribute {
  
     /// The function represents the html-attribute 'itemscope'.
@@ -1222,6 +1270,7 @@ extension ItemScopeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the itemtype handler
+@_documentation(visibility: internal)
 public protocol ItemTypeAttribute: Attribute {
  
     /// The function represents the html-attribute 'itemtype'.
@@ -1247,6 +1296,7 @@ extension ItemTypeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the kind handler.
+@_documentation(visibility: internal)
 public protocol KindAttribute: Attribute {
     
     /// The function represents the html-attribute 'kind'.
@@ -1272,6 +1322,7 @@ extension KindAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the label handler.
+@_documentation(visibility: internal)
 public protocol LabelAttribute: Attribute {
     
     /// The function represents the html-attribute 'label'.
@@ -1297,6 +1348,7 @@ extension LabelAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the language handler.
+@_documentation(visibility: internal)
 public protocol LanguageAttribute: Attribute {
     
     /// The function represents the html-attribute 'lang'.
@@ -1322,6 +1374,7 @@ extension LanguageAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the list handler.
+@_documentation(visibility: internal)
 public protocol ListAttribute: Attribute {
     
     /// The function represents the html-attribute 'list'.
@@ -1347,6 +1400,7 @@ extension ListAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the loop handler.
+@_documentation(visibility: internal)
 public protocol LoopAttribute: Attribute {
     
     /// The function represents the html-attribute 'loop'.
@@ -1372,6 +1426,7 @@ extension LoopAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the low handler.
+@_documentation(visibility: internal)
 public protocol LowAttribute: Attribute {
     
     /// The function represents the html-attribute 'low'.
@@ -1397,6 +1452,7 @@ extension LowAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the maximumvalue handler.
+@_documentation(visibility: internal)
 public protocol MaximumValueAttribute: Attribute {
     
     associatedtype MaximumValueType
@@ -1424,6 +1480,7 @@ extension MaximumValueAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the maximumlength handler.
+@_documentation(visibility: internal)
 public protocol MaximumLengthAttribute: Attribute {
     
     /// The function represents the html-attribute 'maxlength'.
@@ -1449,6 +1506,7 @@ extension MaximumLengthAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the media handler.
+@_documentation(visibility: internal)
 public protocol MediaAttribute: Attribute {
     
     /// The function represents the html-attribute 'media'.
@@ -1474,6 +1532,7 @@ extension MediaAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the method handler.
+@_documentation(visibility: internal)
 public protocol MethodAttribute: Attribute {
     
     /// The function represents the html-attribute 'method'.
@@ -1499,6 +1558,7 @@ extension MethodAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the minimumvalue handler.
+@_documentation(visibility: internal)
 public protocol MinimumValueAttribute: Attribute {
     
     associatedtype MinimumValueType
@@ -1526,6 +1586,7 @@ extension MinimumValueAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the minimumlength handler.
+@_documentation(visibility: internal)
 public protocol MinimumLengthAttribute: Attribute {
     
     /// The function represents the html-attribute 'minlength'.
@@ -1551,6 +1612,7 @@ extension MinimumLengthAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the multiple handler.
+@_documentation(visibility: internal)
 public protocol MultipleAttribute: Attribute {
     
     /// The function represents the html-attribute 'multiple'.
@@ -1576,6 +1638,7 @@ extension MultipleAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the muted handler.
+@_documentation(visibility: internal)
 public protocol MutedAttribute: Attribute {
     
     /// The function represents the html-attribute 'muted'.
@@ -1601,6 +1664,7 @@ extension MutedAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the name handler.
+@_documentation(visibility: internal)
 public protocol NameAttribute: Attribute {
 
     associatedtype NameValue
@@ -1628,6 +1692,7 @@ extension NameAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the nonce handler.
+@_documentation(visibility: internal)
 public protocol NonceAttribute: Attribute {
     
     /// The function represents the html-attribute 'nonce'.
@@ -1653,6 +1718,7 @@ extension NonceAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the novalidate handler.
+@_documentation(visibility: internal)
 public protocol NoValidateAttribute: Attribute {
 
     /// The function represents the html-attribute 'novalidate'.
@@ -1678,6 +1744,7 @@ extension NoValidateAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the open handler.
+@_documentation(visibility: internal)
 public protocol OpenAttribute: Attribute {
     
     /// The function represents the html-attribute 'open'.
@@ -1703,6 +1770,7 @@ extension OpenAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the optimum handler.
+@_documentation(visibility: internal)
 public protocol OptimumAttribute: Attribute {
     
     /// The function represents the html-attribute 'optimum'.
@@ -1728,6 +1796,7 @@ extension OptimumAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the pattern handler.
+@_documentation(visibility: internal)
 public protocol PatternAttribute: Attribute {
     
     /// The function represents the html-attribute 'pattern'.
@@ -1753,6 +1822,7 @@ extension PatternAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the part handler.
+@_documentation(visibility: internal)
 public protocol PartAttribute: Attribute {
     
     /// The function represents the html-attribute 'part'.
@@ -1778,6 +1848,7 @@ extension PartAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the ping handler.
+@_documentation(visibility: internal)
 public protocol PingAttribute: Attribute {
     
     /// The function represents the html-attribute 'ping'.
@@ -1803,6 +1874,7 @@ extension PingAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the placeholder handler.
+@_documentation(visibility: internal)
 public protocol PlaceholderAttribute: Attribute {
     
     /// The function represents the html-attribute 'placeholder'.
@@ -1828,6 +1900,7 @@ extension PlaceholderAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the poster handler.
+@_documentation(visibility: internal)
 public protocol PosterAttribute: Attribute {
     
     /// The function represents the html-attribute 'poster'.
@@ -1853,6 +1926,7 @@ extension PosterAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the preload handler.
+@_documentation(visibility: internal)
 public protocol PreloadAttribute: Attribute {
     
     /// The function represents the html-attribute 'preload'.
@@ -1878,6 +1952,7 @@ extension PreloadAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the readonly handler.
+@_documentation(visibility: internal)
 public protocol ReadyOnlyAttribute: Attribute {
     
     /// The function represents the html-attribute 'readonly'.
@@ -1905,6 +1980,7 @@ extension ReadyOnlyAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the referrerpolicy handler.
+@_documentation(visibility: internal)
 public protocol ReferrerPolicyAttribute: Attribute {
     
     /// The function represents the html-attribute 'referrerpolicy'.
@@ -1930,6 +2006,7 @@ extension ReferrerPolicyAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the relationship handler.
+@_documentation(visibility: internal)
 public protocol RelationshipAttribute: Attribute {
     
     /// The function represents the html-attribute 'rel'.
@@ -1955,6 +2032,7 @@ extension RelationshipAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the required handler.
+@_documentation(visibility: internal)
 public protocol RequiredAttribute: Attribute {
     
     /// The function represents the html-attribute 'required'.
@@ -1982,6 +2060,7 @@ extension RequiredAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the reversed handler.
+@_documentation(visibility: internal)
 public protocol ReversedAttribute: Attribute {
     
     /// The function represents the html-attribute 'reversed'.
@@ -2007,6 +2086,7 @@ extension ReversedAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the role handler.
+@_documentation(visibility: internal)
 public protocol RoleAttribute: Attribute {
     
     /// The function represents the html-attribute 'role'.
@@ -2032,6 +2112,7 @@ extension RoleAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the rows handler.
+@_documentation(visibility: internal)
 public protocol RowsAttribute: Attribute {
     
     /// The function represents the html-attribute 'rows'.
@@ -2057,6 +2138,7 @@ extension RowsAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the rowspan handler.
+@_documentation(visibility: internal)
 public protocol RowSpanAttribute: Attribute {
     
     /// The function represents the html-attribute 'rowspan'.
@@ -2082,6 +2164,7 @@ extension RowSpanAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the sandbox handler.
+@_documentation(visibility: internal)
 public protocol SandboxAttribute: Attribute {
     
     /// The function represents the html-attribute 'sandbox'.
@@ -2107,6 +2190,7 @@ extension SandboxAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the scope handler.
+@_documentation(visibility: internal)
 public protocol ScopeAttribute: Attribute {
     
     /// The function represents the html-attribute 'scope'.
@@ -2132,6 +2216,7 @@ extension ScopeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the shape handler.
+@_documentation(visibility: internal)
 public protocol ShapeAttribute: Attribute {
     
     /// The function represents the html-attribute 'shape'.
@@ -2157,6 +2242,7 @@ extension ShapeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the size handler.
+@_documentation(visibility: internal)
 public protocol SizeAttribute: Attribute {
     
     /// The function represents the html-attribute 'size'.
@@ -2182,6 +2268,7 @@ extension SizeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the sizes handler.
+@_documentation(visibility: internal)
 public protocol SizesAttribute: Attribute {
     
     /// The function represents the html-attribute 'sizes'.
@@ -2207,6 +2294,7 @@ extension SizesAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the slot handler.
+@_documentation(visibility: internal)
 public protocol SlotAttribute: Attribute {
     
     /// The function represents the html-attribute 'slot'.
@@ -2232,6 +2320,7 @@ extension SlotAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the span handler.
+@_documentation(visibility: internal)
 public protocol SpanAttribute: Attribute {
     
     /// The function represents the html-attribute 'span'.
@@ -2257,6 +2346,7 @@ extension SpanAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the hasspellcheck handler.
+@_documentation(visibility: internal)
 public protocol SpellCheckAttribute: Attribute {
  
     /// The function represents the html-attribute 'spellcheck'.
@@ -2282,6 +2372,7 @@ extension SpellCheckAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the source handler.
+@_documentation(visibility: internal)
 public protocol SourceAttribute: Attribute {
     
     /// The function represents the html-attribute 'src'.
@@ -2317,6 +2408,7 @@ extension SourceAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the start handler.
+@_documentation(visibility: internal)
 public protocol StartAttribute: Attribute {
     
     /// The function represents the html-attribute 'start'.
@@ -2342,6 +2434,7 @@ extension StartAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the step handler.
+@_documentation(visibility: internal)
 public protocol StepAttribute: Attribute {
     
     /// The function represents the html-attribute 'step'.
@@ -2367,6 +2460,7 @@ extension StepAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the style handler.
+@_documentation(visibility: internal)
 public protocol StyleAttribute: Attribute {
     
     /// The function represents the html-attribute 'style'.
@@ -2392,6 +2486,7 @@ extension StyleAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the tabindex handler.
+@_documentation(visibility: internal)
 public protocol TabulatorAttribute: Attribute {
  
     /// The function represents the html-attribute 'tabindex'.
@@ -2417,6 +2512,7 @@ extension TabulatorAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the target handler.
+@_documentation(visibility: internal)
 public protocol TargetAttribute: Attribute {
     
     /// The function represents the html-attribute 'target'.
@@ -2442,6 +2538,7 @@ extension TargetAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the title handler.
+@_documentation(visibility: internal)
 public protocol TitleAttribute: Attribute {
  
     /// The function represents the html-attribute 'title'.
@@ -2467,6 +2564,7 @@ extension TitleAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the translate handler.
+@_documentation(visibility: internal)
 public protocol TranslateAttribute: Attribute {
  
     /// The function represents the html-attribute 'translate'.
@@ -2492,6 +2590,7 @@ extension TranslateAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the type handler.
+@_documentation(visibility: internal)
 public protocol TypeAttribute: Attribute {
 
     associatedtype TypeValue
@@ -2519,6 +2618,7 @@ extension TypeAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the value handler.
+@_documentation(visibility: internal)
 public protocol ValueAttribute: Attribute {
     
     /// The function represents the html-attribute 'value'.
@@ -2544,6 +2644,7 @@ extension ValueAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the width handler.
+@_documentation(visibility: internal)
 public protocol WidthAttribute: Attribute {
     
     /// The function represents the html-attribute 'width'.
@@ -2569,6 +2670,7 @@ extension WidthAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the wrap handler.
+@_documentation(visibility: internal)
 public protocol WrapAttribute: Attribute {
     
     /// The function represents the html-attribute 'wrap'.
@@ -2594,6 +2696,7 @@ extension WrapAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the property handler.
+@_documentation(visibility: internal)
 public protocol PropertyAttribute: Attribute {
     
     /// The function represents the html-attribute 'property'.
@@ -2621,6 +2724,7 @@ extension PropertyAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the selected handler.
+@_documentation(visibility: internal)
 public protocol SelectedAttribute: Attribute {
     
     /// The function represents the html-attribute 'selected'.
@@ -2646,6 +2750,7 @@ extension SelectedAttribute where Self: EmptyNode {
 }
 
 /// The protocol provides the element with the shadowrootmode handler.
+@_documentation(visibility: internal)
 public protocol ShadowRootModeAttribute: Attribute {
     
     /// The function represents the html-attribute 'shadowrootmode'.

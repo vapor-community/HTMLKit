@@ -15,6 +15,7 @@ import OrderedCollections
 /// ```html
 /// <figcaption></figcaption>
 /// ```
+@_documentation(visibility: internal)
 public typealias Figcaption = FigureCaption
 
 /// The element is used to label a figure.

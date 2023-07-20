@@ -15,6 +15,7 @@ import OrderedCollections
 /// ```html
 /// <dt>
 /// ```
+@_documentation(visibility: internal)
 public typealias Dt = TermName
 
 /// The alias for the element TermDefinition.
@@ -24,6 +25,7 @@ public typealias Dt = TermName
 /// ```html
 /// <dd></dd>
 /// ```
+@_documentation(visibility: internal)
 public typealias Dd = TermDefinition
 
 /// The element specifies a term name.

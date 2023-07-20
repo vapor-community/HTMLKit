@@ -15,6 +15,7 @@ import OrderedCollections
 /// ```html
 /// <rt></rt>
 /// ```
+@_documentation(visibility: internal)
 public typealias Rt = RubyText
 
 /// The alias for the element RubyPronunciation.
@@ -24,6 +25,7 @@ public typealias Rt = RubyText
 /// ```html
 /// <rp></rp>
 /// ```
+@_documentation(visibility: internal)
 public typealias Rp = RubyPronunciation
 
 /// The element marks the ruby text component of a ruby annotation.

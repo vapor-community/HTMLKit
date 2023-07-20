@@ -4,6 +4,7 @@
  */
 
 /// A type that represents any html-element.
+@_documentation(visibility: internal)
 public protocol Element: Content {
 }
 

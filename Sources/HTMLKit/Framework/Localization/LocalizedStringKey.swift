@@ -6,6 +6,7 @@
 import Foundation
 
 /// The struct thats contains the information for the localization
+@_documentation(visibility: internal)
 public struct LocalizedStringKey: Content {
 
     /// The key of the translation value

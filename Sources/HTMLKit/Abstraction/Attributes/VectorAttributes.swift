@@ -9,9 +9,11 @@
 import OrderedCollections
 
 /// The alias combines the global attributes of the vector attributes.
+@_documentation(visibility: internal)
 public typealias GlobalVectorAttributes = IdentifierAttribute & TabulatorAttribute & ClassAttribute & StyleAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute
 
 /// The protocol provides the element with the draw handler.
+@_documentation(visibility: internal)
 public protocol DrawAttribute: Attribute {
 
     /// The function represents the html-attribute 'd'.
@@ -31,6 +33,7 @@ extension DrawAttribute where Self: ContentNode {
 
 
 /// The protocol provides the element with the fill handler.
+@_documentation(visibility: internal)
 public protocol FillAttribute: Attribute {
     
     /// The function represents the html-attribute 'fill'.
@@ -49,6 +52,7 @@ extension FillAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the fill-opacity handler.
+@_documentation(visibility: internal)
 public protocol FillOpacityAttribute: Attribute {
     
     /// The function represents the html-attribute 'fill-opacity"'.
@@ -67,6 +71,7 @@ extension FillOpacityAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the stroke handler.
+@_documentation(visibility: internal)
 public protocol StrokeAttribute: Attribute {
     
     /// The function represents the html-attribute 'stroke'.
@@ -85,6 +90,7 @@ extension StrokeAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the stroke-width handler.
+@_documentation(visibility: internal)
 public protocol StrokeWidthAttribute: Attribute {
     
     /// The function represents the html-attribute 'stroke-width'.
@@ -103,6 +109,7 @@ extension StrokeWidthAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the stroke-opacity handler.
+@_documentation(visibility: internal)
 public protocol StrokeOpacityAttribute: Attribute {
     
     /// The function represents the html-attribute 'stroke-opacity'.
@@ -121,6 +128,7 @@ extension StrokeOpacityAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the stroke-linecap handler.
+@_documentation(visibility: internal)
 public protocol StrokeLineCapAttribute: Attribute {
     
     /// The function represents the html-attribute 'stroke-linecap'.
@@ -139,6 +147,7 @@ extension StrokeLineCapAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the stroke-linejoin handler.
+@_documentation(visibility: internal)
 public protocol StrokeLineJoinAttribute: Attribute {
     
     /// The function represents the html-attribute 'stroke-linejoin'.
@@ -157,6 +166,7 @@ extension StrokeLineJoinAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the radius handler.
+@_documentation(visibility: internal)
 public protocol RadiusAttribute: Attribute {
     
     /// The function represents the html-attribute 'r'.
@@ -175,6 +185,7 @@ extension RadiusAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the radius handler.
+@_documentation(visibility: internal)
 public protocol PositionPointAttribute: Attribute {
     
     /// The function represents the html-attribute 'x' and 'y'.
@@ -206,6 +217,7 @@ extension PositionPointAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the radius handler.
+@_documentation(visibility: internal)
 public protocol RadiusPointAttribute: Attribute {
     
     /// The function represents the html-attribute 'rx' and 'ry'.
@@ -237,6 +249,7 @@ extension RadiusPointAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the radius handler.
+@_documentation(visibility: internal)
 public protocol CenterPointAttribute: Attribute {
     
     /// The function represents the html-attribute 'cx' and 'cy'.
@@ -268,6 +281,7 @@ extension CenterPointAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the viewbox handler.
+@_documentation(visibility: internal)
 public protocol ViewBoxAttribute: Attribute {
     
     /// The function represents the html-attribute 'viewbox'.
@@ -286,6 +300,7 @@ extension ViewBoxAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the viewbox handler.
+@_documentation(visibility: internal)
 public protocol NamespaceAttribute: Attribute {
     
     /// The function represents the html-attribute 'viewbox'.
@@ -304,6 +319,7 @@ extension NamespaceAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with the viewbox handler.
+@_documentation(visibility: internal)
 public protocol PointsAttribute: Attribute {
     
     /// The function represents the html-attribute 'viewbox'.
