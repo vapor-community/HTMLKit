@@ -43,7 +43,6 @@ See the article <doc:ComponentsPlugin> before you get started.
 - <doc:SecureField>
 - <doc:SelectField>
 - <doc:Button>
-- <doc:Toggle>
 - <doc:Slider>
 
 ### Section components
