@@ -320,6 +320,8 @@ extension FormContainer: GlobalElement {
 
 - ``HTMLKit/Canvas``
 
+- ``HTMLKit/Slot``
+
 ### Script elements
 
 - ``HTMLKit/Script``

@@ -13,3 +13,15 @@ The environment is way to store values globally and to use them in the whole sco
 ### Annotations
 
 - <doc:EnvironmentObject>
+
+### Keys
+
+- ``HTMLKit/EnvironmentKeys``
+
+### Value
+
+- ``HTMLKit/EnvironmentValue``
+
+### Model
+
+- ``HTMLKit/ViewModel``
