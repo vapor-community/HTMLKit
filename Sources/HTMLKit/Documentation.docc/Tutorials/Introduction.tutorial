@@ -1,0 +1,13 @@
+@Tutorials(name: "HTMLKit") {
+    @Intro(title: "Introducing HTMLKit") {
+        HTMLKit is a declarative way to create and render HTML templates in Swift language.
+    }
+    
+    @Chapter(name: "Start with HTMLKit") {
+        Learn how to setup a Swift package for HTMLKit and create your ever first view.
+        
+        @Image(source: "", alt: "")
+        
+        @TutorialReference(tutorial: "doc:Start-with-Htmlkit")
+    }
+}
