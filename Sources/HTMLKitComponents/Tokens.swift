@@ -1537,12 +1537,16 @@ public enum Tokens {
     public enum NavigationStyle {
         
         case plain
+        case pagination
         case custom(String)
         
         var value: String {
             switch self {
             case .plain:
                 return "plain"
+                
+            case .pagination:
+                return "pagination"
                 
             case .custom(let string):
                 return string
