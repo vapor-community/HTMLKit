@@ -5,7 +5,7 @@
         this.element = element;
         this.textfield = element.getElementsByClassName('selectfield-textfield')[0];
         this.optionlist = element.getElementsByClassName('selectfield-optionlist')[0];
-        this.options = element.querySelectorAll('input[type="radio"]');
+        this.options = element.getElementsByTagName('input');
         
         this.initiateListener();
     };
@@ -30,20 +30,56 @@
         
         for (let option of this.options) {
             
-            if (option.checked == true) {
-                self.setInputValue(option.nextSibling.innerHTML);
-            }
-         
-            option.addEventListener('change', function (event) {
+            if (option.getAttribute('type') == 'radio') {
                 
-                event.preventDefault();
-                
-                if (event.target.checked == true) {
-                    
-                    self.setInputValue(event.target.nextSibling.innerHTML);
+                if (option.checked == true) {
+                    self.setInputValue(option.nextSibling.innerHTML);
                 }
-            });
+             
+                option.addEventListener('change', function (event) {
+                    
+                    event.preventDefault();
+                    
+                    if (event.target.checked == true) {
+                        self.setInputValue(event.target.nextSibling.innerHTML);
+                    }
+                });
+            }
             
+            if (option.getAttribute('type') == 'checkbox') {
+                
+                if (option.checked == true) {
+                    self.setInputValue(option.nextSibling.innerHTML);
+                }
+             
+                option.addEventListener('change', function (event) {
+                    
+                    event.preventDefault();
+                    
+                    self.clearInputs(event.target);
+                    
+                    if (event.target.checked == true) {
+                        self.setInputValue(event.target.nextSibling.innerHTML);
+                        
+                    } else {
+                        self.setInputValue('');
+                    }
+                    
+                });
+            }
+        }
+    };
+    
+    /*
+        Clears the checked state of the checkfield other as the target
+     */
+    Selectfield.prototype.clearInputs = function (target) {
+        
+        for (let option of this.options) {
+            
+            if (option != target) {
+                option.checked = false;
+            }
         }
     };
     
@@ -51,7 +87,6 @@
         Sets the value for the textfield
      */
     Selectfield.prototype.setInputValue = function (value) {
-        
         this.textfield.value = value;
     };
     
@@ -75,7 +110,7 @@
     
     if(selectfield.length > 0) {
         
-        for(var i = 0; i < selectfield.length; i++) {
+        for (var i = 0; i < selectfield.length; i++) {
             
             (function(i) {
                 new Selectfield(selectfield[i]);
