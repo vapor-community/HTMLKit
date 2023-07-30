@@ -86,13 +86,13 @@ final class ComponentTests: XCTestCase {
     func testForm() throws {
         
         let view = TestView {
-            Form(method: .post) {
+            Form(method: .post, encoding: .multipart) {
             }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <form method="post" class="form"></form>
+                       <form method="post" enctype="multipart/form-data" class="form"></form>
                        """
         )
     }
@@ -280,6 +280,19 @@ final class ComponentTests: XCTestCase {
                        </div>\
                        </div>\
                        </div>
+                       """
+        )
+    }
+    
+    func testFileDialog() throws {
+        
+        let view = TestView {
+            FileDialog(name: "avatar")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <input type="file" id="avatar" name="avatar" class="filedialog">
                        """
         )
     }
