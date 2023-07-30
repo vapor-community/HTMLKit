@@ -13,6 +13,8 @@ public struct Form: View, Actionable {
     
     internal var method: HTMLKit.Values.Method
     
+    internal var encoding: HTMLKit.Values.Encoding
+    
     /// The content of the container.
     internal var content: [FormElement]
     
@@ -23,17 +25,19 @@ public struct Form: View, Actionable {
     internal var events: [String]?
     
     /// Creates a form.
-    public init(method: Values.Method, @ContentBuilder<FormElement> content: () -> [FormElement]) {
+    public init(method: Values.Method, encoding: Values.Encoding = .urlEncoded, @ContentBuilder<FormElement> content: () -> [FormElement]) {
         
         self.method = method
+        self.encoding = encoding
         self.content = content()
         self.classes = ["form"]
     }
     
     /// Creates a form.
-    internal init(method: Values.Method, content: [FormElement], classes: [String], events: [String]?, id: String?) {
+    internal init(method: Values.Method, encoding: Values.Encoding, content: [FormElement], classes: [String], events: [String]?, id: String?) {
         
         self.method = method
+        self.encoding = encoding
         self.content = content
         self.classes = classes
         self.events = events
@@ -45,6 +49,7 @@ public struct Form: View, Actionable {
             content
         }
         .method(method)
+        .encoding(encoding)
         .class(classes.joined(separator: " "))
         .modify(unwrap: id) {
             $0.id($1)
@@ -1537,6 +1542,110 @@ extension TextPad: ViewModifier {
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextPad {
+        return self.mutate(margin: length.value, insets: insets)
+    }
+}
+
+/// A component that displays
+public struct FileDialog: View, Modifiable {
+    
+    /// The identifier of the search field.
+    internal let name: String
+    
+    /// The classes of the field.
+    internal var classes: [String]
+    
+    /// The events of the field.
+    internal var events: [String]?
+    
+    /// Creates a search field.
+    public init(name: String) {
+        
+        self.name = name
+        self.classes = ["filedialog"]
+    }
+    
+    /// Creates a search field.
+    internal init(name: String, classes: [String], events: [String]?) {
+        
+        self.name = name
+        self.classes = classes
+        self.events = events
+    }
+    
+    public var body: Content {
+        Input()
+            .type(.file)
+            .id(name)
+            .name(name)
+            .class(classes.joined(separator: " "))
+    }
+}
+
+extension FileDialog: InputModifier {
+    
+    public func disabled(_ condition: Bool) -> FileDialog {
+        
+        if condition {
+            return self.mutate(inputstate: Tokens.ViewState.disabled.value)
+        }
+        
+        return self
+    }
+    
+    public func focusColor(_ color: Tokens.FocusColor) -> FileDialog {
+        return self.mutate(focuscolor: color.value)
+    }
+}
+
+extension FileDialog: ViewModifier {
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> FileDialog {
+        return self.mutate(opacity: value.value)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> FileDialog {
+        return self.mutate(zindex: index.value)
+    }
+    
+    public func hidden() -> FileDialog {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
+    }
+    
+    public func hidden(_ condition: Bool) -> FileDialog {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.value)
+        }
+        
+        return self
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> FileDialog {
+        return self.mutate(padding: length.value, insets: insets)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> FileDialog {
+        return self.mutate(bordercolor: color.value)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> FileDialog {
+        return self.mutate(bordershape: shape.value)
+    }
+    
+    public func backgroundColor(_ color: Tokens.BackgroundColor) -> FileDialog {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> FileDialog {
+        return self.mutate(scheme: scheme.value)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> FileDialog {
+        return mutate(frame: width.value, offset: offset?.value)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> FileDialog {
         return self.mutate(margin: length.value, insets: insets)
     }
 }
