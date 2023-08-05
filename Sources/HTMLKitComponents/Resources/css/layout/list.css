@@ -39,13 +39,13 @@
     padding-inline-end: var(--paddingInlineEnd);
 }
 
-.list.direction\:horizontal.style\:listgroup .list-row:is(:not(:last-child)) {
+.list.direction\:horizontal.style\:listgroup > .list-row:is(:not(:last-child)) {
     border-right: 1px;
     border-right-style: solid;
     border-right-color: hsla(210, 14%, 89%, 1.0);
 }
 
-.list.direction\:vertical.style\:listgroup .list-row:is(:not(:last-child)) {
+.list.direction\:vertical.style\:listgroup > .list-row:is(:not(:last-child)) {
     border-bottom: 1px;
     border-bottom-style: solid;
     border-bottom-color: hsla(210, 14%, 89%, 1.0);

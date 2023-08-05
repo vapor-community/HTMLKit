@@ -35,10 +35,9 @@ public struct Dropdown: View, Modifiable {
     
     public var body: Content {
         Division {
-            HTMLKit.Button {
+            Division {
                 label
             }
-            .type(.button)
             .class("dropdown-label")
             Division {
                 content

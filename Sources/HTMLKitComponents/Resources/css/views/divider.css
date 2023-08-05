@@ -9,7 +9,7 @@
  */
 
 .divider {
-    --backgroundColor: 0, 0%, 0%;
+    --backgroundColor: 210, 14%, 89%;
     
     position: relative;
     display: block;
@@ -20,5 +20,5 @@
 }
 
 .scheme\:dark .divider, .divider.scheme\:dark {
-    --backgroundColor: 0, 0%, 100%;
+    --backgroundColor: 210, 9%, 31%;
 }
