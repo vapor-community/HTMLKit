@@ -83,6 +83,9 @@ let package = Package(
             dependencies: [
                 .target(name: "HTMLKitComponents"),
                 .target(name: "HTMLKit")
+            ],
+            resources: [
+                .copy("Localization")
             ]
         ),
         .testTarget(

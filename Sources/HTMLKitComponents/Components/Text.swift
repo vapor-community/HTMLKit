@@ -25,6 +25,12 @@ public struct Text: View, Actionable, Modifiable {
         self.classes = ["text"]
     }
     
+    public init(_ localizedStringKey: String) {
+        
+        self.content = [LocalizedStringKey(key: localizedStringKey)]
+        self.classes = ["text"]
+    }
+    
     /// Creates a text.
     internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
         
