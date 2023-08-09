@@ -1101,7 +1101,9 @@ public enum Tokens {
     }
 
     /// A ratio for the grid.
-    public enum ItemRatio {
+    public enum GridRatio {
+        
+        case fit
         
         ///  Sets the ratio to 15%.
         case sixth
@@ -1122,6 +1124,10 @@ public enum Tokens {
         
         var value: String {
             switch self {
+                
+            case .fit:
+                return "fit"
+                
             case .sixth:
                 return "sixth"
                 

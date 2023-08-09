@@ -62,20 +62,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <ul class="grid ratio:half"></ul>
-                       """
-        )
-    }
-    
-    func testGridItem() throws {
-        
-        let view = TestView {
-            GridItem {}
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <li class="grid-item"></li>
+                       <div class="grid ratio:fit"></div>
                        """
         )
     }
