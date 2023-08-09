@@ -61,7 +61,7 @@ public struct Grid: View, Modifiable, Actionable {
 
 extension Grid: HoverModifier {
     
-    public func id(_ value: String) -> Grid {
+    public func tag(_ value: String) -> Grid {
         return self.mutate(id: value)
     }
 

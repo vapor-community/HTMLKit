@@ -54,13 +54,13 @@ public struct Text: View, Actionable, Modifiable {
             }
         }
     }
-    
-    public func id(_ value: String) -> Text {
-        return self.mutate(id: value)
-    }
 }
 
 extension Text: HoverModifier {
+    
+    public func tag(_ value: String) -> Text {
+        return self.mutate(id: value)
+    }
     
     public func onHover(perfom action: Actions) -> Text {
         return self.mutate(hoverevent: action.script)
@@ -72,7 +72,7 @@ extension Text: HoverModifier {
 }
 
 extension Text: PressModifier {
-    
+
     public func onClick(perfom action: Actions) -> Text {
         return self.mutate(clickevent: action.script)
     }

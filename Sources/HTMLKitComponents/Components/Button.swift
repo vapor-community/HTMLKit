@@ -54,10 +54,6 @@ public struct Button: View, Modifiable, Actionable {
             }
         }
     }
-    
-    public func id(_ value: String) -> Button {
-        return self.mutate(id: value)
-    }
 }
 
 extension Button: ButtonModifier {
@@ -85,6 +81,10 @@ extension Button: ButtonModifier {
 }
 
 extension Button: PressModifier {
+    
+    public func tag(_ value: String) -> Button {
+        return self.mutate(id: value)
+    }
     
     public func onClick(perfom action: Actions) -> Button {
         return self.mutate(clickevent: action.script)

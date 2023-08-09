@@ -7,7 +7,7 @@
 public protocol PressModifier {
     
     /// The identifier of the component.
-    func id(_ value: String) -> Self
+    func tag(_ value: String) -> Self
     
     /// Acts on a click event.
     func onClick(perfom action: Actions) -> Self

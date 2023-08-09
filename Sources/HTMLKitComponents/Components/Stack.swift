@@ -51,10 +51,6 @@ public struct HStack: View, Actionable, Modifiable {
         }
     }
     
-    public func id(_ value: String) -> HStack {
-        return self.mutate(id: value)
-    }
-    
     /// Sets the space of the content.
     public func contentSpace(_ value: Tokens.ContentSpace) -> HStack {
         
@@ -66,6 +62,10 @@ public struct HStack: View, Actionable, Modifiable {
 }
 
 extension HStack: HoverModifier {
+    
+    public func tag(_ value: String) -> HStack {
+        return self.mutate(id: value)
+    }
     
     public func onHover(perfom action: Actions) -> HStack {
         return self.mutate(hoverevent: action.script)
@@ -131,7 +131,7 @@ extension HStack: ViewModifier {
 /// A component that arranges content vertically.
 public struct VStack: View, Actionable, Modifiable {
     
-    var id: String?
+    internal var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
@@ -172,10 +172,6 @@ public struct VStack: View, Actionable, Modifiable {
         }
     }
     
-    public func id(_ value: String) -> VStack {
-        return self.mutate(id: value)
-    }
-    
     /// Sets the space of the content.
     public func contentSpace(_ value: Tokens.ContentSpace) -> VStack {
         
@@ -187,6 +183,10 @@ public struct VStack: View, Actionable, Modifiable {
 }
 
 extension VStack: HoverModifier {
+    
+    public func tag(_ value: String) -> VStack {
+        return self.mutate(id: value)
+    }
     
     public func onHover(perfom action: Actions) -> VStack {
         return self.mutate(hoverevent: action.script)
@@ -252,7 +252,7 @@ extension VStack: ViewModifier {
 /// A component that overlays content.
 public struct ZStack: View, Actionable, Modifiable {
     
-    var id: String?
+    internal var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
@@ -292,13 +292,13 @@ public struct ZStack: View, Actionable, Modifiable {
             }
         }
     }
-    
-    public func id(_ value: String) -> ZStack {
-        return self.mutate(id: value)
-    }
 }
 
 extension ZStack: HoverModifier {
+    
+    public func tag(_ value: String) -> ZStack {
+        return self.mutate(id: value)
+    }
     
     public func onHover(perfom action: Actions) -> ZStack {
         return self.mutate(hoverevent: action.script)

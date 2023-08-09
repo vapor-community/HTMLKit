@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that collects and arranges list items vertically.
 public struct List: View, Modifiable, Actionable {
     
-    var id: String?
+    internal var id: String?
     
     /// The content of the list.
     internal var content: [ListElement]
@@ -61,7 +61,7 @@ public struct List: View, Modifiable, Actionable {
 
 extension List: HoverModifier {
     
-    public func id(_ value: String) -> List {
+    public func tag(_ value: String) -> List {
         return self.mutate(id: value)
     }
 
@@ -129,7 +129,7 @@ extension List: ViewModifier {
 /// A component that represents a list item.
 public struct ListRow: View, Modifiable, Actionable {
     
-    var id: String?
+    internal var id: String?
     
     /// The content of the row.
     internal var content: [Content]
@@ -168,10 +168,6 @@ public struct ListRow: View, Modifiable, Actionable {
                 events
             }
         }
-    }
-    
-    public func id(_ value: String) -> ListRow {
-        return self.mutate(id: value)
     }
     
     public  func padding(insets: EdgeSet, length: Tokens.PaddingLength) -> ListRow {
@@ -213,6 +209,10 @@ public struct ListRow: View, Modifiable, Actionable {
 }
 
 extension ListRow: HoverModifier {
+    
+    public func tag(_ value: String) -> ListRow {
+        return self.mutate(id: value)
+    }
     
     public func onHover(perfom action: Actions) -> ListRow {
         return self.mutate(hoverevent: action.script)

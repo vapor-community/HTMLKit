@@ -7,7 +7,7 @@
 public protocol DragModifier {
     
     /// The identifier of the component.
-    func id(_ value: String) -> Self
+    func tag(_ value: String) -> Self
     
     /// Acts on a drag event.
     func onDrag(perfom action: Actions) -> Self

@@ -7,7 +7,7 @@
 public protocol HoverModifier {
     
     /// The identifier of the component.
-    func id(_ value: String) -> Self
+    func tag(_ value: String) -> Self
     
     /// Acts on a hover event.
     func onHover(perfom action: Actions) -> Self
