@@ -72,6 +72,14 @@
     padding-inline: 1.0rem;
 }
 
+.dropdown-content > .list > .list-row > .text {
+    display: flex;
+    align-items: center;
+    padding-block: 0.5rem;
+    padding-inline: 1.0rem;
+    cursor: pointer;
+}
+
 .dropdown-content > .list > .divider {
     --backgroundColor: var(--borderColor) !important;
 }
