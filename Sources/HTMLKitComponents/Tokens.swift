@@ -1544,6 +1544,7 @@ public enum Tokens {
         
         case plain
         case pagination
+        case menu
         case custom(String)
         
         var value: String {
@@ -1553,6 +1554,9 @@ public enum Tokens {
                 
             case .pagination:
                 return "pagination"
+                
+            case .menu:
+                return "menu"
                 
             case .custom(let string):
                 return string
