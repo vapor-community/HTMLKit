@@ -60,21 +60,16 @@ public struct Form: View, Actionable {
             }
         }
     }
-    
-    public func id(_ value: String) -> Form {
-        return self.mutate(id: value)
-    }
 }
 
-extension Form: FormModifier {
+extension Form: FormEvent {
 
-    public func onSubmit(perfom action: Actions) -> Form {
-        
-        if action.description == "validate" {
-            return self.mutate(submitevent: action.script, validation: true)
-        }
-        
-        return self.mutate(submitevent: action.script, validation: false)
+    public func tag(_ value: String) -> Form {
+        return self.mutate(id: value)
+    }
+    
+    public func onSubmit(@StringBuilder action: (SubmitAction) -> [String]) -> Form {
+        return self.mutate(submitevent: action(self))
     }
 }
 

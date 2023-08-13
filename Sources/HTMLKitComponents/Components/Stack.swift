@@ -61,18 +61,18 @@ public struct HStack: View, Actionable, Modifiable {
     }
 }
 
-extension HStack: HoverModifier {
+extension HStack: MouseEvent {
     
     public func tag(_ value: String) -> HStack {
         return self.mutate(id: value)
     }
     
-    public func onHover(perfom action: Actions) -> HStack {
-        return self.mutate(hoverevent: action.script)
+    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> HStack {
+        return self.mutate(hoverevent: action(self))
     }
     
-    public func onLeave(perfom action: Actions) -> HStack {
-        return self.mutate(leaveevent: action.script)
+    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> HStack {
+        return self.mutate(leaveevent: action(self))
     }
 }
 
@@ -182,18 +182,18 @@ public struct VStack: View, Actionable, Modifiable {
     }
 }
 
-extension VStack: HoverModifier {
+extension VStack: MouseEvent {
     
     public func tag(_ value: String) -> VStack {
         return self.mutate(id: value)
     }
     
-    public func onHover(perfom action: Actions) -> VStack {
-        return self.mutate(hoverevent: action.script)
+    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> VStack {
+        return self.mutate(hoverevent: action(self))
     }
     
-    public func onLeave(perfom action: Actions) -> VStack {
-        return self.mutate(leaveevent: action.script)
+    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> VStack {
+        return self.mutate(leaveevent: action(self))
     }
 }
 
@@ -294,18 +294,18 @@ public struct ZStack: View, Actionable, Modifiable {
     }
 }
 
-extension ZStack: HoverModifier {
+extension ZStack: MouseEvent {
     
     public func tag(_ value: String) -> ZStack {
         return self.mutate(id: value)
     }
     
-    public func onHover(perfom action: Actions) -> ZStack {
-        return self.mutate(hoverevent: action.script)
+    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> ZStack {
+        return self.mutate(hoverevent: action(self))
     }
     
-    public func onLeave(perfom action: Actions) -> ZStack {
-        return self.mutate(leaveevent: action.script)
+    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> ZStack {
+        return self.mutate(leaveevent: action(self))
     }
 }
 

@@ -80,22 +80,22 @@ extension Button: ButtonModifier {
     }
 }
 
-extension Button: PressModifier {
+extension Button: PressEvent {
     
     public func tag(_ value: String) -> Button {
         return self.mutate(id: value)
     }
     
-    public func onClick(perfom action: Actions) -> Button {
-        return self.mutate(clickevent: action.script)
+    public func onClick(@StringBuilder action: (ViewAction) -> [String]) -> Button {
+        return self.mutate(clickevent: action(self))
     }
     
-    public func onTap(perfom action: Actions) -> Button {
-        return self.mutate(tapevent: action.script)
+    public func onTap(@StringBuilder action: (ViewAction) -> [String]) -> Button {
+        return self.mutate(tapevent: action(self))
     }
     
-    public func onPress(perfom action: Actions) -> Button {
-        return self.mutate(pressevent: action.script)
+    public func onPress(@StringBuilder action: (ViewAction) -> [String]) -> Button {
+        return self.mutate(pressevent: action(self))
     }
 }
 

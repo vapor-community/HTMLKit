@@ -56,33 +56,33 @@ public struct Text: View, Actionable, Modifiable {
     }
 }
 
-extension Text: HoverModifier {
+extension Text: MouseEvent {
     
     public func tag(_ value: String) -> Text {
         return self.mutate(id: value)
     }
     
-    public func onHover(perfom action: Actions) -> Text {
-        return self.mutate(hoverevent: action.script)
+    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> Text {
+        return self.mutate(hoverevent: action(self))
     }
     
-    public func onLeave(perfom action: Actions) -> Text {
-        return self.mutate(leaveevent: action.script)
+    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> Text {
+        return self.mutate(leaveevent: action(self))
     }
 }
 
-extension Text: PressModifier {
+extension Text: PressEvent {
 
-    public func onClick(perfom action: Actions) -> Text {
-        return self.mutate(clickevent: action.script)
+    public func onClick(@StringBuilder action: (ViewAction) -> [String]) -> Text {
+        return self.mutate(clickevent: action(self))
     }
     
-    public func onTap(perfom action: Actions) -> Text {
-        return self.mutate(tapevent: action.script)
+    public func onTap(@StringBuilder action: (ViewAction) -> [String]) -> Text {
+        return self.mutate(tapevent: action(self))
     }
     
-    public func onPress(perfom action: Actions) -> Text {
-        return self.mutate(pressevent: action.script)
+    public func onPress(@StringBuilder action: (ViewAction) -> [String]) -> Text {
+        return self.mutate(pressevent: action(self))
     }
 }
 
@@ -222,5 +222,16 @@ extension Text: ViewModifier {
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Text {
         return self.mutate(margin: length.value, insets: insets)
+    }
+}
+
+extension Text: ViewAction {
+    
+    public func show(_ target: String) -> String {
+        return "$('#\(target)').show();"
+    }
+    
+    public func open(_ target: String) -> String {
+        return "$('#\(target)').open();"
     }
 }
