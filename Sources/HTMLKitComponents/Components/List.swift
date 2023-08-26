@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that collects and arranges list items vertically.
 public struct List: View, Modifiable, Actionable {
     
-    var id: String?
+    internal var id: String?
     
     /// The content of the list.
     internal var content: [ListElement]
@@ -22,7 +22,7 @@ public struct List: View, Modifiable, Actionable {
     public init(direction: Tokens.FlowDirection, @ContentBuilder<ListElement> content: () -> [ListElement]) {
         
         self.content = content()
-        self.classes = ["list", "direction:\(direction.rawValue)"]
+        self.classes = ["list", "direction:\(direction.value)"]
     }
     
     /// Creates a list.
@@ -53,83 +53,83 @@ public struct List: View, Modifiable, Actionable {
     public func listStyle(_ style: Tokens.ListStyle) -> List {
         
         var newSelf = self
-        newSelf.classes.append("style:\(style.rawValue)")
+        newSelf.classes.append("style:\(style.value)")
         
         return newSelf
     }
 }
 
-extension List: HoverModifier {
+extension List: MouseEvent, ViewAction {
     
-    public func id(_ value: String) -> List {
+    public func tag(_ value: String) -> List {
         return self.mutate(id: value)
     }
 
-    public func onHover(perfom action: Actions) -> List {
-        return self.mutate(hoverevent: action.script)
+    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> List {
+        return self.mutate(hoverevent: action(self))
     }
     
-    public func onLeave(perfom action: Actions) -> List {
-        return self.mutate(leaveevent: action.script)
+    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> List {
+        return self.mutate(leaveevent: action(self))
     }
 }
 
 extension List: ViewModifier {
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> List {
-        return self.mutate(backgroundcolor: color.rawValue)
+        return self.mutate(backgroundcolor: color.value)
     }
     
     public func opacity(_ value: Tokens.OpacityValue) -> List {
-        return self.mutate(opacity: value.rawValue)
+        return self.mutate(opacity: value.value)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> List {
-        return self.mutate(zindex: index.rawValue)
+        return self.mutate(zindex: index.value)
     }
     
     public func hidden() -> List {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
     }
     
     public func hidden(_ condition: Bool) -> List {
         
         if condition {
-            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+            return self.mutate(viewstate: Tokens.ViewState.hidden.value)
         }
         
         return self
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> List {
-        return self.mutate(scheme: scheme.rawValue)
+        return self.mutate(scheme: scheme.value)
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> List {
-        return self.mutate(padding: length.rawValue, insets: insets)
+        return self.mutate(padding: length.value, insets: insets)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> List {
-        return self.mutate(bordershape: shape.rawValue)
+        return self.mutate(bordershape: shape.value)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> List {
-        return self.mutate(bordercolor: color.rawValue)
+        return self.mutate(bordercolor: color.value)
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> List {
-        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+        return mutate(frame: width.value, offset: offset?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> List {
-        return self.mutate(margin: length.rawValue, insets: insets)
+        return self.mutate(margin: length.value, insets: insets)
     }
 }
 
 /// A component that represents a list item.
 public struct ListRow: View, Modifiable, Actionable {
     
-    var id: String?
+    internal var id: String?
     
     /// The content of the row.
     internal var content: [Content]
@@ -170,10 +170,6 @@ public struct ListRow: View, Modifiable, Actionable {
         }
     }
     
-    public func id(_ value: String) -> ListRow {
-        return self.mutate(id: value)
-    }
-    
     public  func padding(insets: EdgeSet, length: Tokens.PaddingLength) -> ListRow {
         
         var classes: [String] = []
@@ -212,13 +208,17 @@ public struct ListRow: View, Modifiable, Actionable {
     }
 }
 
-extension ListRow: HoverModifier {
+extension ListRow: MouseEvent, ViewAction {
     
-    public func onHover(perfom action: Actions) -> ListRow {
-        return self.mutate(hoverevent: action.script)
+    public func tag(_ value: String) -> ListRow {
+        return self.mutate(id: value)
     }
     
-    public func onLeave(perfom action: Actions) -> ListRow {
-        return self.mutate(leaveevent: action.script)
+    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> ListRow {
+        return self.mutate(hoverevent: action(self))
+    }
+    
+    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> ListRow {
+        return self.mutate(leaveevent: action(self))
     }
 }

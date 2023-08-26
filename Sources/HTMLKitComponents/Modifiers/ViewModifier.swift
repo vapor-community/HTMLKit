@@ -41,7 +41,7 @@ public protocol ViewModifier {
 extension ViewModifier where Self: Modifiable {
     
     internal func mutate(opacity value: String) -> Self {
-        return self.mutate(class: "opacity\(value)")
+        return self.mutate(class: "opacity:\(value)")
     }
     
     internal func mutate(zindex value: String) -> Self {

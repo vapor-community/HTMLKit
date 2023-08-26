@@ -5,19 +5,28 @@
          this.element = element;
          this.links = element.getElementsByClassName('link');
          
-         this.checkLocation();
+         if (this.element.classList.contains('style:menu')) {
+             this.styleMenu();
+         }
      };
      
-     Navigation.prototype.checkLocation = function () {
+     Navigation.prototype.styleMenu = function () {
          
-         var self = this;
-         
-         var currentLocation = location.pathname;
-         
-         for(let link of this.links) {
+         for (let link of this.links) {
              
-             if(link.getAttribute('href') === currentLocation) {
-                 self.toggleState(link);
+             let components = link.pathname.split('/');
+             
+             var targetLocation;
+             
+             if (components.length > 2) {
+                 targetLocation = components.slice(0, -1).join('/');
+                 
+             } else {
+                 targetLocation = components.join('/');
+             }
+             
+             if (location.pathname.includes(targetLocation)) {
+                 this.toggleState(link);
              }
          }
      };
@@ -28,9 +37,9 @@
      
      var navigation = document.getElementsByClassName('navigation');
      
-     if(navigation.length > 0) {
+     if (navigation.length > 0) {
          
-         for(var i = 0; i < navigation.length; i++) {
+         for (var i = 0; i < navigation.length; i++) {
              
              (function(i) {
                  new Navigation(navigation[i]);

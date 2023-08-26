@@ -14,6 +14,22 @@
  */
 
 .radioselect {
+    --paddingBlockStart: 0.5rem;
+    --paddingBlockEnd: 0.5rem;
+    --paddingInlineStart: 1.0rem;
+    --paddingInlineEnd: 1.0rem;
+    
+    position: relative;
+    display: flex;
+    align-items: center;
+    inline-size: 100%;
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
+}
+
+.radioinput {
     --borderWidth: 1px;
     --borderColor: 210, 14%, 89%;
     --borderOpacity: 1.0;
@@ -39,14 +55,14 @@
     appearance: none;
 }
 
-.radioselect:focus {
+.radioinput:focus {
     --borderColor: var(--focusColor) !important;
     
     outline: 0;
     box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
 }
 
-.radioselect:before {
+.radioinput:before {
     content: "";
     block-size: 0.625rem;
     inline-size: 0.625rem;
@@ -55,12 +71,13 @@
     transform: scale(0);
 }
 
-.radioselect:checked:before {
+.radioinput:checked:before {
     transform: scale(1);
 }
 
-.radioselect + .label {
-    margin-inline-start: 1.0rem;
+.radioinput + label {
+    font-family: system-ui;
+    margin-inline-start: 1.25rem;
 }
 
 .scheme\:dark .radioselect, .radioselect.scheme\:dark {

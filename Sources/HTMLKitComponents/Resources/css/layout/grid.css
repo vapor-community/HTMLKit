@@ -3,30 +3,80 @@
  */
 
 .grid {
+    --paddingInlineStart: 0;
+    --paddingInlineEnd: 0;
+    --paddingBlockStart: 0;
+    --paddingBlockEnd: 0;
+    
+    position: relative;
+    inline-size: 100%;
     display: grid;
-    list-style-type: none;
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
 }
 
-.grid.ratio\:50 {
-    grid-template-columns: repeat(2, 1fr);
+.grid.ratio\:fit {
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
 }
 
-.grid.ratio\:33 {
-    grid-template-columns: repeat(3, 1fr);
+.grid.ratio\:half {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.grid.ratio\:25 {
-    grid-template-columns: repeat(4, 1fr);
+.grid.ratio\:third {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.grid.ratio\:20 {
-    grid-template-columns: repeat(5, 1fr);
+.grid.ratio\:quarter {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.grid.ratio\:15 {
-    grid-template-columns: repeat(6, 1fr);
+.grid.ratio\:fifth {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
-.grid-item {
-    overflow: hidden;
+.grid.ratio\:six {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.grid.alignment\:top {
+    align-items: start;
+}
+
+.grid.alignment\:center {
+    align-items: center;
+}
+
+.grid.alignment\:bottom {
+    align-items: end;
+}
+
+.grid.alignment\:baseline {
+    align-items: baseline;
+}
+
+.grid.space\:around {
+    justify-content: space-around;
+}
+
+.grid.space\:between {
+    justify-content: space-between;
+}
+
+.grid.space\:evenly {
+    justify-content: space-evenly;
+}
+
+.grid.space\:large {
+    gap: 2.25rem;
+}
+
+.grid.space\:medium {
+    gap: 1.5rem;
+}
+
+.grid.space\:small {
+    gap: 1rem;
 }
