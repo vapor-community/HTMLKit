@@ -11,14 +11,21 @@
      };
      
      Navigation.prototype.styleMenu = function () {
-        
-         let currentLocation = location.pathname.split('/')[1];
          
          for (let link of this.links) {
              
-             var linkReference = link.pathname.split('/')[1];
+             let components = link.pathname.split('/');
              
-             if (linkReference === currentLocation) {
+             var targetLocation;
+             
+             if (components.length > 2) {
+                 targetLocation = components.slice(0, -1).join('/');
+                 
+             } else {
+                 targetLocation = components.join('/');
+             }
+             
+             if (location.pathname.includes(targetLocation)) {
                  this.toggleState(link);
              }
          }
