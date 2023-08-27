@@ -116,7 +116,7 @@ public class Renderer {
             }
             
             if let element = content as? String {
-                result += element
+                result += escape(element)
             }
         }
         
@@ -181,7 +181,7 @@ public class Renderer {
                 }
                 
                 if let element = content as? String {
-                    result += element
+                    result += escape(element)
                 }
             }
         }
@@ -267,7 +267,7 @@ public class Renderer {
                 }
                 
                 if let element = content as? String {
-                    result += element
+                    result += escape(element)
                 }
             }
         }
@@ -348,7 +348,7 @@ public class Renderer {
             return String(doubleValue)
             
         case let stringValue as String:
-            return String(stringValue)
+            return escape(stringValue)
             
         case let dateValue as Date:
             
@@ -382,5 +382,15 @@ public class Renderer {
         }
         
         return result
+    }
+    
+    /// Converts specific charaters into encoded values.
+    internal func escape(_ value: String) -> String {
+        
+        return value.replacingOccurrences(of: "&", with: "&amp;")
+            .replacingOccurrences(of: "<", with: "&lt;")
+            .replacingOccurrences(of: ">", with: "&gt;")
+            .replacingOccurrences(of: "\"", with: "&quot;")
+            .replacingOccurrences(of: "'", with: "&apos;")
     }
 }
