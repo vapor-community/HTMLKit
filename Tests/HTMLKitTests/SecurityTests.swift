@@ -15,6 +15,23 @@ final class SecurityTests: XCTestCase {
     
     var renderer = Renderer()
     
+    func testEncodingAttributeContext() throws {
+        
+        let variable = "\" onclick=\"alert(1);\""
+        
+        let view = TestView {
+            Paragraph {
+            }
+            .class(variable)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p class="&quot; onclick=&quot;alert(1);&quot;"></p>
+                       """
+        )
+    }
+    
     func testEncodingHtmlContext() throws {
         
         let variable = "<script></script>"

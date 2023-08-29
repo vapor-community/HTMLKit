@@ -374,11 +374,13 @@ public class Renderer {
             result += " \(attribute.key)=\""
             
             if let value = attribute.value as? EnvironmentValue {
-                result += "\(try render(value: value))\""
+                result += try render(value: value)
                 
             } else {
-                result += "\(attribute.value)\""
+                result += escape("\(attribute.value)")
             }
+            
+            result += "\""
         }
         
         return result

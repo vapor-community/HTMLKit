@@ -154,22 +154,6 @@ final class RenderingTests: XCTestCase {
         )
     }
     
-    func testEscaping() throws {
-        
-        let view = TestView {
-            Paragraph {
-                "text"
-            }
-            .class("cl'ass")
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <p class="cl'ass">text</p>
-                       """
-        )
-    }
-    
     func testModified() throws {
         
         let isModified: Bool = true
