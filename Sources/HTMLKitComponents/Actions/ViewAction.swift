@@ -21,22 +21,22 @@ public protocol ViewAction {
 extension ViewAction {
     
     public func show(_ target: String) -> String {
-        return "$('#\(target)').show();"
+        return "$('#\(target.escape())').show();"
     }
     
     public func hide(_ target: String) -> String {
-        return "$('#\(target)').hide();"
+        return "$('#\(target.escape())').hide();"
     }
     
     public func animate(_ target: String) -> String {
-        return "$('#\(target)').animate();"
+        return "$('#\(target.escape())').animate();"
     }
     
     public func open(_ target: String) -> String {
-        return "$('#\(target)').open();"
+        return "$('#\(target.escape())').open();"
     }
     
     public func close(_ target: String) -> String {
-        return "$('#\(target)').close();"
+        return "$('#\(target.escape())').close();"
     }
 }

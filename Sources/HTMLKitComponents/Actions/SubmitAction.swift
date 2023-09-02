@@ -13,10 +13,10 @@ extension SubmitAction {
         if let data = try? JSONEncoder().encode(validators) {
             
             if let result = String(data: data, encoding: .utf8) {
-                return "$('#\(target)').validate('\(result)');"
+                return "$('#\(target.escape())').validate('\(result)');"
             }
         }
         
-        return "$('#\(target)').validate('[]');"
+        return "$('#\(target.escape())').validate('[]');"
     }
 }
