@@ -17,12 +17,12 @@ final class SecurityTests: XCTestCase {
     
     func testEncodingAttributeContext() throws {
         
-        let variable = "\" onclick=\"alert(1);\""
+        let attack = "\" onclick=\"alert(1);\""
         
         let view = TestView {
             Paragraph {
             }
-            .class(variable)
+            .class(attack)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
@@ -34,11 +34,11 @@ final class SecurityTests: XCTestCase {
     
     func testEncodingHtmlContext() throws {
         
-        let variable = "<script></script>"
+        let attack = "<script></script>"
         
         let view = TestView {
             Paragraph {
-                variable
+                attack
             }
         }
         
@@ -49,27 +49,48 @@ final class SecurityTests: XCTestCase {
         )
     }
     
-    func testEncodingEnvironmentValue() throws {
+    func testEncodingCommentContext() throws {
         
-        struct Variable {
-            let value = "<script></script>"
-        }
-        
-        @EnvironmentObject(Variable.self)
-        var variable
+        let attack = "--> <img src=\"\"> <!--"
         
         let view = TestView {
-            Article {
-                Paragraph {
-                    variable.value
-                }
-            }
-            .environment(object: Variable())
+            Comment(attack)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <article><p>&lt;script&gt;&lt;/script&gt;</p></article>
+                       <!----&gt; &lt;img src=""&gt; &lt;!---->
+                       """
+        )
+    }
+    
+    func testEncodingEnvironmentValue() throws {
+        
+        struct Attack {
+            let attribute = "\" onclick=\"alert(1);\""
+            let content = "<script></script>"
+        }
+        
+        @EnvironmentObject(Attack.self)
+        var attack
+        
+        let view = TestView {
+            Article {
+                Paragraph {
+                    attack.content
+                }
+                Img()
+                    .source(attack.attribute)
+            }
+            .environment(object: Attack())
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <article>\
+                       <p>&lt;script&gt;&lt;/script&gt;</p>\
+                       <img src="&quot; onclick=&quot;alert(1);&quot;">\
+                       </article>
                        """
         )
     }
