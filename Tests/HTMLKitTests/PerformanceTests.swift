@@ -8,11 +8,14 @@ import XCTest
 
 final class PerformanceTests: XCTestCase {
     
-    func testPerformanceWithoutSafeMode() throws {
+    func testPerformanceWithoutAutoEscaping() throws {
         
         let context = SampleContext(id: 0, title: "TestPage", excerpt: "Testpage", modified: Date(), posted: Date())
         
-        let renderer = Renderer(mode: false)
+        let security = Security()
+        security.autoEscaping = false
+        
+        let renderer = Renderer(security: security)
         
         measure {
             
@@ -22,11 +25,14 @@ final class PerformanceTests: XCTestCase {
         }
     }
     
-    func testPerformanceWithSafeMode() throws {
+    func testPerformanceWithAutoEscaping() throws {
         
         let context = SampleContext(id: 0, title: "TestPage", excerpt: "Testpage", modified: Date(), posted: Date())
         
-        let renderer = Renderer(mode: true)
+        let security = Security()
+        security.autoEscaping = true
+        
+        let renderer = Renderer(security: security)
         
         measure {
             

@@ -26,6 +26,24 @@ extension Application {
             public typealias Value = HTMLKit.Environment
         }
         
+        internal struct SecurityStorageKey: StorageKey {
+            
+            public typealias Value = HTMLKit.Security
+        }
+        
+        public var security: HTMLKit.Security {
+            
+            if let configuration = self.application.storage[SecurityStorageKey.self] {
+                return configuration
+            }
+            
+            let configuration = Security()
+            
+            self.application.storage[SecurityStorageKey.self] = configuration
+            
+            return configuration
+        }
+        
         /// The view localization
         public var localization: HTMLKit.Localization {
             
@@ -59,7 +77,8 @@ extension Application {
             
             return .init(eventLoop: application.eventLoopGroup.next(),
                          localization: localization,
-                         environment: environment)
+                         environment: environment,
+                         security: security)
         }
         
         /// The application dependency
@@ -94,6 +113,7 @@ extension Request {
         
         return .init(eventLoop: self.eventLoop,
                      localization: self.application.htmlkit.localization,
-                     environment: self.application.htmlkit.environment)
+                     environment: self.application.htmlkit.environment,
+                     security: self.application.htmlkit.security)
     }
 }

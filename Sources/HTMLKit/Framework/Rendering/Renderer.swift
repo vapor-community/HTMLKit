@@ -39,26 +39,34 @@ public class Renderer {
         }
     }
     
-    private var safemode: Bool
-    
     private var environment: Environment
     
     private var localization: Localization?
+    
+    private var security: Security
 
     /// Initiates the renderer.
-    public init(localization: Localization? = nil, mode: Bool = true) {
+    public init(localization: Localization? = nil) {
         
-        self.environment = Environment()
         self.localization = localization
-        self.safemode = mode
+        self.environment = Environment()
+        self.security = Security()
     }
     
     /// Initiates the renderer.
-    public init(localization: Localization? = nil, environment: Environment, mode: Bool = true) {
+    public init(localization: Localization? = nil, security: Security) {
         
-        self.environment = environment
         self.localization = localization
-        self.safemode = mode
+        self.environment = Environment()
+        self.security = security
+    }
+    
+    /// Initiates the renderer.
+    public init(localization: Localization? = nil, environment: Environment, security: Security) {
+        
+        self.localization = localization
+        self.environment = environment
+        self.security = security
     }
     
     /// Renders a view
@@ -415,8 +423,7 @@ public class Renderer {
     /// Converts specific charaters into encoded values.
     internal func escape(attribute value: String) -> String {
         
-        if safemode {
-            
+        if security.autoEscaping {
             return value.replacingOccurrences(of: "&", with: "&amp;")
                 .replacingOccurrences(of: "\"", with: "&quot;")
                 .replacingOccurrences(of: "'", with: "&apos;")
@@ -428,7 +435,7 @@ public class Renderer {
     /// Converts specific charaters into encoded values.
     internal func escape(content value: String) -> String {
         
-        if safemode {
+        if security.autoEscaping {
             return value.replacingOccurrences(of: "<", with: "&lt;")
                 .replacingOccurrences(of: ">", with: "&gt;")
         }
