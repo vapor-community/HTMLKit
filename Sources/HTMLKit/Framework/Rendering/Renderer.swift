@@ -42,19 +42,31 @@ public class Renderer {
     private var environment: Environment
     
     private var localization: Localization?
+    
+    private var security: Security
 
     /// Initiates the renderer.
     public init(localization: Localization? = nil) {
         
-        self.environment = Environment()
         self.localization = localization
+        self.environment = Environment()
+        self.security = Security()
     }
     
     /// Initiates the renderer.
-    public init(localization: Localization? = nil, environment: Environment) {
+    public init(localization: Localization? = nil, security: Security) {
         
-        self.environment = environment
         self.localization = localization
+        self.environment = Environment()
+        self.security = security
+    }
+    
+    /// Initiates the renderer.
+    public init(localization: Localization? = nil, environment: Environment, security: Security) {
+        
+        self.localization = localization
+        self.environment = environment
+        self.security = security
     }
     
     /// Renders a view
@@ -112,11 +124,11 @@ public class Renderer {
             }
             
             if let value = content as? EnvironmentValue {
-                result += try render(value: value)
+                result += escape(content: try render(value: value))
             }
             
             if let element = content as? String {
-                result += element
+                result += escape(content: (element))
             }
         }
         
@@ -177,11 +189,11 @@ public class Renderer {
                 }
                 
                 if let value = content as? EnvironmentValue {
-                    result += try render(value: value)
+                    result += escape(content: try render(value: value))
                 }
                 
                 if let element = content as? String {
-                    result += element
+                    result += escape(content: element)
                 }
             }
         }
@@ -209,12 +221,30 @@ public class Renderer {
     
     /// Renders a document element
     internal func render(element: some DocumentNode) -> String {
-        return "<!DOCTYPE \(element.content)>"
+        
+        var result = ""
+        
+        result += "<!DOCTYPE "
+        
+        result += element.content
+        
+        result += ">"
+        
+        return result
     }
     
     /// Renders a comment element
     internal func render(element: some CommentNode) -> String {
-        return "<!--\(element.content)-->"
+        
+        var result = ""
+        
+        result += "<!--"
+        
+        result += escape(content: element.content)
+        
+        result += "-->"
+        
+        return result
     }
     
     /// Renders a content element
@@ -266,8 +296,12 @@ public class Renderer {
                     result += try render(stringkey: stringkey)
                 }
                 
+                if let value = content as? EnvironmentValue {
+                    result += escape(content: try render(value: value))
+                }
+                
                 if let element = content as? String {
-                    result += element
+                    result += escape(content: element)
                 }
             }
         }
@@ -348,7 +382,7 @@ public class Renderer {
             return String(doubleValue)
             
         case let stringValue as String:
-            return String(stringValue)
+            return stringValue
             
         case let dateValue as Date:
             
@@ -374,13 +408,38 @@ public class Renderer {
             result += " \(attribute.key)=\""
             
             if let value = attribute.value as? EnvironmentValue {
-                result += "\(try render(value: value))\""
+                result += escape(attribute: try render(value: value))
                 
             } else {
-                result += "\(attribute.value)\""
+                result += escape(attribute: "\(attribute.value)")
             }
+            
+            result += "\""
         }
         
         return result
+    }
+    
+    /// Converts specific charaters into encoded values.
+    internal func escape(attribute value: String) -> String {
+        
+        if security.autoEscaping {
+            return value.replacingOccurrences(of: "&", with: "&amp;")
+                .replacingOccurrences(of: "\"", with: "&quot;")
+                .replacingOccurrences(of: "'", with: "&apos;")
+        }
+        
+        return value
+    }
+    
+    /// Converts specific charaters into encoded values.
+    internal func escape(content value: String) -> String {
+        
+        if security.autoEscaping {
+            return value.replacingOccurrences(of: "<", with: "&lt;")
+                .replacingOccurrences(of: ">", with: "&gt;")
+        }
+        
+        return value
     }
 }

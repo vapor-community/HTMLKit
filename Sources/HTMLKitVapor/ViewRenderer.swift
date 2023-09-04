@@ -16,10 +16,10 @@ public class ViewRenderer {
     internal var renderer: Renderer
     
     /// Creates the view renderer
-    public init(eventLoop: EventLoop, localization: HTMLKit.Localization, environment: HTMLKit.Environment) {
+    public init(eventLoop: EventLoop, localization: Localization, environment: HTMLKit.Environment, security: Security) {
         
         self.eventLoop = eventLoop
-        self.renderer = Renderer(localization: localization, environment: environment)
+        self.renderer = Renderer(localization: localization, environment: environment, security: security)
     }
     
     /// Renders a layout and its context
