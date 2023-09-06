@@ -1,6 +1,8 @@
 import HTMLKit
 
-public struct Navigation: View, Modifiable {
+public struct Navigation: View, Modifiable, Identifiable {
+    
+    internal var id: String?
     
     internal var content: [BodyElement]
     
@@ -12,10 +14,11 @@ public struct Navigation: View, Modifiable {
         self.classes = ["navigation"]
     }
     
-    internal init(content: [BodyElement], classes: [String]) {
+    internal init(content: [BodyElement], classes: [String], id: String?) {
         
         self.content = content
         self.classes = classes
+        self.id = id
     }
     
     public var body: Content {
@@ -23,6 +26,9 @@ public struct Navigation: View, Modifiable {
             content
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
     }
     
     /// Sets the style for the list.
@@ -32,6 +38,10 @@ public struct Navigation: View, Modifiable {
         newSelf.classes.append("style:\(style)")
         
         return newSelf
+    }
+    
+    public func tag(_ value: String) -> Navigation {
+        return self.mutate(id: value)
     }
 }
 

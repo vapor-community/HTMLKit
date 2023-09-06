@@ -31,12 +31,13 @@ public struct Button: View, Modifiable, Actionable {
     }
     
     /// Creates a action button.
-    internal init(role: HTMLKit.Values.Button, content: [Content], classes: [String], events: [String]?) {
+    internal init(role: HTMLKit.Values.Button, content: [Content], classes: [String], events: [String]?, id: String?) {
         
         self.role = role
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -53,6 +54,10 @@ public struct Button: View, Modifiable, Actionable {
                 events
             }
         }
+    }
+    
+    public func tag(_ value: String) -> Button {
+        return self.mutate(id: value)
     }
 }
 
@@ -81,10 +86,6 @@ extension Button: ButtonModifier {
 }
 
 extension Button: PressEvent {
-    
-    public func tag(_ value: String) -> Button {
-        return self.mutate(id: value)
-    }
     
     public func onClick(@StringBuilder action: (ViewAction) -> [String]) -> Button {
         return self.mutate(clickevent: action(self))
@@ -152,7 +153,9 @@ extension Button: ViewModifier {
 }
 
 /// A component that initiates an action.
-public struct LinkButton: View, Modifiable {
+public struct LinkButton: View, Modifiable, Identifiable {
+    
+    internal var id: String?
     
     internal let target: HTMLKit.Values.Target
     
@@ -187,13 +190,14 @@ public struct LinkButton: View, Modifiable {
     }
     
     /// Creates a action button.
-    internal init(destination: String, target: HTMLKit.Values.Target, content: [Content], classes: [String], events: [String]?) {
+    internal init(destination: String, target: HTMLKit.Values.Target, content: [Content], classes: [String], events: [String]?, id: String?) {
         
         self.destination = destination
         self.target = target
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -204,6 +208,13 @@ public struct LinkButton: View, Modifiable {
         .target(target)
         .class(self.classes.joined(separator: " "))
         .role(.button)
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+    }
+    
+    public func tag(_ value: String) -> LinkButton {
+        return self.mutate(id: value)
     }
 }
 

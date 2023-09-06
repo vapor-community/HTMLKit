@@ -57,13 +57,13 @@ public struct Grid: View, Modifiable, Actionable {
         
         return newSelf
     }
-}
-
-extension Grid: MouseEvent, ViewAction {
     
     public func tag(_ value: String) -> Grid {
         return self.mutate(id: value)
     }
+}
+
+extension Grid: MouseEvent, ViewAction {
 
     public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> Grid {
         return self.mutate(hoverevent: action(self))

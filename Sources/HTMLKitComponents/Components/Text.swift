@@ -54,13 +54,13 @@ public struct Text: View, Actionable, Modifiable {
             }
         }
     }
-}
-
-extension Text: MouseEvent {
     
     public func tag(_ value: String) -> Text {
         return self.mutate(id: value)
     }
+}
+
+extension Text: MouseEvent {
     
     public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> Text {
         return self.mutate(hoverevent: action(self))

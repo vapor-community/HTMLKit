@@ -103,7 +103,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="text" id="name" name="name" class="textfield">
+                       <input type="text" name="name" class="textfield">
                        """
         )
     }
@@ -118,7 +118,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <textarea id="name" name="name" class="texteditor" rows="3">value</textarea>
+                       <textarea name="name" class="texteditor" rows="3">value</textarea>
                        """
         )
     }
@@ -131,7 +131,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="range" id="name" name="name" class="slider">
+                       <input type="range" name="name" class="slider">
                        """
         )
     }
@@ -145,7 +145,7 @@ final class ComponentTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div class="datepicker">\
-                       <input type="text" class="datepicker-datefield" id="name" name="name">\
+                       <input type="text" class="datepicker-datefield" name="name">\
                        <div class="datepicker-calendar">\
                        <ul class="calendar-navigation">\
                        <li>\
@@ -190,7 +190,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="password" id="password" name="password" class="securefield">
+                       <input type="password" name="password" class="securefield">
                        """
         )
     }
@@ -275,7 +275,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="file" id="avatar" name="avatar" class="filedialog">
+                       <input type="file" name="avatar" class="filedialog">
                        """
         )
     }

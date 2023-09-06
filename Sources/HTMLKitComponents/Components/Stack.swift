@@ -59,13 +59,13 @@ public struct HStack: View, Actionable, Modifiable {
         
         return newSelf
     }
-}
-
-extension HStack: MouseEvent {
     
     public func tag(_ value: String) -> HStack {
         return self.mutate(id: value)
     }
+}
+
+extension HStack: MouseEvent {
     
     public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> HStack {
         return self.mutate(hoverevent: action(self))
@@ -180,13 +180,13 @@ public struct VStack: View, Actionable, Modifiable {
         
         return newSelf
     }
-}
-
-extension VStack: MouseEvent {
     
     public func tag(_ value: String) -> VStack {
         return self.mutate(id: value)
     }
+}
+
+extension VStack: MouseEvent {
     
     public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> VStack {
         return self.mutate(hoverevent: action(self))
@@ -292,13 +292,13 @@ public struct ZStack: View, Actionable, Modifiable {
             }
         }
     }
-}
-
-extension ZStack: MouseEvent {
     
     public func tag(_ value: String) -> ZStack {
         return self.mutate(id: value)
     }
+}
+
+extension ZStack: MouseEvent {
     
     public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> ZStack {
         return self.mutate(hoverevent: action(self))

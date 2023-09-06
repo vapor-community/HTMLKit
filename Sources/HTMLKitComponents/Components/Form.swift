@@ -60,13 +60,13 @@ public struct Form: View, Actionable {
             }
         }
     }
-}
-
-extension Form: FormEvent {
-
+    
     public func tag(_ value: String) -> Form {
         return self.mutate(id: value)
     }
+}
+
+extension Form: FormEvent {
     
     public func onSubmit(@StringBuilder action: (SubmitAction) -> [String]) -> Form {
         return self.mutate(submitevent: action(self))
@@ -115,7 +115,9 @@ public struct FieldLabel: View {
 }
 
 /// A component that displays an editable form control.
-public struct TextField: View, Modifiable {
+public struct TextField: View, Modifiable, Identifiable {
+    
+    internal var id: String?
     
     /// The identifier of the field.
     internal let name: String
@@ -142,27 +144,34 @@ public struct TextField: View, Modifiable {
     }
     
     /// Creates a text field.
-    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?) {
+    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?, id: String?) {
         
         self.name = name
         self.prompt = prompt
         self.value = value
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
         Input()
             .type(.text)
-            .id(name)
             .name(name)
             .class(classes.joined(separator: " "))
+            .modify(unwrap: id) {
+                $0.id($1)
+            }
             .modify(unwrap: value) {
                 $0.value($1)
             }
             .modify(unwrap: prompt) {
                 $0.placeholder($1)
             }
+    }
+    
+    public func tag(_ value: String) -> TextField {
+        return self.mutate(id: value)
     }
 }
 
@@ -235,7 +244,9 @@ extension TextField: ViewModifier {
 }
 
 /// A component that displays a editable and expandable form control.
-public struct TextEditor: View, Modifiable {
+public struct TextEditor: View, Modifiable, Identifiable {
+    
+    internal var id: String?
     
     /// The identifier of the editor.
     internal let name: String
@@ -265,7 +276,7 @@ public struct TextEditor: View, Modifiable {
     }
     
     /// Creates a text editor.
-    internal init(name: String, prompt: String?, rows: Int, content: [String], classes: [String], events: [String]?) {
+    internal init(name: String, prompt: String?, rows: Int, content: [String], classes: [String], events: [String]?, id: String?) {
         
         self.name = name
         self.prompt = prompt
@@ -273,14 +284,17 @@ public struct TextEditor: View, Modifiable {
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
         TextArea {
             content
         }
-        .id(name)
         .name(name)
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
         .class(classes.joined(separator: " "))
         .rows(rows)
         .modify(unwrap: prompt) {
@@ -295,6 +309,10 @@ public struct TextEditor: View, Modifiable {
         newSelf.rows = value
         
         return newSelf
+    }
+    
+    public func tag(_ value: String) -> TextEditor {
+        return self.mutate(id: value)
     }
 }
 
@@ -366,7 +384,9 @@ extension TextEditor: ViewModifier {
     }
 }
 
-public struct Picker: View, Modifiable {
+public struct Picker: View, Modifiable, Identifiable {
+    
+    internal var id: String?
 
     internal let name: String
     
@@ -392,6 +412,13 @@ public struct Picker: View, Modifiable {
             }
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+    }
+    
+    public func tag(_ value: String) -> Picker {
+        return self.mutate(id: value)
     }
 }
 
@@ -459,8 +486,8 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
         .class(classes.joined(separator: " "))
     }
     
-    public func tag(_ identifier: String) -> CheckField {
-        self.mutate(id: identifier)
+    public func tag(_ value: String) -> CheckField {
+        self.mutate(id: value)
     }
 }
 
@@ -596,8 +623,8 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
         .class(classes.joined(separator: " "))
     }
     
-    public func tag(_ identifier: String) -> RadioSelect {
-        self.mutate(id: identifier)
+    public func tag(_ value: String) -> RadioSelect {
+        self.mutate(id: value)
     }
 }
 
@@ -670,7 +697,9 @@ extension RadioSelect: ViewModifier {
 }
 
 /// A component that displays
-public struct SelectField: View, Modifiable {
+public struct SelectField: View, Modifiable, Identifiable {
+    
+    internal var id: String?
     
     /// The identifier of the field.
     internal let name: String
@@ -696,13 +725,14 @@ public struct SelectField: View, Modifiable {
     }
     
     /// Creates a select field.
-    internal init(name: String, selection: String?, content: [Selectable], classes: [String], events: [String]?) {
+    internal init(name: String, selection: String?, content: [Selectable], classes: [String], events: [String]?, id: String?) {
         
         self.name = name
         self.selection = selection
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -719,6 +749,13 @@ public struct SelectField: View, Modifiable {
             .class("selectfield-optionlist")
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+    }
+    
+    public func tag(_ value: String) -> SelectField {
+        return self.mutate(id: value)
     }
 }
 
@@ -791,7 +828,9 @@ extension SelectField: ViewModifier {
 }
 
 /// A component that displays
-public struct SecureField: View, Modifiable {
+public struct SecureField: View, Modifiable, Identifiable {
+    
+    internal var id: String?
     
     /// The identifier of the field.
     internal let name: String
@@ -818,20 +857,23 @@ public struct SecureField: View, Modifiable {
     }
     
     /// Creates a password field.
-    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?) {
+    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?, id: String?) {
         
         self.name = name
         self.prompt = prompt
         self.value = value
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
         Input()
             .type(.password)
-            .id(name)
             .name(name)
+            .modify(unwrap: id) {
+                $0.id($1)
+            }
             .class(classes.joined(separator: " "))
             .modify(unwrap: value) {
                 $0.value($1)
@@ -839,6 +881,10 @@ public struct SecureField: View, Modifiable {
             .modify(unwrap: prompt) {
                 $0.placeholder($1)
             }
+    }
+    
+    public func tag(_ value: String) -> SecureField {
+        return self.mutate(id: value)
     }
 }
 
@@ -911,7 +957,9 @@ extension SecureField: ViewModifier {
 }
 
 /// A component that displays
-public struct Slider: View, Modifiable {
+public struct Slider: View, Modifiable, Identifiable {
+    
+    internal var id: String?
     
     /// The identifier of the slider.
     internal let name: String
@@ -930,19 +978,26 @@ public struct Slider: View, Modifiable {
     }
     
     /// Creates a slider.
-    internal init(name: String, classes: [String], events: [String]?) {
+    internal init(name: String, classes: [String], events: [String]?, id: String?) {
         
         self.name = name
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
         Input()
             .type(.range)
-            .id(name)
             .name(name)
             .class(classes.joined(separator: " "))
+            .modify(unwrap: id) {
+                $0.id($1)
+            }
+    }
+    
+    public func tag(_ value: String) -> Slider {
+        return self.mutate(id: value)
     }
 }
 
@@ -1015,7 +1070,9 @@ extension Slider: ViewModifier {
 }
 
 /// A component that displays
-public struct DatePicker: View, Modifiable {
+public struct DatePicker: View, Modifiable, Identifiable {
+    
+    internal var id: String?
     
     /// The identifier of the picker.
     internal let name: String
@@ -1038,12 +1095,13 @@ public struct DatePicker: View, Modifiable {
     }
     
     /// Creates a date picker.
-    internal init(name: String, value: String?, classes: [String], events: [String]?) {
+    internal init(name: String, value: String?, classes: [String], events: [String]?, id: String?) {
         
         self.name = name
         self.value = value
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -1051,7 +1109,6 @@ public struct DatePicker: View, Modifiable {
             Input()
                 .type(.text)
                 .class("datepicker-datefield")
-                .id(name)
                 .name(name)
                 .modify(unwrap: value) {
                     $0.value($1)
@@ -1059,6 +1116,9 @@ public struct DatePicker: View, Modifiable {
             self.calendar
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
     }
     
     public var calendar: Content {
@@ -1206,7 +1266,9 @@ extension DatePicker: ViewModifier {
 }
 
 /// A component that displays
-public struct SearchField: View, Modifiable {
+public struct SearchField: View, Modifiable, Identifiable {
+    
+    internal var id: String?
     
     /// The identifier of the search field.
     internal let name: String
@@ -1233,20 +1295,23 @@ public struct SearchField: View, Modifiable {
     }
     
     /// Creates a search field.
-    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?) {
+    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?, id: String?) {
         
         self.name = name
         self.prompt = prompt
         self.value = value
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
         Input()
             .type(.search)
-            .id(name)
             .name(name)
+            .modify(unwrap: id) {
+                $0.id($1)
+            }
             .class(classes.joined(separator: " "))
             .modify(unwrap: value) {
                 $0.value($1)
@@ -1254,6 +1319,10 @@ public struct SearchField: View, Modifiable {
             .modify(unwrap: prompt) {
                 $0.placeholder($1)
             }
+    }
+    
+    public func tag(_ value: String) -> SearchField {
+        return self.mutate(id: value)
     }
 }
 
@@ -1326,7 +1395,9 @@ extension SearchField: ViewModifier {
 }
 
 /// A component that displays the progress of a task.
-public struct Progress: View {
+public struct Progress: View, Identifiable {
+    
+    internal var id: String?
     
     internal let maximum: Float
     
@@ -1351,13 +1422,14 @@ public struct Progress: View {
     }
     
     /// Creates a progress bar.
-    internal init(maximum: Float, value: String, content: [Content], classes: [String], events: [String]?) {
+    internal init(maximum: Float, value: String, content: [Content], classes: [String], events: [String]?, id: String?) {
         
         self.maximum = maximum
         self.value = value
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -1367,11 +1439,20 @@ public struct Progress: View {
         .value(value)
         .maximum(maximum)
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+    }
+    
+    public func tag(_ value: String) -> Progress {
+        return self.mutate(id: value)
     }
 }
 
 /// A component to edit and format text content.
-public struct TextPad: View, Modifiable {
+public struct TextPad: View, Modifiable, Identifiable {
+    
+    internal var id: String?
     
     /// The identifier of the textpad.
     internal let name: String
@@ -1398,13 +1479,14 @@ public struct TextPad: View, Modifiable {
     }
     
     /// Creates a textpad.
-    internal init(name: String, prompt: String?, rows: Int, content: [String], classes: [String]) {
+    internal init(name: String, prompt: String?, rows: Int, content: [String], classes: [String], id: String?) {
         
         self.name = name
         self.prompt = prompt
         self.rows = rows
         self.content = content
         self.classes = classes
+        self.id = id
     }
     
     public var body: Content {
@@ -1455,12 +1537,14 @@ public struct TextPad: View, Modifiable {
             TextArea {
                 content
             }
-            .id(name)
             .name(name)
             .rows(rows)
             .class("textpad-content")
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
     }
     
     /// Sets the limit of the maximum lines.
@@ -1470,6 +1554,10 @@ public struct TextPad: View, Modifiable {
         newSelf.rows = value
         
         return newSelf
+    }
+    
+    public func tag(_ value: String) -> TextPad {
+        return self.mutate(id: value)
     }
 }
 
@@ -1542,7 +1630,9 @@ extension TextPad: ViewModifier {
 }
 
 /// A component that displays
-public struct FileDialog: View, Modifiable {
+public struct FileDialog: View, Modifiable, Identifiable {
+    
+    internal var id: String?
     
     /// The identifier of the search field.
     internal let name: String
@@ -1561,19 +1651,26 @@ public struct FileDialog: View, Modifiable {
     }
     
     /// Creates a search field.
-    internal init(name: String, classes: [String], events: [String]?) {
+    internal init(name: String, classes: [String], events: [String]?, id: String?) {
         
         self.name = name
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
         Input()
             .type(.file)
-            .id(name)
             .name(name)
             .class(classes.joined(separator: " "))
+            .modify(unwrap: id) {
+                $0.id($1)
+            }
+    }
+    
+    public func tag(_ value: String) -> FileDialog {
+        return self.mutate(id: value)
     }
 }
 

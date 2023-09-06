@@ -6,7 +6,9 @@
 import HTMLKit
 
 /// A component that displays code content.
-public struct Snippet: View, Modifiable {
+public struct Snippet: View, Modifiable, Identifiable {
+    
+    internal var id: String?
     
     /// The content of the snippet.
     internal var content: [Content]
@@ -30,10 +32,11 @@ public struct Snippet: View, Modifiable {
     }
     
     /// Creates a snippet.
-    internal init(content: [Content], classes: [String]) {
+    internal init(content: [Content], classes: [String], id: String?) {
         
         self.content = content
         self.classes = classes
+        self.id = id
     }
     
     public var body: Content {
@@ -41,6 +44,13 @@ public struct Snippet: View, Modifiable {
             content
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+    }
+    
+    public func tag(_ value: String) -> Snippet {
+        return self.mutate(id: value)
     }
 }
 

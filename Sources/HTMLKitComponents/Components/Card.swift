@@ -6,7 +6,9 @@
 import HTMLKit
 
 /// A component that distinguish content.
-public struct Card: View, Modifiable {
+public struct Card: View, Modifiable, Identifiable {
+    
+    internal var id: String?
     
     /// The header of the card.
     public var header: [Content]?
@@ -34,11 +36,12 @@ public struct Card: View, Modifiable {
     }
     
     /// Creates a card.
-    internal init(header: [Content]?, content: [Content], classes: [String]) {
+    internal init(header: [Content]?, content: [Content], classes: [String], id: String?) {
         
         self.header = header
         self.content = content
         self.classes = classes
+        self.id = id
     }
     
     public var body: Content {
@@ -53,6 +56,13 @@ public struct Card: View, Modifiable {
             .class("card-body")
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+    }
+    
+    public func tag(_ value: String) -> Card {
+        return self.mutate(id: value)
     }
 }
 

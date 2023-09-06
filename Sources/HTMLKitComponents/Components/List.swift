@@ -57,13 +57,13 @@ public struct List: View, Modifiable, Actionable {
         
         return newSelf
     }
-}
-
-extension List: MouseEvent, ViewAction {
     
     public func tag(_ value: String) -> List {
         return self.mutate(id: value)
     }
+}
+
+extension List: MouseEvent, ViewAction {
 
     public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> List {
         return self.mutate(hoverevent: action(self))
@@ -206,13 +206,13 @@ public struct ListRow: View, Modifiable, Actionable {
         
         return self.mutate(classes: classes)
     }
-}
-
-extension ListRow: MouseEvent, ViewAction {
     
     public func tag(_ value: String) -> ListRow {
         return self.mutate(id: value)
     }
+}
+
+extension ListRow: MouseEvent, ViewAction {
     
     public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> ListRow {
         return self.mutate(hoverevent: action(self))

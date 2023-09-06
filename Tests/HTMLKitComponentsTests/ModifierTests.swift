@@ -279,7 +279,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="text" id="textfield" name="textfield" class="textfield focus:gray">
+                       <input type="text" name="textfield" class="textfield focus:gray">
                        """
         )
     }

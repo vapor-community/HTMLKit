@@ -6,7 +6,9 @@
 import HTMLKit
 
 /// A compnonent that cycles through an amount of views.
-public struct Carousel: View {
+public struct Carousel: View, Identifiable {
+    
+    internal var id: String?
     
     /// The indication for the carousel.
     internal var indication: [Content]
@@ -27,11 +29,12 @@ public struct Carousel: View {
     }
     
     /// Creates a carousel.
-    internal init(indication: [Content], content: [Content], classes: [String]) {
+    internal init(indication: [Content], content: [Content], classes: [String], id: String?) {
         
         self.indication = indication
         self.content = content
         self.classes = classes
+        self.id = id
     }
     
     public var body: Content {
@@ -46,6 +49,9 @@ public struct Carousel: View {
             .class("carousel-indication")
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
     }
 }
 
