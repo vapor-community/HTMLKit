@@ -47,6 +47,10 @@
     justify-content: space-evenly;
 }
 
+.hstack.space\:center {
+    justify-content: center;
+}
+
 .hstack.space\:large {
     gap: 2.25rem;
 }
@@ -101,6 +105,10 @@
 
 .vstack.space\:evenly {
     justify-content: space-evenly;
+}
+
+.vstack.space\:center {
+    justify-content: center;
 }
 
 .vstack.space\:large {

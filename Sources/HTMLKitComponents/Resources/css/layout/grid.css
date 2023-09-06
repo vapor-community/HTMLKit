@@ -69,6 +69,10 @@
     justify-content: space-evenly;
 }
 
+.grid.space\:center {
+    justify-content: center;
+}
+
 .grid.space\:large {
     gap: 2.25rem;
 }
