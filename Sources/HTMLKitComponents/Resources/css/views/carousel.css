@@ -15,8 +15,10 @@
 .carousel {
     --borderWidth: 1px;
     --borderRadius: 10px;
-    --borderColor: 0, 0%, 0%;
-    --backgroundColor: transparent;
+    --borderColor: 210, 14%, 89%;
+    --borderOpacity: 1.0;
+    --backgroundColor: 0, 0%, 0%;
+    --backgroundOpacity: 0.0;
     
     display: flex;
     flex-direction: column;
@@ -31,8 +33,8 @@
     block-size: 350px;
     border-width: var(--borderWidth);
     border-style: solid;
-    border-color: hsla(var(--borderColor), 1.0);
-    background-color: hsla(var(--backgroundColor), 1.0);
+    border-color: hsla(var(--borderColor), var(--borderOpacity));
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     overflow: hidden;
 }
 
