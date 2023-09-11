@@ -63,14 +63,14 @@ public struct Grid: View, Modifiable, Actionable {
     }
 }
 
-extension Grid: MouseEvent, ViewAction {
+extension Grid: MouseEvent {
 
-    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> Grid {
-        return self.mutate(hoverevent: action(self))
+    public func onHover(@ActionBuilder action: (ViewAction) -> [Action]) -> Grid {
+        return self.mutate(hoverevent: action(.init()))
     }
     
-    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> Grid {
-        return self.mutate(leaveevent: action(self))
+    public func onLeave(@ActionBuilder action: (ViewAction) -> [Action]) -> Grid {
+        return self.mutate(leaveevent: action(.init()))
     }
 }
 

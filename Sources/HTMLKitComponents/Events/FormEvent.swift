@@ -4,24 +4,24 @@
  */
 
 /// A type that describes the modifier of a form component.
-public protocol FormEvent: SubmitAction {
+public protocol FormEvent {
     
     /// The identifier of the component.
     func tag(_ value: String) -> Self
     
     /// Acts on a submit event.
-    func onSubmit(@StringBuilder action: (SubmitAction) -> [String]) -> Self
+    func onSubmit(@ActionBuilder action: (SubmitAction) -> [Action]) -> Self
 }
 
 extension FormEvent where Self: Actionable {
     
-    internal func mutate(submitevent actions: [String]) -> Self {
+    internal func mutate(submitevent actions: [Action]) -> Self {
         
         var validation = false
         
         for action in actions {
             
-            if action.contains("validate") {
+            if action.description.contains("validate") {
                 validation = true
             }
         }
@@ -33,7 +33,7 @@ extension FormEvent where Self: Actionable {
         let event = """
                 $('#\(identifier)').onSubmit(function(){\
                 event.preventDefault();\
-                \(actions.joined())\
+                \(actions.map { $0.description }.joined())\
                 },\(validation));
                 """
         

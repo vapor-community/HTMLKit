@@ -87,16 +87,16 @@ extension Button: ButtonModifier {
 
 extension Button: PressEvent {
     
-    public func onClick(@StringBuilder action: (ViewAction) -> [String]) -> Button {
-        return self.mutate(clickevent: action(self))
+    public func onClick(@ActionBuilder action: (ViewAction) -> [Action]) -> Button {
+        return self.mutate(clickevent: action(.init()))
     }
     
-    public func onTap(@StringBuilder action: (ViewAction) -> [String]) -> Button {
-        return self.mutate(tapevent: action(self))
+    public func onTap(@ActionBuilder action: (ViewAction) -> [Action]) -> Button {
+        return self.mutate(tapevent: action(.init()))
     }
     
-    public func onPress(@StringBuilder action: (ViewAction) -> [String]) -> Button {
-        return self.mutate(pressevent: action(self))
+    public func onPress(@ActionBuilder action: (ViewAction) -> [Action]) -> Button {
+        return self.mutate(pressevent: action(.init()))
     }
 }
 

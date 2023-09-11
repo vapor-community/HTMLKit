@@ -68,8 +68,8 @@ public struct Form: View, Actionable {
 
 extension Form: FormEvent {
     
-    public func onSubmit(@StringBuilder action: (SubmitAction) -> [String]) -> Form {
-        return self.mutate(submitevent: action(self))
+    public func onSubmit(@ActionBuilder action: (SubmitAction) -> [Action]) -> Form {
+        return self.mutate(submitevent: action(.init()))
     }
 }
 

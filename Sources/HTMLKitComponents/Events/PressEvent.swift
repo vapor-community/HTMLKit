@@ -4,24 +4,24 @@
  */
 
 /// A type thats describes the modifier of a pressable component.
-public protocol PressEvent: ViewAction {
+public protocol PressEvent {
     
     /// The identifier of the component.
     func tag(_ value: String) -> Self
     
     /// Acts on a click event.
-    func onClick(@StringBuilder action: (ViewAction) -> [String]) -> Self
+    func onClick(@ActionBuilder action: (ViewAction) -> [Action]) -> Self
     
     /// Acts on a tap event.
-    func onTap(@StringBuilder action: (ViewAction) -> [String]) -> Self
+    func onTap(@ActionBuilder action: (ViewAction) -> [Action]) -> Self
     
     /// Acts on a press event.
-    func onPress(@StringBuilder action: (ViewAction) -> [String]) -> Self
+    func onPress(@ActionBuilder action: (ViewAction) -> [Action]) -> Self
 }
 
 extension PressEvent where Self: Actionable {
     
-    internal func mutate(clickevent actions: [String]) -> Self {
+    internal func mutate(clickevent actions: [Action]) -> Self {
         
         guard let identifier = self.id else {
             fatalError("Initiative identifier unkown.")
@@ -29,14 +29,14 @@ extension PressEvent where Self: Actionable {
         
         let event = """
                 $('#\(identifier)').onClick(function(){\
-                \(actions.joined())\
+                \(actions.map { $0.description }.joined())\
                 });
                 """
         
         return self.mutate(event: event)
     }
     
-    internal func mutate(tapevent actions: [String]) -> Self {
+    internal func mutate(tapevent actions: [Action]) -> Self {
         
         guard let identifier = self.id else {
             fatalError("Initiative identifier unkown.")
@@ -44,14 +44,14 @@ extension PressEvent where Self: Actionable {
         
         let event = """
                 $('#\(identifier)').onTapGesture(function(){\
-                \(actions.joined())\
+                \(actions.map { $0.description }.joined())\
                 });
                 """
         
         return self.mutate(event: event)
     }
     
-    internal func mutate(pressevent actions: [String]) -> Self {
+    internal func mutate(pressevent actions: [Action]) -> Self {
         
         guard let identifier = self.id else {
             fatalError("Initiative identifier unkown.")
@@ -59,7 +59,7 @@ extension PressEvent where Self: Actionable {
         
         let event = """
                 $('#\(identifier)').onLongPressGesture(function(){\
-                \(actions.joined())\
+                \(actions.map { $0.description }.joined())\
                 });
                 """
         

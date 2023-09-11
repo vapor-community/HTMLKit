@@ -62,27 +62,27 @@ public struct Text: View, Actionable, Modifiable {
 
 extension Text: MouseEvent {
     
-    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> Text {
-        return self.mutate(hoverevent: action(self))
+    public func onHover(@ActionBuilder action: (ViewAction) -> [Action]) -> Text {
+        return self.mutate(hoverevent: action(.init()))
     }
     
-    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> Text {
-        return self.mutate(leaveevent: action(self))
+    public func onLeave(@ActionBuilder action: (ViewAction) -> [Action]) -> Text {
+        return self.mutate(leaveevent: action(.init()))
     }
 }
 
 extension Text: PressEvent {
 
-    public func onClick(@StringBuilder action: (ViewAction) -> [String]) -> Text {
-        return self.mutate(clickevent: action(self))
+    public func onClick(@ActionBuilder action: (ViewAction) -> [Action]) -> Text {
+        return self.mutate(clickevent: action(.init()))
     }
     
-    public func onTap(@StringBuilder action: (ViewAction) -> [String]) -> Text {
-        return self.mutate(tapevent: action(self))
+    public func onTap(@ActionBuilder action: (ViewAction) -> [Action]) -> Text {
+        return self.mutate(tapevent: action(.init()))
     }
     
-    public func onPress(@StringBuilder action: (ViewAction) -> [String]) -> Text {
-        return self.mutate(pressevent: action(self))
+    public func onPress(@ActionBuilder action: (ViewAction) -> [Action]) -> Text {
+        return self.mutate(pressevent: action(.init()))
     }
 }
 
@@ -222,16 +222,5 @@ extension Text: ViewModifier {
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Text {
         return self.mutate(margin: length.value, insets: insets)
-    }
-}
-
-extension Text: ViewAction {
-    
-    public func show(_ target: String) -> String {
-        return "$('#\(target)').show();"
-    }
-    
-    public func open(_ target: String) -> String {
-        return "$('#\(target)').open();"
     }
 }

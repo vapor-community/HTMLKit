@@ -67,12 +67,12 @@ public struct HStack: View, Actionable, Modifiable {
 
 extension HStack: MouseEvent {
     
-    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> HStack {
-        return self.mutate(hoverevent: action(self))
+    public func onHover(@ActionBuilder action: (ViewAction) -> [Action]) -> HStack {
+        return self.mutate(hoverevent: action(.init()))
     }
     
-    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> HStack {
-        return self.mutate(leaveevent: action(self))
+    public func onLeave(@ActionBuilder action: (ViewAction) -> [Action]) -> HStack {
+        return self.mutate(leaveevent: action(.init()))
     }
 }
 
@@ -188,12 +188,12 @@ public struct VStack: View, Actionable, Modifiable {
 
 extension VStack: MouseEvent {
     
-    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> VStack {
-        return self.mutate(hoverevent: action(self))
+    public func onHover(@ActionBuilder action: (ViewAction) -> [Action]) -> VStack {
+        return self.mutate(hoverevent: action(.init()))
     }
     
-    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> VStack {
-        return self.mutate(leaveevent: action(self))
+    public func onLeave(@ActionBuilder action: (ViewAction) -> [Action]) -> VStack {
+        return self.mutate(leaveevent: action(.init()))
     }
 }
 
@@ -300,12 +300,12 @@ public struct ZStack: View, Actionable, Modifiable {
 
 extension ZStack: MouseEvent {
     
-    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> ZStack {
-        return self.mutate(hoverevent: action(self))
+    public func onHover(@ActionBuilder action: (ViewAction) -> [Action]) -> ZStack {
+        return self.mutate(hoverevent: action(.init()))
     }
     
-    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> ZStack {
-        return self.mutate(leaveevent: action(self))
+    public func onLeave(@ActionBuilder action: (ViewAction) -> [Action]) -> ZStack {
+        return self.mutate(leaveevent: action(.init()))
     }
 }
 

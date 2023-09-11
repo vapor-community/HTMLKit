@@ -63,14 +63,14 @@ public struct List: View, Modifiable, Actionable {
     }
 }
 
-extension List: MouseEvent, ViewAction {
+extension List: MouseEvent {
 
-    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> List {
-        return self.mutate(hoverevent: action(self))
+    public func onHover(@ActionBuilder action: (ViewAction) -> [Action]) -> List {
+        return self.mutate(hoverevent: action(.init()))
     }
     
-    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> List {
-        return self.mutate(leaveevent: action(self))
+    public func onLeave(@ActionBuilder action: (ViewAction) -> [Action]) -> List {
+        return self.mutate(leaveevent: action(.init()))
     }
 }
 
@@ -212,13 +212,13 @@ public struct ListRow: View, Modifiable, Actionable {
     }
 }
 
-extension ListRow: MouseEvent, ViewAction {
+extension ListRow: MouseEvent {
     
-    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> ListRow {
-        return self.mutate(hoverevent: action(self))
+    public func onHover(@ActionBuilder action: (ViewAction) -> [Action]) -> ListRow {
+        return self.mutate(hoverevent: action(.init()))
     }
     
-    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> ListRow {
-        return self.mutate(leaveevent: action(self))
+    public func onLeave(@ActionBuilder action: (ViewAction) -> [Action]) -> ListRow {
+        return self.mutate(leaveevent: action(.init()))
     }
 }
