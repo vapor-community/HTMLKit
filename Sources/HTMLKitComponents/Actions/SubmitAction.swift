@@ -1,5 +1,3 @@
-import Foundation
-
 public struct SubmitAction: Action {
     
     public var actions: [String] = []
@@ -8,15 +6,13 @@ public struct SubmitAction: Action {
         
         var newSelf = self
         
-        if let data = try? JSONEncoder().encode(validators) {
+        if !validators.isEmpty {
             
-            if let result = String(data: data, encoding: .utf8) {
-                
-                newSelf.actions.append("$('#\(target.escape())').validate('\(result)');")
-                
-                return newSelf
-            }
+            let result = validators.map { "{\"field\":\"\($0.field)\",\"rule\":\"\($0.rule)\"}" }
             
+            newSelf.actions.append("$('#\(target.escape())').validate('[\(result.joined(separator: ","))]');")
+            
+            return newSelf
         }
         
         newSelf.actions.append("$('#\(target.escape())').validate('[]');")
