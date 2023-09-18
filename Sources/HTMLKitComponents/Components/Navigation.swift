@@ -2,7 +2,7 @@ import HTMLKit
 
 public struct Navigation: View, Modifiable, Identifiable {
     
-    internal var id: String?
+    public var id: String?
     
     internal var content: [BodyElement]
     

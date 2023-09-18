@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that collects and arranges list items vertically.
 public struct List: View, Modifiable, Actionable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The content of the list.
     internal var content: [ListElement]
@@ -129,7 +129,7 @@ extension List: ViewModifier {
 /// A component that represents a list item.
 public struct ListRow: View, Modifiable, Actionable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The content of the row.
     internal var content: [Content]

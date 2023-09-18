@@ -7,7 +7,7 @@ import HTMLKit
 
 public struct Image: View, Modifiable, Identifiable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The url path of the image.
     internal let source: DynamicType

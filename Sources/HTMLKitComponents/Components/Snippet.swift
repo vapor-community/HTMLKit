@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that displays code content.
 public struct Snippet: View, Modifiable, Identifiable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The content of the snippet.
     internal var content: [Content]

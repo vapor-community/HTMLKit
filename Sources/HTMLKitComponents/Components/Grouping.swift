@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that collects content.
 public struct Grouping: View, Modifiable, Identifiable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The content of the group.
     internal var content: [Content]

@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that displays text.
 public struct Text: View, Actionable, Modifiable {
 
-    internal var id: String?
+    public var id: String?
     
     /// The content of the text.
     internal var content: [Content]

@@ -443,46 +443,22 @@ final class ComponentTests: XCTestCase {
     func testCarousel() throws {
         
         let view = TestView {
-            Carousel {} indication: {}
+            Carousel {
+                Slide {}
+                    .tag("slide")
+            }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div class="carousel">\
-                       <div class="carousel-content"></div>\
-                       <div class="carousel-indication"></div>\
-                       </div>
-                       """
-        )
-    }
-    
-    func testSlide() throws {
-        
-        let view = TestView {
-            Slide(source: "#") {}
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <div class="slide">\
-                       <div class="slide-thumbnail">\
-                       <img src="#">\
+                       <div class="carousel-content">\
+                       <div class="slide" id="slide"></div>\
                        </div>\
-                       <div class="slide-caption"></div>\
+                       <div class="carousel-indication">\
+                       <a class="indicator" href="#slide"></a>\
+                       </div>\
                        </div>
-                       """
-        )
-    }
-    
-    func testIndicator() throws {
-        
-        let view = TestView {
-            Indicator(for: "example")
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <a class="indicator" href="#example"></a>
                        """
         )
     }

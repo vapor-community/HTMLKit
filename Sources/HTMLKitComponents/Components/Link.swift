@@ -9,7 +9,7 @@ import Foundation
 /// A component that navigates to an target.
 public struct Link: View, Modifiable, Identifiable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The target for the destination
     internal let target: HTMLKit.Values.Target

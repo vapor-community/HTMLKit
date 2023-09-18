@@ -9,7 +9,7 @@ import HTMLKit
 public struct Form: View, Actionable {
     
     /// The identifier of the form.
-    internal var id: String?
+    public var id: String?
     
     internal var method: HTMLKit.Values.Method
     
@@ -117,7 +117,7 @@ public struct FieldLabel: View {
 /// A component that displays an editable form control.
 public struct TextField: View, Modifiable, Identifiable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The identifier of the field.
     internal let name: String
@@ -246,7 +246,7 @@ extension TextField: ViewModifier {
 /// A component that displays a editable and expandable form control.
 public struct TextEditor: View, Modifiable, Identifiable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The identifier of the editor.
     internal let name: String
@@ -386,7 +386,7 @@ extension TextEditor: ViewModifier {
 
 public struct Picker: View, Modifiable, Identifiable {
     
-    internal var id: String?
+    public var id: String?
 
     internal let name: String
     
@@ -426,7 +426,7 @@ public struct Picker: View, Modifiable, Identifiable {
 public struct CheckField: View, Modifiable, Selectable, Identifiable {
     
     /// The identifer for the label.
-    internal var id: String?
+    public var id: String?
     
     /// The identifier for the field.
     public var name: String?
@@ -563,7 +563,7 @@ extension CheckField: ViewModifier {
 public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
     
     /// The identifier for the label.
-    internal var id: String?
+    public var id: String?
     
     /// The identifier of the select.
     public var name: String?
@@ -699,7 +699,7 @@ extension RadioSelect: ViewModifier {
 /// A component that displays
 public struct SelectField: View, Modifiable, Identifiable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The identifier of the field.
     internal let name: String
@@ -830,7 +830,7 @@ extension SelectField: ViewModifier {
 /// A component that displays
 public struct SecureField: View, Modifiable, Identifiable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The identifier of the field.
     internal let name: String
@@ -959,7 +959,7 @@ extension SecureField: ViewModifier {
 /// A component that displays
 public struct Slider: View, Modifiable, Identifiable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The identifier of the slider.
     internal let name: String
@@ -1072,7 +1072,7 @@ extension Slider: ViewModifier {
 /// A component that displays
 public struct DatePicker: View, Modifiable, Identifiable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The identifier of the picker.
     internal let name: String
@@ -1268,7 +1268,7 @@ extension DatePicker: ViewModifier {
 /// A component that displays
 public struct SearchField: View, Modifiable, Identifiable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The identifier of the search field.
     internal let name: String
@@ -1397,7 +1397,7 @@ extension SearchField: ViewModifier {
 /// A component that displays the progress of a task.
 public struct Progress: View, Identifiable {
     
-    internal var id: String?
+    public var id: String?
     
     internal let maximum: Float
     
@@ -1452,7 +1452,7 @@ public struct Progress: View, Identifiable {
 /// A component to edit and format text content.
 public struct TextPad: View, Modifiable, Identifiable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The identifier of the textpad.
     internal let name: String
@@ -1632,7 +1632,7 @@ extension TextPad: ViewModifier {
 /// A component that displays
 public struct FileDialog: View, Modifiable, Identifiable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The identifier of the search field.
     internal let name: String
