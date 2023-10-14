@@ -7464,6 +7464,163 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
+/// The element represents a part that contains a set of controls to performing a search.
+///
+/// ```html
+/// <search></search>
+/// ```
+public struct Search: ContentNode, HtmlElement, BodyElement {
+    
+    internal var name: String { "search" }
+
+    internal var attributes: OrderedDictionary<String, Any>?
+
+    internal var content: [Content]
+
+    public init(@ContentBuilder<Content> content: () -> [Content]) {
+        self.content = content()
+    }
+    
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+        self.attributes = attributes
+        self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (Search) -> Search) -> Search {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: T?, element: (Search, T) -> Search) -> Search {
+        
+        guard let value = value else {
+            return self
+        }
+        
+        return self.modify(element(self, value as T))
+    }
+}
+
+extension Search: GlobalAttributes {
+    
+    public func accessKey(_ value: Character) -> Search {
+        return mutate(accesskey: value)
+    }
+    
+    public func autocapitalize(_ value: Values.Capitalization) -> Search {
+        return mutate(autocapitalize: value.rawValue)
+    }
+    
+    public func autofocus() -> Search {
+        return mutate(autofocus: "autofocus")
+    }
+    
+    public func `class`(_ value: String) -> Search {
+        return mutate(class: value)
+    }
+    
+    public func isEditable(_ value: Bool) -> Search {
+        return mutate(contenteditable: value)
+    }
+    
+    public func direction(_ value: Values.Direction) -> Search {
+        return mutate(dir: value.rawValue)
+    }
+    
+    public func isDraggable(_ value: Bool) -> Search {
+        return mutate(draggable: value)
+    }
+    
+    public func enterKeyHint(_ value: Values.Hint) -> Search {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func hidden() -> Search {
+        return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Search {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
+    
+    public func inputMode(_ value: String) -> Search {
+        return mutate(inputmode: value)
+    }
+    
+    public func `is`(_ value: String) -> Search {
+        return mutate(is: value)
+    }
+    
+    public func itemId(_ value: String) -> Search {
+        return mutate(itemid: value)
+    }
+    
+    public func itemProperty(_ value: String) -> Search {
+        return mutate(itemprop: value)
+    }
+    
+    public func itemReference(_ value: String) -> Search {
+        return mutate(itemref: value)
+    }
+    
+    public func itemScope(_ value: String) -> Search {
+        return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Search {
+        return mutate(itemtype: value)
+    }
+    
+    public func id(_ value: String) -> Search {
+        return mutate(id: value)
+    }
+    
+    public func language(_ value: Values.Language) -> Search {
+        return mutate(lang: value.rawValue)
+    }
+    
+    public func nonce(_ value: String) -> Search {
+        return mutate(nonce: value)
+    }
+    
+    public func role(_ value: Values.Role) -> Search {
+        return mutate(role: value.rawValue)
+    }
+    
+    public func hasSpellCheck(_ value: Bool) -> Search {
+        return mutate(spellcheck: value)
+    }
+    
+    public func style(_ value: String) -> Search {
+        return mutate(style: value)
+    }
+    
+    public func tabIndex(_ value: Int) -> Search {
+        return mutate(tabindex: value)
+    }
+    
+    public func title(_ value: String) -> Search {
+        return mutate(title: value)
+    }
+    
+    public func translate(_ value: Values.Decision) -> Search {
+        return mutate(translate: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Search {
+        return mutate(key: key, value: value)
+    }
+}
+
 /// The element is used to represent different kinds of containers.
 ///
 /// ```html

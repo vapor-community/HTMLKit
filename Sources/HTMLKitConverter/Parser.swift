@@ -150,6 +150,9 @@ internal class Parser {
                 case "main":
                     return try ContentElement(element: element, indent: indent).build()
                     
+                case "search":
+                    return try ContentElement(element: element, indent: indent).build()
+                    
                 case "div":
                     return try ContentElement(element: element, indent: indent).build(verbatim: "Division")
                     

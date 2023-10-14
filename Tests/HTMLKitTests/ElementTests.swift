@@ -506,6 +506,19 @@ final class ElementTests: XCTestCase {
         )
     }
     
+    func testSearchElement() throws {
+        
+        let view = TestView {
+            Search {}
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <search></search>
+                       """
+        )
+    }
+    
     func testDivisionElement() throws {
         
         let view = TestView {
