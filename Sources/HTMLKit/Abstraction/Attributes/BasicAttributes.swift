@@ -2689,3 +2689,27 @@ extension InertAttribute where Self: EmptyNode {
         return self.mutate(key: "inert", value: value)
     }
 }
+
+public protocol FetchPriorityAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'shadowrootmode'.
+    ///
+    /// ```html
+    /// <tag fetchpriority="" />
+    /// ```
+    func fetchPriority(_ value: Values.Priority) -> Self
+}
+
+extension FetchPriorityAttribute where Self: ContentNode {
+    
+    internal func mutate(fetchpriority value: String) -> Self {
+        return self.mutate(key: "fetchpriority", value: value)
+    }
+}
+
+extension FetchPriorityAttribute where Self: EmptyNode {
+    
+    internal func mutate(fetchpriority value: String) -> Self {
+        return self.mutate(key: "fetchpriority", value: value)
+    }
+}

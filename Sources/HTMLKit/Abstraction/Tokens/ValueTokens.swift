@@ -911,4 +911,13 @@ public enum Values {
             case closed
         }
     }
+    
+    public enum Priority: String {
+        /// Signals a higher priority for fetching relative to other resources.
+        case high
+        /// Signals a lower priority for fetching relative to other resources.
+        case low
+        /// Signals a automatic determination of the fetch priority.
+        case auto
+    }
 }

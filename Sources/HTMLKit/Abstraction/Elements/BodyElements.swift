@@ -15077,7 +15077,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {
+extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute {
     
     public func accessKey(_ value: Character) -> Image {
         return mutate(accesskey: value)
@@ -15227,6 +15227,10 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func referrerPolicy(_ value: Values.Policy) -> Image {
         return mutate(referrerpolicy: value.rawValue)
+    }
+    
+    public func fetchPriority(_ value: Values.Priority) -> Image {
+        return mutate(fetchpriority: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Image {
@@ -18982,7 +18986,7 @@ public struct Script: ContentNode, HeadElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute {
+extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute, FetchPriorityAttribute {
 
     public func accessKey(_ value: Character) -> Script {
         return mutate(accesskey: value)
@@ -19124,6 +19128,10 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
     
     public func type(_ value: Values.Media) -> Script {
         return mutate(type: value.rawValue)
+    }
+    
+    public func fetchPriority(_ value: Values.Priority) -> Script {
+        return mutate(fetchpriority: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Script {

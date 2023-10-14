@@ -830,7 +830,7 @@ public struct Link: EmptyNode, HeadElement, BodyElement {
     }
 }
 
-extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FormEventAttribute {
+extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, FormEventAttribute {
     
     public func accessKey(_ value: Character) -> Link {
         return mutate(accesskey: value)
@@ -980,6 +980,10 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     
     public func type(_ value: Values.Media) -> Link {
         return mutate(type: value.rawValue)
+    }
+    
+    public func fetchPriority(_ value: Values.Priority) -> Link {
+        return mutate(fetchpriority: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Link {
