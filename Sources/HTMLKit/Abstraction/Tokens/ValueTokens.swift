@@ -16,13 +16,16 @@ public enum Values {
     /// ```
     public enum Name: String {
         
+        case applicationName = "application-name"
         case author = "author"
         case description = "description"
         case generator = "generator"
         case keywords = "keywords"
+        case referrer = "referrer"
+        case themeColor = "theme-color"
+        case colorScheme = "color-scheme"
         case robots = "robots"
         case viewport = "viewport"
-        case applicationName = "application-name"
     }
 
     /// A typ for buttons.
@@ -78,28 +81,28 @@ public enum Values {
     /// ```
     public enum Input: String {
         
-        case text
-        case button
-        case checkbox
-        case color
-        case date
-        case email
-        case file
         case hidden
-        case image
-        case month
-        case number
-        case password
-        case radio
-        case range
-        case reset
+        case text
         case search
-        case submit
-        case time
-        case url
-        case week
-        case datetimeLocal = "datetime-local"
         case phone = "tel"
+        case url
+        case email
+        case password
+        case date
+        case month
+        case week
+        case time
+        case datetimeLocal = "datetime-local"
+        case number
+        case range
+        case color
+        case checkbox
+        case radio
+        case file
+        case submit
+        case image
+        case reset
+        case button
     }
 
     /// A language
@@ -320,27 +323,35 @@ public enum Values {
     public enum Relation: String {
         
         case alternate
+        case canonical
         case author
+        case bookmark
+        case dnsPrefetch = "dns-prefetch"
         case external
         case help
         case icon
+        case manifest
+        case modulePreload = "modulepreload"
         case licence
         case next
+        case noFollow = "nofollow"
+        case noOpener = "noopener"
+        case noReferrer = "noreferrer"
+        case opener
         case pingback
         case preconnect
         case prefetch
         case preload
+        @available(*, deprecated, message: "It is no longer part of the web standards.")
         case prerender
         case prev
         case search
         case stylesheet
-        case noFollow = "nofollow"
-        case noReferrer = "noreferrer"
-        case noOpener = "noopener"
-        case dnsPrefetch = "dns-prefetch"
+        case tag
+        @available(*, deprecated, message: "It is no longer part of the web standards. Use 'icon' instead.")
+        case shortcutIcon = "shortcut icon"
         case appleTouchIcon = "apple-touch-icon"
         case appleTouchStartupImage = "apple-touch-startup-image"
-        case shortcutIcon = "shortcut icon"
     }
 
     /// A target for reference links.
