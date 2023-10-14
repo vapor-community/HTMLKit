@@ -15077,7 +15077,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute {
+extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute & LoadingAttribute {
     
     public func accessKey(_ value: Character) -> Image {
         return mutate(accesskey: value)
@@ -15233,6 +15233,10 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(fetchpriority: value.rawValue)
     }
     
+    public func loading(_ value: Values.Loading) -> Image {
+        return mutate(loading: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Image {
         return mutate(key: key, value: value)
     }
@@ -15375,7 +15379,7 @@ public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute {
+extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute & LoadingAttribute {
     
     public func accessKey(_ value: Character) -> InlineFrame {
         return mutate(accesskey: value)
@@ -15521,6 +15525,10 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     
     public func referrerPolicy(_ value: Values.Policy) -> InlineFrame {
         return mutate(referrerpolicy: value.rawValue)
+    }
+    
+    public func loading(_ value: Values.Loading) -> InlineFrame {
+        return mutate(loading: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> InlineFrame {

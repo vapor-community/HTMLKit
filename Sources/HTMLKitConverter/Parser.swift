@@ -808,6 +808,9 @@ internal class Parser {
             case "fetchpriority":
                 return try TypeAttribute<Values.Priority>(node: node).build(verbatim: "fetchPriority")
                 
+            case "loading":
+                return try TypeAttribute<Values.Loading>(node: node).build()
+                
             case "onafterprint":
                 return try EventAttribute<Events.Window>(node: node).build()
                 

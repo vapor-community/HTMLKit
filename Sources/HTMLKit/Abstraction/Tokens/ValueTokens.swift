@@ -920,4 +920,11 @@ public enum Values {
         /// Signals a automatic determination of the fetch priority.
         case auto
     }
+    
+    public enum Loading: String {
+        /// Defers fetching a resource until some conditions are met.
+        case lazy
+        /// Fetches a resource immediately
+        case eager
+    }
 }

@@ -2713,3 +2713,27 @@ extension FetchPriorityAttribute where Self: EmptyNode {
         return self.mutate(key: "fetchpriority", value: value)
     }
 }
+
+public protocol LoadingAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'loading'.
+    ///
+    /// ```html
+    /// <tag loading="" />
+    /// ```
+    func loading(_ value: Values.Loading) -> Self
+}
+
+extension LoadingAttribute where Self: ContentNode {
+    
+    internal func mutate(loading value: String) -> Self {
+        return self.mutate(key: "loading", value: value)
+    }
+}
+
+extension LoadingAttribute where Self: EmptyNode {
+    
+    internal func mutate(loading value: String) -> Self {
+        return self.mutate(key: "loading", value: value)
+    }
+}
