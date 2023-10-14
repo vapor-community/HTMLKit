@@ -2737,3 +2737,27 @@ extension LoadingAttribute where Self: EmptyNode {
         return self.mutate(key: "loading", value: value)
     }
 }
+
+public protocol SourceSetAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'loading'.
+    ///
+    /// ```html
+    /// <tag srcset="" />
+    /// ```
+    func sourceSet(_ value: String) -> Self
+}
+
+extension SourceSetAttribute where Self: ContentNode {
+    
+    internal func mutate(sourceset value: String) -> Self {
+        return self.mutate(key: "srcset", value: value)
+    }
+}
+
+extension SourceSetAttribute where Self: EmptyNode {
+    
+    internal func mutate(sourceset value: String) -> Self {
+        return self.mutate(key: "srcset", value: value)
+    }
+}

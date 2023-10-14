@@ -15077,7 +15077,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute & LoadingAttribute {
+extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute {
     
     public func accessKey(_ value: Character) -> Image {
         return mutate(accesskey: value)
@@ -15211,6 +15211,10 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func source(_ value: EnvironmentValue) -> Image {
         return mutate(source: value)
+    }
+    
+    public func sourceSet(_ value: String) -> Image {
+        return mutate(sourceset: value)
     }
     
     public func sizes(_ size: Int) -> Image {
