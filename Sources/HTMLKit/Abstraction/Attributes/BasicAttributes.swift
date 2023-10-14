@@ -9,7 +9,7 @@
 import OrderedCollections
 
 /// The alias combines the global attributes of the basic attributes.
-public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute
+public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & InertAttribute
 
 /// The protocol provides the element with the accesskey handler.
 public protocol AccessKeyAttribute: Attribute {
@@ -2660,5 +2660,32 @@ extension ShadowRootModeAttribute where Self: ContentNode {
     
     internal func mutate(shadowrootmode value: String) -> Self {
         return self.mutate(key: "shadowrootmode", value: value)
+    }
+}
+
+/// The protocol provides the element with inhert handler.
+public protocol InertAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'inert'.
+    ///
+    /// ```html
+    /// <tag inert />
+    /// ```
+    func inert() -> Self
+    
+    func inert(_ condition: Bool) -> Self
+}
+
+extension InertAttribute where Self: ContentNode {
+    
+    internal func mutate(inert value: String) -> Self {
+        return self.mutate(key: "inert", value: value)
+    }
+}
+
+extension InertAttribute where Self: EmptyNode {
+    
+    internal func mutate(inert value: String) -> Self {
+        return self.mutate(key: "inert", value: value)
     }
 }

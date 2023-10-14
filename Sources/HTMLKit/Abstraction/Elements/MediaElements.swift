@@ -154,6 +154,19 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     public func translate(_ value: Values.Decision) -> Source {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Source {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Source {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func type(_ value: Values.Media) -> Source {
         return mutate(type: value.rawValue)
@@ -353,6 +366,19 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
     
     public func translate(_ value: Values.Decision) -> Track {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Track {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Track {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func kind(_ value: Values.Kind) -> Track {

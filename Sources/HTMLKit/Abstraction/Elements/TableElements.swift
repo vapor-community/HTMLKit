@@ -232,6 +232,19 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Caption {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Caption {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Caption {
         return mutate(key: key, value: value)
     }
@@ -484,6 +497,19 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     public func translate(_ value: Values.Decision) -> ColumnGroup {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> ColumnGroup {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> ColumnGroup {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func span(_ size: Int) -> ColumnGroup {
         return mutate(span: size)
@@ -666,6 +692,19 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Column {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Column {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func span(_ size: Int) -> Column {
         return mutate(span: size)
     }
@@ -845,6 +884,19 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     
     public func translate(_ value: Values.Decision) -> TableBody {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> TableBody {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> TableBody {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func width(_ size: Int) -> TableBody {
@@ -1106,6 +1158,19 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     
     public func translate(_ value: Values.Decision) -> TableHead {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> TableHead {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> TableHead {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func width(_ size: Int) -> TableHead {
@@ -1369,6 +1434,19 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> TableFoot {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> TableFoot {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> TableFoot {
         return mutate(key: key, value: value)
     }
@@ -1620,6 +1698,19 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func translate(_ value: Values.Decision) -> TableRow {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> TableRow {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> TableRow {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func width(_ size: Int) -> TableRow {
@@ -1881,6 +1972,19 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func translate(_ value: Values.Decision) -> DataCell {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> DataCell {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> DataCell {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func columnSpan(_ size: Int) -> DataCell {
@@ -2146,6 +2250,19 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     
     public func translate(_ value: Values.Decision) -> HeaderCell {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> HeaderCell {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> HeaderCell {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func columnSpan(_ size: Int) -> HeaderCell {

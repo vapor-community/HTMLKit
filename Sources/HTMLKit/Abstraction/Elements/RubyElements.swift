@@ -178,6 +178,19 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> RubyText {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> RubyText {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> RubyText {
         return mutate(key: key, value: value)
     }
@@ -429,6 +442,19 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
     
     public func translate(_ value: Values.Decision) -> RubyPronunciation {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> RubyPronunciation {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> RubyPronunciation {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> RubyPronunciation {

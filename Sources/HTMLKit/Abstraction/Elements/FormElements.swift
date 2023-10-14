@@ -154,6 +154,19 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     public func translate(_ value: Values.Decision) -> Input {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Input {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Input {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func accept(_ value: String) -> Input {
         return mutate(accept: value)
@@ -472,6 +485,19 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Label {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Label {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func `for`(_ value: String) -> Label {
         return mutate(for: value)
     }
@@ -735,6 +761,19 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
     public func translate(_ value: Values.Decision) -> Select {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Select {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Select {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func hasCompletion(_ value: Bool) -> Select {
         return mutate(autocomplete: value)
@@ -957,6 +996,19 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func translate(_ value: Values.Decision) -> TextArea {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> TextArea {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> TextArea {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func hasCompletion(_ value: Bool) -> TextArea {
@@ -1287,6 +1339,19 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return  mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Button {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Button {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func disabled() -> Button {
         return mutate(disabled: "disabled")
     }
@@ -1578,6 +1643,19 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func translate(_ value: Values.Decision) -> Fieldset {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Fieldset {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Fieldset {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func disabled() -> Fieldset {

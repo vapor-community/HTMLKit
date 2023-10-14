@@ -160,6 +160,19 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Head {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Head {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Head {
         return mutate(key: key, value: value)
     }
@@ -335,6 +348,19 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
     
     public func translate(_ value: Values.Decision) -> Body {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Body {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Body {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Body {

@@ -50,7 +50,7 @@ public struct Area: ContentNode, MapElement {
 }
 
 extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
-    
+        
     public func accessKey(_ value: Character) -> Area {
         return mutate(accesskey: value)
     }
@@ -158,6 +158,19 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
     
     public func translate(_ value: Values.Decision) -> Area {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Area {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Area {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func alternate(_ value: String) -> Area {

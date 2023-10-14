@@ -168,6 +168,19 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func translate(_ value: Values.Decision) -> OptionGroup {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> OptionGroup {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> OptionGroup {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func disabled() -> OptionGroup {
         return mutate(disabled: "disabled")
@@ -437,6 +450,19 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func translate(_ value: Values.Decision) -> Option {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Option {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Option {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func disabled() -> Option {
@@ -719,6 +745,19 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Legend {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Legend {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Legend {
         return mutate(key: key, value: value)
     }
@@ -970,6 +1009,19 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     
     public func translate(_ value: Values.Decision) -> Summary {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Summary {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Summary {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Summary {

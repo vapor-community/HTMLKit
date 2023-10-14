@@ -169,6 +169,19 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> FigureCaption {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> FigureCaption {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> FigureCaption {
         return mutate(key: key, value: value)
     }

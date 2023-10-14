@@ -484,6 +484,19 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Article {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Article {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Article {
         return mutate(key: key, value: value)
     }
@@ -735,6 +748,19 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
 
     public func translate(_ value: Values.Decision) -> Section {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Section {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Section {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Section {
@@ -990,6 +1016,19 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Navigation {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Navigation {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Navigation {
         return mutate(key: key, value: value)
     }
@@ -1243,6 +1282,19 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Aside {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Aside {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Aside {
         return mutate(key: key, value: value)
     }
@@ -1494,6 +1546,19 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func translate(_ value: Values.Decision) -> Heading1 {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Heading1 {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Heading1 {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Heading1 {
@@ -1756,6 +1821,19 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Heading2 {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Heading2 {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Heading2 {
         return mutate(key: key, value: value)
     }
@@ -2014,6 +2092,19 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func translate(_ value: Values.Decision) -> Heading3 {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Heading3 {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Heading3 {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Heading3 {
@@ -2276,6 +2367,19 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Heading4 {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Heading4 {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Heading4 {
         return mutate(key: key, value: value)
     }
@@ -2534,6 +2638,19 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func translate(_ value: Values.Decision) -> Heading5 {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Heading5 {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Heading5 {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Heading5 {
@@ -2796,6 +2913,19 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Heading6 {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Heading6 {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Heading6 {
         return mutate(key: key, value: value)
     }
@@ -3056,6 +3186,19 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> HeadingGroup {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> HeadingGroup {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> HeadingGroup {
         return mutate(key: key, value: value)
     }
@@ -3307,6 +3450,19 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     
     public func translate(_ value: Values.Decision) -> Header {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Header {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Header {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Header {
@@ -3562,6 +3718,19 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Footer {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Footer {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Footer {
         return mutate(key: key, value: value)
     }
@@ -3815,6 +3984,19 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Address {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Address {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Address {
         return mutate(key: key, value: value)
     }
@@ -4066,6 +4248,19 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     
     public func translate(_ value: Values.Decision) -> Paragraph {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Paragraph {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Paragraph {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Paragraph {
@@ -4323,6 +4518,19 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> HorizontalRule {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> HorizontalRule {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> HorizontalRule {
         return mutate(key: key, value: value)
     }
@@ -4576,6 +4784,19 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> PreformattedText {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> PreformattedText {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> PreformattedText {
         return mutate(key: key, value: value)
     }
@@ -4827,6 +5048,19 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     
     public func translate(_ value: Values.Decision) -> Blockquote {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Blockquote {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Blockquote {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func cite(_ value: String) -> Blockquote {
@@ -5091,6 +5325,19 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     
     public func translate(_ value: Values.Decision) -> OrderedList {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> OrderedList {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> OrderedList {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func reversed() -> OrderedList {
@@ -5358,6 +5605,19 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> UnorderedList {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> UnorderedList {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> UnorderedList {
         return mutate(key: key, value: value)
     }
@@ -5611,6 +5871,19 @@ extension Menu: GlobalAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Menu {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Menu {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Menu {
         return mutate(key: key, value: value)
     }
@@ -5766,6 +6039,19 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
     
     public func translate(_ value: Values.Decision) -> DescriptionList {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> DescriptionList {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> DescriptionList {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> DescriptionList {
@@ -6021,6 +6307,19 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Figure {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Figure {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Figure {
         return mutate(key: key, value: value)
     }
@@ -6272,6 +6571,19 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func translate(_ value: Values.Decision) -> Anchor {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Anchor {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Anchor {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func download() -> Anchor {
@@ -6570,6 +6882,19 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Emphasize {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Emphasize {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Emphasize {
         return mutate(key: key, value: value)
     }
@@ -6823,6 +7148,19 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Strong {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Strong {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Strong {
         return mutate(key: key, value: value)
     }
@@ -7074,6 +7412,19 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func translate(_ value: Values.Decision) -> Small {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Small {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Small {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Small {
@@ -7336,6 +7687,19 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> StrikeThrough {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> StrikeThrough {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> StrikeThrough {
         return mutate(key: key, value: value)
     }
@@ -7518,6 +7882,19 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func translate(_ value: Values.Decision) -> Main {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Main {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Main {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Main {
@@ -7773,6 +8150,19 @@ extension Search: GlobalAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Search {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Search {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Search {
         return mutate(key: key, value: value)
     }
@@ -7928,6 +8318,19 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func translate(_ value: Values.Decision) -> Division {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Division {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Division {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Division {
@@ -8183,6 +8586,19 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Definition {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Definition {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Definition {
         return mutate(key: key, value: value)
     }
@@ -8436,6 +8852,19 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Cite {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Cite {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Cite {
         return mutate(key: key, value: value)
     }
@@ -8687,6 +9116,19 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     
     public func translate(_ value: Values.Decision) -> ShortQuote {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> ShortQuote {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> ShortQuote {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func cite(_ value: String) -> ShortQuote {
@@ -8946,6 +9388,19 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Abbreviation {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Abbreviation {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Abbreviation {
         return mutate(key: key, value: value)
     }
@@ -9199,6 +9654,19 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Ruby {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Ruby {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Ruby {
         return mutate(key: key, value: value)
     }
@@ -9450,6 +9918,19 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
     
     public func translate(_ value: Values.Decision) -> Data {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Data {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Data {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func value(_ value: String) -> Data {
@@ -9707,6 +10188,19 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
     
     public func translate(_ value: Values.Decision) -> Time {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Time {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Time {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func dateTime(_ value: String) -> Time {
@@ -9966,6 +10460,19 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Code {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Code {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Code {
         return mutate(key: key, value: value)
     }
@@ -10217,6 +10724,19 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func translate(_ value: Values.Decision) -> Variable {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Variable {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Variable {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Variable {
@@ -10472,6 +10992,19 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> SampleOutput {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> SampleOutput {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> SampleOutput {
         return mutate(key: key, value: value)
     }
@@ -10725,6 +11258,19 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> KeyboardInput {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> KeyboardInput {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> KeyboardInput {
         return mutate(key: key, value: value)
     }
@@ -10975,6 +11521,19 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     
     public func translate(_ value: Values.Decision) -> Subscript {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Subscript {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Subscript {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Subscript {
@@ -11230,6 +11789,19 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Superscript {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Superscript {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Superscript {
         return mutate(key: key, value: value)
     }
@@ -11481,6 +12053,19 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     
     public func translate(_ value: Values.Decision) -> Italic {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Italic {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Italic {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Italic {
@@ -11743,6 +12328,19 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Bold {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Bold {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Bold {
         return mutate(key: key, value: value)
     }
@@ -12001,6 +12599,19 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     
     public func translate(_ value: Values.Decision) -> Underline {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Underline {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Underline {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Underline {
@@ -12263,6 +12874,19 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Mark {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Mark {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Mark {
         return mutate(key: key, value: value)
     }
@@ -12516,6 +13140,19 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Bdi {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Bdi {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Bdi {
         return mutate(key: key, value: value)
     }
@@ -12762,6 +13399,19 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func translate(_ value: Values.Decision) -> Bdo {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Bdo {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Bdo {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Bdo {
@@ -13017,6 +13667,19 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Span {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Span {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Span {
         return mutate(key: key, value: value)
     }
@@ -13265,6 +13928,19 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> LineBreak {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> LineBreak {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> LineBreak {
         return mutate(key: key, value: value)
     }
@@ -13511,6 +14187,19 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     
     public func translate(_ value: Values.Decision) -> WordBreak {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> WordBreak {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> WordBreak {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> WordBreak {
@@ -13764,6 +14453,19 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     
     public func translate(_ value: Values.Decision) -> InsertedText {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> InsertedText {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> InsertedText {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func cite(_ value: String) -> InsertedText {
@@ -14025,6 +14727,19 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     
     public func translate(_ value: Values.Decision) -> DeletedText {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> DeletedText {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> DeletedText {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func cite(_ value: String) -> DeletedText {
@@ -14288,6 +15003,19 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Picture {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Picture {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Picture {
         return mutate(key: key, value: value)
     }
@@ -14460,6 +15188,19 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(translate: value.rawValue)
     }
 
+    public func inert() -> Image {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Image {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func alternate(_ value: String) -> Image {
         return mutate(alternate: value)
     }
@@ -14741,6 +15482,19 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(translate: value.rawValue)
     }
 
+    public func inert() -> InlineFrame {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> InlineFrame {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func source(_ value: String) -> InlineFrame {
         return mutate(source: value)
     }
@@ -15011,6 +15765,19 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func translate(_ value: Values.Decision) -> Embed {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Embed {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Embed {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func source(_ value: String) -> Embed {
@@ -15284,6 +16051,19 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func translate(_ value: Values.Decision) -> Object {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Object {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Object {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func data(_ value: String) -> Object {
@@ -15561,6 +16341,19 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func translate(_ value: Values.Decision) -> Video {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Video {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Video {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func source(_ value: String) -> Video {
@@ -15860,6 +16653,19 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func translate(_ value: Values.Decision) -> Audio {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Audio {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Audio {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func source(_ value: String) -> Audio {
         return mutate(source: value)
@@ -16150,6 +16956,19 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
     public func translate(_ value: Values.Decision) -> Map {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Map {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Map {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func name(_ value: String) -> Map {
         return mutate(name: value)
@@ -16330,6 +17149,19 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
     
     public func translate(_ value: Values.Decision) -> Form {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Form {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Form {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func action(_ value: String) -> Form {
@@ -16613,6 +17445,19 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> DataList {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> DataList {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> DataList {
         return mutate(key: key, value: value)
     }
@@ -16864,6 +17709,19 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func translate(_ value: Values.Decision) -> Output {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Output {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Output {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func `for`(_ value: String) -> Output {
@@ -17130,6 +17988,19 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func translate(_ value: Values.Decision) -> Progress {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Progress {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Progress {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func maximum(_ value: Float) -> Progress {
         return mutate(max: value)
@@ -17390,6 +18261,19 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func translate(_ value: Values.Decision) -> Meter {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Meter {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Meter {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func minimum(_ value: Float) -> Meter {
@@ -17668,6 +18552,19 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func translate(_ value: Values.Decision) -> Details {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Details {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Details {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func isOpen(_ value: Bool) -> Details {
         return mutate(open: value)
@@ -17924,6 +18821,19 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func translate(_ value: Values.Decision) -> Dialog {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Dialog {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Dialog {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func isOpen(_ value: Bool) -> Dialog {
@@ -18182,6 +19092,19 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
     public func translate(_ value: Values.Decision) -> Script {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Script {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Script {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func asynchronously() -> Script {
         return mutate(async: "async")
@@ -18380,6 +19303,19 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> NoScript {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> NoScript {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> NoScript {
         return mutate(key: key, value: value)
     }
@@ -18555,6 +19491,19 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
     
     public func translate(_ value: Values.Decision) -> Template {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Template {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Template {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Template {
@@ -18736,6 +19685,19 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func translate(_ value: Values.Decision) -> Canvas {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Canvas {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Canvas {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func width(_ size: Int) -> Canvas {
@@ -18997,6 +19959,19 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func translate(_ value: Values.Decision) -> Table {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Table {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Table {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func width(_ size: Int) -> Table {
@@ -19366,6 +20341,19 @@ extension Slot: GlobalAttributes, NameAttribute {
     
     public func translate(_ value: Values.Decision) -> Slot {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Slot {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Slot {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func name(_ value: String) -> Slot {

@@ -802,6 +802,9 @@ internal class Parser {
             case "xmlns":
                 return try ValueAttribute<String>(node: node).build(verbatim: "namespace")
                 
+            case "inert":
+                return try EmptyAttribute(node: node).build()
+                
             case "onafterprint":
                 return try EventAttribute<Events.Window>(node: node).build()
                 

@@ -188,6 +188,19 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Html {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Html {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Html {
         return mutate(key: key, value: value)
     }

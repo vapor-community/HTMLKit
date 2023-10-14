@@ -163,6 +163,19 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
     public func translate(_ value: Values.Decision) -> Parameter {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Parameter {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Parameter {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func name(_ value: String) -> Parameter {
         return mutate(name: value)

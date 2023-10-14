@@ -160,6 +160,19 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Title {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Title {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func custom(key: String, value: Any) -> Title {
         return mutate(key: key, value: value)
     }
@@ -330,6 +343,19 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
     
     public func translate(_ value: Values.Decision) -> Base {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Base {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Base {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func reference(_ value: String) -> Base {
@@ -510,6 +536,19 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
     
     public func translate(_ value: Values.Decision) -> Meta {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Meta {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Meta {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func content(_ value: String) -> Meta {
@@ -708,6 +747,19 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     public func translate(_ value: Values.Decision) -> Style {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Style {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Style {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func type(_ value: Values.Media) -> Style {
         return mutate(type: value.rawValue)
@@ -887,6 +939,19 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     
     public func translate(_ value: Values.Decision) -> Link {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Link {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Link {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
     
     public func reference(_ value: String) -> Link {
