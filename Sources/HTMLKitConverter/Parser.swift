@@ -129,6 +129,9 @@ internal class Parser {
                 case "ul":
                     return try ContentElement(element: element, indent: indent).build(verbatim: "UnorderedList")
                     
+                case "menu":
+                    return try ContentElement(element: element, indent: indent).build()
+                    
                 case "dl":
                     return try ContentElement(element: element, indent: indent).build(verbatim: "DescriptionList")
                     

@@ -5459,6 +5459,163 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     }
 }
 
+/// The element represents a list of items, each of represents a command the user can perform.
+///
+/// ```html
+/// <menu></menu>
+/// ```
+public struct Menu: ContentNode, HtmlElement, BodyElement {
+    
+    internal var name: String { "menu" }
+
+    internal var attributes: OrderedDictionary<String, Any>?
+
+    internal var content: [ListElement]
+
+    public init(@ContentBuilder<ListElement> content: () -> [ListElement]) {
+        self.content = content()
+    }
+    
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [ListElement]) {
+        self.attributes = attributes
+        self.content = content
+    }
+    
+    public func modify(if condition: Bool, element: (Menu) -> Menu) -> Menu {
+        
+        if condition {
+            return self.modify(element(self))
+        }
+        
+        return self
+    }
+    
+    public func modify<T>(unwrap value: T?, element: (Menu, T) -> Menu) -> Menu {
+        
+        guard let value = value else {
+            return self
+        }
+        
+        return self.modify(element(self, value as T))
+    }
+}
+
+extension Menu: GlobalAttributes {
+    
+    public func accessKey(_ value: Character) -> Menu {
+        return mutate(accesskey: value)
+    }
+    
+    public func autocapitalize(_ value: Values.Capitalization) -> Menu {
+        return mutate(autocapitalize: value.rawValue)
+    }
+    
+    public func autofocus() -> Menu {
+        return mutate(autofocus: "autofocus")
+    }
+    
+    public func `class`(_ value: String) -> Menu {
+        return mutate(class: value)
+    }
+    
+    public func isEditable(_ value: Bool) -> Menu {
+        return mutate(contenteditable: value)
+    }
+    
+    public func direction(_ value: Values.Direction) -> Menu {
+        return mutate(dir: value.rawValue)
+    }
+    
+    public func isDraggable(_ value: Bool) -> Menu {
+        return mutate(draggable: value)
+    }
+    
+    public func enterKeyHint(_ value: Values.Hint) -> Menu {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func hidden() -> Menu {
+        return mutate(hidden: "hidden")
+    }
+    
+    public func hidden(_ condition: Bool) -> Menu {
+        
+        if condition {
+            return mutate(hidden: "hidden")
+        }
+        
+        return self
+    }
+    
+    public func inputMode(_ value: String) -> Menu {
+        return mutate(inputmode: value)
+    }
+    
+    public func `is`(_ value: String) -> Menu {
+        return mutate(is: value)
+    }
+    
+    public func itemId(_ value: String) -> Menu {
+        return mutate(itemid: value)
+    }
+    
+    public func itemProperty(_ value: String) -> Menu {
+        return mutate(itemprop: value)
+    }
+    
+    public func itemReference(_ value: String) -> Menu {
+        return mutate(itemref: value)
+    }
+    
+    public func itemScope(_ value: String) -> Menu {
+        return mutate(itemscope: value)
+    }
+    
+    public func itemType(_ value: String) -> Menu {
+        return mutate(itemtype: value)
+    }
+    
+    public func id(_ value: String) -> Menu {
+        return mutate(id: value)
+    }
+    
+    public func language(_ value: Values.Language) -> Menu {
+        return mutate(lang: value.rawValue)
+    }
+    
+    public func nonce(_ value: String) -> Menu {
+        return mutate(nonce: value)
+    }
+    
+    public func role(_ value: Values.Role) -> Menu {
+        return mutate(role: value.rawValue)
+    }
+    
+    public func hasSpellCheck(_ value: Bool) -> Menu {
+        return mutate(spellcheck: value)
+    }
+    
+    public func style(_ value: String) -> Menu {
+        return mutate(style: value)
+    }
+    
+    public func tabIndex(_ value: Int) -> Menu {
+        return mutate(tabindex: value)
+    }
+    
+    public func title(_ value: String) -> Menu {
+        return mutate(title: value)
+    }
+    
+    public func translate(_ value: Values.Decision) -> Menu {
+        return mutate(translate: value.rawValue)
+    }
+    
+    public func custom(key: String, value: Any) -> Menu {
+        return mutate(key: key, value: value)
+    }
+}
+
 /// The element defines a list of terms and corresponding definitions.
 ///
 /// ```html
