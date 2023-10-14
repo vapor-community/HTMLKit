@@ -2761,3 +2761,27 @@ extension SourceSetAttribute where Self: EmptyNode {
         return self.mutate(key: "srcset", value: value)
     }
 }
+
+public protocol DecodingAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'decoding'.
+    ///
+    /// ```html
+    /// <tag decoding="" />
+    /// ```
+    func decoding(_ value: Values.Decoding) -> Self
+}
+
+extension DecodingAttribute where Self: ContentNode {
+    
+    internal func mutate(decoding value: String) -> Self {
+        return self.mutate(key: "decoding", value: value)
+    }
+}
+
+extension DecodingAttribute where Self: EmptyNode {
+    
+    internal func mutate(decoding value: String) -> Self {
+        return self.mutate(key: "decoding", value: value)
+    }
+}

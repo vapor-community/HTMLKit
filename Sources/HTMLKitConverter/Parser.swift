@@ -811,6 +811,9 @@ internal class Parser {
             case "loading":
                 return try TypeAttribute<Values.Loading>(node: node).build()
                 
+            case "decoding":
+                return try TypeAttribute<Values.Decoding>(node: node).build()
+                
             case "srcset":
                 return try ValueAttribute<String>(node: node).build(verbatim: "sourceSet")
                 

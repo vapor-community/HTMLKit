@@ -927,4 +927,13 @@ public enum Values {
         /// Fetches a resource immediately
         case eager
     }
+    
+    public enum Decoding: String {
+        /// Indicates a preference to decode synchronously
+        case sync
+        /// Indicates a preference to decode asynchronously
+        case async
+        /// Indicates no preference for the decoding.
+        case auto
+    }
 }

@@ -15077,7 +15077,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute {
+extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute {
     
     public func accessKey(_ value: Character) -> Image {
         return mutate(accesskey: value)
@@ -15239,6 +15239,10 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func loading(_ value: Values.Loading) -> Image {
         return mutate(loading: value.rawValue)
+    }
+    
+    public func decoding(_ value: Values.Decoding) -> Image {
+        return mutate(decoding: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Image {
