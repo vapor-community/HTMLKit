@@ -950,5 +950,12 @@ public enum Values {
             /// Does not close other popovers.
             case manual
         }
+        
+        public enum Action: String {
+            
+            case toggle
+            case show
+            case hide
+        }
     }
 }

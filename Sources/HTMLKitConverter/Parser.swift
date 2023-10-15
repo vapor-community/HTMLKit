@@ -826,6 +826,9 @@ internal class Parser {
             case "popovertarget":
                 return try ValueAttribute<String>(node: node).build(verbatim: "popoverTarget")
                 
+            case "popovertargetaction":
+                return try TypeAttribute<Values.Popover.Action>(node: node).build(verbatim: "popoverAction")
+                
             case "onafterprint":
                 return try EventAttribute<Events.Window>(node: node).build()
                 
