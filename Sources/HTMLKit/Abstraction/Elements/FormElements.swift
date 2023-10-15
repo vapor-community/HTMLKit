@@ -44,7 +44,7 @@ public struct Input: EmptyNode, FormElement {
     }
 }
 
-extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, AlternateAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute {
+extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, AlternateAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute, PopoverTargetAttribute {
     
     public func accessKey(_ value: Character) -> Input {
         return mutate(accesskey: value)
@@ -310,6 +310,10 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     
     public func popover(_ value: Values.Popover.State) -> Input {
         return mutate(popover: value.rawValue)
+    }
+    
+    public func popoverTarget(_ value: String) -> Input {
+        return mutate(popovertarget: value)
     }
     
     public func custom(key: String, value: Any) -> Input {
@@ -1244,7 +1248,7 @@ public struct Button: ContentNode, FormElement {
     }
 }
 
-extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute {
+extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute, PopoverTargetAttribute {
     
     public func accessKey(_ value: Character) -> Button {
         return mutate(accesskey: value)
@@ -1403,6 +1407,10 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func popover(_ value: Values.Popover.State) -> Button {
         return mutate(popover: value.rawValue)
+    }
+    
+    public func popoverTarget(_ value: String) -> Button {
+        return mutate(popovertarget: value)
     }
     
     public func custom(key: String, value: Any) -> Button {

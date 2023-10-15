@@ -2833,3 +2833,27 @@ extension PopoverAttribute where Self: EmptyNode {
         return self.mutate(key: "popover", value: value)
     }
 }
+
+public protocol PopoverTargetAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'popovertarget'.
+    ///
+    /// ```html
+    /// <tag popovertarget="" />
+    /// ```
+    func popoverTarget(_ value: String) -> Self
+}
+
+extension PopoverAttribute where Self: ContentNode {
+    
+    internal func mutate(popovertarget value: String) -> Self {
+        return self.mutate(key: "popovertarget", value: value)
+    }
+}
+
+extension PopoverAttribute where Self: EmptyNode {
+    
+    internal func mutate(popovertarget value: String) -> Self {
+        return self.mutate(key: "popovertarget", value: value)
+    }
+}
