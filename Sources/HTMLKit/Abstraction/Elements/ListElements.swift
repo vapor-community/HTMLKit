@@ -186,6 +186,10 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(value: value)
     }
     
+    public func popover(_ value: Values.Popover.State) -> ListItem {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> ListItem {
         return mutate(key: key, value: value)
     }

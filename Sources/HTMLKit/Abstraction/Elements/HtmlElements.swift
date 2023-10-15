@@ -173,6 +173,10 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Head {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Head {
         return mutate(key: key, value: value)
     }
@@ -361,6 +365,10 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Body {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Body {

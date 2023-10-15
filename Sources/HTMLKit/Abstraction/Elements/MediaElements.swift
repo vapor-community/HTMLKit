@@ -200,6 +200,10 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(height: size)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Source {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Source {
         return mutate(key: key, value: value)
     }
@@ -403,6 +407,10 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
     
     public func `default`() -> Track {
         return  mutate(default: "default")
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Track {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Track {

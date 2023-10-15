@@ -199,6 +199,10 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(label: value)
     }
     
+    public func popover(_ value: Values.Popover.State) -> OptionGroup {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> OptionGroup {
         return mutate(key: key, value: value)
     }
@@ -490,6 +494,10 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(selected: "selected")
     }
     
+    public func popover(_ value: Values.Popover.State) -> Option {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Option {
         return mutate(key: key, value: value)
     }
@@ -758,6 +766,10 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Legend {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Legend {
         return mutate(key: key, value: value)
     }
@@ -1022,6 +1034,10 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Summary {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Summary {

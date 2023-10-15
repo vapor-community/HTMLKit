@@ -191,6 +191,10 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> TermName {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> TermName {
         return mutate(key: key, value: value)
     }
@@ -455,6 +459,10 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> TermDefinition {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TermDefinition {

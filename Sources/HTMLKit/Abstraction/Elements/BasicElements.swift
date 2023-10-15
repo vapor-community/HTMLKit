@@ -201,6 +201,10 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Html {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Html {
         return mutate(key: key, value: value)
     }

@@ -182,6 +182,10 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> FigureCaption {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> FigureCaption {
         return mutate(key: key, value: value)
     }

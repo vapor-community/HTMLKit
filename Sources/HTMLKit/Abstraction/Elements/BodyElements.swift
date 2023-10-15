@@ -497,6 +497,10 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Article {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Article {
         return mutate(key: key, value: value)
     }
@@ -761,6 +765,10 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Section {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Section {
@@ -1029,6 +1037,10 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Navigation {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Navigation {
         return mutate(key: key, value: value)
     }
@@ -1295,6 +1307,10 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Aside {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Aside {
         return mutate(key: key, value: value)
     }
@@ -1559,6 +1575,10 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Heading1 {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Heading1 {
@@ -1834,6 +1854,10 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Heading2 {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Heading2 {
         return mutate(key: key, value: value)
     }
@@ -2105,6 +2129,10 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Heading3 {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Heading3 {
@@ -2380,6 +2408,10 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Heading4 {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Heading4 {
         return mutate(key: key, value: value)
     }
@@ -2651,6 +2683,10 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Heading5 {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Heading5 {
@@ -2926,6 +2962,10 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Heading6 {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Heading6 {
         return mutate(key: key, value: value)
     }
@@ -3199,6 +3239,10 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> HeadingGroup {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> HeadingGroup {
         return mutate(key: key, value: value)
     }
@@ -3463,6 +3507,10 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Header {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Header {
@@ -3731,6 +3779,10 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Footer {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Footer {
         return mutate(key: key, value: value)
     }
@@ -3997,6 +4049,10 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Address {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Address {
         return mutate(key: key, value: value)
     }
@@ -4261,6 +4317,10 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Paragraph {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Paragraph {
@@ -4531,6 +4591,10 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> HorizontalRule {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> HorizontalRule {
         return mutate(key: key, value: value)
     }
@@ -4795,6 +4859,10 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> PreformattedText {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> PreformattedText {
@@ -5065,6 +5133,10 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     
     public func cite(_ value: String) -> Blockquote {
         return mutate(cite: value)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Blockquote {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Blockquote {
@@ -5352,6 +5424,10 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(type: value)
     }
     
+    public func popover(_ value: Values.Popover.State) -> OrderedList {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> OrderedList {
         return mutate(key: key, value: value)
     }
@@ -5616,6 +5692,10 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> UnorderedList {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> UnorderedList {
@@ -5884,6 +5964,10 @@ extension Menu: GlobalAttributes {
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Menu {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Menu {
         return mutate(key: key, value: value)
     }
@@ -6052,6 +6136,10 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> DescriptionList {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> DescriptionList {
@@ -6318,6 +6406,10 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Figure {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Figure {
@@ -6622,6 +6714,10 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(type: value)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Anchor {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Anchor {
         return mutate(key: key, value: value)
     }
@@ -6895,6 +6991,10 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Emphasize {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Emphasize {
         return mutate(key: key, value: value)
     }
@@ -7161,6 +7261,10 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Strong {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Strong {
         return mutate(key: key, value: value)
     }
@@ -7425,6 +7529,10 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Small {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Small {
@@ -7700,6 +7808,10 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> StrikeThrough {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> StrikeThrough {
         return mutate(key: key, value: value)
     }
@@ -7895,6 +8007,10 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Main {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Main {
@@ -8163,6 +8279,10 @@ extension Search: GlobalAttributes {
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Search {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Search {
         return mutate(key: key, value: value)
     }
@@ -8331,6 +8451,10 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Division {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Division {
@@ -8599,6 +8723,10 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Definition {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Definition {
         return mutate(key: key, value: value)
     }
@@ -8863,6 +8991,10 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Cite {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Cite {
@@ -9135,6 +9267,10 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(cite: value)
     }
     
+    public func popover(_ value: Values.Popover.State) -> ShortQuote {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> ShortQuote {
         return mutate(key: key, value: value)
     }
@@ -9401,6 +9537,10 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Abbreviation {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Abbreviation {
         return mutate(key: key, value: value)
     }
@@ -9665,6 +9805,10 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Ruby {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Ruby {
@@ -9937,6 +10081,10 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(value: value)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Data {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Data {
         return mutate(key: key, value: value)
     }
@@ -10207,6 +10355,10 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(datetime: value)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Time {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Time {
         return mutate(key: key, value: value)
     }
@@ -10471,6 +10623,10 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Code {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Code {
@@ -10739,6 +10895,10 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Variable {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Variable {
         return mutate(key: key, value: value)
     }
@@ -11003,6 +11163,10 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> SampleOutput {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> SampleOutput {
@@ -11271,6 +11435,10 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> KeyboardInput {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> KeyboardInput {
         return mutate(key: key, value: value)
     }
@@ -11534,6 +11702,10 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Subscript {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Subscript {
@@ -11802,6 +11974,10 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Superscript {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Superscript {
         return mutate(key: key, value: value)
     }
@@ -12066,6 +12242,10 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Italic {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Italic {
@@ -12341,6 +12521,10 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Bold {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Bold {
         return mutate(key: key, value: value)
     }
@@ -12612,6 +12796,10 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Underline {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Underline {
@@ -12887,6 +13075,10 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Mark {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Mark {
         return mutate(key: key, value: value)
     }
@@ -13153,6 +13345,10 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Bdi {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Bdi {
         return mutate(key: key, value: value)
     }
@@ -13412,6 +13608,10 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Bdo {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Bdo {
@@ -13680,6 +13880,10 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Span {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Span {
         return mutate(key: key, value: value)
     }
@@ -13941,6 +14145,10 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> LineBreak {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> LineBreak {
         return mutate(key: key, value: value)
     }
@@ -14200,6 +14408,10 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> WordBreak {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> WordBreak {
@@ -14476,6 +14688,10 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(datetime: value)
     }
     
+    public func popover(_ value: Values.Popover.State) -> InsertedText {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> InsertedText {
         return mutate(key: key, value: value)
     }
@@ -14750,6 +14966,10 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(datetime: value)
     }
     
+    public func popover(_ value: Values.Popover.State) -> DeletedText {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> DeletedText {
         return mutate(key: key, value: value)
     }
@@ -15016,6 +15236,10 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Picture {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Picture {
         return mutate(key: key, value: value)
     }
@@ -15243,6 +15467,10 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func decoding(_ value: Values.Decoding) -> Image {
         return mutate(decoding: value.rawValue)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Image {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Image {
@@ -15539,6 +15767,10 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(loading: value.rawValue)
     }
     
+    public func popover(_ value: Values.Popover.State) -> InlineFrame {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> InlineFrame {
         return mutate(key: key, value: value)
     }
@@ -15818,6 +16050,10 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func height(_ size: Int) -> Embed {
         return mutate(height: size)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Embed {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Embed {
@@ -16108,6 +16344,10 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func height(_ size: Int) -> Object {
         return mutate(height: size)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Object {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Object {
@@ -16421,6 +16661,10 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(preload: value.rawValue)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Video {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Video {
         return mutate(key: key, value: value)
     }
@@ -16724,6 +16968,10 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(preload: value.rawValue)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Audio {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Audio {
         return mutate(key: key, value: value)
     }
@@ -16994,6 +17242,10 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         return mutate(name: value)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Map {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Map {
         return mutate(key: key, value: value)
     }
@@ -17210,6 +17462,10 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
     
     public func relationship(_ value: Values.Relation) -> Form {
         return mutate(rel: value.rawValue)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Form {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Form {
@@ -17476,6 +17732,10 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> DataList {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> DataList {
@@ -17756,6 +18016,10 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(name: value)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Output {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Output {
         return mutate(key: key, value: value)
     }
@@ -18028,6 +18292,10 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func value(_ value: String) -> Progress {
         return mutate(value: value)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Progress {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Progress {
@@ -18320,6 +18588,10 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(value: value)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Meter {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Meter {
         return mutate(key: key, value: value)
     }
@@ -18590,6 +18862,10 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(open: value)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Details {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Details {
         return mutate(key: key, value: value)
     }
@@ -18858,6 +19134,10 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
     public func isOpen(_ value: Bool) -> Dialog {
         return mutate(open: value)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Dialog {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Dialog {
@@ -19154,6 +19434,10 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return mutate(blocking: value.rawValue)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Script {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Script {
         return mutate(key: key, value: value)
     }
@@ -19344,6 +19628,10 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> NoScript {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> NoScript {
         return mutate(key: key, value: value)
     }
@@ -19532,6 +19820,10 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Template {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Template {
@@ -19734,6 +20026,10 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func height(_ size: Int) -> Canvas {
         return mutate(height: size)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Canvas {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Canvas {
@@ -20008,6 +20304,10 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func height(_ size: Int) -> Table {
         return mutate(height: size)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Table {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Table {
@@ -20390,5 +20690,9 @@ extension Slot: GlobalAttributes, NameAttribute {
     
     public func custom(key: String, value: Any) -> Slot {
         return mutate(key: key, value: value)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Slot {
+        return mutate(popover: value.rawValue)
     }
 }

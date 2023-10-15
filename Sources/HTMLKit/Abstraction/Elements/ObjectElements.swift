@@ -185,6 +185,10 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(value: value)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Parameter {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Parameter {
         return mutate(key: key, value: value)
     }

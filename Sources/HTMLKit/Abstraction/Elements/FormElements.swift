@@ -308,6 +308,10 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(width: size)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Input {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Input {
         return mutate(key: key, value: value)
     }
@@ -500,6 +504,10 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func `for`(_ value: String) -> Label {
         return mutate(for: value)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Label {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Label {
@@ -821,6 +829,10 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return mutate(size: size)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Select {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Select {
         return mutate(key: key, value: value)
     }
@@ -1084,6 +1096,10 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func wrap(_ value: Values.Wrapping) -> TextArea {
         return mutate(wrap: value.rawValue)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> TextArea {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TextArea {
@@ -1385,6 +1401,10 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(value: value)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Button {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Button {
         return mutate(key: key, value: value)
     }
@@ -1677,6 +1697,10 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func name(_ value: String) -> Fieldset {
         return mutate(name: value)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Fieldset {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Fieldset {

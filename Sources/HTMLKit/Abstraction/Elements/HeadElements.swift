@@ -173,6 +173,10 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> Title {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Title {
         return mutate(key: key, value: value)
     }
@@ -364,6 +368,10 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
     
     public func target(_ value: Values.Target) -> Base {
         return mutate(target: value.rawValue)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Base {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Base {
@@ -571,6 +579,10 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(httpequiv: value.rawValue)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Meta {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Meta {
         return mutate(key: key, value: value)
     }
@@ -771,6 +783,10 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     
     public func blocking(_ value: Values.Blocking) -> Style {
         return mutate(blocking: value.rawValue)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Style {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Style {
@@ -992,6 +1008,10 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     
     public func blocking(_ value: Values.Blocking) -> Link {
         return mutate(blocking: value.rawValue)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Link {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Link {

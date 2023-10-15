@@ -191,6 +191,10 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
     
+    public func popover(_ value: Values.Popover.State) -> RubyText {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> RubyText {
         return mutate(key: key, value: value)
     }
@@ -455,6 +459,10 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         }
         
         return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> RubyPronunciation {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> RubyPronunciation {

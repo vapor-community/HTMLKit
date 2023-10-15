@@ -820,6 +820,9 @@ internal class Parser {
             case "blocking":
                 return try TypeAttribute<Values.Blocking>(node: node).build()
                 
+            case "popover":
+                return try TypeAttribute<Values.Popover.State>(node: node).build()
+                
             case "onafterprint":
                 return try EventAttribute<Events.Window>(node: node).build()
                 

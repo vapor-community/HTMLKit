@@ -209,6 +209,10 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(referrerpolicy: value.rawValue)
     }
     
+    public func popover(_ value: Values.Popover.State) -> Area {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Area {
         return mutate(key: key, value: value)
     }

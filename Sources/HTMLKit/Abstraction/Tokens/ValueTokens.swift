@@ -941,4 +941,14 @@ public enum Values {
         /// Indicates a render-blocking element.
         case render
     }
+    
+    public enum Popover {
+        
+        public enum State: String {
+            /// Closes other popovers when opened.
+            case auto
+            /// Does not close other popovers.
+            case manual
+        }
+    }
 }

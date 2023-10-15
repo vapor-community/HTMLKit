@@ -9,7 +9,7 @@
 import OrderedCollections
 
 /// The alias combines the global attributes of the basic attributes.
-public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & InertAttribute
+public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & InertAttribute & PopoverAttribute
 
 /// The protocol provides the element with the accesskey handler.
 public protocol AccessKeyAttribute: Attribute {
@@ -2810,3 +2810,26 @@ extension BlockingAttribute where Self: EmptyNode {
     }
 }
 
+public protocol PopoverAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'popover'.
+    ///
+    /// ```html
+    /// <tag popover="" />
+    /// ```
+    func popover(_ value: Values.Popover.State) -> Self
+}
+
+extension PopoverAttribute where Self: ContentNode {
+    
+    internal func mutate(popover value: String) -> Self {
+        return self.mutate(key: "popover", value: value)
+    }
+}
+
+extension PopoverAttribute where Self: EmptyNode {
+    
+    internal func mutate(popover value: String) -> Self {
+        return self.mutate(key: "popover", value: value)
+    }
+}
