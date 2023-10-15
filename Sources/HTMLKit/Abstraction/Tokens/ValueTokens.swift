@@ -936,4 +936,9 @@ public enum Values {
         /// Indicates no preference for the decoding.
         case auto
     }
+    
+    public enum Blocking: String {
+        /// Indicates a render-blocking element.
+        case render
+    }
 }

@@ -637,7 +637,7 @@ public struct Style: ContentNode, HeadElement {
     }
 }
 
-extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAttribute {
+extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAttribute, BlockingAttribute {
 
     public func accessKey(_ value: Character) -> Style {
         return mutate(accesskey: value)
@@ -769,6 +769,10 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return mutate(media: value)
     }
     
+    public func blocking(_ value: Values.Blocking) -> Style {
+        return mutate(blocking: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Style {
         return mutate(key: key, value: value)
     }
@@ -830,7 +834,7 @@ public struct Link: EmptyNode, HeadElement, BodyElement {
     }
 }
 
-extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, FormEventAttribute {
+extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute {
     
     public func accessKey(_ value: Character) -> Link {
         return mutate(accesskey: value)
@@ -984,6 +988,10 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     
     public func fetchPriority(_ value: Values.Priority) -> Link {
         return mutate(fetchpriority: value.rawValue)
+    }
+    
+    public func blocking(_ value: Values.Blocking) -> Link {
+        return mutate(blocking: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Link {

@@ -2785,3 +2785,28 @@ extension DecodingAttribute where Self: EmptyNode {
         return self.mutate(key: "decoding", value: value)
     }
 }
+
+public protocol BlockingAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'blocking'.
+    ///
+    /// ```html
+    /// <tag blocking="" />
+    /// ```
+    func blocking(_ value: Values.Blocking) -> Self
+}
+
+extension BlockingAttribute where Self: ContentNode {
+    
+    internal func mutate(blocking value: String) -> Self {
+        return self.mutate(key: "blocking", value: value)
+    }
+}
+
+extension BlockingAttribute where Self: EmptyNode {
+    
+    internal func mutate(blocking value: String) -> Self {
+        return self.mutate(key: "blocking", value: value)
+    }
+}
+

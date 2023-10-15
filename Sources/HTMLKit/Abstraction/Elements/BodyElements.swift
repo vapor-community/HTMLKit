@@ -19002,7 +19002,7 @@ public struct Script: ContentNode, HeadElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute, FetchPriorityAttribute {
+extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute {
 
     public func accessKey(_ value: Character) -> Script {
         return mutate(accesskey: value)
@@ -19148,6 +19148,10 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
     
     public func fetchPriority(_ value: Values.Priority) -> Script {
         return mutate(fetchpriority: value.rawValue)
+    }
+    
+    public func blocking(_ value: Values.Blocking) -> Script {
+        return mutate(blocking: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Script {

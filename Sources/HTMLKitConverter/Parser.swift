@@ -817,6 +817,9 @@ internal class Parser {
             case "srcset":
                 return try ValueAttribute<String>(node: node).build(verbatim: "sourceSet")
                 
+            case "blocking":
+                return try TypeAttribute<Values.Blocking>(node: node).build()
+                
             case "onafterprint":
                 return try EventAttribute<Events.Window>(node: node).build()
                 
