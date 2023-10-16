@@ -1,6 +1,6 @@
 
 /// A type that describes a component with an identifier.
-internal protocol Identifiable {
+public protocol Identifiable {
     
     /// The identifier of the component.
     var id: String? { get set }

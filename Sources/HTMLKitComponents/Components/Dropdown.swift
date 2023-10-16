@@ -6,7 +6,9 @@
 import HTMLKit
 
 /// A component that displays a list of actions.
-public struct Dropdown: View, Modifiable {
+public struct Dropdown: View, Modifiable, Identifiable {
+    
+    public var id: String?
     
     /// The label for the dropdown.
     internal var label: [Content]
@@ -26,11 +28,12 @@ public struct Dropdown: View, Modifiable {
     }
     
     /// Creates a dropdown.
-    internal init(label: [Content], content: [Content], classes: [String]) {
+    internal init(label: [Content], content: [Content], classes: [String], id: String?) {
         
         self.label = label
         self.content = content
         self.classes = classes
+        self.id = id
     }
     
     public var body: Content {
@@ -45,6 +48,13 @@ public struct Dropdown: View, Modifiable {
             .class("dropdown-content")
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+    }
+    
+    public func tag(_ value: String) -> Dropdown {
+        return self.mutate(id: value)
     }
 }
 

@@ -9,7 +9,7 @@ import HTMLKit
 public struct HStack: View, Actionable, Modifiable {
     
     /// The identifier of the text.
-    internal var id: String?
+    public var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
@@ -59,20 +59,20 @@ public struct HStack: View, Actionable, Modifiable {
         
         return newSelf
     }
-}
-
-extension HStack: MouseEvent {
     
     public func tag(_ value: String) -> HStack {
         return self.mutate(id: value)
     }
+}
+
+extension HStack: MouseEvent {
     
-    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> HStack {
-        return self.mutate(hoverevent: action(self))
+    public func onHover(@ActionBuilder action: (ViewAction) -> [Action]) -> HStack {
+        return self.mutate(hoverevent: action(.init()))
     }
     
-    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> HStack {
-        return self.mutate(leaveevent: action(self))
+    public func onLeave(@ActionBuilder action: (ViewAction) -> [Action]) -> HStack {
+        return self.mutate(leaveevent: action(.init()))
     }
 }
 
@@ -131,7 +131,7 @@ extension HStack: ViewModifier {
 /// A component that arranges content vertically.
 public struct VStack: View, Actionable, Modifiable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
@@ -180,20 +180,20 @@ public struct VStack: View, Actionable, Modifiable {
         
         return newSelf
     }
-}
-
-extension VStack: MouseEvent {
     
     public func tag(_ value: String) -> VStack {
         return self.mutate(id: value)
     }
+}
+
+extension VStack: MouseEvent {
     
-    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> VStack {
-        return self.mutate(hoverevent: action(self))
+    public func onHover(@ActionBuilder action: (ViewAction) -> [Action]) -> VStack {
+        return self.mutate(hoverevent: action(.init()))
     }
     
-    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> VStack {
-        return self.mutate(leaveevent: action(self))
+    public func onLeave(@ActionBuilder action: (ViewAction) -> [Action]) -> VStack {
+        return self.mutate(leaveevent: action(.init()))
     }
 }
 
@@ -252,7 +252,7 @@ extension VStack: ViewModifier {
 /// A component that overlays content.
 public struct ZStack: View, Actionable, Modifiable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
@@ -292,20 +292,20 @@ public struct ZStack: View, Actionable, Modifiable {
             }
         }
     }
-}
-
-extension ZStack: MouseEvent {
     
     public func tag(_ value: String) -> ZStack {
         return self.mutate(id: value)
     }
+}
+
+extension ZStack: MouseEvent {
     
-    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> ZStack {
-        return self.mutate(hoverevent: action(self))
+    public func onHover(@ActionBuilder action: (ViewAction) -> [Action]) -> ZStack {
+        return self.mutate(hoverevent: action(.init()))
     }
     
-    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> ZStack {
-        return self.mutate(leaveevent: action(self))
+    public func onLeave(@ActionBuilder action: (ViewAction) -> [Action]) -> ZStack {
+        return self.mutate(leaveevent: action(.init()))
     }
 }
 

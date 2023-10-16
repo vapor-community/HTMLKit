@@ -3,7 +3,19 @@
  */
 
 .navigation {
+    --borderWidth: 0;
+    --borderColor: 0, 0%, 0%;
+    --borderOpacity: 0,0;
+    --borderRadius: 0;
+    --backgroundColor: 0, 0%, 0%;
+    --backgroundOpacity: 0.0;
+    
     position: relative;
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--borderColor), var(--borderOpacity));
+    border-radius: var(--borderRadius);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }
 
 .navigation > .list > .list-row > .link {
@@ -30,12 +42,6 @@
     --borderOpacity: 1.0;
     --backgroundColor: 0, 0%, 100%;
     --backgroundOpacity: 1.0;
-    
-    border-width: var(--borderWidth);
-    border-style: solid;
-    border-color: hsla(var(--borderColor), var(--borderOpacity));
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }
 
 .navigation.style\:pagination > .list > .list-row > .link {

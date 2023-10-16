@@ -15,6 +15,7 @@
     grid-auto-columns: min-content;
     max-width: 100%;
     overflow-x: auto;
+    overflow-y: hidden;
     overscroll-behavior-inline: contain;
 }
 
@@ -22,6 +23,7 @@
     grid-auto-flow: row;
     grid-auto-rows: min-content;
     max-height: 100%;
+    overflow-x: hidden;
     overflow-y: auto;
     overscroll-behavior-y: contain;
 }

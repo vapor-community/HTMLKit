@@ -1,42 +1,44 @@
-import Foundation
+public struct ViewAction: Action {
+    
+    public var actions: [String] = []
+    
+    public func show(_ target: String) -> ViewAction {
+        
+        var newSelf = self
+        newSelf.actions.append("$('#\(target.escape())').show();")
+        
+        return newSelf
+    }
 
-public protocol ViewAction {
-    
-    /// Shows the target.
-    func show(_ target: String) -> String
-    
-    /// Hides the target.
-    func hide(_ target: String) -> String
-    
-    /// Animates the target.
-    func animate(_ target: String) -> String
-    
-    /// Opens the target.
-    func open(_ target: String) -> String
-    
-    /// Closes the target.
-    func close(_ target: String) -> String
-}
+    public func hide(_ target: String) -> ViewAction {
+        
+        var newSelf = self
+        newSelf.actions.append("$('#\(target.escape())').hide();")
+        
+        return newSelf
+    }
 
-extension ViewAction {
-    
-    public func show(_ target: String) -> String {
-        return "$('#\(target.escape())').show();"
+    public func animate(_ target: String) -> ViewAction {
+        
+        var newSelf = self
+        newSelf.actions.append("$('#\(target.escape())').animate();")
+        
+        return newSelf
     }
-    
-    public func hide(_ target: String) -> String {
-        return "$('#\(target.escape())').hide();"
+
+    public func open(_ target: String) -> ViewAction {
+        
+        var newSelf = self
+        newSelf.actions.append("$('#\(target.escape())').open();")
+        
+        return newSelf
     }
-    
-    public func animate(_ target: String) -> String {
-        return "$('#\(target.escape())').animate();"
-    }
-    
-    public func open(_ target: String) -> String {
-        return "$('#\(target.escape())').open();"
-    }
-    
-    public func close(_ target: String) -> String {
-        return "$('#\(target.escape())').close();"
+
+    public func close(_ target: String) -> ViewAction {
+        
+        var newSelf = self
+        newSelf.actions.append("$('#\(target.escape())').close();")
+        
+        return newSelf
     }
 }

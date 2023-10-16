@@ -6,7 +6,9 @@
 import HTMLKit
 
 /// A component that collects content.
-public struct Grouping: View, Modifiable {
+public struct Grouping: View, Modifiable, Identifiable {
+    
+    public var id: String?
     
     /// The content of the group.
     internal var content: [Content]
@@ -22,10 +24,11 @@ public struct Grouping: View, Modifiable {
     }
     
     /// Creates a group.
-    internal init(content: [Content], classes: [String]) {
+    internal init(content: [Content], classes: [String], id: String?) {
         
         self.content = content
         self.classes = classes
+        self.id = id
     }
 
     public var body: Content {
@@ -33,6 +36,9 @@ public struct Grouping: View, Modifiable {
             content
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Grouping {
@@ -46,6 +52,10 @@ public struct Grouping: View, Modifiable {
         newSelf.classes.append("size:\(width.value)")
         
         return newSelf
+    }
+    
+    public func tag(_ value: String) -> Grouping {
+        return self.mutate(id: value)
     }
 }
 

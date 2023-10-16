@@ -951,10 +951,10 @@ public enum Tokens {
         case around
         case between
         case evenly
+        case center
         case large
         case medium
         case small
-        
         case custom(String)
         
         var value: String {
@@ -967,6 +967,9 @@ public enum Tokens {
                 
             case .evenly:
                 return "evenly"
+                
+            case .center:
+                return "center"
                 
             case .large:
                 return "large"

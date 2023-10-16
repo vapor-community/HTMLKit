@@ -7,6 +7,8 @@
     --paddingInlineEnd: 0;
     --paddingBlockStart: 0;
     --paddingBlockEnd: 0;
+    --backgroundColor: 0, 0%, 0%;
+    --backgroundOpacity: 0.0;
     
     position: relative;
     inline-size: 100%;
@@ -15,6 +17,7 @@
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }
 
 .grid.ratio\:fit {
@@ -67,6 +70,10 @@
 
 .grid.space\:evenly {
     justify-content: space-evenly;
+}
+
+.grid.space\:center {
+    justify-content: center;
 }
 
 .grid.space\:large {

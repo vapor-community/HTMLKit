@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that collects and arranges list items vertically.
 public struct List: View, Modifiable, Actionable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The content of the list.
     internal var content: [ListElement]
@@ -57,20 +57,20 @@ public struct List: View, Modifiable, Actionable {
         
         return newSelf
     }
-}
-
-extension List: MouseEvent, ViewAction {
     
     public func tag(_ value: String) -> List {
         return self.mutate(id: value)
     }
+}
 
-    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> List {
-        return self.mutate(hoverevent: action(self))
+extension List: MouseEvent {
+
+    public func onHover(@ActionBuilder action: (ViewAction) -> [Action]) -> List {
+        return self.mutate(hoverevent: action(.init()))
     }
     
-    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> List {
-        return self.mutate(leaveevent: action(self))
+    public func onLeave(@ActionBuilder action: (ViewAction) -> [Action]) -> List {
+        return self.mutate(leaveevent: action(.init()))
     }
 }
 
@@ -129,7 +129,7 @@ extension List: ViewModifier {
 /// A component that represents a list item.
 public struct ListRow: View, Modifiable, Actionable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The content of the row.
     internal var content: [Content]
@@ -206,19 +206,19 @@ public struct ListRow: View, Modifiable, Actionable {
         
         return self.mutate(classes: classes)
     }
-}
-
-extension ListRow: MouseEvent, ViewAction {
     
     public func tag(_ value: String) -> ListRow {
         return self.mutate(id: value)
     }
+}
+
+extension ListRow: MouseEvent {
     
-    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> ListRow {
-        return self.mutate(hoverevent: action(self))
+    public func onHover(@ActionBuilder action: (ViewAction) -> [Action]) -> ListRow {
+        return self.mutate(hoverevent: action(.init()))
     }
     
-    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> ListRow {
-        return self.mutate(leaveevent: action(self))
+    public func onLeave(@ActionBuilder action: (ViewAction) -> [Action]) -> ListRow {
+        return self.mutate(leaveevent: action(.init()))
     }
 }

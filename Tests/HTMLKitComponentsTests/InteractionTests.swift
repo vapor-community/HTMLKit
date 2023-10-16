@@ -18,8 +18,8 @@ final class InteractionTests: XCTestCase {
                 "Example"
             }
             .tag("sender")
-            .onClick { text in
-                text.show("reciever")
+            .onClick { action in
+                action.show("reciever")
             }
         }
         
@@ -42,8 +42,8 @@ final class InteractionTests: XCTestCase {
                 "Example"
             }
             .tag("sender")
-            .onTap { text in
-                text.hide("reciever")
+            .onTap { action in
+                action.hide("reciever")
             }
         }
         
@@ -66,8 +66,8 @@ final class InteractionTests: XCTestCase {
                 "Example"
             }
             .tag("sender")
-            .onHover { text in
-                text.open("reciever")
+            .onHover { action in
+                action.open("reciever")
             }
         }
         
@@ -90,8 +90,8 @@ final class InteractionTests: XCTestCase {
                 "Example"
             }
             .tag("sender")
-            .onLeave { text in
-                text.close("reciever")
+            .onLeave { action in
+                action.close("reciever")
             }
         }
         
@@ -114,8 +114,8 @@ final class InteractionTests: XCTestCase {
                 "Example"
             }
             .tag("sender")
-            .onPress { text in
-                text.animate("reciever")
+            .onPress { action in
+                action.animate("reciever")
             }
         }
         
@@ -137,8 +137,8 @@ final class InteractionTests: XCTestCase {
             Form(method: .post) {
             }
             .tag("sender")
-            .onSubmit { form in
-                form.validate("test", [Validator(field: "testfield", rule: .value)])
+            .onSubmit { action in
+                action.validate("test", [Validator(field: "testfield", rule: .value)])
             }
         }
         

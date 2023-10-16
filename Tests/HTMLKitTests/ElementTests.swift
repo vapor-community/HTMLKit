@@ -405,6 +405,19 @@ final class ElementTests: XCTestCase {
         )
     }
     
+    func testMenuElement() throws {
+        
+        let view = TestView {
+            Menu {}
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <menu></menu>
+                       """
+        )
+    }
+    
     func testListItemElement() throws {
         
         let view = TestView {
@@ -502,6 +515,19 @@ final class ElementTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <main></main>
+                       """
+        )
+    }
+    
+    func testSearchElement() throws {
+        
+        let view = TestView {
+            Search {}
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <search></search>
                        """
         )
     }

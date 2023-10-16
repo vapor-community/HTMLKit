@@ -13,14 +13,19 @@
     --inlineSize: 100%;
     --borderWidth: 0;
     --borderRadius: 0;
+    --borderColor: 0, 0%, 0%;
+    --borderOpacity: 0.0;
+    --backgroundColor: 0, 0%, 0%;
+    --backgroundOpacity: 0.0;
     
     position: relative;
     max-inline-size: var(--inlineSize);
     height: auto;
     border-width: var(--borderWidth);
     border-style: solid;
-    border-color: hsla(var(--borderColor), 1.0);
+    border-color: hsla(var(--borderColor), var(--borderOpacity));
     border-radius: var(--borderRadius);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }
 
 .image.aspect\:equal {

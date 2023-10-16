@@ -7,6 +7,8 @@
     --paddingBlockEnd: 0;
     --paddingInlineStart: 0;
     --paddingInlineEnd: 0;
+    --backgroundColor: 0, 0%, 0%;
+    --backgroundOpacity: 0.0;
     
     display: flex;
     padding-block-start: var(--paddingBlockStart);
@@ -14,6 +16,7 @@
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
     list-style-type: none;
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }
 
 .list.direction\:horizontal {

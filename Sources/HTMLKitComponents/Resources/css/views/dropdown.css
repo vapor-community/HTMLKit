@@ -57,7 +57,7 @@
     border-style: solid;
     border-color: hsla(var(--borderColor), 1.0);
     border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), 1.0);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     overflow: hidden;
 }
 

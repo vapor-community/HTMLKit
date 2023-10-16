@@ -1,22 +1,22 @@
-import Foundation
-
-public protocol SubmitAction {
+public struct SubmitAction: Action {
     
-    /// Validates the form.
-    func validate(_ target: String, _ validators: [Validator]) -> String
-}
-
-extension SubmitAction {
+    public var actions: [String] = []
     
-    public func validate(_ target: String, _ validators: [Validator]) -> String {
+    public func validate(_ target: String, _ validators: [Validator]) -> SubmitAction {
         
-        if let data = try? JSONEncoder().encode(validators) {
+        var newSelf = self
+        
+        if !validators.isEmpty {
             
-            if let result = String(data: data, encoding: .utf8) {
-                return "$('#\(target.escape())').validate('\(result)');"
-            }
+            let result = validators.map { "{\"field\":\"\($0.field)\",\"rule\":\"\($0.rule)\"}" }
+            
+            newSelf.actions.append("$('#\(target.escape())').validate('[\(result.joined(separator: ","))]');")
+            
+            return newSelf
         }
         
-        return "$('#\(target.escape())').validate('[]');"
+        newSelf.actions.append("$('#\(target.escape())').validate('[]');")
+        
+        return newSelf
     }
 }

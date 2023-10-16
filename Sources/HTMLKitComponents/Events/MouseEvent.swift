@@ -4,21 +4,21 @@
  */
 
 /// A type that describes the modifier of a hoverable component.
-public protocol MouseEvent: ViewAction {
+public protocol MouseEvent {
     
     /// The identifier of the component.
     func tag(_ value: String) -> Self
     
     /// Acts on a hover event.
-    func onHover(@StringBuilder action: (ViewAction) -> [String]) -> Self
+    func onHover(@ActionBuilder action: (ViewAction) -> [Action]) -> Self
     
     /// Acts on a leave event.
-    func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> Self
+    func onLeave(@ActionBuilder action: (ViewAction) -> [Action]) -> Self
 }
 
 extension MouseEvent where Self: Actionable {
     
-    internal func mutate(hoverevent actions: [String]) -> Self {
+    internal func mutate(hoverevent actions: [Action]) -> Self {
         
         guard let identifier = self.id else {
             fatalError("Initiative identifier unkown.")
@@ -26,14 +26,14 @@ extension MouseEvent where Self: Actionable {
         
         let event = """
                 $('#\(identifier)').onHover(function(){\
-                \(actions.joined())\
+                \(actions.map { $0.description }.joined())\
                 });
                 """
         
         return self.mutate(event: event)
     }
     
-    internal func mutate(leaveevent actions: [String]) -> Self {
+    internal func mutate(leaveevent actions: [Action]) -> Self {
         
         guard let identifier = self.id else {
             fatalError("Initiative identifier unkown.")
@@ -41,7 +41,7 @@ extension MouseEvent where Self: Actionable {
         
         let event = """
                 $('#\(identifier)').onLeave(function(){\
-                \(actions.joined())\
+                \(actions.map { $0.description }.joined())\
                 });
                 """
         

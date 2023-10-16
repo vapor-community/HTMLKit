@@ -1,22 +1,14 @@
 /*
- The rulesets for the carousel component.
- 
- default:
- container height: 400px;
- border width: 1px;
- border color:;
- background color:;
- 
- darkmode:
- border color:;
- background color:;
+ The stylesheet for the carousel component.
  */
 
 .carousel {
     --borderWidth: 1px;
-    --borderRadius: 10px;
-    --borderColor: 0, 0%, 0%;
-    --backgroundColor: transparent;
+    --borderColor: 210, 14%, 89%;
+    --borderRadius: 0;
+    --borderOpacity: 1.0;
+    --backgroundColor: 0, 0%, 100%;
+    --backgroundOpacity: 1.0;
     
     display: flex;
     flex-direction: column;
@@ -31,35 +23,14 @@
     block-size: 350px;
     border-width: var(--borderWidth);
     border-style: solid;
-    border-color: hsla(var(--borderColor), 1.0);
-    background-color: hsla(var(--backgroundColor), 1.0);
+    border-color: hsla(var(--borderColor), var(--borderOpacity));
+    border-radius: var(--borderRadius);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     overflow: hidden;
 }
 
 .carousel-content::-webkit-scrollbar{
     display: none;
-}
-
-.slide {
-    display: flex;
-    block-size: auto;
-    overflow: hidden;
-}
-
-.slide-thumbnail {
-    inline-size: 60%;
-}
-
-.slide-thumbnail > img {
-    inline-size: 100%;
-    blocks-ize: 100%;
-    object-fit: cover;
-}
-
-.slide-caption {
-    inline-size: 40%;
-    padding-block: 24px;
-    padding-inline: 24px;
 }
 
 .carousel-indication {
@@ -71,27 +42,31 @@
 }
 
 .scheme\:dark .carousel, .carousel.scheme\:dark {
-    --borderColor: var(--blackColor);
-    --backgroundColor: transparent;
+    --borderColor: 210, 9%, 31%;
+    --backgroundColor: 210, 11%, 15%;
+}
+
+.slide {
+    --backgroundColor: 0, 0%, 100%;
+    --backgroundOpacity: 1.0;
+    
+    position: relative;
+    display: flex;
+    block-size: inherit;
+    overflow: hidden;
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }
 
 /*
  indicator component
- 
- border width:;
- border radius:;
- border color:;
- background color:;
- 
- darkmode:
- border color:;
- background color:;
  */
 
 .indicator {
     --borderRadius: 5px;
-    --backgroundColor: transparent;
-    --borderColor: #000000;
+    --borderColor: 210, 14%, 89%;
+    --borderOpacity: 1.0;
+    --backgroundColor: 210, 14%, 89%;
+    --backgroundOpacity: 1.0;
     
     position: relative;
     display: inline-block;
@@ -99,9 +74,9 @@
     block-size: 6px;
     border-width: 1px;
     border-style: solid;
-    border-color: hsla(var(--borderColor), 1.0);
+    border-color: hsla(var(--borderColor), var(--borderOpacity));
     border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), 1.0);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     cursor: pointer;
 }
 
@@ -111,6 +86,6 @@
 }
 
 .scheme\:dark .indicator, .indicator.scheme\:dark {
-    --backgroundColor: transparent;
-    --borderColor: #000000;
+    --borderColor: 210, 9%, 31%;
+    --backgroundColor: 210, 11%, 15%;
 }

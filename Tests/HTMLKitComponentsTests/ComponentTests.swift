@@ -103,7 +103,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="text" id="name" name="name" class="textfield">
+                       <input type="text" name="name" class="textfield">
                        """
         )
     }
@@ -118,7 +118,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <textarea id="name" name="name" class="texteditor" rows="3">value</textarea>
+                       <textarea name="name" class="texteditor" rows="3">value</textarea>
                        """
         )
     }
@@ -131,7 +131,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="range" id="name" name="name" class="slider">
+                       <input type="range" name="name" class="slider">
                        """
         )
     }
@@ -145,7 +145,7 @@ final class ComponentTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div class="datepicker">\
-                       <input type="text" class="datepicker-datefield" id="name" name="name">\
+                       <input type="text" class="datepicker-datefield" name="name">\
                        <div class="datepicker-calendar">\
                        <ul class="calendar-navigation">\
                        <li>\
@@ -190,7 +190,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="password" id="password" name="password" class="securefield">
+                       <input type="password" name="password" class="securefield">
                        """
         )
     }
@@ -275,7 +275,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <input type="file" id="avatar" name="avatar" class="filedialog">
+                       <input type="file" name="avatar" class="filedialog">
                        """
         )
     }
@@ -443,46 +443,22 @@ final class ComponentTests: XCTestCase {
     func testCarousel() throws {
         
         let view = TestView {
-            Carousel {} indication: {}
+            Carousel {
+                Slide {}
+                    .tag("slide")
+            }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div class="carousel">\
-                       <div class="carousel-content"></div>\
-                       <div class="carousel-indication"></div>\
-                       </div>
-                       """
-        )
-    }
-    
-    func testSlide() throws {
-        
-        let view = TestView {
-            Slide(source: "#") {}
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <div class="slide">\
-                       <div class="slide-thumbnail">\
-                       <img src="#">\
+                       <div class="carousel-content">\
+                       <div class="slide" id="slide"></div>\
                        </div>\
-                       <div class="slide-caption"></div>\
+                       <div class="carousel-indication">\
+                       <a class="indicator" href="#slide"></a>\
+                       </div>\
                        </div>
-                       """
-        )
-    }
-    
-    func testIndicator() throws {
-        
-        let view = TestView {
-            Indicator(for: "example")
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <a class="indicator" href="#example"></a>
                        """
         )
     }

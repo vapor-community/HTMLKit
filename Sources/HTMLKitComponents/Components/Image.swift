@@ -5,7 +5,9 @@
 
 import HTMLKit
 
-public struct Image: View, Modifiable {
+public struct Image: View, Modifiable, Identifiable {
+    
+    public var id: String?
     
     /// The url path of the image.
     internal let source: DynamicType
@@ -28,10 +30,11 @@ public struct Image: View, Modifiable {
      }
     
     /// Creates a image view.
-    internal init(source: String, classes: [String]) {
+    internal init(source: String, classes: [String], id: String?) {
         
         self.source = .string(source)
         self.classes = classes
+        self.id = id
     }
     
     public var body: Content {
@@ -39,6 +42,13 @@ public struct Image: View, Modifiable {
             .source(source)
             .role(.img)
             .class(classes.joined(separator: " "))
+            .modify(unwrap: id) {
+                $0.id($1)
+            }
+    }
+    
+    public func tag(_ value: String) -> Image {
+        return self.mutate(id: value)
     }
 }
 

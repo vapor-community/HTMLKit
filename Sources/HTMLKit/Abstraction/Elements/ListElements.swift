@@ -169,8 +169,25 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> ListItem {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> ListItem {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func value(_ value: String) -> ListItem {
         return mutate(value: value)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> ListItem {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> ListItem {

@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that collects and arranges collection items horizontally.
 public struct Grid: View, Modifiable, Actionable {
     
-    internal var id: String?
+    public var id: String?
     
     /// The content of the collection.
     internal var content: [Content]
@@ -57,20 +57,20 @@ public struct Grid: View, Modifiable, Actionable {
         
         return newSelf
     }
-}
-
-extension Grid: MouseEvent, ViewAction {
     
     public func tag(_ value: String) -> Grid {
         return self.mutate(id: value)
     }
+}
 
-    public func onHover(@StringBuilder action: (ViewAction) -> [String]) -> Grid {
-        return self.mutate(hoverevent: action(self))
+extension Grid: MouseEvent {
+
+    public func onHover(@ActionBuilder action: (ViewAction) -> [Action]) -> Grid {
+        return self.mutate(hoverevent: action(.init()))
     }
     
-    public func onLeave(@StringBuilder action: (ViewAction) -> [String]) -> Grid {
-        return self.mutate(leaveevent: action(self))
+    public func onLeave(@ActionBuilder action: (ViewAction) -> [Action]) -> Grid {
+        return self.mutate(leaveevent: action(.init()))
     }
 }
 

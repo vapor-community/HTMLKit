@@ -19,13 +19,15 @@
     --fontWeight: 400;
     --lineHeight: 1.5;
     --foregroundColor: 0, 0%, 0%;
+    --backgroundColor: 0, 0%, 0%;
+    --backgroundOpacity: 0.0;
     
     position: relative;
     display: block;
     inline-size: 100%;
     block-size: auto;
     counter-reset: line;
-    background-color: hsla(var(--backgroundColor), 1.0);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     overflow-inline: auto;
 }
 

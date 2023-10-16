@@ -7,7 +7,9 @@ import HTMLKit
 import Foundation
 
 /// A component that navigates to an target.
-public struct Link: View, Modifiable {
+public struct Link: View, Modifiable, Identifiable {
+    
+    public var id: String?
     
     /// The target for the destination
     internal let target: HTMLKit.Values.Target
@@ -43,13 +45,14 @@ public struct Link: View, Modifiable {
     }
     
     /// Creates a link.
-    internal init(destination: String, target: HTMLKit.Values.Target, content: [Content], classes: [String], events: [String]?) {
+    internal init(destination: String, target: HTMLKit.Values.Target, content: [Content], classes: [String], events: [String]?, id: String?) {
         
         self.destination = destination
         self.target = target
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -59,6 +62,13 @@ public struct Link: View, Modifiable {
         .reference(destination)
         .target(target)
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+    }
+    
+    public func tag(_ value: String) -> Link {
+        return self.mutate(id: value)
     }
 }
 
