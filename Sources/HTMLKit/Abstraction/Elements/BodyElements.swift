@@ -358,17 +358,6 @@ public typealias Img = Image
 @_documentation(visibility: internal)
 public typealias Iframe = InlineFrame
 
-
-/// The alias for the element Parameter.
-///
-/// Param is the official tag and can be used instead of Parameter.
-///
-/// ```html
-/// <param>
-/// ```
-@_documentation(visibility: internal)
-public typealias Param = Parameter
-
 /// The alias for the element Vector.
 ///
 /// Svg is the official tag and can be used instead of Vector.
