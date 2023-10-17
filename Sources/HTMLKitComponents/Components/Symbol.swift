@@ -57,7 +57,7 @@ public struct Symbol: View, Modifiable {
     public func fontSize(_ size: Tokens.FontSize) -> Symbol {
         
         var newSelf = self
-        newSelf.classes.append("size:\(size.rawValue)")
+        newSelf.classes.append("size:\(size.value)")
         
         return newSelf
     }
@@ -65,7 +65,7 @@ public struct Symbol: View, Modifiable {
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Symbol {
         
         var newSelf = self
-        newSelf.classes.append("color:\(color.rawValue)")
+        newSelf.classes.append("color:\(color.value)")
         
         return newSelf
     }

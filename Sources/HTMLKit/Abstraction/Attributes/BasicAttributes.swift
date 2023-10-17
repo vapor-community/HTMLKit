@@ -10,7 +10,7 @@ import OrderedCollections
 
 /// The alias combines the global attributes of the basic attributes.
 @_documentation(visibility: internal)
-public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute
+public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & InertAttribute & PopoverAttribute
 
 /// The protocol provides the element with the accesskey handler.
 @_documentation(visibility: internal)
@@ -2765,5 +2765,224 @@ extension ShadowRootModeAttribute where Self: ContentNode {
     
     internal func mutate(shadowrootmode value: String) -> Self {
         return self.mutate(key: "shadowrootmode", value: value)
+    }
+}
+
+/// The protocol provides the element with inhert handler.
+public protocol InertAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'inert'.
+    ///
+    /// ```html
+    /// <tag inert />
+    /// ```
+    func inert() -> Self
+    
+    func inert(_ condition: Bool) -> Self
+}
+
+extension InertAttribute where Self: ContentNode {
+    
+    internal func mutate(inert value: String) -> Self {
+        return self.mutate(key: "inert", value: value)
+    }
+}
+
+extension InertAttribute where Self: EmptyNode {
+    
+    internal func mutate(inert value: String) -> Self {
+        return self.mutate(key: "inert", value: value)
+    }
+}
+
+public protocol FetchPriorityAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'shadowrootmode'.
+    ///
+    /// ```html
+    /// <tag fetchpriority="" />
+    /// ```
+    func fetchPriority(_ value: Values.Priority) -> Self
+}
+
+extension FetchPriorityAttribute where Self: ContentNode {
+    
+    internal func mutate(fetchpriority value: String) -> Self {
+        return self.mutate(key: "fetchpriority", value: value)
+    }
+}
+
+extension FetchPriorityAttribute where Self: EmptyNode {
+    
+    internal func mutate(fetchpriority value: String) -> Self {
+        return self.mutate(key: "fetchpriority", value: value)
+    }
+}
+
+public protocol LoadingAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'loading'.
+    ///
+    /// ```html
+    /// <tag loading="" />
+    /// ```
+    func loading(_ value: Values.Loading) -> Self
+}
+
+extension LoadingAttribute where Self: ContentNode {
+    
+    internal func mutate(loading value: String) -> Self {
+        return self.mutate(key: "loading", value: value)
+    }
+}
+
+extension LoadingAttribute where Self: EmptyNode {
+    
+    internal func mutate(loading value: String) -> Self {
+        return self.mutate(key: "loading", value: value)
+    }
+}
+
+public protocol SourceSetAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'loading'.
+    ///
+    /// ```html
+    /// <tag srcset="" />
+    /// ```
+    func sourceSet(_ value: String) -> Self
+}
+
+extension SourceSetAttribute where Self: ContentNode {
+    
+    internal func mutate(sourceset value: String) -> Self {
+        return self.mutate(key: "srcset", value: value)
+    }
+}
+
+extension SourceSetAttribute where Self: EmptyNode {
+    
+    internal func mutate(sourceset value: String) -> Self {
+        return self.mutate(key: "srcset", value: value)
+    }
+}
+
+public protocol DecodingAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'decoding'.
+    ///
+    /// ```html
+    /// <tag decoding="" />
+    /// ```
+    func decoding(_ value: Values.Decoding) -> Self
+}
+
+extension DecodingAttribute where Self: ContentNode {
+    
+    internal func mutate(decoding value: String) -> Self {
+        return self.mutate(key: "decoding", value: value)
+    }
+}
+
+extension DecodingAttribute where Self: EmptyNode {
+    
+    internal func mutate(decoding value: String) -> Self {
+        return self.mutate(key: "decoding", value: value)
+    }
+}
+
+public protocol BlockingAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'blocking'.
+    ///
+    /// ```html
+    /// <tag blocking="" />
+    /// ```
+    func blocking(_ value: Values.Blocking) -> Self
+}
+
+extension BlockingAttribute where Self: ContentNode {
+    
+    internal func mutate(blocking value: String) -> Self {
+        return self.mutate(key: "blocking", value: value)
+    }
+}
+
+extension BlockingAttribute where Self: EmptyNode {
+    
+    internal func mutate(blocking value: String) -> Self {
+        return self.mutate(key: "blocking", value: value)
+    }
+}
+
+public protocol PopoverAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'popover'.
+    ///
+    /// ```html
+    /// <tag popover="" />
+    /// ```
+    func popover(_ value: Values.Popover.State) -> Self
+}
+
+extension PopoverAttribute where Self: ContentNode {
+    
+    internal func mutate(popover value: String) -> Self {
+        return self.mutate(key: "popover", value: value)
+    }
+}
+
+extension PopoverAttribute where Self: EmptyNode {
+    
+    internal func mutate(popover value: String) -> Self {
+        return self.mutate(key: "popover", value: value)
+    }
+}
+
+public protocol PopoverTargetAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'popovertarget'.
+    ///
+    /// ```html
+    /// <tag popovertarget="" />
+    /// ```
+    func popoverTarget(_ value: String) -> Self
+}
+
+extension PopoverAttribute where Self: ContentNode {
+    
+    internal func mutate(popovertarget value: String) -> Self {
+        return self.mutate(key: "popovertarget", value: value)
+    }
+}
+
+extension PopoverAttribute where Self: EmptyNode {
+    
+    internal func mutate(popovertarget value: String) -> Self {
+        return self.mutate(key: "popovertarget", value: value)
+    }
+}
+
+public protocol PopoverActionAttribute: Attribute {
+    
+    /// The function represents the html-attribute 'popovertargetaction'.
+    ///
+    /// ```html
+    /// <tag popovertargetaction="" />
+    /// ```
+    func popoverAction(_ value: Values.Popover.Action) -> Self
+}
+
+extension PopoverAttribute where Self: ContentNode {
+    
+    internal func mutate(popoveraction value: String) -> Self {
+        return self.mutate(key: "popovertargetaction", value: value)
+    }
+}
+
+extension PopoverAttribute where Self: EmptyNode {
+    
+    internal func mutate(popoveraction value: String) -> Self {
+        return self.mutate(key: "popovertargetaction", value: value)
     }
 }

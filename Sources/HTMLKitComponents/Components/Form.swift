@@ -9,9 +9,11 @@ import HTMLKit
 public struct Form: View, Actionable {
     
     /// The identifier of the form.
-    internal var id: String?
+    public var id: String?
     
     internal var method: HTMLKit.Values.Method
+    
+    internal var encoding: HTMLKit.Values.Encoding
     
     /// The content of the container.
     internal var content: [FormElement]
@@ -23,17 +25,19 @@ public struct Form: View, Actionable {
     internal var events: [String]?
     
     /// Creates a form.
-    public init(method: Values.Method, @ContentBuilder<FormElement> content: () -> [FormElement]) {
+    public init(method: Values.Method, encoding: Values.Encoding = .urlEncoded, @ContentBuilder<FormElement> content: () -> [FormElement]) {
         
         self.method = method
+        self.encoding = encoding
         self.content = content()
         self.classes = ["form"]
     }
     
     /// Creates a form.
-    internal init(method: Values.Method, content: [FormElement], classes: [String], events: [String]?, id: String?) {
+    internal init(method: Values.Method, encoding: Values.Encoding, content: [FormElement], classes: [String], events: [String]?, id: String?) {
         
         self.method = method
+        self.encoding = encoding
         self.content = content
         self.classes = classes
         self.events = events
@@ -45,6 +49,7 @@ public struct Form: View, Actionable {
             content
         }
         .method(method)
+        .encoding(encoding)
         .class(classes.joined(separator: " "))
         .modify(unwrap: id) {
             $0.id($1)
@@ -56,20 +61,15 @@ public struct Form: View, Actionable {
         }
     }
     
-    public func id(_ value: String) -> Form {
+    public func tag(_ value: String) -> Form {
         return self.mutate(id: value)
     }
 }
 
-extension Form: FormModifier {
-
-    public func onSubmit(perfom action: Actions) -> Form {
-        
-        if action.description == "validate" {
-            return self.mutate(submitevent: action.script, validation: true)
-        }
-        
-        return self.mutate(submitevent: action.script, validation: false)
+extension Form: FormEvent {
+    
+    public func onSubmit(@ActionBuilder action: (SubmitAction) -> [Action]) -> Form {
+        return self.mutate(submitevent: action(.init()))
     }
 }
 
@@ -115,7 +115,9 @@ public struct FieldLabel: View {
 }
 
 /// A component that displays an editable form control.
-public struct TextField: View, Modifiable {
+public struct TextField: View, Modifiable, Identifiable {
+    
+    public var id: String?
     
     /// The identifier of the field.
     internal let name: String
@@ -142,27 +144,34 @@ public struct TextField: View, Modifiable {
     }
     
     /// Creates a text field.
-    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?) {
+    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?, id: String?) {
         
         self.name = name
         self.prompt = prompt
         self.value = value
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
         Input()
             .type(.text)
-            .id(name)
             .name(name)
             .class(classes.joined(separator: " "))
+            .modify(unwrap: id) {
+                $0.id($1)
+            }
             .modify(unwrap: value) {
                 $0.value($1)
             }
             .modify(unwrap: prompt) {
                 $0.placeholder($1)
             }
+    }
+    
+    public func tag(_ value: String) -> TextField {
+        return self.mutate(id: value)
     }
 }
 
@@ -171,71 +180,73 @@ extension TextField: InputModifier {
     public func disabled(_ condition: Bool) -> TextField {
         
         if condition {
-            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+            return self.mutate(inputstate: Tokens.ViewState.disabled.value)
         }
         
         return self
     }
     
     public func focusColor(_ color: Tokens.FocusColor) -> TextField {
-        return self.mutate(focuscolor: color.rawValue)
+        return self.mutate(focuscolor: color.value)
     }
 }
 
 extension TextField: ViewModifier {
     
     public func opacity(_ value: Tokens.OpacityValue) -> TextField {
-        return self.mutate(opacity: value.rawValue)
+        return self.mutate(opacity: value.value)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> TextField {
-        return self.mutate(zindex: index.rawValue)
+        return self.mutate(zindex: index.value)
     }
     
     public func hidden() -> TextField {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
     }
     
     public func hidden(_ condition: Bool) -> TextField {
         
         if condition {
-            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+            return self.mutate(viewstate: Tokens.ViewState.hidden.value)
         }
         
         return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> TextField {
-        return self.mutate(padding: length.rawValue, insets: insets)
+        return self.mutate(padding: length.value, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> TextField {
-        return self.mutate(bordercolor: color.rawValue)
+        return self.mutate(bordercolor: color.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> TextField {
-        return self.mutate(bordershape: shape.rawValue)
+        return self.mutate(bordershape: shape.value)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> TextField {
-        return self.mutate(backgroundcolor: color.rawValue)
+        return self.mutate(backgroundcolor: color.value)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> TextField {
-        return self.mutate(scheme: scheme.rawValue)
+        return self.mutate(scheme: scheme.value)
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> TextField {
-        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+        return mutate(frame: width.value, offset: offset?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextField {
-        return self.mutate(margin: length.rawValue, insets: insets)
+        return self.mutate(margin: length.value, insets: insets)
     }
 }
 
 /// A component that displays a editable and expandable form control.
-public struct TextEditor: View, Modifiable {
+public struct TextEditor: View, Modifiable, Identifiable {
+    
+    public var id: String?
     
     /// The identifier of the editor.
     internal let name: String
@@ -265,7 +276,7 @@ public struct TextEditor: View, Modifiable {
     }
     
     /// Creates a text editor.
-    internal init(name: String, prompt: String?, rows: Int, content: [String], classes: [String], events: [String]?) {
+    internal init(name: String, prompt: String?, rows: Int, content: [String], classes: [String], events: [String]?, id: String?) {
         
         self.name = name
         self.prompt = prompt
@@ -273,14 +284,17 @@ public struct TextEditor: View, Modifiable {
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
         TextArea {
             content
         }
-        .id(name)
         .name(name)
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
         .class(classes.joined(separator: " "))
         .rows(rows)
         .modify(unwrap: prompt) {
@@ -296,6 +310,10 @@ public struct TextEditor: View, Modifiable {
         
         return newSelf
     }
+    
+    public func tag(_ value: String) -> TextEditor {
+        return self.mutate(id: value)
+    }
 }
 
 extension TextEditor: InputModifier {
@@ -303,78 +321,122 @@ extension TextEditor: InputModifier {
     public func disabled(_ condition: Bool) -> TextEditor {
         
         if condition {
-            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+            return self.mutate(inputstate: Tokens.ViewState.disabled.value)
         }
         
         return self
     }
     
     public func focusColor(_ color: Tokens.FocusColor) -> TextEditor {
-        return self.mutate(focuscolor: color.rawValue)
+        return self.mutate(focuscolor: color.value)
     }
 }
 
 extension TextEditor: ViewModifier {
     
     public func opacity(_ value: Tokens.OpacityValue) -> TextEditor {
-        return self.mutate(opacity: value.rawValue)
+        return self.mutate(opacity: value.value)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> TextEditor {
-        return self.mutate(zindex: index.rawValue)
+        return self.mutate(zindex: index.value)
     }
     
     public func hidden() -> TextEditor {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
     }
     
     public func hidden(_ condition: Bool) -> TextEditor {
         
         if condition {
-            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+            return self.mutate(viewstate: Tokens.ViewState.hidden.value)
         }
         
         return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> TextEditor {
-        return self.mutate(padding: length.rawValue, insets: insets)
+        return self.mutate(padding: length.value, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> TextEditor {
-        return self.mutate(bordercolor: color.rawValue)
+        return self.mutate(bordercolor: color.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> TextEditor {
-        return self.mutate(bordershape: shape.rawValue)
+        return self.mutate(bordershape: shape.value)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> TextEditor {
-        return self.mutate(backgroundcolor: color.rawValue)
+        return self.mutate(backgroundcolor: color.value)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> TextEditor {
-        return self.mutate(scheme: scheme.rawValue)
+        return self.mutate(scheme: scheme.value)
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> TextEditor {
-        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+        return mutate(frame: width.value, offset: offset?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextEditor {
-        return self.mutate(margin: length.rawValue, insets: insets)
+        return self.mutate(margin: length.value, insets: insets)
+    }
+}
+
+public struct Picker: View, Modifiable, Identifiable {
+    
+    public var id: String?
+
+    internal let name: String
+    
+    internal let selection: String?
+    
+    internal let content: [Selectable]
+    
+    internal var classes: [String]
+    
+    public init(name: String, selection: String? = nil, @ContentBuilder<Selectable> content: () -> [Selectable]) {
+        
+        self.name = name
+        self.selection = selection
+        self.content = content()
+        self.classes = ["picker"]
+    }
+    
+    public var body: Content {
+        Division {
+            for item in content {
+                item.selected(item.value == selection)
+                    .tag(name)
+            }
+        }
+        .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+    }
+    
+    public func tag(_ value: String) -> Picker {
+        return self.mutate(id: value)
     }
 }
 
 /// A component that displays a form control
-public struct CheckField: View, Modifiable {
+public struct CheckField: View, Modifiable, Selectable, Identifiable {
     
-    /// The identifier of the field.
-    internal let name: String
+    /// The identifer for the label.
+    public var id: String?
+    
+    /// The identifier for the field.
+    public var name: String?
     
     /// The content of the field.
-    internal let value: String
+    public var value: String
     
+    /// The selection status of the field.
+    public var isSelected: Bool
+
     /// The content of the field.
     internal var content: String
     
@@ -382,35 +444,50 @@ public struct CheckField: View, Modifiable {
     internal var classes: [String]
     
     /// Creates a check field.
-    public init(name: String, value: String, content: () -> String) {
-        
-        self.name = name
+    public init(value: String, content: () -> String) {
+    
         self.value = value
+        self.isSelected = false
         self.content = content()
         self.classes = ["checkfield"]
     }
     
     /// Creates a check field.
-    internal init(name: String, value: String, content: String, classes: [String]) {
+    internal init(id: String?, name: String?, value: String, isSelected: Bool, content: String, classes: [String]) {
         
+        self.id = id
         self.name = name
         self.value = value
+        self.isSelected = isSelected
         self.content = content
         self.classes = classes
     }
     
     public var body: Content {
-        Input()
-            .type(.checkbox)
-            .id(name)
-            .name(name)
-            .value(value)
-            .class(classes.joined(separator: " "))
-        Label {
-            content
+        Division {
+            Input()
+                .type(.checkbox)
+                .value(value)
+                .checked(isSelected)
+                .class("checkinput")
+                .modify(unwrap: name) {
+                    $0.name($1)
+                }
+                .modify(unwrap: id)  {
+                    $0.id($1)
+                }
+            Label {
+                content
+            }
+            .modify(unwrap: id)  {
+                $0.for($1)
+            }
         }
-        .class("label")
-        .for(name)
+        .class(classes.joined(separator: " "))
+    }
+    
+    public func tag(_ value: String) -> CheckField {
+        self.mutate(id: value)
     }
 }
 
@@ -419,77 +496,83 @@ extension CheckField: InputModifier {
     public func disabled(_ condition: Bool) -> CheckField {
         
         if condition {
-            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+            return self.mutate(inputstate: Tokens.ViewState.disabled.value)
         }
         
         return self
     }
     
     public func focusColor(_ color: Tokens.FocusColor) -> CheckField {
-        return self.mutate(focuscolor: color.rawValue)
+        return self.mutate(focuscolor: color.value)
     }
 }
 
 extension CheckField: ViewModifier {
     
     public func opacity(_ value: Tokens.OpacityValue) -> CheckField {
-        return self.mutate(opacity: value.rawValue)
+        return self.mutate(opacity: value.value)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> CheckField {
-        return self.mutate(zindex: index.rawValue)
+        return self.mutate(zindex: index.value)
     }
     
     public func hidden() -> CheckField {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
     }
     
     public func hidden(_ condition: Bool) -> CheckField {
         
         if condition {
-            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+            return self.mutate(viewstate: Tokens.ViewState.hidden.value)
         }
         
         return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> CheckField {
-        return self.mutate(padding: length.rawValue, insets: insets)
+        return self.mutate(padding: length.value, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> CheckField {
-        return self.mutate(bordercolor: color.rawValue)
+        return self.mutate(bordercolor: color.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> CheckField {
-        return self.mutate(bordershape: shape.rawValue)
+        return self.mutate(bordershape: shape.value)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> CheckField {
-        return self.mutate(backgroundcolor: color.rawValue)
+        return self.mutate(backgroundcolor: color.value)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> CheckField {
-        return self.mutate(scheme: scheme.rawValue)
+        return self.mutate(scheme: scheme.value)
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> CheckField {
-        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+        return mutate(frame: width.value, offset: offset?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> CheckField {
-        return self.mutate(margin: length.rawValue, insets: insets)
+        return self.mutate(margin: length.value, insets: insets)
     }
 }
 
 /// A component that displays
-public struct RadioSelect: View, Modifiable {
+public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
+    
+    /// The identifier for the label.
+    public var id: String?
     
     /// The identifier of the select.
-    internal let name: String
+    public var name: String?
     
     /// The content of the select.
-    internal let value: String
+    public var value: String
+    
+    /// The selection status of the select.
+    public var isSelected: Bool
     
     /// The content of the select.
     internal var content: String
@@ -498,35 +581,50 @@ public struct RadioSelect: View, Modifiable {
     internal var classes: [String]
     
     /// Creates a radio select.
-    public init(name: String, value: String, content: () -> String) {
+    public init(value: String, content: () -> String) {
         
-        self.name = name
         self.value = value
+        self.isSelected = false
         self.content = content()
         self.classes = ["radioselect"]
     }
     
     /// Creates a radio select.
-    internal init(name: String, value: String, content: String, classes: [String]) {
+    internal init(id: String?, name: String?, value: String, isSelected: Bool, content: String, classes: [String]) {
         
+        self.id = id
         self.name = name
         self.value = value
+        self.isSelected = isSelected
         self.content = content
         self.classes = classes
     }
     
     public var body: Content {
-        Input()
-            .type(.radio)
-            .id(name)
-            .name(name)
-            .value(value)
-            .class(classes.joined(separator: " "))
-        Label {
-            content
+        Division {
+            Input()
+                .type(.radio)
+                .value(value)
+                .checked(isSelected)
+                .class("radioinput")
+                .modify(unwrap: name) {
+                    $0.name($1)
+                }
+                .modify(unwrap: id) {
+                    $0.id($1)
+                }
+            Label {
+                content
+            }
+            .modify(unwrap: id) {
+                $0.for($1)
+            }
         }
-        .class("label")
-        .for(name)
+        .class(classes.joined(separator: " "))
+    }
+    
+    public func tag(_ value: String) -> RadioSelect {
+        self.mutate(id: value)
     }
 }
 
@@ -535,77 +633,81 @@ extension RadioSelect: InputModifier {
     public func disabled(_ condition: Bool) -> RadioSelect {
         
         if condition {
-            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+            return self.mutate(inputstate: Tokens.ViewState.disabled.value)
         }
         
         return self
     }
     
     public func focusColor(_ color: Tokens.FocusColor) -> RadioSelect {
-        return self.mutate(focuscolor: color.rawValue)
+        return self.mutate(focuscolor: color.value)
     }
 }
 
 extension RadioSelect: ViewModifier {
     
     public func opacity(_ value: Tokens.OpacityValue) -> RadioSelect {
-        return self.mutate(opacity: value.rawValue)
+        return self.mutate(opacity: value.value)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> RadioSelect {
-        return self.mutate(zindex: index.rawValue)
+        return self.mutate(zindex: index.value)
     }
     
     public func hidden() -> RadioSelect {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
     }
     
     public func hidden(_ condition: Bool) -> RadioSelect {
         
         if condition {
-            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+            return self.mutate(viewstate: Tokens.ViewState.hidden.value)
         }
         
         return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> RadioSelect {
-        return self.mutate(padding: length.rawValue, insets: insets)
+        return self.mutate(padding: length.value, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> RadioSelect {
-        return self.mutate(bordercolor: color.rawValue)
+        return self.mutate(bordercolor: color.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> RadioSelect {
-        return self.mutate(bordershape: shape.rawValue)
+        return self.mutate(bordershape: shape.value)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> RadioSelect {
-        return self.mutate(backgroundcolor: color.rawValue)
+        return self.mutate(backgroundcolor: color.value)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> RadioSelect {
-        return self.mutate(scheme: scheme.rawValue)
+        return self.mutate(scheme: scheme.value)
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> RadioSelect {
-        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+        return mutate(frame: width.value, offset: offset?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> RadioSelect {
-        return self.mutate(margin: length.rawValue, insets: insets)
+        return self.mutate(margin: length.value, insets: insets)
     }
 }
 
 /// A component that displays
-public struct SelectField: View, Modifiable {
+public struct SelectField: View, Modifiable, Identifiable {
+    
+    public var id: String?
     
     /// The identifier of the field.
     internal let name: String
     
+    internal let selection: String?
+    
     /// The content of the field.
-    internal var content: [InputElement]
+    internal var content: [Selectable]
     
     /// The classes of the field.
     internal var classes: [String]
@@ -614,35 +716,46 @@ public struct SelectField: View, Modifiable {
     internal var events: [String]?
     
     /// Creates a select field.
-    public init(name: String, @ContentBuilder<InputElement> content: () -> [InputElement]) {
+    public init(name: String, selection: String? = nil, @ContentBuilder<Selectable> content: () -> [Selectable]) {
         
         self.name = name
+        self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]
     }
     
     /// Creates a select field.
-    internal init(name: String, content: [InputElement], classes: [String], events: [String]?) {
+    internal init(name: String, selection: String?, content: [Selectable], classes: [String], events: [String]?, id: String?) {
         
         self.name = name
+        self.selection = selection
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
         Division {
             Input()
                 .type(.text)
-                .id(name)
-                .name(name)
                 .class("selectfield-textfield")
             Division {
-                content
+                for item in content {
+                    item.selected(item.value == selection)
+                        .tag(name)
+                }
             }
             .class("selectfield-optionlist")
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+    }
+    
+    public func tag(_ value: String) -> SelectField {
+        return self.mutate(id: value)
     }
 }
 
@@ -651,106 +764,73 @@ extension SelectField: InputModifier {
     public func disabled(_ condition: Bool) -> SelectField {
         
         if condition {
-            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+            return self.mutate(inputstate: Tokens.ViewState.disabled.value)
         }
         
         return self
     }
 
     public func focusColor(_ color: Tokens.FocusColor) -> SelectField {
-        return self.mutate(focuscolor: color.rawValue)
+        return self.mutate(focuscolor: color.value)
     }
 }
 
 extension SelectField: ViewModifier {
     
     public func opacity(_ value: Tokens.OpacityValue) -> SelectField {
-        return self.mutate(opacity: value.rawValue)
+        return self.mutate(opacity: value.value)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> SelectField {
-        return self.mutate(zindex: index.rawValue)
+        return self.mutate(zindex: index.value)
     }
     
     public func hidden() -> SelectField {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
     }
     
     public func hidden(_ condition: Bool) -> SelectField {
         
         if condition {
-            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+            return self.mutate(viewstate: Tokens.ViewState.hidden.value)
         }
         
         return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> SelectField {
-        return self.mutate(padding: length.rawValue, insets: insets)
+        return self.mutate(padding: length.value, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> SelectField {
-        return self.mutate(bordercolor: color.rawValue)
+        return self.mutate(bordercolor: color.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> SelectField {
-        return self.mutate(bordershape: shape.rawValue)
+        return self.mutate(bordershape: shape.value)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SelectField {
-        return self.mutate(backgroundcolor: color.rawValue)
+        return self.mutate(backgroundcolor: color.value)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> SelectField {
-        return self.mutate(scheme: scheme.rawValue)
+        return self.mutate(scheme: scheme.value)
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> SelectField {
-        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+        return mutate(frame: width.value, offset: offset?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SelectField {
-        return self.mutate(margin: length.rawValue, insets: insets)
+        return self.mutate(margin: length.value, insets: insets)
     }
 }
 
 /// A component that displays
-public struct Option: View, Modifiable {
+public struct SecureField: View, Modifiable, Identifiable {
     
-    /// The identifier of the field.
-    internal let value: String
-    
-    internal let content: String
-    
-    /// The classes of the field.
-    internal var classes: [String]
-    
-    /// Creates a select field.
-    public init(value: String, content: () -> String) {
-        
-        self.value = value
-        self.content = content()
-        self.classes = ["option"]
-    }
-    
-    /// Creates a select field.
-    internal init(value: String, content: String, classes: [String]) {
-        
-        self.value = value
-        self.content = content
-        self.classes = classes
-    }
-    
-    public var body: Content {
-        ListItem {
-            content
-        }
-        .class(classes.joined(separator: " "))
-    }
-}
-
-/// A component that displays
-public struct SecureField: View, Modifiable {
+    public var id: String?
     
     /// The identifier of the field.
     internal let name: String
@@ -777,20 +857,23 @@ public struct SecureField: View, Modifiable {
     }
     
     /// Creates a password field.
-    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?) {
+    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?, id: String?) {
         
         self.name = name
         self.prompt = prompt
         self.value = value
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
         Input()
             .type(.password)
-            .id(name)
             .name(name)
+            .modify(unwrap: id) {
+                $0.id($1)
+            }
             .class(classes.joined(separator: " "))
             .modify(unwrap: value) {
                 $0.value($1)
@@ -799,6 +882,10 @@ public struct SecureField: View, Modifiable {
                 $0.placeholder($1)
             }
     }
+    
+    public func tag(_ value: String) -> SecureField {
+        return self.mutate(id: value)
+    }
 }
 
 extension SecureField: InputModifier {
@@ -806,71 +893,73 @@ extension SecureField: InputModifier {
     public func disabled(_ condition: Bool) -> SecureField {
         
         if condition {
-            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+            return self.mutate(inputstate: Tokens.ViewState.disabled.value)
         }
         
         return self
     }
     
     public func focusColor(_ color: Tokens.FocusColor) -> SecureField {
-        return self.mutate(focuscolor: color.rawValue)
+        return self.mutate(focuscolor: color.value)
     }
 }
 
 extension SecureField: ViewModifier {
     
     public func opacity(_ value: Tokens.OpacityValue) -> SecureField {
-        return self.mutate(opacity: value.rawValue)
+        return self.mutate(opacity: value.value)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> SecureField {
-        return self.mutate(zindex: index.rawValue)
+        return self.mutate(zindex: index.value)
     }
     
     public func hidden() -> SecureField {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
     }
     
     public func hidden(_ condition: Bool) -> SecureField {
         
         if condition {
-            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+            return self.mutate(viewstate: Tokens.ViewState.hidden.value)
         }
         
         return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> SecureField {
-        return self.mutate(padding: length.rawValue, insets: insets)
+        return self.mutate(padding: length.value, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> SecureField {
-        return self.mutate(bordercolor: color.rawValue)
+        return self.mutate(bordercolor: color.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> SecureField {
-        return self.mutate(bordershape: shape.rawValue)
+        return self.mutate(bordershape: shape.value)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SecureField {
-        return self.mutate(backgroundcolor: color.rawValue)
+        return self.mutate(backgroundcolor: color.value)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> SecureField {
-        return self.mutate(scheme: scheme.rawValue)
+        return self.mutate(scheme: scheme.value)
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> SecureField {
-        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+        return mutate(frame: width.value, offset: offset?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SecureField {
-        return self.mutate(margin: length.rawValue, insets: insets)
+        return self.mutate(margin: length.value, insets: insets)
     }
 }
 
 /// A component that displays
-public struct Slider: View, Modifiable {
+public struct Slider: View, Modifiable, Identifiable {
+    
+    public var id: String?
     
     /// The identifier of the slider.
     internal let name: String
@@ -889,19 +978,26 @@ public struct Slider: View, Modifiable {
     }
     
     /// Creates a slider.
-    internal init(name: String, classes: [String], events: [String]?) {
+    internal init(name: String, classes: [String], events: [String]?, id: String?) {
         
         self.name = name
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
         Input()
             .type(.range)
-            .id(name)
             .name(name)
             .class(classes.joined(separator: " "))
+            .modify(unwrap: id) {
+                $0.id($1)
+            }
+    }
+    
+    public func tag(_ value: String) -> Slider {
+        return self.mutate(id: value)
     }
 }
 
@@ -910,71 +1006,73 @@ extension Slider: InputModifier {
     public func disabled(_ condition: Bool) -> Slider {
         
         if condition {
-            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+            return self.mutate(inputstate: Tokens.ViewState.disabled.value)
         }
         
         return self
     }
     
     public func focusColor(_ color: Tokens.FocusColor) -> Slider {
-        return self.mutate(focuscolor: color.rawValue)
+        return self.mutate(focuscolor: color.value)
     }
 }
 
 extension Slider: ViewModifier {
     
     public func opacity(_ value: Tokens.OpacityValue) -> Slider {
-        return self.mutate(opacity: value.rawValue)
+        return self.mutate(opacity: value.value)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> Slider {
-        return self.mutate(zindex: index.rawValue)
+        return self.mutate(zindex: index.value)
     }
     
     public func hidden() -> Slider {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
     }
     
     public func hidden(_ condition: Bool) -> Slider {
         
         if condition {
-            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+            return self.mutate(viewstate: Tokens.ViewState.hidden.value)
         }
         
         return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Slider {
-        return self.mutate(padding: length.rawValue, insets: insets)
+        return self.mutate(padding: length.value, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> Slider {
-        return self.mutate(bordercolor: color.rawValue)
+        return self.mutate(bordercolor: color.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Slider {
-        return self.mutate(bordershape: shape.rawValue)
+        return self.mutate(bordershape: shape.value)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Slider {
-        return self.mutate(backgroundcolor: color.rawValue)
+        return self.mutate(backgroundcolor: color.value)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> Slider {
-        return self.mutate(scheme: scheme.rawValue)
+        return self.mutate(scheme: scheme.value)
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Slider {
-        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+        return mutate(frame: width.value, offset: offset?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Slider {
-        return self.mutate(margin: length.rawValue, insets: insets)
+        return self.mutate(margin: length.value, insets: insets)
     }
 }
 
 /// A component that displays
-public struct DatePicker: View, Modifiable {
+public struct DatePicker: View, Modifiable, Identifiable {
+    
+    public var id: String?
     
     /// The identifier of the picker.
     internal let name: String
@@ -997,12 +1095,13 @@ public struct DatePicker: View, Modifiable {
     }
     
     /// Creates a date picker.
-    internal init(name: String, value: String?, classes: [String], events: [String]?) {
+    internal init(name: String, value: String?, classes: [String], events: [String]?, id: String?) {
         
         self.name = name
         self.value = value
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -1010,7 +1109,6 @@ public struct DatePicker: View, Modifiable {
             Input()
                 .type(.text)
                 .class("datepicker-datefield")
-                .id(name)
                 .name(name)
                 .modify(unwrap: value) {
                     $0.value($1)
@@ -1018,6 +1116,9 @@ public struct DatePicker: View, Modifiable {
             self.calendar
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
     }
     
     public var calendar: Content {
@@ -1101,71 +1202,73 @@ extension DatePicker: InputModifier {
     public func disabled(_ condition: Bool) -> DatePicker {
         
         if condition {
-            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+            return self.mutate(inputstate: Tokens.ViewState.disabled.value)
         }
         
         return self
     }
     
     public func focusColor(_ color: Tokens.FocusColor) -> DatePicker {
-        return self.mutate(focuscolor: color.rawValue)
+        return self.mutate(focuscolor: color.value)
     }
 }
 
 extension DatePicker: ViewModifier {
     
     public func opacity(_ value: Tokens.OpacityValue) -> DatePicker {
-        return self.mutate(opacity: value.rawValue)
+        return self.mutate(opacity: value.value)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> DatePicker {
-        return self.mutate(zindex: index.rawValue)
+        return self.mutate(zindex: index.value)
     }
     
     public func hidden() -> DatePicker {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
     }
     
     public func hidden(_ condition: Bool) -> DatePicker {
         
         if condition {
-            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+            return self.mutate(viewstate: Tokens.ViewState.hidden.value)
         }
         
         return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> DatePicker {
-        return self.mutate(padding: length.rawValue, insets: insets)
+        return self.mutate(padding: length.value, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> DatePicker {
-        return self.mutate(bordercolor: color.rawValue)
+        return self.mutate(bordercolor: color.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> DatePicker {
-        return self.mutate(bordershape: shape.rawValue)
+        return self.mutate(bordershape: shape.value)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> DatePicker {
-        return self.mutate(backgroundcolor: color.rawValue)
+        return self.mutate(backgroundcolor: color.value)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> DatePicker {
-        return self.mutate(scheme: scheme.rawValue)
+        return self.mutate(scheme: scheme.value)
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> DatePicker {
-        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+        return mutate(frame: width.value, offset: offset?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> DatePicker {
-        return self.mutate(margin: length.rawValue, insets: insets)
+        return self.mutate(margin: length.value, insets: insets)
     }
 }
 
 /// A component that displays
-public struct SearchField: View, Modifiable {
+public struct SearchField: View, Modifiable, Identifiable {
+    
+    public var id: String?
     
     /// The identifier of the search field.
     internal let name: String
@@ -1192,20 +1295,23 @@ public struct SearchField: View, Modifiable {
     }
     
     /// Creates a search field.
-    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?) {
+    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?, id: String?) {
         
         self.name = name
         self.prompt = prompt
         self.value = value
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
         Input()
             .type(.search)
-            .id(name)
             .name(name)
+            .modify(unwrap: id) {
+                $0.id($1)
+            }
             .class(classes.joined(separator: " "))
             .modify(unwrap: value) {
                 $0.value($1)
@@ -1214,6 +1320,10 @@ public struct SearchField: View, Modifiable {
                 $0.placeholder($1)
             }
     }
+    
+    public func tag(_ value: String) -> SearchField {
+        return self.mutate(id: value)
+    }
 }
 
 extension SearchField: InputModifier {
@@ -1221,71 +1331,73 @@ extension SearchField: InputModifier {
     public func disabled(_ condition: Bool) -> SearchField {
         
         if condition {
-            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+            return self.mutate(inputstate: Tokens.ViewState.disabled.value)
         }
         
         return self
     }
     
     public func focusColor(_ color: Tokens.FocusColor) -> SearchField {
-        return self.mutate(focuscolor: color.rawValue)
+        return self.mutate(focuscolor: color.value)
     }
 }
 
 extension SearchField: ViewModifier {
     
     public func opacity(_ value: Tokens.OpacityValue) -> SearchField {
-        return self.mutate(opacity: value.rawValue)
+        return self.mutate(opacity: value.value)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> SearchField {
-        return self.mutate(zindex: index.rawValue)
+        return self.mutate(zindex: index.value)
     }
     
     public func hidden() -> SearchField {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
     }
     
     public func hidden(_ condition: Bool) -> SearchField {
         
         if condition {
-            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+            return self.mutate(viewstate: Tokens.ViewState.hidden.value)
         }
         
         return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> SearchField {
-        return self.mutate(padding: length.rawValue, insets: insets)
+        return self.mutate(padding: length.value, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> SearchField {
-        return self.mutate(bordercolor: color.rawValue)
+        return self.mutate(bordercolor: color.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> SearchField {
-        return self.mutate(bordershape: shape.rawValue)
+        return self.mutate(bordershape: shape.value)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SearchField {
-        return self.mutate(backgroundcolor: color.rawValue)
+        return self.mutate(backgroundcolor: color.value)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> SearchField {
-        return self.mutate(scheme: scheme.rawValue)
+        return self.mutate(scheme: scheme.value)
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> SearchField {
-        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+        return mutate(frame: width.value, offset: offset?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SearchField {
-        return self.mutate(margin: length.rawValue, insets: insets)
+        return self.mutate(margin: length.value, insets: insets)
     }
 }
 
 /// A component that displays the progress of a task.
-public struct Progress: View {
+public struct Progress: View, Identifiable {
+    
+    public var id: String?
     
     internal let maximum: Float
     
@@ -1310,13 +1422,14 @@ public struct Progress: View {
     }
     
     /// Creates a progress bar.
-    internal init(maximum: Float, value: String, content: [Content], classes: [String], events: [String]?) {
+    internal init(maximum: Float, value: String, content: [Content], classes: [String], events: [String]?, id: String?) {
         
         self.maximum = maximum
         self.value = value
         self.content = content
         self.classes = classes
         self.events = events
+        self.id = id
     }
     
     public var body: Content {
@@ -1326,11 +1439,20 @@ public struct Progress: View {
         .value(value)
         .maximum(maximum)
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
+    }
+    
+    public func tag(_ value: String) -> Progress {
+        return self.mutate(id: value)
     }
 }
 
 /// A component to edit and format text content.
-public struct TextPad: View, Modifiable {
+public struct TextPad: View, Modifiable, Identifiable {
+    
+    public var id: String?
     
     /// The identifier of the textpad.
     internal let name: String
@@ -1357,13 +1479,14 @@ public struct TextPad: View, Modifiable {
     }
     
     /// Creates a textpad.
-    internal init(name: String, prompt: String?, rows: Int, content: [String], classes: [String]) {
+    internal init(name: String, prompt: String?, rows: Int, content: [String], classes: [String], id: String?) {
         
         self.name = name
         self.prompt = prompt
         self.rows = rows
         self.content = content
         self.classes = classes
+        self.id = id
     }
     
     public var body: Content {
@@ -1414,12 +1537,14 @@ public struct TextPad: View, Modifiable {
             TextArea {
                 content
             }
-            .id(name)
             .name(name)
             .rows(rows)
             .class("textpad-content")
         }
         .class(classes.joined(separator: " "))
+        .modify(unwrap: id) {
+            $0.id($1)
+        }
     }
     
     /// Sets the limit of the maximum lines.
@@ -1430,6 +1555,10 @@ public struct TextPad: View, Modifiable {
         
         return newSelf
     }
+    
+    public func tag(_ value: String) -> TextPad {
+        return self.mutate(id: value)
+    }
 }
 
 extension TextPad: InputModifier {
@@ -1437,65 +1566,178 @@ extension TextPad: InputModifier {
     public func disabled(_ condition: Bool) -> TextPad {
         
         if condition {
-            return self.mutate(inputstate: Tokens.ViewState.disabled.rawValue)
+            return self.mutate(inputstate: Tokens.ViewState.disabled.value)
         }
         
         return self
     }
     
     public func focusColor(_ color: Tokens.FocusColor) -> TextPad {
-        return self.mutate(focuscolor: color.rawValue)
+        return self.mutate(focuscolor: color.value)
     }
 }
 
 extension TextPad: ViewModifier {
     
     public func opacity(_ value: Tokens.OpacityValue) -> TextPad {
-        return self.mutate(opacity: value.rawValue)
+        return self.mutate(opacity: value.value)
     }
     
     public func zIndex(_ index: Tokens.PositionIndex) -> TextPad {
-        return self.mutate(zindex: index.rawValue)
+        return self.mutate(zindex: index.value)
     }
     
     public func hidden() -> TextPad {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
     }
     
     public func hidden(_ condition: Bool) -> TextPad {
         
         if condition {
-            return self.mutate(viewstate: Tokens.ViewState.hidden.rawValue)
+            return self.mutate(viewstate: Tokens.ViewState.hidden.value)
         }
         
         return self
     }
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> TextPad {
-        return self.mutate(padding: length.rawValue, insets: insets)
+        return self.mutate(padding: length.value, insets: insets)
     }
     
     public func borderColor(_ color: Tokens.BorderColor) -> TextPad {
-        return self.mutate(bordercolor: color.rawValue)
+        return self.mutate(bordercolor: color.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> TextPad {
-        return self.mutate(bordershape: shape.rawValue)
+        return self.mutate(bordershape: shape.value)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> TextPad {
-        return self.mutate(backgroundcolor: color.rawValue)
+        return self.mutate(backgroundcolor: color.value)
     }
     
     public func colorScheme(_ scheme: Tokens.ColorScheme) -> TextPad {
-        return self.mutate(scheme: scheme.rawValue)
+        return self.mutate(scheme: scheme.value)
     }
     
     public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> TextPad {
-        return mutate(frame: width.rawValue, offset: offset?.rawValue)
+        return mutate(frame: width.value, offset: offset?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextPad {
-        return self.mutate(margin: length.rawValue, insets: insets)
+        return self.mutate(margin: length.value, insets: insets)
+    }
+}
+
+/// A component that displays
+public struct FileDialog: View, Modifiable, Identifiable {
+    
+    public var id: String?
+    
+    /// The identifier of the search field.
+    internal let name: String
+    
+    /// The classes of the field.
+    internal var classes: [String]
+    
+    /// The events of the field.
+    internal var events: [String]?
+    
+    /// Creates a search field.
+    public init(name: String) {
+        
+        self.name = name
+        self.classes = ["filedialog"]
+    }
+    
+    /// Creates a search field.
+    internal init(name: String, classes: [String], events: [String]?, id: String?) {
+        
+        self.name = name
+        self.classes = classes
+        self.events = events
+        self.id = id
+    }
+    
+    public var body: Content {
+        Input()
+            .type(.file)
+            .name(name)
+            .class(classes.joined(separator: " "))
+            .modify(unwrap: id) {
+                $0.id($1)
+            }
+    }
+    
+    public func tag(_ value: String) -> FileDialog {
+        return self.mutate(id: value)
+    }
+}
+
+extension FileDialog: InputModifier {
+    
+    public func disabled(_ condition: Bool) -> FileDialog {
+        
+        if condition {
+            return self.mutate(inputstate: Tokens.ViewState.disabled.value)
+        }
+        
+        return self
+    }
+    
+    public func focusColor(_ color: Tokens.FocusColor) -> FileDialog {
+        return self.mutate(focuscolor: color.value)
+    }
+}
+
+extension FileDialog: ViewModifier {
+    
+    public func opacity(_ value: Tokens.OpacityValue) -> FileDialog {
+        return self.mutate(opacity: value.value)
+    }
+    
+    public func zIndex(_ index: Tokens.PositionIndex) -> FileDialog {
+        return self.mutate(zindex: index.value)
+    }
+    
+    public func hidden() -> FileDialog {
+        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
+    }
+    
+    public func hidden(_ condition: Bool) -> FileDialog {
+        
+        if condition {
+            return self.mutate(viewstate: Tokens.ViewState.hidden.value)
+        }
+        
+        return self
+    }
+    
+    public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> FileDialog {
+        return self.mutate(padding: length.value, insets: insets)
+    }
+    
+    public func borderColor(_ color: Tokens.BorderColor) -> FileDialog {
+        return self.mutate(bordercolor: color.value)
+    }
+    
+    public func borderShape(_ shape: Tokens.BorderShape) -> FileDialog {
+        return self.mutate(bordershape: shape.value)
+    }
+    
+    public func backgroundColor(_ color: Tokens.BackgroundColor) -> FileDialog {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func colorScheme(_ scheme: Tokens.ColorScheme) -> FileDialog {
+        return self.mutate(scheme: scheme.value)
+    }
+    
+    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> FileDialog {
+        return mutate(frame: width.value, offset: offset?.value)
+    }
+    
+    public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> FileDialog {
+        return self.mutate(margin: length.value, insets: insets)
     }
 }

@@ -5,6 +5,7 @@
         this.element = element;
         this.textfield = element.getElementsByClassName('selectfield-textfield')[0];
         this.optionlist = element.getElementsByClassName('selectfield-optionlist')[0];
+        this.options = element.getElementsByTagName('input');
         
         this.initiateListener();
     };
@@ -20,28 +21,72 @@
             self.showOptionList();
         });
         
-        this.textfield.addEventListener('focusout', function () {
-            self.hideOptionList();
-        });
-        
-        this.optionlist.addEventListener('mousedown', function (event) {
+        window.addEventListener('click', function (event) {
             
-            event.preventDefault();
-            
-            if (event.target.tagName == 'LI') {
-                
-                self.setInputValue(event.target.innerHTML);
-                
+            if(!self.element.contains(event.target)) {
                 self.hideOptionList();
             }
         });
+        
+        for (let option of this.options) {
+            
+            if (option.getAttribute('type') == 'radio') {
+                
+                if (option.checked == true) {
+                    self.setInputValue(option.nextSibling.innerHTML);
+                }
+             
+                option.addEventListener('change', function (event) {
+                    
+                    event.preventDefault();
+                    
+                    if (event.target.checked == true) {
+                        self.setInputValue(event.target.nextSibling.innerHTML);
+                    }
+                });
+            }
+            
+            if (option.getAttribute('type') == 'checkbox') {
+                
+                if (option.checked == true) {
+                    self.setInputValue(option.nextSibling.innerHTML);
+                }
+             
+                option.addEventListener('change', function (event) {
+                    
+                    event.preventDefault();
+                    
+                    self.clearInputs(event.target);
+                    
+                    if (event.target.checked == true) {
+                        self.setInputValue(event.target.nextSibling.innerHTML);
+                        
+                    } else {
+                        self.setInputValue('');
+                    }
+                    
+                });
+            }
+        }
+    };
+    
+    /*
+        Clears the checked state of the checkfield other as the target
+     */
+    Selectfield.prototype.clearInputs = function (target) {
+        
+        for (let option of this.options) {
+            
+            if (option != target) {
+                option.checked = false;
+            }
+        }
     };
     
     /*
         Sets the value for the textfield
      */
     Selectfield.prototype.setInputValue = function (value) {
-        
         this.textfield.value = value;
     };
     
@@ -65,7 +110,7 @@
     
     if(selectfield.length > 0) {
         
-        for(var i = 0; i < selectfield.length; i++) {
+        for (var i = 0; i < selectfield.length; i++) {
             
             (function(i) {
                 new Selectfield(selectfield[i]);

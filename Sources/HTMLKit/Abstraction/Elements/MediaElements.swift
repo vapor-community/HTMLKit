@@ -44,7 +44,7 @@ public struct Source: EmptyNode, MediaElement {
     }
 }
 
-extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute {
+extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute & SourceSetAttribute {
     
     public func accessKey(_ value: Character) -> Source {
         return mutate(accesskey: value)
@@ -154,6 +154,19 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     public func translate(_ value: Values.Decision) -> Source {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Source {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Source {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func type(_ value: Values.Media) -> Source {
         return mutate(type: value.rawValue)
@@ -165,6 +178,10 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     
     public func source(_ value: EnvironmentValue) -> Source {
         return mutate(source: value)
+    }
+    
+    public func sourceSet(_ value: String) -> Source {
+        return mutate(sourceset: value)
     }
     
     public func sizes(_ size: Int) -> Source {
@@ -181,6 +198,10 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     
     public func height(_ size: Int) -> Source {
         return mutate(height: size)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Source {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Source {
@@ -355,6 +376,19 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Track {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Track {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func kind(_ value: Values.Kind) -> Track {
         return mutate(kind: value.rawValue)
     }
@@ -373,6 +407,10 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
     
     public func `default`() -> Track {
         return  mutate(default: "default")
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Track {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Track {

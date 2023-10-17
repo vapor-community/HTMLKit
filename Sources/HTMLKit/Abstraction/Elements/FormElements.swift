@@ -44,7 +44,7 @@ public struct Input: EmptyNode, FormElement {
     }
 }
 
-extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, AlternateAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute {
+extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, AlternateAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute, PopoverTargetAttribute, PopoverActionAttribute {
     
     public func accessKey(_ value: Character) -> Input {
         return mutate(accesskey: value)
@@ -153,6 +153,19 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     
     public func translate(_ value: Values.Decision) -> Input {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> Input {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Input {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
     }
 
     public func accept(_ value: String) -> Input {
@@ -293,6 +306,18 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     
     public func width(_ size: Int) -> Input {
         return mutate(width: size)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Input {
+        return mutate(popover: value.rawValue)
+    }
+    
+    public func popoverTarget(_ value: String) -> Input {
+        return mutate(popovertarget: value)
+    }
+    
+    public func popoverAction(_ value: Values.Popover.Action) -> Input {
+        return mutate(popoveraction: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Input {
@@ -472,8 +497,25 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Label {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Label {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func `for`(_ value: String) -> Label {
         return mutate(for: value)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Label {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Label {
@@ -735,6 +777,19 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
     public func translate(_ value: Values.Decision) -> Select {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Select {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Select {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func hasCompletion(_ value: Bool) -> Select {
         return mutate(autocomplete: value)
@@ -780,6 +835,10 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
     
     public func size(_ size: Int) -> Select {
         return mutate(size: size)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Select {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Select {
@@ -958,6 +1017,19 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func translate(_ value: Values.Decision) -> TextArea {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> TextArea {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> TextArea {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func hasCompletion(_ value: Bool) -> TextArea {
         return mutate(autocomplete: value)
@@ -1032,6 +1104,10 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func wrap(_ value: Values.Wrapping) -> TextArea {
         return mutate(wrap: value.rawValue)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> TextArea {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TextArea {
@@ -1176,7 +1252,7 @@ public struct Button: ContentNode, FormElement {
     }
 }
 
-extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute {
+extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute, PopoverTargetAttribute, PopoverActionAttribute {
     
     public func accessKey(_ value: Character) -> Button {
         return mutate(accesskey: value)
@@ -1287,6 +1363,19 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return  mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Button {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Button {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func disabled() -> Button {
         return mutate(disabled: "disabled")
     }
@@ -1318,6 +1407,18 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func value(_ value: String) -> Button {
         return mutate(value: value)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Button {
+        return mutate(popover: value.rawValue)
+    }
+    
+    public func popoverTarget(_ value: String) -> Button {
+        return mutate(popovertarget: value)
+    }
+    
+    public func popoverAction(_ value: Values.Popover.Action) -> Button {
+        return mutate(popoveraction: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Button {
@@ -1579,6 +1680,19 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func translate(_ value: Values.Decision) -> Fieldset {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Fieldset {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Fieldset {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func disabled() -> Fieldset {
         return mutate(disabled: "disabled")
@@ -1599,6 +1713,10 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func name(_ value: String) -> Fieldset {
         return mutate(name: value)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Fieldset {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Fieldset {

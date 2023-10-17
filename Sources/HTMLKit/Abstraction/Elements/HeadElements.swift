@@ -160,6 +160,23 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Title {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Title {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Title {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Title {
         return mutate(key: key, value: value)
     }
@@ -332,12 +349,29 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Base {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Base {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func reference(_ value: String) -> Base {
         return mutate(href: value)
     }
     
     public func target(_ value: Values.Target) -> Base {
         return mutate(target: value.rawValue)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Base {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Base {
@@ -511,6 +545,19 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
     public func translate(_ value: Values.Decision) -> Meta {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Meta {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Meta {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func content(_ value: String) -> Meta {
         return mutate(content: value)
@@ -530,6 +577,10 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
     
     public func equivalent(_ value: Values.Equivalent) -> Meta {
         return mutate(httpequiv: value.rawValue)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Meta {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Meta {
@@ -598,7 +649,7 @@ public struct Style: ContentNode, HeadElement {
     }
 }
 
-extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAttribute {
+extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAttribute, BlockingAttribute {
 
     public func accessKey(_ value: Character) -> Style {
         return mutate(accesskey: value)
@@ -708,6 +759,19 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     public func translate(_ value: Values.Decision) -> Style {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Style {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Style {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func type(_ value: Values.Media) -> Style {
         return mutate(type: value.rawValue)
@@ -715,6 +779,14 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     
     public func media(_ value: String) -> Style {
         return mutate(media: value)
+    }
+    
+    public func blocking(_ value: Values.Blocking) -> Style {
+        return mutate(blocking: value.rawValue)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Style {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Style {
@@ -778,7 +850,7 @@ public struct Link: EmptyNode, HeadElement, BodyElement {
     }
 }
 
-extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FormEventAttribute {
+extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute {
     
     public func accessKey(_ value: Character) -> Link {
         return mutate(accesskey: value)
@@ -889,6 +961,19 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Link {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Link {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func reference(_ value: String) -> Link {
         return mutate(href: value)
     }
@@ -915,6 +1000,18 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     
     public func type(_ value: Values.Media) -> Link {
         return mutate(type: value.rawValue)
+    }
+    
+    public func fetchPriority(_ value: Values.Priority) -> Link {
+        return mutate(fetchpriority: value.rawValue)
+    }
+    
+    public func blocking(_ value: Values.Blocking) -> Link {
+        return mutate(blocking: value.rawValue)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Link {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Link {

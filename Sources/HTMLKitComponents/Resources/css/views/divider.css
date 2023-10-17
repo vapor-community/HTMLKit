@@ -9,16 +9,17 @@
  */
 
 .divider {
-    --backgroundColor: 0, 0%, 0%;
+    --backgroundColor: 210, 14%, 89%;
+    --backgroundOpacity: 1.0;
     
     position: relative;
     display: block;
     inline-size: 100%;
     block-size: 1px;
     border-width: 0;
-    background-color: hsla(var(--backgroundColor), 1.0);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }
 
 .scheme\:dark .divider, .divider.scheme\:dark {
-    --backgroundColor: 0, 0%, 100%;
+    --backgroundColor: 210, 9%, 31%;
 }

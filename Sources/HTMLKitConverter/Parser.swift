@@ -129,6 +129,9 @@ internal class Parser {
                 case "ul":
                     return try ContentElement(element: element, indent: indent).build(verbatim: "UnorderedList")
                     
+                case "menu":
+                    return try ContentElement(element: element, indent: indent).build()
+                    
                 case "dl":
                     return try ContentElement(element: element, indent: indent).build(verbatim: "DescriptionList")
                     
@@ -148,6 +151,9 @@ internal class Parser {
                     return try ContentElement(element: element, indent: indent).build(verbatim: "StrikeThrough")
                     
                 case "main":
+                    return try ContentElement(element: element, indent: indent).build()
+                    
+                case "search":
                     return try ContentElement(element: element, indent: indent).build()
                     
                 case "div":
@@ -795,6 +801,33 @@ internal class Parser {
                 
             case "xmlns":
                 return try ValueAttribute<String>(node: node).build(verbatim: "namespace")
+                
+            case "inert":
+                return try EmptyAttribute(node: node).build()
+                
+            case "fetchpriority":
+                return try TypeAttribute<Values.Priority>(node: node).build(verbatim: "fetchPriority")
+                
+            case "loading":
+                return try TypeAttribute<Values.Loading>(node: node).build()
+                
+            case "decoding":
+                return try TypeAttribute<Values.Decoding>(node: node).build()
+                
+            case "srcset":
+                return try ValueAttribute<String>(node: node).build(verbatim: "sourceSet")
+                
+            case "blocking":
+                return try TypeAttribute<Values.Blocking>(node: node).build()
+                
+            case "popover":
+                return try TypeAttribute<Values.Popover.State>(node: node).build()
+                
+            case "popovertarget":
+                return try ValueAttribute<String>(node: node).build(verbatim: "popoverTarget")
+                
+            case "popovertargetaction":
+                return try TypeAttribute<Values.Popover.Action>(node: node).build(verbatim: "popoverAction")
                 
             case "onafterprint":
                 return try EventAttribute<Events.Window>(node: node).build()

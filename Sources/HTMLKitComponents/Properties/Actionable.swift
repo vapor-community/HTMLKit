@@ -28,4 +28,21 @@ extension Actionable {
         
         return newSelf
     }
+    
+    internal func mutate(events: [String]) -> Self {
+        
+        var newSelf = self
+        
+        if var events = newSelf.events {
+            
+            events.append(contentsOf: events)
+            
+            newSelf.events = events
+            
+        } else {
+            newSelf.events = events
+        }
+        
+        return newSelf
+    }
 }

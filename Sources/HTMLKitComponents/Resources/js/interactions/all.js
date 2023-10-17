@@ -152,11 +152,25 @@ var $ = (function () {
                     
                 case 'value':
                     
-                    if (!element.value) {
-                        element.setCustomValidity('The field must have a value.');
+                    if (element.length > 1) {
+                        
+                        const child = element[0].closest('.selectfield').firstChild;
+                        
+                        if (!child.value) {
+                            child.setCustomValidity('The field must have a value.');
+                            
+                        } else {
+                            child.setCustomValidity('');
+                        }
                         
                     } else {
-                        element.setCustomValidity('');
+                        
+                        if (!element.value) {
+                            element.setCustomValidity('The field must have a value.');
+                            
+                        } else {
+                            element.setCustomValidity('');
+                        }
                     }
                     
                     break;

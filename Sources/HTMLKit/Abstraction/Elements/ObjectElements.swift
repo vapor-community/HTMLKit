@@ -8,6 +8,15 @@
 
 import OrderedCollections
 
+/// The alias for the element Parameter.
+///
+/// Param is the official tag and can be used instead of Parameter.
+///
+/// ```html
+/// <param>
+/// ```
+public typealias Param = Parameter
+
 /// The element defines parameters for plugins invoked by an object element.
 ///
 /// ```html
@@ -154,6 +163,19 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
     public func translate(_ value: Values.Decision) -> Parameter {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> Parameter {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Parameter {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func name(_ value: String) -> Parameter {
         return mutate(name: value)
@@ -161,6 +183,10 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
     
     public func value(_ value: String) -> Parameter {
         return mutate(value: value)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Parameter {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Parameter {

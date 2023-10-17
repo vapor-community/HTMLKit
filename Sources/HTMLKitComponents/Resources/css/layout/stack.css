@@ -7,6 +7,8 @@
     --paddingInlineEnd: 0;
     --paddingBlockStart: 0;
     --paddingBlockEnd: 0;
+    --backgroundColor: 0, 0%, 0%;
+    --backgroundOpacity: 0.0;
     
     position: relative;
     inline-size: 100%;
@@ -17,6 +19,7 @@
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }
 
 .hstack.alignment\:top {
@@ -47,6 +50,10 @@
     justify-content: space-evenly;
 }
 
+.hstack.space\:center {
+    justify-content: center;
+}
+
 .hstack.space\:large {
     gap: 2.25rem;
 }
@@ -68,6 +75,8 @@
     --paddingInlineEnd: 0;
     --paddingBlockStart: 0;
     --paddingBlockEnd: 0;
+    --backgroundColor: 0, 0%, 0%;
+    --backgroundOpacity: 0.0;
     
     position: relative;
     inline-size: 100%;
@@ -77,6 +86,7 @@
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }
 
 .vstack.alignment\:leading {
@@ -103,6 +113,10 @@
     justify-content: space-evenly;
 }
 
+.vstack.space\:center {
+    justify-content: center;
+}
+
 .vstack.space\:large {
     gap: 2.25rem;
 }
@@ -124,6 +138,8 @@
     --paddingInlineEnd: 0;
     --paddingBlockStart: 0;
     --paddingBlockEnd: 0;
+    --backgroundColor: 0, 0%, 0%;
+    --backgroundOpacity: 0.0;
     
     position: absolute;
     inset: 0;
@@ -133,4 +149,5 @@
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }

@@ -240,6 +240,23 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Caption {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Caption {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Caption {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Caption {
         return mutate(key: key, value: value)
     }
@@ -492,9 +509,26 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     public func translate(_ value: Values.Decision) -> ColumnGroup {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> ColumnGroup {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> ColumnGroup {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func span(_ size: Int) -> ColumnGroup {
         return mutate(span: size)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> ColumnGroup {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> ColumnGroup {
@@ -674,8 +708,25 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> Column {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> Column {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func span(_ size: Int) -> Column {
         return mutate(span: size)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> Column {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> Column {
@@ -855,12 +906,29 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> TableBody {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> TableBody {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
     public func width(_ size: Int) -> TableBody {
         return mutate(width: size)
     }
     
     public func height(_ size: Int) -> TableBody {
         return mutate(height: size)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> TableBody {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TableBody {
@@ -1115,6 +1183,19 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func translate(_ value: Values.Decision) -> TableHead {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> TableHead {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> TableHead {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func width(_ size: Int) -> TableHead {
         return mutate(width: size)
@@ -1122,6 +1203,10 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     
     public func height(_ size: Int) -> TableHead {
         return mutate(height: size)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> TableHead {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TableHead {
@@ -1377,6 +1462,23 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> TableFoot {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> TableFoot {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> TableFoot {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> TableFoot {
         return mutate(key: key, value: value)
     }
@@ -1629,6 +1731,19 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func translate(_ value: Values.Decision) -> TableRow {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> TableRow {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> TableRow {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func width(_ size: Int) -> TableRow {
         return mutate(width: size)
@@ -1636,6 +1751,10 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func height(_ size: Int) -> TableRow {
         return mutate(height: size)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> TableRow {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TableRow {
@@ -1890,6 +2009,19 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func translate(_ value: Values.Decision) -> DataCell {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> DataCell {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> DataCell {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func columnSpan(_ size: Int) -> DataCell {
         return mutate(colspan: size)
@@ -1901,6 +2033,10 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func headers(_ value: String) -> DataCell {
         return mutate(headers: value)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> DataCell {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> DataCell {
@@ -2155,6 +2291,19 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func translate(_ value: Values.Decision) -> HeaderCell {
         return mutate(translate: value.rawValue)
     }
+    
+    public func inert() -> HeaderCell {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> HeaderCell {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
 
     public func columnSpan(_ size: Int) -> HeaderCell {
         return mutate(colspan: size)
@@ -2170,6 +2319,10 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     
     public func scope(_ value: String) -> HeaderCell {
         return mutate(scope: value)
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> HeaderCell {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> HeaderCell {

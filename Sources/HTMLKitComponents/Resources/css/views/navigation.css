@@ -3,7 +3,19 @@
  */
 
 .navigation {
+    --borderWidth: 0;
+    --borderColor: 0, 0%, 0%;
+    --borderOpacity: 0,0;
+    --borderRadius: 0;
+    --backgroundColor: 0, 0%, 0%;
+    --backgroundOpacity: 0.0;
+    
     position: relative;
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--borderColor), var(--borderOpacity));
+    border-radius: var(--borderRadius);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }
 
 .navigation > .list > .list-row > .link {
@@ -21,4 +33,32 @@
 .navigation > .list .list-row .link.state\:active {
     border-radius: 5px;
     background-color: hsla(var(--primaryColor), 1.0) !important;
+}
+
+.navigation.style\:pagination {
+    --borderWidth: 1px;
+    --borderColor: 210, 14%, 89%;
+    --borderRadius: 0;
+    --borderOpacity: 1.0;
+    --backgroundColor: 0, 0%, 100%;
+    --backgroundOpacity: 1.0;
+}
+
+.navigation.style\:pagination > .list > .list-row > .link {
+    display: flex;
+    align-items: center;
+    padding-block: 0.5rem;
+    padding-inline: 1.0rem;
+}
+
+.navigation.style\:pagination > .list.direction\:horizontal .list-row:is(:not(:last-child)) {
+    border-right: 1px;
+    border-right-style: solid;
+    border-right-color: hsla(210, 14%, 89%, 1.0);
+}
+
+.navigation.style\:pagination > .list.direction\:vertical .list-row:is(:not(:last-child)) {
+    border-bottom: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: hsla(210, 14%, 89%, 1.0);
 }

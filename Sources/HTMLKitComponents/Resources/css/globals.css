@@ -132,7 +132,6 @@ ul {
 }
 
 img,
-svg,
 video,
 canvas,
 audio,
@@ -288,95 +287,115 @@ video {
  */
 
 .border\:black {
+    --borderWidth: 1px !important;
     --borderColor: var(--blackColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:blue {
+    --borderWidth: 1px !important;
     --borderColor: var(--blueColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:brown {
     --borderWidth: 1px !important;
     --borderColor: var(--brownColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:cyan {
     --borderWidth: 1px !important;
     --borderColor: var(--cyanColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:gray {
     --borderWidth: 1px !important;
     --borderColor: var(--grayColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:green {
     --borderWidth: 1px !important;
     --borderColor: var(--greenColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:indigo {
     --borderWidth: 1px !important;
     --borderColor: var(--indigoColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:mint {
     --borderWidth: 1px !important;
     --borderColor: var(--mintColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:orange {
     --borderWidth: 1px !important;
     --borderColor: var(--orangeColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:pink {
     --borderWidth: 1px !important;
     --borderColor: var(--pinkColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:purple {
     --borderWidth: 1px !important;
     --borderColor: var(--purpleColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:red {
     --borderWidth: 1px !important;
     --borderColor: var(--redColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:teal {
     --borderWidth: 1px !important;
     --borderColor: var(--tealColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:white {
     --borderWidth: 1px !important;
     --borderColor: var(--whiteColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:yellow {
     --borderWidth: 1px !important;
     --borderColor: var(--yellowColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:silver {
     --borderWidth: 1px !important;
     --borderColor: var(--silverColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:primary {
     --borderWidth: 1px !important;
     --borderColor: var(--primaryColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:secondary {
     --borderWidth: 1px !important;
     --borderColor: var(--secondaryColor) !important;
+    --borderOpacity: 1.0 !important;
 }
 
 .border\:transparent {
-    --borderOpacity: 0.0;
+    --borderOpacity: 0.0 !important;
 }
 
 /*
@@ -385,78 +404,96 @@ video {
 
 .background\:black {
     --backgroundColor: var(--blackColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:blue {
     --backgroundColor: var(--blueColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:brown {
     --backgroundColor: var(--brownColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:cyan {
     --backgroundColor: var(--cyanColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:gray {
     --backgroundColor: var(--grayColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:green {
     --backgroundColor: var(--greenColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:indigo {
     --backgroundColor: var(--indigoColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:mint {
     --backgroundColor: var(--mintColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:orange {
     --backgroundColor: var(--orangeColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:pink {
     --backgroundColor: var(--pinkColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:purple {
     --backgroundColor: var(--purpleColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:red {
     --backgroundColor: var(--redColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:teal {
     --backgroundColor: var(--tealColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:white {
     --backgroundColor: var(--whiteColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:yellow {
     --backgroundColor: var(--yellowColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:silver {
     --backgroundColor: var(--silverColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:primary {
     --backgroundColor: var(--primaryColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:secondary {
     --backgroundColor: var(--secondaryColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .background\:transparent {
-    --backgroundOpacity: 0.0;
+    --backgroundOpacity: 0.0 !important;
 }
 
 /*

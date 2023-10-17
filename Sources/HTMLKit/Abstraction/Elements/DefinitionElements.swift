@@ -180,6 +180,23 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
+    public func inert() -> TermName {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> TermName {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> TermName {
+        return mutate(popover: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> TermName {
         return mutate(key: key, value: value)
     }
@@ -431,6 +448,23 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
     
     public func translate(_ value: Values.Decision) -> TermDefinition {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func inert() -> TermDefinition {
+        return mutate(inert: "inert")
+    }
+    
+    public func inert(_ condition: Bool) -> TermDefinition {
+
+        if condition {
+            return mutate(inert: "inert")
+        }
+        
+        return self
+    }
+    
+    public func popover(_ value: Values.Popover.State) -> TermDefinition {
+        return mutate(popover: value.rawValue)
     }
     
     public func custom(key: String, value: Any) -> TermDefinition {

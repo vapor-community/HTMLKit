@@ -14,7 +14,7 @@ final class AttributesTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadyOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute
+    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadyOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute
     
     struct Tag: ContentNode, GlobalElement, AllAttributes {
 
@@ -467,6 +467,10 @@ final class AttributesTests: XCTestCase {
             return mutate(source: value)
         }
         
+        func sourceSet(_ value: String) -> Tag {
+            return mutate(sourceset: value)
+        }
+        
         func start(_ size: Int) -> Tag {
             return self.mutate(start: size)
         }
@@ -563,8 +567,36 @@ final class AttributesTests: XCTestCase {
             return self.mutate(points: value)
         }
         
+        func fetchPriority(_ value: Values.Priority) -> Tag {
+            return self.mutate(fetchpriority: value.rawValue)
+        }
+        
+        func loading(_ value: Values.Loading) -> Tag {
+            return self.mutate(loading: value.rawValue)
+        }
+        
+        func decoding(_ value: Values.Decoding) -> Tag {
+            return self.mutate(decoding: value.rawValue)
+        }
+        
+        func popover(_ value: Values.Popover.State) -> Tag {
+            return self.mutate(popover: value.rawValue)
+        }
+        
+        func popoverTarget(_ value: String) -> Tag {
+            return self.mutate(popovertarget: value)
+        }
+        
+        func popoverAction(_ value: Values.Popover.Action) -> Tag {
+            return self.mutate(popoveraction: value.rawValue)
+        }
+        
         func custom(key: String, value: Any) -> Tag {
             return self.mutate(key: key, value: value)
+        }
+        
+        func blocking(_ value: Values.Blocking) -> Tag {
+            return self.mutate(blocking: value.rawValue)
         }
         
         func on(event: Events.Window, _ value: String) -> Tag {
@@ -697,6 +729,19 @@ final class AttributesTests: XCTestCase {
         
         func shadowRootMode(_ value: Values.Shadow.Mode) -> Tag {
             return mutate(shadowrootmode: value.rawValue)
+        }
+        
+        func inert() -> Tag {
+            return self.mutate(inert: "inert")
+        }
+        
+        public func inert(_ condition: Bool) -> Tag {
+            
+            if condition {
+                return mutate(inert: "inert")
+            }
+            
+            return self
         }
     }
     
@@ -1875,6 +1920,19 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    func testSourceSetAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.sourceSet("img2.png 100w, img3.png 500w")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag srcset="img2.png 100w, img3.png 500w"></tag>
+                       """
+        )
+    }
+    
     func testStartAttribute() throws {
         
         let view = TestView {
@@ -1936,6 +1994,97 @@ final class AttributesTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tag selected="selected"></tag>
+                       """
+        )
+    }
+    
+    func testFetchPriorityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.fetchPriority(.high)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag fetchpriority="high"></tag>
+                       """
+        )
+    }
+    
+    func testLoadingAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.loading(.lazy)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag loading="lazy"></tag>
+                       """
+        )
+    }
+    
+    func testDecodingAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.decoding(.async)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag decoding="async"></tag>
+                       """
+        )
+    }
+    
+    func testBlockingAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.blocking(.render)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag blocking="render"></tag>
+                       """
+        )
+    }
+    
+    func testPopoverAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.popover(.auto)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag popover="auto"></tag>
+                       """
+        )
+    }
+    
+    func testPopoverTargetAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.popoverTarget("id")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag popovertarget="id"></tag>
+                       """
+        )
+    }
+    
+    func testPopoverActionAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.popoverAction(.toggle)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag popovertargetaction="toggle"></tag>
                        """
         )
     }
@@ -2573,6 +2722,26 @@ final class AttributesTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tag shadowrootmode="open"></tag>
+                       """
+        )
+    }
+    
+    func testInertAttribute() throws {
+        
+        let view = TestView {
+            // unconditionally
+            Tag {}.inert()
+            // with a false condition
+            Tag {}.inert(false)
+            // with a true condition
+            Tag {}.inert(true)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag inert="inert"></tag>\
+                       <tag></tag>\
+                       <tag inert="inert"></tag>
                        """
         )
     }

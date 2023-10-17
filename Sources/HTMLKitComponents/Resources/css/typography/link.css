@@ -9,7 +9,7 @@
     
     font-family: var(--fontFamily);
     font-size: var(--fontSize);
-    font-weight: var(--fontHeight);
+    font-weight: var(--fontWeight);
     line-height: var(--lineHeight);
     color: hsla(var(--foregroundColor), 1.0);
     text-decoration: none;
