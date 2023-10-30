@@ -2769,6 +2769,7 @@ extension ShadowRootModeAttribute where Self: ContentNode {
 }
 
 /// The protocol provides the element with inhert handler.
+@_documentation(visibility: internal)
 public protocol InertAttribute: Attribute {
     
     /// The function represents the html-attribute 'inert'.
@@ -2795,6 +2796,7 @@ extension InertAttribute where Self: EmptyNode {
     }
 }
 
+@_documentation(visibility: internal)
 public protocol FetchPriorityAttribute: Attribute {
     
     /// The function represents the html-attribute 'shadowrootmode'.
@@ -2819,6 +2821,7 @@ extension FetchPriorityAttribute where Self: EmptyNode {
     }
 }
 
+@_documentation(visibility: internal)
 public protocol LoadingAttribute: Attribute {
     
     /// The function represents the html-attribute 'loading'.
@@ -2843,6 +2846,7 @@ extension LoadingAttribute where Self: EmptyNode {
     }
 }
 
+@_documentation(visibility: internal)
 public protocol SourceSetAttribute: Attribute {
     
     /// The function represents the html-attribute 'loading'.
@@ -2867,6 +2871,7 @@ extension SourceSetAttribute where Self: EmptyNode {
     }
 }
 
+@_documentation(visibility: internal)
 public protocol DecodingAttribute: Attribute {
     
     /// The function represents the html-attribute 'decoding'.
@@ -2891,6 +2896,7 @@ extension DecodingAttribute where Self: EmptyNode {
     }
 }
 
+@_documentation(visibility: internal)
 public protocol BlockingAttribute: Attribute {
     
     /// The function represents the html-attribute 'blocking'.
@@ -2915,6 +2921,7 @@ extension BlockingAttribute where Self: EmptyNode {
     }
 }
 
+@_documentation(visibility: internal)
 public protocol PopoverAttribute: Attribute {
     
     /// The function represents the html-attribute 'popover'.
@@ -2939,6 +2946,7 @@ extension PopoverAttribute where Self: EmptyNode {
     }
 }
 
+@_documentation(visibility: internal)
 public protocol PopoverTargetAttribute: Attribute {
     
     /// The function represents the html-attribute 'popovertarget'.
@@ -2963,6 +2971,7 @@ extension PopoverAttribute where Self: EmptyNode {
     }
 }
 
+@_documentation(visibility: internal)
 public protocol PopoverActionAttribute: Attribute {
     
     /// The function represents the html-attribute 'popovertargetaction'.
