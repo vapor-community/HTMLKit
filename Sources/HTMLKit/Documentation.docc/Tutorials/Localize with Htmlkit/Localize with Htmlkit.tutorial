@@ -1,0 +1,89 @@
+@Tutorial(time: 30) {
+    @Intro(title: "Localize with HTMLKit") {
+        Lorem ipsum...
+    }
+    
+    @Section(title: "Set up the localization") {
+        @ContentAndMedia {
+            Lorem ipsum...
+        }
+        @Steps {            
+            @Step {
+                Lorem ipsum...
+                
+                @Code(name: "Configure.swift", file: "01_manifest_00.swift")
+            }
+            @Step {
+                Specify the directory path
+                
+                @Code(name: "Configure.swift", file: "01_manifest_01.swift")
+            }
+            @Step {
+                Specify the default language
+                
+                @Code(name: "Configure.swift", file: "01_manifest_02.swift")
+            }
+        }
+    }
+    
+    @Section(title: "Create a message file") {
+        @ContentAndMedia {
+            Next you have to create a message file, wich contains the the translations strings for the given language.
+        }
+        @Steps {
+            @Step {
+                Choose File > New > File to create a new Strings file in your project and name it `web.strings`.
+                
+                @Image(source: "tutorial_create-file.png", alt: "Create file dialog")
+            }
+            @Step {
+                Lorem ipsum...
+                
+                @Code(name: "Message.strings", file: "02_message_00.swift")
+            }
+            @Step {
+                Lorem ipsum...
+                
+                @Code(name: "Message.strings", file: "02_message_01.swift")
+            }
+            @Step {
+                Lorem ipsum...
+                
+                @Code(name: "Message.strings", file: "02_message_02.swift")
+            }
+        }
+    }
+    
+    @Section(title: "Call the localization") {
+        @ContentAndMedia {
+            Then you can use the string key on a paragraph element to get the localized string.
+        }
+        @Steps {
+            @Step {
+                Choose File > New > File to create a new Swift file in your project and name it `ExampleView.swift`.
+                
+                @Image(source: "tutorial_create-file.png", alt: "Create file dialog")
+            }
+            @Step {
+                Import the HTMLKit module at the top of the file.
+                
+                @Code(name: "ExampleView.swift", file: "03_view_00.swift")
+            }
+            @Step {
+                Define a `ExampleView` structure and add `View` conformance.
+                
+                @Code(name: "ExampleView.swift", file: "03_view_01.swift")
+            }
+            @Step {
+                Use the string key on a paragraph element to get the localized string.
+                
+                @Code(name: "ExampleView.swift", file: "03_view_02.swift")
+            }
+            @Step {
+                Or interpolate the localized string.
+                
+                @Code(name: "ExampleView.swift", file: "03_view_03.swift")
+            }
+        }
+    }
+}

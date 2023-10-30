@@ -10,4 +10,12 @@
         
         @TutorialReference(tutorial: "doc:Start-with-Htmlkit")
     }
+    
+    @Chapter(name: "Localize with HTMLKit") {
+        Learn how to setup...
+        
+        @Image(source: "", alt: "")
+        
+        @TutorialReference(tutorial: "doc:Localize-with-Htmlkit")
+    }
 }
