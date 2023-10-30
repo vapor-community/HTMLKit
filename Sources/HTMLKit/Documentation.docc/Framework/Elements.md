@@ -116,6 +116,10 @@ extension FormContainer: GlobalElement {
 
 - ``HTMLKit/Template``
 
+- ``HTMLKit/Menu``
+
+- ``HTMLKit/Search``
+
 ### Paragraph elements
 
 - ``HTMLKit/HeadingGroup``
