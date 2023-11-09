@@ -1,130 +1,120 @@
 @Tutorial(time: 30) {
     @Intro(title: "Start with HTMLKit") {
-        I introduce that to youe
+        Lorem ipsum...
     }
-    
     @Section(title: "Create a package") {
         @ContentAndMedia {
             Create a new Xcode project that uses Swift Package.
         }
-        
         @Steps {
             @Step {
-                Open Xcode and either click “Create a new Xcode project” in Xcode’s startup window, or choose File > New > Project.
-                
-                @Image(source: "tutorial_create-project.png", alt: "Launch xcode dialog")
+                Open Xcode and select File > New > Package.
             }
             @Step {
-                In the template selector, select Multiplatform as the platform, choose the Swift Package, and then click Next.
-                
-                @Image(source: "tutorial_create-project.png", alt: "Launch xcode dialog")
-            }
-            @Step {
-                Enter Example as the package name and choose a location to save the it on your Mac.
+                Choose a name and select a file location.
                 
                 @Image(source: "tutorial_create-project.png", alt: "Launch xcode dialog")
             }
         }
     }
-        
     @Section(title: "Customize the manifest") {
         @ContentAndMedia {
             Add the dependencies to use HTMLKit in your project.
         }
-        
         @Steps {    
             @Step {
                 Change the settings in the package manifest.
                 
-                @Code(name: "Package.swift", file: "02-manifest-01.swift")
+                @Code(name: "Package.swift", file: "manifest-S0.swift")
             }
-            
             @Step {
                 Add Vapor to the package manifest.
                 
-                @Code(name: "Package.swift", file: "02-manifest-02.swift")
+                @Code(name: "Package.swift", file: "manifest-S1.swift")
             }
-            
             @Step {
                 Add HTMLKit to the package manifest.
                 
-                @Code(name: "Package.swift", file: "02-manifest-03.swift")
+                @Code(name: "Package.swift", file: "manifest-S2.swift")
             }
         }
     }
-        
     @Section(title: "Build a view") {
         @ContentAndMedia {
             Create and combine elements to create a view.
         }
         @Steps {
             @Step {
-                Choose File > New > File to create a new Swift file in your project and name it `ExampleView.swift`.
+                Select File > New > File to create a new Swift file in your project and choose a name and file location.
                 
                 @Image(source: "tutorial_create-file.png", alt: "Create file dialog")
             }
             @Step {
                 Import the HTMLKit module at the top of the file.
                 
-                @Code(name: "ExampleView.swift", file: "03-structure-01.swift")
+                @Code(name: "ExampleView.swift", file: "view-S1.swift")
             }
             @Step {
                 Define a `ExampleView` structure and add `View` conformance.
                 
-                @Code(name: "ExampleView.swift", file: "03-structure-02.swift")
+                @Code(name: "ExampleView.swift", file: "view-S2.swift")
             }
             @Step {
                 Add the content you like.
                 
-                @Code(name: "ExampleView.swift", file: "03-structure-03.swift")
+                @Code(name: "ExampleView.swift", file: "view-S3.swift")
             }
         }
     }
-        
     @Section(title: "Render the view") {
         @ContentAndMedia {
             Render the view and transform it into a response.
         }
-        
         @Steps {
             @Step {
-                Choose File > New > File to create a new Swift file in your project and name it ExampleController.swift.
-                
-                @Image(source: "tutorial_create-file.png", alt: "Create file dialog")
+                Select File > New > File to create a new Swift file in your project and choose a name and file location.
             }
             @Step {
                 Import the Vapor module and the HTMLKit+Vapor intergration.
                 
-                @Code(name: "ExampleController.swift", file: "04-controller-01.swift")
+                @Code(name: "ExampleController.swift", file: "controller-S1.swift")
             }
             @Step {
                 Import the Vapor module and the HTMLKit+Vapor intergration.
                 
-                @Code(name: "ExampleController.swift", file: "04-controller-02.swift")
+                @Code(name: "ExampleController.swift", file: "controller-S2.swift")
             }
             @Step {
                 Import the Vapor module and the HTMLKit+Vapor intergration.
                 
-                @Code(name: "ExampleController.swift", file: "04-controller-03.swift")
+                @Code(name: "ExampleController.swift", file: "controller-S3.swift")
             }
         }
     }
-        
     @Section(title: "Register the route") {
         @ContentAndMedia {
             Announce the route to your Vapor application.
         }
-        
         @Steps {
             @Step {
                 Change the settings in the package manifest.
                 
-                @Code(name: "routes.swift", file: "05-route-00.swift")
+                @Code(name: "routes.swift", file: "route-S1.swift")
             }
             @Step {
                 Change the settings in the package manifest.
                 
-                @Code(name: "routes.swift", file: "05-route-01.swift")
+                @Code(name: "routes.swift", file: "route-S2.swift")
+            }
+        }
+    }
+    @Section(title: "See the result") {
+        @ContentAndMedia {
+            Lorem ipsum...
+        }
+        @Steps {
+            @Step {
+                Lorem ipsum...
             }
         }
     }

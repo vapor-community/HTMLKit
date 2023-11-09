@@ -8,7 +8,7 @@ let package = Package(
     platforms: [.macOS(.v12)],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.77.2")
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.77.2"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -25,8 +25,9 @@ let package = Package(
         .testTarget(
             name: "ExampleTests",
             dependencies: [
-                .target(name: "Website"),
+                .target(name: "Example"),
                 .product(name: "XCTVapor", package: "vapor")
-            ])
+            ]
+        )
     ]
 )

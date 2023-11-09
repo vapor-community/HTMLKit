@@ -1,0 +1,37 @@
+@Tutorial(time: 30) {
+    @Intro(title: "Compose with HTMLKit") {
+        Lorem ipsum...
+    }
+    @Section(title: "Set up the composing") {
+        @ContentAndMedia {
+            Lorem ipsum...
+        }
+        @Steps {
+            @Step {
+                Lorem ipsum...
+                
+                @Code(name: "Configure.swift", file: "view-S5.swift")
+            }
+            @Step {
+                Lorem ipsum...
+                
+                @Code(name: "Configure.swift", file: "view-S6.swift")
+            }
+            @Step {
+                Lorem ipsum...
+                
+                @Code(name: "Configure.swift", file: "view-S7.swift")
+            }
+        }
+    }
+    @Section(title: "See the result") {
+        @ContentAndMedia {
+            Lorem ipsum...
+        }
+        @Steps {
+            @Step {
+                Lorem ipsum...
+            }
+        }
+    }
+}

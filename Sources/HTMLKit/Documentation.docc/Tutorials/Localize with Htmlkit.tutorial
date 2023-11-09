@@ -1,0 +1,91 @@
+@Tutorial(time: 30) {
+    @Intro(title: "Localize with HTMLKit") {
+        Lorem ipsum...
+    }
+    @Section(title: "Set up the localization") {
+        @ContentAndMedia {
+            Lorem ipsum...
+        }
+        @Steps {    
+            @Step {
+                Lorem ipsum...
+                
+                @Code(name: "Configure.swift", file: "configure-S1.swift")
+            }
+            @Step {
+                Lorem ipsum...
+                
+                @Code(name: "Configure.swift", file: "configure-S2.swift")
+            }
+            @Step {
+                Specify the directory path
+                
+                @Code(name: "Configure.swift", file: "configure-S3.swift")
+            }
+            @Step {
+                Specify the default language
+                
+                @Code(name: "Configure.swift", file: "configure-S4.swift")
+            }
+        }
+    }
+    @Section(title: "Create a message file") {
+        @ContentAndMedia {
+            Next you have to create a message file, wich contains the the translations strings for the given language.
+        }
+        @Steps {
+            @Step {
+                Select File > New > File to create a new Strings file in your project and name it `web.strings`.
+                
+                @Image(source: "tutorial_create-file.png", alt: "Create file dialog")
+            }
+            @Step {
+                Lorem ipsum...
+                
+                @Code(name: "Message.strings", file: "message-S2.swift")
+            }
+            @Step {
+                Lorem ipsum...
+                
+                @Code(name: "Message.strings", file: "message-S3.swift")
+            }
+            @Step {
+                Lorem ipsum...
+                
+                @Code(name: "Message.strings", file: "message-S4.swift")
+            }
+        }
+    }
+    @Section(title: "Call the localization") {
+        @ContentAndMedia {
+            Lorem ipsum...
+        }
+        @Steps {
+            @Step {
+                Lorem ipsum...
+                
+                @Code(name: "ExampleView.swift", file: "view-S3.swift")
+            }
+            @Step {
+                Lorem ipsum...
+                
+                @Code(name: "ExampleView.swift", file: "view-S4.swift")
+            }
+            @Step {
+                Lorem ipsum...
+                
+                @Code(name: "ExampleView.swift", file: "view-S5.swift")
+            }
+        }
+    }
+    @Section(title: "See the result") {
+        @ContentAndMedia {
+            Lorem ipsum...
+        }
+        @Steps {
+            @Step {
+                Lorem ipsum...
+            }
+        }
+    }
+}

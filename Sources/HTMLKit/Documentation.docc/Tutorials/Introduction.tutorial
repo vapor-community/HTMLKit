@@ -2,7 +2,6 @@
     @Intro(title: "Introducing HTMLKit") {
         HTMLKit is a declarative way to create and render HTML templates in Swift language.
     }
-    
     @Chapter(name: "Start with HTMLKit") {
         Learn how to setup a Swift package for HTMLKit and create your ever first view.
         
@@ -10,12 +9,31 @@
         
         @TutorialReference(tutorial: "doc:Start-with-Htmlkit")
     }
-    
     @Chapter(name: "Localize with HTMLKit") {
-        Learn how to setup...
+        Lorem ipsum...
         
         @Image(source: "", alt: "")
         
         @TutorialReference(tutorial: "doc:Localize-with-Htmlkit")
+    }
+    @Chapter(name: "Compose with HTMLKit") {
+        Lorem ipsum...
+        
+        @Image(source: "", alt: "")
+        
+        @TutorialReference(tutorial: "doc:Compose-with-Htmlkit")
+    }
+    @Resources {
+        Lorem ipsum...
+        
+        @Documentation(destination: "https://swiftpackageindex.com/vapor-community/HTMLKit") {
+            Lorem ipsum...
+        }
+        @SampleCode(destination: "https://github.com/mattesmohr/Website") {
+            Lorem ipsum...
+        }
+        @Forums(destination: "https://discord.gg/invite/vapor") {
+            Lorem ipsum...
+        }
     }
 }
