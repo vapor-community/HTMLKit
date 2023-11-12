@@ -29,8 +29,7 @@ The framework comes with an intergration for the web framework [Vapor](https://s
 
 ### Essentials
 
-- <doc:GettingStarted>
-- <doc:VaporIntegration>
+- <doc:Introduction>
 
 ### Framework
 
@@ -44,7 +43,3 @@ The framework comes with an intergration for the web framework [Vapor](https://s
 
 - <doc:ConverterPlugin>
 - <doc:ComponentsPlugin>
-
-### Tutorials
-
-- <doc:Introduction>

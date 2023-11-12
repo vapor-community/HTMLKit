@@ -1,0 +1,164 @@
+@Tutorial(time: 30) {
+    @Intro(title: "Start with HTMLKit") {
+        Lorem ipsum...
+    }
+    @Section(title: "Create a package") {
+        @ContentAndMedia {
+            Create a new Xcode project that uses Swift Package.
+        }
+        @Steps {
+            @Step {
+                Open `Xcode` and select `File` > `New` > `Package`.
+                
+                @Image(source: "tutorial_create-project.png", alt: "Launch xcode dialog")
+            }
+            @Step {
+                In the template selector, select the template `Library`, and then click `Next`. 
+                
+                > Note: _The template creates the folder structure, wich we will need later._
+                
+                @Image(source: "tutorial_create-project.png", alt: "Launch xcode dialog")
+            }
+            @Step {
+                Enter the package name `Example` and choose a location to save the package. Click `Create` next.
+                
+                > Note: _Xcode loads the package and shows the package manifest upfront._
+                
+                @Image(source: "tutorial_create-project.png", alt: "Launch xcode dialog")
+            }
+        }
+    }
+    @Section(title: "Customize the manifest") {
+        @ContentAndMedia {
+            Add the dependencies to use HTMLKit in your project.
+        }
+        @Steps {
+            @Step {
+                Change the platform to `macOS` and the target to `executableTarget`.
+                
+                > Note: _The platforms defines a list of minimum versions for platforms supported by the package._
+                
+                @Code(name: "Package.swift", file: "manifest-S1.swift", previousFile: "manifest-S0.swift")
+            }
+            @Step {
+                Add `Vapor` as dependency.
+                
+                > Note: _The package manager updates the version to the next major version._
+                
+                @Code(name: "Package.swift", file: "manifest-S2.swift")
+            }
+            @Step {
+                Add HTMLKit as dependency.
+                
+                > Note: _The package manager updates the version to the next major version._
+                
+                @Code(name: "Package.swift", file: "manifest-S3.swift")
+            }
+        }
+    }
+    @Section(title: "Setup up Vapor") {
+        @ContentAndMedia {
+            Create the files Vapor needs.
+        }
+        @Steps {
+            @Step {
+                Select `File` > `New` > `File` to create a file called `entrypoint.swift`.
+                
+                > Note: _The file contains the entry point, that sets up, configures and runs your application._
+                
+                @Code(name: "entrypoint.swift", file: "entrypoint-S1.swift")
+            }
+            @Step {
+                Select `File` > `New` > `File` to create a file called `routes.swift`.
+                
+                > Note: _The file will contain the routes for your application._
+                
+                @Code(name: "routes.swift", file: "routes-S1.swift")
+            }
+            @Step {
+                Select `File` > `New` > `File` to create a file called `configure.swift`.
+                
+                > Note: _The file will contain your services like routes, databases, providers, and more._
+                
+                @Code(name: "configure.swift", file: "configure-S1.swift")
+            }
+        }
+    }
+    @Section(title: "Build a view") {
+        @ContentAndMedia {
+            Create and combine elements to create a view.
+        }
+        @Steps {
+            @Step {
+                Select `File` > `New` > `File` to create a new Swift file `ExampleView`.
+                
+                @Image(source: "tutorial_create-file.png", alt: "Create file dialog")
+            }
+            @Step {
+                Import the module `HTMLKit` at the top of the file.
+                
+                @Code(name: "ExampleView.swift", file: "view-S1.swift")
+            }
+            @Step {
+                Define a structure `ExampleView` and add `View` conformance.
+                
+                @Code(name: "ExampleView.swift", file: "view-S2.swift")
+            }
+            @Step {
+                Add content to the `body` property.
+                
+                > Tip: If you want to learn more about...
+                
+                @Code(name: "ExampleView.swift", file: "view-S3.swift")
+            }
+        }
+    }
+    @Section(title: "Render the view") {
+        @ContentAndMedia {
+            Render the view and transform it into a response.
+        }
+        @Steps {
+            @Step {
+                Select `File` > `New` > `File` to create a new Swift file `ExampleController`.
+            }
+            @Step {
+                Import the modules `Vapor` and `HTMLKitVapor` at the top of the file.
+                
+                @Code(name: "ExampleController.swift", file: "controller-S1.swift")
+            }
+            @Step {
+                Create a class `ExampleController` add `RouteCollection` conformance.
+                
+                @Code(name: "ExampleController.swift", file: "controller-S2.swift")
+            }
+            @Step {
+                Create a class `ExampleController` add `RouteCollection` conformance.
+                
+                @Code(name: "ExampleController.swift", file: "controller-S3.swift")
+            }
+            @Step {
+                Call the method `render` in the function and pass the view `ExampleView` to it.
+                
+                @Code(name: "ExampleController.swift", file: "controller-S4.swift")
+            }
+        }
+    }
+    @Section(title: "Register the route") {
+        @ContentAndMedia {
+            Announce the route to your Vapor application.
+        }
+        @Steps {
+            @Step {
+                Use the method `register` to announce the route to your application.
+                
+                @Code(name: "routes.swift", file: "routes-S2.swift", previousFile: "routes-S1.swift")
+            }
+            @Step {
+                Select `Editor` > `Run` to build and run the application.
+            }
+            @Step {
+                Open `Safari` and call the route `https://localhost:8080/example/index` in your browser.
+            }
+        }
+    }
+}

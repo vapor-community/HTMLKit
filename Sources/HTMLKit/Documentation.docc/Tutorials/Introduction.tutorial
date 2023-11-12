@@ -3,23 +3,23 @@
         HTMLKit is a declarative way to create and render HTML templates in Swift language.
     }
     @Chapter(name: "Start with HTMLKit") {
-        Learn how to setup a Swift package for HTMLKit and create your ever first view.
+        Learn how to setup a Swift package and create your ever first view.
         
-        @Image(source: "", alt: "")
+        @Image(source: "thumbnail-C1.png", alt: "Curly brackets with text inbetween")
         
         @TutorialReference(tutorial: "doc:Start-with-Htmlkit")
     }
     @Chapter(name: "Localize with HTMLKit") {
-        Lorem ipsum...
+        Discover how to configure localization and enhance the accessibility of your web page.
         
-        @Image(source: "", alt: "")
+        @Image(source: "thumbnail-C2.png", alt: "Curly brackets with i18n annotation")
         
         @TutorialReference(tutorial: "doc:Localize-with-Htmlkit")
     }
     @Chapter(name: "Compose with HTMLKit") {
-        Lorem ipsum...
+        Use UI components and make your design process more easy.
         
-        @Image(source: "", alt: "")
+        @Image(source: "thumbnail-C3.png", alt: "Curly brackets with bold annotation")
         
         @TutorialReference(tutorial: "doc:Compose-with-Htmlkit")
     }

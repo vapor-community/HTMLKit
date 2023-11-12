@@ -8,24 +8,21 @@
         }
         @Steps {    
             @Step {
-                Lorem ipsum...
+                Import the module `HTMLKitVapor` at the top of the file.
                 
-                @Code(name: "Configure.swift", file: "configure-S1.swift")
+                @Code(name: "configure.swift", file: "configure-S2.swift", previousFile: "configure-S1.swift")
             }
             @Step {
-                Lorem ipsum...
+                Specify the source path of the directory with the message files within.
                 
-                @Code(name: "Configure.swift", file: "configure-S2.swift")
+                @Code(name: "configure.swift", file: "configure-S3.swift")
             }
             @Step {
-                Specify the directory path
+                Specify the default language.
                 
-                @Code(name: "Configure.swift", file: "configure-S3.swift")
-            }
-            @Step {
-                Specify the default language
+                > Note: _The setting acts as a fallback.
                 
-                @Code(name: "Configure.swift", file: "configure-S4.swift")
+                @Code(name: "configure.swift", file: "configure-S4.swift")
             }
         }
     }
@@ -35,24 +32,16 @@
         }
         @Steps {
             @Step {
-                Select File > New > File to create a new Strings file in your project and name it `web.strings`.
+                Select `File` > `New` > `File` to create a new Strings file `message.strings`.
                 
                 @Image(source: "tutorial_create-file.png", alt: "Create file dialog")
             }
             @Step {
-                Lorem ipsum...
+                Add a string.
                 
-                @Code(name: "Message.strings", file: "message-S2.swift")
-            }
-            @Step {
-                Lorem ipsum...
+                > Note: _The key and value in a given pair are strings of text enclosed in double quotation marks and separated by an equal sign._
                 
-                @Code(name: "Message.strings", file: "message-S3.swift")
-            }
-            @Step {
-                Lorem ipsum...
-                
-                @Code(name: "Message.strings", file: "message-S4.swift")
+                @Code(name: "message.strings", file: "message-S3.swift", previousFile: "message-S2.swift")
             }
         }
     }
@@ -76,15 +65,8 @@
                 
                 @Code(name: "ExampleView.swift", file: "view-S5.swift")
             }
-        }
-    }
-    @Section(title: "See the result") {
-        @ContentAndMedia {
-            Lorem ipsum...
-        }
-        @Steps {
             @Step {
-                Lorem ipsum...
+                Select `Editor` > `Run` to build and run the application. Refresh the application in `Safari`.
             }
         }
     }
