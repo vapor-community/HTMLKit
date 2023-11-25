@@ -198,11 +198,11 @@ video {
 }
 
 .state\:hidden {
-    display: none !important;
+    visibility: hidden !important;
 }
 
 .state\:visible {
-    display: block !important;
+    visibility: visible !important;
 }
 
 /*

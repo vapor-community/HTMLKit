@@ -118,6 +118,14 @@
         Shows the picker.
      */
     Datepicker.prototype.showPicker = function () {
+        
+        var windowBound = document.body.getBoundingClientRect();
+        var elementBound = this.picker.getBoundingClientRect();
+        
+        if (windowBound.height < elementBound.bottom) {
+            this.picker.classList.add('position:bottom');
+        }
+        
         this.picker.classList.add('state:visible');
     };
     

@@ -32,6 +32,18 @@
         Shows the dropdown list
      */
     Dropdown.prototype.showDropdownList = function () {
+        
+        var windowBound = document.body.getBoundingClientRect();
+        var elementBound = this.dropdownlist.getBoundingClientRect();
+        
+        if (windowBound.width < elementBound.right) {
+            this.dropdownlist.classList.add('position:right');
+        }
+        
+        if (windowBound.height < elementBound.bottom) {
+            this.dropdownlist.classList.add('position:bottom');
+        }
+        
         this.dropdownlist.classList.add('state:visible');
     };
     

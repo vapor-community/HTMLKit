@@ -80,7 +80,7 @@
 .datepicker-calendar {
     position: absolute;
     z-index: 1;
-    display: none;
+    display: block;
     width: 100%;
     margin-block: 0.75rem;
     font-family: system-ui;
@@ -92,6 +92,12 @@
     border-style: solid;
     border-color: hsla(var(--borderColor), 1.0);
     background-color: hsla(var(--backgroundColor), 1.0);
+    visibility: hidden;
+}
+
+.datepicker-calendar.position\:bottom {
+    bottom: 0;
+    margin-block: 3.375rem !important;
 }
 
 .calendar-navigation {

@@ -95,6 +95,13 @@
      */
     Selectfield.prototype.showOptionList = function () {
         
+        var windowBound = document.body.getBoundingClientRect();
+        var elementBound = this.optionlist.getBoundingClientRect();
+        
+        if (windowBound.height < elementBound.bottom) {
+            this.optionlist.classList.add('position:bottom');
+        }
+        
         this.optionlist.classList.add('state:visible');
     };
     
