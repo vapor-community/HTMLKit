@@ -84,6 +84,7 @@
     border-width: var(--borderWidth);
     border-style: solid;
     border-color: hsla(var(--borderColor), 1.0);
+    border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), 1.0);
     list-style-type: none;
     visibility: hidden;
@@ -92,6 +93,10 @@
 .selectfield-optionlist.position\:bottom {
     bottom: 0;
     margin-block: 3.375rem !important;
+}
+
+.selectfield-optionlist > .radioselect:hover, .selectfield-optionlist > .checkselect:hover {
+    background-color: hsla(var(--borderColor), 0.5);
 }
 
 .scheme\:dark .selectfield, .selectfield.scheme\:dark {

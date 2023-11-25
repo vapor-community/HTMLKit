@@ -51,7 +51,6 @@
     z-index: 1;
     display: block;
     margin-block: 0.5rem;
-    padding-block: 0.5rem;
     inline-size: calc(var(--inlineSize) * 1.5);
     border-width: var(--borderWidth);
     border-style: solid;
@@ -71,7 +70,7 @@
 }
 
 .dropdown-content > .list > .list-row:hover {
-    background-color: hsla(var(--borderColor), 1.0);
+    background-color: hsla(var(--borderColor), 0.5);
 }
 
 .dropdown-content > .list > .list-row > .link {
