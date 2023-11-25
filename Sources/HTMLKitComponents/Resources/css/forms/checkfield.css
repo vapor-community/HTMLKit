@@ -16,6 +16,14 @@
     --paddingBlockEnd: 0.5rem;
     --paddingInlineStart: 1.0rem;
     --paddingInlineEnd: 1.0rem;
+    --borderWidth: 1px;
+    --borderColor: 210, 14%, 89%;
+    --borderOpacity: 1.0;
+    --borderRadius: 0;
+    --controlColor: 0, 0%, 0%;
+    --focusColor: 210, 100%, 50%;
+    --backgroundColor: 0, 0%, 100%;
+    --backgroundOpacity: 1.0;
     
     position: relative;
     display: flex;
@@ -28,14 +36,6 @@
 }
 
 .checkinput {
-    --borderWidth: 1px;
-    --borderColor: 210, 14%, 89%;
-    --borderOpacity: 1.0;
-    --controlColor: 0, 0%, 0%;
-    --focusColor: 210, 100%, 50%;
-    --backgroundColor: 0, 0%, 100%;
-    --backgroundOpacity: 1.0;
-    
     position: relative;
     display: inline-grid;
     place-content: center;
@@ -46,6 +46,7 @@
     border-width: var(--borderWidth);
     border-style: solid;
     border-color: hsla(var(--borderColor), var(--borderOpacity));
+    border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     -webkit-appearance: none;
     -moz-appearance: none;
