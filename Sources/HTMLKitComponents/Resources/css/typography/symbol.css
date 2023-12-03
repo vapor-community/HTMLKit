@@ -20,6 +20,7 @@
     fill: hsla(var(--foregroundColor), 1.0);
     font-size: var(--fontSize);
     line-height: var(--lineHeight);
+    vertical-align: middle;
 }
 
 .symbol.size\:tiny {
@@ -51,5 +52,9 @@
 }
 
 .symbol + .text {
+    margin-inline-start: 0.75rem;
+}
+
+.text + .symbol {
     margin-inline-start: 0.75rem;
 }

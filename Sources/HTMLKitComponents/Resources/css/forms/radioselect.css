@@ -18,6 +18,12 @@
     --paddingBlockEnd: 0.5rem;
     --paddingInlineStart: 1.0rem;
     --paddingInlineEnd: 1.0rem;
+    --borderWidth: 1px;
+    --borderColor: 210, 14%, 89%;
+    --borderOpacity: 1.0;
+    --focusColor: 210, 100%, 50%;
+    --backgroundColor: 0, 0%, 100%;
+    --backgroundOpacity: 1.0;
     
     position: relative;
     display: flex;
@@ -30,14 +36,6 @@
 }
 
 .radioinput {
-    --borderWidth: 1px;
-    --borderColor: 210, 14%, 89%;
-    --borderOpacity: 1.0;
-    --controlColor: 0, 0%, 0%;
-    --focusColor: 210, 100%, 50%;
-    --backgroundColor: 0, 0%, 100%;
-    --backgroundOpacity: 1.0;
-    
     position: relative;
     display: inline-grid;
     place-content: center;
@@ -55,6 +53,10 @@
     appearance: none;
 }
 
+.radioinput:checked {
+    --backgroundColor: var(--primaryColor) !important;
+}
+
 .radioinput:focus {
     --borderColor: var(--focusColor) !important;
     
@@ -67,7 +69,7 @@
     block-size: 0.625rem;
     inline-size: 0.625rem;
     border-radius: 50%;
-    background-color: hsla(var(--controlColor), 1.0);
+    background-color: hsla(var(--whiteColor), 1.0);
     transform: scale(0);
 }
 
@@ -82,7 +84,6 @@
 
 .scheme\:dark .radioselect, .radioselect.scheme\:dark {
     --borderColor: 210, 9%, 31%;
-    --controlColor: 0, 0%, 100%;
     --focusColor: 210, 100%, 50%;
     --backgroundColor: 210, 11%, 15%;
 }

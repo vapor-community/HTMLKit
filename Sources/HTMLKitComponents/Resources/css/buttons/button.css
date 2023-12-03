@@ -101,12 +101,8 @@
     --inlineSize: 25%;
 }
 
-.button > .symbol + .text {
-    margin-inline-start: 0.938em;
-}
-
-.button > .text + .symbol {
-    margin-inline-start: 0.938em;
+.button > .symbol {
+    height: 24px;
 }
 
 .scheme\:dark .button, .button.scheme\:dark  {

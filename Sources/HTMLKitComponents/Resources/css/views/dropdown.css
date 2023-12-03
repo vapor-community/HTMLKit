@@ -88,6 +88,14 @@
     cursor: pointer;
 }
 
+.dropdown-content > .list > .list-row > .grouping {
+    display: flex;
+    align-items: center;
+    padding-block: 0.5rem;
+    padding-inline: 1.0rem;
+    cursor: pointer;
+}
+
 .dropdown-content > .list > .divider {
     --backgroundColor: var(--borderColor) !important;
 }

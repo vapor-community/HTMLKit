@@ -95,7 +95,7 @@
     margin-block: 3.375rem !important;
 }
 
-.selectfield-optionlist > .radioselect:hover, .selectfield-optionlist > .checkselect:hover {
+.selectfield-optionlist > .radioselect:hover, .selectfield-optionlist > .checkfield:hover {
     background-color: hsla(var(--borderColor), 0.5);
 }
 
