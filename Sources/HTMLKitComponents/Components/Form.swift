@@ -704,6 +704,9 @@ public struct SelectField: View, Modifiable, Identifiable {
     /// The identifier of the field.
     internal let name: String
     
+    /// The placeholder for the field value.
+    internal let prompt: String?
+    
     internal let selection: String?
     
     /// The content of the field.
@@ -716,18 +719,20 @@ public struct SelectField: View, Modifiable, Identifiable {
     internal var events: [String]?
     
     /// Creates a select field.
-    public init(name: String, selection: String? = nil, @ContentBuilder<Selectable> content: () -> [Selectable]) {
+    public init(name: String, prompt: String? = nil, selection: String? = nil, @ContentBuilder<Selectable> content: () -> [Selectable]) {
         
         self.name = name
+        self.prompt = prompt
         self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]
     }
     
     /// Creates a select field.
-    internal init(name: String, selection: String?, content: [Selectable], classes: [String], events: [String]?, id: String?) {
+    internal init(name: String, prompt: String?, selection: String?, content: [Selectable], classes: [String], events: [String]?, id: String?) {
         
         self.name = name
+        self.prompt = prompt
         self.selection = selection
         self.content = content
         self.classes = classes
@@ -740,6 +745,9 @@ public struct SelectField: View, Modifiable, Identifiable {
             Input()
                 .type(.text)
                 .class("selectfield-textfield")
+                .modify(unwrap: prompt) {
+                    $0.placeholder($1)
+                }
             Division {
                 for item in content {
                     item.selected(item.value == selection)
