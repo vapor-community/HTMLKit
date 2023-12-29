@@ -14,6 +14,196 @@ import FoundationXML
 /// A component that displays symbols.
 public struct Symbol: View, Modifiable {
     
+    public enum ChartVariants {
+        case pie
+    }
+    
+    public enum ChevronVariants: String {
+        case left
+        case right
+        case down
+        case up
+    }
+    
+    public enum SidebarVariants: String {
+        case left
+        case right
+        case split
+    }
+    
+    public enum TextVariants: String {
+        case left
+        case right
+        case justify
+        case center
+    }
+    
+    public enum EllipsisVariants: String {
+        case horizontal
+        case vertical
+    }
+    
+    public enum WindowVariants: String {
+        case maximize
+        case minimize
+    }
+    
+    public enum SymbolNames {
+        
+        case bell
+        case bookmark
+        case calendar
+        case chart(ChartVariants)
+        case chevron(ChevronVariants)
+        case clock
+        case cloud
+        case ellipsis(EllipsisVariants)
+        case envelope
+        case eye
+        case file
+        case filter
+        case flask
+        case folder
+        case house
+        case key
+        case lifepreserver
+        case lightbulb
+        case location
+        case lock
+        case pencil
+        case person
+        case photo
+        case refresh
+        case sidebar(SidebarVariants)
+        case scope
+        case target
+        case text(TextVariants)
+        case trash
+        case tresor
+        
+        public var rawValue: String {
+            
+            switch self {
+            case .bell:
+                return "bell"
+                
+            case .bookmark:
+                return "bookmark"
+                
+            case .calendar:
+                return "calendar"
+                
+            case .chart(.pie):
+                return "chart.pie"
+                
+            case .chevron(.left):
+                return "chevron.left"
+                
+            case .chevron(.right):
+                return "chevron.right"
+                
+            case .chevron(.down):
+                return "chevron.down"
+                
+            case .chevron(.up):
+                return "chevron.up"
+                
+            case .clock:
+                return "clock"
+                
+            case .cloud:
+                return "cloud"
+                
+            case .ellipsis(.horizontal):
+                return "ellipsis.horizontal"
+                
+            case .ellipsis(.vertical):
+                return "ellipsis.vertical"
+                
+            case .envelope:
+                return "envelope"
+                
+            case .eye:
+                return "eye"
+                
+            case .file:
+                return "file"
+                
+            case .filter:
+                return "filter"
+                
+            case .flask:
+                return "flask"
+                
+            case .folder:
+                return "folder"
+                
+            case .house:
+                return "house"
+                
+            case .key:
+                return "key"
+                
+            case .lifepreserver:
+                return "lifepreserver"
+                
+            case .lightbulb:
+                return "lightbulb"
+                
+            case .location:
+                return "location"
+                
+            case .lock:
+                return "lock"
+                
+            case .pencil:
+                return "pencil"
+                
+            case .person:
+                return "person"
+                
+            case .photo:
+                return "photo"
+                
+            case .refresh:
+                return "refresh"
+                
+            case .sidebar(.left):
+                return "sidebar.left"
+                
+            case .sidebar(.right):
+                return "sidebar.right"
+                
+            case .sidebar(.split):
+                return "sidebar.split"
+                
+            case .scope:
+                return "scope"
+                
+            case .target:
+                return "target"
+                
+            case .text(.left):
+                return "text.alignleft"
+                
+            case .text(.right):
+                return "text.alignright"
+                
+            case .text(.center):
+                return "text.aligncenter"
+                
+            case .text(.justify):
+                return "text.alignjustify"
+                
+            case .trash:
+                return "trash"
+                
+            case .tresor:
+                return "tresor"
+            }
+        }
+    }
+    
     /// The content of the symbol.
     internal let content: [VectorElement]
     
@@ -21,9 +211,9 @@ public struct Symbol: View, Modifiable {
     internal var classes: [String]
     
     /// Retrieves a symbol.
-    public init(system name: String) {
+    public init(system name: SymbolNames) {
         
-        if let url = Bundle.module.url(forResource: name, withExtension: "svg") {
+        if let url = Bundle.module.url(forResource: name.rawValue, withExtension: "svg") {
             
             if let content = try? Symbol.load(contentsOfFile: url) {
                 self.content = content

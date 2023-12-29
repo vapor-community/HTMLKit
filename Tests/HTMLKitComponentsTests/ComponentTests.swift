@@ -509,7 +509,7 @@ final class ComponentTests: XCTestCase {
     func testSymbol() throws {
         
         let view = TestView {
-            Symbol(system: "folder")
+            Symbol(system: .folder)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
