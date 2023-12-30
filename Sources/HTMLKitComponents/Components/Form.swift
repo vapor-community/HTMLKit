@@ -1525,19 +1525,19 @@ public struct TextPad: View, Modifiable, Identifiable {
                 }
                 .class("toolbar-tool command:strikethrough")
                 ListItem {
-                    Symbol(system: "text.alignleft")
+                    Symbol(system: .text(.left))
                 }
                 .class("toolbar-tool")
                 ListItem {
-                    Symbol(system: "text.aligncenter")
+                    Symbol(system: .text(.center))
                 }
                 .class("toolbar-tool")
                 ListItem {
-                    Symbol(system: "text.alignright")
+                    Symbol(system: .text(.right))
                 }
                 .class("toolbar-tool")
                 ListItem {
-                    Symbol(system: "text.alignjustify")
+                    Symbol(system: .text(.justify))
                 }
                 .class("toolbar-tool")
             }
