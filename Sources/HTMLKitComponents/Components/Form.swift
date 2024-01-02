@@ -1548,6 +1548,9 @@ public struct TextPad: View, Modifiable, Identifiable {
             .name(name)
             .rows(rows)
             .class("textpad-content")
+            .modify(unwrap: prompt) {
+                $0.placeholder($1)
+            }
         }
         .class(classes.joined(separator: " "))
         .modify(unwrap: id) {
