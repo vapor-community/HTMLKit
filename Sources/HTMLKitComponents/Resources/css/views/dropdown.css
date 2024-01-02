@@ -24,10 +24,10 @@
     --paddingBlockEnd: 0.5rem;
     --paddingInlineStart: 1.0rem;
     --paddingInlineEnd: 1.0rem;
-    --inlineSize: fit-content();
     --fontSize: 1.0rem;
     --fontWeight: 400;
     --lineHeight: 1.5;
+    --foregroundColor: var(--systemTextColor);
     --borderWidth: 1px;
     --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
@@ -37,9 +37,12 @@
     --backgroundOpacity: 1.0;
     
     position: relative;
+    display: inline-block;
 }
 
 .dropdown-label {
+    display: inline-flex;
+    align-items: center;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -51,7 +54,7 @@
     z-index: 1;
     display: block;
     margin-block: 0.5rem;
-    inline-size: calc(var(--inlineSize) * 1.5);
+    inline-size: max-content;
     border-width: var(--borderWidth);
     border-style: solid;
     border-color: hsla(var(--borderColor), 1.0);
@@ -98,16 +101,4 @@
 
 .dropdown-content > .list > .divider {
     --backgroundColor: var(--borderColor) !important;
-}
-
-.dropdown.size\:full {
-    --inlineSize: 100%;
-}
-
-.dropdown.size\:large {
-    --inlineSize: 75%;
-}
-
-.dropdown.size\:medium {
-    --inlineSize: 50%;
 }
