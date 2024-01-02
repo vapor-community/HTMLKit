@@ -17,11 +17,11 @@
     --paddingInlineStart: 1.0rem;
     --paddingInlineEnd: 1.0rem;
     --borderWidth: 1px;
-    --borderColor: 210, 14%, 89%;
+    --borderColor: var(--systemBorderColor);
     --borderOpacity: 1.0;
     --borderRadius: 0;
     --focusColor: 210, 100%, 50%;
-    --backgroundColor: 0, 0%, 100%;
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
     position: relative;
@@ -82,7 +82,5 @@
 }
 
 .scheme\:dark .checkfield, .checkfield.scheme\:dark {
-    --borderColor: 210, 9%, 31%;
-    --backgroundColor: 210, 11%, 15%;
     --focusColor: 210, 100%, 50%;
 }

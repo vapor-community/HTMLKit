@@ -4,10 +4,10 @@
 
 .carousel {
     --borderWidth: 1px;
-    --borderColor: 210, 14%, 89%;
+    --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
     --borderOpacity: 1.0;
-    --backgroundColor: 0, 0%, 100%;
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
     display: flex;
@@ -39,11 +39,6 @@
     justify-content: center;
     gap: 10px;
     block-size: 50px;
-}
-
-.scheme\:dark .carousel, .carousel.scheme\:dark {
-    --borderColor: 210, 9%, 31%;
-    --backgroundColor: 210, 11%, 15%;
 }
 
 .slide {

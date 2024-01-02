@@ -204,6 +204,8 @@ public enum Tokens {
         
         case transparent
         
+        case system
+        
         case custom(String)
         
         var value: String {
@@ -264,6 +266,9 @@ public enum Tokens {
                 
             case .transparent:
                 return "transparent"
+                
+            case .system:
+                return "system"
 
             case .custom(let string):
                 return string
@@ -523,6 +528,8 @@ public enum Tokens {
         
         case transparent
         
+        case system
+        
         case custom(String)
         
         var value: String {
@@ -583,6 +590,9 @@ public enum Tokens {
                 
             case .transparent:
                 return "transparent"
+                
+            case .system:
+                return "system"
 
             case .custom(let string):
                 return string
@@ -1263,6 +1273,8 @@ public enum Tokens {
         
         case transparent
         
+        case system
+        
         case custom(String)
         
         var value: String {
@@ -1323,6 +1335,9 @@ public enum Tokens {
                 
             case .transparent:
                 return "transparent"
+                
+            case .system:
+                return "system"
 
             case .custom(let string):
                 return string

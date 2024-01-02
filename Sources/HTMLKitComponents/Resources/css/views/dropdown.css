@@ -29,11 +29,11 @@
     --fontWeight: 400;
     --lineHeight: 1.5;
     --borderWidth: 1px;
-    --borderColor: 210, 14%, 89%;
+    --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
     --borderOpacity: 1.0;
-    --foregroundColor: 0, 0%, 0%;
-    --backgroundColor: 0, 0%, 100%;
+    --foregroundColor: var(--systemTextColor);
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
     position: relative;
@@ -110,10 +110,4 @@
 
 .dropdown.size\:medium {
     --inlineSize: 50%;
-}
-
-.scheme\:dark .dropdown, .dropdown.scheme\:dark {
-    --foregroundColor: 0, 0%, 100%;
-    --borderColor: 210, 9%, 31%;
-    --backgroundColor: 210, 11%, 15%;
 }

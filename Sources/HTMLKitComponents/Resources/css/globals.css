@@ -49,6 +49,9 @@
     --whiteColor: 0, 0%, 100%;
     --primaryColor: 210, 100%, 50%;
     --secondaryColor: 211, 60%, 19%;
+    --systemBackgroundColor: 0, 0%, 100%;
+    --systemBorderColor: 210, 14%, 89%;
+    --systemTextColor: 0, 0%, 0%;
 }
 
 /*
@@ -100,6 +103,9 @@
     --whiteColor: 0, 0%, 100%;
     --primaryColor: 210, 100%, 50%;
     --secondaryColor: 211, 60%, 19%;
+    --systemBackgroundColor: 210, 11%, 15%;
+    --systemBorderColor: 210, 9%, 31%;
+    --systemTextColor: 0, 0%, 100%;
 }
 
 *,
@@ -281,6 +287,9 @@ video {
     --foregroundColor: var(--secondaryColor) !important;
 }
 
+.color\:system {
+    --foregroundColor: var(--systemTextColor) !important;
+}
 
 /*
  borders
@@ -394,6 +403,12 @@ video {
     --borderOpacity: 1.0 !important;
 }
 
+.border\:system {
+    --borderWidth: 1px !important;
+    --borderColor: var(--systemBorderColor) !important;
+    --borderOpacity: 1.0 !important;
+}
+
 .border\:transparent {
     --borderOpacity: 0.0 !important;
 }
@@ -489,6 +504,11 @@ video {
 
 .background\:secondary {
     --backgroundColor: var(--secondaryColor) !important;
+    --backgroundOpacity: 1.0 !important;
+}
+
+.background\:system {
+    --backgroundColor: var(--systemBackgroundColor) !important;
     --backgroundOpacity: 1.0 !important;
 }
 
