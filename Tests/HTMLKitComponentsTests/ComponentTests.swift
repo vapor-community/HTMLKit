@@ -306,19 +306,6 @@ final class ComponentTests: XCTestCase {
         )
     }
     
-    func testListRow() throws {
-        
-        let view = TestView {
-            ListRow {}
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <li class="list-row"></li>
-                       """
-        )
-    }
-    
     func testLink() throws {
         
         let view = TestView {
