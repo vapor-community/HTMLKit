@@ -483,12 +483,12 @@ final class ComponentTests: XCTestCase {
     func testScrollView() throws {
         
         let view = TestView {
-            ScrollView(direction: .horizontal) {}
+            Scroll(showIndicators: false) {}
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="scrollview direction:horizontal"></div>
+                       <div class="scroll indicators:false"></div>
                        """
         )
     }

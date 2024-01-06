@@ -1,0 +1,31 @@
+/*
+ The stylesheet for the scrollview component.
+ */
+
+.scroll {
+    position: relative;
+    padding-inline: 1px;
+    padding-block: 1px;
+}
+
+.scroll:has(> .hstack) {
+    max-inline-size: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-inline: contain;
+}
+
+.scroll:has(> .vstack) {
+    max-block-size: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-block: contain;
+}
+
+.scroll.indicators\:false {
+    scrollbar-width: none;
+}
+
+.scroll.indicators\:false::-webkit-scrollbar {
+    display: none;
+}

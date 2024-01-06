@@ -6,7 +6,7 @@
 import HTMLKit
 
 /// A component that displays content in its scrollable area.
-public struct ScrollView: View {
+public struct Scroll: View {
     
     /// The content of the scrollview.
     internal var content: [Content]
@@ -15,10 +15,14 @@ public struct ScrollView: View {
     internal var classes: [String]
     
     /// Creates a scrollview.
-    public init(direction: Tokens.FlowDirection, @ContentBuilder<Content> content: () -> [Content]) {
+    public init(showIndicators: Bool = true, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
-        self.classes = ["scrollview", "direction:\(direction.value)"]
+        self.classes = ["scroll"]
+        
+        if showIndicators != true {
+            self.classes.append("indicators:false")
+        }
     }
     
     /// Creates a scrollview
