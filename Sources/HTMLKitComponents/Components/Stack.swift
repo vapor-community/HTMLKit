@@ -19,12 +19,18 @@ public struct HStack: View, Actionable, Modifiable {
     
     /// The events of the text.
     internal var events: [String]?
-    
+     
     /// Creates a horizontal stack.
-    public init(alignment: Tokens.VerticalAlignment = .center, @ContentBuilder<Content> content: () -> [Content]) {
+    public init(alignment: Tokens.VerticalAlignment = .center, spacing: Tokens.ContentSpace? = nil, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
-        self.classes = ["hstack", "alignment:\(alignment.value)"]
+        
+        if let spacing {
+            self.classes = ["hstack", "vertical-alignment:\(alignment.value)", "spacing:\(spacing.value)"]
+            
+        } else {
+            self.classes = ["hstack", "vertical-alignment:\(alignment.value)"]
+        }
     }
     
     /// Creates a horizontal stack.
@@ -49,15 +55,6 @@ public struct HStack: View, Actionable, Modifiable {
                 events
             }
         }
-    }
-    
-    /// Sets the space of the content.
-    public func contentSpace(_ value: Tokens.ContentSpace) -> HStack {
-        
-        var newSelf = self
-        newSelf.classes.append("space:\(value.value)")
-        
-        return newSelf
     }
     
     public func tag(_ value: String) -> HStack {
@@ -142,10 +139,16 @@ public struct VStack: View, Actionable, Modifiable {
     var events: [String]?
     
     /// Creates a vertical stack.
-    public init(alignment: Tokens.HorizontalAlignment = .leading, @ContentBuilder<Content> content: () -> [Content]) {
+    public init(alignment: Tokens.HorizontalAlignment = .leading, spacing: Tokens.ContentSpace? = nil, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
-        self.classes = ["vstack", "alignment:\(alignment.value)"]
+        
+        if let spacing {
+            self.classes = ["vstack", "horizontal-alignment:\(alignment.value)", "spacing:\(spacing.value)"]
+            
+        } else {
+            self.classes = ["vstack", "horizontal-alignment:\(alignment.value)"]
+        }
     }
     
     /// Creates a vertical stack.
@@ -170,15 +173,6 @@ public struct VStack: View, Actionable, Modifiable {
                 events
             }
         }
-    }
-    
-    /// Sets the space of the content.
-    public func contentSpace(_ value: Tokens.ContentSpace) -> VStack {
-        
-        var newSelf = self
-        newSelf.classes.append("space:\(value.value)")
-        
-        return newSelf
     }
     
     public func tag(_ value: String) -> VStack {

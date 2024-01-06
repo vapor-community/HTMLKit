@@ -891,21 +891,19 @@ public enum Tokens {
     /// A alignment along the vertically axis.
     public enum VerticalAlignment {
         
-        /// Aligns at the top.
+        /// Aligns the content at the top.
         case top
-        
-        /// Aligns in the middle.
+        /// Aligns the content in the middle.
         case center
-        
-        /// Aligns at the bottom.
+        /// Aligns the content at the bottom.
         case bottom
-        
-        /// Aligns with the parent's baseline.
+        /// Aligns the content with the parent's baseline.
         case baseline
-        
+        /// Aligns the content along a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .top:
                 return "top"
@@ -928,18 +926,17 @@ public enum Tokens {
     /// A alignment along the horizontal axis.
     public enum HorizontalAlignment {
         
-        /// Aligns left.
+        /// Aligns the content on the left.
         case leading
-        
-        /// Aligns center.
+        /// Aligns the content in the middle.
         case center
-        
-        /// Aligns right.
+        /// Aligns the content on the right.
         case trailing
-        
+        /// Aligns the content along a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .leading:
                 return "leading"
@@ -958,16 +955,23 @@ public enum Tokens {
 
     public enum ContentSpace {
         
+        /// Distributes the content evenly.
         case around
+        /// Content is evenly distributed along the line.
         case between
+        /// Sets the content space equally.
         case evenly
-        case center
+        /// Sets the content space in between to 2.25 rem.
         case large
+        /// Sets the content space in between to 1.5 rem.
         case medium
+        /// Sets the content space in between to 1 rem.
         case small
+        /// Sets the content space to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .around:
                 return "around"
@@ -977,9 +981,6 @@ public enum Tokens {
                 
             case .evenly:
                 return "evenly"
-                
-            case .center:
-                return "center"
                 
             case .large:
                 return "large"
