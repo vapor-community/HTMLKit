@@ -175,7 +175,7 @@ public struct Symbol: View, Modifiable {
                 return "sidebar.right"
                 
             case .sidebar(.split):
-                return "sidebar.split"
+                return "square.split"
                 
             case .scope:
                 return "scope"

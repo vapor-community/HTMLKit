@@ -38,7 +38,6 @@
     --paddingInlineStart: 0;
     --paddingInlineEnd: 0;
 
-    inline-size: 100%;
     padding-block-start: var(--paddingBlockStart);
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);

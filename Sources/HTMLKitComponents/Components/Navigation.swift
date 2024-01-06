@@ -35,7 +35,7 @@ public struct Navigation: View, Modifiable, Identifiable {
     public func navigationStyle(_ style: Tokens.NavigationStyle) -> Navigation {
         
         var newSelf = self
-        newSelf.classes.append("style:\(style)")
+        newSelf.classes.append("style:\(style.value)")
         
         return newSelf
     }

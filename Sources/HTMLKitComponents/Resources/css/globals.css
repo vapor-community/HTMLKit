@@ -87,7 +87,7 @@
     
     --redColor: 0, 74%, 45%;
     --orangeColor: 22, 88%, 45%;
-    --yellowColor: 3, 99%, 60%;
+    --yellowColor: 43, 99%, 60%;
     --greenColor: 123, 45%, 41%;
     --mintColor: 124, 73%, 64%;
     --tealColor: 160, 61%, 39%,;
@@ -197,6 +197,7 @@ video {
 .state\:active {
     --borderColor: var(--primaryColor) !important;
     --backgroundColor: var(--primaryColor) !important;
+    --foregroundColor: var(--whiteColor) !important;
 }
 
 .state\:disabled {

@@ -9,7 +9,7 @@
  */
 
 .divider {
-    --backgroundColor: var(--systemBackgroundColor);
+    --backgroundColor: var(--systemBorderColor);
     --backgroundOpacity: 1.0;
     
     position: relative;

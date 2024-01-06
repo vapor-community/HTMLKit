@@ -18,6 +18,7 @@
     --paddingBlockEnd: 0.5rem;
     --paddingInlineStart: 1.0rem;
     --paddingInlineEnd: 1.0rem;
+    --foregroundColor: var(--systemTextColor);
     --borderWidth: 1px;
     --borderColor: var(--systemBorderColor);
     --borderOpacity: 1.0;
@@ -79,6 +80,7 @@
 
 .radioinput + label {
     font-family: system-ui;
+    color: hsla(var(--foregroundColor), 1.0);
     margin-inline-start: 1.25rem;
 }
 

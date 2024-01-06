@@ -42,7 +42,7 @@
 }
 
 .slide {
-    --backgroundColor: 0, 0%, 100%;
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
     position: relative;
@@ -58,9 +58,9 @@
 
 .indicator {
     --borderRadius: 5px;
-    --borderColor: 210, 14%, 89%;
+    --borderColor: var(--systemBackgroundColor);
     --borderOpacity: 1.0;
-    --backgroundColor: 210, 14%, 89%;
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
     position: relative;

@@ -70,5 +70,5 @@
 }
 
 .scheme\:dark .textfield, .textfield.scheme\:dark {
-    --focusColor: 210, 9%, 31%;
+    --focusColor: 210, 100%, 50%;
 }
