@@ -19,10 +19,30 @@ public struct Grid: View, Modifiable, Actionable {
     internal var events: [String]?
     
     /// Creates a collection.
-    public init(ratio: Tokens.GridRatio = .fit, @ContentBuilder<Content> content: () -> [Content]) {
+    public init(ratio: Tokens.GridRatio = .fit, spacing: Tokens.ContentSpace? = nil, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["grid", "ratio:\(ratio.value)"]
+        
+        if let spacing {
+            self.classes.append("horizontal-spacing:\(spacing.value)")
+            self.classes.append("vertical-spacing:\(spacing.value)")
+        }
+    }
+    
+    /// Creates a collection.
+    public init(ratio: Tokens.GridRatio = .fit, horizontalSpacing: Tokens.ContentSpace? = nil, verticalSpacing: Tokens.ContentSpace? = nil, @ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.content = content()
+        self.classes = ["grid", "ratio:\(ratio.value)"]
+        
+        if let horizontalSpacing {
+            self.classes.append("horizontal-spacing:\(horizontalSpacing.value)")
+        }
+        
+        if let verticalSpacing {
+            self.classes.append("vertical-spacing:\(verticalSpacing.value)")
+        }
     }
     
     /// Creates a collection.
@@ -47,15 +67,6 @@ public struct Grid: View, Modifiable, Actionable {
                 events
             }
         }
-    }
-    
-    /// Sets the space of the content.
-    public func contentSpace(_ value: Tokens.ContentSpace) -> Grid {
-        
-        var newSelf = self
-        newSelf.classes.append("space:\(value.value)")
-        
-        return newSelf
     }
     
     public func tag(_ value: String) -> Grid {

@@ -44,46 +44,50 @@
     grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 
-.grid.alignment\:top {
-    align-items: start;
+.grid.vertical-spacing\:around {
+    align-content: space-around;
 }
 
-.grid.alignment\:center {
-    align-items: center;
+.grid.vertical-spacing\:between {
+    align-content: space-between;
 }
 
-.grid.alignment\:bottom {
-    align-items: end;
+.grid.vertical-spacing\:evenly {
+    align-content: space-evenly;
 }
 
-.grid.alignment\:baseline {
-    align-items: baseline;
+.grid.vertical-spacing\:large {
+    row-gap: 2.25rem;
 }
 
-.grid.space\:around {
+.grid.vertical-spacing\:medium {
+    row-gap: 1.5rem;
+}
+
+.grid.vertical-spacing\:small {
+    row-gap: 1rem;
+}
+
+.grid.horizontal-spacing\:around {
     justify-content: space-around;
 }
 
-.grid.space\:between {
+.grid.horizontal-spacing\:between {
     justify-content: space-between;
 }
 
-.grid.space\:evenly {
+.grid.horizontal-spacing\:evenly {
     justify-content: space-evenly;
 }
 
-.grid.space\:center {
-    justify-content: center;
+.grid.horizontal-spacing\:large {
+    column-gap: 2.25rem;
 }
 
-.grid.space\:large {
-    gap: 2.25rem;
+.grid.horizontal-spacing\:medium {
+    column-gap: 1.5rem;
 }
 
-.grid.space\:medium {
-    gap: 1.5rem;
-}
-
-.grid.space\:small {
-    gap: 1rem;
+.grid.horizontal-spacing\:small {
+    column-gap: 1rem;
 }
