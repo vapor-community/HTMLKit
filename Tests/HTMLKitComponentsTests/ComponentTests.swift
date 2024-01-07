@@ -329,7 +329,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="vstack alignment:leading"></div>
+                       <div class="vstack horizontal-alignment:leading"></div>
                        """
         )
     }
@@ -342,7 +342,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center"></div>
+                       <div class="hstack vertical-alignment:center"></div>
                        """
         )
     }

@@ -19,7 +19,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center border:black"></div>
+                       <div class="hstack vertical-alignment:center border:black"></div>
                        """
         )
     }
@@ -32,7 +32,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center background:black"></div>
+                       <div class="hstack vertical-alignment:center background:black"></div>
                        """
         )
     }
@@ -45,7 +45,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center shape:fullrounded"></div>
+                       <div class="hstack vertical-alignment:center shape:fullrounded"></div>
                        """
         )
     }
@@ -58,20 +58,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center scheme:dark"></div>
-                       """
-        )
-    }
-    
-    func testContentSpace() throws {
-        
-        let view = TestView {
-            HStack {}.contentSpace(.around)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <div class="hstack alignment:center space:around"></div>
+                       <div class="hstack vertical-alignment:center scheme:dark"></div>
                        """
         )
     }
@@ -84,7 +71,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center offset:one size:eleven"></div>
+                       <div class="hstack vertical-alignment:center offset:one size:eleven"></div>
                        """
         )
     }
@@ -97,7 +84,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center margin:small"></div>
+                       <div class="hstack vertical-alignment:center margin:small"></div>
                        """
         )
     }
@@ -110,7 +97,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center padding:large"></div>
+                       <div class="hstack vertical-alignment:center padding:large"></div>
                        """
         )
     }
@@ -123,7 +110,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center opacity:transparent"></div>
+                       <div class="hstack vertical-alignment:center opacity:transparent"></div>
                        """
         )
     }
@@ -136,7 +123,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center state:hidden"></div>
+                       <div class="hstack vertical-alignment:center state:hidden"></div>
                        """
         )
     }
@@ -149,7 +136,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center zindex:five"></div>
+                       <div class="hstack vertical-alignment:center zindex:five"></div>
                        """
         )
     }
