@@ -193,3 +193,15 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+.text.alignment\:leading {
+    text-align: start;
+}
+
+.text.alignment\:center {
+    text-align: center;
+}
+
+.text.alignment\:trailing {
+    text-align: end;
+}

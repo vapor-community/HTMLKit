@@ -69,7 +69,7 @@ final class SecurityTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text background:test&quot; style=&quot;property: unsafe&quot;">Text</p>
+                       <p class="text alignment:leading background:test&quot; style=&quot;property: unsafe&quot;">Text</p>
                        """
         )
     }

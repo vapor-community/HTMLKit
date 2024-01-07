@@ -19,16 +19,16 @@ public struct Text: View, Actionable, Modifiable {
     internal var events: [String]?
     
     /// Creates a text.
-    public init(@ContentBuilder<Content> content: () -> [Content]) {
+    public init(alignment: Tokens.TextAlignment = .leading, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
-        self.classes = ["text"]
+        self.classes = ["text", "alignment:\(alignment.value)"]
     }
     
-    public init(_ localizedStringKey: String) {
+    public init(_ localizedStringKey: String, alignment: Tokens.TextAlignment = .leading) {
         
         self.content = [LocalizedStringKey(key: localizedStringKey)]
-        self.classes = ["text"]
+        self.classes = ["text", "alignment:\(alignment.value)"]
     }
     
     /// Creates a text.

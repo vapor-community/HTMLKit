@@ -370,7 +370,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text">Text</p>
+                       <p class="text alignment:leading">Text</p>
                        """
         )
     }

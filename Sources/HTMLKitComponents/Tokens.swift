@@ -35,26 +35,26 @@ public enum Tokens {
     public enum TextAlignment {
         
         /// Aligns the text left.
-        case left
+        case leading
         
         /// Aligns the text in the middle.
         case center
         
         /// Aligns the text right.
-        case right
+        case trailing
         
         case custom(String)
         
         var value: String {
             switch self {
-            case .left:
-                return "left"
+            case .leading:
+                return "leading"
                 
             case .center:
                 return "center"
                 
-            case .right:
-                return "right"
+            case .trailing:
+                return "trailing"
 
             case .custom(let string):
                 return string

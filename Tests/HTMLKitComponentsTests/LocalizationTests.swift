@@ -27,7 +27,7 @@ final class LocalizationTests: XCTestCase {
         
         XCTAssertEqual(try renderer!.render(view: view),
                        """
-                       <p class="text weight:bold color:red">Envoyer le formulaire</p>
+                       <p class="text alignment:leading weight:bold color:red">Envoyer le formulaire</p>
                        """
         )
     }

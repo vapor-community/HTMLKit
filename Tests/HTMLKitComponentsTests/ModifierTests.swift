@@ -188,7 +188,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text style:code"></p>
+                       <p class="text alignment:leading style:code"></p>
                        """
         )
     }
@@ -201,7 +201,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text size:large"></p>
+                       <p class="text alignment:leading size:large"></p>
                        """
         )
     }
@@ -214,7 +214,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text style:italic"></p>
+                       <p class="text alignment:leading style:italic"></p>
                        """
         )
     }
@@ -227,7 +227,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text transformation:capitalize"></p>
+                       <p class="text alignment:leading transformation:capitalize"></p>
                        """
         )
     }
@@ -240,7 +240,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text limit:one"></p>
+                       <p class="text alignment:leading limit:one"></p>
                        """
         )
     }
@@ -253,7 +253,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text height:small"></p>
+                       <p class="text alignment:leading height:small"></p>
                        """
         )
     }
