@@ -1520,6 +1520,7 @@ public enum Tokens {
         case small
         case medium
         case large
+        case auto
         case custom(String)
         
         var value: String {
@@ -1532,6 +1533,9 @@ public enum Tokens {
                 
             case .large:
                 return "large"
+                
+            case .auto:
+                return "auto"
                 
             case .custom(let string):
                 return string

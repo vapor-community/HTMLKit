@@ -700,6 +700,11 @@ video {
  margin
  */
 
+.margin\:auto {
+    margin-inline: auto !important;
+    margin-block: auto !important;
+}
+
 .margin\:large {
     margin-inline: 2.25rem !important;
     margin-block: 2.25rem !important;
@@ -713,6 +718,11 @@ video {
 .margin\:small {
     margin-inline: 1rem !important;
     margin-block: 1rem !important;
+}
+
+.margin-inline\:auto {
+    margin-inline-start: auto !important;
+    margin-inline-end: auto !important;
 }
 
 .margin-inline\:large {
@@ -730,6 +740,11 @@ video {
     margin-inline-end: 1rem !important;
 }
 
+.margin-block\:auto {
+    margin-block-start: auto !important;
+    margin-block-end: auto !important;
+}
+
 .margin-block\:large {
     margin-block-start: 2.25rem !important;
     margin-block-end: 2.25rem !important;
@@ -745,6 +760,10 @@ video {
     margin-block-end: 1rem !important;
 }
 
+.margin-top\:auto {
+    margin-block-start: auto !important;
+}
+
 .margin-top\:large {
     margin-block-start: 2.25rem !important;
 }
@@ -755,6 +774,10 @@ video {
 
 .margin-top\:small {
     margin-block-start: 1rem !important;
+}
+
+.margin-bottom\:auto {
+    margin-block-end: auto !important;
 }
 
 .margin-bottom\:large {
@@ -769,6 +792,10 @@ video {
     margin-block-end: 1rem !important;
 }
 
+.margin-leading\:auto {
+    margin-inline-start: auto !important;
+}
+
 .margin-leading\:large {
     margin-inline-start: 2.25rem !important;
 }
@@ -781,8 +808,12 @@ video {
     margin-inline-start: 1rem !important;
 }
 
+.margin-trailing\:auto {
+    margin-inline-end: auto !important;
+}
+
 .margin-trailing\:large {
-    margin-inline-end 2.25rem !important;
+    margin-inline-end: 2.25rem !important;
 }
 
 .margin-trailing\:medium {
