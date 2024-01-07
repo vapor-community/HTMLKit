@@ -31,14 +31,6 @@ public struct Snippet: View, Modifiable, Identifiable {
         self.classes = ["snippet", "highlight:\(highlight.value)"]
     }
     
-    /// Creates a snippet.
-    internal init(content: [Content], classes: [String], id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.id = id
-    }
-    
     public var body: Content {
         PreformattedText {
             content

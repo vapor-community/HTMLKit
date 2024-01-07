@@ -26,15 +26,6 @@ public struct Modal: View, Modifiable, Actionable {
         self.classes = ["modal"]
     }
     
-    /// Createsa model.
-    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         Dialog {
             content

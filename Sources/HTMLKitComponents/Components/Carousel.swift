@@ -23,14 +23,6 @@ public struct Carousel: View, Identifiable, Modifiable {
         self.classes = ["carousel"]
     }
     
-    /// Creates a carousel.
-    internal init(content: [Identifiable], classes: [String], id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.id = id
-    }
-    
     public var body: Content {
         Division {
             Division {
@@ -124,13 +116,6 @@ public struct Slide: View, Identifiable, Modifiable {
         
         self.content = content()
         self.classes = ["slide"]
-    }
-    
-    internal init(id: String?, content: [Content], classes: [String]) {
-        
-        self.id = id
-        self.content = content
-        self.classes = classes
     }
     
     public var body: Content {

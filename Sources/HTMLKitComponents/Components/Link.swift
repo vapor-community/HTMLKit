@@ -44,17 +44,6 @@ public struct Link: View, Modifiable, Identifiable {
         self.classes = ["link"]
     }
     
-    /// Creates a link.
-    internal init(destination: String, target: HTMLKit.Values.Target, content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.destination = destination
-        self.target = target
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         Anchor {
             content

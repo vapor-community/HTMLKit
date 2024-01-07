@@ -30,16 +30,6 @@ public struct Button: View, Modifiable, Actionable {
         self.classes = ["button"]
     }
     
-    /// Creates a action button.
-    internal init(role: HTMLKit.Values.Button, content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.role = role
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         HTMLKit.Button {
             self.content
@@ -187,17 +177,6 @@ public struct LinkButton: View, Modifiable, Identifiable {
         self.target = target
         self.content = content()
         self.classes = ["button"]
-    }
-    
-    /// Creates a action button.
-    internal init(destination: String, target: HTMLKit.Values.Target, content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.destination = destination
-        self.target = target
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
     }
     
     public var body: Content {

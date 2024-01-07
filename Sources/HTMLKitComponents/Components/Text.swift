@@ -31,15 +31,6 @@ public struct Text: View, Actionable, Modifiable {
         self.classes = ["text", "alignment:\(alignment.value)"]
     }
     
-    /// Creates a text.
-    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         Paragraph {
             content

@@ -27,15 +27,6 @@ public struct Dropdown: View, Modifiable, Identifiable {
         self.classes = ["dropdown"]
     }
     
-    /// Creates a dropdown.
-    internal init(label: [Content], content: [Content], classes: [String], id: String?) {
-        
-        self.label = label
-        self.content = content
-        self.classes = classes
-        self.id = id
-    }
-    
     public var body: Content {
         Division {
             Division {

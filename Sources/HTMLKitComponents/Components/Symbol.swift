@@ -229,13 +229,6 @@ public struct Symbol: View, Modifiable {
         self.classes = ["symbol"]
     }
     
-    /// Creates a symbol.
-    internal init(content: [VectorElement], classes: [String]) {
-
-        self.content = content
-        self.classes = classes
-    }
-    
     public var body: Content {
         Vector {
             content

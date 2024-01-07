@@ -22,14 +22,6 @@ public struct Grouping: View, Modifiable, Identifiable {
         self.content = content()
         self.classes = ["grouping"]
     }
-    
-    /// Creates a group.
-    internal init(content: [Content], classes: [String], id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.id = id
-    }
 
     public var body: Content {
         Division {

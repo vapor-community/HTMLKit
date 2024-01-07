@@ -33,17 +33,6 @@ public struct Form: View, Actionable {
         self.classes = ["form"]
     }
     
-    /// Creates a form.
-    internal init(method: Values.Method, encoding: Values.Encoding, content: [FormElement], classes: [String], events: [String]?, id: String?) {
-        
-        self.method = method
-        self.encoding = encoding
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         HTMLKit.Form {
             content
@@ -96,15 +85,6 @@ public struct FieldLabel: View {
         self.classes = ["label"]
     }
     
-    /// Creates a field label.
-    internal init(for id: String, content: [Content], classes: [String], events: [String]?) {
-      
-        self.id = id
-        self.content = content
-        self.classes = classes
-        self.events = events
-    }
-    
     public var body: Content {
         Label {
             content
@@ -141,17 +121,6 @@ public struct TextField: View, Modifiable, Identifiable {
         self.prompt = prompt
         self.value = value
         self.classes = ["textfield"]
-    }
-    
-    /// Creates a text field.
-    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.prompt = prompt
-        self.value = value
-        self.classes = classes
-        self.events = events
-        self.id = id
     }
     
     public var body: Content {
@@ -273,18 +242,6 @@ public struct TextEditor: View, Modifiable, Identifiable {
         self.prompt = prompt
         self.content = content()
         self.classes = ["texteditor"]
-    }
-    
-    /// Creates a text editor.
-    internal init(name: String, prompt: String?, rows: Int, content: [String], classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.prompt = prompt
-        self.rows = rows
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
     }
     
     public var body: Content {
@@ -452,17 +409,6 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
         self.classes = ["checkfield"]
     }
     
-    /// Creates a check field.
-    internal init(id: String?, name: String?, value: String, isSelected: Bool, content: String, classes: [String]) {
-        
-        self.id = id
-        self.name = name
-        self.value = value
-        self.isSelected = isSelected
-        self.content = content
-        self.classes = classes
-    }
-    
     public var body: Content {
         Division {
             Input()
@@ -587,17 +533,6 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
         self.isSelected = false
         self.content = content()
         self.classes = ["radioselect"]
-    }
-    
-    /// Creates a radio select.
-    internal init(id: String?, name: String?, value: String, isSelected: Bool, content: String, classes: [String]) {
-        
-        self.id = id
-        self.name = name
-        self.value = value
-        self.isSelected = isSelected
-        self.content = content
-        self.classes = classes
     }
     
     public var body: Content {
@@ -728,18 +663,6 @@ public struct SelectField: View, Modifiable, Identifiable {
         self.classes = ["selectfield"]
     }
     
-    /// Creates a select field.
-    internal init(name: String, prompt: String?, selection: String?, content: [Selectable], classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.prompt = prompt
-        self.selection = selection
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         Division {
             Input()
@@ -864,17 +787,6 @@ public struct SecureField: View, Modifiable, Identifiable {
         self.classes = ["securefield"]
     }
     
-    /// Creates a password field.
-    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.prompt = prompt
-        self.value = value
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         Input()
             .type(.password)
@@ -985,15 +897,6 @@ public struct Slider: View, Modifiable, Identifiable {
         self.classes = ["slider"]
     }
     
-    /// Creates a slider.
-    internal init(name: String, classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         Input()
             .type(.range)
@@ -1100,16 +1003,6 @@ public struct DatePicker: View, Modifiable, Identifiable {
         self.name = name
         self.value = value
         self.classes = ["datepicker"]
-    }
-    
-    /// Creates a date picker.
-    internal init(name: String, value: String?, classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.value = value
-        self.classes = classes
-        self.events = events
-        self.id = id
     }
     
     public var body: Content {
@@ -1302,17 +1195,6 @@ public struct SearchField: View, Modifiable, Identifiable {
         self.classes = ["searchfield"]
     }
     
-    /// Creates a search field.
-    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.prompt = prompt
-        self.value = value
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         Input()
             .type(.search)
@@ -1429,17 +1311,6 @@ public struct Progress: View, Identifiable {
         self.classes = ["progress"]
     }
     
-    /// Creates a progress bar.
-    internal init(maximum: Float, value: String, content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.maximum = maximum
-        self.value = value
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         HTMLKit.Progress {
             content
@@ -1484,17 +1355,6 @@ public struct TextPad: View, Modifiable, Identifiable {
         self.prompt = prompt
         self.content = content()
         self.classes = ["textpad"]
-    }
-    
-    /// Creates a textpad.
-    internal init(name: String, prompt: String?, rows: Int, content: [String], classes: [String], id: String?) {
-        
-        self.name = name
-        self.prompt = prompt
-        self.rows = rows
-        self.content = content
-        self.classes = classes
-        self.id = id
     }
     
     public var body: Content {
@@ -1659,15 +1519,6 @@ public struct FileDialog: View, Modifiable, Identifiable {
         
         self.name = name
         self.classes = ["filedialog"]
-    }
-    
-    /// Creates a search field.
-    internal init(name: String, classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.classes = classes
-        self.events = events
-        self.id = id
     }
     
     public var body: Content {

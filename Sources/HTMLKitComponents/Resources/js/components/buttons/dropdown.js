@@ -22,7 +22,7 @@
         
         window.addEventListener('click', function (event) {
             
-            if(!self.element.contains(event.target)) {
+            if (!self.element.contains(event.target)) {
                 self.hideDropdownList();
             }
         });
@@ -56,9 +56,9 @@
     
     var dropdown = document.getElementsByClassName('dropdown');
     
-    if(dropdown.length > 0) {
+    if (dropdown.length > 0) {
         
-        for(var i = 0; i < dropdown.length; i++) {
+        for (var i = 0; i < dropdown.length; i++) {
             
             (function(i) {
                 new Dropdown(dropdown[i]);

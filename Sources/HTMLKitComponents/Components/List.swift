@@ -25,15 +25,6 @@ public struct List: View, Modifiable, Actionable {
         self.classes = ["list", "direction:\(direction.value)"]
     }
     
-    /// Creates a list.
-    internal init(content: [ListElement], classes: [String], events: [String]?, id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         UnorderedList {
             for item in content {

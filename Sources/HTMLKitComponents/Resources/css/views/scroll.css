@@ -4,8 +4,8 @@
 
 .scroll {
     position: relative;
-    padding-inline: 1px;
-    padding-block: 1px;
+    padding-inline: 1px; /* temporary fix */
+    padding-block: 1px; /* temporary fix */
 }
 
 .scroll:has(> .hstack) {

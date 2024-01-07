@@ -45,15 +45,6 @@ public struct Grid: View, Modifiable, Actionable {
         }
     }
     
-    /// Creates a collection.
-    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         Division {
             content

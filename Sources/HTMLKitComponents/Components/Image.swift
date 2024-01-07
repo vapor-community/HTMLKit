@@ -29,14 +29,6 @@ public struct Image: View, Modifiable, Identifiable {
          self.classes = ["image"]
      }
     
-    /// Creates a image view.
-    internal init(source: String, classes: [String], id: String?) {
-        
-        self.source = .string(source)
-        self.classes = classes
-        self.id = id
-    }
-    
     public var body: Content {
         HTMLKit.Image()
             .source(source)

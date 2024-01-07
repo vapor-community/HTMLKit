@@ -33,15 +33,6 @@ public struct HStack: View, Actionable, Modifiable {
         }
     }
     
-    /// Creates a horizontal stack.
-    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         Division {
             content
@@ -151,15 +142,6 @@ public struct VStack: View, Actionable, Modifiable {
         }
     }
     
-    /// Creates a vertical stack.
-    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         Division {
             content
@@ -261,15 +243,6 @@ public struct ZStack: View, Actionable, Modifiable {
         
         self.content = content()
         self.classes = ["zstack"]
-    }
-    
-    /// Creates a stack.
-    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
     }
     
     public var body: Content {

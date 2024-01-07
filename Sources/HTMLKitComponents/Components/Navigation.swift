@@ -14,13 +14,6 @@ public struct Navigation: View, Modifiable, Identifiable {
         self.classes = ["navigation"]
     }
     
-    internal init(content: [BodyElement], classes: [String], id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.id = id
-    }
-    
     public var body: Content {
         HTMLKit.Navigation {
             content

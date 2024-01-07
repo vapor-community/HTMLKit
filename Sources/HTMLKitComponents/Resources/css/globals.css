@@ -216,79 +216,79 @@ video {
  foreground
  */
 
-.color\:black {
+.foreground\:black {
     --foregroundColor: var(--blackColor) !important;
 }
 
-.color\:blue {
+.foreground\:blue {
     --foregroundColor: var(--blueColor) !important;
 }
 
-.color\:brown {
+.foreground\:brown {
     --foregroundColor: var(--brownColor) !important;
 }
 
-.color\:cyan {
+.foreground\:cyan {
     --foregroundColor: var(--cyanColor) !important;
 }
 
-.color\:gray {
+.foreground\:gray {
     --foregroundColor: var(--grayColor) !important;
 }
 
-.color\:green {
+.foreground\:green {
     --foregroundColor: var(--greenColor) !important;
 }
 
-.color\:indigo {
+.foreground\:indigo {
     --foregroundColor: var(--indigoColor) !important;
 }
 
-.color\:mint {
+.foreground\:mint {
     --foregroundColor: var(--mintColor) !important;
 }
 
-.color\:orange {
+.foreground\:orange {
     --foregroundColor: var(--orangeColor) !important;
 }
 
-.color\:pink {
+.foreground\:pink {
     --foregroundColor: var(--pinkColor) !important;
 }
 
-.color\:purple {
+.foreground\:purple {
     --foregroundColor: var(--purpleColor) !important;
 }
 
-.color\:red {
+.foreground\:red {
     --foregroundColor: var(--redColor) !important;
 }
 
-.color\:teal {
+.foreground\:teal {
     --foregroundColor: var(--tealColor) !important;
 }
 
-.color\:white {
+.foreground\:white {
     --foregroundColor: var(--whiteColor) !important;
 }
 
-.color\:yellow {
+.foreground\:yellow {
     --foregroundColor: var(--yellowColor) !important;
 }
 
-.color\:silver {
+.foreground\:silver {
     --foregroundColor: var(--silverColor) !important;
 }
 
-.color\:primary {
+.foreground\:primary {
     --foregroundColor: var(--primaryColor) !important;
 }
 
-.color\:secondary {
+.foreground\:secondary {
     --foregroundColor: var(--secondaryColor) !important;
 }
 
-.color\:system {
+.foreground\:system {
     --foregroundColor: var(--systemTextColor) !important;
 }
 

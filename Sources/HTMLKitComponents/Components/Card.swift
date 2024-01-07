@@ -35,15 +35,6 @@ public struct Card: View, Modifiable, Identifiable {
         self.classes = ["card"]
     }
     
-    /// Creates a card.
-    internal init(header: [Content]?, content: [Content], classes: [String], id: String?) {
-        
-        self.header = header
-        self.content = content
-        self.classes = classes
-        self.id = id
-    }
-    
     public var body: Content {
         Division {
             Division {

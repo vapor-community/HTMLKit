@@ -58,7 +58,7 @@ extension TextModifier where Self: Modifiable {
     }
     
     internal func mutate(foregroundcolor value: String) -> Self {
-        return self.mutate(class: "color:\(value)")
+        return self.mutate(class: "foreground:\(value)")
     }
     
     internal func mutate(fontsize value: String) -> Self {
