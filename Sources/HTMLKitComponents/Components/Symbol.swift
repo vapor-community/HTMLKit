@@ -248,7 +248,7 @@ public struct Symbol: View, Modifiable {
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Symbol {
         
         var newSelf = self
-        newSelf.classes.append("color:\(color.value)")
+        newSelf.classes.append("foreground:\(color.value)")
         
         return newSelf
     }
