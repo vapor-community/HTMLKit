@@ -40,7 +40,6 @@
 .card .card-header {
     border-start-start-radius: var(--borderRadius);
     border-start-end-radius: var(--borderRadius);
-    overflow: hidden;
 }
 
 .card .card-body {
