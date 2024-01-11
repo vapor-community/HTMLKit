@@ -79,12 +79,16 @@ extension Link: TextModifier {
         return self.mutate(fontweight: weight.value)
     }
     
-    public func fontTransformation(_ transformation: Tokens.TextTransformation) -> Link {
-        return self.mutate(fonttransformation: transformation.value)
+    public func textCase(_ case: Tokens.TextCase) -> Link {
+        return self.mutate(textcase: `case`.value)
     }
     
     public func fontStyle(_ style: Tokens.FontStyle) -> Link {
         return self.mutate(fontstyle: style.value)
+    }
+    
+    public func textDecoration(_ decoration: Tokens.TextDecoration) -> Link {
+        return self.mutate(textdecoration: decoration.value)
     }
     
     public func bold() -> Link {
@@ -114,26 +118,26 @@ extension Link: TextModifier {
     }
     
     public func underline() -> Link {
-        return self.mutate(fontdecoration: Tokens.TextDecoration.underline.value)
+        return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
     }
     
     public func underline(_ condition: Bool) -> Link {
         
         if condition {
-            return self.mutate(fontdecoration: Tokens.TextDecoration.underline.value)
+            return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
         }
         
         return self
     }
     
     public func strikethrough() -> Link {
-        return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.value)
+        return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
     }
     
     public func strikethrough(_ condition: Bool) -> Link {
         
         if condition {
-            return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.value)
+            return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
         }
         
         return self

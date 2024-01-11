@@ -95,12 +95,16 @@ extension Text: TextModifier {
         return self.mutate(fontweight: weight.value)
     }
     
-    public func fontTransformation(_ transformation: Tokens.TextTransformation) -> Text {
-        return self.mutate(fonttransformation: transformation.value)
+    public func textCase(_ case: Tokens.TextCase) -> Text {
+        return self.mutate(textcase: `case`.value)
     }
     
     public func fontStyle(_ style: Tokens.FontStyle) -> Text {
         return self.mutate(fontstyle: style.value)
+    }
+    
+    public func textDecoration(_ decoration: Tokens.TextDecoration) -> Text {
+        return self.mutate(textdecoration: decoration.value)
     }
     
     public func bold() -> Text {
@@ -130,26 +134,26 @@ extension Text: TextModifier {
     }
     
     public func underline() -> Text {
-        return self.mutate(fontdecoration: Tokens.TextDecoration.underline.value)
+        return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
     }
     
     public func underline(_ condition: Bool) -> Text {
         
         if condition {
-            return self.mutate(fontdecoration: Tokens.TextDecoration.underline.value)
+            return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
         }
         
         return self
     }
     
     public func strikethrough() -> Text {
-        return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.value)
+        return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
     }
     
     public func strikethrough(_ condition: Bool) -> Text {
         
         if condition {
-            return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.value)
+            return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
         }
         
         return self

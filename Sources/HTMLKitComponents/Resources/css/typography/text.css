@@ -75,31 +75,31 @@
     --fontWeight: 950;
 }
 
-.text.transformation\:uppercase {
+.text.case\:uppercase {
     text-transform: uppercase;
 }
 
-.text.transformation\:lowercase {
+.text.case\:lowercase {
     text-transform: lowercase;
 }
 
-.text.transformation\:capitalize {
+.text.case\:capitalize {
     text-transform: capitalize;
 }
 
-.text.transformation\:underline {
+.text.decoration\:underline {
     text-decoration: underline;
 }
 
-.text.transformation\:overline {
+.text.decoration\:overline {
     text-decoration: overline;
 }
 
-.text.transformation\:strikethrough {
+.text.decoration\:strikethrough {
     text-decoration: line-through;
 }
 
-.text.transformation\:none {
+.text.decoration\:none {
     text-decoration: none;
 }
 

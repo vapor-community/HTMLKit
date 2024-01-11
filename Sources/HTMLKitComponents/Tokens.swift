@@ -298,7 +298,7 @@ public enum Tokens {
     }
 
     /// A transformation for the text.
-    public enum TextTransformation {
+    public enum TextCase {
         
         /// Converts all characters to uppercase.
         case uppercase

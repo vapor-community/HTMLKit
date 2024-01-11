@@ -19,10 +19,13 @@ public protocol TextModifier {
     func fontWeight(_ weight: Tokens.FontWeight) -> Self
     
     /// Sets the transformation for the text.
-    func fontTransformation(_ transformation: Tokens.TextTransformation) -> Self
+    func textCase(_ case: Tokens.TextCase) -> Self
     
     /// Sets the style of the font.
     func fontStyle(_ style: Tokens.FontStyle) -> Self
+    
+    /// Sets the decoration for the text.
+    func textDecoration(_ decoration: Tokens.TextDecoration) -> Self
     
     /// Applies a bold font weight to the text.
     func bold() -> Self
@@ -69,15 +72,15 @@ extension TextModifier where Self: Modifiable {
         return self.mutate(class: "weight:\(value)")
     }
     
-    internal func mutate(fonttransformation value: String) -> Self {
-        return self.mutate(class: "transformation:\(value)")
+    internal func mutate(textcase value: String) -> Self {
+        return self.mutate(class: "case:\(value)")
     }
     
     internal func mutate(fontstyle value: String) -> Self {
         return self.mutate(class: "style:\(value)")
     }
     
-    internal func mutate(fontdecoration value: String) -> Self {
+    internal func mutate(textdecoration value: String) -> Self {
         return self.mutate(class: "decoration:\(value)")
     }
     

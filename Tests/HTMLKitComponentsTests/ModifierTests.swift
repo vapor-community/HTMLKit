@@ -222,7 +222,7 @@ final class ModifierTests: XCTestCase {
     func testFontTranformation() throws {
         
         let view = TestView {
-            Text {}.fontTransformation(.capitalize)
+            Text {}.textCase(.capitalize)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
