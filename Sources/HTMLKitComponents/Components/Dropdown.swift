@@ -59,6 +59,10 @@ extension Dropdown: ButtonModifier {
         return self.mutate(buttonstyle: style.value)
     }
     
+    public func buttonStyle(_ style: ButtonConfiguration) -> Dropdown {
+        return self.mutate(classes: style.configuration)
+    }
+    
     public func disabled() -> Dropdown {
         return self.mutate(buttonstate: Tokens.ViewState.disabled.value)
     }

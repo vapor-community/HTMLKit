@@ -61,6 +61,10 @@ extension Button: ButtonModifier {
         return self.mutate(buttonstyle: style.value)
     }
     
+    public func buttonStyle(_ style: ButtonConfiguration) -> Button {
+        return self.mutate(classes: style.configuration)
+    }
+    
     public func disabled() -> Button {
         return self.mutate(buttonstate: Tokens.ViewState.disabled.value)
     }
@@ -205,6 +209,10 @@ extension LinkButton: ButtonModifier {
     
     public func buttonStyle(_ style: Tokens.ButtonStyle) -> LinkButton {
         return self.mutate(buttonstyle: style.value)
+    }
+
+    public func buttonStyle(_ style: ButtonConfiguration) -> LinkButton {
+        return self.mutate(classes: style.configuration)
     }
     
     public func disabled() -> LinkButton {

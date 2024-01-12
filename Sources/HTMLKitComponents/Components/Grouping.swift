@@ -53,8 +53,12 @@ public struct Grouping: View, Modifiable, Identifiable {
 
 extension Grouping: TextModifier {    
     
-    public func font(_ style: Tokens.TextStyle) -> Grouping {
-        return self.mutate(font: style.value)
+    public func textStyle(_ style: Tokens.TextStyle) -> Grouping {
+        return self.mutate(textstyle: style.value)
+    }
+    
+    public func textStyle(_ style: TextConfiguration) -> Grouping {
+        return self.mutate(classes: style.configuration)
     }
     
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Grouping {

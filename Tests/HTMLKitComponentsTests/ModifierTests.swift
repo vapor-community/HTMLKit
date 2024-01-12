@@ -183,7 +183,7 @@ final class ModifierTests: XCTestCase {
     func testTextStyle() throws {
         
         let view = TestView {
-            Text {}.font(.code)
+            Text {}.textStyle(.code)
         }
         
         XCTAssertEqual(try renderer.render(view: view),

@@ -12,6 +12,9 @@ public protocol ButtonModifier {
     /// Sets the style of the button.
     func buttonStyle(_ style: Tokens.ButtonStyle) -> Self
     
+    /// Sets the style of the button.
+    func buttonStyle(_ style: ButtonConfiguration) -> Self
+    
     /// Sets the state of the view.
     func disabled() -> Self
     

@@ -79,8 +79,12 @@ extension Text: PressEvent {
 
 extension Text: TextModifier {
     
-    public func font(_ style: Tokens.TextStyle) -> Text {
-        return self.mutate(font: style.value)
+    public func textStyle(_ style: Tokens.TextStyle) -> Text {
+        return self.mutate(textstyle: style.value)
+    }
+    
+    public func textStyle(_ style: TextConfiguration) -> Text {
+        return self.mutate(classes: style.configuration)
     }
     
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Text {

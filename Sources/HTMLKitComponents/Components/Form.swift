@@ -142,6 +142,10 @@ public struct TextField: View, Modifiable, Identifiable {
     public func tag(_ value: String) -> TextField {
         return self.mutate(id: value)
     }
+    
+    public func fieldStyle(_ style: FieldConfiguration) -> TextField {
+        return self.mutate(classes: style.configuration)
+    }
 }
 
 extension TextField: InputModifier {

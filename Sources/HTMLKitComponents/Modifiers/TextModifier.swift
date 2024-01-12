@@ -7,7 +7,10 @@
 public protocol TextModifier {
     
     /// Sets the style of the text.
-    func font(_ style: Tokens.TextStyle) -> Self
+    func textStyle(_ style: Tokens.TextStyle) -> Self
+    
+    /// Sets the style of the text.
+    func textStyle(_ style: TextConfiguration) -> Self
     
     /// Sets the foreground color of the text.
     func foregroundColor(_ color: Tokens.ForegroundColor) -> Self
@@ -56,7 +59,7 @@ public protocol TextModifier {
 
 extension TextModifier where Self: Modifiable {
     
-    internal func mutate(font value: String) -> Self {
+    internal func mutate(textstyle value: String) -> Self {
         return self.mutate(class: "style:\(value)")
     }
     

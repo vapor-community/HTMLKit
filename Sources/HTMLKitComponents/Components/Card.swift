@@ -55,6 +55,10 @@ public struct Card: View, Modifiable, Identifiable {
     public func tag(_ value: String) -> Card {
         return self.mutate(id: value)
     }
+    
+    public func cardStyle(_ style: CardConfiguration) -> Card {
+        return self.mutate(classes: style.configuration)
+    }
 }
 
 extension Card: ViewModifier {
