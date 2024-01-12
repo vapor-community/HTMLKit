@@ -227,7 +227,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text alignment:leading transformation:capitalize"></p>
+                       <p class="text alignment:leading case:capitalize"></p>
                        """
         )
     }
