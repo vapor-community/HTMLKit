@@ -21,7 +21,7 @@
     --borderColor: var(--systemBorderColor);
     --borderOpacity: 1.0;
     --borderRadius: 0;
-    --focusColor: 210, 100%, 50%;
+    --focusColor: var(--systemFocusColor);
     --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
@@ -54,7 +54,7 @@
 }
 
 .checkinput:checked {
-    --backgroundColor: var(--primaryColor) !important;
+    --backgroundColor: var(--accentColor) !important;
 }
 
 .checkinput:focus {
@@ -81,8 +81,4 @@
     font-family: system-ui;
     color: hsla(var(--foregroundColor), 1.0);
     margin-inline-start: 1.25rem;
-}
-
-.scheme\:dark .checkfield, .checkfield.scheme\:dark {
-    --focusColor: 210, 100%, 50%;
 }

@@ -32,7 +32,7 @@
 
 .navigation > .list .list-row .link.state\:active {
     border-radius: 5px;
-    background-color: hsla(var(--primaryColor), 1.0) !important;
+    background-color: hsla(var(--accentColor), 1.0) !important;
 }
 
 .navigation.style\:pagination {

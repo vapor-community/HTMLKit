@@ -69,8 +69,8 @@
 
 .button.style\:primary {
     --foregroundColor: var(--whiteColor);
-    --backgroundColor: var(--primaryColor);
-    --borderColor: var(--primaryColor);
+    --backgroundColor: var(--accentColor);
+    --borderColor: var(--accentColor);
 }
 
 .button.style\:secondary {

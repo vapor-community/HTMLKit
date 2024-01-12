@@ -34,7 +34,7 @@
     --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
     --borderOpacity: 1.0;
-    --focusColor: 210, 100%, 50%;
+    --focusColor: var(--systemFocusColor);
     --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
@@ -67,8 +67,4 @@
 
 .searchfield:invalid {
     --borderColor: var(--redColor);
-}
-
-.scheme\:dark .searchfield, .searchfield.scheme\:dark {
-    --focusColor: 210, 100%, 50%;
 }

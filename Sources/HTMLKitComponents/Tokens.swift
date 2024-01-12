@@ -178,9 +178,7 @@ public enum Tokens {
         /// Changes the foreground color to #F7F7F7.
         case silver
         /// Changes the foreground color to #007FFF.
-        case primary
-        /// Changes the foreground color to #132F4E.
-        case secondary
+        case accent
         /// Changes the foreground opacity to 0.0.
         case transparent
         /// Changes the foreground color to #DFE3E7.
@@ -239,11 +237,8 @@ public enum Tokens {
             case .silver:
                 return "silver"
                 
-            case .primary:
-                return "primary"
-                
-            case .secondary:
-                return "secondary"
+            case .accent:
+                return "accent"
                 
             case .transparent:
                 return "transparent"
@@ -478,9 +473,7 @@ public enum Tokens {
         /// Changes the background color to #F7F7F7.
         case silver
         /// Changes the background color to #007FFF.
-        case primary
-        /// Changes the background color to #132F4E.
-        case secondary
+        case accent
         /// Changes the background opacity to 0.0.
         case transparent
         /// Changes the background color to #DFE3E7.
@@ -539,11 +532,8 @@ public enum Tokens {
             case .silver:
                 return "silver"
                 
-            case .primary:
-                return "primary"
-                
-            case .secondary:
-                return "secondary"
+            case .accent:
+                return "accent"
                 
             case .transparent:
                 return "transparent"
@@ -1211,9 +1201,7 @@ public enum Tokens {
         /// Changes the border color to #F7F7F7.
         case silver
         /// Changes the border color to #007FFF.
-        case primary
-        /// Changes the border color to #132F4E.
-        case secondary
+        case accent
         /// Changes the border opacity to 0.0.
         case transparent
         /// Changes the border color to #DFE3E7.
@@ -1272,11 +1260,8 @@ public enum Tokens {
             case .silver:
                 return "silver"
                 
-            case .primary:
-                return "primary"
-                
-            case .secondary:
-                return "secondary"
+            case .accent:
+                return "accent"
                 
             case .transparent:
                 return "transparent"
@@ -1326,12 +1311,12 @@ public enum Tokens {
         /// Changes the foreground color to #F7F7F7.
         case silver
         /// Changes the foreground color to #007FFF.
-        case primary
-        /// Changes the foreground color to #132F4E.
-        case secondary
+        case accent
         /// Changes the foreground opacity to 0.0.
         case transparent
-        /// Changes the border color to a custom value.
+        /// Changes the foreground color to #DFE3E7.
+        case system
+        /// Changes the foreground to a custom color.
         case custom(String)
         
         var value: String {
@@ -1385,14 +1370,14 @@ public enum Tokens {
             case .silver:
                 return "silver"
                 
-            case .primary:
-                return "primary"
-                
-            case .secondary:
-                return "secondary"
+            case .accent:
+                return "accent"
                 
             case .transparent:
                 return "transparent"
+                
+            case .system:
+                return "system"
 
             case .custom(let string):
                 return string

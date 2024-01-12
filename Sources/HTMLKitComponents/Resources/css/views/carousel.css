@@ -76,11 +76,6 @@
 }
 
 .indicator:hover {
-    --borderColor: var(--primaryColor);
-    --backgroundColor: var(--primaryColor);
-}
-
-.scheme\:dark .indicator, .indicator.scheme\:dark {
-    --borderColor: 210, 9%, 31%;
-    --backgroundColor: 210, 11%, 15%;
+    --borderColor: var(--accentColor);
+    --backgroundColor: var(--accentColor);
 }

@@ -34,7 +34,7 @@
     --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
     --borderOpacity: 1.0;
-    --focusColor: 210, 100%, 50%;
+    --focusColor: var(--systemFocusColor);
     --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
@@ -171,9 +171,4 @@
 .calendar-days > li:hover:has(time) {
     border-radius: var(--borderRadius);
     background-color: hsla(var(--borderColor), 0.5);
-}
-
-
-.scheme\:dark .datepicker, .datepicker.scheme\:dark {
-    --focusColor: 210, 100%, 50%;
 }

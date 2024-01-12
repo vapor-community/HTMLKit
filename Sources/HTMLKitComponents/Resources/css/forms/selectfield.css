@@ -34,7 +34,7 @@
     --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
     --borderOpacity: 1.0;
-    --focusColor: 210, 100%, 50%;
+    --focusColor: var(--systemFocusColor);
     --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
@@ -98,8 +98,4 @@
 
 .selectfield-optionlist > .radioselect:hover, .selectfield-optionlist > .checkfield:hover {
     background-color: hsla(var(--borderColor), 0.5);
-}
-
-.scheme\:dark .selectfield, .selectfield.scheme\:dark {
-    --focusColor: 210, 100%, 50%;
 }

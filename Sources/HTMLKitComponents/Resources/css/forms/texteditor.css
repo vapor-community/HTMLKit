@@ -34,7 +34,7 @@
     --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
     --borderOpacity: 1.0;
-    --focusColor: 210, 100%, 50%;
+    --focusColor: var(--systemFocusColor);
     --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
@@ -68,8 +68,4 @@
 
 .texteditor:invalid {
     --borderColor: var(--redColor);
-}
-
-.scheme\:dark .texteditor, .texteditor.scheme\:dark {
-    --focusColor: 210, 100%, 50%;
 }

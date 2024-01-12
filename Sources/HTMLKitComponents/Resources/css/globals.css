@@ -27,8 +27,7 @@
      yellow color: #F7D070
      gray color: #9E9E9E
      silver color: #F7F7F7
-     primary color: #007FFF
-     secondary color: #132F4E
+     accent color: #007FFF
      */
     
     --redColor: 0, 64%, 55%;
@@ -47,11 +46,11 @@
     --grayColor: 0, 0%, 62%;
     --blackColor: 0, 0%, 0%;
     --whiteColor: 0, 0%, 100%;
-    --primaryColor: 210, 100%, 50%;
-    --secondaryColor: 211, 60%, 19%;
+    --accentColor: 210, 100%, 50%;
     --systemBackgroundColor: 0, 0%, 100%;
     --systemBorderColor: 210, 14%, 89%;
     --systemTextColor: 0, 0%, 0%;
+    --systemFocusColor: 210, 100%, 50%;
 }
 
 /*
@@ -81,8 +80,7 @@
      yellow color: #F7D070
      gray color: #9E9E9E
      silver color: #F7F7F7
-     primary color: #007FFF
-     secondary color: #132F4E
+     accent color: #007FFF
      */
     
     --redColor: 0, 74%, 45%;
@@ -101,11 +99,11 @@
     --grayColor: 25, 4%, 47%;
     --blackColor: 30, 7%, 23%;
     --whiteColor: 0, 0%, 100%;
-    --primaryColor: 210, 100%, 50%;
-    --secondaryColor: 211, 60%, 19%;
+    --accentColor: 210, 100%, 50%;
     --systemBackgroundColor: 210, 11%, 15%;
     --systemBorderColor: 210, 9%, 31%;
     --systemTextColor: 0, 0%, 100%;
+    --systemFocusColor: 210, 100%, 50%;
 }
 
 *,
@@ -195,8 +193,8 @@ video {
  */
 
 .state\:active {
-    --borderColor: var(--primaryColor) !important;
-    --backgroundColor: var(--primaryColor) !important;
+    --borderColor: var(--accentColor) !important;
+    --backgroundColor: var(--accentColor) !important;
     --foregroundColor: var(--whiteColor) !important;
 }
 
@@ -280,12 +278,8 @@ video {
     --foregroundColor: var(--silverColor) !important;
 }
 
-.foreground\:primary {
-    --foregroundColor: var(--primaryColor) !important;
-}
-
-.foreground\:secondary {
-    --foregroundColor: var(--secondaryColor) !important;
+.foreground\:accent {
+    --foregroundColor: var(--accentColor) !important;
 }
 
 .foreground\:system {
@@ -392,15 +386,9 @@ video {
     --borderOpacity: 1.0 !important;
 }
 
-.border\:primary {
+.border\:accent {
     --borderWidth: 1px !important;
-    --borderColor: var(--primaryColor) !important;
-    --borderOpacity: 1.0 !important;
-}
-
-.border\:secondary {
-    --borderWidth: 1px !important;
-    --borderColor: var(--secondaryColor) !important;
+    --borderColor: var(--accentColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
@@ -498,13 +486,8 @@ video {
     --backgroundOpacity: 1.0 !important;
 }
 
-.background\:primary {
-    --backgroundColor: var(--primaryColor) !important;
-    --backgroundOpacity: 1.0 !important;
-}
-
-.background\:secondary {
-    --backgroundColor: var(--secondaryColor) !important;
+.background\:accent {
+    --backgroundColor: var(--accentColor) !important;
     --backgroundOpacity: 1.0 !important;
 }
 
@@ -585,12 +568,12 @@ video {
     --focusColor: var(--silverColor) !important;
 }
 
-.focus\:primary {
-    --focusColor: var(--primaryColor) !important;
+.focus\:accent {
+    --focusColor: var(--accentColor) !important;
 }
 
-.focus\:secondary {
-    --focusColor: var(--secondaryColor) !important;
+.focus\:system {
+    --focusColor: var(--systemFocusColor) !important;
 }
 
 /*

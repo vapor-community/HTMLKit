@@ -18,7 +18,7 @@
     --borderColor: var(--systemBorderColor);
     --borderOpacity: 1.0;
     --controlColor: 0, 0%, 0%;
-    --focusColor: 210, 100%, 50%;
+    --focusColor: var(--systemFocusColor);
     --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
@@ -63,8 +63,5 @@
 }
 
 .scheme\:dark .slider, .slider.scheme\:dark {
-    --borderColor: 210, 9%, 31%;
     --controlColor: 0, 0%, 100%;
-    --focusColor: 210, 100%, 50%;
-    --backgroundColor: 210, 11%, 15%;
 }
