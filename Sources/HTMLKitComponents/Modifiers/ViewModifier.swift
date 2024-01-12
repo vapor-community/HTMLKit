@@ -32,7 +32,7 @@ public protocol ViewModifier {
     /// Sets the border color of the input
     func borderColor(_ color: Tokens.BorderColor) -> Self
     
-    func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset?) -> Self
+    func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight?) -> Self
     
     /// Sets the padding for the vertical box.
     func margin(insets: EdgeSet, length: Tokens.MarginLength) -> Self
@@ -109,15 +109,15 @@ extension ViewModifier where Self: Modifiable {
         return self.mutate(class: "border:\(value)")
     }
     
-    internal func mutate(frame width: String, offset: String? = nil) -> Self {
+    internal func mutate(frame width: String, height: String? = nil) -> Self {
         
         var classes: [String] = []
         
-        if let offset {
-            classes.append("offset:\(offset)")
+        if let height {
+            classes.append("height:\(height)")
         }
         
-        classes.append("size:\(width)")
+        classes.append("width:\(width)")
         
         return self.mutate(classes: classes)
     }

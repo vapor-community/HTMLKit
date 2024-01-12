@@ -110,8 +110,8 @@ extension Image: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Image {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> Image {
+        return mutate(frame: width.value, height: height?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Image {

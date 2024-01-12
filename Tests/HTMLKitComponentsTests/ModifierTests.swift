@@ -66,12 +66,12 @@ final class ModifierTests: XCTestCase {
     func testFrame() throws {
         
         let view = TestView {
-            HStack {}.frame(width: .eleven, offset: .one)
+            HStack {}.frame(width: .eleven, height: .minimum)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack vertical-alignment:center offset:one size:eleven"></div>
+                       <div class="hstack vertical-alignment:center height:minimum width:eleven"></div>
                        """
         )
     }

@@ -827,134 +827,108 @@ video {
  sizes
  */
 
-.size\:one {
+.width\:one {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 8.3333333333%;
 }
 
-.size\:two {
+.width\:two {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 16.6666666667%;
 }
 
-.size\:three {
+.width\:three {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 25%;
 }
 
-.size\:four {
+.width\:four {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 33.3333333333%;
 }
 
-.size\:five {
+.width\:five {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 41.6666666667%;
 }
 
-.size\:six {
+.width\:six {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 50%;
 }
 
-.size\:seven {
+.width\:seven {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 58.3333333333%;
 }
 
-.size\:eight {
+.width\:eight {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 66.6666666667%;
 }
 
-.size\:nine {
+.width\:nine {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 75%;
 }
 
-.size\:ten {
+.width\:ten {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 83.3333333333%;
 }
 
-.size\:eleven {
+.width\:eleven {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 91.6666666667%;
 }
 
-.size\:twelve {
+.width\:twelve {
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     inline-size: 100%;
 }
 
-/*
- offset
- */
-
-.offset\:one {
-    margin-inline-start: 8.3333333333%;
+.width\:minimum {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    inline-size: auto;
 }
 
-.offset\:two {
-    margin-inline-start: 16.6666666667%;
+.width\:maximum {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    inline-size: max-content;
 }
 
-.offset\:three {
-    margin-inline-start: 25%;
+.height\:minimum {
+    height: auto;
 }
 
-.offset\:four {
-    margin-inline-start: 33.3333333333%;
-}
-
-.offset\:five {
-    margin-inline-start: 41.6666666667%;
-}
-
-.offset\:six {
-    margin-inline-start: 50%;
-}
-
-.offset\:seven {
-    margin-inline-start: 58.3333333333%;
-}
-
-.offset\:eight {
-    margin-inline-start: 66.6666666667%;
-}
-
-.offset\:nine {
-    margin-inline-start: 75%;
-}
-
-.offset\:ten {
-    margin-inline-start: 83.3333333333%;
-}
-
-.offset\:eleven {
-    margin-inline-start: 91.6666666667%;
+.height\:maximum {
+    height: max-content;
 }

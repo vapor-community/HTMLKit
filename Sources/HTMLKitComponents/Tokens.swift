@@ -62,7 +62,7 @@ public enum Tokens {
     }
 
     /// A size for column.
-    public enum ColumnSize {
+    public enum ViewWidth {
         
         /// Sets the width of the view to 8.3 % of the parent view.
         case one
@@ -88,9 +88,11 @@ public enum Tokens {
         case eleven
         /// Sets the width of the view to 100 % of the parent view.
         case twelve
-        /// Sets the size accordingly to the content.
-        case infinite
-        /// Sets the size to a custom value.
+        /// Sets the width of view to the intrinsic preferred width.
+        case maximum
+        /// Sets the width of the view to the intrinsic minimum width.
+        case minimum
+        /// Sets the view to a custom width.
         case custom(String)
         
         var value: String {
@@ -132,9 +134,36 @@ public enum Tokens {
             case .twelve:
                 return "twelve"
                 
-            case .infinite:
-                return "infinite"
+            case .minimum:
+                return "minimum"
+                
+            case .maximum:
+                return "maximum"
 
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    public enum ViewHeight {
+        
+        /// Sets the width of the view to 8.3 % of the parent view.
+        case minimum
+        /// Sets the width of the view to 16.67 % of the parent view.
+        case maximum
+        /// Sets the view to a custom width.
+        case custom(String)
+        
+        var value: String {
+            
+            switch self {
+            case .minimum:
+                return "minimum"
+                
+            case .maximum:
+                return "maximum"
+                
             case .custom(let string):
                 return string
             }
@@ -604,76 +633,6 @@ public enum Tokens {
                 
             case .transparent:
                 return "transparent"
-
-            case .custom(let string):
-                return string
-            }
-        }
-    }
-
-    /// A offset for a column.
-    public enum ColumnOffset {
-        
-        /// Sets the offset to 8.3 %.
-        case one
-        /// Sets the offset to 16.67 %.
-        case two
-        /// Sets the offset to 25 %.
-        case three
-        /// Sets the offset to 33.33 %.
-        case four
-        /// Sets the offset to 41.67 %.
-        case five
-        /// Sets the offset to 50 %.
-        case six
-        /// Sets the offset to  58.3 %.
-        case seven
-        /// Sets the offset to  66.7 %.
-        case eight
-        /// Sets the offset to 75 %.
-        case nine
-        /// Sets the offset to 83.3 %.
-        case ten
-        /// Sets the offset to 91.67 %.
-        case eleven
-        /// Sets the column offset to a custom value.
-        case custom(String)
-        
-        var value: String {
-            
-            switch self {
-            case .one:
-                return "one"
-                
-            case .two:
-                return "two"
-                
-            case .three:
-                return "three"
-                
-            case .four:
-                return "four"
-                
-            case .five:
-                return "five"
-                
-            case .six:
-                return "six"
-                
-            case .seven:
-                return "seven"
-                
-            case .eight:
-                return "eight"
-                
-            case .nine:
-                return "nine"
-                
-            case .ten:
-                return "ten"
-                
-            case .eleven:
-                return "eleven"
 
             case .custom(let string):
                 return string

@@ -33,15 +33,15 @@ public struct Grouping: View, Modifiable, Identifiable {
         }
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Grouping {
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> Grouping {
         
         var newSelf = self
         
-        if let offset {
-            newSelf.classes.append("offset:\(offset.value)")
+        if let height {
+            newSelf.classes.append("height:\(height.value)")
         }
         
-        newSelf.classes.append("size:\(width.value)")
+        newSelf.classes.append("width:\(width.value)")
         
         return newSelf
     }

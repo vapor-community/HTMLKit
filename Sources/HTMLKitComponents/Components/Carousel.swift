@@ -95,8 +95,8 @@ extension Carousel: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Carousel {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> Carousel {
+        return mutate(frame: width.value, height: height?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Carousel {
@@ -176,8 +176,8 @@ extension Slide: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Slide {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> Slide {
+        return mutate(frame: width.value, height: height?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Slide {

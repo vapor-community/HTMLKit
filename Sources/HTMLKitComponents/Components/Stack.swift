@@ -107,8 +107,8 @@ extension HStack: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> HStack {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> HStack {
+        return mutate(frame: width.value, height: height?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> HStack {
@@ -216,8 +216,8 @@ extension VStack: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> VStack {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> VStack {
+        return mutate(frame: width.value, height: height?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> VStack {
@@ -319,8 +319,8 @@ extension ZStack: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> ZStack {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> ZStack {
+        return mutate(frame: width.value, height: height?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> ZStack {
