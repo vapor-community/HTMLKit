@@ -64,29 +64,29 @@ public enum Tokens {
     /// A size for column.
     public enum ColumnSize {
         
-        /// Sets the size to 8.3 %.
+        /// Sets the width of the view to 8.3 % of the parent view.
         case one
-        /// Sets the size to 16.67 %.
+        /// Sets the width of the view to 16.67 % of the parent view.
         case two
-        /// Sets the size to 25 %.
+        /// Sets the width of the view to 25 % of the parent view.
         case three
-        /// Sets the size to 33.3 %.
+        /// Sets the width of the view to 33.3 % of the parent view.
         case four
-        /// Sets the size to 41.67 %.
+        /// Sets the width of the view to 41.67 % of the parent view.
         case five
-        /// Sets the size to 50 %.
+        /// Sets the width of the view to 50 % of the parent view.
         case six
-        /// Sets the size to 58.3 %.
+        /// Sets the width of the view to 58.3 % of the parent view.
         case seven
-        /// Sets the size to 66.67 %.
+        /// Sets the width of the view to 66.67 % of the parent view.
         case eight
-        /// Sets the size to 75 %.
+        /// Sets the width of the view to 75 % of the parent view.
         case nine
-        /// Sets the size to 83.3%.
+        /// Sets the width of the view to 83.3% of the parent view.
         case ten
-        /// Sets the size to 91.67 %.
+        /// Sets the width of the view to 91.67 % of the parent view.
         case eleven
-        /// Sets the size to 100 %.
+        /// Sets the width of the view to 100 % of the parent view.
         case twelve
         /// Sets the size accordingly to the content.
         case infinite
@@ -445,47 +445,47 @@ public enum Tokens {
     /// A background color for a view.
     public enum BackgroundColor {
         
-        /// Changes the background color to black.
+        /// Changes the background color to #000000 .
         case black
-        /// Changes the background color to white.
+        /// Changes the background color to #FFFFFF.
         case white
-        /// Changes the background color to blue.
+        /// Changes the background color to #4098D7.
         case blue
-        /// Changes the background color to brown.
+        /// Changes the background color to #BF7140.
         case brown
-        /// Changes the background color to cyan.
+        /// Changes the background color to #38BEC9.
         case cyan
-        /// Changes the background color to green.
+        /// Changes the background color to #57AE5B.
         case green
-        /// Changes the background color to indigo.
+        /// Changes the background color to #647ACB.
         case indigo
-        /// Changes the background color to mint.
+        /// Changes the background color to #91E697.
         case mint
-        /// Changes the background color to pink.
+        /// Changes the background color to #DA4A91.
         case pink
-        /// Changes the background color to purple.
+        /// Changes the background color to #724BB7.
         case purple
-        /// Changes the background color to red.
+        /// Changes the background color to #D64545.
         case red
-        /// Changes the background color to teal.
+        /// Changes the background color to #3EBD93.
         case teal
-        /// Changes the background color to ornage.
+        /// Changes the background color to #E67635.
         case orange
-        /// Changes the background color to yellow.
+        /// Changes the background color to #F7D070.
         case yellow
-        /// Changes the background color to gray.
+        /// Changes the background color to #9E9E9E.
         case gray
-        /// Changes the background color to silver.
+        /// Changes the background color to #F7F7F7.
         case silver
-        /// Changes the background color to the primary color.
+        /// Changes the background color to #007FFF.
         case primary
-        /// Changes the background color to the secondary color.
+        /// Changes the background color to #132F4E.
         case secondary
-        /// Makes the background transparent.
+        /// Changes the background opacity to 0.0.
         case transparent
-        /// Changes the background color to the system background color.
+        /// Changes the background color to #DFE3E7.
         case system
-        
+        /// Changes the background to a custom color.
         case custom(String)
         
         var value: String {
@@ -569,6 +569,7 @@ public enum Tokens {
         case scaleDown
         /// Does not resize.
         case none
+        /// Resizes to the content to a custom value.
         case custom(String)
         
         var value: String {
@@ -595,6 +596,7 @@ public enum Tokens {
         }
     }
 
+    /// A views opacity.
     public enum OpacityValue {
         
         /// Sets the opacity value to 1.0.
@@ -1149,7 +1151,7 @@ public enum Tokens {
         case hidden
         /// Shows the view.
         case visible
-        
+        /// Sets the view state to a custom value.
         case custom(String)
         
         var value: String {
@@ -1176,45 +1178,45 @@ public enum Tokens {
     /// A color for the border.
     public enum BorderColor {
         
-        /// Changes the border color to black.
+        /// Changes the border color to #000000 .
         case black
-        /// Changes the border color to white.
+        /// Changes the border color to #FFFFFF.
         case white
-        /// Changes the border color to blue.
+        /// Changes the border color to #4098D7.
         case blue
-        /// Changes the border color to brown.
+        /// Changes the border color to #BF7140.
         case brown
-        /// Changes the border color to cyan.
+        /// Changes the border color to #38BEC9.
         case cyan
-        /// Changes the border color to green.
+        /// Changes the border color to #57AE5B.
         case green
-        /// Changes the border color to indigo.
+        /// Changes the border color to #647ACB.
         case indigo
-        /// Changes the border color to mint.
+        /// Changes the border color to #91E697.
         case mint
-        /// Changes the border color to pink.
+        /// Changes the border color to #DA4A91.
         case pink
-        /// Changes the border color to purple.
+        /// Changes the border color to #724BB7.
         case purple
-        /// Changes the border color to red.
+        /// Changes the border color to #D64545.
         case red
-        /// Changes the border color to teal.
+        /// Changes the border color to #3EBD93.
         case teal
-        /// Changes the border color to ornage.
+        /// Changes the border color to #E67635.
         case orange
-        /// Changes the border color to yellow.
+        /// Changes the border color to #F7D070.
         case yellow
-        /// Changes the border color to gray.
+        /// Changes the border color to #9E9E9E.
         case gray
-        /// Changes the border color to silver.
+        /// Changes the border color to #F7F7F7.
         case silver
-        /// Changes the border color to the primary color.
+        /// Changes the border color to #007FFF.
         case primary
-        /// Changes the border color to the secondary color.
+        /// Changes the border color to #132F4E.
         case secondary
-        /// Makes the border transparent.
+        /// Changes the border opacity to 0.0.
         case transparent
-        /// Changes the border color to the system border color.
+        /// Changes the border color to #DFE3E7.
         case system
         /// Changes the border to a custom color.
         case custom(String)
@@ -1291,43 +1293,43 @@ public enum Tokens {
     /// A color for the focus.
     public enum FocusColor {
         
-        /// Changes the border color to black.
+        /// Changes the foreground color to #000000 .
         case black
-        /// Changes the border color to white.
+        /// Changes the foreground color to #FFFFFF.
         case white
-        /// Changes the border color to blue.
+        /// Changes the foreground color to #4098D7.
         case blue
-        /// Changes the border color to brown.
+        /// Changes the foreground color to #BF7140.
         case brown
-        /// Changes the border color to cyan.
+        /// Changes the foreground color to #38BEC9.
         case cyan
-        /// Changes the border color to green.
+        /// Changes the foreground color to #57AE5B.
         case green
-        /// Changes the border color to indigo.
+        /// Changes the foreground color to #647ACB.
         case indigo
-        /// Changes the border color to mint.
+        /// Changes the foreground color to #91E697.
         case mint
-        /// Changes the border color to pink.
+        /// Changes the foreground color to #DA4A91.
         case pink
-        /// Changes the border color to purple.
+        /// Changes the foreground color to #724BB7.
         case purple
-        /// Changes the border color to red.
+        /// Changes the foreground color to #D64545.
         case red
-        /// Changes the border color to teal.
+        /// Changes the foreground color to #3EBD93.
         case teal
-        /// Changes the border color to ornage.
+        /// Changes the foreground color to #E67635.
         case orange
-        /// Changes the border color to yellow.
+        /// Changes the foreground color to #F7D070.
         case yellow
-        /// Changes the border color to gray.
+        /// Changes the foreground color to #9E9E9E.
         case gray
-        /// Changes the border color to silver.
+        /// Changes the foreground color to #F7F7F7.
         case silver
-        /// Changes the border color to the primary color.
+        /// Changes the foreground color to #007FFF.
         case primary
-        /// Changes the border color to the secondary color.
+        /// Changes the foreground color to #132F4E.
         case secondary
-        /// Makes the border transparent.
+        /// Changes the foreground opacity to 0.0.
         case transparent
         /// Changes the border color to a custom value.
         case custom(String)
@@ -1459,6 +1461,7 @@ public enum Tokens {
         case medium
         /// Changes the margin size of the view to 2.25 rem.
         case large
+        /// Changes the margin size to auto.
         case auto
         /// Changes the margin size to a custom value.
         case custom(String)
@@ -1517,6 +1520,7 @@ public enum Tokens {
         case pagination
         /// Changes the appearance of the navigation to menu.
         case menu
+        /// Changes the navigation to a custom appearance.
         case custom(String)
         
         var value: String {
