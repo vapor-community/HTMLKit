@@ -6,8 +6,6 @@ public protocol ButtonConfiguration {
     
     var backgroundColor: Tokens.BackgroundColor? { get set }
     
-    var buttonSize: Tokens.ButtonSize? { get set }
-    
     var foregroundColor: Tokens.ForegroundColor? { get set }
 }
 
@@ -27,10 +25,6 @@ extension ButtonConfiguration {
         
         if let backgroundColor = self.backgroundColor {
             configuration.append("background:\(backgroundColor.value)")
-        }
-        
-        if let buttonSize = self.buttonSize {
-            configuration.append("size:\(buttonSize.value)")
         }
         
         if let foregroundColor = self.foregroundColor {

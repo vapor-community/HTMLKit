@@ -144,7 +144,7 @@ final class ModifierTests: XCTestCase {
     func testButtonSize() throws {
         
         let view = TestView {
-            Button(role: .button) {}.buttonSize(.large)
+            Button(role: .button) {}.controlSize(.large)
         }
         
         XCTAssertEqual(try renderer.render(view: view),

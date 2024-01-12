@@ -7,7 +7,7 @@
 public protocol ButtonModifier {
     
     /// Sets the size of the button.
-    func buttonSize(_ size: Tokens.ButtonSize) -> Self
+    func controlSize(_ size: Tokens.ControlSize) -> Self
  
     /// Sets the style of the button.
     func buttonStyle(_ style: Tokens.ButtonStyle) -> Self
@@ -24,7 +24,7 @@ public protocol ButtonModifier {
 
 extension ButtonModifier where Self: Modifiable {
     
-    internal func mutate(buttonsize value: String) -> Self {
+    internal func mutate(controlsize value: String) -> Self {
         return self.mutate(class: "size:\(value)")
     }
     

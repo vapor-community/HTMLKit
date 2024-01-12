@@ -1042,7 +1042,7 @@ public enum Tokens {
     }
 
     /// A size of a button.
-    public enum ButtonSize {
+    public enum ControlSize {
         
         /// Sets the size to 100 %.
         case full

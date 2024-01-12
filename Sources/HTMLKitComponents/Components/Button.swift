@@ -53,8 +53,8 @@ public struct Button: View, Modifiable, Actionable {
 
 extension Button: ButtonModifier {
     
-    public func buttonSize(_ size: Tokens.ButtonSize) -> Button {
-        return self.mutate(buttonsize: size.value)
+    public func controlSize(_ size: Tokens.ControlSize) -> Button {
+        return self.mutate(controlsize: size.value)
     }
     
     public func buttonStyle(_ style: Tokens.ButtonStyle) -> Button {
@@ -203,8 +203,8 @@ public struct LinkButton: View, Modifiable, Identifiable {
 
 extension LinkButton: ButtonModifier {
     
-    public func buttonSize(_ size: Tokens.ButtonSize) -> LinkButton {
-        return self.mutate(buttonsize: size.value)
+    public func controlSize(_ size: Tokens.ControlSize) -> LinkButton {
+        return self.mutate(controlsize: size.value)
     }
     
     public func buttonStyle(_ style: Tokens.ButtonStyle) -> LinkButton {
