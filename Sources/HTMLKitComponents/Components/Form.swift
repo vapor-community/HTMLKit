@@ -207,8 +207,8 @@ extension TextField: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> TextField {
-        return mutate(frame: width.value, height: height?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> TextField {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextField {
@@ -336,8 +336,8 @@ extension TextEditor: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> TextEditor {
-        return mutate(frame: width.value, height: height?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> TextEditor {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextEditor {
@@ -500,8 +500,8 @@ extension CheckField: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> CheckField {
-        return mutate(frame: width.value, height: height?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> CheckField {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> CheckField {
@@ -626,8 +626,8 @@ extension RadioSelect: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> RadioSelect {
-        return mutate(frame: width.value, height: height?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> RadioSelect {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> RadioSelect {
@@ -753,8 +753,8 @@ extension SelectField: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> SelectField {
-        return mutate(frame: width.value, height: height?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> SelectField {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SelectField {
@@ -871,8 +871,8 @@ extension SecureField: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> SecureField {
-        return mutate(frame: width.value, height: height?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> SecureField {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SecureField {
@@ -975,8 +975,8 @@ extension Slider: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> Slider {
-        return mutate(frame: width.value, height: height?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Slider {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Slider {
@@ -1161,8 +1161,8 @@ extension DatePicker: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> DatePicker {
-        return mutate(frame: width.value, height: height?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> DatePicker {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> DatePicker {
@@ -1279,8 +1279,8 @@ extension SearchField: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> SearchField {
-        return mutate(frame: width.value, height: height?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> SearchField {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SearchField {
@@ -1495,8 +1495,8 @@ extension TextPad: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> TextPad {
-        return mutate(frame: width.value, height: height?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> TextPad {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextPad {
@@ -1599,8 +1599,8 @@ extension FileDialog: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> FileDialog {
-        return mutate(frame: width.value, height: height?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> FileDialog {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> FileDialog {

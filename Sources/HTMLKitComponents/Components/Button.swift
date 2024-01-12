@@ -137,8 +137,8 @@ extension Button: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> Button {
-        return mutate(frame: width.value, height: height?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Button {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet, length: Tokens.MarginLength = .small) -> Button {
@@ -272,8 +272,8 @@ extension LinkButton: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> LinkButton {
-        return mutate(frame: width.value, height: height?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> LinkButton {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> LinkButton {

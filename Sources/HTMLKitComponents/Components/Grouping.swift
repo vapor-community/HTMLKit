@@ -33,12 +33,16 @@ public struct Grouping: View, Modifiable, Identifiable {
         }
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> Grouping {
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Grouping {
         
         var newSelf = self
         
         if let height {
             newSelf.classes.append("height:\(height.value)")
+        }
+        
+        if let alignment {
+            newSelf.classes.append("frame-alignment:\(alignment.value)")
         }
         
         newSelf.classes.append("width:\(width.value)")

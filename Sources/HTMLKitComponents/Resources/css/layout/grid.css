@@ -91,3 +91,15 @@
 .grid.horizontal-spacing\:small {
     column-gap: 1rem;
 }
+
+.grid > .frame-alignment\:leading {
+    align-self: start;
+}
+
+.grid > .frame-alignment\:center {
+    align-self: center;
+}
+
+.grid > .frame-alignment\:trailing {
+    align-self: end;
+}

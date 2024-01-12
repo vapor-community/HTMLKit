@@ -81,8 +81,8 @@ extension Navigation: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> Navigation {
-        return mutate(frame: width.value, height: height?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Navigation {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Navigation {

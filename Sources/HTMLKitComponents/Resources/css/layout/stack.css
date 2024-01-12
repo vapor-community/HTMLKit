@@ -51,6 +51,18 @@
     margin-inline-start: auto !important;
 }
 
+.hstack > .frame-alignment\:leading {
+    align-self: flex-start;
+}
+
+.hstack > .frame-alignment\:center {
+    align-self: center;
+}
+
+.hstack > .frame-alignment\:trailing {
+    align-self: flex-end;
+}
+
 .hstack.spacing\:around {
     justify-content: space-around;
 }
@@ -108,6 +120,18 @@
 
 .vstack.horizontal-alignment\:trailing {
     align-items: flex-end;
+}
+
+.vstack > .frame-alignment\:leading {
+    align-self: flex-start;
+}
+
+.vstack > .frame-alignment\:center {
+    align-self: center;
+}
+
+.vstack > .frame-alignment\:trailing {
+    align-self: flex-end;
 }
 
 .vstack.spacing\:around {

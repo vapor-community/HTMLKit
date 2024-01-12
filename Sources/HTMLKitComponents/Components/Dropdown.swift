@@ -92,8 +92,8 @@ extension Dropdown: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil) -> Dropdown {
-        return mutate(frame: width.value, height: height?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Dropdown {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Dropdown {

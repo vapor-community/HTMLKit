@@ -1544,4 +1544,34 @@ public enum Tokens {
             }
         }
      }
+    
+    /// A alignment for the frame
+    public enum FrameAlignment {
+        
+        /// Aligns the frame on the left side.
+        case leading
+        /// Aligns the frame in the middle.
+        case center
+        /// Aligns the frame on the right side.
+        case trailing
+        /// Aligns the frame to a custom alignment.
+        case custom(String)
+        
+        var value: String {
+            
+            switch self {
+            case .leading:
+                return "leading"
+                
+            case .center:
+                return "center"
+                
+            case .trailing:
+                return "trailing"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
 }
