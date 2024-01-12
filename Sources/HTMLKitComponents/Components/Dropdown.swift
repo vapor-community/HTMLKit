@@ -49,34 +49,6 @@ public struct Dropdown: View, Modifiable, Identifiable {
     }
 }
 
-extension Dropdown: ButtonModifier {
-
-    public func buttonSize(_ size: Tokens.ButtonSize) -> Dropdown {
-        return self.mutate(buttonsize: size.value)
-    }
-    
-    public func buttonStyle(_ style: Tokens.ButtonStyle) -> Dropdown {
-        return self.mutate(buttonstyle: style.value)
-    }
-    
-    public func buttonStyle(_ style: ButtonConfiguration) -> Dropdown {
-        return self.mutate(classes: style.configuration)
-    }
-    
-    public func disabled() -> Dropdown {
-        return self.mutate(buttonstate: Tokens.ViewState.disabled.value)
-    }
-    
-    public func disabled(_ condition: Bool) -> Dropdown {
-        
-        if condition {
-            return self.mutate(buttonstate: Tokens.ViewState.disabled.value)
-        }
-        
-        return self
-    }
-}
-
 extension Dropdown: ViewModifier {
     
     public func opacity(_ value: Tokens.OpacityValue) -> Dropdown {
