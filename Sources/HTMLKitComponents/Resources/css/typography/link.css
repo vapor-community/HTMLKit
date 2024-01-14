@@ -190,3 +190,15 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+.link.font\:arial {
+    --fontFamily: Arial;
+}
+
+.link.font\:helvetica {
+    --fontFamily: Helvetica;
+}
+
+.link.font\:verdana {
+    --fontFamily: Verdana;
+}

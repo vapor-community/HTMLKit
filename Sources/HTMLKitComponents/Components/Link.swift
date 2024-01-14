@@ -63,6 +63,10 @@ public struct Link: View, Modifiable, Identifiable {
 
 extension Link: TextModifier {
     
+    public func font(_ family: Tokens.FontFamily) -> Link {
+        return mutate(fontfamily: family.value)
+    }
+    
     public func textStyle(_ style: Tokens.TextStyle) -> Link {
         return self.mutate(textstyle: style.value)
     }

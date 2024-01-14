@@ -309,4 +309,17 @@ final class ModifierTests: XCTestCase {
                        """
         )
     }
+    
+    func testFontFamily() throws {
+        
+        let view = TestView {
+            Text {}.font(.arial)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p class="text alignment:leading font:arial"></p>
+                       """
+        )
+    }
 }

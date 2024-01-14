@@ -6,7 +6,7 @@
      font family: system-ui...; (font-stack)
      */
     
-    --fontFamily: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --fontFamily: system-ui, sans-serif;
     
     /*
      The variables for the colors.
@@ -104,6 +104,10 @@
     --systemBorderColor: 210, 9%, 31%;
     --systemTextColor: 0, 0%, 100%;
     --systemFocusColor: 210, 100%, 50%;
+}
+
+* {
+    font: inherit;
 }
 
 *,

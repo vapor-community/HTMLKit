@@ -55,7 +55,11 @@ public struct Grouping: View, Modifiable, Identifiable {
     }
 }
 
-extension Grouping: TextModifier {    
+extension Grouping: TextModifier {
+    
+    public func font(_ family: Tokens.FontFamily) -> Grouping {
+        return mutate(fontfamily: family.value)
+    }
     
     public func textStyle(_ style: Tokens.TextStyle) -> Grouping {
         return self.mutate(textstyle: style.value)

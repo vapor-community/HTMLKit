@@ -1574,4 +1574,33 @@ public enum Tokens {
             }
         }
     }
+    
+    /// A font family for text.
+    public enum FontFamily {
+        
+        /// Sets the font of the text to Arial.
+        case arial
+        /// Sets the font of the text to Helvetica.
+        case helvetica
+        /// Sets the font of the text to Verdana.
+        case verdana
+        case custom(String)
+        
+        var value: String {
+            
+            switch self {
+            case .arial:
+                return "arial"
+                
+            case .helvetica:
+                return "helvetica"
+                
+            case .verdana:
+                return "verdana"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
 }

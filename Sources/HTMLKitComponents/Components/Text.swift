@@ -78,6 +78,10 @@ extension Text: PressEvent {
 }
 
 extension Text: TextModifier {
+   
+    public func font(_ family: Tokens.FontFamily) -> Text {
+        return mutate(fontfamily: family.value)
+    }
     
     public func textStyle(_ style: Tokens.TextStyle) -> Text {
         return self.mutate(textstyle: style.value)

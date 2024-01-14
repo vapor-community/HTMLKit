@@ -6,6 +6,8 @@
 /// A type that describes the modifier of a text component.
 public protocol TextModifier {
     
+    func font(_ family: Tokens.FontFamily) -> Self
+    
     /// Sets the style of the text.
     func textStyle(_ style: Tokens.TextStyle) -> Self
     
@@ -58,6 +60,10 @@ public protocol TextModifier {
 }
 
 extension TextModifier where Self: Modifiable {
+    
+    internal func mutate(fontfamily value: String) -> Self {
+        return self.mutate(class: "font:\(value)")
+    }
     
     internal func mutate(textstyle value: String) -> Self {
         return self.mutate(class: "style:\(value)")

@@ -205,3 +205,15 @@
 .text.alignment\:trailing {
     text-align: end;
 }
+
+.text.font\:arial {
+    --fontFamily: Arial;
+}
+
+.text.font\:helvetica {
+    --fontFamily: Helvetica;
+}
+
+.text.font\:verdana {
+    --fontFamily: Verdana;
+}
