@@ -13,11 +13,18 @@ struct ExampleView: View {
                 Link()
                     .relationship(.stylesheet)
                     .reference("/htmlkit/all.css")
+                Script {
+                }
+                .source("/htmlkit/query.js")
             }
             Body {
-                Heading1("greeting.world")
+                Card {
+                    Heading1("greeting.world")
+                }
+                Script {
+                }
+                .source("/htmlkit/all.js")
             }
         }
     }
 }
-

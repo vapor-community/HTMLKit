@@ -12,10 +12,8 @@ struct VStack : View
 
 ```swift
 VStack(alignment: .leading) {
-    StackColumn(size: .twelve) {
-        Text {
-            "Lorem ipsum..."
-        }
+    Text {
+        "Lorem ipsum..."
     }
 }
 ```

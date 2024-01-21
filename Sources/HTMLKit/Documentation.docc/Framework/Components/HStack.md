@@ -12,10 +12,8 @@ struct HStack : View
 
 ```swift
 HStack(alignment: .center) {
-    StackColumn(size: .twelve) {
-        Text {
-            "Lorem ipsum..."
-        }
+    Text {
+        "Lorem ipsum..."
     }
 }
 ```

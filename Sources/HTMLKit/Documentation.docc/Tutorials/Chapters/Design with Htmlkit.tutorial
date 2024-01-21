@@ -1,0 +1,83 @@
+@Tutorial(time: 30) {
+    @Intro(title: "Design with HTMLKit") {
+        This tutorial walks you through the process of building interfaces using components.
+    }
+    @Section(title: "Set up dependencies") {
+        @ContentAndMedia {
+            Compile the dependencies and add them to your project.
+        }
+        @Steps {
+            @Step {
+                Create a folder `Public` outside of the `Sources` folder.
+                
+                > Note: _The public folder contains any public files that will be served by your application._
+            }
+            @Step {
+                Open `Terminal` and change the directory to your project folder.
+                
+                @Code(name: "shell.swift", file: "shell-S1.swift", reset: true)
+            }
+            @Step {
+                Use the following command to start the deployment.
+                
+                > Note: _HTMLKit creates the dependency folder at the given path._
+                
+                @Code(name: "shell.swift", file: "shell-S2.swift", reset: true)
+            }
+            @Step {
+                Set the working directory in the Xcode scheme for your project.
+            }
+        }
+    }
+    @Section(title: "Use a component") {
+        @ContentAndMedia {
+            Create an interface by using components.
+        }
+        @Steps {
+            @Step {
+                Import the module `HTMLKitComponents` at the top of `ExampleView`.
+                
+                @Code(name: "ExampleView.swift", file: "view-S5.swift", previousFile: "view-S4.swift")
+            }
+            @Step {
+                Give the view a valid HTML structure.
+                
+                @Code(name: "ExampleView.swift", file: "view-S6.swift")
+            }
+            @Step {
+                Place the file reference to the stylesheet.
+                
+                > Note: _The file is responsible for the styling and utilities._
+                
+                @Code(name: "ExampleView.swift", file: "view-S7.swift")
+            }
+            @Step {
+                Place the file reference for the javascript query.
+                
+                > Note: _The file is responsible for..._
+                
+                @Code(name: "ExampleView.swift", file: "view-S8.swift")
+            }
+            @Step {
+                Place the file reference to the javascript files for the components.
+                
+                > Note: _The file is responsible for..._
+                
+                @Code(name: "ExampleView.swift", file: "view-S9.swift")
+            }
+            @Step {
+                Surround the `Heading1` element with a `Card` component.
+                
+                @Code(name: "ExampleView.swift", file: "view-S10.swift")
+            }
+            @Step {
+                Change the border of the card by using the `borderShape` modifier.
+                
+                @Code(name: "ExampleView.swift", file: "view-S11.swift")
+            }
+            @Step {
+                Select `Editor` > `Run` to rerun the application. Refresh your browser.
+            }
+        }
+    }
+}

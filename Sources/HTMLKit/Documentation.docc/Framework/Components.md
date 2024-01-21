@@ -8,10 +8,8 @@ The components library follows the idea of a design system. It offers you standa
 
 ```swift
 HStack {
-    StackColumn(size: .twelve) {
-        Text {
-            "Lorem ipsum..."
-        }
+    Text {
+        "Lorem ipsum..."
     }
 }
 ```

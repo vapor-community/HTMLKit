@@ -1,6 +1,6 @@
 @Tutorial(time: 30) {
     @Intro(title: "Start with HTMLKit") {
-        Lorem ipsum...
+        This tutorial walks you through the process of establishing a Swift package using HTMLKit and Vapor.
     }
     @Section(title: "Create a package") {
         @ContentAndMedia {
@@ -9,22 +9,20 @@
         @Steps {
             @Step {
                 Open `Xcode` and select `File` > `New` > `Package`.
-                
-                @Image(source: "tutorial_create-project.png", alt: "Launch xcode dialog")
             }
             @Step {
                 In the template selector, select the template `Library`, and then click `Next`. 
                 
                 > Note: _The template creates the folder structure, wich we will need later._
                 
-                @Image(source: "tutorial_create-project.png", alt: "Launch xcode dialog")
+                @Image(source: "tutorial_new_package.png", alt: "Launch xcode dialog")
             }
             @Step {
                 Enter the package name `Example` and choose a location to save the package. Click `Create` next.
                 
                 > Note: _Xcode loads the package and shows the package manifest upfront._
                 
-                @Image(source: "tutorial_create-project.png", alt: "Launch xcode dialog")
+                @Image(source: "tutorial_save_file.png", alt: "Launch xcode dialog")
             }
         }
     }
@@ -105,9 +103,9 @@
                 @Code(name: "ExampleView.swift", file: "view-S2.swift")
             }
             @Step {
-                Add content to the `body` property.
+                Add the `Heading1` element to the `body` property.
                 
-                > Tip: If you want to learn more about...
+                > Note: _The Heading1 element represents the `<h1>` element in HTML._
                 
                 @Code(name: "ExampleView.swift", file: "view-S3.swift")
             }
@@ -157,7 +155,7 @@
                 Select `Editor` > `Run` to build and run the application.
             }
             @Step {
-                Open `Safari` and call the route `https://localhost:8080/example/index` in your browser.
+                Call the route `/example/index` in your browser.
             }
         }
     }

@@ -1,1 +1,1 @@
-swift package --allow-writing-to-package-directory deploy --target-path "/ExampleProject/Public"
+swift package --allow-writing-to-package-directory deploy --target-path "/Example/Public"

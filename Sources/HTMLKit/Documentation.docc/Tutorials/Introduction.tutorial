@@ -16,24 +16,24 @@
         
         @TutorialReference(tutorial: "doc:Localize-with-Htmlkit")
     }
-    @Chapter(name: "Compose with HTMLKit") {
+    @Chapter(name: "Design with HTMLKit") {
         Use UI components and make your design process more easy.
         
         @Image(source: "thumbnail-C3.png", alt: "Curly brackets with bold annotation")
         
-        @TutorialReference(tutorial: "doc:Compose-with-Htmlkit")
+        @TutorialReference(tutorial: "doc:Design-with-Htmlkit")
     }
     @Resources {
-        Lorem ipsum...
+        Explore more resources for learning about HTMLKit.
         
-        @Documentation(destination: "https://swiftpackageindex.com/vapor-community/HTMLKit") {
-            Lorem ipsum...
+        @Documentation(destination: "https://swiftpackageindex.com/vapor-community/HTMLKit/documentation/htmlkit") {
+            Browse and search the API documentation.
         }
         @SampleCode(destination: "https://github.com/mattesmohr/Website") {
-            Lorem ipsum...
+            Explore sample code to get to know HTMLKit.
         }
         @Forums(destination: "https://discord.gg/invite/vapor") {
-            Lorem ipsum...
+            Discuss HTMLKit or reach out for help.
         }
     }
 }

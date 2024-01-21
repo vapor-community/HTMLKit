@@ -18,10 +18,7 @@ struct ExampleView: View {
                 .source("/htmlkit/query.js")
             }
             Body {
-                Card {
-                    Heading1("greeting.person", interpolation: "John Doe")
-                }
-                .borderShape(.smallrounded)
+                Heading1("greeting.world")
                 Script {
                 }
                 .source("/htmlkit/all.js")

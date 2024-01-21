@@ -1,38 +1,17 @@
 @Tutorial(time: 30) {
     @Intro(title: "Localize with HTMLKit") {
-        Lorem ipsum...
-    }
-    @Section(title: "Set up the localization") {
-        @ContentAndMedia {
-            Lorem ipsum...
-        }
-        @Steps {    
-            @Step {
-                Import the module `HTMLKitVapor` at the top of the file.
-                
-                @Code(name: "configure.swift", file: "configure-S2.swift", previousFile: "configure-S1.swift")
-            }
-            @Step {
-                Specify the source path of the directory with the message files within.
-                
-                @Code(name: "configure.swift", file: "configure-S3.swift")
-            }
-            @Step {
-                Specify the default language.
-                
-                > Note: _The setting acts as a fallback.
-                
-                @Code(name: "configure.swift", file: "configure-S4.swift")
-            }
-        }
+        This tutorial guides you setting up localization and message files.
     }
     @Section(title: "Create a message file") {
         @ContentAndMedia {
-            Next you have to create a message file, wich contains the the translations strings for the given language.
+            Define translations strings for the given language.
         }
         @Steps {
             @Step {
-                Select `File` > `New` > `File` to create a new Strings file `message.strings`.
+                Create a folder `Localization` to store the strings files.
+            }
+            @Step {
+                Select `File` > `New` > `File` to create a new strings file `message.strings`.
                 
                 @Image(source: "tutorial_create-file.png", alt: "Create file dialog")
             }
@@ -45,28 +24,44 @@
             }
         }
     }
-    @Section(title: "Call the localization") {
+    @Section(title: "Set up the localization") {
         @ContentAndMedia {
-            Lorem ipsum...
+            Add default settings for the localization.
+        }
+        @Steps {    
+            @Step {
+                Import the module `HTMLKitVapor` at the top of `configure.swift`.
+                
+                @Code(name: "configure.swift", file: "configure-S2.swift", previousFile: "configure-S1.swift")
+            }
+            @Step {
+                Specify the path of the directory, where the message files are located.
+                
+                @Code(name: "configure.swift", file: "configure-S3.swift")
+            }
+            @Step {
+                Specify the default language, wich serves as a fallback.
+                
+                > Note: _HTMLKit usually uses the language specification in the response header. If the language is not available, it uses the fallback._
+                
+                @Code(name: "configure.swift", file: "configure-S4.swift")
+            }
+        }
+    }
+    @Section(title: "Prepare your interface") {
+        @ContentAndMedia {
+            Make the text translatable by providing the string key.
         }
         @Steps {
             @Step {
-                Lorem ipsum...
+                Use the initializer to provide the string key to the element.
                 
-                @Code(name: "ExampleView.swift", file: "view-S3.swift")
+                > Note: _HTMLKit uses the string key to retrieve the localized value from the translation table._
+                
+                @Code(name: "ExampleView.swift", file: "view-S4.swift", previousFile: "view-S3.swift")
             }
             @Step {
-                Lorem ipsum...
-                
-                @Code(name: "ExampleView.swift", file: "view-S4.swift")
-            }
-            @Step {
-                Lorem ipsum...
-                
-                @Code(name: "ExampleView.swift", file: "view-S5.swift")
-            }
-            @Step {
-                Select `Editor` > `Run` to build and run the application. Refresh the application in `Safari`.
+                Select `Editor` > `Run` to build and rerun the application. Refresh your browser.
             }
         }
     }

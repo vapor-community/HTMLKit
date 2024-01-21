@@ -12,6 +12,9 @@ struct ZStack : View
 
 ```swift
 ZStack {
+    Text {
+        "Lorem ipsum..."
+    }
 }
 ```
 
