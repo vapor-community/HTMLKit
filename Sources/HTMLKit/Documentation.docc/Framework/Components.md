@@ -4,7 +4,7 @@ Construct UI interfaces using the components.
 
 ## Overview
 
-The components library follows the idea of a design system. It offers you standardized, reusable components imitating the syntax and semantic of SwiftUI. The library also comes with CSS (Cascading Style Sheet) and JS (JavaScript) to help you constructing your vision, without the need to completely rebuild it or furthermore any knowledge in one of these languages.
+The components library follows the idea of a design system. It offers you standardized, reusable components imitating the syntax and semantics of SwiftUI. The library also comes with CSS (Cascading Style Sheet) and JS (JavaScript) to help you construct your vision without the need to completely rebuild it or have any knowledge in one of these languages.
 
 ```swift
 HStack {
@@ -22,8 +22,6 @@ Text {
 }
 .onHover(perfom: .show("navigation"))
 ```
-
-See the article <doc:ComponentsPlugin> before you get started.
 
 
 ## Topics

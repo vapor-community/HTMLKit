@@ -5,12 +5,12 @@ Create and render HTML templates.
 
 ## Overview
 
-The HTMLKit framework consists a list of features to create HTML templates in a type-safe and performant way:
+The HTMLKit framework consists of a list of features to create HTML templates in a type-safe and performant way:
 
 
 - **Declarative syntax** - The declarative syntax helps you write valid HTML markup.
 
-- **Template system** - You can scaffold your written code into various, reusable views to create an entire template.
+- **Template system** - Scaffold your code into various, reusable views to create an entire template.
 
 - **Dynamic context** - Apply context to your template to process content dynamically.
 

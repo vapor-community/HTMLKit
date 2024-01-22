@@ -5,7 +5,7 @@ Embed or extend views to create a layout.
 
 ## Overview
 
-There will be situations, where you would like to use certain views at multiple places in your project and that's where the layout system comes in handy. You can embed the view in another or extend the view to be used for a different view.
+There will be situations, where you would like to use certain views at multiple places in your project, and that is where the layout system comes in handy. You can embed the view in another or extend the view to be used for a different view.
 
 ### Embed a view
 

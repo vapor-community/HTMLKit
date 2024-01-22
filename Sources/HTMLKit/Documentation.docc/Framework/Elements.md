@@ -4,9 +4,9 @@ Write HTML markup using the abstraction.
 
 ## Overview
 
-The elements in HTMLKit are an abstraction of the elements in HTML (Hyper Text Markup Language). If you have written HTML before, then you know, there are elements with or without an endtag. 
+The elements in HTMLKit are an abstraction of the elements in HTML (Hyper Text Markup Language). If you have written HTML before, then you know there are elements with or without an end tag.
 
-An element with an endtag, will be represented in HTMLKit as an element with curly brackets, while an element without, will be represented with the round brackets.
+An element with an end tag will be represented in HTMLKit as an element with curly brackets, while an element without an end tag will be represented with round brackets.
 
 ```swift
 /// element with content
@@ -27,7 +27,7 @@ Input()
     .class("input")
 ```
 
-To prevent writing invalid code, each element in HTMLKit owns an element limitation. For example the element *Heading1* is a type of *BodyElement*, so it is only valid as descendant of a body element.
+To prevent writing invalid code, each element in HTMLKit owns an element limitation. For example, the element *Heading1* is a type of *BodyElement*, so it is only valid as a descendant of a body element.
 
 ```swift
 public struct Heading1: ContentNode, BodyElement {
