@@ -19,7 +19,7 @@ The HTMLKit framework consists of a list of features to create HTML templates in
 - **Declarative syntax** - The declarative syntax helps you write valid HTML markup.
 - **Template system** - Scaffold your code into various, reusable views to create an entire template.
 - **Dynamic context** - Apply context to your template to process content dynamically.
-- **Language localization** - Specify the parts of the template that should be translated or formatted for local languages and cultures.
+- **Language localization** - Specify the parts that should be translated or formatted for local languages and cultures.
 - **UI components** - Construct user interfaces with the components library.
 - **Symbol bundle** - Use the symbols which come within the framework.
 
