@@ -29,11 +29,11 @@
     --fontWeight: 400;
     --lineHeight: 1.5;
     --borderWidth: 1px;
-    --borderColor: 210, 9%, 31%;
+    --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
     --borderOpacity: 1.0;
-    --foregroundColor: 0, 0%, 100%;
-    --backgroundColor: 210, 11%, 15%;
+    --foregroundColor: var(--systemTextColor);
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
     position: relative;
@@ -68,21 +68,15 @@
 }
 
 .button.style\:primary {
-    --foregroundColor: var(--whiteColor);
-    --backgroundColor: var(--accentColor);
-    --borderColor: var(--accentColor);
-}
-
-.button.style\:secondary {
-    --foregroundColor: var(--whiteColor);
-    --backgroundColor: var(--secondaryColor);
-    --borderColor: var(--secondaryColor);
+    --foregroundColor: var(--whiteColor) !important;
+    --backgroundColor: var(--accentColor) !important;
+    --borderColor: var(--accentColor) !important;
 }
 
 .button.style\:outline {
-    --foregroundColor: var(--secondaryColor);
-    --backgroundOpacity: 0.0;
-    --borderColor: var(--secondaryColor);
+    --foregroundColor: var(--systemTextColor) !important;
+    --backgroundOpacity: 0.0 !important;
+    --borderColor: var(--systemBorderColor) !important;
 }
 
 .button.size\:full {
@@ -102,11 +96,5 @@
 }
 
 .button > .symbol {
-    height: 24px;
-}
-
-.scheme\:dark .button, .button.scheme\:dark  {
-    --foregroundColor: 0, 0%, 100%;
-    --borderColor: 210, 9%, 31%;
-    --backgroundColor: 210, 11%, 15%;
+    height: 24px; /* temporary fix */
 }

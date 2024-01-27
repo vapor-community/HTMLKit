@@ -936,8 +936,6 @@ public enum Tokens {
         /// Changes the button appearance to the primary style.
         case primary
         /// Changes the button appearance to the seconary style.
-        case secondary
-        /// Changes the button appearance to outline.
         case outline
         /// Changes the button to a custom appearance.
         case custom(String)
@@ -947,9 +945,6 @@ public enum Tokens {
             switch self {
             case .primary:
                 return "primary"
-                
-            case .secondary:
-                return "secondary"
                 
             case .outline:
                 return "outline"
