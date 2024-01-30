@@ -5,21 +5,21 @@
     @Chapter(name: "Start with HTMLKit") {
         Learn how to setup a Swift package and create your ever first view.
         
-        @Image(source: "thumbnail-C1.png", alt: "Curly brackets with text inbetween")
+        @Image(source: "thumbnail_chapter_one.png", alt: "Curly brackets with text inbetween")
         
         @TutorialReference(tutorial: "doc:Start-with-Htmlkit")
     }
     @Chapter(name: "Localize with HTMLKit") {
         Discover how to configure localization and enhance the accessibility of your web page.
         
-        @Image(source: "thumbnail-C2.png", alt: "Curly brackets with i18n annotation")
+        @Image(source: "thumbnail_chapter_two.png", alt: "Curly brackets with i18n annotation")
         
         @TutorialReference(tutorial: "doc:Localize-with-Htmlkit")
     }
     @Chapter(name: "Design with HTMLKit") {
         Use UI components and make your design process more easy.
         
-        @Image(source: "thumbnail-C3.png", alt: "Curly brackets with bold annotation")
+        @Image(source: "thumbnail_chapter_three.png", alt: "Curly brackets with bold annotation")
         
         @TutorialReference(tutorial: "doc:Design-with-Htmlkit")
     }

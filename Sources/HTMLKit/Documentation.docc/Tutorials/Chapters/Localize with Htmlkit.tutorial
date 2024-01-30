@@ -12,8 +12,6 @@
             }
             @Step {
                 Select `File` > `New` > `File` to create a new strings file `message.strings`.
-                
-                @Image(source: "tutorial_create-file.png", alt: "Create file dialog")
             }
             @Step {
                 Add a string.

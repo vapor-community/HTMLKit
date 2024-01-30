@@ -53,6 +53,7 @@ Text {
 - <doc:Card>
 - <doc:List>
 - <doc:Grid>
+- <doc:Scroll>
 
 ### Text components
 

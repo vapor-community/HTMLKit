@@ -12,10 +12,8 @@ struct List : View
 
 ```swift
 List(direction: .vertical) {
-    ListRow {
-        Text {
-            "Lorem ipsum..."
-        }
+    Text {
+        "Lorem ipsum..."
     }
 }
 ```

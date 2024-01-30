@@ -25,7 +25,12 @@
                 @Code(name: "shell.swift", file: "shell-S2.swift", reset: true)
             }
             @Step {
-                Set the working directory in the Xcode scheme for your project.
+                Select `Product` > `Scheme` > `Edit Scheme` to set the working directory for your project.
+            }
+            @Step {
+                Check the working directory on the `Options` tab and enter the path to the root folder of your project.
+                
+                @Image(source: "tutorial_edit_scheme.png", alt: "Edit product scheme")
             }
         }
     }

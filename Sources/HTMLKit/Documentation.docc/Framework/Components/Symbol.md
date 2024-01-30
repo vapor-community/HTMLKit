@@ -11,5 +11,5 @@ struct Symbol : View
 ## Overview
 
 ```swift
-Symbol(system: "house")
+Symbol(system: .house)
 ```

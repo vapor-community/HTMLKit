@@ -12,8 +12,6 @@ struct Grid : View
 
 ```swift
 Grid(ratio: .half) {
-    GridItem {
-        Image(source: "../assets/thumbnail.png")
-    }
+    Image(source: "../assets/thumbnail.png")
 }
 ```

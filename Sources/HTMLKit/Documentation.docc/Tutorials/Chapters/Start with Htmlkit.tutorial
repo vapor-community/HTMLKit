@@ -89,8 +89,6 @@
         @Steps {
             @Step {
                 Select `File` > `New` > `File` to create a new Swift file `ExampleView`.
-                
-                @Image(source: "tutorial_create-file.png", alt: "Create file dialog")
             }
             @Step {
                 Import the module `HTMLKit` at the top of the file.
