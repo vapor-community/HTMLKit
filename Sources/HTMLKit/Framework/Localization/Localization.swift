@@ -1,6 +1,7 @@
 import Foundation
 
 /// A type that represents the localization
+@_documentation(visibility: internal)
 public class Localization {
     
     /// A enumeration of various errors

@@ -1,4 +1,5 @@
 /// A type that represents a locale
+@_documentation(visibility: internal)
 public struct Locale: Hashable {
     
     /// A enumeration of possible tags

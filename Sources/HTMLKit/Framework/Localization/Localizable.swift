@@ -4,6 +4,7 @@
  */
 
 /// The protocol defines
+@_documentation(visibility: internal)
 public protocol Localizable {
     
     init(_ localizedKey: String, tableName: String?, interpolation: Any...)

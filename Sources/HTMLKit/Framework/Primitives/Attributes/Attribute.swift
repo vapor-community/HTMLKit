@@ -8,6 +8,7 @@ import OrderedCollections
 /// A type that represents any html-attribute.
 ///
 /// A attribute is a modifier of a html-element.
+@_documentation(visibility: internal)
 public protocol Attribute {
     
     /// The func adds

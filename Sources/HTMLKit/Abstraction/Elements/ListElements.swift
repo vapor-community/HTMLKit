@@ -15,6 +15,7 @@ import OrderedCollections
 /// ```html
 /// <li></li>
 /// ```
+@_documentation(visibility: internal)
 public typealias Li = ListItem
 
 /// The element represents a item of a list.

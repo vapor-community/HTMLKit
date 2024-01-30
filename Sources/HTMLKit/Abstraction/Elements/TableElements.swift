@@ -15,6 +15,7 @@ import OrderedCollections
 /// ```html
 /// <colgroup></colgroup>
 /// ```
+@_documentation(visibility: internal)
 public typealias Colgroup = ColumnGroup
 
 /// The alias for the element Column.
@@ -24,6 +25,7 @@ public typealias Colgroup = ColumnGroup
 /// ```html
 /// <col></col>
 /// ```
+@_documentation(visibility: internal)
 public typealias Col = Column
 
 /// The alias for the element TableBody.
@@ -33,6 +35,7 @@ public typealias Col = Column
 /// ```html
 /// <tbody></tbody>
 /// ```
+@_documentation(visibility: internal)
 public typealias Tbody = TableBody
 
 /// The alias for the element TableHead.
@@ -42,6 +45,7 @@ public typealias Tbody = TableBody
 /// ```html
 /// <thead></thead>
 /// ```
+@_documentation(visibility: internal)
 public typealias Thead = TableHead
 
 /// The alias for the element TableFoot.
@@ -51,6 +55,7 @@ public typealias Thead = TableHead
 /// ```html
 /// <tfoot></tfoot>
 /// ```
+@_documentation(visibility: internal)
 public typealias Tfoot = TableFoot
 
 /// The alias for the element TableRow.
@@ -60,6 +65,7 @@ public typealias Tfoot = TableFoot
 /// ```html
 /// <tr></tr>
 /// ```
+@_documentation(visibility: internal)
 public typealias Tr = TableRow
 
 /// The alias for the element DataCell.
@@ -69,6 +75,7 @@ public typealias Tr = TableRow
 /// ```html
 /// <td></td>
 /// ```
+@_documentation(visibility: internal)
 public typealias Td = DataCell
 
 /// The alias for the element HeaderCell.
@@ -78,6 +85,7 @@ public typealias Td = DataCell
 /// ```html
 /// <th></th>
 /// ```
+@_documentation(visibility: internal)
 public typealias Th = HeaderCell
 
 /// The element represents the title of the table.

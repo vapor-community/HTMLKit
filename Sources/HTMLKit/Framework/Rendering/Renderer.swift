@@ -7,6 +7,7 @@ import Foundation
 import OrderedCollections
 
 /// A struct containing the different formulas for the different views.
+@_documentation(visibility: internal)
 public class Renderer {
 
     /// A enumeration  of possible render errors

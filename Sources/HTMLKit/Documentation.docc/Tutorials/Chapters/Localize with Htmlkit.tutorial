@@ -1,0 +1,66 @@
+@Tutorial(time: 30) {
+    @Intro(title: "Localize with HTMLKit") {
+        This tutorial guides you setting up localization and message files.
+    }
+    @Section(title: "Create a message file") {
+        @ContentAndMedia {
+            Define translations strings for the given language.
+        }
+        @Steps {
+            @Step {
+                Create a folder `Localization` to store the strings files.
+            }
+            @Step {
+                Select `File` > `New` > `File` to create a new strings file `message.strings`.
+            }
+            @Step {
+                Add a string.
+                
+                > Note: _The key and value in a given pair are strings of text enclosed in double quotation marks and separated by an equal sign._
+                
+                @Code(name: "message.strings", file: "message-S3.swift", previousFile: "message-S2.swift")
+            }
+        }
+    }
+    @Section(title: "Set up the localization") {
+        @ContentAndMedia {
+            Add default settings for the localization.
+        }
+        @Steps {    
+            @Step {
+                Import the module `HTMLKitVapor` at the top of `configure.swift`.
+                
+                @Code(name: "configure.swift", file: "configure-S2.swift", previousFile: "configure-S1.swift")
+            }
+            @Step {
+                Specify the path of the directory, where the message files are located.
+                
+                @Code(name: "configure.swift", file: "configure-S3.swift")
+            }
+            @Step {
+                Specify the default language, wich serves as a fallback.
+                
+                > Note: _HTMLKit usually uses the language specification in the response header. If the language is not available, it uses the fallback._
+                
+                @Code(name: "configure.swift", file: "configure-S4.swift")
+            }
+        }
+    }
+    @Section(title: "Prepare your interface") {
+        @ContentAndMedia {
+            Make the text translatable by providing the string key.
+        }
+        @Steps {
+            @Step {
+                Use the initializer to provide the string key to the element.
+                
+                > Note: _HTMLKit uses the string key to retrieve the localized value from the translation table._
+                
+                @Code(name: "ExampleView.swift", file: "view-S4.swift", previousFile: "view-S3.swift")
+            }
+            @Step {
+                Select `Editor` > `Run` to build and rerun the application. Refresh your browser.
+            }
+        }
+    }
+}

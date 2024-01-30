@@ -15,6 +15,7 @@ import OrderedCollections
 /// ```html
 /// <optgroup></optgroup>
 /// ```
+@_documentation(visibility: internal)
 public typealias Optgroup = OptionGroup
 
 /// The element represents a group of options.

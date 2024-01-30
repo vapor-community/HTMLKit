@@ -15,6 +15,7 @@ import OrderedCollections
 /// ```html
 /// <param>
 /// ```
+@_documentation(visibility: internal)
 public typealias Param = Parameter
 
 /// The element defines parameters for plugins invoked by an object element.

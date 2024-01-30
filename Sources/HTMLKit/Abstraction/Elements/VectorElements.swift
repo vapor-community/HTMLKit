@@ -15,6 +15,7 @@ import OrderedCollections
 /// ```html
 /// <rect></rect>
 /// ```
+@_documentation(visibility: internal)
 public typealias Rect = Rectangle
 
 /// The element represents a svg basic shape, used to draw circles.

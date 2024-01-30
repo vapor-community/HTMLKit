@@ -1,6 +1,7 @@
 import Foundation
 
 /// A type that represents a translation table
+@_documentation(visibility: internal)
 public class TranslationTable {
     
     /// The name of the table

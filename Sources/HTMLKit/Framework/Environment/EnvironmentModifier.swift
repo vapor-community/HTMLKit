@@ -4,6 +4,7 @@
  */
 
 /// A type that contains the value and the following content, after modifing the environment.
+@_documentation(visibility: internal)
 public struct EnvironmentModifier: Content {
 
     /// The environment key

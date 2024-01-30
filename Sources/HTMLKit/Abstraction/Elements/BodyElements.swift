@@ -15,6 +15,7 @@ import OrderedCollections
 /// ```html
 /// <nav></nav>
 /// ```
+@_documentation(visibility: internal)
 public typealias Nav = Navigation
 
 /// The alias for the element Heading1.
@@ -24,6 +25,7 @@ public typealias Nav = Navigation
 /// ```html
 /// <h1></h1>
 /// ```
+@_documentation(visibility: internal)
 public typealias H1 = Heading1
 
 /// The alias for the element Heading2.
@@ -33,6 +35,7 @@ public typealias H1 = Heading1
 /// ```html
 /// <h2></h2>
 /// ```
+@_documentation(visibility: internal)
 public typealias H2 = Heading2
 
 /// The alias for the element Heading3.
@@ -42,6 +45,7 @@ public typealias H2 = Heading2
 /// ```html
 /// <h3></h3>
 /// ```
+@_documentation(visibility: internal)
 public typealias H3 = Heading3
 
 /// The alias for the element Heading4.
@@ -51,6 +55,7 @@ public typealias H3 = Heading3
 /// ```html
 /// <h4></h4>
 /// ```
+@_documentation(visibility: internal)
 public typealias H4 = Heading4
 
 /// The alias for the element Heading5.
@@ -60,6 +65,7 @@ public typealias H4 = Heading4
 /// ```html
 /// <h5></h5>
 /// ```
+@_documentation(visibility: internal)
 public typealias H5 = Heading5
 
 /// The alias for the element Heading6.
@@ -69,6 +75,7 @@ public typealias H5 = Heading5
 /// ```html
 /// <h6></h6>
 /// ```
+@_documentation(visibility: internal)
 public typealias H6 = Heading6
 
 /// The alias for the element HeadingGroup.
@@ -78,6 +85,7 @@ public typealias H6 = Heading6
 /// ```html
 /// <hgroup></hgroup>
 /// ```
+@_documentation(visibility: internal)
 public typealias Hgroup = HeadingGroup
 
 /// The alias for the element Paragraph.
@@ -87,6 +95,7 @@ public typealias Hgroup = HeadingGroup
 /// ```html
 /// <p></p>
 /// ```
+@_documentation(visibility: internal)
 public typealias P = Paragraph
 
 /// The alias for the element HorizontalRule.
@@ -96,6 +105,7 @@ public typealias P = Paragraph
 /// ```html
 /// <hr>
 /// ```
+@_documentation(visibility: internal)
 public typealias Hr = HorizontalRule
 
 /// The alias for the element PreformattedText.
@@ -105,6 +115,7 @@ public typealias Hr = HorizontalRule
 /// ```html
 /// <pre></pre>
 /// ```
+@_documentation(visibility: internal)
 public typealias Pre = PreformattedText
 
 /// The alias for the element OrderedList.
@@ -114,6 +125,7 @@ public typealias Pre = PreformattedText
 /// ```html
 /// <ol></ol>
 /// ```
+@_documentation(visibility: internal)
 public typealias Ol = OrderedList
 
 /// The alias for the element UnorderedList.
@@ -123,6 +135,7 @@ public typealias Ol = OrderedList
 /// ```html
 /// <ul></ul>
 /// ```
+@_documentation(visibility: internal)
 public typealias Ul = UnorderedList
 
 /// The alias for the element DescriptionList.
@@ -132,6 +145,7 @@ public typealias Ul = UnorderedList
 /// ```html
 /// <dl></dl>
 /// ```
+@_documentation(visibility: internal)
 public typealias Dl = DescriptionList
 
 /// The alias for the element Division.
@@ -141,6 +155,7 @@ public typealias Dl = DescriptionList
 /// ```html
 /// <div></div>
 /// ```
+@_documentation(visibility: internal)
 public typealias Div = Division
 
 /// The alias for the element Anchor.
@@ -150,6 +165,7 @@ public typealias Div = Division
 /// ```html
 /// <a></a>
 /// ```
+@_documentation(visibility: internal)
 public typealias A = Anchor
 
 /// The alias for the element Emphasize.
@@ -159,6 +175,7 @@ public typealias A = Anchor
 /// ```html
 /// <em></em>
 /// ```
+@_documentation(visibility: internal)
 public typealias Em = Emphasize
 
 /// The alias for the element StrikeThrough.
@@ -168,6 +185,7 @@ public typealias Em = Emphasize
 /// ```html
 /// <s></s>
 /// ```
+@_documentation(visibility: internal)
 public typealias S = StrikeThrough
 
 /// The alias for the element ShortQuote.
@@ -177,6 +195,7 @@ public typealias S = StrikeThrough
 /// ```html
 /// <q></q>
 /// ```
+@_documentation(visibility: internal)
 public typealias Q = ShortQuote
 
 /// The alias for the element Definition.
@@ -186,6 +205,7 @@ public typealias Q = ShortQuote
 /// ```html
 /// <dfn></dfn>
 /// ```
+@_documentation(visibility: internal)
 public typealias Dfn = Definition
 
 /// The alias for the element Abbreviation.
@@ -195,6 +215,7 @@ public typealias Dfn = Definition
 /// ```html
 /// <abbr></abbr>
 /// ```
+@_documentation(visibility: internal)
 public typealias Abbr = Abbreviation
 
 /// The alias for the element Variable.
@@ -204,6 +225,7 @@ public typealias Abbr = Abbreviation
 /// ```html
 /// <v></v>
 /// ```
+@_documentation(visibility: internal)
 public typealias V = Variable
 
 /// The alias for the element SampleOutput.
@@ -213,6 +235,7 @@ public typealias V = Variable
 /// ```html
 /// <samp></samp>
 /// ```
+@_documentation(visibility: internal)
 public typealias Samp = SampleOutput
 
 /// The alias for the element KeyboardInput.
@@ -222,6 +245,7 @@ public typealias Samp = SampleOutput
 /// ```html
 /// <kdb></kdb>
 /// ```
+@_documentation(visibility: internal)
 public typealias Kbd = KeyboardInput
 
 /// The alias for the element Subscript.
@@ -231,6 +255,7 @@ public typealias Kbd = KeyboardInput
 /// ```html
 /// <sub></sub>
 /// ```
+@_documentation(visibility: internal)
 public typealias Sub = Subscript
 
 /// The alias for the element Superscript.
@@ -240,6 +265,7 @@ public typealias Sub = Subscript
 /// ```html
 /// <sup></sup>
 /// ```
+@_documentation(visibility: internal)
 public typealias Sup = Superscript
 
 /// The alias for the element Italic.
@@ -249,6 +275,7 @@ public typealias Sup = Superscript
 /// ```html
 /// <i></i>
 /// ```
+@_documentation(visibility: internal)
 public typealias I = Italic
 
 /// The alias for the element Bold.
@@ -258,6 +285,7 @@ public typealias I = Italic
 /// ```html
 /// <b></b>
 /// ```
+@_documentation(visibility: internal)
 public typealias B = Bold
 
 /// The alias for the element Underline.
@@ -267,6 +295,7 @@ public typealias B = Bold
 /// ```html
 /// <u></u>
 /// ```
+@_documentation(visibility: internal)
 public typealias U = Underline
 
 /// The alias for the element LineBreak.
@@ -276,6 +305,7 @@ public typealias U = Underline
 /// ```html
 /// <br>
 /// ```
+@_documentation(visibility: internal)
 public typealias Br = LineBreak
 
 /// The alias for the element WordBreak.
@@ -285,6 +315,7 @@ public typealias Br = LineBreak
 /// ```html
 /// <wbr>
 /// ```
+@_documentation(visibility: internal)
 public typealias Wbr = WordBreak
 
 /// The alias for the element InsertedText.
@@ -294,6 +325,7 @@ public typealias Wbr = WordBreak
 /// ```html
 /// <ins></ins>
 /// ```
+@_documentation(visibility: internal)
 public typealias Ins = InsertedText
 
 /// The alias for the element DeletedText.
@@ -303,6 +335,7 @@ public typealias Ins = InsertedText
 /// ```html
 /// <del></del>
 /// ```
+@_documentation(visibility: internal)
 public typealias Del = DeletedText
 
 /// The alias for the element Image.
@@ -312,6 +345,7 @@ public typealias Del = DeletedText
 /// ```html
 /// <img>
 /// ```
+@_documentation(visibility: internal)
 public typealias Img = Image
 
 /// The alias for the element InlineFrame.
@@ -321,6 +355,7 @@ public typealias Img = Image
 /// ```html
 /// <iframe></iframe>
 /// ```
+@_documentation(visibility: internal)
 public typealias Iframe = InlineFrame
 
 /// The alias for the element Vector.
@@ -330,6 +365,7 @@ public typealias Iframe = InlineFrame
 /// ```html
 /// <svg></svg>
 /// ```
+@_documentation(visibility: internal)
 public typealias Svg = Vector
 
 /// The element represents a self-contained content.
