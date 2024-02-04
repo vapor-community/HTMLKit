@@ -45,6 +45,8 @@ public class Renderer {
     private var localization: Localization?
     
     private var security: Security
+    
+    private var markdown: Markdown
 
     /// Initiates the renderer.
     public init(localization: Localization? = nil) {
@@ -52,6 +54,7 @@ public class Renderer {
         self.localization = localization
         self.environment = Environment()
         self.security = Security()
+        self.markdown = Markdown()
     }
     
     /// Initiates the renderer.
@@ -60,6 +63,7 @@ public class Renderer {
         self.localization = localization
         self.environment = Environment()
         self.security = security
+        self.markdown = Markdown()
     }
     
     /// Initiates the renderer.
@@ -68,6 +72,7 @@ public class Renderer {
         self.localization = localization
         self.environment = environment
         self.security = security
+        self.markdown = Markdown()
     }
     
     /// Renders a view
@@ -129,7 +134,7 @@ public class Renderer {
             }
             
             if let element = content as? String {
-                result += escape(content: (element))
+                result += try render(markdown: escape(content: (element)))
             }
         }
         
@@ -194,7 +199,7 @@ public class Renderer {
                 }
                 
                 if let element = content as? String {
-                    result += escape(content: element)
+                    result += try render(markdown: escape(content: element))
                 }
             }
         }
@@ -302,7 +307,7 @@ public class Renderer {
                 }
                 
                 if let element = content as? String {
-                    result += escape(content: element)
+                    result += try render(markdown: escape(content: element))
                 }
             }
         }
@@ -419,6 +424,18 @@ public class Renderer {
         }
         
         return result
+    }
+    
+    /// Renders the markdown content
+    internal func render(markdown: String) throws -> String {
+        
+        self.markdown.consume(string: markdown)
+        
+        let output = self.markdown.render()
+        
+        self.markdown.reset()
+        
+        return output
     }
     
     /// Converts specific charaters into encoded values.

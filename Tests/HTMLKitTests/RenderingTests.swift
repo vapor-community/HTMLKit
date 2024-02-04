@@ -231,4 +231,127 @@ final class RenderingTests: XCTestCase {
                        """
         )
     }
+    
+    func testRenderingItalicMarkdown() throws {
+        
+        let view = TestView {
+            Paragraph {
+                "*italic*"
+            }
+            Paragraph {
+                "_italic_"
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><em>italic</em></p>\
+                       <p><em>italic</em></p>
+                       """
+        )
+    }
+    
+    func testRenderingBoldMarkdown() throws {
+        
+        let view = TestView {
+            Paragraph {
+                "**bold**"
+            }
+            Paragraph {
+                "__bold__"
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><strong>bold</strong></p>\
+                       <p><strong>bold</strong></p>
+                       """
+        )
+    }
+    
+    func testRenderingBoldItalicMarkdown() throws {
+        
+        let view = TestView {
+            Paragraph {
+                "***bold and italic***"
+            }
+            Paragraph {
+                "___bold and italic___"
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><em><strong>bold and italic</strong></em></p>\
+                       <p><em><strong>bold and italic</strong></em></p>
+                       """
+        )
+    }
+    
+    func testRenderingMonospaceMarkdown() throws {
+        
+        let view = TestView {
+            Paragraph {
+                "`code`"
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><code>code</code></p>
+                       """
+        )
+    }
+    
+    func testRenderingStrikeThroughMarkdown() throws {
+        
+        let view = TestView {
+            Paragraph {
+                "~strikethrough~"
+            }
+            Paragraph {
+                "~~strikethrough~~"
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><del>strikethrough</del></p>\
+                       <p><del>strikethrough</del></p>
+                       """
+        )
+    }
+    
+    func testRenderingLinkMarkdown() throws {
+        
+        let view = TestView {
+            Paragraph {
+                "[Link](https://www.google.de)"
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><a href="https://www.google.de">Link</a></p>
+                       """
+        )
+    }
+    
+    func testRenderingMarkdownParagraph() throws {
+        
+        let view = TestView {
+            Paragraph {
+                """
+                This is *italic* text with a **bold** follow.
+                """
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p>This is <em>italic</em> text with a <strong>bold</strong> follow.</p>
+                       """
+        )
+    }
 }
