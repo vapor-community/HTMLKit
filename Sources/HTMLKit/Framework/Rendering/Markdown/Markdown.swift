@@ -1,4 +1,8 @@
+import Foundation
+
 internal class Markdown {
+    
+    internal static let characters = CharacterSet(charactersIn: "*_~[`")
     
     /// A enumeration of different states of the tokenizer
     ///

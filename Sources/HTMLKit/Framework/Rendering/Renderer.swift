@@ -138,16 +138,18 @@ public class Renderer {
                 result += escape(content: try render(value: value))
             }
             
-            if let element = content as? String {
-                
-                let escaped = escape(content: (element))
+            if let string = content as? MarkdownString {
                 
                 if !features.contains(.markdown) {
-                    result += escaped
+                    result += string.string
                     
                 } else {
-                    result += try render(markdown: escaped)
+                    result += try render(markdown: string)
                 }
+            }
+            
+            if let element = content as? String {
+                result += escape(content: element)
             }
         }
         
@@ -211,16 +213,18 @@ public class Renderer {
                     result += escape(content: try render(value: value))
                 }
                 
-                if let element = content as? String {
-                    
-                    let escaped = escape(content: element)
+                if let string = content as? MarkdownString {
                     
                     if !features.contains(.markdown) {
-                        result += escaped
+                        result += string.string
                         
                     } else {
-                        result += try render(markdown: escaped)
+                        result += try render(markdown: string)
                     }
+                }
+                
+                if let element = content as? String {
+                    result += escape(content: element)
                 }
             }
         }
@@ -327,16 +331,18 @@ public class Renderer {
                     result += escape(content: try render(value: value))
                 }
                 
-                if let element = content as? String {
-                    
-                    let escaped = escape(content: element)
+                if let string = content as? MarkdownString {
                     
                     if !features.contains(.markdown) {
-                        result += escaped
+                        result += string.string
                         
                     } else {
-                        result += try render(markdown: escaped)
+                        result += try render(markdown: string)
                     }
+                }
+                
+                if let element = content as? String {
+                    result += escape(content: element)
                 }
             }
         }
@@ -456,9 +462,11 @@ public class Renderer {
     }
     
     /// Renders the markdown content
-    internal func render(markdown: String) throws -> String {
+    internal func render(markdown: MarkdownString) throws -> String {
         
-        self.markdown.consume(string: markdown)
+        let espaced = markdown.string
+        
+        self.markdown.consume(string: espaced)
         
         let result = self.markdown.render()
         

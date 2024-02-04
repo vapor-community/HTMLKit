@@ -4207,6 +4207,19 @@ public struct Paragraph: ContentNode, HtmlElement, BodyElement, FormElement, Fig
         self.content = content()
     }
     
+    public init(@ContentBuilder<String> content: () -> [String]) {
+        
+        self.content = content().map { item in
+            
+            if item.rangeOfCharacter(from: Markdown.characters) != nil {
+                return MarkdownString(string: item)
+                
+            } else {
+                return item
+            }
+        }
+    }
+    
     internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
