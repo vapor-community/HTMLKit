@@ -234,6 +234,8 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingItalicMarkdown() throws {
         
+        renderer.features = [.markdown]
+        
         let view = TestView {
             Paragraph {
                 "*italic*"
@@ -252,6 +254,8 @@ final class RenderingTests: XCTestCase {
     }
     
     func testRenderingBoldMarkdown() throws {
+        
+        renderer.features = [.markdown]
         
         let view = TestView {
             Paragraph {
@@ -272,6 +276,8 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingBoldItalicMarkdown() throws {
         
+        renderer.features = [.markdown]
+        
         let view = TestView {
             Paragraph {
                 "***bold and italic***"
@@ -291,6 +297,8 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingMonospaceMarkdown() throws {
         
+        renderer.features = [.markdown]
+        
         let view = TestView {
             Paragraph {
                 "`code`"
@@ -305,6 +313,8 @@ final class RenderingTests: XCTestCase {
     }
     
     func testRenderingStrikeThroughMarkdown() throws {
+        
+        renderer.features = [.markdown]
         
         let view = TestView {
             Paragraph {
@@ -325,6 +335,8 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingLinkMarkdown() throws {
         
+        renderer.features = [.markdown]
+        
         let view = TestView {
             Paragraph {
                 "[Link](https://www.google.de)"
@@ -339,6 +351,8 @@ final class RenderingTests: XCTestCase {
     }
     
     func testRenderingMarkdownParagraph() throws {
+        
+        renderer.features = [.markdown]
         
         let view = TestView {
             Paragraph {

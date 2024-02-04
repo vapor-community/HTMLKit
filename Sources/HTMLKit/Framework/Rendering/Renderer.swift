@@ -47,6 +47,8 @@ public class Renderer {
     private var security: Security
     
     private var markdown: Markdown
+    
+    public var features: FeatureSet
 
     /// Initiates the renderer.
     public init(localization: Localization? = nil) {
@@ -55,6 +57,7 @@ public class Renderer {
         self.environment = Environment()
         self.security = Security()
         self.markdown = Markdown()
+        self.features = []
     }
     
     /// Initiates the renderer.
@@ -64,6 +67,7 @@ public class Renderer {
         self.environment = Environment()
         self.security = security
         self.markdown = Markdown()
+        self.features = []
     }
     
     /// Initiates the renderer.
@@ -73,6 +77,7 @@ public class Renderer {
         self.environment = environment
         self.security = security
         self.markdown = Markdown()
+        self.features = []
     }
     
     /// Renders a view
@@ -134,7 +139,15 @@ public class Renderer {
             }
             
             if let element = content as? String {
-                result += try render(markdown: escape(content: (element)))
+                
+                let escaped = escape(content: (element))
+                
+                if !features.contains(.markdown) {
+                    result += escaped
+                    
+                } else {
+                    result += try render(markdown: escaped)
+                }
             }
         }
         
@@ -199,7 +212,15 @@ public class Renderer {
                 }
                 
                 if let element = content as? String {
-                    result += try render(markdown: escape(content: element))
+                    
+                    let escaped = escape(content: element)
+                    
+                    if !features.contains(.markdown) {
+                        result += escaped
+                        
+                    } else {
+                        result += try render(markdown: escaped)
+                    }
                 }
             }
         }
@@ -307,7 +328,15 @@ public class Renderer {
                 }
                 
                 if let element = content as? String {
-                    result += try render(markdown: escape(content: element))
+                    
+                    let escaped = escape(content: element)
+                    
+                    if !features.contains(.markdown) {
+                        result += escaped
+                        
+                    } else {
+                        result += try render(markdown: escaped)
+                    }
                 }
             }
         }
@@ -431,11 +460,11 @@ public class Renderer {
         
         self.markdown.consume(string: markdown)
         
-        let output = self.markdown.render()
+        let result = self.markdown.render()
         
         self.markdown.reset()
         
-        return output
+        return result
     }
     
     /// Converts specific charaters into encoded values.
