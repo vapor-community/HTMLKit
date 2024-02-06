@@ -27,10 +27,13 @@ internal class Markdown {
         case debug
     }
     
-    /// The  state of the tokenizer
+    /// The  current state of the tokenizer
     private var mode: InsertionMode
     
-    /// The tree with the tokens
+    /// The tree representation of the markdown
+    private var tree: [Token]
+    
+    /// The temporary token collection
     private var tokens: [Token]
     
     /// The level of logging
@@ -42,6 +45,7 @@ internal class Markdown {
         self.mode = .initial
         self.level = level
         self.tokens = []
+        self.tree = []
     }
     
     /// Verboses the steps of the tokenizer depending on the log level
@@ -72,7 +76,7 @@ internal class Markdown {
         }
     }
     
-    /// Pops the last token into the penultimate token
+    /// Pops the last token into the parent token
     private func pop() {
         
         self.verbose(function: #function)
@@ -81,24 +85,67 @@ internal class Markdown {
         
         if let penultimate = self.tokens.last {
             
-            if var block = penultimate as? BlockToken {
-                block.add(child: last)
+            if last.value != penultimate.value {
+                
+                if var block = penultimate as? BlockToken {
+                    
+                    // Value is uneven. Pop it as child...
+                    block.add(child: last)
+                    
+                } else {
+                    // Put it back...
+                    self.tokens.append(last)
+                }
                 
             } else {
-                // Put it back...
-                self.tokens.append(last)
+                
+                // Value is even. Add the token as child and then emit it...
+                if var block = penultimate as? BlockToken {
+                    block.add(child: last)
+                    
+                }  else {
+                    // Put it back...
+                    self.tokens.append(last)
+                }
+                
+                let last = self.tokens.removeLast()
+                
+                // If there is a parent left...
+                if let penultimate = self.tokens.last {
+                    
+                    // Add it as child...
+                    if var block = penultimate as? BlockToken {
+                        block.add(child: last)
+                        
+                    }  else {
+                        // Put it back...
+                        self.tokens.append(last)
+                    }
+                    
+                } else {
+                    // Otherhwise, add it to the tree...
+                    self.tree.append(last)
+                }
             }
             
         } else {
-            // Put it back...
-            self.tokens.insert(last, at: 0)
+            // The token seems to be the first one. Emit it...
+            self.tree.append(last)
         }
+    }
+    
+    /// Emits a token into the token collection
+    private func emit(token: Token) {
+        
+        self.verbose(function: #function)
+        
+        self.tokens.append(token)
     }
     
     /// Consumes the content by the state the tokenizer is currently in
     internal func consume(string: String) {
         
-        for character in string {
+        for (index, character) in string.enumerated() {
             
             switch mode {
             case .asteriskEmphisis:
@@ -122,21 +169,27 @@ internal class Markdown {
             default:
                 self.mode = consumeCharacter(character)
             }
+            
+            if index == (string.count - 1) {
+                // Its the end of the line. Pop it...
+                self.pop()
+            }
         }
     }
     
     /// Transforms the token tree in its HTML representation
     internal func render() -> String {
         
-        var output = ""
-        output += self.tokens.flatMap { $0.render() }
+        var result = ""
+        result += self.tree.flatMap { $0.render() }
         
-        return output
+        return result
     }
     
+    /// Resets the token tree and the tokenizer state
     internal func reset() {
         
-        self.tokens.removeAll()
+        self.tree.removeAll()
         
         self.mode = .initial
     }
@@ -151,7 +204,7 @@ internal class Markdown {
             let token = CodeToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .code
         }
@@ -161,7 +214,7 @@ internal class Markdown {
             let token = EmphisisToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .asteriskEmphisis
         }
@@ -171,7 +224,7 @@ internal class Markdown {
             let token = EmphisisToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .tildeEmphisis
         }
@@ -181,7 +234,7 @@ internal class Markdown {
             let token = EmphisisToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .underscoreEmphisis
         }
@@ -191,7 +244,7 @@ internal class Markdown {
             let token = TextToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .textLiteral
         }
@@ -200,7 +253,7 @@ internal class Markdown {
             
             let token = LinkToken()
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .link
         }
@@ -229,20 +282,24 @@ internal class Markdown {
         
         if character.isTilde {
             
+            self.pop()
+            
             let token = EmphisisToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .tildeEmphisis
         }
         
         if character.isUnderscore {
             
+            self.pop()
+            
             let token = EmphisisToken()
             token.value.append(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .underscoreEmphisis
         }
@@ -252,7 +309,7 @@ internal class Markdown {
             let token = TextToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .textLiteral
         }
@@ -264,7 +321,7 @@ internal class Markdown {
             let token = TextToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .textLiteral
         }
@@ -284,10 +341,12 @@ internal class Markdown {
         
         if character.isAsterisk {
             
+            self.pop()
+            
             let token = EmphisisToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .asteriskEmphisis
         }
@@ -303,10 +362,12 @@ internal class Markdown {
         
         if character.isUnderscore {
 
+            self.pop()
+            
             let token = EmphisisToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .underscoreEmphisis
         }
@@ -316,7 +377,7 @@ internal class Markdown {
             let token = TextToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .textLiteral
         }
@@ -328,7 +389,7 @@ internal class Markdown {
             let token = TextToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .textLiteral
         }
@@ -348,20 +409,24 @@ internal class Markdown {
         
         if character.isAsterisk {
             
+            self.pop()
+            
             let token = EmphisisToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .asteriskEmphisis
         }
         
         if character.isTilde {
             
+            self.pop()
+            
             let token = EmphisisToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .tildeEmphisis
         }
@@ -380,7 +445,7 @@ internal class Markdown {
             let token = TextToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .textLiteral
         }
@@ -392,7 +457,7 @@ internal class Markdown {
             let token = TextToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .textLiteral
         }
@@ -426,7 +491,7 @@ internal class Markdown {
             let token = EmphisisToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .asteriskEmphisis
         }
@@ -438,7 +503,7 @@ internal class Markdown {
             let token = EmphisisToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .tildeEmphisis
         }
@@ -450,7 +515,7 @@ internal class Markdown {
             let token = EmphisisToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .underscoreEmphisis
         }
@@ -462,7 +527,7 @@ internal class Markdown {
             let token = CodeToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .code
         }
@@ -499,7 +564,7 @@ internal class Markdown {
             let token = TextToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .textLiteral
         }
@@ -522,7 +587,7 @@ internal class Markdown {
             let token = TextToken()
             token.value += String(character)
             
-            self.tokens.append(token)
+            self.emit(token: token)
             
             return .textLiteral
         }

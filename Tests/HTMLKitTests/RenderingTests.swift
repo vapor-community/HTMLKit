@@ -368,4 +368,23 @@ final class RenderingTests: XCTestCase {
                        """
         )
     }
+    
+    func testRenderingNestedMarkdown() throws {
+        
+        renderer.features = [.markdown]
+        
+        let view = TestView {
+            Paragraph {
+                """
+                **This text is _extremely_ important**.
+                """
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><strong>This text is <em>extremely</em> important</strong></p>
+                       """
+        )
+    }
 }
