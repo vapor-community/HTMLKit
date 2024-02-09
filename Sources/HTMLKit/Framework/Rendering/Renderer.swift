@@ -464,15 +464,11 @@ public class Renderer {
     /// Renders the markdown content
     internal func render(markdown: MarkdownString) throws -> String {
         
-        let espaced = markdown.string
+        let string = markdown.string
         
-        self.markdown.consume(string: espaced)
+        self.markdown.consume(string)
         
-        let result = self.markdown.render()
-        
-        self.markdown.reset()
-        
-        return result
+        return self.markdown.render()
     }
     
     /// Converts specific charaters into encoded values.

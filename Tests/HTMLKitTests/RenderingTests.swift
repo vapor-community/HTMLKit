@@ -357,14 +357,14 @@ final class RenderingTests: XCTestCase {
         let view = TestView {
             Paragraph {
                 """
-                This is *italic* text with a **bold** follow.
+                This *substring* is **important**.
                 """
             }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p>This is <em>italic</em> text with a <strong>bold</strong> follow.</p>
+                       <p>This <em>substring</em> is <strong>important</strong>.</p>
                        """
         )
     }
@@ -376,14 +376,14 @@ final class RenderingTests: XCTestCase {
         let view = TestView {
             Paragraph {
                 """
-                **This text is _extremely_ important**.
+                **This text is _extremely_ important.**
                 """
             }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p><strong>This text is <em>extremely</em> important</strong></p>
+                       <p><strong>This text is <em>extremely</em> important.</strong></p>
                        """
         )
     }
