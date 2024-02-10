@@ -141,7 +141,7 @@ public class Renderer {
             if let string = content as? MarkdownString {
                 
                 if !features.contains(.markdown) {
-                    result += string.string
+                    result += string.raw
                     
                 } else {
                     result += try render(markdown: string)
@@ -216,7 +216,7 @@ public class Renderer {
                 if let string = content as? MarkdownString {
                     
                     if !features.contains(.markdown) {
-                        result += string.string
+                        result += string.raw
                         
                     } else {
                         result += try render(markdown: string)
@@ -334,7 +334,7 @@ public class Renderer {
                 if let string = content as? MarkdownString {
                     
                     if !features.contains(.markdown) {
-                        result += string.string
+                        result += string.raw
                         
                     } else {
                         result += try render(markdown: string)
@@ -463,7 +463,7 @@ public class Renderer {
     
     /// Renders the markdown content
     internal func render(markdown: MarkdownString) throws -> String {
-        return self.markdown.render(string: markdown.string)
+        return self.markdown.render(string: markdown.raw)
     }
     
     /// Converts specific charaters into encoded values.

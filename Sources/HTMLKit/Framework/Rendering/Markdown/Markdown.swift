@@ -2,10 +2,13 @@ import Foundation
 
 internal final class Markdown {
     
+    /// The markdowns characters
     internal static let characters = CharacterSet(charactersIn: "*_~[`")
     
+    /// Initiates the markdown
     internal init() {}
     
+    /// Renders the markdown string
     internal func render(string: String) -> String {
         
         let tokens = MarkdownLexer().consume(string: string)
@@ -18,6 +21,7 @@ internal final class Markdown {
         return result
     }
     
+    /// Renders the markdown node
     private func render(node: MarkdownNode) -> String {
         
         var result = ""

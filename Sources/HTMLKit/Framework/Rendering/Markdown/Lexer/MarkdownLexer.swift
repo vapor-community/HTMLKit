@@ -1,4 +1,4 @@
-internal class MarkdownLexer {
+internal final class MarkdownLexer {
     
     /// A enumeration of different states of the tokenizer
     ///
@@ -110,7 +110,7 @@ internal class MarkdownLexer {
         
         if character.isAsterisk {
             
-            let token = MarkdownToken(kind: .ephasis)
+            let token = MarkdownToken(kind: .emphasis)
             token.value += String(character)
             
             self.emit(token: token)
@@ -120,7 +120,7 @@ internal class MarkdownLexer {
         
         if  character.isTilde {
             
-            let token = MarkdownToken(kind: .ephasis)
+            let token = MarkdownToken(kind: .emphasis)
             token.value += String(character)
             
             self.emit(token: token)
@@ -130,7 +130,7 @@ internal class MarkdownLexer {
         
         if  character.isUnderscore {
             
-            let token = MarkdownToken(kind: .ephasis)
+            let token = MarkdownToken(kind: .emphasis)
             token.value += String(character)
             
             self.emit(token: token)
@@ -164,6 +164,8 @@ internal class MarkdownLexer {
     ///
     /// ```
     /// *italic*
+    /// **italic**
+    /// ***italic***
     /// ```
     ///
     private func consumeAsteriskEmphisis(_ character: Character) -> InsertionMode {
@@ -172,7 +174,7 @@ internal class MarkdownLexer {
         
         if character.isTilde {
             
-            let token = MarkdownToken(kind: .ephasis)
+            let token = MarkdownToken(kind: .emphasis)
             token.value += String(character)
             
             self.emit(token: token)
@@ -182,7 +184,7 @@ internal class MarkdownLexer {
         
         if character.isUnderscore {
             
-            let token = MarkdownToken(kind: .ephasis)
+            let token = MarkdownToken(kind: .emphasis)
             token.value.append(character)
             
             self.emit(token: token)
@@ -220,6 +222,7 @@ internal class MarkdownLexer {
     /// Consumes a character for a strikethrough emphisis
     ///
     /// ```
+    /// ~string~
     /// ~~string~~
     /// ```
     ///
@@ -229,7 +232,7 @@ internal class MarkdownLexer {
         
         if character.isAsterisk {
             
-            let token = MarkdownToken(kind: .ephasis)
+            let token = MarkdownToken(kind: .emphasis)
             token.value += String(character)
             
             self.emit(token: token)
@@ -239,7 +242,7 @@ internal class MarkdownLexer {
         
         if character.isUnderscore {
             
-            let token = MarkdownToken(kind: .ephasis)
+            let token = MarkdownToken(kind: .emphasis)
             token.value += String(character)
             
             self.emit(token: token)
@@ -278,6 +281,8 @@ internal class MarkdownLexer {
     ///
     /// ```
     /// _string_
+    /// __string__
+    /// ___string___
     /// ```
     ///
     private func consumeUnderscoreEmphisis(_ character: Character) -> InsertionMode {
@@ -286,7 +291,7 @@ internal class MarkdownLexer {
         
         if character.isAsterisk {
             
-            let token = MarkdownToken(kind: .ephasis)
+            let token = MarkdownToken(kind: .emphasis)
             token.value += String(character)
             
             self.emit(token: token)
@@ -296,7 +301,7 @@ internal class MarkdownLexer {
         
         if character.isTilde {
             
-            let token = MarkdownToken(kind: .ephasis)
+            let token = MarkdownToken(kind: .emphasis)
             token.value += String(character)
             
             self.emit(token: token)
@@ -343,7 +348,7 @@ internal class MarkdownLexer {
         
         if character.isAsterisk {
 
-            let token = MarkdownToken(kind: .ephasis)
+            let token = MarkdownToken(kind: .emphasis)
             token.value += String(character)
             
             self.emit(token: token)
@@ -353,7 +358,7 @@ internal class MarkdownLexer {
         
         if character.isTilde {
 
-            let token = MarkdownToken(kind: .ephasis)
+            let token = MarkdownToken(kind: .emphasis)
             token.value += String(character)
             
             self.emit(token: token)
@@ -363,7 +368,7 @@ internal class MarkdownLexer {
         
         if character.isUnderscore {
             
-            let token = MarkdownToken(kind: .ephasis)
+            let token = MarkdownToken(kind: .emphasis)
             token.value += String(character)
             
             self.emit(token: token)

@@ -32,7 +32,7 @@ internal final class MarkdownParser {
         
         switch self.level {
         case .information:
-            print("Message:", message)
+            print(message)
             
         default:
             break
@@ -56,7 +56,7 @@ internal final class MarkdownParser {
     }
     
     /// Transforms the token into a node
-    internal func transform(token: MarkdownToken) -> MarkdownNode {
+    private func transform(token: MarkdownToken) -> MarkdownNode {
         
         switch token.kind {
         case .link:
@@ -68,7 +68,7 @@ internal final class MarkdownParser {
         case .textLiteral:
             return MarkdownNode(kind: .inline("text"), value: token.value)
             
-        case .ephasis:
+        case .emphasis:
             return MarkdownNode(kind: .block("emphasis"), value: token.value)
         }
     }
