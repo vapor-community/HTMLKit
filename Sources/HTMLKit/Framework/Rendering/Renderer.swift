@@ -463,12 +463,7 @@ public class Renderer {
     
     /// Renders the markdown content
     internal func render(markdown: MarkdownString) throws -> String {
-        
-        let string = markdown.string
-        
-        self.markdown.consume(string)
-        
-        return self.markdown.render()
+        return self.markdown.render(string: markdown.string)
     }
     
     /// Converts specific charaters into encoded values.

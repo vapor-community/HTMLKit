@@ -18,68 +18,6 @@ internal final class MarkdownNode {
         self.value = value
         self.children = []
     }
-    
-    internal func render() -> String {
-        
-        var result = ""
-        
-        switch kind {
-        case .block("emphasis"):
-            
-            if value.contains("~~") || value.contains("~") {
-                
-                result += "<del>"
-                result += children.flatMap { $0.render() }
-                result += "</del>"
-                
-                break
-            }
-            
-            if value.contains("***") || value.contains("___") {
-                
-                result += "<em><strong>"
-                result += children.flatMap { $0.render() }
-                result += "</strong></em>"
-                
-                break
-            }
-            
-            if value.contains("**") || value.contains("__") {
-                
-                result += "<strong>"
-                result += children.flatMap { $0.render() }
-                result += "</strong>"
-                
-                break
-            }
-            
-            if value.contains("*") || value.contains("_") {
-                
-                result += "<em>"
-                result += children.flatMap { $0.render() }
-                result += "</em>"
-                
-                break
-            }
-
-        case .inline("text"):
-            result += value
-            
-        case .block("code"):
-            
-            result += "<code>"
-            result += children.flatMap { $0.render() }
-            result += "</code>"
-
-        case .block("link"):
-            result += "<a href=\"\(children[1].value)\">\(children[0].value)</a>"
-            
-        default:
-            break
-        }
-        
-        return result
-    }
 }
 
 extension MarkdownNode.NodeKind: Equatable {
