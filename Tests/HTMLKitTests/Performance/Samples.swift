@@ -121,3 +121,70 @@ struct SampleComponent: View {
         }
     }
 }
+
+struct MarkdownView: View {
+    
+    var context: SampleContext
+    
+    var body: Content {
+        SamplePage {
+            Header {
+                Heading1 {
+                    context.title
+                }
+                Heading3 {
+                    context.excerpt
+                }
+            }
+            Navigation {
+                UnorderedList {
+                    ListItem {
+                        Anchor {
+                            "Item"
+                        }
+                        .reference("#")
+                    }
+                    ListItem {
+                        Anchor {
+                            "Item"
+                        }
+                        .reference("#")
+                    }
+                    ListItem {
+                        Anchor {
+                            "Item"
+                        }
+                        .reference("#")
+                    }
+                    ListItem {
+                        Anchor {
+                            "Item"
+                        }
+                        .reference("#")
+                    }
+                    ListItem {
+                        Anchor {
+                            "Item"
+                        }
+                        .reference("#")
+                    }
+                }
+            }
+            Main {
+                Section {
+                    Heading1 {
+                        "Heading1"
+                    }
+                    Paragraph {
+                        "**This text is _extremely_ important.**"
+                    }
+                }
+            }
+            Footer {
+                Paragraph {
+                    context.modified
+                }
+            }
+        }
+    }
+}
