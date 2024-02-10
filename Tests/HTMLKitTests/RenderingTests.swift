@@ -238,10 +238,10 @@ final class RenderingTests: XCTestCase {
         
         let view = TestView {
             Paragraph {
-                "*italic*"
+                MarkdownString("*italic*")
             }
             Paragraph {
-                "_italic_"
+                MarkdownString("_italic_")
             }
         }
         
@@ -259,10 +259,10 @@ final class RenderingTests: XCTestCase {
         
         let view = TestView {
             Paragraph {
-                "**bold**"
+                MarkdownString("**bold**")
             }
             Paragraph {
-                "__bold__"
+                MarkdownString("__bold__")
             }
         }
         
@@ -280,10 +280,10 @@ final class RenderingTests: XCTestCase {
         
         let view = TestView {
             Paragraph {
-                "***bold and italic***"
+                MarkdownString("***bold and italic***")
             }
             Paragraph {
-                "___bold and italic___"
+                MarkdownString("___bold and italic___")
             }
         }
         
@@ -301,7 +301,7 @@ final class RenderingTests: XCTestCase {
         
         let view = TestView {
             Paragraph {
-                "`code`"
+                MarkdownString("`code`")
             }
         }
         
@@ -318,10 +318,10 @@ final class RenderingTests: XCTestCase {
         
         let view = TestView {
             Paragraph {
-                "~strikethrough~"
+                MarkdownString("~strikethrough~")
             }
             Paragraph {
-                "~~strikethrough~~"
+                MarkdownString("~~strikethrough~~")
             }
         }
         
@@ -339,7 +339,7 @@ final class RenderingTests: XCTestCase {
         
         let view = TestView {
             Paragraph {
-                "[Link](https://www.google.de)"
+                MarkdownString("[Link](https://www.google.de)")
             }
         }
         
@@ -356,9 +356,7 @@ final class RenderingTests: XCTestCase {
         
         let view = TestView {
             Paragraph {
-                """
-                This *substring* is **important**.
-                """
+                MarkdownString("This *substring* is **important**.")
             }
         }
         
@@ -375,9 +373,11 @@ final class RenderingTests: XCTestCase {
         
         let view = TestView {
             Paragraph {
-                """
-                **This text is _extremely_ important.**
-                """
+                MarkdownString {
+                    """
+                    **This text is _extremely_ important.**
+                    """
+                }
             }
         }
         

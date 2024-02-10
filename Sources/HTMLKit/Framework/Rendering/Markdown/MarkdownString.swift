@@ -6,7 +6,12 @@ public struct MarkdownString: Content {
     public let raw: String
     
     /// Initiates the markdown string
-    public init(string: String) {
+    public init(_ string: String) {
         self.raw = string
+    }
+    
+    /// Initiates the markdown string
+    public init(_ string: () -> String) {
+        self.raw = string()
     }
 }

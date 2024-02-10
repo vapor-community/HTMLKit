@@ -176,7 +176,9 @@ struct MarkdownView: View {
                         "Heading1"
                     }
                     Paragraph {
-                        "**This text is _extremely_ important.**"
+                        MarkdownString {
+                            "**This text is _extremely_ important.**"
+                        }
                     }
                 }
             }
