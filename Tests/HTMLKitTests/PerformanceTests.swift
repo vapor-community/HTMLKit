@@ -41,4 +41,22 @@ final class PerformanceTests: XCTestCase {
             }
         }
     }
+    
+    func testPerformanceWithMarkdown() throws {
+        
+        let context = SampleContext(id: 0, title: "TestPage", excerpt: "Testpage", modified: Date(), posted: Date())
+        
+        let security = Security()
+        security.autoEscaping = true
+        
+        let renderer = Renderer(security: security)
+        renderer.features = [.markdown]
+        
+        measure {
+            
+            for _ in 0...1000 {
+                _ = try! renderer.render(view: MarkdownView(context: context))
+            }
+        }
+    }
 }

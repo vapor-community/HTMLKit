@@ -231,4 +231,160 @@ final class RenderingTests: XCTestCase {
                        """
         )
     }
+    
+    func testRenderingItalicMarkdown() throws {
+        
+        renderer.features = [.markdown]
+        
+        let view = TestView {
+            Paragraph {
+                MarkdownString("*italic*")
+            }
+            Paragraph {
+                MarkdownString("_italic_")
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><em>italic</em></p>\
+                       <p><em>italic</em></p>
+                       """
+        )
+    }
+    
+    func testRenderingBoldMarkdown() throws {
+        
+        renderer.features = [.markdown]
+        
+        let view = TestView {
+            Paragraph {
+                MarkdownString("**bold**")
+            }
+            Paragraph {
+                MarkdownString("__bold__")
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><strong>bold</strong></p>\
+                       <p><strong>bold</strong></p>
+                       """
+        )
+    }
+    
+    func testRenderingBoldItalicMarkdown() throws {
+        
+        renderer.features = [.markdown]
+        
+        let view = TestView {
+            Paragraph {
+                MarkdownString("***bold and italic***")
+            }
+            Paragraph {
+                MarkdownString("___bold and italic___")
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><em><strong>bold and italic</strong></em></p>\
+                       <p><em><strong>bold and italic</strong></em></p>
+                       """
+        )
+    }
+    
+    func testRenderingMonospaceMarkdown() throws {
+        
+        renderer.features = [.markdown]
+        
+        let view = TestView {
+            Paragraph {
+                MarkdownString("`code`")
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><code>code</code></p>
+                       """
+        )
+    }
+    
+    func testRenderingStrikeThroughMarkdown() throws {
+        
+        renderer.features = [.markdown]
+        
+        let view = TestView {
+            Paragraph {
+                MarkdownString("~strikethrough~")
+            }
+            Paragraph {
+                MarkdownString("~~strikethrough~~")
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><del>strikethrough</del></p>\
+                       <p><del>strikethrough</del></p>
+                       """
+        )
+    }
+    
+    func testRenderingLinkMarkdown() throws {
+        
+        renderer.features = [.markdown]
+        
+        let view = TestView {
+            Paragraph {
+                MarkdownString("[Link](https://www.google.de)")
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><a href="https://www.google.de">Link</a></p>
+                       """
+        )
+    }
+    
+    func testRenderingMarkdownParagraph() throws {
+        
+        renderer.features = [.markdown]
+        
+        let view = TestView {
+            Paragraph {
+                MarkdownString("This *substring* is **important**.")
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p>This <em>substring</em> is <strong>important</strong>.</p>
+                       """
+        )
+    }
+    
+    func testRenderingNestedMarkdown() throws {
+        
+        renderer.features = [.markdown]
+        
+        let view = TestView {
+            Paragraph {
+                MarkdownString {
+                    """
+                    **This text is _extremely_ important.**
+                    """
+                }
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><strong>This text is <em>extremely</em> important.</strong></p>
+                       """
+        )
+    }
 }
