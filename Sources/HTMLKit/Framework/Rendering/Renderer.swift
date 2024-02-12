@@ -18,7 +18,6 @@ public class Renderer {
         case environmentObjectNotFound
         case environmentValueNotFound
         case missingLocalization
-        case disabledMarkdown
 
         public var description: String {
             
@@ -37,9 +36,6 @@ public class Renderer {
                 
             case .missingLocalization:
                 return "The localization seem to missing."
-                
-            case .disabledMarkdown:
-                return "The markdown rendering seems to be disabled."
             }
         }
     }
@@ -145,7 +141,7 @@ public class Renderer {
             if let string = content as? MarkdownString {
                 
                 if !features.contains(.markdown) {
-                    throw Errors.disabledMarkdown
+                    result += string.raw
                     
                 } else {
                     result += try render(markdown: string)
@@ -220,7 +216,7 @@ public class Renderer {
                 if let string = content as? MarkdownString {
                     
                     if !features.contains(.markdown) {
-                        throw Errors.disabledMarkdown
+                        result += string.raw
                         
                     } else {
                         result += try render(markdown: string)
@@ -338,7 +334,7 @@ public class Renderer {
                 if let string = content as? MarkdownString {
                     
                     if !features.contains(.markdown) {
-                        throw Errors.disabledMarkdown
+                        result += string.raw
                         
                     } else {
                         result += try render(markdown: string)
