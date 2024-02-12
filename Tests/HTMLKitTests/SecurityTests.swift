@@ -94,5 +94,24 @@ final class SecurityTests: XCTestCase {
                        """
         )
     }
+    
+    func testEncodingMarkdownString() throws {
+        
+        let attack = "<script></script>"
+        
+        let view = TestView {
+            Paragraph {
+                MarkdownString(attack)
+            }
+        }
+        
+        renderer.features = [.markdown]
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p>lt;script&gt;&lt;/script&gt;</p>
+                       """
+        )
+    }
 }
 
