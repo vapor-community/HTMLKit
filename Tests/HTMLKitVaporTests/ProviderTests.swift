@@ -81,6 +81,17 @@ final class ProviderTests: XCTestCase {
                 }
             }
         }
+        
+        struct FriendView: HTMLKit.View {
+            
+            var body: HTMLKit.Content {
+                MainView {
+                    Paragraph {
+                        MarkdownString("This *substring* is **important**.")
+                    }
+                }
+            }
+        }
     }
     
     func testEventLoopIntegration() throws {
@@ -205,6 +216,37 @@ final class ProviderTests: XCTestCase {
                             </head>\
                             <body>\
                             <p>Hello World</p>\
+                            </body>\
+                            </html>
+                            """
+            )
+        }
+    }
+    
+    @available(macOS 12, *)
+    func testMarkdownSupport() throws {
+        
+        let app = Application(.testing)
+        
+        defer { app.shutdown() }
+        
+        app.htmlkit.features = [.markdown]
+        
+        app.get("test") { request async throws -> Vapor.View in
+            return try await request.htmlkit.render(TestPage.FriendView())
+        }
+        
+        try app.test(.GET, "test") { response in
+            XCTAssertEqual(response.status, .ok)
+            XCTAssertEqual(response.body.string,
+                            """
+                            <!DOCTYPE html>\
+                            <html>\
+                            <head>\
+                            <title>TestPage</title>\
+                            </head>\
+                            <body>\
+                            <p>This <em>substring</em> is <strong>important</strong>.</p>\
                             </body>\
                             </html>
                             """

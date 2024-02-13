@@ -48,7 +48,7 @@ public class Renderer {
     
     private var markdown: Markdown
     
-    public var features: FeatureSet
+    public var features: Features
 
     /// Initiates the renderer.
     public init(localization: Localization? = nil) {
@@ -78,6 +78,16 @@ public class Renderer {
         self.security = security
         self.markdown = Markdown()
         self.features = []
+    }
+    
+    /// Initiates the renderer.
+    public init(localization: Localization? = nil, environment: Environment, security: Security, features: Features) {
+        
+        self.localization = localization
+        self.environment = environment
+        self.security = security
+        self.markdown = Markdown()
+        self.features = features
     }
     
     /// Renders a view
