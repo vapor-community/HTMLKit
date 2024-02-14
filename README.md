@@ -23,4 +23,4 @@ The HTMLKit framework consists of a list of features to create HTML templates in
 - **UI components** - Construct user interfaces with the components library.
 - **Symbol bundle** - Use the symbols which come within the framework.
 
-The framework comes with an integration for the web framework [Vapor](https://swiftpackageindex.com/vapor/vapor). Interested? Lets get started: [Tutorials](https://swiftpackageindex.com/vapor-community/HTMLKit/3.0.0-alpha.8/documentation/htmlkit)
+The framework comes with an integration for the web framework [Vapor](https://github.com/vapor/vapor). Interested? Lets get started: [Tutorials](https://swiftpackageindex.com/vapor-community/htmlkit/main/tutorials/introduction)
