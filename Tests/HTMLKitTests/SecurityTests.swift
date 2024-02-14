@@ -13,7 +13,7 @@ final class SecurityTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    var renderer = Renderer()
+    var renderer = Renderer(features: [.markdown])
     
     func testEncodingAttributeContext() throws {
         
@@ -104,8 +104,6 @@ final class SecurityTests: XCTestCase {
                 MarkdownString(attack)
             }
         }
-        
-        renderer.features = [.markdown]
         
         XCTAssertEqual(try renderer.render(view: view),
                        """

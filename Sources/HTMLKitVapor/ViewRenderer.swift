@@ -25,7 +25,7 @@ public class ViewRenderer {
                                  features: configuration.features)
     }
     
-    /// Renders a layout and its context
+    /// Renders a view and transforms it into a view response.
     public func render(_ view: some HTMLKit.View) -> EventLoopFuture<Vapor.View> {
         
         do  {
@@ -40,7 +40,7 @@ public class ViewRenderer {
         }
     }
     
-    /// Renders a layout and its context
+    /// Renders a view and transforms it into a view response.
     public func render(_ view: some HTMLKit.View) async throws -> Vapor.View {
         return try await render(view).get()
     }

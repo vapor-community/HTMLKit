@@ -1,3 +1,4 @@
+/// An option set of features.
 public struct Features: OptionSet {
     
     public var rawValue: Int

@@ -65,7 +65,7 @@ extension Application {
             public typealias Value = Configuration
         }
         
-        /// The view localization
+        /// The configuration storage
         internal var configuration: Configuration {
             
             if let configuration = self.application.storage[ConfigurationKey.self] {

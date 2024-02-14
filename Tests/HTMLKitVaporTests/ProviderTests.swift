@@ -125,7 +125,6 @@ final class ProviderTests: XCTestCase {
         }
     }
     
-    @available(macOS 12, *)
     func testConcurrencyIntegration() throws {
         
         let app = Application(.testing)
@@ -157,7 +156,6 @@ final class ProviderTests: XCTestCase {
         }
     }
     
-    @available(macOS 12, *)
     func testLocalizationIntegration() throws {
         
         let currentFile = URL(fileURLWithPath: #file).deletingLastPathComponent()
@@ -194,7 +192,6 @@ final class ProviderTests: XCTestCase {
         }
     }
     
-    @available(macOS 12, *)
     func testEnvironmentIntegration() throws {
         
         let app = Application(.testing)
@@ -223,7 +220,6 @@ final class ProviderTests: XCTestCase {
         }
     }
     
-    @available(macOS 12, *)
     func testMarkdownSupport() throws {
         
         let app = Application(.testing)
