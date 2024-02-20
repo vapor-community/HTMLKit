@@ -13,7 +13,7 @@ final class RenderingTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    var renderer = Renderer()
+    var renderer = Renderer(features: [.markdown])
     
     func testRenderingDocument() throws {
         
@@ -234,8 +234,6 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingItalicMarkdown() throws {
         
-        renderer.features = [.markdown]
-        
         let view = TestView {
             Paragraph {
                 MarkdownString("*italic*")
@@ -254,8 +252,6 @@ final class RenderingTests: XCTestCase {
     }
     
     func testRenderingBoldMarkdown() throws {
-        
-        renderer.features = [.markdown]
         
         let view = TestView {
             Paragraph {
@@ -276,8 +272,6 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingBoldItalicMarkdown() throws {
         
-        renderer.features = [.markdown]
-        
         let view = TestView {
             Paragraph {
                 MarkdownString("***bold and italic***")
@@ -297,8 +291,6 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingMonospaceMarkdown() throws {
         
-        renderer.features = [.markdown]
-        
         let view = TestView {
             Paragraph {
                 MarkdownString("`code`")
@@ -313,8 +305,6 @@ final class RenderingTests: XCTestCase {
     }
     
     func testRenderingStrikeThroughMarkdown() throws {
-        
-        renderer.features = [.markdown]
         
         let view = TestView {
             Paragraph {
@@ -335,8 +325,6 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingLinkMarkdown() throws {
         
-        renderer.features = [.markdown]
-        
         let view = TestView {
             Paragraph {
                 MarkdownString("[Link](https://www.google.de)")
@@ -352,8 +340,6 @@ final class RenderingTests: XCTestCase {
     
     func testRenderingMarkdownParagraph() throws {
         
-        renderer.features = [.markdown]
-        
         let view = TestView {
             Paragraph {
                 MarkdownString("This *substring* is **important**.")
@@ -368,8 +354,6 @@ final class RenderingTests: XCTestCase {
     }
     
     func testRenderingNestedMarkdown() throws {
-        
-        renderer.features = [.markdown]
         
         let view = TestView {
             Paragraph {

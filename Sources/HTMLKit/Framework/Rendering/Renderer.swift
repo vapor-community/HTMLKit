@@ -6,19 +6,28 @@
 import Foundation
 import OrderedCollections
 
-/// A struct containing the different formulas for the different views.
 @_documentation(visibility: internal)
-public class Renderer {
+public final class Renderer {
 
-    /// A enumeration  of possible render errors
+    /// An enumeration of possible rendering errors.
     public enum Errors: Error {
         
+        /// Indicates a casting error.
         case unableToCastEnvironmentValue
+        
+        /// Indicates a wrong environment key.
         case unindendedEnvironmentKey
+        
+        /// Indicates a missing environment object.
         case environmentObjectNotFound
+        
+        /// Indicates a missing environment value.
         case environmentValueNotFound
+        
+        /// Indicates a missing localization configuration.
         case missingLocalization
 
+        /// A brief error description.
         public var description: String {
             
             switch self {
@@ -40,47 +49,35 @@ public class Renderer {
         }
     }
     
+    /// The context environment
     private var environment: Environment
     
+    /// The localization configuration
     private var localization: Localization?
     
+    /// The security configuration
     private var security: Security
     
+    /// The markdown parser
     private var markdown: Markdown
     
-    public var features: FeatureSet
+    /// The feature flag used to manage the visibility of new and untested features.
+    private var features: Features
 
     /// Initiates the renderer.
-    public init(localization: Localization? = nil) {
-        
-        self.localization = localization
-        self.environment = Environment()
-        self.security = Security()
-        self.markdown = Markdown()
-        self.features = []
-    }
-    
-    /// Initiates the renderer.
-    public init(localization: Localization? = nil, security: Security) {
-        
-        self.localization = localization
-        self.environment = Environment()
-        self.security = security
-        self.markdown = Markdown()
-        self.features = []
-    }
-    
-    /// Initiates the renderer.
-    public init(localization: Localization? = nil, environment: Environment, security: Security) {
+    public init(localization: Localization? = nil, 
+                environment: Environment = Environment(),
+                security: Security = Security(),
+                features: Features = []) {
         
         self.localization = localization
         self.environment = environment
         self.security = security
         self.markdown = Markdown()
-        self.features = []
+        self.features = features
     }
     
-    /// Renders a view
+    /// Renders a view and transforms it into a string representation.
     public func render(view: some View) throws -> String {
         
         var result = ""
@@ -92,7 +89,8 @@ public class Renderer {
         return result
     }
     
-    internal func render(contents: [Content]) throws -> String {
+    /// Reads the view content and transforms it.
+    private func render(contents: [Content]) throws -> String {
         
         var result = ""
         
@@ -156,8 +154,8 @@ public class Renderer {
         return result
     }
     
-    /// Renders a content element
-    internal func render(element: some ContentNode) throws -> String {
+    /// Renders a content element. A content element usually has descendants, which need to be rendered as well.
+    private func render(element: some ContentNode) throws -> String {
         
         var result = ""
         
@@ -234,8 +232,8 @@ public class Renderer {
         return result
     }
     
-    /// Renders a empty element
-    internal func render(element: some EmptyNode) throws -> String {
+    /// Renders a empty element. An empty element has no descendants.
+    private func render(element: some EmptyNode) throws -> String {
         
         var result = ""
         
@@ -250,11 +248,11 @@ public class Renderer {
         return result
     }
     
-    /// Renders a document element
-    internal func render(element: some DocumentNode) -> String {
+    /// Renders a document element. The document element holds the metadata.
+    private func render(element: some DocumentNode) -> String {
         
         var result = ""
-        
+
         result += "<!DOCTYPE "
         
         result += element.content
@@ -264,8 +262,8 @@ public class Renderer {
         return result
     }
     
-    /// Renders a comment element
-    internal func render(element: some CommentNode) -> String {
+    /// Renders a comment element.
+    private func render(element: some CommentNode) -> String {
         
         var result = ""
         
@@ -278,8 +276,8 @@ public class Renderer {
         return result
     }
     
-    /// Renders a content element
-    internal func render(element: some CustomNode) throws -> String {
+    /// Renders a  custom element.
+    private func render(element: some CustomNode) throws -> String {
         
         var result = ""
         
@@ -352,8 +350,8 @@ public class Renderer {
         return result
     }
     
-    /// Renders a localized string key
-    internal func render(stringkey: LocalizedStringKey) throws -> String {
+    /// Renders a localized string key.
+    private func render(stringkey: LocalizedStringKey) throws -> String {
         
         guard let localization = self.localization else {
             throw Errors.missingLocalization
@@ -366,8 +364,8 @@ public class Renderer {
         return try localization.localize(key: stringkey.key, locale: environment.locale, interpolation: stringkey.interpolation)
     }
     
-    /// Renders a environment modifier
-    internal func render(modifier: EnvironmentModifier) throws -> String {
+    /// Renders a environment modifier.
+    private func render(modifier: EnvironmentModifier) throws -> String {
         
         if let value = modifier.value {
             self.environment.upsert(value, for: modifier.key)
@@ -401,8 +399,8 @@ public class Renderer {
         return try render(contents: modifier.content)
     }
     
-    /// Renders a environment value
-    internal func render(value: EnvironmentValue) throws -> String {
+    /// Renders a environment value.
+    private func render(value: EnvironmentValue) throws -> String {
         
         guard let parent = self.environment.retrieve(for: value.parentPath) else {
             throw Errors.environmentObjectNotFound
@@ -439,8 +437,8 @@ public class Renderer {
         }
     }
     
-    /// Renders the node attributes
-    internal func render(attributes: OrderedDictionary<String, Any>) throws -> String {
+    /// Renders the node attributes.
+    private func render(attributes: OrderedDictionary<String, Any>) throws -> String {
         
         var result = ""
         
@@ -461,13 +459,13 @@ public class Renderer {
         return result
     }
     
-    /// Renders the markdown content
-    internal func render(markdown: MarkdownString) throws -> String {
+    /// Renders the markdown content.
+    private func render(markdown: MarkdownString) throws -> String {
         return self.markdown.render(string: escape(content: markdown.raw))
     }
     
     /// Converts specific charaters into encoded values.
-    internal func escape(attribute value: String) -> String {
+    private func escape(attribute value: String) -> String {
         
         if security.autoEscaping {
             return value.replacingOccurrences(of: "&", with: "&amp;")
@@ -479,7 +477,7 @@ public class Renderer {
     }
     
     /// Converts specific charaters into encoded values.
-    internal func escape(content value: String) -> String {
+    private func escape(content value: String) -> String {
         
         if security.autoEscaping {
             return value.replacingOccurrences(of: "<", with: "&lt;")

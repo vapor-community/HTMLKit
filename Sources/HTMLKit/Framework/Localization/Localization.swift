@@ -12,6 +12,7 @@ public class Localization {
         case missingTables
         case unkownTable
         case noFallback
+        case loadingDataFailed
         
         public var description: String {
             
@@ -30,6 +31,9 @@ public class Localization {
                 
             case .noFallback:
                 return "The fallback needs to be set up first."
+                
+            case .loadingDataFailed:
+                return "Unable to load data."
             }
         }
     }
@@ -81,11 +85,14 @@ public class Localization {
                         
                         if var translationTables = localizationTables[locale] {
                             
-                            if let translations = NSDictionary(contentsOf: path) as? [String: String] {
-                                translationTables.append(TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: translations))
+                            if let data = try? Foundation.Data(contentsOf: path) {
+                                
+                                if let translations = try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String: String] {
+                                    translationTables.append(TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: translations))
+                                }
+                                
+                                localizationTables[locale] = translationTables
                             }
-                            
-                            localizationTables[locale] = translationTables
                         }
                     }
                     

@@ -16,58 +16,65 @@ extension Application {
     /// The vapor provider
     public struct HtmlKit {
         
-        internal struct LocalizationStorageKey: StorageKey {
-            
-            public typealias Value = HTMLKit.Localization
-        }
-        
-        internal struct EnvironmentStorageKey: StorageKey {
-            
-            public typealias Value = HTMLKit.Environment
-        }
-        
-        internal struct SecurityStorageKey: StorageKey {
-            
-            public typealias Value = HTMLKit.Security
-        }
-        
         public var security: HTMLKit.Security {
             
-            if let configuration = self.application.storage[SecurityStorageKey.self] {
-                return configuration
+            get {
+                self.configuration.security
             }
             
-            let configuration = Security()
-            
-            self.application.storage[SecurityStorageKey.self] = configuration
-            
-            return configuration
-        }
-        
-        /// The view localization
-        public var localization: HTMLKit.Localization {
-            
-            if let configuration = self.application.storage[LocalizationStorageKey.self] {
-                return configuration
+            nonmutating set {
+                self.configuration.security = newValue
             }
-            
-            let configuration = Localization()
-            
-            self.application.storage[LocalizationStorageKey.self] = configuration
-            
-            return configuration
         }
         
-        /// The view environment
         public var environment: HTMLKit.Environment {
             
-            if let configuration = self.application.storage[EnvironmentStorageKey.self] {
+            get {
+                self.configuration.environment
+            }
+            
+            nonmutating set {
+                self.configuration.environment = newValue
+            }
+        }
+        
+        public var localization: HTMLKit.Localization {
+            
+            get {
+                self.configuration.localization
+            }
+            
+            nonmutating set {
+                self.configuration.localization = newValue
+            }
+        }
+        
+        public var features: HTMLKit.Features {
+            
+            get {
+                self.configuration.features
+            }
+            
+            nonmutating set {
+                self.configuration.features = newValue
+            }
+        }
+        
+        internal struct ConfigurationKey: StorageKey {
+            
+            public typealias Value = Configuration
+        }
+        
+        /// The configuration storage
+        internal var configuration: Configuration {
+            
+            if let configuration = self.application.storage[ConfigurationKey.self] {
                 return configuration
             }
             
-            let configuration = Environment()
+            let configuration = Configuration()
             
-            self.application.storage[EnvironmentStorageKey.self] = configuration
+            self.application.storage[ConfigurationKey.self] = configuration
             
             return configuration
         }
@@ -75,10 +82,7 @@ extension Application {
         /// The view renderer
         internal var renderer: ViewRenderer {
             
-            return .init(eventLoop: application.eventLoopGroup.next(),
-                         localization: localization,
-                         environment: environment,
-                         security: security)
+            return .init(eventLoop: application.eventLoopGroup.next(), configuration: configuration)
         }
         
         /// The application dependency
@@ -111,9 +115,6 @@ extension Request {
             self.application.htmlkit.localization.set(locale: acceptLanguage)
         }
         
-        return .init(eventLoop: self.eventLoop,
-                     localization: self.application.htmlkit.localization,
-                     environment: self.application.htmlkit.environment,
-                     security: self.application.htmlkit.security)
+        return .init(eventLoop: self.eventLoop, configuration: self.application.htmlkit.configuration)
     }
 }

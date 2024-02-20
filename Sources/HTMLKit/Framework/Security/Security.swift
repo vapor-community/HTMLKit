@@ -1,4 +1,4 @@
-public class Security {
+public final class Security {
     
     public var autoEscaping: Bool
     

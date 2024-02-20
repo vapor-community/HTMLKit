@@ -49,8 +49,7 @@ final class PerformanceTests: XCTestCase {
         let security = Security()
         security.autoEscaping = true
         
-        let renderer = Renderer(security: security)
-        renderer.features = [.markdown]
+        let renderer = Renderer(security: security, features: [.markdown])
         
         measure {
             

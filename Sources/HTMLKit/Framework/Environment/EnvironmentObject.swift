@@ -1,19 +1,19 @@
 import Foundation
 
 /// A property wrapper type to initate an environment object
-@frozen @propertyWrapper public struct EnvironmentObject<Value> {
+@frozen @propertyWrapper public struct EnvironmentObject<ObjectType> {
     
     /// The wrapped value
-    public var wrappedValue: Wrapper<Value>
+    public var wrappedValue: Wrapper<ObjectType>
     
     /// Converts the type into the wrapped value
-    public init(_ type: Value.Type) {
+    public init(_ type: ObjectType.Type) {
         
         self.wrappedValue = .init()
     }
     
     /// A type, that holds the environment object informationen
-    @dynamicMemberLookup public struct Wrapper<Value> {
+    @dynamicMemberLookup public struct Wrapper<WrapperType> {
         
         /// The path of the parent
         internal var parent: AnyKeyPath?
@@ -24,7 +24,7 @@ import Foundation
         /// Initiates a wrapper
         public init() {
             
-            self.path = \Value.self
+            self.path = \WrapperType.self
         }
         
         /// Initiates a wrapper with the necessary information for the environment object
@@ -35,7 +35,7 @@ import Foundation
         }
         
         /// Looks up for a containing property
-        public subscript<T>(dynamicMember member: KeyPath<Value, T>) -> EnvironmentValue {
+        public subscript<T>(dynamicMember member: KeyPath<WrapperType, T>) -> EnvironmentValue {
             
             guard let newPath = self.path.appending(path: member) else {
                 fatalError()
@@ -49,7 +49,7 @@ import Foundation
         }
         
         /// Looks up for a containing model
-        public subscript<T>(dynamicMember member: KeyPath<Value, T>) -> Wrapper<T> where T: ViewModel {
+        public subscript<T>(dynamicMember member: KeyPath<WrapperType, T>) -> Wrapper<T> where T: ViewModel {
             
             guard let newPath = self.path.appending(path: member) else {
                 fatalError()

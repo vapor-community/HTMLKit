@@ -16,13 +16,16 @@ public class ViewRenderer {
     internal var renderer: Renderer
     
     /// Creates the view renderer
-    public init(eventLoop: EventLoop, localization: Localization, environment: HTMLKit.Environment, security: Security) {
+    public init(eventLoop: EventLoop, configuration: Configuration) {
         
         self.eventLoop = eventLoop
-        self.renderer = Renderer(localization: localization, environment: environment, security: security)
+        self.renderer = Renderer(localization: configuration.localization,
+                                 environment: configuration.environment,
+                                 security: configuration.security,
+                                 features: configuration.features)
     }
     
-    /// Renders a layout and its context
+    /// Renders a view and transforms it into a view response.
     public func render(_ view: some HTMLKit.View) -> EventLoopFuture<Vapor.View> {
         
         do  {
@@ -37,7 +40,7 @@ public class ViewRenderer {
         }
     }
     
-    /// Renders a layout and its context
+    /// Renders a view and transforms it into a view response.
     public func render(_ view: some HTMLKit.View) async throws -> Vapor.View {
         return try await render(view).get()
     }
