@@ -33,6 +33,10 @@ public struct Navigation: View, Modifiable, Identifiable {
         return newSelf
     }
     
+    public func navigationStyle(_ style: NavigationConfiguration) -> Navigation {
+        return self.mutate(classes: style.configuration)
+    }
+    
     public func tag(_ value: String) -> Navigation {
         return self.mutate(id: value)
     }

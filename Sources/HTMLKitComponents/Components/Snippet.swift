@@ -44,6 +44,10 @@ public struct Snippet: View, Modifiable, Identifiable {
     public func tag(_ value: String) -> Snippet {
         return self.mutate(id: value)
     }
+    
+    public func snippetStyle(_ style: SnippetConfiguration) -> Snippet {
+        return self.mutate(classes: style.configuration)
+    }
 }
 
 extension Snippet: ViewModifier {

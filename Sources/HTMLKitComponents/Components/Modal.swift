@@ -44,6 +44,10 @@ public struct Modal: View, Modifiable, Actionable {
     public func tag(_ value: String) -> Modal {
         return self.mutate(id: value)
     }
+    
+    public func modalStyle(_ style: ModalConfiguration) -> Modal {
+        return self.mutate(classes: style.configuration)
+    }
 }
 
 extension Modal: ViewModifier {

@@ -50,6 +50,10 @@ public struct Carousel: View, Identifiable, Modifiable {
     public func tag(_ value: String) -> Carousel {
         return self.mutate(id: value)
     }
+    
+    public func carouselStyle(_ style: CarouselConfiguration) -> Carousel {
+        return self.mutate(classes: style.configuration)
+    }
 }
 
 extension Carousel: ViewModifier {

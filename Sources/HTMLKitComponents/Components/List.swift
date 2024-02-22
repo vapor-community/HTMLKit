@@ -54,6 +54,10 @@ public struct List: View, Modifiable, Actionable {
         return newSelf
     }
     
+    public func listStyle(_ style: ListConfiguration) -> List {
+        return self.mutate(classes: style.configuration)
+    }
+    
     public func tag(_ value: String) -> List {
         return self.mutate(id: value)
     }

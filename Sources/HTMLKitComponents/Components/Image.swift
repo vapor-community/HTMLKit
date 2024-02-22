@@ -42,6 +42,10 @@ public struct Image: View, Modifiable, Identifiable {
     public func tag(_ value: String) -> Image {
         return self.mutate(id: value)
     }
+    
+    public func imageStyle(_ style: ImageConfiguration) -> Image {
+        return self.mutate(classes: style.configuration)
+    }
 }
 
 extension Image: ImageModifier {
