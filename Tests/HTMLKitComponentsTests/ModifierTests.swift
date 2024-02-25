@@ -19,7 +19,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center border:black"></div>
+                       <div class="hstack vertical-alignment:center border:black"></div>
                        """
         )
     }
@@ -32,7 +32,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center background:black"></div>
+                       <div class="hstack vertical-alignment:center background:black"></div>
                        """
         )
     }
@@ -45,7 +45,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center shape:fullrounded"></div>
+                       <div class="hstack vertical-alignment:center shape:fullrounded"></div>
                        """
         )
     }
@@ -58,20 +58,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center scheme:dark"></div>
-                       """
-        )
-    }
-    
-    func testContentSpace() throws {
-        
-        let view = TestView {
-            HStack {}.contentSpace(.around)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <div class="hstack alignment:center space:around"></div>
+                       <div class="hstack vertical-alignment:center scheme:dark"></div>
                        """
         )
     }
@@ -79,12 +66,12 @@ final class ModifierTests: XCTestCase {
     func testFrame() throws {
         
         let view = TestView {
-            HStack {}.frame(width: .eleven, offset: .one)
+            HStack {}.frame(width: .eleven, height: .minimum)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center offset:one size:eleven"></div>
+                       <div class="hstack vertical-alignment:center height:minimum width:eleven"></div>
                        """
         )
     }
@@ -97,7 +84,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center margin:small"></div>
+                       <div class="hstack vertical-alignment:center margin:small"></div>
                        """
         )
     }
@@ -110,7 +97,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center padding:large"></div>
+                       <div class="hstack vertical-alignment:center padding:large"></div>
                        """
         )
     }
@@ -123,7 +110,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center opacity:transparent"></div>
+                       <div class="hstack vertical-alignment:center opacity:transparent"></div>
                        """
         )
     }
@@ -136,7 +123,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center state:hidden"></div>
+                       <div class="hstack vertical-alignment:center state:hidden"></div>
                        """
         )
     }
@@ -149,7 +136,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center zindex:five"></div>
+                       <div class="hstack vertical-alignment:center zindex:five"></div>
                        """
         )
     }
@@ -157,7 +144,7 @@ final class ModifierTests: XCTestCase {
     func testButtonSize() throws {
         
         let view = TestView {
-            Button(role: .button) {}.buttonSize(.large)
+            Button(role: .button) {}.controlSize(.large)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
@@ -196,12 +183,12 @@ final class ModifierTests: XCTestCase {
     func testTextStyle() throws {
         
         let view = TestView {
-            Text {}.font(.code)
+            Text {}.textStyle(.code)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text style:code"></p>
+                       <p class="text alignment:leading style:code"></p>
                        """
         )
     }
@@ -214,7 +201,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text size:large"></p>
+                       <p class="text alignment:leading size:large"></p>
                        """
         )
     }
@@ -227,7 +214,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text style:italic"></p>
+                       <p class="text alignment:leading style:italic"></p>
                        """
         )
     }
@@ -235,12 +222,12 @@ final class ModifierTests: XCTestCase {
     func testFontTranformation() throws {
         
         let view = TestView {
-            Text {}.fontTransformation(.capitalize)
+            Text {}.textCase(.capitalize)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text transformation:capitalize"></p>
+                       <p class="text alignment:leading case:capitalize"></p>
                        """
         )
     }
@@ -253,7 +240,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text limit:one"></p>
+                       <p class="text alignment:leading limit:one"></p>
                        """
         )
     }
@@ -266,7 +253,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text height:small"></p>
+                       <p class="text alignment:leading height:small"></p>
                        """
         )
     }
@@ -319,6 +306,19 @@ final class ModifierTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <img src="source" role="img" class="image shape:rectangle">
+                       """
+        )
+    }
+    
+    func testFontFamily() throws {
+        
+        let view = TestView {
+            Text {}.font(.arial)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p class="text alignment:leading font:arial"></p>
                        """
         )
     }

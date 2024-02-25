@@ -6,8 +6,13 @@
 /// A type that describes the modifier of a text component.
 public protocol TextModifier {
     
+    func font(_ family: Tokens.FontFamily) -> Self
+    
     /// Sets the style of the text.
-    func font(_ style: Tokens.TextStyle) -> Self
+    func textStyle(_ style: Tokens.TextStyle) -> Self
+    
+    /// Sets the style of the text.
+    func textStyle(_ style: TextConfiguration) -> Self
     
     /// Sets the foreground color of the text.
     func foregroundColor(_ color: Tokens.ForegroundColor) -> Self
@@ -19,10 +24,13 @@ public protocol TextModifier {
     func fontWeight(_ weight: Tokens.FontWeight) -> Self
     
     /// Sets the transformation for the text.
-    func fontTransformation(_ transformation: Tokens.TextTransformation) -> Self
+    func textCase(_ case: Tokens.TextCase) -> Self
     
     /// Sets the style of the font.
     func fontStyle(_ style: Tokens.FontStyle) -> Self
+    
+    /// Sets the decoration for the text.
+    func textDecoration(_ decoration: Tokens.TextDecoration) -> Self
     
     /// Applies a bold font weight to the text.
     func bold() -> Self
@@ -53,12 +61,16 @@ public protocol TextModifier {
 
 extension TextModifier where Self: Modifiable {
     
-    internal func mutate(font value: String) -> Self {
+    internal func mutate(fontfamily value: String) -> Self {
+        return self.mutate(class: "font:\(value)")
+    }
+    
+    internal func mutate(textstyle value: String) -> Self {
         return self.mutate(class: "style:\(value)")
     }
     
     internal func mutate(foregroundcolor value: String) -> Self {
-        return self.mutate(class: "color:\(value)")
+        return self.mutate(class: "foreground:\(value)")
     }
     
     internal func mutate(fontsize value: String) -> Self {
@@ -69,15 +81,15 @@ extension TextModifier where Self: Modifiable {
         return self.mutate(class: "weight:\(value)")
     }
     
-    internal func mutate(fonttransformation value: String) -> Self {
-        return self.mutate(class: "transformation:\(value)")
+    internal func mutate(textcase value: String) -> Self {
+        return self.mutate(class: "case:\(value)")
     }
     
     internal func mutate(fontstyle value: String) -> Self {
         return self.mutate(class: "style:\(value)")
     }
     
-    internal func mutate(fontdecoration value: String) -> Self {
+    internal func mutate(textdecoration value: String) -> Self {
         return self.mutate(class: "decoration:\(value)")
     }
     

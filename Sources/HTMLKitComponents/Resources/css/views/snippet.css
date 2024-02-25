@@ -18,7 +18,7 @@
     --fontSize: 1.0rem;
     --fontWeight: 400;
     --lineHeight: 1.5;
-    --foregroundColor: 0, 0%, 0%;
+    --foregroundColor: var(--systemTextColor);
     --backgroundColor: 0, 0%, 0%;
     --backgroundOpacity: 0.0;
     
@@ -51,8 +51,4 @@
     content: counter(line);
     color: hsla(var(--foregroundColor), 1.0);
     -webkit-user-select: none;
-}
-
-.scheme\:dark .snippet, .snippet.scheme\:dark {
-    --foregroundColor: 0, 0%, 100%;
 }

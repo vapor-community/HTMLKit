@@ -35,15 +35,6 @@ public struct Card: View, Modifiable, Identifiable {
         self.classes = ["card"]
     }
     
-    /// Creates a card.
-    internal init(header: [Content]?, content: [Content], classes: [String], id: String?) {
-        
-        self.header = header
-        self.content = content
-        self.classes = classes
-        self.id = id
-    }
-    
     public var body: Content {
         Division {
             Division {
@@ -63,6 +54,10 @@ public struct Card: View, Modifiable, Identifiable {
     
     public func tag(_ value: String) -> Card {
         return self.mutate(id: value)
+    }
+    
+    public func cardStyle(_ style: CardConfiguration) -> Card {
+        return self.mutate(classes: style.configuration)
     }
 }
 
@@ -109,8 +104,8 @@ extension Card: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Card {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Card {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Card {

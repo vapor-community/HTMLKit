@@ -19,21 +19,18 @@ public struct HStack: View, Actionable, Modifiable {
     
     /// The events of the text.
     internal var events: [String]?
-    
+     
     /// Creates a horizontal stack.
-    public init(alignment: Tokens.VerticalAlignment = .center, @ContentBuilder<Content> content: () -> [Content]) {
+    public init(alignment: Tokens.VerticalAlignment = .center, spacing: Tokens.ContentSpace? = nil, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
-        self.classes = ["hstack", "alignment:\(alignment.value)"]
-    }
-    
-    /// Creates a horizontal stack.
-    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
         
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
+        if let spacing {
+            self.classes = ["hstack", "vertical-alignment:\(alignment.value)", "spacing:\(spacing.value)"]
+            
+        } else {
+            self.classes = ["hstack", "vertical-alignment:\(alignment.value)"]
+        }
     }
     
     public var body: Content {
@@ -49,15 +46,6 @@ public struct HStack: View, Actionable, Modifiable {
                 events
             }
         }
-    }
-    
-    /// Sets the space of the content.
-    public func contentSpace(_ value: Tokens.ContentSpace) -> HStack {
-        
-        var newSelf = self
-        newSelf.classes.append("space:\(value.value)")
-        
-        return newSelf
     }
     
     public func tag(_ value: String) -> HStack {
@@ -119,8 +107,8 @@ extension HStack: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> HStack {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> HStack {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> HStack {
@@ -142,19 +130,16 @@ public struct VStack: View, Actionable, Modifiable {
     var events: [String]?
     
     /// Creates a vertical stack.
-    public init(alignment: Tokens.HorizontalAlignment = .leading, @ContentBuilder<Content> content: () -> [Content]) {
+    public init(alignment: Tokens.HorizontalAlignment = .leading, spacing: Tokens.ContentSpace? = nil, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
-        self.classes = ["vstack", "alignment:\(alignment.value)"]
-    }
-    
-    /// Creates a vertical stack.
-    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
         
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
+        if let spacing {
+            self.classes = ["vstack", "horizontal-alignment:\(alignment.value)", "spacing:\(spacing.value)"]
+            
+        } else {
+            self.classes = ["vstack", "horizontal-alignment:\(alignment.value)"]
+        }
     }
     
     public var body: Content {
@@ -170,15 +155,6 @@ public struct VStack: View, Actionable, Modifiable {
                 events
             }
         }
-    }
-    
-    /// Sets the space of the content.
-    public func contentSpace(_ value: Tokens.ContentSpace) -> VStack {
-        
-        var newSelf = self
-        newSelf.classes.append("space:\(value.value)")
-        
-        return newSelf
     }
     
     public func tag(_ value: String) -> VStack {
@@ -240,8 +216,8 @@ extension VStack: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> VStack {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> VStack {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> VStack {
@@ -267,15 +243,6 @@ public struct ZStack: View, Actionable, Modifiable {
         
         self.content = content()
         self.classes = ["zstack"]
-    }
-    
-    /// Creates a stack.
-    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
     }
     
     public var body: Content {
@@ -352,8 +319,8 @@ extension ZStack: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> ZStack {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> ZStack {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> ZStack {

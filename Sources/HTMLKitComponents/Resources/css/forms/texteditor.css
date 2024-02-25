@@ -29,13 +29,13 @@
     --fontSize: 1.0rem;
     --fontWeight: 400;
     --lineHeight: 1.5;
-    --foregroundColor: 0, 0%, 0%;
+    --foregroundColor: var(--systemTextColor);
     --borderWidth: 1px;
-    --borderColor: 210, 14%, 89%;
+    --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
     --borderOpacity: 1.0;
-    --focusColor: 210, 100%, 50%;
-    --backgroundColor: 0, 0%, 100%;
+    --focusColor: var(--systemFocusColor);
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
     display: block;
@@ -68,11 +68,4 @@
 
 .texteditor:invalid {
     --borderColor: var(--redColor);
-}
-
-.scheme\:dark .texteditor, .texteditor.scheme\:dark {
-    --foregroundColor: 0, 0%, 100%;
-    --borderColor: 210, 9%, 31%;
-    --focusColor: 210, 100%, 50%;
-    --backgroundColor: 210, 11%, 15%;
 }

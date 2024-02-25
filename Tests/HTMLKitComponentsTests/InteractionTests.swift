@@ -25,7 +25,7 @@ final class InteractionTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text" id="sender">Example</p>\
+                       <p class="text alignment:leading" id="sender">Example</p>\
                        <script>\
                        $('#sender').onClick(function(){\
                        $('#reciever').show();\
@@ -49,7 +49,7 @@ final class InteractionTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text" id="sender">Example</p>\
+                       <p class="text alignment:leading" id="sender">Example</p>\
                        <script>\
                        $('#sender').onTapGesture(function(){\
                        $('#reciever').hide();\
@@ -73,7 +73,7 @@ final class InteractionTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text" id="sender">Example</p>\
+                       <p class="text alignment:leading" id="sender">Example</p>\
                        <script>\
                        $('#sender').onHover(function(){\
                        $('#reciever').open();\
@@ -97,7 +97,7 @@ final class InteractionTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text" id="sender">Example</p>\
+                       <p class="text alignment:leading" id="sender">Example</p>\
                        <script>\
                        $('#sender').onLeave(function(){\
                        $('#reciever').close();\
@@ -121,7 +121,7 @@ final class InteractionTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text" id="sender">Example</p>\
+                       <p class="text alignment:leading" id="sender">Example</p>\
                        <script>\
                        $('#sender').onLongPressGesture(function(){\
                        $('#reciever').animate();\

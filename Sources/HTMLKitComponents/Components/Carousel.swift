@@ -23,14 +23,6 @@ public struct Carousel: View, Identifiable, Modifiable {
         self.classes = ["carousel"]
     }
     
-    /// Creates a carousel.
-    internal init(content: [Identifiable], classes: [String], id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.id = id
-    }
-    
     public var body: Content {
         Division {
             Division {
@@ -57,6 +49,10 @@ public struct Carousel: View, Identifiable, Modifiable {
     
     public func tag(_ value: String) -> Carousel {
         return self.mutate(id: value)
+    }
+    
+    public func carouselStyle(_ style: CarouselConfiguration) -> Carousel {
+        return self.mutate(classes: style.configuration)
     }
 }
 
@@ -103,8 +99,8 @@ extension Carousel: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Carousel {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Carousel {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Carousel {
@@ -124,13 +120,6 @@ public struct Slide: View, Identifiable, Modifiable {
         
         self.content = content()
         self.classes = ["slide"]
-    }
-    
-    internal init(id: String?, content: [Content], classes: [String]) {
-        
-        self.id = id
-        self.content = content
-        self.classes = classes
     }
     
     public var body: Content {
@@ -191,8 +180,8 @@ extension Slide: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Slide {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Slide {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Slide {

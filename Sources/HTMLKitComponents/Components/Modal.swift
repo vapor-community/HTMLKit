@@ -26,15 +26,6 @@ public struct Modal: View, Modifiable, Actionable {
         self.classes = ["modal"]
     }
     
-    /// Createsa model.
-    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         Dialog {
             content
@@ -52,6 +43,10 @@ public struct Modal: View, Modifiable, Actionable {
     
     public func tag(_ value: String) -> Modal {
         return self.mutate(id: value)
+    }
+    
+    public func modalStyle(_ style: ModalConfiguration) -> Modal {
+        return self.mutate(classes: style.configuration)
     }
 }
 
@@ -98,8 +93,8 @@ extension Modal: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Modal {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Modal {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Modal {

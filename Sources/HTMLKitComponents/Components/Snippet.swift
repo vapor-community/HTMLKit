@@ -31,14 +31,6 @@ public struct Snippet: View, Modifiable, Identifiable {
         self.classes = ["snippet", "highlight:\(highlight.value)"]
     }
     
-    /// Creates a snippet.
-    internal init(content: [Content], classes: [String], id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.id = id
-    }
-    
     public var body: Content {
         PreformattedText {
             content
@@ -51,6 +43,10 @@ public struct Snippet: View, Modifiable, Identifiable {
     
     public func tag(_ value: String) -> Snippet {
         return self.mutate(id: value)
+    }
+    
+    public func snippetStyle(_ style: SnippetConfiguration) -> Snippet {
+        return self.mutate(classes: style.configuration)
     }
 }
 
@@ -97,8 +93,8 @@ extension Snippet: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Snippet {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Snippet {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Snippet {

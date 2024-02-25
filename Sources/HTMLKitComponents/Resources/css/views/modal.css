@@ -19,11 +19,12 @@
     --paddingBlockEnd: 0.75rem;
     --paddingInlineStart: 1.0rem;
     --paddingInlineEnd: 1.0rem;
+    --foregroundColor: var(--systemTextColor);
     --borderWidth: 1px;
-    --borderColor: 210, 14%, 89%;
+    --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
     --borderOpacity: 1.0;
-    --backgroundColor: 0, 0%, 100%;
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
     margin: auto;
@@ -37,9 +38,4 @@
     border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     box-shadow: 0 15px 35px hsla(0,0%, 0%, 0.2);
-}
-
-.scheme\:dark .modal, .modal.scheme\:dark {
-    --borderColor: 210, 9%, 31%;
-    --backgroundColor: 210, 11%, 15%;
 }

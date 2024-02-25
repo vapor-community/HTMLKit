@@ -22,47 +22,68 @@
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }
 
-.hstack.alignment\:top {
+.hstack.vertical-alignment\:top {
     align-items: flex-start;
 }
 
-.hstack.alignment\:center {
+.hstack.vertical-alignment\:center {
     align-items: center;
 }
 
-.hstack.alignment\:bottom {
+.hstack.vertical-alignment\:bottom {
     align-items: flex-end;
 }
 
-.hstack.alignment\:baseline {
+.hstack.vertical-alignment\:baseline {
     align-items: baseline;
 }
 
-.hstack.space\:around {
+.hstack.horizontal-alignment\:leading {
+    margin-inline-end: auto !important;
+}
+
+.hstack.horizontal-alignment\:center {
+    margin-inline-start: auto !important;
+    margin-inline-end: auto !important;
+}
+
+.hstack.horizontal-alignment\:trailing {
+    margin-inline-start: auto !important;
+}
+
+.hstack > .frame-alignment\:leading {
+    align-self: flex-start;
+}
+
+.hstack > .frame-alignment\:center {
+    align-self: center;
+}
+
+.hstack > .frame-alignment\:trailing {
+    align-self: flex-end;
+}
+
+.hstack.spacing\:around {
     justify-content: space-around;
 }
 
-.hstack.space\:between {
+.hstack.spacing\:between {
     justify-content: space-between;
 }
 
-.hstack.space\:evenly {
+.hstack.spacing\:evenly {
     justify-content: space-evenly;
 }
 
-.hstack.space\:center {
-    justify-content: center;
-}
-
-.hstack.space\:large {
+.hstack.spacing\:large {
     gap: 2.25rem;
 }
 
-.hstack.space\:medium {
+.hstack.spacing\:medium {
     gap: 1.5rem;
 }
 
-.hstack.space\:small {
+.hstack.spacing\:small {
     gap: 1rem;
 }
 
@@ -89,43 +110,51 @@
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }
 
-.vstack.alignment\:leading {
+.vstack.horizontal-alignment\:leading {
     align-items: flex-start;
 }
 
-.vstack.alignment\:center {
+.vstack.horizontal-alignment\:center {
     align-items: center;
 }
 
-.vstack.alignment\:trailing {
+.vstack.horizontal-alignment\:trailing {
     align-items: flex-end;
 }
 
-.vstack.space\:around {
+.vstack > .frame-alignment\:leading {
+    align-self: flex-start;
+}
+
+.vstack > .frame-alignment\:center {
+    align-self: center;
+}
+
+.vstack > .frame-alignment\:trailing {
+    align-self: flex-end;
+}
+
+.vstack.spacing\:around {
     justify-content: space-around;
 }
 
-.vstack.space\:between {
+.vstack.spacing\:between {
     justify-content: space-between;
 }
 
-.vstack.space\:evenly {
+.vstack.spacing\:evenly {
     justify-content: space-evenly;
 }
 
-.vstack.space\:center {
-    justify-content: center;
-}
-
-.vstack.space\:large {
+.vstack.spacing\:large {
     gap: 2.25rem;
 }
 
-.vstack.space\:medium {
+.vstack.spacing\:medium {
     gap: 1.5rem;
 }
 
-.vstack.space\:small {
+.vstack.spacing\:small {
     gap: 1rem;
 }
 

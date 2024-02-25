@@ -16,7 +16,7 @@
  */
 
 .label {
-    --foregroundColor: 0, 0%, 0%;
+    --foregroundColor: var(--systemTextColor);
     
     display: inline-block;
     margin-block-start: 1.25rem;
@@ -27,8 +27,3 @@
     line-height: var(--lineHeight);
     color: hsla(var(--foregroundColor), 1.0);
 }
-
-.scheme\:dark .label, .label.scheme\:dark {
-    --foregroundColor: 0, 0%, 100%;
-}
-

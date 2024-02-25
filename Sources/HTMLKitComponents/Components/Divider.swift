@@ -16,11 +16,6 @@ public struct Divider: View {
         self.classes = ["divider"]
     }
     
-    /// Creates a divider.
-    internal init(classes: [String]) {
-        self.classes = classes
-    }
-    
     public var body: Content {
         HorizontalRule()
             .class(classes.joined(separator: " "))

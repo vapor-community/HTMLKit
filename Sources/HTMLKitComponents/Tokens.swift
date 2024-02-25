@@ -11,13 +11,13 @@ public enum Tokens {
         
         /// Aligns the elements vertically.
         case vertical
-        
         /// Aligns the elements horizontally.
         case horizontal
-        
+        /// Aligns the elements along a custom direction.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .vertical:
                 return "vertical"
@@ -34,27 +34,26 @@ public enum Tokens {
     /// A alignment for text along the horizontal axis.
     public enum TextAlignment {
         
-        /// Aligns the text left.
-        case left
-        
+        /// Aligns the text on the left.
+        case leading
         /// Aligns the text in the middle.
         case center
-        
-        /// Aligns the text right.
-        case right
-        
+        /// Aligns the text on the right.
+        case trailing
+        /// Sets the text to a custom alignment.
         case custom(String)
         
         var value: String {
+            
             switch self {
-            case .left:
-                return "left"
+            case .leading:
+                return "leading"
                 
             case .center:
                 return "center"
                 
-            case .right:
-                return "right"
+            case .trailing:
+                return "trailing"
 
             case .custom(let string):
                 return string
@@ -63,47 +62,41 @@ public enum Tokens {
     }
 
     /// A size for column.
-    public enum ColumnSize {
+    public enum ViewWidth {
         
-        /// Sets the size to 8.3 %.
+        /// Sets the width of the view to 8.3 % of the parent view.
         case one
-        
-        /// Sets the size to 16.67 %.
+        /// Sets the width of the view to 16.67 % of the parent view.
         case two
-        
-        /// Sets the size to 25 %.
+        /// Sets the width of the view to 25 % of the parent view.
         case three
-        
-        /// Sets the size to 33.3 %.
+        /// Sets the width of the view to 33.3 % of the parent view.
         case four
-        
-        /// Sets the size to 41.67 %.
+        /// Sets the width of the view to 41.67 % of the parent view.
         case five
-        
-        /// Sets the size to 50 %.
+        /// Sets the width of the view to 50 % of the parent view.
         case six
-        
-        /// Sets the size to 58.3 %.
+        /// Sets the width of the view to 58.3 % of the parent view.
         case seven
-        
-        /// Sets the size to 66.67 %.
+        /// Sets the width of the view to 66.67 % of the parent view.
         case eight
-        
-        /// Sets the size to 75 %.
+        /// Sets the width of the view to 75 % of the parent view.
         case nine
-        
-        /// Sets the size to 83.3%.
+        /// Sets the width of the view to 83.3% of the parent view.
         case ten
-        
-        /// Sets the size to 91.67 %.
+        /// Sets the width of the view to 91.67 % of the parent view.
         case eleven
-        
-        /// Sets the size to 100 %.
+        /// Sets the width of the view to 100 % of the parent view.
         case twelve
-        
+        /// Sets the width of view to the intrinsic preferred width.
+        case maximum
+        /// Sets the width of the view to the intrinsic minimum width.
+        case minimum
+        /// Sets the view to a custom width.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .one:
                 return "one"
@@ -140,73 +133,90 @@ public enum Tokens {
                 
             case .twelve:
                 return "twelve"
+                
+            case .minimum:
+                return "minimum"
+                
+            case .maximum:
+                return "maximum"
 
             case .custom(let string):
                 return string
             }
         }
     }
+    
+    public enum ViewHeight {
+        
+        /// Sets the width of the view to 8.3 % of the parent view.
+        case minimum
+        /// Sets the width of the view to 16.67 % of the parent view.
+        case maximum
+        /// Sets the view to a custom width.
+        case custom(String)
+        
+        var value: String {
+            
+            switch self {
+            case .minimum:
+                return "minimum"
+                
+            case .maximum:
+                return "maximum"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+
 
     /// A color for text.
     public enum ForegroundColor {
         
-        /// Changes the border color to black.
+        /// Changes the foreground color to #000000 .
         case black
-        
-        /// Changes the border color to white.
+        /// Changes the foreground color to #FFFFFF.
         case white
-        
-        /// Changes the border color to blue.
+        /// Changes the foreground color to #4098D7.
         case blue
-        
-        /// Changes the border color to brown.
+        /// Changes the foreground color to #BF7140.
         case brown
-        
-        /// Changes the border color to cyan.
+        /// Changes the foreground color to #38BEC9.
         case cyan
-        
-        /// Changes the border color to green.
+        /// Changes the foreground color to #57AE5B.
         case green
-        
-        /// Changes the border color to indigo.
+        /// Changes the foreground color to #647ACB.
         case indigo
-        
-        /// Changes the border color to mint.
+        /// Changes the foreground color to #91E697.
         case mint
-        
-        /// Changes the border color to pink.
+        /// Changes the foreground color to #DA4A91.
         case pink
-        
-        /// Changes the border color to purple.
+        /// Changes the foreground color to #724BB7.
         case purple
-        
-        /// Changes the border color to red.
+        /// Changes the foreground color to #D64545.
         case red
-        
-        /// Changes the border color to teal.
+        /// Changes the foreground color to #3EBD93.
         case teal
-        
-        /// Changes the border color to ornage.
+        /// Changes the foreground color to #E67635.
         case orange
-        
-        /// Changes the border color to yellow.
+        /// Changes the foreground color to #F7D070.
         case yellow
-        
-        /// Changes the border color to gray.
+        /// Changes the foreground color to #9E9E9E.
         case gray
-        
-        /// Changes the border color to silver.
+        /// Changes the foreground color to #F7F7F7.
         case silver
-        
-        case primary
-        
-        case secondary
-        
+        /// Changes the foreground color to #007FFF.
+        case accent
+        /// Changes the foreground opacity to 0.0.
         case transparent
-        
+        /// Changes the foreground color to #DFE3E7.
+        case system
+        /// Changes the foreground color to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .black:
                 return "black"
@@ -256,14 +266,14 @@ public enum Tokens {
             case .silver:
                 return "silver"
                 
-            case .primary:
-                return "primary"
-                
-            case .secondary:
-                return "secondary"
+            case .accent:
+                return "accent"
                 
             case .transparent:
                 return "transparent"
+                
+            case .system:
+                return "system"
 
             case .custom(let string):
                 return string
@@ -274,24 +284,21 @@ public enum Tokens {
     /// A size for text.
     public enum FontSize {
         
-        /// Changes the size to small.
+        /// Changes the size of the font to 0.67 rem.
         case tiny
-        
-        /// Changes the size to small.
+        /// Changes the size of the font to 0.83 rem.
         case small
-        
-        /// Changes the size to medium.
+        /// Changes the size of the font to 1.17 rem.
         case medium
-        
-        /// Changes the size to large.
+        /// Changes the size of the font to 1.5 rem.
         case large
-        
-        /// Changes the size to extra large.
+        /// Changes the size of the font to 2 rem.
         case extralarge
-        
+        /// Changes the size of the font to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .tiny:
                 return "tiny"
@@ -315,20 +322,19 @@ public enum Tokens {
     }
 
     /// A transformation for the text.
-    public enum TextTransformation {
+    public enum TextCase {
         
         /// Converts all characters to uppercase.
         case uppercase
-        
         /// Converts all characters to lowercase.
         case lowercase
-        
         /// Capitalizes the first letter of each word.
         case capitalize
-        
+        /// Sets the transformation to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .uppercase:
                 return "uppercase"
@@ -350,34 +356,27 @@ public enum Tokens {
         
         /// Sets the weight to 100.
         case thin
-        
         /// Sets the weight to 200.
         case ultraLight
-        
         /// Sets the weight to 300.
         case light
-        
         /// Sets the weight to 400.
         case regular
-        
         /// Sets the weight to 500.
         case medium
-        
         /// Sets the weight to 600.
         case semibold
-        
         /// Sets the weight to 700.
         case bold
-
         /// Sets the weight to 900.
         case heavy
-        
         /// Sets the weight to 950.
         case black
-        
+        /// Sets the weight to custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .thin:
                 return "thin"
@@ -415,17 +414,17 @@ public enum Tokens {
     /// A decoration for text.
     public enum TextDecoration {
         
+        /// Underlines the text.
         case underline
-        
+        /// Overlines the text.
         case overline
-        
+        /// Adds a line through the text.
         case strikeThrough
-        
-        case none
-        
+        /// Sets the decoration of the text to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .underline:
                 return "underline"
@@ -435,9 +434,6 @@ public enum Tokens {
                 
             case .strikeThrough:
                 return "strikethrough"
-                
-            case .none:
-                return "none"
 
             case .custom(let string):
                 return string
@@ -445,15 +441,18 @@ public enum Tokens {
         }
     }
 
+    /// A style for a font
     public enum FontStyle {
         
+        /// Displays the text as italic.
         case italic
-        
+        /// Displays the text as oblique.
         case oblique
-        
+        /// Displays the text as a custom style.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .italic:
                 return "italic"
@@ -467,65 +466,52 @@ public enum Tokens {
         }
     }
 
+    /// A background color for a view.
     public enum BackgroundColor {
         
-        /// Changes the border color to black.
+        /// Changes the background color to #000000 .
         case black
-        
-        /// Changes the border color to white.
+        /// Changes the background color to #FFFFFF.
         case white
-        
-        /// Changes the border color to blue.
+        /// Changes the background color to #4098D7.
         case blue
-        
-        /// Changes the border color to brown.
+        /// Changes the background color to #BF7140.
         case brown
-        
-        /// Changes the border color to cyan.
+        /// Changes the background color to #38BEC9.
         case cyan
-        
-        /// Changes the border color to green.
+        /// Changes the background color to #57AE5B.
         case green
-        
-        /// Changes the border color to indigo.
+        /// Changes the background color to #647ACB.
         case indigo
-        
-        /// Changes the border color to mint.
+        /// Changes the background color to #91E697.
         case mint
-        
-        /// Changes the border color to pink.
+        /// Changes the background color to #DA4A91.
         case pink
-        
-        /// Changes the border color to purple.
+        /// Changes the background color to #724BB7.
         case purple
-        
-        /// Changes the border color to red.
+        /// Changes the background color to #D64545.
         case red
-        
-        /// Changes the border color to teal.
+        /// Changes the background color to #3EBD93.
         case teal
-        
-        /// Changes the border color to ornage.
+        /// Changes the background color to #E67635.
         case orange
-        
-        /// Changes the border color to yellow.
+        /// Changes the background color to #F7D070.
         case yellow
-        
-        /// Changes the border color to gray.
+        /// Changes the background color to #9E9E9E.
         case gray
-        
-        /// Changes the border color to silver.
+        /// Changes the background color to #F7F7F7.
         case silver
-        
-        case primary
-        
-        case secondary
-        
+        /// Changes the background color to #007FFF.
+        case accent
+        /// Changes the background opacity to 0.0.
         case transparent
-        
+        /// Changes the background color to #DFE3E7.
+        case system
+        /// Changes the background to a custom color.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .black:
                 return "black"
@@ -575,14 +561,14 @@ public enum Tokens {
             case .silver:
                 return "silver"
                 
-            case .primary:
-                return "primary"
-                
-            case .secondary:
-                return "secondary"
+            case .accent:
+                return "accent"
                 
             case .transparent:
                 return "transparent"
+                
+            case .system:
+                return "system"
 
             case .custom(let string):
                 return string
@@ -595,21 +581,18 @@ public enum Tokens {
 
         /// Resizes the content to fit within the parent.
         case contain
-        
         /// Resizes the content to fill the parent. The overflow will be clipped.
         case cover
-        
         /// Resizes the content to fill the parent. If necessary it will be streched or squished.
         case fill
-        
         case scaleDown
-        
         /// Does not resize.
         case none
-        
+        /// Resizes to the content to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .contain:
                 return "contain"
@@ -632,15 +615,18 @@ public enum Tokens {
         }
     }
 
+    /// A views opacity.
     public enum OpacityValue {
         
+        /// Sets the opacity value to 1.0.
         case intransparent
-        
+        /// Sets the opacity value to 0.0.
         case transparent
-        
+        /// Sets the opacity value to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .intransparent:
                 return "intransparent"
@@ -654,93 +640,20 @@ public enum Tokens {
         }
     }
 
-    /// A offset for a column.
-    public enum ColumnOffset {
-        
-        /// Sets the offset to 8.3 %.
-        case one
-        
-        /// Sets the offset to 16.67 %.
-        case two
-        
-        /// Sets the offset to 25 %.
-        case three
-        
-        /// Sets the offset to 33.33 %.
-        case four
-        
-        /// Sets the offset to 41.67 %.
-        case five
-        
-        /// Sets the offset to 50 %.
-        case six
-        
-        /// Sets the offset to  58.3 %.
-        case seven
-        
-        /// Sets the offset to  66.7 %.
-        case eight
-        
-        /// Sets the offset to 75 %.
-        case nine
-        
-        /// Sets the offset to 83.3 %.
-        case ten
-        
-        /// Sets the offset to 91.67 %.
-        case eleven
-        
-        case custom(String)
-        
-        var value: String {
-            switch self {
-            case .one:
-                return "one"
-                
-            case .two:
-                return "two"
-                
-            case .three:
-                return "three"
-                
-            case .four:
-                return "four"
-                
-            case .five:
-                return "five"
-                
-            case .six:
-                return "six"
-                
-            case .seven:
-                return "seven"
-                
-            case .eight:
-                return "eight"
-                
-            case .nine:
-                return "nine"
-                
-            case .ten:
-                return "ten"
-                
-            case .eleven:
-                return "eleven"
-
-            case .custom(let string):
-                return string
-            }
-        }
-    }
-
+    /// A size for an image view.
     public enum ImageScale {
         
+        /// Sets the inline size of the image to 3.125 rem.
         case small
+        /// Sets the inline size of the image to 12.5 rem.
         case medium
+        /// Sets the inline size of the image to 25 rem.
         case large
+        /// Sets the inline size of the image to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .small:
                 return "small"
@@ -757,13 +670,16 @@ public enum Tokens {
         }
     }
 
+    /// A shape for a view.
     public enum ClipShape {
         
+        /// Transforms the shape of the view into a circle.
         case circle
-        
+        /// Transforms the shape of the view along the custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .circle:
                 return "circle"
@@ -779,22 +695,19 @@ public enum Tokens {
         
         /// Sets the stack order to 1.
         case one
-        
         /// Sets the stack order to 2.
         case two
-        
         /// Sets the stack order to 3.
         case three
-        
         /// Sets the stack order to 4.
         case four
-        
         /// Sets the stack order to 5.
         case five
-        
+        /// Sets the stack order to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .one:
                 return "one"
@@ -820,33 +733,27 @@ public enum Tokens {
     /// A style for text.
     public enum TextStyle {
         
-        /// Formats the text as title.
+        /// Changes the appearance of the text to title.
         case title
-        
-        /// Formats the text as headline.
+        /// Changes the appearance of the text to headline.
         case headline
-        
-        /// Formats the text as subheadline.
+        /// Changes the appearance of the text to subheadline.
         case subheadline
-        
-        /// Formats the text as body.
+        /// Changes the appearance of the text to body.
         case body
-        
-        /// Formats the text as callout.
+        /// Changes the appearance of the text to body.
         case callout
-        
-        /// Formats the text as caption.
+        /// Changes the appearance of the text to a caption.
         case caption
-        
-        /// Formats the text as footnote.
+        /// Changes the appearance of the text to a footnote.
         case footnote
-        
-        /// Formats the text as code.
+        /// Changes the appearance of the text to a code.
         case code
-        
+        /// Changes the text to a custom appearance.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .title:
                 return "title"
@@ -881,21 +788,19 @@ public enum Tokens {
     /// A alignment along the vertically axis.
     public enum VerticalAlignment {
         
-        /// Aligns at the top.
+        /// Aligns the content at the top.
         case top
-        
-        /// Aligns in the middle.
+        /// Aligns the content in the middle.
         case center
-        
-        /// Aligns at the bottom.
+        /// Aligns the content at the bottom.
         case bottom
-        
-        /// Aligns with the parent's baseline.
+        /// Aligns the content with the parent's baseline.
         case baseline
-        
+        /// Aligns the content along a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .top:
                 return "top"
@@ -918,18 +823,17 @@ public enum Tokens {
     /// A alignment along the horizontal axis.
     public enum HorizontalAlignment {
         
-        /// Aligns left.
+        /// Aligns the content on the left.
         case leading
-        
-        /// Aligns center.
+        /// Aligns the content in the middle.
         case center
-        
-        /// Aligns right.
+        /// Aligns the content on the right.
         case trailing
-        
+        /// Aligns the content along a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .leading:
                 return "leading"
@@ -946,18 +850,26 @@ public enum Tokens {
         }
     }
 
+    /// A space for content.
     public enum ContentSpace {
         
+        /// Distributes the content evenly.
         case around
+        /// Content is evenly distributed along the line.
         case between
+        /// Sets the content space equally.
         case evenly
-        case center
+        /// Sets the content space in between to 2.25 rem.
         case large
+        /// Sets the content space in between to 1.5 rem.
         case medium
+        /// Sets the content space in between to 1 rem.
         case small
+        /// Sets the content space to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .around:
                 return "around"
@@ -967,9 +879,6 @@ public enum Tokens {
                 
             case .evenly:
                 return "evenly"
-                
-            case .center:
-                return "center"
                 
             case .large:
                 return "large"
@@ -986,16 +895,22 @@ public enum Tokens {
         }
     }
 
+    /// A syntax highlight for code.
     public enum SyntaxHighlight {
         
+        /// Sets the syntax highlight to plaintext.
         case plaintext
+        /// Sets the syntax highlight to HTML.
         case html
+        /// Sets the syntax highlight to CSS.
         case css
+        /// Sets the syntax highlight to Javascript.
         case javascript
-        
+        /// Sets the syntax highlight to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .plaintext:
                 return "plaintext"
@@ -1018,19 +933,18 @@ public enum Tokens {
     /// A style for button.
     public enum ButtonStyle {
         
+        /// Changes the button appearance to the primary style.
         case primary
-        case secondary
+        /// Changes the button appearance to the seconary style.
         case outline
-        
+        /// Changes the button to a custom appearance.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .primary:
                 return "primary"
-                
-            case .secondary:
-                return "secondary"
                 
             case .outline:
                 return "outline"
@@ -1044,12 +958,17 @@ public enum Tokens {
     /// A shape of the button.
     public enum BorderShape {
         
+        /// Changes the border radius to 0.313 rem.
         case smallrounded
+        /// Changes the border radius to 0.625 rem.
         case largerounded
+        /// Changes the border radius to 1.563 rem.
         case fullrounded
+        /// Changes the border radius to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .smallrounded:
                 return "smallrounded"
@@ -1067,23 +986,21 @@ public enum Tokens {
     }
 
     /// A size of a button.
-    public enum ButtonSize {
+    public enum ControlSize {
         
         /// Sets the size to 100 %.
         case full
-        
         /// Sets the size to 75 %.
         case large
-        
         /// Sets the size to 50 %.
         case medium
-        
         /// Sets the size to 25 %.
         case small
-        
+        /// Sets the size to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .full:
                 return "full"
@@ -1107,27 +1024,22 @@ public enum Tokens {
     public enum GridRatio {
         
         case fit
-        
         ///  Sets the ratio to 15%.
         case sixth
-        
         /// Sets  the ratio to 20 %.
         case fifth
-        
         /// Sets the ratio to 25 %.
         case quarter
-        
         /// Sets the ratio to 33 %.
         case third
-        
         /// Sets the ratio to 50 %.
         case half
-        
+        /// Sets the ratio for the grid to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
-                
             case .fit:
                 return "fit"
                 
@@ -1155,11 +1067,13 @@ public enum Tokens {
     /// A style for a list.
     public enum ListStyle {
 
+        /// Changes the appearance of the list to a list group.
         case listgroup
-        
+        /// Changes the list to a custom appearance.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .listgroup:
                 return "listgroup"
@@ -1173,21 +1087,19 @@ public enum Tokens {
     /// A state for the view.
     public enum ViewState {
         
-        /// Sets the state to active.
+        /// Shows the view as active view.
         case active
-        
-        /// Sets the state to disabled.
+        /// Disables the view.
         case disabled
-        
-        /// Sets the state to hidden.
+        /// Hides the view.
         case hidden
-        
-        /// Sets the state to visible.
+        /// Shows the view.
         case visible
-        
+        /// Sets the view state to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .active:
                 return "active"
@@ -1207,65 +1119,52 @@ public enum Tokens {
         }
     }
     
+    /// A color for the border.
     public enum BorderColor {
         
-        /// Changes the border color to black.
+        /// Changes the border color to #000000 .
         case black
-        
-        /// Changes the border color to white.
+        /// Changes the border color to #FFFFFF.
         case white
-        
-        /// Changes the border color to blue.
+        /// Changes the border color to #4098D7.
         case blue
-        
-        /// Changes the border color to brown.
+        /// Changes the border color to #BF7140.
         case brown
-        
-        /// Changes the border color to cyan.
+        /// Changes the border color to #38BEC9.
         case cyan
-        
-        /// Changes the border color to green.
+        /// Changes the border color to #57AE5B.
         case green
-        
-        /// Changes the border color to indigo.
+        /// Changes the border color to #647ACB.
         case indigo
-        
-        /// Changes the border color to mint.
+        /// Changes the border color to #91E697.
         case mint
-        
-        /// Changes the border color to pink.
+        /// Changes the border color to #DA4A91.
         case pink
-        
-        /// Changes the border color to purple.
+        /// Changes the border color to #724BB7.
         case purple
-        
-        /// Changes the border color to red.
+        /// Changes the border color to #D64545.
         case red
-        
-        /// Changes the border color to teal.
+        /// Changes the border color to #3EBD93.
         case teal
-        
-        /// Changes the border color to ornage.
+        /// Changes the border color to #E67635.
         case orange
-        
-        /// Changes the border color to yellow.
+        /// Changes the border color to #F7D070.
         case yellow
-        
-        /// Changes the border color to gray.
+        /// Changes the border color to #9E9E9E.
         case gray
-        
-        /// Changes the border color to silver.
+        /// Changes the border color to #F7F7F7.
         case silver
-        
-        case primary
-        
-        case secondary
-        
+        /// Changes the border color to #007FFF.
+        case accent
+        /// Changes the border opacity to 0.0.
         case transparent
-        
+        /// Changes the border color to #DFE3E7.
+        case system
+        /// Changes the border to a custom color.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .black:
                 return "black"
@@ -1315,14 +1214,14 @@ public enum Tokens {
             case .silver:
                 return "silver"
                 
-            case .primary:
-                return "primary"
-                
-            case .secondary:
-                return "secondary"
+            case .accent:
+                return "accent"
                 
             case .transparent:
                 return "transparent"
+                
+            case .system:
+                return "system"
 
             case .custom(let string):
                 return string
@@ -1330,65 +1229,52 @@ public enum Tokens {
         }
     }
     
+    /// A color for the focus.
     public enum FocusColor {
         
-        /// Changes the border color to black.
+        /// Changes the foreground color to #000000 .
         case black
-        
-        /// Changes the border color to white.
+        /// Changes the foreground color to #FFFFFF.
         case white
-        
-        /// Changes the border color to blue.
+        /// Changes the foreground color to #4098D7.
         case blue
-        
-        /// Changes the border color to brown.
+        /// Changes the foreground color to #BF7140.
         case brown
-        
-        /// Changes the border color to cyan.
+        /// Changes the foreground color to #38BEC9.
         case cyan
-        
-        /// Changes the border color to green.
+        /// Changes the foreground color to #57AE5B.
         case green
-        
-        /// Changes the border color to indigo.
+        /// Changes the foreground color to #647ACB.
         case indigo
-        
-        /// Changes the border color to mint.
+        /// Changes the foreground color to #91E697.
         case mint
-        
-        /// Changes the border color to pink.
+        /// Changes the foreground color to #DA4A91.
         case pink
-        
-        /// Changes the border color to purple.
+        /// Changes the foreground color to #724BB7.
         case purple
-        
-        /// Changes the border color to red.
+        /// Changes the foreground color to #D64545.
         case red
-        
-        /// Changes the border color to teal.
+        /// Changes the foreground color to #3EBD93.
         case teal
-        
-        /// Changes the border color to ornage.
+        /// Changes the foreground color to #E67635.
         case orange
-        
-        /// Changes the border color to yellow.
+        /// Changes the foreground color to #F7D070.
         case yellow
-        
-        /// Changes the border color to gray.
+        /// Changes the foreground color to #9E9E9E.
         case gray
-        
-        /// Changes the border color to silver.
+        /// Changes the foreground color to #F7F7F7.
         case silver
-        
-        case primary
-        
-        case secondary
-        
+        /// Changes the foreground color to #007FFF.
+        case accent
+        /// Changes the foreground opacity to 0.0.
         case transparent
-        
+        /// Changes the foreground color to #DFE3E7.
+        case system
+        /// Changes the foreground to a custom color.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .black:
                 return "black"
@@ -1438,14 +1324,14 @@ public enum Tokens {
             case .silver:
                 return "silver"
                 
-            case .primary:
-                return "primary"
-                
-            case .secondary:
-                return "secondary"
+            case .accent:
+                return "accent"
                 
             case .transparent:
                 return "transparent"
+                
+            case .system:
+                return "system"
 
             case .custom(let string):
                 return string
@@ -1453,15 +1339,18 @@ public enum Tokens {
         }
     }
     
+    /// A color scheme for the application.
     public enum ColorScheme {
         
         /// Changes the color scheme to dark.
         case dark
         /// Changes the color scheme to light.
         case light
+        /// Changes the color scheme to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .dark:
                 return "dark"
@@ -1477,12 +1366,17 @@ public enum Tokens {
     
     public enum PaddingLength {
         
+        /// Changes the padding size of the view to 1 rem.
         case small
+        /// Changes the padding size of the view to 1.5 rem.
         case medium
+        /// Changes the padding size of the view to 2.25 rem.
         case large
+        /// Changes the padding size to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .small:
                 return "small"
@@ -1500,13 +1394,19 @@ public enum Tokens {
     }
     
     public enum MarginLength {
-        
+        /// Changes the margin size of the view to 1 rem.
         case small
+        /// Changes the margin size of the view to 1.5 rem.
         case medium
+        /// Changes the margin size of the view to 2.25 rem.
         case large
+        /// Changes the margin size to auto.
+        case auto
+        /// Changes the margin size to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .small:
                 return "small"
@@ -1517,19 +1417,27 @@ public enum Tokens {
             case .large:
                 return "large"
                 
+            case .auto:
+                return "auto"
+                
             case .custom(let string):
                 return string
             }
         }
     }
     
+    /// A ratio for images.
     public enum AspectRatio {
         
+        /// Sets the aspect ratio to 1/1.
         case equal
+        /// Sets the aspect ratio to 2/1.
         case unequal
+        /// Sets the aspect ratio to a custom ratio.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .equal:
                 return "equal"
@@ -1543,14 +1451,19 @@ public enum Tokens {
         }
     }
     
+    /// A style for navigations.
     public enum NavigationStyle {
         
         case plain
+        /// Changes the appearance of the navigation to pagination.
         case pagination
+        /// Changes the appearance of the navigation to menu.
         case menu
+        /// Changes the navigation to a custom appearance.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .plain:
                 return "plain"
@@ -1567,14 +1480,20 @@ public enum Tokens {
         }
     }
     
+    /// A height for text lines.
     public enum LineHeight {
         
+        /// Sets the height of the line to 1.0.
         case small
+        /// Sets the height of the line to 1.75.
         case medium
+        /// Sets the height of the line to 2.25.
         case large
+        /// Setst the height of the line to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .small:
                 return "small"
@@ -1591,14 +1510,20 @@ public enum Tokens {
         }
     }
     
+    /// A line limit for texts.
     public enum LineLimit {
         
+        /// Sets the line limit to 1.
         case one
+        /// Sets the line limit to 2.
         case two
+        /// Sets the line limit to 3.
         case three
+        /// Sets the line limit to a custom value.
         case custom(String)
         
         var value: String {
+            
             switch self {
             case .one:
                 return "one"
@@ -1614,4 +1539,63 @@ public enum Tokens {
             }
         }
      }
+    
+    /// A alignment for the frame
+    public enum FrameAlignment {
+        
+        /// Aligns the frame on the left side.
+        case leading
+        /// Aligns the frame in the middle.
+        case center
+        /// Aligns the frame on the right side.
+        case trailing
+        /// Aligns the frame to a custom alignment.
+        case custom(String)
+        
+        var value: String {
+            
+            switch self {
+            case .leading:
+                return "leading"
+                
+            case .center:
+                return "center"
+                
+            case .trailing:
+                return "trailing"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    /// A font family for text.
+    public enum FontFamily {
+        
+        /// Sets the font of the text to Arial.
+        case arial
+        /// Sets the font of the text to Helvetica.
+        case helvetica
+        /// Sets the font of the text to Verdana.
+        case verdana
+        case custom(String)
+        
+        var value: String {
+            
+            switch self {
+            case .arial:
+                return "arial"
+                
+            case .helvetica:
+                return "helvetica"
+                
+            case .verdana:
+                return "verdana"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
 }

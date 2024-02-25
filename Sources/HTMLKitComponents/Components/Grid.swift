@@ -19,19 +19,30 @@ public struct Grid: View, Modifiable, Actionable {
     internal var events: [String]?
     
     /// Creates a collection.
-    public init(ratio: Tokens.GridRatio = .fit, @ContentBuilder<Content> content: () -> [Content]) {
+    public init(ratio: Tokens.GridRatio = .fit, spacing: Tokens.ContentSpace? = nil, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["grid", "ratio:\(ratio.value)"]
+        
+        if let spacing {
+            self.classes.append("horizontal-spacing:\(spacing.value)")
+            self.classes.append("vertical-spacing:\(spacing.value)")
+        }
     }
     
     /// Creates a collection.
-    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
+    public init(ratio: Tokens.GridRatio = .fit, horizontalSpacing: Tokens.ContentSpace? = nil, verticalSpacing: Tokens.ContentSpace? = nil, @ContentBuilder<Content> content: () -> [Content]) {
         
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
+        self.content = content()
+        self.classes = ["grid", "ratio:\(ratio.value)"]
+        
+        if let horizontalSpacing {
+            self.classes.append("horizontal-spacing:\(horizontalSpacing.value)")
+        }
+        
+        if let verticalSpacing {
+            self.classes.append("vertical-spacing:\(verticalSpacing.value)")
+        }
     }
     
     public var body: Content {
@@ -47,15 +58,6 @@ public struct Grid: View, Modifiable, Actionable {
                 events
             }
         }
-    }
-    
-    /// Sets the space of the content.
-    public func contentSpace(_ value: Tokens.ContentSpace) -> Grid {
-        
-        var newSelf = self
-        newSelf.classes.append("space:\(value.value)")
-        
-        return newSelf
     }
     
     public func tag(_ value: String) -> Grid {
@@ -117,8 +119,8 @@ extension Grid: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Grid {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Grid {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Grid {

@@ -25,18 +25,14 @@ public struct List: View, Modifiable, Actionable {
         self.classes = ["list", "direction:\(direction.value)"]
     }
     
-    /// Creates a list.
-    internal init(content: [ListElement], classes: [String], events: [String]?, id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         UnorderedList {
-            content
+            for item in content {
+                ListItem {
+                    item
+                }
+                .class("list-row")
+            }
         }
         .class(classes.joined(separator: " "))
         .modify(unwrap: id) {
@@ -56,6 +52,10 @@ public struct List: View, Modifiable, Actionable {
         newSelf.classes.append("style:\(style.value)")
         
         return newSelf
+    }
+    
+    public func listStyle(_ style: ListConfiguration) -> List {
+        return self.mutate(classes: style.configuration)
     }
     
     public func tag(_ value: String) -> List {
@@ -117,108 +117,11 @@ extension List: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> List {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> List {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> List {
         return self.mutate(margin: length.value, insets: insets)
-    }
-}
-
-/// A component that represents a list item.
-public struct ListRow: View, Modifiable, Actionable {
-    
-    public var id: String?
-    
-    /// The content of the row.
-    internal var content: [Content]
-    
-    /// The classes of the row.
-    internal var classes: [String]
-    
-    internal var events: [String]?
-    
-    /// Creates a list row.
-    public init(@ContentBuilder<Content> content: () -> [Content]) {
-        
-        self.content = content()
-        self.classes = ["list-row"]
-    }
-    
-    /// Creates a list row.
-    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
-    public var body: Content {
-        ListItem {
-            content
-        }
-        .class(classes.joined(separator: " "))
-        .modify(unwrap: id) {
-            $0.id($1)
-        }
-        if let events = self.events {
-            Script {
-                events
-            }
-        }
-    }
-    
-    public  func padding(insets: EdgeSet, length: Tokens.PaddingLength) -> ListRow {
-        
-        var classes: [String] = []
-        
-        if !insets.contains(.all) {
-            
-            if insets.contains(.top) {
-                classes.append("padding-top:\(length)")
-            }
-            
-            if insets.contains(.bottom) {
-                classes.append("padding-bottom:\(length)")
-            }
-            
-            if insets.contains(.leading) {
-                classes.append("padding-leading:\(length)")
-            }
-            
-            if insets.contains(.trailing) {
-                classes.append("padding-trailing:\(length)")
-            }
-            
-            if insets.contains(.horizontal) {
-                classes.append("padding-inline:\(length)")
-            }
-            
-            if insets.contains(.vertical) {
-                classes.append("padding-block:\(length)")
-            }
-            
-        } else {
-            classes.append("padding:\(length)")
-        }
-        
-        return self.mutate(classes: classes)
-    }
-    
-    public func tag(_ value: String) -> ListRow {
-        return self.mutate(id: value)
-    }
-}
-
-extension ListRow: MouseEvent {
-    
-    public func onHover(@ActionBuilder action: (ViewAction) -> [Action]) -> ListRow {
-        return self.mutate(hoverevent: action(.init()))
-    }
-    
-    public func onLeave(@ActionBuilder action: (ViewAction) -> [Action]) -> ListRow {
-        return self.mutate(leaveevent: action(.init()))
     }
 }

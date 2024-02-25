@@ -27,15 +27,6 @@ public struct Dropdown: View, Modifiable, Identifiable {
         self.classes = ["dropdown"]
     }
     
-    /// Creates a dropdown.
-    internal init(label: [Content], content: [Content], classes: [String], id: String?) {
-        
-        self.label = label
-        self.content = content
-        self.classes = classes
-        self.id = id
-    }
-    
     public var body: Content {
         Division {
             Division {
@@ -55,30 +46,6 @@ public struct Dropdown: View, Modifiable, Identifiable {
     
     public func tag(_ value: String) -> Dropdown {
         return self.mutate(id: value)
-    }
-}
-
-extension Dropdown: ButtonModifier {
-
-    public func buttonSize(_ size: Tokens.ButtonSize) -> Dropdown {
-        return self.mutate(buttonsize: size.value)
-    }
-    
-    public func buttonStyle(_ style: Tokens.ButtonStyle) -> Dropdown {
-        return self.mutate(buttonstyle: style.value)
-    }
-    
-    public func disabled() -> Dropdown {
-        return self.mutate(buttonstate: Tokens.ViewState.disabled.value)
-    }
-    
-    public func disabled(_ condition: Bool) -> Dropdown {
-        
-        if condition {
-            return self.mutate(buttonstate: Tokens.ViewState.disabled.value)
-        }
-        
-        return self
     }
 }
 
@@ -125,8 +92,8 @@ extension Dropdown: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Dropdown {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Dropdown {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Dropdown {

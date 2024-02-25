@@ -29,14 +29,6 @@ public struct Image: View, Modifiable, Identifiable {
          self.classes = ["image"]
      }
     
-    /// Creates a image view.
-    internal init(source: String, classes: [String], id: String?) {
-        
-        self.source = .string(source)
-        self.classes = classes
-        self.id = id
-    }
-    
     public var body: Content {
         HTMLKit.Image()
             .source(source)
@@ -49,6 +41,10 @@ public struct Image: View, Modifiable, Identifiable {
     
     public func tag(_ value: String) -> Image {
         return self.mutate(id: value)
+    }
+    
+    public func imageStyle(_ style: ImageConfiguration) -> Image {
+        return self.mutate(classes: style.configuration)
     }
 }
 
@@ -118,8 +114,8 @@ extension Image: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Image {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Image {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Image {

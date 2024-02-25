@@ -4,10 +4,10 @@
 
 .carousel {
     --borderWidth: 1px;
-    --borderColor: 210, 14%, 89%;
+    --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
     --borderOpacity: 1.0;
-    --backgroundColor: 0, 0%, 100%;
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
     display: flex;
@@ -41,13 +41,8 @@
     block-size: 50px;
 }
 
-.scheme\:dark .carousel, .carousel.scheme\:dark {
-    --borderColor: 210, 9%, 31%;
-    --backgroundColor: 210, 11%, 15%;
-}
-
 .slide {
-    --backgroundColor: 0, 0%, 100%;
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
     position: relative;
@@ -63,9 +58,9 @@
 
 .indicator {
     --borderRadius: 5px;
-    --borderColor: 210, 14%, 89%;
+    --borderColor: var(--systemBackgroundColor);
     --borderOpacity: 1.0;
-    --backgroundColor: 210, 14%, 89%;
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
     position: relative;
@@ -81,11 +76,6 @@
 }
 
 .indicator:hover {
-    --borderColor: var(--primaryColor);
-    --backgroundColor: var(--primaryColor);
-}
-
-.scheme\:dark .indicator, .indicator.scheme\:dark {
-    --borderColor: 210, 9%, 31%;
-    --backgroundColor: 210, 11%, 15%;
+    --borderColor: var(--accentColor);
+    --backgroundColor: var(--accentColor);
 }

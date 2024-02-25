@@ -29,13 +29,13 @@
     --fontSize: 1.0rem;
     --fontWeight: 400;
     --lineHeight: 1.5;
-    --foregroundColor: 0, 0%, 0%;
+    --foregroundColor: var(--systemTextColor);
     --borderWidth: 1px;
-    --borderColor: 210, 14%, 89%;
+    --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
     --borderOpacity: 1.0;
-    --focusColor: 210, 100%, 50%;
-    --backgroundColor: 0, 0%, 100%;
+    --focusColor: var(--systemFocusColor);
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
     position: relative;
@@ -78,19 +78,24 @@
 .selectfield-optionlist {
     position: absolute;
     z-index: 1;
-    display: none;
+    display: block;
     width: 100%;
     margin-block: 0.75rem;
+    color: hsla(var(--foregroundColor), 1.0);
     border-width: var(--borderWidth);
     border-style: solid;
     border-color: hsla(var(--borderColor), 1.0);
+    border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), 1.0);
     list-style-type: none;
+    visibility: hidden;
 }
 
-.scheme\:dark .selectfield, .selectfield.scheme\:dark {
-    --foregroundColor: 0, 0%, 100%;
-    --borderColor: 210, 9%, 31%;
-    --focusColor: 210, 100%, 50%;
-    --backgroundColor: 210, 11%, 15%;
+.selectfield-optionlist.position\:bottom {
+    bottom: 0;
+    margin-block: 3.375rem !important;
+}
+
+.selectfield-optionlist > .radioselect:hover, .selectfield-optionlist > .checkfield:hover {
+    background-color: hsla(var(--borderColor), 0.5);
 }

@@ -23,7 +23,7 @@
         
         window.addEventListener('click', function (event) {
             
-            if(!self.element.contains(event.target)) {
+            if (!self.element.contains(event.target)) {
                 self.hideOptionList();
             }
         });
@@ -95,6 +95,13 @@
      */
     Selectfield.prototype.showOptionList = function () {
         
+        var windowBound = document.body.getBoundingClientRect();
+        var elementBound = this.optionlist.getBoundingClientRect();
+        
+        if (windowBound.height < elementBound.bottom) {
+            this.optionlist.classList.add('position:bottom');
+        }
+        
         this.optionlist.classList.add('state:visible');
     };
     
@@ -108,7 +115,7 @@
     
     var selectfield = document.getElementsByClassName('selectfield');
     
-    if(selectfield.length > 0) {
+    if (selectfield.length > 0) {
         
         for (var i = 0; i < selectfield.length; i++) {
             

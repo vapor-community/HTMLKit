@@ -44,17 +44,6 @@ public struct Link: View, Modifiable, Identifiable {
         self.classes = ["link"]
     }
     
-    /// Creates a link.
-    internal init(destination: String, target: HTMLKit.Values.Target, content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.destination = destination
-        self.target = target
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         Anchor {
             content
@@ -74,8 +63,16 @@ public struct Link: View, Modifiable, Identifiable {
 
 extension Link: TextModifier {
     
-    public func font(_ style: Tokens.TextStyle) -> Link {
-        return self.mutate(font: style.value)
+    public func font(_ family: Tokens.FontFamily) -> Link {
+        return mutate(fontfamily: family.value)
+    }
+    
+    public func textStyle(_ style: Tokens.TextStyle) -> Link {
+        return self.mutate(textstyle: style.value)
+    }
+    
+    public func textStyle(_ style: TextConfiguration) -> Link {
+        return self.mutate(classes: style.configuration)
     }
     
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Link {
@@ -90,12 +87,16 @@ extension Link: TextModifier {
         return self.mutate(fontweight: weight.value)
     }
     
-    public func fontTransformation(_ transformation: Tokens.TextTransformation) -> Link {
-        return self.mutate(fonttransformation: transformation.value)
+    public func textCase(_ case: Tokens.TextCase) -> Link {
+        return self.mutate(textcase: `case`.value)
     }
     
     public func fontStyle(_ style: Tokens.FontStyle) -> Link {
         return self.mutate(fontstyle: style.value)
+    }
+    
+    public func textDecoration(_ decoration: Tokens.TextDecoration) -> Link {
+        return self.mutate(textdecoration: decoration.value)
     }
     
     public func bold() -> Link {
@@ -125,26 +126,26 @@ extension Link: TextModifier {
     }
     
     public func underline() -> Link {
-        return self.mutate(fontdecoration: Tokens.TextDecoration.underline.value)
+        return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
     }
     
     public func underline(_ condition: Bool) -> Link {
         
         if condition {
-            return self.mutate(fontdecoration: Tokens.TextDecoration.underline.value)
+            return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
         }
         
         return self
     }
     
     public func strikethrough() -> Link {
-        return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.value)
+        return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
     }
     
     public func strikethrough(_ condition: Bool) -> Link {
         
         if condition {
-            return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.value)
+            return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
         }
         
         return self
@@ -202,8 +203,8 @@ extension Link: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Link {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Link {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Link {

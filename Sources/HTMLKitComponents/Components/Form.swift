@@ -33,17 +33,6 @@ public struct Form: View, Actionable {
         self.classes = ["form"]
     }
     
-    /// Creates a form.
-    internal init(method: Values.Method, encoding: Values.Encoding, content: [FormElement], classes: [String], events: [String]?, id: String?) {
-        
-        self.method = method
-        self.encoding = encoding
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         HTMLKit.Form {
             content
@@ -96,15 +85,6 @@ public struct FieldLabel: View {
         self.classes = ["label"]
     }
     
-    /// Creates a field label.
-    internal init(for id: String, content: [Content], classes: [String], events: [String]?) {
-      
-        self.id = id
-        self.content = content
-        self.classes = classes
-        self.events = events
-    }
-    
     public var body: Content {
         Label {
             content
@@ -143,17 +123,6 @@ public struct TextField: View, Modifiable, Identifiable {
         self.classes = ["textfield"]
     }
     
-    /// Creates a text field.
-    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.prompt = prompt
-        self.value = value
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         Input()
             .type(.text)
@@ -172,6 +141,10 @@ public struct TextField: View, Modifiable, Identifiable {
     
     public func tag(_ value: String) -> TextField {
         return self.mutate(id: value)
+    }
+    
+    public func fieldStyle(_ style: FieldConfiguration) -> TextField {
+        return self.mutate(classes: style.configuration)
     }
 }
 
@@ -234,8 +207,8 @@ extension TextField: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> TextField {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> TextField {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextField {
@@ -273,18 +246,6 @@ public struct TextEditor: View, Modifiable, Identifiable {
         self.prompt = prompt
         self.content = content()
         self.classes = ["texteditor"]
-    }
-    
-    /// Creates a text editor.
-    internal init(name: String, prompt: String?, rows: Int, content: [String], classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.prompt = prompt
-        self.rows = rows
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
     }
     
     public var body: Content {
@@ -375,8 +336,8 @@ extension TextEditor: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> TextEditor {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> TextEditor {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextEditor {
@@ -450,17 +411,6 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
         self.isSelected = false
         self.content = content()
         self.classes = ["checkfield"]
-    }
-    
-    /// Creates a check field.
-    internal init(id: String?, name: String?, value: String, isSelected: Bool, content: String, classes: [String]) {
-        
-        self.id = id
-        self.name = name
-        self.value = value
-        self.isSelected = isSelected
-        self.content = content
-        self.classes = classes
     }
     
     public var body: Content {
@@ -550,8 +500,8 @@ extension CheckField: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> CheckField {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> CheckField {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> CheckField {
@@ -587,17 +537,6 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
         self.isSelected = false
         self.content = content()
         self.classes = ["radioselect"]
-    }
-    
-    /// Creates a radio select.
-    internal init(id: String?, name: String?, value: String, isSelected: Bool, content: String, classes: [String]) {
-        
-        self.id = id
-        self.name = name
-        self.value = value
-        self.isSelected = isSelected
-        self.content = content
-        self.classes = classes
     }
     
     public var body: Content {
@@ -687,8 +626,8 @@ extension RadioSelect: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> RadioSelect {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> RadioSelect {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> RadioSelect {
@@ -704,6 +643,9 @@ public struct SelectField: View, Modifiable, Identifiable {
     /// The identifier of the field.
     internal let name: String
     
+    /// The placeholder for the field value.
+    internal let prompt: String?
+    
     internal let selection: String?
     
     /// The content of the field.
@@ -716,23 +658,13 @@ public struct SelectField: View, Modifiable, Identifiable {
     internal var events: [String]?
     
     /// Creates a select field.
-    public init(name: String, selection: String? = nil, @ContentBuilder<Selectable> content: () -> [Selectable]) {
+    public init(name: String, prompt: String? = nil, selection: String? = nil, @ContentBuilder<Selectable> content: () -> [Selectable]) {
         
         self.name = name
+        self.prompt = prompt
         self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]
-    }
-    
-    /// Creates a select field.
-    internal init(name: String, selection: String?, content: [Selectable], classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.selection = selection
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
     }
     
     public var body: Content {
@@ -740,6 +672,9 @@ public struct SelectField: View, Modifiable, Identifiable {
             Input()
                 .type(.text)
                 .class("selectfield-textfield")
+                .modify(unwrap: prompt) {
+                    $0.placeholder($1)
+                }
             Division {
                 for item in content {
                     item.selected(item.value == selection)
@@ -818,8 +753,8 @@ extension SelectField: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> SelectField {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> SelectField {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SelectField {
@@ -854,17 +789,6 @@ public struct SecureField: View, Modifiable, Identifiable {
         self.prompt = prompt
         self.value = value
         self.classes = ["securefield"]
-    }
-    
-    /// Creates a password field.
-    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.prompt = prompt
-        self.value = value
-        self.classes = classes
-        self.events = events
-        self.id = id
     }
     
     public var body: Content {
@@ -947,8 +871,8 @@ extension SecureField: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> SecureField {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> SecureField {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SecureField {
@@ -975,15 +899,6 @@ public struct Slider: View, Modifiable, Identifiable {
         
         self.name = name
         self.classes = ["slider"]
-    }
-    
-    /// Creates a slider.
-    internal init(name: String, classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.classes = classes
-        self.events = events
-        self.id = id
     }
     
     public var body: Content {
@@ -1060,8 +975,8 @@ extension Slider: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Slider {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Slider {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Slider {
@@ -1092,16 +1007,6 @@ public struct DatePicker: View, Modifiable, Identifiable {
         self.name = name
         self.value = value
         self.classes = ["datepicker"]
-    }
-    
-    /// Creates a date picker.
-    internal init(name: String, value: String?, classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.value = value
-        self.classes = classes
-        self.events = events
-        self.id = id
     }
     
     public var body: Content {
@@ -1256,8 +1161,8 @@ extension DatePicker: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> DatePicker {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> DatePicker {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> DatePicker {
@@ -1292,17 +1197,6 @@ public struct SearchField: View, Modifiable, Identifiable {
         self.prompt = prompt
         self.value = value
         self.classes = ["searchfield"]
-    }
-    
-    /// Creates a search field.
-    internal init(name: String, prompt: String?, value: String?, classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.prompt = prompt
-        self.value = value
-        self.classes = classes
-        self.events = events
-        self.id = id
     }
     
     public var body: Content {
@@ -1385,8 +1279,8 @@ extension SearchField: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> SearchField {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> SearchField {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SearchField {
@@ -1419,17 +1313,6 @@ public struct Progress: View, Identifiable {
         self.value = String(value)
         self.content = content()
         self.classes = ["progress"]
-    }
-    
-    /// Creates a progress bar.
-    internal init(maximum: Float, value: String, content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.maximum = maximum
-        self.value = value
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
     }
     
     public var body: Content {
@@ -1478,17 +1361,6 @@ public struct TextPad: View, Modifiable, Identifiable {
         self.classes = ["textpad"]
     }
     
-    /// Creates a textpad.
-    internal init(name: String, prompt: String?, rows: Int, content: [String], classes: [String], id: String?) {
-        
-        self.name = name
-        self.prompt = prompt
-        self.rows = rows
-        self.content = content
-        self.classes = classes
-        self.id = id
-    }
-    
     public var body: Content {
         Division {
             UnorderedList {
@@ -1517,19 +1389,19 @@ public struct TextPad: View, Modifiable, Identifiable {
                 }
                 .class("toolbar-tool command:strikethrough")
                 ListItem {
-                    Symbol(system: "text.alignleft")
+                    Symbol(system: .text(.left))
                 }
                 .class("toolbar-tool")
                 ListItem {
-                    Symbol(system: "text.aligncenter")
+                    Symbol(system: .text(.center))
                 }
                 .class("toolbar-tool")
                 ListItem {
-                    Symbol(system: "text.alignright")
+                    Symbol(system: .text(.right))
                 }
                 .class("toolbar-tool")
                 ListItem {
-                    Symbol(system: "text.alignjustify")
+                    Symbol(system: .text(.justify))
                 }
                 .class("toolbar-tool")
             }
@@ -1540,6 +1412,9 @@ public struct TextPad: View, Modifiable, Identifiable {
             .name(name)
             .rows(rows)
             .class("textpad-content")
+            .modify(unwrap: prompt) {
+                $0.placeholder($1)
+            }
         }
         .class(classes.joined(separator: " "))
         .modify(unwrap: id) {
@@ -1620,8 +1495,8 @@ extension TextPad: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> TextPad {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> TextPad {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextPad {
@@ -1648,15 +1523,6 @@ public struct FileDialog: View, Modifiable, Identifiable {
         
         self.name = name
         self.classes = ["filedialog"]
-    }
-    
-    /// Creates a search field.
-    internal init(name: String, classes: [String], events: [String]?, id: String?) {
-        
-        self.name = name
-        self.classes = classes
-        self.events = events
-        self.id = id
     }
     
     public var body: Content {
@@ -1733,8 +1599,8 @@ extension FileDialog: ViewModifier {
         return self.mutate(scheme: scheme.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> FileDialog {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> FileDialog {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> FileDialog {

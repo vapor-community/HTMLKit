@@ -44,12 +44,13 @@
             } else {
                 position = 0;
             }
+            
         }, 7000);
     };
     
     Carousel.prototype.getPosition = function (name) {
         
-        for(var position = 0; position < this.slides.children.length; position++) {
+        for (var position = 0; position < this.slides.children.length; position++) {
             
             if (this.slides.children[position].id == name) {
                 return position;
@@ -59,7 +60,7 @@
     
     Carousel.prototype.toggleState = function (position) {
         
-        for(let indicator of this.indication.children) {
+        for (let indicator of this.indication.children) {
             indicator.classList.remove('state:active');
         }
         
@@ -79,14 +80,13 @@
     
     var carousel = document.getElementsByClassName('carousel');
     
-    if(carousel.length > 0) {
+    if (carousel.length > 0) {
         
-        for(var i = 0; i < carousel.length; i++) {
+        for (var i = 0; i < carousel.length; i++) {
             
             (function(i) {
                 new Carousel(carousel[i]);
             })(i);
         }
     }
-    
 }());

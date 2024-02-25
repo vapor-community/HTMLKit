@@ -26,6 +26,7 @@
     border-color: hsla(var(--borderColor), var(--borderOpacity));
     border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+    font-style: italic;
 }
 
 .image.aspect\:equal {

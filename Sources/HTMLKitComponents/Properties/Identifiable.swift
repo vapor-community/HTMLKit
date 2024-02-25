@@ -1,4 +1,3 @@
-
 /// A type that describes a component with an identifier.
 public protocol Identifiable {
     

@@ -30,16 +30,6 @@ public struct Button: View, Modifiable, Actionable {
         self.classes = ["button"]
     }
     
-    /// Creates a action button.
-    internal init(role: HTMLKit.Values.Button, content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.role = role
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         HTMLKit.Button {
             self.content
@@ -63,12 +53,16 @@ public struct Button: View, Modifiable, Actionable {
 
 extension Button: ButtonModifier {
     
-    public func buttonSize(_ size: Tokens.ButtonSize) -> Button {
-        return self.mutate(buttonsize: size.value)
+    public func controlSize(_ size: Tokens.ControlSize) -> Button {
+        return self.mutate(controlsize: size.value)
     }
     
     public func buttonStyle(_ style: Tokens.ButtonStyle) -> Button {
         return self.mutate(buttonstyle: style.value)
+    }
+    
+    public func buttonStyle(_ style: ButtonConfiguration) -> Button {
+        return self.mutate(classes: style.configuration)
     }
     
     public func disabled() -> Button {
@@ -143,8 +137,8 @@ extension Button: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Button {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Button {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet, length: Tokens.MarginLength = .small) -> Button {
@@ -189,17 +183,6 @@ public struct LinkButton: View, Modifiable, Identifiable {
         self.classes = ["button"]
     }
     
-    /// Creates a action button.
-    internal init(destination: String, target: HTMLKit.Values.Target, content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.destination = destination
-        self.target = target
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
-    }
-    
     public var body: Content {
         Anchor {
             self.content
@@ -220,12 +203,16 @@ public struct LinkButton: View, Modifiable, Identifiable {
 
 extension LinkButton: ButtonModifier {
     
-    public func buttonSize(_ size: Tokens.ButtonSize) -> LinkButton {
-        return self.mutate(buttonsize: size.value)
+    public func controlSize(_ size: Tokens.ControlSize) -> LinkButton {
+        return self.mutate(controlsize: size.value)
     }
     
     public func buttonStyle(_ style: Tokens.ButtonStyle) -> LinkButton {
         return self.mutate(buttonstyle: style.value)
+    }
+
+    public func buttonStyle(_ style: ButtonConfiguration) -> LinkButton {
+        return self.mutate(classes: style.configuration)
     }
     
     public func disabled() -> LinkButton {
@@ -285,8 +272,8 @@ extension LinkButton: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> LinkButton {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> LinkButton {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> LinkButton {

@@ -19,25 +19,16 @@ public struct Text: View, Actionable, Modifiable {
     internal var events: [String]?
     
     /// Creates a text.
-    public init(@ContentBuilder<Content> content: () -> [Content]) {
+    public init(alignment: Tokens.TextAlignment = .leading, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
-        self.classes = ["text"]
+        self.classes = ["text", "alignment:\(alignment.value)"]
     }
     
-    public init(_ localizedStringKey: String) {
+    public init(_ localizedStringKey: String, alignment: Tokens.TextAlignment = .leading) {
         
         self.content = [LocalizedStringKey(key: localizedStringKey)]
-        self.classes = ["text"]
-    }
-    
-    /// Creates a text.
-    internal init(content: [Content], classes: [String], events: [String]?, id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.events = events
-        self.id = id
+        self.classes = ["text", "alignment:\(alignment.value)"]
     }
     
     public var body: Content {
@@ -87,9 +78,17 @@ extension Text: PressEvent {
 }
 
 extension Text: TextModifier {
+   
+    public func font(_ family: Tokens.FontFamily) -> Text {
+        return mutate(fontfamily: family.value)
+    }
     
-    public func font(_ style: Tokens.TextStyle) -> Text {
-        return self.mutate(font: style.value)
+    public func textStyle(_ style: Tokens.TextStyle) -> Text {
+        return self.mutate(textstyle: style.value)
+    }
+    
+    public func textStyle(_ style: TextConfiguration) -> Text {
+        return self.mutate(classes: style.configuration)
     }
     
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Text {
@@ -104,12 +103,16 @@ extension Text: TextModifier {
         return self.mutate(fontweight: weight.value)
     }
     
-    public func fontTransformation(_ transformation: Tokens.TextTransformation) -> Text {
-        return self.mutate(fonttransformation: transformation.value)
+    public func textCase(_ case: Tokens.TextCase) -> Text {
+        return self.mutate(textcase: `case`.value)
     }
     
     public func fontStyle(_ style: Tokens.FontStyle) -> Text {
         return self.mutate(fontstyle: style.value)
+    }
+    
+    public func textDecoration(_ decoration: Tokens.TextDecoration) -> Text {
+        return self.mutate(textdecoration: decoration.value)
     }
     
     public func bold() -> Text {
@@ -139,26 +142,26 @@ extension Text: TextModifier {
     }
     
     public func underline() -> Text {
-        return self.mutate(fontdecoration: Tokens.TextDecoration.underline.value)
+        return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
     }
     
     public func underline(_ condition: Bool) -> Text {
         
         if condition {
-            return self.mutate(fontdecoration: Tokens.TextDecoration.underline.value)
+            return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
         }
         
         return self
     }
     
     public func strikethrough() -> Text {
-        return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.value)
+        return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
     }
     
     public func strikethrough(_ condition: Bool) -> Text {
         
         if condition {
-            return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.value)
+            return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
         }
         
         return self
@@ -216,8 +219,8 @@ extension Text: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Text {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Text {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Text {

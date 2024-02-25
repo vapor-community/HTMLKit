@@ -14,13 +14,6 @@ public struct Navigation: View, Modifiable, Identifiable {
         self.classes = ["navigation"]
     }
     
-    internal init(content: [BodyElement], classes: [String], id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.id = id
-    }
-    
     public var body: Content {
         HTMLKit.Navigation {
             content
@@ -35,9 +28,13 @@ public struct Navigation: View, Modifiable, Identifiable {
     public func navigationStyle(_ style: Tokens.NavigationStyle) -> Navigation {
         
         var newSelf = self
-        newSelf.classes.append("style:\(style)")
+        newSelf.classes.append("style:\(style.value)")
         
         return newSelf
+    }
+    
+    public func navigationStyle(_ style: NavigationConfiguration) -> Navigation {
+        return self.mutate(classes: style.configuration)
     }
     
     public func tag(_ value: String) -> Navigation {
@@ -88,8 +85,8 @@ extension Navigation: ViewModifier {
         return self.mutate(bordercolor: color.value)
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Navigation {
-        return mutate(frame: width.value, offset: offset?.value)
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Navigation {
+        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Navigation {

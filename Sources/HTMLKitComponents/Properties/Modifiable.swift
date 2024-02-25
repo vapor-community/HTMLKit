@@ -1,4 +1,3 @@
-
 /// A type that describes a component with classes.
 internal protocol Modifiable {
     

@@ -306,19 +306,6 @@ final class ComponentTests: XCTestCase {
         )
     }
     
-    func testListRow() throws {
-        
-        let view = TestView {
-            ListRow {}
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <li class="list-row"></li>
-                       """
-        )
-    }
-    
     func testLink() throws {
         
         let view = TestView {
@@ -342,7 +329,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="vstack alignment:leading"></div>
+                       <div class="vstack horizontal-alignment:leading"></div>
                        """
         )
     }
@@ -355,7 +342,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack alignment:center"></div>
+                       <div class="hstack vertical-alignment:center"></div>
                        """
         )
     }
@@ -383,7 +370,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p class="text">Text</p>
+                       <p class="text alignment:leading">Text</p>
                        """
         )
     }
@@ -496,12 +483,12 @@ final class ComponentTests: XCTestCase {
     func testScrollView() throws {
         
         let view = TestView {
-            ScrollView(direction: .horizontal) {}
+            Scroll(showIndicators: false) {}
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="scrollview direction:horizontal"></div>
+                       <div class="scroll indicators:false"></div>
                        """
         )
     }
@@ -509,7 +496,7 @@ final class ComponentTests: XCTestCase {
     func testSymbol() throws {
         
         let view = TestView {
-            Symbol(system: "folder")
+            Symbol(system: .folder)
         }
         
         XCTAssertEqual(try renderer.render(view: view),

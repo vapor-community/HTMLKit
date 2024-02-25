@@ -32,15 +32,15 @@
 
 .navigation > .list .list-row .link.state\:active {
     border-radius: 5px;
-    background-color: hsla(var(--primaryColor), 1.0) !important;
+    background-color: hsla(var(--accentColor), 1.0) !important;
 }
 
 .navigation.style\:pagination {
     --borderWidth: 1px;
-    --borderColor: 210, 14%, 89%;
+    --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
     --borderOpacity: 1.0;
-    --backgroundColor: 0, 0%, 100%;
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
 }
 
@@ -54,11 +54,11 @@
 .navigation.style\:pagination > .list.direction\:horizontal .list-row:is(:not(:last-child)) {
     border-right: 1px;
     border-right-style: solid;
-    border-right-color: hsla(210, 14%, 89%, 1.0);
+    border-right-color: hsla(var(--borderColor), var(--borderOpacity));
 }
 
 .navigation.style\:pagination > .list.direction\:vertical .list-row:is(:not(:last-child)) {
     border-bottom: 1px;
     border-bottom-style: solid;
-    border-bottom-color: hsla(210, 14%, 89%, 1.0);
+    border-right-color: hsla(var(--borderColor), var(--borderOpacity));
 }

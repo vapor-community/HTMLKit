@@ -37,9 +37,9 @@
             
             event.preventDefault();
             
-            if(event.target.tagName == 'BUTTON') {
+            if (event.target.tagName == 'BUTTON') {
                 
-                switch(event.target.value) {
+                switch (event.target.value) {
                     
                     case 'previous':
                         
@@ -61,14 +61,14 @@
             
             event.preventDefault();
             
-            if(event.target.tagName == 'LI') {
+            if (event.target.tagName == 'LI') {
                 
                 self.setInputValue(event.target.firstChild.dateTime);
                 
                 self.hidePicker();
             }
             
-            if(event.target.tagName == 'TIME') {
+            if (event.target.tagName == 'TIME') {
                 
                 self.setInputValue(event.target.dateTime);
                 
@@ -84,11 +84,11 @@
         
         var calendar = '';
         
-        for(var j = 0; j < getFirstOfMonth(this.year, this.month); j++) {
+        for (var j = 0; j < getFirstOfMonth(this.year, this.month); j++) {
             calendar = calendar + '<li></li>';
         }
         
-        for(var i = 1; i < getLastOfMonth(this.year, this.month) + 1; i++) {
+        for (var i = 1; i < getLastOfMonth(this.year, this.month) + 1; i++) {
             calendar = calendar + '<li><time datetime="' + this.year + '-' + (this.month + 1) + '-' + i + '">' + i +'</time></li>';
         }
         
@@ -118,6 +118,14 @@
         Shows the picker.
      */
     Datepicker.prototype.showPicker = function () {
+        
+        var windowBound = document.body.getBoundingClientRect();
+        var elementBound = this.picker.getBoundingClientRect();
+        
+        if (windowBound.height < elementBound.bottom) {
+            this.picker.classList.add('position:bottom');
+        }
+        
         this.picker.classList.add('state:visible');
     };
     
@@ -174,14 +182,13 @@
     
     var datepicker = document.getElementsByClassName('datepicker');
     
-    if(datepicker.length > 0) {
+    if (datepicker.length > 0) {
         
-        for(var i = 0; i < datepicker.length; i++) {
+        for (var i = 0; i < datepicker.length; i++) {
             
             (function(i) {
                 new Datepicker(datepicker[i]);
             })(i);
         }
     }
-    
 }());

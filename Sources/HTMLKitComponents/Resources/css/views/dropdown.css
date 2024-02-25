@@ -24,22 +24,25 @@
     --paddingBlockEnd: 0.5rem;
     --paddingInlineStart: 1.0rem;
     --paddingInlineEnd: 1.0rem;
-    --inlineSize: fit-content();
     --fontSize: 1.0rem;
     --fontWeight: 400;
     --lineHeight: 1.5;
+    --foregroundColor: var(--systemTextColor);
     --borderWidth: 1px;
-    --borderColor: 210, 14%, 89%;
+    --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
     --borderOpacity: 1.0;
-    --foregroundColor: 0, 0%, 0%;
-    --backgroundColor: 0, 0%, 100%;
+    --foregroundColor: var(--systemTextColor);
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
     position: relative;
+    display: inline-block;
 }
 
 .dropdown-label {
+    display: inline-flex;
+    align-items: center;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -49,20 +52,28 @@
 .dropdown .dropdown-content {
     position: absolute;
     z-index: 1;
-    display: none;
+    display: block;
     margin-block: 0.5rem;
-    padding-block: 0.5rem;
-    inline-size: calc(var(--inlineSize) * 1.5);
+    inline-size: max-content;
     border-width: var(--borderWidth);
     border-style: solid;
     border-color: hsla(var(--borderColor), 1.0);
     border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     overflow: hidden;
+    visibility: hidden;
+}
+
+.dropdown-content.position\:right {
+    right: 0;
+}
+
+.dropdown-content.position\:bottom {
+    bottom: 0;
 }
 
 .dropdown-content > .list > .list-row:hover {
-    background-color: hsla(var(--borderColor), 1.0);
+    background-color: hsla(var(--borderColor), 0.5);
 }
 
 .dropdown-content > .list > .list-row > .link {
@@ -80,26 +91,14 @@
     cursor: pointer;
 }
 
+.dropdown-content > .list > .list-row > .grouping {
+    display: flex;
+    align-items: center;
+    padding-block: 0.5rem;
+    padding-inline: 1.0rem;
+    cursor: pointer;
+}
+
 .dropdown-content > .list > .divider {
     --backgroundColor: var(--borderColor) !important;
 }
-
-.dropdown.size\:full {
-    --inlineSize: 100%;
-}
-
-.dropdown.size\:large {
-    --inlineSize: 75%;
-}
-
-.dropdown.size\:medium {
-    --inlineSize: 50%;
-}
-
-.scheme\:dark .dropdown, .dropdown.scheme\:dark {
-    --foregroundColor: 0, 0%, 100%;
-    --borderColor: 210, 9%, 31%;
-    --backgroundColor: 210, 11%, 15%;
-}
-
-

@@ -51,9 +51,9 @@
 
     var textpad = document.getElementsByClassName('textpad');
     
-    if(textpad.length > 0) {
+    if (textpad.length > 0) {
         
-        for(var i = 0; i < textpad.length; i++) {
+        for (var i = 0; i < textpad.length; i++) {
             
             (function(i) {
                 new Textpad(textpad[i]);

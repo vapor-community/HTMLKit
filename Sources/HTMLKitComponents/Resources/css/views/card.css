@@ -19,11 +19,12 @@
     --paddingInlineEnd: 1.0rem;
     --paddingBlockStart: 0.5rem;
     --paddingBlockEnd: 0.5rem;
+    --foregroundColor: var(--systemTextColor);
     --borderWidth: 1px;
-    --borderColor: 210, 14%, 89%;
+    --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
     --borderOpacity: 1.0;
-    --backgroundColor: 0, 0%, 100%;
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
     position: relative;
@@ -39,7 +40,6 @@
 .card .card-header {
     border-start-start-radius: var(--borderRadius);
     border-start-end-radius: var(--borderRadius);
-    overflow: hidden;
 }
 
 .card .card-body {
@@ -49,9 +49,4 @@
     padding-inline-end: var(--paddingInlineEnd);
     border-end-start-radius: var(--borderRadius);
     border-end-end-radius: var(--borderRadius);
-}
-
-.scheme\:dark .card, .card.scheme\:dark {
-    --borderColor: 210, 9%, 31%;
-    --backgroundColor: 210, 11%, 15%;
 }

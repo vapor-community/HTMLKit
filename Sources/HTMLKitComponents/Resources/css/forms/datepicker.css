@@ -29,16 +29,18 @@
     --fontSize: 1.0rem;
     --fontWeight: normal;
     --lineHeight: 1.5;
-    --foregroundColor: 0, 0%, 0%;
+    --foregroundColor: var(--systemTextColor);
     --borderWidth: 1px;
-    --borderColor: 210, 14%, 89%;
+    --borderColor: var(--systemBorderColor);
     --borderRadius: 0;
     --borderOpacity: 1.0;
-    --focusColor: 210, 100%, 50%;
-    --backgroundColor: 0, 0%, 100%;
+    --focusColor: var(--systemFocusColor);
+    --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
     position: relative;
+    display: block;
+    inline-size: 100%;
 }
 
 .datepicker-datefield {
@@ -80,9 +82,10 @@
 .datepicker-calendar {
     position: absolute;
     z-index: 1;
-    display: none;
+    display: block;
     width: 100%;
     margin-block: 0.75rem;
+    padding: 0.5rem;
     font-family: system-ui;
     font-size: var(--fontSize);
     font-weight: var(--fontWeight);
@@ -91,7 +94,15 @@
     border-width: var(--borderWidth);
     border-style: solid;
     border-color: hsla(var(--borderColor), 1.0);
+    border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), 1.0);
+    visibility: hidden;
+    overflow: hidden;
+}
+
+.datepicker-calendar.position\:bottom {
+    bottom: 0;
+    margin-block: 3.375rem !important;
 }
 
 .calendar-navigation {
@@ -103,7 +114,6 @@
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
     list-style-type: none;
-    
 }
 
 .calendar-navigation button {
@@ -113,16 +123,16 @@
     font-size: var(--fontSize);
     font-weight: var(--fontWeight);
     line-height: var(--lineHeight);
-    color: var(--foregroundColor);
+    color: hsla(var(--foregroundColor), 1.0);
     border: none;
     background-color: transparent;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    cursor: pointer;
 }
 
 .calendar-navigation button > svg {
-    
     width: 1rem;
     height: 1rem;
     pointer-events: none;
@@ -139,9 +149,8 @@
 
 .calendar-week > li {
     padding: 0.5rem;
-    color: var(--primaryColor);
+    font-weight: bold;
     text-align: center;
-    text-decoration: uppercase;
 }
 
 .calendar-days {
@@ -160,14 +169,6 @@
 }
 
 .calendar-days > li:hover:has(time) {
-    color: var(--whiteColor);
-    background-color: var(--primaryColor);
-}
-
-
-.scheme\:dark .datepicker, .datepicker.scheme\:dark {
-    --foregroundColor: 0, 0%, 100%;
-    --borderColor: 210, 9%, 31%;
-    --focusColor: 210, 100%, 50%;
-    --backgroundColor: 210, 11%, 15%;
+    border-radius: var(--borderRadius);
+    background-color: hsla(var(--borderColor), 0.5);
 }

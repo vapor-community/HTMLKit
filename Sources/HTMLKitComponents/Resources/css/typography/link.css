@@ -72,31 +72,31 @@
     --fontWeight: 950;
 }
 
-.link.transformation\:uppercase {
+.link.case\:uppercase {
     text-transform: uppercase;
 }
 
-.link.transformation\:lowercase {
+.link.case\:lowercase {
     text-transform: lowercase;
 }
 
-.link.transformation\:capitalize {
+.link.case\:capitalize {
     text-transform: capitalize;
 }
 
-.link.transformation\:underline {
+.link.decoration\:underline {
     text-decoration: underline;
 }
 
-.link.transformation\:overline {
+.link.decoration\:overline {
     text-decoration: overline;
 }
 
-.link.transformation\:strikethrough {
+.link.decoration\:strikethrough {
     text-decoration: line-through;
 }
 
-.link.transformation\:none {
+.link.decoration\:none {
     text-decoration: none;
 }
 
@@ -191,5 +191,14 @@
     overflow: hidden;
 }
 
-.scheme\:dark .link, .link.scheme\:dark {
+.link.font\:arial {
+    --fontFamily: Arial;
+}
+
+.link.font\:helvetica {
+    --fontFamily: Helvetica;
+}
+
+.link.font\:verdana {
+    --fontFamily: Verdana;
 }

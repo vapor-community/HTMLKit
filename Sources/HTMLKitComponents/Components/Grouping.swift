@@ -22,14 +22,6 @@ public struct Grouping: View, Modifiable, Identifiable {
         self.content = content()
         self.classes = ["grouping"]
     }
-    
-    /// Creates a group.
-    internal init(content: [Content], classes: [String], id: String?) {
-        
-        self.content = content
-        self.classes = classes
-        self.id = id
-    }
 
     public var body: Content {
         Division {
@@ -41,15 +33,19 @@ public struct Grouping: View, Modifiable, Identifiable {
         }
     }
     
-    public func frame(width: Tokens.ColumnSize, offset: Tokens.ColumnOffset? = nil) -> Grouping {
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Grouping {
         
         var newSelf = self
         
-        if let offset {
-            newSelf.classes.append("offset:\(offset.value)")
+        if let height {
+            newSelf.classes.append("height:\(height.value)")
         }
         
-        newSelf.classes.append("size:\(width.value)")
+        if let alignment {
+            newSelf.classes.append("frame-alignment:\(alignment.value)")
+        }
+        
+        newSelf.classes.append("width:\(width.value)")
         
         return newSelf
     }
@@ -59,10 +55,18 @@ public struct Grouping: View, Modifiable, Identifiable {
     }
 }
 
-extension Grouping: TextModifier {    
+extension Grouping: TextModifier {
     
-    public func font(_ style: Tokens.TextStyle) -> Grouping {
-        return self.mutate(font: style.value)
+    public func font(_ family: Tokens.FontFamily) -> Grouping {
+        return mutate(fontfamily: family.value)
+    }
+    
+    public func textStyle(_ style: Tokens.TextStyle) -> Grouping {
+        return self.mutate(textstyle: style.value)
+    }
+    
+    public func textStyle(_ style: TextConfiguration) -> Grouping {
+        return self.mutate(classes: style.configuration)
     }
     
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Grouping {
@@ -77,8 +81,12 @@ extension Grouping: TextModifier {
         return self.mutate(fontweight: weight.value)
     }
     
-    public func fontTransformation(_ transformation: Tokens.TextTransformation) -> Grouping {
-        return self.mutate(fonttransformation: transformation.value)
+    public func textCase(_ case: Tokens.TextCase) -> Grouping {
+        return self.mutate(textcase: `case`.value)
+    }
+    
+    public func textDecoration(_ decoration: Tokens.TextDecoration) -> Grouping {
+        return self.mutate(textdecoration: decoration.value)
     }
     
     public func fontStyle(_ style: Tokens.FontStyle) -> Grouping {
@@ -112,26 +120,26 @@ extension Grouping: TextModifier {
     }
     
     public func underline() -> Grouping {
-        return self.mutate(fontdecoration: Tokens.TextDecoration.underline.value)
+        return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
     }
     
     public func underline(_ condition: Bool) -> Grouping {
         
         if condition {
-            return self.mutate(fontdecoration: Tokens.TextDecoration.underline.value)
+            return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
         }
         
         return self
     }
     
     public func strikethrough() -> Grouping {
-        return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.value)
+        return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
     }
     
     public func strikethrough(_ condition: Bool) -> Grouping {
         
         if condition {
-            return self.mutate(fontdecoration: Tokens.TextDecoration.strikeThrough.value)
+            return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
         }
         
         return self
