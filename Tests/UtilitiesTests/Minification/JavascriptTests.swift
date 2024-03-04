@@ -246,4 +246,52 @@ final class JavascriptTests: XCTestCase {
         
         XCTAssertEqual(minifier.minify(js: document), "function(){var property='value';};")
     }
+    
+    // Tests minifing a
+    func testMinifiyArithmetic() throws {
+        
+        // ...arithmetic operation with constants
+        
+        let constants = """
+        function () {
+            const subtraction = 2 - 1;
+            const addition = 2 + 1;
+            const multiplication = 2 * 1;
+            const division = 2 / 1;
+        };
+        """
+        
+        XCTAssertEqual(minifier.minify(js: constants),
+            """
+            function(){\
+            const subtraction=2-1;\
+            const addition=2+1;\
+            const multiplication=2*1;\
+            const division=2/1;\
+            };
+            """
+        )
+        
+        // ...arithmetic operation with variables
+        
+        let variables = """
+        function () {
+            const subtraction = variable - 1;
+            const addition = variable + 1;
+            const multiplication = variable * 1;
+            const division = variable / 1;
+        };
+        """
+        
+        XCTAssertEqual(minifier.minify(js: variables),
+            """
+            function(){\
+            const subtraction=variable-1;\
+            const addition=variable+1;\
+            const multiplication=variable*1;\
+            const division=variable/1;\
+            };
+            """
+        )
+    }
 }

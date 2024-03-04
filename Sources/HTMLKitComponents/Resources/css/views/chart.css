@@ -1,0 +1,58 @@
+/*
+ The stylesheet for the chart component.
+ */
+
+.chart {
+    --fontSize: 1.0rem;
+    --fontWeight: 400;
+    --lineHeight: 1.5;
+    --foregroundColor: var(--systemTextColor);
+    --borderColor: var(--systemBorderColor);
+    --backgroundColor: var(--systemBackgroundColor);
+    --backgroundOpacity: 1.0;
+
+    position: relative;
+    display: block;
+    width: 100%;
+    height: inherit;
+}
+
+.chart > .chart-guide {
+    stroke-width: 1px;
+    stroke-dasharray: 5;
+    stroke: hsla(var(--borderColor), 1.0);
+}
+
+.chart > .chart-axis {
+    stroke-width: 1px;
+    stroke-dasharray: 0;
+    stroke: hsla(var(--borderColor), 1.0);
+}
+
+.chart-label {
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
+    line-height: var(--lineHeight);
+    fill: hsla(var(--foregroundColor), 1.0);
+    stroke-width: 0;
+}
+
+.chart > .mark.type\:bar {
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
+    line-height: var(--lineHeight);
+    fill: hsla(var(--foregroundColor), 1.0);
+    stroke-width: 0;
+}
+
+.chart > .mark.type\:pie {
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
+    line-height: var(--lineHeight);
+}
+
+.mark.type\:pie circle {
+    fill: none;
+    stroke: hsla(var(--foregroundColor), 1.0);
+    stroke-width: 32;
+}
