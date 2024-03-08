@@ -212,6 +212,8 @@ public enum Tokens {
         case transparent
         /// Changes the foreground color to #DFE3E7.
         case system
+        /// Changes the foreground to a random color.
+        case random
         /// Changes the foreground color to a custom value.
         case custom(String)
         
@@ -274,6 +276,9 @@ public enum Tokens {
                 
             case .system:
                 return "system"
+                
+            case .random:
+                return ["blue", "brown", "cyan", "green", "indigo", "mint", "pink", "purple", "red", "teal", "orange", "yellow", "gray"].randomElement()!
 
             case .custom(let string):
                 return string
@@ -507,6 +512,8 @@ public enum Tokens {
         case transparent
         /// Changes the background color to #DFE3E7.
         case system
+        /// Changes the background to a random color.
+        case random
         /// Changes the background to a custom color.
         case custom(String)
         
@@ -569,6 +576,9 @@ public enum Tokens {
                 
             case .system:
                 return "system"
+                
+            case .random:
+                return ["blue", "brown", "cyan", "green", "indigo", "mint", "pink", "purple", "red", "teal", "orange", "yellow", "gray"].randomElement()!
 
             case .custom(let string):
                 return string
