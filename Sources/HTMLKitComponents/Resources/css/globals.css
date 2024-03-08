@@ -214,6 +214,14 @@ video {
     visibility: visible !important;
 }
 
+.state\:attached {
+    display: block !important;
+}
+
+.state\:detached {
+    display: none !important;
+}
+
 /*
  foreground
  */

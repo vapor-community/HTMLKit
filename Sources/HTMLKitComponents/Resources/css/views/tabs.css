@@ -1,0 +1,30 @@
+/*
+ The stylesheet for the tabs component.
+ */
+
+.tabs {
+    display: flex;
+    flex-direction: column;
+}
+
+.tabs-labels {
+    display: flex;
+    flex-direction: row;
+}
+
+.tab-label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-block: 0.5rem;
+    padding-inline: 1.0rem;
+    text-decoration: none;
+}
+
+.tab-label > * {
+    pointer-events: none;
+}
+
+.tabs-panes > * {
+    display: none;
+}
