@@ -8,13 +8,13 @@ import HTMLKit
 /// A component that distinguish content.
 public struct Card: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The header of the card.
-    public var header: [Content]?
+    internal var header: [Content]?
     
     /// The content of the card.
-    public var content: [Content]
+    internal var content: [Content]
     
     /// The classes of the content.
     internal var classes: [String]

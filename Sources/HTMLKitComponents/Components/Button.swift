@@ -9,7 +9,7 @@ import Foundation
 /// A component that initiates an action.
 public struct Button: View, Modifiable, Actionable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The role of the button
     internal var role: HTMLKit.Values.Button
@@ -149,7 +149,7 @@ extension Button: ViewModifier {
 /// A component that initiates an action.
 public struct LinkButton: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     internal let target: HTMLKit.Values.Target
     

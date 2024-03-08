@@ -8,7 +8,7 @@ import HTMLKit
 /// A compnonent that cycles through an amount of views.
 public struct Tabs: View, Identifiable, Modifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The content of the carousel.
     internal var content: [Pane]

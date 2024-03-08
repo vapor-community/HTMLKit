@@ -9,7 +9,7 @@ import HTMLKit
 public struct HStack: View, Actionable, Modifiable {
     
     /// The identifier of the text.
-    public var id: String?
+    internal var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
@@ -119,7 +119,7 @@ extension HStack: ViewModifier {
 /// A component that arranges content vertically.
 public struct VStack: View, Actionable, Modifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
@@ -228,7 +228,7 @@ extension VStack: ViewModifier {
 /// A component that overlays content.
 public struct ZStack: View, Actionable, Modifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The content of the stack.
     internal var content: [Content]

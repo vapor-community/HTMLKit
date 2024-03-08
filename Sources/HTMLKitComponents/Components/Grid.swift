@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that collects and arranges collection items horizontally.
 public struct Grid: View, Modifiable, Actionable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The content of the collection.
     internal var content: [Content]

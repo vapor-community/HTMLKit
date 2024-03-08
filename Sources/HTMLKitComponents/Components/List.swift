@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that collects and arranges list items vertically.
 public struct List: View, Modifiable, Actionable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The content of the list.
     internal var content: [ListElement]

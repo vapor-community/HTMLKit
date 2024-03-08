@@ -9,7 +9,7 @@ import HTMLKit
 public struct Form: View, Actionable {
     
     /// The identifier of the form.
-    public var id: String?
+    internal var id: String?
     
     internal var method: HTMLKit.Values.Method
     
@@ -97,7 +97,7 @@ public struct FieldLabel: View {
 /// A component that displays an editable form control.
 public struct TextField: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The identifier of the field.
     internal let name: String
@@ -219,7 +219,7 @@ extension TextField: ViewModifier {
 /// A component that displays a editable and expandable form control.
 public struct TextEditor: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The identifier of the editor.
     internal let name: String
@@ -347,7 +347,7 @@ extension TextEditor: ViewModifier {
 
 public struct Picker: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
 
     internal let name: String
     
@@ -357,7 +357,15 @@ public struct Picker: View, Modifiable, Identifiable {
     
     internal var classes: [String]
     
-    public init(name: String, selection: String? = nil, @ContentBuilder<Selectable> content: () -> [Selectable]) {
+    public init(name: String, selection: String? = nil, @ContentBuilder<CheckField> content: () -> [CheckField]) {
+        
+        self.name = name
+        self.selection = selection
+        self.content = content()
+        self.classes = ["picker"]
+    }
+    
+    public init(name: String, selection: String? = nil, @ContentBuilder<RadioSelect> content: () -> [RadioSelect]) {
         
         self.name = name
         self.selection = selection
@@ -387,16 +395,16 @@ public struct Picker: View, Modifiable, Identifiable {
 public struct CheckField: View, Modifiable, Selectable, Identifiable {
     
     /// The identifer for the label.
-    public var id: String?
+    internal var id: String?
     
     /// The identifier for the field.
-    public var name: String?
+    internal var name: String?
     
     /// The content of the field.
-    public var value: String
+    internal var value: String
     
     /// The selection status of the field.
-    public var isSelected: Bool
+    internal var isSelected: Bool
 
     /// The content of the field.
     internal var content: String
@@ -513,16 +521,16 @@ extension CheckField: ViewModifier {
 public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
     
     /// The identifier for the label.
-    public var id: String?
+    internal var id: String?
     
     /// The identifier of the select.
-    public var name: String?
+    internal var name: String?
     
     /// The content of the select.
-    public var value: String
+    internal var value: String
     
     /// The selection status of the select.
-    public var isSelected: Bool
+    internal var isSelected: Bool
     
     /// The content of the select.
     internal var content: String
@@ -638,7 +646,7 @@ extension RadioSelect: ViewModifier {
 /// A component that displays
 public struct SelectField: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The identifier of the field.
     internal let name: String
@@ -658,7 +666,17 @@ public struct SelectField: View, Modifiable, Identifiable {
     internal var events: [String]?
     
     /// Creates a select field.
-    public init(name: String, prompt: String? = nil, selection: String? = nil, @ContentBuilder<Selectable> content: () -> [Selectable]) {
+    public init(name: String, prompt: String? = nil, selection: String? = nil, @ContentBuilder<RadioSelect> content: () -> [RadioSelect]) {
+        
+        self.name = name
+        self.prompt = prompt
+        self.selection = selection
+        self.content = content()
+        self.classes = ["selectfield"]
+    }
+    
+    /// Creates a select field.
+    public init(name: String, prompt: String? = nil, selection: String? = nil, @ContentBuilder<CheckField> content: () -> [CheckField]) {
         
         self.name = name
         self.prompt = prompt
@@ -765,7 +783,7 @@ extension SelectField: ViewModifier {
 /// A component that displays
 public struct SecureField: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The identifier of the field.
     internal let name: String
@@ -883,7 +901,7 @@ extension SecureField: ViewModifier {
 /// A component that displays
 public struct Slider: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The identifier of the slider.
     internal let name: String
@@ -987,7 +1005,7 @@ extension Slider: ViewModifier {
 /// A component that displays
 public struct DatePicker: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The identifier of the picker.
     internal let name: String
@@ -1173,7 +1191,7 @@ extension DatePicker: ViewModifier {
 /// A component that displays
 public struct SearchField: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The identifier of the search field.
     internal let name: String
@@ -1291,7 +1309,7 @@ extension SearchField: ViewModifier {
 /// A component that displays the progress of a task.
 public struct Progress: View, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     internal let maximum: Float
     
@@ -1335,7 +1353,7 @@ public struct Progress: View, Identifiable {
 /// A component to edit and format text content.
 public struct TextPad: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The identifier of the textpad.
     internal let name: String
@@ -1507,7 +1525,7 @@ extension TextPad: ViewModifier {
 /// A component that displays
 public struct FileDialog: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The identifier of the search field.
     internal let name: String
