@@ -94,7 +94,7 @@
     --indigoColor: 227, 60%, 49%;
     --purpleColor: 262, 53%, 41%;
     --pinkColor: 330, 76%, 47%;
-    --brownColor: 23, 60%, 40%,;
+    --brownColor: 23, 60%, 40%;
     --silverColor: 240, 4%, 85%;
     --grayColor: 25, 4%, 47%;
     --blackColor: 30, 7%, 23%;
@@ -104,10 +104,6 @@
     --systemBorderColor: 210, 9%, 31%;
     --systemTextColor: 0, 0%, 100%;
     --systemFocusColor: 210, 100%, 50%;
-}
-
-* {
-    font: inherit;
 }
 
 *,
