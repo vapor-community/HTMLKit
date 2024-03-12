@@ -940,3 +940,63 @@ video {
 .height\:maximum {
     height: max-content;
 }
+
+.blur\:light {
+    --blurLevel: 4px;
+}
+
+.blur\:medium {
+    --blurLevel: 8px;
+}
+
+.blur\:strong {
+    --blurLevel: 12px;
+}
+
+.grayscale\:light {
+    --grayscaleDepth: 25%;
+}
+
+.grayscale\:neutral {
+    --grayscaleDepth: 50%;
+}
+
+.grayscale\:dark {
+    --grayscaleDepth: 100%;
+}
+
+.brightness\:low {
+    --brightnessLevel: 0.5;
+}
+
+.brightness\:medium {
+    --brightnessLevel: 1.5;
+}
+
+.brightness\:high {
+    --brightnessLevel: 2.0;
+}
+
+.saturation\:low {
+    --saturationLevel: 0.5;
+}
+
+.saturation\:medium {
+    --saturationLevel: 1.5;
+}
+
+.saturation\:high{
+    --saturationLevel: 2.0;
+}
+
+.contrast\:low {
+    --contrastLevel: 0.5;
+}
+
+.contrast\:medium {
+    ---contrastLevel: 1.5;
+}
+
+.contrast\:high {
+    ---contrastLevel: 2.0;
+}

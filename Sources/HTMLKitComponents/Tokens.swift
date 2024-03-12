@@ -1608,4 +1608,129 @@ public enum Tokens {
             }
         }
     }
+    
+    public enum BlurLevel {
+        
+        case light
+        case medium
+        case strong
+        case custom(String)
+        
+        internal var value: String {
+            
+            switch self {
+            case .light:
+                return "light"
+                
+            case .medium:
+                return "medium"
+                
+            case .strong:
+                return "strong"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    public enum GrayscaleDepth {
+        
+        case light
+        case neutral
+        case dark
+        case custom(String)
+        
+        internal var value: String {
+            
+            switch self {
+            case .light:
+                return "light"
+                
+            case .neutral:
+                return "neutral"
+                
+            case .dark:
+                return "dark"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    public enum BrightnessLevel {
+        
+        case low
+        case medium
+        case high
+        case custom(String)
+        
+        internal var value: String {
+            
+            switch self {
+            case .low:
+                return "low"
+                
+            case .medium:
+                return "medium"
+                
+            case .high:
+                return "high"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    public enum SaturationLevel {
+        
+        case low
+        case medium
+        case high
+        case custom(String)
+        
+        internal var value: String {
+            
+            switch self {
+            case .low:
+                return "low"
+                
+            case .medium:
+                return "medium"
+                
+            case .high:
+                return "high"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    public enum ContrastLevel {
+        
+        case low
+        case medium
+        case high
+        case custom(String)
+        
+        internal var value: String {
+            
+            switch self {
+            case .low:
+                return "low"
+                
+            case .medium:
+                return "medium"
+                
+            case .high:
+                return "high"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
 }

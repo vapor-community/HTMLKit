@@ -122,3 +122,26 @@ extension Image: ViewModifier {
         return self.mutate(margin: length.value, insets: insets)
     }
 }
+
+extension Image: GraphicsModifier {
+    
+    public func blur(_ level: Tokens.BlurLevel) -> Image {
+        return mutate(blur: level.value)
+    }
+    
+    public func grayscale(_ depth: Tokens.GrayscaleDepth) -> Image {
+        return mutate(grayscale: depth.value)
+    }
+    
+    public func brightness(_ level: Tokens.BrightnessLevel) -> Image {
+        return mutate(brightness: level.value)
+    }
+    
+    public func saturation(_ level: Tokens.SaturationLevel) -> Image {
+        return mutate(saturation: level.value)
+    }
+    
+    public func contrast(_ level: Tokens.ContrastLevel) -> Image {
+        return mutate(contrast: level.value)
+    }
+}

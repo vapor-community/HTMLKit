@@ -17,6 +17,11 @@
     --borderOpacity: 0.0;
     --backgroundColor: 0, 0%, 0%;
     --backgroundOpacity: 0.0;
+    --blurLevel: 0;
+    --contrastLevel: 100%;
+    --brightnessLevel: 100%;
+    --grayscaleDepth: 0;
+    --saturationLevel: 100%;
     
     position: relative;
     max-inline-size: var(--inlineSize);
@@ -27,6 +32,7 @@
     border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     font-style: italic;
+    filter: blur(var(--blurLevel)) contrast(var(--contrastLevel)) brightness(var(--brightnessLevel)) grayscale(var(--grayscaleDepth)) saturate(var(--saturationLevel));
 }
 
 .image.aspect\:equal {
@@ -79,8 +85,4 @@
 
 .image.shape\:circle {
     --borderRadius: 50%;
-}
-
-.scheme\:dark .image, .image.scheme\:dark {
-    filter: brightness(.8) contrast(1.2);
 }
