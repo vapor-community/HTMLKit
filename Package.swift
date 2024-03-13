@@ -125,8 +125,8 @@ let package = Package(
             capability: .command(
                 intent: .custom(
                     verb: "convert",
-                    description: "Convert html content"),
-                permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the converted file.")]
+                    description: "Converts HTML markup into Swift syntax."),
+                permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the file.")]
             ),
             dependencies: [
                 .target(name: "ConvertCommand")
@@ -137,8 +137,9 @@ let package = Package(
             capability: .command(
                 intent: .custom(
                     verb: "deploy",
-                    description: "Deploy css files"),
-                permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the minified css file.")]
+                    description: "Deploys the CSS and JS files for the HTMLKit components."
+                ),
+                permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the files.")]
             ),
             dependencies: [
                 .target(name: "DeployCommand")
