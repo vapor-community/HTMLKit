@@ -1733,4 +1733,29 @@ public enum Tokens {
             }
         }
     }
+    
+    public enum InnerRadius {
+        
+        case small
+        case medium
+        case large
+        case custom(String)
+        
+        internal var value: String {
+            
+            switch self {
+            case .small:
+                return "small"
+                
+            case .medium:
+                return "medium"
+                
+            case .large:
+                return "large"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
 }

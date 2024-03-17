@@ -5,7 +5,7 @@
 
 import HTMLKit
 
-public struct Chart: View {
+public struct Chart: View, Modifiable {
     
     /// The content of the chart.
     internal var content: [VectorElement]
@@ -26,6 +26,10 @@ public struct Chart: View {
         }
         .namespace("https://www.w3.org/2000/svg")
         .class(classes.joined(separator: " "))
+    }
+    
+    public func innerRadius(_ color: Tokens.InnerRadius) -> Chart {
+        return self.mutate(class: "radius:\(color.value)")
     }
 }
 
@@ -87,10 +91,9 @@ public struct SectorMark: View, Modifiable {
     
     public var body: Content {
         HTMLKit.Group {
-            Circle {
+            Path {
                 "\(value)"
             }
-            .radius(100)
         }
         .class(classes.joined(separator: " "))
     }

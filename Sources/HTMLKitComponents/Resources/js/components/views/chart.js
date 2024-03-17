@@ -8,20 +8,43 @@
     const Chart = function (element) {
 
         this.element = element;
-        this.padding = 100;
-        this.width = this.element.clientWidth;
-        this.height = this.element.clientHeight;
-        this.plotWidth = this.element.clientWidth - this.padding;
-        this.plotHeight = this.element.clientHeight - this.padding;
+        this.padding = 50;
+        this.configuration = this.getConfiguration();
         this.marks = element.getElementsByClassName('mark');
 
-        this.initiateListener();
+        this.initiateObserver();
     };
 
     /**
-     * Initiates the event listener.
+     * Initiates the chart object.
      */
-    Chart.prototype.initiateListener = function () {
+    Chart.prototype.initiateObserver = function () {
+
+        const self= this;
+
+        const observer = new IntersectionObserver(function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    self.width = entry.boundingClientRect.width;
+                    self.height = entry.boundingClientRect.height;
+                    self.plotWidth = entry.boundingClientRect.width - self.padding;
+                    self.plotHeight = entry.boundingClientRect.height - self.padding;
+
+                    self.prepareView();
+                }
+            });
+        });
+
+        observer.observe(this.element);
+    };
+
+    /**
+     * Prepares the chart view.
+     */
+    Chart.prototype.prepareView = function () {
 
         this.setViewBox();
 
@@ -36,7 +59,7 @@
                 this.element.prepend(this.setYAxis());
                 this.element.prepend(this.setGuides());
 
-                this.setMarks();
+                this.layoutBars();
 
                 break;
 
@@ -44,7 +67,7 @@
 
                 this.maximumValue = this.evaluateMaximumValue('Pie');
 
-                this.setSectors();
+                this.layoutSectors();
 
                 break;
         }
@@ -54,9 +77,6 @@
      * Sets the view box for the chart.
      */
     Chart.prototype.setViewBox = function () {
-
-        this.element.setAttribute('width', this.width.toString());
-        this.element.setAttribute('height', this.height.toString());
         this.element.setAttribute('viewbox', `0 0 ${this.width} ${this.height}`);
     };
 
@@ -186,7 +206,6 @@
      * The width ratio determinants the width of the bars in the plot area.
      */
     Chart.prototype.evaluateWidthRatio = function () {
-
         return (this.element.clientWidth - (this.padding * 2)) / this.marks.length;
     };
 
@@ -196,14 +215,13 @@
      * The height ratio determinants the height of the bars in the plot area.
      */
     Chart.prototype.evaluateHeightRatio = function () {
-
         return (this.element.clientHeight - (this.padding * 2)) / this.maximumValue;
     };
 
     /**
-     * Sets the marks.
+     * Sets the bars.
      */
-    Chart.prototype.setMarks = function () {
+    Chart.prototype.layoutBars = function () {
 
         for (let i = 0; i < this.marks.length; i++) {
 
@@ -229,29 +247,92 @@
     /**
      * Sets the sectors.
      */
-    Chart.prototype.setSectors = function () {
+    Chart.prototype.layoutSectors = function () {
 
-        let dashoffset = 0;
+        let preferredPieSize = 0;
 
-        for (let i = 0; i < this.marks.length; i++) {
+        if (this.plotWidth > this.plotHeight) {
+            preferredPieSize = this.plotHeight;
 
-            let pieCircle = this.marks[i].children[0];
+        } else {
+            preferredPieSize = this.plotWidth;
+        }
 
-            let radius = pieCircle.getAttribute('r');
-            let ratio = (radius / this.maximumValue) * Number(pieCircle.textContent);
-            let circumference = 2 * (22 / 7) * radius;
-            let dasharray = (circumference * ratio / radius);
+        let offset = 0;
 
-            pieCircle.setAttribute('cx', '50%');
-            pieCircle.setAttribute('cy', '50%');
-            pieCircle.setAttribute('stroke-dasharray', `${dasharray} ${circumference}`);
+        for (const mark of this.marks) {
 
-            if (i > 0 ) {
-                pieCircle.setAttribute('stroke-dashoffset', `-${dashoffset}`);
+            let pieCircle = mark.children[0];
+
+            const percentage= Number(pieCircle.textContent) * 100 / this.maximumValue;
+            const degree = Math.ceil(percentage * 3.6);
+            const outerRadius = preferredPieSize / 2;
+
+            let longArgFlag = 0;
+
+            if (degree > 180) {
+                longArgFlag = 1;
             }
 
-            dashoffset = dashoffset + dasharray;
+            const outerRing = this.getCoordinatesByDegree(degree, outerRadius, preferredPieSize);
+
+            let commands = [];
+            commands.push(`M ${(preferredPieSize / 2) + outerRadius} ${preferredPieSize / 2}`);
+            commands.push(`A ${outerRadius} ${outerRadius} 0 ${longArgFlag} 0 ${outerRing.x} ${outerRing.y}`);
+
+            if (this.configuration.radius > 0) {
+
+                const innerRadius = outerRadius - this.configuration.radius;
+                const innerRing = this.getCoordinatesByDegree(degree, innerRadius, preferredPieSize);
+
+                commands.push(`L ${innerRing.x} ${innerRing.y}`);
+                commands.push(`A ${innerRadius} ${innerRadius} 0 ${longArgFlag} 1 ${preferredPieSize / 2 + innerRadius} ${preferredPieSize / 2}`);
+
+            } else {
+                commands.push(`L ${outerRadius} ${outerRadius}`);
+            }
+
+            pieCircle.setAttribute('d', commands.join(' '));
+            pieCircle.setAttribute('transform', `rotate(${offset} ${preferredPieSize / 2} ${preferredPieSize /2})`);
+
+            offset = offset + (degree * -1);
         }
+    };
+
+    /**
+     * Evaluates the coordinates by the given degree.
+     */
+    Chart.prototype.getCoordinatesByDegree = function (angle, radius, size) {
+
+        const x = Math.cos((angle * Math.PI) / 180);
+        const y = Math.sin((angle * Math.PI) / 180);
+
+        const cx = x * radius + size / 2;
+        const cy = y * -radius + size / 2;
+
+        return {x: cx, y: cy};
+    };
+
+    /**
+     * Evaluates the chart configuration.
+     */
+    Chart.prototype.getConfiguration = function () {
+
+        const classList = this.element.classList;
+
+        if (classList.contains('radius:large')) {
+            return {radius: 32};
+        }
+
+        if (classList.contains('radius:medium')) {
+            return {radius: 42};
+        }
+
+        if (classList.contains('radius:small')) {
+            return {radius: 52};
+        }
+
+        return {radius: 0};
     };
 
     const charts = document.getElementsByClassName('chart');

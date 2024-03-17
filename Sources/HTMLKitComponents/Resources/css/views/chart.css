@@ -51,8 +51,6 @@
     line-height: var(--lineHeight);
 }
 
-.mark.type\:pie circle {
-    fill: none;
-    stroke: hsla(var(--foregroundColor), 1.0);
-    stroke-width: 32;
+.chart > .mark.type\:pie path {
+    fill: hsla(var(--foregroundColor), 1.0);
 }
