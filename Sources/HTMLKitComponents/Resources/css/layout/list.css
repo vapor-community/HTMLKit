@@ -32,6 +32,18 @@
     flex-direction: column;
 }
 
+.list.spacing\:large {
+    gap: 2.25rem;
+}
+
+.list.spacing\:medium {
+    gap: 1.5rem;
+}
+
+.list.spacing\:small {
+    gap: 1rem;
+}
+
 .list-row {
     --paddingBlockStart: 0;
     --paddingBlockEnd: 0;

@@ -1758,4 +1758,34 @@ public enum Tokens {
             }
         }
     }
+    
+    /// A space for content.
+    public enum ListSpace {
+        
+        /// Sets the content space in between to 2.25 rem.
+        case large
+        /// Sets the content space in between to 1.5 rem.
+        case medium
+        /// Sets the content space in between to 1 rem.
+        case small
+        /// Sets the content space to a custom value.
+        case custom(String)
+        
+        var value: String {
+            
+            switch self {
+            case .large:
+                return "large"
+                
+            case .medium:
+                return "medium"
+                
+            case .small:
+                return "small"
+
+            case .custom(let string):
+                return string
+            }
+        }
+    }
 }

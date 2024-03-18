@@ -58,6 +58,10 @@ public struct List: View, Modifiable, Actionable {
         return self.mutate(classes: style.configuration)
     }
     
+    public func listSpacing(_ size: Tokens.ListSpace) -> List {
+        return mutate(class: "spacing:\(size.value)")
+    }
+    
     public func tag(_ value: String) -> List {
         return self.mutate(id: value)
     }
