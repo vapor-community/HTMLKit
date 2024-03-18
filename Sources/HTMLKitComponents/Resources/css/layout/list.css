@@ -50,6 +50,8 @@
     --paddingInlineStart: 0;
     --paddingInlineEnd: 0;
 
+    display: flex;
+    flex-direction: column;
     padding-block-start: var(--paddingBlockStart);
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
