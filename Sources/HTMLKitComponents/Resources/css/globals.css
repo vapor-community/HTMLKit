@@ -196,6 +196,7 @@ video {
     --borderColor: var(--accentColor) !important;
     --backgroundColor: var(--accentColor) !important;
     --foregroundColor: var(--whiteColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .state\:disabled {

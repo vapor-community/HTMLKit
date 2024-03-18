@@ -8,7 +8,7 @@
     const Tab = function(element) {
         
         this.element = element;
-        this.labels = element.getElementsByClassName('tabs-labels')[0];
+        this.tabs = element.getElementsByClassName('tabs-tabs')[0];
         this.panes = element.getElementsByClassName('tabs-panes')[0];
 
         this.selectPane(0);
@@ -23,7 +23,7 @@
         
         const self = this;
 
-        this.labels.addEventListener('click', function(event) {
+        this.tabs.addEventListener('click', function(event) {
 
             event.preventDefault();
 
@@ -53,6 +53,12 @@
      * Displays the selected tab pane.
      */
     Tab.prototype.selectPane = function(index) {
+
+        for (const child of this.tabs.children) {
+            child.classList.remove('state:active');
+        }
+
+        this.tabs.children[index].classList.add('state:active');
 
         for (const child of this.panes.children) {
             child.classList.remove('state:attached');
