@@ -20,6 +20,9 @@ public protocol GraphicsModifier {
     
     /// Specifies the level of contrast for the view.
     func contrast(_ size: Tokens.ContrastLevel) -> Self
+    
+    /// Adds drop shadow to the view.
+    func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor) -> Self
 }
 
 extension GraphicsModifier where Self: Modifiable {
@@ -42,5 +45,9 @@ extension GraphicsModifier where Self: Modifiable {
     
     internal func mutate(contrast value: String) -> Self {
         return self.mutate(class: "contrast:\(value)")
+    }
+    
+    internal func mutate(shadow radius: String, color: String) -> Self {
+        return mutate(classes: ["shadow:\(radius)", "shadow:\(color)"])
     }
 }

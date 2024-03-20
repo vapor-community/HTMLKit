@@ -144,4 +144,8 @@ extension Image: GraphicsModifier {
     public func contrast(_ level: Tokens.ContrastLevel) -> Image {
         return mutate(contrast: level.value)
     }
+    
+    public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> Image {
+        return mutate(shadow: radius.value, color: color.value)
+    }
 }

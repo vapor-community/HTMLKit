@@ -252,6 +252,10 @@ public struct Symbol: View, Modifiable {
         
         return newSelf
     }
+    
+    public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Symbol {
+        return mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
+    }
 }
 
 extension Symbol {

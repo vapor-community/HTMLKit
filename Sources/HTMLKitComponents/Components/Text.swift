@@ -174,6 +174,10 @@ extension Text: TextModifier {
     public func lineLimit(_ limit: Tokens.LineLimit) -> Text {
         return self.mutate(linelimit: limit.value)
     }
+    
+    public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Text {
+        return mutate(shadow: radius.value, color: color.value)
+    }
 }
 
 extension Text: ViewModifier {

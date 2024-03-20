@@ -51,6 +51,10 @@ public struct HStack: View, Actionable, Modifiable {
     public func tag(_ value: String) -> HStack {
         return self.mutate(id: value)
     }
+    
+    public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> HStack {
+        return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
+    }
 }
 
 extension HStack: MouseEvent {
@@ -160,6 +164,10 @@ public struct VStack: View, Actionable, Modifiable {
     public func tag(_ value: String) -> VStack {
         return self.mutate(id: value)
     }
+    
+    public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> VStack {
+        return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
+    }
 }
 
 extension VStack: MouseEvent {
@@ -262,6 +270,10 @@ public struct ZStack: View, Actionable, Modifiable {
     
     public func tag(_ value: String) -> ZStack {
         return self.mutate(id: value)
+    }
+    
+    public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> ZStack {
+        return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
     }
 }
 

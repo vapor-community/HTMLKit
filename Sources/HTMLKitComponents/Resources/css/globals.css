@@ -1001,3 +1001,71 @@ video {
 .contrast\:high {
     ---contrastLevel: 2.0;
 }
+
+/*
+ shadow
+ */
+
+.shadow\:black {
+    --shadowColor: var(--blackColor) !important;
+}
+
+.shadow\:blue {
+    --shadowColor: var(--blueColor) !important;
+}
+
+.shadow\:brown {
+    --shadowColor: var(--brownColor) !important;
+}
+
+.shadow\:cyan {
+    --shadowColor: var(--cyanColor) !important;
+}
+
+.shadow\:gray {
+    --shadowColor: var(--grayColor) !important;
+}
+
+.shadow\:green {
+    --shadowColor: var(--greenColor) !important;
+}
+
+.shadow\:indigo {
+    --shadowColor: var(--indigoColor) !important;
+}
+
+.shadow\:mint {
+    --shadowColor: var(--mintColor) !important;
+}
+
+.shadow\:orange {
+    --shadowColor: var(--orangeColor) !important;
+}
+
+.shadow\:pink {
+    --shadowColor: var(--pinkColor) !important;
+}
+
+.shadow\:purple {
+    --shadowColor: var(--purpleColor) !important;
+}
+
+.shadow\:red {
+    --shadowColor: var(--redColor) !important;
+}
+
+.shadow\:teal {
+    --shadowColor: var(--tealColor) !important;
+}
+
+.shadow\:white {
+    --shadowColor: var(--whiteColor) !important;
+}
+
+.shadow\:yellow {
+    --shadowColor: var(--yellowColor) !important;
+}
+
+.shadow\:silver {
+    --shadowColor: var(--silverColor) !important;
+}

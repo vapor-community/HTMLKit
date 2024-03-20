@@ -537,6 +537,13 @@ internal class Stylesheet {
             return .value
         }
         
+        if character.isComma {
+            
+            self.emit(token: FormatToken(type: .terminator, value: String(character)))
+            
+            return .beforevalue
+        }
+        
         return .beforevalue
     }
     

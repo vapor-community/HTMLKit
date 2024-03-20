@@ -86,3 +86,15 @@
 .image.shape\:circle {
     --borderRadius: 50%;
 }
+
+.image.shadow\:small {
+    box-shadow: 0 1px 1px -1px hsla(var(--blackColor), 0.3), 0 2px 2px -2px hsla(var(--blackColor), 0.3);
+}
+
+.image.shadow\:medium {
+    box-shadow: 0 3px 3px -3px hsla(var(--blackColor), 0.3), 0 4px 4px -4px hsla(var(--blackColor), 0.3);
+}
+
+.image.shadow\:large {
+    box-shadow: 0 5px 5px -5px hsla(var(--blackColor), 0.3), 0 6px 6px -6px hsla(var(--blackColor), 0.3);
+}

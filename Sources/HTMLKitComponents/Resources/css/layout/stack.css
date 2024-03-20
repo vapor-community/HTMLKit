@@ -87,6 +87,18 @@
     gap: 1rem;
 }
 
+.hstack.shadow\:small {
+    box-shadow: 0 1px 1px -1px hsla(var(--shadowColor), 0.3), 0 2px 2px -2px hsla(var(--shadowColor), 0.3);
+}
+
+.hstack.shadow\:medium {
+    box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
+}
+
+.hstack.shadow\:large {
+    box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
+}
+
 /*
  The rulesets for the vertical stack component.
  */
@@ -158,6 +170,18 @@
     gap: 1rem;
 }
 
+.vstack.shadow\:small {
+    box-shadow: 0 1px 1px -1px hsla(var(--shadowColor), 0.3), 0 2px 2px -2px hsla(var(--shadowColor), 0.3);
+}
+
+.vstack.shadow\:medium {
+    box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
+}
+
+.vstack.shadow\:large {
+    box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
+}
+
 /*
  The rulesets for the vertical stack component.
  */
@@ -179,4 +203,16 @@
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+}
+
+.zstack.shadow\:small {
+    box-shadow: 0 1px 1px -1px hsla(var(--shadowColor), 0.3), 0 2px 2px -2px hsla(var(--shadowColor), 0.3);
+}
+
+.zstack.shadow\:medium {
+    box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
+}
+
+.zstack.shadow\:large {
+    box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
 }

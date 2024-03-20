@@ -158,6 +158,10 @@ extension Link: TextModifier {
     public func lineLimit(_ limit: Tokens.LineLimit) -> Link {
         return self.mutate(linelimit: limit.value)
     }
+    
+    public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Link {
+        return mutate(shadow: radius.value, color: color.value)
+    }
 }
 
 extension Link: ViewModifier {
