@@ -18,7 +18,7 @@ struct ComponentsPlugin: CommandPlugin {
             USAGE: deploy --target-path <path>
             
             ARGUMENTS:
-            <target path> - The path, where the converted files should be saved into.
+            <target path> - The destination directory where the files should be saved.
             """
             
             print(explanation)
@@ -31,7 +31,7 @@ struct ComponentsPlugin: CommandPlugin {
             
             if let dependency = try context.dependency(named: "HTMLKit") {
                 
-                if let target = try? dependency.package.targets(named: ["HTMLKitComponents"]).first {
+                if let target = try dependency.package.targets(named: ["HTMLKitComponents"]).first {
                     processArguments.insert(target.directory.string, at: 0)
                     
                 } else {
@@ -46,19 +46,25 @@ struct ComponentsPlugin: CommandPlugin {
                 processArguments.insert(target, at: 1)
                 
             } else {
-                Diagnostics.error("Missing argument --target-path.")
+                
+                if try context.dependency(named: "vapor") != nil {
+                    processArguments.insert(context.package.directory.appending(subpath: "Public").string, at: 1)
+                    
+                } else {
+                    Diagnostics.error("Missing argument --target-path.")
+                }
             }
             
-            print("The deploy starts...")
+            print("The deployment starts...")
             
             let process = try Process.run(URL(fileURLWithPath: tool.path.string), arguments: processArguments)
             process.waitUntilExit()
             
             if process.terminationReason == .exit && process.terminationStatus == 0 {
-                print("The deploy has finished.")
+                print("The deployment has finished.")
                 
             } else {
-                Diagnostics.error("The deploy has failed: \(process.terminationReason)")
+                Diagnostics.error("The deployment has failed: \(process.terminationReason)")
             }
             
         }

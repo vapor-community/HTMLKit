@@ -13,16 +13,9 @@
                 > Note: _The public folder contains any public files that will be served by your application._
             }
             @Step {
-                Open `Terminal` and change the directory to your project folder.
+                Make a right click on the project in the project navigator and select `ComponentsPlugin`. It will build the plugin and start the deployment.
                 
-                @Code(name: "shell.swift", file: "shell-S1.swift", reset: true)
-            }
-            @Step {
-                Use the following command to start the deployment.
-                
-                > Note: _HTMLKit creates the dependency folder at the given path._
-                
-                @Code(name: "shell.swift", file: "shell-S2.swift", reset: true)
+                > Note: _HTMLKit creates a vendor folder at the public directory._
             }
             @Step {
                 Select `Product` > `Scheme` > `Edit Scheme` to set the working directory for your project.
