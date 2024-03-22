@@ -1,6 +1,8 @@
 (function() {
+
+    'use strict';
     
-    var Dropdown = function (element) {
+    const Dropdown = function (element) {
         
         this.element = element;
         this.label = element.getElementsByClassName('dropdown-label')[0];
@@ -14,7 +16,7 @@
      */
     Dropdown.prototype.initiateListener = function () {
         
-        var self = this;
+        const self = this;
         
         this.label.addEventListener('mousedown', function () {
             self.showDropdownList();
@@ -33,8 +35,8 @@
      */
     Dropdown.prototype.showDropdownList = function () {
         
-        var windowBound = document.body.getBoundingClientRect();
-        var elementBound = this.dropdownlist.getBoundingClientRect();
+        const windowBound = document.body.getBoundingClientRect();
+        const elementBound = this.dropdownlist.getBoundingClientRect();
         
         if (windowBound.width < elementBound.right) {
             this.dropdownlist.classList.add('position:right');
@@ -54,15 +56,10 @@
         this.dropdownlist.classList.remove('state:visible');
     };
     
-    var dropdown = document.getElementsByClassName('dropdown');
-    
-    if (dropdown.length > 0) {
-        
-        for (var i = 0; i < dropdown.length; i++) {
-            
-            (function(i) {
-                new Dropdown(dropdown[i]);
-            })(i);
-        }
+    const dropdowns = document.getElementsByClassName('dropdown');
+
+    for (const dropdown of dropdowns) {
+        new Dropdown(dropdown);
     }
+
 }());
