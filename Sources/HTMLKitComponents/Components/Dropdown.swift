@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that displays a list of actions.
 public struct Dropdown: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The label for the dropdown.
     internal var label: [Content]

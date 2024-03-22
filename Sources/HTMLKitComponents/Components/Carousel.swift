@@ -8,16 +8,16 @@ import HTMLKit
 /// A compnonent that cycles through an amount of views.
 public struct Carousel: View, Identifiable, Modifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The content of the carousel.
-    internal var content: [Identifiable]
+    internal var content: [Slide]
     
     /// The classes of the carousel.
     internal var classes: [String]
     
     /// Creates a carousel.
-    public init(@ContentBuilder<Identifiable> content: () -> [Identifiable]) {
+    public init(@ContentBuilder<Slide> content: () -> [Slide]) {
         
         self.content = content()
         self.classes = ["carousel"]
@@ -110,7 +110,7 @@ extension Carousel: ViewModifier {
 
 public struct Slide: View, Identifiable, Modifiable {
     
-    public var id: String?
+    internal var id: String?
     
     internal var classes: [String]
     

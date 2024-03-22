@@ -9,7 +9,7 @@ import Foundation
 /// A component that navigates to an target.
 public struct Link: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The target for the destination
     internal let target: HTMLKit.Values.Target
@@ -157,6 +157,10 @@ extension Link: TextModifier {
     
     public func lineLimit(_ limit: Tokens.LineLimit) -> Link {
         return self.mutate(linelimit: limit.value)
+    }
+    
+    public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Link {
+        return mutate(shadow: radius.value, color: color.value)
     }
 }
 

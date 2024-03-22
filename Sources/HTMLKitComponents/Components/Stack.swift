@@ -9,7 +9,7 @@ import HTMLKit
 public struct HStack: View, Actionable, Modifiable {
     
     /// The identifier of the text.
-    public var id: String?
+    internal var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
@@ -50,6 +50,10 @@ public struct HStack: View, Actionable, Modifiable {
     
     public func tag(_ value: String) -> HStack {
         return self.mutate(id: value)
+    }
+    
+    public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> HStack {
+        return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
     }
 }
 
@@ -119,7 +123,7 @@ extension HStack: ViewModifier {
 /// A component that arranges content vertically.
 public struct VStack: View, Actionable, Modifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
@@ -159,6 +163,10 @@ public struct VStack: View, Actionable, Modifiable {
     
     public func tag(_ value: String) -> VStack {
         return self.mutate(id: value)
+    }
+    
+    public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> VStack {
+        return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
     }
 }
 
@@ -228,7 +236,7 @@ extension VStack: ViewModifier {
 /// A component that overlays content.
 public struct ZStack: View, Actionable, Modifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
@@ -262,6 +270,10 @@ public struct ZStack: View, Actionable, Modifiable {
     
     public func tag(_ value: String) -> ZStack {
         return self.mutate(id: value)
+    }
+    
+    public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> ZStack {
+        return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
     }
 }
 

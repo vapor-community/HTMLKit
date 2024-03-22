@@ -55,3 +55,15 @@
 .text + .symbol {
     margin-inline-start: 0.75rem;
 }
+
+.symbol.shadow\:small {
+    filter: drop-shadow(0 1px 1px hsla(var(--shadowColor), 0.3)) drop-shadow(0 2px 2px hsla(var(--shadowColor), 0.3));
+}
+
+.symbol.shadow\:medium {
+    filter: drop-shadow(0 3px 3px hsla(var(--shadowColor), 0.3)) drop-shadow(0 4px 4px hsla(var(--shadowColor), 0.3));
+}
+
+.symbol.shadow\:large {
+    filter: drop-shadow(0 5px 5px hsla(var(--shadowColor), 0.3)) drop-shadow(0 6px 6px hsla(var(--shadowColor), 0.3));
+}

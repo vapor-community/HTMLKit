@@ -214,6 +214,14 @@
     --fontFamily: Helvetica;
 }
 
-.text.font\:verdana {
-    --fontFamily: Verdana;
+.text.shadow\:small {
+    text-shadow: 0 1px 1px hsla(var(--shadowColor), 0.3), 0 2px 2px hsla(var(--shadowColor), 0.3);
+}
+
+.text.shadow\:medium {
+    text-shadow: 0 3px 3px hsla(var(--shadowColor), 0.3), 0 4px 4px hsla(var(--shadowColor), 0.3);
+}
+
+.text.shadow\:large {
+    text-shadow: 0 5px 5px hsla(var(--shadowColor), 0.3), 0 6px 6px hsla(var(--shadowColor), 0.3);
 }

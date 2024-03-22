@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that presents a dialog on top of other views.
 public struct Modal: View, Modifiable, Actionable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The content of the modal.
     internal var content: [Content]

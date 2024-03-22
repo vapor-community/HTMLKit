@@ -94,7 +94,7 @@
     --indigoColor: 227, 60%, 49%;
     --purpleColor: 262, 53%, 41%;
     --pinkColor: 330, 76%, 47%;
-    --brownColor: 23, 60%, 40%,;
+    --brownColor: 23, 60%, 40%;
     --silverColor: 240, 4%, 85%;
     --grayColor: 25, 4%, 47%;
     --blackColor: 30, 7%, 23%;
@@ -104,10 +104,6 @@
     --systemBorderColor: 210, 9%, 31%;
     --systemTextColor: 0, 0%, 100%;
     --systemFocusColor: 210, 100%, 50%;
-}
-
-* {
-    font: inherit;
 }
 
 *,
@@ -200,6 +196,7 @@ video {
     --borderColor: var(--accentColor) !important;
     --backgroundColor: var(--accentColor) !important;
     --foregroundColor: var(--whiteColor) !important;
+    --backgroundOpacity: 1.0 !important;
 }
 
 .state\:disabled {
@@ -212,6 +209,14 @@ video {
 
 .state\:visible {
     visibility: visible !important;
+}
+
+.state\:attached {
+    display: block !important;
+}
+
+.state\:detached {
+    display: none !important;
 }
 
 /*
@@ -935,4 +940,132 @@ video {
 
 .height\:maximum {
     height: max-content;
+}
+
+.blur\:light {
+    --blurLevel: 4px;
+}
+
+.blur\:medium {
+    --blurLevel: 8px;
+}
+
+.blur\:strong {
+    --blurLevel: 12px;
+}
+
+.grayscale\:light {
+    --grayscaleDepth: 25%;
+}
+
+.grayscale\:neutral {
+    --grayscaleDepth: 50%;
+}
+
+.grayscale\:dark {
+    --grayscaleDepth: 100%;
+}
+
+.brightness\:low {
+    --brightnessLevel: 0.5;
+}
+
+.brightness\:medium {
+    --brightnessLevel: 1.5;
+}
+
+.brightness\:high {
+    --brightnessLevel: 2.0;
+}
+
+.saturation\:low {
+    --saturationLevel: 0.5;
+}
+
+.saturation\:medium {
+    --saturationLevel: 1.5;
+}
+
+.saturation\:high{
+    --saturationLevel: 2.0;
+}
+
+.contrast\:low {
+    --contrastLevel: 0.5;
+}
+
+.contrast\:medium {
+    ---contrastLevel: 1.5;
+}
+
+.contrast\:high {
+    ---contrastLevel: 2.0;
+}
+
+/*
+ shadow
+ */
+
+.shadow\:black {
+    --shadowColor: var(--blackColor) !important;
+}
+
+.shadow\:blue {
+    --shadowColor: var(--blueColor) !important;
+}
+
+.shadow\:brown {
+    --shadowColor: var(--brownColor) !important;
+}
+
+.shadow\:cyan {
+    --shadowColor: var(--cyanColor) !important;
+}
+
+.shadow\:gray {
+    --shadowColor: var(--grayColor) !important;
+}
+
+.shadow\:green {
+    --shadowColor: var(--greenColor) !important;
+}
+
+.shadow\:indigo {
+    --shadowColor: var(--indigoColor) !important;
+}
+
+.shadow\:mint {
+    --shadowColor: var(--mintColor) !important;
+}
+
+.shadow\:orange {
+    --shadowColor: var(--orangeColor) !important;
+}
+
+.shadow\:pink {
+    --shadowColor: var(--pinkColor) !important;
+}
+
+.shadow\:purple {
+    --shadowColor: var(--purpleColor) !important;
+}
+
+.shadow\:red {
+    --shadowColor: var(--redColor) !important;
+}
+
+.shadow\:teal {
+    --shadowColor: var(--tealColor) !important;
+}
+
+.shadow\:white {
+    --shadowColor: var(--whiteColor) !important;
+}
+
+.shadow\:yellow {
+    --shadowColor: var(--yellowColor) !important;
+}
+
+.shadow\:silver {
+    --shadowColor: var(--silverColor) !important;
 }

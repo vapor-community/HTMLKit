@@ -260,6 +260,15 @@ extension Character {
         return false
     }
     
+    public var isPipe: Bool {
+        
+        if self == "\u{007C}" {
+            return true
+        }
+        
+        return false
+    }
+    
     /// A boolean value indicating whether this character represents a bracket.
     ///
     /// For example, the following characters all represent brackets:
@@ -290,7 +299,7 @@ extension Character {
     /// - "\*" (U+002A ASTERSIK SIGN)
     public var isOperator: Bool {
         
-        if self == "\u{003C}" || self == "\u{003E}" || self == "\u{002B}" || self == "\u{2212}" || self == "\u{002A}" || self == "\u{007E}" {
+        if self == "\u{003C}" || self == "\u{003E}" || self == "\u{002B}" || self == "\u{002D}" || self == "\u{002A}" || self == "\u{007E}" {
             return true
         }
         

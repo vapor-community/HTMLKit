@@ -6,7 +6,7 @@ import HTMLKit
  */
 
 /// A type that describes a selectable component.
-public protocol Selectable: Content {
+internal protocol Selectable: Content {
     
     /// The identifier for the selection
     var name: String? { get set }

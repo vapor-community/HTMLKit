@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that displays text.
 public struct Text: View, Actionable, Modifiable {
 
-    public var id: String?
+    internal var id: String?
     
     /// The content of the text.
     internal var content: [Content]
@@ -173,6 +173,10 @@ extension Text: TextModifier {
     
     public func lineLimit(_ limit: Tokens.LineLimit) -> Text {
         return self.mutate(linelimit: limit.value)
+    }
+    
+    public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Text {
+        return mutate(shadow: radius.value, color: color.value)
     }
 }
 

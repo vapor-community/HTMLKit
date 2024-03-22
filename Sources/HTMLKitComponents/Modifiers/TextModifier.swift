@@ -57,6 +57,9 @@ public protocol TextModifier {
     
     /// Sets the limit of the lines for the text.
     func lineLimit(_ limit: Tokens.LineLimit) -> Self
+    
+    /// Adds drop shadow to the view.
+    func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor) -> Self
 }
 
 extension TextModifier where Self: Modifiable {
@@ -99,5 +102,9 @@ extension TextModifier where Self: Modifiable {
     
     internal func mutate(linelimit value: String) -> Self {
         return self.mutate(class: "limit:\(value)")
+    }
+    
+    internal func mutate(shadow radius: String, color: String) -> Self {
+        return mutate(classes: ["shadow:\(radius)", "shadow:\(color)"])
     }
 }

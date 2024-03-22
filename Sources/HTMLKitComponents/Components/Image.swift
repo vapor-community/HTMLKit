@@ -7,7 +7,7 @@ import HTMLKit
 
 public struct Image: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The url path of the image.
     internal let source: DynamicType
@@ -120,5 +120,32 @@ extension Image: ViewModifier {
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Image {
         return self.mutate(margin: length.value, insets: insets)
+    }
+}
+
+extension Image: GraphicsModifier {
+    
+    public func blur(_ level: Tokens.BlurLevel) -> Image {
+        return mutate(blur: level.value)
+    }
+    
+    public func grayscale(_ depth: Tokens.GrayscaleDepth) -> Image {
+        return mutate(grayscale: depth.value)
+    }
+    
+    public func brightness(_ level: Tokens.BrightnessLevel) -> Image {
+        return mutate(brightness: level.value)
+    }
+    
+    public func saturation(_ level: Tokens.SaturationLevel) -> Image {
+        return mutate(saturation: level.value)
+    }
+    
+    public func contrast(_ level: Tokens.ContrastLevel) -> Image {
+        return mutate(contrast: level.value)
+    }
+    
+    public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> Image {
+        return mutate(shadow: radius.value, color: color.value)
     }
 }

@@ -212,6 +212,8 @@ public enum Tokens {
         case transparent
         /// Changes the foreground color to #DFE3E7.
         case system
+        /// Changes the foreground to a random color.
+        case random
         /// Changes the foreground color to a custom value.
         case custom(String)
         
@@ -274,6 +276,9 @@ public enum Tokens {
                 
             case .system:
                 return "system"
+                
+            case .random:
+                return ["blue", "brown", "cyan", "green", "indigo", "mint", "pink", "purple", "red", "teal", "orange", "yellow", "gray"].randomElement()!
 
             case .custom(let string):
                 return string
@@ -507,6 +512,8 @@ public enum Tokens {
         case transparent
         /// Changes the background color to #DFE3E7.
         case system
+        /// Changes the background to a random color.
+        case random
         /// Changes the background to a custom color.
         case custom(String)
         
@@ -569,6 +576,9 @@ public enum Tokens {
                 
             case .system:
                 return "system"
+                
+            case .random:
+                return ["blue", "brown", "cyan", "green", "indigo", "mint", "pink", "purple", "red", "teal", "orange", "yellow", "gray"].randomElement()!
 
             case .custom(let string):
                 return string
@@ -1593,6 +1603,306 @@ public enum Tokens {
             case .verdana:
                 return "verdana"
                 
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    public enum BlurLevel {
+        
+        case light
+        case medium
+        case strong
+        case custom(String)
+        
+        internal var value: String {
+            
+            switch self {
+            case .light:
+                return "light"
+                
+            case .medium:
+                return "medium"
+                
+            case .strong:
+                return "strong"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    public enum GrayscaleDepth {
+        
+        case light
+        case neutral
+        case dark
+        case custom(String)
+        
+        internal var value: String {
+            
+            switch self {
+            case .light:
+                return "light"
+                
+            case .neutral:
+                return "neutral"
+                
+            case .dark:
+                return "dark"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    public enum BrightnessLevel {
+        
+        case low
+        case medium
+        case high
+        case custom(String)
+        
+        internal var value: String {
+            
+            switch self {
+            case .low:
+                return "low"
+                
+            case .medium:
+                return "medium"
+                
+            case .high:
+                return "high"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    public enum SaturationLevel {
+        
+        case low
+        case medium
+        case high
+        case custom(String)
+        
+        internal var value: String {
+            
+            switch self {
+            case .low:
+                return "low"
+                
+            case .medium:
+                return "medium"
+                
+            case .high:
+                return "high"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    public enum ContrastLevel {
+        
+        case low
+        case medium
+        case high
+        case custom(String)
+        
+        internal var value: String {
+            
+            switch self {
+            case .low:
+                return "low"
+                
+            case .medium:
+                return "medium"
+                
+            case .high:
+                return "high"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    public enum InnerRadius {
+        
+        case small
+        case medium
+        case large
+        case custom(String)
+        
+        internal var value: String {
+            
+            switch self {
+            case .small:
+                return "small"
+                
+            case .medium:
+                return "medium"
+                
+            case .large:
+                return "large"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    /// A space for content.
+    public enum ListSpace {
+        
+        /// Sets the content space in between to 2.25 rem.
+        case large
+        /// Sets the content space in between to 1.5 rem.
+        case medium
+        /// Sets the content space in between to 1 rem.
+        case small
+        /// Sets the content space to a custom value.
+        case custom(String)
+        
+        var value: String {
+            
+            switch self {
+            case .large:
+                return "large"
+                
+            case .medium:
+                return "medium"
+                
+            case .small:
+                return "small"
+
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    public enum BlurRadius {
+        
+        case small
+        case medium
+        case large
+        case custom(String)
+        
+        internal var value: String {
+            
+            switch self {
+            case .small:
+                return "small"
+                
+            case .medium:
+                return "medium"
+                
+            case .large:
+                return "large"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    /// A color for the focus.
+    public enum ShadowColor {
+        
+        /// Changes the foreground color to #000000 .
+        case black
+        /// Changes the foreground color to #FFFFFF.
+        case white
+        /// Changes the foreground color to #4098D7.
+        case blue
+        /// Changes the foreground color to #BF7140.
+        case brown
+        /// Changes the foreground color to #38BEC9.
+        case cyan
+        /// Changes the foreground color to #57AE5B.
+        case green
+        /// Changes the foreground color to #647ACB.
+        case indigo
+        /// Changes the foreground color to #91E697.
+        case mint
+        /// Changes the foreground color to #DA4A91.
+        case pink
+        /// Changes the foreground color to #724BB7.
+        case purple
+        /// Changes the foreground color to #D64545.
+        case red
+        /// Changes the foreground color to #3EBD93.
+        case teal
+        /// Changes the foreground color to #E67635.
+        case orange
+        /// Changes the foreground color to #F7D070.
+        case yellow
+        /// Changes the foreground color to #9E9E9E.
+        case gray
+        /// Changes the foreground color to #F7F7F7.
+        case silver
+
+        case custom(String)
+        
+        var value: String {
+            
+            switch self {
+            case .black:
+                return "black"
+                
+            case .white:
+                return "white"
+                
+            case .blue:
+                return "blue"
+                
+            case .brown:
+                return "brown"
+                
+            case .cyan:
+                return "cyan"
+                
+            case .green:
+                return "green"
+                
+            case .indigo:
+                return "indigo"
+                
+            case .mint:
+                return "mint"
+                
+            case .pink:
+                return "pink"
+                
+            case .purple:
+                return "purple"
+                
+            case .red:
+                return "red"
+                
+            case .teal:
+                return "teal"
+                
+            case .orange:
+                return "orange"
+                
+            case .yellow:
+                return "yellow"
+                
+            case .gray:
+                return "gray"
+                
+            case .silver:
+                return "silver"
+
             case .custom(let string):
                 return string
             }

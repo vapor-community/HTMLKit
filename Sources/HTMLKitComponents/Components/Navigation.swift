@@ -2,11 +2,11 @@ import HTMLKit
 
 public struct Navigation: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     internal var content: [BodyElement]
     
-    public var classes: [String]
+    internal var classes: [String]
     
     public init(@ContentBuilder<BodyElement> content: () -> [BodyElement]) {
         
