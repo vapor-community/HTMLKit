@@ -260,6 +260,15 @@ extension Character {
         return false
     }
     
+    public var isPipe: Bool {
+        
+        if self == "\u{007C}" {
+            return true
+        }
+        
+        return false
+    }
+    
     /// A boolean value indicating whether this character represents a bracket.
     ///
     /// For example, the following characters all represent brackets:

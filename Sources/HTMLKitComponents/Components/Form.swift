@@ -1381,47 +1381,70 @@ public struct TextPad: View, Modifiable, Identifiable {
     
     public var body: Content {
         Division {
-            UnorderedList {
+            Menu {
                 ListItem {
-                    Paragraph {
-                        "B"
+                    HTMLKit.Button {
+                        "Bold"
                     }
+                    .type(.button)
+                    .title("Bold")
+                    .class("toolbar-tool")
+                    .custom(key: "data-command", value: "bold")
                 }
-                .class("toolbar-tool command:bold")
                 ListItem {
-                    Paragraph {
-                        "I"
+                    HTMLKit.Button {
+                        "Italic"
                     }
+                    .type(.button)
+                    .title("Italic")
+                    .class("toolbar-tool")
+                    .custom(key: "data-command", value: "italic")
                 }
-                .class("toolbar-tool command:italic")
                 ListItem {
-                    Paragraph {
-                        "U"
+                    HTMLKit.Button {
+                        "Strikethrough"
                     }
+                    .type(.button)
+                    .title("Strikethrough")
+                    .class("toolbar-tool")
+                    .custom(key: "data-command", value: "strikethrough")
                 }
-                .class("toolbar-tool command:underline")
                 ListItem {
-                    Paragraph {
-                        "S"
+                    HTMLKit.Button {
+                        "Link"
                     }
+                    .type(.button)
+                    .title("Link")
+                    .class("toolbar-tool")
+                    .custom(key: "data-command", value: "link")
                 }
-                .class("toolbar-tool command:strikethrough")
                 ListItem {
-                    Symbol(system: .text(.left))
+                    HTMLKit.Button {
+                        "Code"
+                    }
+                    .type(.button)
+                    .title("Code")
+                    .class("toolbar-tool")
+                    .custom(key: "data-command", value: "code")
                 }
-                .class("toolbar-tool")
                 ListItem {
-                    Symbol(system: .text(.center))
+                    HTMLKit.Button {
+                        "Undo"
+                    }
+                    .type(.button)
+                    .title("Undo")
+                    .class("toolbar-tool")
+                    .custom(key: "data-command", value: "undo")
                 }
-                .class("toolbar-tool")
                 ListItem {
-                    Symbol(system: .text(.right))
+                    HTMLKit.Button {
+                        "Redo"
+                    }
+                    .type(.button)
+                    .title("Redo")
+                    .class("toolbar-tool")
+                    .custom(key: "data-command", value: "redo")
                 }
-                .class("toolbar-tool")
-                ListItem {
-                    Symbol(system: .text(.justify))
-                }
-                .class("toolbar-tool")
             }
             .class("textpad-toolbar")
             TextArea {

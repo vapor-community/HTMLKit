@@ -197,7 +197,7 @@ internal class Javascript {
             return .numeric
         }
         
-        if character.isOperator || character.isExclamationMark {
+        if character.isOperator || character.isExclamationMark || character.isPipe {
             
             self.emit(token: FormatToken(type: .operator, value: String(character)))
             

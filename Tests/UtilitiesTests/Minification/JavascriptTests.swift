@@ -149,6 +149,18 @@ final class JavascriptTests: XCTestCase {
         """
         
         XCTAssertEqual(minifier.minify(js: ifelse), "if(condition){console.log('true');}else{console.log('false');}")
+        
+        // ...multiple condition
+        
+        let multipleconditions = """
+        if(variable == 'variable' || variable == 'variable') {
+            console.log('true');
+        } else {
+            console.log('false');
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(js: multipleconditions), "if(variable=='variable'||variable=='variable'){console.log('true');}else{console.log('false');}")
     }
     
     func testConditions() {
