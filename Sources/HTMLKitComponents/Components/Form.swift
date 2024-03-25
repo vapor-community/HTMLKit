@@ -191,8 +191,8 @@ extension TextField: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> TextField {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> TextField {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> TextField {
@@ -320,8 +320,8 @@ extension TextEditor: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> TextEditor {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> TextEditor {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> TextEditor {
@@ -492,8 +492,8 @@ extension CheckField: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> CheckField {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> CheckField {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> CheckField {
@@ -618,8 +618,8 @@ extension RadioSelect: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> RadioSelect {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> RadioSelect {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> RadioSelect {
@@ -755,8 +755,8 @@ extension SelectField: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> SelectField {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> SelectField {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> SelectField {
@@ -873,8 +873,8 @@ extension SecureField: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> SecureField {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> SecureField {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> SecureField {
@@ -977,8 +977,8 @@ extension Slider: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> Slider {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Slider {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Slider {
@@ -1163,8 +1163,8 @@ extension DatePicker: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> DatePicker {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> DatePicker {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> DatePicker {
@@ -1281,8 +1281,8 @@ extension SearchField: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> SearchField {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> SearchField {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> SearchField {
@@ -1520,8 +1520,8 @@ extension TextPad: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> TextPad {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> TextPad {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> TextPad {
@@ -1624,8 +1624,8 @@ extension FileDialog: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> FileDialog {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> FileDialog {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> FileDialog {

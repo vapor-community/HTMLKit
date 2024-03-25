@@ -1908,4 +1908,33 @@ public enum Tokens {
             }
         }
     }
+    
+    public enum BorderWidth {
+        
+        /// Changes the border width of the view to 1 px.
+        case small
+        /// Changes the border width of the view to 2 px.
+        case medium
+        /// Changes the border width of the view to 3 px.
+        case large
+        /// Changes the width of the border to a custom value.
+        case custom(String)
+        
+        var value: String {
+            
+            switch self {
+            case .small:
+                return "small"
+                
+            case .medium:
+                return "medium"
+                
+            case .large:
+                return "large"
+                
+            case .custom(let string):
+                return string
+            }
+        }
+    }
 }

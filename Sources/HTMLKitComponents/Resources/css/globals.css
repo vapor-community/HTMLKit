@@ -300,115 +300,109 @@ video {
  */
 
 .border\:black {
-    --borderWidth: 1px !important;
     --borderColor: var(--blackColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:blue {
-    --borderWidth: 1px !important;
     --borderColor: var(--blueColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:brown {
-    --borderWidth: 1px !important;
     --borderColor: var(--brownColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:cyan {
-    --borderWidth: 1px !important;
     --borderColor: var(--cyanColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:gray {
-    --borderWidth: 1px !important;
     --borderColor: var(--grayColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:green {
-    --borderWidth: 1px !important;
     --borderColor: var(--greenColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:indigo {
-    --borderWidth: 1px !important;
     --borderColor: var(--indigoColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:mint {
-    --borderWidth: 1px !important;
     --borderColor: var(--mintColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:orange {
-    --borderWidth: 1px !important;
     --borderColor: var(--orangeColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:pink {
-    --borderWidth: 1px !important;
     --borderColor: var(--pinkColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:purple {
-    --borderWidth: 1px !important;
     --borderColor: var(--purpleColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:red {
-    --borderWidth: 1px !important;
     --borderColor: var(--redColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:teal {
-    --borderWidth: 1px !important;
     --borderColor: var(--tealColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:white {
-    --borderWidth: 1px !important;
     --borderColor: var(--whiteColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:yellow {
-    --borderWidth: 1px !important;
     --borderColor: var(--yellowColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:silver {
-    --borderWidth: 1px !important;
     --borderColor: var(--silverColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:accent {
-    --borderWidth: 1px !important;
     --borderColor: var(--accentColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:system {
-    --borderWidth: 1px !important;
     --borderColor: var(--systemBorderColor) !important;
     --borderOpacity: 1.0 !important;
 }
 
 .border\:transparent {
     --borderOpacity: 0.0 !important;
+}
+
+.border\:small {
+    --borderWidth: 1px;
+}
+
+.border\:medium {
+    --borderWidth: 2px;
+}
+
+.border\:large {
+    --borderWidth: 3px;
 }
 
 /*
