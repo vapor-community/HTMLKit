@@ -386,7 +386,16 @@ internal final class MarkdownLexer {
             return .code
         }
         
-        if character.isRightSquareBracket{
+        if character.isLeftSquareBracket {
+            
+            let token = MarkdownToken(kind: .link)
+            
+            self.emit(token: token)
+            
+            return .link
+        }
+        
+        if character.isRightSquareBracket {
             
             return .link
         }
