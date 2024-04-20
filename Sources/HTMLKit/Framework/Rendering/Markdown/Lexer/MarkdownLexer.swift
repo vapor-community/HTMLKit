@@ -192,7 +192,7 @@ internal final class MarkdownLexer {
             return .underscoreEmphasis
         }
         
-        if character.isLetter || character.isPeriod {
+        if character.isLetter || character.isPeriod || character.isComma {
             
             let token = MarkdownToken(kind: .textLiteral)
             token.value += String(character)

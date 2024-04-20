@@ -342,7 +342,7 @@ final class RenderingTests: XCTestCase {
         
         let view = TestView {
             Paragraph {
-                MarkdownString("This *substring* is **important**.")
+                MarkdownString("It consists of a list of features, like **declarative syntax**, **language localization**, **dynamic context**.")
             }
         }
         
