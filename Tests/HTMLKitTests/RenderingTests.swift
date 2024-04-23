@@ -327,13 +327,13 @@ final class RenderingTests: XCTestCase {
         
         let view = TestView {
             Paragraph {
-                MarkdownString("[Link](https://www.google.de)")
+                MarkdownString("[Link](https://www.vapor.codes)")
             }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p><a href="https://www.google.de">Link</a></p>
+                       <p><a href="https://www.vapor.codes" target="_blank">Link</a></p>
                        """
         )
     }
@@ -348,7 +348,7 @@ final class RenderingTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p>This <em>substring</em> is <strong>important</strong>.</p>
+                       <p>It consists of a list of features, like <strong>declarative syntax</strong>, <strong>language localization</strong>, <strong>dynamic context</strong>.</p>
                        """
         )
     }
