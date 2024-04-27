@@ -537,7 +537,7 @@ internal class Stylesheet {
             return .value
         }
         
-        if character.isComma {
+        if character.isComma || character.isSolidus {
             
             self.emit(token: FormatToken(type: .terminator, value: String(character)))
             
