@@ -115,6 +115,8 @@
     --fontSize: 2.0rem;
     --fontWeight: 400;
     --lineHeight: 2.25;
+    
+    text-wrap: balance;
 }
 
 .text.style\:headline {
