@@ -183,7 +183,7 @@
 }
 
 /*
- The rulesets for the vertical stack component.
+ The rulesets for the z-axis stack component.
  */
 
 .zstack {
@@ -194,10 +194,12 @@
     --backgroundColor: 0, 0%, 0%;
     --backgroundOpacity: 0.0;
     
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    display: flex;
+    position: relative;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr);
+    grid-template-columns: 1fr;
+    place-items: center;
+    place-content: center;
     padding-block-start: var(--paddingBlockStart);
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
@@ -215,4 +217,28 @@
 
 .zstack.shadow\:large {
     box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
+}
+
+.zstack > * {
+    grid-area: 1 / 1;
+}
+
+.zstack .zindex\:one {
+    z-index: 1;
+}
+
+.zstack .zindex\:two {
+    z-index: 2;
+}
+
+.zstack .zindex\:three {
+    z-index: 3;
+}
+
+.zstack .zindex\:four {
+    z-index: 4;
+}
+
+.zindex .zindex\:five {
+    z-index: 5;
 }
