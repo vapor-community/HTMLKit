@@ -55,6 +55,10 @@ public struct HStack: View, Actionable, Modifiable {
     public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> HStack {
         return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
     }
+    
+    public func clipped() -> HStack {
+        return self.mutate(class: "overflow:clip")
+    }
 }
 
 extension HStack: MouseEvent {
@@ -168,6 +172,10 @@ public struct VStack: View, Actionable, Modifiable {
     public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> VStack {
         return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
     }
+    
+    public func clipped() -> VStack {
+        return self.mutate(class: "overflow:clip")
+    }
 }
 
 extension VStack: MouseEvent {
@@ -274,6 +282,10 @@ public struct ZStack: View, Actionable, Modifiable {
     
     public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> ZStack {
         return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
+    }
+    
+    public func clipped() -> ZStack {
+        return self.mutate(class: "overflow:clip")
     }
 }
 

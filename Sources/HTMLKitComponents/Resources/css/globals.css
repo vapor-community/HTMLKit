@@ -1034,3 +1034,7 @@ video {
 .shadow\:silver {
     --shadowColor: var(--silverColor) !important;
 }
+
+.overflow\:clip {
+    overflow: hidden;
+}
