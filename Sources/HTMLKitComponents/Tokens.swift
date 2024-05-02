@@ -148,9 +148,33 @@ public enum Tokens {
     
     public enum ViewHeight {
         
-        /// Sets the width of the view to 8.3 % of the parent view.
+        /// Sets the height of the view to 8.3 % of the parent view.
+        case one
+        /// Sets the height of the view to 16.67 % of the parent view.
+        case two
+        /// Sets the height of the view to 25 % of the parent view.
+        case three
+        /// Sets the height of the view to 33.3 % of the parent view.
+        case four
+        /// Sets the height of the view to 41.67 % of the parent view.
+        case five
+        /// Sets the height of the view to 50 % of the parent view.
+        case six
+        /// Sets the height of the view to 58.3 % of the parent view.
+        case seven
+        /// Sets the height of the view to 66.67 % of the parent view.
+        case eight
+        /// Sets the height of the view to 75 % of the parent view.
+        case nine
+        /// Sets the height of the view to 83.3% of the parent view.
+        case ten
+        /// Sets the height of the view to 91.67 % of the parent view.
+        case eleven
+        /// Sets the height of the view to 100 % of the parent view.
+        case twelve
+        /// Sets the height of the view to the intrinsic minimum height.
         case minimum
-        /// Sets the width of the view to 16.67 % of the parent view.
+        /// Sets the height of the view to the intrinsic maximum height.
         case maximum
         /// Sets the view to a custom width.
         case custom(String)
@@ -158,6 +182,42 @@ public enum Tokens {
         var value: String {
             
             switch self {
+            case .one:
+                return "one"
+                
+            case .two:
+                return "two"
+                
+            case .three:
+                return "three"
+                
+            case .four:
+                return "four"
+                
+            case .five:
+                return "five"
+                
+            case .six:
+                return "six"
+                
+            case .seven:
+                return "seven"
+                
+            case .eight:
+                return "eight"
+                
+            case .nine:
+                return "nine"
+                
+            case .ten:
+                return "ten"
+                
+            case .eleven:
+                return "eleven"
+                
+            case .twelve:
+                return "twelve"
+                
             case .minimum:
                 return "minimum"
                 

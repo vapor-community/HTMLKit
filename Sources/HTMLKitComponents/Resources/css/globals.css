@@ -899,12 +899,60 @@ video {
     inline-size: max-content;
 }
 
+.height\:one {
+    block-size: 8.3333333333%;
+}
+
+.height\:two {
+    block-size: 16.6666666667%;
+}
+
+.height\:three {
+    block-size: 25%;
+}
+
+.height\:four {
+    block-size: 33.3333333333%;
+}
+
+.height\:five {
+    block-size: 41.6666666667%;
+}
+
+.height\:six {
+    block-size: 50%;
+}
+
+.height\:seven {
+    block-size: 58.3333333333%;
+}
+
+.height\:eight {
+    block-size: 66.6666666667%;
+}
+
+.height\:nine {
+    block-size: 75%;
+}
+
+.height\:ten {
+    block-size: 83.3333333333%;
+}
+
+.height\:eleven {
+    block-size: 91.6666666667%;
+}
+
+.height\:twelve {
+    block-size: 100%;
+}
+
 .height\:minimum {
-    height: auto;
+    block-size: auto;
 }
 
 .height\:maximum {
-    height: max-content;
+    block-size: max-content;
 }
 
 .blur\:light {
