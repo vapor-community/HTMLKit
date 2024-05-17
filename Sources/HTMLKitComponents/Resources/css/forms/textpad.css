@@ -59,6 +59,10 @@
     --borderColor: var(--redColor);
 }
 
+.textpad:has(.textpad-content:focus-within) .toolbar-tool {
+    color: hsla(var(--foregroundColor), 1.0);
+}
+
 .textpad-toolbar {
     display: flex;
     flex-direction: row;
@@ -75,7 +79,7 @@
 .toolbar-tool {
     display: inline-block;
     padding: 0.375rem 0.75rem;
-    color: hsla(var(--foregroundColor), 1.0);
+    color: hsla(var(--foregroundColor), 0.5);
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -93,7 +97,7 @@
     display: inline-block;
     inline-size: 1.25em;
     block-size: 1.0em;
-    fill: hsla(var(--foregroundColor), 1.0);
+    fill: currentColor;
     font-size: 1.0rem;
     line-height: 1.5;
     vertical-align: middle;
