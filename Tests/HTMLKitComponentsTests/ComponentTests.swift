@@ -547,4 +547,17 @@ final class ComponentTests: XCTestCase {
                        """
         )
     }
+    
+    func testVideo() throws {
+        
+        let view = TestView {
+            Video(source: "")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <video src="" controls="controls" class="video"></video>
+                       """
+        )
+    }
 }
