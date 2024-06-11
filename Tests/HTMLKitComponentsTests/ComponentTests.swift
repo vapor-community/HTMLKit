@@ -378,12 +378,15 @@ final class ComponentTests: XCTestCase {
     func testProgress() throws {
         
         let view = TestView {
-            Progress(maximum: 100, value: 10) {}
+            Progress(value: 50, total: 100) {}
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <progress value="10.0" max="100.0" class="progress"></progress>
+                       <svg xmlns="https://www.w3.org/2000/svg" class="progress">\
+                       <path class="mark">100.0</path>\
+                       <path class="mark">50.0</path>\
+                       </svg>
                        """
         )
     }

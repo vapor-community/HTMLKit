@@ -1997,4 +1997,127 @@ public enum Tokens {
             }
         }
     }
+    
+    public enum ProgressStyle {
+        
+        case circular
+        
+        case linear
+        
+        case custom(String)
+        
+        var value: String {
+            
+            switch self {
+            case .circular:
+                return "circular"
+                
+            case .linear:
+                return "linear"
+
+            case .custom(let string):
+                return string
+            }
+        }
+    }
+    
+    /// A color for text.
+    public enum TintColor {
+        
+        /// Changes the foreground color to #000000 .
+        case black
+        /// Changes the foreground color to #FFFFFF.
+        case white
+        /// Changes the foreground color to #4098D7.
+        case blue
+        /// Changes the foreground color to #BF7140.
+        case brown
+        /// Changes the foreground color to #38BEC9.
+        case cyan
+        /// Changes the foreground color to #57AE5B.
+        case green
+        /// Changes the foreground color to #647ACB.
+        case indigo
+        /// Changes the foreground color to #91E697.
+        case mint
+        /// Changes the foreground color to #DA4A91.
+        case pink
+        /// Changes the foreground color to #724BB7.
+        case purple
+        /// Changes the foreground color to #D64545.
+        case red
+        /// Changes the foreground color to #3EBD93.
+        case teal
+        /// Changes the foreground color to #E67635.
+        case orange
+        /// Changes the foreground color to #F7D070.
+        case yellow
+        /// Changes the foreground color to #9E9E9E.
+        case gray
+        /// Changes the foreground color to #F7F7F7.
+        case silver
+        /// Changes the foreground color to #007FFF.
+        case accent
+        /// Changes the foreground color to a custom value.
+        case custom(String)
+        
+        var value: String {
+            
+            switch self {
+            case .black:
+                return "black"
+                
+            case .white:
+                return "white"
+                
+            case .blue:
+                return "blue"
+                
+            case .brown:
+                return "brown"
+                
+            case .cyan:
+                return "cyan"
+                
+            case .green:
+                return "green"
+                
+            case .indigo:
+                return "indigo"
+                
+            case .mint:
+                return "mint"
+                
+            case .pink:
+                return "pink"
+                
+            case .purple:
+                return "purple"
+                
+            case .red:
+                return "red"
+                
+            case .teal:
+                return "teal"
+                
+            case .orange:
+                return "orange"
+                
+            case .yellow:
+                return "yellow"
+                
+            case .gray:
+                return "gray"
+                
+            case .silver:
+                return "silver"
+                
+            case .accent:
+                return "accent"
+
+            case .custom(let string):
+                return string
+            }
+        }
+    }
 }
