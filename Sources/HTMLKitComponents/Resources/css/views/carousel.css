@@ -79,3 +79,8 @@
     --borderColor: var(--accentColor);
     --backgroundColor: var(--accentColor);
 }
+
+.indicator.state\:active {
+    --borderColor: var(--accentColor);
+    --backgroundColor: var(--accentColor);
+}

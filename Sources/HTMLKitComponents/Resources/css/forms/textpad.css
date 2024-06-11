@@ -59,6 +59,10 @@
     --borderColor: var(--redColor);
 }
 
+.textpad:has(.textpad-content:focus-within) .toolbar-tool {
+    color: hsla(var(--foregroundColor), 1.0);
+}
+
 .textpad-toolbar {
     display: flex;
     flex-direction: row;
@@ -69,17 +73,35 @@
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
     list-style: none;
+    margin: unset !important;
 }
 
-.textpad-toolbar > .toolbar-tool {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: hsla(var(--foregroundColor), 1.0);
-    text-align: center;
+.toolbar-tool {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    color: hsla(var(--foregroundColor), 0.5);
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
+    border: unset;
+    border-radius: 0.3rem;
+    background-color: unset;
+}
+
+.toolbar-tool:hover {
+    background-color: hsla(var(--systemTextColor), 0.1);
+}
+
+.toolbar-tool > svg {
+    display: inline-block;
+    inline-size: 1.25em;
+    block-size: 1.0em;
+    fill: currentColor;
+    font-size: 1.0rem;
+    line-height: 1.5;
+    vertical-align: middle;
+    pointer-events: none;
 }
 
 .textpad-content {

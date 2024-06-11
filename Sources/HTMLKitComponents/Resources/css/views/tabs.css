@@ -1,0 +1,120 @@
+/*
+ The stylesheet for the tabs component.
+ */
+
+.tabs {
+    --fontSize: 1.0rem;
+    --fontWeight: 400;
+    --lineHeight: 1.5;
+    --foregroundColor: var(--systemTextColor);
+
+    display: flex;
+}
+
+.tabs.direction\:horizontal {
+    flex-direction: column;
+}
+
+.tabs.direction\:vertical {
+    flex-direction: row;
+}
+
+.tabs-tabs {
+    display: flex;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    
+    border-bottom-color: hsla(var(--silverColor), 1.0);
+}
+
+.tabs.direction\:horizontal > .tabs-tabs {
+    flex-direction: row;
+}
+
+.tabs.direction\:vertical > .tabs-tabs {
+    flex-direction: column;
+}
+
+.tabs-tab {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    padding-block: 0.5rem;
+    padding-inline: 1.0rem;
+}
+
+.tabs.direction\:horizontal .tabs-tab.state\:active:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    inline-size: 100%;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: hsla(var(--accentColor), 1.0);
+}
+
+.tabs.direction\:horizontal .tabs-tab:not(.state\:active):hover:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    inline-size: 100%;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: hsla(var(--accentColor), 0.1);
+}
+
+.tabs.direction\:vertical .tabs-tab.state\:active {
+    background-color: hsla(var(--accentColor), 1.0);
+    border-radius: 5px;
+}
+
+.tabs.direction\:vertical .tabs-tab.state\:active .tab-label {
+    --foregroundColor: var(--whiteColor);
+}
+
+.tabs.direction\:vertical .tabs-tab:not(.state\:active):hover {
+    background-color: hsla(var(--accentColor), 0.1);
+    border-radius: 5px;
+}
+
+.tab-label {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+}
+
+.tabs.direction\:horizontal .tabs-tab.state\:active .tab-label {
+    --foregroundColor: var(--accentColor);
+}
+
+.tab-label > * {
+    pointer-events: none;
+}
+
+.tab-badge {
+    font-family: var(--fontFamily);
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
+    line-height: var(--lineHeight);
+    color: hsla(var(--foregroundColor), 1.0);
+}
+
+.tabs-panes {
+}
+
+.tabs.direction\:horizontal > .tabs-panes {
+    padding-block: 1rem;
+}
+
+.tabs.direction\:vertical > .tabs-panes {
+    padding-inline: 1rem;
+}
+
+.tabs-panes > * {
+    display: none;
+}

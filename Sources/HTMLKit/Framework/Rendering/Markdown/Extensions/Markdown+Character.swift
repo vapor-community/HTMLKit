@@ -111,4 +111,14 @@ extension Character {
         
         return false
     }
+    
+    /// A boolean value indicating whether this character represents a period (U+002E).
+    public var isComma: Bool {
+        
+        if self == "\u{002C}" {
+            return true
+        }
+        
+        return false
+    }
 }

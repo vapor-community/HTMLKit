@@ -8,16 +8,16 @@ import HTMLKit
 /// A compnonent that cycles through an amount of views.
 public struct Carousel: View, Identifiable, Modifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The content of the carousel.
-    internal var content: [Identifiable]
+    internal var content: [Slide]
     
     /// The classes of the carousel.
     internal var classes: [String]
     
     /// Creates a carousel.
-    public init(@ContentBuilder<Identifiable> content: () -> [Identifiable]) {
+    public init(@ContentBuilder<Slide> content: () -> [Slide]) {
         
         self.content = content()
         self.classes = ["carousel"]
@@ -83,8 +83,8 @@ extension Carousel: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> Carousel {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Carousel {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Carousel {
@@ -110,7 +110,7 @@ extension Carousel: ViewModifier {
 
 public struct Slide: View, Identifiable, Modifiable {
     
-    public var id: String?
+    internal var id: String?
     
     internal var classes: [String]
     
@@ -164,8 +164,8 @@ extension Slide: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> Slide {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Slide {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Slide {

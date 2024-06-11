@@ -26,13 +26,16 @@
 }
 
 .navigation > .list > .list-row > .link:hover {
-    border-radius: 5px;
     background-color: hsla(0, 0%, 100%, 0.1);
 }
 
-.navigation > .list .list-row .link.state\:active {
+.navigation.style\:menu > .list > .list-row > .link.state\:active {
+    --borderColor: var(--accentColor);
+    --backgroundColor: var(--accentColor);
+    --foregroundColor: var(--whiteColor);
+    --backgroundOpacity: 1.0;
+    
     border-radius: 5px;
-    background-color: hsla(var(--accentColor), 1.0) !important;
 }
 
 .navigation.style\:pagination {

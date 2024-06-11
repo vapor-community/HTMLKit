@@ -192,7 +192,7 @@ internal final class MarkdownLexer {
             return .underscoreEmphasis
         }
         
-        if character.isLetter || character.isPeriod {
+        if character.isLetter || character.isPeriod || character.isComma {
             
             let token = MarkdownToken(kind: .textLiteral)
             token.value += String(character)
@@ -386,7 +386,16 @@ internal final class MarkdownLexer {
             return .code
         }
         
-        if character.isRightSquareBracket{
+        if character.isLeftSquareBracket {
+            
+            let token = MarkdownToken(kind: .link)
+            
+            self.emit(token: token)
+            
+            return .link
+        }
+        
+        if character.isRightSquareBracket {
             
             return .link
         }

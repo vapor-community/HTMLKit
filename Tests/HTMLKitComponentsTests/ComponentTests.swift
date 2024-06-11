@@ -378,12 +378,15 @@ final class ComponentTests: XCTestCase {
     func testProgress() throws {
         
         let view = TestView {
-            Progress(maximum: 100, value: 10) {}
+            Progress(value: 50, total: 100) {}
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <progress value="10.0" max="100.0" class="progress"></progress>
+                       <svg xmlns="https://www.w3.org/2000/svg" class="progress">\
+                       <path class="mark">100.0</path>\
+                       <path class="mark">50.0</path>\
+                       </svg>
                        """
         )
     }
@@ -518,6 +521,45 @@ final class ComponentTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <nav class="navigation"></nav>
+                       """
+        )
+    }
+    
+    func testDisclosure() throws {
+        
+        let view = TestView {
+            Disclosure("Label") {
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <div class="disclosure">\
+                       <div class="disclosure-head">\
+                       <p class="disclosure-label">Label</p>\
+                       <svg viewbox="0 0 20 16" xmlns="http://www.w3.org/2000/svg" class="state-indicator">\
+                       <path d="M7.28,2.241C6.987,1.957 6.987,1.497 7.28,1.213C7.573,0.929 8.048,0.929 8.341,1.213L14.811,7.486C15.103,7.77 15.103,8.23 14.811,8.514L8.28,14.787C7.987,15.071 7.512,15.071 7.22,14.787C6.927,14.503 6.927,14.043 7.22,13.759L13.22,8L7.28,2.241Z">\
+                       <title>state indicator</title>\
+                       </path>\
+                       </svg>\
+                       </div>\
+                       <div class="disclosure-body">\
+                       <div class="disclosure-content"></div>\
+                       </div>\
+                       </div>
+                       """
+        )
+    }
+    
+    func testVideo() throws {
+        
+        let view = TestView {
+            Video(source: "")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <video src="" controls="controls" class="video"></video>
                        """
         )
     }

@@ -197,7 +197,7 @@ internal class Javascript {
             return .numeric
         }
         
-        if character.isOperator || character.isExclamationMark {
+        if character.isOperator || character.isExclamationMark || character.isPipe {
             
             self.emit(token: FormatToken(type: .operator, value: String(character)))
             
@@ -241,6 +241,16 @@ internal class Javascript {
             
             // ignore character
             return .hashbang
+        }
+        
+        if character.isWhitespace {
+            
+            // Emit it as it seems to be the division operator
+            self.emit(token: FormatToken(type: .operator, value: "/"))
+            
+            self.emit(token: WhitespaceToken(type: .whitespace, value: ""))
+            
+            return .code
         }
         
         // ignore character
@@ -417,6 +427,15 @@ internal class Javascript {
             self.emit()
             
             self.emit(token: FormatToken(type: .punctuator, value: String(character)))
+            
+            return .code
+        }
+        
+        if character.isWhitespace {
+            
+            self.emit()
+            
+            self.emit(token: WhitespaceToken(type: .whitespace, value: ""))
             
             return .code
         }

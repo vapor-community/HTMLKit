@@ -14,12 +14,12 @@ final class ModifierTests: XCTestCase {
     func testBorderColor() throws {
         
         let view = TestView {
-            HStack {}.borderColor(.black)
+            HStack {}.border(.black)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack vertical-alignment:center border:black"></div>
+                       <div class="hstack vertical-alignment:center border:black border:small"></div>
                        """
         )
     }

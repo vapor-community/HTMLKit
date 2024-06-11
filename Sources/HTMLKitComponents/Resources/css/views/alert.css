@@ -1,0 +1,46 @@
+/*
+ The stylesheet for the tabs component.
+ */
+
+.alert {
+    --paddingBlockStart: 0.5rem;
+    --paddingBlockEnd: 0.5rem;
+    --paddingInlineStart: 1.0rem;
+    --paddingInlineEnd: 1.0rem;
+    --fontSize: 1.0rem;
+    --fontWeight: 400;
+    --lineHeight: 1.5;
+    --foregroundColor: var(--systemTextColor);
+    --borderWidth: 1px;
+    --borderColor: var(--systemBorderColor);
+    --borderRadius: 0;
+    --borderOpacity: 1.0;
+    --focusColor: var(--systemFocusColor);
+    --backgroundColor: var(--systemBackgroundColor);
+    --backgroundOpacity: 1.0;
+
+    position: fixed;
+    bottom: 0;
+    right: 1rem;
+    z-index: 1;
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
+    width: 400px;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
+    line-height: var(--lineHeight);
+    color: hsla(var(--foregroundColor), 1.0);
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--borderColor), var(--borderOpacity));
+    border-radius: var(--borderRadius);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+    visibility: hidden;
+    overflow: hidden;
+}

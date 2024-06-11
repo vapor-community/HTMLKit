@@ -1,0 +1,84 @@
+.progress {
+    --borderWidth: 1px;
+    --borderColor: var(--systemBorderColor);
+    --borderOpacity: 1.0;
+    --tintColor: var(--accentColor);
+}
+
+.progress .mark:first-child {
+    fill: hsla(var(--systemBackgroundColor), 1.0);
+    stroke-width: var(--borderWidth);
+    stroke: hsla(var(--borderColor), var(--borderOpacity));
+}
+
+.progress .mark:last-child {
+    fill: hsla(var(--tintColor), 1.0);
+}
+
+.tint\:black {
+    --tintColor: var(--blackColor) !important;
+}
+
+.tint\:blue {
+    --tintColor: var(--blueColor) !important;
+}
+
+.tint\:brown {
+    --tintColor: var(--brownColor) !important;
+}
+
+.tint\:cyan {
+    --tintColor: var(--cyanColor) !important;
+}
+
+.tint\:gray {
+    --tintColor: var(--grayColor) !important;
+}
+
+.tint\:green {
+    --tintColor: var(--greenColor) !important;
+}
+
+.tint\:indigo {
+    --tintColor: var(--indigoColor) !important;
+}
+
+.tint\:mint {
+    --tintColor: var(--mintColor) !important;
+}
+
+.tint\:orange {
+    --tintColor: var(--orangeColor) !important;
+}
+
+.tint\:pink {
+    --tintColor: var(--pinkColor) !important;
+}
+
+.tint\:purple {
+    --tintColor: var(--purpleColor) !important;
+}
+
+.tint\:red {
+    --tintColor: var(--redColor) !important;
+}
+
+.tint\:teal {
+    --tintColor: var(--tealColor) !important;
+}
+
+.tint\:white {
+    --tintColor: var(--whiteColor) !important;
+}
+
+.tint\:yellow {
+    --tintColor: var(--yellowColor) !important;
+}
+
+.tint\:silver {
+    --tintColor: var(--silverColor) !important;
+}
+
+.tint\:accent {
+    --tintColor: var(--accentColor) !important;
+}

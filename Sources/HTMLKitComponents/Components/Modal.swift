@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that presents a dialog on top of other views.
 public struct Modal: View, Modifiable, Actionable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The content of the modal.
     internal var content: [Content]
@@ -77,8 +77,8 @@ extension Modal: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> Modal {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Modal {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Modal {

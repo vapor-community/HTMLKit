@@ -9,7 +9,7 @@ import Foundation
 /// A component that initiates an action.
 public struct Button: View, Modifiable, Actionable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The role of the button
     internal var role: HTMLKit.Values.Button
@@ -133,8 +133,8 @@ extension Button: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> Button {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Button {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Button {
@@ -149,7 +149,7 @@ extension Button: ViewModifier {
 /// A component that initiates an action.
 public struct LinkButton: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     internal let target: HTMLKit.Values.Target
     
@@ -268,8 +268,8 @@ extension LinkButton: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> LinkButton {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> LinkButton {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> LinkButton {

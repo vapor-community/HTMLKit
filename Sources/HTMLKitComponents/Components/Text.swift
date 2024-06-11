@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that displays text.
 public struct Text: View, Actionable, Modifiable {
 
-    public var id: String?
+    internal var id: String?
     
     /// The content of the text.
     internal var content: [Content]
@@ -174,6 +174,10 @@ extension Text: TextModifier {
     public func lineLimit(_ limit: Tokens.LineLimit) -> Text {
         return self.mutate(linelimit: limit.value)
     }
+    
+    public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Text {
+        return mutate(shadow: radius.value, color: color.value)
+    }
 }
 
 extension Text: ViewModifier {
@@ -215,8 +219,8 @@ extension Text: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> Text {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Text {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Text {
