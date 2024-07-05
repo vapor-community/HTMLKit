@@ -8,13 +8,13 @@ import HTMLKit
 /// A component that distinguish content.
 public struct Card: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The header of the card.
-    public var header: [Content]?
+    internal var header: [Content]?
     
     /// The content of the card.
-    public var content: [Content]
+    internal var content: [Content]
     
     /// The classes of the content.
     internal var classes: [String]
@@ -100,8 +100,8 @@ extension Card: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> Card {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Card {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Card {

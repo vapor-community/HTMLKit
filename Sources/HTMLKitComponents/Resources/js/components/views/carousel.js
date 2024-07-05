@@ -1,6 +1,11 @@
 (function() {
-    
-    var Carousel = function (element) {
+
+    'use strict';
+
+    /**
+     * Initiates the carousel object.
+     */
+    const Carousel = function (element) {
         
         this.element = element;
         this.slides = element.getElementsByClassName('carousel-content')[0];
@@ -12,26 +17,32 @@
         
         this.initiateListener();
     };
-    
+
+    /**
+     * Initiates the event listener.
+     */
     Carousel.prototype.initiateListener = function () {
         
-        var self = this;
+        const self= this;
         
-        for (var indicator of this.indication.children) {
+        for (const indicator of this.indication.children) {
             
             indicator.addEventListener('click', function (event) {
                 
                 event.preventDefault();
                 
-                self.slideTo(self.getPosition(event.target.getAttribute('href').replace('#', '')));
+                self.slideTo(self.getIndex(event.target.getAttribute('href').replace('#', '')));
                 
             });
         }
     };
-    
+
+    /**
+     * Starts the autoplay.
+     */
     Carousel.prototype.autoPlay = function (position) {
         
-        var self = this;
+        const self= this;
         
         setInterval(function () {
             
@@ -47,46 +58,50 @@
             
         }, 7000);
     };
-    
-    Carousel.prototype.getPosition = function (name) {
+
+    /**
+     * Retrieves the index of the selection.
+     */
+    Carousel.prototype.getIndex = function (name) {
         
-        for (var position = 0; position < this.slides.children.length; position++) {
+        for (let index= 0; index < this.slides.children.length; index++) {
             
-            if (this.slides.children[position].id == name) {
-                return position;
+            if (this.slides.children[index].id === name) {
+                return index;
             }
         }
     };
-    
-    Carousel.prototype.toggleState = function (position) {
+
+    /**
+     * Toggles the status.
+     */
+    Carousel.prototype.toggleState = function (index) {
         
-        for (let indicator of this.indication.children) {
+        for (const indicator of this.indication.children) {
             indicator.classList.remove('state:active');
         }
         
-        this.indication.children[position].classList.add('state:active');
+        this.indication.children[index].classList.add('state:active');
     };
-    
-    Carousel.prototype.slideTo = function (position) {
+
+    /**
+     * Scrolls to the selected slide.
+     */
+    Carousel.prototype.slideTo = function (index) {
         
-        var self = this;
+        const self = this;
         
         this.slides.scrollTo({
-            left: (position * this.slides.children[position].offsetWidth), behavior: 'smooth'
+            left: (index * this.slides.children[index].offsetWidth), behavior: 'smooth'
         });
         
-        self.toggleState(position);
+        self.toggleState(index);
     };
     
-    var carousel = document.getElementsByClassName('carousel');
-    
-    if (carousel.length > 0) {
-        
-        for (var i = 0; i < carousel.length; i++) {
-            
-            (function(i) {
-                new Carousel(carousel[i]);
-            })(i);
-        }
+    const carousels= document.getElementsByClassName('carousel');
+
+    for (const carousel of carousels) {
+        new Carousel(carousel);
     }
+
 }());

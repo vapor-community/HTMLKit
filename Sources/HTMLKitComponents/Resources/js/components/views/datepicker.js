@@ -1,6 +1,8 @@
 (function() {
-    
-    var Datepicker = function (element) {
+
+    'use strict';
+
+    const Datepicker = function (element) {
         
         this.element = element;
         this.datefield = element.getElementsByClassName('datepicker-datefield')[0];
@@ -23,7 +25,7 @@
     */
     Datepicker.prototype.initiateListener = function () {
         
-        var self = this;
+        const self = this;
          
         this.datefield.addEventListener('focus', function () {
             self.showPicker();
@@ -37,7 +39,7 @@
             
             event.preventDefault();
             
-            if (event.target.tagName == 'BUTTON') {
+            if (event.target.tagName === 'BUTTON') {
                 
                 switch (event.target.value) {
                     
@@ -61,14 +63,14 @@
             
             event.preventDefault();
             
-            if (event.target.tagName == 'LI') {
+            if (event.target.tagName === 'LI') {
                 
                 self.setInputValue(event.target.firstChild.dateTime);
                 
                 self.hidePicker();
             }
             
-            if (event.target.tagName == 'TIME') {
+            if (event.target.tagName === 'TIME') {
                 
                 self.setInputValue(event.target.dateTime);
                 
@@ -82,13 +84,13 @@
     */
     Datepicker.prototype.createCalendar = function () {
         
-        var calendar = '';
+        let calendar = '';
         
-        for (var j = 0; j < getFirstOfMonth(this.year, this.month); j++) {
+        for (let j = 0; j < getFirstOfMonth(this.year, this.month); j++) {
             calendar = calendar + '<li></li>';
         }
         
-        for (var i = 1; i < getLastOfMonth(this.year, this.month) + 1; i++) {
+        for (let i = 1; i < getLastOfMonth(this.year, this.month) + 1; i++) {
             calendar = calendar + '<li><time datetime="' + this.year + '-' + (this.month + 1) + '-' + i + '">' + i +'</time></li>';
         }
         
@@ -102,7 +104,7 @@
     */
     Datepicker.prototype.setCalendarDetail = function (year, month) {
         
-        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const months= ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         
         this.detail.innerHTML = months[month] + ' ' + year;
     };
@@ -119,8 +121,8 @@
      */
     Datepicker.prototype.showPicker = function () {
         
-        var windowBound = document.body.getBoundingClientRect();
-        var elementBound = this.picker.getBoundingClientRect();
+        const windowBound = document.body.getBoundingClientRect();
+        const elementBound = this.picker.getBoundingClientRect();
         
         if (windowBound.height < elementBound.bottom) {
             this.picker.classList.add('position:bottom');
@@ -180,15 +182,10 @@
         return new Date(year, month, 0).getDate();
     }
     
-    var datepicker = document.getElementsByClassName('datepicker');
-    
-    if (datepicker.length > 0) {
-        
-        for (var i = 0; i < datepicker.length; i++) {
-            
-            (function(i) {
-                new Datepicker(datepicker[i]);
-            })(i);
-        }
+    const datepickers = document.getElementsByClassName('datepicker');
+
+    for (const datepicker of datepickers) {
+        new Datepicker(datepicker);
     }
+
 }());

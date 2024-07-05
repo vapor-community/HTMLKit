@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that displays a list of actions.
 public struct Dropdown: View, Modifiable, Identifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The label for the dropdown.
     internal var label: [Content]
@@ -80,8 +80,8 @@ extension Dropdown: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> Dropdown {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Dropdown {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Dropdown {

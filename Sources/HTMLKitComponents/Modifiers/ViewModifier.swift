@@ -30,7 +30,7 @@ public protocol ViewModifier {
     func borderShape(_ shape: Tokens.BorderShape) -> Self
     
     /// Sets the border color of the input
-    func borderColor(_ color: Tokens.BorderColor) -> Self
+    func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth) -> Self
     
     func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight?, alignment: Tokens.FrameAlignment?) -> Self
     
@@ -105,8 +105,8 @@ extension ViewModifier where Self: Modifiable {
         return self.mutate(class: "shape:\(value)")
     }
     
-    internal func mutate(bordercolor value: String) -> Self {
-        return self.mutate(class: "border:\(value)")
+    internal func mutate(border color: String, width: String) -> Self {
+        return self.mutate(classes: ["border:\(color)", "border:\(width)"])
     }
     
     internal func mutate(frame width: String, height: String? = nil, alignment: String? = nil) -> Self {

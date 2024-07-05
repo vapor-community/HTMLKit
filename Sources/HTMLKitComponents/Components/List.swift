@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that collects and arranges list items vertically.
 public struct List: View, Modifiable, Actionable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The content of the list.
     internal var content: [ListElement]
@@ -56,6 +56,10 @@ public struct List: View, Modifiable, Actionable {
     
     public func listStyle(_ style: ListConfiguration) -> List {
         return self.mutate(classes: style.configuration)
+    }
+    
+    public func listSpacing(_ size: Tokens.ListSpace) -> List {
+        return mutate(class: "spacing:\(size.value)")
     }
     
     public func tag(_ value: String) -> List {
@@ -113,8 +117,8 @@ extension List: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> List {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> List {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> List {

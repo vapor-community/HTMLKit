@@ -8,7 +8,7 @@ import HTMLKit
 /// A component that collects and arranges collection items horizontally.
 public struct Grid: View, Modifiable, Actionable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The content of the collection.
     internal var content: [Content]
@@ -115,8 +115,8 @@ extension Grid: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> Grid {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Grid {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Grid {

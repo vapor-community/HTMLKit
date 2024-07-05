@@ -9,7 +9,7 @@ import HTMLKit
 public struct HStack: View, Actionable, Modifiable {
     
     /// The identifier of the text.
-    public var id: String?
+    internal var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
@@ -50,6 +50,14 @@ public struct HStack: View, Actionable, Modifiable {
     
     public func tag(_ value: String) -> HStack {
         return self.mutate(id: value)
+    }
+    
+    public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> HStack {
+        return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
+    }
+    
+    public func clipped() -> HStack {
+        return self.mutate(class: "overflow:clip")
     }
 }
 
@@ -103,8 +111,8 @@ extension HStack: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> HStack {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> HStack {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> HStack {
@@ -119,7 +127,7 @@ extension HStack: ViewModifier {
 /// A component that arranges content vertically.
 public struct VStack: View, Actionable, Modifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
@@ -159,6 +167,14 @@ public struct VStack: View, Actionable, Modifiable {
     
     public func tag(_ value: String) -> VStack {
         return self.mutate(id: value)
+    }
+    
+    public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> VStack {
+        return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
+    }
+    
+    public func clipped() -> VStack {
+        return self.mutate(class: "overflow:clip")
     }
 }
 
@@ -212,8 +228,8 @@ extension VStack: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> VStack {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> VStack {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> VStack {
@@ -228,7 +244,7 @@ extension VStack: ViewModifier {
 /// A component that overlays content.
 public struct ZStack: View, Actionable, Modifiable {
     
-    public var id: String?
+    internal var id: String?
     
     /// The content of the stack.
     internal var content: [Content]
@@ -262,6 +278,14 @@ public struct ZStack: View, Actionable, Modifiable {
     
     public func tag(_ value: String) -> ZStack {
         return self.mutate(id: value)
+    }
+    
+    public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> ZStack {
+        return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
+    }
+    
+    public func clipped() -> ZStack {
+        return self.mutate(class: "overflow:clip")
     }
 }
 
@@ -315,8 +339,8 @@ extension ZStack: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> ZStack {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> ZStack {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> ZStack {
