@@ -9,8 +9,10 @@
          
          this.element = element;
          this.history = [];
+         this.context = element.getElementsByClassName('toolbar-context')[0];
          this.content = element.getElementsByClassName('textpad-content')[0];
-         this.toolbar = element.getElementsByClassName('textpad-toolbar')[0];
+         this.action = element.getElementsByClassName('textpad-action')[0];
+         this.revision = element.getElementsByClassName('textpad-revision')[0];
 
          this.initiateListener();
 
@@ -29,24 +31,57 @@
              self.index = self.writeHistory(self.content.value);
          });
 
-         // Listens to tool selection
-         this.toolbar.addEventListener('click', function (event) {
-
-             event.preventDefault();
+         this.revision.addEventListener('click', function(event) {
 
              if (event.target.tagName === 'BUTTON') {
 
                  const command = event.target.dataset.command;
 
-                 if (command === 'undo' || command === 'redo') {
-                     self.content.setRangeText(self.revertChange(command), 0, self.content.textLength, 'end');
+                 self.content.setRangeText(self.revertChange(command), 0, self.content.textLength, 'end');
+             }
+         });
 
-                 } else {
-                     self.content.setRangeText(self.replaceSelection(command), self.content.selectionStart, self.content.selectionEnd);
+         // Listens to tool selection
+         this.action.addEventListener('click', function (event) {
 
-                     // Write history, since the listener does not act on text replacements
-                     self.index = self.writeHistory(self.content.value);
-                 }
+             if (event.target.tagName === 'BUTTON') {
+
+                 const command = event.target.dataset.command;
+
+                 self.content.setRangeText(self.replaceSelection(command), self.content.selectionStart, self.content.selectionEnd);
+
+                 // Write history, since the listener does not act on text replacements
+                 self.index = self.writeHistory(self.content.value);
+             }
+         });
+
+         // Listens to tool selection
+         this.context.addEventListener('click', function (event) {
+
+             if (event.target.tagName === 'BUTTON') {
+
+                 const command = event.target.dataset.command;
+
+                 self.content.setRangeText(self.replaceSelection(command), self.content.selectionStart, self.content.selectionEnd);
+
+                 // Write history, since the listener does not act on text replacements
+                 self.index = self.writeHistory(self.content.value);
+             }
+         });
+
+         // Dismisses the context menu, when the escape key as pushed
+         window.addEventListener('keyup', function (event) {
+
+             if(event.key === 'Escape') {
+                 self.context.removeAttribute('open');
+             }
+         });
+
+         // Dismisses the context menu, when it loses its focus
+         window.addEventListener('click', function (event) {
+
+             if (!self.context.contains(event.target)) {
+                 self.context.removeAttribute('open');
              }
          });
      };
