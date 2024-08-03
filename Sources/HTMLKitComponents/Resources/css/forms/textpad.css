@@ -173,6 +173,21 @@
     color: hsla(var(--foregroundColor), 0.5);
 }
 
+.tooltip {
+    position: absolute;
+    top: 100%;
+    z-index: 1;
+    padding-inline: 0.313rem;
+    padding-block: 0.625rem;
+    display: none;
+    inline-size: max-content;
+    font-size: 14px;
+    text-align: center;
+    color: hsla(var(--whiteColor), 1.0);
+    border-radius: var(--borderRadius);
+    background-color: hsla(var(--blackColor), 1.0);
+}
+
 .toolbar-tool {
     display: inline-block;
     inline-size: 32px;
@@ -193,6 +208,10 @@
 
 .toolbar-tool:hover {
     background-color: hsla(var(--systemBorderColor), 0.5);
+}
+
+.toolbar-tool:hover + .tooltip {
+    display: block;
 }
 
 .toolbar-tool > svg {
