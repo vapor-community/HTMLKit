@@ -26,9 +26,17 @@
          
          const self = this;
 
+         const undo = this.revision.getElementsByClassName('toolbar-tool')[0];
+
          // Listens to text changes
          this.content.addEventListener('input', function (event) {
+
              self.index = self.writeHistory(self.content.value);
+
+             if (self.index >= 1) {
+                 undo.classList.remove('state:disabled');
+             }
+
          });
 
          this.revision.addEventListener('click', function(event) {
@@ -38,6 +46,8 @@
                  const command = event.target.dataset.command;
 
                  self.content.setRangeText(self.revertChange(command), 0, self.content.textLength, 'end');
+
+                 self.checkRevision();
              }
          });
 
@@ -52,6 +62,8 @@
 
                  // Write history, since the listener does not act on text replacements
                  self.index = self.writeHistory(self.content.value);
+
+                 self.checkRevision();
              }
          });
 
@@ -66,6 +78,8 @@
 
                  // Write history, since the listener does not act on text replacements
                  self.index = self.writeHistory(self.content.value);
+
+                 self.checkRevision();
              }
          });
 
@@ -84,6 +98,29 @@
                  self.context.removeAttribute('open');
              }
          });
+     };
+
+     /**
+      * Checks the revision state.
+      */
+     Textpad.prototype.checkRevision = function () {
+
+         const undo = this.revision.getElementsByClassName('toolbar-tool')[0];
+         const redo = this.revision.getElementsByClassName('toolbar-tool')[1];
+
+         if (this.index >= 1) {
+             undo.classList.remove('state:disabled');
+
+         } else {
+             undo.classList.add('state:disabled');
+         }
+
+         if (this.index < (this.history.length - 1)) {
+             redo.classList.remove('state:disabled');
+
+         } else {
+             redo.classList.add('state:disabled');
+         }
      };
 
      /**

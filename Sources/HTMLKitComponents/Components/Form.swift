@@ -1643,7 +1643,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                             .viewBox("0 0 20 16")
                         }
                         .type(.button)
-                        .class("toolbar-tool")
+                        .class("toolbar-tool state:disabled")
                         .custom(key: "data-command", value: "undo")
                         Span {
                             "Undo"
@@ -1664,7 +1664,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                             .viewBox("0 0 20 16")
                         }
                         .type(.button)
-                        .class("toolbar-tool")
+                        .class("toolbar-tool state:disabled")
                         .custom(key: "data-command", value: "redo")
                         Span {
                             "Redo"
