@@ -5,4 +5,4 @@
 "greeting.person" = "Hello %st";
 
 /* A personal indroduction. */
-"personal.introduction" = "Hello, I am %st and %in years old.";
+"personal.intro" = "Hello, I am %st, and I am %in years old. I have a dog named %st. He is %in and %do inches tall.";

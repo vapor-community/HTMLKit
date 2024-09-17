@@ -53,13 +53,13 @@ final class LocalizationTests: XCTestCase {
         struct TestView: View {
             
             var body: Content {
-                Heading1("personal.introduction", interpolation: "John Doe", 31)
+                Paragraph("personal.intro", interpolation: "John Doe", 31, "Mozart", 5, 21.5)
             }
         }
         
         XCTAssertEqual(try renderer!.render(view: TestView()),
                        """
-                       <h1>Hello, I am John Doe and 31 years old.</h1>
+                       <p>Hello, I am John Doe, and I am 31 years old. I have a dog named Mozart. He is 5 and 21.5 inches tall.</p>
                        """
         )
     }
@@ -69,13 +69,13 @@ final class LocalizationTests: XCTestCase {
         struct TestView: View {
             
             var body: Content {
-                Heading1("personal.introduction", tableName: "web", interpolation: "John Doe", 31)
+                Paragraph("personal.intro", tableName: "web", interpolation: "John Doe", 31, "Mozart", 5, 21.5)
             }
         }
         
         XCTAssertEqual(try renderer!.render(view: TestView()),
                        """
-                       <h1>Hello, I am John Doe and 31 years old.</h1>
+                       <p>Hello, I am John Doe, and I am 31 years old. I have a dog named Mozart. He is 5 and 21.5 inches tall.</p>
                        """
         )
     }

@@ -130,20 +130,31 @@ public class Localization {
 
                             switch argument {
                             case let stringValue as String:
-                                translation = translation.replacingOccurrences(of: "%st", with: stringValue)
+                                
+                                if let range = translation.range(of: "%st") {
+                                    translation = translation.replacingCharacters(in: range, with: stringValue)
+                                }
                                 
                             case let dateValue as Date:
                                 
                                 let formatter = DateFormatter()
                                 formatter.dateFormat = currentLocale.dateFormat
                                 
-                                translation = translation.replacingOccurrences(of: "%dt", with: formatter.string(from: dateValue))
+                                if let range = translation.range(of: "%dt") {
+                                    translation = translation.replacingCharacters(in: range, with: formatter.string(from: dateValue))
+                                }
                                 
                             case let doubleValue as Double:
-                                translation = translation.replacingOccurrences(of: "%do", with: String(doubleValue))
+                                
+                                if let range = translation.range(of: "%do") {
+                                    translation = translation.replacingCharacters(in: range, with: String(doubleValue))
+                                }
                                 
                             case let intValue as Int:
-                                translation = translation.replacingOccurrences(of: "%in", with: String(intValue))
+                                
+                                if let range = translation.range(of: "%in") {
+                                    translation = translation.replacingCharacters(in: range, with: String(intValue))
+                                }
                                 
                             default:
                                 break
@@ -192,20 +203,31 @@ public class Localization {
 
                                 switch argument {
                                 case let stringValue as String:
-                                    translation = translation.replacingOccurrences(of: "%st", with: stringValue)
+                                    
+                                    if let range = translation.range(of: "%st") {
+                                        translation = translation.replacingCharacters(in: range, with: stringValue)
+                                    }
                                     
                                 case let dateValue as Date:
                                     
                                     let formatter = DateFormatter()
                                     formatter.dateFormat = currentLocale.dateFormat
                                     
-                                    translation = translation.replacingOccurrences(of: "%dt", with: formatter.string(from: dateValue))
+                                    if let range = translation.range(of: "%dt") {
+                                        translation = translation.replacingCharacters(in: range, with: formatter.string(from: dateValue))
+                                    }
                                     
                                 case let doubleValue as Double:
-                                    translation = translation.replacingOccurrences(of: "%do", with: String(doubleValue))
+                                    
+                                    if let range = translation.range(of: "%do") {
+                                        translation = translation.replacingCharacters(in: range, with: String(doubleValue))
+                                    }
                                     
                                 case let intValue as Int:
-                                    translation = translation.replacingOccurrences(of: "%in", with: String(intValue))
+                                    
+                                    if let range = translation.range(of: "%in") {
+                                        translation = translation.replacingCharacters(in: range, with: String(intValue))
+                                    }
                                     
                                 default:
                                     break
