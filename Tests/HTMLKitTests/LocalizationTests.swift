@@ -117,6 +117,64 @@ final class LocalizationTests: XCTestCase {
                        """
         )
     }
+    
+    /// Tests the behavior when a localization key is missing
+    ///
+    /// A key is considered as missing if it cannot be found in the translation table. In this case,
+    /// the renderer is expected to throw an error.
+    func testMissingKey() throws {
+         
+        struct MainView: View {
+            
+            var body: Content {
+                Heading1("unknown.key")
+            }
+        }
+        
+        XCTAssertThrowsError(try renderer!.render(view: MainView())) { error in
+            XCTAssertEqual(error as! Localization.Errors, .missingKey)
+        }
+    }
+    
+    /// Tests the behavior when a translation table is missing
+    ///
+    /// A table is considered as missing if there is no translation table for the given locale. In this case,
+    /// the renderer is expected to throw an error.
+    func testMissingTable() throws {
+        
+        struct MainView: View {
+            
+            var body: Content {
+                Division {
+                    Heading1("greeting.world")
+                        .environment(key: \.locale)
+                }
+                .environment(key: \.locale, value: Locale(tag: "unknown.tag"))
+            }
+        }
+        
+        XCTAssertThrowsError(try renderer!.render(view: MainView())) { error in
+            XCTAssertEqual(error as! Localization.Errors, .missingTable)
+        }
+    }
+    
+    /// Tests the behavior when a translation table is unknown
+    ///
+    /// A table is considered as unknown if it cannot be found by the given table name. In this case,
+    /// the renderer is expected to throw an error.
+    func testUnknownTable() throws {
+        
+        struct MainView: View {
+            
+            var body: Content {
+                Heading1("greeting.world", tableName: "unknown.table")
+            }
+        }
+        
+        XCTAssertThrowsError(try renderer!.render(view: MainView())) { error in
+            XCTAssertEqual(error as! Localization.Errors, .unkownTable)
+        }
+    }
 }
 
 extension LocalizationTests {
