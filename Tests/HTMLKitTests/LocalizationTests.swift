@@ -117,6 +117,82 @@ final class LocalizationTests: XCTestCase {
                        """
         )
     }
+    
+    /// Tests the behavior when a localization key is missing
+    ///
+    /// A key is considered as missing if it cannot be found in the translation table. In this case,
+    /// the renderer is expected to throw an error.
+    func testMissingKey() throws {
+         
+        struct MainView: View {
+            
+            var body: Content {
+                Heading1("unknown.key")
+            }
+        }
+        
+        XCTAssertThrowsError(try renderer!.render(view: MainView())) { error in
+            
+            guard let localizationError = error as? Localization.Errors else {
+                return XCTFail("Unexpected error type: \(error)")
+            }
+        
+            XCTAssertEqual(localizationError, .missingKey("unknown.key"))
+            XCTAssertEqual(localizationError.description, "Unable to find translation key 'unknown.key'.")
+        }
+    }
+    
+    /// Tests the behavior when a translation table is missing
+    ///
+    /// A table is considered as missing if there is no translation table for the given locale. In this case,
+    /// the renderer is expected to throw an error.
+    func testMissingTable() throws {
+        
+        struct MainView: View {
+            
+            var body: Content {
+                Division {
+                    Heading1("greeting.world")
+                        .environment(key: \.locale)
+                }
+                .environment(key: \.locale, value: Locale(tag: "unknown.tag"))
+            }
+        }
+        
+        XCTAssertThrowsError(try renderer!.render(view: MainView())) { error in
+            
+            guard let localizationError = error as? Localization.Errors else {
+                return XCTFail("Unexpected error type: \(error)")
+            }
+            
+            XCTAssertEqual(localizationError, .missingTable("unknown.tag"))
+            XCTAssertEqual(localizationError.description, "Unable to find a translation table for the locale 'unknown.tag'.")
+        }
+    }
+    
+    /// Tests the behavior when a translation table is unknown
+    ///
+    /// A table is considered as unknown if it cannot be found by the given table name. In this case,
+    /// the renderer is expected to throw an error.
+    func testUnknownTable() throws {
+        
+        struct MainView: View {
+            
+            var body: Content {
+                Heading1("greeting.world", tableName: "unknown.table")
+            }
+        }
+        
+        XCTAssertThrowsError(try renderer!.render(view: MainView())) { error in
+            
+            guard let localizationError = error as? Localization.Errors else {
+                return XCTFail("Unexpected error type: \(error)")
+            }
+            
+            XCTAssertEqual(localizationError, .unknownTable("unknown.table"))
+            XCTAssertEqual(localizationError.description, "Unable to find translation table 'unknown.table'.")
+        }
+    }
 }
 
 extension LocalizationTests {
