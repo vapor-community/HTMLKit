@@ -5,29 +5,29 @@ import Foundation
 public class Localization {
     
     /// A enumeration of various errors
-    public enum Errors: Error {
+    public enum Errors: Error, Equatable {
         
-        case missingKey
-        case missingTable
+        case missingKey(String)
+        case missingTable(String)
         case missingTables
-        case unkownTable
+        case unknownTable(String)
         case noFallback
         case loadingDataFailed
         
         public var description: String {
             
             switch self {
-            case .missingKey:
-                return "Unable to find a translation for the key."
+            case .missingKey(let key):
+                return "Unable to find translation key '\(key)'."
                 
-            case .missingTable:
-                return "Unable to find a translation table for the locale."
+            case .missingTable(let tag):
+                return "Unable to find a translation table for the locale '\(tag)'."
                 
             case .missingTables:
                 return "Unable to find any localization tables."
                 
-            case .unkownTable:
-                return "Unkown table name."
+            case .unknownTable(let table):
+                return "Unable to find translation table '\(table)'."
                 
             case .noFallback:
                 return "The fallback needs to be set up first."
@@ -170,10 +170,10 @@ public class Localization {
             }
             
         } else {
-            throw Errors.missingTable
+            throw Errors.missingTable(currentLocale.tag)
         }
         
-        throw Errors.missingKey
+        throw Errors.missingKey(key)
     }
     
     /// Retrieves a value for a specific key from a specific table
@@ -238,16 +238,16 @@ public class Localization {
                         return translation
                         
                     } else {
-                        throw Errors.missingKey
+                        throw Errors.missingKey(key)
                     }
                 }
             }
             
         } else {
-            throw Errors.missingTable
+            throw Errors.missingTable(currentLocale.tag)
         }
         
-        throw Errors.unkownTable
+        throw Errors.unknownTable(table)
     }
 }
 

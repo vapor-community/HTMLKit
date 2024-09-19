@@ -132,7 +132,13 @@ final class LocalizationTests: XCTestCase {
         }
         
         XCTAssertThrowsError(try renderer!.render(view: MainView())) { error in
-            XCTAssertEqual(error as! Localization.Errors, .missingKey)
+            
+            guard let localizationError = error as? Localization.Errors else {
+                return XCTFail("Unexpected error type: \(error)")
+            }
+        
+            XCTAssertEqual(localizationError, .missingKey("unknown.key"))
+            XCTAssertEqual(localizationError.description, "Unable to find translation key 'unknown.key'.")
         }
     }
     
@@ -154,7 +160,13 @@ final class LocalizationTests: XCTestCase {
         }
         
         XCTAssertThrowsError(try renderer!.render(view: MainView())) { error in
-            XCTAssertEqual(error as! Localization.Errors, .missingTable)
+            
+            guard let localizationError = error as? Localization.Errors else {
+                return XCTFail("Unexpected error type: \(error)")
+            }
+            
+            XCTAssertEqual(localizationError, .missingTable("unknown.tag"))
+            XCTAssertEqual(localizationError.description, "Unable to find a translation table for the locale 'unknown.tag'.")
         }
     }
     
@@ -172,7 +184,13 @@ final class LocalizationTests: XCTestCase {
         }
         
         XCTAssertThrowsError(try renderer!.render(view: MainView())) { error in
-            XCTAssertEqual(error as! Localization.Errors, .unkownTable)
+            
+            guard let localizationError = error as? Localization.Errors else {
+                return XCTFail("Unexpected error type: \(error)")
+            }
+            
+            XCTAssertEqual(localizationError, .unknownTable("unknown.table"))
+            XCTAssertEqual(localizationError.description, "Unable to find translation table 'unknown.table'.")
         }
     }
 }
