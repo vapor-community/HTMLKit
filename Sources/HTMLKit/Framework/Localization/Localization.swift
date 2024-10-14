@@ -4,16 +4,34 @@ import Foundation
 @_documentation(visibility: internal)
 public class Localization {
     
-    /// A enumeration of various errors
+    /// A enumeration of errors regarding the localization rendering
     public enum Errors: Error, Equatable {
         
+        /// Indicates a missing key
+        ///
+        /// A key is considered as missing if it cannot be found in the translation table.
         case missingKey(String)
+        
+        /// Indicates a missing table
+        ///
+        /// A table is considered as missing if there is no translation table for the given locale.
         case missingTable(String)
+        
+        /// Indicates missing tables
         case missingTables
+        
+        /// Indicates a unknown table
+        ///
+        /// A table is considered as unknown if it cannot be found by the given table name.
         case unknownTable(String)
+        
+        /// Indicates there is no fallback configuration set up.
         case noFallback
+        
+        /// Indicates a loading failure
         case loadingDataFailed
         
+        /// Returns a description about the failure reason
         public var description: String {
             
             switch self {
@@ -38,34 +56,48 @@ public class Localization {
         }
     }
     
-    /// The localization tables
+    /// The translations tables
     internal var tables: [Locale: [TranslationTable]]?
     
     /// The default locale
+    ///
+    /// This locale will be used as the primary locale for translations and as the fallback locale when a translation is unavailable in other locales.
     internal var locale: Locale?
     
-    /// Initiates a localization
+    /// Initialize a localization
     public init() {
     }
     
-    /// Initiates a localization
+    /// Initialize a localization
+    ///
+    /// - Parameters:
+    ///   - source: The directory where the translations should be loaded from.
+    ///   - locale: The default locale
     public init(source: URL, locale: Locale) {
         
         self.locale = locale
         self.tables = load(source: source)
     }
     
-    /// Sets the root path
+    /// Sets the source directory
+    ///
+    /// - Parameter source: The directory where the translations should be loaded from.
     public func set(source: URL) {
         self.tables = load(source: source)
     }
     
-    /// Sets the default locale indentifier
+    /// Sets the default locale
+    ///
+    /// - Parameter locale: A locale tag e.g. en-US
     public func set(locale: String) {
         self.locale = Locale(tag: locale)
     }
     
-    /// Loads the tables from a specific path
+    /// Loads the translation tables from a given directory
+    ///
+    /// - Parameter source: The directory where the translation tables are located.
+    ///
+    /// - Returns: The translation tables mapped to their locale
     internal func load(source: URL) -> [Locale: [TranslationTable]] {
         
         var localizationTables = [Locale: [TranslationTable]]()
@@ -105,7 +137,14 @@ public class Localization {
         return localizationTables
     }
     
-    /// Retrieves a value for a specific key from the tables
+    /// Retrieves the translation for a specified key
+    ///
+    /// - Parameters:
+    ///   - key: The string key to be translated
+    ///   - locale: The locale to use when retrieving the translation
+    ///   - interpolation: An array of values used to replace placeholders within the translation string
+    ///
+    /// - Returns: The translation
     public func localize(key: String, locale: Locale? = nil, interpolation: [Any]? = nil) throws -> String {
         
         guard let fallback = self.locale else {
@@ -176,7 +215,15 @@ public class Localization {
         throw Errors.missingKey(key)
     }
     
-    /// Retrieves a value for a specific key from a specific table
+    /// Retrieves the translation for a specified key from a given translation table
+    ///
+    /// - Parameters:
+    ///   - key: The string key to be translated
+    ///   - table: The name of the translation table
+    ///   - locale: The locale to use when retrieving the translation
+    ///   - interpolation: An array of values used to replace placeholders within the translation string
+    ///
+    /// - Returns: The translation
     public func localize(key: String, table: String, locale: Locale? = nil, interpolation: [Any]? = nil) throws -> String {
         
         guard let fallback = self.locale else {

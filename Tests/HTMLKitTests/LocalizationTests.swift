@@ -16,6 +16,9 @@ final class LocalizationTests: XCTestCase {
         try! setupLocalization()
     }
     
+    /// Tests the localization of a specified translation key
+    ///
+    /// The test expects the key to exist in the default translation table and to be rendered correctly.
     func testLocalization() throws {
         
         struct MainView: View {
@@ -32,6 +35,10 @@ final class LocalizationTests: XCTestCase {
         )
     }
     
+    /// Tests the localization of string interpolation
+    ///
+    /// The test expects the key to exist in the default translation table and to be correctly formatted
+    /// and rendered accurately.
     func testLocalizationWithStringInterpolation() throws {
         
         struct TestView: View {
@@ -48,6 +55,10 @@ final class LocalizationTests: XCTestCase {
         )
     }
     
+    /// Tests the localization of string interpolation with multiple arguments
+    ///
+    /// The test expects the key to exist in the default translation table, to be correctly formatted
+    /// with the arguments in the proper order, and to be rendered accurately.
     func testStringInterpolationWithMultipleArguments() throws {
         
         struct TestView: View {
@@ -64,23 +75,29 @@ final class LocalizationTests: XCTestCase {
         )
     }
     
+    /// Tests the localization of a translation key in a specified translation table
+    ///
+    /// The test expects the key to exist in the specified translation tabl and to be rendered accurately.
     func testLocaliationWithTable() throws {
         
         struct TestView: View {
             
             var body: Content {
-                Paragraph("personal.intro", tableName: "web", interpolation: "John Doe", 31, "Mozart", 5, 21.5)
+                Paragraph("greeting.world", tableName: "web")
             }
         }
         
         XCTAssertEqual(try renderer!.render(view: TestView()),
                        """
-                       <p>Hello, I am John Doe, and I am 31 years old. I have a dog named Mozart. He is 5 and 21.5 inches tall.</p>
+                       <p>Hello World</p>
                        """
         )
     }
     
-    
+    /// Tests the change of the locale by the environment modifier
+    ///
+    /// The test expects that the localization environment modifier correctly applies the locale
+    /// down to nested views
     func testEnvironmentLocalization() throws {
         
         struct MainView: View {
@@ -199,12 +216,10 @@ extension LocalizationTests {
     
     func setupLocalization() throws {
         
-        let currentFile = URL(fileURLWithPath: #file).deletingLastPathComponent()
+        guard let sourcePath = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
+            return
+        }
         
-        let currentDirectory = currentFile.appendingPathComponent("Localization")
-        
-        let localization = Localization(source: currentDirectory, locale: Locale(tag: "en-GB"))
-        
-        self.renderer = Renderer(localization: localization)
+        self.renderer = Renderer(localization: .init(source: sourcePath, locale: .init(tag: "en-GB")))
     }
 }
