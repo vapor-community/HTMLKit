@@ -1,5 +1,5 @@
 /// An option set of features.
-public struct Features: OptionSet {
+public struct Features: OptionSet, Sendable {
     
     public var rawValue: Int
     
