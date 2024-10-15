@@ -10,7 +10,7 @@ public class Localization {
         /// Indicates a missing key
         ///
         /// A key is considered as missing if it cannot be found in the translation table.
-        case missingKey(String)
+        case missingKey(String, String)
         
         /// Indicates a missing table
         ///
@@ -23,7 +23,7 @@ public class Localization {
         /// Indicates a unknown table
         ///
         /// A table is considered as unknown if it cannot be found by the given table name.
-        case unknownTable(String)
+        case unknownTable(String, String)
         
         /// Indicates there is no fallback configuration set up.
         case noFallback
@@ -35,17 +35,17 @@ public class Localization {
         public var description: String {
             
             switch self {
-            case .missingKey(let key):
-                return "Unable to find translation key '\(key)'."
+            case .missingKey(let key, let tag):
+                return "Unable to find translation key '\(key)' for the locale '\(tag)'."
                 
             case .missingTable(let tag):
                 return "Unable to find a translation table for the locale '\(tag)'."
                 
             case .missingTables:
-                return "Unable to find any localization tables."
+                return "Unable to find any translation tables."
                 
-            case .unknownTable(let table):
-                return "Unable to find translation table '\(table)'."
+            case .unknownTable(let table, let tag):
+                return "Unable to find translation table '\(table)' for the locale '\(tag)'."
                 
             case .noFallback:
                 return "The fallback needs to be set up first."
@@ -207,11 +207,11 @@ public class Localization {
         if let table = key.table {
             
             guard let translationTable = translationTables.first(where: { $0.name == table }) else {
-                throw Errors.unknownTable(table)
+                throw Errors.unknownTable(table, currentLocale.tag)
             }
             
             guard var translation = translationTable.retrieve(for: key.key) else {
-                throw Errors.missingKey(key.key)
+                throw Errors.missingKey(key.key, currentLocale.tag)
             }
         
             if let interpolation = key.interpolation {
@@ -234,7 +234,7 @@ public class Localization {
             }
         }
         
-        throw Errors.missingKey(key.key)
+        throw Errors.missingKey(key.key, currentLocale.tag)
     }
 }
 

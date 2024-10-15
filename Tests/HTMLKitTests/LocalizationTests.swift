@@ -154,8 +154,8 @@ final class LocalizationTests: XCTestCase {
                 return XCTFail("Unexpected error type: \(error)")
             }
         
-            XCTAssertEqual(localizationError, .missingKey("unknown.key"))
-            XCTAssertEqual(localizationError.description, "Unable to find translation key 'unknown.key'.")
+            XCTAssertEqual(localizationError, .missingKey("unknown.key", "en-GB"))
+            XCTAssertEqual(localizationError.description, "Unable to find translation key 'unknown.key' for the locale 'en-GB'.")
         }
     }
     
@@ -206,8 +206,8 @@ final class LocalizationTests: XCTestCase {
                 return XCTFail("Unexpected error type: \(error)")
             }
             
-            XCTAssertEqual(localizationError, .unknownTable("unknown.table"))
-            XCTAssertEqual(localizationError.description, "Unable to find translation table 'unknown.table'.")
+            XCTAssertEqual(localizationError, .unknownTable("unknown.table", "en-GB"))
+            XCTAssertEqual(localizationError.description, "Unable to find translation table 'unknown.table' for the locale 'en-GB'.")
         }
     }
 }
