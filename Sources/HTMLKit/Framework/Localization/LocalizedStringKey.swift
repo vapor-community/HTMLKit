@@ -5,7 +5,7 @@
 
 import Foundation
 
-/// The struct thats contains the information for the localization
+/// A type thats holds the information for the localization
 @_documentation(visibility: internal)
 public struct LocalizedStringKey: Content {
 
@@ -18,7 +18,12 @@ public struct LocalizedStringKey: Content {
     /// The interpolation for the translation string
     public var interpolation: [Any]?
     
-    /// Initiates a localized string key with a context
+    /// Initialize a localized string key with a context
+    ///
+    /// - Parameters:
+    ///   - key: The string key to be translated
+    ///   - table: The table where the string key should be looked up. Default is nil.
+    ///   - interpolation: An array of values that will replace placeholders within the translation string.
     public init(key: String, table: String? = nil, interpolation: [Any]? = nil) {
         
         self.key = key

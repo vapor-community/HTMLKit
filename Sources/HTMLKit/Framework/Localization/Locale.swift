@@ -1,4 +1,6 @@
 /// A type that represents a locale
+///
+/// A locale holds information about language, region and cultural preferences.
 @_documentation(visibility: internal)
 public struct Locale: Hashable {
     
@@ -90,12 +92,16 @@ public struct Locale: Hashable {
     /// The locale identifier
     public let tag: String
     
-    /// Initiates a locale
+    /// Initialize a locale
+    ///
+    /// - Parameter tag: A locale tag e.g. en-US
     public init(tag: String) {
         self.tag = tag
     }
     
-    /// Initiates a locale with a predefined tag
+    /// Initialize a locale with a predefined tag
+    ///
+    /// - Parameter tag: A locale tag e.g. en-US
     public init(tag: Tag) {
         self.tag = tag.rawValue
     }

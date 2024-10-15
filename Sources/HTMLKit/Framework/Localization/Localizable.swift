@@ -3,7 +3,7 @@
  The file contains the default definition of a localizable element. It defines which properties and methods a content should come with.
  */
 
-/// The protocol defines
+/// A protocol that defines a type capable of being localized.
 @_documentation(visibility: internal)
 public protocol Localizable {
     
