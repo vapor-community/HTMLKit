@@ -357,11 +357,7 @@ public final class Renderer {
             throw Errors.missingLocalization
         }
         
-        if let table = stringkey.table {
-            return try localization.localize(key: stringkey.key, table: table, locale: environment.locale, interpolation: stringkey.interpolation)
-        }
-        
-        return try localization.localize(key: stringkey.key, locale: environment.locale, interpolation: stringkey.interpolation)
+        return try localization.localize(key: stringkey, for: environment.locale)
     }
     
     /// Renders a environment modifier.

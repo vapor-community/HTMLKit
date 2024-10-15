@@ -137,15 +137,58 @@ public class Localization {
         return localizationTables
     }
     
+    /// Apply interpolation values to the translation for the given locale
+    ///
+    /// - Parameters:
+    ///   - arguments: An array of values used to replace placeholders within the translation string
+    ///   - translation: The translation string
+    ///   - locale: The locale
+    internal func interpolate(arguments: [Any], to translation: inout String, for locale: Locale) {
+        
+        for argument in arguments {
+
+            switch argument {
+            case let stringValue as String:
+                
+                if let range = translation.range(of: "%st") {
+                    translation = translation.replacingCharacters(in: range, with: stringValue)
+                }
+                
+            case let dateValue as Date:
+                
+                let formatter = DateFormatter()
+                formatter.dateFormat = locale.dateFormat
+                
+                if let range = translation.range(of: "%dt") {
+                    translation = translation.replacingCharacters(in: range, with: formatter.string(from: dateValue))
+                }
+                
+            case let doubleValue as Double:
+                
+                if let range = translation.range(of: "%do") {
+                    translation = translation.replacingCharacters(in: range, with: String(doubleValue))
+                }
+                
+            case let intValue as Int:
+                
+                if let range = translation.range(of: "%in") {
+                    translation = translation.replacingCharacters(in: range, with: String(intValue))
+                }
+                
+            default:
+                break
+            }
+        }
+    }
+    
     /// Retrieves the translation for a specified key
     ///
     /// - Parameters:
     ///   - key: The string key to be translated
     ///   - locale: The locale to use when retrieving the translation
-    ///   - interpolation: An array of values used to replace placeholders within the translation string
     ///
     /// - Returns: The translation
-    public func localize(key: String, locale: Locale? = nil, interpolation: [Any]? = nil) throws -> String {
+    public func localize(key: LocalizedStringKey, for locale: Locale? = nil) throws -> String {
         
         guard let fallback = self.locale else {
             throw Errors.noFallback
@@ -154,147 +197,44 @@ public class Localization {
         guard let localizationTables = self.tables else {
             throw Errors.missingTables
         }
-        
-        let currentLocale = locale ?? fallback
-        
-        if let translationTables = localizationTables[currentLocale] {
-            
-            for translationTable in translationTables {
-                
-                if var translation = translationTable.retrieve(for: key) {
-                    
-                    if let interpolation = interpolation {
-                        
-                        for argument in interpolation {
-
-                            switch argument {
-                            case let stringValue as String:
-                                
-                                if let range = translation.range(of: "%st") {
-                                    translation = translation.replacingCharacters(in: range, with: stringValue)
-                                }
-                                
-                            case let dateValue as Date:
-                                
-                                let formatter = DateFormatter()
-                                formatter.dateFormat = currentLocale.dateFormat
-                                
-                                if let range = translation.range(of: "%dt") {
-                                    translation = translation.replacingCharacters(in: range, with: formatter.string(from: dateValue))
-                                }
-                                
-                            case let doubleValue as Double:
-                                
-                                if let range = translation.range(of: "%do") {
-                                    translation = translation.replacingCharacters(in: range, with: String(doubleValue))
-                                }
-                                
-                            case let intValue as Int:
-                                
-                                if let range = translation.range(of: "%in") {
-                                    translation = translation.replacingCharacters(in: range, with: String(intValue))
-                                }
-                                
-                            default:
-                                break
-                            }
-                        }
-                    }
-                    
-                    return translation
-                    
-                } else {
-                    continue
-                }
-            }
-            
-        } else {
-            throw Errors.missingTable(currentLocale.tag)
-        }
-        
-        throw Errors.missingKey(key)
-    }
     
-    /// Retrieves the translation for a specified key from a given translation table
-    ///
-    /// - Parameters:
-    ///   - key: The string key to be translated
-    ///   - table: The name of the translation table
-    ///   - locale: The locale to use when retrieving the translation
-    ///   - interpolation: An array of values used to replace placeholders within the translation string
-    ///
-    /// - Returns: The translation
-    public func localize(key: String, table: String, locale: Locale? = nil, interpolation: [Any]? = nil) throws -> String {
-        
-        guard let fallback = self.locale else {
-            throw Errors.noFallback
-        }
-        
-        guard let localizationTables = self.tables else {
-            throw Errors.missingTables
-        }
-        
         let currentLocale = locale ?? fallback
         
-        if let translationTables = localizationTables[currentLocale] {
-            
-            for translationTable in translationTables {
-                
-                if translationTable.name == table {
-                    
-                    if var translation = translationTable.retrieve(for: key) {
-                        
-                        if let interpolation = interpolation {
-                            
-                            for argument in interpolation {
-
-                                switch argument {
-                                case let stringValue as String:
-                                    
-                                    if let range = translation.range(of: "%st") {
-                                        translation = translation.replacingCharacters(in: range, with: stringValue)
-                                    }
-                                    
-                                case let dateValue as Date:
-                                    
-                                    let formatter = DateFormatter()
-                                    formatter.dateFormat = currentLocale.dateFormat
-                                    
-                                    if let range = translation.range(of: "%dt") {
-                                        translation = translation.replacingCharacters(in: range, with: formatter.string(from: dateValue))
-                                    }
-                                    
-                                case let doubleValue as Double:
-                                    
-                                    if let range = translation.range(of: "%do") {
-                                        translation = translation.replacingCharacters(in: range, with: String(doubleValue))
-                                    }
-                                    
-                                case let intValue as Int:
-                                    
-                                    if let range = translation.range(of: "%in") {
-                                        translation = translation.replacingCharacters(in: range, with: String(intValue))
-                                    }
-                                    
-                                default:
-                                    break
-                                }
-                            }
-                        }
-                        
-                        return translation
-                        
-                    } else {
-                        throw Errors.missingKey(key)
-                    }
-                }
-            }
-            
-        } else {
+        guard let translationTables = localizationTables[currentLocale] else {
             throw Errors.missingTable(currentLocale.tag)
         }
         
-        throw Errors.unknownTable(table)
+        if let table = key.table {
+            
+            guard let translationTable = translationTables.first(where: { $0.name == table }) else {
+                throw Errors.unknownTable(table)
+            }
+            
+            guard var translation = translationTable.retrieve(for: key.key) else {
+                throw Errors.missingKey(key.key)
+            }
+        
+            if let interpolation = key.interpolation {
+                interpolate(arguments: interpolation, to: &translation, for: currentLocale)
+            }
+            
+            return translation
+            
+        }
+        
+        for translationTable in translationTables {
+            
+            if var translation = translationTable.retrieve(for: key.key) {
+                
+                if let interpolation = key.interpolation {
+                    interpolate(arguments: interpolation, to: &translation, for: currentLocale)
+                }
+                
+                return translation
+            }
+        }
+        
+        throw Errors.missingKey(key.key)
     }
 }
 
