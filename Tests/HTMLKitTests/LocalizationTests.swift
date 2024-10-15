@@ -210,6 +210,46 @@ final class LocalizationTests: XCTestCase {
             XCTAssertEqual(localizationError.description, "Unable to find translation table 'unknown.table' for the locale 'en-GB'.")
         }
     }
+    
+    /// Tests the recovery from a missing key
+    ///
+    /// The renderer should attempt a secondary lookup in the translation tables of the default locale.
+    func testRecoveryFromMissingKey() throws {
+        
+        struct MainView: View {
+            
+            var content: [Content]
+            
+            init(@ContentBuilder<Content> content: () -> [Content]) {
+                self.content = content()
+            }
+            
+            var body: Content {
+                Division {
+                    content
+                }
+                .environment(key: \.locale, value: Locale(tag: .french))
+            }
+        }
+        
+        struct ChildView: View {
+            
+            var body: Content {
+                MainView {
+                    Heading1("greeting.person", interpolation: "John Doe")
+                        .environment(key: \.locale)
+                }
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: ChildView()),
+                       """
+                       <div>\
+                       <h1>Hello John Doe</h1>\
+                       </div>
+                       """
+        )
+    }
 }
 
 extension LocalizationTests {

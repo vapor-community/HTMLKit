@@ -357,7 +357,22 @@ public final class Renderer {
             throw Errors.missingLocalization
         }
         
-        return try localization.localize(key: stringkey, for: environment.locale)
+        do {
+            return try localization.localize(key: stringkey, for: environment.locale)
+            
+        } catch Localization.Errors.missingKey(let key, let locale) {
+            
+            // Check if the fallback was already in charge
+            if environment.locale != nil {
+                
+                // Seems not, let's try to recover by using the fallback
+                return try localization.localize(key: stringkey)
+                
+            } else {
+                // Recovery didn't work out. Let's face the truth
+                throw Localization.Errors.missingKey(key, locale)
+            }
+        }
     }
     
     /// Renders a environment modifier.
