@@ -118,3 +118,31 @@ extension Request {
         return .init(eventLoop: self.eventLoop, configuration: self.application.htmlkit.configuration, logger: self.logger)
     }
 }
+
+extension HTMLKit.Renderer.Errors: @retroactive AbortError {
+ 
+    @_implements(AbortError, reason)
+    public var abortReason: String { self.description }
+    
+    public var status: HTTPResponseStatus { .internalServerError }
+}
+
+extension HTMLKit.Renderer.Errors: @retroactive DebuggableError {
+
+    @_implements(DebuggableError, reason)
+    public var debuggableReason: String {  self.description }
+}
+
+extension HTMLKit.Localization.Errors: @retroactive AbortError {
+ 
+    @_implements(AbortError, reason)
+    public var abortReason: String { self.description }
+    
+    public var status: HTTPResponseStatus { .internalServerError }
+}
+
+extension HTMLKit.Localization.Errors: @retroactive DebuggableError {
+    
+    @_implements(DebuggableError, reason)
+    public var debuggableReason: String { self.description }
+}
