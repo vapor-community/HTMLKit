@@ -5,6 +5,7 @@
 
 import Foundation
 import OrderedCollections
+import Logging
 
 @_documentation(visibility: internal)
 public final class Renderer {
@@ -63,18 +64,23 @@ public final class Renderer {
     
     /// The feature flag used to manage the visibility of new and untested features.
     private var features: Features
+    
+    /// The logger used to log all operations
+    private var logger: Logger
 
     /// Initiates the renderer.
     public init(localization: Localization? = nil, 
                 environment: Environment = Environment(),
                 security: Security = Security(),
-                features: Features = []) {
+                features: Features = [],
+                logger: Logger = Logger(label: "HTMLKit")) {
         
         self.localization = localization
         self.environment = environment
         self.security = security
         self.markdown = Markdown()
         self.features = features
+        self.logger = logger
     }
     
     /// Renders a view and transforms it into a string representation.
@@ -364,6 +370,8 @@ public final class Renderer {
             
             // Check if the fallback was already in charge
             if environment.locale != nil {
+                
+                logger.warning("Unable to find translation key '\(key)' for the locale '\(locale)'.")
                 
                 // Seems not, let's try to recover by using the fallback
                 return try localization.localize(key: stringkey)

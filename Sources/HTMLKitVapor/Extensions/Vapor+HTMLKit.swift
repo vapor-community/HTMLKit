@@ -82,7 +82,7 @@ extension Application {
         /// The view renderer
         internal var renderer: ViewRenderer {
             
-            return .init(eventLoop: application.eventLoopGroup.next(), configuration: configuration)
+            return .init(eventLoop: application.eventLoopGroup.next(), configuration: configuration, logger: application.logger)
         }
         
         /// The application dependency
@@ -115,6 +115,6 @@ extension Request {
             self.application.htmlkit.localization.set(locale: acceptLanguage)
         }
         
-        return .init(eventLoop: self.eventLoop, configuration: self.application.htmlkit.configuration)
+        return .init(eventLoop: self.eventLoop, configuration: self.application.htmlkit.configuration, logger: self.logger)
     }
 }

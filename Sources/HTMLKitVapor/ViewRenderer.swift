@@ -15,14 +15,19 @@ public class ViewRenderer {
     /// The renderer for the view renderer
     internal var renderer: Renderer
     
+    /// The logger used to log all operations
+    private var logger: Logger
+    
     /// Creates the view renderer
-    public init(eventLoop: EventLoop, configuration: Configuration) {
+    public init(eventLoop: EventLoop, configuration: Configuration, logger: Logger) {
         
         self.eventLoop = eventLoop
         self.renderer = Renderer(localization: configuration.localization,
                                  environment: configuration.environment,
                                  security: configuration.security,
-                                 features: configuration.features)
+                                 features: configuration.features,
+                                 logger: logger)
+        self.logger = logger
     }
     
     /// Renders a view and transforms it into a view response.
