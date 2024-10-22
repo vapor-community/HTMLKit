@@ -5,6 +5,7 @@
 
 import Foundation
 import OrderedCollections
+import Logging
 
 @_documentation(visibility: internal)
 public final class Renderer {
@@ -63,18 +64,23 @@ public final class Renderer {
     
     /// The feature flag used to manage the visibility of new and untested features.
     private var features: Features
+    
+    /// The logger used to log all operations
+    private var logger: Logger
 
     /// Initiates the renderer.
     public init(localization: Localization? = nil, 
                 environment: Environment = Environment(),
                 security: Security = Security(),
-                features: Features = []) {
+                features: Features = [],
+                logger: Logger = Logger(label: "HTMLKit")) {
         
         self.localization = localization
         self.environment = environment
         self.security = security
         self.markdown = Markdown()
         self.features = features
+        self.logger = logger
     }
     
     /// Renders a view and transforms it into a string representation.
@@ -357,11 +363,24 @@ public final class Renderer {
             throw Errors.missingLocalization
         }
         
-        if let table = stringkey.table {
-            return try localization.localize(key: stringkey.key, table: table, locale: environment.locale, interpolation: stringkey.interpolation)
+        do {
+            return try localization.localize(key: stringkey, for: environment.locale)
+            
+        } catch Localization.Errors.missingKey(let key, let locale) {
+            
+            // Check if the fallback was already in charge
+            if environment.locale != nil {
+                
+                logger.warning("Unable to find translation key '\(key)' for the locale '\(locale)'.")
+                
+                // Seems not, let's try to recover by using the fallback
+                return try localization.localize(key: stringkey)
+                
+            } else {
+                // Recovery didn't work out. Let's face the truth
+                throw Localization.Errors.missingKey(key, locale)
+            }
         }
-        
-        return try localization.localize(key: stringkey.key, locale: environment.locale, interpolation: stringkey.interpolation)
     }
     
     /// Renders a environment modifier.
