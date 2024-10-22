@@ -232,112 +232,123 @@ final class RenderingTests: XCTestCase {
         )
     }
     
+    /// Tests the Markdown rendering for italic emphasis
+    ///
+    /// The renderer is expected to convert the Markdown syntax into the HTML equivalent
     func testRenderingItalicMarkdown() throws {
         
         let view = TestView {
-            Paragraph {
-                MarkdownString("*italic*")
-            }
-            Paragraph {
-                MarkdownString("_italic_")
-            }
+            MarkdownString("*italic*")
+            MarkdownString("_italic_")
+            MarkdownString("\(italic: "italic")")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p><em>italic</em></p>\
-                       <p><em>italic</em></p>
+                       <em>italic</em>\
+                       <em>italic</em>\
+                       <em>italic</em>
                        """
         )
     }
     
+    /// Tests the Markdown rendering for bold emphasis
+    ///
+    /// The renderer is expected to convert the Markdown syntax into the HTML equivalent
     func testRenderingBoldMarkdown() throws {
         
         let view = TestView {
-            Paragraph {
-                MarkdownString("**bold**")
-            }
-            Paragraph {
-                MarkdownString("__bold__")
-            }
+            MarkdownString("**bold**")
+            MarkdownString("__bold__")
+            MarkdownString("\(bold: "bold")")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p><strong>bold</strong></p>\
-                       <p><strong>bold</strong></p>
+                       <strong>bold</strong>\
+                       <strong>bold</strong>\
+                       <strong>bold</strong>
                        """
         )
     }
     
+    /// Tests the Markdown rendering for bold and italic emphasis
+    ///
+    /// The renderer is expected to convert the Markdown syntax into the HTML equivalent
     func testRenderingBoldItalicMarkdown() throws {
         
         let view = TestView {
-            Paragraph {
-                MarkdownString("***bold and italic***")
-            }
-            Paragraph {
-                MarkdownString("___bold and italic___")
-            }
+            MarkdownString("***bold and italic***")
+            MarkdownString("___bold and italic___")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p><em><strong>bold and italic</strong></em></p>\
-                       <p><em><strong>bold and italic</strong></em></p>
+                       <em><strong>bold and italic</strong></em>\
+                       <em><strong>bold and italic</strong></em>
                        """
         )
     }
     
+    /// Tests the Markdown rendering for inline code emphasis
+    ///
+    /// The renderer is expected to convert the Markdown syntax into the HTML equivalent
     func testRenderingMonospaceMarkdown() throws {
         
         let view = TestView {
-            Paragraph {
-                MarkdownString("`code`")
-            }
+            MarkdownString("`code`")
+            MarkdownString("\(code: "code")")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p><code>code</code></p>
+                       <code>code</code>\
+                       <code>code</code>
                        """
         )
     }
     
+    /// Tests the Markdown rendering for strikethrough emphasis
+    ///
+    /// The renderer is expected to convert the Markdown syntax into the HTML equivalent
     func testRenderingStrikeThroughMarkdown() throws {
         
         let view = TestView {
-            Paragraph {
-                MarkdownString("~strikethrough~")
-            }
-            Paragraph {
-                MarkdownString("~~strikethrough~~")
-            }
+            MarkdownString("~strikethrough~")
+            MarkdownString("~~strikethrough~~")
+            MarkdownString("\(strike: "strikethrough")")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p><del>strikethrough</del></p>\
-                       <p><del>strikethrough</del></p>
+                       <del>strikethrough</del>\
+                       <del>strikethrough</del>\
+                       <del>strikethrough</del>
                        """
         )
     }
     
+    /// Tests the Markdown rendering for links
+    ///
+    /// The renderer is expected to convert the Markdown syntax into the HTML equivalent
     func testRenderingLinkMarkdown() throws {
         
         let view = TestView {
-            Paragraph {
-                MarkdownString("[Link](https://www.vapor.codes)")
-            }
+            MarkdownString("[Link](https://www.vapor.codes)")
+            MarkdownString("\(link: "https://www.vapor.codes")")
+            MarkdownString("\(email: "alone@home.com")")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p><a href="https://www.vapor.codes" target="_blank">Link</a></p>
+                       <a href="https://www.vapor.codes" target="_blank">Link</a>\
+                       <a href="https://www.vapor.codes" target="_blank">https://www.vapor.codes</a>\
+                       <a href="mailto:alone@home.com" target="_blank">alone@home.com</a>
                        """
         )
     }
     
+    /// Tests the Markdown rendering of a paragraph with multiple emphasis elements
     func testRenderingMarkdownParagraph() throws {
         
         let view = TestView {
@@ -353,21 +364,23 @@ final class RenderingTests: XCTestCase {
         )
     }
     
+    /// Tests the Markdown rendering of nested emphasis elements
+    ///
+    /// The renderer is expected to convert the Markdown syntax into the HTML equivalent,
+    /// while preserving the nesting.
     func testRenderingNestedMarkdown() throws {
         
         let view = TestView {
-            Paragraph {
-                MarkdownString {
-                    """
-                    **This text is _extremely_ important.**
-                    """
-                }
+            MarkdownString {
+                """
+                **This text is _extremely_ important.**
+                """
             }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p><strong>This text is <em>extremely</em> important.</strong></p>
+                       <strong>This text is <em>extremely</em> important.</strong>
                        """
         )
     }
