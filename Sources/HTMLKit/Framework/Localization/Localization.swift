@@ -61,23 +61,12 @@ public class Localization {
     
     /// The default locale
     ///
-    /// This locale will be used as the primary locale for translations and as the fallback locale when a translation is unavailable in other locales.
+    /// This locale will be used as the primary locale for translations and as the fallback locale when a translation
+    /// is unavailable in other locales.
     internal var locale: Locale?
     
-    /// Initialize a localization
-    public init() {
-    }
-    
-    /// Initialize a localization
-    ///
-    /// - Parameters:
-    ///   - source: The directory where the translations should be loaded from.
-    ///   - locale: The default locale
-    public init(source: URL, locale: Locale) {
-        
-        self.locale = locale
-        self.tables = load(source: source)
-    }
+    /// Initializes a localization
+    public init() {}
     
     /// Sets the source directory
     ///
@@ -93,12 +82,23 @@ public class Localization {
         self.locale = Locale(tag: locale)
     }
     
+    /// Initializes a localization
+    ///
+    /// - Parameters:
+    ///   - source: The directory where the translations should be loaded from.
+    ///   - locale: The default locale
+    public init(source: URL, locale: Locale) {
+        
+        self.locale = locale
+        self.tables = load(source: source)
+    }
+    
     /// Loads the translation tables from a given directory
     ///
     /// - Parameter source: The directory where the translation tables are located.
     ///
     /// - Returns: The translation tables mapped to their locale
-    internal func load(source: URL) -> [Locale: [TranslationTable]] {
+    private func load(source: URL) -> [Locale: [TranslationTable]] {
         
         var localizationTables = [Locale: [TranslationTable]]()
         
@@ -143,7 +143,7 @@ public class Localization {
     ///   - arguments: An array of values used to replace placeholders within the translation string
     ///   - translation: The translation string
     ///   - locale: The locale
-    internal func interpolate(arguments: [Any], to translation: inout String, for locale: Locale) {
+    private func interpolate(arguments: [Any], to translation: inout String, for locale: Locale) {
         
         for argument in arguments {
 

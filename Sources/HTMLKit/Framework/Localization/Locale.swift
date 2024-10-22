@@ -4,7 +4,7 @@
 @_documentation(visibility: internal)
 public struct Locale: Hashable {
     
-    /// A enumeration of possible tags
+    /// A enumeration of potential language tags
     public enum Tag: String {
         
         case arabic = "ar"
@@ -47,12 +47,16 @@ public struct Locale: Hashable {
         case chinese = "zh"
     }
     
-    /// The language code
+    /// The language code of the language
+    ///
+    /// The language code represents the generic language.
     public var language: String? {
         return tag.components(separatedBy: "-").first
     }
     
-    /// The region code
+    /// The region code of the language
+    ///
+    /// The region code refers to the regional dialect of a language.
     public var region: String? {
         
         let components = tag.components(separatedBy: "-")
@@ -64,27 +68,27 @@ public struct Locale: Hashable {
         return nil
     }
     
-    /// The currency code
+    /// The currency code of the language
     public var currencyCode: String? {
         return currencyCodes[tag]
     }
     
-    /// The currency symbol
+    /// The currency symbol of the language
     public var currencySymbol: String? {
         return currencySymbols[tag]
     }
     
-    /// The decimal seperator
+    /// The decimal seperator of the language
     public var decimalSeparator: String? {
         return decimalSeparators[tag]
     }
     
-    /// The date format
+    /// The date format of the language
     public var dateFormat: String? {
         return dateFormats[tag]
     }
     
-    /// The time format
+    /// The time format of the language
     public var timeFormat: String? {
         return timeFormats[tag]
     }
@@ -92,14 +96,14 @@ public struct Locale: Hashable {
     /// The locale identifier
     public let tag: String
     
-    /// Initialize a locale
+    /// Initializes a locale
     ///
     /// - Parameter tag: A locale tag e.g. en-US
     public init(tag: String) {
         self.tag = tag
     }
     
-    /// Initialize a locale with a predefined tag
+    /// Initializes a locale with a predefined tag
     ///
     /// - Parameter tag: A locale tag e.g. en-US
     public init(tag: Tag) {

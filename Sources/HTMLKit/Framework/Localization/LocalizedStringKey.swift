@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file contains the localized.
- */
-
 import Foundation
 
 /// A type thats holds the information for the localization
@@ -10,15 +5,15 @@ import Foundation
 public struct LocalizedStringKey: Content {
 
     /// The key of the translation value
-    public let key: String
+    internal let key: String
     
     /// The name of the translation table
-    public let table: String?
+    internal let table: String?
     
     /// The interpolation for the translation string
-    public var interpolation: [Any]?
+    internal var interpolation: [Any]?
     
-    /// Initialize a localized string key with a context
+    /// Initializes a localized string key with a context
     ///
     /// - Parameters:
     ///   - key: The string key to be translated
