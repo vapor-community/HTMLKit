@@ -1,30 +1,36 @@
 import Foundation
 
-/// A type that represents the environment
+/// A class that represents the environment
+///
+/// The environment provides storage for various settings used by the renderer
 public class Environment {
     
     /// The storage of the environment
     private var storage: [AnyKeyPath: Any]
     
-    /// Initiates a manager
+    /// Initializes the environment
     public init() {
         
         self.storage = [:]
     }
     
-    /// The current  time zone of the environment
+    /// The current time zone of the environment
     public var timeZone: TimeZone?
     
-    /// The current calender of the environment
+    /// The current calendar of the environment
     public var calendar: Calendar?
     
-    /// The current local of the environment
+    /// The current locale of the environment
     public var locale: Locale?
     
     /// The current color scheme of the environment
     public var colorScheme: String?
     
-    /// Retrieves an item from storage by its path
+    /// Retrieves a value from environment for a given key path
+    ///
+    /// - Parameter path: The key path used to look up the value
+    ///
+    /// - Returns: The value
     public func retrieve(for path: AnyKeyPath) -> Any? {
         
         if let value = self.storage[path] {
@@ -34,7 +40,11 @@ public class Environment {
         return nil
     }
     
-    /// Adds und updates an item to the storage
+    /// Inserts or updates a value in the environment for the given key path
+    ///
+    /// - Parameters:
+    ///   - value: The value to be stored or updated
+    ///   - path: The key path that identifies where the value is stored
     public func upsert<T>(_ value: T, for path: AnyKeyPath) {
         self.storage[path] = value
     }
