@@ -3,7 +3,7 @@ import Foundation
 /// A class that represents the environment
 ///
 /// The environment provides storage for various settings used by the renderer
-public class Environment {
+public final class Environment {
     
     /// The storage of the environment
     private var storage: [AnyKeyPath: Any]
@@ -15,16 +15,36 @@ public class Environment {
     }
     
     /// The current time zone of the environment
-    public var timeZone: TimeZone?
+    public var timeZone: TimeZone? {
+        
+        get {
+            retrieve(for: \EnvironmentKeys.timeZone) as? TimeZone
+        }
+    }
     
     /// The current calendar of the environment
-    public var calendar: Calendar?
+    public var calendar: Calendar? {
+        
+        get {
+            retrieve(for: \EnvironmentKeys.calendar) as? Calendar
+        }
+    }
     
     /// The current locale of the environment
-    public var locale: Locale?
+    public var locale: Locale? {
+        
+        get {
+            retrieve(for: \EnvironmentKeys.locale) as? Locale
+        }
+    }
     
     /// The current color scheme of the environment
-    public var colorScheme: String?
+    public var colorScheme: String? {
+        
+        get {
+            retrieve(for: \EnvironmentKeys.colorScheme) as? String
+        }
+    }
     
     /// Retrieves a value from environment for a given key path
     ///
@@ -32,12 +52,7 @@ public class Environment {
     ///
     /// - Returns: The value
     public func retrieve(for path: AnyKeyPath) -> Any? {
-        
-        if let value = self.storage[path] {
-            return value
-        }
-        
-        return nil
+        return storage[path]
     }
     
     /// Inserts or updates a value in the environment for the given key path
@@ -46,6 +61,6 @@ public class Environment {
     ///   - value: The value to be stored or updated
     ///   - path: The key path that identifies where the value is stored
     public func upsert<T>(_ value: T, for path: AnyKeyPath) {
-        self.storage[path] = value
+        storage[path] = value
     }
 }

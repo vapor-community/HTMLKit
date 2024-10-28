@@ -369,31 +369,6 @@ public final class Renderer {
         
         if let value = modifier.value {
             self.environment.upsert(value, for: modifier.key)
-            
-        } else {
-            
-            if let value = self.environment.retrieve(for: modifier.key) {
-                
-                if let key = modifier.key as? PartialKeyPath<EnvironmentKeys> {
-                    
-                    switch key {
-                    case \.locale:
-                        self.environment.locale = value as? Locale
-                        
-                    case \.calendar:
-                        self.environment.calendar = value as? Calendar
-                        
-                    case \.timeZone:
-                        self.environment.timeZone = value as? TimeZone
-                        
-                    case \.colorScheme:
-                        self.environment.colorScheme = value as? String
-                        
-                    default:
-                        throw Errors.unindendedEnvironmentKey
-                    }
-                }
-            }
         }
         
         return try render(contents: modifier.content)
