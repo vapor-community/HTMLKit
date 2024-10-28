@@ -380,7 +380,7 @@ public final class Renderer {
                     case \.locale:
                         self.environment.locale = value as? Locale
                         
-                    case \.calender:
+                    case \.calendar:
                         self.environment.calendar = value as? Calendar
                         
                     case \.timeZone:

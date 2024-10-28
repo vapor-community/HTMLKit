@@ -6,7 +6,7 @@ import Foundation
 public struct EnvironmentKeys: Hashable {
     
     /// A key used to configure the environment's calendar
-    public var calender: Calendar
+    public var calendar: Calendar
     
     /// A key used to configure the environment's time zone
     public var timeZone: TimeZone
