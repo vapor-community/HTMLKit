@@ -73,7 +73,7 @@ final class PerformanceTests: XCTestCase {
         struct TestView: View {
             
             var body: Content {
-                Paragraph("personal.intro", interpolation: "John Doe", 31, "Mozart", 5, 21.5)
+                Paragraph("Hello \("John Doe")")
             }
         }
         

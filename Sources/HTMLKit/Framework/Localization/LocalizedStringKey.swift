@@ -1,28 +1,86 @@
 import Foundation
 
-/// A type thats holds the information for the localization
-@_documentation(visibility: internal)
-public struct LocalizedStringKey: Content {
-
-    /// The key of the translation value
-    internal let key: String
+/// A string key for the localization
+public struct LocalizedStringKey {
+ 
+    /// The actual key value
+    public let value: String
     
-    /// The name of the translation table
-    internal let table: String?
+    /// The arguments for the interpolation
+    public var interpolation: [Any]?
     
-    /// The interpolation for the translation string
-    internal var interpolation: [Any]?
-    
-    /// Initializes a localized string key with a context
+    /// Initializes a string key for localization
     ///
     /// - Parameters:
-    ///   - key: The string key to be translated
-    ///   - table: The table where the string key should be looked up. Default is nil.
-    ///   - interpolation: An array of values that will replace placeholders within the translation string.
-    public init(key: String, table: String? = nil, interpolation: [Any]? = nil) {
+    ///   - value: The key value
+    ///   - interpolation:  An array of values that will replace placeholders within the translation string.
+    public init(value: String, interpolation: [Any]? = nil) {
         
-        self.key = key
-        self.table = table
+        self.value = value
         self.interpolation = interpolation
+    }
+}
+
+extension LocalizedStringKey: ExpressibleByStringLiteral, ExpressibleByStringInterpolation {
+    
+    public init(stringLiteral: String) {
+        self.init(value: stringLiteral)
+    }
+    
+    public init(stringInterpolation: StringInterpolation) {
+        self.init(value: stringInterpolation.key, interpolation: stringInterpolation.arguments)
+    }
+    
+    public struct StringInterpolation: StringInterpolationProtocol {
+        
+        var key: String = ""
+        
+        var arguments: [Any] = []
+        
+        public init(literalCapacity: Int, interpolationCount: Int) {
+            
+            key.reserveCapacity(literalCapacity + interpolationCount * 2)
+            
+            arguments.reserveCapacity(interpolationCount)
+        }
+        
+        public mutating func appendLiteral(_ literal: String) {
+            key.append(literal)
+        }
+        
+        public mutating func appendInterpolation(_ value: String) {
+            
+            key += "%st"
+            
+            arguments.append(value)
+        }
+        
+        public mutating func appendInterpolation(_ value: Int) {
+            
+            key += "%in"
+            
+            arguments.append(value)
+        }
+        
+        public mutating func appendInterpolation(_ value: Double) {
+            
+            key += "%do"
+            
+            arguments.append(value)
+        }
+        
+        public mutating func appendInterpolation(_ value: Float) {
+            
+            key += "%do"
+            
+            arguments.append(value)
+        }
+        
+        public mutating func appendInterpolation(_ value: Date) {
+            
+            key += "%dt"
+            
+            arguments.append(value)
+        }
     }
 }

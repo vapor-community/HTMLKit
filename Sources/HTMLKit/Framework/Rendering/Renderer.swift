@@ -130,8 +130,8 @@ public final class Renderer {
                 result += try render(element: element)
             }
             
-            if let stringkey = content as? LocalizedStringKey {
-                result += try render(stringkey: stringkey)
+            if let string = content as? LocalizedString {
+                result += try render(localized: string)
             }
             
             if let modifier = content as? EnvironmentModifier {
@@ -205,8 +205,8 @@ public final class Renderer {
                     result += try render(element: element)
                 }
                 
-                if let stringkey = content as? LocalizedStringKey {
-                    result += try render(stringkey: stringkey)
+                if let string = content as? LocalizedString {
+                    result += try render(localized: string)
                 }
                 
                 if let modifier = content as? EnvironmentModifier {
@@ -327,8 +327,8 @@ public final class Renderer {
                     result += try render(element: element)
                 }
                 
-                if let stringkey = content as? LocalizedStringKey {
-                    result += try render(stringkey: stringkey)
+                if let string = content as? LocalizedString {
+                    result += try render(localized: string)
                 }
                 
                 if let value = content as? EnvironmentValue {
@@ -357,14 +357,14 @@ public final class Renderer {
     }
     
     /// Renders a localized string key.
-    private func render(stringkey: LocalizedStringKey) throws -> String {
+    private func render(localized string: LocalizedString) throws -> String {
         
         guard let localization = self.localization else {
             throw Errors.missingLocalization
         }
         
         do {
-            return try localization.localize(key: stringkey, for: environment.locale)
+            return try localization.localize(string: string, for: environment.locale)
             
         } catch Localization.Errors.missingKey(let key, let locale) {
             
@@ -374,7 +374,7 @@ public final class Renderer {
                 logger.warning("Unable to find translation key '\(key)' for the locale '\(locale)'.")
                 
                 // Seems not, let's try to recover by using the fallback
-                return try localization.localize(key: stringkey)
+                return try localization.localize(string: string)
                 
             } else {
                 // Recovery didn't work out. Let's face the truth

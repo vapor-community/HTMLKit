@@ -175,6 +175,12 @@ public class Localization {
                     translation = translation.replacingCharacters(in: range, with: String(intValue))
                 }
                 
+            case let floatValue as Float:
+                
+                if let range = translation.range(of: "%do") {
+                    translation = translation.replacingCharacters(in: range, with: String(floatValue))
+                }
+                
             default:
                 break
             }
@@ -188,7 +194,7 @@ public class Localization {
     ///   - locale: The locale to use when retrieving the translation
     ///
     /// - Returns: The translation
-    public func localize(key: LocalizedStringKey, for locale: Locale? = nil) throws -> String {
+    public func localize(string: LocalizedString, for locale: Locale? = nil) throws -> String {
         
         guard let fallback = self.locale else {
             throw Errors.noFallback
@@ -204,17 +210,17 @@ public class Localization {
             throw Errors.missingTable(currentLocale.tag)
         }
         
-        if let table = key.table {
+        if let table = string.table {
             
             guard let translationTable = translationTables.first(where: { $0.name == table }) else {
                 throw Errors.unknownTable(table, currentLocale.tag)
             }
             
-            guard var translation = translationTable.retrieve(for: key.key) else {
-                throw Errors.missingKey(key.key, currentLocale.tag)
+            guard var translation = translationTable.retrieve(for: string.key.value) else {
+                throw Errors.missingKey(string.key.value, currentLocale.tag)
             }
         
-            if let interpolation = key.interpolation {
+            if let interpolation = string.key.interpolation {
                 interpolate(arguments: interpolation, to: &translation, for: currentLocale)
             }
             
@@ -224,9 +230,9 @@ public class Localization {
         
         for translationTable in translationTables {
             
-            if var translation = translationTable.retrieve(for: key.key) {
+            if var translation = translationTable.retrieve(for: string.key.value) {
                 
-                if let interpolation = key.interpolation {
+                if let interpolation = string.key.interpolation {
                     interpolate(arguments: interpolation, to: &translation, for: currentLocale)
                 }
                 
@@ -234,7 +240,7 @@ public class Localization {
             }
         }
         
-        throw Errors.missingKey(key.key, currentLocale.tag)
+        throw Errors.missingKey(string.key.value, currentLocale.tag)
     }
 }
 

@@ -1,6 +1,3 @@
-/* A friendly greeting. */
-"greeting.world" = "Hello World";
-
-/* A friendly greeting. */
-"greeting.person" = "Hello %st";
+/* A string key with a namespace pattern */
+"hello.world" = "Hello World";
 

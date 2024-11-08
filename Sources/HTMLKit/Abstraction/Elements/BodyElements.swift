@@ -1720,8 +1720,8 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
 extension Heading1: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
@@ -1997,8 +1997,8 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
 extension Heading2: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
@@ -2274,8 +2274,8 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
 extension Heading3: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
@@ -2551,8 +2551,8 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
 extension Heading4: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
@@ -2828,8 +2828,8 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
 extension Heading5: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
@@ -3105,8 +3105,8 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
 extension Heading6: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
@@ -4462,8 +4462,8 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
 extension Paragraph: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
@@ -5278,8 +5278,8 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 
 extension Blockquote: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
@@ -6857,8 +6857,8 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
 extension Anchor: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
@@ -7674,8 +7674,8 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 
 extension Small: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
@@ -7875,8 +7875,8 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
 
 extension StrikeThrough: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
@@ -12387,8 +12387,8 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
 
 extension Italic: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
@@ -12664,8 +12664,8 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 
 extension Bold: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
@@ -12941,8 +12941,8 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
 extension Underline: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 

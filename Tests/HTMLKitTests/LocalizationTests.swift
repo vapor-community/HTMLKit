@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file tests the localization.
- */
-
 import HTMLKit
 import XCTest
 
@@ -24,7 +19,7 @@ final class LocalizationTests: XCTestCase {
         struct MainView: View {
             
             var body: Content {
-                Heading1("greeting.world")
+                Heading1("hello.world")
             }
         }
         
@@ -44,18 +39,24 @@ final class LocalizationTests: XCTestCase {
         struct TestView: View {
             
             var body: Content {
-                Heading1("greeting.person", interpolation: "John Doe")
+                Paragraph("String: \("John Doe")")
+                Paragraph("Integer: \(31)")
+                Paragraph("Double: \(12.5)")
+                Paragraph("Date: \(Date.distantPast)")
             }
         }
         
         XCTAssertEqual(try renderer!.render(view: TestView()),
                        """
-                       <h1>Hello John Doe</h1>
+                       <p>String: John Doe</p>\
+                       <p>Integer: 31</p>\
+                       <p>Double: 12.5</p>\
+                       <p>Date: 01/01/0001</p>
                        """
         )
     }
     
-    /// Tests the localization of string interpolation with multiple arguments
+    /// Tests the localization of string interpolation with multiple arguments and various data types
     ///
     /// The test expects the key to exist in the default translation table, to be correctly formatted
     /// with the arguments in the proper order, and to be rendered accurately.
@@ -64,13 +65,17 @@ final class LocalizationTests: XCTestCase {
         struct TestView: View {
             
             var body: Content {
-                Paragraph("personal.intro", interpolation: "John Doe", 31, "Mozart", 5, 21.5)
+                Paragraph("Hello \("Jane") and \("John Doe")")
+                Paragraph("Do you \(2) have time at \(Date.distantPast)?")
+                Paragraph("cheers.person \("Jean")")
             }
         }
         
         XCTAssertEqual(try renderer!.render(view: TestView()),
                        """
-                       <p>Hello, I am John Doe, and I am 31 years old. I have a dog named Mozart. He is 5 and 21.5 inches tall.</p>
+                       <p>Hello Jane and John Doe</p>\
+                       <p>Do you 2 have time at 01/01/0001?</p>\
+                       <p>Cheers Jean</p>
                        """
         )
     }
@@ -83,7 +88,7 @@ final class LocalizationTests: XCTestCase {
         struct TestView: View {
             
             var body: Content {
-                Paragraph("greeting.world", tableName: "web")
+                Paragraph("hello.world", tableName: "web")
             }
         }
         
@@ -120,7 +125,7 @@ final class LocalizationTests: XCTestCase {
             
             var body: Content {
                 MainView {
-                    Heading1("greeting.world")
+                    Heading1("hello.world")
                         .environment(key: \.locale)
                 }
             }
@@ -236,7 +241,7 @@ final class LocalizationTests: XCTestCase {
             
             var body: Content {
                 MainView {
-                    Heading1("greeting.person", interpolation: "John Doe")
+                    Heading1("Hello \("John Doe")")
                         .environment(key: \.locale)
                 }
             }
