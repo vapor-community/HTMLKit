@@ -1,34 +1,31 @@
-import Foundation
-
 /// A type that represents a translation table
-@_documentation(visibility: internal)
-public class TranslationTable {
+///
+/// A translation table stores multiple localized strings, mapping unique string keys to their corresponding translations
+internal struct TranslationTable {
     
     /// The name of the table
-    public let name: String
+    internal let name: String
     
     /// The translations in the table
-    private var translations: [String: String]
+    private let translations: [String: String]
     
-    /// Initiates a translation table
-    public init(name: String, translations: [String: String]) {
+    /// Initializes a translation table
+    ///
+    /// - Parameters:
+    ///   - name: The name of the translation table
+    ///   - translations: The translations
+    internal init(name: String, translations: [String: String]) {
         
         self.name = name
         self.translations = translations
     }
     
-    /// Retrieves a translation
-    public func retrieve(for key: String) -> String? {
-        
-        if let translation = self.translations[key] {
-            return translation
-        }
-        
-        return nil
-    }
-    
-    /// Adds und updates a translation
-    public func upsert(_ translation: String, for key: String) {
-        self.translations[key] = translation
+    /// Retrieves the translation for the specified key
+    ///
+    /// - Parameter key: The string key
+    /// 
+    /// - Returns: The translation
+    internal func retrieve(for key: String) -> String? {
+        return translations[key]
     }
 }
