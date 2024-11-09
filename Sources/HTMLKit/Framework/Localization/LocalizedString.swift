@@ -5,7 +5,7 @@ import Foundation
 public struct LocalizedString: Content {
 
     /// The key of the translation value
-    public let key: LocalizedStringKey
+    internal let key: LocalizedStringKey
     
     /// The name of the translation table
     internal let table: String?

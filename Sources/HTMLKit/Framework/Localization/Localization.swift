@@ -137,52 +137,52 @@ public class Localization {
         return localizationTables
     }
     
+    /// Replace the value with the placeholder
+    ///
+    /// - Parameters:
+    ///   - placeholder: The placeholder to be replaced in
+    ///   - value: The value to replace the placeholder with
+    ///   - translation: The string in which the replacement will occur
+    private func replace(placeholder: String, with value: String, on translation: inout String) {
+        
+        if let range = translation.range(of: placeholder) {
+            translation = translation.replacingCharacters(in: range, with: value)
+        }
+    }
+    
     /// Apply interpolation values to the translation for the given locale
     ///
     /// - Parameters:
-    ///   - arguments: An array of values used to replace placeholders within the translation string
-    ///   - translation: The translation string
-    ///   - locale: The locale
-    private func interpolate(arguments: [Any], to translation: inout String, for locale: Locale) {
+    ///   - arguments: The arguments to replace the placeholders with
+    ///   - translation: The string in which the interpolation will occur
+    ///   - locale: The locale to respect during interpolation
+    private func interpolate(arguments: [InterpolationArgument], to translation: inout String, for locale: Locale) {
         
         for argument in arguments {
-
+            
             switch argument {
-            case let stringValue as String:
+            case .int(let int):
                 
-                if let range = translation.range(of: "%st") {
-                    translation = translation.replacingCharacters(in: range, with: stringValue)
-                }
+                replace(placeholder: argument.placeholder, with: String(int), on: &translation)
                 
-            case let dateValue as Date:
+            case .string(let string):
+                
+                replace(placeholder: argument.placeholder, with: string, on: &translation)
+                
+            case .double(let double):
+                
+                replace(placeholder: argument.placeholder, with: String(double), on: &translation)
+                
+            case .float(let float):
+                
+                replace(placeholder: argument.placeholder, with: String(float), on: &translation)
+                
+            case .date(let date):
                 
                 let formatter = DateFormatter()
                 formatter.dateFormat = locale.dateFormat
                 
-                if let range = translation.range(of: "%dt") {
-                    translation = translation.replacingCharacters(in: range, with: formatter.string(from: dateValue))
-                }
-                
-            case let doubleValue as Double:
-                
-                if let range = translation.range(of: "%do") {
-                    translation = translation.replacingCharacters(in: range, with: String(doubleValue))
-                }
-                
-            case let intValue as Int:
-                
-                if let range = translation.range(of: "%in") {
-                    translation = translation.replacingCharacters(in: range, with: String(intValue))
-                }
-                
-            case let floatValue as Float:
-                
-                if let range = translation.range(of: "%do") {
-                    translation = translation.replacingCharacters(in: range, with: String(floatValue))
-                }
-                
-            default:
-                break
+                replace(placeholder: argument.placeholder, with: formatter.string(from: date), on: &translation)
             }
         }
     }
@@ -243,4 +243,3 @@ public class Localization {
         throw Errors.missingKey(string.key.value, currentLocale.tag)
     }
 }
-

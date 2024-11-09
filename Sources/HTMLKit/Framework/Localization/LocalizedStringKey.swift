@@ -4,17 +4,17 @@ import Foundation
 public struct LocalizedStringKey {
  
     /// The actual key value
-    public let value: String
+    internal let value: String
     
     /// The arguments for the interpolation
-    public var interpolation: [Any]?
+    internal var interpolation: [InterpolationArgument]?
     
     /// Initializes a string key for localization
     ///
     /// - Parameters:
     ///   - value: The key value
     ///   - interpolation:  An array of values that will replace placeholders within the translation string.
-    public init(value: String, interpolation: [Any]? = nil) {
+    public init(value: String, interpolation: [InterpolationArgument]? = nil) {
         
         self.value = value
         self.interpolation = interpolation
@@ -35,7 +35,7 @@ extension LocalizedStringKey: ExpressibleByStringLiteral, ExpressibleByStringInt
         
         var key: String = ""
         
-        var arguments: [Any] = []
+        var arguments: [InterpolationArgument] = []
         
         public init(literalCapacity: Int, interpolationCount: Int) {
             
@@ -50,37 +50,47 @@ extension LocalizedStringKey: ExpressibleByStringLiteral, ExpressibleByStringInt
         
         public mutating func appendInterpolation(_ value: String) {
             
-            key += "%st"
+            let argument = InterpolationArgument.string(value)
             
-            arguments.append(value)
+            key += argument.placeholder
+            
+            arguments.append(argument)
         }
         
         public mutating func appendInterpolation(_ value: Int) {
             
-            key += "%in"
+            let argument = InterpolationArgument.int(value)
             
-            arguments.append(value)
+            key += argument.placeholder
+            
+            arguments.append(argument)
         }
         
         public mutating func appendInterpolation(_ value: Double) {
             
-            key += "%do"
+            let argument = InterpolationArgument.double(value)
             
-            arguments.append(value)
+            key += argument.placeholder
+            
+            arguments.append(argument)
         }
         
         public mutating func appendInterpolation(_ value: Float) {
             
-            key += "%do"
+            let argument = InterpolationArgument.float(value)
             
-            arguments.append(value)
+            key += argument.placeholder
+            
+            arguments.append(.float(value))
         }
         
         public mutating func appendInterpolation(_ value: Date) {
             
-            key += "%dt"
+            let argument = InterpolationArgument.date(value)
             
-            arguments.append(value)
+            key += argument.placeholder
+            
+            arguments.append(argument)
         }
     }
 }
