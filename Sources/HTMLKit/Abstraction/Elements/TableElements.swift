@@ -2321,6 +2321,10 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(scope: value)
     }
     
+    public func scope(_ value: Values.Scope) -> HeaderCell {
+        return mutate(scope: value.rawValue)
+    }
+    
     public func popover(_ value: Values.Popover.State) -> HeaderCell {
         return mutate(popover: value.rawValue)
     }
