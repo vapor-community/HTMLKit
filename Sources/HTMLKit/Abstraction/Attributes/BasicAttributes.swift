@@ -1087,14 +1087,22 @@ extension IdentifierAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the ismap handler.
+/// A type that provides the `isMap` modifier.
 @_documentation(visibility: internal)
 public protocol IsMapAttribute: Attribute {
  
-    /// The function represents the html-attribute 'ismap'.
+    /// Mark an element as a server-side image map.
     ///
-    /// ```html
-    /// <tag ismap />
+    /// It enables the element to send click coordinates to the server,
+    /// allowing interactions with the element.
+    ///
+    /// ```swift
+    /// Anchor {
+    ///     Image()
+    ///         .source("...png")
+    ///         .isMap()
+    /// }
+    /// .reference("https://...")
     /// ```
     func isMap() -> Self
 }
