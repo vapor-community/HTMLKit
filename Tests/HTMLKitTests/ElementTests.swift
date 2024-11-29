@@ -1142,12 +1142,12 @@ final class ElementTests: XCTestCase {
     func testAreaElement() throws {
         
         let view = TestView {
-            Area {}
+            Area()
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <area></area>
+                       <area>
                        """
         )
     }
