@@ -2189,16 +2189,26 @@ extension SandboxAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the scope handler.
+/// A type that provides the `scope` modifier.
 @_documentation(visibility: internal)
 public protocol ScopeAttribute: Attribute {
     
-    /// The function represents the html-attribute 'scope'.
+    /// Define the scope for a header cell
     ///
-    /// ```html
-    /// <tag scope="" />
+    /// It specifies wether the cell is for a column, row or a group of columns
+    /// and rows.
+    ///
+    /// ```swift
+    /// TableRow {
+    ///     HeaderCell {
+    ///         "..."
+    ///     }
+    ///     .scope(.column)
+    /// }
     /// ```
-    func scope(_ value: String) -> Self
+    ///
+    /// - Parameter value: The scope of the header cell
+    func scope(_ value: Values.Scope) -> Self
 }
 
 extension ScopeAttribute where Self: ContentNode {

@@ -2316,9 +2316,14 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func headers(_ value: String) -> HeaderCell {
         return mutate(headers: value)
     }
-    
+
+    @available(*, deprecated, message: "The scope attribute is actually an enumerated attribute. Use the scope(_: Scope) modifier instead.")
     public func scope(_ value: String) -> HeaderCell {
         return mutate(scope: value)
+    }
+    
+    public func scope(_ value: Values.Scope) -> HeaderCell {
+        return mutate(scope: value.rawValue)
     }
     
     public func popover(_ value: Values.Popover.State) -> HeaderCell {

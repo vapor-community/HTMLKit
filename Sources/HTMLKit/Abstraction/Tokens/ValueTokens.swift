@@ -958,4 +958,27 @@ public enum Values {
             case hide
         }
     }
+    
+    /// A enumeration of potential scopes for a header cell.
+    ///
+    /// ```swift
+    /// HeaderCell {
+    ///     "..."
+    /// }
+    /// .scope(.column)
+    /// ```
+    public enum Scope: String {
+        
+        /// The cell applies to subsequent cells in the same row.
+        case row
+        
+        /// The cell applies to subsequent cells in the same column.
+        case column = "col"
+        
+        /// The cell applies to all remaining cells in the row group.
+        case rowGroup = "rowgroup"
+        
+        /// The cell applies to all remaining cells in the column group.
+        case columnGroup = "colgroup"
+    }
 }
