@@ -143,9 +143,9 @@ final class LocalizationTests: XCTestCase {
     /// Tests the behavior when a localization key is missing
     ///
     /// A key is considered as missing if it cannot be found in the translation table. In this case,
-    /// the renderer is expected to throw an error.
+    /// the renderer is expected to use the fallback literal string.
     func testMissingKey() throws {
-         
+        
         struct MainView: View {
             
             var body: Content {
@@ -153,15 +153,11 @@ final class LocalizationTests: XCTestCase {
             }
         }
         
-        XCTAssertThrowsError(try renderer!.render(view: MainView())) { error in
-            
-            guard let localizationError = error as? Localization.Errors else {
-                return XCTFail("Unexpected error type: \(error)")
-            }
-        
-            XCTAssertEqual(localizationError, .missingKey("unknown.key", "en-GB"))
-            XCTAssertEqual(localizationError.description, "Unable to find translation key 'unknown.key' for the locale 'en-GB'.")
-        }
+        XCTAssertEqual(try renderer!.render(view: MainView()),
+                       """
+                       <h1>unknown.key</h1>
+                       """
+        )
     }
     
     /// Tests the behavior when a translation table is missing

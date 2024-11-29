@@ -24,9 +24,6 @@ public final class Renderer {
         
         /// Indicates a missing environment value.
         case environmentValueNotFound
-        
-        /// Indicates a missing localization configuration.
-        case missingLocalization
 
         /// A brief error description.
         public var description: String {
@@ -43,9 +40,6 @@ public final class Renderer {
                 
             case .environmentObjectNotFound:
                 return "Unable to retrieve environment object."
-                
-            case .missingLocalization:
-                return "The localization seem to missing."
             }
         }
     }
@@ -360,7 +354,8 @@ public final class Renderer {
     private func render(localized string: LocalizedString) throws -> String {
         
         guard let localization = self.localization else {
-            throw Errors.missingLocalization
+            // Bail early with the fallback since the localization isn't set up
+            return string.key.literal
         }
         
         do {
@@ -368,18 +363,16 @@ public final class Renderer {
             
         } catch Localization.Errors.missingKey(let key, let locale) {
             
+            logger.warning("Unable to find translation key '\(key)' for the locale '\(locale)'.")
+            
             // Check if the fallback was already in charge
             if environment.locale != nil {
                 
-                logger.warning("Unable to find translation key '\(key)' for the locale '\(locale)'.")
-                
                 // Seems not, let's try to recover by using the fallback
                 return try localization.localize(string: string)
-                
-            } else {
-                // Recovery didn't work out. Let's face the truth
-                throw Localization.Errors.missingKey(key, locale)
             }
+            
+            return string.key.literal
         }
     }
     
