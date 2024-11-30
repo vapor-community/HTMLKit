@@ -8,26 +8,34 @@
 
 import OrderedCollections
 
-/// The element defines an image map.
+/// A element that defines an image map area.
 ///
-/// ```html
-/// <area></area>
+/// Use `Area` to define specific clickable regions within an image map.
+///
+/// ```swift
+/// Image()
+///     .source(...png)
+///     .useMap("#...")
+/// Map {
+///     Area()
+///         .coordinates("...")
+/// }
+/// .name("...")
 /// ```
-public struct Area: ContentNode, MapElement {
+public struct Area: EmptyNode, MapElement {
 
     internal var name: String { "area" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [Content]
-
-    public init(@ContentBuilder<Content> content: () -> [Content]) {
-        self.content = content()
-    }
+    /// Creates a area
+    public init() {}
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    @available(*, deprecated, message: "The area element is actually an empty element. Use Area() instead.")
+    public init(@ContentBuilder<Content> content: () -> [Content]) {}
+    
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
-        self.content = content
     }
     
     public func modify(if condition: Bool, element: (Area) -> Area) -> Area {

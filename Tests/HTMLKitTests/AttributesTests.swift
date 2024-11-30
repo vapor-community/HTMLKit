@@ -435,8 +435,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(sandbox: "sandbox")
         }
         
-        func scope(_ value: String) -> Tag {
-            return self.mutate(scope: value)
+        func scope(_ value: Values.Scope) -> Tag {
+            return self.mutate(scope: value.rawValue)
         }
         
         func shape(_ value: Values.Shape) -> Tag {
@@ -1832,12 +1832,18 @@ final class AttributesTests: XCTestCase {
     func testScopeAttribute() throws {
         
         let view = TestView {
-            Tag {}.scope("scope")
+            Tag {}.scope(.column)
+            Tag {}.scope(.row)
+            Tag {}.scope(.columnGroup)
+            Tag {}.scope(.rowGroup)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag scope="scope"></tag>
+                       <tag scope="col"></tag>\
+                       <tag scope="row"></tag>\
+                       <tag scope="colgroup"></tag>\
+                       <tag scope="rowgroup"></tag>
                        """
         )
     }
