@@ -124,8 +124,13 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Html {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Html {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Html {

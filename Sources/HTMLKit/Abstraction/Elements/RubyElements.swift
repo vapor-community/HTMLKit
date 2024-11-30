@@ -116,8 +116,13 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> RubyText {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> RubyText {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> RubyText {
@@ -386,10 +391,15 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> RubyPronunciation {
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> RubyPronunciation {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> RubyPronunciation {
         return mutate(is: value)
     }

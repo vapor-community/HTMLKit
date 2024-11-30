@@ -176,8 +176,13 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Caption {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Caption {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Caption {
@@ -446,8 +451,13 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> ColumnGroup {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> ColumnGroup {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> ColumnGroup {
@@ -644,10 +654,15 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Column {
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Column {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Column {
         return mutate(is: value)
     }
@@ -842,8 +857,13 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> TableBody {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> TableBody {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> TableBody {
@@ -1120,8 +1140,13 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> TableHead {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> TableHead {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> TableHead {
@@ -1398,8 +1423,13 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> TableFoot {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> TableFoot {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> TableFoot {
@@ -1668,8 +1698,13 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> TableRow {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> TableRow {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> TableRow {
@@ -1946,8 +1981,13 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> DataCell {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> DataCell {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> DataCell {
@@ -2228,8 +2268,13 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> HeaderCell {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> HeaderCell {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> HeaderCell {

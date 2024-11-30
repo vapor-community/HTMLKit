@@ -106,8 +106,13 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> OptionGroup {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> OptionGroup {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> OptionGroup {
@@ -393,8 +398,13 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Option {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Option {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Option {
@@ -690,8 +700,13 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Legend {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Legend {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Legend {
@@ -960,8 +975,13 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Summary {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Summary {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Summary {

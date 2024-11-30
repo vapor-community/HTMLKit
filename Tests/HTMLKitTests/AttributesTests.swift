@@ -82,8 +82,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(id: value)
         }
         
-        func inputMode(_ value: String) -> Tag {
-            return self.mutate(inputmode: value)
+        func inputMode(_ value: Values.Mode) -> Tag {
+            return mutate(inputmode: value.rawValue)
         }
         
         func `is`(_ value: String) -> Tag {
@@ -2748,6 +2748,33 @@ final class AttributesTests: XCTestCase {
                        <tag inert="inert"></tag>\
                        <tag></tag>\
                        <tag inert="inert"></tag>
+                       """
+        )
+    }
+    
+    func testInputModeAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.inputMode(.decimal)
+            Tag {}.inputMode(.email)
+            Tag {}.inputMode(.none)
+            Tag {}.inputMode(.numeric)
+            Tag {}.inputMode(.phone)
+            Tag {}.inputMode(.search)
+            Tag {}.inputMode(.text)
+            Tag {}.inputMode(.url)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag inputmode="decimal"></tag>\
+                       <tag inputmode="email"></tag>\
+                       <tag inputmode="none"></tag>\
+                       <tag inputmode="numeric"></tag>\
+                       <tag inputmode="tel"></tag>\
+                       <tag inputmode="search"></tag>\
+                       <tag inputmode="text"></tag>\
+                       <tag inputmode="url"></tag>
                        """
         )
     }
