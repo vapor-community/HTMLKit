@@ -94,6 +94,10 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     public func inputMode(_ value: String) -> Input {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Input {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Input {
         return mutate(is: value)
@@ -436,6 +440,10 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func inputMode(_ value: String) -> Label {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Label {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Label {
         return mutate(is: value)
@@ -717,6 +725,10 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
     public func inputMode(_ value: String) -> Select {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Select {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Select {
         return mutate(is: value)
@@ -956,6 +968,10 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func inputMode(_ value: String) -> TextArea {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> TextArea {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> TextArea {
@@ -1302,6 +1318,10 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     public func inputMode(_ value: String) -> Button {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Button {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Button {
         return mutate(is: value)
@@ -1619,6 +1639,10 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func inputMode(_ value: String) -> Fieldset {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Fieldset {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Fieldset {

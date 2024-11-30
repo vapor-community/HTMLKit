@@ -100,6 +100,10 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(inputmode: value)
     }
     
+    public func inputMode(_ value: Values.Mode) -> Title {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Title {
         return mutate(is: value)
     }
@@ -287,6 +291,10 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
     
     public func inputMode(_ value: String) -> Base {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Base {
+        return mutate(inputmode: value.rawValue)
     }
     
     public func `is`(_ value: String) -> Base {
@@ -484,6 +492,10 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
 
     public func inputMode(_ value: String) -> Meta {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Meta {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Meta {
@@ -699,6 +711,10 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     public func inputMode(_ value: String) -> Style {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Style {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Style {
         return mutate(is: value)
@@ -899,6 +915,10 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
 
     public func inputMode(_ value: String) -> Link {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Link {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Link {

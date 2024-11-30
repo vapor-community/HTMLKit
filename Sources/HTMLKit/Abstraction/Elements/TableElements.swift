@@ -179,6 +179,10 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func inputMode(_ value: String) -> Caption {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Caption {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Caption {
         return mutate(is: value)
@@ -449,6 +453,10 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     public func inputMode(_ value: String) -> ColumnGroup {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> ColumnGroup {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> ColumnGroup {
         return mutate(is: value)
@@ -648,6 +656,10 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Column {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Column {
         return mutate(is: value)
     }
@@ -844,6 +856,10 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func inputMode(_ value: String) -> TableBody {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> TableBody {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> TableBody {
@@ -1123,6 +1139,10 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func inputMode(_ value: String) -> TableHead {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> TableHead {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> TableHead {
         return mutate(is: value)
@@ -1401,6 +1421,10 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func inputMode(_ value: String) -> TableFoot {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> TableFoot {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> TableFoot {
         return mutate(is: value)
@@ -1670,6 +1694,10 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func inputMode(_ value: String) -> TableRow {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> TableRow {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> TableRow {
@@ -1948,6 +1976,10 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func inputMode(_ value: String) -> DataCell {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> DataCell {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> DataCell {
@@ -2230,6 +2262,10 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 
     public func inputMode(_ value: String) -> HeaderCell {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> HeaderCell {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> HeaderCell {

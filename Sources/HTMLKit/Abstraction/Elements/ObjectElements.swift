@@ -104,6 +104,10 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
     public func inputMode(_ value: String) -> Parameter {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Parameter {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Parameter {
         return mutate(is: value)

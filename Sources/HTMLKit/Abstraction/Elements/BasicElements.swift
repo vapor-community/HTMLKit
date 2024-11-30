@@ -127,6 +127,10 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
     public func inputMode(_ value: String) -> Html {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Html {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Html {
         return mutate(is: value)

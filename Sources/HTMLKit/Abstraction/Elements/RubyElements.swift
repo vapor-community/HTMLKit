@@ -119,6 +119,10 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func inputMode(_ value: String) -> RubyText {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> RubyText {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> RubyText {
         return mutate(is: value)
@@ -390,6 +394,10 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> RubyPronunciation {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> RubyPronunciation {
         return mutate(is: value)
     }

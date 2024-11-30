@@ -110,6 +110,10 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> ListItem {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> ListItem {
         return mutate(is: value)
     }

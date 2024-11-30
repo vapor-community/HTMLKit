@@ -100,6 +100,10 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Area {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Area {
         return mutate(is: value)
     }

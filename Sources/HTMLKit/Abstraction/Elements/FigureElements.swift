@@ -109,6 +109,10 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     public func inputMode(_ value: String) -> FigureCaption {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> FigureCaption {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> FigureCaption {
         return mutate(is: value)

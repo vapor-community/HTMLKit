@@ -459,6 +459,10 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func inputMode(_ value: String) -> Article {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Article {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Article {
         return mutate(is: value)
@@ -729,6 +733,10 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func inputMode(_ value: String) -> Section {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Section {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Section {
         return mutate(is: value)
@@ -998,6 +1006,10 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 
     public func inputMode(_ value: String) -> Navigation {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Navigation {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Navigation {
@@ -1270,6 +1282,10 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Aside {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Aside {
         return mutate(is: value)
     }
@@ -1538,6 +1554,10 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func inputMode(_ value: String) -> Heading1 {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Heading1 {
+        return mutate(inputmode: value.rawValue)
     }
     
     public func `is`(_ value: String) -> Heading1 {
@@ -1817,6 +1837,10 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(inputmode: value)
     }
     
+    public func inputMode(_ value: Values.Mode) -> Heading2 {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Heading2 {
         return mutate(is: value)
     }
@@ -2092,6 +2116,10 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func inputMode(_ value: String) -> Heading3 {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Heading3 {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Heading3 {
@@ -2370,6 +2398,10 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func inputMode(_ value: String) -> Heading4 {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Heading4 {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Heading4 {
         return mutate(is: value)
@@ -2647,6 +2679,10 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func inputMode(_ value: String) -> Heading5 {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Heading5 {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Heading5 {
         return mutate(is: value)
@@ -2923,6 +2959,10 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func inputMode(_ value: String) -> Heading6 {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Heading6 {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Heading6 {
@@ -3202,6 +3242,10 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> HeadingGroup {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> HeadingGroup {
         return mutate(is: value)
     }
@@ -3470,6 +3514,10 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
 
     public func inputMode(_ value: String) -> Header {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Header {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Header {
@@ -3741,6 +3789,10 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     public func inputMode(_ value: String) -> Footer {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Footer {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Footer {
         return mutate(is: value)
@@ -4011,6 +4063,10 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func inputMode(_ value: String) -> Address {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Address {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Address {
         return mutate(is: value)
@@ -4280,6 +4336,10 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func inputMode(_ value: String) -> Paragraph {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Paragraph {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Paragraph {
@@ -4553,6 +4613,10 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
     public func inputMode(_ value: String) -> HorizontalRule {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> HorizontalRule {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> HorizontalRule {
         return mutate(is: value)
@@ -4822,6 +4886,10 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
 
     public func inputMode(_ value: String) -> PreformattedText {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> PreformattedText {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> PreformattedText {
@@ -5094,6 +5162,10 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Blockquote {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Blockquote {
         return mutate(is: value)
     }
@@ -5373,6 +5445,10 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
 
     public func inputMode(_ value: String) -> OrderedList {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> OrderedList {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> OrderedList {
@@ -5656,6 +5732,10 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     public func inputMode(_ value: String) -> UnorderedList {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> UnorderedList {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> UnorderedList {
         return mutate(is: value)
@@ -5927,6 +6007,10 @@ extension Menu: GlobalAttributes {
         return mutate(inputmode: value)
     }
     
+    public func inputMode(_ value: Values.Mode) -> Menu {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Menu {
         return mutate(is: value)
     }
@@ -6099,6 +6183,10 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
 
     public func inputMode(_ value: String) -> DescriptionList {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> DescriptionList {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> DescriptionList {
@@ -6370,6 +6458,10 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     public func inputMode(_ value: String) -> Figure {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Figure {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Figure {
         return mutate(is: value)
@@ -6639,6 +6731,10 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
     public func inputMode(_ value: String) -> Anchor {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Anchor {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Anchor {
@@ -6954,6 +7050,10 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Emphasize {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Emphasize {
         return mutate(is: value)
     }
@@ -7224,6 +7324,10 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Strong {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Strong {
         return mutate(is: value)
     }
@@ -7492,6 +7596,10 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 
     public func inputMode(_ value: String) -> Small {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Small {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Small {
@@ -7770,6 +7878,10 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
     public func inputMode(_ value: String) -> StrikeThrough {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> StrikeThrough {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> StrikeThrough {
         return mutate(is: value)
@@ -7972,6 +8084,10 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Main {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Main {
         return mutate(is: value)
     }
@@ -8242,6 +8358,10 @@ extension Search: GlobalAttributes {
         return mutate(inputmode: value)
     }
     
+    public func inputMode(_ value: Values.Mode) -> Search {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Search {
         return mutate(is: value)
     }
@@ -8414,6 +8534,10 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func inputMode(_ value: String) -> Division {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Division {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Division {
@@ -8685,6 +8809,10 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func inputMode(_ value: String) -> Definition {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Definition {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Definition {
         return mutate(is: value)
@@ -8955,6 +9083,10 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func inputMode(_ value: String) -> Cite {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Cite {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Cite {
         return mutate(is: value)
@@ -9224,6 +9356,10 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     
     public func inputMode(_ value: String) -> ShortQuote {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> ShortQuote {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> ShortQuote {
@@ -9499,6 +9635,10 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     public func inputMode(_ value: String) -> Abbreviation {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Abbreviation {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Abbreviation {
         return mutate(is: value)
@@ -9770,6 +9910,10 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(inputmode: value)
     }
     
+    public func inputMode(_ value: Values.Mode) -> Ruby {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Ruby {
         return mutate(is: value)
     }
@@ -10038,6 +10182,10 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
 
     public func inputMode(_ value: String) -> Data {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Data {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Data {
@@ -10312,6 +10460,10 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
 
     public func inputMode(_ value: String) -> Time {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Time {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Time {
@@ -10588,6 +10740,10 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Code {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Code {
         return mutate(is: value)
     }
@@ -10856,6 +11012,10 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func inputMode(_ value: String) -> Variable {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Variable {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Variable {
@@ -11128,6 +11288,10 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> SampleOutput {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> SampleOutput {
         return mutate(is: value)
     }
@@ -11396,6 +11560,10 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
 
     public func inputMode(_ value: String) -> KeyboardInput {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> KeyboardInput {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> KeyboardInput {
@@ -11667,6 +11835,10 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func inputMode(_ value: String) -> Subscript {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Subscript {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Subscript {
         return mutate(is: value)
@@ -11935,6 +12107,10 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
 
     public func inputMode(_ value: String) -> Superscript {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Superscript {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Superscript {
@@ -12207,6 +12383,10 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Italic {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Italic {
         return mutate(is: value)
     }
@@ -12482,6 +12662,10 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 
     public func inputMode(_ value: String) -> Bold {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Bold {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Bold {
@@ -12760,6 +12944,10 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func inputMode(_ value: String) -> Underline {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Underline {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Underline {
         return mutate(is: value)
@@ -13037,6 +13225,10 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func inputMode(_ value: String) -> Mark {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Mark {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Mark {
         return mutate(is: value)
@@ -13307,6 +13499,10 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func inputMode(_ value: String) -> Bdi {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Bdi {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Bdi {
         return mutate(is: value)
@@ -13571,6 +13767,10 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 
     public func inputMode(_ value: String) -> Bdo {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Bdo {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Bdo {
@@ -13842,6 +14042,10 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func inputMode(_ value: String) -> Span {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Span {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Span {
         return mutate(is: value)
@@ -14106,6 +14310,10 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
 
     public func inputMode(_ value: String) -> LineBreak {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> LineBreak {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> LineBreak {
@@ -14373,6 +14581,10 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> WordBreak {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> WordBreak {
         return mutate(is: value)
     }
@@ -14643,6 +14855,10 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> InsertedText {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> InsertedText {
         return mutate(is: value)
     }
@@ -14919,6 +15135,10 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
 
     public func inputMode(_ value: String) -> DeletedText {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> DeletedText {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> DeletedText {
@@ -15198,6 +15418,10 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
     public func inputMode(_ value: String) -> Picture {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Picture {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Picture {
         return mutate(is: value)
@@ -15388,6 +15612,10 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Image {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Image {
         return mutate(is: value)
     }
@@ -15701,6 +15929,10 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func inputMode(_ value: String) -> InlineFrame {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> InlineFrame {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> InlineFrame {
         return mutate(is: value)
@@ -15994,6 +16226,10 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func inputMode(_ value: String) -> Embed {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Embed {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Embed {
         return mutate(is: value)
@@ -16283,6 +16519,10 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
     public func inputMode(_ value: String) -> Object {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Object {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Object {
@@ -16577,6 +16817,10 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 
     public func inputMode(_ value: String) -> Video {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Video {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Video {
@@ -16893,6 +17137,10 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func inputMode(_ value: String) -> Audio {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Audio {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Audio {
         return mutate(is: value)
@@ -17200,6 +17448,10 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
     public func inputMode(_ value: String) -> Map {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Map {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Map {
         return mutate(is: value)
@@ -17397,6 +17649,10 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
 
     public func inputMode(_ value: String) -> Form {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Form {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Form {
@@ -17697,6 +17953,10 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> DataList {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> DataList {
         return mutate(is: value)
     }
@@ -17965,6 +18225,10 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
     public func inputMode(_ value: String) -> Output {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Output {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Output {
@@ -18249,6 +18513,10 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Progress {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Progress {
         return mutate(is: value)
     }
@@ -18527,6 +18795,10 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Meter {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Meter {
         return mutate(is: value)
     }
@@ -18821,6 +19093,10 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Details {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Details {
         return mutate(is: value)
     }
@@ -19093,6 +19369,10 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
     public func inputMode(_ value: String) -> Dialog {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Dialog {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Dialog {
@@ -19368,6 +19648,10 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
     public func inputMode(_ value: String) -> Script {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Script {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Script {
         return mutate(is: value)
@@ -19591,6 +19875,10 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> NoScript {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> NoScript {
         return mutate(is: value)
     }
@@ -19783,6 +20071,10 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
 
     public func inputMode(_ value: String) -> Template {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Template {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Template {
@@ -19983,6 +20275,10 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Canvas {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Canvas {
         return mutate(is: value)
     }
@@ -20261,6 +20557,10 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Table {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Table {
         return mutate(is: value)
     }
@@ -20645,6 +20945,10 @@ extension Slot: GlobalAttributes, NameAttribute {
     
     public func inputMode(_ value: String) -> Slot {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Slot {
+        return mutate(inputmode: value.rawValue)
     }
     
     public func `is`(_ value: String) -> Slot {

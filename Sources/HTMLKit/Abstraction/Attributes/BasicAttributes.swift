@@ -1113,16 +1113,19 @@ extension IsMapAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the inputmode handler.
+/// A type that provides the `inputMode` modifier.
 @_documentation(visibility: internal)
 public protocol InputModeAttribute: Attribute {
- 
-    /// The function represents the html-attribute 'inputmode'.
+    
+    /// Set the virtual keyboard mode for the editable element.
     ///
-    /// ```html
-    /// <tag inputmode="" />
+    /// ```swift
+    /// Input()
+    ///     .inputMode(.numeric)
     /// ```
-    func inputMode(_ value: String) -> Self
+    ///
+    /// - Parameter value: The mode to set on
+    func inputMode(_ value: Values.Mode) -> Self
 }
 
 extension InputModeAttribute where Self: ContentNode {

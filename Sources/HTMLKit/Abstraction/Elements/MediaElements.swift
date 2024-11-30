@@ -94,6 +94,10 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     public func inputMode(_ value: String) -> Source {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Source {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Source {
         return mutate(is: value)
@@ -314,6 +318,10 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
 
     public func inputMode(_ value: String) -> Track {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Track {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Track {

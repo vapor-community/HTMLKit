@@ -119,6 +119,10 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func inputMode(_ value: String) -> TermName {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> TermName {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> TermName {
         return mutate(is: value)
@@ -388,6 +392,10 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
 
     public func inputMode(_ value: String) -> TermDefinition {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> TermDefinition {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> TermDefinition {

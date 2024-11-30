@@ -100,6 +100,10 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(inputmode: value)
     }
     
+    public func inputMode(_ value: Values.Mode) -> Head {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Head {
         return mutate(is: value)
     }
@@ -292,6 +296,10 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
 
     public func inputMode(_ value: String) -> Body {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Body {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Body {

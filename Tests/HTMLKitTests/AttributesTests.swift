@@ -82,8 +82,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(id: value)
         }
         
-        func inputMode(_ value: String) -> Tag {
-            return self.mutate(inputmode: value)
+        func inputMode(_ value: Values.Mode) -> Tag {
+            return mutate(inputmode: value.rawValue)
         }
         
         func `is`(_ value: String) -> Tag {

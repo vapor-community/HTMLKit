@@ -109,6 +109,10 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func inputMode(_ value: String) -> OptionGroup {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> OptionGroup {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> OptionGroup {
         return mutate(is: value)
@@ -395,6 +399,10 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
     public func inputMode(_ value: String) -> Option {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Option {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Option {
@@ -693,6 +701,10 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     public func inputMode(_ value: String) -> Legend {
         return mutate(inputmode: value)
     }
+    
+    public func inputMode(_ value: Values.Mode) -> Legend {
+        return mutate(inputmode: value.rawValue)
+    }
 
     public func `is`(_ value: String) -> Legend {
         return mutate(is: value)
@@ -962,6 +974,10 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
 
     public func inputMode(_ value: String) -> Summary {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Summary {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Summary {
