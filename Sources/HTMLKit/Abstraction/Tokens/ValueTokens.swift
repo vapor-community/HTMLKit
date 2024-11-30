@@ -1009,7 +1009,7 @@ public enum Values {
         case search
         
         /// Displays a keyboard for telephone number input.
-        case tel
+        case phone = "tel"
         
         /// Displays a keyboard optimized for URL input.
         case url
