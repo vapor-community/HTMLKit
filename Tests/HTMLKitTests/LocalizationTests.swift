@@ -42,7 +42,7 @@ final class LocalizationTests: XCTestCase {
                 Paragraph("String: \("John Doe")")
                 Paragraph("Integer: \(31)")
                 Paragraph("Double: \(12.5)")
-                Paragraph("Date: \(Date.distantPast)")
+                Paragraph("Date: \(Date(timeIntervalSince1970: 50000))")
             }
         }
         
@@ -51,7 +51,7 @@ final class LocalizationTests: XCTestCase {
                        <p>String: John Doe</p>\
                        <p>Integer: 31</p>\
                        <p>Double: 12.5</p>\
-                       <p>Date: 01/01/0001</p>
+                       <p>Date: 01/01/1970</p>
                        """
         )
     }
@@ -66,7 +66,7 @@ final class LocalizationTests: XCTestCase {
             
             var body: Content {
                 Paragraph("Hello \("Jane") and \("John Doe")")
-                Paragraph("Do you \(2) have time at \(Date.distantPast)?")
+                Paragraph("Do you \(2) have time at \(Date(timeIntervalSince1970: 50000))?")
                 Paragraph("cheers.person \("Jean")")
             }
         }
@@ -74,7 +74,7 @@ final class LocalizationTests: XCTestCase {
         XCTAssertEqual(try renderer!.render(view: TestView()),
                        """
                        <p>Hello Jane and John Doe</p>\
-                       <p>Do you 2 have time at 01/01/0001?</p>\
+                       <p>Do you 2 have time at 01/01/1970?</p>\
                        <p>Cheers Jean</p>
                        """
         )
