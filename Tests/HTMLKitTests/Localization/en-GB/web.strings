@@ -2,23 +2,23 @@
 "hello.world" = "Hello World";
 
 /* String key with namespace pattern and string interpolation */
-"cheers.person %st" = "Cheers %st";
+"cheers.person %@" = "Cheers %@";
 
 /* Interpolation with one value */
-"Hello %st" = "Hello %st";
+"Hello %@" = "Hello %@";
 
 /* Interpolation with multiple values */
-"Hello %st and %st" = "Hello %st and %st";
-"Do you %in have time at %dt?" = "Do you %in have time at %dt?";
+"Hello %@ and %@" = "Hello %@ and %@";
+"Do you %lld have time at %@?" = "Do you %lld have time at %@?";
 
 /* Interpolation with a string value */
-"String: %st" = "String: %st";
+"String: %@" = "String: %@";
 
 /* Interpolation with a integer value */
-"Integer: %in" = "Integer: %in";
+"Integer: %lld" = "Integer: %lld";
 
 /* Interpolation with a double value */
-"Double: %do" = "Double: %do";
+"Double: %f" = "Double: %f";
 
 /* Interpolation with a date value */
-"Date: %dt" = "Date: %dt";
+"Date: %@" = "Date: %@";

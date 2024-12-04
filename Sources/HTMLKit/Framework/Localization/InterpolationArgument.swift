@@ -24,21 +24,22 @@ public enum InterpolationArgument {
     
     /// The placeholder used for string interpolation
     internal var placeholder: String {
+        
         switch self {
         case .int(_):
-            return "%in"
+            return "%lld"
             
         case .string(_):
-            return "%st"
+            return "%@"
             
         case .double(_):
-            return "%do"
+            return "%f"
             
         case .float(_):
-            return "%do"
+            return "%f"
             
         case .date(_):
-            return "%dt"
+            return "%@"
         }
     }
 }
