@@ -1,8 +1,24 @@
-/* A friendly greeting. */
-"greeting.world" = "Hello World";
+/* String key with namespace pattern */
+"hello.world" = "Hello World";
 
-/* A friendly greeting. */
-"greeting.person" = "Hello %st";
+/* String key with namespace pattern and string interpolation */
+"cheers.person %@" = "Cheers %@";
 
-/* A personal indroduction. */
-"personal.intro" = "Hello, I am %st, and I am %in years old. I have a dog named %st. He is %in and %do inches tall.";
+/* Interpolation with one value */
+"Hello %@" = "Hello %@";
+
+/* Interpolation with multiple values */
+"Hello %@ and %@" = "Hello %@ and %@";
+"Do you %lld have time at %@?" = "Do you %lld have time at %@?";
+
+/* Interpolation with a string value */
+"String: %@" = "String: %@";
+
+/* Interpolation with a integer value */
+"Integer: %lld" = "Integer: %lld";
+
+/* Interpolation with a double value */
+"Double: %f" = "Double: %f";
+
+/* Interpolation with a date value */
+"Date: %@" = "Date: %@";

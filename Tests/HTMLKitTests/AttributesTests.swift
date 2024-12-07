@@ -82,8 +82,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(id: value)
         }
         
-        func inputMode(_ value: String) -> Tag {
-            return self.mutate(inputmode: value)
+        func inputMode(_ value: Values.Mode) -> Tag {
+            return mutate(inputmode: value.rawValue)
         }
         
         func `is`(_ value: String) -> Tag {
@@ -435,8 +435,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(sandbox: "sandbox")
         }
         
-        func scope(_ value: String) -> Tag {
-            return self.mutate(scope: value)
+        func scope(_ value: Values.Scope) -> Tag {
+            return self.mutate(scope: value.rawValue)
         }
         
         func shape(_ value: Values.Shape) -> Tag {
@@ -1836,12 +1836,18 @@ final class AttributesTests: XCTestCase {
     func testScopeAttribute() throws {
         
         let view = TestView {
-            Tag {}.scope("scope")
+            Tag {}.scope(.column)
+            Tag {}.scope(.row)
+            Tag {}.scope(.columnGroup)
+            Tag {}.scope(.rowGroup)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag scope="scope"></tag>
+                       <tag scope="col"></tag>\
+                       <tag scope="row"></tag>\
+                       <tag scope="colgroup"></tag>\
+                       <tag scope="rowgroup"></tag>
                        """
         )
     }
@@ -2759,6 +2765,33 @@ final class AttributesTests: XCTestCase {
                        <tag inert="inert"></tag>\
                        <tag></tag>\
                        <tag inert="inert"></tag>
+                       """
+        )
+    }
+    
+    func testInputModeAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.inputMode(.decimal)
+            Tag {}.inputMode(.email)
+            Tag {}.inputMode(.none)
+            Tag {}.inputMode(.numeric)
+            Tag {}.inputMode(.phone)
+            Tag {}.inputMode(.search)
+            Tag {}.inputMode(.text)
+            Tag {}.inputMode(.url)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag inputmode="decimal"></tag>\
+                       <tag inputmode="email"></tag>\
+                       <tag inputmode="none"></tag>\
+                       <tag inputmode="numeric"></tag>\
+                       <tag inputmode="tel"></tag>\
+                       <tag inputmode="search"></tag>\
+                       <tag inputmode="text"></tag>\
+                       <tag inputmode="url"></tag>
                        """
         )
     }

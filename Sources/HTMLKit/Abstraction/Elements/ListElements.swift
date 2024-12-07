@@ -106,10 +106,15 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> ListItem {
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> ListItem {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> ListItem {
         return mutate(is: value)
     }

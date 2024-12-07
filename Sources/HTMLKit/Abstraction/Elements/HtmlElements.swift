@@ -96,8 +96,13 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return self
     }
     
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Head {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Head {
+        return mutate(inputmode: value.rawValue)
     }
     
     public func `is`(_ value: String) -> Head {
@@ -290,8 +295,13 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Body {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Body {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Body {
