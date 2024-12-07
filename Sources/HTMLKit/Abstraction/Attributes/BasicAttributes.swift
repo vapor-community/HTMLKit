@@ -2638,6 +2638,41 @@ extension TypeAttribute where Self: EmptyNode {
     }
 }
 
+/// A type that provides the `useMap` modifier
+@_documentation(visibility: internal)
+public protocol UseMapAttribute: Attribute {
+    
+    /// Link the element with an associated map.
+    ///
+    /// ```swift
+    /// Image()
+    ///     .source("....png")
+    ///     .useMap("...")
+    /// Map {
+    ///     Area()
+    ///         .shape(.circle)
+    ///         .coordinates(...)
+    /// }
+    /// .name("...")
+    /// ```
+    /// - Parameter name: The name of the map to link to
+    func useMap(_ name: String) -> Self
+}
+
+extension UseMapAttribute where Self: ContentNode {
+    
+    internal func mutate(usemap value: String) -> Self {
+        return self.mutate(key: "usemap", value: "#\(value)")
+    }
+}
+
+extension UseMapAttribute where Self: EmptyNode {
+    
+    internal func mutate(usemap value: String) -> Self {
+        return self.mutate(key: "usemap", value: "#\(value)")
+    }
+}
+
 /// The protocol provides the element with the value handler.
 @_documentation(visibility: internal)
 public protocol ValueAttribute: Attribute {
