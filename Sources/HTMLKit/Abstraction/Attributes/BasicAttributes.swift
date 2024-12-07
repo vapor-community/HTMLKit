@@ -2626,7 +2626,7 @@ public protocol UseMapAttribute: Attribute {
     /// ```swift
     /// Image()
     ///     .source("....png")
-    ///     .useMap("#...")
+    ///     .useMap("...")
     /// Map {
     ///     Area()
     ///         .shape(.circle)
@@ -2634,21 +2634,21 @@ public protocol UseMapAttribute: Attribute {
     /// }
     /// .name("...")
     /// ```
-    /// - Parameter id: The identifier of the map to link to
-    func useMap(_ id: String) -> Self
+    /// - Parameter name: The name of the map to link to
+    func useMap(_ name: String) -> Self
 }
 
 extension UseMapAttribute where Self: ContentNode {
     
     internal func mutate(usemap value: String) -> Self {
-        return self.mutate(key: "usemap", value: value)
+        return self.mutate(key: "usemap", value: "#\(value)")
     }
 }
 
 extension UseMapAttribute where Self: EmptyNode {
     
     internal func mutate(usemap value: String) -> Self {
-        return self.mutate(key: "usemap", value: value)
+        return self.mutate(key: "usemap", value: "#\(value)")
     }
 }
 

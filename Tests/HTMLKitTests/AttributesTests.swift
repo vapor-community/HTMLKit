@@ -1992,7 +1992,7 @@ final class AttributesTests: XCTestCase {
     func testUseMapAttribute() throws {
         
         let view = TestView {
-            Tag {}.useMap("#image_map")
+            Tag {}.useMap("image_map")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
