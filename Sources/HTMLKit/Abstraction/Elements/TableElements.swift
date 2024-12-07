@@ -2478,7 +2478,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 
 extension HeaderCell: Localizable {   
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
