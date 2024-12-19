@@ -42,7 +42,6 @@ final class ProviderTests: XCTestCase {
                         content
                     }
                 }
-                .environment(object: TestObject())
             }
         }
         
@@ -192,11 +191,16 @@ final class ProviderTests: XCTestCase {
         }
     }
     
+    /// Tests the access to environment through provider
+    ///
+    /// The provider is expected to recieve the environment object and resolve it based on the request.
     func testEnvironmentIntegration() throws {
         
         let app = Application(.testing)
         
         defer { app.shutdown() }
+        
+        app.htmlkit.environment.upsert(TestObject(), for: \TestObject.self)
         
         app.get("test") { request async throws -> Vapor.View in
             return try await request.htmlkit.render(TestPage.SipplingView())
