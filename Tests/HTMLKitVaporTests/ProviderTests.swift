@@ -192,6 +192,39 @@ final class ProviderTests: XCTestCase {
         }
     }
     
+    /// Tests the behavior when localization is not properly configured
+    ///
+    /// Localization is considered improperly configured when one or both of the essential factors are missing.
+    /// In such case the renderer is expected to skip the localization and directly return the fallback string literal.
+    func testLocalizationFallback() throws {
+        
+        let app = Application(.testing)
+        
+        defer { app.shutdown() }
+        
+        app.get("test") { request async throws -> Vapor.View in
+            
+            return try await request.htmlkit.render(TestPage.ChildView())
+        }
+        
+        try app.test(.GET, "test") { response in
+            XCTAssertEqual(response.status, .ok)
+            XCTAssertEqual(response.body.string,
+                            """
+                            <!DOCTYPE html>\
+                            <html>\
+                            <head>\
+                            <title>TestPage</title>\
+                            </head>\
+                            <body>\
+                            <p>hello.world</p>\
+                            </body>\
+                            </html>
+                            """
+            )
+        }
+    }
+    
     func testEnvironmentIntegration() throws {
         
         let app = Application(.testing)
