@@ -56,6 +56,16 @@ public class Localization {
         }
     }
     
+    /// Indicates whether the localization is properly configured
+    internal var isConfigured: Bool {
+        
+        if self.tables != nil && self.locale != nil {
+            return true
+        }
+        
+        return false
+    }
+    
     /// The translations tables
     internal var tables: [Locale: [TranslationTable]]?
     

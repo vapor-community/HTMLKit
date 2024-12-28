@@ -354,7 +354,12 @@ public final class Renderer {
     private func render(localized string: LocalizedString) throws -> String {
         
         guard let localization = self.localization else {
-            // Bail early with the fallback since the localization isn't set up
+            // Bail early with the fallback since the localization is not in use
+            return string.key.literal
+        }
+        
+        if !localization.isConfigured {
+            // Bail early, since the localization is not properly configured
             return string.key.literal
         }
         

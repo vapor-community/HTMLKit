@@ -155,21 +155,161 @@ final class ProviderTests: XCTestCase {
             )
         }
     }
-    
+
+    /// Tests the setup of localization through Vapor
     func testLocalizationIntegration() throws {
         
-        let currentFile = URL(fileURLWithPath: #file).deletingLastPathComponent()
-        
-        let currentDirectory = currentFile.appendingPathComponent("Localization")
+        guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
+            return
+        }
         
         let app = Application(.testing)
         
         defer { app.shutdown() }
         
-        app.htmlkit.localization.set(source: currentDirectory)
+        app.htmlkit.localization.set(source: source)
         app.htmlkit.localization.set(locale: "fr")
         
         app.get("test") { request async throws -> Vapor.View in
+            
+            return try await request.htmlkit.render(TestPage.ChildView())
+        }
+        
+        try app.test(.GET, "test") { response in
+            XCTAssertEqual(response.status, .ok)
+            XCTAssertEqual(response.body.string,
+                            """
+                            <!DOCTYPE html>\
+                            <html>\
+                            <head>\
+                            <title>TestPage</title>\
+                            </head>\
+                            <body>\
+                            <p>Bonjour le monde</p>\
+                            </body>\
+                            </html>
+                            """
+            )
+        }
+    }
+    
+    /// Tests the behavior when localization is not properly configured
+    ///
+    /// Localization is considered improperly configured when one or both of the essential factors are missing.
+    /// In such case the renderer is expected to skip the localization and directly return the fallback string literal.
+    func testLocalizationFallback() throws {
+        
+        let app = Application(.testing)
+        
+        defer { app.shutdown() }
+        
+        app.get("test") { request async throws -> Vapor.View in
+            
+            return try await request.htmlkit.render(TestPage.ChildView())
+        }
+        
+        try app.test(.GET, "test") { response in
+            XCTAssertEqual(response.status, .ok)
+            XCTAssertEqual(response.body.string,
+                            """
+                            <!DOCTYPE html>\
+                            <html>\
+                            <head>\
+                            <title>TestPage</title>\
+                            </head>\
+                            <body>\
+                            <p>hello.world</p>\
+                            </body>\
+                            </html>
+                            """
+            )
+        }
+    }
+    
+    /// Tests the error reporting to Vapor for issues that may occur during localization
+    ///
+    /// The error is expected to be classified as an internal server error and includes a error message.
+    func testLocalizationErrorReporting() throws {
+        
+        struct UnknownTableView: HTMLKit.View {
+            
+            var body: HTMLKit.Content {
+                Paragraph("hello.world", tableName: "unknown.table")
+            }
+        }
+        
+        struct UnknownTagView: HTMLKit.View {
+            
+            var body: HTMLKit.Content {
+                Division {
+                    Heading1("greeting.world")
+                        .environment(key: \.locale)
+                }
+                .environment(key: \.locale, value: Locale(tag: "unknown.tag"))
+            }
+        }
+        
+        guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
+            return
+        }
+        
+        let app = Application(.testing)
+        
+        defer { app.shutdown() }
+        
+        app.htmlkit.localization.set(source: source)
+        app.htmlkit.localization.set(locale: "fr")
+        
+        app.get("unknowntable") { request async throws -> Vapor.View in
+            
+            return try await request.htmlkit.render(UnknownTableView())
+        }
+        
+        app.get("unknowntag") { request async throws -> Vapor.View in
+            
+            return try await request.htmlkit.render(UnknownTagView())
+        }
+        
+        try app.test(.GET, "unknowntable") { response in
+            
+            XCTAssertEqual(response.status, .internalServerError)
+            
+            let abort = try response.content.decode(AbortResponse.self)
+            
+            XCTAssertEqual(abort.reason, "Unable to find translation table 'unknown.table' for the locale 'fr'.")
+        }
+        
+        try app.test(.GET, "unknowntag") { response in
+            
+            XCTAssertEqual(response.status, .internalServerError)
+            
+            let abort = try response.content.decode(AbortResponse.self)
+            
+            XCTAssertEqual(abort.reason, "Unable to find a translation table for the locale 'unknown.tag'.")
+        }
+    }
+    
+    /// Tests the localization behavior based on the accept language of the client
+    ///
+    /// The environment locale is expected to be changed according to the language given by the provider.
+    /// The renderer is expected to localize correctly the content based on the updated environment locale.
+    func testLocalizationByAcceptingHeaders() throws {
+        
+        guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
+            return
+        }
+        
+        let app = Application(.testing)
+        
+        defer { app.shutdown() }
+        
+        app.htmlkit.localization.set(source: source)
+        app.htmlkit.localization.set(locale: "en-GB")
+        
+        app.get("test") { request async throws -> Vapor.View in
+            
+            // Overwrite the accept language header to simulate a different language
+            request.headers.replaceOrAdd(name: "accept-language", value: "fr")
             
             return try await request.htmlkit.render(TestPage.ChildView())
         }
