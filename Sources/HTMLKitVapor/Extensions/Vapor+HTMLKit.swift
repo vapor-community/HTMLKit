@@ -112,7 +112,7 @@ extension Request {
     public var htmlkit: ViewRenderer {
         
         if let acceptLanguage = self.acceptLanguage {
-            self.application.htmlkit.localization.set(locale: acceptLanguage)
+            self.application.htmlkit.environment.locale = HTMLKit.Locale(tag: acceptLanguage)
         }
         
         return .init(eventLoop: self.eventLoop, configuration: self.application.htmlkit.configuration, logger: self.logger)
