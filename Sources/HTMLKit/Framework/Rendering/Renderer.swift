@@ -5,6 +5,7 @@
 
 import Foundation
 import OrderedCollections
+import Logging
 
 @_documentation(visibility: internal)
 public final class Renderer {
@@ -23,9 +24,6 @@ public final class Renderer {
         
         /// Indicates a missing environment value.
         case environmentValueNotFound
-        
-        /// Indicates a missing localization configuration.
-        case missingLocalization
 
         /// A brief error description.
         public var description: String {
@@ -42,9 +40,6 @@ public final class Renderer {
                 
             case .environmentObjectNotFound:
                 return "Unable to retrieve environment object."
-                
-            case .missingLocalization:
-                return "The localization seem to missing."
             }
         }
     }
@@ -63,18 +58,23 @@ public final class Renderer {
     
     /// The feature flag used to manage the visibility of new and untested features.
     private var features: Features
+    
+    /// The logger used to log all operations
+    private var logger: Logger
 
     /// Initiates the renderer.
     public init(localization: Localization? = nil, 
                 environment: Environment = Environment(),
                 security: Security = Security(),
-                features: Features = []) {
+                features: Features = [],
+                logger: Logger = Logger(label: "HTMLKit")) {
         
         self.localization = localization
         self.environment = environment
         self.security = security
         self.markdown = Markdown()
         self.features = features
+        self.logger = logger
     }
     
     /// Renders a view and transforms it into a string representation.
@@ -124,8 +124,8 @@ public final class Renderer {
                 result += try render(element: element)
             }
             
-            if let stringkey = content as? LocalizedStringKey {
-                result += try render(stringkey: stringkey)
+            if let string = content as? LocalizedString {
+                result += try render(localized: string)
             }
             
             if let modifier = content as? EnvironmentModifier {
@@ -199,8 +199,8 @@ public final class Renderer {
                     result += try render(element: element)
                 }
                 
-                if let stringkey = content as? LocalizedStringKey {
-                    result += try render(stringkey: stringkey)
+                if let string = content as? LocalizedString {
+                    result += try render(localized: string)
                 }
                 
                 if let modifier = content as? EnvironmentModifier {
@@ -321,8 +321,8 @@ public final class Renderer {
                     result += try render(element: element)
                 }
                 
-                if let stringkey = content as? LocalizedStringKey {
-                    result += try render(stringkey: stringkey)
+                if let string = content as? LocalizedString {
+                    result += try render(localized: string)
                 }
                 
                 if let value = content as? EnvironmentValue {
@@ -351,17 +351,34 @@ public final class Renderer {
     }
     
     /// Renders a localized string key.
-    private func render(stringkey: LocalizedStringKey) throws -> String {
+    private func render(localized string: LocalizedString) throws -> String {
         
         guard let localization = self.localization else {
-            throw Errors.missingLocalization
+            // Bail early with the fallback since the localization is not in use
+            return string.key.literal
         }
         
-        if let table = stringkey.table {
-            return try localization.localize(key: stringkey.key, table: table, locale: environment.locale, interpolation: stringkey.interpolation)
+        if !localization.isConfigured {
+            // Bail early, since the localization is not properly configured
+            return string.key.literal
         }
         
-        return try localization.localize(key: stringkey.key, locale: environment.locale, interpolation: stringkey.interpolation)
+        do {
+            return try localization.localize(string: string, for: environment.locale)
+            
+        } catch Localization.Errors.missingKey(let key, let locale) {
+            
+            logger.warning("Unable to find translation key '\(key)' for the locale '\(locale)'.")
+            
+            // Check if the fallback was already in charge
+            if environment.locale != nil {
+                
+                // Seems not, let's try to recover by using the fallback
+                return try localization.localize(string: string)
+            }
+            
+            return string.key.literal
+        }
     }
     
     /// Renders a environment modifier.

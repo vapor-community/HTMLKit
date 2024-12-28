@@ -1,11 +1,11 @@
-/*
- Abstract:
- The file contains the default definition of a localizable element. It defines which properties and methods a content should come with.
- */
-
-/// The protocol defines
+/// A protocol that defines a type capable of being localized
 @_documentation(visibility: internal)
 public protocol Localizable {
     
-    init(_ localizedKey: String, tableName: String?, interpolation: Any...)
+    /// Initializes a phrasing element intended for localization
+    ///
+    /// - Parameters:
+    ///   - localizedKey: The string key to be translated
+    ///   - tableName: The name of the translation table
+    init(_ localizedKey: LocalizedStringKey, tableName: String?)
 }

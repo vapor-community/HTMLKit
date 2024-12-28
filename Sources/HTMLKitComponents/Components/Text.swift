@@ -25,9 +25,9 @@ public struct Text: View, Actionable, Modifiable {
         self.classes = ["text", "alignment:\(alignment.value)"]
     }
     
-    public init(_ localizedStringKey: String, alignment: Tokens.TextAlignment = .leading) {
+    public init(_ localizedStringKey: LocalizedStringKey, alignment: Tokens.TextAlignment = .leading) {
         
-        self.content = [LocalizedStringKey(key: localizedStringKey)]
+        self.content = [LocalizedString(key: localizedStringKey)]
         self.classes = ["text", "alignment:\(alignment.value)"]
     }
     

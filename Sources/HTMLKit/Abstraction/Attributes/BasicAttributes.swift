@@ -1087,14 +1087,22 @@ extension IdentifierAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the ismap handler.
+/// A type that provides the `isMap` modifier.
 @_documentation(visibility: internal)
 public protocol IsMapAttribute: Attribute {
  
-    /// The function represents the html-attribute 'ismap'.
+    /// Mark an element as a server-side image map.
     ///
-    /// ```html
-    /// <tag ismap />
+    /// It enables the element to send click coordinates to the server,
+    /// allowing interactions with the element.
+    ///
+    /// ```swift
+    /// Anchor {
+    ///     Image()
+    ///         .source("...png")
+    ///         .isMap()
+    /// }
+    /// .reference("https://...")
     /// ```
     func isMap() -> Self
 }
@@ -1113,16 +1121,19 @@ extension IsMapAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the inputmode handler.
+/// A type that provides the `inputMode` modifier.
 @_documentation(visibility: internal)
 public protocol InputModeAttribute: Attribute {
- 
-    /// The function represents the html-attribute 'inputmode'.
+    
+    /// Set the virtual keyboard mode for the editable element.
     ///
-    /// ```html
-    /// <tag inputmode="" />
+    /// ```swift
+    /// Input()
+    ///     .inputMode(.numeric)
     /// ```
-    func inputMode(_ value: String) -> Self
+    ///
+    /// - Parameter value: The mode to set on
+    func inputMode(_ value: Values.Mode) -> Self
 }
 
 extension InputModeAttribute where Self: ContentNode {
@@ -2189,16 +2200,26 @@ extension SandboxAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the scope handler.
+/// A type that provides the `scope` modifier.
 @_documentation(visibility: internal)
 public protocol ScopeAttribute: Attribute {
     
-    /// The function represents the html-attribute 'scope'.
+    /// Define the scope for a header cell
     ///
-    /// ```html
-    /// <tag scope="" />
+    /// It specifies wether the cell is for a column, row or a group of columns
+    /// and rows.
+    ///
+    /// ```swift
+    /// TableRow {
+    ///     HeaderCell {
+    ///         "..."
+    ///     }
+    ///     .scope(.column)
+    /// }
     /// ```
-    func scope(_ value: String) -> Self
+    ///
+    /// - Parameter value: The scope of the header cell
+    func scope(_ value: Values.Scope) -> Self
 }
 
 extension ScopeAttribute where Self: ContentNode {
@@ -2614,6 +2635,41 @@ extension TypeAttribute where Self: EmptyNode {
     
     internal func mutate(type value: String) -> Self {
         return self.mutate(key: "type", value: value)
+    }
+}
+
+/// A type that provides the `useMap` modifier
+@_documentation(visibility: internal)
+public protocol UseMapAttribute: Attribute {
+    
+    /// Link the element with an associated map.
+    ///
+    /// ```swift
+    /// Image()
+    ///     .source("....png")
+    ///     .useMap("...")
+    /// Map {
+    ///     Area()
+    ///         .shape(.circle)
+    ///         .coordinates(...)
+    /// }
+    /// .name("...")
+    /// ```
+    /// - Parameter name: The name of the map to link to
+    func useMap(_ name: String) -> Self
+}
+
+extension UseMapAttribute where Self: ContentNode {
+    
+    internal func mutate(usemap value: String) -> Self {
+        return self.mutate(key: "usemap", value: "#\(value)")
+    }
+}
+
+extension UseMapAttribute where Self: EmptyNode {
+    
+    internal func mutate(usemap value: String) -> Self {
+        return self.mutate(key: "usemap", value: "#\(value)")
     }
 }
 

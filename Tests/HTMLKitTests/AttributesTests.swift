@@ -14,7 +14,7 @@ final class AttributesTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadyOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute
+    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadyOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute & UseMapAttribute
     
     struct Tag: ContentNode, GlobalElement, AllAttributes {
 
@@ -82,8 +82,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(id: value)
         }
         
-        func inputMode(_ value: String) -> Tag {
-            return self.mutate(inputmode: value)
+        func inputMode(_ value: Values.Mode) -> Tag {
+            return mutate(inputmode: value.rawValue)
         }
         
         func `is`(_ value: String) -> Tag {
@@ -435,8 +435,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(sandbox: "sandbox")
         }
         
-        func scope(_ value: String) -> Tag {
-            return self.mutate(scope: value)
+        func scope(_ value: Values.Scope) -> Tag {
+            return self.mutate(scope: value.rawValue)
         }
         
         func shape(_ value: Values.Shape) -> Tag {
@@ -589,6 +589,10 @@ final class AttributesTests: XCTestCase {
         
         func popoverAction(_ value: Values.Popover.Action) -> Tag {
             return self.mutate(popoveraction: value.rawValue)
+        }
+        
+        func useMap(_ id: String) -> Tag {
+            return mutate(usemap: id)
         }
         
         func custom(key: String, value: Any) -> Tag {
@@ -1832,12 +1836,18 @@ final class AttributesTests: XCTestCase {
     func testScopeAttribute() throws {
         
         let view = TestView {
-            Tag {}.scope("scope")
+            Tag {}.scope(.column)
+            Tag {}.scope(.row)
+            Tag {}.scope(.columnGroup)
+            Tag {}.scope(.rowGroup)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag scope="scope"></tag>
+                       <tag scope="col"></tag>\
+                       <tag scope="row"></tag>\
+                       <tag scope="colgroup"></tag>\
+                       <tag scope="rowgroup"></tag>
                        """
         )
     }
@@ -1981,6 +1991,19 @@ final class AttributesTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tag type="type"></tag>
+                       """
+        )
+    }
+    
+    func testUseMapAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.useMap("image_map")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag usemap="#image_map"></tag>
                        """
         )
     }
@@ -2742,6 +2765,33 @@ final class AttributesTests: XCTestCase {
                        <tag inert="inert"></tag>\
                        <tag></tag>\
                        <tag inert="inert"></tag>
+                       """
+        )
+    }
+    
+    func testInputModeAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.inputMode(.decimal)
+            Tag {}.inputMode(.email)
+            Tag {}.inputMode(.none)
+            Tag {}.inputMode(.numeric)
+            Tag {}.inputMode(.phone)
+            Tag {}.inputMode(.search)
+            Tag {}.inputMode(.text)
+            Tag {}.inputMode(.url)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag inputmode="decimal"></tag>\
+                       <tag inputmode="email"></tag>\
+                       <tag inputmode="none"></tag>\
+                       <tag inputmode="numeric"></tag>\
+                       <tag inputmode="tel"></tag>\
+                       <tag inputmode="search"></tag>\
+                       <tag inputmode="text"></tag>\
+                       <tag inputmode="url"></tag>
                        """
         )
     }

@@ -958,4 +958,60 @@ public enum Values {
             case hide
         }
     }
+    
+    /// A enumeration of potential scopes for a header cell.
+    ///
+    /// ```swift
+    /// HeaderCell {
+    ///     "..."
+    /// }
+    /// .scope(.column)
+    /// ```
+    public enum Scope: String {
+        
+        /// The cell applies to subsequent cells in the same row.
+        case row
+        
+        /// The cell applies to subsequent cells in the same column.
+        case column = "col"
+        
+        /// The cell applies to all remaining cells in the row group.
+        case rowGroup = "rowgroup"
+        
+        /// The cell applies to all remaining cells in the column group.
+        case columnGroup = "colgroup"
+    }
+  
+    /// A enumeration of potential input modes for the virtual keyboard.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .inputMode(.numeric)
+    /// ```
+    public enum Mode: String {
+        
+        /// Displays a virtual keyboard for text input in the user's locale.
+        case text
+        
+        /// Does not display a virtual keyboard.
+        case none
+        
+        /// Displays a keyboard for fractional numeric input.
+        case decimal
+        
+        /// Displays a keyboard for email input
+        case email
+        
+        /// Displays a keyboard for numeric input.
+        case numeric
+        
+        /// Displays a keyboard for search input.
+        case search
+        
+        /// Displays a keyboard for telephone number input.
+        case phone = "tel"
+        
+        /// Displays a keyboard optimized for URL input.
+        case url
+    }
 }

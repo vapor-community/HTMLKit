@@ -82,7 +82,7 @@ extension Application {
         /// The view renderer
         internal var renderer: ViewRenderer {
             
-            return .init(eventLoop: application.eventLoopGroup.next(), configuration: configuration)
+            return .init(eventLoop: application.eventLoopGroup.next(), configuration: configuration, logger: application.logger)
         }
         
         /// The application dependency
@@ -112,9 +112,37 @@ extension Request {
     public var htmlkit: ViewRenderer {
         
         if let acceptLanguage = self.acceptLanguage {
-            self.application.htmlkit.localization.set(locale: acceptLanguage)
+            self.application.htmlkit.environment.locale = HTMLKit.Locale(tag: acceptLanguage)
         }
         
-        return .init(eventLoop: self.eventLoop, configuration: self.application.htmlkit.configuration)
+        return .init(eventLoop: self.eventLoop, configuration: self.application.htmlkit.configuration, logger: self.logger)
     }
+}
+
+extension HTMLKit.Renderer.Errors: AbortError {
+ 
+    @_implements(AbortError, reason)
+    public var abortReason: String { self.description }
+    
+    public var status: HTTPResponseStatus { .internalServerError }
+}
+
+extension HTMLKit.Renderer.Errors: DebuggableError {
+
+    @_implements(DebuggableError, reason)
+    public var debuggableReason: String {  self.description }
+}
+
+extension HTMLKit.Localization.Errors: AbortError {
+ 
+    @_implements(AbortError, reason)
+    public var abortReason: String { self.description }
+    
+    public var status: HTTPResponseStatus { .internalServerError }
+}
+
+extension HTMLKit.Localization.Errors: DebuggableError {
+    
+    @_implements(DebuggableError, reason)
+    public var debuggableReason: String { self.description }
 }
