@@ -158,8 +158,12 @@ final class AttributesTests: XCTestCase {
             return self.mutate(async: "async")
         }
         
-        func autocomplete(_ value: OrderedSet<Values.Completion>) -> Tag {
-            return mutate(autocomplete: value.map { $0.rawValue }.joined(separator: " "))
+        func autocomplete(_ value: Values.Completion) -> Tag {
+            return mutate(autocomplete: value.rawValue)
+        }
+        
+        func autocomplete(_ values: OrderedSet<Values.Completion>) -> Tag {
+            return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
         }
         
         func autoplay() -> Tag {

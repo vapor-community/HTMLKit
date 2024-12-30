@@ -17826,8 +17826,12 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(autocomplete: "off")
     }
     
-    public func autocomplete(_ value: OrderedSet<Values.Completion>) -> Form {
-        return mutate(autocomplete: value.map { $0.rawValue }.joined(separator: " "))
+    public func autocomplete(_ value: Values.Completion) -> Form {
+        return mutate(autocomplete: value.rawValue)
+    }
+    
+    public func autocomplete(_ values: OrderedSet<Values.Completion>) -> Form {
+        return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
     }
     
     public func encoding(_ value: Values.Encoding) -> Form {

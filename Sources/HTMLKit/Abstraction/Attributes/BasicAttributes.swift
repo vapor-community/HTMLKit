@@ -185,7 +185,19 @@ public protocol AutocompleteAttribute: Attribute {
     /// - Parameter value: The value to be expected
     ///
     /// - Returns: The element
-    func autocomplete(_ value: OrderedSet<Values.Completion>) -> Self
+    func autocomplete(_ value: Values.Completion) -> Self
+    
+    /// Specify an auto completion.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .autocomplete([.organization, .organizationTitle])
+    /// ```
+    ///
+    /// - Parameter values: The values to be expected
+    ///
+    /// - Returns: The element
+    func autocomplete(_ values: OrderedSet<Values.Completion>) -> Self
 }
 
 extension AutocompleteAttribute where Self: ContentNode {

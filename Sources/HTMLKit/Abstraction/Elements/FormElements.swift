@@ -191,8 +191,12 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(autocomplete: "off")
     }
     
-    public func autocomplete(_ value: OrderedSet<Values.Completion>) -> Input {
-        return mutate(autocomplete: value.map { $0.rawValue }.joined(separator: " "))
+    public func autocomplete(_ value: Values.Completion) -> Input {
+        return mutate(autocomplete: value.rawValue)
+    }
+    
+    public func autocomplete(_ values: OrderedSet<Values.Completion>) -> Input {
+        return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
     }
     
     public func checked() -> Input {
@@ -826,8 +830,12 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return mutate(autocomplete: "off")
     }
     
-    public func autocomplete(_ value: OrderedSet<Values.Completion>) -> Select {
-        return mutate(autocomplete: value.map { $0.rawValue }.joined(separator: " "))
+    public func autocomplete(_ value: Values.Completion) -> Select {
+        return mutate(autocomplete: value.rawValue)
+    }
+    
+    public func autocomplete(_ values: OrderedSet<Values.Completion>) -> Select {
+        return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
     }
     
     public func disabled() -> Select {
@@ -1081,8 +1089,12 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(autocomplete: "off")
     }
     
-    public func autocomplete(_ value: OrderedSet<Values.Completion>) -> TextArea {
-        return mutate(autocomplete: value.map { $0.rawValue }.joined(separator: " "))
+    public func autocomplete(_ value: Values.Completion) -> TextArea {
+        return mutate(autocomplete: value.rawValue)
+    }
+    
+    public func autocomplete(_ values: OrderedSet<Values.Completion>) -> TextArea {
+        return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
     }
     
     public func columns(_ size: Int) -> TextArea {

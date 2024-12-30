@@ -1024,7 +1024,7 @@ public enum Values {
     /// }
     /// .autocomplete([.organization, .organizationTitle])
     /// ```
-    public enum Completion: String, OptionSet {
+    public enum Completion: String {
         
         /// Enables completion
         case on
@@ -1187,16 +1187,5 @@ public enum Values {
         
         /// Expects a url for instant messaging
         case messagingProtocol = "impp"
-    }
-}
-
-extension OrderedSet where Element == Values.Completion {
-    
-    public static var off: OrderedSet<Values.Completion> {
-        return [.off]
-    }
-    
-    public static var on: OrderedSet<Values.Completion> {
-        return [.on]
     }
 }
