@@ -589,6 +589,9 @@ public struct Column: EmptyNode, TableElement {
     /// Create a column
     public init() {}
     
+    @available(*, deprecated, message: "The column element is actually an empty element. Use Column() instead.")
+     public init(@ContentBuilder<Content> content: () -> [Content]) {}
+    
     internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
