@@ -181,6 +181,7 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(alternate: value)
     }
     
+    @available(*, deprecated, message: "The autocomplete attribute is actually a enum attribute. You should use autocomplete(_:) instead.")
     public func hasCompletion(_ value: Bool) -> Input {
 
         if value {
@@ -815,6 +816,7 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The autocomplete attribute is actually a enum attribute. You should use autocomplete(_:) instead.")
     public func hasCompletion(_ value: Bool) -> Select {
 
         if value {
@@ -1069,6 +1071,7 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The autocomplete attribute is actually a enum attribute. You should use autocomplete(_:) instead.")
     public func hasCompletion(_ value: Bool) -> TextArea {
 
         if value {
