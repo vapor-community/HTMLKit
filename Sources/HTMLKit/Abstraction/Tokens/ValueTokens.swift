@@ -6,6 +6,8 @@
  If you about to add something to the file, stick to the official documentation to keep the code consistent.
  */
 
+import Collections
+
 /// A namespace for several types of attribute values.
 public enum Values {
     
@@ -1013,5 +1015,188 @@ public enum Values {
         
         /// Displays a keyboard optimized for URL input.
         case url
+    }
+    
+    /// A enumeration of potential completion settings
+    ///
+    /// ```swift
+    /// Select {
+    /// }
+    /// .autocomplete([.organization, .organizationTitle])
+    /// ```
+    public enum Completion: String, OptionSet {
+        
+        /// Enables completion
+        case on
+        
+        /// Disables completion
+        case off
+        
+        /// Expects a name
+        case name
+        
+        /// Expects a prefix like Mr, Ms, Dr
+        case honorificPrefix = "honorific-prefix"
+        
+        /// Expects the first name
+        case givenName = "given-name"
+        
+        /// Expects a middle name
+        case additionalName = "additional-name"
+        
+        /// Expects the last name
+        case familyName = "family-name"
+        
+        /// Expects a degree
+        case honorificSuffix = "honorific-suffix"
+        
+        /// Expects a screen name
+        case nickname
+        
+        /// Expects a username
+        case username
+        
+        /// Expects a new password
+        case newPassword = "new-password"
+        
+        /// Expects the current password
+        case currentPassword = "current-password"
+        
+        /// Expects a company name
+        case organization
+        
+        /// Expects a job title
+        case organizationTitle = "organization-title"
+        
+        /// Expects a one time code
+        case oneTimeCode = "one-time-code"
+        
+        /// Expects a address
+        case streetAddress = "street-address"
+        
+        /// Expects a address
+        case addressLine1 = "address-line1"
+        
+        /// Expects a address
+        case addressLine2 = "address-line2"
+        
+        /// Expects a address
+        case addressLine3 = "address-line3"
+        
+        /// Expects a country code
+        case country = "country"
+        
+        /// Expects the country name
+        case countryName = "country-name"
+        
+        /// Expects a postal code
+        case postalCode = "postal-code"
+        
+        /// Expects shipping information
+        case shipping
+        
+        /// Expects billing information
+        case billing
+        
+        /// Expects the full name for payment
+        case paymentName = "cc-name"
+        
+        /// Expects the first name for payment
+        case paymentGivenName = "cc-given-name"
+        
+        /// Expects the middle name for payment
+        case paymentAdditionalName = "cc-additional-name"
+        
+        /// Expects the last name for payment
+        case paymentFamilyName = "cc-family-name"
+        
+        /// Expects the credit card number for payment
+        case paymentNumber = "cc-number"
+        
+        /// Expects the experiation date for payment
+        case paymentExpiry = "cc-expiry"
+        
+        /// Expects the experiation month for payment
+        case paymentExpiryMonth = "cc-expiry-month"
+        
+        /// Expects the experiation year for payment
+        case paymentExpiryYear = "cc-expiry-year"
+        
+        /// Expects the credit security code
+        case paymentSecurityCode = "cc-csc"
+        
+        /// Expects a payment type
+        case paymentType = "cc-type"
+        
+        /// Expects a transaction currency
+        case transactionCurrency = "transaction-currency"
+        
+        /// Expects the amount for payment
+        case transactionAmount = "transaction-amount"
+        
+        /// Expects a perferred language
+        case language
+        
+        /// Expects a birthday date
+        case birthday = "bday"
+        
+        /// Expects the day detail of the birthday date
+        case birthdayDay = "bday-day"
+        
+        /// Expects the month detail of the birthday date
+        case birthdayMonth = "bday-month"
+        
+        /// Expects the year detail of the birthday date
+        case birthdayYear = "bday-year"
+        
+        /// Expects a gender detail
+        case sex
+        
+        /// Expects a photo
+        case photo
+        
+        /// Expects a phone number
+        case phone = "tel"
+        
+        /// Expects the country code of the phone number
+        case phoneCountryCode = "tel-country-code"
+        
+        /// Expects a phone number without the country code
+        case phoneNational = "tel-national"
+        
+        /// Expects the area code of the phone number
+        case phoneAreaCode = "tel-area-code"
+        
+        /// Expects a phone number without the country and area code
+        case phoneLocal = "tel-local"
+        
+        /// Expects the local prefix of the phone number
+        case phoneLocalPrefix = "tel-local-prefix"
+        
+        /// Expects the local suffix of the phone number
+        case phoneLocalSuffix = "tel-local-suffix"
+        
+        /// Phone internal extension code
+        case phoneExtension = "tel-extension"
+        
+        /// Expects a url
+        case url
+        
+        /// Expects an email address
+        case email
+        
+        /// Expects a url for instant messaging
+        case messagingProtocol = "impp"
+    }
+}
+
+extension OrderedSet where Element == Values.Completion {
+    
+    public static var off: OrderedSet<Values.Completion> {
+        return [.off]
+    }
+    
+    public static var on: OrderedSet<Values.Completion> {
+        return [.on]
     }
 }

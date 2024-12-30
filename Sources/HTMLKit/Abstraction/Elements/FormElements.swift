@@ -182,7 +182,16 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     }
     
     public func hasCompletion(_ value: Bool) -> Input {
-        return mutate(autocomplete: value)
+
+        if value {
+            return mutate(autocomplete: "on")
+        }
+        
+        return mutate(autocomplete: "off")
+    }
+    
+    public func autocomplete(_ value: OrderedSet<Values.Completion>) -> Input {
+        return mutate(autocomplete: value.map { $0.rawValue }.joined(separator: " "))
     }
     
     public func checked() -> Input {
@@ -807,7 +816,16 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
     }
 
     public func hasCompletion(_ value: Bool) -> Select {
-        return mutate(autocomplete: value)
+
+        if value {
+            return mutate(autocomplete: "on")
+        }
+        
+        return mutate(autocomplete: "off")
+    }
+    
+    public func autocomplete(_ value: OrderedSet<Values.Completion>) -> Select {
+        return mutate(autocomplete: value.map { $0.rawValue }.joined(separator: " "))
     }
     
     public func disabled() -> Select {
@@ -1052,7 +1070,16 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 
     public func hasCompletion(_ value: Bool) -> TextArea {
-        return mutate(autocomplete: value)
+
+        if value {
+            return mutate(autocomplete: "on")
+        }
+        
+        return mutate(autocomplete: "off")
+    }
+    
+    public func autocomplete(_ value: OrderedSet<Values.Completion>) -> TextArea {
+        return mutate(autocomplete: value.map { $0.rawValue }.joined(separator: " "))
     }
     
     public func columns(_ size: Int) -> TextArea {
