@@ -10961,19 +10961,31 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-/// The element indicates a variable name.
+/// The element represents a variable.
 ///
-/// ```html
-/// <v></v>
+/// Use `Variable` to denote a value that can change or vary, typically in mathematical expressions
+/// or programming contexts.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+///     Variable {
+///         "x"
+///     }
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Variable: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
-    internal var name: String { "v" }
+    internal var name: String { "var" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
 
+    /// Create a variable
+    ///
+    /// - Parameter content: The variable's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }

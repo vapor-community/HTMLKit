@@ -767,8 +767,8 @@ final class ElementTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <v></v>\
-                       <v></v>
+                       <var></var>\
+                       <var></var>
                        """
         )
     }
