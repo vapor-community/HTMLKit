@@ -1,5 +1,5 @@
 /// An option set of features.
-public struct Features: OptionSet {
+public struct Features: Swift.OptionSet {
     
     public var rawValue: Int
     
