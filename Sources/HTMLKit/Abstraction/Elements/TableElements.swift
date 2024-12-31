@@ -568,24 +568,32 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
 
 /// The element represents a column in a table.
 ///
-/// ```html
-/// <col></col>
+/// Use `Column` for applying styles to entire columns, instead of repeating the styles for each cell, for each row.
+///
+/// ```swift
+/// Table {
+///     ColumnGroup {
+///         Column()
+///             .span(2)
+///         Column()
+///             .style("...")
+///     }
+/// }
 /// ```
-public struct Column: ContentNode, TableElement {
-
+public struct Column: EmptyNode, TableElement {
+    
     internal var name: String { "col" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [Content]
-
-    public init(@ContentBuilder<Content> content: () -> [Content]) {
-        self.content = content()
-    }
+    /// Create a column
+    public init() {}
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    @available(*, deprecated, message: "The column element is actually an empty element. Use Column() instead.")
+     public init(@ContentBuilder<Content> content: () -> [Content]) {}
+    
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
-        self.content = content
     }
     
     public func modify(if condition: Bool, element: (Column) -> Column) -> Column {

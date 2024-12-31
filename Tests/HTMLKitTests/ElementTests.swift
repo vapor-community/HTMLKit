@@ -1196,14 +1196,14 @@ final class ElementTests: XCTestCase {
     func testColumnElement() throws {
         
         let view = TestView {
-            Column {}
-            Col {}
+            Column()
+            Col()
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <col></col>\
-                       <col></col>
+                       <col>\
+                       <col>
                        """
         )
     }
