@@ -15956,7 +15956,7 @@ public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute & LoadingAttribute {
+extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute & LoadingAttribute & SandboxAttribute {
     
     public func accessKey(_ value: Character) -> InlineFrame {
         return mutate(accesskey: value)
@@ -16083,6 +16083,18 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         }
         
         return self
+    }
+    
+    public func sandbox() -> InlineFrame {
+        return mutate(sandbox: "sandbox")
+    }
+    
+    public func sandbox(_ value: Values.Permission) -> InlineFrame {
+        return mutate(sandbox: value.rawValue)
+    }
+    
+    public func sandbox(_ values: OrderedCollections.OrderedSet<Values.Permission>) -> InlineFrame {
+        return mutate(sandbox: values.map { $0.rawValue }.joined(separator: " "))
     }
     
     public func source(_ value: String) -> InlineFrame {
