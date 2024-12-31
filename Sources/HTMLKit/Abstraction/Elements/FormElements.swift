@@ -181,8 +181,22 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(alternate: value)
     }
     
+    @available(*, deprecated, message: "The autocomplete attribute is actually a enum attribute. You should use autocomplete(_:) instead.")
     public func hasCompletion(_ value: Bool) -> Input {
-        return mutate(autocomplete: value)
+
+        if value {
+            return mutate(autocomplete: "on")
+        }
+        
+        return mutate(autocomplete: "off")
+    }
+    
+    public func autocomplete(_ value: Values.Completion) -> Input {
+        return mutate(autocomplete: value.rawValue)
+    }
+    
+    public func autocomplete(_ values: OrderedSet<Values.Completion>) -> Input {
+        return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
     }
     
     public func checked() -> Input {
@@ -806,8 +820,22 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The autocomplete attribute is actually a enum attribute. You should use autocomplete(_:) instead.")
     public func hasCompletion(_ value: Bool) -> Select {
-        return mutate(autocomplete: value)
+
+        if value {
+            return mutate(autocomplete: "on")
+        }
+        
+        return mutate(autocomplete: "off")
+    }
+    
+    public func autocomplete(_ value: Values.Completion) -> Select {
+        return mutate(autocomplete: value.rawValue)
+    }
+    
+    public func autocomplete(_ values: OrderedSet<Values.Completion>) -> Select {
+        return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
     }
     
     public func disabled() -> Select {
@@ -1051,8 +1079,22 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The autocomplete attribute is actually a enum attribute. You should use autocomplete(_:) instead.")
     public func hasCompletion(_ value: Bool) -> TextArea {
-        return mutate(autocomplete: value)
+
+        if value {
+            return mutate(autocomplete: "on")
+        }
+        
+        return mutate(autocomplete: "off")
+    }
+    
+    public func autocomplete(_ value: Values.Completion) -> TextArea {
+        return mutate(autocomplete: value.rawValue)
+    }
+    
+    public func autocomplete(_ values: OrderedSet<Values.Completion>) -> TextArea {
+        return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
     }
     
     public func columns(_ size: Int) -> TextArea {

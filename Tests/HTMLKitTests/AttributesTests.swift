@@ -158,8 +158,12 @@ final class AttributesTests: XCTestCase {
             return self.mutate(async: "async")
         }
         
-        func hasCompletion(_ value: Bool) -> Tag {
-            return self.mutate(autocomplete: value)
+        func autocomplete(_ value: Values.Completion) -> Tag {
+            return mutate(autocomplete: value.rawValue)
+        }
+        
+        func autocomplete(_ values: OrderedSet<Values.Completion>) -> Tag {
+            return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
         }
         
         func autoplay() -> Tag {
@@ -1047,12 +1051,18 @@ final class AttributesTests: XCTestCase {
     func testCompleteAttribute() throws {
         
         let view = TestView {
-            Tag {}.hasCompletion(true)
+            Tag {}.autocomplete(.on)
+            Tag {}.autocomplete(.off)
+            Tag {}.autocomplete([.organization, .organizationTitle])
+            Tag {}.autocomplete([.birthday, .birthday])
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag autocomplete="true"></tag>
+                       <tag autocomplete="on"></tag>\
+                       <tag autocomplete="off"></tag>\
+                       <tag autocomplete="organization organization-title"></tag>\
+                       <tag autocomplete="bday"></tag>
                        """
         )
     }

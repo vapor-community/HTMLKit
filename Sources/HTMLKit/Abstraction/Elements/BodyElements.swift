@@ -17816,8 +17816,22 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(action: value)
     }
     
+    @available(*, deprecated, message: "The autocomplete attribute is actually a enum attribute. You should use autocomplete(_:) instead.")
     public func hasCompletion(_ value: Bool) -> Form {
-        return mutate(autocomplete: value)
+
+        if value {
+            return mutate(autocomplete: "on")
+        }
+        
+        return mutate(autocomplete: "off")
+    }
+    
+    public func autocomplete(_ value: Values.Completion) -> Form {
+        return mutate(autocomplete: value.rawValue)
+    }
+    
+    public func autocomplete(_ values: OrderedSet<Values.Completion>) -> Form {
+        return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
     }
     
     public func encoding(_ value: Values.Encoding) -> Form {

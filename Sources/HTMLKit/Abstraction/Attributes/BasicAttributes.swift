@@ -171,28 +171,45 @@ extension AutocapitalizeAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the autocomplete handler.
+/// A type that provides the `autocomplete` modifier.
 @_documentation(visibility: internal)
 public protocol AutocompleteAttribute: Attribute {
     
-    /// The function represents the html-attribute 'autocomplete'.
+    /// Specify an auto completion.
     ///
-    /// ```html
-    /// <tag autocomplete="" />
+    /// ```swift
+    /// Input()
+    ///     .autocomplete(.off)
     /// ```
-    func hasCompletion(_ value: Bool) -> Self
+    ///
+    /// - Parameter value: The value to be expected
+    ///
+    /// - Returns: The element
+    func autocomplete(_ value: Values.Completion) -> Self
+    
+    /// Specify an auto completion.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .autocomplete([.organization, .organizationTitle])
+    /// ```
+    ///
+    /// - Parameter values: The values to be expected
+    ///
+    /// - Returns: The element
+    func autocomplete(_ values: OrderedSet<Values.Completion>) -> Self
 }
 
 extension AutocompleteAttribute where Self: ContentNode {
     
-    internal func mutate(autocomplete value: Bool) -> Self {
+    internal func mutate(autocomplete value: String) -> Self {
         return self.mutate(key: "autocomplete", value: value)
     }
 }
 
 extension AutocompleteAttribute where Self: EmptyNode {
     
-    internal func mutate(autocomplete value: Bool) -> Self {
+    internal func mutate(autocomplete value: String) -> Self {
         return self.mutate(key: "autocomplete", value: value)
     }
 }
