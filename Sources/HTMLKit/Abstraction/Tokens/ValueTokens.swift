@@ -1188,4 +1188,50 @@ public enum Values {
         /// Expects a url for instant messaging
         case messagingProtocol = "impp"
     }
+    
+    /// A enumeration of extra permission
+    ///
+    /// ```swift
+    /// InlineFrame {
+    /// }
+    /// .sandbox([.allowDownloads, .allowForms])
+    /// ```
+    public enum Permission: String {
+        
+        /// Permits downloads
+        case allowDownloads = "allow-downloads"
+        
+        /// Permits form submissions within the content
+        case allowForms = "allow-forms"
+        
+        /// Permits to open modals
+        case allowModals = "allow-modals"
+        
+        /// Permits to lock the screen orientation
+        case allowOrientationLock = "allow-orientation-lock"
+        
+        /// Permits the use of the pointer lock API
+        case allowPointerLock = "allow-pointer-lock"
+        
+        /// Permits to open popups
+        case allowPopups = "allow-popups"
+        
+        /// Permits popups to open new windows without inheriting the sandboxing
+        case allowPopupsToEscapeSandbox = "allow-popups-to-escape-sandbox"
+        
+        /// Permits to start a presentation session
+        case allowPresentation = "allow-presentation"
+        
+        /// Permits the content to be treated as being from the same origin
+        case allowSameOrigin = "allow-same-origin"
+        
+        /// Permits script execution
+        case allowScripts = "allow-scripts"
+        
+        /// Permits the content to navigate its top-level browsing context
+        case allowTopNavigation = "allow-top-navigation"
+        
+        /// Permits the content to navigate its top-level browsing context, but only if initiated by user
+        case allowTopNavigationByUserActivation = "allow-top-navigation-by-user-activation"
+    }
 }
