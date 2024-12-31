@@ -439,6 +439,14 @@ final class AttributesTests: XCTestCase {
             return self.mutate(sandbox: "sandbox")
         }
         
+        func sandbox(_ value: Values.Permission) -> Tag {
+            return self.mutate(sandbox: value.rawValue)
+        }
+        
+        func sandbox(_ values: OrderedSet<Values.Permission>) -> Tag {
+            return self.mutate(sandbox: values.map { $0.rawValue }.joined(separator: " "))
+        }
+        
         func scope(_ value: Values.Scope) -> Tag {
             return self.mutate(scope: value.rawValue)
         }
@@ -1834,11 +1842,15 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.sandbox()
+            Tag {}.sandbox(.allowDownloads)
+            Tag {}.sandbox([.allowDownloads, .allowForms])
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag sandbox="sandbox"></tag>
+                       <tag sandbox="sandbox"></tag>\
+                       <tag sandbox="allow-downloads"></tag>\
+                       <tag sandbox="allow-downloads allow-forms"></tag>
                        """
         )
     }

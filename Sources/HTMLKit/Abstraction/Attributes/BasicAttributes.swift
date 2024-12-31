@@ -2191,16 +2191,41 @@ extension RowSpanAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the sandbox handler.
+/// A type that provides the `sandbox` modifier.
+///
+/// > Note: Currently, this protocol is only applicable to `InlineFrame`.
 @_documentation(visibility: internal)
 public protocol SandboxAttribute: Attribute {
     
-    /// The function represents the html-attribute 'sandbox'.
+    /// Define the permissions for the element.
     ///
-    /// ```html
-    /// <tag sandbox />
+    /// ```swift
+    /// InlineFrame {
+    /// }
+    /// .source("https://...")
+    /// .sandbox()
     /// ```
     func sandbox() -> Self
+    
+    /// Define the permissions for the element.
+    ///
+    /// ```swift
+    /// InlineFrame {
+    /// }
+    /// .source("https://...")
+    /// .sandbox(.allowDownloads)
+    /// ```
+    func sandbox(_ value: Values.Permission) -> Self
+    
+    /// Define the permissions for the element.
+    ///
+    /// ```swift
+    /// InlineFrame {
+    /// }
+    /// .source("https://...")
+    /// .sandbox([.allowDownloads, .allowPopups])
+    /// ```
+    func sandbox(_ values: OrderedSet<Values.Permission>) -> Self
 }
 
 extension SandboxAttribute where Self: ContentNode {
