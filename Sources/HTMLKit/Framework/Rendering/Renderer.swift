@@ -157,6 +157,10 @@ public final class Renderer {
                 }
             }
             
+            if let envstring = content as? EnvironmentString {
+                result += try render(envstring: envstring)
+            }
+            
             if let element = content as? String {
                 result += escape(content: element)
             }
@@ -241,6 +245,10 @@ public final class Renderer {
                     } else {
                         result += try render(markdown: string)
                     }
+                }
+                
+                if let envstring = content as? EnvironmentString {
+                    result += try render(envstring: envstring)
                 }
                 
                 if let element = content as? String {
@@ -370,6 +378,10 @@ public final class Renderer {
                     } else {
                         result += try render(markdown: string)
                     }
+                }
+                
+                if let envstring = content as? EnvironmentString {
+                    result += try render(envstring: envstring)
                 }
                 
                 if let element = content as? String {
@@ -593,6 +605,11 @@ public final class Renderer {
         return self.markdown.render(string: escape(content: markdown.raw))
     }
     
+    /// Renders a environment interpolation
+    private func render(envstring: EnvironmentString) throws -> String {
+        return try render(contents: envstring.values)
+    }
+    
     /// Converts specific charaters into encoded values.
     private func escape(attribute value: String) -> String {
         
@@ -669,6 +686,10 @@ public final class Renderer {
                 }
             }
             
+            if let envstring = content as? EnvironmentString {
+                result += try render(envstring: envstring)
+            }
+            
             if let element = content as? String {
                 result += escape(content: element)
             }
@@ -727,5 +748,9 @@ public final class Renderer {
         }
         
         result += "</\(element.name)>"
+    }
+    
+    private func render(loop envstring: EnvironmentString, with value: Any, on result: inout String) throws {
+        try render(loop: envstring.values, with: value, on: &result)
     }
 }

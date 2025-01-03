@@ -336,4 +336,34 @@ final class EnvironmentTests: XCTestCase {
                        """
         )
     }
+    
+    /// Tests the string interpolation with an environment value
+    ///
+    /// The renderer is expected to render the string correctly
+    func testStringInterpolationWithEnvironment() throws {
+        
+        struct TestObject: ViewModel {
+            
+            let name: String = "Jane"
+        }
+        
+        struct TestView: View {
+            
+            @EnvironmentObject(TestObject.self)
+            var object
+            
+            var body: Content {
+                Paragraph {
+                    EnvironmentString("Hello, how are you \(object.name)?")
+                }
+                .environment(object: TestObject())
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: TestView()),
+                       """
+                       <p>Hello, how are you Jane?</p>
+                       """
+        )
+    }
 }
