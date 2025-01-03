@@ -89,4 +89,15 @@ extension Environment {
     public static func when(_ condition: Conditionable, @ContentBuilder<Content> content: () -> [Content], @ContentBuilder<Content> then: () -> [Content]) -> Statement {
         return Statement(compound: condition, first: content(), second: then())
     }
+    
+    /// Iterates through a sequence of values
+    ///
+    /// - Parameters:
+    ///   - sequence: The sequence to iterate over
+    ///   - content: The content for the iteration
+    ///
+    /// - Returns: A environment condition
+    public static func loop(_ sequence: EnvironmentValue, @ContentBuilder<Content> content: (EnvironmentValue) -> [Content]) -> Sequence {
+        return Sequence(value: sequence, content: content(sequence))
+    }
 }

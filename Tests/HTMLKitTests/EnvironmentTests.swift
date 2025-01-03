@@ -300,4 +300,40 @@ final class EnvironmentTests: XCTestCase {
                        """
         )
     }
+    
+    /// Tests the iteration over a sequence of environment values
+    func testEnvironmentLoop() throws {
+        
+        struct TestObject: ViewModel {
+            
+            let name: String = "Jane"
+            let children: [String] = ["Janek", "Janet"]
+        }
+        
+        struct TestView: View {
+            
+            @EnvironmentObject(TestObject.self)
+            var object
+            
+            var body: Content {
+                Paragraph {
+                    Environment.loop(object.children) { child in
+                        Paragraph {
+                            child
+                        }
+                    }
+                }
+                .environment(object: TestObject())
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: TestView()),
+                       """
+                       <p>\
+                       <p>Janek</p>\
+                       <p>Janet</p>\
+                       </p>
+                       """
+        )
+    }
 }

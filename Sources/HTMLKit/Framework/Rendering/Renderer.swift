@@ -143,6 +143,10 @@ public final class Renderer {
                 }
             }
             
+            if let loop = content as? Sequence {
+                result += try render(loop: loop)
+            }
+            
             if let string = content as? MarkdownString {
                 
                 if !features.contains(.markdown) {
@@ -216,6 +220,10 @@ public final class Renderer {
                 
                 if let value = content as? EnvironmentValue {
                     result += escape(content: try render(value: value))
+                }
+                
+                if let loop = content as? Sequence {
+                    result += try render(loop: loop)
                 }
                 
                 if let statement = content as? Statement {
@@ -348,6 +356,10 @@ public final class Renderer {
                     if let yield = try render(statement: statement) {
                         result += yield
                     }
+                }
+                
+                if let loop = content as? Sequence {
+                    result += try render(loop: loop)
                 }
                 
                 if let string = content as? MarkdownString {
@@ -602,5 +614,118 @@ public final class Renderer {
         }
         
         return value
+    }
+    
+    private func render(loop: Sequence) throws -> String {
+        
+        guard let parent = self.environment.retrieve(for: loop.value.parentPath) else {
+            throw Errors.environmentObjectNotFound
+        }
+
+        guard let values = parent[keyPath: loop.value.valuePath] as? (any Swift.Sequence) else {
+            throw Errors.environmentValueNotFound
+        }
+        
+        var result = ""
+        
+        for value in values {
+            try render(loop: loop.content, with: value, on: &result)
+        }
+        
+        return result
+    }
+    
+    private func render(loop contents: [Content], with value: Any, on result: inout String) throws {
+        
+        for content in contents {
+            
+            if let element = content as? (any ContentNode) {
+                try render(loop: element, with: value, on: &result)
+            }
+
+            if let element = content as? (any CustomNode) {
+                try render(loop: element, with: value, on: &result)
+            }
+            
+            if let element = content as? (any EmptyNode) {
+                result += try render(element: element)
+            }
+            
+            if let element = content as? (any CommentNode) {
+                result += render(element: element)
+            }
+            
+            if let string = content as? LocalizedString {
+                result += try render(localized: string)
+            }
+            
+            if let string = content as? MarkdownString {
+                
+                if !features.contains(.markdown) {
+                    result += escape(content: string.raw)
+                    
+                } else {
+                    result += try render(markdown: string)
+                }
+            }
+            
+            if let element = content as? String {
+                result += escape(content: element)
+            }
+            
+            if content is EnvironmentValue {
+                
+                switch value {
+                case let floatValue as Float:
+                    result += String(floatValue)
+                    
+                case let intValue as Int:
+                    result += String(intValue)
+                    
+                case let doubleValue as Double:
+                    result += String(doubleValue)
+                    
+                case let stringValue as String:
+                    result += stringValue
+                    
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
+    private func render(loop element: some ContentNode, with value: Any, on result: inout String) throws {
+        
+        result += "<\(element.name)"
+        
+        if let attributes = element.attributes {
+            result += try render(attributes: attributes)
+        }
+        
+        result += ">"
+        
+        if let contents = element.content as? [Content] {
+            try render(loop: contents, with: value, on: &result)
+        }
+        
+        result += "</\(element.name)>"
+    }
+    
+    private func render(loop element: some CustomNode, with value: Any, on result: inout String) throws {
+        
+        result += "<\(element.name)"
+        
+        if let attributes = element.attributes {
+            result += try render(attributes: attributes)
+        }
+        
+        result += ">"
+        
+        if let contents = element.content as? [Content] {
+            try render(loop: contents, with: value, on: &result)
+        }
+        
+        result += "</\(element.name)>"
     }
 }
