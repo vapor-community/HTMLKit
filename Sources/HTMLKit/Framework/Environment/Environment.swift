@@ -64,3 +64,29 @@ public final class Environment {
         storage[path] = value
     }
 }
+
+extension Environment {
+    
+    /// Evaluates one condition
+    ///
+    /// - Parameters:
+    ///   - condition: The condition to evaluate
+    ///   - content: The content for the true statement
+    ///
+    /// - Returns: A environment condition
+    public static func when(_ condition: Conditionable, @ContentBuilder<Content> content: () -> [Content]) -> Statement {
+        return Statement(compound: condition, first: content(), second: [])
+    }
+    
+    /// Evaluates one condition
+    ///
+    /// - Parameters:
+    ///   - condition: The condition to evaluate
+    ///   - content: The content for the true statement
+    ///   - then: The content for the false statement
+    ///
+    /// - Returns: A environment condition
+    public static func when(_ condition: Conditionable, @ContentBuilder<Content> content: () -> [Content], @ContentBuilder<Content> then: () -> [Content]) -> Statement {
+        return Statement(compound: condition, first: content(), second: then())
+    }
+}

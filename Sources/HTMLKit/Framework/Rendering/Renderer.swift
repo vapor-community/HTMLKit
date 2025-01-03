@@ -136,6 +136,13 @@ public final class Renderer {
                 result += escape(content: try render(value: value))
             }
             
+            if let statement = content as? Statement {
+                
+                if let yield = try render(statement: statement) {
+                    result += yield
+                }
+            }
+            
             if let string = content as? MarkdownString {
                 
                 if !features.contains(.markdown) {
@@ -209,6 +216,13 @@ public final class Renderer {
                 
                 if let value = content as? EnvironmentValue {
                     result += escape(content: try render(value: value))
+                }
+                
+                if let statement = content as? Statement {
+                    
+                    if let yield = try render(statement: statement) {
+                        result += yield
+                    }
                 }
                 
                 if let string = content as? MarkdownString {
@@ -329,6 +343,13 @@ public final class Renderer {
                     result += escape(content: try render(value: value))
                 }
                 
+                if let statement = content as? Statement {
+                    
+                    if let yield = try render(statement: statement) {
+                        result += yield
+                    }
+                }
+                
                 if let string = content as? MarkdownString {
                     
                     if !features.contains(.markdown) {
@@ -426,6 +447,110 @@ public final class Renderer {
             
         default:
             throw Errors.unableToCastEnvironmentValue
+        }
+    }
+
+    /// Renders a environment statement
+    private func render(statement: Statement) throws -> String? {
+        
+        var result = false
+        
+        if let condition = statement.compound as? Condition {
+            result = try render(condition: condition)
+        }
+        
+        if let relation = statement.compound as? Relation {
+            result = try render(relation: relation)
+        }
+        
+        if result {
+            return try render(contents: statement.first)
+        }
+        
+        return try render(contents: statement.second)
+    }
+    
+    private func render(relation: Relation) throws -> Bool {
+        
+        switch relation.term {
+        case .conjunction:
+            
+            var result = true
+            
+            if let condition = relation.lhs as? Condition {
+                result = try render(condition: condition)
+            }
+            
+            if let relation = relation.lhs as? Relation {
+                result = try render(relation: relation)
+            }
+            
+            if !result {
+                /// Bail early if the first result already is false
+                return result
+            }
+
+            if let condition = relation.rhs as? Condition {
+                result = try render(condition: condition)
+            }
+            
+            if let relation = relation.rhs as? Relation {
+                result = try render(relation: relation)
+            }
+            
+            return result
+            
+        case .disjunction:
+            
+            var result = false
+            
+            if let condition = relation.lhs as? Condition {
+                result = try render(condition: condition)
+            }
+            
+            if let relation = relation.lhs as? Relation {
+                result = try render(relation: relation)
+            }
+            
+            if result {
+                /// Bail early if the first result is already true
+                return result
+            }
+            
+            if let condition = relation.rhs as? Condition {
+                result = try render(condition: condition)
+            }
+            
+            if let relation = relation.rhs as? Relation {
+                result = try render(relation: relation)
+            }
+            
+            return result
+        }
+    }
+    
+    private func render(condition: Condition) throws -> Bool {
+        
+        guard let parent = self.environment.retrieve(for: condition.lhs.parentPath) else {
+            throw Errors.environmentObjectNotFound
+        }
+
+        guard let value = parent[keyPath: condition.lhs.valuePath] else {
+            throw Errors.environmentValueNotFound
+        }
+        
+        switch condition.comparison {
+        case .equal:
+            return condition.rhs.equal(value)
+            
+        case .greater:
+            return condition.rhs.greater(value)
+            
+        case .unequal:
+            return condition.rhs.unequal(value)
+            
+        case .less:
+            return condition.rhs.less(value)
         }
     }
     

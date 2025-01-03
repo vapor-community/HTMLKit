@@ -25,8 +25,36 @@ public struct EnvironmentValue: Content {
 
 extension EnvironmentValue {
     
-    /// Concatenates an environment value with another value
-    static public func + (lhs: Content, rhs: Self) -> Content {
+    /// Concat environment value with environment value
+    public static func + (lhs: Content, rhs: Self) -> Content {
         return [lhs, rhs]
+    }
+    
+    /// Compare an environment value with another comparable value
+    ///
+    /// Makes an unequal evaluation
+    public static func != (lhs: Self, rhs: some Comparable) -> Condition {
+        return Condition(lhs: lhs, rhs: rhs, comparison: .unequal)
+    }
+    
+    /// Compare an environment value with another comparable value
+    ///
+    /// Makes an equal evaluation
+    public static func == (lhs: Self, rhs: some Comparable) -> Condition {
+        return Condition(lhs: lhs, rhs: rhs, comparison: .equal)
+    }
+    
+    /// Compare an environment value with another comparable value
+    ///
+    /// Makes an less than evaluation
+    public static func < (lhs: Self, rhs: some Comparable) -> Condition {
+        return Condition(lhs: lhs, rhs: rhs, comparison: .less)
+    }
+    
+    /// Compare an environment value with another comparable value
+    ///
+    /// Makes an greater than evaluation
+    public static func > (lhs: Self, rhs: some Comparable) -> Condition {
+        return Condition(lhs: lhs, rhs: rhs, comparison: .greater)
     }
 }
