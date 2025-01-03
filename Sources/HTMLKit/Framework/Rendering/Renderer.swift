@@ -136,6 +136,17 @@ public final class Renderer {
                 result += escape(content: try render(value: value))
             }
             
+            if let statement = content as? Statement {
+                
+                if let yield = try render(statement: statement) {
+                    result += yield
+                }
+            }
+            
+            if let loop = content as? Sequence {
+                result += try render(loop: loop)
+            }
+            
             if let string = content as? MarkdownString {
                 
                 if !features.contains(.markdown) {
@@ -144,6 +155,10 @@ public final class Renderer {
                 } else {
                     result += try render(markdown: string)
                 }
+            }
+            
+            if let envstring = content as? EnvironmentString {
+                result += try render(envstring: envstring)
             }
             
             if let element = content as? String {
@@ -211,6 +226,17 @@ public final class Renderer {
                     result += escape(content: try render(value: value))
                 }
                 
+                if let loop = content as? Sequence {
+                    result += try render(loop: loop)
+                }
+                
+                if let statement = content as? Statement {
+                    
+                    if let yield = try render(statement: statement) {
+                        result += yield
+                    }
+                }
+                
                 if let string = content as? MarkdownString {
                     
                     if !features.contains(.markdown) {
@@ -219,6 +245,10 @@ public final class Renderer {
                     } else {
                         result += try render(markdown: string)
                     }
+                }
+                
+                if let envstring = content as? EnvironmentString {
+                    result += try render(envstring: envstring)
                 }
                 
                 if let element = content as? String {
@@ -329,6 +359,17 @@ public final class Renderer {
                     result += escape(content: try render(value: value))
                 }
                 
+                if let statement = content as? Statement {
+                    
+                    if let yield = try render(statement: statement) {
+                        result += yield
+                    }
+                }
+                
+                if let loop = content as? Sequence {
+                    result += try render(loop: loop)
+                }
+                
                 if let string = content as? MarkdownString {
                     
                     if !features.contains(.markdown) {
@@ -337,6 +378,10 @@ public final class Renderer {
                     } else {
                         result += try render(markdown: string)
                     }
+                }
+                
+                if let envstring = content as? EnvironmentString {
+                    result += try render(envstring: envstring)
                 }
                 
                 if let element = content as? String {
@@ -386,31 +431,6 @@ public final class Renderer {
         
         if let value = modifier.value {
             self.environment.upsert(value, for: modifier.key)
-            
-        } else {
-            
-            if let value = self.environment.retrieve(for: modifier.key) {
-                
-                if let key = modifier.key as? PartialKeyPath<EnvironmentKeys> {
-                    
-                    switch key {
-                    case \.locale:
-                        self.environment.locale = value as? Locale
-                        
-                    case \.calender:
-                        self.environment.calendar = value as? Calendar
-                        
-                    case \.timeZone:
-                        self.environment.timeZone = value as? TimeZone
-                        
-                    case \.colorScheme:
-                        self.environment.colorScheme = value as? String
-                        
-                    default:
-                        throw Errors.unindendedEnvironmentKey
-                    }
-                }
-            }
         }
         
         return try render(contents: modifier.content)
@@ -453,6 +473,110 @@ public final class Renderer {
             throw Errors.unableToCastEnvironmentValue
         }
     }
+
+    /// Renders a environment statement
+    private func render(statement: Statement) throws -> String? {
+        
+        var result = false
+        
+        if let condition = statement.compound as? Condition {
+            result = try render(condition: condition)
+        }
+        
+        if let relation = statement.compound as? Relation {
+            result = try render(relation: relation)
+        }
+        
+        if result {
+            return try render(contents: statement.first)
+        }
+        
+        return try render(contents: statement.second)
+    }
+    
+    private func render(relation: Relation) throws -> Bool {
+        
+        switch relation.term {
+        case .conjunction:
+            
+            var result = true
+            
+            if let condition = relation.lhs as? Condition {
+                result = try render(condition: condition)
+            }
+            
+            if let relation = relation.lhs as? Relation {
+                result = try render(relation: relation)
+            }
+            
+            if !result {
+                /// Bail early if the first result already is false
+                return result
+            }
+
+            if let condition = relation.rhs as? Condition {
+                result = try render(condition: condition)
+            }
+            
+            if let relation = relation.rhs as? Relation {
+                result = try render(relation: relation)
+            }
+            
+            return result
+            
+        case .disjunction:
+            
+            var result = false
+            
+            if let condition = relation.lhs as? Condition {
+                result = try render(condition: condition)
+            }
+            
+            if let relation = relation.lhs as? Relation {
+                result = try render(relation: relation)
+            }
+            
+            if result {
+                /// Bail early if the first result is already true
+                return result
+            }
+            
+            if let condition = relation.rhs as? Condition {
+                result = try render(condition: condition)
+            }
+            
+            if let relation = relation.rhs as? Relation {
+                result = try render(relation: relation)
+            }
+            
+            return result
+        }
+    }
+    
+    private func render(condition: Condition) throws -> Bool {
+        
+        guard let parent = self.environment.retrieve(for: condition.lhs.parentPath) else {
+            throw Errors.environmentObjectNotFound
+        }
+
+        guard let value = parent[keyPath: condition.lhs.valuePath] else {
+            throw Errors.environmentValueNotFound
+        }
+        
+        switch condition.comparison {
+        case .equal:
+            return condition.rhs.equal(value)
+            
+        case .greater:
+            return condition.rhs.greater(value)
+            
+        case .unequal:
+            return condition.rhs.unequal(value)
+            
+        case .less:
+            return condition.rhs.less(value)
+        }
+    }
     
     /// Renders the node attributes.
     private func render(attributes: OrderedDictionary<String, Any>) throws -> String {
@@ -481,6 +605,11 @@ public final class Renderer {
         return self.markdown.render(string: escape(content: markdown.raw))
     }
     
+    /// Renders a environment interpolation
+    private func render(envstring: EnvironmentString) throws -> String {
+        return try render(contents: envstring.values)
+    }
+    
     /// Converts specific charaters into encoded values.
     private func escape(attribute value: String) -> String {
         
@@ -502,5 +631,126 @@ public final class Renderer {
         }
         
         return value
+    }
+    
+    private func render(loop: Sequence) throws -> String {
+        
+        guard let parent = self.environment.retrieve(for: loop.value.parentPath) else {
+            throw Errors.environmentObjectNotFound
+        }
+
+        guard let values = parent[keyPath: loop.value.valuePath] as? (any Swift.Sequence) else {
+            throw Errors.environmentValueNotFound
+        }
+        
+        var result = ""
+        
+        for value in values {
+            try render(loop: loop.content, with: value, on: &result)
+        }
+        
+        return result
+    }
+    
+    private func render(loop contents: [Content], with value: Any, on result: inout String) throws {
+        
+        for content in contents {
+            
+            if let element = content as? (any ContentNode) {
+                try render(loop: element, with: value, on: &result)
+            }
+
+            if let element = content as? (any CustomNode) {
+                try render(loop: element, with: value, on: &result)
+            }
+            
+            if let element = content as? (any EmptyNode) {
+                result += try render(element: element)
+            }
+            
+            if let element = content as? (any CommentNode) {
+                result += render(element: element)
+            }
+            
+            if let string = content as? LocalizedString {
+                result += try render(localized: string)
+            }
+            
+            if let string = content as? MarkdownString {
+                
+                if !features.contains(.markdown) {
+                    result += escape(content: string.raw)
+                    
+                } else {
+                    result += try render(markdown: string)
+                }
+            }
+            
+            if let envstring = content as? EnvironmentString {
+                result += try render(envstring: envstring)
+            }
+            
+            if let element = content as? String {
+                result += escape(content: element)
+            }
+            
+            if content is EnvironmentValue {
+                
+                switch value {
+                case let floatValue as Float:
+                    result += String(floatValue)
+                    
+                case let intValue as Int:
+                    result += String(intValue)
+                    
+                case let doubleValue as Double:
+                    result += String(doubleValue)
+                    
+                case let stringValue as String:
+                    result += stringValue
+                    
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
+    private func render(loop element: some ContentNode, with value: Any, on result: inout String) throws {
+        
+        result += "<\(element.name)"
+        
+        if let attributes = element.attributes {
+            result += try render(attributes: attributes)
+        }
+        
+        result += ">"
+        
+        if let contents = element.content as? [Content] {
+            try render(loop: contents, with: value, on: &result)
+        }
+        
+        result += "</\(element.name)>"
+    }
+    
+    private func render(loop element: some CustomNode, with value: Any, on result: inout String) throws {
+        
+        result += "<\(element.name)"
+        
+        if let attributes = element.attributes {
+            result += try render(attributes: attributes)
+        }
+        
+        result += ">"
+        
+        if let contents = element.content as? [Content] {
+            try render(loop: contents, with: value, on: &result)
+        }
+        
+        result += "</\(element.name)>"
+    }
+    
+    private func render(loop envstring: EnvironmentString, with value: Any, on result: inout String) throws {
+        try render(loop: envstring.values, with: value, on: &result)
     }
 }
