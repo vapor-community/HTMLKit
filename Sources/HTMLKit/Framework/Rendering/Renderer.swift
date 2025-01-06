@@ -479,8 +479,31 @@ public final class Renderer {
         
         var result = false
         
+        if let value = statement.compound as? EnvironmentValue {
+            
+            guard let parent = self.environment.retrieve(for: value.parentPath) else {
+                throw Errors.environmentObjectNotFound
+            }
+
+            guard let value = parent[keyPath: value.valuePath] else {
+                throw Errors.environmentValueNotFound
+            }
+            
+            guard let boolValue = value as? Bool else {
+                throw Errors.unableToCastEnvironmentValue
+            }
+            
+            if boolValue {
+                result = true
+            }
+        }
+        
         if let condition = statement.compound as? Condition {
             result = try render(condition: condition)
+        }
+        
+        if let negation = statement.compound as? Negation {
+            result = try render(negation: negation)
         }
         
         if let relation = statement.compound as? Relation {
@@ -492,6 +515,30 @@ public final class Renderer {
         }
         
         return try render(contents: statement.second)
+    }
+    
+    private func render(negation: Negation) throws -> Bool {
+        
+        if let value = negation.lhs as? EnvironmentValue {
+            
+            guard let parent = self.environment.retrieve(for: value.parentPath) else {
+                throw Errors.environmentObjectNotFound
+            }
+
+            guard let value = parent[keyPath: value.valuePath] else {
+                throw Errors.environmentValueNotFound
+            }
+            
+            guard let boolValue = value as? Bool else {
+                throw Errors.unableToCastEnvironmentValue
+            }
+            
+            if !boolValue {
+                return true
+            }
+        }
+        
+        return false
     }
     
     private func render(relation: Relation) throws -> Bool {

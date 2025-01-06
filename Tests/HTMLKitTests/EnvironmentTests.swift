@@ -82,6 +82,7 @@ final class EnvironmentTests: XCTestCase {
             let firstName: String = "Jane"
             let lastName: String = "Doe"
             let age: Int = 40
+            let loggedIn: Bool = true
         }
         
         struct TestView: View {
@@ -92,6 +93,18 @@ final class EnvironmentTests: XCTestCase {
             var body: Content {
                 Paragraph {
 
+                    // Should return true
+                    Environment.when(object.loggedIn) {
+                        "True"
+                    }
+                    
+                    // Should return false
+                    Environment.when(!object.loggedIn) {
+                        "True"
+                    } then: {
+                        "False"
+                    }
+                    
                     // Should return false
                     Environment.when(object.firstName == "John") {
                         "True"
@@ -146,7 +159,7 @@ final class EnvironmentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: TestView()),
                        """
-                       <p>FalseTrueTrueFalseFalseTrueTrueFalse</p>
+                       <p>TrueFalseFalseTrueTrueFalseFalseTrueTrueFalse</p>
                        """
         )
     }

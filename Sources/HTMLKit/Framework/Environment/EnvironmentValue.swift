@@ -23,7 +23,7 @@ public struct EnvironmentValue: Content {
     }
 }
 
-extension EnvironmentValue {
+extension EnvironmentValue: Conditionable {
     
     /// Concat environment value with environment value
     public static func + (lhs: Content, rhs: Self) -> Content {
