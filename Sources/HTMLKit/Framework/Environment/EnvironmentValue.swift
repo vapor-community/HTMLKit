@@ -3,20 +3,21 @@ import Foundation
 /// A type that serves as a placeholder for an environment value
 ///
 /// The placeholder will be evaluated and resolved by the renderer when needed.
+@_documentation(visibility: internal)
 public struct EnvironmentValue: Content {
     
     /// The path of the values parent
-    internal var parentPath: AnyKeyPath
+    internal let parentPath: AnyKeyPath
     
     /// The path of the value
-    internal var valuePath: AnyKeyPath
+    internal let valuePath: AnyKeyPath
     
     /// Initializes a environment value
     ///
     /// - Parameters:
     ///   - parentPath: The key path of the parent
     ///   - valuePath: The key path of the value
-    public init(parentPath: AnyKeyPath, valuePath: AnyKeyPath) {
+    internal init(parentPath: AnyKeyPath, valuePath: AnyKeyPath) {
         
         self.parentPath = parentPath
         self.valuePath = valuePath

@@ -12,14 +12,14 @@ final class EnvironmentTests: XCTestCase {
         
         struct FamilyObject: ViewModel {
             
-            let name: String = "Doe"
-            let father: FatherObject = FatherObject()
+            let name = "Doe"
+            let father = FatherObject()
         }
         
         struct FatherObject: ViewModel {
             
-            let avatar: String = "john_doe.jpeg"
-            let name: String = "John"
+            let avatar = "john_doe.jpeg"
+            let name = "John"
         }
         
         struct ParentView: View {
@@ -79,10 +79,10 @@ final class EnvironmentTests: XCTestCase {
         
         struct TestObject: ViewModel {
             
-            let firstName: String = "Jane"
-            let lastName: String = "Doe"
-            let age: Int = 40
-            let loggedIn: Bool = true
+            let firstName = "Jane"
+            let lastName = "Doe"
+            let age = 40
+            let loggedIn = true
         }
         
         struct TestView: View {
@@ -169,9 +169,9 @@ final class EnvironmentTests: XCTestCase {
         
         struct TestObject: ViewModel {
             
-            let firstName: String = "Jane"
-            let lastName: String = "Doe"
-            let age: Int = 40
+            let firstName = "Jane"
+            let lastName = "Doe"
+            let age = 40
         }
         
         struct TestView: View {
@@ -226,9 +226,9 @@ final class EnvironmentTests: XCTestCase {
         
         struct TestObject: ViewModel {
             
-            let firstName: String = "Jane"
-            let lastName: String = "Doe"
-            let age: Int = 40
+            let firstName = "Jane"
+            let lastName = "Doe"
+            let age = 40
         }
         
         struct TestView: View {
@@ -319,8 +319,8 @@ final class EnvironmentTests: XCTestCase {
         
         struct TestObject: ViewModel {
             
-            let name: String = "Jane"
-            let children: [String] = ["Janek", "Janet"]
+            let name = "Jane"
+            let children = ["Janek", "Janet"]
         }
         
         struct TestView: View {
@@ -357,7 +357,7 @@ final class EnvironmentTests: XCTestCase {
         
         struct TestObject: ViewModel {
             
-            let name: String = "Jane"
+            let name = "Jane"
         }
         
         struct TestView: View {

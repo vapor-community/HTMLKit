@@ -119,7 +119,7 @@ extension Request {
     }
 }
 
-extension HTMLKit.Renderer.Errors: AbortError {
+extension HTMLKit.Environment.Errors: AbortError {
  
     @_implements(AbortError, reason)
     public var abortReason: String { self.description }
@@ -127,7 +127,7 @@ extension HTMLKit.Renderer.Errors: AbortError {
     public var status: HTTPResponseStatus { .internalServerError }
 }
 
-extension HTMLKit.Renderer.Errors: DebuggableError {
+extension HTMLKit.Environment.Errors: DebuggableError {
 
     @_implements(DebuggableError, reason)
     public var debuggableReason: String {  self.description }

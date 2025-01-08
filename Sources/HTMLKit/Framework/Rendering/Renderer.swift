@@ -9,40 +9,6 @@ import Logging
 
 @_documentation(visibility: internal)
 public final class Renderer {
-
-    /// An enumeration of possible rendering errors.
-    public enum Errors: Error {
-        
-        /// Indicates a casting error.
-        case unableToCastEnvironmentValue
-        
-        /// Indicates a wrong environment key.
-        case unindendedEnvironmentKey
-        
-        /// Indicates a missing environment object.
-        case environmentObjectNotFound
-        
-        /// Indicates a missing environment value.
-        case environmentValueNotFound
-
-        /// A brief error description.
-        public var description: String {
-            
-            switch self {
-            case .unableToCastEnvironmentValue:
-                return "Unable to cast the environment value."
-                
-            case .unindendedEnvironmentKey:
-                return "The environment key is not indended."
-                
-            case .environmentValueNotFound:
-                return "Unable to retrieve environment value."
-                
-            case .environmentObjectNotFound:
-                return "Unable to retrieve environment object."
-            }
-        }
-    }
     
     /// The context environment
     private var environment: Environment
@@ -137,10 +103,7 @@ public final class Renderer {
             }
             
             if let statement = content as? Statement {
-                
-                if let yield = try render(statement: statement) {
-                    result += yield
-                }
+                result += try render(statement: statement)
             }
             
             if let loop = content as? Sequence {
@@ -231,10 +194,7 @@ public final class Renderer {
                 }
                 
                 if let statement = content as? Statement {
-                    
-                    if let yield = try render(statement: statement) {
-                        result += yield
-                    }
+                    result += try render(statement: statement)
                 }
                 
                 if let string = content as? MarkdownString {
@@ -360,10 +320,7 @@ public final class Renderer {
                 }
                 
                 if let statement = content as? Statement {
-                    
-                    if let yield = try render(statement: statement) {
-                        result += yield
-                    }
+                    result += try render(statement: statement)
                 }
                 
                 if let loop = content as? Sequence {
@@ -439,13 +396,7 @@ public final class Renderer {
     /// Renders a environment value.
     private func render(value: EnvironmentValue) throws -> String {
         
-        guard let parent = self.environment.retrieve(for: value.parentPath) else {
-            throw Errors.environmentObjectNotFound
-        }
-
-        guard let value = parent[keyPath: value.valuePath] else {
-            throw Errors.environmentValueNotFound
-        }
+        let value = try self.environment.resolve(value: value)
         
         switch value {
         case let floatValue as Float:
@@ -470,44 +421,29 @@ public final class Renderer {
             return formatter.string(from: dateValue)
             
         default:
-            throw Errors.unableToCastEnvironmentValue
+            throw Environment.Errors.unableToCastEnvironmentValue
         }
     }
 
     /// Renders a environment statement
-    private func render(statement: Statement) throws -> String? {
+    private func render(statement: Statement) throws -> String {
         
         var result = false
         
-        if let value = statement.compound as? EnvironmentValue {
-            
-            guard let parent = self.environment.retrieve(for: value.parentPath) else {
-                throw Errors.environmentObjectNotFound
-            }
-
-            guard let value = parent[keyPath: value.valuePath] else {
-                throw Errors.environmentValueNotFound
-            }
-            
-            guard let boolValue = value as? Bool else {
-                throw Errors.unableToCastEnvironmentValue
-            }
-            
-            if boolValue {
-                result = true
-            }
-        }
-        
         if let condition = statement.compound as? Condition {
-            result = try render(condition: condition)
+            result = try environment.evaluate(condition: condition)
         }
         
         if let negation = statement.compound as? Negation {
-            result = try render(negation: negation)
+            result = try environment.evaluate(negation: negation)
         }
         
         if let relation = statement.compound as? Relation {
-            result = try render(relation: relation)
+            result = try environment.evaluate(relation: relation)
+        }
+        
+        if let value = statement.compound as? EnvironmentValue {
+            result = try environment.evaluate(value: value)
         }
         
         if result {
@@ -515,114 +451,6 @@ public final class Renderer {
         }
         
         return try render(contents: statement.second)
-    }
-    
-    private func render(negation: Negation) throws -> Bool {
-        
-        if let value = negation.lhs as? EnvironmentValue {
-            
-            guard let parent = self.environment.retrieve(for: value.parentPath) else {
-                throw Errors.environmentObjectNotFound
-            }
-
-            guard let value = parent[keyPath: value.valuePath] else {
-                throw Errors.environmentValueNotFound
-            }
-            
-            guard let boolValue = value as? Bool else {
-                throw Errors.unableToCastEnvironmentValue
-            }
-            
-            if !boolValue {
-                return true
-            }
-        }
-        
-        return false
-    }
-    
-    private func render(relation: Relation) throws -> Bool {
-        
-        switch relation.term {
-        case .conjunction:
-            
-            var result = true
-            
-            if let condition = relation.lhs as? Condition {
-                result = try render(condition: condition)
-            }
-            
-            if let relation = relation.lhs as? Relation {
-                result = try render(relation: relation)
-            }
-            
-            if !result {
-                /// Bail early if the first result already is false
-                return result
-            }
-
-            if let condition = relation.rhs as? Condition {
-                result = try render(condition: condition)
-            }
-            
-            if let relation = relation.rhs as? Relation {
-                result = try render(relation: relation)
-            }
-            
-            return result
-            
-        case .disjunction:
-            
-            var result = false
-            
-            if let condition = relation.lhs as? Condition {
-                result = try render(condition: condition)
-            }
-            
-            if let relation = relation.lhs as? Relation {
-                result = try render(relation: relation)
-            }
-            
-            if result {
-                /// Bail early if the first result is already true
-                return result
-            }
-            
-            if let condition = relation.rhs as? Condition {
-                result = try render(condition: condition)
-            }
-            
-            if let relation = relation.rhs as? Relation {
-                result = try render(relation: relation)
-            }
-            
-            return result
-        }
-    }
-    
-    private func render(condition: Condition) throws -> Bool {
-        
-        guard let parent = self.environment.retrieve(for: condition.lhs.parentPath) else {
-            throw Errors.environmentObjectNotFound
-        }
-
-        guard let value = parent[keyPath: condition.lhs.valuePath] else {
-            throw Errors.environmentValueNotFound
-        }
-        
-        switch condition.comparison {
-        case .equal:
-            return condition.rhs.equal(value)
-            
-        case .greater:
-            return condition.rhs.greater(value)
-            
-        case .unequal:
-            return condition.rhs.unequal(value)
-            
-        case .less:
-            return condition.rhs.less(value)
-        }
     }
     
     /// Renders the node attributes.
@@ -680,25 +508,34 @@ public final class Renderer {
         return value
     }
     
+    /// Renders an environment loop
+    ///
+    /// - Parameter loop: The loop to resolve
+    ///
+    /// - Returns: The rendered loop
     private func render(loop: Sequence) throws -> String {
         
-        guard let parent = self.environment.retrieve(for: loop.value.parentPath) else {
-            throw Errors.environmentObjectNotFound
-        }
-
-        guard let values = parent[keyPath: loop.value.valuePath] as? (any Swift.Sequence) else {
-            throw Errors.environmentValueNotFound
+        let value = try environment.resolve(value: loop.value)
+        
+        guard let sequence = value as? (any Swift.Sequence) else {
+            throw Environment.Errors.unableToCastEnvironmentValue
         }
         
         var result = ""
         
-        for value in values {
+        for value in sequence {
             try render(loop: loop.content, with: value, on: &result)
         }
         
         return result
     }
     
+    /// Renders the content within an environment loop
+    ///
+    /// - Parameters:
+    ///   - contents: The content to render
+    ///   - value: The value to resolve the environment value with
+    ///   - result: The rendered content
     private func render(loop contents: [Content], with value: Any, on result: inout String) throws {
         
         for content in contents {
@@ -763,6 +600,12 @@ public final class Renderer {
         }
     }
     
+    /// Renders a content element within an environment loop
+    ///
+    /// - Parameters:
+    ///   - element: The element to render
+    ///   - value: The value to resolve the environment value with
+    ///   - result: The result
     private func render(loop element: some ContentNode, with value: Any, on result: inout String) throws {
         
         result += "<\(element.name)"
@@ -780,6 +623,12 @@ public final class Renderer {
         result += "</\(element.name)>"
     }
     
+    /// Renders a custom element within an environment loop
+    ///
+    /// - Parameters:
+    ///   - element: The element to render
+    ///   - value: The value to resolve the environment value with
+    ///   - result: The rendered content
     private func render(loop element: some CustomNode, with value: Any, on result: inout String) throws {
         
         result += "<\(element.name)"
@@ -797,6 +646,12 @@ public final class Renderer {
         result += "</\(element.name)>"
     }
     
+    /// Renders an environment string within a environment loop
+    ///
+    /// - Parameters:
+    ///   - envstring: The environment string to render
+    ///   - value: The raw value to resolve the environment value with
+    ///   - result: The result
     private func render(loop envstring: EnvironmentString, with value: Any, on result: inout String) throws {
         try render(loop: envstring.values, with: value, on: &result)
     }

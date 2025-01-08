@@ -19,13 +19,13 @@ public struct Condition: Conditionable {
     }
     
     /// The left-hand side value
-    public let lhs: EnvironmentValue
+    internal let lhs: EnvironmentValue
     
     /// The right-hand side value to test against
-    public let rhs: any Comparable
+    internal let rhs: any Comparable
     
     /// The comparison to perfom
-    public let comparison: Comparison
+    internal let comparison: Comparison
     
     /// Initializes a condition
     ///

@@ -3,7 +3,15 @@
 public struct Negation: Conditionable {
     
     /// The left-hand side conditional
-    public let lhs: Conditionable
+    internal let value: EnvironmentValue
+    
+    /// Initializes the negation
+    ///
+    /// - Parameter lhs: The conditional to evaluate
+    public init(value: EnvironmentValue) {
+        
+        self.value = value
+    }
 }
 
 
@@ -18,6 +26,6 @@ public struct Negation: Conditionable {
 ///   - lhs: The left-hand side conditional
 ///
 /// - Returns: A invert
-public prefix func ! (lhs: Conditionable) -> Negation {
-    return Negation(lhs: lhs)
+public prefix func ! (value: EnvironmentValue) -> Negation {
+    return Negation(value: value)
 }

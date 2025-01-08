@@ -5,13 +5,13 @@
 public struct EnvironmentModifier: Content {
 
     /// The environment key
-    internal var key: AnyKeyPath
+    internal let key: AnyKeyPath
     
     /// The environment value
-    internal var value: Any?
+    internal let value: Any?
     
     /// The sub-content
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// Initializes an environment modifier
     ///

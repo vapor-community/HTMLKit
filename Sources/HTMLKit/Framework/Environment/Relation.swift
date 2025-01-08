@@ -17,13 +17,26 @@ public struct Relation: Conditionable {
     }
     
     /// The logical term specifying the relation
-    public let term: Term
+    internal let term: Term
     
     /// The left-hand side conditional
-    public let lhs: Conditionable
+    internal let lhs: Conditionable
     
     /// The right-hand side conditional
-    public let rhs: Conditionable
+    internal let rhs: Conditionable
+    
+    /// Initializes a relation
+    ///
+    /// - Parameters:
+    ///   - term: The term on which the relation acts on
+    ///   - lhs: The left-hand side conditional
+    ///   - rhs: The right-hand side conditional to test against
+    public init(term: Term, lhs: Conditionable, rhs: Conditionable) {
+        
+        self.term = term
+        self.lhs = lhs
+        self.rhs = rhs
+    }
 }
 
 /// Creates a conjunctional relation between two conditionals

@@ -3,7 +3,42 @@ import Foundation
 /// A class that represents the environment
 ///
 /// The environment provides storage for various settings used by the renderer
+@_documentation(visibility: internal)
 public final class Environment {
+    
+    /// An enumeration of possible rendering errors.
+    public enum Errors: Error {
+        
+        /// Indicates a casting error.
+        case unableToCastEnvironmentValue
+        
+        /// Indicates a wrong environment key.
+        case unindendedEnvironmentKey
+        
+        /// Indicates a missing environment object.
+        case environmentObjectNotFound
+        
+        /// Indicates a missing environment value.
+        case environmentValueNotFound
+
+        /// A brief error description.
+        public var description: String {
+            
+            switch self {
+            case .unableToCastEnvironmentValue:
+                return "Unable to cast the environment value."
+                
+            case .unindendedEnvironmentKey:
+                return "The environment key is not indended."
+                
+            case .environmentValueNotFound:
+                return "Unable to retrieve environment value."
+                
+            case .environmentObjectNotFound:
+                return "Unable to retrieve environment object."
+            }
+        }
+    }
     
     /// The storage of the environment
     private var storage: [AnyKeyPath: Any]
@@ -62,6 +97,169 @@ public final class Environment {
     ///   - path: The key path that identifies where the value is stored
     public func upsert<T>(_ value: T, for path: AnyKeyPath) {
         storage[path] = value
+    }
+    
+    /// Resolves an environment value
+    ///
+    /// - Parameter value: The environment value to resolve
+    ///
+    /// - Returns: The resolved environment value
+    internal func resolve(value: EnvironmentValue) throws -> Any {
+        
+        guard let parent = retrieve(for: value.parentPath) else {
+            throw Errors.environmentObjectNotFound
+        }
+
+        guard let value = parent[keyPath: value.valuePath] else {
+            throw Errors.environmentValueNotFound
+        }
+        
+        return value
+    }
+    
+    /// Evaluates an environment value
+    ///
+    /// - Parameter value: The value to evaluate
+    ///
+    /// - Returns: The result of evaluation
+    internal func evaluate(value: EnvironmentValue) throws -> Bool {
+        
+        let value = try resolve(value: value)
+        
+        guard let boolValue = value as? Bool else {
+            throw Errors.unableToCastEnvironmentValue
+        }
+        
+        return boolValue
+    }
+    
+    /// Evaluates an environment relation
+    ///
+    /// - Parameter relation: The relation to evaluate
+    ///
+    /// - Returns: The result of the evaluation
+    internal func evaluate(relation: Relation) throws -> Bool {
+        
+        switch relation.term {
+        case .conjunction:
+            
+            var result = true
+            
+            if let condition = relation.lhs as? Condition {
+                result = try evaluate(condition: condition)
+            }
+            
+            if let relation = relation.lhs as? Relation {
+                result = try evaluate(relation: relation)
+            }
+            
+            if let negation = relation.lhs as? Negation {
+                result = try evaluate(negation: negation)
+            }
+            
+            if let value = relation.lhs as? EnvironmentValue {
+                result = try evaluate(value: value)
+            }
+            
+            if !result {
+                /// Bail early if the first result already is false
+                return result
+            }
+
+            if let condition = relation.rhs as? Condition {
+                result = try evaluate(condition: condition)
+            }
+            
+            if let relation = relation.rhs as? Relation {
+                result = try evaluate(relation: relation)
+            }
+            
+            if let negation = relation.lhs as? Negation {
+                result = try evaluate(negation: negation)
+            }
+            
+            if let value = relation.lhs as? EnvironmentValue {
+                result = try evaluate(value: value)
+            }
+            
+            return result
+            
+        case .disjunction:
+            
+            var result = false
+            
+            if let condition = relation.lhs as? Condition {
+                result = try evaluate(condition: condition)
+            }
+            
+            if let relation = relation.lhs as? Relation {
+                result = try evaluate(relation: relation)
+            }
+            
+            if let negation = relation.lhs as? Negation {
+                result = try evaluate(negation: negation)
+            }
+            
+            if let value = relation.lhs as? EnvironmentValue {
+                result = try evaluate(value: value)
+            }
+            
+            if result {
+                /// Bail early if the first result is already true
+                return result
+            }
+            
+            if let condition = relation.rhs as? Condition {
+                result = try evaluate(condition: condition)
+            }
+            
+            if let relation = relation.rhs as? Relation {
+                result = try evaluate(relation: relation)
+            }
+            
+            if let negation = relation.lhs as? Negation {
+                result = try evaluate(negation: negation)
+            }
+            
+            if let value = relation.lhs as? EnvironmentValue {
+                result = try evaluate(value: value)
+            }
+            
+            return result
+        }
+    }
+    
+    /// Evaluates an environment condition
+    ///
+    /// - Parameter condition: The condition to evaluate
+    ///
+    /// - Returns: The result of the evaluation
+    internal func evaluate(condition: Condition) throws -> Bool {
+        
+        let value = try resolve(value: condition.lhs)
+        
+        switch condition.comparison {
+        case .equal:
+            return condition.rhs.equal(value)
+            
+        case .greater:
+            return condition.rhs.greater(value)
+            
+        case .unequal:
+            return condition.rhs.unequal(value)
+            
+        case .less:
+            return condition.rhs.less(value)
+        }
+    }
+    
+    /// Evaluates an environment negation
+    ///
+    /// - Parameter negation: The negation to evaluate
+    ///
+    /// - Returns: The result of the evaluation
+    internal func evaluate(negation: Negation) throws -> Bool {
+        return try !evaluate(value: negation.value)
     }
 }
 
