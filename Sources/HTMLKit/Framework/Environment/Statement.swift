@@ -3,7 +3,7 @@
 public struct Statement: Content {
     
     /// The compound condition
-    internal let compound: Conditionable
+    internal let compound: Conditional
     
     /// The first statement
     internal let first: [Content]
@@ -17,7 +17,7 @@ public struct Statement: Content {
     ///   - compound: The compound of conditionals
     ///   - first: The statement to execute if conditionals are true
     ///   - second: The statement to execute if conditionals are false
-    public init(compound: Conditionable, first: [Content], second: [Content]) {
+    public init(compound: Conditional, first: [Content], second: [Content]) {
         
         self.compound = compound
         self.first = first

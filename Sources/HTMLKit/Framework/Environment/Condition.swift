@@ -1,6 +1,6 @@
-/// A type representing a condition that compares an environment value against another value
+/// A type representing a conditional that compares an environment value against another value
 @_documentation(visibility: internal)
-public struct Condition: Conditionable {
+public struct Condition {
     
     /// A enumeration of potential comparison
     public enum Comparison {

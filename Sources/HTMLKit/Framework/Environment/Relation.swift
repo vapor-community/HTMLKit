@@ -1,6 +1,6 @@
 /// A type representing the logical relation between two conditionals
 @_documentation(visibility: internal)
-public struct Relation: Conditionable {
+public struct Relation {
     
     /// A enumeration of potential logical terms
     public enum Term {
@@ -20,10 +20,10 @@ public struct Relation: Conditionable {
     internal let term: Term
     
     /// The left-hand side conditional
-    internal let lhs: Conditionable
+    internal let lhs: Conditional
     
     /// The right-hand side conditional
-    internal let rhs: Conditionable
+    internal let rhs: Conditional
     
     /// Initializes a relation
     ///
@@ -31,7 +31,7 @@ public struct Relation: Conditionable {
     ///   - term: The term on which the relation acts on
     ///   - lhs: The left-hand side conditional
     ///   - rhs: The right-hand side conditional to test against
-    public init(term: Term, lhs: Conditionable, rhs: Conditionable) {
+    public init(term: Term, lhs: Conditional, rhs: Conditional) {
         
         self.term = term
         self.lhs = lhs
@@ -40,7 +40,40 @@ public struct Relation: Conditionable {
 }
 
 /// Creates a conjunctional relation between two conditionals
-/// 
+///
+/// ```swift
+/// Environment.when(value > 0 && value) {
+/// }
+/// ```
+///
+/// - Parameters:
+///   - lhs: The left-hand side conditional
+///   - rhs: An environment value
+///
+/// - Returns: A conjunctional relation
+public func && (lhs: Conditional, rhs: EnvironmentValue) -> Conditional {
+    return .relation(Relation(term: .conjunction, lhs: lhs, rhs: .value(rhs)))
+}
+
+/// Creates a conjunctional relation between two conditionals
+///
+/// ```swift
+/// Environment.when(value && value > 0) {
+/// }
+/// ```
+///
+/// - Parameters:
+///   - lhs: The left-hand side conditional
+///   - rhs: An environment value
+///
+/// - Returns: A conjunctional relation
+public func && (lhs: EnvironmentValue, rhs: Conditional) -> Conditional {
+    return .relation(Relation(term: .conjunction, lhs: .value(lhs), rhs: rhs))
+}
+
+
+/// Creates a conjunctional relation between two conditionals
+///
 /// ```swift
 /// Environment.when(value > 0 && value < 2) {
 /// }
@@ -51,8 +84,40 @@ public struct Relation: Conditionable {
 ///   - rhs: The right-hand side conditional
 ///
 /// - Returns: A conjunctional relation
-public func && (lhs: Conditionable, rhs: Conditionable) -> Relation {
-    return Relation(term: .conjunction, lhs: lhs, rhs: rhs)
+public func && (lhs: Conditional, rhs: Conditional) -> Conditional {
+    return .relation(Relation(term: .conjunction, lhs: lhs, rhs: rhs))
+}
+
+/// Creates a disjunctional relation between two conditionals
+///
+/// ```swift
+/// Environment.when(value > 0 || value) {
+/// }
+/// ```
+///
+/// - Parameters:
+///   - lhs: The left-hand side conditional
+///   - rhs: The right-hand side conditional
+///
+/// - Returns: A disjunctional relation
+public func || (lhs: Conditional, rhs: EnvironmentValue) -> Conditional {
+    return .relation(Relation(term: .disjunction, lhs: lhs, rhs: .value(rhs)))
+}
+
+/// Creates a disjunctional relation between two conditionals
+///
+/// ```swift
+/// Environment.when(value || value > 0) {
+/// }
+/// ```
+///
+/// - Parameters:
+///   - lhs: The left-hand side conditional
+///   - rhs: The right-hand side conditional
+///
+/// - Returns: A disjunctional relation
+public func || (lhs: EnvironmentValue, rhs: Conditional) -> Conditional {
+    return .relation(Relation(term: .disjunction, lhs: .value(lhs), rhs: rhs))
 }
 
 /// Creates a disjunctional relation between two conditionals
@@ -67,7 +132,7 @@ public func && (lhs: Conditionable, rhs: Conditionable) -> Relation {
 ///   - rhs: The right-hand side conditional
 ///
 /// - Returns: A disjunctional relation
-public func || (lhs: Conditionable, rhs: Conditionable) -> Relation {
-    return Relation(term: .disjunction, lhs: lhs, rhs: rhs)
+public func || (lhs: Conditional, rhs: Conditional) -> Conditional {
+    return .relation(Relation(term: .disjunction, lhs: lhs, rhs: rhs))
 }
 

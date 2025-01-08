@@ -426,24 +426,26 @@ public final class Renderer {
     }
 
     /// Renders a environment statement
+    ///
+    /// - Parameter statement: The statement to resolve
+    ///
+    /// - Returns: The rendered condition
     private func render(statement: Statement) throws -> String {
         
         var result = false
         
-        if let condition = statement.compound as? Condition {
-            result = try environment.evaluate(condition: condition)
-        }
-        
-        if let negation = statement.compound as? Negation {
-            result = try environment.evaluate(negation: negation)
-        }
-        
-        if let relation = statement.compound as? Relation {
-            result = try environment.evaluate(relation: relation)
-        }
-        
-        if let value = statement.compound as? EnvironmentValue {
+        switch statement.compound {
+        case .value(let value):
             result = try environment.evaluate(value: value)
+            
+        case .condition(let condition):
+            result = try environment.evaluate(condition: condition)
+            
+        case .negation(let negation):
+            result = try environment.evaluate(negation: negation)
+            
+        case .relation(let relation):
+            result = try environment.evaluate(relation: relation)
         }
         
         if result {
