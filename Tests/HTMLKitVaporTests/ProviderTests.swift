@@ -393,4 +393,76 @@ final class ProviderTests: XCTestCase {
             )
         }
     }
+    
+    /// Tests the error reporting to Vapor for issues that may occur during environment access.
+    ///
+    /// The error is expected to be classified as an internal server error and includes a error message.
+    func testEnvironmentErrorReporting() throws {
+        
+        struct TestObject {
+            
+            let firstName = "Jane"
+        }
+        
+        struct UnkownObject: HTMLKit.View {
+            
+            @EnvironmentObject(TestObject.self)
+            var object
+            
+            var body: HTMLKit.Content {
+                Paragraph {
+                    Environment.when(object.firstName) {
+                        "True"
+                    }
+                }
+            }
+        }
+        
+        struct WrongCast: HTMLKit.View {
+            
+            @EnvironmentObject(TestObject.self)
+            var object
+            
+            var body: HTMLKit.Content {
+                Paragraph {
+                    Environment.when(object.firstName) {
+                        "True"
+                    }
+                }
+                .environment(object: TestObject())
+            }
+        }
+        
+        let app = Application(.testing)
+        
+        defer { app.shutdown() }
+        
+        app.get("unkownobject") { request async throws -> Vapor.View in
+            
+            return try await request.htmlkit.render(UnkownObject())
+        }
+        
+        app.get("wrongcast") { request async throws -> Vapor.View in
+            
+            return try await request.htmlkit.render(WrongCast())
+        }
+        
+        try app.test(.GET, "unkownobject") { response in
+            
+            XCTAssertEqual(response.status, .internalServerError)
+            
+            let abort = try response.content.decode(AbortResponse.self)
+            
+            XCTAssertEqual(abort.reason, "Unable to retrieve environment object.")
+        }
+        
+        try app.test(.GET, "wrongcast") { response in
+            
+            XCTAssertEqual(response.status, .internalServerError)
+            
+            let abort = try response.content.decode(AbortResponse.self)
+            
+            XCTAssertEqual(abort.reason, "Unable to cast the environment value.")
+        }
+    }
 }
