@@ -435,6 +435,9 @@ public final class Renderer {
         var result = false
         
         switch statement.compound {
+        case .optional(let optional):
+            result = try environment.evaluate(optional: optional)
+            
         case .value(let value):
             result = try environment.evaluate(value: value)
             

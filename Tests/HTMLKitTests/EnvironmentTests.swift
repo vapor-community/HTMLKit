@@ -350,6 +350,49 @@ final class EnvironmentTests: XCTestCase {
         )
     }
     
+    /// Tests the conditional rendering based on an optional environment value
+    ///
+    /// The renderer is expected to evaluate the presence of the value and render the right content
+    /// accordingly.
+    func testEnvironmentUnwrap() throws {
+        
+        struct TestObject: ViewModel {
+            
+            let some: String? = "Some"
+            let none: String? = nil
+        }
+        
+        struct TestView: View {
+            
+            @EnvironmentObject(TestObject.self)
+            var object
+            
+            var body: Content {
+                Paragraph {
+                    
+                    // Should return none, cause the value is nil
+                    Environment.unwrap(object.none) { value in
+                        value
+                    } then: {
+                        "None"
+                    }
+                    
+                    // Should return the value
+                    Environment.unwrap(object.some) { value in
+                        value
+                    }
+                }
+                .environment(object: TestObject())
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: TestView()),
+                       """
+                       <p>NoneSome</p>
+                       """
+        )
+    }
+    
     /// Tests the string interpolation with an environment value
     ///
     /// The renderer is expected to render the string correctly

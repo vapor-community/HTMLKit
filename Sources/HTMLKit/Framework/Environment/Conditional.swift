@@ -2,6 +2,9 @@
 @_documentation(visibility: internal)
 public indirect enum Conditional {
     
+    /// Holds an optional
+    case optional(EnvironmentValue)
+    
     /// Holds an relation
     case relation(Relation)
     

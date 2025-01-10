@@ -124,9 +124,7 @@ public final class Environment {
     /// - Returns: The result of evaluation
     internal func evaluate(value: EnvironmentValue) throws -> Bool {
         
-        let value = try resolve(value: value)
-        
-        guard let boolValue = value as? Bool else {
+        guard let boolValue = try resolve(value: value) as? Bool else {
             throw Errors.unableToCastEnvironmentValue
         }
         
@@ -146,6 +144,9 @@ public final class Environment {
             var result = true
             
             switch relation.lhs {
+            case .optional(let optional):
+                result = try evaluate(optional: optional)
+                
             case .condition(let condition):
                 result = try evaluate(condition: condition)
                 
@@ -165,6 +166,9 @@ public final class Environment {
             }
             
             switch relation.rhs {
+            case .optional(let optional):
+                result = try evaluate(optional: optional)
+                
             case .condition(let condition):
                 result = try evaluate(condition: condition)
                 
@@ -185,6 +189,9 @@ public final class Environment {
             var result = false
             
             switch relation.lhs {
+            case .optional(let optional):
+                result = try evaluate(optional: optional)
+                
             case .condition(let condition):
                 result = try evaluate(condition: condition)
                 
@@ -204,6 +211,9 @@ public final class Environment {
             }
             
             switch relation.rhs {
+            case .optional(let optional):
+                result = try evaluate(optional: optional)
+                
             case .condition(let condition):
                 result = try evaluate(condition: condition)
                 
@@ -253,6 +263,24 @@ public final class Environment {
     internal func evaluate(negation: Negation) throws -> Bool {
         return try !evaluate(value: negation.value)
     }
+    
+    /// Evaluates an environment optional
+    ///
+    /// - Parameter optional: The optional to evaluate
+    ///
+    /// - Returns: The result of the evaluation
+    internal func evaluate(optional: EnvironmentValue) throws -> Bool {
+        
+        guard let optionalValue = try resolve(value: optional) as? Nullable else {
+            throw Errors.unableToCastEnvironmentValue
+        }
+        
+        if !optionalValue.isNull {
+            return true
+        }
+        
+        return false
+    }
 }
 
 extension Environment {
@@ -277,6 +305,29 @@ extension Environment {
     /// - Returns: A environment condition
     public static func when(_ condition: Conditional, @ContentBuilder<Content> content: () -> [Content]) -> Statement {
         return Statement(compound: condition, first: content(), second: [])
+    }
+    
+    /// Unwraps a optional environment value
+    ///
+    /// - Parameters:
+    ///   - value: The optional value to unwrap
+    ///   - content: The content for some statement
+    ///
+    /// - Returns: A environment statement
+    public static func unwrap(_ value: EnvironmentValue, @ContentBuilder<Content> content: (EnvironmentValue) -> [Content]) -> Statement {
+        return Statement(compound: .optional(value), first: content(value), second: [])
+    }
+    
+    /// Unwraps a optional environment value
+    ///
+    /// - Parameters:
+    ///   - value: The optional value to unwrap
+    ///   - content: The content for some statement
+    ///   - then: The content for none statement
+    ///
+    /// - Returns: A environment statement
+    public static func unwrap(_ value: EnvironmentValue, @ContentBuilder<Content> content: (EnvironmentValue) -> [Content], @ContentBuilder<Content> then: () -> [Content]) -> Statement {
+        return Statement(compound: .optional(value), first: content(value), second: then())
     }
     
     /// Evaluates one condition
