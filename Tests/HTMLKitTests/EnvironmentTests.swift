@@ -80,7 +80,6 @@ final class EnvironmentTests: XCTestCase {
         struct TestObject: ViewModel {
             
             let firstName = "Jane"
-            let lastName = "Doe"
             let age = 40
             let loggedIn = true
         }
@@ -169,8 +168,6 @@ final class EnvironmentTests: XCTestCase {
         
         struct TestObject: ViewModel {
             
-            let firstName = "Jane"
-            let lastName = "Doe"
             let age = 40
         }
         
@@ -226,8 +223,6 @@ final class EnvironmentTests: XCTestCase {
         
         struct TestObject: ViewModel {
             
-            let firstName = "Jane"
-            let lastName = "Doe"
             let age = 40
         }
         
@@ -276,8 +271,6 @@ final class EnvironmentTests: XCTestCase {
         
         struct TestObject: ViewModel {
             
-            let firstName = "Jane"
-            let lastName = "Doe"
             let age = 40
         }
         
@@ -319,7 +312,6 @@ final class EnvironmentTests: XCTestCase {
         
         struct TestObject: ViewModel {
             
-            let name = "Jane"
             let children = ["Janek", "Janet"]
         }
         

@@ -6,7 +6,7 @@ extension Comparable {
     ///   - other: The other value to compare
     ///
     /// - Returns: The result
-    public func equal(_ other: Any) -> Bool {
+    internal func equal(_ other: Any) -> Bool {
 
         guard let other = other as? Self else {
             return false
@@ -21,7 +21,7 @@ extension Comparable {
     ///   - other: The other value to compare
     ///
     /// - Returns: The result
-    public func unequal(_ other: Any) -> Bool {
+    internal func unequal(_ other: Any) -> Bool {
         return !equal(other)
     }
 
@@ -31,7 +31,7 @@ extension Comparable {
     ///   - other: The other value to compare
     ///
     /// - Returns: The result
-    public func greater(_ other: Any) -> Bool {
+    internal func greater(_ other: Any) -> Bool {
 
         guard let other = other as? Self else {
             return false
@@ -46,7 +46,7 @@ extension Comparable {
     ///   - other: The other value to compare
     ///
     /// - Returns: The result
-    public func less(_ other: Any) -> Bool {
+    internal func less(_ other: Any) -> Bool {
         return !greater(other)
     }
 }

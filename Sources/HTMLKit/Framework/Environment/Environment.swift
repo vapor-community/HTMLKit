@@ -291,7 +291,7 @@ extension Environment {
     ///   - condition: The condition to evaluate
     ///   - content: The content for the true statement
     ///
-    /// - Returns: A environment condition
+    /// - Returns: A environment statement
     public static func when(_ condition: EnvironmentValue, @ContentBuilder<Content> content: () -> [Content]) -> Statement {
         return Statement(compound: .value(condition), first: content(), second: [])
     }
@@ -301,10 +301,34 @@ extension Environment {
     /// - Parameters:
     ///   - condition: The condition to evaluate
     ///   - content: The content for the true statement
+    ///   - then: The content for the false statement
     ///
-    /// - Returns: A environment condition
+    /// - Returns: A environment statement
+    public static func when(_ condition: EnvironmentValue, @ContentBuilder<Content> content: () -> [Content], @ContentBuilder<Content> then: () -> [Content]) -> Statement {
+        return Statement(compound: .value(condition), first: content(), second: then())
+    }
+    
+    /// Evaluates one condition
+    ///
+    /// - Parameters:
+    ///   - condition: The condition to evaluate
+    ///   - content: The content for the true statement
+    ///
+    /// - Returns: A environment statement
     public static func when(_ condition: Conditional, @ContentBuilder<Content> content: () -> [Content]) -> Statement {
         return Statement(compound: condition, first: content(), second: [])
+    }
+    
+    /// Evaluates one condition
+    ///
+    /// - Parameters:
+    ///   - condition: The condition to evaluate
+    ///   - content: The content for the true statement
+    ///   - then: The content for the false statement
+    ///
+    /// - Returns: A environment statement
+    public static func when(_ condition: Conditional, @ContentBuilder<Content> content: () -> [Content], @ContentBuilder<Content> then: () -> [Content]) -> Statement {
+        return Statement(compound: condition, first: content(), second: then())
     }
     
     /// Unwraps a optional environment value
@@ -330,25 +354,13 @@ extension Environment {
         return Statement(compound: .optional(value), first: content(value), second: then())
     }
     
-    /// Evaluates one condition
-    ///
-    /// - Parameters:
-    ///   - condition: The condition to evaluate
-    ///   - content: The content for the true statement
-    ///   - then: The content for the false statement
-    ///
-    /// - Returns: A environment condition
-    public static func when(_ condition: Conditional, @ContentBuilder<Content> content: () -> [Content], @ContentBuilder<Content> then: () -> [Content]) -> Statement {
-        return Statement(compound: condition, first: content(), second: then())
-    }
-    
     /// Iterates through a sequence of values
     ///
     /// - Parameters:
     ///   - sequence: The sequence to iterate over
     ///   - content: The content for the iteration
     ///
-    /// - Returns: A environment condition
+    /// - Returns: A environment sequence
     public static func loop(_ sequence: EnvironmentValue, @ContentBuilder<Content> content: (EnvironmentValue) -> [Content]) -> Sequence {
         return Sequence(value: sequence, content: content(sequence))
     }
