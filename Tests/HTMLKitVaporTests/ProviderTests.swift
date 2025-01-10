@@ -42,7 +42,6 @@ final class ProviderTests: XCTestCase {
                         content
                     }
                 }
-                .environment(object: TestObject())
             }
         }
         
@@ -332,11 +331,16 @@ final class ProviderTests: XCTestCase {
         }
     }
     
+    /// Tests the access to environment through provider
+    ///
+    /// The provider is expected to recieve the environment object and resolve it based on the request.
     func testEnvironmentIntegration() throws {
         
         let app = Application(.testing)
         
         defer { app.shutdown() }
+        
+        app.htmlkit.environment.upsert(TestObject(), for: \TestObject.self)
         
         app.get("test") { request async throws -> Vapor.View in
             return try await request.htmlkit.render(TestPage.SipplingView())
@@ -387,6 +391,78 @@ final class ProviderTests: XCTestCase {
                             </html>
                             """
             )
+        }
+    }
+    
+    /// Tests the error reporting to Vapor for issues that may occur during environment access.
+    ///
+    /// The error is expected to be classified as an internal server error and includes a error message.
+    func testEnvironmentErrorReporting() throws {
+        
+        struct TestObject {
+            
+            let firstName = "Jane"
+        }
+        
+        struct UnkownObject: HTMLKit.View {
+            
+            @EnvironmentObject(TestObject.self)
+            var object
+            
+            var body: HTMLKit.Content {
+                Paragraph {
+                    Environment.check(object.firstName) {
+                        "True"
+                    }
+                }
+            }
+        }
+        
+        struct WrongCast: HTMLKit.View {
+            
+            @EnvironmentObject(TestObject.self)
+            var object
+            
+            var body: HTMLKit.Content {
+                Paragraph {
+                    Environment.check(object.firstName) {
+                        "True"
+                    }
+                }
+                .environment(object: TestObject())
+            }
+        }
+        
+        let app = Application(.testing)
+        
+        defer { app.shutdown() }
+        
+        app.get("unkownobject") { request async throws -> Vapor.View in
+            
+            return try await request.htmlkit.render(UnkownObject())
+        }
+        
+        app.get("wrongcast") { request async throws -> Vapor.View in
+            
+            return try await request.htmlkit.render(WrongCast())
+        }
+        
+        try app.test(.GET, "unkownobject") { response in
+            
+            XCTAssertEqual(response.status, .internalServerError)
+            
+            let abort = try response.content.decode(AbortResponse.self)
+            
+            XCTAssertEqual(abort.reason, "Unable to retrieve environment object.")
+        }
+        
+        try app.test(.GET, "wrongcast") { response in
+            
+            XCTAssertEqual(response.status, .internalServerError)
+            
+            let abort = try response.content.decode(AbortResponse.self)
+            
+            XCTAssertEqual(abort.reason, "Unable to cast the environment value.")
         }
     }
 }

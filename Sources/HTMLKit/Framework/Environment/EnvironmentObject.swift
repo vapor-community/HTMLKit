@@ -1,18 +1,20 @@
 import Foundation
 
-/// A property wrapper type to initate an environment object
+/// A property wrapper type to provide access to an environment object
+///
+/// An environment object allows to read shared environment data.
 @frozen @propertyWrapper public struct EnvironmentObject<ObjectType> {
     
-    /// The wrapped value
+    /// The wrapped object
     public var wrappedValue: Wrapper<ObjectType>
     
-    /// Converts the type into the wrapped value
+    /// Initialiizes the environment object
     public init(_ type: ObjectType.Type) {
         
         self.wrappedValue = .init()
     }
     
-    /// A type, that holds the environment object informationen
+    /// A wrapper, that holds the object informationen
     @dynamicMemberLookup public struct Wrapper<WrapperType> {
         
         /// The path of the parent
@@ -21,20 +23,26 @@ import Foundation
         /// The path of the value
         internal var path: AnyKeyPath
         
-        /// Initiates a wrapper
+        /// Initializes the wrapper
         public init() {
             
             self.path = \WrapperType.self
         }
         
-        /// Initiates a wrapper with the necessary information for the environment object
+        /// Initializes the wrapper
+        ///
+        /// - Parameters:
+        ///   - parent: The path of the parent
+        ///   - path: The path of the value
         internal init(parent: AnyKeyPath, path: AnyKeyPath) {
             
             self.parent = parent
             self.path = path
         }
         
-        /// Looks up for a containing property
+        /// Accesses a wrapped value for a given key path dynamically
+        ///
+        /// - Returns: An environment value
         public subscript<T>(dynamicMember member: KeyPath<WrapperType, T>) -> EnvironmentValue {
             
             guard let newPath = self.path.appending(path: member) else {
@@ -48,7 +56,9 @@ import Foundation
             return .init(parentPath: self.path, valuePath: newPath)
         }
         
-        /// Looks up for a containing model
+        ///  Accesses a wrapped model object for a given key path dynamically
+        ///
+        /// - Returns: An environment value
         public subscript<T>(dynamicMember member: KeyPath<WrapperType, T>) -> Wrapper<T> where T: ViewModel {
             
             guard let newPath = self.path.appending(path: member) else {

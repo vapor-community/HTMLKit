@@ -112,14 +112,14 @@ extension Request {
     public var htmlkit: ViewRenderer {
         
         if let acceptLanguage = self.acceptLanguage {
-            self.application.htmlkit.environment.locale = HTMLKit.Locale(tag: acceptLanguage)
+            self.application.htmlkit.environment.upsert(HTMLKit.Locale(tag: acceptLanguage), for: \HTMLKit.EnvironmentKeys.locale)
         }
         
         return .init(eventLoop: self.eventLoop, configuration: self.application.htmlkit.configuration, logger: self.logger)
     }
 }
 
-extension HTMLKit.Renderer.Errors: AbortError {
+extension HTMLKit.Environment.Errors: AbortError {
  
     @_implements(AbortError, reason)
     public var abortReason: String { self.description }
@@ -127,7 +127,7 @@ extension HTMLKit.Renderer.Errors: AbortError {
     public var status: HTTPResponseStatus { .internalServerError }
 }
 
-extension HTMLKit.Renderer.Errors: DebuggableError {
+extension HTMLKit.Environment.Errors: DebuggableError {
 
     @_implements(DebuggableError, reason)
     public var debuggableReason: String {  self.description }
