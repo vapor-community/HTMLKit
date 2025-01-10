@@ -1,6 +1,6 @@
 /// A type representing a conditional block within the environment
 @_documentation(visibility: internal)
-public struct Statement: Content {
+public struct Statement: GlobalElement {
     
     /// The compound condition
     internal let compound: Conditional

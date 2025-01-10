@@ -1,6 +1,6 @@
 /// A type representing a loop rendering content within the environment
 @_documentation(visibility: internal)
-public struct Sequence: Content {
+public struct Sequence: GlobalElement {
     
     /// The environment value of the sequence
     internal let value: EnvironmentValue
