@@ -292,7 +292,7 @@ extension Environment {
     ///   - content: The content for the true statement
     ///
     /// - Returns: A environment statement
-    public static func when(_ condition: EnvironmentValue, @ContentBuilder<Content> content: () -> [Content]) -> Statement {
+    public static func check(_ condition: EnvironmentValue, @ContentBuilder<Content> content: () -> [Content]) -> Statement {
         return Statement(compound: .value(condition), first: content(), second: [])
     }
     
@@ -304,7 +304,7 @@ extension Environment {
     ///   - then: The content for the false statement
     ///
     /// - Returns: A environment statement
-    public static func when(_ condition: EnvironmentValue, @ContentBuilder<Content> content: () -> [Content], @ContentBuilder<Content> then: () -> [Content]) -> Statement {
+    public static func check(_ condition: EnvironmentValue, @ContentBuilder<Content> content: () -> [Content], @ContentBuilder<Content> then: () -> [Content]) -> Statement {
         return Statement(compound: .value(condition), first: content(), second: then())
     }
     
@@ -315,7 +315,7 @@ extension Environment {
     ///   - content: The content for the true statement
     ///
     /// - Returns: A environment statement
-    public static func when(_ condition: Conditional, @ContentBuilder<Content> content: () -> [Content]) -> Statement {
+    public static func check(_ condition: Conditional, @ContentBuilder<Content> content: () -> [Content]) -> Statement {
         return Statement(compound: condition, first: content(), second: [])
     }
     
@@ -327,7 +327,7 @@ extension Environment {
     ///   - then: The content for the false statement
     ///
     /// - Returns: A environment statement
-    public static func when(_ condition: Conditional, @ContentBuilder<Content> content: () -> [Content], @ContentBuilder<Content> then: () -> [Content]) -> Statement {
+    public static func check(_ condition: Conditional, @ContentBuilder<Content> content: () -> [Content], @ContentBuilder<Content> then: () -> [Content]) -> Statement {
         return Statement(compound: condition, first: content(), second: then())
     }
     

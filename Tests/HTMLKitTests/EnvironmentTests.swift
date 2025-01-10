@@ -93,60 +93,60 @@ final class EnvironmentTests: XCTestCase {
                 Paragraph {
 
                     // Should return true
-                    Environment.when(object.loggedIn) {
+                    Environment.check(object.loggedIn) {
                         "True"
                     }
                     
                     // Should return false
-                    Environment.when(!object.loggedIn) {
+                    Environment.check(!object.loggedIn) {
                         "True"
                     } then: {
                         "False"
                     }
                     
                     // Should return false
-                    Environment.when(object.firstName == "John") {
+                    Environment.check(object.firstName == "John") {
                         "True"
                     } then: {
                         "False"
                     }
 
                     // The counter test, should return true
-                    Environment.when(object.firstName == "Jane") {
+                    Environment.check(object.firstName == "Jane") {
                         "True"
                     }
 
                     // Should return true
-                    Environment.when(object.firstName != "John") {
+                    Environment.check(object.firstName != "John") {
                         "True"
                     }
                     
                     // The counter test, should return false
-                    Environment.when(object.firstName != "Jane") {
+                    Environment.check(object.firstName != "Jane") {
                         "True"
                     } then: {
                         "False"
                     }
 
                     // Should return false
-                    Environment.when(object.age > 41) {
+                    Environment.check(object.age > 41) {
                         "True"
                     } then: {
                         "False"
                     }
 
                     // The counter test, should return true
-                    Environment.when(object.age > 39) {
+                    Environment.check(object.age > 39) {
                         "True"
                     }
                     
                     // Should return true
-                    Environment.when(object.age < 41) {
+                    Environment.check(object.age < 41) {
                         "True"
                     }
 
                     // The counter test, should return false
-                    Environment.when(object.age < 39) {
+                    Environment.check(object.age < 39) {
                         "True"
                     } then: {
                         "False"
@@ -180,28 +180,28 @@ final class EnvironmentTests: XCTestCase {
                 Paragraph {
                     
                     // The relation is true, cause both conditions are true
-                    Environment.when(object.age > 39 && object.age < 41) {
+                    Environment.check(object.age > 39 && object.age < 41) {
                         "True"
                     } then: {
                         "False"
                     }
                     
                     // The relation is false, cause both conditions are false
-                    Environment.when(object.age < 39 && object.age > 41) {
+                    Environment.check(object.age < 39 && object.age > 41) {
                         "True"
                     } then: {
                         "False"
                     }
                     
                     // The relation is false, cause the first condition is false
-                    Environment.when(object.age > 41 && object.age > 39) {
+                    Environment.check(object.age > 41 && object.age > 39) {
                         "True"
                     } then: {
                         "False"
                     }
                     
                     // The relation is false, cause the second condition is false
-                    Environment.when(object.age > 39 && object.age > 41) {
+                    Environment.check(object.age > 39 && object.age > 41) {
                         "True"
                     } then: {
                         "False"
@@ -235,21 +235,21 @@ final class EnvironmentTests: XCTestCase {
                 Paragraph {
                     
                     // The relation is true, cause the second condition is true
-                    Environment.when(object.age > 41 || object.age == 40) {
+                    Environment.check(object.age > 41 || object.age == 40) {
                         "True"
                     } then: {
                         "False"
                     }
                     
                     // The relation is true, cause the first condition is true
-                    Environment.when(object.age == 40 || object.age > 41) {
+                    Environment.check(object.age == 40 || object.age > 41) {
                         "True"
                     } then: {
                         "False"
                     }
                     
                     // The relation is false, cause all conditions are false
-                    Environment.when(object.age == 50 || object.age > 41) {
+                    Environment.check(object.age == 50 || object.age > 41) {
                         "True"
                     } then: {
                         "False"
@@ -283,14 +283,14 @@ final class EnvironmentTests: XCTestCase {
                 Paragraph {
                     
                     // The statement is true, cause the first relation is true
-                    Environment.when(object.age == 40 || object.age > 41 && object.age < 39) {
+                    Environment.check(object.age == 40 || object.age > 41 && object.age < 39) {
                         "True"
                     } then: {
                         "False"
                     }
                     
                     // The statement is true, cause the second relation is true
-                    Environment.when(object.age == 50 || object.age < 41 && object.age > 39) {
+                    Environment.check(object.age == 50 || object.age < 41 && object.age > 39) {
                         "True"
                     } then: {
                         "False"

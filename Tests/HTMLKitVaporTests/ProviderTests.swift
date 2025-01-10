@@ -411,7 +411,7 @@ final class ProviderTests: XCTestCase {
             
             var body: HTMLKit.Content {
                 Paragraph {
-                    Environment.when(object.firstName) {
+                    Environment.check(object.firstName) {
                         "True"
                     }
                 }
@@ -425,7 +425,7 @@ final class ProviderTests: XCTestCase {
             
             var body: HTMLKit.Content {
                 Paragraph {
-                    Environment.when(object.firstName) {
+                    Environment.check(object.firstName) {
                         "True"
                     }
                 }
