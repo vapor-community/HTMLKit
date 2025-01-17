@@ -38,6 +38,9 @@ public final class Renderer {
     
     /// The logger used to log all operations
     private var logger: Logger
+    
+    ///  The encoder used to encode html entities
+    private var encoder: Encoder
 
     /// Initializes the renderer
     ///
@@ -58,6 +61,7 @@ public final class Renderer {
         self.markdown = Markdown()
         self.features = features
         self.logger = logger
+        self.encoder = Encoder()
     }
     
     /// Renders the provided view
@@ -569,9 +573,7 @@ public final class Renderer {
     private func escape(attribute value: String) -> String {
         
         if security.autoEscaping {
-            return value.replacingOccurrences(of: "&", with: "&amp;")
-                .replacingOccurrences(of: "\"", with: "&quot;")
-                .replacingOccurrences(of: "'", with: "&apos;")
+            return encoder.encode(value, as: .attribute)
         }
         
         return value
@@ -587,8 +589,7 @@ public final class Renderer {
     private func escape(content value: String) -> String {
         
         if security.autoEscaping {
-            return value.replacingOccurrences(of: "<", with: "&lt;")
-                .replacingOccurrences(of: ">", with: "&gt;")
+            return encoder.encode(value, as: .entity)
         }
         
         return value
