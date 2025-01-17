@@ -1,6 +1,6 @@
 import HTMLKit
 
-/// Holds the renderer configuration
+/// A type that holds configuration for the renderer
 public final class Configuration {
     
     /// Holds the localization configuration
@@ -15,7 +15,7 @@ public final class Configuration {
     /// Holds the enabled features
     internal var features: HTMLKit.Features
     
-    /// Creates a configuration
+    /// Initializes a configuration
     public init() {
         
         self.localization = Localization()

@@ -1,21 +1,17 @@
-/*
- Abstract:
- The file contains the extensions of some Vapor directives.
- */
-
 import HTMLKit
 import Vapor
 
 extension Application {
     
-    /// Access to the vapor provider
+    /// Provides access to the provider for the application
     public var htmlkit: HtmlKit  {
         return .init(application: self)
     }
     
-    /// The vapor provider
+    /// Represents the provider for Vapor
     public struct HtmlKit {
         
+        /// Manages security settings
         public var security: HTMLKit.Security {
             
             get {
@@ -27,6 +23,7 @@ extension Application {
             }
         }
         
+        /// Manages environment settings
         public var environment: HTMLKit.Environment {
             
             get {
@@ -38,6 +35,7 @@ extension Application {
             }
         }
         
+        /// Manages localization settings
         public var localization: HTMLKit.Localization {
             
             get {
@@ -49,6 +47,7 @@ extension Application {
             }
         }
         
+        /// Manages feature flags
         public var features: HTMLKit.Features {
             
             get {
@@ -60,12 +59,13 @@ extension Application {
             }
         }
         
+        /// The key used to store the configuration in Vapor's storage
         internal struct ConfigurationKey: StorageKey {
             
             public typealias Value = Configuration
         }
         
-        /// The configuration storage
+        /// The configuration for the view renderer
         internal var configuration: Configuration {
             
             if let configuration = self.application.storage[ConfigurationKey.self] {
@@ -79,16 +79,12 @@ extension Application {
             return configuration
         }
         
-        /// The view renderer
-        internal var renderer: ViewRenderer {
-            
-            return .init(eventLoop: application.eventLoopGroup.next(), configuration: configuration, logger: application.logger)
-        }
-        
-        /// The application dependency
+        /// Holds a reference to the Vapor application
         internal let application: Application
         
-        /// Creates the provider
+        /// Initializes the HTMLKit provider for a given Vapor application
+        ///
+        /// - Parameter application: The application instance from Vapor
         public init(application: Application) {
 
             self.application = application

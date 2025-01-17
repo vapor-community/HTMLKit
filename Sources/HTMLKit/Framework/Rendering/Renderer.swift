@@ -1,16 +1,27 @@
-/*
- Abstract:
- The file contains the renderer. The renderer runs through the content and transforms it into string output.
- */
-
 import Foundation
 import OrderedCollections
 import Logging
 
+/// The renderer responsible for processing content and transforming it into a string representation
+///
+/// ```swift
+/// Html {
+///     Head {
+///         Title {
+///             "Lorem ipsum..."
+///         }
+///     }
+/// }
+/// ```
+///
+/// ```html
+/// <html><head><title>Lorem ipsum...</title></head></html>
+/// ```
+///
 @_documentation(visibility: internal)
 public final class Renderer {
     
-    /// The context environment
+    /// The context environment used during rendering
     private var environment: Environment
     
     /// The localization configuration
@@ -22,14 +33,20 @@ public final class Renderer {
     /// The markdown parser
     private var markdown: Markdown
     
-    /// The feature flag used to manage the visibility of new and untested features.
+    /// The feature flag used to manage the visibility of new and untested features
     private var features: Features
     
     /// The logger used to log all operations
     private var logger: Logger
 
-    /// Initiates the renderer.
-    public init(localization: Localization? = nil, 
+    /// Initializes the renderer
+    ///
+    /// - Parameters:
+    ///   - localization: The localization
+    ///   - environment: The environment
+    ///   - security: The security configuration
+    ///   - features: The feature set
+    public init(localization: Localization? = nil,
                 environment: Environment = Environment(),
                 security: Security = Security(),
                 features: Features = [],
@@ -43,7 +60,11 @@ public final class Renderer {
         self.logger = logger
     }
     
-    /// Renders a view and transforms it into a string representation.
+    /// Renders the provided view
+    ///
+    /// - Parameter view: The view to render
+    ///
+    /// - Returns: A string representation
     public func render(view: some View) throws -> String {
         
         var result = ""
@@ -55,7 +76,11 @@ public final class Renderer {
         return result
     }
     
-    /// Reads the view content and transforms it.
+    /// Process the view content
+    ///
+    /// - Parameter contents: The content to process
+    ///
+    /// - Returns: A string representation of the content
     private func render(contents: [Content]) throws -> String {
         
         var result = ""
@@ -132,7 +157,11 @@ public final class Renderer {
         return result
     }
     
-    /// Renders a content element. A content element usually has descendants, which need to be rendered as well.
+    /// Renders a content element
+    ///
+    /// - Parameter element: The element to transform
+    ///
+    /// - Returns: The string representation
     private func render(element: some ContentNode) throws -> String {
         
         var result = ""
@@ -222,7 +251,11 @@ public final class Renderer {
         return result
     }
     
-    /// Renders a empty element. An empty element has no descendants.
+    /// Renders a empty element
+    ///
+    /// - Parameter element: The element to transform
+    ///
+    /// - Returns: The string representation
     private func render(element: some EmptyNode) throws -> String {
         
         var result = ""
@@ -238,7 +271,11 @@ public final class Renderer {
         return result
     }
     
-    /// Renders a document element. The document element holds the metadata.
+    /// Renders a document element
+    ///
+    /// - Parameter element: The element to transform
+    ///
+    /// - Returns: The string representation
     private func render(element: some DocumentNode) -> String {
         
         var result = ""
@@ -252,7 +289,11 @@ public final class Renderer {
         return result
     }
     
-    /// Renders a comment element.
+    /// Renders a comment element
+    ///
+    /// - Parameter element: The element to transform
+    ///
+    /// - Returns: The string representation
     private func render(element: some CommentNode) -> String {
         
         var result = ""
@@ -266,7 +307,11 @@ public final class Renderer {
         return result
     }
     
-    /// Renders a  custom element.
+    /// Renders a custom element
+    ///
+    /// - Parameter element: The element to transform
+    ///
+    /// - Returns: The string representation
     private func render(element: some CustomNode) throws -> String {
         
         var result = ""
@@ -352,7 +397,11 @@ public final class Renderer {
         return result
     }
     
-    /// Renders a localized string key.
+    /// Renders a localized string
+    ///
+    /// - Parameter string: The localized string to transform
+    ///
+    /// - Returns: The string representation
     private func render(localized string: LocalizedString) throws -> String {
         
         guard let localization = self.localization else {
@@ -383,7 +432,11 @@ public final class Renderer {
         }
     }
     
-    /// Renders a environment modifier.
+    /// Renders a environment modifier
+    ///
+    /// - Parameter modifier: The modifier to apply to
+    ///
+    /// - Returns: The string interpolation of the fellow content
     private func render(modifier: EnvironmentModifier) throws -> String {
         
         if let value = modifier.value {
@@ -393,7 +446,11 @@ public final class Renderer {
         return try render(contents: modifier.content)
     }
     
-    /// Renders a environment value.
+    /// Renders a environment value
+    ///
+    /// - Parameter value: The environment value to resolve
+    ///
+    /// - Returns: The string representation
     private func render(value: EnvironmentValue) throws -> String {
         
         let value = try self.environment.resolve(value: value)
@@ -458,7 +515,11 @@ public final class Renderer {
         return try render(contents: statement.second)
     }
     
-    /// Renders the node attributes.
+    /// Renders the attributes
+    ///
+    /// - Parameter attributes: The attributes to render
+    ///
+    /// - Returns: The string representation
     private func render(attributes: OrderedDictionary<String, Any>) throws -> String {
         
         var result = ""
@@ -480,17 +541,31 @@ public final class Renderer {
         return result
     }
     
-    /// Renders the markdown content.
+    /// Renders the markdown string
+    ///
+    /// - Parameter markstring: The string to render
+    ///
+    /// - Returns: The string representation
     private func render(markdown: MarkdownString) throws -> String {
         return self.markdown.render(string: escape(content: markdown.raw))
     }
     
-    /// Renders a environment interpolation
+    /// Renders a environment string
+    ///
+    /// - Parameter envstring: The string to render
+    ///
+    /// - Returns: The string representation
     private func render(envstring: EnvironmentString) throws -> String {
         return try render(contents: envstring.values)
     }
     
-    /// Converts specific charaters into encoded values.
+    /// Escapes special characters in the given attribute value
+    ///
+    /// The special characters for the attribute are the backslash, the ampersand and the single quotation mark.
+    ///
+    /// - Parameter value: The attribute value to be escaped
+    ///
+    /// - Returns: The escaped value
     private func escape(attribute value: String) -> String {
         
         if security.autoEscaping {
@@ -502,7 +577,13 @@ public final class Renderer {
         return value
     }
     
-    /// Converts specific charaters into encoded values.
+    /// Escapes special characters in the given content value
+    ///
+    /// The special characters for the content are the Greater than, Less than symbol.
+    ///
+    /// - Parameter value: The content value to be escaped
+    ///
+    /// - Returns: The escaped value
     private func escape(content value: String) -> String {
         
         if security.autoEscaping {
