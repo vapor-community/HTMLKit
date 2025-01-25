@@ -12,10 +12,7 @@ final class PerformanceTests: XCTestCase {
         
         let context = SampleContext(id: 0, title: "TestPage", excerpt: "Testpage", modified: Date(), posted: Date())
         
-        let security = Security()
-        security.autoEscaping = false
-        
-        let renderer = Renderer(security: security)
+        let renderer = Renderer(features: [])
         
         measure {
             
@@ -29,10 +26,7 @@ final class PerformanceTests: XCTestCase {
         
         let context = SampleContext(id: 0, title: "TestPage", excerpt: "Testpage", modified: Date(), posted: Date())
         
-        let security = Security()
-        security.autoEscaping = true
-        
-        let renderer = Renderer(security: security)
+        let renderer = Renderer()
         
         measure {
             
@@ -46,10 +40,7 @@ final class PerformanceTests: XCTestCase {
         
         let context = SampleContext(id: 0, title: "TestPage", excerpt: "Testpage", modified: Date(), posted: Date())
         
-        let security = Security()
-        security.autoEscaping = true
-        
-        let renderer = Renderer(security: security, features: [.markdown])
+        let renderer = Renderer(features: [.escaping, .markdown])
         
         measure {
             
