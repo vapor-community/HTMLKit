@@ -49,9 +49,6 @@ public struct Renderer {
     /// The localization configuration
     private var localization: Localization?
     
-    /// The security configuration
-    private var security: Security
-    
     /// The markdown parser
     private var markdown: Markdown
     
@@ -73,13 +70,11 @@ public struct Renderer {
     ///   - features: The feature set
     public init(localization: Localization? = nil,
                 environment: Environment = Environment(),
-                security: Security = Security(),
-                features: Features = [],
+                features: Features = [.escaping],
                 logger: Logger = Logger(label: "HTMLKit")) {
         
         self.localization = localization
         self.environment = environment
-        self.security = security
         self.markdown = Markdown()
         self.features = features
         self.logger = logger
@@ -470,11 +465,11 @@ public struct Renderer {
     /// - Returns: The escaped value
     private func escape(attribute value: String) -> String {
         
-        if security.autoEscaping {
-            return encoder.encode(value, as: .attribute)
+        if !features.contains(.escaping) {
+            return value
         }
         
-        return value
+        return encoder.encode(value, as: .attribute)
     }
     
     /// Escapes special characters in the given content value
@@ -486,11 +481,11 @@ public struct Renderer {
     /// - Returns: The escaped value
     private func escape(content value: String) -> String {
         
-        if security.autoEscaping {
-            return encoder.encode(value, as: .entity)
+        if !features.contains(.escaping) {
+            return value
         }
         
-        return value
+        return encoder.encode(value, as: .entity)
     }
     
     /// Renders an environment loop

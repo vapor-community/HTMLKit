@@ -9,9 +9,6 @@ public final class Configuration {
     /// Holds the environment configuration
     internal var environment: HTMLKit.Environment
     
-    /// Holds the security configuration
-    internal var security: HTMLKit.Security
-    
     /// Holds the enabled features
     internal var features: HTMLKit.Features
     
@@ -20,7 +17,6 @@ public final class Configuration {
         
         self.localization = Localization()
         self.environment = Environment()
-        self.security = Security()
-        self.features = []
+        self.features = [.escaping]
     }
 }

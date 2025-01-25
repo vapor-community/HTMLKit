@@ -11,18 +11,6 @@ extension Application {
     /// Represents the provider for Vapor
     public struct HtmlKit {
         
-        /// Manages security settings
-        public var security: HTMLKit.Security {
-            
-            get {
-                configuration.security
-            }
-            
-            nonmutating set {
-                configuration.security = newValue
-            }
-        }
-        
         /// Manages environment settings
         public var environment: HTMLKit.Environment {
             

@@ -24,7 +24,6 @@ public class ViewRenderer {
         self.eventLoop = eventLoop
         self.renderer = Renderer(localization: configuration.localization,
                                  environment: configuration.environment,
-                                 security: configuration.security,
                                  features: configuration.features,
                                  logger: logger)
         self.logger = logger
