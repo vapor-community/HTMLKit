@@ -42,10 +42,10 @@ public class ViewRenderer {
             var buffer = ByteBufferAllocator().buffer(capacity: 4096)
             buffer.writeString(try renderer.render(view: view))
             
-            return self.eventLoop.makeSucceededFuture(View(data: buffer))
+            return eventLoop.makeSucceededFuture(View(data: buffer))
             
         } catch(let error) {
-            return self.eventLoop.makeFailedFuture(error)
+            return eventLoop.makeFailedFuture(error)
         }
     }
     
