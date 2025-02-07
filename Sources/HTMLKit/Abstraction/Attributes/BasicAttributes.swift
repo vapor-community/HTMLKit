@@ -1427,16 +1427,24 @@ extension ListAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the loop handler.
+/// A type that provides the `loop` modifier.
 @_documentation(visibility: internal)
 public protocol LoopAttribute: Attribute {
     
-    /// The function represents the html-attribute 'loop'.
+    /// Activate auto play
+    /// 
+    /// It specifies that the element will start over again, every time it is finished.
     ///
-    /// ```html
-    /// <tag loop />
+    /// ```swift
+    /// Audio {
+    /// }
+    /// .loop()
     /// ```
-    func loop() -> Self
+    ///
+    /// - Parameter condition: Whether the element should play repeatedly
+    ///
+    /// - Returns: The element
+    func loop(_ condition: Bool) -> Self
 }
 
 extension LoopAttribute where Self: ContentNode {

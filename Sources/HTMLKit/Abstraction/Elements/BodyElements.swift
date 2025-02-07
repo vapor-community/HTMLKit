@@ -17010,8 +17010,13 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return self
     }
     
-    public func loop() -> Video {
-        return mutate(loop: "loop")
+    public func loop(_ condition: Bool = true) -> Video {
+        
+        if condition {
+            return mutate(loop: "loop")
+        }
+        
+        return self
     }
     
     public func muted() -> Video {
@@ -17330,8 +17335,13 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return self
     }
     
-    public func loop() -> Audio {
-        return mutate(loop: "loop")
+    public func loop(_ condition: Bool = true) -> Audio {
+        
+        if condition {
+            return mutate(loop: "loop")
+        }
+        
+        return self
     }
     
     public func muted() -> Audio {

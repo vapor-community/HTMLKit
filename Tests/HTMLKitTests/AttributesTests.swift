@@ -309,8 +309,13 @@ final class AttributesTests: XCTestCase {
             return self.mutate(list: value)
         }
         
-        func loop() -> Tag {
-            return self.mutate(loop: "loop")
+        func loop(_ condition: Bool = true) -> Tag {
+            
+            if condition {
+                return self.mutate(loop: "loop")
+            }
+            
+            return self
         }
         
         func low(_ size: Float) -> Tag {
@@ -1476,11 +1481,18 @@ final class AttributesTests: XCTestCase {
     func testLoopAttribute() throws {
         
         let view = TestView {
+            // unconditionally
             Tag {}.loop()
+            // with a false condition
+            Tag {}.loop(false)
+            // with a true condition
+            Tag {}.loop(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag loop="loop"></tag>\
+                       <tag></tag>\
                        <tag loop="loop"></tag>
                        """
         )
