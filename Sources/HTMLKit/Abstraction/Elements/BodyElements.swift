@@ -5551,8 +5551,8 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(start: size)
     }
     
-    public func type(_ value: String) -> OrderedList {
-        return mutate(type: value)
+    public func type(_ value: Values.Marker) -> OrderedList {
+        return mutate(type: value.rawValue)
     }
     
     public func popover(_ value: Values.Popover.State) -> OrderedList {

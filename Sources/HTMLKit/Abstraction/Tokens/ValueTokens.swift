@@ -437,17 +437,28 @@ public enum Values {
         case xIcon = "image/x-icon"
     }
 
-    /// The type is for
+    /// A enumeration of potential list markers
     ///
-    /// ```html
-    /// <ol type="I"></ol>
+    /// ```swift
+    /// OrderedList {
+    /// }
+    /// .type(.lowercaseAlpha)
     /// ```
     public enum Marker: String {
         
+        /// Uses numbers e.g. 1, 2, 3
         case decimal = "1"
+        
+        /// Uses uppercase letters e.g. A, B, C
         case uppercaseAlpha = "A"
+        
+        /// Uses lowercase letters e.g. a, b, c
         case lowercaseAlpha = "a"
+        
+        /// Uses uppercase Roman numerals e.g. I, II, III
         case uppercaseRoman = "I"
+        
+        /// Uses lowercase Roman numerals e.g. i, ii, iii
         case lowercaseRoman = "i"
     }
 
