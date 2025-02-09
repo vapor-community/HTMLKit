@@ -1961,6 +1961,39 @@ extension PosterAttribute where Self: EmptyNode {
     }
 }
 
+/// A type that provides the `playInline` modifier.
+public protocol PlaysInlineAttribute: Attribute {
+    
+    /// Enables inline playback
+    ///
+    /// It specifies that the element should not use the native fullscreen mode when playing.
+    ///
+    /// ```swift
+    /// Video {
+    /// }
+    /// .playInline()
+    /// ```
+    ///
+    /// - Parameter condition: Whether the element should play inline
+    ///
+    /// - Returns: The element
+    func playInline(_ condition: Bool) -> Self
+}
+
+extension PlaysInlineAttribute where Self: ContentNode {
+    
+    internal func mutate(playsinline value: String) -> Self {
+        return self.mutate(key: "playsinline", value: value)
+    }
+}
+
+extension PlaysInlineAttribute where Self: EmptyNode {
+    
+    internal func mutate(playsinline value: String) -> Self {
+        return self.mutate(key: "playsinline", value: value)
+    }
+}
+
 /// The protocol provides the element with the preload handler.
 @_documentation(visibility: internal)
 public protocol PreloadAttribute: Attribute {
