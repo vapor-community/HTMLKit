@@ -16860,7 +16860,7 @@ public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute, PreloadAttribute {
+extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute, PreloadAttribute, PlaysInlineAttribute {
     
     public func accessKey(_ value: Character) -> Video {
         return mutate(accesskey: value)
@@ -17041,6 +17041,15 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func popover(_ value: Values.Popover.State) -> Video {
         return mutate(popover: value.rawValue)
+    }
+    
+    public func playInline(_ condition: Bool = true) -> Video {
+        
+        if condition {
+            return mutate(playsinline: "playsinline")
+        }
+        
+        return self
     }
     
     public func custom(key: String, value: Any) -> Video {
