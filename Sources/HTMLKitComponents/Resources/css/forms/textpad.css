@@ -59,7 +59,7 @@
     --borderColor: var(--redColor);
 }
 
-.textpad:has(.textpad-content:focus-within) .toolbar-tool {
+.textpad:has(.textpad-content:focus-within) .textpad-action .toolbar-tool {
     color: hsla(var(--foregroundColor), 1.0);
 }
 
@@ -67,18 +67,131 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding-block-start: var(--paddingBlockStart);
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
+}
+
+.toolbar-context {
+    position: relative;
+    display: inline-block;
+}
+
+@media (min-width: 768px) {
+    .toolbar-context  {
+        display: none;
+    }
+}
+
+.toolbar-context summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+.toolbar-context summary::-webkit-details-marker {
+    display: none;
+}
+
+.toolbar-context summary svg {
+    display: inline-block;
+    inline-size: 1.25em;
+    block-size: 1.0em;
+    fill: currentColor;
+    font-size: 1.0rem;
+    line-height: 1.5;
+    vertical-align: middle;
+    pointer-events: none;
+}
+
+.toolbar-context ul {
+    position: absolute;
+    z-index: 1;
+    margin-block: 0.5rem;
+    padding-block: 0.5rem;
+    padding-inline: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    inline-size: max-content;
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--systemBorderColor), 1.0);
+    border-radius: var(--borderRadius);
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+    list-style: none;
+}
+
+.toolbar-context ul li {
+    position: relative;
+}
+
+.toolbar-context ul li .toolbar-tool {
+    color: hsla(var(--foregroundColor), 1.0);
+}
+
+.textpad-action {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
     list-style: none;
     margin: unset !important;
 }
 
+@media (min-width: 768px) {
+    .textpad-action {
+        display: flex;
+    }
+}
+
+.textpad-action > li {
+    position: relative;
+}
+
+.textpad-revision {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    list-style: none;
+    margin: unset !important;
+}
+
+.textpad-revision > li {
+    position: relative;
+}
+
+.textpad-revision .toolbar-tool {
+    color: hsla(var(--foregroundColor), 1.0);
+}
+
+.textpad-revision .toolbar-tool.state\:disabled {
+    color: hsla(var(--foregroundColor), 0.5);
+}
+
+.tooltip {
+    position: absolute;
+    top: 100%;
+    z-index: 1;
+    padding-inline: 0.313rem;
+    padding-block: 0.625rem;
+    display: none;
+    inline-size: max-content;
+    font-size: 14px;
+    text-align: center;
+    color: hsla(var(--whiteColor), 1.0);
+    border-radius: var(--borderRadius);
+    background-color: hsla(var(--blackColor), 1.0);
+}
+
 .toolbar-tool {
     display: inline-block;
-    padding: 0.375rem 0.75rem;
+    inline-size: 32px;
+    block-size: 32px;
     color: hsla(var(--foregroundColor), 0.5);
     cursor: pointer;
     -webkit-user-select: none;
@@ -89,8 +202,16 @@
     background-color: unset;
 }
 
+.toolbar-tool > * {
+    pointer-events: none;
+}
+
 .toolbar-tool:hover {
-    background-color: hsla(var(--systemTextColor), 0.1);
+    background-color: hsla(var(--systemBorderColor), 0.5);
+}
+
+.toolbar-tool:hover + .tooltip {
+    display: block;
 }
 
 .toolbar-tool > svg {
