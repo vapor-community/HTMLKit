@@ -425,10 +425,14 @@ public struct Renderer {
             
             result += " \(attribute.key)=\""
             
-            if let value = attribute.value as? EnvironmentValue {
+            switch attribute.value {
+            case let string as LocalizedString:
+                result += try render(localized: string)
+                
+            case let value as EnvironmentValue:
                 result += escape(attribute: try render(envvalue: value))
                 
-            } else {
+            default:
                 result += escape(attribute: "\(attribute.value)")
             }
             
