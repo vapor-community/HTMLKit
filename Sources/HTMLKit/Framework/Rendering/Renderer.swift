@@ -91,7 +91,7 @@ public struct Renderer {
         var result = ""
         
         if let contents = view.body as? [Content] {
-            result += try render(contents: contents)
+            try render(contents: contents, on: &result)
         }
         
         return result
@@ -102,45 +102,43 @@ public struct Renderer {
     /// - Parameter contents: The content to process
     ///
     /// - Returns: A string representation of the content
-    private func render(contents: [Content]) throws -> String {
-        
-        var result = ""
+    private func render(contents: [Content], on result: inout String) throws {
         
         for content in contents {
             
             switch content {
             case let content as [Content]:
-                result += try render(contents: content)
+                try render(contents: content, on: &result)
                 
             case let view as View:
                 result += try render(view: view)
                 
             case let element as any ContentNode:
-                result += try render(element: element)
+                try render(element: element, on: &result)
                 
             case let element as EmptyNode:
-                result += try render(element: element)
+                try render(element: element, on: &result)
                 
             case let element as DocumentNode:
-                result += render(element: element)
+                render(element: element, on: &result)
                 
             case let element as CommentNode:
-                result += render(element: element)
+                render(element: element, on: &result)
                 
             case let element as any CustomNode:
-                result += try render(element: element)
+                try render(element: element, on: &result)
                 
             case let modifier as EnvironmentModifier:
-                result += try render(modifier: modifier)
+                try render(modifier: modifier, on: &result)
                 
             case let value as EnvironmentValue:
                 result += escape(content: try render(envvalue: value))
                 
             case let statement as Statement:
-                result += try render(statement: statement)
+                try render(statement: statement, on: &result)
                 
             case let sequence as Sequence:
-                result += try render(loop: sequence)
+                try render(loop: sequence, on: &result)
                 
             case let string as LocalizedString:
                 result += try render(localized: string)
@@ -155,7 +153,7 @@ public struct Renderer {
                 }
                 
             case let string as EnvironmentString:
-                result += try render(envstring: string)
+                try render(envstring: string, on: &result)
                 
             case let doubleValue as Double:
                 result += String(doubleValue)
@@ -182,8 +180,6 @@ public struct Renderer {
                 throw Error.unknownContentType
             }
         }
-        
-        return result
     }
     
     /// Renders a content element
@@ -191,25 +187,21 @@ public struct Renderer {
     /// - Parameter element: The element to transform
     ///
     /// - Returns: The string representation
-    private func render(element: some ContentNode) throws -> String {
-        
-        var result = ""
+    private func render(element: some ContentNode, on result: inout String) throws {
         
         result += "<\(element.name)"
         
         if let attributes = element.attributes {
-            result += try render(attributes: attributes)
+            try render(attributes: attributes, on: &result)
         }
         
         result += ">"
         
         if let contents = element.content as? [Content] {
-            result += try render(contents: contents)
+            try render(contents: contents, on: &result)
         }
         
         result += "</\(element.name)>"
-        
-        return result
     }
     
     /// Renders a empty element
@@ -217,19 +209,15 @@ public struct Renderer {
     /// - Parameter element: The element to transform
     ///
     /// - Returns: The string representation
-    private func render(element: some EmptyNode) throws -> String {
-        
-        var result = ""
+    private func render(element: some EmptyNode, on result: inout String) throws {
         
         result += "<\(element.name)"
         
         if let attributes = element.attributes {
-            result += try render(attributes: attributes)
+            try render(attributes: attributes, on: &result)
         }
         
         result += ">"
-        
-        return result
     }
     
     /// Renders a document element
@@ -237,17 +225,13 @@ public struct Renderer {
     /// - Parameter element: The element to transform
     ///
     /// - Returns: The string representation
-    private func render(element: some DocumentNode) -> String {
-        
-        var result = ""
+    private func render(element: some DocumentNode, on result: inout String) {
 
         result += "<!DOCTYPE "
         
         result += element.content
         
         result += ">"
-        
-        return result
     }
     
     /// Renders a comment element
@@ -255,17 +239,13 @@ public struct Renderer {
     /// - Parameter element: The element to transform
     ///
     /// - Returns: The string representation
-    private func render(element: some CommentNode) -> String {
-        
-        var result = ""
+    private func render(element: some CommentNode, on result: inout String) {
         
         result += "<!--"
-        
+    
         result += escape(content: element.content)
         
         result += "-->"
-        
-        return result
     }
     
     /// Renders a custom element
@@ -273,25 +253,21 @@ public struct Renderer {
     /// - Parameter element: The element to transform
     ///
     /// - Returns: The string representation
-    private func render(element: some CustomNode) throws -> String {
-        
-        var result = ""
+    private func render(element: some CustomNode, on result: inout String) throws {
         
         result += "<\(element.name)"
         
         if let attributes = element.attributes {
-            result += try render(attributes: attributes)
+            try render(attributes: attributes, on: &result)
         }
         
         result += ">"
         
         if let contents = element.content as? [Content] {
-            result += try render(contents: contents)
+            try render(contents: contents, on: &result)
         }
         
         result += "</\(element.name)>"
-        
-        return result
     }
     
     /// Renders a localized string
@@ -334,13 +310,13 @@ public struct Renderer {
     /// - Parameter modifier: The modifier to apply to
     ///
     /// - Returns: The string interpolation of the fellow content
-    private func render(modifier: EnvironmentModifier) throws -> String {
+    private func render(modifier: EnvironmentModifier, on result: inout String) throws {
         
         if let value = modifier.value {
             self.environment.upsert(value, for: modifier.key)
         }
         
-        return try render(contents: modifier.content)
+        try render(contents: modifier.content, on: &result)
     }
     
     /// Renders a environment value
@@ -384,32 +360,33 @@ public struct Renderer {
     /// - Parameter statement: The statement to resolve
     ///
     /// - Returns: The rendered condition
-    private func render(statement: Statement) throws -> String {
+    private func render(statement: Statement, on result: inout String) throws {
         
-        var result = false
+        var evaluation = false
         
         switch statement.compound {
         case .optional(let optional):
-            result = try environment.evaluate(optional: optional)
+            evaluation = try environment.evaluate(optional: optional)
             
         case .value(let value):
-            result = try environment.evaluate(value: value)
+            evaluation = try environment.evaluate(value: value)
             
         case .condition(let condition):
-            result = try environment.evaluate(condition: condition)
+            evaluation = try environment.evaluate(condition: condition)
             
         case .negation(let negation):
-            result = try environment.evaluate(negation: negation)
+            evaluation = try environment.evaluate(negation: negation)
             
         case .relation(let relation):
-            result = try environment.evaluate(relation: relation)
+            evaluation = try environment.evaluate(relation: relation)
         }
         
-        if result {
-            return try render(contents: statement.first)
+        if evaluation {
+            try render(contents: statement.first, on: &result)
+            
+        } else {
+            try render(contents: statement.second, on: &result)
         }
-        
-        return try render(contents: statement.second)
     }
     
     /// Renders the attributes
@@ -417,9 +394,7 @@ public struct Renderer {
     /// - Parameter attributes: The attributes to render
     ///
     /// - Returns: The string representation
-    private func render(attributes: OrderedDictionary<String, Any>) throws -> String {
-        
-        var result = ""
+    private func render(attributes: OrderedDictionary<String, Any>, on result: inout String) throws {
         
         for attribute in attributes {
             
@@ -438,8 +413,6 @@ public struct Renderer {
             
             result += "\""
         }
-        
-        return result
     }
     
     /// Renders the markdown string
@@ -456,40 +429,8 @@ public struct Renderer {
     /// - Parameter envstring: The string to render
     ///
     /// - Returns: The string representation
-    private func render(envstring: EnvironmentString) throws -> String {
-        return try render(contents: envstring.values)
-    }
-    
-    /// Escapes special characters in the given attribute value
-    ///
-    /// The special characters for the attribute are the backslash, the ampersand and the single quotation mark.
-    ///
-    /// - Parameter value: The attribute value to be escaped
-    ///
-    /// - Returns: The escaped value
-    private func escape(attribute value: String) -> String {
-        
-        if !features.contains(.escaping) {
-            return value
-        }
-        
-        return encoder.encode(value, as: .attribute)
-    }
-    
-    /// Escapes special characters in the given content value
-    ///
-    /// The special characters for the content are the Greater than, Less than symbol.
-    ///
-    /// - Parameter value: The content value to be escaped
-    ///
-    /// - Returns: The escaped value
-    private func escape(content value: String) -> String {
-        
-        if !features.contains(.escaping) {
-            return value
-        }
-        
-        return encoder.encode(value, as: .entity)
+    private func render(envstring: EnvironmentString, on result: inout String) throws {
+        return try render(contents: envstring.values, on: &result)
     }
     
     /// Renders an environment loop
@@ -497,7 +438,7 @@ public struct Renderer {
     /// - Parameter loop: The sequence to resolve
     ///
     /// - Returns: The string representation
-    private func render(loop: Sequence) throws -> String {
+    private func render(loop: Sequence, on result: inout String) throws {
         
         let value = try environment.resolve(value: loop.value)
         
@@ -505,13 +446,9 @@ public struct Renderer {
             throw Environment.Errors.unableToCastEnvironmentValue
         }
         
-        var result = ""
-        
         for value in sequence {
             try render(loop: loop.content, with: value, on: &result)
         }
-        
-        return result
     }
     
     /// Renders the content within an environment loop
@@ -532,10 +469,10 @@ public struct Renderer {
                 try render(loop: element, with: value, on: &result)
                 
             case let element as EmptyNode:
-                result += try render(element: element)
+                try render(element: element, on: &result)
                 
             case let element as CommentNode:
-                result += render(element: element)
+                render(element: element, on: &result)
                 
             case let string as LocalizedString:
                 result += try render(localized: string)
@@ -544,7 +481,7 @@ public struct Renderer {
                 result += try render(markstring: string)
                 
             case let string as EnvironmentString:
-                result += try render(envstring: string)
+                try render(envstring: string, on: &result)
                 
             case let string as String:
                 result += escape(content: string)
@@ -594,7 +531,7 @@ public struct Renderer {
         result += "<\(element.name)"
         
         if let attributes = element.attributes {
-            result += try render(attributes: attributes)
+            try render(attributes: attributes, on: &result)
         }
         
         result += ">"
@@ -617,7 +554,7 @@ public struct Renderer {
         result += "<\(element.name)"
         
         if let attributes = element.attributes {
-            result += try render(attributes: attributes)
+            try render(attributes: attributes, on: &result)
         }
         
         result += ">"
@@ -637,5 +574,37 @@ public struct Renderer {
     ///   - result: The string representation
     private func render(loop envstring: EnvironmentString, with value: Any, on result: inout String) throws {
         try render(loop: envstring.values, with: value, on: &result)
+    }
+    
+    /// Escapes special characters in the given attribute value
+    ///
+    /// The special characters for the attribute are the backslash, the ampersand and the single quotation mark.
+    ///
+    /// - Parameter value: The attribute value to be escaped
+    ///
+    /// - Returns: The escaped value
+    private func escape(attribute value: String) -> String {
+        
+        if !features.contains(.escaping) {
+            return value
+        }
+        
+        return encoder.encode(value, as: .attribute)
+    }
+    
+    /// Escapes special characters in the given content value
+    ///
+    /// The special characters for the content are the Greater than, Less than symbol.
+    ///
+    /// - Parameter value: The content value to be escaped
+    ///
+    /// - Returns: The escaped value
+    private func escape(content value: String) -> String {
+        
+        if !features.contains(.escaping) {
+            return value
+        }
+        
+        return encoder.encode(value, as: .entity)
     }
 }
