@@ -9,7 +9,7 @@ on:
 jobs:
   test-pushpull:
     runs-on: ubuntu-latest
-    container: swift:5.8-focal
+    container: swift:5.9.2-jammy
     steps:
     - uses: actions/checkout@v3
     - name: Run tests
