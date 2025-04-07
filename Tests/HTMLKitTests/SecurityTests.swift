@@ -13,7 +13,7 @@ final class SecurityTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    var renderer = Renderer(features: [.markdown])
+    var renderer = Renderer(features: [.escaping, .markdown])
     
     func testEncodingAttributeContext() throws {
         
