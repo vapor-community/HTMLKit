@@ -1563,11 +1563,15 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.method(.get)
+            Tag {}.method(.post)
+            Tag {}.method(.dialog)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag method="get"></tag>
+                       <tag method="get"></tag>\
+                       <tag method="post"></tag>\
+                       <tag method="dialog"></tag>
                        """
         )
     }
