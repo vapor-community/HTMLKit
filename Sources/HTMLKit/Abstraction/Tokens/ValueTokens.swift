@@ -62,10 +62,13 @@ public enum Values {
         case plainText = "text/plain"
     }
 
-    /// A method for the form submission.
+    /// A method for form submission.
     ///
-    /// ```html
-    /// <form method="get"></form>
+    /// ```swift
+    /// Form {
+    ///     ...
+    /// }
+    /// .method(.post)
     /// ```
     public enum Method: String {
         
@@ -74,6 +77,9 @@ public enum Values {
         
         /// Appends the form data to name/value pairs.
         case get
+        
+        /// Closes the dialog and triggers a submit event, without actually sending the form data.
+        case dialog
     }
 
     /// A type of input elements.
