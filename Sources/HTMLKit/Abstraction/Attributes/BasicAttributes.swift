@@ -97,12 +97,30 @@ extension ActionAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol AlternateAttribute: Attribute {
     
-    /// The function represents the html-attribute 'alt'.
+    /// Provide an alternative information
     ///
-    /// ```html
-    /// <tag alt="" />
+    /// ```swift
+    /// Image()
+    ///     .alternate("Lorem ipsum...")
     /// ```
+    ///
+    /// - Parameter value: The text to describe the image
+    ///
+    /// - Returns: The element
     func alternate(_ value: String) -> Self
+    
+    /// Provide an alternative information
+    /// 
+    /// ```swift
+    /// Image()
+    ///     .alternate("Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter localizedKey: The string key to be translated
+    /// - Parameter tableName: The translation table to look in
+    ///
+    /// - Returns: The element
+    func alternate(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
 }
 
 extension AlternateAttribute where Self: ContentNode {
@@ -110,11 +128,19 @@ extension AlternateAttribute where Self: ContentNode {
     internal func mutate(alternate value: String) -> Self {
         return self.mutate(key: "alt", value: value)
     }
+    
+    internal func mutate(alternate value: LocalizedString) -> Self {
+        return self.mutate(key: "alt", value: value)
+    }
 }
 
 extension AlternateAttribute where Self: EmptyNode {
     
     internal func mutate(alternate value: String) -> Self {
+        return self.mutate(key: "alt", value: value)
+    }
+    
+    internal func mutate(alternate value: LocalizedString) -> Self {
         return self.mutate(key: "alt", value: value)
     }
 }
@@ -1913,12 +1939,30 @@ extension PingAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol PlaceholderAttribute: Attribute {
     
-    /// The function represents the html-attribute 'placeholder'.
+    /// Supply a short hint.
     ///
-    /// ```html
-    /// <tag placeholder="" />
+    /// ```swift
+    /// Input()
+    ///     .placeholder("Lorem ipsum...")
     /// ```
+    ///
+    /// - Parameter value: The text to display as a hint
+    ///
+    /// - Returns: The element
     func placeholder(_ value: String) -> Self
+    
+    /// Supply a short hint.
+    /// 
+    /// ```swift
+    /// Input()
+    ///     .placeholder("Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter localizedKey: The string key to be translated
+    /// - Parameter tableName: The translation table to look in
+    ///
+    /// - Returns: The element
+    func placeholder(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
 }
 
 extension PlaceholderAttribute where Self: ContentNode {
@@ -1926,11 +1970,19 @@ extension PlaceholderAttribute where Self: ContentNode {
     internal func mutate(placeholder value: String) -> Self {
         return self.mutate(key: "placeholder", value: value)
     }
+    
+    internal func mutate(placeholder value: LocalizedString) -> Self {
+        return self.mutate(key: "placeholder", value: value)
+    }
 }
 
 extension PlaceholderAttribute where Self: EmptyNode {
     
     internal func mutate(placeholder value: String) -> Self {
+        return self.mutate(key: "placeholder", value: value)
+    }
+    
+    internal func mutate(placeholder value: LocalizedString) -> Self {
         return self.mutate(key: "placeholder", value: value)
     }
 }
@@ -2645,12 +2697,34 @@ extension TargetAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol TitleAttribute: Attribute {
  
-    /// The function represents the html-attribute 'title'.
+    /// Supply extra information about the element..
     ///
-    /// ```html
-    /// <tag title="" />
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .title("Lorem ipsum")
     /// ```
+    ///
+    /// - Parameter value: The extra information to display
+    ///
+    /// - Returns: The element
     func title(_ value: String) -> Self
+    
+    /// Supply extra information about the element..
+    /// 
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .title("Lorem ipsum")
+    /// ```
+    ///
+    /// - Parameter localizedKey: The string key to be translated
+    /// - Parameter tableName: The translation table to look in
+    ///
+    /// - Returns: The element
+    func title(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
 }
 
 extension TitleAttribute where Self: ContentNode {
@@ -2658,11 +2732,19 @@ extension TitleAttribute where Self: ContentNode {
     internal func mutate(title value: String) -> Self {
         return self.mutate(key: "title", value: value)
     }
+    
+    internal func mutate(title value: LocalizedString) -> Self {
+        return self.mutate(key: "title", value: value)
+    }
 }
 
 extension TitleAttribute where Self: EmptyNode {
     
     internal func mutate(title value: String) -> Self {
+        return self.mutate(key: "title", value: value)
+    }
+    
+    internal func mutate(title value: LocalizedString) -> Self {
         return self.mutate(key: "title", value: value)
     }
 }
@@ -2760,12 +2842,32 @@ extension UseMapAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol ValueAttribute: Attribute {
     
-    /// The function represents the html-attribute 'value'.
+    /// Set a initial value for the element.
     ///
-    /// ```html
-    /// <tag value="" />
+    /// ```swift
+    /// Input()
+    ///     .type(.text)
+    ///     .value("Lorem ipsum...")
     /// ```
+    ///
+    /// - Parameter value: The initial value
+    ///
+    /// - Returns: The element
     func value(_ value: String) -> Self
+    
+    /// Set a initial value for the element.
+    /// 
+    /// ```swift
+    /// Input()
+    ///     .type(.text)
+    ///     .value("Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter localizedKey: The string key to be translated
+    /// - Parameter tableName: The translation table to look in
+    ///
+    /// - Returns: The element
+    func value(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
 }
 
 extension ValueAttribute where Self: ContentNode {
@@ -2773,11 +2875,19 @@ extension ValueAttribute where Self: ContentNode {
     internal func mutate(value: String) -> Self {
         return self.mutate(key: "value", value: value)
     }
+    
+    internal func mutate(value: LocalizedString) -> Self {
+        return self.mutate(key: "value", value: value)
+    }
 }
 
 extension ValueAttribute where Self: EmptyNode {
     
     internal func mutate(value: String) -> Self {
+        return self.mutate(key: "value", value: value)
+    }
+    
+    internal func mutate(value: LocalizedString) -> Self {
         return self.mutate(key: "value", value: value)
     }
 }

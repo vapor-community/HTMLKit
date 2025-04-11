@@ -166,6 +166,10 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(title: value)
     }
     
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Parameter {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func translate(_ value: Values.Decision) -> Parameter {
         return mutate(translate: value.rawValue)
     }
@@ -189,6 +193,10 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
     
     public func value(_ value: String) -> Parameter {
         return mutate(value: value)
+    }
+    
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Parameter {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
     }
     
     public func popover(_ value: Values.Popover.State) -> Parameter {

@@ -138,6 +138,10 @@ final class AttributesTests: XCTestCase {
             return self.mutate(title: value)
         }
         
+        func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return self.mutate(title: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
         func translate(_ value: Values.Decision) -> Tag {
             return self.mutate(translate: value.rawValue)
         }
@@ -152,6 +156,10 @@ final class AttributesTests: XCTestCase {
         
         func alternate(_ value: String) -> Tag {
             return self.mutate(alternate: value)
+        }
+        
+        func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
         }
         
         func asynchronously() -> Tag {
@@ -386,6 +394,10 @@ final class AttributesTests: XCTestCase {
             return self.mutate(placeholder: value)
         }
         
+        func placeholder(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return self.mutate(placeholder: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
         func playInline(_ condition: Bool = true) -> Tag {
             
             if condition {
@@ -514,7 +526,11 @@ final class AttributesTests: XCTestCase {
         }
         
         func value(_ value: String) -> Tag {
-            return self.mutate(value: value)
+            return mutate(value: value)
+        }
+        
+        func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(value: LocalizedString(key: localizedKey, table: tableName))
         }
         
         func width(_ size: Int) -> Tag {
@@ -2120,6 +2136,19 @@ final class AttributesTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tag decoding="async"></tag>
+                       """
+        )
+    }
+    
+    func testValueAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.value("value")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag value="value"></tag>
                        """
         )
     }

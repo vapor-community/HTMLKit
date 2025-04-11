@@ -181,6 +181,10 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> RubyText {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func translate(_ value: Values.Decision) -> RubyText {
         return mutate(translate: value.rawValue)
     }
@@ -454,6 +458,10 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
 
     public func title(_ value: String) -> RubyPronunciation {
         return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> RubyPronunciation {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
     }
     
     public func translate(_ value: Values.Decision) -> RubyPronunciation {
