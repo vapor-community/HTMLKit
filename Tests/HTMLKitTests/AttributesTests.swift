@@ -138,6 +138,10 @@ final class AttributesTests: XCTestCase {
             return self.mutate(title: value)
         }
         
+        func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return self.mutate(title: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
         func translate(_ value: Values.Decision) -> Tag {
             return self.mutate(translate: value.rawValue)
         }

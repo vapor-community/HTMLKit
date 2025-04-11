@@ -171,6 +171,10 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(title: value)
     }
     
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> OptionGroup {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func translate(_ value: Values.Decision) -> OptionGroup {
         return mutate(translate: value.rawValue)
     }
@@ -461,6 +465,10 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
     public func title(_ value: String) -> Option {
         return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Option {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
     }
     
     public func translate(_ value: Values.Decision) -> Option {
@@ -769,6 +777,10 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(title: value)
     }
     
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Legend {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func translate(_ value: Values.Decision) -> Legend {
         return mutate(translate: value.rawValue)
     }
@@ -1042,6 +1054,10 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
 
     public func title(_ value: String) -> Summary {
         return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Summary {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
     }
     
     public func translate(_ value: Values.Decision) -> Summary {

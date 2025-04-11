@@ -171,6 +171,10 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> ListItem {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func translate(_ value: Values.Decision) -> ListItem {
         return mutate(translate: value.rawValue)
     }

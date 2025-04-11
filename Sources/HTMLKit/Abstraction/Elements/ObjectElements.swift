@@ -166,6 +166,10 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(title: value)
     }
     
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Parameter {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func translate(_ value: Values.Decision) -> Parameter {
         return mutate(translate: value.rawValue)
     }

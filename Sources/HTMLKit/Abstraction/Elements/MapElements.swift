@@ -169,6 +169,10 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(title: value)
     }
     
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Area {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func translate(_ value: Values.Decision) -> Area {
         return mutate(translate: value.rawValue)
     }

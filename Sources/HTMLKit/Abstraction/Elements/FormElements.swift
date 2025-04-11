@@ -156,6 +156,10 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(title: value)
     }
     
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Input {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func translate(_ value: Values.Decision) -> Input {
         return mutate(translate: value.rawValue)
     }
@@ -529,6 +533,10 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(title: value)
     }
     
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Label {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func translate(_ value: Values.Decision) -> Label {
         return mutate(translate: value.rawValue)
     }
@@ -815,6 +823,10 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return mutate(title: value)
     }
     
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Select {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func translate(_ value: Values.Decision) -> Select {
         return mutate(translate: value.rawValue)
     }
@@ -1072,6 +1084,10 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func title(_ value: String) -> TextArea {
         return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TextArea {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
     }
     
     public func translate(_ value: Values.Decision) -> TextArea {
@@ -1442,6 +1458,10 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(title: value)
     }
     
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Button {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func translate(_ value: Values.Decision) -> Button {
         return  mutate(translate: value.rawValue)
     }
@@ -1767,6 +1787,10 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func title(_ value: String) -> Fieldset {
         return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Fieldset {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
     }
     
     public func translate(_ value: Values.Decision) -> Fieldset {

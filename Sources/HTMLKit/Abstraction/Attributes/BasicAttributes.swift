@@ -2697,12 +2697,34 @@ extension TargetAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol TitleAttribute: Attribute {
  
-    /// The function represents the html-attribute 'title'.
+    /// Supply extra information about the element..
     ///
-    /// ```html
-    /// <tag title="" />
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .title("Lorem ipsum")
     /// ```
+    ///
+    /// - Parameter value: The extra information to display
+    ///
+    /// - Returns: The element
     func title(_ value: String) -> Self
+    
+    /// Supply extra information about the element..
+    /// 
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .title("Lorem ipsum")
+    /// ```
+    ///
+    /// - Parameter localizedKey: The string key to be translated
+    /// - Parameter tableName: The translation table to look in
+    ///
+    /// - Returns: The element
+    func title(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
 }
 
 extension TitleAttribute where Self: ContentNode {
@@ -2710,11 +2732,19 @@ extension TitleAttribute where Self: ContentNode {
     internal func mutate(title value: String) -> Self {
         return self.mutate(key: "title", value: value)
     }
+    
+    internal func mutate(title value: LocalizedString) -> Self {
+        return self.mutate(key: "title", value: value)
+    }
 }
 
 extension TitleAttribute where Self: EmptyNode {
     
     internal func mutate(title value: String) -> Self {
+        return self.mutate(key: "title", value: value)
+    }
+    
+    internal func mutate(title value: LocalizedString) -> Self {
         return self.mutate(key: "title", value: value)
     }
 }

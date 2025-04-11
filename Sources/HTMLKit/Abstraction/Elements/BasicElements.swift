@@ -189,6 +189,10 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: value)
     }
     
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Html {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func translate(_ value: Values.Decision) -> Html {
         return mutate(translate: value.rawValue)
     }
