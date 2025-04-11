@@ -1913,12 +1913,30 @@ extension PingAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol PlaceholderAttribute: Attribute {
     
-    /// The function represents the html-attribute 'placeholder'.
+    /// Supply a short hint.
     ///
-    /// ```html
-    /// <tag placeholder="" />
+    /// ```swift
+    /// Input()
+    ///     .placeholder("Lorem ipsum...")
     /// ```
+    ///
+    /// - Parameter value: The text to display as a hint
+    ///
+    /// - Returns: The element
     func placeholder(_ value: String) -> Self
+    
+    /// Supply a short hint.
+    /// 
+    /// ```swift
+    /// Input()
+    ///     .placeholder("Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter localizedKey: The string key to be translated
+    /// - Parameter tableName: The translation table to look in
+    ///
+    /// - Returns: The element
+    func placeholder(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
 }
 
 extension PlaceholderAttribute where Self: ContentNode {
@@ -1926,11 +1944,19 @@ extension PlaceholderAttribute where Self: ContentNode {
     internal func mutate(placeholder value: String) -> Self {
         return self.mutate(key: "placeholder", value: value)
     }
+    
+    internal func mutate(placeholder value: LocalizedString) -> Self {
+        return self.mutate(key: "placeholder", value: value)
+    }
 }
 
 extension PlaceholderAttribute where Self: EmptyNode {
     
     internal func mutate(placeholder value: String) -> Self {
+        return self.mutate(key: "placeholder", value: value)
+    }
+    
+    internal func mutate(placeholder value: LocalizedString) -> Self {
         return self.mutate(key: "placeholder", value: value)
     }
 }

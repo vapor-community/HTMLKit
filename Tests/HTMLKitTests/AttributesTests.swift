@@ -386,6 +386,10 @@ final class AttributesTests: XCTestCase {
             return self.mutate(placeholder: value)
         }
         
+        func placeholder(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return self.mutate(placeholder: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
         func playInline(_ condition: Bool = true) -> Tag {
             
             if condition {

@@ -273,6 +273,10 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(placeholder: value)
     }
     
+    public func placeholder(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Input {
+        return mutate(placeholder: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func readonly() -> Input {
         return mutate(readonly: "readonly")
     }
@@ -1132,6 +1136,10 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func placeholder(_ value: String) -> TextArea {
         return mutate(placeholder: value)
+    }
+    
+    public func placeholder(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TextArea {
+        return mutate(placeholder: LocalizedString(key: localizedKey, table: tableName))
     }
     
     public func readonly() -> TextArea {
