@@ -97,12 +97,30 @@ extension ActionAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol AlternateAttribute: Attribute {
     
-    /// The function represents the html-attribute 'alt'.
+    /// Provide an alternative information
     ///
-    /// ```html
-    /// <tag alt="" />
+    /// ```swift
+    /// Image()
+    ///     .alternate("Lorem ipsum...")
     /// ```
+    ///
+    /// - Parameter value: The text to describe the image
+    ///
+    /// - Returns: The element
     func alternate(_ value: String) -> Self
+    
+    /// Provide an alternative information
+    /// 
+    /// ```swift
+    /// Image()
+    ///     .alternate("Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter localizedKey: The string key to be translated
+    /// - Parameter tableName: The translation table to look in
+    ///
+    /// - Returns: The element
+    func alternate(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
 }
 
 extension AlternateAttribute where Self: ContentNode {
@@ -110,11 +128,19 @@ extension AlternateAttribute where Self: ContentNode {
     internal func mutate(alternate value: String) -> Self {
         return self.mutate(key: "alt", value: value)
     }
+    
+    internal func mutate(alternate value: LocalizedString) -> Self {
+        return self.mutate(key: "alt", value: value)
+    }
 }
 
 extension AlternateAttribute where Self: EmptyNode {
     
     internal func mutate(alternate value: String) -> Self {
+        return self.mutate(key: "alt", value: value)
+    }
+    
+    internal func mutate(alternate value: LocalizedString) -> Self {
         return self.mutate(key: "alt", value: value)
     }
 }

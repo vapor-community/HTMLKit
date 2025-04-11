@@ -190,6 +190,10 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(alternate: value)
     }
     
+    public func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Area {
+        return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func coordinates(_ value: String) -> Area {
         return mutate(coords: value)
     }

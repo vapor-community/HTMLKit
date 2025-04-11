@@ -181,6 +181,10 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(alternate: value)
     }
     
+    public func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Input {
+        return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     @available(*, deprecated, message: "The autocomplete attribute is actually a enum attribute. You should use autocomplete(_:) instead.")
     public func hasCompletion(_ value: Bool) -> Input {
 

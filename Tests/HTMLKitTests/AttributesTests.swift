@@ -154,6 +154,10 @@ final class AttributesTests: XCTestCase {
             return self.mutate(alternate: value)
         }
         
+        func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
         func asynchronously() -> Tag {
             return self.mutate(async: "async")
         }

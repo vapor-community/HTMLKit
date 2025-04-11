@@ -15766,6 +15766,10 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(alternate: value)
     }
     
+    public func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Image {
+        return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func source(_ value: String) -> Image {
         return mutate(source: value)
     }

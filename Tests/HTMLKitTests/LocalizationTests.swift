@@ -40,12 +40,13 @@ final class LocalizationTests: XCTestCase {
             var body: Content {
                 Input()
                     .placeholder("hello.world", tableName: nil)
+                    .alternate(LocalizedStringKey("hello.world"))
             }
         }
         
         XCTAssertEqual(try renderer!.render(view: TestView()),
                        """
-                       <input placeholder="Hello World">
+                       <input placeholder="Hello World" alt="Hello World">
                        """
         )
     }
