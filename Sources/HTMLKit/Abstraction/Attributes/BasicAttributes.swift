@@ -2812,12 +2812,32 @@ extension UseMapAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol ValueAttribute: Attribute {
     
-    /// The function represents the html-attribute 'value'.
+    /// Set a initial value for the element.
     ///
-    /// ```html
-    /// <tag value="" />
+    /// ```swift
+    /// Input()
+    ///     .type(.text)
+    ///     .value("Lorem ipsum...")
     /// ```
+    ///
+    /// - Parameter value: The initial value
+    ///
+    /// - Returns: The element
     func value(_ value: String) -> Self
+    
+    /// Set a initial value for the element.
+    /// 
+    /// ```swift
+    /// Input()
+    ///     .type(.text)
+    ///     .value("Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter localizedKey: The string key to be translated
+    /// - Parameter tableName: The translation table to look in
+    ///
+    /// - Returns: The element
+    func value(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
 }
 
 extension ValueAttribute where Self: ContentNode {
@@ -2825,11 +2845,19 @@ extension ValueAttribute where Self: ContentNode {
     internal func mutate(value: String) -> Self {
         return self.mutate(key: "value", value: value)
     }
+    
+    internal func mutate(value: LocalizedString) -> Self {
+        return self.mutate(key: "value", value: value)
+    }
 }
 
 extension ValueAttribute where Self: EmptyNode {
     
     internal func mutate(value: String) -> Self {
+        return self.mutate(key: "value", value: value)
+    }
+    
+    internal func mutate(value: LocalizedString) -> Self {
         return self.mutate(key: "value", value: value)
     }
 }

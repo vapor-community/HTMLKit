@@ -501,6 +501,10 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(value: value)
     }
     
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Option {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func selected() -> Option {
         return mutate(selected: "selected")
     }

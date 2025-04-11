@@ -522,7 +522,11 @@ final class AttributesTests: XCTestCase {
         }
         
         func value(_ value: String) -> Tag {
-            return self.mutate(value: value)
+            return mutate(value: value)
+        }
+        
+        func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(value: LocalizedString(key: localizedKey, table: tableName))
         }
         
         func width(_ size: Int) -> Tag {
@@ -2128,6 +2132,19 @@ final class AttributesTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tag decoding="async"></tag>
+                       """
+        )
+    }
+    
+    func testValueAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.value("value")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag value="value"></tag>
                        """
         )
     }

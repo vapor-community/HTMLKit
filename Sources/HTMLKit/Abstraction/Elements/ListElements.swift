@@ -192,6 +192,10 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(value: value)
     }
     
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> ListItem {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func popover(_ value: Values.Popover.State) -> ListItem {
         return mutate(popover: value.rawValue)
     }

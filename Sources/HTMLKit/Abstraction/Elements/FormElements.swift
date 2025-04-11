@@ -331,6 +331,10 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(value: value)
     }
     
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Input {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func width(_ size: Int) -> Input {
         return mutate(width: size)
     }
@@ -1486,6 +1490,10 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func value(_ value: String) -> Button {
         return mutate(value: value)
+    }
+    
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Button {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
     }
     
     public func popover(_ value: Values.Popover.State) -> Button {

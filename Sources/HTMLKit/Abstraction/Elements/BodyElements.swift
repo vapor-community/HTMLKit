@@ -10302,6 +10302,10 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(value: value)
     }
     
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Data {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func popover(_ value: Values.Popover.State) -> Data {
         return mutate(popover: value.rawValue)
     }
@@ -18734,6 +18738,10 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(value: value)
     }
     
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Progress {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func popover(_ value: Values.Popover.State) -> Progress {
         return mutate(popover: value.rawValue)
     }
@@ -19031,6 +19039,10 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func value(_ value: String) -> Meter {
         return mutate(value: value)
+    }
+    
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Meter {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
     }
     
     public func popover(_ value: Values.Popover.State) -> Meter {
