@@ -590,6 +590,10 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(content: value)
     }
     
+    public func content(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Meta {
+        return mutate(content: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
     public func name(_ value: Values.Name) -> Meta {
         return mutate(name: value.rawValue)
     }

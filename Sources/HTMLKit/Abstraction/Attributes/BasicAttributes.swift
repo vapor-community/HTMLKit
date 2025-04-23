@@ -456,12 +456,32 @@ extension ColumnSpanAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol ContentAttribute: Attribute {
     
-    /// The function represents the html-attribute 'content'.
+    /// Supply a value to the associated name.
     ///
-    /// ```html
-    /// <tag content="" />
+    /// ```swift
+    /// Meta()
+    ///     .name(.description)
+    ///     .content("Lorem ipsum...")
     /// ```
+    ///
+    /// - Parameter value: The value to describe the name
+    ///
+    /// - Returns: The element
     func content(_ value: String) -> Self
+    
+    /// Supply a value to the associated name.
+    ///
+    /// ```swift
+    /// Meta()
+    ///     .name(.description)
+    ///     .content("Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter localizedKey: The string key to be translated
+    /// - Parameter tableName: The translation table to look in
+    ///
+    /// - Returns: The element
+    func content(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
 }
 
 extension ContentAttribute where Self: ContentNode {
@@ -469,11 +489,19 @@ extension ContentAttribute where Self: ContentNode {
     internal func mutate(content value: String) -> Self {
         return self.mutate(key: "content", value: value)
     }
+    
+    internal func mutate(content value: LocalizedString) -> Self {
+        return self.mutate(key: "content", value: value)
+    }
 }
 
 extension ContentAttribute where Self: EmptyNode {
     
     internal func mutate(content value: String) -> Self {
+        return self.mutate(key: "content", value: value)
+    }
+    
+    internal func mutate(content value: LocalizedString) -> Self {
         return self.mutate(key: "content", value: value)
     }
 }

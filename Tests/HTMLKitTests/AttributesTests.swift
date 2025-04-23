@@ -217,7 +217,11 @@ final class AttributesTests: XCTestCase {
         }
         
         func content(_ value: String) -> Tag {
-            return self.mutate(content: value)
+            return mutate(content: value)
+        }
+        
+        public func content(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(content: LocalizedString(key: localizedKey, table: tableName))
         }
         
         func controls() -> Tag {

@@ -43,12 +43,15 @@ final class LocalizationTests: XCTestCase {
                     .alternate(LocalizedStringKey("hello.world"))
                     .value(LocalizedStringKey("hello.world"), tableName: "web")
                     .title("hello.world", tableName: "mobile")
+                Meta()
+                    .content("hello.world", tableName: nil)
             }
         }
         
         XCTAssertEqual(try renderer!.render(view: TestView()),
                        """
-                       <input placeholder="Hello World" alt="Hello World" value="Hello World" title="Hello World">
+                       <input placeholder="Hello World" alt="Hello World" value="Hello World" title="Hello World">\
+                       <meta content="Hello World">
                        """
         )
     }
