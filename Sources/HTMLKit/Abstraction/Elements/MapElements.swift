@@ -165,6 +165,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Area {
         return mutate(title: value)
     }
@@ -190,6 +191,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return self
     }
     
+    @_disfavoredOverload
     public func alternate(_ value: String) -> Area {
         return mutate(alternate: value)
     }

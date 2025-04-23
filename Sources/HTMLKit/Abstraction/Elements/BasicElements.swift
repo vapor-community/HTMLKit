@@ -185,6 +185,7 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Html {
         return mutate(title: value)
     }

@@ -134,6 +134,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(tabindex: value)
         }
         
+        @_disfavoredOverload
         func title(_ value: String) -> Tag {
             return self.mutate(title: value)
         }
@@ -154,6 +155,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(action: value)
         }
         
+        @_disfavoredOverload
         func alternate(_ value: String) -> Tag {
             return self.mutate(alternate: value)
         }
@@ -394,6 +396,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(ping: value)
         }
         
+        @_disfavoredOverload
         func placeholder(_ value: String) -> Tag {
             return self.mutate(placeholder: value)
         }
@@ -529,6 +532,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(type: value)
         }
         
+        @_disfavoredOverload
         func value(_ value: String) -> Tag {
             return mutate(value: value)
         }

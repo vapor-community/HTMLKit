@@ -152,6 +152,7 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Input {
         return mutate(title: value)
     }
@@ -181,6 +182,7 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(accept: value)
     }
     
+    @_disfavoredOverload
     public func alternate(_ value: String) -> Input {
         return mutate(alternate: value)
     }
@@ -277,6 +279,7 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(pattern: regex)
     }
     
+    @_disfavoredOverload
     public func placeholder(_ value: String) -> Input {
         return mutate(placeholder: value)
     }
@@ -331,6 +334,7 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(type: value.rawValue)
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> Input {
         return mutate(value: value)
     }
@@ -529,6 +533,7 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Label {
         return mutate(title: value)
     }
@@ -819,6 +824,7 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Select {
         return mutate(title: value)
     }
@@ -1082,6 +1088,7 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> TextArea {
         return mutate(title: value)
     }
@@ -1158,6 +1165,7 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(name: value)
     }
     
+    @_disfavoredOverload
     public func placeholder(_ value: String) -> TextArea {
         return mutate(placeholder: value)
     }
@@ -1454,6 +1462,7 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Button {
         return mutate(title: value)
     }
@@ -1508,6 +1517,7 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(type: value.rawValue)
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> Button {
         return mutate(value: value)
     }
@@ -1785,6 +1795,7 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Fieldset {
         return mutate(title: value)
     }

@@ -37,6 +37,8 @@ final class LocalizationTests: XCTestCase {
         
         struct TestView: View {
             
+            let placeholder = "hello.world"
+            
             var body: Content {
                 Input()
                     .placeholder("hello.world", tableName: nil)
@@ -44,14 +46,17 @@ final class LocalizationTests: XCTestCase {
                     .value(LocalizedStringKey("hello.world"), tableName: "web")
                     .title("hello.world", tableName: "mobile")
                 Meta()
-                    .content("hello.world", tableName: nil)
+                    .content("hello.world")
+                TextArea {}
+                    .placeholder(placeholder)
             }
         }
         
         XCTAssertEqual(try renderer!.render(view: TestView()),
                        """
                        <input placeholder="Hello World" alt="Hello World" value="Hello World" title="Hello World">\
-                       <meta content="Hello World">
+                       <meta content="Hello World">\
+                       <textarea placeholder="hello.world"></textarea>
                        """
         )
     }

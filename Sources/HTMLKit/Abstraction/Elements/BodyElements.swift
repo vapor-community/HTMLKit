@@ -517,6 +517,7 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Article {
         return mutate(title: value)
     }
@@ -796,6 +797,7 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Section {
         return mutate(title: value)
     }
@@ -1075,6 +1077,7 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Navigation {
         return mutate(title: value)
     }
@@ -1354,6 +1357,7 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Aside {
         return mutate(title: value)
     }
@@ -1633,6 +1637,7 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
     
+    @_disfavoredOverload
     public func title(_ value: String) -> Heading1 {
         return mutate(title: value)
     }
@@ -1919,6 +1924,7 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
     
+    @_disfavoredOverload
     public func title(_ value: String) -> Heading2 {
         return mutate(title: value)
     }
@@ -2205,6 +2211,7 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Heading3 {
         return mutate(title: value)
     }
@@ -2491,6 +2498,7 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Heading4 {
         return mutate(title: value)
     }
@@ -2777,6 +2785,7 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Heading5 {
         return mutate(title: value)
     }
@@ -3063,6 +3072,7 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Heading6 {
         return mutate(title: value)
     }
@@ -3349,6 +3359,7 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> HeadingGroup {
         return mutate(title: value)
     }
@@ -3628,6 +3639,7 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Header {
         return mutate(title: value)
     }
@@ -3907,6 +3919,7 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Footer {
         return mutate(title: value)
     }
@@ -4186,6 +4199,7 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Address {
         return mutate(title: value)
     }
@@ -4465,6 +4479,7 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Paragraph {
         return mutate(title: value)
     }
@@ -4746,6 +4761,7 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> HorizontalRule {
         return mutate(title: value)
     }
@@ -5025,6 +5041,7 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> PreformattedText {
         return mutate(title: value)
     }
@@ -5304,6 +5321,7 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Blockquote {
         return mutate(title: value)
     }
@@ -5594,6 +5612,7 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> OrderedList {
         return mutate(title: value)
     }
@@ -5885,6 +5904,7 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> UnorderedList {
         return mutate(title: value)
     }
@@ -6164,6 +6184,7 @@ extension Menu: GlobalAttributes {
         return mutate(tabindex: value)
     }
     
+    @_disfavoredOverload
     public func title(_ value: String) -> Menu {
         return mutate(title: value)
     }
@@ -6347,6 +6368,7 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> DescriptionList {
         return mutate(title: value)
     }
@@ -6626,6 +6648,7 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Figure {
         return mutate(title: value)
     }
@@ -6905,6 +6928,7 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Anchor {
         return mutate(title: value)
     }
@@ -7227,6 +7251,7 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Emphasize {
         return mutate(title: value)
     }
@@ -7506,6 +7531,7 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Strong {
         return mutate(title: value)
     }
@@ -7785,6 +7811,7 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Small {
         return mutate(title: value)
     }
@@ -8071,6 +8098,7 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> StrikeThrough {
         return mutate(title: value)
     }
@@ -8281,6 +8309,7 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Main {
         return mutate(title: value)
     }
@@ -8560,6 +8589,7 @@ extension Search: GlobalAttributes {
         return mutate(tabindex: value)
     }
     
+    @_disfavoredOverload
     public func title(_ value: String) -> Search {
         return mutate(title: value)
     }
@@ -8743,6 +8773,7 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Division {
         return mutate(title: value)
     }
@@ -9022,6 +9053,7 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Definition {
         return mutate(title: value)
     }
@@ -9301,6 +9333,7 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Cite {
         return mutate(title: value)
     }
@@ -9580,6 +9613,7 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> ShortQuote {
         return mutate(title: value)
     }
@@ -9863,6 +9897,7 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Abbreviation {
         return mutate(title: value)
     }
@@ -10142,6 +10177,7 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(tabindex: value)
     }
     
+    @_disfavoredOverload
     public func title(_ value: String) -> Ruby {
         return mutate(title: value)
     }
@@ -10421,6 +10457,7 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Data {
         return mutate(title: value)
     }
@@ -10446,6 +10483,7 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return self
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> Data {
         return mutate(value: value)
     }
@@ -10708,6 +10746,7 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Time {
         return mutate(title: value)
     }
@@ -10991,6 +11030,7 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Code {
         return mutate(title: value)
     }
@@ -11282,6 +11322,7 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Variable {
         return mutate(title: value)
     }
@@ -11561,6 +11602,7 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> SampleOutput {
         return mutate(title: value)
     }
@@ -11840,6 +11882,7 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> KeyboardInput {
         return mutate(title: value)
     }
@@ -12118,6 +12161,7 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Subscript {
         return mutate(title: value)
     }
@@ -12397,6 +12441,7 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Superscript {
         return mutate(title: value)
     }
@@ -12676,6 +12721,7 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Italic {
         return mutate(title: value)
     }
@@ -12962,6 +13008,7 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Bold {
         return mutate(title: value)
     }
@@ -13248,6 +13295,7 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Underline {
         return mutate(title: value)
     }
@@ -13534,6 +13582,7 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Mark {
         return mutate(title: value)
     }
@@ -13813,6 +13862,7 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Bdi {
         return mutate(title: value)
     }
@@ -14087,6 +14137,7 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Bdo {
         return mutate(title: value)
     }
@@ -14366,6 +14417,7 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Span {
         return mutate(title: value)
     }
@@ -14640,6 +14692,7 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> LineBreak {
         return mutate(title: value)
     }
@@ -14914,6 +14967,7 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> WordBreak {
         return mutate(title: value)
     }
@@ -15193,6 +15247,7 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> InsertedText {
         return mutate(title: value)
     }
@@ -15480,6 +15535,7 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> DeletedText {
         return mutate(title: value)
     }
@@ -15767,6 +15823,7 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Picture {
         return mutate(title: value)
     }
@@ -15969,6 +16026,7 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Image {
         return mutate(title: value)
     }
@@ -15994,6 +16052,7 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return self
     }
     
+    @_disfavoredOverload
     public func alternate(_ value: String) -> Image {
         return mutate(alternate: value)
     }
@@ -16300,6 +16359,7 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> InlineFrame {
         return mutate(title: value)
     }
@@ -16614,6 +16674,7 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Embed {
         return mutate(title: value)
     }
@@ -16913,6 +16974,7 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Object {
         return mutate(title: value)
     }
@@ -17216,6 +17278,7 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Video {
         return mutate(title: value)
     }
@@ -17554,6 +17617,7 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Audio {
         return mutate(title: value)
     }
@@ -17875,6 +17939,7 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Map {
         return mutate(title: value)
     }
@@ -18082,6 +18147,7 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Form {
         return mutate(title: value)
     }
@@ -18403,6 +18469,7 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> DataList {
         return mutate(title: value)
     }
@@ -18682,6 +18749,7 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Output {
         return mutate(title: value)
     }
@@ -18973,6 +19041,7 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Progress {
         return mutate(title: value)
     }
@@ -19002,6 +19071,7 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(max: value)
     }
 
+    @_disfavoredOverload
     public func value(_ value: String) -> Progress {
         return mutate(value: value)
     }
@@ -19264,6 +19334,7 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Meter {
         return mutate(title: value)
     }
@@ -19309,6 +19380,7 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(optimum: value)
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> Meter {
         return mutate(value: value)
     }
@@ -19571,6 +19643,7 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Details {
         return mutate(title: value)
     }
@@ -19854,6 +19927,7 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Dialog {
         return mutate(title: value)
     }
@@ -20137,6 +20211,7 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Script {
         return mutate(title: value)
     }
@@ -20368,6 +20443,7 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> NoScript {
         return mutate(title: value)
     }
@@ -20571,6 +20647,7 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Template {
         return mutate(title: value)
     }
@@ -20778,6 +20855,7 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Canvas {
         return mutate(title: value)
     }
@@ -21065,6 +21143,7 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Table {
         return mutate(title: value)
     }
@@ -21460,6 +21539,7 @@ extension Slot: GlobalAttributes, NameAttribute {
         return mutate(tabindex: value)
     }
     
+    @_disfavoredOverload
     public func title(_ value: String) -> Slot {
         return mutate(title: value)
     }

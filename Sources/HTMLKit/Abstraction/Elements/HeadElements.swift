@@ -157,6 +157,7 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(tabindex: value)
     }
     
+    @_disfavoredOverload
     public func title(_ value: String) -> Title {
         return mutate(title: value)
     }
@@ -355,6 +356,7 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(tabindex: value)
     }
     
+    @_disfavoredOverload
     public func title(_ value: String) -> Base {
         return mutate(title: value)
     }
@@ -561,6 +563,7 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Meta {
         return mutate(title: value)
     }
@@ -586,6 +589,7 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return self
     }
 
+    @_disfavoredOverload
     public func content(_ value: String) -> Meta {
         return mutate(content: value)
     }
@@ -788,6 +792,7 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Style {
         return mutate(title: value)
     }
@@ -998,6 +1003,7 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Link {
         return mutate(title: value)
     }

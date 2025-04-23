@@ -167,6 +167,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> ListItem {
         return mutate(title: value)
     }
@@ -192,6 +193,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> ListItem {
         return mutate(value: value)
     }

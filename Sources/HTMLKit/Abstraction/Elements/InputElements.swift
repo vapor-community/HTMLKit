@@ -167,6 +167,7 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> OptionGroup {
         return mutate(title: value)
     }
@@ -463,6 +464,7 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Option {
         return mutate(title: value)
     }
@@ -505,6 +507,7 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(label: value)
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> Option {
         return mutate(value: value)
     }
@@ -773,6 +776,7 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Legend {
         return mutate(title: value)
     }
@@ -1052,6 +1056,7 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Summary {
         return mutate(title: value)
     }

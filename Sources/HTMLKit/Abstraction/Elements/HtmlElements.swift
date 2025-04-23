@@ -157,6 +157,7 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(tabindex: value)
     }
     
+    @_disfavoredOverload
     public func title(_ value: String) -> Head {
         return mutate(title: value)
     }
@@ -360,6 +361,7 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Body {
         return mutate(title: value)
     }

@@ -162,6 +162,7 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Parameter {
         return mutate(title: value)
     }
@@ -191,6 +192,7 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(name: value)
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> Parameter {
         return mutate(value: value)
     }
