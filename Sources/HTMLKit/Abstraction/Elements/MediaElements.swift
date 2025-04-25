@@ -152,7 +152,16 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Source {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Source {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Source {
         return mutate(title: value)
     }
     
@@ -378,8 +387,17 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Track {
         return  mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Track {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Track {
+        return mutate(title: value)
     }
     
     public func translate(_ value: Values.Decision) -> Track {

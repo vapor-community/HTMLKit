@@ -165,7 +165,16 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Area {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Area {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Area {
         return mutate(title: value)
     }
     
@@ -186,7 +195,16 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return self
     }
     
+    @_disfavoredOverload
     public func alternate(_ value: String) -> Area {
+        return mutate(alternate: value)
+    }
+    
+    public func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Area {
+        return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func alternate(verbatim value: String) -> Area {
         return mutate(alternate: value)
     }
     

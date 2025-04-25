@@ -30,6 +30,43 @@ final class LocalizationTests: XCTestCase {
         )
     }
     
+    /// Tests the localization of a attribute
+    ///
+    /// The test expects the key to exist in the default translation table and to be rendered correctly.
+    func testLocalizationAttribute() throws {
+        
+        struct TestView: View {
+            
+            let placeholder = "hello.world"
+            
+            var body: Content {
+                Input()
+                    .placeholder("hello.world", tableName: nil)
+                    .alternate(LocalizedStringKey("hello.world"))
+                    .value(LocalizedStringKey("hello.world"), tableName: "web")
+                    .title("hello.world", tableName: "mobile")
+                Meta()
+                    .content("hello.world")
+                Input()
+                    .placeholder(verbatim: "hello.world")
+                    .alternate(verbatim: "hello.world")
+                    .value(verbatim: placeholder)
+                    .title(verbatim: "hello.world")
+                TextArea {}
+                    .placeholder(placeholder)
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: TestView()),
+                       """
+                       <input placeholder="Hello World" alt="Hello World" value="Hello World" title="Hello World">\
+                       <meta content="Hello World">\
+                       <input placeholder="hello.world" alt="hello.world" value="hello.world" title="hello.world">\
+                       <textarea placeholder="hello.world"></textarea>
+                       """
+        )
+    }
+    
     /// Tests the localization of string interpolation
     ///
     /// The test expects the key to exist in the default translation table and to be correctly formatted

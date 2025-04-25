@@ -167,7 +167,16 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> ListItem {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> ListItem {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> ListItem {
         return mutate(title: value)
     }
     
@@ -188,7 +197,16 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> ListItem {
+        return mutate(value: value)
+    }
+    
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> ListItem {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func value(verbatim value: String) -> ListItem {
         return mutate(value: value)
     }
     

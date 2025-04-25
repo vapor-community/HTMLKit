@@ -177,7 +177,16 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> RubyText {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> RubyText {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> RubyText {
         return mutate(title: value)
     }
     
@@ -452,7 +461,16 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> RubyPronunciation {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> RubyPronunciation {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> RubyPronunciation {
         return mutate(title: value)
     }
     

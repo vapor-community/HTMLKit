@@ -134,7 +134,16 @@ final class AttributesTests: XCTestCase {
             return self.mutate(tabindex: value)
         }
         
+        @_disfavoredOverload
         func title(_ value: String) -> Tag {
+            return self.mutate(title: value)
+        }
+        
+        func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return self.mutate(title: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
+        func title(verbatim value: String) -> Tag {
             return self.mutate(title: value)
         }
         
@@ -150,7 +159,16 @@ final class AttributesTests: XCTestCase {
             return self.mutate(action: value)
         }
         
+        @_disfavoredOverload
         func alternate(_ value: String) -> Tag {
+            return self.mutate(alternate: value)
+        }
+        
+        func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
+        func alternate(verbatim value: String) -> Tag {
             return self.mutate(alternate: value)
         }
         
@@ -209,7 +227,15 @@ final class AttributesTests: XCTestCase {
         }
         
         func content(_ value: String) -> Tag {
-            return self.mutate(content: value)
+            return mutate(content: value)
+        }
+        
+        public func content(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(content: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
+        public func content(verbatim value: String) -> Tag {
+            return mutate(content: value)
         }
         
         func controls() -> Tag {
@@ -382,7 +408,16 @@ final class AttributesTests: XCTestCase {
             return self.mutate(ping: value)
         }
         
+        @_disfavoredOverload
         func placeholder(_ value: String) -> Tag {
+            return self.mutate(placeholder: value)
+        }
+        
+        func placeholder(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return self.mutate(placeholder: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
+        func placeholder(verbatim value: String) -> Tag {
             return self.mutate(placeholder: value)
         }
         
@@ -513,8 +548,17 @@ final class AttributesTests: XCTestCase {
             return self.mutate(type: value)
         }
         
+        @_disfavoredOverload
         func value(_ value: String) -> Tag {
-            return self.mutate(value: value)
+            return mutate(value: value)
+        }
+        
+        func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
+        func value(verbatim value: String) -> Tag {
+            return mutate(value: value)
         }
         
         func width(_ size: Int) -> Tag {
@@ -2120,6 +2164,19 @@ final class AttributesTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tag decoding="async"></tag>
+                       """
+        )
+    }
+    
+    func testValueAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.value("value")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag value="value"></tag>
                        """
         )
     }

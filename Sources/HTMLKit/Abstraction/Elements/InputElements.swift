@@ -167,8 +167,17 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> OptionGroup {
         return mutate(title: value)
+    }
+    
+    public func title(verbatim value: String) -> OptionGroup {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> OptionGroup {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
     }
     
     public func translate(_ value: Values.Decision) -> OptionGroup {
@@ -459,7 +468,16 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Option {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Option {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Option {
         return mutate(title: value)
     }
     
@@ -497,7 +515,16 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(label: value)
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> Option {
+        return mutate(value: value)
+    }
+    
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Option {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func value(verbatim value: String) -> Option {
         return mutate(value: value)
     }
     
@@ -761,7 +788,16 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Legend {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Legend {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Legend {
         return mutate(title: value)
     }
     
@@ -1036,7 +1072,16 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Summary {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Summary {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Summary {
         return mutate(title: value)
     }
     

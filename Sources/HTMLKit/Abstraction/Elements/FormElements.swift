@@ -152,7 +152,16 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Input {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Input {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Input {
         return mutate(title: value)
     }
     
@@ -177,7 +186,16 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(accept: value)
     }
     
+    @_disfavoredOverload
     public func alternate(_ value: String) -> Input {
+        return mutate(alternate: value)
+    }
+    
+    public func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Input {
+        return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func alternate(verbatim value: String) -> Input {
         return mutate(alternate: value)
     }
     
@@ -269,7 +287,16 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(pattern: regex)
     }
     
+    @_disfavoredOverload
     public func placeholder(_ value: String) -> Input {
+        return mutate(placeholder: value)
+    }
+    
+    public func placeholder(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Input {
+        return mutate(placeholder: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func placeholder(verbatim value: String) -> Input {
         return mutate(placeholder: value)
     }
     
@@ -319,7 +346,16 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(type: value.rawValue)
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> Input {
+        return mutate(value: value)
+    }
+    
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Input {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func value(verbatim value: String) -> Input {
         return mutate(value: value)
     }
     
@@ -513,7 +549,16 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Label {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Label {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Label {
         return mutate(title: value)
     }
     
@@ -799,7 +844,16 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Select {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Select {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Select {
         return mutate(title: value)
     }
     
@@ -1058,7 +1112,16 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> TextArea {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TextArea {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> TextArea {
         return mutate(title: value)
     }
     
@@ -1130,7 +1193,16 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(name: value)
     }
     
+    @_disfavoredOverload
     public func placeholder(_ value: String) -> TextArea {
+        return mutate(placeholder: value)
+    }
+    
+    public func placeholder(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TextArea {
+        return mutate(placeholder: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func placeholder(verbatim value: String) -> TextArea {
         return mutate(placeholder: value)
     }
     
@@ -1422,7 +1494,16 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Button {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Button {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Button {
         return mutate(title: value)
     }
     
@@ -1472,7 +1553,16 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(type: value.rawValue)
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> Button {
+        return mutate(value: value)
+    }
+    
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Button {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func value(verbatim value: String) -> Button {
         return mutate(value: value)
     }
     
@@ -1745,7 +1835,16 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Fieldset {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Fieldset {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Fieldset {
         return mutate(title: value)
     }
     

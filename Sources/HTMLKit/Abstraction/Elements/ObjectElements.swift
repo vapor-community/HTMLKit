@@ -162,7 +162,16 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Parameter {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Parameter {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Parameter {
         return mutate(title: value)
     }
     
@@ -187,7 +196,16 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(name: value)
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> Parameter {
+        return mutate(value: value)
+    }
+    
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Parameter {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func value(verbatim value: String) -> Parameter {
         return mutate(value: value)
     }
     
