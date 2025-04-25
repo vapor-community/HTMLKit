@@ -143,6 +143,10 @@ final class AttributesTests: XCTestCase {
             return self.mutate(title: LocalizedString(key: localizedKey, table: tableName))
         }
         
+        func title(verbatim value: String) -> Tag {
+            return self.mutate(title: value)
+        }
+        
         func translate(_ value: Values.Decision) -> Tag {
             return self.mutate(translate: value.rawValue)
         }
@@ -162,6 +166,10 @@ final class AttributesTests: XCTestCase {
         
         func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
             return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
+        func alternate(verbatim value: String) -> Tag {
+            return self.mutate(alternate: value)
         }
         
         func asynchronously() -> Tag {
@@ -224,6 +232,10 @@ final class AttributesTests: XCTestCase {
         
         public func content(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
             return mutate(content: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
+        public func content(verbatim value: String) -> Tag {
+            return mutate(content: value)
         }
         
         func controls() -> Tag {
@@ -405,6 +417,10 @@ final class AttributesTests: XCTestCase {
             return self.mutate(placeholder: LocalizedString(key: localizedKey, table: tableName))
         }
         
+        func placeholder(verbatim value: String) -> Tag {
+            return self.mutate(placeholder: value)
+        }
+        
         func playInline(_ condition: Bool = true) -> Tag {
             
             if condition {
@@ -539,6 +555,10 @@ final class AttributesTests: XCTestCase {
         
         func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
             return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
+        func value(verbatim value: String) -> Tag {
+            return mutate(value: value)
         }
         
         func width(_ size: Int) -> Tag {

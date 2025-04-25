@@ -166,6 +166,10 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: LocalizedString(key: localizedKey, table: tableName))
     }
     
+    public func title(verbatim value: String) -> Title {
+        return mutate(title: value)
+    }
+    
     public func translate(_ value: Values.Decision) -> Title {
         return mutate(translate: value.rawValue)
     }
@@ -363,6 +367,10 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
     
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Base {
         return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Base {
+        return mutate(title: value)
     }
     
     public func translate(_ value: Values.Decision) -> Base {
@@ -572,6 +580,10 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(title: LocalizedString(key: localizedKey, table: tableName))
     }
     
+    public func title(verbatim value: String) -> Meta {
+        return mutate(title: value)
+    }
+    
     public func translate(_ value: Values.Decision) -> Meta {
         return mutate(translate: value.rawValue)
     }
@@ -596,6 +608,10 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
     
     public func content(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Meta {
         return mutate(content: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func content(verbatim value: String) -> Meta {
+        return mutate(content: value)
     }
     
     public func name(_ value: Values.Name) -> Meta {
@@ -799,6 +815,10 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Style {
         return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Style {
+        return mutate(title: value)
     }
     
     public func translate(_ value: Values.Decision) -> Style {
@@ -1010,6 +1030,10 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Link {
         return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Link {
+        return mutate(title: value)
     }
     
     public func translate(_ value: Values.Decision) -> Link {

@@ -166,6 +166,10 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: LocalizedString(key: localizedKey, table: tableName))
     }
     
+    public func title(verbatim value: String) -> Head {
+        return mutate(title: value)
+    }
+    
     public func translate(_ value: Values.Decision) -> Head {
         return mutate(translate: value.rawValue)
     }
@@ -368,6 +372,10 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
     
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Body {
         return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Body {
+        return mutate(title: value)
     }
     
     public func translate(_ value: Values.Decision) -> Body {

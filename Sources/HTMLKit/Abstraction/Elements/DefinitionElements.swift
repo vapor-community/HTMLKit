@@ -185,6 +185,10 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TermName {
         return mutate(title: LocalizedString(key: localizedKey, table: tableName))
     }
+    
+    public func title(verbatim value: String) -> TermName {
+        return mutate(title: value)
+    }
 
     public func translate(_ value: Values.Decision) -> TermName {
         return mutate(translate: value.rawValue)
@@ -464,6 +468,10 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
     
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TermDefinition {
         return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> TermDefinition {
+        return mutate(title: value)
     }
     
     public func translate(_ value: Values.Decision) -> TermDefinition {

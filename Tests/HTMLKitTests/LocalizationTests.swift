@@ -47,6 +47,11 @@ final class LocalizationTests: XCTestCase {
                     .title("hello.world", tableName: "mobile")
                 Meta()
                     .content("hello.world")
+                Input()
+                    .placeholder(verbatim: "hello.world")
+                    .alternate(verbatim: "hello.world")
+                    .value(verbatim: placeholder)
+                    .title(verbatim: "hello.world")
                 TextArea {}
                     .placeholder(placeholder)
             }
@@ -56,6 +61,7 @@ final class LocalizationTests: XCTestCase {
                        """
                        <input placeholder="Hello World" alt="Hello World" value="Hello World" title="Hello World">\
                        <meta content="Hello World">\
+                       <input placeholder="hello.world" alt="hello.world" value="hello.world" title="hello.world">\
                        <textarea placeholder="hello.world"></textarea>
                        """
         )

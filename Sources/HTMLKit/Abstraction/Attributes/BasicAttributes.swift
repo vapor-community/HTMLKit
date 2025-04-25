@@ -121,6 +121,19 @@ public protocol AlternateAttribute: Attribute {
     ///
     /// - Returns: The element
     func alternate(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Provide an alternative information without localization.
+    ///
+    /// ```swift
+    /// Image()
+    ///     .alternate(verbatim: "Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter value: The text to describe the image
+    ///
+    /// - Returns: The element
+    func alternate(verbatim value: String) -> Self
+    
 }
 
 extension AlternateAttribute where Self: ContentNode {
@@ -482,6 +495,19 @@ public protocol ContentAttribute: Attribute {
     ///
     /// - Returns: The element
     func content(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Supply a value to the associated name without localization
+    ///
+    /// ```swift
+    /// Meta()
+    ///     .name(.description)
+    ///     .content(verbatim: "Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter value: The value to describe the name
+    ///
+    /// - Returns: The element
+    func content(verbatim value: String) -> Self
 }
 
 extension ContentAttribute where Self: ContentNode {
@@ -1991,6 +2017,18 @@ public protocol PlaceholderAttribute: Attribute {
     ///
     /// - Returns: The element
     func placeholder(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Supply a short hint without localization.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .placeholder(verbatim: "Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter value: The text to display as a hint
+    ///
+    /// - Returns: The element
+    func placeholder(verbatim value: String) -> Self
 }
 
 extension PlaceholderAttribute where Self: ContentNode {
@@ -2725,7 +2763,7 @@ extension TargetAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol TitleAttribute: Attribute {
  
-    /// Supply extra information about the element..
+    /// Supply extra information about the element.
     ///
     /// ```swift
     /// Paragraph {
@@ -2753,6 +2791,20 @@ public protocol TitleAttribute: Attribute {
     ///
     /// - Returns: The element
     func title(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Supply extra information about the element without localization.
+    ///
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .title(verbatim: "Lorem ipsum")
+    /// ```
+    ///
+    /// - Parameter value: The extra information to display
+    ///
+    /// - Returns: The element
+    func title(verbatim value: String) -> Self
 }
 
 extension TitleAttribute where Self: ContentNode {
@@ -2896,6 +2948,19 @@ public protocol ValueAttribute: Attribute {
     ///
     /// - Returns: The element
     func value(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Set a initial value for the element without localization.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .type(.text)
+    ///     .value(verbatim: "Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter value: The initial value
+    ///
+    /// - Returns: The element
+    func value(verbatim value: String) -> Self
 }
 
 extension ValueAttribute where Self: ContentNode {
