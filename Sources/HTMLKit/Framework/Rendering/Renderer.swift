@@ -302,6 +302,12 @@ public struct Renderer {
             }
             
             return string.key.literal
+            
+        }  catch Localization.Errors.missingTable(let tag) {
+            
+            logger.warning("Unable to find a translation table for the locale '\(tag)'.")
+            
+            return try localization.localize(string: string)
         }
     }
     

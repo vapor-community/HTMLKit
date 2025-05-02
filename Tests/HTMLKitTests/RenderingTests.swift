@@ -528,6 +528,31 @@ final class RenderingTests: XCTestCase {
                        """
         )
     }
+    
+    /// Tests the recovery from a missing table
+    ///
+    /// The renderer should fallback to the default locale.
+    func testRecoveryFromMissingTable() throws {
+        
+        struct TestView: View {
+            
+            var body: Content {
+                Division {
+                    Heading1("hello.world")
+                        .environment(key: \.locale)
+                }
+                .environment(key: \.locale, value: Locale(tag: "unknown.tag"))
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: TestView()),
+                       """
+                       <div>\
+                       <h1>Hello World</h1>\
+                       </div>
+                       """
+        )
+    }
 }
 
 extension RenderingTests {
