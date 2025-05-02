@@ -225,44 +225,6 @@ final class ProviderTests: XCTestCase {
         }
     }
     
-    /// Tests the error reporting to Vapor for issues that may occur during localization
-    ///
-    /// The error is expected to be classified as an internal server error and includes a error message.
-    func testLocalizationErrorReporting() throws {
-        
-        struct UnknownTableView: HTMLKit.View {
-            
-            var body: HTMLKit.Content {
-                Paragraph("hello.world", tableName: "unknown.table")
-            }
-        }
-        
-        guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
-            return
-        }
-        
-        let app = Application(.testing)
-        
-        defer { app.shutdown() }
-        
-        app.htmlkit.localization.set(source: source)
-        app.htmlkit.localization.set(locale: "fr")
-        
-        app.get("unknowntable") { request async throws -> Vapor.View in
-            
-            return try await request.htmlkit.render(UnknownTableView())
-        }
-        
-        try app.test(.GET, "unknowntable") { response in
-            
-            XCTAssertEqual(response.status, .internalServerError)
-            
-            let abort = try response.content.decode(AbortResponse.self)
-            
-            XCTAssertEqual(abort.reason, "Unable to find translation table 'unknown.table' for the locale 'fr'.")
-        }
-    }
-    
     /// Tests the localization behavior based on the accept language of the client
     ///
     /// The environment locale is expected to be changed according to the language given by the provider.

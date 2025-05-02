@@ -308,6 +308,12 @@ public struct Renderer {
             logger.warning("Unable to find a translation table for the locale '\(tag)'.")
             
             return try localization.localize(string: string)
+            
+        } catch {
+            
+            logger.warning("\(error)")
+            
+            return string.key.literal
         }
     }
     
