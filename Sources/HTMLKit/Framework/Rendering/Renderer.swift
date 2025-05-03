@@ -288,32 +288,34 @@ public struct Renderer {
         }
         
         do {
+            
             return try localization.localize(string: string, for: environment.locale)
             
-        } catch Localization.Errors.missingKey(let key, let locale) {
+        } catch let error as Localization.Errors {
             
-            logger.warning("Unable to find translation key '\(key)' for the locale '\(locale)'.")
+            logger.warning("\(error.description)")
             
-            // Check if the fallback was already in charge
-            if environment.locale != nil {
+            switch error {
+            case .missingKey:
                 
-                // Seems not, let's try to recover by using the fallback
+                if environment.locale != nil {
+                    
+                    logger.debug("Trying to recover from missing key")
+                    
+                    return try localization.localize(string: string)
+                }
+                
+                fallthrough
+                
+            case .missingTable:
+                
+                logger.debug("Trying to recover from missing table")
+                
                 return try localization.localize(string: string)
+                
+            default:
+                return string.key.literal
             }
-            
-            return string.key.literal
-            
-        }  catch Localization.Errors.missingTable(let tag) {
-            
-            logger.warning("Unable to find a translation table for the locale '\(tag)'.")
-            
-            return try localization.localize(string: string)
-            
-        } catch {
-            
-            logger.warning("\(error)")
-            
-            return string.key.literal
         }
     }
     
