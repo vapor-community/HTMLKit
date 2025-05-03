@@ -553,6 +553,29 @@ final class RenderingTests: XCTestCase {
                        """
         )
     }
+    
+    /// Tests the recovery from a unknown table.
+    ///
+    /// The renderer should return the key instead.
+    func testRecoveryFromUnknownTable() throws {
+        
+        struct TestView: View {
+            
+            var body: Content {
+                Division {
+                    Heading1("hello.world", tableName: "unknown.table")
+                }
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: TestView()),
+                       """
+                       <div>\
+                       <h1>hello.world</h1>\
+                       </div>
+                       """
+        )
+    }
 }
 
 extension RenderingTests {
