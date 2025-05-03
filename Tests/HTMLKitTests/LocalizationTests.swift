@@ -3,7 +3,7 @@ import XCTest
 
 final class LocalizationTests: XCTestCase {
     
-    var renderer: Renderer?
+    var localization: Localization?
     
     override func setUp() {
         super.setUp()
@@ -16,55 +16,15 @@ final class LocalizationTests: XCTestCase {
     /// The test expects the key to exist in the default translation table and to be rendered correctly.
     func testLocalization() throws {
         
-        struct MainView: View {
-            
-            var body: Content {
-                Heading1("hello.world")
-            }
-        }
-        
-        XCTAssertEqual(try renderer!.render(view: MainView()),
-                       """
-                       <h1>Hello World</h1>
-                       """
-        )
+        XCTAssertEqual(try localization!.localize(string: .init(key: "hello.world")), "Hello World")
     }
     
-    /// Tests the localization of a attribute
+    /// Tests the localization of a translation key in a specified translation table
     ///
-    /// The test expects the key to exist in the default translation table and to be rendered correctly.
-    func testLocalizationAttribute() throws {
+    /// The test expects the key to exist in the specified translation table and to be rendered accurately.
+    func testLocalizationWithTable() throws {
         
-        struct TestView: View {
-            
-            let placeholder = "hello.world"
-            
-            var body: Content {
-                Input()
-                    .placeholder("hello.world", tableName: nil)
-                    .alternate(LocalizedStringKey("hello.world"))
-                    .value(LocalizedStringKey("hello.world"), tableName: "web")
-                    .title("hello.world", tableName: "mobile")
-                Meta()
-                    .content("hello.world")
-                Input()
-                    .placeholder(verbatim: "hello.world")
-                    .alternate(verbatim: "hello.world")
-                    .value(verbatim: placeholder)
-                    .title(verbatim: "hello.world")
-                TextArea {}
-                    .placeholder(placeholder)
-            }
-        }
-        
-        XCTAssertEqual(try renderer!.render(view: TestView()),
-                       """
-                       <input placeholder="Hello World" alt="Hello World" value="Hello World" title="Hello World">\
-                       <meta content="Hello World">\
-                       <input placeholder="hello.world" alt="hello.world" value="hello.world" title="hello.world">\
-                       <textarea placeholder="hello.world"></textarea>
-                       """
-        )
+        XCTAssertEqual(try localization!.localize(string: .init(key: "hello.world", table: "web")), "Hello World")
     }
     
     /// Tests the localization of string interpolation
@@ -73,24 +33,10 @@ final class LocalizationTests: XCTestCase {
     /// and rendered accurately.
     func testLocalizationWithStringInterpolation() throws {
         
-        struct TestView: View {
-            
-            var body: Content {
-                Paragraph("String: \("John Doe")")
-                Paragraph("Integer: \(31)")
-                Paragraph("Double: \(12.5)")
-                Paragraph("Date: \(Date(timeIntervalSince1970: 50000))")
-            }
-        }
-        
-        XCTAssertEqual(try renderer!.render(view: TestView()),
-                       """
-                       <p>String: John Doe</p>\
-                       <p>Integer: 31</p>\
-                       <p>Double: 12.5</p>\
-                       <p>Date: 01/01/1970</p>
-                       """
-        )
+        XCTAssertEqual(try localization!.localize(string: .init(key: "String: \("John Doe")")), "String: John Doe")
+        XCTAssertEqual(try localization!.localize(string: .init(key: "Integer: \(31)")), "Integer: 31")
+        XCTAssertEqual(try localization!.localize(string: .init(key: "Double: \(12.5)")), "Double: 12.5")
+        XCTAssertEqual(try localization!.localize(string: .init(key: "Date: \(Date(timeIntervalSince1970: 50000))")), "Date: 01/01/1970")
     }
     
     /// Tests the localization of string interpolation with multiple arguments and various data types
@@ -99,122 +45,35 @@ final class LocalizationTests: XCTestCase {
     /// with the arguments in the proper order, and to be rendered accurately.
     func testStringInterpolationWithMultipleArguments() throws {
         
-        struct TestView: View {
-            
-            var body: Content {
-                Paragraph("Hello \("Jane") and \("John Doe")")
-                Paragraph("Do you \(2) have time at \(Date(timeIntervalSince1970: 50000))?")
-                Paragraph("cheers.person \("Jean")")
-            }
-        }
-        
-        XCTAssertEqual(try renderer!.render(view: TestView()),
-                       """
-                       <p>Hello Jane and John Doe</p>\
-                       <p>Do you 2 have time at 01/01/1970?</p>\
-                       <p>Cheers Jean</p>
-                       """
-        )
-    }
-    
-    /// Tests the localization of a translation key in a specified translation table
-    ///
-    /// The test expects the key to exist in the specified translation tabl and to be rendered accurately.
-    func testLocaliationWithTable() throws {
-        
-        struct TestView: View {
-            
-            var body: Content {
-                Paragraph("hello.world", tableName: "web")
-            }
-        }
-        
-        XCTAssertEqual(try renderer!.render(view: TestView()),
-                       """
-                       <p>Hello World</p>
-                       """
-        )
-    }
-    
-    /// Tests the change of the locale by the environment modifier
-    ///
-    /// The test expects that the localization environment modifier correctly applies the locale
-    /// down to nested views
-    func testEnvironmentLocalization() throws {
-        
-        struct MainView: View {
-            
-            var content: [Content]
-            
-            init(@ContentBuilder<Content> content: () -> [Content]) {
-                self.content = content()
-            }
-            
-            var body: Content {
-                Division {
-                    content
-                }
-                .environment(key: \.locale, value: Locale(tag: .french))
-            }
-        }
-        
-        struct ChildView: View {
-            
-            var body: Content {
-                MainView {
-                    Heading1("hello.world")
-                        .environment(key: \.locale)
-                }
-            }
-        }
-        
-        XCTAssertEqual(try renderer!.render(view: ChildView()),
-                       """
-                       <div>\
-                       <h1>Bonjour le monde</h1>\
-                       </div>
-                       """
-        )
+        XCTAssertEqual(try localization!.localize(string: .init(key: "Hello \("Jane") and \("John Doe")")), "Hello Jane and John Doe")
+        XCTAssertEqual(try localization!.localize(string: .init(key: "Do you \(2) have time at \(Date(timeIntervalSince1970: 50000))?")), "Do you 2 have time at 01/01/1970?")
+        XCTAssertEqual(try localization!.localize(string: .init(key: "cheers.person \("Jean")")), "Cheers Jean")
     }
     
     /// Tests the behavior when a localization key is missing
     ///
     /// A key is considered as missing if it cannot be found in the translation table. In this case,
-    /// the renderer is expected to use the fallback literal string.
+    /// the localization is expected to throw an error.
     func testMissingKey() throws {
         
-        struct MainView: View {
+        XCTAssertThrowsError(try localization!.localize(string: .init(key: "unknown.key")), "unknown.key") { error in
             
-            var body: Content {
-                Heading1("unknown.key")
+            guard let localizationError = error as? Localization.Errors else {
+                return XCTFail("Unexpected error type: \(error)")
             }
+            
+            XCTAssertEqual(localizationError, .missingKey("unknown.key", "en-GB"))
+            XCTAssertEqual(localizationError.description, "Unable to find translation key 'unknown.key' for the locale 'en-GB'.")
         }
-        
-        XCTAssertEqual(try renderer!.render(view: MainView()),
-                       """
-                       <h1>unknown.key</h1>
-                       """
-        )
     }
     
-    /// Tests the behavior when a translation table is missing
+    /// Tests the behavior when a translation table is missing.
     ///
     /// A table is considered as missing if there is no translation table for the given locale. In this case,
-    /// the renderer is expected to throw an error.
+    /// the localization is expected to throw an error.
     func testMissingTable() throws {
         
-        struct MainView: View {
-            
-            var body: Content {
-                Division {
-                    Heading1("greeting.world")
-                        .environment(key: \.locale)
-                }
-                .environment(key: \.locale, value: Locale(tag: "unknown.tag"))
-            }
-        }
-        
-        XCTAssertThrowsError(try renderer!.render(view: MainView())) { error in
+        XCTAssertThrowsError(try localization!.localize(string: .init(key: "hello.world"), for: .init(tag: "unknown.tag"))) { error in
             
             guard let localizationError = error as? Localization.Errors else {
                 return XCTFail("Unexpected error type: \(error)")
@@ -225,20 +84,13 @@ final class LocalizationTests: XCTestCase {
         }
     }
     
-    /// Tests the behavior when a translation table is unknown
+    /// Tests the behavior when a translation table is unknown.
     ///
     /// A table is considered as unknown if it cannot be found by the given table name. In this case,
-    /// the renderer is expected to throw an error.
+    /// the localization is expected to throw an error.
     func testUnknownTable() throws {
         
-        struct MainView: View {
-            
-            var body: Content {
-                Heading1("greeting.world", tableName: "unknown.table")
-            }
-        }
-        
-        XCTAssertThrowsError(try renderer!.render(view: MainView())) { error in
+        XCTAssertThrowsError(try localization!.localize(string: .init(key: "hello.world", table: "unknown.table"))) { error in
             
             guard let localizationError = error as? Localization.Errors else {
                 return XCTFail("Unexpected error type: \(error)")
@@ -247,46 +99,6 @@ final class LocalizationTests: XCTestCase {
             XCTAssertEqual(localizationError, .unknownTable("unknown.table", "en-GB"))
             XCTAssertEqual(localizationError.description, "Unable to find translation table 'unknown.table' for the locale 'en-GB'.")
         }
-    }
-    
-    /// Tests the recovery from a missing key
-    ///
-    /// The renderer should attempt a secondary lookup in the translation tables of the default locale.
-    func testRecoveryFromMissingKey() throws {
-        
-        struct MainView: View {
-            
-            var content: [Content]
-            
-            init(@ContentBuilder<Content> content: () -> [Content]) {
-                self.content = content()
-            }
-            
-            var body: Content {
-                Division {
-                    content
-                }
-                .environment(key: \.locale, value: Locale(tag: .french))
-            }
-        }
-        
-        struct ChildView: View {
-            
-            var body: Content {
-                MainView {
-                    Heading1("Hello \("John Doe")")
-                        .environment(key: \.locale)
-                }
-            }
-        }
-        
-        XCTAssertEqual(try renderer!.render(view: ChildView()),
-                       """
-                       <div>\
-                       <h1>Hello John Doe</h1>\
-                       </div>
-                       """
-        )
     }
 }
 
@@ -298,6 +110,6 @@ extension LocalizationTests {
             return
         }
         
-        self.renderer = Renderer(localization: .init(source: sourcePath, locale: .init(tag: "en-GB")))
+        self.localization = Localization(source: sourcePath, locale: .init(tag: "en-GB"))
     }
 }

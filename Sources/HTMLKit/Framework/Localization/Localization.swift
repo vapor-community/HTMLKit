@@ -252,4 +252,32 @@ public class Localization {
         
         throw Errors.missingKey(string.key.value, currentLocale.tag)
     }
+    
+    /// Recovers from an error.
+    ///
+    /// - Parameters:
+    ///   - priorError: The prior error to compare to
+    ///   - string: The string to localize
+    ///
+    /// - Returns: The translation or the string literal
+    internal func recover(from priorError: Errors, with string: LocalizedString) throws -> String {
+        
+        do {
+            
+            return try localize(string: string)
+            
+        } catch let error as Errors {
+            
+            switch error {
+            case .missingKey where error != priorError:
+                return try recover(from: error, with: string)
+                
+            case .missingTable where error != priorError:
+                return try recover(from: error, with: string)
+                
+            default:
+                return string.key.literal
+            }
+        }
+    }
 }
