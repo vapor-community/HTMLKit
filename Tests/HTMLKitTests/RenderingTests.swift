@@ -576,6 +576,29 @@ final class RenderingTests: XCTestCase {
                        """
         )
     }
+    
+    /// Tests a cascade of recovery attempts, each triggered by the failure of the last.
+    ///
+    /// The renderer should bail with the string literal if recovery gets stuck.
+    func testRecoveryCascade() throws {
+        
+        struct TestView: View {
+            
+            var body: Content {
+                Division {
+                    Heading1("unknown.key", tableName: "unknown.table")
+                }
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: TestView()),
+                       """
+                       <div>\
+                       <h1>unknown.key</h1>\
+                       </div>
+                       """
+        )
+    }
 }
 
 extension RenderingTests {

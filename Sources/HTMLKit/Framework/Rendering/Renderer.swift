@@ -302,7 +302,7 @@ public struct Renderer {
                     
                     logger.debug("Trying to recover from missing key")
                     
-                    return try localization.localize(string: string)
+                    return try localization.recover(from: error, with: string)
                 }
                 
                 fallthrough
@@ -311,7 +311,7 @@ public struct Renderer {
                 
                 logger.debug("Trying to recover from missing table")
                 
-                return try localization.localize(string: string)
+                return try localization.recover(from: error, with: string)
                 
             default:
                 return string.key.literal
