@@ -311,6 +311,10 @@ public struct Renderer {
                 
                 logger.debug("Trying to recover from missing table")
                 
+                // Clear the locale on the environment, since it cannot be used for the remainder of the rendering,
+                // otherwise it will throw an error each time
+                environment.upsert(Optional<Locale>.none, for: \EnvironmentKeys.locale)
+                
                 return try localization.recover(from: error, with: string)
                 
             default:
