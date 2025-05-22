@@ -225,69 +225,6 @@ final class ProviderTests: XCTestCase {
         }
     }
     
-    /// Tests the error reporting to Vapor for issues that may occur during localization
-    ///
-    /// The error is expected to be classified as an internal server error and includes a error message.
-    func testLocalizationErrorReporting() throws {
-        
-        struct UnknownTableView: HTMLKit.View {
-            
-            var body: HTMLKit.Content {
-                Paragraph("hello.world", tableName: "unknown.table")
-            }
-        }
-        
-        struct UnknownTagView: HTMLKit.View {
-            
-            var body: HTMLKit.Content {
-                Division {
-                    Heading1("greeting.world")
-                        .environment(key: \.locale)
-                }
-                .environment(key: \.locale, value: Locale(tag: "unknown.tag"))
-            }
-        }
-        
-        guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
-            return
-        }
-        
-        let app = Application(.testing)
-        
-        defer { app.shutdown() }
-        
-        app.htmlkit.localization.set(source: source)
-        app.htmlkit.localization.set(locale: "fr")
-        
-        app.get("unknowntable") { request async throws -> Vapor.View in
-            
-            return try await request.htmlkit.render(UnknownTableView())
-        }
-        
-        app.get("unknowntag") { request async throws -> Vapor.View in
-            
-            return try await request.htmlkit.render(UnknownTagView())
-        }
-        
-        try app.test(.GET, "unknowntable") { response in
-            
-            XCTAssertEqual(response.status, .internalServerError)
-            
-            let abort = try response.content.decode(AbortResponse.self)
-            
-            XCTAssertEqual(abort.reason, "Unable to find translation table 'unknown.table' for the locale 'fr'.")
-        }
-        
-        try app.test(.GET, "unknowntag") { response in
-            
-            XCTAssertEqual(response.status, .internalServerError)
-            
-            let abort = try response.content.decode(AbortResponse.self)
-            
-            XCTAssertEqual(abort.reason, "Unable to find a translation table for the locale 'unknown.tag'.")
-        }
-    }
-    
     /// Tests the localization behavior based on the accept language of the client
     ///
     /// The environment locale is expected to be changed according to the language given by the provider.
@@ -329,6 +266,49 @@ final class ProviderTests: XCTestCase {
                             """
             )
         }
+    }
+    
+    /// Tests the localization behavior when the preferred language is unknown.
+    ///
+    /// A language is considered unknown if the locale couldn't be found (e.g. typo) or isn't set up in the first place.
+    /// In such a case, the renderer is expected to fall back to the default locale.
+    func testUnknownPreferredLanguage() async throws {
+        
+        guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
+            return
+        }
+        
+        let app = try await Application.make(.testing)
+        
+        app.htmlkit.localization.set(source: source)
+        app.htmlkit.localization.set(locale: "en-GB")
+        
+        app.get("test") { request async throws -> Vapor.View in
+            
+            // Overwrite the accept language header to simulate a different language
+            request.headers.replaceOrAdd(name: "accept-language", value: "en-US")
+            
+            return try await request.htmlkit.render(TestPage.ChildView())
+        }
+        
+        try await app.test(.GET, "test") { response async in
+            XCTAssertEqual(response.status, .ok)
+            XCTAssertEqual(response.body.string,
+                            """
+                            <!DOCTYPE html>\
+                            <html>\
+                            <head>\
+                            <title>TestPage</title>\
+                            </head>\
+                            <body>\
+                            <p>Hello World</p>\
+                            </body>\
+                            </html>
+                            """
+            )
+        }
+        
+        try await app.asyncShutdown()
     }
     
     /// Tests the access to environment through provider
