@@ -70,6 +70,19 @@ final class LocalizationTests: XCTestCase {
                        """
         )
     }
+    
+    func testPromptLocalization() throws {
+        
+        let view = TestView {
+            TextField(name: "password", prompt: "Password")
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <input type="text" name="password" class="textfield" placeholder="Mot de passe">
+                       """
+        )
+    }
 }
 
 extension LocalizationTests {

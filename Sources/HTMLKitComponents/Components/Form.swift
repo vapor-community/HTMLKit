@@ -118,16 +118,23 @@ public struct FieldLabel: View {
     }
 }
 
-/// A component that displays an editable form control.
+/// A view that represents a text field.
+///
+/// Use `TextField` to display an editable form control.
+///
+/// ```swift
+/// TextField(name: "lorem", prompt: "Lorem ipsum", value: "Lorem ipsum")
+/// ```
 public struct TextField: View, Modifiable, Identifiable {
     
+    /// The identifier of the field.
     internal var id: String?
     
-    /// The identifier of the field.
+    /// The name of the field.
     internal let name: String
     
     /// The placeholder for the field value.
-    internal let prompt: String?
+    internal let prompt: PromptType?
     
     /// The content of the field.
     internal let value: String?
@@ -138,11 +145,31 @@ public struct TextField: View, Modifiable, Identifiable {
     /// The events of the field.
     internal var events: [String]?
     
-    /// Creates a text field.
+    /// Create a text field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - value: The value to edit within the field.
+    @_disfavoredOverload
     public init(name: String, prompt: String? = nil, value: String? = nil) {
         
         self.name = name
-        self.prompt = prompt
+        self.prompt = prompt.map(PromptType.string(_:))
+        self.value = value
+        self.classes = ["textfield"]
+    }
+    
+    /// Create a text field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The key of the localized string to guide the user.
+    ///   - value: The value to edit within the field.
+    public init(name: String, prompt: LocalizedStringKey? = nil, value: String? = nil) {
+        
+        self.name = name
+        self.prompt = prompt.map(PromptType.value(_:))
         self.value = value
         self.classes = ["textfield"]
     }
