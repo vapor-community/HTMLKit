@@ -917,16 +917,23 @@ extension SelectField: ViewModifier {
     }
 }
 
-/// A component that displays
+/// A view that represents a secure field.
+///
+/// Use `SecureField` to enter sensitive data in a secure way.
+///
+/// ```swift
+/// SecureField(name: "lorem", prompt: "Lorem ipsum")
+/// ```
 public struct SecureField: View, Modifiable, Identifiable {
     
+    /// The identifer of the field.
     internal var id: String?
     
-    /// The identifier of the field.
+    /// The name of the field.
     internal let name: String
     
     /// The placeholder for the field value.
-    internal let prompt: String?
+    internal let prompt: PromptType?
     
     /// The content of the field.
     internal let value: String?
@@ -937,11 +944,31 @@ public struct SecureField: View, Modifiable, Identifiable {
     /// The events of the field.
     internal var events: [String]?
     
-    /// Creates a password field.
+    /// Create a secure field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - content: The text content to edit within the field.
+    @_disfavoredOverload
     public init(name: String, prompt: String? = nil, value: String? = nil) {
         
         self.name = name
-        self.prompt = prompt
+        self.prompt = prompt.map(PromptType.string(_:))
+        self.value = value
+        self.classes = ["securefield"]
+    }
+    
+    /// Create a secure field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The key of the localized string to guide the user.
+    ///   - content: The text content to edit within the field.
+    public init(name: String, prompt: LocalizedStringKey? = nil, value: String? = nil) {
+        
+        self.name = name
+        self.prompt = prompt.map(PromptType.value(_:))
         self.value = value
         self.classes = ["securefield"]
     }
