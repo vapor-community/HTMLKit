@@ -267,7 +267,14 @@ extension TextField: ViewModifier {
     }
 }
 
-/// A component that displays a editable and expandable form control.
+/// A view that represents a text editor.
+///
+/// Use `TextEditor` to display a editable and expandable form control.
+///
+/// ```swift
+/// TextEditor(name: "Lorem", prompt: "Lorem ipsum") {
+/// }
+/// ```
 public struct TextEditor: View, Modifiable, Identifiable {
     
     internal var id: String?
@@ -276,7 +283,7 @@ public struct TextEditor: View, Modifiable, Identifiable {
     internal let name: String
     
     /// The placeholder for the field value.
-    internal let prompt: String?
+    internal let prompt: PromptType?
     
     /// The number of lines.
     internal var rows: Int = 3
@@ -290,11 +297,31 @@ public struct TextEditor: View, Modifiable, Identifiable {
     /// The events of the editor.
     internal var events: [String]?
     
-    /// Creates a text editor.
+    /// Create a text editor.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - value: The value to edit within the field.
+    @_disfavoredOverload
     public init(name: String, prompt: String? = nil, @ContentBuilder<String> content: () -> [String]) {
         
         self.name = name
-        self.prompt = prompt
+        self.prompt = prompt.map(PromptType.string(_:))
+        self.content = content()
+        self.classes = ["texteditor"]
+    }
+    
+    /// Create a text editor.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The key of the localized string to guide the user.
+    ///   - value: The value to edit within the field.
+    public init(name: String, prompt: LocalizedStringKey? = nil, @ContentBuilder<String> content: () -> [String]) {
+        
+        self.name = name
+        self.prompt = prompt.map(PromptType.value(_:))
         self.content = content()
         self.classes = ["texteditor"]
     }
