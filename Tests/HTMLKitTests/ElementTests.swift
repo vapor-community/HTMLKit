@@ -1072,21 +1072,6 @@ final class ElementTests: XCTestCase {
         )
     }
     
-    func testParameterElement() throws {
-        
-        let view = TestView {
-            Parameter()
-            Param()
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <param>\
-                       <param>
-                       """
-        )
-    }
-    
     func testVideoElement() throws {
         
         let view = TestView {
