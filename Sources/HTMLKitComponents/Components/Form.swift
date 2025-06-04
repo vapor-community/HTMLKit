@@ -1352,16 +1352,23 @@ extension DatePicker: ViewModifier {
     }
 }
 
-/// A component that displays
+/// A view that represents a search field.
+///
+/// Use `SearchField` to find information in content.
+///
+/// ```swift
+/// SearchField(name: "lorem", prompt: "Lorem ipsum")
+/// ```
 public struct SearchField: View, Modifiable, Identifiable {
     
+    /// The identifier of the field.
     internal var id: String?
     
-    /// The identifier of the search field.
+    /// The name of the field.
     internal let name: String
     
     /// The placeholder for the field value.
-    internal let prompt: String?
+    internal let prompt: PromptType?
     
     /// The content of the field.
     internal let value: String?
@@ -1372,12 +1379,32 @@ public struct SearchField: View, Modifiable, Identifiable {
     /// The events of the field.
     internal var events: [String]?
     
-    /// Creates a search field.
+    /// Create a search field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - value: The value to edit within the field.
+    @_disfavoredOverload
     public init(name: String, prompt: String? = nil, value: String? = nil) {
         
         self.name = name
-        self.prompt = prompt
         self.value = value
+        self.prompt = prompt.map(PromptType.string(_:))
+        self.classes = ["searchfield"]
+    }
+    
+    /// Create a search field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The key of the localized string to guide the user.
+    ///   - value: The value to edit within the field.
+    public init(name: String, prompt: LocalizedStringKey? = nil, value: String? = nil) {
+        
+        self.name = name
+        self.value = value
+        self.prompt = prompt.map(PromptType.value(_:))
         self.classes = ["searchfield"]
     }
     
