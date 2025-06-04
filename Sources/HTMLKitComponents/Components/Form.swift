@@ -469,13 +469,24 @@ public struct Picker: View, Modifiable, Identifiable {
     }
 }
 
-/// A component that displays a form control
+/// A view that represents a check field.
+///
+/// Use `CheckField` to present a list of options, where multiple options can be selected.
+///
+/// ```swift
+/// Picker(name: "lorem", selection: "ipsum") {
+///     CheckField(value: "ipsum") {
+///         "Lorem ipsum"
+///     }
+///     .tag("ipsum")
+/// }
+/// ```
 public struct CheckField: View, Modifiable, Selectable, Identifiable {
     
-    /// The identifer for the label.
+    /// The identifer of the field.
     internal var id: String?
     
-    /// The identifier for the field.
+    /// The name of the field.
     internal var name: String?
     
     /// The content of the field.
@@ -485,17 +496,34 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
     internal var isSelected: Bool
 
     /// The content of the field.
-    internal var content: String
+    internal var content: Content
     
     /// The classes of the field.
     internal var classes: [String]
     
-    /// Creates a check field.
+    /// Create a check field.
+    ///
+    /// - Parameters:
+    ///   - value: The current value of the field.
+    ///   - content: The label content for the field.
     public init(value: String, content: () -> String) {
-    
+        
         self.value = value
         self.isSelected = false
         self.content = content()
+        self.classes = ["checkfield"]
+    }
+    
+    /// Create a check field.
+    ///
+    /// - Parameters:
+    ///   - localizedStringKey: The key of the localized string used as the label.
+    ///   - value: The current value of the field.
+    public init(_ localizedStringKey: LocalizedStringKey, value: String) {
+        
+        self.value = value
+        self.isSelected = false
+        self.content = [LocalizedString(key: localizedStringKey)]
         self.classes = ["checkfield"]
     }
     

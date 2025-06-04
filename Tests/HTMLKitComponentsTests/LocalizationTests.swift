@@ -70,6 +70,22 @@ final class LocalizationTests: XCTestCase {
                        """
         )
     }
+
+    func testCheckFieldLocalization() throws {
+        
+        let view = TestView {
+            CheckField("Password", value: "password")
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <div class="checkfield">\
+                       <input type="checkbox" value="password" class="checkinput">\
+                       <label>Mot de passe</label>\
+                       </div>
+                       """
+        )
+    }
     
     func testPromptLocalization() throws {
         
