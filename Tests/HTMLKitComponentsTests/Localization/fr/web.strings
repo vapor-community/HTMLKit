@@ -1,2 +1,4 @@
 /* A button label. */
 "button.submit" = "Envoyer le formulaire";
+
+"Password" = "Mot de passe";

@@ -31,6 +31,19 @@ final class LocalizationTests: XCTestCase {
                        """
         )
     }
+    
+    func testFieldLabelLocalization() throws {
+        
+        let view = TestView {
+            FieldLabel("Password", for: "password")
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <label for="password" class="label">Mot de passe</label>
+                       """
+        )
+    }
 }
 
 extension LocalizationTests {
