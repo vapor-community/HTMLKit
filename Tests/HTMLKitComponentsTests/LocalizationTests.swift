@@ -87,6 +87,22 @@ final class LocalizationTests: XCTestCase {
         )
     }
     
+    func testRadioSelectLocalization() throws {
+        
+        let view = TestView {
+            RadioSelect("Password", value: "password")
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <div class="radioselect">\
+                       <input type="radio" value="password" class="radioinput">\
+                       <label>Mot de passe</label>\
+                       </div>
+                       """
+        )
+    }
+    
     func testPromptLocalization() throws {
         
         let view = TestView {

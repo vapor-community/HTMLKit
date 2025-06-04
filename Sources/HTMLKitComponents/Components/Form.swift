@@ -623,13 +623,24 @@ extension CheckField: ViewModifier {
     }
 }
 
-/// A component that displays
+/// A view that represents a radio select.
+///
+/// Use `RadioSelect` to present a list of options, where only one option can be selected.
+///
+/// ```swift
+/// Picker(name: "lorem", selection: "ipsum") {
+///     RadioSelect(value: "ipsum") {
+///         "Lorem ipsum"
+///     }
+///     .tag("ipsum")
+/// }
+/// ```
 public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
     
-    /// The identifier for the label.
+    /// The identifier of the select.
     internal var id: String?
     
-    /// The identifier of the select.
+    /// The name of the select.
     internal var name: String?
     
     /// The content of the select.
@@ -639,17 +650,34 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
     internal var isSelected: Bool
     
     /// The content of the select.
-    internal var content: String
+    internal var content: Content
     
     /// The classes of the select.
     internal var classes: [String]
     
-    /// Creates a radio select.
+    /// Create a radio select.
+    ///
+    /// - Parameters:
+    ///   - value: The current value of the select.
+    ///   - content: The label content for the select.
     public init(value: String, content: () -> String) {
         
         self.value = value
         self.isSelected = false
         self.content = content()
+        self.classes = ["radioselect"]
+    }
+    
+    /// Create a radio select.
+    ///
+    /// - Parameters:
+    ///   - localizedStringKey: The key of the localized string used as the label.
+    ///   - value: The current value of the select.
+    public init(_ localizedStringKey: LocalizedStringKey, value: String) {
+        
+        self.value = value
+        self.isSelected = false
+        self.content = [LocalizedString(key: localizedStringKey)]
         self.classes = ["radioselect"]
     }
     
