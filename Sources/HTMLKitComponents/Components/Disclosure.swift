@@ -5,20 +5,49 @@
 
 import HTMLKit
 
-/// A component that distinguish content.
+/// A view that represents a disclosure.
+///
+/// Use `Disclosure` to reveal or hide content when interacted with.
+///
+/// ```swift
+/// Disclosure("Lorem ipsum") {
+///     Text {
+///         "Lorem ipsum..."
+///     }
+/// }
+/// ```
 public struct Disclosure: View, Modifiable {
     
-    internal let label: String
+    /// The label of the disclosure.
+    internal let label: Content
     
+    /// The disclosure's content.
     internal let content: [Content]
     
     /// The classes of the content.
     internal var classes: [String]
-    
-    /// Creates a card.
+        
+    /// Create a disclosure.
+    ///
+    /// - Parameters:
+    ///   - label: The label to describe the content.
+    ///   - content: The disclosure's content.
+    @_disfavoredOverload
     public init(_ label: String, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.label = label
+        self.content = content()
+        self.classes = ["disclosure"]
+    }
+    
+    /// Create a disclosure.
+    ///
+    /// - Parameters:
+    ///   - label: The key of the localized string to describe the content.
+    ///   - content: The disclosure's content.
+    public init(_ label: LocalizedStringKey, @ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.label = LocalizedString(key: label)
         self.content = content()
         self.classes = ["disclosure"]
     }
