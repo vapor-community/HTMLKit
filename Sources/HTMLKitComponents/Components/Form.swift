@@ -1557,16 +1557,25 @@ public struct Progress: View, Modifiable, Identifiable {
     }
 }
 
-/// A component to edit and format text content.
+/// A view that represents a text pad.
+///
+/// Use `TextPad` to edit and format text content.
+///
+/// ```swift
+/// TextPad(name: "lorem", prompt: "Lorem ipsum") {
+///     "Lorem ipsum..."
+/// }
+/// ```
 public struct TextPad: View, Modifiable, Identifiable {
     
+    /// The identifier of the textpad.
     internal var id: String?
     
-    /// The identifier of the textpad.
+    /// The name of the textpad.
     internal let name: String
     
     /// The placeholder for the field value.
-    internal let prompt: String?
+    internal let prompt: PromptType?
     
     /// The number of lines.
     internal var rows: Int = 3
@@ -1577,11 +1586,31 @@ public struct TextPad: View, Modifiable, Identifiable {
     /// The classes of the textpad.
     internal var classes: [String]
     
-    /// Creates a textpad
+    /// Create a textpad.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - content: The text content to edit within the field.
+    @_disfavoredOverload
     public init(name: String, prompt: String? = nil, @ContentBuilder<String> content: () -> [String]) {
         
         self.name = name
-        self.prompt = prompt
+        self.prompt = prompt.map(PromptType.string(_:))
+        self.content = content()
+        self.classes = ["textpad"]
+    }
+    
+    /// Create a textpad.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The key of the localized string to guide the user.
+    ///   - content: The text content to edit within the field.
+    public init(name: String, prompt: LocalizedStringKey? = nil, @ContentBuilder<String> content: () -> [String]) {
+        
+        self.name = name
+        self.prompt = prompt.map(PromptType.value(_:))
         self.content = content()
         self.classes = ["textpad"]
     }
