@@ -721,17 +721,30 @@ extension RadioSelect: ViewModifier {
     }
 }
 
-/// A component that displays
+/// A view that represents a selectfield.
+///
+/// Use `SelectField` to present a list of options.
+///
+/// ```swift
+/// SelectField(name: "lorem", selection: "ipsum") {
+///     RadioSelect(value: "ipsum") {
+///         "Lorem ipsum"
+///     }
+///     .tag("ipsum")
+/// }
+/// ```
 public struct SelectField: View, Modifiable, Identifiable {
     
+    /// The identifier of the field.
     internal var id: String?
     
-    /// The identifier of the field.
+    /// The name of the field.
     internal let name: String
     
     /// The placeholder for the field value.
-    internal let prompt: String?
+    internal let prompt: PromptType?
     
+    /// The selected value of the available options.
     internal let selection: String?
     
     /// The content of the field.
@@ -743,21 +756,67 @@ public struct SelectField: View, Modifiable, Identifiable {
     /// The events of the field.
     internal var events: [String]?
     
-    /// Creates a select field.
+    /// Create a select field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - selection: The option to preselect.
+    ///   - content: The options to choose from.
+    @_disfavoredOverload
     public init(name: String, prompt: String? = nil, selection: String? = nil, @ContentBuilder<RadioSelect> content: () -> [RadioSelect]) {
         
         self.name = name
-        self.prompt = prompt
+        self.prompt = prompt.map(PromptType.string(_:))
         self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]
     }
     
-    /// Creates a select field.
+    /// Create a select field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The key of the localized string to guide the user.
+    ///   - selection: The option to preselect.
+    ///   - content: The options to choose from.
+    public init(name: String, prompt: LocalizedStringKey? = nil, selection: String? = nil, @ContentBuilder<RadioSelect> content: () -> [RadioSelect]) {
+        
+        self.name = name
+        self.prompt = prompt.map(PromptType.value(_:))
+        self.selection = selection
+        self.content = content()
+        self.classes = ["selectfield"]
+    }
+    
+    /// Create a select field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - selection: The option to preselect.
+    ///   - content: The options to choose from.
+    @_disfavoredOverload
     public init(name: String, prompt: String? = nil, selection: String? = nil, @ContentBuilder<CheckField> content: () -> [CheckField]) {
         
         self.name = name
-        self.prompt = prompt
+        self.prompt = prompt.map(PromptType.string(_:))
+        self.selection = selection
+        self.content = content()
+        self.classes = ["selectfield"]
+    }
+    
+    /// Create a select field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - selection: The option to preselect.
+    ///   - content: The options to choose from.
+    public init(name: String, prompt: LocalizedStringKey? = nil, selection: String? = nil, @ContentBuilder<CheckField> content: () -> [CheckField]) {
+        
+        self.name = name
+        self.prompt = prompt.map(PromptType.value(_:))
         self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]
