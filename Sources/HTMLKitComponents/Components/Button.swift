@@ -6,12 +6,21 @@
 import HTMLKit
 import Foundation
 
-/// A component that initiates an action.
+/// A view that represents a button.
+///
+/// Use `Button` to trigger an action when tapped or clicked.
+///
+/// ```swift
+/// Button(role: .button) {
+///     "Lorem ipsum"
+/// }
+/// ```
 public struct Button: View, Modifiable, Actionable {
     
+    /// The identifier of the button.
     internal var id: String?
     
-    /// The role of the button
+    /// The role of the button.
     internal var role: HTMLKit.Values.Button
     
     /// The  content of the button.
@@ -20,13 +29,30 @@ public struct Button: View, Modifiable, Actionable {
     /// The classes of the button.
     internal var classes: [String]
     
+    /// The events of the button.
     internal var events: [String]?
     
-    /// Creates a action button.
+    /// Create a button.
+    ///
+    /// - Parameters:
+    ///   - role: The role of the button.
+    ///   - content: The button's content.
     public init(role: HTMLKit.Values.Button, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.role = role
         self.content = content()
+        self.classes = ["button"]
+    }
+    
+    /// Create a button.
+    ///
+    /// - Parameters:
+    ///   - localizedStringKey: The key of the localized string used as a label.
+    ///   - role: The role of the button.
+    public init(_ localizedStringKey: LocalizedStringKey, role: HTMLKit.Values.Button) {
+        
+        self.role = role
+        self.content = [LocalizedString(key: localizedStringKey)]
         self.classes = ["button"]
     }
     

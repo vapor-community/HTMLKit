@@ -103,6 +103,19 @@ final class LocalizationTests: XCTestCase {
         )
     }
     
+    func testButtonLocalization() throws {
+        
+        let view = TestView {
+            Button("Create", role: .submit)
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <button type="submit" class="button">Créer</button>
+                       """
+        )
+    }
+    
     func testPromptLocalization() throws {
         
         let view = TestView {
