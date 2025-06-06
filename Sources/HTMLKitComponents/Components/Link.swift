@@ -52,20 +52,6 @@ public struct Link: View, Modifiable, Identifiable {
     /// Create a link.
     ///
     /// - Parameters:
-    ///   - localizedStringKey: The key of the localized string used as the label.
-    ///   - destination: The url of the target to navigate to.
-    ///   - target: The behaviour that determines how to open the target.
-    public init(_ localizedStringKey: LocalizedStringKey, destination: String, target: HTMLKit.Values.Target = .current) {
-        
-        self.destination = destination
-        self.target = target
-        self.content = [LocalizedString(key: localizedStringKey)]
-        self.classes = ["link"]
-    }
-    
-    /// Create a link.
-    ///
-    /// - Parameters:
     ///   - destination: The url of the target to navigate to.
     ///   - target: The behaviour that determines how to open the target.
     ///   - content: The content displayed as the label.
@@ -74,20 +60,6 @@ public struct Link: View, Modifiable, Identifiable {
         self.destination = destination.absoluteString
         self.target = target
         self.content = content()
-        self.classes = ["link"]
-    }
-    
-    /// Create a link.
-    ///
-    /// - Parameters:
-    ///   - localizedStringKey: The key of the localized string used as the label.
-    ///   - destination: The url of the target to navigate to.
-    ///   - target: The behaviour that determines how to open the target.
-    public init(_ localizedStringKey: LocalizedStringKey, destination: URL, target: HTMLKit.Values.Target = .current) {
-        
-        self.destination = destination.absoluteString
-        self.target = target
-        self.content = [LocalizedString(key: localizedStringKey)]
         self.classes = ["link"]
     }
     

@@ -119,12 +119,12 @@ final class LocalizationTests: XCTestCase {
     func testLinkLocalization() throws {
         
         let view = TestView {
-            Link("Create", destination: "#")
+            LinkButton("Create", destination: "#")
         }
         
         XCTAssertEqual(try renderer!.render(view: view),
                        """
-                       <a href="#" target="_self" class="link">Créer</a>
+                       <a href="#" target="_self" class="button" role="button">Créer</a>
                        """
         )
     }

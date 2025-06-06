@@ -172,11 +172,21 @@ extension Button: ViewModifier {
     }
 }
 
-/// A component that initiates an action.
+/// A view that represents a link button.
+///
+/// Use `LinkButton`to navigate to a target.
+///
+/// ```swift
+/// LinkButton(destination: "https://..") {
+///     "Lorem ipsum"
+/// }
+/// ```
 public struct LinkButton: View, Modifiable, Identifiable {
     
+    /// The unique identifier of the button.
     internal var id: String?
     
+    /// The target behaviour for the destination
     internal let target: HTMLKit.Values.Target
     
     /// The url path of the target.
@@ -191,7 +201,12 @@ public struct LinkButton: View, Modifiable, Identifiable {
     /// The events of the button.
     internal var events: [String]?
     
-    /// Creates a action button.
+    /// Create a link button.
+    ///
+    /// - Parameters:
+    ///   - destination: The url of the target to navigate to.
+    ///   - target: The behaviour that determines how to open the target.
+    ///   - content: The content displayed as the label.
     public init(destination: String, target: HTMLKit.Values.Target = .current, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.destination = destination
@@ -200,12 +215,45 @@ public struct LinkButton: View, Modifiable, Identifiable {
         self.classes = ["button"]
     }
     
-    /// Creates a action button.
+    /// Create a link button.
+    ///
+    /// - Parameters:
+    ///   - localizedStringKey: The key of the localized string used as the label.
+    ///   - destination: The url of the target to navigate to.
+    ///   - target: The behaviour that determines how to open the target.
+    public init(_ localizedStringKey: LocalizedStringKey, destination: String, target: HTMLKit.Values.Target = .current) {
+        
+        self.destination = destination
+        self.target = target
+        self.content = [LocalizedString(key: localizedStringKey)]
+        self.classes = ["button"]
+    }
+    
+    /// Create a link button.
+    ///
+    /// - Parameters:
+    ///   - destination: The url of the target to navigate to.
+    ///   - target: The behaviour that determines how to open the target.
+    ///   - content: The content displayed as the label.
     public init(destination: URL, target: HTMLKit.Values.Target = .current, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.destination = destination.absoluteString
         self.target = target
         self.content = content()
+        self.classes = ["button"]
+    }
+    
+    /// Create a link button.
+    ///
+    /// - Parameters:
+    ///   - localizedStringKey: The key of the localized string used as the label.
+    ///   - destination: The url of the target to navigate to.
+    ///   - target: The behaviour that determines how to open the target.
+    public init(_ localizedStringKey: LocalizedStringKey, destination: URL, target: HTMLKit.Values.Target = .current) {
+        
+        self.destination = destination.absoluteString
+        self.target = target
+        self.content = [LocalizedString(key: localizedStringKey)]
         self.classes = ["button"]
     }
     
