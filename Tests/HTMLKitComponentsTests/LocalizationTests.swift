@@ -116,6 +116,19 @@ final class LocalizationTests: XCTestCase {
         )
     }
     
+    func testLinkLocalization() throws {
+        
+        let view = TestView {
+            Link("Create", destination: "#")
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <a href="#" target="_self" class="link">Créer</a>
+                       """
+        )
+    }
+    
     func testPromptLocalization() throws {
         
         let view = TestView {
