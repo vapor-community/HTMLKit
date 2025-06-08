@@ -29,8 +29,10 @@ public struct Parameter: EmptyNode, ObjectElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    @available(*, deprecated, message: "The parameter element is no longer part of the web standards. Use the data attribute of the object element instead.")
     public init() {}
     
+    @available(*, deprecated, message: "The parameter element is no longer part of the web standards. Use the data attribute of the object element instead.")
     internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
