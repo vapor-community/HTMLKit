@@ -62,7 +62,15 @@ extension Form: FormEvent {
     }
 }
 
-/// A component that displays the name of the form control.
+/// A view that represents a field label.
+///
+/// Use `FieldLabel` to display the name for the form control.
+///
+/// ```swift
+/// FieldLabel(for: "lorem") {
+///     "Lorem ipsum"
+/// }
+/// ```
 public struct FieldLabel: View {
     
     /// The identifier of the element the label is related to.
@@ -77,11 +85,27 @@ public struct FieldLabel: View {
     /// The events of the label.
     internal var events: [String]?
     
-    /// Creates a field label.
+    /// Create a field label.
+    ///
+    /// - Parameters:
+    ///   - id: The identifier of the field to associate the label with.
+    ///   - content: The text content to display in the label.
     public init(for id: String, @ContentBuilder<Content> content: () -> [Content]) {
       
         self.id = id
         self.content = content()
+        self.classes = ["label"]
+    }
+    
+    /// Create a field label.
+    ///
+    /// - Parameters:
+    ///   - localizedStringKey: The key of the localized string to look for.
+    ///   - id: The identifier of the field to associate the label with.
+    public init(_ localizedStringKey: LocalizedStringKey, for id: String) {
+        
+        self.id = id
+        self.content = [LocalizedString(key: localizedStringKey)]
         self.classes = ["label"]
     }
     
@@ -94,16 +118,23 @@ public struct FieldLabel: View {
     }
 }
 
-/// A component that displays an editable form control.
+/// A view that represents a text field.
+///
+/// Use `TextField` to display an editable form control.
+///
+/// ```swift
+/// TextField(name: "lorem", prompt: "Lorem ipsum", value: "Lorem ipsum")
+/// ```
 public struct TextField: View, Modifiable, Identifiable {
     
+    /// The identifier of the field.
     internal var id: String?
     
-    /// The identifier of the field.
+    /// The name of the field.
     internal let name: String
     
     /// The placeholder for the field value.
-    internal let prompt: String?
+    internal let prompt: PromptType?
     
     /// The content of the field.
     internal let value: String?
@@ -114,11 +145,31 @@ public struct TextField: View, Modifiable, Identifiable {
     /// The events of the field.
     internal var events: [String]?
     
-    /// Creates a text field.
+    /// Create a text field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - value: The value to edit within the field.
+    @_disfavoredOverload
     public init(name: String, prompt: String? = nil, value: String? = nil) {
         
         self.name = name
-        self.prompt = prompt
+        self.prompt = prompt.map(PromptType.string(_:))
+        self.value = value
+        self.classes = ["textfield"]
+    }
+    
+    /// Create a text field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The key of the localized string to guide the user.
+    ///   - value: The value to edit within the field.
+    public init(name: String, prompt: LocalizedStringKey? = nil, value: String? = nil) {
+        
+        self.name = name
+        self.prompt = prompt.map(PromptType.value(_:))
         self.value = value
         self.classes = ["textfield"]
     }
@@ -216,7 +267,14 @@ extension TextField: ViewModifier {
     }
 }
 
-/// A component that displays a editable and expandable form control.
+/// A view that represents a text editor.
+///
+/// Use `TextEditor` to display a editable and expandable form control.
+///
+/// ```swift
+/// TextEditor(name: "Lorem", prompt: "Lorem ipsum") {
+/// }
+/// ```
 public struct TextEditor: View, Modifiable, Identifiable {
     
     internal var id: String?
@@ -225,7 +283,7 @@ public struct TextEditor: View, Modifiable, Identifiable {
     internal let name: String
     
     /// The placeholder for the field value.
-    internal let prompt: String?
+    internal let prompt: PromptType?
     
     /// The number of lines.
     internal var rows: Int = 3
@@ -239,11 +297,31 @@ public struct TextEditor: View, Modifiable, Identifiable {
     /// The events of the editor.
     internal var events: [String]?
     
-    /// Creates a text editor.
+    /// Create a text editor.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - value: The value to edit within the field.
+    @_disfavoredOverload
     public init(name: String, prompt: String? = nil, @ContentBuilder<String> content: () -> [String]) {
         
         self.name = name
-        self.prompt = prompt
+        self.prompt = prompt.map(PromptType.string(_:))
+        self.content = content()
+        self.classes = ["texteditor"]
+    }
+    
+    /// Create a text editor.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The key of the localized string to guide the user.
+    ///   - value: The value to edit within the field.
+    public init(name: String, prompt: LocalizedStringKey? = nil, @ContentBuilder<String> content: () -> [String]) {
+        
+        self.name = name
+        self.prompt = prompt.map(PromptType.value(_:))
         self.content = content()
         self.classes = ["texteditor"]
     }
@@ -391,13 +469,24 @@ public struct Picker: View, Modifiable, Identifiable {
     }
 }
 
-/// A component that displays a form control
+/// A view that represents a check field.
+///
+/// Use `CheckField` to present a list of options, where multiple options can be selected.
+///
+/// ```swift
+/// Picker(name: "lorem", selection: "ipsum") {
+///     CheckField(value: "ipsum") {
+///         "Lorem ipsum"
+///     }
+///     .tag("ipsum")
+/// }
+/// ```
 public struct CheckField: View, Modifiable, Selectable, Identifiable {
     
-    /// The identifer for the label.
+    /// The identifer of the field.
     internal var id: String?
     
-    /// The identifier for the field.
+    /// The name of the field.
     internal var name: String?
     
     /// The content of the field.
@@ -407,17 +496,34 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
     internal var isSelected: Bool
 
     /// The content of the field.
-    internal var content: String
+    internal var content: Content
     
     /// The classes of the field.
     internal var classes: [String]
     
-    /// Creates a check field.
+    /// Create a check field.
+    ///
+    /// - Parameters:
+    ///   - value: The current value of the field.
+    ///   - content: The label content for the field.
     public init(value: String, content: () -> String) {
-    
+        
         self.value = value
         self.isSelected = false
         self.content = content()
+        self.classes = ["checkfield"]
+    }
+    
+    /// Create a check field.
+    ///
+    /// - Parameters:
+    ///   - localizedStringKey: The key of the localized string used as the label.
+    ///   - value: The current value of the field.
+    public init(_ localizedStringKey: LocalizedStringKey, value: String) {
+        
+        self.value = value
+        self.isSelected = false
+        self.content = [LocalizedString(key: localizedStringKey)]
         self.classes = ["checkfield"]
     }
     
@@ -517,13 +623,24 @@ extension CheckField: ViewModifier {
     }
 }
 
-/// A component that displays
+/// A view that represents a radio select.
+///
+/// Use `RadioSelect` to present a list of options, where only one option can be selected.
+///
+/// ```swift
+/// Picker(name: "lorem", selection: "ipsum") {
+///     RadioSelect(value: "ipsum") {
+///         "Lorem ipsum"
+///     }
+///     .tag("ipsum")
+/// }
+/// ```
 public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
     
-    /// The identifier for the label.
+    /// The identifier of the select.
     internal var id: String?
     
-    /// The identifier of the select.
+    /// The name of the select.
     internal var name: String?
     
     /// The content of the select.
@@ -533,17 +650,34 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
     internal var isSelected: Bool
     
     /// The content of the select.
-    internal var content: String
+    internal var content: Content
     
     /// The classes of the select.
     internal var classes: [String]
     
-    /// Creates a radio select.
+    /// Create a radio select.
+    ///
+    /// - Parameters:
+    ///   - value: The current value of the select.
+    ///   - content: The label content for the select.
     public init(value: String, content: () -> String) {
         
         self.value = value
         self.isSelected = false
         self.content = content()
+        self.classes = ["radioselect"]
+    }
+    
+    /// Create a radio select.
+    ///
+    /// - Parameters:
+    ///   - localizedStringKey: The key of the localized string used as the label.
+    ///   - value: The current value of the select.
+    public init(_ localizedStringKey: LocalizedStringKey, value: String) {
+        
+        self.value = value
+        self.isSelected = false
+        self.content = [LocalizedString(key: localizedStringKey)]
         self.classes = ["radioselect"]
     }
     
@@ -643,17 +777,30 @@ extension RadioSelect: ViewModifier {
     }
 }
 
-/// A component that displays
+/// A view that represents a selectfield.
+///
+/// Use `SelectField` to present a list of options.
+///
+/// ```swift
+/// SelectField(name: "lorem", selection: "ipsum") {
+///     RadioSelect(value: "ipsum") {
+///         "Lorem ipsum"
+///     }
+///     .tag("ipsum")
+/// }
+/// ```
 public struct SelectField: View, Modifiable, Identifiable {
     
+    /// The identifier of the field.
     internal var id: String?
     
-    /// The identifier of the field.
+    /// The name of the field.
     internal let name: String
     
     /// The placeholder for the field value.
-    internal let prompt: String?
+    internal let prompt: PromptType?
     
+    /// The selected value of the available options.
     internal let selection: String?
     
     /// The content of the field.
@@ -665,21 +812,67 @@ public struct SelectField: View, Modifiable, Identifiable {
     /// The events of the field.
     internal var events: [String]?
     
-    /// Creates a select field.
+    /// Create a select field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - selection: The option to preselect.
+    ///   - content: The options to choose from.
+    @_disfavoredOverload
     public init(name: String, prompt: String? = nil, selection: String? = nil, @ContentBuilder<RadioSelect> content: () -> [RadioSelect]) {
         
         self.name = name
-        self.prompt = prompt
+        self.prompt = prompt.map(PromptType.string(_:))
         self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]
     }
     
-    /// Creates a select field.
+    /// Create a select field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The key of the localized string to guide the user.
+    ///   - selection: The option to preselect.
+    ///   - content: The options to choose from.
+    public init(name: String, prompt: LocalizedStringKey? = nil, selection: String? = nil, @ContentBuilder<RadioSelect> content: () -> [RadioSelect]) {
+        
+        self.name = name
+        self.prompt = prompt.map(PromptType.value(_:))
+        self.selection = selection
+        self.content = content()
+        self.classes = ["selectfield"]
+    }
+    
+    /// Create a select field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - selection: The option to preselect.
+    ///   - content: The options to choose from.
+    @_disfavoredOverload
     public init(name: String, prompt: String? = nil, selection: String? = nil, @ContentBuilder<CheckField> content: () -> [CheckField]) {
         
         self.name = name
-        self.prompt = prompt
+        self.prompt = prompt.map(PromptType.string(_:))
+        self.selection = selection
+        self.content = content()
+        self.classes = ["selectfield"]
+    }
+    
+    /// Create a select field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - selection: The option to preselect.
+    ///   - content: The options to choose from.
+    public init(name: String, prompt: LocalizedStringKey? = nil, selection: String? = nil, @ContentBuilder<CheckField> content: () -> [CheckField]) {
+        
+        self.name = name
+        self.prompt = prompt.map(PromptType.value(_:))
         self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]
@@ -780,16 +973,23 @@ extension SelectField: ViewModifier {
     }
 }
 
-/// A component that displays
+/// A view that represents a secure field.
+///
+/// Use `SecureField` to enter sensitive data in a secure way.
+///
+/// ```swift
+/// SecureField(name: "lorem", prompt: "Lorem ipsum")
+/// ```
 public struct SecureField: View, Modifiable, Identifiable {
     
+    /// The identifer of the field.
     internal var id: String?
     
-    /// The identifier of the field.
+    /// The name of the field.
     internal let name: String
     
     /// The placeholder for the field value.
-    internal let prompt: String?
+    internal let prompt: PromptType?
     
     /// The content of the field.
     internal let value: String?
@@ -800,11 +1000,31 @@ public struct SecureField: View, Modifiable, Identifiable {
     /// The events of the field.
     internal var events: [String]?
     
-    /// Creates a password field.
+    /// Create a secure field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - content: The text content to edit within the field.
+    @_disfavoredOverload
     public init(name: String, prompt: String? = nil, value: String? = nil) {
         
         self.name = name
-        self.prompt = prompt
+        self.prompt = prompt.map(PromptType.string(_:))
+        self.value = value
+        self.classes = ["securefield"]
+    }
+    
+    /// Create a secure field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The key of the localized string to guide the user.
+    ///   - content: The text content to edit within the field.
+    public init(name: String, prompt: LocalizedStringKey? = nil, value: String? = nil) {
+        
+        self.name = name
+        self.prompt = prompt.map(PromptType.value(_:))
         self.value = value
         self.classes = ["securefield"]
     }
@@ -1188,16 +1408,23 @@ extension DatePicker: ViewModifier {
     }
 }
 
-/// A component that displays
+/// A view that represents a search field.
+///
+/// Use `SearchField` to find information in content.
+///
+/// ```swift
+/// SearchField(name: "lorem", prompt: "Lorem ipsum")
+/// ```
 public struct SearchField: View, Modifiable, Identifiable {
     
+    /// The identifier of the field.
     internal var id: String?
     
-    /// The identifier of the search field.
+    /// The name of the field.
     internal let name: String
     
     /// The placeholder for the field value.
-    internal let prompt: String?
+    internal let prompt: PromptType?
     
     /// The content of the field.
     internal let value: String?
@@ -1208,12 +1435,32 @@ public struct SearchField: View, Modifiable, Identifiable {
     /// The events of the field.
     internal var events: [String]?
     
-    /// Creates a search field.
+    /// Create a search field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - value: The value to edit within the field.
+    @_disfavoredOverload
     public init(name: String, prompt: String? = nil, value: String? = nil) {
         
         self.name = name
-        self.prompt = prompt
         self.value = value
+        self.prompt = prompt.map(PromptType.string(_:))
+        self.classes = ["searchfield"]
+    }
+    
+    /// Create a search field.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The key of the localized string to guide the user.
+    ///   - value: The value to edit within the field.
+    public init(name: String, prompt: LocalizedStringKey? = nil, value: String? = nil) {
+        
+        self.name = name
+        self.value = value
+        self.prompt = prompt.map(PromptType.value(_:))
         self.classes = ["searchfield"]
     }
     
@@ -1366,16 +1613,25 @@ public struct Progress: View, Modifiable, Identifiable {
     }
 }
 
-/// A component to edit and format text content.
+/// A view that represents a text pad.
+///
+/// Use `TextPad` to edit and format text content.
+///
+/// ```swift
+/// TextPad(name: "lorem", prompt: "Lorem ipsum") {
+///     "Lorem ipsum..."
+/// }
+/// ```
 public struct TextPad: View, Modifiable, Identifiable {
     
+    /// The identifier of the textpad.
     internal var id: String?
     
-    /// The identifier of the textpad.
+    /// The name of the textpad.
     internal let name: String
     
     /// The placeholder for the field value.
-    internal let prompt: String?
+    internal let prompt: PromptType?
     
     /// The number of lines.
     internal var rows: Int = 3
@@ -1386,11 +1642,31 @@ public struct TextPad: View, Modifiable, Identifiable {
     /// The classes of the textpad.
     internal var classes: [String]
     
-    /// Creates a textpad
+    /// Create a textpad.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - content: The text content to edit within the field.
+    @_disfavoredOverload
     public init(name: String, prompt: String? = nil, @ContentBuilder<String> content: () -> [String]) {
         
         self.name = name
-        self.prompt = prompt
+        self.prompt = prompt.map(PromptType.string(_:))
+        self.content = content()
+        self.classes = ["textpad"]
+    }
+    
+    /// Create a textpad.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The key of the localized string to guide the user.
+    ///   - content: The text content to edit within the field.
+    public init(name: String, prompt: LocalizedStringKey? = nil, @ContentBuilder<String> content: () -> [String]) {
+        
+        self.name = name
+        self.prompt = prompt.map(PromptType.value(_:))
         self.content = content()
         self.classes = ["textpad"]
     }

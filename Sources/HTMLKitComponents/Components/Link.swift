@@ -6,12 +6,21 @@
 import HTMLKit
 import Foundation
 
-/// A component that navigates to an target.
+/// A view that represents a text link.
+///
+/// Use `Link` to navigate to a target.
+///
+/// ```swift
+/// Link(destination: "https://..") {
+///     "Lorem ipsum"
+/// }
+/// ```
 public struct Link: View, Modifiable, Identifiable {
     
+    /// The unique identifier of the link.
     internal var id: String?
     
-    /// The target for the destination
+    /// The target behaviour for the destination
     internal let target: HTMLKit.Values.Target
 
     /// The url path of the target.
@@ -26,7 +35,12 @@ public struct Link: View, Modifiable, Identifiable {
     /// The events of the link.
     internal var events: [String]?
     
-    /// Creates a link.
+    /// Create a link.
+    ///
+    /// - Parameters:
+    ///   - destination: The url of the target to navigate to.
+    ///   - target: The behaviour that determines how to open the target.
+    ///   - content: The content displayed as the label.
     public init(destination: String, target: HTMLKit.Values.Target = .current, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.destination = destination
@@ -35,7 +49,12 @@ public struct Link: View, Modifiable, Identifiable {
         self.classes = ["link"]
     }
     
-    /// Creates a link.
+    /// Create a link.
+    ///
+    /// - Parameters:
+    ///   - destination: The url of the target to navigate to.
+    ///   - target: The behaviour that determines how to open the target.
+    ///   - content: The content displayed as the label.
     public init(destination: URL, target: HTMLKit.Values.Target = .current, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.destination = destination.absoluteString
