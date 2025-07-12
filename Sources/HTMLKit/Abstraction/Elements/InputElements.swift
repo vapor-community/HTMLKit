@@ -528,8 +528,13 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(value: value)
     }
     
-    public func selected() -> Option {
-        return mutate(selected: "selected")
+    public func selected(_ condition: Bool = true) -> Option {
+        
+        if condition {
+            return mutate(selected: "selected")
+        }
+        
+        return self
     }
     
     public func popover(_ value: Values.Popover.State) -> Option {
