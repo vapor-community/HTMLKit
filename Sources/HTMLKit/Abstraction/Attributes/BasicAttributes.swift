@@ -3065,16 +3065,26 @@ extension PropertyAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the selected handler.
+/// A type that provides the `selected` modifier
 @_documentation(visibility: internal)
 public protocol SelectedAttribute: Attribute {
     
-    /// The function represents the html-attribute 'selected'.
+    /// Mark a select option as default.
     ///
-    /// ```html
-    /// <tag selected />
+    /// ```swift
+    /// Select {
+    ///     Option()
+    ///         .value("lorem")
+    ///         .selected()
+    /// }
+    /// .name("lorem")
+    /// .id("lorem")
     /// ```
-    func selected() -> Self
+    ///
+    /// - Parameter condition: Whether to default the option.
+    ///
+    /// - Returns: The element
+    func selected(_ condition: Bool) -> Self
 }
 
 extension SelectedAttribute where Self: ContentNode {

@@ -573,8 +573,13 @@ final class AttributesTests: XCTestCase {
             return self.mutate(property: value.rawValue)
         }
         
-        func selected() -> Tag {
-            return self.mutate(selected: "selected")
+        func selected(_ condition: Bool = true) -> Tag {
+            
+            if condition {
+                return self.mutate(selected: "selected")
+            }
+            
+            return self
         }
         
         func draw(_ value: String) -> Tag {
@@ -2119,11 +2124,18 @@ final class AttributesTests: XCTestCase {
     func testSelectedAttribute() throws {
         
         let view = TestView {
+            // unconditionally
             Tag {}.selected()
+            // with a false condition
+            Tag {}.selected(false)
+            // with a true condition
+            Tag {}.selected(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag selected="selected"></tag>\
+                       <tag></tag>\
                        <tag selected="selected"></tag>
                        """
         )
