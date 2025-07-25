@@ -585,13 +585,19 @@ public enum Values {
         case checkbox
         case columnHeader = "columnheader"
         case combobox
+        
+        @available(*, deprecated, message: "It is an abstract role and should not be used.")
         case command
         case comment
         case complementary
+        
+        @available(*, deprecated, message: "It is an abstract role and should not be used.")
         case composite
         case contentInfo = "contentinfo"
         case definition
         case dialog
+        
+        @available(*, deprecated, message: "It is no longer part of the web standards. Use 'list' instead.")
         case directory
         case document
         case feed
@@ -602,7 +608,11 @@ public enum Values {
         case group
         case heading
         case img
+        
+        @available(*, deprecated, message: "It is an abstract role and should not be used.")
         case input
+        
+        @available(*, deprecated, message: "It is an abstract role and should not be used.")
         case landmark
         case list
         case listBox = "listbox"
@@ -624,8 +634,12 @@ public enum Values {
         case option
         case presentation
         case radio
+        
+        @available(*, deprecated, message: "It is an abstract role and should not be used.")
         case range
         case region
+        
+        @available(*, deprecated, message: "It is an abstract role and should not be used.")
         case roleType = "roletype"
         case row
         case rowGroup = "rowgroup"
@@ -633,10 +647,16 @@ public enum Values {
         case scrollbar
         case search
         case searchBox = "searchbox"
+        
+        @available(*, deprecated, message: "It is an abstract role and should not be used.")
         case sectionHead = "sectionhead"
+        
+        @available(*, deprecated, message: "It is an abstract role and should not be used.")
         case select
         case separator
         case status
+        
+        @available(*, deprecated, message: "It is an abstract role and should not be used.")
         case structure
         case suggestion
         case `switch`
@@ -652,7 +672,11 @@ public enum Values {
         case tree
         case treeGrid = "treegrid"
         case treeItem = "treeitem"
+        
+        @available(*, deprecated, message: "It is an abstract role and should not be used.")
         case widget
+        
+        @available(*, deprecated, message: "It is an abstract role and should not be used.")
         case window
     }
 
