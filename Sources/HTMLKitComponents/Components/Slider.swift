@@ -1,20 +1,29 @@
 import HTMLKit
 
-/// A component that displays
+/// A view that represents a range slider.
+///
+/// Use `Slider` to display a range of values.
+///
+/// ```swift
+/// Slider(name: "lorem")
+/// ```
 public struct Slider: View, Modifiable, Identifiable {
     
+    /// The unique identifier of the slider.
     internal var id: String?
     
-    /// The identifier of the slider.
+    /// The name of the slider.
     internal let name: String
     
-    /// The classes of the slider.
+    /// The class names for the slider.
     internal var classes: [String]
     
-    /// The events of the slider.
+    /// The event handlers on the slider.
     internal var events: [String]?
     
-    /// Creates a slider.
+    /// Create a slider.
+    ///
+    /// - Parameter name: The name to assign to the field.
     public init(name: String) {
         
         self.name = name
@@ -31,6 +40,11 @@ public struct Slider: View, Modifiable, Identifiable {
             }
     }
     
+    /// Set the identifier for the slider.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The slider
     public func tag(_ value: String) -> Slider {
         return self.mutate(id: value)
     }

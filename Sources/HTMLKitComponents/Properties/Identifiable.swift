@@ -7,6 +7,11 @@ internal protocol Identifiable {
 
 extension Identifiable {
     
+    /// Mutate the identifier.
+    ///
+    /// - Parameter id: The identifier to set.
+    ///
+    /// - Returns: The component
     internal func mutate(id: String) -> Self {
         
         var newSelf = self

@@ -1,30 +1,44 @@
-/*
- Abstract:
- The file contains everything related to the text component.
- */
-
 import HTMLKit
 
-/// A component that displays text.
+/// A view that represents text contet.
+///
+/// Use `Text` to display text.
+///
+/// ```swift
+/// Text(alignment: .center) {
+///     "Lorem ipsum..."
+/// }
+/// ```
 public struct Text: View, Actionable, Modifiable {
 
+    /// The unique identifier of the text.
     internal var id: String?
     
-    /// The content of the text.
+    /// The body content of the text.
     internal var content: [Content]
     
-    /// The classes of the text.
+    /// The class names for the text.
     internal var classes: [String]
     
+    /// The event handlers on the text.
     internal var events: [String]?
     
-    /// Creates a text.
+    /// Create a text.
+    ///
+    /// - Parameters:
+    ///   - alignment: The direction to align the text to.
+    ///   - content: The text content to display.
     public init(alignment: Tokens.TextAlignment = .leading, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["text", "alignment:\(alignment.value)"]
     }
     
+    /// Create a localized text.
+    ///
+    /// - Parameters:
+    ///   - localizedStringKey: The string key to look for.
+    ///   - alignment: The direction to align the text to.
     public init(_ localizedStringKey: LocalizedStringKey, alignment: Tokens.TextAlignment = .leading) {
         
         self.content = [LocalizedString(key: localizedStringKey)]
@@ -46,6 +60,11 @@ public struct Text: View, Actionable, Modifiable {
         }
     }
     
+    /// Set the identifier for the text.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The text
     public func tag(_ value: String) -> Text {
         return self.mutate(id: value)
     }

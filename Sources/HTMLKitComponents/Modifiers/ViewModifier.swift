@@ -1,40 +1,86 @@
-/*
- Abstract:
- The file contains the modifiers for view components.
- */
-
 /// A type that describes the modifier of a view.
 public protocol ViewModifier {
 
-    /// Sets the opacity of the view.
+    /// Set the opacity for the view.
+    ///
+    /// - Parameter value: The level to apply to the view.
+    ///
+    /// - Returns: The view
     func opacity(_ value: Tokens.OpacityValue) -> Self
     
-    /// Sets the position of the view.
+    /// Set the hierarchy for the view.
+    ///
+    /// - Parameter index: The index at which to position the view.
+    ///
+    /// - Returns: The view
     func zIndex(_ index: Tokens.PositionIndex) -> Self
     
-    /// Sets the background color of the view.
+    /// Fill the background of the view.
+    ///
+    /// - Parameter color: The color to use for the background.
+    ///
+    /// - Returns: The view
     func backgroundColor(_ color: Tokens.BackgroundColor) -> Self
     
-    /// Hides the view
+    /// Hide the view.
     func hidden() -> Self
     
+    /// Hide the view.
+    ///
+    /// - Parameter condition: Whether to hide the view.
+    ///
+    /// - Returns: The view
     func hidden(_ condition: Bool) -> Self
     
-    /// Sets the color appearence
+    /// Set the color scheme for the view.
+    ///
+    /// - Parameter scheme: The scheme to use throughout the view.
+    ///
+    /// - Returns: The view
     func colorScheme(_ scheme: Tokens.ColorScheme) -> Self
     
-    /// Sets the padding for the vertical box.
+    /// Set the padding for the view.
+    ///
+    /// - Parameters:
+    ///   - inSet: The edges to apply the padding to.
+    ///   - length: The amount of padding to apply.
+    ///
+    /// - Returns: The view
     func padding(insets: EdgeSet, length: Tokens.PaddingLength) -> Self
     
-    /// Sets the shape of the button.
+    /// Set the shape for the view.
+    ///
+    /// - Parameter shape: The border shape to use for the view.
+    ///
+    /// - Returns: The view
     func borderShape(_ shape: Tokens.BorderShape) -> Self
     
-    /// Sets the border color of the input
+    /// Set the border for the view.
+    ///
+    /// - Parameters:
+    ///   - color: The color to fill the border with.
+    ///   - width: The thickness to apply to the border.
+    ///
+    /// - Returns: The view
     func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth) -> Self
     
+    /// Set the frame for the view.
+    ///
+    /// - Parameters:
+    ///   - width: The width to constrain the frame to.
+    ///   - height: The height to constrain the frame to.
+    ///   - alignment: The rule to align the frame relative to its parent.
+    ///
+    /// - Returns: The view
     func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight?, alignment: Tokens.FrameAlignment?) -> Self
     
-    /// Sets the padding for the vertical box.
+    /// Set the margin for the view.
+    ///
+    /// - Parameters:
+    ///   - inSet: The edges to apply the margin to.
+    ///   - length: The amount of margin to apply.
+    ///
+    /// - Returns: The view
     func margin(insets: EdgeSet, length: Tokens.MarginLength) -> Self
 }
 

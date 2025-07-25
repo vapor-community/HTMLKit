@@ -1,12 +1,7 @@
-/*
- Abstract:
- The file contains
- */
-
 /// A type that describes a component with events.
 internal protocol Actionable: Identifiable {
     
-    /// The events of the component.
+    /// The event handlers for the component.
     var events: [String]? { get set }
 }
 

@@ -1,8 +1,16 @@
 import HTMLKit
 
-/// A component that displays the progress of a task.
+/// A view that represents a progress bar.
+///
+/// Use `Progress` to indicate and observe task progress.
+///
+/// ```swift
+/// Progress(value: "50", total: "100") {
+/// }
+/// ```
 public struct Progress: View, Modifiable, Identifiable {
     
+    /// The unique identifier of the progress.
     internal var id: String?
     
     /// The maximum value for the progress.
@@ -11,16 +19,21 @@ public struct Progress: View, Modifiable, Identifiable {
     /// The actual value of the progress.
     internal let value: String
     
-    /// The content of the view.
+    /// The body content of the progress.
     internal var content: [Content]
     
-    /// The classes of the view.
+    /// The class names for the progress.
     internal var classes: [String]
     
-    /// The events of the view.
+    /// The event handlers on the progress.
     internal var events: [String]?
     
-    /// Creates a progress view.
+    /// Create a progress.
+    ///
+    /// - Parameters:
+    ///   - value: The current value to indicate progress.
+    ///   - total: The total value to reach.
+    ///   - content: The progress's content.
     public init(value: Float, total: Float, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.total = String(total)
@@ -47,14 +60,29 @@ public struct Progress: View, Modifiable, Identifiable {
         }
     }
     
+    /// Set the identifier for the progress.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The progress.
     public func tag(_ value: String) -> Progress {
         return self.mutate(id: value)
     }
     
+    /// Set the style for the progress.
+    ///
+    /// - Parameter style: The option to apply to.
+    ///
+    /// - Returns: The progress
     public func progressStyle(_ style: Tokens.ProgressStyle) -> Progress {
         return self.mutate(class: "style:\(style.value)")
     }
     
+    /// Set a tint color for the progress.
+    ///
+    /// - Parameter color: The color to apply to.
+    ///
+    /// - Returns: The progress
     public func tint(_ color: Tokens.TintColor) -> Progress {
         return self.mutate(class: "tint:\(color.value)")
     }

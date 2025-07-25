@@ -1,24 +1,33 @@
-/*
- Abstract:
- The file contains everything related to stack components.
- */
-
 import HTMLKit
 
-/// A component that overlays content.
+/// A view that represents an overlay stack.
+///
+/// Use `ZStack` to overlay content.
+///
+/// ```swift
+/// ZStack {
+///     Text {
+///         "Lorem ipsum"
+///     }
+/// }
+/// ```
 public struct ZStack: View, Actionable, Modifiable {
     
+    /// The unique identifier of the stack.
     internal var id: String?
     
-    /// The content of the stack.
+    /// The body content of the stack.
     internal var content: [Content]
     
-    /// The classes of the stack.
+    /// The class names for the stack.
     internal var classes: [String]
     
+    /// The event handlers on the stack.
     var events: [String]?
     
-    /// Creates a stack.
+    /// Create a stack.
+    ///
+    /// - Parameter content: The stack's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
@@ -40,14 +49,29 @@ public struct ZStack: View, Actionable, Modifiable {
         }
     }
     
+    /// Set the identifier for the stack.
+    ///
+    /// - Parameter value: The value of the identifier
+    ///
+    /// - Returns: The stack
     public func tag(_ value: String) -> ZStack {
         return self.mutate(id: value)
     }
     
+    /// Set the drop shadow for the stack.
+    ///
+    /// - Parameters:
+    ///   - radius: The radius to extend the shadow.
+    ///   - color: The color to fill the shadow.
+    ///
+    /// - Returns: The stack
     public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> ZStack {
         return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
     }
     
+    /// Clip the content for the stack.
+    ///
+    /// - Returns: The stack
     public func clipped() -> ZStack {
         return self.mutate(class: "overflow:clip")
     }

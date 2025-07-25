@@ -1,22 +1,31 @@
-/*
- Abstract:
- The file contains a carousel component.
- */
-
 import HTMLKit
 
-/// A compnonent that cycles through an amount of views.
+/// A view that represents a carousel container.
+///
+/// Use `Carousel` to cycle through an amount of slides.
+///
+/// ```swift
+/// Carousel {
+///     Slide {
+///         Image(source: ...png)
+///     }
+///     .tag("slide")
+/// }
+/// ```
 public struct Carousel: View, Identifiable, Modifiable {
     
+    /// The unique identifier of the carousel.
     internal var id: String?
     
-    /// The content of the carousel.
+    /// The body content of the carousel.
     internal var content: [Slide]
     
-    /// The classes of the carousel.
+    /// The class names for the carousel.
     internal var classes: [String]
     
-    /// Creates a carousel.
+    /// Create a carousel.
+    ///
+    /// - Parameter content: The carousel's content
     public init(@ContentBuilder<Slide> content: () -> [Slide]) {
         
         self.content = content()
@@ -47,10 +56,20 @@ public struct Carousel: View, Identifiable, Modifiable {
         }
     }
     
+    /// Set the identifier for the carousel.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The carousel
     public func tag(_ value: String) -> Carousel {
         return self.mutate(id: value)
     }
     
+    /// Set the style for the carousel.
+    ///
+    /// - Parameter style: The configuration to apply to.
+    ///
+    /// - Returns: The carousel
     public func carouselStyle(_ style: CarouselConfiguration) -> Carousel {
         return self.mutate(classes: style.configuration)
     }

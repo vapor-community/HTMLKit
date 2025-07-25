@@ -1,19 +1,41 @@
 import HTMLKit
 
-/// A component that arranges content vertically.
+/// A view that represents an vertical stack.
+///
+/// Use `VStack` to arrange content vertically.
+///
+/// ```swift
+/// VStack {
+///     Text {
+///         "Lorem ipsum"
+///     }
+///     .textStyle(.headline)
+///     Text {
+///         "Lorem ipsum..."
+///     }
+///     .textStyle(.subheadline)
+/// }
+/// ```
 public struct VStack: View, Actionable, Modifiable {
-    
+
+    /// The unique identifier of the stack.
     internal var id: String?
     
-    /// The content of the stack.
+    /// The body content of the stack.
     internal var content: [Content]
     
-    /// The classes of the stack.
+    /// The class names for the stack.
     internal var classes: [String]
     
+    /// The event handlers on the stack.
     var events: [String]?
     
-    /// Creates a vertical stack.
+    /// Create a vertical stack.
+    ///
+    /// - Parameters:
+    ///   - alignment: The alignment to apply to the content.
+    ///   - spacing: The spacing to set between elements.
+    ///   - content: The content to arrange within the stack.
     public init(alignment: Tokens.HorizontalAlignment = .leading, spacing: Tokens.ContentSpace? = nil, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
@@ -41,14 +63,29 @@ public struct VStack: View, Actionable, Modifiable {
         }
     }
     
+    /// Set the identifier for the stack.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The stack
     public func tag(_ value: String) -> VStack {
         return self.mutate(id: value)
     }
     
+    /// Set the drop shadow for the stack.
+    ///
+    /// - Parameters:
+    ///   - radius: The radius to extend the shadow.
+    ///   - color: The color to fill the shadow.
+    ///
+    /// - Returns: The stack
     public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> VStack {
         return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
     }
     
+    /// Clip the content for the stack.
+    ///
+    /// - Returns: The stack
     public func clipped() -> VStack {
         return self.mutate(class: "overflow:clip")
     }

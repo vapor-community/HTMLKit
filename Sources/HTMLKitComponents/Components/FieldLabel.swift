@@ -14,13 +14,13 @@ public struct FieldLabel: View {
     /// The identifier of the element the label is related to.
     internal let id: String
     
-    /// The content of the label.
+    /// The body content of the label.
     internal var content: [Content]
     
-    /// The classes of the label.
+    /// The class names for the label.
     internal var classes: [String]
     
-    /// The events of the label.
+    /// The event handlers on the label.
     internal var events: [String]?
     
     /// Create a field label.

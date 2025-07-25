@@ -1,13 +1,31 @@
 import HTMLKit
 
+/// A view that represents a carousel slide.
+///
+/// Use `Slide` to define individual content within the carousel.
+///
+/// ```swift
+/// Carousel {
+///     Slide {
+///         Image(source: ...png)
+///     }
+///     .tag("slide")
+/// }
+/// ```
 public struct Slide: View, Identifiable, Modifiable {
     
+    /// The unique identifier of the slide.
     internal var id: String?
     
+    /// The body content of the slide.
     internal var classes: [String]
     
+    /// The class names for the slide.
     internal var content: [Content]
     
+    /// Create a slide.
+    ///
+    /// - Parameter content: The slide's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
@@ -24,6 +42,11 @@ public struct Slide: View, Identifiable, Modifiable {
         }
     }
     
+    /// Set the identifier for the slide.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The slide
     public func tag(_ value: String) -> Slide {
         return self.mutate(id: value)
     }

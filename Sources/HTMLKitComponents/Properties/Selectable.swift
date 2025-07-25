@@ -1,10 +1,5 @@
 import HTMLKit
 
-/*
- Abstract:
- The file contains
- */
-
 /// A type that describes a selectable component.
 internal protocol Selectable: Content {
     

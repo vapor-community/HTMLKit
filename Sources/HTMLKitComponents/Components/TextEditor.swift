@@ -10,24 +10,25 @@ import HTMLKit
 /// ```
 public struct TextEditor: View, Modifiable, Identifiable {
     
+    /// The unique identifier of the editor.
     internal var id: String?
     
-    /// The identifier of the editor.
+    /// The name of the editor.
     internal let name: String
     
-    /// The placeholder for the field value.
+    /// The content hint for the field.
     internal let prompt: PromptType?
     
-    /// The number of lines.
+    /// The number of  visible text lines.
     internal var rows: Int = 3
     
-    /// The content of the editor.
+    /// The body content of the editor.
     internal var content: [String]
     
-    /// The classes of the editor.
+    /// The class names for the editor.
     internal var classes: [String]
     
-    /// The events of the editor.
+    /// The event handlers on the editor.
     internal var events: [String]?
     
     /// Create a text editor.
@@ -74,7 +75,11 @@ public struct TextEditor: View, Modifiable, Identifiable {
         }
     }
     
-    /// Sets the limit of the maximum lines.
+    /// Set the limit of the maximum lines.
+    ///
+    /// - Parameter value: The numbers of line to limit to.
+    ///
+    /// - Returns: The editor
     public func lineLimit(_ value: Int) -> TextEditor {
 
         var newSelf = self
@@ -83,6 +88,11 @@ public struct TextEditor: View, Modifiable, Identifiable {
         return newSelf
     }
     
+    /// Set the identifier for the editor.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The editor
     public func tag(_ value: String) -> TextEditor {
         return self.mutate(id: value)
     }

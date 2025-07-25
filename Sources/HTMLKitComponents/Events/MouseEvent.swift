@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file contains the modifiers for components with hover interaction.
- */
-
 /// A type that describes the modifier of a hoverable component.
 public protocol MouseEvent {
     

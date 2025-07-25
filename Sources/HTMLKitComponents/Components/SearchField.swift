@@ -9,22 +9,22 @@ import HTMLKit
 /// ```
 public struct SearchField: View, Modifiable, Identifiable {
     
-    /// The identifier of the field.
+    /// The unique identifier of the field.
     internal var id: String?
     
     /// The name of the field.
     internal let name: String
     
-    /// The placeholder for the field value.
+    /// The content hint for the field.
     internal let prompt: PromptType?
     
     /// The content of the field.
     internal let value: String?
     
-    /// The classes of the field.
+    /// The class names for the field.
     internal var classes: [String]
     
-    /// The events of the field.
+    /// The event handlers on the field.
     internal var events: [String]?
     
     /// Create a search field.
@@ -72,6 +72,11 @@ public struct SearchField: View, Modifiable, Identifiable {
             }
     }
     
+    /// Set the identifier for the field.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The field
     public func tag(_ value: String) -> SearchField {
         return self.mutate(id: value)
     }

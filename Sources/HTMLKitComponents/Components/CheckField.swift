@@ -14,7 +14,7 @@ import HTMLKit
 /// ```
 public struct CheckField: View, Modifiable, Selectable, Identifiable {
     
-    /// The identifer of the field.
+    /// The unique identifer of the field.
     internal var id: String?
     
     /// The name of the field.
@@ -26,10 +26,10 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
     /// The selection status of the field.
     internal var isSelected: Bool
 
-    /// The content of the field.
+    /// The body content of the field.
     internal var content: Content
     
-    /// The classes of the field.
+    /// The class names for the field.
     internal var classes: [String]
     
     /// Create a check field.
@@ -81,6 +81,11 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
         .class(classes.joined(separator: " "))
     }
     
+    /// Set the identifier for the field.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The field
     public func tag(_ value: String) -> CheckField {
         self.mutate(id: value)
     }

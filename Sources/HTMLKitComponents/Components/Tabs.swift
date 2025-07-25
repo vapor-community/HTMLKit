@@ -1,22 +1,49 @@
-/*
- Abstract:
- The file contains a tabs component.
- */
-
 import HTMLKit
 
-/// A tab component
+/// A view that represents tabs container.
+///
+/// Use `Tabs` to switch between multiple panes.
+///
+/// ```swift
+/// Tabs(direction: .horizontal) {
+///     Pane {
+///         Text {
+///             "Lorem ipsum..."
+///         }
+///     } label: {
+///         Text {
+///             "Lorem ipsum"
+///         }
+///     }
+///     .tag("lorem")
+///     Pane {
+///         Text {
+///             "Lorem ipsum..."
+///         }
+///     } label: {
+///         Text {
+///             "Lorem ipsum"
+///         }
+///     }
+///     .tag("ipsum")
+/// }
+/// ```
 public struct Tabs: View, Identifiable, Modifiable {
     
+    /// The unique identifier of the tabs.
     internal var id: String?
     
-    /// The panes of the tabs component.
+    /// The panes of the tabs.
     internal var content: [Pane]
     
-    /// The classes of the tabs.
+    /// The class names of the tabs.
     internal var classes: [String]
     
-    /// Creates a tabs.
+    /// Create a tabs.
+    ///
+    /// - Parameters:
+    ///   - direction: The direction the tabs should go
+    ///   - content: The tab's content.
     public init(direction: Tokens.FlowDirection, @ContentBuilder<Pane> content: () -> [Pane]) {
         
         self.content = content()
@@ -57,6 +84,11 @@ public struct Tabs: View, Identifiable, Modifiable {
         }
     }
     
+    /// Set the identifier for the tabs.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The tabs
     public func tag(_ value: String) -> Tabs {
         return self.mutate(id: value)
     }

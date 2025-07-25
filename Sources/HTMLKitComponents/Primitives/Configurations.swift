@@ -1,3 +1,4 @@
+/// A specification for the appearance and interaction of a button component.
 public protocol ButtonConfiguration {
     
     var borderColor: Tokens.BorderColor? { get set }
@@ -35,6 +36,7 @@ extension ButtonConfiguration {
     }
 }
 
+/// A specification for the appearance and interaction of a card component.
 public protocol CardConfiguration {
     
     var borderColor: Tokens.BorderColor? { get set }
@@ -72,6 +74,7 @@ extension CardConfiguration {
     }
 }
 
+/// A specification for the appearance and interaction of a field component.
 public protocol FieldConfiguration {
     
     var borderColor: Tokens.BorderColor? { get set }
@@ -115,6 +118,7 @@ extension FieldConfiguration {
     }
 }
 
+/// A specification for the appearance and interaction of a text component.
 public protocol TextConfiguration {
     
     var fontFamily: Tokens.FontFamily? { get set }
@@ -153,6 +157,7 @@ extension TextConfiguration {
     }
 }
 
+/// A specification for the appearance and interaction of a modal component.
 public protocol ModalConfiguration {
     
     var borderColor: Tokens.BorderColor? { get set }
@@ -184,6 +189,7 @@ extension ModalConfiguration {
     }
 }
 
+/// A specification for the appearance and interaction of a image component.
 public protocol ImageConfiguration {
     
     var borderColor: Tokens.BorderColor? { get set }
@@ -215,6 +221,7 @@ extension ImageConfiguration {
     }
 }
 
+/// A specification for the appearance and interaction of a snippet component.
 public protocol SnippetConfiguration {
     
     var borderColor: Tokens.BorderColor? { get set }
@@ -246,6 +253,7 @@ extension SnippetConfiguration {
     }
 }
 
+/// A specification for the appearance and interaction of a carousel component
 public protocol CarouselConfiguration {
     
     var borderColor: Tokens.BorderColor? { get set }
@@ -277,6 +285,7 @@ extension CarouselConfiguration {
     }
 }
 
+/// A specification for the appearance and interaction of a navigation component.
 public protocol NavigationConfiguration {
     
     var borderColor: Tokens.BorderColor? { get set }
@@ -308,6 +317,7 @@ extension NavigationConfiguration {
     }
 }
 
+/// A specification for the appearance and interaction of a list component.
 public protocol ListConfiguration {
     
     var borderColor: Tokens.BorderColor? { get set }

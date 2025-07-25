@@ -11,25 +11,25 @@ import HTMLKit
 /// ```
 public struct TextPad: View, Modifiable, Identifiable {
     
-    /// The identifier of the textpad.
+    /// The unique identifier of the pad.
     internal var id: String?
     
-    /// The name of the textpad.
+    /// The name of the pad.
     internal let name: String
     
-    /// The placeholder for the field value.
+    /// The content hint for the pad.
     internal let prompt: PromptType?
     
-    /// The number of lines.
+    /// The number of visible text lines.
     internal var rows: Int = 3
     
-    /// The content of the textpad.
+    /// The body content of the pad.
     internal var content: [String]
     
-    /// The classes of the textpad.
+    /// The class names of the pad.
     internal var classes: [String]
     
-    /// Create a textpad.
+    /// Create a text pad.
     ///
     /// - Parameters:
     ///   - name: The name to assign to the field.
@@ -44,7 +44,7 @@ public struct TextPad: View, Modifiable, Identifiable {
         self.classes = ["textpad"]
     }
     
-    /// Create a textpad.
+    /// Create a text pad.
     ///
     /// - Parameters:
     ///   - name: The name to assign to the field.
@@ -354,7 +354,11 @@ public struct TextPad: View, Modifiable, Identifiable {
         }
     }
     
-    /// Sets the limit of the maximum lines.
+    /// Set the limit of the maximum lines.
+    ///
+    /// - Parameter value: The numbers of line to limit to.
+    ///
+    /// - Returns: The pad
     public func lineLimit(_ value: Int) -> TextPad {
 
         var newSelf = self
@@ -363,6 +367,11 @@ public struct TextPad: View, Modifiable, Identifiable {
         return newSelf
     }
     
+    /// Set the identifier for the pad.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The pad
     public func tag(_ value: String) -> TextPad {
         return self.mutate(id: value)
     }

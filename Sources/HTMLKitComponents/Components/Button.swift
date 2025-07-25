@@ -1,12 +1,7 @@
-/*
- Abstract:
- The file contains everything related to buttons.
- */
-
 import HTMLKit
 import Foundation
 
-/// A view that represents a button.
+/// A view that represents an action button.
 ///
 /// Use `Button` to trigger an action when tapped or clicked.
 ///
@@ -17,19 +12,19 @@ import Foundation
 /// ```
 public struct Button: View, Modifiable, Actionable {
     
-    /// The identifier of the button.
+    /// The unique identifier of the button.
     internal var id: String?
     
     /// The role of the button.
     internal var role: HTMLKit.Values.Button
     
-    /// The  content of the button.
+    /// The body content of the button.
     internal var content: [Content]
     
-    /// The classes of the button.
+    /// The class names for the button.
     internal var classes: [String]
     
-    /// The events of the button.
+    /// The event handlers on the button.
     internal var events: [String]?
     
     /// Create a button.
@@ -72,6 +67,11 @@ public struct Button: View, Modifiable, Actionable {
         }
     }
     
+    /// Set the identifier for the button.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The button
     public func tag(_ value: String) -> Button {
         return self.mutate(id: value)
     }

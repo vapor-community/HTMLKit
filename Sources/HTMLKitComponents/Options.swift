@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file contains the option sets.
- */
-
 public struct EdgeSet: OptionSet {
     
     public var rawValue: Int

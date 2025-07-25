@@ -1,13 +1,34 @@
 import HTMLKit
 
+/// A view that represents navigation container.
+///
+/// Use `Navigation` to add semantic meaning to a list.
+///
+/// ```swift
+/// Navigation {
+///     List(direction: .vertical) {
+///         Link(destination: "https://...") {
+///             Text {
+///                 "Lorem ipsum"
+///             }
+///         }
+///     }
+/// }
+/// ```
 public struct Navigation: View, Modifiable, Identifiable {
     
+    /// The unique identifier of the navigation.
     internal var id: String?
     
+    /// The body content of the navigation.
     internal var content: [BodyElement]
     
+    /// The class names of the navigation
     internal var classes: [String]
     
+    /// Create a navigation.
+    ///
+    /// - Parameter content: The navigation's content.
     public init(@ContentBuilder<BodyElement> content: () -> [BodyElement]) {
         
         self.content = content()
@@ -24,7 +45,11 @@ public struct Navigation: View, Modifiable, Identifiable {
         }
     }
     
-    /// Sets the style for the list.
+    /// Set the style for the navigation.
+    ///
+    /// - Parameter style: The option to apply to.
+    ///
+    /// - Returns: The navigation
     public func navigationStyle(_ style: Tokens.NavigationStyle) -> Navigation {
         
         var newSelf = self
@@ -33,10 +58,20 @@ public struct Navigation: View, Modifiable, Identifiable {
         return newSelf
     }
     
+    /// Set the style for the navigation.
+    ///
+    /// - Parameter style: The configuration to apply to.
+    ///
+    /// - Returns: The navigation
     public func navigationStyle(_ style: NavigationConfiguration) -> Navigation {
         return self.mutate(classes: style.configuration)
     }
     
+    /// Set the identifier for the navigation.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The navigation
     public func tag(_ value: String) -> Navigation {
         return self.mutate(id: value)
     }

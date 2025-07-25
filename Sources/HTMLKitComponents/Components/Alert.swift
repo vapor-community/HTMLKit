@@ -1,16 +1,28 @@
 import HTMLKit
 
+/// A view that represents a alert message.
+///
+/// Use the `Alert` to display a brief or important message.
+///
+/// ```swift
+/// Alert {
+///    "Lorem ipsum..."
+/// }
+/// ```
 public struct Alert: View, Identifiable, Modifiable {
     
+    /// The unique identifier of the alert.
     internal var id: String?
     
-    /// The content of the alert
+    /// The body content of the alert
     internal var content: [Content]
     
-    /// The classes of the carousel.
+    /// The class names for the alert.
     internal var classes: [String]
     
-    /// Creates a alert.
+    /// Create a alert.
+    ///
+    /// - Parameter content: The alert's content
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
@@ -27,6 +39,11 @@ public struct Alert: View, Identifiable, Modifiable {
         }
     }
     
+    /// Set the identifier for the alert.
+    ///
+    /// - Parameter value: The value of the identifier
+    ///
+    /// - Returns: The alert
     public func tag(_ value: String) -> Alert {
         return self.mutate(id: value)
     }

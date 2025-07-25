@@ -21,13 +21,13 @@ public struct LinkButton: View, Modifiable, Identifiable {
     /// The url path of the target.
     internal let destination: String
     
-    /// The  content of the button.
+    /// The body content of the button.
     internal var content: [Content]
     
-    /// The classes of the button.
+    /// The class names for the button.
     internal var classes: [String]
     
-    /// The events of the button.
+    /// The event handlers on the button.
     internal var events: [String]?
     
     /// Create a link button.

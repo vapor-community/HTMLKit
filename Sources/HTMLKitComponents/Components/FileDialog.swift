@@ -1,20 +1,29 @@
 import HTMLKit
 
-/// A component that displays
+/// A view that represents a file dialog.
+///
+/// Use `FileDialog` to upload files to the server.
+///
+/// ```swift
+/// FileDialog(name: "lorem")
+/// ```
 public struct FileDialog: View, Modifiable, Identifiable {
     
+    /// The unique identifier of the dialog.
     internal var id: String?
     
-    /// The identifier of the search field.
+    /// The name of the search field.
     internal let name: String
     
-    /// The classes of the field.
+    /// The class names for the field.
     internal var classes: [String]
     
-    /// The events of the field.
+    /// The event handlers on the field.
     internal var events: [String]?
     
-    /// Creates a search field.
+    /// Create a file dialog.
+    ///
+    /// - Parameter name: The name to assign to the field.
     public init(name: String) {
         
         self.name = name
@@ -31,6 +40,11 @@ public struct FileDialog: View, Modifiable, Identifiable {
             }
     }
     
+    /// Set the identifier for the dialog.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The dialog
     public func tag(_ value: String) -> FileDialog {
         return self.mutate(id: value)
     }

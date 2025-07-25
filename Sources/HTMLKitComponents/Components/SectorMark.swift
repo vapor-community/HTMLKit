@@ -1,5 +1,17 @@
 import HTMLKit
 
+/// A view that represents a chart mark.
+///
+/// Use `SectorMark` to display a circle graph.
+///
+/// ```swift
+/// Chart {
+///     SectorMark(value: 50, label: "Lorem ipsum")
+///         .foregroundColor(.random)
+///     SectorMark(value: 50, label: "Lorem ipsum")
+///         .foregroundColor(.random)
+/// }
+/// ```
 public struct SectorMark: View, Modifiable {
     
     /// The value of the mark.
@@ -8,10 +20,14 @@ public struct SectorMark: View, Modifiable {
     /// The title of the mark.
     internal var label: String
     
-    /// The classes of the sector mark.
+    /// The class names of the sector mark.
     internal var classes: [String]
     
-    /// Creates a sector mark.
+    /// Create a sector mark.
+    ///
+    /// - Parameters:
+    ///   - value: The value at which to plot the mark.
+    ///   - label: The title used to label the mark.
     public init(value: Int, label: String) {
         
         self.value = value
@@ -28,6 +44,11 @@ public struct SectorMark: View, Modifiable {
         .class(classes.joined(separator: " "))
     }
     
+    /// Fill the foreground for the mark.
+    ///
+    /// - Parameter color: The color to use for the foreground.
+    ///
+    /// - Returns: The mark
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> SectorMark {
         return self.mutate(class: "foreground:\(color.value)")
     }

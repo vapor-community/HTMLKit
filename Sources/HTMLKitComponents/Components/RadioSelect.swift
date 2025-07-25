@@ -14,7 +14,7 @@ import HTMLKit
 /// ```
 public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
     
-    /// The identifier of the select.
+    /// The unique identifier of the select.
     internal var id: String?
     
     /// The name of the select.
@@ -26,10 +26,10 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
     /// The selection status of the select.
     internal var isSelected: Bool
     
-    /// The content of the select.
+    /// The body content of the select.
     internal var content: Content
     
-    /// The classes of the select.
+    /// The class names for the select.
     internal var classes: [String]
     
     /// Create a radio select.
@@ -81,6 +81,11 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
         .class(classes.joined(separator: " "))
     }
     
+    /// Set the identifier for the select.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The select
     public func tag(_ value: String) -> RadioSelect {
         self.mutate(id: value)
     }

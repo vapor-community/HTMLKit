@@ -1,6 +1,6 @@
 import HTMLKit
 
-/// A view that represents a selectfield.
+/// A view that represents a select field.
 ///
 /// Use `SelectField` to present a list of options.
 ///
@@ -14,25 +14,25 @@ import HTMLKit
 /// ```
 public struct SelectField: View, Modifiable, Identifiable {
     
-    /// The identifier of the field.
+    /// The unique identifier of the field.
     internal var id: String?
     
     /// The name of the field.
     internal let name: String
     
-    /// The placeholder for the field value.
+    /// The content hint for the field.
     internal let prompt: PromptType?
     
     /// The selected value of the available options.
     internal let selection: String?
     
-    /// The content of the field.
+    /// The body content of the field.
     internal var content: [Selectable]
     
-    /// The classes of the field.
+    /// The class names for the field.
     internal var classes: [String]
     
-    /// The events of the field.
+    /// The event handlers on the field.
     internal var events: [String]?
     
     /// Create a select field.
@@ -123,6 +123,11 @@ public struct SelectField: View, Modifiable, Identifiable {
         }
     }
     
+    /// Set the identifier for the field.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The field.
     public func tag(_ value: String) -> SelectField {
         return self.mutate(id: value)
     }

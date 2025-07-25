@@ -1,27 +1,48 @@
-/*
- Abstract:
- The file contains the modifiers for view components.
- */
-
 /// A type that describes the modifier of a view.
 public protocol GraphicsModifier {
     
-    /// Specifies the intensity of blur for the view.
+    /// Specify the intensity of blur for the view.
+    ///
+    /// - Parameter size: The amout of blur to apply.
+    ///
+    /// - Returns: The graphic
     func blur(_ size: Tokens.BlurLevel) -> Self
     
-    /// Adjusts the grayscale depth of the view.
+    /// Adjust the grayscale depth for the view.
+    ///
+    /// - Parameter size: The amout of depth to apply.
+    ///
+    /// - Returns: The graphic
     func grayscale(_ size: Tokens.GrayscaleDepth) -> Self
     
-    /// Sets the level of brightness of the view.
+    /// Set the level of brightness for the view.
+    ///
+    /// - Parameter size: The amout of brightness to apply.
+    ///
+    /// - Returns: The graphic
     func brightness(_ size: Tokens.BrightnessLevel) -> Self
     
-    /// Sets the level of saturation of the view.
+    /// Set the level of saturation for the view.
+    ///
+    /// - Parameter size: The amount of saturation to apply.
+    ///
+    /// - Returns: The graphic
     func saturation(_ size: Tokens.SaturationLevel) -> Self
     
-    /// Specifies the level of contrast for the view.
+    /// Specify the level of contrast for the view.
+    ///
+    /// - Parameter size: The amount of contrast to apply.
+    ///
+    /// - Returns: The graphic
     func contrast(_ size: Tokens.ContrastLevel) -> Self
     
-    /// Adds drop shadow to the view.
+    /// Add drop shadow to the view.
+    ///
+    /// - Parameters:
+    ///   - radius: The radius to extend the shadow.
+    ///   - color: The color to fill the shadow.
+    ///
+    /// - Returns: The graphic
     func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor) -> Self
 }
 

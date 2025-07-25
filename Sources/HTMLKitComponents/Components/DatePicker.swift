@@ -1,23 +1,34 @@
 import HTMLKit
 
-/// A component that displays
+/// A view that represents a date picker.
+///
+/// Use `DatePicker` to pick a date from a calendar
+///
+/// ```swift
+/// DatePicker(name: "lorem")
+/// ```
 public struct DatePicker: View, Modifiable, Identifiable {
     
+    /// The unique identifier of the picker.
     internal var id: String?
     
-    /// The identifier of the picker.
+    /// The name of the picker.
     internal let name: String
     
     /// The content of the picker.
     internal let value: String?
     
-    /// The classes of the picker.
+    /// The class names for the picker.
     internal var classes: [String]
     
-    /// The events of the picker.
+    /// The event handlers of the picker.
     internal var events: [String]?
     
-    /// Creates a date picker.
+    /// Create a date picker.
+    ///
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - value: The date to edit within the field.
     public init(name: String, value: String? = nil) {
         
         self.name = name

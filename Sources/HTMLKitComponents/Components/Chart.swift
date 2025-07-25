@@ -1,19 +1,28 @@
-/*
- Abstract:
- The file contains a chart component.
- */
-
 import HTMLKit
 
+/// A view that represents a data chart.
+///
+/// Use `Chart`to visualize data graphically.
+///
+/// ```swift
+/// Chart {
+///     SectorMark(value: 50, label: "Lorem ipsum")
+///         .foregroundColor(.random)
+///     SectorMark(value: 50, label: "Lorem ipsum")
+///         .foregroundColor(.random)
+/// }
+/// ```
 public struct Chart: View, Modifiable {
     
-    /// The content of the chart.
+    /// The body content of the chart.
     internal var content: [VectorElement]
     
-    /// The classes of the chart.
+    /// The class names for the chart.
     internal var classes: [String]
     
-    /// Creates a chart.
+    /// Create a chart.
+    ///
+    /// - Parameter content: The chart's content.
     public init(@ContentBuilder<VectorElement> content: () -> [VectorElement]) {
         
         self.content = content()
@@ -28,6 +37,11 @@ public struct Chart: View, Modifiable {
         .class(classes.joined(separator: " "))
     }
     
+    /// Set the inner radius for the chart.
+    ///
+    /// - Parameter size: The radius to cut out.
+    ///
+    /// - Returns: The chart
     public func innerRadius(_ color: Tokens.InnerRadius) -> Chart {
         return self.mutate(class: "radius:\(color.value)")
     }

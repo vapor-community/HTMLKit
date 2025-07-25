@@ -1,4 +1,4 @@
-/// A type that describes a component with classes.
+/// A type that describes a component with decorates.
 internal protocol Modifiable {
     
     /// The classes of the component.

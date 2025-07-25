@@ -1,30 +1,46 @@
-/*
- Abstract:
- The file contains everything related to form component.
- */
-
 import HTMLKit
 
-/// A component that collects form controls.
+/// A view that represents a form container.
+///
+/// Use `Form` to perform form submission and validation.
+///
+/// ```swift
+/// Form(method: .post) {
+///     FieldLabel {
+///         "Lorem ipsum"
+///     }
+///     TextField(name: "Lorem")
+///     Button(role: .submit) {
+///         "Save"
+///     }
+/// }
+/// ```
 public struct Form: View, Actionable {
     
-    /// The identifier of the form.
+    /// The unique identifier of the form.
     internal var id: String?
     
+    /// The form method of the submission.
     internal var method: HTMLKit.Values.Method
     
+    /// The encoding strategy for the submission.
     internal var encoding: HTMLKit.Values.Encoding
     
-    /// The content of the container.
+    /// The body content of the form.
     internal var content: [FormElement]
     
-    /// The classes of the container.
+    /// The class names for the form.
     internal var classes: [String]
     
-    /// The events of the container.
+    /// The event handlers on the form.
     internal var events: [String]?
     
-    /// Creates a form.
+    /// Create a form.
+    ///
+    /// - Parameters:
+    ///   - method: The method to use for the submission.
+    ///   - encoding: The strategy to use for the encoding.
+    ///   - content: The form's content.
     public init(method: Values.Method, encoding: Values.Encoding = .urlEncoded, @ContentBuilder<FormElement> content: () -> [FormElement]) {
         
         self.method = method
@@ -50,6 +66,11 @@ public struct Form: View, Actionable {
         }
     }
     
+    /// Set the identifier for the form.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The form
     public func tag(_ value: String) -> Form {
         return self.mutate(id: value)
     }
