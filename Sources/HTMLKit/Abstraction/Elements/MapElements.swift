@@ -1,26 +1,21 @@
-/*
- Abstract:
- The file contains the map elements. The html-element 'map' only allows these elements to be its descendants.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
-/// A element that defines an image map area.
+/// An element that represents a map area.
 ///
-/// Use `Area` to define specific clickable regions within an image map.
+/// Use `Area` to define a region within an ``Map``.
 ///
 /// ```swift
 /// Image()
 ///     .source(...png)
-///     .useMap("#...")
+///     .useMap("lorem")
 /// Map {
 ///     Area()
-///         .coordinates("...")
+///         .shape(.circle)
+///         .coordinates(10, 10, 10 ,10)
+///         .alternate("Lorem ipsum...")
+///         .reference("https://...")
 /// }
-/// .name("...")
+/// .name("lorem")
 /// ```
 public struct Area: EmptyNode, MapElement {
 
@@ -28,7 +23,7 @@ public struct Area: EmptyNode, MapElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    /// Creates a area
+    /// Creates a area.
     public init() {}
     
     @available(*, deprecated, message: "The area element is actually an empty element. Use Area() instead.")

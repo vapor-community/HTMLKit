@@ -1,27 +1,28 @@
-/*
- Abstract:
- The file contains the input elements. The html-element 'input' only allows these elements to be its descendants.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
-/// The alias for the element OptionGroup.
-///
-/// Optgroup is the official tag and can be used instead of OptionGroup.
-///
-/// ```html
-/// <optgroup></optgroup>
-/// ```
+/// The alias for the element ``OptionGroup``.
 @_documentation(visibility: internal)
 public typealias Optgroup = OptionGroup
 
-/// The element represents a group of options.
+/// An element that represents a group container.
 ///
-/// ```html
-/// <optgroup></optgroup>
+/// Use `OptionGroup` to group a set of ``Option``.
+///
+/// ```swift
+/// Select {
+///     OptionGroup {
+///         Option {
+///             "Lorem"
+///         }
+///         .value("lorem")
+///         Option {
+///             "Lorem"
+///         }
+///         .value("lorem")
+///     }
+/// }
+/// .name("lorem")
+/// .id("lorem")
 /// ```
 public struct OptionGroup: ContentNode, InputElement {
 
@@ -31,6 +32,9 @@ public struct OptionGroup: ContentNode, InputElement {
 
     internal var content: [Content]
 
+    /// Create a option group.
+    ///
+    /// - Parameter content: The group's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -319,10 +323,17 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     }
 }
 
-/// The element represents an option.
+/// An element that represents an select option.
 ///
-/// ```html
-/// <option></option>
+/// Use `Option` to add an selectable option to a ``Select`` or ``OptionGroup``.
+///
+/// ```swift
+/// Select {
+///     Option {
+///         "Lorem"
+///     }
+///     .value("lorem")
+/// }
 /// ```
 public struct Option: ContentNode, InputElement {
 
@@ -332,6 +343,9 @@ public struct Option: ContentNode, InputElement {
 
     internal var content: [String]
 
+    /// Create a option.
+    ///
+    /// - Parameter content: The option's content.
     public init(@ContentBuilder<String> content: () -> [String]) {
         self.content = content()
     }
@@ -642,10 +656,27 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     }
 }
 
-/// The element represents a caption for the rest of the contents of a fieldset.
+/// The element represents a fieldset caption.
 ///
-/// ```html
-/// <legend></legend>
+/// Use `Legend` to give the ``Fieldset`` an accessible description.
+///
+/// ```swift
+/// Form {
+///     Fieldset {
+///         Legend {
+///             "Lorem ipsum..."
+///         }
+///         Label {
+///             "Lorem ipsum"
+///         }
+///         .for("lorem")
+///         Input()
+///             .type(.text)
+///             .name("lorem")
+///             .id("lorem")
+///     }
+/// }
+/// .method(.post)
 /// ```
 public struct Legend: ContentNode, InputElement {
 
@@ -655,6 +686,9 @@ public struct Legend: ContentNode, InputElement {
 
     internal var content: [Content]
 
+    /// Create a legend.
+    ///
+    /// - Parameter content: The legend's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
@@ -928,10 +962,19 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     }
 }
 
-/// The element represents a summary, caption, or legend for the rest of the content.
+/// An element that represents a detail label.
 ///
-/// ```html
-/// <summary></summary>
+/// Use `Summary` to give a brief description of the content it controls.
+///
+/// ```swift
+/// Details {
+///     Summary {
+///         "Lorem ipsum"
+///     }
+///     Paragraph {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct Summary: ContentNode, InputElement {
 
@@ -941,6 +984,9 @@ public struct Summary: ContentNode, InputElement {
 
     internal var content: [Content]
 
+    /// Create a summary.
+    ///
+    /// - Parameter content: The summary's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }

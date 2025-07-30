@@ -1,45 +1,70 @@
-/*
- Abstract:
- The file contains the basic html-elements. These elements should be used at first in an html-document.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
-/// The element represents a comment output.
+/// An element that represents a comment output.
 ///
-/// ```html
-/// <!-- -->
+/// Use `Comment` to insert a comment with descriptive text.
+///
+/// ```swift
+/// Comment("Lorem ipsum")
 /// ```
 public struct Comment: CommentNode, GlobalElement {
     
     public var content: String
     
+    /// Create a comment.
+    ///
+    /// - Parameter content: The text of the comment.
     public init(_ content: String) {
         self.content = content
     }
 }
 
-/// The element represents the document type.
+/// An element that represents a document type.
 ///
-/// ```html
-/// <!DOCTYPE html>
+/// Use `Document` to declare the type for the document.
+///
+/// ```swift
+/// Document(.html5)
+/// Html {
+///     Head {
+///     }
+///     Body {
+///     }
+/// }
 /// ```
 public struct Document: DocumentNode, BasicElement {
     
     public var content: String
     
+    /// Create a document.
+    ///
+    /// - Parameter value: The type to declare.
     public init(_ value: Values.Doctype) {
         self.content = value.rawValue
     }
 }
 
-/// The element represents the document's root element.
+/// An element that represents the page document.
 ///
-/// ```html
-/// <html></html>
+/// Use `Html` to define the document’s main structure, including child elements for metadata,
+/// body content, and other nested HTML components.
+///
+/// ```swift
+/// Html {
+///     Head {
+///         Title {
+///             "Lorem ipsum..."
+///         }
+///     }
+///     Body {
+///         Header {
+///         }
+///         Main {
+///         }
+///         Footer {
+///         }
+///     }
+/// }
 /// ```
 public struct Html: ContentNode, BasicElement {
 
@@ -49,6 +74,9 @@ public struct Html: ContentNode, BasicElement {
 
     internal var content: [HtmlElement]
 
+    /// Create a html.
+    ///
+    /// - Parameter content: The html's content.
     public init(@ContentBuilder<HtmlElement> content: () -> [HtmlElement]) {
         self.content = content()
     }
@@ -244,6 +272,14 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
     }
 }
 
+/// An element that represents a custom element.
+///
+/// Use `Custom` when an element is not supported by the framework.
+///
+/// ```swift
+/// Custom(name: "lorem-ipsum") {
+/// }
+/// ```
 public struct Custom: CustomNode, GlobalElement {
 
     public var name: String
@@ -252,6 +288,11 @@ public struct Custom: CustomNode, GlobalElement {
 
     public var content: [Content]
 
+    /// Create a custom.
+    ///
+    /// - Parameters:
+    ///   - name: The tag to use for the element.
+    ///   - content: The custom's content.
     public init(name: String, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.name = name

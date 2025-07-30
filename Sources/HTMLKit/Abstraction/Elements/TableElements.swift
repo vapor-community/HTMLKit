@@ -1,97 +1,47 @@
-/*
- Abstract:
- The file contains the table elements. The html-element 'table' only allows these elements to be its descendants.
-
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
-/// The alias for the element ColumnGroup.
-///
-/// Colgroup is the official tag and can be used instead of ColumnGroup.
-///
-/// ```html
-/// <colgroup></colgroup>
-/// ```
+/// The alias for the element ``ColumnGroup``.
 @_documentation(visibility: internal)
 public typealias Colgroup = ColumnGroup
 
-/// The alias for the element Column.
-///
-/// Col is the official tag and can be used instead of Column.
-///
-/// ```html
-/// <col></col>
-/// ```
+/// The alias for the element ``Column``.
 @_documentation(visibility: internal)
 public typealias Col = Column
 
-/// The alias for the element TableBody.
-///
-/// Tbody is the official tag and can be used instead of TableBody.
-///
-/// ```html
-/// <tbody></tbody>
-/// ```
+/// The alias for the element ``TableBody``.
 @_documentation(visibility: internal)
 public typealias Tbody = TableBody
 
-/// The alias for the element TableHead.
-///
-/// Thead is the official tag and can be used instead of TableHead.
-///
-/// ```html
-/// <thead></thead>
-/// ```
+/// The alias for the element ``TableHead``.
 @_documentation(visibility: internal)
 public typealias Thead = TableHead
 
-/// The alias for the element TableFoot.
-///
-/// Tfoot is the official tag and can be used instead of TableFoot.
-///
-/// ```html
-/// <tfoot></tfoot>
-/// ```
+/// The alias for the element ``TableFoot``.
 @_documentation(visibility: internal)
 public typealias Tfoot = TableFoot
 
-/// The alias for the element TableRow.
-///
-/// Tr is the official tag and can be used instead of TableRow.
-///
-/// ```html
-/// <tr></tr>
-/// ```
+/// The alias for the element ``TableRow``.
 @_documentation(visibility: internal)
 public typealias Tr = TableRow
 
-/// The alias for the element DataCell.
-///
-/// Td is the official tag and can be used instead of DataCell.
-///
-/// ```html
-/// <td></td>
-/// ```
+/// The alias for the element ``DataCell``.
 @_documentation(visibility: internal)
 public typealias Td = DataCell
 
-/// The alias for the element HeaderCell.
-///
-/// Th is the official tag and can be used instead of HeaderCell.
-///
-/// ```html
-/// <th></th>
-/// ```
+/// The alias for the element ``HeaderCell``.
 @_documentation(visibility: internal)
 public typealias Th = HeaderCell
 
-/// The element represents the title of the table.
+/// An element that represents a table caption.
 ///
-/// ```html
-/// <caption></caption>
+/// Use `Caption` to give the ``Table`` an accessible description.
+///
+/// ```swift
+/// Table {
+///     Caption {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct Caption: ContentNode, TableElement {
 
@@ -100,7 +50,10 @@ public struct Caption: ContentNode, TableElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal  var content: [Content]
-
+    
+    /// Create a caption.
+    ///
+    /// - Parameter content: The caption's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -372,10 +325,18 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     }
 }
 
-/// The element specifies a group of one or more columns.
+/// An element that represents af column group.
 ///
-/// ```html
-/// <colgroup></colgroup>
+/// Use `ColumnGroup` to specify a group of one or more ``Column``.
+///
+/// ```swift
+/// Table {
+///     ColumnGroup {
+///         Column()
+///             .span(2)
+///             .style("...")
+///     }
+/// }
 /// ```
 public struct ColumnGroup: ContentNode, TableElement {
 
@@ -384,7 +345,10 @@ public struct ColumnGroup: ContentNode, TableElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal  var content: [Content]
-
+    
+    /// Create a column group.
+    ///
+    /// - Parameter content: The group's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -584,9 +548,9 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     }
 }
 
-/// The element represents a column in a table.
+/// A element that represents a table column.
 ///
-/// Use `Column` for applying styles to entire columns, instead of repeating the styles for each cell, for each row.
+/// Use `Column` for applying styles to entire columns, instead of repeating the styles for each ``DataCell`` or ``TableRow``.
 ///
 /// ```swift
 /// Table {
@@ -604,7 +568,7 @@ public struct Column: EmptyNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    /// Create a column
+    /// Create a column.
     public init() {}
     
     @available(*, deprecated, message: "The column element is actually an empty element. Use Column() instead.")
@@ -804,10 +768,19 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     }
 }
 
-/// The element represents a block of rows in a table.
+/// An element that represents a block of rows in a table.
 ///
-/// ```html
-/// <tbody></tbody>
+/// Use `TableBody` to group rows of a ``Table``.
+///
+/// ```swift
+/// Table {
+///     TableBody {
+///         TableRow {
+///         }
+///         TableRow {
+///         }
+///     }
+/// }
 /// ```
 public struct TableBody: ContentNode, TableElement {
 
@@ -816,7 +789,10 @@ public struct TableBody: ContentNode, TableElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal  var content: [Content]
-
+    
+    /// Create a table body.
+    ///
+    /// - Parameter content: The body's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -1096,10 +1072,27 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-/// The element represents the block of rows that consist of the column labels.
+/// An element that represents a table description.
 ///
-/// ```html
-/// <thead></thead>
+/// Use `TableHead` to label the columns at the beginning of the ``Table``.
+///
+/// ```swift
+/// Table {
+///     TableHead {
+///         TableRow {
+///             DataCell {
+///                 "Lorem ipsum"
+///             }
+///         }
+///     }
+///     TableBody {
+///         TableRow {
+///             DataCell {
+///                 "Lorem ipsum"
+///             }
+///         }
+///     }
+/// }
 /// ```
 public struct TableHead: ContentNode, TableElement {
 
@@ -1109,6 +1102,9 @@ public struct TableHead: ContentNode, TableElement {
 
     internal  var content: [Content]
 
+    /// Create a table head.
+    ///
+    /// - Parameter content: The head's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -1388,10 +1384,27 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-/// The element represents the block of rows that consist of the column summaries.
+/// An element that represents a table summary.
 ///
-/// ```html
-/// <tfoot></tfoot>
+/// Use `TableFoot` to summarize the columns at the end of the ``Table``.
+///
+/// ```swift
+/// Table {
+///     TableBody {
+///         TableRow {
+///             DataCell {
+///                 "Lorem ipsum"
+///             }
+///         }
+///     }
+///     TableFoot {
+///         TableRow {
+///             DataCell {
+///                 "Lorem ipsum"
+///             }
+///         }
+///     }
+/// }
 /// ```
 public struct TableFoot: ContentNode, TableElement {
 
@@ -1401,6 +1414,9 @@ public struct TableFoot: ContentNode, TableElement {
 
     internal  var content: [Content]
 
+    /// Create a table foot.
+    ///
+    /// - Parameter content: The foot's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -1672,10 +1688,21 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-/// The element represents a row of cells in a table.
+/// An element that represents a table row.
 ///
-/// ```html
-/// <tr></tr>
+/// Use `TableRow` to group multiple cells in a ``Table``.
+///
+/// ```swift
+/// Table {
+///     TableRow {
+///         DataCell {
+///             "Lorem ipsum"
+///         }
+///         DataCell {
+///             "Lorem ipsum"
+///         }
+///     }
+/// }
 /// ```
 public struct TableRow: ContentNode, TableElement {
 
@@ -1685,6 +1712,9 @@ public struct TableRow: ContentNode, TableElement {
 
     internal  var content: [Content]
 
+    /// Create a table row.
+    ///
+    /// - Parameter content: The row's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -1964,10 +1994,18 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-/// The element represents a data cell in a table.
+/// An element that represents a table cell.
 ///
-/// ```html
-/// <td></td>
+/// Use `DataCell` to display tabular data.
+///
+/// ```swift
+/// Table {
+///     TableRow {
+///         DataCell {
+///             "Lorem ipsum"
+///         }
+///     }
+/// }
 /// ```
 public struct DataCell: ContentNode, TableElement {
 
@@ -1977,6 +2015,9 @@ public struct DataCell: ContentNode, TableElement {
 
     internal  var content: [Content]
 
+    /// Create a data cell.
+    ///
+    /// - Parameter content: The cell's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -2260,10 +2301,18 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-/// The element represents a header cell in a table.
+/// An element that represents a table cell.
 ///
-/// ```html
-/// <th></th>
+/// Use `HeaderCell` to display tabular data.
+///
+/// ```swift
+/// Table {
+///     TableRow {
+///         HeaderCell {
+///             "Lorem ipsum"
+///         }
+///     }
+/// }
 /// ```
 public struct HeaderCell: ContentNode, TableElement {
 
@@ -2273,6 +2322,9 @@ public struct HeaderCell: ContentNode, TableElement {
 
     internal  var content: [Content]
 
+    /// Create a header cell.
+    ///
+    /// - Parameter content: The cell's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }

@@ -1,17 +1,16 @@
-/*
- Abstract:
- The file contains the media elements. The html-element 'audio' or 'video' only allows these elements to be its descendants.
-
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
-/// The element allows authors to specify multiple alternative source for other elements.
+/// An element that represents a media source.
 ///
-/// ```html
-/// <source>
+/// Use `Source` to specify multiple alternative sources for media elements like ``Audio`` or ``Video``.
+///
+/// ```swift
+/// Video {
+///     Source()
+///         .source(...mp4)
+///     Source()
+///         .source(...ogg)
+/// }
 /// ```
 public struct Source: EmptyNode, MediaElement {
 
@@ -19,6 +18,7 @@ public struct Source: EmptyNode, MediaElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create a source.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -243,10 +243,20 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     }
 }
 
-/// The element allows to specify explicit external timed text tracks for media elements.
+/// An element that represents a text track.
 ///
-/// ```html
-/// <track>
+/// Use `Track` to specify timed text tracks for media elements like ``Audio`` or ``Video``.
+///
+/// ```swift
+/// Video {
+///     Source()
+///         .source("...mp4")
+///         .type(.mp4)
+///     Track()
+///         .source(...vtt)
+///         .kind(.subtitles)
+///         .label("English")
+/// }
 /// ```
 public struct Track: EmptyNode, MediaElement {
 
@@ -254,6 +264,7 @@ public struct Track: EmptyNode, MediaElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create a track.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {

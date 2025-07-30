@@ -1,377 +1,162 @@
-/*
- Abstract:
- The file contains the body elements. The html-element 'body' only allows these elements to be its descendants.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
-/// The alias for the element Navigation.
-///
-/// Nav is the official tag and can be used instead of Navigation.
-///
-/// ```html
-/// <nav></nav>
-/// ```
+/// The alias for the element ``Navigation``.
 @_documentation(visibility: internal)
 public typealias Nav = Navigation
 
-/// The alias for the element Heading1.
-///
-/// H1 is the official tag and can be used instead of Heading1.
-///
-/// ```html
-/// <h1></h1>
-/// ```
+/// The alias for the element ``Heading1``.
 @_documentation(visibility: internal)
 public typealias H1 = Heading1
 
-/// The alias for the element Heading2.
-///
-/// H2 is the official tag and can be used instead of Heading2.
-///
-/// ```html
-/// <h2></h2>
-/// ```
+/// The alias for the element ``Heading2``.
 @_documentation(visibility: internal)
 public typealias H2 = Heading2
 
-/// The alias for the element Heading3.
-///
-/// H3 is the official tag and can be used instead of Heading3.
-///
-/// ```html
-/// <h3></h3>
-/// ```
+/// The alias for the element ``Heading3``.
 @_documentation(visibility: internal)
 public typealias H3 = Heading3
 
-/// The alias for the element Heading4.
-///
-/// H4 is the official tag and can be used instead of Heading4.
-///
-/// ```html
-/// <h4></h4>
-/// ```
+/// The alias for the element ``Heading4``.
 @_documentation(visibility: internal)
 public typealias H4 = Heading4
 
-/// The alias for the element Heading5.
-///
-/// H5 is the official tag and can be used instead of Heading5.
-///
-/// ```html
-/// <h5></h5>
-/// ```
+/// The alias for the element ``Heading5``.
 @_documentation(visibility: internal)
 public typealias H5 = Heading5
 
-/// The alias for the element Heading6.
-///
-/// H6 is the official tag and can be used instead of Heading6.
-///
-/// ```html
-/// <h6></h6>
-/// ```
+/// The alias for the element ``Heading6``.
 @_documentation(visibility: internal)
 public typealias H6 = Heading6
 
-/// The alias for the element HeadingGroup.
-///
-/// Hgroup is the official tag and can be used instead of HeadingGroup.
-///
-/// ```html
-/// <hgroup></hgroup>
-/// ```
+/// The alias for the element ``HeadingGroup``.
 @_documentation(visibility: internal)
 public typealias Hgroup = HeadingGroup
 
-/// The alias for the element Paragraph.
-///
-/// P is the official tag and can be used instead of Paragraph.
-///
-/// ```html
-/// <p></p>
-/// ```
+/// The alias for the element ``Paragraph``.
 @_documentation(visibility: internal)
 public typealias P = Paragraph
 
-/// The alias for the element HorizontalRule.
-///
-/// Hr is the official tag and can be used instead of HorizontalRule.
-///
-/// ```html
-/// <hr>
-/// ```
+/// The alias for the element ``HorizontalRule``.
 @_documentation(visibility: internal)
 public typealias Hr = HorizontalRule
 
-/// The alias for the element PreformattedText.
-///
-/// Pre is the official tag and can be used instead of PreformattedText.
-///
-/// ```html
-/// <pre></pre>
-/// ```
+/// The alias for the element ``PreformattedText``.
 @_documentation(visibility: internal)
 public typealias Pre = PreformattedText
 
-/// The alias for the element OrderedList.
-///
-/// Ol is the official tag and can be used instead of OrderedList.
-///
-/// ```html
-/// <ol></ol>
-/// ```
+/// The alias for the element ``OrderedList``.
 @_documentation(visibility: internal)
 public typealias Ol = OrderedList
 
-/// The alias for the element UnorderedList.
-///
-/// Ul is the official tag and can be used instead of UnorderedList.
-///
-/// ```html
-/// <ul></ul>
-/// ```
+/// The alias for the element ``UnorderedList``.
 @_documentation(visibility: internal)
 public typealias Ul = UnorderedList
 
-/// The alias for the element DescriptionList.
-///
-/// Dl is the official tag and can be used instead of DescriptionList.
-///
-/// ```html
-/// <dl></dl>
-/// ```
+/// The alias for the element ``DescriptionList``.
 @_documentation(visibility: internal)
 public typealias Dl = DescriptionList
 
-/// The alias for the element Division.
-///
-/// Div is the official tag and can be used instead of Division.
-///
-/// ```html
-/// <div></div>
-/// ```
+/// The alias for the element ``Division``.
 @_documentation(visibility: internal)
 public typealias Div = Division
 
-/// The alias for the element Anchor.
-///
-/// A is the official tag and can be used instead of Anchor.
-///
-/// ```html
-/// <a></a>
-/// ```
+/// The alias for the element ``Anchor``.
 @_documentation(visibility: internal)
 public typealias A = Anchor
 
-/// The alias for the element Emphasize.
-///
-/// Em is the official tag and can be used instead of Emphasize.
-///
-/// ```html
-/// <em></em>
-/// ```
+/// The alias for the element ``Emphasize``.
 @_documentation(visibility: internal)
 public typealias Em = Emphasize
 
-/// The alias for the element StrikeThrough.
-///
-/// S is the official tag and can be used instead of StrikeThrough.
-///
-/// ```html
-/// <s></s>
-/// ```
+/// The alias for the element ``StrikeThrough``.
 @_documentation(visibility: internal)
 public typealias S = StrikeThrough
 
-/// The alias for the element ShortQuote.
-///
-/// Q is the official tag and can be used instead of ShortQuote.
-///
-/// ```html
-/// <q></q>
-/// ```
+/// The alias for the element ``ShortQuote``.
 @_documentation(visibility: internal)
 public typealias Q = ShortQuote
 
-/// The alias for the element Definition.
-///
-/// Dfn is the official tag and can be used instead of Definition.
-///
-/// ```html
-/// <dfn></dfn>
-/// ```
+/// The alias for the element ``Definition``.
 @_documentation(visibility: internal)
 public typealias Dfn = Definition
 
-/// The alias for the element Abbreviation.
-///
-/// Abbr is the official tag and can be used instead of Abbreviation.
-///
-/// ```html
-/// <abbr></abbr>
-/// ```
+/// The alias for the element ``Abbreviation``.
 @_documentation(visibility: internal)
 public typealias Abbr = Abbreviation
 
-/// The alias for the element Variable.
-///
-/// V is the official tag and can be used instead of Variable.
-///
-/// ```html
-/// <v></v>
-/// ```
+/// The alias for the element ``Variable``.
 @_documentation(visibility: internal)
 public typealias V = Variable
 
-/// The alias for the element SampleOutput.
-///
-/// Samp is the official tag and can be used instead of SampleOutput.
-///
-/// ```html
-/// <samp></samp>
-/// ```
+/// The alias for the element ``SampleOutput``.
 @_documentation(visibility: internal)
 public typealias Samp = SampleOutput
 
-/// The alias for the element KeyboardInput.
-///
-/// Kbd is the official tag and can be used instead of KeyboardInput.
-///
-/// ```html
-/// <kdb></kdb>
-/// ```
+/// The alias for the element ``KeyboardInput``.
 @_documentation(visibility: internal)
 public typealias Kbd = KeyboardInput
 
-/// The alias for the element Subscript.
-///
-/// Sub is the official tag and can be used instead of Subscript.
-///
-/// ```html
-/// <sub></sub>
-/// ```
+/// The alias for the element ``Subscript``.
 @_documentation(visibility: internal)
 public typealias Sub = Subscript
 
-/// The alias for the element Superscript.
-///
-/// Sup is the official tag and can be used instead of Superscript.
-///
-/// ```html
-/// <sup></sup>
-/// ```
+/// The alias for the element ``Superscript``.
 @_documentation(visibility: internal)
 public typealias Sup = Superscript
 
-/// The alias for the element Italic.
-///
-/// I is the official tag and can be used instead of Italic.
-///
-/// ```html
-/// <i></i>
-/// ```
+/// The alias for the element ``Italic``.
 @_documentation(visibility: internal)
 public typealias I = Italic
 
-/// The alias for the element Bold.
-///
-/// Bold is the official tag and can be used instead of Bold.
-///
-/// ```html
-/// <b></b>
-/// ```
+/// The alias for the element ``Bold``.
 @_documentation(visibility: internal)
 public typealias B = Bold
 
-/// The alias for the element Underline.
-///
-/// U is the official tag and can be used instead of Underline.
-///
-/// ```html
-/// <u></u>
-/// ```
+/// The alias for the element ``Underline``.
 @_documentation(visibility: internal)
 public typealias U = Underline
 
-/// The alias for the element LineBreak.
-///
-/// Br is the official tag and can be used instead of LineBreak.
-///
-/// ```html
-/// <br>
-/// ```
+/// The alias for the element ``LineBreak``.
 @_documentation(visibility: internal)
 public typealias Br = LineBreak
 
-/// The alias for the element WordBreak.
-///
-/// Wbr is the official tag and can be used instead of WordBreak.
-///
-/// ```html
-/// <wbr>
-/// ```
+/// The alias for the element ``WordBreak``.
 @_documentation(visibility: internal)
 public typealias Wbr = WordBreak
 
-/// The alias for the element InsertedText.
-///
-/// Ins is the official tag and can be used instead of InsertedText.
-///
-/// ```html
-/// <ins></ins>
-/// ```
+/// The alias for the element ``InsertedText``.
 @_documentation(visibility: internal)
 public typealias Ins = InsertedText
 
-/// The alias for the element DeletedText.
-///
-/// Del is the official tag and can be used instead of DeletedText.
-///
-/// ```html
-/// <del></del>
-/// ```
+/// The alias for the element ``DeletedText``.
 @_documentation(visibility: internal)
 public typealias Del = DeletedText
 
-/// The alias for the element Image.
-///
-/// Img is the official tag and can be used instead of Image.
-///
-/// ```html
-/// <img>
-/// ```
+/// The alias for the element ``Image``.
 @_documentation(visibility: internal)
 public typealias Img = Image
 
-/// The alias for the element InlineFrame.
-///
-/// Iframe is the official tag and can be used instead of InlineFrame.
-///
-/// ```html
-/// <iframe></iframe>
-/// ```
+/// The alias for the element ``InlineFrame``.
 @_documentation(visibility: internal)
 public typealias Iframe = InlineFrame
 
-/// The alias for the element Vector.
-///
-/// Svg is the official tag and can be used instead of Vector.
-///
-/// ```html
-/// <svg></svg>
-/// ```
+/// The alias for the element ``Vector``.
 @_documentation(visibility: internal)
 public typealias Svg = Vector
 
-/// The element represents a self-contained content.
+/// An element that represents an article section.
 ///
-/// ```html
-/// <article></article>
+/// Use `Article` to separate content semantically.
+///
+/// ```swift
+/// Article {
+///     Heading3 {
+///         "Lorem ipsum"
+///     }
+///     Paragraph {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct Article: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -381,6 +166,9 @@ public struct Article: ContentNode, HtmlElement, BodyElement, FormElement, Figur
 
     internal var content: [Content]
 
+    /// Create a article.
+    ///
+    /// - Parameter content: The article's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -652,10 +440,19 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     }
 }
 
-/// The element represents a generic section of the document.
+/// An element that represents a content section.
 ///
-/// ```html
-/// <section></section>
+/// Use `Section` to part your content in coherent blocks.
+///
+/// ```swift
+/// Section {
+///     Heading2 {
+///         "Lorem ipsum"
+///     }
+///     Paragraph {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct Section: ContentNode, HtmlElement, BodyElement, FigureElement, FormElement, ObjectElement {
 
@@ -665,6 +462,9 @@ public struct Section: ContentNode, HtmlElement, BodyElement, FigureElement, For
 
     internal var content: [Content]
 
+    /// Create a section.
+    ///
+    /// - Parameter content: The section's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -936,10 +736,21 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     }
 }
 
-/// The element represents a section of a page that links to other pages or parts within the page.
+/// An element that represents a page navigation.
 ///
-/// ```html
-/// <nav></nav>
+/// Use `Navigation` to provide links that help users browse through the page.
+///
+/// ```swift
+/// Navigation {
+///     OrderedList {
+///         ListItem {
+///             Anchor {
+///                 "Lorem ipsum"
+///             }
+///             .reference("#")
+///         }
+///     }
+/// }
 /// ```
 public struct Navigation: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -949,6 +760,9 @@ public struct Navigation: ContentNode, HtmlElement, BodyElement, FormElement, Fi
 
     internal var content: [Content]
 
+    /// Create a navigation.
+    ///
+    /// - Parameter content: The navigation's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -1220,10 +1034,17 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     }
 }
 
-/// The element defines some content aside from the content it is placed in.
+/// An element that defines a content sidebar.
 ///
-/// ```html
-/// <aside></aside>
+/// Use `Aside` to define some content aside from the content it is placed in.
+///
+/// ```swift
+/// Body {
+///     Main {
+///     }
+///     Aside {
+///     }
+/// }
 /// ```
 public struct Aside: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -1233,6 +1054,9 @@ public struct Aside: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
 
     internal var content: [Content]
 
+    /// Create a aside.
+    ///
+    /// - Parameter content: The aside's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -1504,10 +1328,14 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-/// The element represents a heading.
+/// An element that represents a text heading.
 ///
-/// ```html
-/// <h1></h1>
+/// Use  `Heading1` to define the primary heading on a page or within a ``Section``.
+///
+/// ```swift
+/// Heading1 {
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Heading1: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -1517,6 +1345,9 @@ public struct Heading1: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
     internal var content: [Content]
 
+    /// Create a heading.
+    ///
+    /// - Parameter content: The heading's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -1795,10 +1626,14 @@ extension Heading1: Localizable {
     }
 }
 
-/// The element represents a heading.
+/// An element that represents a text heading.
 ///
-/// ```html
-/// <h2></h2>
+/// Use `Heading2` to introduce sections under ``Heading1``.
+///
+/// ```swift
+/// Heading2 {
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Heading2: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -1808,6 +1643,9 @@ public struct Heading2: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
     internal var content: [Content]
 
+    /// Create a heading.
+    ///
+    /// - Parameter content: The heading's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -2086,10 +1924,14 @@ extension Heading2: Localizable {
     }
 }
 
-/// The element represents a heading.
+/// An element that represents a text heading.
 ///
-/// ```html
-/// <h3></h3>
+/// Use `Heading3` to define a heading under ``Heading2``.
+///
+/// ```swift
+/// Heading3 {
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Heading3: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -2099,6 +1941,9 @@ public struct Heading3: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
     internal var content: [Content]
 
+    /// Create a heading.
+    ///
+    /// - Parameter content: The heading's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -2377,10 +2222,14 @@ extension Heading3: Localizable {
     }
 }
 
-/// The element represents a heading.
+/// An element that represents a text heading.
 ///
-/// ```html
-/// <h4></h4>
+/// Use `Heading4` to define a heading under ``Heading3``.
+///
+/// ```swift
+/// Heading4 {
+///     "Lorem ipsum"
+/// }
 /// ```
 public struct Heading4: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -2390,6 +2239,9 @@ public struct Heading4: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
     internal var content: [Content]
 
+    /// Create a heading.
+    ///
+    /// - Parameter content: The heading's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -2668,10 +2520,14 @@ extension Heading4: Localizable {
     }
 }
 
-/// The element represents a heading.
+/// An element that represents a text heading.
 ///
-/// ```html
-/// <h5></h5>
+/// Use `Heading5` to define a heading under ``Heading4``.
+///
+/// ```swift
+/// Heading5 {
+///     "Lorem ipsum"
+/// }
 /// ```
 public struct Heading5: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -2681,6 +2537,9 @@ public struct Heading5: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
     internal var content: [Content]
 
+    /// Create a heading.
+    ///
+    /// - Parameter content: The heading's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -2959,10 +2818,14 @@ extension Heading5: Localizable {
     }
 }
 
-/// The element represents a heading.
+/// An element that represents a text heading.
 ///
-/// ```html
-/// <h6></h6>
+/// Use `Heading6` to define a heading under the ``Heading5``.
+///
+/// ```swift
+/// Heading6 {
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Heading6: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -2972,6 +2835,9 @@ public struct Heading6: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
     internal var content: [Content]
 
+    /// Create a heading.
+    ///
+    /// - Parameter content: The heading's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -3250,10 +3116,19 @@ extension Heading6: Localizable {
     }
 }
 
-/// The element is used to group a set of heading elements.
+/// An element that represents a group container.
 ///
-/// ```html
-/// <hgroup></hgroup>
+/// Use `HeadingGroup` to group a set of ``Heading1`` to ``Heading6``.
+///
+/// ```swift
+/// HeadingGroup {
+///     Heading1 {
+///         "Lorem ipsum"
+///     }
+///     Paragraph {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct HeadingGroup: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -3263,6 +3138,9 @@ public struct HeadingGroup: ContentNode, HtmlElement, BodyElement, FormElement, 
 
     internal var content: [Content]
 
+    /// Create a heading group.
+    ///
+    /// - Parameter content: The group's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -3534,11 +3412,16 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     }
 }
 
-/// The element represents a header.
+/// An element that represents a page header.
 ///
-/// ```html
-/// <header></header>
-/// ```
+/// Use `Header` to separate content semantically.
+///
+/// ```swift
+/// Header {
+///     Heading1 {
+///         "Lorem ipsum..."
+///     }
+/// }
 public struct Header: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "header" }
@@ -3547,6 +3430,9 @@ public struct Header: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
     internal var content: [Content]
 
+    /// Create a header.
+    ///
+    /// - Parameter content: The header's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -3818,10 +3704,13 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     }
 }
 
-/// The element represents a footer.
+/// An element that represents a page footer.
 ///
-/// ```html
-/// <footer></footer>
+/// Use `Footer` to separate content semantically.
+///
+/// ```swift
+/// Footer {
+/// }
 /// ```
 public struct Footer: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -3831,6 +3720,9 @@ public struct Footer: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
     internal var content: [Content]
 
+    /// Create a footer.
+    ///
+    /// - Parameter content: The footer's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -4102,10 +3994,20 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     }
 }
 
-/// The element represents the contact information.
+/// An element that represents an address block.
 ///
-/// ```html
-/// <adress></adress>
+/// Use `Address` to associate contact information with the related content.
+///
+/// ```swift
+/// Address {
+///     Paragraph {
+///         "Lorem ipsum..."
+///     }
+///     Anchor() {
+///         "Lorem ipsum"
+///     }
+///     .reference("mailto:lorem@ispum.de")
+/// }
 /// ```
 public struct Address: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -4115,6 +4017,9 @@ public struct Address: ContentNode, HtmlElement, BodyElement, FormElement, Figur
 
     internal var content: [Content]
 
+    /// Create an address.
+    ///
+    /// - Parameter content: The address's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -4386,10 +4291,14 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     }
 }
 
-/// The element is used to define a paragraph.
+/// An element that represents a text paragraph.
 ///
-/// ```html
-/// <p></p>
+/// Use `Paragraph` to group related sentences.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Paragraph: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -4399,6 +4308,9 @@ public struct Paragraph: ContentNode, HtmlElement, BodyElement, FormElement, Fig
 
     internal var content: [Content]
 
+    /// Create a paragraph.
+    ///
+    /// - Parameter content: The paragraph's content
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -4677,10 +4589,18 @@ extension Paragraph: Localizable {
     }
 }
 
-/// The element is used for horizontal rules that act as dividers between sections.
+/// An element that represents a thematic break.
 ///
-/// ```html
-/// <hr>
+/// Use `HorizontalRule` to seperate content visually.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+/// }
+/// HorizontalRule()
+/// Paragraph {
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct HorizontalRule: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -4688,6 +4608,7 @@ public struct HorizontalRule: EmptyNode, HtmlElement, BodyElement, FormElement, 
     
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create a horizontal rule.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -4956,10 +4877,20 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
     }
 }
 
-/// The element represents a block of preformatted text.
+/// An element that represents preformatted text.
 ///
-/// ```html
-/// <pre></pre>
+/// Use `PreformattedText` to preserve the formatting of the text.
+///
+/// ```swift
+/// PreformattedText {
+///     Code {
+///         """
+///         if() {
+///         } else {
+///         }
+///         """
+///     }
+/// }
 /// ```
 public struct PreformattedText: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -4969,6 +4900,9 @@ public struct PreformattedText: ContentNode, HtmlElement, BodyElement, FormEleme
 
     internal var content: [Content]
 
+    /// Create a preformatted text.
+    ///
+    /// - Parameter content: The text's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -5240,10 +5174,14 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
     }
 }
 
-/// The element represents a section that is quoted from another source.
+/// An element that represents a extended quotation.
 ///
-/// ```html
-/// <blockquote></blockquote>
+/// Use `Blockquote` to denote a quoted text from another source.
+///
+/// ```swift
+/// Blockquote {
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Blockquote: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -5253,6 +5191,9 @@ public struct Blockquote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
 
     internal var content: [Content]
 
+    /// Create a block quote.
+    ///
+    /// - Parameter content: The quote's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -5535,10 +5476,19 @@ extension Blockquote: Localizable {
     }
 }
 
-/// The element represents a list of items, where the items have been intentionally ordered.
+/// An element that represents a ordered list.
 ///
-/// ```html
-/// <ol></ol>
+/// Use `OrderedList` to create a list of ``ListItem`` with an intentional order.
+///
+/// ```swift
+/// OrderedList {
+///     ListItem {
+///         "Lorem ipsum"
+///     }
+///     ListItem {
+///         "Lorem ipsum"
+///     }
+/// }
 /// ```
 public struct OrderedList: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -5548,6 +5498,9 @@ public struct OrderedList: ContentNode, HtmlElement, BodyElement, FormElement, F
 
     internal var content: [ListElement]
 
+    /// Create a ordered list.
+    ///
+    /// - Parameter content: The list's content.
     public init(@ContentBuilder<ListElement> content: () -> [ListElement]) {
         self.content = content()
     }
@@ -5831,10 +5784,19 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     }
 }
 
-/// The element represents a list of items, where the order of the items is not important.
+/// An element that represents a unordered list.
 ///
-/// ```html
-/// <ul></ul>
+/// Use `UnorderedList` create a list of ``ListItem`` in an unordered manner.
+///
+/// ```swift
+/// UnorderedList {
+///     ListItem {
+///         "Lorem ipsum"
+///     }
+///     ListItem {
+///         "Lorem ipsum"
+///     }
+/// }
 /// ```
 public struct UnorderedList: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -5844,6 +5806,9 @@ public struct UnorderedList: ContentNode, HtmlElement, BodyElement, FormElement,
 
     internal var content: [ListElement]
 
+    /// Create a unordered list.
+    ///
+    /// - Parameter content: The list's content.
     public init(@ContentBuilder<ListElement> content: () -> [ListElement]) {
         self.content = content()
     }
@@ -6115,10 +6080,25 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     }
 }
 
-/// The element represents a list of items, each of represents a command the user can perform.
+/// An element that represents an action menu.
 ///
-/// ```html
-/// <menu></menu>
+/// Use `Menu` to provide commands that users can perform.
+///
+/// ```swift
+/// Menu {
+///     ListItem {
+///         Button {
+///             "Save"
+///         }
+///         .on(event: .click, "save()")
+///     }
+///     ListItem {
+///         Button {
+///             "Share"
+///         }
+///         .on(event: .click, "share()")
+///     }
+/// }
 /// ```
 public struct Menu: ContentNode, HtmlElement, BodyElement {
     
@@ -6128,6 +6108,9 @@ public struct Menu: ContentNode, HtmlElement, BodyElement {
 
     internal var content: [ListElement]
 
+    /// Create a menu.
+    ///
+    /// - Parameter content: The menu's content.
     public init(@ContentBuilder<ListElement> content: () -> [ListElement]) {
         self.content = content()
     }
@@ -6303,10 +6286,21 @@ extension Menu: GlobalAttributes {
     }
 }
 
-/// The element defines a list of terms and corresponding definitions.
+/// An element that represents a description list.
 ///
-/// ```html
-/// <dl></dl>
+/// Use `DescriptionList` to define a list of ``TermName`` and their corresponding ``TermDefinition``.
+///
+/// ```swift
+/// DescriptionList {
+///     ListItem {
+///         TermName {
+///             "Lorem ipsum"
+///         }
+///         TermDefinition {
+///             "Lorem ipsum..."
+///         }
+///     }
+/// }
 /// ```
 public struct DescriptionList: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -6316,6 +6310,9 @@ public struct DescriptionList: ContentNode, HtmlElement, BodyElement, FormElemen
 
     internal var content: [DescriptionElement]
 
+    /// Create a description list
+    ///
+    /// - Parameter content: The list's content.
     public init(@ContentBuilder<DescriptionElement> content: () -> [DescriptionElement]) {
         self.content = content()
     }
@@ -6587,10 +6584,19 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
     }
 }
 
-/// The element can thus be used to annotate illustrations, diagrams, photos, code listings.
+/// An element that represents an media figure.
 ///
-/// ```html
-/// <figure></figure>
+/// Use `Figure` to wrap content along with a ``FigureCaption`` that describes it.
+///
+/// ```swift
+/// Figure {
+///     Image()
+///         .source(...png)
+///         .alternate("Lorem ipsum...")
+///     FigureCaption {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct Figure: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -6600,6 +6606,9 @@ public struct Figure: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
     internal var content: [FigureElement]
 
+    /// Create a figure.
+    ///
+    /// - Parameter content: The figure's content.
     public init(@ContentBuilder<FigureElement> content: () -> [FigureElement]) {
         self.content = content()
     }
@@ -6871,10 +6880,16 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     }
 }
 
-/// The element represents a comment output.
+/// An element that represents a document link.
 ///
-/// ```html
-/// <a></a>
+/// Use `Anchor` to link to another ressource.
+///
+/// ```swift
+/// Anchor {
+///     "Lorem ipsum..."
+/// }
+/// .reference("https://...")
+/// .target(.blank)
 /// ```
 public struct Anchor: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -6884,6 +6899,9 @@ public struct Anchor: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
     internal var content: [Content]
 
+    /// Create an anchor.
+    ///
+    /// - Parameter content: The anchor's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -7198,10 +7216,18 @@ extension Anchor: Localizable {
     }
 }
 
-/// The element provides typographic emphasis.
+/// An element that represents text emphasis.
 ///
-/// ```html
-/// <em></em>
+/// Use `Emphasize` to signal importance.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+///     Emphasize {
+///         "Lorem Ipsum"
+///     }
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Emphasize: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -7211,6 +7237,9 @@ public struct Emphasize: ContentNode, HtmlElement, BodyElement, FormElement, Fig
 
     internal var content: [Content]
 
+    /// Create a emphasize.
+    ///
+    /// - Parameter content: The emphasize's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -7482,10 +7511,16 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-/// The element provides strong typographic emphasis.
+/// An element that represents text emphasis.
 ///
-/// ```html
-/// <strong></strong>
+/// Use `Strong` to signal importance.
+///
+/// ```swift
+/// Paragraph {
+///     Strong {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct Strong: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -7495,6 +7530,9 @@ public struct Strong: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
     internal var content: [Content]
 
+    /// Create a strong.
+    ///
+    /// - Parameter content: The strong's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -7766,10 +7804,16 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     }
 }
 
-/// The element represents side comments such as small print.
+/// An element that represents text emphasis.
 ///
-/// ```html
-/// <small></small>
+/// Use `Small` to represent small print.
+///
+/// ```swift
+/// Paragraph {
+///     Small {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct Small: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -7779,6 +7823,9 @@ public struct Small: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
 
     internal var content: [Content]
 
+    /// Create a small.
+    ///
+    /// - Parameter content: The small's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -8057,10 +8104,16 @@ extension Small: Localizable {
     }
 }
 
-/// The element represents contents that are no longer accurate or no longer relevant.
+/// An element that represents a text emphasis.
 ///
-/// ```html
-/// <s></s>
+/// Use `StrikeThrough` to emphasize content that is no longer accurate or relevant.
+///
+/// ```swift
+/// Paragraph {
+///     StrikeThrough {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct StrikeThrough: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -8070,6 +8123,9 @@ public struct StrikeThrough: ContentNode, HtmlElement, BodyElement, FormElement,
 
     internal var content: [Content]
 
+    /// Create a strike through.
+    ///
+    /// - Parameter content: The strike through's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -8272,10 +8328,24 @@ extension StrikeThrough: Localizable {
     }
 }
 
-/// The element represents the dominant contents of the document.
+/// An element that represents the document core.
 ///
-/// ```html
-/// <main></main>
+/// Use `Main` to encapsulate the primary content, distinct from other content
+/// like ``Navigation``, ``Header`` or ``Footer``.
+///
+/// ```swift
+/// Html {
+///     Body {
+///         Header {
+///         }
+///         Navigation {
+///         }
+///         Main {
+///         }
+///         Footer {
+///         }
+///     }
+/// }
 /// ```
 public struct Main: ContentNode, HtmlElement, BodyElement, FormElement {
 
@@ -8285,6 +8355,9 @@ public struct Main: ContentNode, HtmlElement, BodyElement, FormElement {
 
     internal var content: [Content]
 
+    /// Create a main.
+    ///
+    /// - Parameter content: The main's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -8556,10 +8629,21 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-/// The element represents a part that contains a set of controls to performing a search.
+/// An element that represents a group container.
 ///
-/// ```html
-/// <search></search>
+/// Use `Search` to group a set of controls to perform a search.
+///
+/// ```swift
+/// Search {
+///     Form {
+///         Input()
+///             .name("lorem")
+///         Button {
+///             "Lorem ipsum"
+///         }
+///         .type(.submit)
+///     }
+/// }
 /// ```
 public struct Search: ContentNode, HtmlElement, BodyElement {
     
@@ -8569,6 +8653,9 @@ public struct Search: ContentNode, HtmlElement, BodyElement {
 
     internal var content: [Content]
 
+    /// Create a search.
+    ///
+    /// - Parameter content: The search's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -8744,10 +8831,14 @@ extension Search: GlobalAttributes {
     }
 }
 
-/// The element is used to represent different kinds of containers.
+/// An element that represents a generic container.
 ///
-/// ```html
-/// <div></div>
+/// Use `Division`as a universal container when no other semantic element
+/// is suitable.
+///
+/// ```swift
+/// Division {
+/// }
 /// ```
 public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -8757,6 +8848,10 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
     internal var content: [Content]
 
+    /// Create a division.
+    ///
+    /// - Parameters:
+    ///   - content: The division's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -9028,10 +9123,19 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-/// The element represents a comment output.
+/// An element that represents a term definition.
 ///
-/// ```html
-/// <dfn></dfn>
+/// Use `Definition` in conjunction with explanatory text, that provides its definition.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+///     Definition {
+///         "Lrm"
+///     }
+///     .id("lorem")
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Definition: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -9041,6 +9145,9 @@ public struct Definition: ContentNode, HtmlElement, BodyElement, FormElement, Fi
 
     internal var content: [Content]
 
+    /// Create a definition.
+    ///
+    /// - Parameter content: The definition's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -9312,10 +9419,17 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     }
 }
 
-/// The element specifies a citation.
+/// An element that represents the work title.
 ///
-/// ```html
-/// <cite></cite>
+/// Use `Cite` to mark the title of a work within a citation.
+///
+/// ```swift
+/// Paragraph {
+///     Cite {
+///         "Lorem ipsum"
+///     }
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Cite: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -9325,6 +9439,9 @@ public struct Cite: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
     internal var content: [Content]
 
+    /// Create a cite.
+    ///
+    /// - Parameter content: The cite's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -9596,10 +9713,16 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-/// The element is used for a short quotation.
+/// An element that represents a short quotation.
 ///
-/// ```html
-/// <q></q>
+/// Use `ShortQuote` to denote a quoted text from another source.
+///
+/// ```swift
+/// Paragraph {
+///     ShortQuote {
+///         "Lorem ipsum"
+///     }
+/// }
 /// ```
 public struct ShortQuote: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -9609,6 +9732,9 @@ public struct ShortQuote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
 
     internal var content: [Content]
 
+    /// Create a short quote.
+    ///
+    /// - Parameter content: The quote's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -9884,10 +10010,17 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     }
 }
 
-/// The element represents an abbreviation or acronym.
+/// A element that represents text abbreviation.
 ///
-/// ```html
-/// <abbr></abbr>
+/// Use `Abbreviation` to define an abbreviation or an acronym.
+///
+/// ```swift
+/// Paragraph {
+///     Abbreviation {
+///         "HTML"
+///     }
+///     .title("Hypertext Markup Language")
+/// }
 /// ```
 public struct Abbreviation: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -9897,6 +10030,9 @@ public struct Abbreviation: ContentNode, HtmlElement, BodyElement, FormElement, 
 
     internal var content: [Content]
 
+    /// Create a abbreviation
+    ///
+    /// - Parameter content: The abbreviation's content
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -10168,10 +10304,17 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     }
 }
 
-/// The element allows one or more spans of phrasing content to be marked with ruby annotations.
+/// An element that represents a phonetic guide.
 ///
-/// ```html
-/// <ruby></ruby>
+/// Use `Ruby` to provide a phonetic reading for a base character.
+///
+/// ```swift
+/// Ruby {
+///     "改"
+///     RubyText {
+///         "かい"
+///     }
+/// }
 /// ```
 public struct Ruby: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -10181,6 +10324,9 @@ public struct Ruby: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
     internal var content: [RubyElement]
 
+    /// Create a ruby.
+    ///
+    /// - Parameter content: The ruby's content.
     public init(@ContentBuilder<RubyElement> content: () -> [RubyElement]) {
         self.content = content()
     }
@@ -10452,10 +10598,19 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-/// The element represents a comment output.
+/// An element that represents data context.
 ///
-/// ```html
-/// <data></data>
+/// Use `Data` to enrich your content with structured data.
+///
+/// ```swift
+/// UnorderedList {
+///     ListItem {
+///         Data {
+///             "Lorem ipsum"
+///         }
+///         .value("1337")
+///     }
+/// }
 /// ```
 public struct Data: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -10464,7 +10619,10 @@ public struct Data: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a data.
+    ///
+    /// - Parameter content: The data's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -10749,10 +10907,18 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
     }
 }
 
-/// The element represents its contents, along with a machine-readable form of those contents in the datetime attribute.
+/// An element that represents a specific period in time.
 ///
-/// ```html
-/// <time></time>
+/// Use `Time` to present dates and times in a machine-readable format.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+///     Time {
+///         "Lorem ipsum"
+///     }
+///     .dateTime("...")
+/// }
 /// ```
 public struct Time: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -10761,7 +10927,10 @@ public struct Time: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a time.
+    ///
+    /// - Parameter content: The time's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -11037,10 +11206,18 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
     }
 }
 
-/// The element represents an example of code.
+/// An element that represents text emphasis.
 ///
-/// ```html
-/// <code></code>
+/// Use `Code` to style text as code.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+///     Code {
+///         "Lorem"
+///     }
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Code: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -11050,6 +11227,9 @@ public struct Code: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
     internal var content: [Content]
 
+    /// Create a code.
+    ///
+    /// - Parameter content: The code's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -11323,8 +11503,7 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
 
 /// The element represents a variable.
 ///
-/// Use `Variable` to denote a value that can change or vary, typically in mathematical expressions
-/// or programming contexts.
+/// Use `Variable` to denote a value that can change or vary.
 ///
 /// ```swift
 /// Paragraph {
@@ -11343,7 +11522,7 @@ public struct Variable: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
     internal var content: [Content]
 
-    /// Create a variable
+    /// Create a variable.
     ///
     /// - Parameter content: The variable's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
@@ -11617,10 +11796,14 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-/// The element represents sample or quoted output from another program or computing system.
+/// An element that represents text emphasis.
 ///
-/// ```html
-/// <samp></samp>
+/// Use `SampleOutput` to denote computer output.
+///
+/// ```swift
+/// SampleOutput {
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct SampleOutput: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -11630,6 +11813,9 @@ public struct SampleOutput: ContentNode, HtmlElement, BodyElement, FormElement, 
 
     internal var content: [Content]
 
+    /// Create a sample output.
+    ///
+    /// - Parameter content: The output's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -11901,10 +12087,18 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     }
 }
 
-/// The element represents user input.
+/// An element that represents text emphasis.
 ///
-/// ```html
-/// <kdb></kbd>
+/// Use `KeyboardInput` to denote user input.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+///     KeyboardInput {
+///         "Cmd"
+///     }
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct KeyboardInput: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -11914,6 +12108,9 @@ public struct KeyboardInput: ContentNode, HtmlElement, BodyElement, FormElement,
 
     internal var content: [Content]
 
+    /// Create a keyboard input.
+    ///
+    /// - Parameter content: The input's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -12185,10 +12382,18 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     }
 }
 
-/// The element represents a subscript.
+/// The element represents a subscript text.
 ///
-/// ```html
-/// <sub></sub>
+/// Use `Subscript` to display text slightly blow the baseline.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+///     Subscript {
+///         "Lorem ipsum"
+///     }
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Subscript: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -12198,6 +12403,9 @@ public struct Subscript: ContentNode, HtmlElement, BodyElement, FormElement, Fig
 
     internal var content: [Content]
 
+    /// Createa a subscript.
+    ///
+    /// - Parameter content: The subscript's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -12468,10 +12676,18 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-/// The element represents a superscript.
+/// An element that represents a superscript text.
 ///
-/// ```html
-/// <sup></sup>
+/// Use `Superscript` to display text slightly above the baseline.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+///     Superscript {
+///         "Lorem ipsum"
+///     }
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Superscript: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -12481,6 +12697,9 @@ public struct Superscript: ContentNode, HtmlElement, BodyElement, FormElement, F
 
     internal var content: [Content]
 
+    /// Create a superscript.
+    ///
+    /// - Parameter content: The superscript's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -12752,10 +12971,18 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     }
 }
 
-/// The element represents an italic font text.
+/// An element that represents a text emphasis.
 ///
-/// ```html
-/// <i></i>
+/// Use `Italic` to style some text italic.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+///     Italic {
+///         "Lorem ipsum"
+///     }
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Italic: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -12765,6 +12992,9 @@ public struct Italic: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
     internal var content: [Content]
 
+    /// Create a italic.
+    ///
+    /// - Parameter content: The italic's content
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -13043,10 +13273,18 @@ extension Italic: Localizable {
     }
 }
 
-/// The element represents an bold font text.
+/// An element that represents a text emphasis.
 ///
-/// ```html
-/// <b></b>
+/// Use `Italic` to style some text bold.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+///     Bold {
+///         "Lorem ipsum..."
+///     }
+///     "Lorem ipsum...
+/// }
 /// ```
 public struct Bold: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -13056,6 +13294,9 @@ public struct Bold: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
     internal var content: [Content]
 
+    /// Create a bold.
+    ///
+    /// - Parameter content: The bold's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -13334,10 +13575,18 @@ extension Bold: Localizable {
     }
 }
 
-/// The element specifies that the enclosed text should be displayed as underlined.
+/// An element that represents a text emphasis.
 ///
-/// ```html
-/// <u></u>
+/// Use `Underline` to underline text.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+///     Underline {
+///         "Lorem ipsum..."
+///     }
+///     "Lorem ipsum...
+/// }
 /// ```
 public struct Underline: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -13346,7 +13595,10 @@ public struct Underline: ContentNode, HtmlElement, BodyElement, FormElement, Fig
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a underline.
+    ///
+    /// - Parameter content: The underline's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -13625,10 +13877,18 @@ extension Underline: Localizable {
     }
 }
 
-/// The element represents a run of text in the document marked or highlighted for reference purposes.
+/// An element that represents a highlighted text.
 ///
-/// ```html
-/// <mark></mark>
+/// Use `Mark` to highlight portions of a text.
+///
+/// ```swift
+/// Blockquote {
+///     "Lorem ipsum..."
+///     Mark {
+///         "Lorem ipsum..."
+///     }
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Mark: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -13637,7 +13897,10 @@ public struct Mark: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a mark.
+    ///
+    /// - Parameter content: The mark's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -13909,10 +14172,18 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-/// The element represents a span of text that is to be isolated from its surroundings for the purposes of bidirectional text formatting.
+/// An element that represents text format.
 ///
-/// ```html
-/// <bdi></bdi>
+/// Use `Bdi` to preserve the direction of the text.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+///     Bdi {
+///         "Lorem"
+///     }
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Bdi: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -13922,6 +14193,9 @@ public struct Bdi: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
 
     internal var content: [Content]
 
+    /// Create a bidirectional isolate.
+    ///
+    /// - Parameter content: The isolate's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -14193,10 +14467,19 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-/// The element represents explicit text directionality formatting control.
+/// An element that represents a text format.
 ///
-/// ```html
-/// <bdo></bdo>
+/// Use `Bdo` to override the direction of the text.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+///     Bdo {
+///         "Lorem"
+///     }
+///     .direction(.rightToLeft)
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Bdo: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -14204,6 +14487,7 @@ public struct Bdo: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEleme
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create a bidirectional override.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -14472,10 +14756,14 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-/// The element doesn't mean anything on its own.
+/// An element that represents a group container.
 ///
-/// ```html
-/// <span></span>
+/// Use `Span` to group content.
+///
+/// ```swift
+/// Span {
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct Span: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -14485,6 +14773,9 @@ public struct Span: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
 
     internal var content: [Content]
 
+    /// Create a span.
+    ///
+    /// - Parameter content: The span's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -14756,17 +15047,20 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-/// The element represents a line break.
+/// An element that represents a line break.
 ///
-/// ```html
-/// <br>
+/// Use `LineBreak` to move text to a new line.
+///
+/// ```swift
+/// LineBreak()
 /// ```
 public struct LineBreak: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
     internal var name: String { "br" }
 
     internal var attributes: OrderedDictionary<String, Any>?
-
+    
+    /// Create a line break.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -15035,10 +15329,16 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-/// The element represents a line break opportunity.
+/// An element that represents a line break.
 ///
-/// ```html
-/// <wbr>
+/// Use `WordBreak` to suggest a break opportunity to wrap text onto a new line if needed.
+///
+/// ```swift
+/// Paragraph {
+///     "Lorem ipsum..."
+///     WordBreak()
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct WordBreak: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -15046,6 +15346,7 @@ public struct WordBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
     
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create a word break.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -15314,10 +15615,14 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-/// The element represents an addition to the document.
+/// An element that represents a text emphasis.
 ///
-/// ```html
-/// <ins></ins>
+/// Use `InsertedText` to display text as an addition.
+///
+/// ```swift
+/// InsertedText {
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct InsertedText: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -15327,6 +15632,9 @@ public struct InsertedText: ContentNode, HtmlElement, BodyElement, FormElement, 
 
     internal var content: [Content]
 
+    /// Create a inserted text.
+    ///
+    /// - Parameter content: The text's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -15606,10 +15914,14 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     }
 }
 
-/// The element represents a removal from the document.
+/// An element that represents a text emphasis.
 ///
-/// ```html
-/// <del></del>
+/// Use `DeletedText` to display text as a deletion.
+///
+/// ```swift
+/// DeletedText {
+///     "Lorem ipsum..."
+/// }
 /// ```
 public struct DeletedText: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -15619,6 +15931,9 @@ public struct DeletedText: ContentNode, HtmlElement, BodyElement, FormElement, F
 
     internal var content: [Content]
 
+    /// Create a deleted text.
+    ///
+    /// - Parameter content: The text's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -15898,10 +16213,19 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     }
 }
 
-/// The element is a container which provides multiple sources to its contained image element.
+/// An element that represents an media figure.
 ///
-/// ```html
-/// <picture></picture>
+/// Use `Picture` to provide multiple ``Source`` to its contained ``Image``.
+///
+/// ```swift
+/// Picture {
+///     Source()
+///         .sourceSet("...jpg")
+///         .media("(orientation: portrait)"
+///     Image()
+///         .source("...jpg")
+///         .alternate("Lorem ipsum..."
+/// }
 /// ```
 public struct Picture: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -15911,6 +16235,9 @@ public struct Picture: ContentNode, HtmlElement, BodyElement, FormElement, Figur
 
     internal var content: [Content]
 
+    /// Create a picture.
+    ///
+    /// - Parameter content: The picture's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -16106,10 +16433,15 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
     }
 }
 
-/// The element represents an image.
+/// An element that represents an image embed.
 ///
-/// ```html
-/// <img>
+/// Use `Image` to display an image alongside content.
+///
+/// ```swift
+/// Image()
+///     .source("...png")
+///     .alt("Lorem ipsum...")
+///
 /// ```
 public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -16117,6 +16449,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create an image.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -16446,10 +16779,15 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     }
 }
 
-/// The element represents its nested browsing context.
+/// An element that represents a content embed.
 ///
-/// ```html
-/// <iframe></iframe>
+/// Use `InlineFrame` to place external content within yours.
+///
+/// ```swift
+/// InlineFrame {
+/// }
+/// .source("https://...")
+/// .title("Lorem ipsum")
 /// ```
 public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
     
@@ -16459,6 +16797,9 @@ public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, F
 
     internal var content: [Content]
 
+    /// Create a inline frame.
+    ///
+    /// - Parameter content: The frame's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -16770,10 +17111,14 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     }
 }
 
-/// The element provides an integration point for an external application or interactive content.
+/// An element that represents an object embed.
 ///
-/// ```html
-/// <embed></embed>
+/// Use `Embed` to embed external content into the document.
+///
+/// ```swift
+/// Embed()
+///     .source("...html")
+///     .type(".html")
 /// ```
 public struct Embed: EmptyNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -16781,6 +17126,7 @@ public struct Embed: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create an embed.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -17069,10 +17415,15 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     }
 }
 
-/// The element represents an external resource.
+/// An element that represents an object embed.
 ///
-/// ```html
-/// <object></object>
+/// Use `Object` to embed external content into the document.
+///
+/// ```swift
+/// Object {
+/// }
+/// .data("...html")
+/// .type(.html")
 /// ```
 public struct Object: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
     
@@ -17082,6 +17433,9 @@ public struct Object: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
     internal var content: [ObjectElement]
 
+    /// Create a object.
+    ///
+    /// - Parameter content: The object's content.
     public init(@ContentBuilder<ObjectElement> content: () -> [ObjectElement]) {
         self.content = content()
     }
@@ -17377,10 +17731,16 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     }
 }
 
-/// The element is used to embed video content in a document.
+/// An element that represents a video embed.
 ///
-/// ```html
-/// <video></video>
+/// Use `Video` to embed and play video content.
+///
+/// ```swift
+/// Video {
+///     Source()
+///         .source("...mp4")
+///         .type(.mp4)
+/// }
 /// ```
 public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -17390,6 +17750,9 @@ public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
 
     internal var content: [MediaElement]
 
+    /// Create a video.
+    ///
+    /// - Parameter content: The video's content.
     public init(@ContentBuilder<MediaElement> content: () -> [MediaElement]) {
         self.content = content()
     }
@@ -17720,10 +18083,16 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     }
 }
 
-/// The element is used to embed audio content in a document.
+/// An element that represents an audio embed.
 ///
-/// ```html
-/// <audio></audio>
+/// Use `Audio` to embed and play audio content.
+///
+/// ```swift
+/// Audio {
+///     Source()
+///         .source("...mp4")
+///         .type(".mp4")
+/// }
 /// ```
 public struct Audio: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -17733,6 +18102,9 @@ public struct Audio: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
 
     internal var content: [MediaElement]
 
+    /// Create an audio.
+    ///
+    /// - Parameter content: The audio's content.
     public init(@ContentBuilder<MediaElement> content: () -> [MediaElement]) {
         self.content = content()
     }
@@ -18046,10 +18418,22 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     }
 }
 
-/// The element is used to define a image map.
+/// An element that represents an image map.
 ///
-/// ```html
-/// <map></map>
+/// Use `Map` to group map areas for an associated ``Image``.
+///
+/// ```swift
+/// Image()
+///     .source(...png)
+///     .useMap("lorem")
+/// Map {
+///     Area()
+///         .shape(.circle)
+///         .coordinates(10, 10, 10 ,10)
+///         .alternate("Lorem ipsum...")
+///         .reference("https://...")
+/// }
+/// .name("lorem")
 /// ```
 public struct Map: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
     
@@ -18058,7 +18442,10 @@ public struct Map: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [MapElement]
-
+    
+    /// Create a map.
+    ///
+    /// - Parameter content: The map's content.
     public init(@ContentBuilder<MapElement> content: () -> [MapElement]) {
         self.content = content()
     }
@@ -18258,10 +18645,20 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
     }
 }
 
-/// The element is used as a container for all the form elements.
+/// An element that represents a form container.
 ///
-/// ```html
-/// <form></form>
+/// Use `Form` to perform form submission and validation.
+///
+/// ```swift
+/// Form {
+///    Input()
+///         .name("lorem")
+///         .value("lorem")
+///         .type(.text)
+///    Button()
+///         .type(.submit)
+/// }
+/// .method(.post)
 /// ```
 public struct Form: ContentNode, HtmlElement, BodyElement, FigureElement, ObjectElement {
 
@@ -18271,6 +18668,9 @@ public struct Form: ContentNode, HtmlElement, BodyElement, FigureElement, Object
 
     internal var content: [FormElement]
 
+    /// Create a form.
+    ///
+    /// - Parameter content: The form's content.
     public init(@ContentBuilder<FormElement> content: () -> [FormElement]) {
         self.content = content()
     }
@@ -18584,10 +18984,21 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
     }
 }
 
-/// The element represents a set of options.
+/// An element that defines a set of predefined options.
 ///
-/// ```html
-/// <datalist></datalist>
+/// Use `DataList` to provide an autocomplete feature for input elements. Users will
+/// see the list of options as they input data.
+///
+/// ```swift
+/// Input()
+///     .list("lorem")
+/// DataList {
+///     Option()
+///         .value("lorem")
+///     Option()
+///         .value("lorem")
+/// }
+/// .id("lorem)
 /// ```
 public struct DataList: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -18597,6 +19008,9 @@ public struct DataList: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
     internal var content: [Content]
 
+    /// Create a data list.
+    ///
+    /// - Parameter content: The list's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -18868,10 +19282,16 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-/// The element represents the result of a calculation.
+/// An element that represents a calculation result.
 ///
-/// ```html
-/// <output></output>
+/// Use `Output` to print out the result of the calculation.
+///
+/// ```swift
+/// Form {
+///     Input()
+///     Output {
+///     }
+/// }
 /// ```
 public struct Output: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
     
@@ -18881,6 +19301,9 @@ public struct Output: ContentNode, HtmlElement, BodyElement, FormElement, Figure
 
     internal var content: [Content]
 
+    /// Create a output.
+    ///
+    /// - Parameter content: The output's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -19164,10 +19587,16 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     }
 }
 
-/// The element represents the completion progress of a task.
+/// An element that displays the progress of a task.
 ///
-/// ```html
-/// <progress></progress>
+/// Use `Progress` to indicate and observe task progress.
+///
+/// ```swift
+/// Progress {
+///     "Lorem ipsum"
+/// }
+/// .value(50)
+/// .maximum(100)
 /// ```
 public struct Progress: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -19177,6 +19606,9 @@ public struct Progress: ContentNode, HtmlElement, BodyElement, FormElement, Figu
 
     internal var content: [Content]
 
+    /// Create a progress.
+    ///
+    /// - Parameter content: The progress's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -19465,10 +19897,18 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-/// The element represents a scalar measurement within a known range, or a fractional value.
+/// An element that represents a level meter.
 ///
-/// ```html
-/// <meter></meter>
+/// Use `Meter` to represent a value within a bounded range.
+///
+/// ```swift
+/// Meter {
+///     "Lorem ipsum"
+/// }
+/// .minimum(0)
+/// .maximum(100)
+/// .low(25)
+/// .high(75)
 /// ```
 public struct Meter: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -19478,6 +19918,9 @@ public struct Meter: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
 
     internal var content: [Content]
 
+    /// Create a meter.
+    ///
+    /// - Parameter content: The meter's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -19782,10 +20225,19 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     }
 }
 
-/// The element represents a disclosure widget from which the user can obtain additional information or controls.
+/// An element that represents a disclosure control.
 ///
-/// ```html
-/// <details></details>
+/// Use `Details` to toggle visibility of content.
+///
+/// ```swift
+/// Details {
+///     Summary {
+///         "Lorem ipsum"
+///     }
+///     Paragraph {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct Details: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -19795,6 +20247,9 @@ public struct Details: ContentNode, HtmlElement, BodyElement, FormElement, Figur
 
     internal var content: [Content]
 
+    /// Create a details.
+    ///
+    /// - Parameter content: The details's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -20074,7 +20529,20 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     }
 }
 
-/// The element defines a dialog box or window.
+/// An element that represents a dialog window.
+///
+/// Use `Dialog` to overlay content that requires focus.
+///
+/// ```swift
+/// Dialog {
+///     Paragraph {
+///         "Lorem ipsum..."
+///     }
+///     Button {
+///         "Close"
+///     }
+/// }
+/// ```
 public struct Dialog: ContentNode, BodyElement {
 
     internal var name: String { "dialog" }
@@ -20082,7 +20550,10 @@ public struct Dialog: ContentNode, BodyElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a dialog.
+    ///
+    /// - Parameter content: The dialog's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -20358,10 +20829,14 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     }
 }
 
-/// The element allows to include dynamic script and data blocks in a document.
+/// An element that represents executable code.
 ///
-/// ```html
-/// <script></script>
+/// Use `Script` to embed or refer to exectuable code.
+///
+/// ```swift
+/// Script {
+///     "const foo = 'bar';"
+/// }
 /// ```
 public struct Script: ContentNode, HeadElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -20371,6 +20846,9 @@ public struct Script: ContentNode, HeadElement, BodyElement, FormElement, Figure
 
     internal var content: [String]
 
+    /// Create a script.
+    ///
+    /// - Parameter content: The script's content.
     public init(@ContentBuilder<String> content: () -> [String]) {
         self.content = content()
     }
@@ -20594,10 +21072,16 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
     }
 }
 
-/// The element represents a caption for the rest of the contents of a fieldset.
+/// An element that represents content fallback.
 ///
-/// ```html
-/// <noscript></noscript>
+/// Use `NoScript` to define alternate content when scripts are disabled.
+///
+/// ```swift
+/// NoScript {
+///     Paragraph {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct NoScript: ContentNode, HtmlElement, HeadElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -20607,6 +21091,9 @@ public struct NoScript: ContentNode, HtmlElement, HeadElement, BodyElement, Form
 
     internal var content: [Content]
 
+    /// Create a no script.
+    ///
+    /// - Parameter content: The script's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -20802,10 +21289,21 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
     }
 }
 
-/// The element is used to declare fragments of HTML that can be cloned and inserted in the document by script.
+/// An element that represents a shadow method.
 ///
-/// ```html
-/// <template></template>
+/// Use `Template` to replicate the content in multiple places.
+///
+/// ```swift
+/// Template {
+///     Division {
+///         Heading1 {
+///             "Lorem ipsum"
+///         }
+///         Paragraph {
+///             "Lorem ipsum..."
+///         }
+///     }
+/// }
 /// ```
 public struct Template: ContentNode, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -20814,7 +21312,10 @@ public struct Template: ContentNode, BodyElement, FormElement, FigureElement, Ob
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a template.
+    ///
+    /// - Parameter content: The template's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -21014,10 +21515,13 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
     }
 }
 
-/// The element represents a comment output.
+/// An element that represents a canvas board.
 ///
-/// ```html
-/// <canvas></canvas>
+/// Use `Canvas` to create a drawable area.
+///
+/// ```swift
+/// Canvas {
+/// }
 /// ```
 public struct Canvas: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -21306,10 +21810,21 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     }
 }
 
-/// The element represents a comment output.
+/// An element that represents a data table
 ///
-/// ```html
-/// <table></table>
+/// Use `Table` to present structured data.
+///
+/// ```swift
+/// Table {
+///     TableRow {
+///         DataCell {
+///             "Lorem ipsum"
+///         }
+///         DataCell {
+///             "Lorem ipsum"
+///         }
+///     }
+/// }
 /// ```
 public struct Table: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -21318,7 +21833,10 @@ public struct Table: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [TableElement]
-
+    
+    /// Create a table.
+    ///
+    /// - Parameter content: The table's content.
     public init(@ContentBuilder<TableElement> content: () -> [TableElement]) {
         self.content = content()
     }
@@ -21598,10 +22116,20 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     }
 }
 
-/// The element represents a vector.
+/// An element that represents a vector graphic.
 ///
-/// ```html
-/// <svg></svg>
+/// Use `Vector` to create a drawable area.
+///
+/// ```swift
+/// Vector {
+///     Path {
+///     }
+///     .draw("M...")
+/// }
+/// .namespace("http://...")
+/// .width(200)
+/// .height(100)
+/// .viewBox("0 0 200 100")
 /// ```
 public struct Vector: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -21610,7 +22138,10 @@ public struct Vector: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [VectorElement]
-
+    
+    /// Create a vector.
+    ///
+    /// - Parameter content: The vector's content.
     public init(@ContentBuilder<VectorElement> content: () -> [VectorElement]) {
         self.content = content()
     }
@@ -21706,10 +22237,24 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
     }
 }
 
-/// The element is typically used in a shadow tree. Its tend to be a placeholder that you can fill with another markup.
+/// An element that represents a shadow method.
 ///
-/// ```html
-/// <slot></slot>
+/// Use `Slot` as placeholder for replacement content.
+///
+/// ```swift
+/// Template {
+///     Division {
+///         Slot {
+///         }
+///         .name("lorem")
+///     }
+/// }
+/// Custom {
+///     Paragraph {
+///         "Lorem ipsum..."
+///     }
+///     .slot("lorem")
+/// }
 /// ```
 public struct Slot: ContentNode, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -21719,6 +22264,9 @@ public struct Slot: ContentNode, BodyElement, FormElement, FigureElement, Object
 
     internal var content: [Content]
 
+    /// Create a slot.
+    ///
+    /// - Parameter content: The slot's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }

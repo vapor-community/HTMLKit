@@ -1,17 +1,17 @@
-/*
- Abstract:
- The file contains the form elements. The html-element 'form' only allows these elements to be its descendants.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
-/// The element represents a typed data field to allow the user to edit the data.
+/// An element that represents a text control.
 ///
-/// ```html
-/// <input>
+/// Use `Input` to collect text input.
+///
+/// ```swift
+/// Form {
+///     Input()
+///         .type(.text)
+///         .name("lorem")
+///         .id("lorem")
+/// }
+/// .method(.post)
 /// ```
 public struct Input: EmptyNode, FormElement {
 
@@ -19,6 +19,7 @@ public struct Input: EmptyNode, FormElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create an input.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -400,10 +401,18 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     }
 }
 
-/// The element represents a caption for a form control.
+/// An element that represents a control label.
 ///
-/// ```html
-/// <label></label>
+/// Use `Label` to improve the accessibility by associating descriptive text with the controls.
+///
+/// ```swift
+/// Label {
+///     "Lorem ipsum"
+/// }
+/// .for("lorem")
+/// Input()
+///     .id("lorem")
+///     .name("lorem")
 /// ```
 public struct Label: ContentNode, FormElement {
 
@@ -413,6 +422,9 @@ public struct Label: ContentNode, FormElement {
 
     internal var content: [Content]
 
+    /// Create a label.
+    ///
+    /// - Parameter content: The label's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -695,10 +707,23 @@ extension Label: Localizable {
     }
 }
 
-/// The element represents a control for selecting amongst a set of options.
+/// An element that represents an option list.
 ///
-/// ```html
-/// <select></select>
+/// Use `Select` to present a set of ``Option``.
+///
+/// ```swift
+/// Select {
+///     Option {
+///         "Lorem"
+///     }
+///     .value("lorem")
+///     Option {
+///         "Lorem"
+///     }
+///     .value("lorem")
+/// }
+/// .name("lorem")
+/// .id("lorem")
 /// ```
 public struct Select: ContentNode, FormElement {
 
@@ -707,7 +732,10 @@ public struct Select: ContentNode, FormElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a select.
+    ///
+    /// - Parameter content: The select's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -963,10 +991,16 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
     }
 }
 
-/// The element represents a multiline plain text edit control.
+/// An element that represents a text control.
 ///
-/// ```html
-/// <textarea></textarea>
+/// Use `TextArea` to collect multiline text input.
+///
+/// ```swift
+/// TextArea {
+///     "Lorem ipsum..."
+/// }
+/// .name("lorem")
+/// .id("lorem")
 /// ```
 public struct TextArea: ContentNode, FormElement {
         
@@ -975,7 +1009,10 @@ public struct TextArea: ContentNode, FormElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [String]
-
+    
+    /// Create a text area.
+    ///
+    /// - Parameter content: The area's content.
     public init(@ContentBuilder<String> content: () -> [String]) {
         self.content = content()
     }
@@ -1345,10 +1382,15 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-/// The element represents a comment output.
+/// An element that represents an action button.
 ///
-/// ```html
-/// <button></button>
+/// Use `Button` to trigger an associated action.
+///
+/// ```swift
+/// Button {
+///     "Lorem ipsum"
+/// }
+/// .type(.button)
 /// ```
 public struct Button: ContentNode, FormElement {
 
@@ -1357,7 +1399,10 @@ public struct Button: ContentNode, FormElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a button.
+    ///
+    /// - Parameter content: The button's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -1686,10 +1731,24 @@ extension Button: Localizable {
     }
 }
 
-/// The element represents a set of form controls grouped together.
+/// An element that represents a group container.
 ///
-/// ```html
-/// <fieldset></fieldset>
+/// Use `Fieldset` to group related controls like ``Input``, ``TextArea`` and ``Legend`` together.
+///
+/// ```swift
+/// Form {
+///     Fieldset {
+///         Label {
+///             "Lorem ipsum"
+///         }
+///         .for("lorem")
+///         Input()
+///             .type(.text)
+///             .name("lorem")
+///             .id("lorem")
+///     }
+/// }
+/// .method(.post)
 /// ```
 public struct Fieldset: ContentNode, FormElement {
     
@@ -1698,7 +1757,10 @@ public struct Fieldset: ContentNode, FormElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a fieldset.
+    ///
+    /// - Parameter content: The set's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
