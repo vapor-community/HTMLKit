@@ -155,6 +155,9 @@ public struct Renderer {
             case let string as EnvironmentString:
                 try render(envstring: string, on: &result)
                 
+            case let string as HtmlString:
+                result += string.value
+                
             case let doubleValue as Double:
                 result += String(doubleValue)
                 
@@ -500,6 +503,9 @@ public struct Renderer {
                 
             case let string as EnvironmentString:
                 try render(envstring: string, on: &result)
+                
+            case let string as HtmlString:
+                result += string.value
                 
             case let string as String:
                 result += escape(content: string)

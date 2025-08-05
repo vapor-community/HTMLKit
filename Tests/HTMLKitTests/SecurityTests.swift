@@ -111,5 +111,22 @@ final class SecurityTests: XCTestCase {
                        """
         )
     }
+    
+    func testIgnoringHtmlString() throws {
+        
+        let html = "<script></script>"
+        
+        let view = TestView {
+            Paragraph {
+                HtmlString(html)
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><script></script></p>
+                       """
+        )
+    }
 }
 
