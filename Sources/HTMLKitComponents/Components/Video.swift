@@ -1,28 +1,35 @@
-/*
- Abstract:
- The file contains everything related to vidoe component.
- */
-
 import HTMLKit
 
+/// A view that represents a video embed.
+///
+/// Use `Video` to play a video.
+///
+/// ```swift
+/// Video(source: "...mov")
+/// ```
 public struct Video: View, Modifiable, Identifiable {
     
+    /// The unique identifier of the video.
     internal var id: String?
     
-    /// The url path of the image.
+    /// The source path of the video.
     internal let source: DynamicType
     
-    /// The classes of the image view.
+    /// The class names for the video.
     internal var classes: [String]
     
-    /// Creates an image.
+    /// Create a video.
+    ///
+    /// - Parameter source: The souce path to load from.
     public init(source: String) {
         
         self.source = .string(source)
         self.classes = ["video"]
     }
     
-    /// Creates an image.
+    /// Create a video.
+    ///
+    /// - Parameter source: The souce path to load from.
     public init(source: EnvironmentValue) {
         
         self.source = .value(source)
@@ -41,6 +48,11 @@ public struct Video: View, Modifiable, Identifiable {
         }
     }
     
+    /// Set the identifier for the video.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The video
     public func tag(_ value: String) -> Video {
         return self.mutate(id: value)
     }

@@ -1,11 +1,6 @@
-/*
- Abstract:
- The file contains a disclosure component.
- */
-
 import HTMLKit
 
-/// A view that represents a disclosure.
+/// A view that represents a disclosure view.
 ///
 /// Use `Disclosure` to reveal or hide content when interacted with.
 ///
@@ -24,7 +19,7 @@ public struct Disclosure: View, Modifiable {
     /// The disclosure's content.
     internal let content: [Content]
     
-    /// The classes of the content.
+    /// The class names for the content.
     internal var classes: [String]
         
     /// Create a disclosure.

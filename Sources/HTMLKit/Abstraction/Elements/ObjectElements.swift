@@ -1,27 +1,19 @@
-/*
- Abstract:
- The file contains the object elements. The html-element 'object' only allows these elements to be its descendants.
-
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
-/// The alias for the element Parameter.
-///
-/// Param is the official tag and can be used instead of Parameter.
-///
-/// ```html
-/// <param>
-/// ```
+/// The alias for the element ``Parameter``.
 @_documentation(visibility: internal)
 public typealias Param = Parameter
 
-/// The element defines parameters for plugins invoked by an object element.
+/// An element that represents an object parameter.
 ///
-/// ```html
-/// <param>
+/// Use `Parameter` to pass parameters to an ``Object``.
+///
+/// ```swift
+/// Object {
+///     Parameter()
+///         .name("Foo")
+///         .value("Bar")
+/// }
 /// ```
 public struct Parameter: EmptyNode, ObjectElement {
     

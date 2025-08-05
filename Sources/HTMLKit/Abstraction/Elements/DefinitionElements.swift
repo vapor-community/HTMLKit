@@ -1,37 +1,26 @@
-/*
- Abstract:
- The file contains the definition elements. The html-element 'description' only allows these elements to be its descendants.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
-/// The alias for the element TermName.
-///
-/// Dt is the official tag and can be used instead of TermName.
-///
-/// ```html
-/// <dt>
-/// ```
+/// The alias for the element ``TermName``.
 @_documentation(visibility: internal)
 public typealias Dt = TermName
 
-/// The alias for the element TermDefinition.
-///
-/// Dd is the official tag and can be used instead of TermDefinition.
-///
-/// ```html
-/// <dd></dd>
-/// ```
+/// The alias for the element ``TermDefinition``.
 @_documentation(visibility: internal)
 public typealias Dd = TermDefinition
 
-/// The element specifies a term name.
+/// An element that represents a term name.
 ///
-/// ```html
-/// <dt>
+/// Use `TermName` to label a term and to introduce the corresponding definition.
+///
+/// ```swift
+/// DescriptionList {
+///     TermName {
+///         "Lorem ipsum"
+///     }
+///     TermDefinition {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct TermName: ContentNode, DescriptionElement {
 
@@ -40,7 +29,10 @@ public struct TermName: ContentNode, DescriptionElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a term name.
+    ///
+    /// - Parameter content: The name's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -312,10 +304,19 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-/// The element specifies a term definition.
+/// An element that represents a term definition.
 ///
-/// ```html
-/// <dd></dd>
+/// Use `TermDefinition` to describe the term in more detail.
+///
+/// ```swift
+/// DescriptionList {
+///     TermName {
+///         "Lorem ipsum"
+///     }
+///     TermDefinition {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct TermDefinition: ContentNode, DescriptionElement {
 
@@ -324,7 +325,10 @@ public struct TermDefinition: ContentNode, DescriptionElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Creates a term definition.
+    ///
+    /// - Parameter content: The definition's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }

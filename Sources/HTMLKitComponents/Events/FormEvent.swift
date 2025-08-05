@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file contains the modifiers for form component.
- */
-
 /// A type that describes the modifier of a form component.
 public protocol FormEvent {
     

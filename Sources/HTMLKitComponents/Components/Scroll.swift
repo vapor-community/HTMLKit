@@ -1,20 +1,42 @@
-/*
- Abstract:
- The file contains everything related to the scrollview component.
- */
-
 import HTMLKit
 
-/// A component that displays content in its scrollable area.
+/// A view that represents a scrollable area.
+///
+/// Use `Scroll` when the content might exceed the visible bounds.
+///
+/// ```swift
+/// Scroll {
+///     HStack {
+///         Card {
+///             Text {
+///                 "Lorem ipsum..."
+///             }
+///         } header: {
+///             Image(source: "...png")
+///         }
+///         Card {
+///             Text {
+///                 "Lorem ipsum..."
+///             }
+///         } header: {
+///             Image(source: "...png")
+///         }
+///     }
+/// }
+/// ```
 public struct Scroll: View {
     
-    /// The content of the scrollview.
+    /// The body content of the scroll.
     internal var content: [Content]
     
-    /// The classes of the scrollview.
+    /// The class names for the scroll.
     internal var classes: [String]
     
-    /// Creates a scrollview.
+    /// Create a scroll.
+    ///
+    /// - Parameters:
+    ///   - showIndicators: Whether the scroll indicators should show up.
+    ///   - content: The scroll's content.
     public init(showIndicators: Bool = true, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()

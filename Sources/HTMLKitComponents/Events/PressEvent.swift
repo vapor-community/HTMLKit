@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file contains the modifiers for components with press interaction.
- */
-
 /// A type thats describes the modifier of a pressable component.
 public protocol PressEvent {
     

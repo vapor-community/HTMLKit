@@ -1,25 +1,42 @@
-/*
- Abstract:
- The file contains a dropdown component.
- */
-
 import HTMLKit
 
-/// A component that displays a list of actions.
+/// A view that represents dropdown button.
+///
+/// Use `Dropdown` to display a list of actions.
+///
+/// ```swift
+/// Dropdown {
+///     Text {
+///         "Lorem ipsum"
+///     }
+///     Text {
+///         "Lorem ipsum"
+///     }
+/// } label: {
+///     Button(role: .button) {
+///         "Lorem ipsum"
+///     }
+/// }
+/// ```
 public struct Dropdown: View, Modifiable, Identifiable {
     
+    /// The unique identifier of the dropdown.
     internal var id: String?
     
-    /// The label for the dropdown.
+    /// The label content for the dropdown.
     internal var label: [Content]
     
-    /// The content of the dropdown.
+    /// The body content of the dropdown.
     internal var content: [Content]
     
-    /// The classes of the dropdown.
+    /// The class names for the dropdown.
     internal var classes: [String]
     
-    /// Creates a dropdown.
+    /// Create a dropdown.
+    ///
+    /// - Parameters:
+    ///   - content: The dropdown's content.
+    ///   - label: The dropdown's label.
     public init(@ContentBuilder<Content> content: () -> [Content], @ContentBuilder<Content> label: () -> [Content]) {
         
         self.label = label()
@@ -44,6 +61,11 @@ public struct Dropdown: View, Modifiable, Identifiable {
         }
     }
     
+    /// Set the identifier for the dropdown.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The dropdown
     public func tag(_ value: String) -> Dropdown {
         return self.mutate(id: value)
     }

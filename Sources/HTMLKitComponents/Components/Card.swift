@@ -1,32 +1,46 @@
-/*
- Abstract:
- The file contains a card component.
- */
-
 import HTMLKit
 
-/// A component that distinguish content.
+/// A view that represents a card container.
+///
+/// Use `Card` to group and distinguish content from other content.
+///
+/// ```swift
+/// Card {
+///     Text {
+///         "Lorem ipsum..."
+///     }
+/// } header: {
+///     Image(source: "...png")
+/// }
+/// ```
 public struct Card: View, Modifiable, Identifiable {
     
+    /// The unique identifier of the card.
     internal var id: String?
     
-    /// The header of the card.
+    /// The header content of the card.
     internal var header: [Content]?
     
-    /// The content of the card.
+    /// The body content of the card.
     internal var content: [Content]
     
-    /// The classes of the content.
+    /// The class names for the card.
     internal var classes: [String]
     
-    /// Creates a card.
+    /// Create a card.
+    ///
+    /// - Parameter content: The card's content
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["card"]
     }
     
-    /// Creates a card.
+    /// Create a card.
+    ///
+    /// - Parameters:
+    ///   - content: The card's content.
+    ///   - header: The card's header.
     public init(@ContentBuilder<Content> content: () -> [Content],
                 @ContentBuilder<Content> header: () -> [Content]) {
         
@@ -52,10 +66,20 @@ public struct Card: View, Modifiable, Identifiable {
         }
     }
     
+    /// Set the identifier for the card.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The card
     public func tag(_ value: String) -> Card {
         return self.mutate(id: value)
     }
     
+    /// Set the style for the card.
+    ///
+    /// - Parameter style: The configuration to apply to.
+    ///
+    /// - Returns: The card
     public func cardStyle(_ style: CardConfiguration) -> Card {
         return self.mutate(classes: style.configuration)
     }

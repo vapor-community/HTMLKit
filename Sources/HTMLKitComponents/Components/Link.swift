@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file contains everything related to the link component.
- */
-
 import HTMLKit
 import Foundation
 
@@ -12,7 +7,9 @@ import Foundation
 ///
 /// ```swift
 /// Link(destination: "https://..") {
-///     "Lorem ipsum"
+///     Text {
+///         "Lorem ipsum"
+///     }
 /// }
 /// ```
 public struct Link: View, Modifiable, Identifiable {
@@ -26,13 +23,13 @@ public struct Link: View, Modifiable, Identifiable {
     /// The url path of the target.
     internal let destination: String
     
-    /// The content of the link.
+    /// The body content of the link.
     internal var content: [Content]
     
-    /// The classes of the link.
+    /// The class names for the link.
     internal var classes: [String]
     
-    /// The events of the link.
+    /// The event handlers on the link.
     internal var events: [String]?
     
     /// Create a link.
@@ -75,6 +72,11 @@ public struct Link: View, Modifiable, Identifiable {
         }
     }
     
+    /// Set the identifier for the link.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The link
     public func tag(_ value: String) -> Link {
         return self.mutate(id: value)
     }

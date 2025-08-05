@@ -1,17 +1,15 @@
-/*
- Abstract:
- The file contains the head elements. The html-element 'head' only allows these elements to be its descendants.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
-/// The element represents the document's title.
+/// An element that represents the document title.
 ///
-/// ```html
-/// <title></title>
+/// Use `Title` to define a page title.
+///
+/// ```swift
+/// Head {
+///     Title {
+///         "Lorem ipsum"
+///     }
+/// }
 /// ```
 public struct Title: ContentNode, HeadElement {
 
@@ -21,6 +19,9 @@ public struct Title: ContentNode, HeadElement {
 
     internal var content: [String]
     
+    /// Create a title.
+    ///
+    /// - Parameter content: The title's content.
     public init(@ContentBuilder<String> content: () -> [String]) {
         self.content = content()
     }
@@ -216,10 +217,16 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
     }
 }
 
-/// The element specifies the document base url.#
+/// An element that represents the base url.
 ///
-/// ```html
-/// <base>
+/// Use `Base` to specify the base url for the document.
+///
+/// ```swift
+/// Head {
+///     Base()
+///         .reference("https://...")
+///         .target(.blank)
+/// }
 /// ```
 public struct Base: EmptyNode, HeadElement {
 
@@ -227,6 +234,7 @@ public struct Base: EmptyNode, HeadElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create a base.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -427,10 +435,15 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
     }
 }
 
-/// The element provides meta information about the document.
+/// An element that represents a document property.
 ///
-/// ```html
-/// <meta></meta>
+/// Use `Meta` to add more context to a document.
+///
+/// ```swift
+/// Head {
+///     Meta()
+///         .charset(.utf8)
+/// }
 /// ```
 public struct Meta: EmptyNode, HeadElement {
 
@@ -438,6 +451,7 @@ public struct Meta: EmptyNode, HeadElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create a meta.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -659,10 +673,14 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
     }
 }
 
-/// The element contains style information for the document.
+/// An element that represents a style sheet.
 ///
-/// ```html
-/// <style></style>
+/// Use `Style` to define and apply style rules.
+///
+/// ```swift
+/// Style {
+///     "p { color: black; }"
+/// }
 /// ```
 public struct Style: ContentNode, HeadElement {
 
@@ -672,6 +690,9 @@ public struct Style: ContentNode, HeadElement {
 
     internal var content: [Content]
 
+    /// Create a style.
+    ///
+    /// - Parameter content: The style's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -879,10 +900,14 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     }
 }
 
-/// The element represents a comment output.
+/// An element that represents a resource link.
 ///
-/// ```html
-/// <link>
+/// Use `Link` to associate an external resource with the document.
+///
+/// ```swift
+/// Link()
+///     .relationship(.stylesheet)
+///     .reference("https://...")
 /// ```
 public struct Link: EmptyNode, HeadElement, BodyElement {
 
@@ -890,6 +915,7 @@ public struct Link: EmptyNode, HeadElement, BodyElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create a link.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {

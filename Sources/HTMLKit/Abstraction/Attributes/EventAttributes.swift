@@ -1,11 +1,3 @@
-/*
- Abstract:
- The file contains the protocols for the event html-attributes.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
 /// The alias combines the global attributes of the event attributes.

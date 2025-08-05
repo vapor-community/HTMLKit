@@ -1,28 +1,35 @@
-/*
- Abstract:
- The file contains everything related to image component.
- */
-
 import HTMLKit
 
+/// A view that represents an image embed.
+///
+/// Use `Image` to display an image.
+///
+/// ```swift
+/// Image(source: "...png")
+/// ```
 public struct Image: View, Modifiable, Identifiable {
     
+    /// The unique identifier of the image.
     internal var id: String?
     
-    /// The url path of the image.
+    /// The source path of the image.
     internal let source: DynamicType
     
-    /// The classes of the image view.
+    /// The class names of the image.
     internal var classes: [String]
     
-    /// Creates an image.
+    /// Create an image.
+    ///
+    /// - Parameter source: The souce path to load from.
     public init(source: String) {
         
         self.source = .string(source)
         self.classes = ["image"]
     }
     
-    /// Creates an image.
+    /// Create an image.
+    ///
+    /// - Parameter source: The souce path to load from.
     public init(source: EnvironmentValue) {
 
          self.source = .value(source)
@@ -39,10 +46,20 @@ public struct Image: View, Modifiable, Identifiable {
             }
     }
     
+    /// Sets the identifier for the image.
+    ///
+    /// - Parameter value: The value of the identifier
+    ///
+    /// - Returns: The image
     public func tag(_ value: String) -> Image {
         return self.mutate(id: value)
     }
     
+    /// Set the style for the image.
+    ///
+    /// - Parameter style: The configuration to apply to.
+    ///
+    /// - Returns: The image
     public func imageStyle(_ style: ImageConfiguration) -> Image {
         return self.mutate(classes: style.configuration)
     }

@@ -1,17 +1,18 @@
-/*
- Abstract:
- The file contains a divider component.
- */
-
 import HTMLKit
 
-/// A component that seperates content visually.
+/// A view that represents a content divider.
+///
+/// Use `Divider` to sperate content visually.
+///
+/// ```swift
+/// Divider()
+/// ```
 public struct Divider: View {
     
-    /// The classes of the divider.
+    /// The class names for the divider.
     internal  var classes: [String]
     
-    /// Creates a divider.
+    /// Create a divider.
     public init() {
         self.classes = ["divider"]
     }

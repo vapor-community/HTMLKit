@@ -1,37 +1,24 @@
-/*
- Abstract:
- The file contains the ruby elements. The html-element 'ruby' only allows these elements to be its descendants.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
-/// The alias for the element RubyText.
-///
-/// Rt is the official tag and can be used instead of RubyText.
-///
-/// ```html
-/// <rt></rt>
-/// ```
+/// The alias for the element ``RubyText``.
 @_documentation(visibility: internal)
 public typealias Rt = RubyText
 
-/// The alias for the element RubyPronunciation.
-///
-/// Rp is the official tag and can be used instead of RubyPronunciation.
-///
-/// ```html
-/// <rp></rp>
-/// ```
+/// The alias for the element ``RubyPronunciation``.
 @_documentation(visibility: internal)
 public typealias Rp = RubyPronunciation
 
-/// The element marks the ruby text component of a ruby annotation.
+/// An element that represents a ruby annotation.
 ///
-/// ```html
-/// <rt></rt>
+/// Use `RubyText` to help with the pronunciation or meaning of the base character.
+///
+/// ```swift
+/// Ruby {
+///     "改"
+///     RubyText {
+///         "かい"
+///     }
+/// }
 /// ```
 public struct RubyText: ContentNode, RubyElement {
 
@@ -41,6 +28,9 @@ public struct RubyText: ContentNode, RubyElement {
 
     internal var content: [Content]
 
+    /// Create a ruby text.
+    ///
+    /// - Parameter content: The text's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -312,10 +302,23 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-/// The element represents nothing.
+/// An element that represents the ruby fallback.
 ///
-/// ```html
-/// <rp></rp>
+/// Use `RubyPronunciation` to provide an alternative text for browsers that don't support ``Ruby``.
+///
+/// ```swift
+/// Ruby {
+///     "改"
+///     RubyPronuncation {
+///         "("
+///     }
+///     RubyText {
+///         "かい"
+///     }
+///     RubyPronuncation {
+///         ")"
+///     }
+/// }
 /// ```
 public struct RubyPronunciation: ContentNode, RubyElement {
 
@@ -324,7 +327,10 @@ public struct RubyPronunciation: ContentNode, RubyElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a ruby pronunciation.
+    ///
+    /// - Parameter content: The pronunciation's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }

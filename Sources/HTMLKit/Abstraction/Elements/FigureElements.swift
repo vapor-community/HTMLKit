@@ -1,27 +1,22 @@
-/*
- Abstract:
- The file contains the figure elements. The html-element 'figure' only allows these elements to be its descendants.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
-/// The alias for the element FigureCaption.
-///
-/// Figcaption is the official tag and can be used instead of FigureCaption.
-///
-/// ```html
-/// <figcaption></figcaption>
-/// ```
+/// The alias for the element ``FigureCaption``.
 @_documentation(visibility: internal)
 public typealias Figcaption = FigureCaption
 
-/// The element is used to label a figure.
+/// An element that represents a figure caption.
 ///
-/// ```html
-/// <figcaption></figcaption>
+/// Use `FigureCaption` to annotate ``Image``, ``Video``, ``Code``  or ``Vector``.
+///
+/// ```swift
+/// Figure {
+///     Image()
+///         .source(...png)
+///         .alternate("Lorem ipsum...")
+///     FigureCaption {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct FigureCaption: ContentNode, FigureElement {
 
@@ -30,7 +25,10 @@ public struct FigureCaption: ContentNode, FigureElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a figure caption.
+    ///
+    /// - Parameter content: The caption's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }

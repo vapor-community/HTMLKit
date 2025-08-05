@@ -1,17 +1,13 @@
-/*
- Abstract:
- The file contains the html elements. The html-element 'html' only allows these elements to be its descendants.
-
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
-/// The element contains the information about the document's content.
+/// An element that represents the document head.
 ///
-/// ```html
-/// <head></head>
+/// ```swift
+/// Head {
+///     Title {
+///         "Lorem ipsum"
+///     }
+/// }
 /// ```
 public struct Head: ContentNode, HtmlElement {
 
@@ -20,7 +16,10 @@ public struct Head: ContentNode, HtmlElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [HeadElement]
-
+    
+    /// Create a head.
+    ///
+    /// - Parameter content: The head's content.
     public init(@ContentBuilder<HeadElement> content: () -> [HeadElement]) {
         self.content = content()
     }
@@ -216,10 +215,19 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
     }
 }
 
-/// The element contains the document's content.
+/// An element that represents the document body.
 ///
-/// ```html
-/// <body></body>
+/// ```swift
+/// Html {
+///     Head {
+///         ...
+///     }
+///     Body {
+///         Heading1 {
+///             "Lorem ipsum..."
+///         }
+///     }
+/// }
 /// ```
 public struct Body: ContentNode, HtmlElement {
 
@@ -229,6 +237,9 @@ public struct Body: ContentNode, HtmlElement {
 
     internal var content: [BodyElement]
 
+    /// Create a body.
+    ///
+    /// - Parameter content: The body's content.
     public init(@ContentBuilder<BodyElement> content: () -> [BodyElement]) {
         self.content = content()
     }

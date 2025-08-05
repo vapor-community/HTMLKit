@@ -1,27 +1,22 @@
-/*
- Abstract:
- The file contains the list elements. The html-element 'ol' or 'ul' only allows these elements to be its descendants.
-
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
-/// The alias for the element ListItem.
-///
-/// Li is the official tag and can be used instead of ListItem.
-///
-/// ```html
-/// <li></li>
-/// ```
+/// The alias for the element ``ListItem``.
 @_documentation(visibility: internal)
 public typealias Li = ListItem
 
-/// The element represents a item of a list.
+/// An element that represents a list item.
 ///
-/// ```html
-/// <li></li>
+/// Use `ListItem` to define an entry within a ``UnorderedList`` or ``OrderedList``.
+///
+/// ```swift
+/// UnorderedList {
+///     ListItem {
+///         "Lorem ipsum"
+///     }
+///     ListItem {
+///         "Lorem ipsum"
+///     }
+/// }
 /// ```
 public struct ListItem: ContentNode, ListElement {
 
@@ -30,7 +25,10 @@ public struct ListItem: ContentNode, ListElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a list item.
+    ///
+    /// - Parameter content: The item's content
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }

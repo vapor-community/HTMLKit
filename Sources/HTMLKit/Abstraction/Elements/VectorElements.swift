@@ -1,29 +1,24 @@
-/*
- Abstract:
- The file contains the vector elements. The html-element 'svg' only allows these elements to be its descendants.
-
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
-/// The alias for the element Rectangle.
-///
-/// Rect is the official tag and can be used instead of Rectangle.
-///
-/// ```html
-/// <rect></rect>
-/// ```
+/// The alias for the element ``Rectangle``.
 @_documentation(visibility: internal)
 public typealias Rect = Rectangle
 
-/// The element represents a svg basic shape, used to draw circles.
+/// An element that represents a vector shape.
 ///
-/// ```html
-/// <circle></circle>
+/// Use `Circle` to draw a circle.
+///
+/// ```swift
+/// Vector {
+///     Circle {
+///     }
+///     .centerPoint((50,50))
+///     .radius(50)
+/// }
+/// .viewBox(0 0 100 100)
+/// .namespace("http://...")
 /// ```
-public struct Circle: ContentNode, VectorElement {    
+public struct Circle: ContentNode, VectorElement {
 
     internal var name: String { "circle" }
 
@@ -31,6 +26,9 @@ public struct Circle: ContentNode, VectorElement {
 
     internal var content: [Content]
 
+    /// Create a circle.
+    ///
+    /// - Parameter content: The circle's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -118,10 +116,19 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
     }
 }
 
-/// The element represents ...
+/// An element that represents a vector shape.
 ///
-/// ```html
-/// <rect></rect>
+/// Use `Rectangle` to draw a rectangle.
+///
+/// ```swift
+/// Vector {
+///     Rectangle {
+///     }
+///     .width(200)
+///     .height(100)
+/// }
+/// .viewBox(0 0 400 200)
+/// .namespace("https://...")
 /// ```
 public struct Rectangle: ContentNode, VectorElement {
 
@@ -131,6 +138,9 @@ public struct Rectangle: ContentNode, VectorElement {
 
     internal var content: [Content]
 
+    /// Create a rectangle.
+    ///
+    /// - Parameter content: The rectangle's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -222,10 +232,19 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
     }
 }
 
-/// The element represents a comment output.
+/// An element that represents a vector shape.
 ///
-/// ```html
-/// <ellipse></ellipse>
+/// Use `Ellipse` to draw an ellipse.
+///
+/// ```swift
+/// Vector {
+///     Ellipse {
+///     }
+///     .centerPoint((100, 50))
+///     .radiusPoint((100, 50))
+/// }
+/// .viewBox(0 0 200 100)
+/// .namespace("http://...")
 /// ```
 public struct Ellipse: ContentNode, VectorElement {
 
@@ -234,7 +253,10 @@ public struct Ellipse: ContentNode, VectorElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create an ellipse.
+    ///
+    /// - Parameter content: The elliipse's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -322,10 +344,19 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
     }
 }
 
-/// The element represents ...
+/// An element that represents a vector shape.
 ///
-/// ```html
-/// <line></line>
+/// Use `Line` to draw a straight line.
+///
+/// ```swift
+/// Vector {
+///     Line {
+///     }
+///     .stroke("black")
+///     .strokeWidth(1)
+/// }
+/// .viewBox(0 0 400 200)
+/// .namespace("http://...")
 /// ```
 public struct Line: ContentNode, VectorElement {
 
@@ -335,6 +366,9 @@ public struct Line: ContentNode, VectorElement {
 
     internal var content: [Content]
 
+    /// Creates a line.
+    ///
+    /// - Parameter content: The line's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -414,10 +448,18 @@ extension Line: GlobalVectorAttributes {
     }
 }
 
-/// The element represents a comment output.
+/// An element that represents a vector shape.
 ///
-/// ```html
-/// <polygon></polygon>
+/// Use `Polygon` to draw a polygon.
+///
+/// ```swift
+/// Vector {
+///     Polygon {
+///     }
+///     .points(0, 100, 5)
+/// }
+/// .viewBox(0 0 400 200)
+/// .namespace("http://...")
 /// ```
 public struct Polygon: ContentNode, VectorElement {
 
@@ -427,6 +469,9 @@ public struct Polygon: ContentNode, VectorElement {
 
     internal var content: [Content]
 
+    /// Create a polygon.
+    ///
+    /// - Parameter content: The polygon's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -510,10 +555,18 @@ extension Polygon: GlobalVectorAttributes, PointsAttribute {
     }
 }
 
-/// The element represents ...
+/// An element that represents a vector shape.
 ///
-/// ```html
-/// <polyline></polyline>
+/// Use `Polyline` to draw a polyline.
+///
+/// ```swift
+/// Vector {
+///     Polyline {
+///     }
+///     .points(0, 100, 5)
+/// }
+/// .viewBox(0 0 400 200)
+/// .namespace("http://...")
 /// ```
 public struct Polyline: ContentNode, VectorElement {
 
@@ -523,6 +576,9 @@ public struct Polyline: ContentNode, VectorElement {
 
     internal var content: [Content]
 
+    /// Create a polyline.
+    ///
+    /// - Parameter content: The polyline's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -606,10 +662,18 @@ extension Polyline: GlobalVectorAttributes, PointsAttribute {
     }
 }
 
-/// The element represents ...
+/// An element that represents a vector path.
 ///
-/// ```html
-/// <path></path>
+/// Use `Path` to create lines, curves and arcs.
+///
+/// ```swift
+/// Vector {
+///     Path {
+///     }
+///     .draw("M10 10")
+/// }
+/// .viewBox(0 0 400 200)
+/// .namespace("http://...")
 /// ```
 public struct Path: ContentNode, VectorElement {
 
@@ -619,6 +683,9 @@ public struct Path: ContentNode, VectorElement {
 
     internal var content: [Content]
 
+    /// Create a path.
+    ///
+    /// - Parameter content: The path's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -702,10 +769,17 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
     }
 }
 
-/// The element represents ...
+/// An element that represents a group container.
 ///
-/// ```html
-/// <g></g>
+/// Use `Group` to group vector elements together.
+///
+/// ```swift
+/// Vector {
+///     Group {
+///     }
+/// }
+/// .viewBox(0 0 400 200)
+/// .namespace("http://...")
 /// ```
 public struct Group: ContentNode, VectorElement {
 
@@ -715,6 +789,9 @@ public struct Group: ContentNode, VectorElement {
 
     internal var content: [Content]
 
+    /// Create a group.
+    ///
+    /// - Parameter content: The group's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -794,10 +871,21 @@ extension Group: GlobalVectorAttributes {
     }
 }
 
-/// The element represents ...
+/// An element that represents a vector method.
 ///
-/// ```html
-/// <use></use>
+/// Use `Use` to reuse associated vector elements.
+///
+/// ```swift
+/// Vector {
+///     Circle {
+///     }
+///     .id("lorem")
+///     Use {
+///     }
+///     .reference("#lorem")
+/// }
+/// .viewBox(0 0 400 200)
+/// .namespace("http://...")
 /// ```
 public struct Use: ContentNode, VectorElement {
 
@@ -807,6 +895,9 @@ public struct Use: ContentNode, VectorElement {
 
     internal var content: [Content]
 
+    /// Create a use.
+    ///
+    /// - Parameter content: The use's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }

@@ -1,25 +1,35 @@
-/*
- Abstract:
- The file contains a modal component.
- */
-
 import HTMLKit
 
-/// A component that presents a dialog on top of other views.
+///
+/// Use `Modal` to present a dialog on top of other views.
+///
+/// ```swift
+/// Modal {
+///     VStack {
+///         Text {
+///             "Lorem ipsum..."
+///         }
+///     }
+/// }
+/// .tag("lorem")
+/// ```
 public struct Modal: View, Modifiable, Actionable {
     
+    /// The unique identifier of the modal.
     internal var id: String?
     
-    /// The content of the modal.
+    /// The body content of the modal.
     internal var content: [Content]
     
-    /// The classes of the modal.
+    /// The class names for the modal.
     internal var classes: [String]
     
-    /// The events of the modal.
+    /// The event handlers on the modal.
     internal var events: [String]?
     
-    /// Creates a modal.
+    /// Create a modal.
+    ///
+    /// - Parameter content: The modal's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
@@ -41,10 +51,20 @@ public struct Modal: View, Modifiable, Actionable {
         }
     }
     
+    /// Set the identifier for the modal.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The modal
     public func tag(_ value: String) -> Modal {
         return self.mutate(id: value)
     }
     
+    /// Set the style for the modal.
+    ///
+    /// - Parameter style: The configuration to apply to.
+    ///
+    /// - Returns: The modal
     public func modalStyle(_ style: ModalConfiguration) -> Modal {
         return self.mutate(classes: style.configuration)
     }
