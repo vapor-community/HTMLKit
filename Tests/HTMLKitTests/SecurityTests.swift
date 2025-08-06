@@ -112,6 +112,9 @@ final class SecurityTests: XCTestCase {
         )
     }
     
+    /// Tests the renderers behaviour when handling a desired unescaped string.
+    ///
+    /// The renderer is expected to emit the string as-is.
     func testIgnoringHtmlString() throws {
         
         let html = "<script></script>"

@@ -1,6 +1,7 @@
-/// A type that won't be escaped during rendering.
+/// A type that remains unescaped during rendering.
 ///
-/// > Warning: Use with caution, as this may expose vulnerabilities.
+/// > Warning: Use with caution, as this may lead to security vulnerabilities
+/// > if the argument is not properly validated or not trusted.
 @_documentation(visibility: internal)
 public struct HtmlString: Content {
     
