@@ -1518,6 +1518,7 @@ extension IsAttribute where Self: EmptyNode {
 }
 
 /// A type that provides the `item` modifier.
+@_documentation(visibility: internal)
 public protocol ItemAttribute: Attribute {
     
     /// Create an new item.
