@@ -126,6 +126,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> ListItem {
         return mutate(itemid: value)
     }
@@ -134,14 +135,17 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> ListItem {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> ListItem {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> ListItem {
         return mutate(itemtype: value)
     }

@@ -114,6 +114,7 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Input {
         return mutate(itemid: value)
     }
@@ -122,14 +123,17 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Input {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Input {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Input {
         return mutate(itemtype: value)
     }
@@ -530,6 +534,7 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Label {
         return mutate(itemid: value)
     }
@@ -538,14 +543,17 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Label {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Label {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Label {
         return mutate(itemtype: value)
     }
@@ -849,6 +857,7 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Select {
         return mutate(itemid: value)
     }
@@ -857,14 +866,17 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Select {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Select {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Select {
         return mutate(itemtype: value)
     }
@@ -1134,6 +1146,7 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> TextArea {
         return mutate(itemid: value)
     }
@@ -1142,14 +1155,17 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> TextArea {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> TextArea {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> TextArea {
         return mutate(itemtype: value)
     }
@@ -1532,6 +1548,7 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Button {
         return mutate(itemid: value)
     }
@@ -1540,14 +1557,17 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Button {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Button {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Button {
         return mutate(itemtype: value)
     }
@@ -1898,6 +1918,7 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Fieldset {
         return mutate(itemid: value)
     }
@@ -1906,14 +1927,17 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Fieldset {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Fieldset {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Fieldset {
         return mutate(itemtype: value)
     }

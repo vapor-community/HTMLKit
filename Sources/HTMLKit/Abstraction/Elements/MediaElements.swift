@@ -113,6 +113,7 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Source {
         return mutate(itemid: value)
     }
@@ -121,14 +122,17 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Source {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Source {
         return mutate(itemscope: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Source {
         return mutate(itemtype: value)
     }
@@ -367,6 +371,7 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Track {
         return mutate(itemid: value)
     }
@@ -375,14 +380,17 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Track {
         return mutate(itemref: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Track {
         return mutate(itemtype: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Track {
         return mutate(itemscope: value)
     }

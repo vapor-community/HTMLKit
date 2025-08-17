@@ -130,6 +130,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> TermName {
         return mutate(itemid: value)
     }
@@ -138,14 +139,17 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> TermName {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> TermName {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> TermName {
         return mutate(itemtype: value)
     }
@@ -434,6 +438,7 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> TermDefinition {
         return mutate(itemid: value)
     }
@@ -442,14 +447,17 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> TermDefinition {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> TermDefinition {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> TermDefinition {
         return mutate(itemtype: value)
     }
