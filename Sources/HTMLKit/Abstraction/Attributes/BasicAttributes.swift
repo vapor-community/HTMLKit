@@ -1,3 +1,4 @@
+import Foundation
 import OrderedCollections
 
 /// The alias combines the global attributes of the basic attributes.
@@ -1513,6 +1514,102 @@ extension IsAttribute where Self: EmptyNode {
     
     internal func mutate(is value: String) -> Self {
         return self.mutate(key: "is", value: value)
+    }
+}
+
+/// A type that provides the `item` modifier.
+public protocol ItemAttribute: Attribute {
+    
+    /// Create an new item.
+    ///
+    /// ```swift
+    /// DefinitionList {
+    /// }
+    /// .item(id: "urn:...", as: "https://...", for: ["foo", "bar"])
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - id: The identifier used to name the item.
+    ///   - schema: The url of the schema the item should conform to.
+    ///   - elements: The identifiers of elements to associated the item with.
+    ///
+    /// - Returns: The element
+    func item(id: String?, as schema: URL?, for elements: [String]?) -> Self
+    
+    /// Create an new item.
+    ///
+    /// ```swift
+    /// DefinitionList {
+    /// }
+    /// .item(id: "urn:...", as: "https://...", for: "foo", "bar")
+    /// ```
+    ///
+    /// - Parameters:
+    ///   - id: The identifier used to name the item.
+    ///   - schema: The url of the schema the item should conform to.
+    ///   - elements: The identifiers of elements to associated the item with.
+    ///
+    /// - Returns: The element
+    func item(id: String?, as schema: URL?, for elements: String...) -> Self
+}
+
+extension ItemAttribute where Self: ContentNode {
+    
+    internal func mutate(itemid value: String?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "itemid", value: value)
+        }
+        
+        return self
+    }
+    
+    internal func mutate(itemtype value: String?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "itemtype", value: value)
+        }
+        
+        return self
+    }
+    
+    internal func mutate(itemref value: String?) -> Self {
+
+        if let value = value {
+            return self.mutate(key: "itemref", value: value)
+        }
+        
+        return self
+    }
+}
+
+extension ItemAttribute where Self: EmptyNode {
+    
+    internal func mutate(itemid value: String?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "itemid", value: value)
+        }
+        
+        return self
+    }
+    
+    internal func mutate(itemtype value: String?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "itemtype", value: value)
+        }
+        
+        return self
+    }
+    
+    internal func mutate(itemref value: String?) -> Self {
+
+        if let value = value {
+            return self.mutate(key: "itemref", value: value)
+        }
+        
+        return self
     }
 }
 
