@@ -1,3 +1,4 @@
+import Foundation
 import OrderedCollections
 
 /// The alias for the element ``TermName``.
@@ -119,6 +120,14 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func `is`(_ value: String) -> TermName {
         return mutate(is: value)
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> TermName {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> TermName {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
     public func itemId(_ value: String) -> TermName {
@@ -415,6 +424,14 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
 
     public func `is`(_ value: String) -> TermDefinition {
         return mutate(is: value)
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> TermDefinition {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> TermDefinition {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
     public func itemId(_ value: String) -> TermDefinition {

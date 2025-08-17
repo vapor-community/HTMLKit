@@ -1,3 +1,4 @@
+import Foundation
 import OrderedCollections
 
 /// The alias for the element ``ListItem``.
@@ -115,6 +116,14 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func `is`(_ value: String) -> ListItem {
         return mutate(is: value)
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> ListItem {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> ListItem {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
     public func itemId(_ value: String) -> ListItem {

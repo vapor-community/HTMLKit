@@ -1,3 +1,4 @@
+import Foundation
 import OrderedCollections
 
 /// The alias for the element ``RubyText``.
@@ -117,6 +118,14 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
 
     public func `is`(_ value: String) -> RubyText {
         return mutate(is: value)
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> RubyText {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> RubyText {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
     public func itemId(_ value: String) -> RubyText {
@@ -417,6 +426,14 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
     
     public func `is`(_ value: String) -> RubyPronunciation {
         return mutate(is: value)
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> RubyPronunciation {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> RubyPronunciation {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
     public func itemId(_ value: String) -> RubyPronunciation {

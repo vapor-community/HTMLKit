@@ -1,3 +1,4 @@
+import Foundation
 import OrderedCollections
 
 /// An element that represents a map area.
@@ -110,6 +111,14 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
     
     public func `is`(_ value: String) -> Area {
         return mutate(is: value)
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Area {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Area {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
     public func itemId(_ value: String) -> Area {

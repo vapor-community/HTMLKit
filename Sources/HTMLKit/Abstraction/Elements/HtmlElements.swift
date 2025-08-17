@@ -1,3 +1,4 @@
+import Foundation
 import OrderedCollections
 
 /// An element that represents the document head.
@@ -106,6 +107,14 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
     
     public func `is`(_ value: String) -> Head {
         return mutate(is: value)
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Head {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator:  " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Head {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator:  " "))
     }
     
     public func itemId(_ value: String) -> Head {
@@ -326,6 +335,14 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
 
     public func `is`(_ value: String) -> Body {
         return mutate(is: value)
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Body {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Body {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
     public func itemId(_ value: String) -> Body {
