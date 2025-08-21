@@ -1,3 +1,4 @@
+import Foundation
 import OrderedCollections
 
 /// The alias for the element ``FigureCaption``.
@@ -116,7 +117,16 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     public func `is`(_ value: String) -> FigureCaption {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> FigureCaption {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> FigureCaption {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> FigureCaption {
         return mutate(itemid: value)
     }
@@ -125,14 +135,17 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> FigureCaption {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> FigureCaption {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> FigureCaption {
         return mutate(itemtype: value)
     }

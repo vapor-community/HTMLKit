@@ -1,3 +1,4 @@
+import Foundation
 import OrderedCollections
 
 /// An element that represents the document title.
@@ -110,6 +111,15 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(is: value)
     }
     
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Title {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Title {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
+    
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Title {
         return mutate(itemid: value)
     }
@@ -118,14 +128,17 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(itemprop: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Title {
         return mutate(itemref: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Title {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Title {
         return mutate(itemtype: value)
     }
@@ -320,6 +333,15 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(is: value)
     }
     
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Base {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Base {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
+    
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Base {
         return mutate(itemid: value)
     }
@@ -328,14 +350,17 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(itemprop: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Base {
         return mutate(itemref: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Base {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Base {
         return mutate(itemtype: value)
     }
@@ -536,7 +561,16 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
     public func `is`(_ value: String) -> Meta {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Meta {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Meta {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Meta {
         return mutate(itemid: value)
     }
@@ -545,14 +579,17 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Meta {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Meta {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Meta {
         return mutate(itemtype: value)
     }
@@ -780,7 +817,16 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     public func `is`(_ value: String) -> Style {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Style {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Style {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Style {
         return mutate(itemid: value)
     }
@@ -789,14 +835,17 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Style {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Style {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Style {
         return mutate(itemtype: value)
     }
@@ -1000,7 +1049,16 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     public func `is`(_ value: String) -> Link {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Link {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Link {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Link {
         return mutate(itemid: value)
     }
@@ -1009,14 +1067,17 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Link {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Link {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Link {
         return mutate(itemtype: value)
     }

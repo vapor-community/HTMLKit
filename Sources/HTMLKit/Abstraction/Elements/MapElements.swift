@@ -1,3 +1,4 @@
+import Foundation
 import OrderedCollections
 
 /// An element that represents a map area.
@@ -111,7 +112,16 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
     public func `is`(_ value: String) -> Area {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Area {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Area {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Area {
         return mutate(itemid: value)
     }
@@ -120,14 +130,17 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Area {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Area {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Area {
         return mutate(itemtype: value)
     }

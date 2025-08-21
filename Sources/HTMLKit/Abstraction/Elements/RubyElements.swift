@@ -1,3 +1,4 @@
+import Foundation
 import OrderedCollections
 
 /// The alias for the element ``RubyText``.
@@ -118,7 +119,16 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func `is`(_ value: String) -> RubyText {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> RubyText {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> RubyText {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> RubyText {
         return mutate(itemid: value)
     }
@@ -127,14 +137,17 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> RubyText {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> RubyText {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> RubyText {
         return mutate(itemtype: value)
     }
@@ -418,7 +431,16 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
     public func `is`(_ value: String) -> RubyPronunciation {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> RubyPronunciation {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> RubyPronunciation {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> RubyPronunciation {
         return mutate(itemid: value)
     }
@@ -427,14 +449,17 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> RubyPronunciation {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> RubyPronunciation {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> RubyPronunciation {
         return mutate(itemtype: value)
     }

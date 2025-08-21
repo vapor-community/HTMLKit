@@ -1,3 +1,4 @@
+import Foundation
 import OrderedCollections
 
 /// An element that represents the document head.
@@ -108,6 +109,15 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(is: value)
     }
     
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Head {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator:  " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Head {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator:  " "))
+    }
+    
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Head {
         return mutate(itemid: value)
     }
@@ -116,14 +126,17 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(itemprop: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Head {
         return mutate(itemref: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Head {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Head {
         return mutate(itemtype: value)
     }
@@ -327,7 +340,16 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
     public func `is`(_ value: String) -> Body {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Body {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Body {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Body {
         return mutate(itemid: value)
     }
@@ -336,14 +358,17 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Body {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Body {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Body {
         return mutate(itemtype: value)
     }
