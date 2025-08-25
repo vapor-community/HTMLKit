@@ -686,12 +686,12 @@ final class AttributesTests: XCTestCase {
         func blocking(_ value: Values.Blocking) -> Tag {
             return self.mutate(blocking: value.rawValue)
         }
-        
+
         func integrity(_ hashes: String...) -> Tag {
             return self.mutate(integrity: hashes.joined(separator: " "))
         }
         
-        func integrity(_ hashes: [String]) -> Tag {
+        func integrity(_ hashes: [String]) -> Tag 
             return self.mutate(integrity: hashes.joined(separator: " "))
         }
         
