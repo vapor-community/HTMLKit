@@ -990,7 +990,7 @@ public struct Link: EmptyNode, HeadElement, BodyElement {
     }
 }
 
-extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute {
+extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute, IntegrityAttribute {
     
     public func accessKey(_ value: Character) -> Link {
         return mutate(accesskey: value)
@@ -1044,6 +1044,14 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     
     public func inputMode(_ value: Values.Mode) -> Link {
         return mutate(inputmode: value.rawValue)
+    }
+    
+    public func integrity(_ hashes: String...) -> Link {
+        return mutate(integrity: hashes.joined(separator: " "))
+    }
+    
+    public func integrity(_ hashes: [String]) -> Link {
+        return mutate(integrity: hashes.joined(separator: " "))
     }
 
     public func `is`(_ value: String) -> Link {
