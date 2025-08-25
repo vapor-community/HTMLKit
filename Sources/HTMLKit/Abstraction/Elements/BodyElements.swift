@@ -21718,7 +21718,7 @@ public struct Script: ContentNode, HeadElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute {
+extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, IntegrityAttribute {
 
     public func accessKey(_ value: Character) -> Script {
         return mutate(accesskey: value)
@@ -21772,6 +21772,14 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
     
     public func inputMode(_ value: Values.Mode) -> Script {
         return mutate(inputmode: value.rawValue)
+    }
+    
+    public func integrity(_ hashes: String...) -> Script {
+        return mutate(integrity: hashes.joined(separator: " "))
+    }
+    
+    public func integrity(_ hashes: [String]) -> Script {
+        return mutate(integrity: hashes.joined(separator: " "))
     }
 
     public func `is`(_ value: String) -> Script {
