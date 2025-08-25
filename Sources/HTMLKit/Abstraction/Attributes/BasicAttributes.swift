@@ -1490,12 +1490,24 @@ public protocol IntegrityAttribute: Attribute {
     
     /// Check the integrity of the resource.
     ///
+    /// ```swift
+    /// Script {
+    /// }
+    /// .integrity("sha384...", "sha384...")
+    /// ```
+    ///
     /// - Parameter hashes: The hashes of the resource to validate against.
     ///
     /// - Returns: The element
     func integrity(_ hashes: String...) -> Self
     
     /// Check the integrity of the resource.
+    ///
+    /// ```swift
+    /// Script {
+    /// }
+    /// .integrity(["sha384...", "sha384..."])
+    /// ```
     ///
     /// - Parameter hashes: The hashes of the resource to validate against.
     ///
