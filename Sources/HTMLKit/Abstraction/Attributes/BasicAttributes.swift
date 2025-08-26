@@ -1484,6 +1484,51 @@ extension InputModeAttribute where Self: EmptyNode {
     }
 }
 
+/// A type that provides the `integrity` modifier
+@_documentation(visibility: internal)
+public protocol IntegrityAttribute: Attribute {
+    
+    /// Check the integrity of the resource.
+    ///
+    /// ```swift
+    /// Script {
+    /// }
+    /// .integrity("sha384...", "sha384...")
+    /// ```
+    ///
+    /// - Parameter hashes: The hashes of the resource to validate against.
+    ///
+    /// - Returns: The element
+    func integrity(_ hashes: String...) -> Self
+    
+    /// Check the integrity of the resource.
+    ///
+    /// ```swift
+    /// Script {
+    /// }
+    /// .integrity(["sha384...", "sha384..."])
+    /// ```
+    ///
+    /// - Parameter hashes: The hashes of the resource to validate against.
+    ///
+    /// - Returns: The element
+    func integrity(_ hashes: [String]) -> Self
+}
+
+extension IntegrityAttribute where Self: ContentNode {
+    
+    internal func mutate(integrity value: String) -> Self {
+        return self.mutate(key: "integrity", value: value)
+    }
+}
+
+extension IntegrityAttribute where Self: EmptyNode {
+    
+    internal func mutate(integrity value: String) -> Self {
+        return self.mutate(key: "integrity", value: value)
+    }
+}
+
 /// A type that provides the `is` modifier.
 @_documentation(visibility: internal)
 public protocol IsAttribute: Attribute {
