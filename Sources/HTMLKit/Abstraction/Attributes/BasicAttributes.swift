@@ -182,7 +182,7 @@ extension AlternateAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol AsAttribute: Attribute {
     
-    /// Hint about the type of content to preload.
+    /// Hint about the type of resource to preload.
     ///
     /// ```swift
     /// Link()
@@ -191,10 +191,10 @@ public protocol AsAttribute: Attribute {
     ///     .as(.script)
     /// ```
     ///
-    /// - Parameter value: The content type to use.
+    /// - Parameter value: The resource type to use.
     ///
     /// - Returns: The element
-    func `as`(_ value: Values.AsValue) -> Self
+    func `as`(_ value: Values.Resource) -> Self
 }
 
 extension AsAttribute where Self: ContentNode {

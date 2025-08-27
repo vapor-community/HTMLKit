@@ -1509,13 +1509,13 @@ public enum Values {
         case none
     }
     
-    /// A type as preload hint.
+    /// A type as resource hint.
     ///
     /// ```swift
     /// Link()
     ///     .as(.fetch)
     /// ```
-    public enum AsValue: String {
+    public enum Resource: String {
         
         /// Hints a fetch response.
         case fetch

@@ -38,7 +38,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(accesskey: value)
         }
         
-        func `as`(_ value: HTMLKit.Values.AsValue) -> Tag {
+        func `as`(_ value: HTMLKit.Values.Resource) -> Tag {
             return self.mutate(as: value.rawValue)
         }
         

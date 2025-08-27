@@ -996,7 +996,7 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(accesskey: value)
     }
     
-    public func `as`(_ value: Values.AsValue) -> Link {
+    public func `as`(_ value: Values.Resource) -> Link {
         return mutate(as: value.rawValue)
     }
 
