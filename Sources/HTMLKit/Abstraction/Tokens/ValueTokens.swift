@@ -1508,6 +1508,33 @@ public enum Values {
         /// Should not load on page load.
         case none
     }
+    
+    /// A type as preload hint.
+    ///
+    /// ```swift
+    /// Link()
+    ///     .as(.fetch)
+    /// ```
+    public enum AsValue: String {
+        
+        /// Hints a fetch response.
+        case fetch
+        
+        /// Hints a font file.
+        case font
+        
+        /// Hints an image file.
+        case image
+        
+        /// Hints a script file.
+        case script
+        
+        /// Hints a style sheet.
+        case style
+        
+        /// Hints a text track.
+        case track
+    }
 
     public enum Accessibility {
         

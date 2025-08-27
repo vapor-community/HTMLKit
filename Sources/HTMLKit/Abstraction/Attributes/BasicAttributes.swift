@@ -178,6 +178,39 @@ extension AlternateAttribute where Self: EmptyNode {
     }
 }
 
+/// A type that provides the `as` modifier.
+@_documentation(visibility: internal)
+public protocol AsAttribute: Attribute {
+    
+    /// Hint about the type of content to preload.
+    ///
+    /// ```swift
+    /// Link()
+    ///     .relationship(.preload)
+    ///     .reference("https://...")
+    ///     .as(.script)
+    /// ```
+    ///
+    /// - Parameter value: The content type to use.
+    ///
+    /// - Returns: The element
+    func `as`(_ value: Values.AsValue) -> Self
+}
+
+extension AsAttribute where Self: ContentNode {
+    
+    internal func mutate(as value: String) -> Self {
+        return self.mutate(key: "as", value: value)
+    }
+}
+
+extension AsAttribute where Self: EmptyNode {
+    
+    internal func mutate(as value: String) -> Self {
+        return self.mutate(key: "as", value: value)
+    }
+}
+
 /// A type that provides the `asynchronously` modifier.
 @_documentation(visibility: internal)
 public protocol AsynchronouslyAttribute: Attribute {
