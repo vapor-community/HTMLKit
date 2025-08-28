@@ -990,10 +990,14 @@ public struct Link: EmptyNode, HeadElement, BodyElement {
     }
 }
 
-extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute, IntegrityAttribute {
-    
+extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute, IntegrityAttribute, AsAttribute {
+
     public func accessKey(_ value: Character) -> Link {
         return mutate(accesskey: value)
+    }
+    
+    public func `as`(_ value: Values.Resource) -> Link {
+        return mutate(as: value.rawValue)
     }
 
     public func autocapitalize(_ value: Values.Capitalization) -> Link {
