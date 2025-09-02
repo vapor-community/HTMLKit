@@ -21718,7 +21718,7 @@ public struct Script: ContentNode, HeadElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, IntegrityAttribute {
+extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, IntegrityAttribute, DeferAttribute {
 
     public func accessKey(_ value: Character) -> Script {
         return mutate(accesskey: value)
@@ -21738,6 +21738,10 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
 
     public func isEditable(_ value: Bool) -> Script {
         return mutate(contenteditable: value)
+    }
+    
+    public func `defer`() -> Script {
+        return mutate(defer: "defer")
     }
 
     public func direction(_ value: Values.Direction) -> Script {
