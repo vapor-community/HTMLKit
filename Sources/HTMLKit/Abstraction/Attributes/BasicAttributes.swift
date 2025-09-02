@@ -756,6 +756,32 @@ extension CoordinatesAttribute where Self: EmptyNode {
     }
 }
 
+/// A type that provides the `crossOrigin` modifier
+@_documentation(visibility: internal)
+public protocol CrossOriginAttribute: Attribute {
+    
+    /// Control the credential mode for cross-origin requests.
+    ///
+    /// - Parameter value: The mode to use.
+    ///
+    /// - Returns: The element
+    func crossOrigin(_ value: Credential.Mode) -> Self
+}
+
+extension CrossOriginAttribute where Self: ContentNode {
+    
+    internal func mutate(crossorigin value: String) -> Self {
+        return self.mutate(key: "crossorigin", value: value)
+    }
+}
+
+extension CrossOriginAttribute where Self: EmptyNode {
+    
+    internal func mutate(crossorigin value: String) -> Self {
+        return self.mutate(key: "crossorigin", value: value)
+    }
+}
+
 /// A type that provides the `data` modifier.
 @_documentation(visibility: internal)
 public protocol DataAttribute: Attribute{

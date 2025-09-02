@@ -1,5 +1,24 @@
 import Collections
 
+public enum Credential {
+    
+    /// A credential mode for cross-origin requests.
+    ///
+    /// ```swift
+    /// Link()
+    ///     .reference("https://...")
+    ///     .crossOrigin(.useCredentials)
+    /// ```
+    public enum Mode: String {
+        
+        /// Requests without credentials.
+        case anonymous
+        
+        /// Send credentials with the request.
+        case useCredentials = "use-credentials"
+    }
+}
+
 /// A namespace for several types of attribute values.
 public enum Values {
     
