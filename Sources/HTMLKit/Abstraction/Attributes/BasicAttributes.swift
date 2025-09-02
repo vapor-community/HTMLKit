@@ -762,6 +762,12 @@ public protocol CrossOriginAttribute: Attribute {
     
     /// Control the credential mode for cross-origin requests.
     ///
+    /// ```swift
+    /// Script {
+    /// }
+    /// .crossOrigin(.anonymous)
+    /// ```
+    ///
     /// - Parameter value: The mode to use.
     ///
     /// - Returns: The element
