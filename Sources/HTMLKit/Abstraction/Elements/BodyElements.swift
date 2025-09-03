@@ -17148,7 +17148,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & IsMapAttribute & UseMapAttribute {
+extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & IsMapAttribute & UseMapAttribute, CrossOriginAttribute {
     
     public func accessKey(_ value: Character) -> Image {
         return mutate(accesskey: value)
@@ -17164,6 +17164,10 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 
     public func `class`(_ value: String) -> Image {
         return mutate(class: value)
+    }
+    
+    public func crossOrigin(_ value: Credential.Mode) -> Image {
+        return mutate(crossorigin: value.rawValue)
     }
 
     public func isEditable(_ value: Bool) -> Image {
@@ -18502,7 +18506,7 @@ public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute, PreloadAttribute, PlaysInlineAttribute {
+extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute, PreloadAttribute, PlaysInlineAttribute, CrossOriginAttribute {
     
     public func accessKey(_ value: Character) -> Video {
         return mutate(accesskey: value)
@@ -18715,6 +18719,10 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return self
     }
     
+    public func crossOrigin(_ value: Credential.Mode) -> Video {
+        return mutate(crossorigin: value.rawValue)
+    }
+    
     public func custom(key: String, value: Any) -> Video {
         return mutate(key: key, value: value)
     }
@@ -18866,7 +18874,7 @@ public struct Audio: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, PreloadAttribute {
+extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, PreloadAttribute, CrossOriginAttribute {
     
     public func accessKey(_ value: Character) -> Audio {
         return mutate(accesskey: value)
@@ -18882,6 +18890,10 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 
     public func `class`(_ value: String) -> Audio {
         return mutate(class: value)
+    }
+    
+    public func crossOrigin(_ value: Credential.Mode) -> Audio {
+        return mutate(crossorigin: value.rawValue)
     }
 
     public func isEditable(_ value: Bool) -> Audio {
@@ -21718,7 +21730,7 @@ public struct Script: ContentNode, HeadElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, IntegrityAttribute, DeferAttribute {
+extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, IntegrityAttribute, DeferAttribute, CrossOriginAttribute {
 
     public func accessKey(_ value: Character) -> Script {
         return mutate(accesskey: value)
@@ -21734,6 +21746,10 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
 
     public func `class`(_ value: String) -> Script {
         return mutate(class: value)
+    }
+    
+    public func crossOrigin(_ value: Credential.Mode) -> Script {
+        return mutate(crossorigin: value.rawValue)
     }
 
     public func isEditable(_ value: Bool) -> Script {

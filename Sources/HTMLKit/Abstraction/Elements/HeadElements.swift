@@ -990,7 +990,7 @@ public struct Link: EmptyNode, HeadElement, BodyElement {
     }
 }
 
-extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute, IntegrityAttribute, AsAttribute {
+extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute, IntegrityAttribute, AsAttribute, CrossOriginAttribute {
 
     public func accessKey(_ value: Character) -> Link {
         return mutate(accesskey: value)
@@ -1010,6 +1010,10 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
 
     public func `class`(_ value: String) -> Link {
         return mutate(class: value)
+    }
+    
+    public func crossOrigin(_ value: Credential.Mode) -> Link {
+        return mutate(crossorigin: value.rawValue)
     }
 
     public func isEditable(_ value: Bool) -> Link {
