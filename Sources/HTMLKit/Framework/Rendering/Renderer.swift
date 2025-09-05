@@ -177,7 +177,7 @@ public struct Renderer {
                 formatter.dateStyle = .medium
                 formatter.timeStyle = .short
                 
-                result = formatter.string(from: date)
+                result += formatter.string(from: date)
                 
             default:
                 throw Error.unknownContentType
