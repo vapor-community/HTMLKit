@@ -94,12 +94,16 @@ extension Request {
     
     /// Access to the view renderer
     public var htmlkit: ViewRenderer {
-        
+        /* IMPORTANT: This is unsafe (accessing the (mutable) environment of htmlkit from a random event loop). */
+        let env = Environment(duplicating: application.htmlkit.environment)
         if let acceptLanguage = acceptLanguage {
-            application.htmlkit.environment.upsert(HTMLKit.Locale(tag: acceptLanguage), for: \HTMLKit.EnvironmentKeys.locale)
+            env.upsert(HTMLKit.Locale(tag: acceptLanguage), for: \HTMLKit.EnvironmentKeys.locale)
         }
         
-        return .init(eventLoop: eventLoop, configuration: application.htmlkit.configuration, logger: logger)
+        /* IMPORTANT: This is unsafe (accessing the (mutable) configuration of htmlkit from a random event loop). */
+        let newConfig = Configuration(duplicating: application.htmlkit.configuration)
+        newConfig.environment = env
+        return .init(eventLoop: eventLoop, configuration: newConfig, logger: logger)
     }
 }
 
