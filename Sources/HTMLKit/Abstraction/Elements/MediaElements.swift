@@ -303,7 +303,7 @@ public struct Track: EmptyNode, MediaElement {
     }
 }
 
-extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute {
+extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute, SourceLanguageAttribute {
     
     public func accessKey(_ value: Character) -> Track {
         return mutate(accesskey: value)
@@ -463,6 +463,10 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
     
     public func source(_ value: EnvironmentValue) -> Track {
         return mutate(source: value)
+    }
+    
+    public func sourceLanguage(_ value: Values.Language) -> Track {
+        return mutate(sourcelanguage: value.rawValue)
     }
     
     public func label(_ value: String) -> Track {

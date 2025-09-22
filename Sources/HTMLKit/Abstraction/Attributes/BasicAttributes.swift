@@ -3381,6 +3381,44 @@ extension SourceAttribute where Self: EmptyNode {
     }
 }
 
+/// A type that provides the `sourceLanguage` modifier.
+@_documentation(visibility: internal)
+public protocol SourceLanguageAttribute: Attribute {
+    
+    /// Indicate the language of the text track.
+    ///
+    /// ```swift
+    /// Video {
+    ///     Source()
+    ///         .type(.mp4)
+    ///         .source("...mp4")
+    ///     Track()
+    ///         .source("...vtt")
+    ///         .sourceLanguage(.english)
+    ///         .kind(.subtitles)
+    /// }
+    /// ```
+    ///
+    /// - Parameter value: The language to expect.
+    ///
+    /// - Returns: The element
+    func sourceLanguage(_ value: Values.Language) -> Self
+}
+
+extension SourceLanguageAttribute where Self: ContentNode {
+    
+    internal func mutate(sourcelanguage value: String) -> Self {
+        return self.mutate(key: "srclang", value: value)
+    }
+}
+
+extension SourceLanguageAttribute where Self: EmptyNode {
+    
+    internal func mutate(sourcelanguage value: String) -> Self {
+        return self.mutate(key: "srclang", value: value)
+    }
+}
+
 /// A type that provides the `start` modifier.
 @_documentation(visibility: internal)
 public protocol StartAttribute: Attribute {
