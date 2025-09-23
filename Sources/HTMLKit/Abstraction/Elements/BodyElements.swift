@@ -17517,7 +17517,7 @@ public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute & LoadingAttribute & SandboxAttribute {
+extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute & LoadingAttribute & SandboxAttribute, SourceDocumentAttribute {
     
     public func accessKey(_ value: Character) -> InlineFrame {
         return mutate(accesskey: value)
@@ -17685,6 +17685,10 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
 
     public func source(_ value: EnvironmentValue) -> InlineFrame {
         return mutate(source: value)
+    }
+    
+    public func sourceDocument(_ value: String) -> InlineFrame {
+        return mutate(sourcedocument: value)
     }
     
     public func name(_ value: String) -> InlineFrame {

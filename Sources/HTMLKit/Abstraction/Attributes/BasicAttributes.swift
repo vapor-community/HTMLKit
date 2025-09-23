@@ -3381,6 +3381,38 @@ extension SourceAttribute where Self: EmptyNode {
     }
 }
 
+/// A type that provides the `sourceDocument` modifier.
+@_documentation(visibility: internal)
+public protocol SourceDocumentAttribute: Attribute {
+    
+    /// Embed inline markup into the frame.
+    ///
+    /// ```swift
+    /// InlineFrame {
+    /// }
+    /// .sourceDocument("<!doctype html><html lang=\"de\"></html>")
+    /// ```
+    ///
+    /// - Parameter value: The markup to render.
+    ///
+    /// - Returns: The element
+    func sourceDocument(_ value: String) -> Self
+}
+
+extension SourceDocumentAttribute where Self: ContentNode {
+    
+    internal func mutate(sourcedocument value: String) -> Self {
+        return self.mutate(key: "srcdoc", value: value)
+    }
+}
+
+extension SourceDocumentAttribute where Self: EmptyNode {
+    
+    internal func mutate(sourcedocument value: String) -> Self {
+        return self.mutate(key: "srcdoc", value: value)
+    }
+}
+
 /// A type that provides the `sourceLanguage` modifier.
 @_documentation(visibility: internal)
 public protocol SourceLanguageAttribute: Attribute {
