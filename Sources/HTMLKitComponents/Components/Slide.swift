@@ -62,11 +62,7 @@ extension Slide: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> Slide {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Slide {
+    public func hidden(_ condition: Bool = true) -> Slide {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

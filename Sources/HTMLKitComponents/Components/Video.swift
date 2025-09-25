@@ -72,11 +72,7 @@ extension Video: ViewModifier {
         return self.mutate(opacity: value.value)
     }
     
-    public func hidden() -> Video {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Video {
+    public func hidden(_ condition: Bool = true) -> Video {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

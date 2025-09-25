@@ -84,11 +84,7 @@ extension Snippet: ViewModifier {
         return self.mutate(backgroundcolor: color.value)
     }
     
-    public func hidden() -> Snippet {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Snippet {
+    public func hidden(_ condition: Bool = true) -> Snippet {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

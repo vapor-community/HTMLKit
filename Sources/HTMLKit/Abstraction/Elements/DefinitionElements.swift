@@ -95,12 +95,8 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> TermName {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> TermName {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> TermName{
+    public func hidden(_ condition: Bool = true) -> TermName{
         
         if condition {
             return mutate(hidden: "hidden")
@@ -199,11 +195,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> TermName {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> TermName {
+    public func inert(_ condition: Bool = true) -> TermName {
 
         if condition {
             return mutate(inert: "inert")
@@ -403,12 +395,8 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
     public func enterKeyHint(_ value: Values.Hint) -> TermDefinition {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> TermDefinition {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> TermDefinition {
+    public func hidden(_ condition: Bool = true) -> TermDefinition {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -507,11 +495,7 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> TermDefinition {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> TermDefinition {
+    public func inert(_ condition: Bool = true) -> TermDefinition {
 
         if condition {
             return mutate(inert: "inert")

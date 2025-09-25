@@ -379,7 +379,7 @@ public struct TextPad: View, Modifiable, Identifiable {
 
 extension TextPad: InputModifier {
     
-    public func disabled(_ condition: Bool) -> TextPad {
+    public func disabled(_ condition: Bool = true) -> TextPad {
         
         if condition {
             return self.mutate(inputstate: Tokens.ViewState.disabled.value)
@@ -403,11 +403,7 @@ extension TextPad: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> TextPad {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> TextPad {
+    public func hidden(_ condition: Bool = true) -> TextPad {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

@@ -23,9 +23,6 @@ public protocol ButtonModifier {
     func buttonStyle(_ style: ButtonConfiguration) -> Self
     
     /// Disable the button.
-    func disabled() -> Self
-    
-    /// Disable the button.
     ///
     /// - Parameter condition: Whether to disable the button.
     ///

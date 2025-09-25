@@ -117,11 +117,7 @@ extension Grouping: TextModifier {
         return self.mutate(fontstyle: style.value)
     }
     
-    public func bold() -> Grouping {
-        return self.mutate(fontweight: Tokens.FontWeight.bold.value)
-    }
-    
-    public func bold(_ condition: Bool) -> Grouping {
+    public func bold(_ condition: Bool = true) -> Grouping {
         
         if condition {
             return self.mutate(fontweight: Tokens.FontWeight.bold.value)
@@ -130,11 +126,7 @@ extension Grouping: TextModifier {
         return self
     }
     
-    public func italic() -> Grouping {
-        return self.mutate(fontstyle: Tokens.FontStyle.italic.value)
-    }
-    
-    public func italic(_ condition: Bool) -> Grouping {
+    public func italic(_ condition: Bool = true) -> Grouping {
     
         if condition {
             return self.mutate(fontstyle: Tokens.FontStyle.italic.value)
@@ -143,11 +135,7 @@ extension Grouping: TextModifier {
         return self
     }
     
-    public func underline() -> Grouping {
-        return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
-    }
-    
-    public func underline(_ condition: Bool) -> Grouping {
+    public func underline(_ condition: Bool = true) -> Grouping {
         
         if condition {
             return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
@@ -156,11 +144,7 @@ extension Grouping: TextModifier {
         return self
     }
     
-    public func strikethrough() -> Grouping {
-        return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
-    }
-    
-    public func strikethrough(_ condition: Bool) -> Grouping {
+    public func strikethrough(_ condition: Bool = true) -> Grouping {
         
         if condition {
             return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)

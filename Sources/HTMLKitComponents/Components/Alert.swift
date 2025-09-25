@@ -63,11 +63,7 @@ extension Alert: ViewModifier {
         return self.mutate(backgroundcolor: color.value)
     }
     
-    public func hidden() -> Alert {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Alert {
+    public func hidden(_ condition: Bool = true) -> Alert {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

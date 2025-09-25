@@ -91,12 +91,8 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     public func enterKeyHint(_ value: Values.Hint) -> FigureCaption {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> FigureCaption {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> FigureCaption {
+    public func hidden(_ condition: Bool = true) -> FigureCaption {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -195,11 +191,7 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> FigureCaption {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> FigureCaption {
+    public func inert(_ condition: Bool = true) -> FigureCaption {
 
         if condition {
             return mutate(inert: "inert")

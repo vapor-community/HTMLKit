@@ -84,7 +84,7 @@ public struct SearchField: View, Modifiable, Identifiable {
 
 extension SearchField: InputModifier {
     
-    public func disabled(_ condition: Bool) -> SearchField {
+    public func disabled(_ condition: Bool = true) -> SearchField {
         
         if condition {
             return self.mutate(inputstate: Tokens.ViewState.disabled.value)
@@ -108,11 +108,7 @@ extension SearchField: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> SearchField {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> SearchField {
+    public func hidden(_ condition: Bool = true) -> SearchField {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

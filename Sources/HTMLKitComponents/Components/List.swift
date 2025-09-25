@@ -125,11 +125,7 @@ extension List: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> List {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> List {
+    public func hidden(_ condition: Bool = true) -> List {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

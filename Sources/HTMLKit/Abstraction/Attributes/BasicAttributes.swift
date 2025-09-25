@@ -355,16 +355,6 @@ public protocol AutoplayAttribute: Attribute {
     /// Video {
     ///     Source()
     /// }
-    /// .autoplay()
-    /// ```
-    func autoplay() -> Self
-    
-    /// Mark the video as autoplay.
-    ///
-    /// ```swift
-    /// Video {
-    ///     Source()
-    /// }
     /// .autoplay(true)
     /// ```
     ///
@@ -422,15 +412,6 @@ extension CharsetAttribute where Self: EmptyNode {
 /// A type that provides the `checked` modifier.
 @_documentation(visibility: internal)
 public protocol CheckedAttribute: Attribute {
-    
-    /// Mark an input as pre-selected
-    ///
-    /// ```swift
-    /// Input()
-    ///     .type(.radio)
-    ///     .checked()
-    /// ```
-    func checked() -> Self
     
     /// Mark an input as pre-selected
     ///
@@ -954,14 +935,6 @@ public protocol DisabledAttribute: Attribute {
     ///
     /// ```swift
     /// Input()
-    ///     .disabled()
-    /// ```
-    func disabled() -> Self
-    
-    /// Disable the element.
-    ///
-    /// ```swift
-    /// Input()
     ///     .disabled(true)
     /// ```
     ///
@@ -1314,18 +1287,6 @@ extension HeightAttribute where Self: EmptyNode {
 /// A type that provides the `hidden` modifier.
 @_documentation(visibility: internal)
 public protocol HiddenAttribute: Attribute {
-    
-       /// Hide an element.
-       ///
-       /// ```swift
-       /// Paragraph {
-       ///     "Lorem ipsum..."
-       /// }
-       /// .hidden()
-       /// ```
-       ///
-       /// - Returns: The element
-    func hidden() -> Self
     
     /// Hide an element.
     ///
@@ -2772,16 +2733,6 @@ extension PreloadAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol ReadOnlyAttribute: Attribute {
     
-    /// Mark the input as read only.
-    ///
-    /// ```swift
-    /// Input()
-    ///     .readonly()
-    /// ```
-    ///
-    /// - Returns: The element
-    func readonly() -> Self
-    
     /// Mark the input as read only based on a condition.
     ///
     /// ```swift
@@ -2873,16 +2824,6 @@ extension RelationshipAttribute where Self: EmptyNode {
 /// A type that provides the `required` modifier.
 @_documentation(visibility: internal)
 public protocol RequiredAttribute: Attribute {
-    
-    /// Mark an input as required.
-    ///
-    /// ```swift
-    /// Input()
-    ///     .required()
-    /// ```
-    ///
-    /// - Returns: The element
-    func required() -> Self
     
     /// Mark an input as required based on a condition.
     ///
@@ -4016,17 +3957,6 @@ extension ShadowRootModeAttribute where Self: ContentNode {
 /// A type that provides the `inert` modifier.
 @_documentation(visibility: internal)
 public protocol InertAttribute: Attribute {
-    
-    /// Disable the element and the content of the element.
-    ///
-    /// ```swift
-    /// Division {
-    /// }
-    /// .inert()
-    /// ```
-    ///
-    /// - Returns: The element
-    func inert() -> Self
     
     /// Disable the element and the content of the element based on a condition.
     ///

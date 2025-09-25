@@ -70,11 +70,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(enterkeyhint: value.rawValue)
         }
         
-        func hidden() -> Tag {
-            return self.mutate(hidden: "hidden")
-        }
-        
-        public func hidden(_ condition: Bool) -> Tag {
+        public func hidden(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(hidden: "hidden")
@@ -197,11 +193,7 @@ final class AttributesTests: XCTestCase {
             return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
         }
         
-        func autoplay() -> Tag {
-            return self.mutate(autoplay: "autoplay")
-        }
-        
-        public func autoplay(_ condition: Bool) -> Tag {
+        public func autoplay(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(autoplay: "autoplay")
@@ -214,11 +206,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(charset: value.rawValue)
         }
         
-        func checked() -> Tag {
-            return self.mutate(checked: "checked")
-        }
-        
-        public func checked(_ condition: Bool) -> Tag {
+        public func checked(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(checked: "checked")
@@ -275,11 +263,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(defer: "defer")
         }
         
-        func disabled() -> Tag {
-            return self.mutate(disabled: "disabled")
-        }
-        
-        public func disabled(_ condition: Bool) -> Tag {
+        public func disabled(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(disabled: "disabled")
@@ -451,11 +435,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(preload: value.rawValue)
         }
         
-        func readonly() -> Tag {
-            return self.mutate(readonly: "readonly")
-        }
-        
-        public func readonly(_ condition: Bool) -> Tag {
+        public func readonly(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(readonly: "readonly")
@@ -472,11 +452,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(rel: value.rawValue)
         }
         
-        func required() -> Tag {
-            return self.mutate(required: "required")
-        }
-        
-        public func required(_ condition: Bool) -> Tag {
+        public func required(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(required: "required")
@@ -843,11 +819,7 @@ final class AttributesTests: XCTestCase {
             return mutate(shadowrootmode: value.rawValue)
         }
         
-        func inert() -> Tag {
-            return self.mutate(inert: "inert")
-        }
-        
-        public func inert(_ condition: Bool) -> Tag {
+        public func inert(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(inert: "inert")

@@ -93,7 +93,7 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
 
 extension RadioSelect: InputModifier {
     
-    public func disabled(_ condition: Bool) -> RadioSelect {
+    public func disabled(_ condition: Bool = true) -> RadioSelect {
         
         if condition {
             return self.mutate(inputstate: Tokens.ViewState.disabled.value)
@@ -117,11 +117,7 @@ extension RadioSelect: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> RadioSelect {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> RadioSelect {
+    public func hidden(_ condition: Bool = true) -> RadioSelect {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

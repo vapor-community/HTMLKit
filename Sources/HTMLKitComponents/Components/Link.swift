@@ -120,11 +120,7 @@ extension Link: TextModifier {
         return self.mutate(textdecoration: decoration.value)
     }
     
-    public func bold() -> Link {
-        return self.mutate(fontweight: Tokens.FontWeight.bold.value)
-    }
-    
-    public func bold(_ condition: Bool) -> Link {
+    public func bold(_ condition: Bool = true) -> Link {
         
         if condition {
             return self.mutate(fontweight: Tokens.FontWeight.bold.value)
@@ -133,11 +129,7 @@ extension Link: TextModifier {
         return self
     }
     
-    public func italic() -> Link {
-        return self.mutate(fontstyle: Tokens.FontStyle.italic.value)
-    }
-    
-    public func italic(_ condition: Bool) -> Link {
+    public func italic(_ condition: Bool = true) -> Link {
     
         if condition {
             return self.mutate(fontstyle: Tokens.FontStyle.italic.value)
@@ -146,11 +138,7 @@ extension Link: TextModifier {
         return self
     }
     
-    public func underline() -> Link {
-        return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
-    }
-    
-    public func underline(_ condition: Bool) -> Link {
+    public func underline(_ condition: Bool = true) -> Link {
         
         if condition {
             return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
@@ -159,11 +147,7 @@ extension Link: TextModifier {
         return self
     }
     
-    public func strikethrough() -> Link {
-        return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
-    }
-    
-    public func strikethrough(_ condition: Bool) -> Link {
+    public func strikethrough(_ condition: Bool = true) -> Link {
         
         if condition {
             return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
@@ -199,11 +183,7 @@ extension Link: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> Link {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Link {
+    public func hidden(_ condition: Bool = true) -> Link {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

@@ -102,11 +102,7 @@ extension ZStack: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> ZStack {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> ZStack {
+    public func hidden(_ condition: Bool = true) -> ZStack {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

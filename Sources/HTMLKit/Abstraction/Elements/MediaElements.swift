@@ -78,12 +78,8 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     public func enterKeyHint(_ value: Values.Hint) -> Source {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Source {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Source {
+    public func hidden(_ condition: Bool = true) -> Source {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -182,11 +178,7 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Source {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Source {
+    public func inert(_ condition: Bool = true) -> Source {
 
         if condition {
             return mutate(inert: "inert")
@@ -336,12 +328,8 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
     public func enterKeyHint(_ value: Values.Hint) -> Track {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Track {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Track {
+    public func hidden(_ condition: Bool = true) -> Track {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -440,11 +428,7 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Track {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Track {
+    public func inert(_ condition: Bool = true) -> Track {
 
         if condition {
             return mutate(inert: "inert")

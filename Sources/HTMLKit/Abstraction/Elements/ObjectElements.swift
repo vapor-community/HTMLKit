@@ -82,12 +82,8 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
     public func enterKeyHint(_ value: Values.Hint) -> Parameter {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Parameter {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Parameter {
+    public func hidden(_ condition: Bool = true) -> Parameter {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -186,11 +182,7 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Parameter {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Parameter {
+    public func inert(_ condition: Bool = true) -> Parameter {
 
         if condition {
             return mutate(inert: "inert")

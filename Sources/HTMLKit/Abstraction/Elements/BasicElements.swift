@@ -139,12 +139,8 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
     public func enterKeyHint(_ value: Values.Hint) -> Html {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Html {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Html {
+    public func hidden(_ condition: Bool = true) -> Html {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -243,11 +239,7 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Html {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Html {
+    public func inert(_ condition: Bool = true) -> Html {
 
         if condition {
             return mutate(inert: "inert")

@@ -118,11 +118,7 @@ extension LinkButton: ButtonModifier {
         return self.mutate(classes: style.configuration)
     }
     
-    public func disabled() -> LinkButton {
-        return self.mutate(buttonstate: Tokens.ViewState.disabled.value)
-    }
-    
-    public func disabled(_ condition: Bool) -> LinkButton {
+    public func disabled(_ condition: Bool = true) -> LinkButton {
         
         if condition {
             return self.mutate(buttonstate: Tokens.ViewState.disabled.value)
@@ -146,11 +142,7 @@ extension LinkButton: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> LinkButton {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> LinkButton {
+    public func hidden(_ condition: Bool = true) -> LinkButton {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)
