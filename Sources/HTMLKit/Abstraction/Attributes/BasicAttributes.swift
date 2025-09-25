@@ -2770,7 +2770,7 @@ extension PreloadAttribute where Self: EmptyNode {
 
 /// A type that provides the `readonly` modifier.
 @_documentation(visibility: internal)
-public protocol ReadyOnlyAttribute: Attribute {
+public protocol ReadOnlyAttribute: Attribute {
     
     /// Mark the input as read only.
     ///
@@ -2795,14 +2795,14 @@ public protocol ReadyOnlyAttribute: Attribute {
     func readonly(_ condition: Bool) -> Self
 }
 
-extension ReadyOnlyAttribute where Self: ContentNode {
+extension ReadOnlyAttribute where Self: ContentNode {
     
     internal func mutate(readonly value: String) -> Self {
         return self.mutate(key: "readonly", value: value)
     }
 }
 
-extension ReadyOnlyAttribute where Self: EmptyNode {
+extension ReadOnlyAttribute where Self: EmptyNode {
     
     internal func mutate(readonly value: String) -> Self {
         return self.mutate(key: "readonly", value: value)
